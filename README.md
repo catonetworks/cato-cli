@@ -3,7 +3,7 @@
 The package provides a simple to use CLI that reflects industry standards (such as the AWS cli), and enables customers to manage Cato Networks configurations and processes via the [Cato Networks GraphQL API](https://api.catonetworks.com/api/v1/graphql2) easily integrating into configurations management, orchestration or automation frameworks to support the DevOps model.
 
 ## Installation
-    pip3 install cato
+    pip3 install catocli
 
 ## Authentication - Setting up the required environment variables:
 Set [environment variables](https://en.wikipedia.org/wiki/Environment_variable) to configure a token for authentication, and the specific hub endpoint, example:  
@@ -15,15 +15,15 @@ Set [environment variables](https://en.wikipedia.org/wiki/Environment_variable) 
 [CLICK HERE](https://support.catonetworks.com/hc/en-us/articles/4413280536081-Generating-API-Keys-for-the-Cato-API) to see how create an API key to authenticate.
 
 ## Running the CLI
-	cato -h
-	cato query -h
-	cato query entityLookup -h
-	cato query entityLookup 10454 '{"type":"country"}`
+	catocli -h
+	catocli query -h
+	catocli query entityLookup -h
+	catocli query entityLookup 10454 '{"type":"country"}`
 
 ## Check out run locally not as pip package
 	git clone git@github.com:Cato-Networks/cato-cli.git
 	cd cato-cli
-	python3 -m cato -h
+	python3 -m catocli -h
 
 This CLI is a Python 3 application and has been tested with Python 3.6 -> 3.8
 ## Requirements:
@@ -34,7 +34,7 @@ This CLI is a Python 3 application and has been tested with Python 3.6 -> 3.8
     Enter: python -V or python3 -V
 
 ## Usage:
-    usage: cato <resource> <command> [options]
+    usage: catocli <resource> <command> [options]
 
     CLI for query, and mutation operations via API.
 

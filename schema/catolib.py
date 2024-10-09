@@ -507,7 +507,7 @@ def writeCliDriver(catoApiSchema):
 import os
 import argparse
 import json
-import cato
+import catocli
 from graphql_client import Configuration
 from graphql_client.api_client import ApiException
 from ..parsers.parserApiClient import get_help
@@ -531,20 +531,20 @@ from ..parsers.query_siteLocation import query_siteLocation_parse
 configuration = Configuration()
 configuration.verify_ssl = False
 configuration.api_key["x-api-key"] = CATO_TOKEN
-configuration.host = "{}".format(cato.__cato_host__)
+configuration.host = "{}".format(catocli.__cato_host__)
 configuration.debug = CATO_DEBUG
-configuration.version = "{}".format(cato.__version__)
+configuration.version = "{}".format(catocli.__version__)
 
-parser = argparse.ArgumentParser(prog='cato', usage='%(prog)s <operationType> <operationName> [options]', description="CLI for query on CATO via API.")
-parser.add_argument('--version', action='version', version=cato.__version__)
+parser = argparse.ArgumentParser(prog='catocli', usage='%(prog)s <operationType> <operationName> [options]', description="CLI for query on CATO via API.")
+parser.add_argument('--version', action='version', version=catocli.__version__)
 subparsers = parser.add_subparsers()
 #custom_parsers = custom_parse(subparsers)
 raw_parsers = subparsers.add_parser('raw', help='Raw GraphQL', usage=get_help("raw"))
 raw_parser = raw_parse(raw_parsers)
-query_parser = subparsers.add_parser('query', help='Query', usage='cato query <operationName> [options]')
+query_parser = subparsers.add_parser('query', help='Query', usage='catocli query <operationName> [options]')
 query_subparsers = query_parser.add_subparsers(description='valid subcommands', help='additional help')
 query_siteLocation_parser = query_siteLocation_parse(query_subparsers)
-mutation_parser = subparsers.add_parser('mutation', help='Mutation', usage='cato mutation <operationName> [options]')
+mutation_parser = subparsers.add_parser('mutation', help='Mutation', usage='catocli mutation <operationName> [options]')
 mutation_subparsers = mutation_parser.add_subparsers(description='valid subcommands', help='additional help')
 
 """
@@ -565,9 +565,9 @@ def main(args=None):
 			if response!=None:
 				print(json.dumps(response[0], sort_keys=True, indent=4))
 	except AttributeError:
-		print('Missing arguments. Usage: cato <operation> -h')
+		print('Missing arguments. Usage: catocli <operation> -h')
 """
-	writeFile("../cato/Utils/clidriver.py",cliDriverStr)
+	writeFile("../catocli/Utils/clidriver.py",cliDriverStr)
 
 def writeOperationParsers(catoApiSchema):
 	parserMapping = {"query":{},"mutation":{}}
@@ -582,7 +582,7 @@ def raw_parse(raw_parser):
 	raw_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	raw_parser.set_defaults(func=createRawRequest,operation_name='raw')
 """
-	parserPath = "../cato/parsers/raw"
+	parserPath = "../catocli/parsers/raw"
 	if not os.path.exists(parserPath):
 		os.makedirs(parserPath)
 	writeFile(parserPath+"/__init__.py",cliDriverStr)
@@ -606,7 +606,7 @@ def query_siteLocation_parse(query_subparsers):
 		help='Pretty print')
 	query_siteLocation_parser.set_defaults(func=querySiteLocation,operation_name='query.siteLocation')
 """
-	parserPath = "../cato/parsers/query_siteLocation"
+	parserPath = "../catocli/parsers/query_siteLocation"
 	if not os.path.exists(parserPath):
 		os.makedirs(parserPath)
 	writeFile(parserPath+"/__init__.py",cliDriverStr)
@@ -643,7 +643,7 @@ def {parserName}_parse({operationType}_subparsers):
 """
 			else:
 				cliDriverStr += renderSubParser(parser,operationType+"_"+operationName)
-			parserPath = "../cato/parsers/"+parserName
+			parserPath = "../catocli/parsers/"+parserName
 			if not os.path.exists(parserPath):
 				os.makedirs(parserPath)
 			writeFile(parserPath+"/__init__.py",cliDriverStr)
@@ -687,17 +687,17 @@ def writeReadmes(catoApiSchema):
 
 ### Usage for raw.graphql
 
-`cato raw -h`
+`catocli raw -h`
 
-`cato raw <json>`
+`catocli raw <json>`
 
-`cato raw "$(cat < rawGraphqQL.json)"`
+`catocli raw "$(cat < rawGraphqQL.json)"`
 
-`cato raw '{ "query": "query operationNameHere($yourArgument:String!) { field1 field2 }", "variables": { "yourArgument": "string", "accountID": "10949" }, "operationName": "operationNameHere" } '`
+`catocli raw '{ "query": "query operationNameHere($yourArgument:String!) { field1 field2 }", "variables": { "yourArgument": "string", "accountID": "10949" }, "operationName": "operationNameHere" } '`
 
-`cato raw '{ "query": "mutation operationNameHere($yourArgument:String!) { field1 field2 }", "variables": { "yourArgument": "string", "accountID": "10949" }, "operationName": "operationNameHere" } '`
+`catocli raw '{ "query": "mutation operationNameHere($yourArgument:String!) { field1 field2 }", "variables": { "yourArgument": "string", "accountID": "10949" }, "operationName": "operationNameHere" } '`
 """
-	parserPath = "../cato/parsers/raw"
+	parserPath = "../catocli/parsers/raw"
 	if not os.path.exists(parserPath):
 		os.makedirs(parserPath)
 	writeFile(parserPath+"/README.md",readmeStr)
@@ -709,19 +709,19 @@ def writeReadmes(catoApiSchema):
 
 ### Usage for query.siteLocation:
 
-`cato query siteLocation -h`
+`catocli query siteLocation -h`
 
-`cato query siteLocation <accountID> <json>`
+`catocli query siteLocation <accountID> <json>`
 
-`cato query siteLocation 12345 "$(cat < siteLocation.json)"`
+`catocli query siteLocation 12345 "$(cat < siteLocation.json)"`
 
-`cato query siteLocation 12345 '{"filters":[{"search": "Your city here","field":"city","operation":"exact"}]}'`
+`catocli query siteLocation 12345 '{"filters":[{"search": "Your city here","field":"city","operation":"exact"}]}'`
 
-`cato query siteLocation 12345 '{"filters":[{"search": "Your Country here","field":"countryName","operation":"startsWith"}]}'`
+`catocli query siteLocation 12345 '{"filters":[{"search": "Your Country here","field":"countryName","operation":"startsWith"}]}'`
 
-`cato query siteLocation 12345 '{"filters":[{"search": "Your stateName here","field":"stateName","operation":"endsWith"}]}'`
+`catocli query siteLocation 12345 '{"filters":[{"search": "Your stateName here","field":"stateName","operation":"endsWith"}]}'`
 
-`cato query siteLocation 12345 '{filters:[{"search": "Your City here","field":"city","operation":"startsWith"},{"search": "Your StateName here","field":"stateName","operation":"endsWith"},{"search": "Your Country here","field":"countryName","operation":"contains"}}'`
+`catocli query siteLocation 12345 '{filters:[{"search": "Your City here","field":"city","operation":"startsWith"},{"search": "Your StateName here","field":"stateName","operation":"endsWith"},{"search": "Your Country here","field":"countryName","operation":"contains"}}'`
 
 #### Operation Arguments for query.siteLocation ####
 `accountID` [ID] - (optional) Unique Identifier of Account. 
@@ -730,7 +730,7 @@ def writeReadmes(catoApiSchema):
 `filters[].field` [String] - (required) Specify field to match query against, defaults to look for any.  Possible values: `countryName`, `stateName`, or `city`.
 `filters[].operation` [string] - (required) If a field is specified, operation to match the field value.  Possible values: `startsWith`,`endsWith`,`exact`, `contains`.
 """
-	parserPath = "../cato/parsers/query_siteLocation"
+	parserPath = "../catocli/parsers/query_siteLocation"
 	if not os.path.exists(parserPath):
 		os.makedirs(parserPath)
 	writeFile(parserPath+"/README.md",readmeStr)
@@ -751,15 +751,15 @@ def writeReadmes(catoApiSchema):
 
 ### Usage for {operationPath}:
 
-`cato {operationCmd} -h`
+`catocli {operationCmd} -h`
 """
 			if "path" in parser:
 				readmeStr += f"""
-`cato {operationCmd} <accountID> <json>`
+`catocli {operationCmd} <accountID> <json>`
 
-`cato {operationCmd} 12345 "$(cat < {operationName}.json)"`
+`catocli {operationCmd} 12345 "$(cat < {operationName}.json)"`
 
-`cato {operationCmd} 12345 '{json.dumps(parser["example"])}'`
+`catocli {operationCmd} 12345 '{json.dumps(parser["example"])}'`
 
 #### Operation Arguments for {operationPath} ####
 """
@@ -769,12 +769,12 @@ def writeReadmes(catoApiSchema):
 					readmeStr += '('+arg["required"]+') '+arg["description"]+' '
 					readmeStr += 'Default Value: '+str(arg["values"]) if len(arg["values"])>0 else ""
 					readmeStr += "\n"
-				parserPath = "../cato/parsers/"+parserName
+				parserPath = "../catocli/parsers/"+parserName
 				if not os.path.exists(parserPath):
 					os.makedirs(parserPath)
 				writeFile(parserPath+"/README.md",readmeStr)
 			else:
-				parserPath = "../cato/parsers/"+parserName
+				parserPath = "../catocli/parsers/"+parserName
 				if not os.path.exists(parserPath):
 					os.makedirs(parserPath)
 				writeFile(parserPath+"/README.md",readmeStr)
@@ -785,22 +785,22 @@ def renderSubReadme(subParser,operationType,parentOperationPath):
 		subOperation = subParser[subOperationName]
 		subOperationPath = parentOperationPath+"."+subOperationName
 		subOperationCmd = parentOperationPath.replace("."," ")+" "+subOperationName
-		parserPath = "../cato/parsers/"+subOperationPath.replace(".","_")
+		parserPath = "../catocli/parsers/"+subOperationPath.replace(".","_")
 		readmeStr = f"""
 ## CATO-CLI - {parentOperationPath}.{subOperationName}:
 [Click here](https://api.catonetworks.com/documentation/#{operationType}-{subOperationName}) for documentation on this operation.
 
 ### Usage for {subOperationPath}:
 
-`cato {subOperationCmd} -h`
+`catocli {subOperationCmd} -h`
 """
 		if "path" in subOperation:
 			readmeStr += f"""
-`cato {subOperationCmd} <accountID> <json>`
+`catocli {subOperationCmd} <accountID> <json>`
 
-`cato {subOperationCmd} 12345 "$(cat < {subOperationName}.json)"`
+`catocli {subOperationCmd} 12345 "$(cat < {subOperationName}.json)"`
 
-`cato {subOperationCmd} 12345 '{json.dumps(subOperation["example"])}'`
+`catocli {subOperationCmd} 12345 '{json.dumps(subOperation["example"])}'`
 
 #### Operation Arguments for {subOperationPath} ####
 """

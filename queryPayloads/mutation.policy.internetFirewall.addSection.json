@@ -1,0 +1,28 @@
+{
+    "operationName": "policyInternetFirewallAddSection",
+    "query": "mutation policyInternetFirewallAddSection ( $PolicyAddSectionInput:PolicyAddSectionInput! $InternetFirewallPolicyMutationInput:InternetFirewallPolicyMutationInput ) { policy ( ) { internetFirewall ( input:$InternetFirewallPolicyMutationInput ) { addSection ( input:$PolicyAddSectionInput ) { PolicySectionPayloadSection: section { audit { updatedTime updatedBy } section { id name } properties } PolicyMutationStatusStatus: status PolicyMutationErrorErrors: errors { errorMessage errorCode } } } } }",
+    "variables": {
+        "InternetFirewallPolicyMutationInput": {
+            "PolicyMutationRevisionInput": {
+                "id": {
+                    "id": "ID"
+                }
+            }
+        },
+        "PolicyAddSectionInput": {
+            "PolicyAddSectionInfoInput": {
+                "name": {
+                    "name": "String"
+                }
+            },
+            "PolicySectionPositionInput": {
+                "position": {
+                    "position": "enum(PolicySectionPositionEnum)"
+                },
+                "ref": {
+                    "ref": "ID"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,3 @@
+
+### Usage:
+`cato query -h`

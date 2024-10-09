@@ -1,0 +1,1909 @@
+{
+    "args": {
+        "accountID": {
+            "defaultValue": null,
+            "description": "The account ID (or 0 for non-authenticated requests)",
+            "id_str": "accountID",
+            "name": "accountID",
+            "path": "accountID",
+            "requestStr": "$accountID:ID! ",
+            "required": true,
+            "responseStr": "accountID:$accountID ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountID"
+        },
+        "entityIDs": {
+            "defaultValue": null,
+            "description": "Adds additional search criteria to fetch by the selected list of entity IDs. This option is not\nuniversally available, and may not be applicable specific Entity types. If used on non applicable entity\ntype, an error will be generated.",
+            "id_str": "entityIDs",
+            "name": "entityIDs",
+            "path": "entityIDs",
+            "requestStr": "$entityIDs:[ID!] ",
+            "required": false,
+            "responseStr": "entityIDs:$entityIDs ",
+            "type": {
+                "kind": [
+                    "LIST",
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "entityIDs"
+        },
+        "filters": {
+            "defaultValue": null,
+            "description": "Custom filters for entityLookup",
+            "id_str": "filters",
+            "name": "filters",
+            "path": "filters",
+            "requestStr": "$LookupFilterInput:[LookupFilterInput] ",
+            "required": false,
+            "responseStr": "filters:$LookupFilterInput ",
+            "type": {
+                "definition": {
+                    "description": null,
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "filter": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "filters___filter",
+                            "name": "filter",
+                            "path": "filters.filter",
+                            "requestStr": "$filter:LookupFilterType ",
+                            "required": false,
+                            "responseStr": "filter:$filter ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": [
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Custom filter to be used with Site entityLookup, to get only sites with one connection type, possible values:\n\"SOCKET\",\n\"IPSEC\",\n\"vSOCKET\",\n\"PHYSICAL_SOCKET\"",
+                                            "isDeprecated": false,
+                                            "name": "filterByConnectionTypeFamily"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Custom filter to be used with Site entityLookup, to get only sites with one connection type, possible values (there are more values that can supported):\n\"SOCKET_X1500\",\n\"SOCKET_X1600\",\n\"SOCKET_X1700\",\n\"VSOCKET_VGX_ESX\",\n\"VSOCKET_VGX_AWS\"\n\"VSOCKET_VGX_AZURE\"\n\"SOCKET_X1600_LTE\",",
+                                            "isDeprecated": false,
+                                            "name": "filterByConnectionType"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Custom filter to be used with Site entityLookup, to get only sites with Alt WAN, possible values:\n\"true\",\n\"false\",",
+                                            "isDeprecated": false,
+                                            "name": "filterByAltWan"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Custom filter to be used with Site entityLookup, to get only sites that are configured as backhauling gateways, possible values:\n\"true\",\n\"false\",",
+                                            "isDeprecated": false,
+                                            "name": "filterByBackhaulingGW"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Custom filter to be used with Site entityLookup, to get only sites that are configured as OffCloudTransportEnabled, possible values:\n\"true\",\n\"false\",",
+                                            "isDeprecated": false,
+                                            "name": "filterByOffCloudTransportEnabled"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Custom filter for country, used by city and state entityLookup",
+                                            "isDeprecated": false,
+                                            "name": "country"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Custom filter for state used by city entityLookup",
+                                            "isDeprecated": false,
+                                            "name": "state"
+                                        }
+                                    ],
+                                    "fields": null,
+                                    "inputFields": null,
+                                    "interfaces": null,
+                                    "kind": "ENUM",
+                                    "name": "LookupFilterType",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "enum",
+                                "kind": [
+                                    "ENUM"
+                                ],
+                                "name": "LookupFilterType",
+                                "non_null": false
+                            },
+                            "varName": "filter"
+                        },
+                        "value": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "filters___value",
+                            "name": "value",
+                            "path": "filters.value",
+                            "requestStr": "$value:String ",
+                            "required": false,
+                            "responseStr": "value:$value ",
+                            "type": {
+                                "kind": [
+                                    "SCALAR"
+                                ],
+                                "name": "String",
+                                "non_null": false
+                            },
+                            "varName": "value"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "LookupFilterInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "LIST",
+                    "INPUT_OBJECT"
+                ],
+                "name": "LookupFilterInput",
+                "non_null": false
+            },
+            "varName": "LookupFilterInput"
+        },
+        "from": {
+            "defaultValue": "0",
+            "description": "Sets the offset number of items (for paging)",
+            "id_str": "from",
+            "name": "from",
+            "path": "from",
+            "requestStr": "$from:Int ",
+            "required": false,
+            "responseStr": "from:$from ",
+            "type": {
+                "kind": [
+                    "SCALAR"
+                ],
+                "name": "Int",
+                "non_null": false
+            },
+            "varName": "from"
+        },
+        "helperFields": {
+            "defaultValue": null,
+            "description": "Additional helper fields",
+            "id_str": "helperFields",
+            "name": "helperFields",
+            "path": "helperFields",
+            "requestStr": "$helperFields:[String!] ",
+            "required": false,
+            "responseStr": "helperFields:$helperFields ",
+            "type": {
+                "kind": [
+                    "LIST",
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "String",
+                "non_null": false
+            },
+            "varName": "helperFields"
+        },
+        "limit": {
+            "defaultValue": "50",
+            "description": "Sets the maximum number of items to retrieve",
+            "id_str": "limit",
+            "name": "limit",
+            "path": "limit",
+            "requestStr": "$limit:Int ",
+            "required": false,
+            "responseStr": "limit:$limit ",
+            "type": {
+                "kind": [
+                    "SCALAR"
+                ],
+                "name": "Int",
+                "non_null": false
+            },
+            "varName": "limit"
+        },
+        "parent": {
+            "defaultValue": null,
+            "description": "Return items under a parent entity (can be site, vpn user, etc),\nused to filter for networks that belong to a specific site for example",
+            "id_str": "parent",
+            "name": "parent",
+            "path": "parent",
+            "requestStr": "$EntityInput:EntityInput ",
+            "required": false,
+            "responseStr": "parent:$EntityInput ",
+            "type": {
+                "definition": {
+                    "description": null,
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "id": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "parent___id",
+                            "name": "id",
+                            "path": "parent.id",
+                            "requestStr": "$id:ID! ",
+                            "required": true,
+                            "responseStr": "id:$id ",
+                            "type": {
+                                "kind": [
+                                    "NON_NULL",
+                                    "SCALAR"
+                                ],
+                                "name": "ID",
+                                "non_null": false
+                            },
+                            "varName": "id"
+                        },
+                        "name": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "parent___name",
+                            "name": "name",
+                            "path": "parent.name",
+                            "requestStr": "$name:String ",
+                            "required": false,
+                            "responseStr": "name:$name ",
+                            "type": {
+                                "kind": [
+                                    "SCALAR"
+                                ],
+                                "name": "String",
+                                "non_null": false
+                            },
+                            "varName": "name"
+                        },
+                        "type": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "parent___type",
+                            "name": "type",
+                            "path": "parent.type",
+                            "requestStr": "$type:EntityType! ",
+                            "required": true,
+                            "responseStr": "type:$type ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": [
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "A reference to a configured Account under reseller",
+                                            "isDeprecated": false,
+                                            "name": "account"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "A reference to a configured Site within Account",
+                                            "isDeprecated": false,
+                                            "name": "site"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "A reference to the configured VPN User within Account",
+                                            "isDeprecated": false,
+                                            "name": "vpnUser"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Geographical and political entity recognized internationally",
+                                            "isDeprecated": false,
+                                            "name": "country"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Represents a state or territory within a country. It is a sub-division of the country",
+                                            "isDeprecated": false,
+                                            "name": "countryState"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Time zone, which is a geographical region where clocks are set to the same time",
+                                            "isDeprecated": false,
+                                            "name": "timezone"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "A reference to the configured Host within Site",
+                                            "isDeprecated": false,
+                                            "name": "host"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Any entity (matches everything)",
+                                            "isDeprecated": false,
+                                            "name": "any"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "A reference to the configured Network Interface within Site",
+                                            "isDeprecated": false,
+                                            "name": "networkInterface"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "location"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "An account administrator (user in Cato Console)",
+                                            "isDeprecated": false,
+                                            "name": "admin"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "A reference to Local Routing Rule within Site",
+                                            "isDeprecated": false,
+                                            "name": "localRouting"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "A reference to LAN Firewall Rule within Site",
+                                            "isDeprecated": false,
+                                            "name": "lanFirewall"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "An external IP address in a specific PoP reserved for the account",
+                                            "isDeprecated": false,
+                                            "name": "allocatedIP"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "union of the globalRange and a Subnet",
+                                            "isDeprecated": false,
+                                            "name": "siteRange"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "l4 services for LAN firewall rules",
+                                            "isDeprecated": false,
+                                            "name": "simpleService"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Site licenses available for use",
+                                            "isDeprecated": false,
+                                            "name": "availableSiteUsage"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Pooled licenses available for use",
+                                            "isDeprecated": false,
+                                            "name": "availablePooledUsage"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "A reference to DHCP Relay Group within account",
+                                            "isDeprecated": false,
+                                            "name": "dhcpRelayGroup"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Combination of protocol (TCP, UDP, TCP/UDP, ICMP) and port number",
+                                            "isDeprecated": false,
+                                            "name": "portProtocol"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "A settlement with over 1K population",
+                                            "isDeprecated": false,
+                                            "name": "city"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "groupSubscription"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "mailingListSubscription"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "webhookSubscription"
+                                        }
+                                    ],
+                                    "fields": null,
+                                    "inputFields": null,
+                                    "interfaces": null,
+                                    "kind": "ENUM",
+                                    "name": "EntityType",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "enum",
+                                "kind": [
+                                    "NON_NULL",
+                                    "ENUM"
+                                ],
+                                "name": "EntityType",
+                                "non_null": false
+                            },
+                            "varName": "type"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "EntityInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "INPUT_OBJECT"
+                ],
+                "name": "EntityInput",
+                "non_null": false
+            },
+            "varName": "EntityInput"
+        },
+        "search": {
+            "defaultValue": "\"\"",
+            "description": "Adds additional search parameters for the lookup. Available options:\ncountry lookup: \"removeExcluded\" to return only allowed countries\ncountryState lookup: country code (\"US\", \"CN\", etc) to get country's states",
+            "id_str": "search",
+            "name": "search",
+            "path": "search",
+            "requestStr": "$search:String ",
+            "required": false,
+            "responseStr": "search:$search ",
+            "type": {
+                "kind": [
+                    "SCALAR"
+                ],
+                "name": "String",
+                "non_null": false
+            },
+            "varName": "search"
+        },
+        "sort": {
+            "defaultValue": null,
+            "description": "Adds additional sort criteria(s) for the lookup.\nThis option is not universally available, and may not be applicable specific Entity types.",
+            "id_str": "sort",
+            "name": "sort",
+            "path": "sort",
+            "requestStr": "$SortInput:[SortInput] ",
+            "required": false,
+            "responseStr": "sort:$SortInput ",
+            "type": {
+                "definition": {
+                    "description": null,
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "field": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "sort___field",
+                            "name": "field",
+                            "path": "sort.field",
+                            "requestStr": "$field:String ",
+                            "required": false,
+                            "responseStr": "field:$field ",
+                            "type": {
+                                "kind": [
+                                    "SCALAR"
+                                ],
+                                "name": "String",
+                                "non_null": false
+                            },
+                            "varName": "field"
+                        },
+                        "order": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "sort___order",
+                            "name": "order",
+                            "path": "sort.order",
+                            "requestStr": "$order:DirectionInput ",
+                            "required": false,
+                            "responseStr": "order:$order ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": [
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "asc"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "desc"
+                                        }
+                                    ],
+                                    "fields": null,
+                                    "inputFields": null,
+                                    "interfaces": null,
+                                    "kind": "ENUM",
+                                    "name": "DirectionInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "enum",
+                                "kind": [
+                                    "ENUM"
+                                ],
+                                "name": "DirectionInput",
+                                "non_null": false
+                            },
+                            "varName": "order"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "SortInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "LIST",
+                    "INPUT_OBJECT"
+                ],
+                "name": "SortInput",
+                "non_null": false
+            },
+            "varName": "SortInput"
+        },
+        "type": {
+            "defaultValue": null,
+            "description": "Type of entity to lookup for",
+            "id_str": "type",
+            "name": "type",
+            "path": "type",
+            "requestStr": "$type:EntityType! ",
+            "required": true,
+            "responseStr": "type:$type ",
+            "type": {
+                "definition": {
+                    "description": null,
+                    "enumValues": [
+                        {
+                            "deprecationReason": null,
+                            "description": "A reference to a configured Account under reseller",
+                            "isDeprecated": false,
+                            "name": "account"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": "A reference to a configured Site within Account",
+                            "isDeprecated": false,
+                            "name": "site"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": "A reference to the configured VPN User within Account",
+                            "isDeprecated": false,
+                            "name": "vpnUser"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": "Geographical and political entity recognized internationally",
+                            "isDeprecated": false,
+                            "name": "country"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": "Represents a state or territory within a country. It is a sub-division of the country",
+                            "isDeprecated": false,
+                            "name": "countryState"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": "Time zone, which is a geographical region where clocks are set to the same time",
+                            "isDeprecated": false,
+                            "name": "timezone"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": "A reference to the configured Host within Site",
+                            "isDeprecated": false,
+                            "name": "host"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": "Any entity (matches everything)",
+                            "isDeprecated": false,
+                            "name": "any"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": "A reference to the configured Network Interface within Site",
+                            "isDeprecated": false,
+                            "name": "networkInterface"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": null,
+                            "isDeprecated": false,
+                            "name": "location"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": "An account administrator (user in Cato Console)",
+                            "isDeprecated": false,
+                            "name": "admin"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": "A reference to Local Routing Rule within Site",
+                            "isDeprecated": false,
+                            "name": "localRouting"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": "A reference to LAN Firewall Rule within Site",
+                            "isDeprecated": false,
+                            "name": "lanFirewall"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": "An external IP address in a specific PoP reserved for the account",
+                            "isDeprecated": false,
+                            "name": "allocatedIP"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": "union of the globalRange and a Subnet",
+                            "isDeprecated": false,
+                            "name": "siteRange"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": "l4 services for LAN firewall rules",
+                            "isDeprecated": false,
+                            "name": "simpleService"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": "Site licenses available for use",
+                            "isDeprecated": false,
+                            "name": "availableSiteUsage"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": "Pooled licenses available for use",
+                            "isDeprecated": false,
+                            "name": "availablePooledUsage"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": "A reference to DHCP Relay Group within account",
+                            "isDeprecated": false,
+                            "name": "dhcpRelayGroup"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": "Combination of protocol (TCP, UDP, TCP/UDP, ICMP) and port number",
+                            "isDeprecated": false,
+                            "name": "portProtocol"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": "A settlement with over 1K population",
+                            "isDeprecated": false,
+                            "name": "city"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": null,
+                            "isDeprecated": false,
+                            "name": "groupSubscription"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": null,
+                            "isDeprecated": false,
+                            "name": "mailingListSubscription"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": null,
+                            "isDeprecated": false,
+                            "name": "webhookSubscription"
+                        }
+                    ],
+                    "fields": null,
+                    "inputFields": null,
+                    "interfaces": null,
+                    "kind": "ENUM",
+                    "name": "EntityType",
+                    "possibleTypes": null
+                },
+                "indexType": "enum",
+                "kind": [
+                    "NON_NULL",
+                    "ENUM"
+                ],
+                "name": "EntityType",
+                "non_null": false
+            },
+            "varName": "type"
+        }
+    },
+    "deprecationReason": null,
+    "description": "Lookup entities with a specific type, potentially filtered and paged",
+    "fieldTypes": {
+        "Entity": true,
+        "EntityInfo": true,
+        "EntityType": true
+    },
+    "isDeprecated": false,
+    "name": "entityLookup",
+    "operationArgs": {
+        "EntityInput": {
+            "defaultValue": null,
+            "description": "Return items under a parent entity (can be site, vpn user, etc),\nused to filter for networks that belong to a specific site for example",
+            "id_str": "parent",
+            "name": "parent",
+            "path": "parent",
+            "requestStr": "$EntityInput:EntityInput ",
+            "required": false,
+            "responseStr": "parent:$EntityInput ",
+            "type": {
+                "definition": {
+                    "description": null,
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "id": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "parent___id",
+                            "name": "id",
+                            "path": "parent.id",
+                            "requestStr": "$id:ID! ",
+                            "required": true,
+                            "responseStr": "id:$id ",
+                            "type": {
+                                "kind": [
+                                    "NON_NULL",
+                                    "SCALAR"
+                                ],
+                                "name": "ID",
+                                "non_null": false
+                            },
+                            "varName": "id"
+                        },
+                        "name": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "parent___name",
+                            "name": "name",
+                            "path": "parent.name",
+                            "requestStr": "$name:String ",
+                            "required": false,
+                            "responseStr": "name:$name ",
+                            "type": {
+                                "kind": [
+                                    "SCALAR"
+                                ],
+                                "name": "String",
+                                "non_null": false
+                            },
+                            "varName": "name"
+                        },
+                        "type": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "parent___type",
+                            "name": "type",
+                            "path": "parent.type",
+                            "requestStr": "$type:EntityType! ",
+                            "required": true,
+                            "responseStr": "type:$type ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": [
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "A reference to a configured Account under reseller",
+                                            "isDeprecated": false,
+                                            "name": "account"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "A reference to a configured Site within Account",
+                                            "isDeprecated": false,
+                                            "name": "site"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "A reference to the configured VPN User within Account",
+                                            "isDeprecated": false,
+                                            "name": "vpnUser"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Geographical and political entity recognized internationally",
+                                            "isDeprecated": false,
+                                            "name": "country"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Represents a state or territory within a country. It is a sub-division of the country",
+                                            "isDeprecated": false,
+                                            "name": "countryState"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Time zone, which is a geographical region where clocks are set to the same time",
+                                            "isDeprecated": false,
+                                            "name": "timezone"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "A reference to the configured Host within Site",
+                                            "isDeprecated": false,
+                                            "name": "host"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Any entity (matches everything)",
+                                            "isDeprecated": false,
+                                            "name": "any"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "A reference to the configured Network Interface within Site",
+                                            "isDeprecated": false,
+                                            "name": "networkInterface"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "location"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "An account administrator (user in Cato Console)",
+                                            "isDeprecated": false,
+                                            "name": "admin"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "A reference to Local Routing Rule within Site",
+                                            "isDeprecated": false,
+                                            "name": "localRouting"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "A reference to LAN Firewall Rule within Site",
+                                            "isDeprecated": false,
+                                            "name": "lanFirewall"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "An external IP address in a specific PoP reserved for the account",
+                                            "isDeprecated": false,
+                                            "name": "allocatedIP"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "union of the globalRange and a Subnet",
+                                            "isDeprecated": false,
+                                            "name": "siteRange"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "l4 services for LAN firewall rules",
+                                            "isDeprecated": false,
+                                            "name": "simpleService"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Site licenses available for use",
+                                            "isDeprecated": false,
+                                            "name": "availableSiteUsage"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Pooled licenses available for use",
+                                            "isDeprecated": false,
+                                            "name": "availablePooledUsage"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "A reference to DHCP Relay Group within account",
+                                            "isDeprecated": false,
+                                            "name": "dhcpRelayGroup"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Combination of protocol (TCP, UDP, TCP/UDP, ICMP) and port number",
+                                            "isDeprecated": false,
+                                            "name": "portProtocol"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "A settlement with over 1K population",
+                                            "isDeprecated": false,
+                                            "name": "city"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "groupSubscription"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "mailingListSubscription"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "webhookSubscription"
+                                        }
+                                    ],
+                                    "fields": null,
+                                    "inputFields": null,
+                                    "interfaces": null,
+                                    "kind": "ENUM",
+                                    "name": "EntityType",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "enum",
+                                "kind": [
+                                    "NON_NULL",
+                                    "ENUM"
+                                ],
+                                "name": "EntityType",
+                                "non_null": false
+                            },
+                            "varName": "type"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "EntityInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "INPUT_OBJECT"
+                ],
+                "name": "EntityInput",
+                "non_null": false
+            },
+            "varName": "EntityInput"
+        },
+        "LookupFilterInput": {
+            "defaultValue": null,
+            "description": "Custom filters for entityLookup",
+            "id_str": "filters",
+            "name": "filters",
+            "path": "filters",
+            "requestStr": "$LookupFilterInput:[LookupFilterInput] ",
+            "required": false,
+            "responseStr": "filters:$LookupFilterInput ",
+            "type": {
+                "definition": {
+                    "description": null,
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "filter": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "filters___filter",
+                            "name": "filter",
+                            "path": "filters.filter",
+                            "requestStr": "$filter:LookupFilterType ",
+                            "required": false,
+                            "responseStr": "filter:$filter ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": [
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Custom filter to be used with Site entityLookup, to get only sites with one connection type, possible values:\n\"SOCKET\",\n\"IPSEC\",\n\"vSOCKET\",\n\"PHYSICAL_SOCKET\"",
+                                            "isDeprecated": false,
+                                            "name": "filterByConnectionTypeFamily"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Custom filter to be used with Site entityLookup, to get only sites with one connection type, possible values (there are more values that can supported):\n\"SOCKET_X1500\",\n\"SOCKET_X1600\",\n\"SOCKET_X1700\",\n\"VSOCKET_VGX_ESX\",\n\"VSOCKET_VGX_AWS\"\n\"VSOCKET_VGX_AZURE\"\n\"SOCKET_X1600_LTE\",",
+                                            "isDeprecated": false,
+                                            "name": "filterByConnectionType"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Custom filter to be used with Site entityLookup, to get only sites with Alt WAN, possible values:\n\"true\",\n\"false\",",
+                                            "isDeprecated": false,
+                                            "name": "filterByAltWan"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Custom filter to be used with Site entityLookup, to get only sites that are configured as backhauling gateways, possible values:\n\"true\",\n\"false\",",
+                                            "isDeprecated": false,
+                                            "name": "filterByBackhaulingGW"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Custom filter to be used with Site entityLookup, to get only sites that are configured as OffCloudTransportEnabled, possible values:\n\"true\",\n\"false\",",
+                                            "isDeprecated": false,
+                                            "name": "filterByOffCloudTransportEnabled"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Custom filter for country, used by city and state entityLookup",
+                                            "isDeprecated": false,
+                                            "name": "country"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Custom filter for state used by city entityLookup",
+                                            "isDeprecated": false,
+                                            "name": "state"
+                                        }
+                                    ],
+                                    "fields": null,
+                                    "inputFields": null,
+                                    "interfaces": null,
+                                    "kind": "ENUM",
+                                    "name": "LookupFilterType",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "enum",
+                                "kind": [
+                                    "ENUM"
+                                ],
+                                "name": "LookupFilterType",
+                                "non_null": false
+                            },
+                            "varName": "filter"
+                        },
+                        "value": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "filters___value",
+                            "name": "value",
+                            "path": "filters.value",
+                            "requestStr": "$value:String ",
+                            "required": false,
+                            "responseStr": "value:$value ",
+                            "type": {
+                                "kind": [
+                                    "SCALAR"
+                                ],
+                                "name": "String",
+                                "non_null": false
+                            },
+                            "varName": "value"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "LookupFilterInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "LIST",
+                    "INPUT_OBJECT"
+                ],
+                "name": "LookupFilterInput",
+                "non_null": false
+            },
+            "varName": "LookupFilterInput"
+        },
+        "SortInput": {
+            "defaultValue": null,
+            "description": "Adds additional sort criteria(s) for the lookup.\nThis option is not universally available, and may not be applicable specific Entity types.",
+            "id_str": "sort",
+            "name": "sort",
+            "path": "sort",
+            "requestStr": "$SortInput:[SortInput] ",
+            "required": false,
+            "responseStr": "sort:$SortInput ",
+            "type": {
+                "definition": {
+                    "description": null,
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "field": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "sort___field",
+                            "name": "field",
+                            "path": "sort.field",
+                            "requestStr": "$field:String ",
+                            "required": false,
+                            "responseStr": "field:$field ",
+                            "type": {
+                                "kind": [
+                                    "SCALAR"
+                                ],
+                                "name": "String",
+                                "non_null": false
+                            },
+                            "varName": "field"
+                        },
+                        "order": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "sort___order",
+                            "name": "order",
+                            "path": "sort.order",
+                            "requestStr": "$order:DirectionInput ",
+                            "required": false,
+                            "responseStr": "order:$order ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": [
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "asc"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "desc"
+                                        }
+                                    ],
+                                    "fields": null,
+                                    "inputFields": null,
+                                    "interfaces": null,
+                                    "kind": "ENUM",
+                                    "name": "DirectionInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "enum",
+                                "kind": [
+                                    "ENUM"
+                                ],
+                                "name": "DirectionInput",
+                                "non_null": false
+                            },
+                            "varName": "order"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "SortInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "LIST",
+                    "INPUT_OBJECT"
+                ],
+                "name": "SortInput",
+                "non_null": false
+            },
+            "varName": "SortInput"
+        },
+        "accountID": {
+            "defaultValue": null,
+            "description": "The account ID (or 0 for non-authenticated requests)",
+            "id_str": "accountID",
+            "name": "accountID",
+            "path": "accountID",
+            "requestStr": "$accountID:ID! ",
+            "required": true,
+            "responseStr": "accountID:$accountID ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountID"
+        },
+        "entityIDs": {
+            "defaultValue": null,
+            "description": "Adds additional search criteria to fetch by the selected list of entity IDs. This option is not\nuniversally available, and may not be applicable specific Entity types. If used on non applicable entity\ntype, an error will be generated.",
+            "id_str": "entityIDs",
+            "name": "entityIDs",
+            "path": "entityIDs",
+            "requestStr": "$entityIDs:[ID!] ",
+            "required": false,
+            "responseStr": "entityIDs:$entityIDs ",
+            "type": {
+                "kind": [
+                    "LIST",
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "entityIDs"
+        },
+        "from": {
+            "defaultValue": "0",
+            "description": "Sets the offset number of items (for paging)",
+            "id_str": "from",
+            "name": "from",
+            "path": "from",
+            "requestStr": "$from:Int ",
+            "required": false,
+            "responseStr": "from:$from ",
+            "type": {
+                "kind": [
+                    "SCALAR"
+                ],
+                "name": "Int",
+                "non_null": false
+            },
+            "varName": "from"
+        },
+        "helperFields": {
+            "defaultValue": null,
+            "description": "Additional helper fields",
+            "id_str": "helperFields",
+            "name": "helperFields",
+            "path": "helperFields",
+            "requestStr": "$helperFields:[String!] ",
+            "required": false,
+            "responseStr": "helperFields:$helperFields ",
+            "type": {
+                "kind": [
+                    "LIST",
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "String",
+                "non_null": false
+            },
+            "varName": "helperFields"
+        },
+        "limit": {
+            "defaultValue": "50",
+            "description": "Sets the maximum number of items to retrieve",
+            "id_str": "limit",
+            "name": "limit",
+            "path": "limit",
+            "requestStr": "$limit:Int ",
+            "required": false,
+            "responseStr": "limit:$limit ",
+            "type": {
+                "kind": [
+                    "SCALAR"
+                ],
+                "name": "Int",
+                "non_null": false
+            },
+            "varName": "limit"
+        },
+        "search": {
+            "defaultValue": "\"\"",
+            "description": "Adds additional search parameters for the lookup. Available options:\ncountry lookup: \"removeExcluded\" to return only allowed countries\ncountryState lookup: country code (\"US\", \"CN\", etc) to get country's states",
+            "id_str": "search",
+            "name": "search",
+            "path": "search",
+            "requestStr": "$search:String ",
+            "required": false,
+            "responseStr": "search:$search ",
+            "type": {
+                "kind": [
+                    "SCALAR"
+                ],
+                "name": "String",
+                "non_null": false
+            },
+            "varName": "search"
+        },
+        "type": {
+            "defaultValue": null,
+            "description": "Type of entity to lookup for",
+            "id_str": "type",
+            "name": "type",
+            "path": "type",
+            "requestStr": "$type:EntityType! ",
+            "required": true,
+            "responseStr": "type:$type ",
+            "type": {
+                "definition": {
+                    "description": null,
+                    "enumValues": [
+                        {
+                            "deprecationReason": null,
+                            "description": "A reference to a configured Account under reseller",
+                            "isDeprecated": false,
+                            "name": "account"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": "A reference to a configured Site within Account",
+                            "isDeprecated": false,
+                            "name": "site"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": "A reference to the configured VPN User within Account",
+                            "isDeprecated": false,
+                            "name": "vpnUser"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": "Geographical and political entity recognized internationally",
+                            "isDeprecated": false,
+                            "name": "country"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": "Represents a state or territory within a country. It is a sub-division of the country",
+                            "isDeprecated": false,
+                            "name": "countryState"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": "Time zone, which is a geographical region where clocks are set to the same time",
+                            "isDeprecated": false,
+                            "name": "timezone"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": "A reference to the configured Host within Site",
+                            "isDeprecated": false,
+                            "name": "host"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": "Any entity (matches everything)",
+                            "isDeprecated": false,
+                            "name": "any"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": "A reference to the configured Network Interface within Site",
+                            "isDeprecated": false,
+                            "name": "networkInterface"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": null,
+                            "isDeprecated": false,
+                            "name": "location"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": "An account administrator (user in Cato Console)",
+                            "isDeprecated": false,
+                            "name": "admin"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": "A reference to Local Routing Rule within Site",
+                            "isDeprecated": false,
+                            "name": "localRouting"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": "A reference to LAN Firewall Rule within Site",
+                            "isDeprecated": false,
+                            "name": "lanFirewall"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": "An external IP address in a specific PoP reserved for the account",
+                            "isDeprecated": false,
+                            "name": "allocatedIP"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": "union of the globalRange and a Subnet",
+                            "isDeprecated": false,
+                            "name": "siteRange"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": "l4 services for LAN firewall rules",
+                            "isDeprecated": false,
+                            "name": "simpleService"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": "Site licenses available for use",
+                            "isDeprecated": false,
+                            "name": "availableSiteUsage"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": "Pooled licenses available for use",
+                            "isDeprecated": false,
+                            "name": "availablePooledUsage"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": "A reference to DHCP Relay Group within account",
+                            "isDeprecated": false,
+                            "name": "dhcpRelayGroup"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": "Combination of protocol (TCP, UDP, TCP/UDP, ICMP) and port number",
+                            "isDeprecated": false,
+                            "name": "portProtocol"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": "A settlement with over 1K population",
+                            "isDeprecated": false,
+                            "name": "city"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": null,
+                            "isDeprecated": false,
+                            "name": "groupSubscription"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": null,
+                            "isDeprecated": false,
+                            "name": "mailingListSubscription"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": null,
+                            "isDeprecated": false,
+                            "name": "webhookSubscription"
+                        }
+                    ],
+                    "fields": null,
+                    "inputFields": null,
+                    "interfaces": null,
+                    "kind": "ENUM",
+                    "name": "EntityType",
+                    "possibleTypes": null
+                },
+                "indexType": "enum",
+                "kind": [
+                    "NON_NULL",
+                    "ENUM"
+                ],
+                "name": "EntityType",
+                "non_null": false
+            },
+            "varName": "type"
+        }
+    },
+    "path": "query.entityLookup",
+    "type": {
+        "definition": {
+            "description": null,
+            "enumValues": null,
+            "fields": {
+                "items": {
+                    "args": {},
+                    "deprecationReason": null,
+                    "description": null,
+                    "id_str": "items",
+                    "isDeprecated": false,
+                    "name": "items",
+                    "path": "items",
+                    "requestStr": "$EntityInfo:[EntityInfo]! ",
+                    "required": true,
+                    "responseStr": "items:$EntityInfo ",
+                    "type": {
+                        "definition": {
+                            "description": null,
+                            "enumValues": null,
+                            "fields": {
+                                "description": {
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": null,
+                                    "id_str": "items___description",
+                                    "isDeprecated": false,
+                                    "name": "description",
+                                    "path": "items.description",
+                                    "requestStr": "$description:String! ",
+                                    "required": true,
+                                    "responseStr": "description:$description ",
+                                    "type": {
+                                        "kind": [
+                                            "NON_NULL",
+                                            "SCALAR"
+                                        ],
+                                        "name": "String",
+                                        "non_null": false
+                                    },
+                                    "varName": "description"
+                                },
+                                "entity": {
+                                    "alias": "EntityEntity: entity",
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": null,
+                                    "id_str": "items___entity",
+                                    "isDeprecated": false,
+                                    "name": "entity",
+                                    "path": "items.entity",
+                                    "requestStr": "$Entity:Entity! ",
+                                    "required": true,
+                                    "responseStr": "entity:$Entity ",
+                                    "type": {
+                                        "definition": {
+                                            "description": null,
+                                            "enumValues": null,
+                                            "fields": {
+                                                "id": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "id_str": "items___entity___id",
+                                                    "isDeprecated": false,
+                                                    "name": "id",
+                                                    "path": "items.entity.id",
+                                                    "requestStr": "$id:ID! ",
+                                                    "required": true,
+                                                    "responseStr": "id:$id ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "ID",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "id"
+                                                },
+                                                "name": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "id_str": "items___entity___name",
+                                                    "isDeprecated": false,
+                                                    "name": "name",
+                                                    "path": "items.entity.name",
+                                                    "requestStr": "$name:String ",
+                                                    "required": false,
+                                                    "responseStr": "name:$name ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "name"
+                                                },
+                                                "type": {
+                                                    "alias": "EntityTypeType: type",
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "id_str": "items___entity___type",
+                                                    "isDeprecated": false,
+                                                    "name": "type",
+                                                    "path": "items.entity.type",
+                                                    "requestStr": "$type:EntityType! ",
+                                                    "required": true,
+                                                    "responseStr": "type:$type ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": null,
+                                                            "enumValues": [
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "A reference to a configured Account under reseller",
+                                                                    "isDeprecated": false,
+                                                                    "name": "account"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "A reference to a configured Site within Account",
+                                                                    "isDeprecated": false,
+                                                                    "name": "site"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "A reference to the configured VPN User within Account",
+                                                                    "isDeprecated": false,
+                                                                    "name": "vpnUser"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Geographical and political entity recognized internationally",
+                                                                    "isDeprecated": false,
+                                                                    "name": "country"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Represents a state or territory within a country. It is a sub-division of the country",
+                                                                    "isDeprecated": false,
+                                                                    "name": "countryState"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Time zone, which is a geographical region where clocks are set to the same time",
+                                                                    "isDeprecated": false,
+                                                                    "name": "timezone"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "A reference to the configured Host within Site",
+                                                                    "isDeprecated": false,
+                                                                    "name": "host"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Any entity (matches everything)",
+                                                                    "isDeprecated": false,
+                                                                    "name": "any"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "A reference to the configured Network Interface within Site",
+                                                                    "isDeprecated": false,
+                                                                    "name": "networkInterface"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "location"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "An account administrator (user in Cato Console)",
+                                                                    "isDeprecated": false,
+                                                                    "name": "admin"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "A reference to Local Routing Rule within Site",
+                                                                    "isDeprecated": false,
+                                                                    "name": "localRouting"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "A reference to LAN Firewall Rule within Site",
+                                                                    "isDeprecated": false,
+                                                                    "name": "lanFirewall"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "An external IP address in a specific PoP reserved for the account",
+                                                                    "isDeprecated": false,
+                                                                    "name": "allocatedIP"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "union of the globalRange and a Subnet",
+                                                                    "isDeprecated": false,
+                                                                    "name": "siteRange"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "l4 services for LAN firewall rules",
+                                                                    "isDeprecated": false,
+                                                                    "name": "simpleService"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Site licenses available for use",
+                                                                    "isDeprecated": false,
+                                                                    "name": "availableSiteUsage"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Pooled licenses available for use",
+                                                                    "isDeprecated": false,
+                                                                    "name": "availablePooledUsage"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "A reference to DHCP Relay Group within account",
+                                                                    "isDeprecated": false,
+                                                                    "name": "dhcpRelayGroup"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Combination of protocol (TCP, UDP, TCP/UDP, ICMP) and port number",
+                                                                    "isDeprecated": false,
+                                                                    "name": "portProtocol"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "A settlement with over 1K population",
+                                                                    "isDeprecated": false,
+                                                                    "name": "city"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "groupSubscription"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "mailingListSubscription"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "webhookSubscription"
+                                                                }
+                                                            ],
+                                                            "fields": null,
+                                                            "inputFields": null,
+                                                            "interfaces": null,
+                                                            "kind": "ENUM",
+                                                            "name": "EntityType",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "enum",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "ENUM"
+                                                        ],
+                                                        "name": "EntityType",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "type"
+                                                }
+                                            },
+                                            "inputFields": null,
+                                            "interfaces": {},
+                                            "kind": "OBJECT",
+                                            "name": "Entity",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "object",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "OBJECT"
+                                        ],
+                                        "name": "Entity",
+                                        "non_null": false
+                                    },
+                                    "varName": "Entity"
+                                },
+                                "helperFields": {
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": null,
+                                    "id_str": "items___helperFields",
+                                    "isDeprecated": false,
+                                    "name": "helperFields",
+                                    "path": "items.helperFields",
+                                    "requestStr": "$helperFields:Map! ",
+                                    "required": true,
+                                    "responseStr": "helperFields:$helperFields ",
+                                    "type": {
+                                        "kind": [
+                                            "NON_NULL",
+                                            "SCALAR"
+                                        ],
+                                        "name": "Map",
+                                        "non_null": false
+                                    },
+                                    "varName": "helperFields"
+                                }
+                            },
+                            "inputFields": null,
+                            "interfaces": {},
+                            "kind": "OBJECT",
+                            "name": "EntityInfo",
+                            "possibleTypes": null
+                        },
+                        "indexType": "object",
+                        "kind": [
+                            "NON_NULL",
+                            "LIST",
+                            "NON_NULL",
+                            "OBJECT"
+                        ],
+                        "name": "EntityInfo",
+                        "non_null": false
+                    },
+                    "varName": "EntityInfo"
+                },
+                "total": {
+                    "args": {},
+                    "deprecationReason": null,
+                    "description": null,
+                    "id_str": "total",
+                    "isDeprecated": false,
+                    "name": "total",
+                    "path": "total",
+                    "requestStr": "$total:Int ",
+                    "required": false,
+                    "responseStr": "total:$total ",
+                    "type": {
+                        "kind": [
+                            "SCALAR"
+                        ],
+                        "name": "Int",
+                        "non_null": false
+                    },
+                    "varName": "total"
+                }
+            },
+            "inputFields": null,
+            "interfaces": [],
+            "kind": "OBJECT",
+            "name": "EntityLookupResult",
+            "possibleTypes": null
+        },
+        "indexType": "object",
+        "kind": [
+            "NON_NULL",
+            "OBJECT"
+        ],
+        "name": "EntityLookupResult",
+        "non_null": false
+    },
+    "variablesPayload": {
+        "EntityInput": {
+            "id": {
+                "id": "ID"
+            },
+            "name": {
+                "name": "String"
+            },
+            "type": {
+                "type": "enum(EntityType)"
+            }
+        },
+        "LookupFilterInput": {
+            "filter": {
+                "filter": "enum(LookupFilterType)"
+            },
+            "value": {
+                "value": "String"
+            }
+        },
+        "SortInput": {
+            "field": {
+                "field": "String"
+            },
+            "order": {
+                "order": "enum(DirectionInput)"
+            }
+        },
+        "entityIDs": [
+            "ID"
+        ],
+        "from": "Int",
+        "helperFields": [
+            "String"
+        ],
+        "limit": "Int",
+        "search": "String",
+        "type": "enum(EntityType)"
+    }
+}

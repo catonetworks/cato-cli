@@ -1,0 +1,42 @@
+{
+    "operationName": "siteAddIpsecIkeV2SiteTunnels",
+    "query": "mutation siteAddIpsecIkeV2SiteTunnels ( $siteId:ID! $AddIpsecIkeV2SiteTunnelsInput:AddIpsecIkeV2SiteTunnelsInput! ) { site ( ) { addIpsecIkeV2SiteTunnels ( siteId:$siteId input:$AddIpsecIkeV2SiteTunnelsInput ) { siteId primary { fqdn tunnels { IPSecV2InterfaceIdTunnelId: tunnelId localId } } secondary { fqdn tunnels { IPSecV2InterfaceIdTunnelId: tunnelId localId } } } } }",
+    "variables": {
+        "AddIpsecIkeV2SiteTunnelsInput": {
+            "AddIpsecIkeV2TunnelsInput": {
+                "destinationType": {
+                    "destinationType": "enum(DestinationType)"
+                },
+                "popLocationId": {
+                    "popLocationId": "ID"
+                },
+                "publicCatoIpId": {
+                    "publicCatoIpId": "ID"
+                },
+                "tunnels": {
+                    "lastMileBw": {
+                        "downstream": {
+                            "downstream": "Int"
+                        },
+                        "upstream": {
+                            "upstream": "Int"
+                        }
+                    },
+                    "privateCatoIp": {
+                        "privateCatoIp": "IPAddress"
+                    },
+                    "privateSiteIp": {
+                        "privateSiteIp": "IPAddress"
+                    },
+                    "psk": {
+                        "psk": "String"
+                    },
+                    "publicSiteIp": {
+                        "publicSiteIp": "IPAddress"
+                    }
+                }
+            }
+        },
+        "siteId": "ID"
+    }
+}

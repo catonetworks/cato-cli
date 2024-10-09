@@ -1,0 +1,34 @@
+{
+    "operationName": "siteUpdateIpsecIkeV2SiteGeneralDetails",
+    "query": "mutation siteUpdateIpsecIkeV2SiteGeneralDetails ( $siteId:ID! $UpdateIpsecIkeV2SiteGeneralDetailsInput:UpdateIpsecIkeV2SiteGeneralDetailsInput! ) { site ( ) { updateIpsecIkeV2SiteGeneralDetails ( siteId:$siteId input:$UpdateIpsecIkeV2SiteGeneralDetailsInput ) { siteId localId } } }",
+    "variables": {
+        "UpdateIpsecIkeV2SiteGeneralDetailsInput": {
+            "IpsecIkeV2MessageInput": {
+                "cipher": {
+                    "cipher": "enum(IpSecCipher)"
+                },
+                "dhGroup": {
+                    "dhGroup": "enum(IpSecDHGroup)"
+                },
+                "integrity": {
+                    "integrity": "enum(IpSecHash)"
+                },
+                "prf": {
+                    "prf": "enum(IpSecHash)"
+                }
+            },
+            "connectionMode": {
+                "connectionMode": "enum(ConnectionMode)"
+            },
+            "identificationType": {
+                "identificationType": "enum(IdentificationType)"
+            },
+            "networkRanges": {
+                "networkRanges": [
+                    "IPSubnet"
+                ]
+            }
+        },
+        "siteId": "ID"
+    }
+}

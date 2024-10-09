@@ -1,0 +1,26 @@
+{
+    "operationName": "policyWanFirewallMoveSection",
+    "query": "mutation policyWanFirewallMoveSection ( $PolicyMoveSectionInput:PolicyMoveSectionInput! $WanFirewallPolicyMutationInput:WanFirewallPolicyMutationInput ) { policy ( ) { wanFirewall ( input:$WanFirewallPolicyMutationInput ) { moveSection ( input:$PolicyMoveSectionInput ) { PolicySectionPayloadSection: section { audit { updatedTime updatedBy } section { id name } properties } PolicyMutationStatusStatus: status PolicyMutationErrorErrors: errors { errorMessage errorCode } } } } }",
+    "variables": {
+        "PolicyMoveSectionInput": {
+            "PolicySectionPositionInput": {
+                "position": {
+                    "position": "enum(PolicySectionPositionEnum)"
+                },
+                "ref": {
+                    "ref": "ID"
+                }
+            },
+            "id": {
+                "id": "ID"
+            }
+        },
+        "WanFirewallPolicyMutationInput": {
+            "PolicyMutationRevisionInput": {
+                "id": {
+                    "id": "ID"
+                }
+            }
+        }
+    }
+}

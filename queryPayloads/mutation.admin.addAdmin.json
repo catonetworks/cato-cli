@@ -1,0 +1,49 @@
+{
+    "operationName": "adminAddAdmin",
+    "query": "mutation adminAddAdmin ( $AddAdminInput:AddAdminInput! ) { admin ( ) { addAdmin ( input:$AddAdminInput ) { adminID } } }",
+    "variables": {
+        "AddAdminInput": {
+            "UpdateAdminRoleInput": {
+                "allowedAccounts": {
+                    "allowedAccounts": [
+                        "ID"
+                    ]
+                },
+                "allowedEntities": {
+                    "id": {
+                        "id": "ID"
+                    },
+                    "name": {
+                        "name": "String"
+                    },
+                    "type": {
+                        "type": "enum(EntityType)"
+                    }
+                },
+                "role": {
+                    "id": {
+                        "id": "ID"
+                    },
+                    "name": {
+                        "name": "String"
+                    }
+                }
+            },
+            "email": {
+                "email": "String"
+            },
+            "firstName": {
+                "firstName": "String"
+            },
+            "lastName": {
+                "lastName": "String"
+            },
+            "mfaEnabled": {
+                "mfaEnabled": "Boolean"
+            },
+            "passwordNeverExpires": {
+                "passwordNeverExpires": "Boolean"
+            }
+        }
+    }
+}

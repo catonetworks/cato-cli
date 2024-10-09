@@ -1,0 +1,16 @@
+{
+    "operationName": "containerDelete",
+    "query": "mutation containerDelete ( $DeleteContainerInput:DeleteContainerInput! ) { container ( ) { delete ( input:$DeleteContainerInput ) { ContainerContainer: container { id name description size ContainerAuditAudit: audit { createdBy lastModifiedBy lastModifiedAt createdAt } ... on FqdnContainer { FqdnContainerId: id FqdnContainerName: name FqdnContainerDescription: description FqdnContainerSize: size ContainerAudit: audit { createdBy lastModifiedBy lastModifiedAt createdAt } } ... on IpAddressRangeContainer { IpAddressRangeContainerId: id IpAddressRangeContainerName: name IpAddressRangeContainerDescription: description IpAddressRangeContainerSize: size ContainerAudit: audit { createdBy lastModifiedBy lastModifiedAt createdAt } } } } } }",
+    "variables": {
+        "DeleteContainerInput": {
+            "ContainerRefInput": {
+                "by": {
+                    "by": "enum(ObjectRefBy)"
+                },
+                "input": {
+                    "input": "String"
+                }
+            }
+        }
+    }
+}

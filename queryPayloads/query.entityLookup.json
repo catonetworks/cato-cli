@@ -1,0 +1,43 @@
+{
+    "operationName": "entityLookup",
+    "query": "query entityLookup ( $type:EntityType! $limit:Int $from:Int $EntityInput:EntityInput $search:String $entityIDs:[ID!] $SortInput:[SortInput] $LookupFilterInput:[LookupFilterInput] $helperFields:[String!] ) { entityLookup ( type:$type limit:$limit from:$from parent:$EntityInput search:$search entityIDs:$entityIDs sort:$SortInput filters:$LookupFilterInput helperFields:$helperFields ) { items { EntityEntity: entity { id name EntityTypeType: type } description helperFields } total } }",
+    "variables": {
+        "EntityInput": {
+            "id": {
+                "id": "ID"
+            },
+            "name": {
+                "name": "String"
+            },
+            "type": {
+                "type": "enum(EntityType)"
+            }
+        },
+        "LookupFilterInput": {
+            "filter": {
+                "filter": "enum(LookupFilterType)"
+            },
+            "value": {
+                "value": "String"
+            }
+        },
+        "SortInput": {
+            "field": {
+                "field": "String"
+            },
+            "order": {
+                "order": "enum(DirectionInput)"
+            }
+        },
+        "entityIDs": [
+            "ID"
+        ],
+        "from": "Int",
+        "helperFields": [
+            "String"
+        ],
+        "limit": "Int",
+        "search": "String",
+        "type": "enum(EntityType)"
+    }
+}

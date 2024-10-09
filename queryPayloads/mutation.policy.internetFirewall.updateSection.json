@@ -1,0 +1,23 @@
+{
+    "operationName": "policyInternetFirewallUpdateSection",
+    "query": "mutation policyInternetFirewallUpdateSection ( $PolicyUpdateSectionInput:PolicyUpdateSectionInput! $InternetFirewallPolicyMutationInput:InternetFirewallPolicyMutationInput ) { policy ( ) { internetFirewall ( input:$InternetFirewallPolicyMutationInput ) { updateSection ( input:$PolicyUpdateSectionInput ) { PolicySectionPayloadSection: section { audit { updatedTime updatedBy } section { id name } properties } PolicyMutationStatusStatus: status PolicyMutationErrorErrors: errors { errorMessage errorCode } } } } }",
+    "variables": {
+        "InternetFirewallPolicyMutationInput": {
+            "PolicyMutationRevisionInput": {
+                "id": {
+                    "id": "ID"
+                }
+            }
+        },
+        "PolicyUpdateSectionInput": {
+            "PolicyUpdateSectionInfoInput": {
+                "name": {
+                    "name": "String"
+                }
+            },
+            "id": {
+                "id": "ID"
+            }
+        }
+    }
+}

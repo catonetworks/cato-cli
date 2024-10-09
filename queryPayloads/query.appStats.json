@@ -1,0 +1,46 @@
+{
+    "operationName": "appStats",
+    "query": "query appStats ( $limit:Int $from:Int $timeFrame:TimeFrame! $Measure:[Measure] $Dimension:[Dimension] $AppStatsFilter:[AppStatsFilter!] $AppStatsSort:[AppStatsSort!] ) { appStats ( timeFrame:$timeFrame measures:$Measure dimensions:$Dimension filters:$AppStatsFilter sort:$AppStatsSort ) { id from to total totals records ( limit:$limit from:$from ) { trends prevTimeFrame flatFields } } }",
+    "variables": {
+        "AppStatsFilter": {
+            "fieldName": {
+                "fieldName": "enum(AppStatsFieldName)"
+            },
+            "operator": {
+                "operator": "enum(FilterOperator)"
+            },
+            "values": {
+                "values": [
+                    "String"
+                ]
+            }
+        },
+        "AppStatsSort": {
+            "fieldName": {
+                "fieldName": "enum(AppStatsFieldName)"
+            },
+            "order": {
+                "order": "enum(DirectionEnum)"
+            }
+        },
+        "Dimension": {
+            "fieldName": {
+                "fieldName": "enum(AppStatsFieldName)"
+            }
+        },
+        "Measure": {
+            "aggType": {
+                "aggType": "enum(AggregationType)"
+            },
+            "fieldName": {
+                "fieldName": "enum(AppStatsFieldName)"
+            },
+            "trend": {
+                "trend": "Boolean"
+            }
+        },
+        "from": "Int",
+        "limit": "Int",
+        "timeFrame": "TimeFrame"
+    }
+}

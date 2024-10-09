@@ -1,0 +1,39 @@
+{
+    "operationName": "eventsTimeSeries",
+    "query": "query eventsTimeSeries ( $perSecond:Boolean $withMissingData:Boolean $buckets:Int! $timeFrame:TimeFrame! $EventsMeasure:[EventsMeasure] $EventsDimension:[EventsDimension] $EventsFilter:[EventsFilter!] ) { eventsTimeSeries ( timeFrame:$timeFrame measures:$EventsMeasure dimensions:$EventsDimension filters:$EventsFilter ) { id from to granularity timeseries ( buckets:$buckets ) { data ( perSecond:$perSecond withMissingData:$withMissingData ) label DimensionDataDimensions: dimensions { label value } TimeseriesKeyKey: key { measureFieldName dimensions { fieldName value } } sum UnitTypeUnits: units info } } }",
+    "variables": {
+        "EventsDimension": {
+            "fieldName": {
+                "fieldName": "enum(EventFieldName)"
+            }
+        },
+        "EventsFilter": {
+            "fieldName": {
+                "fieldName": "enum(EventFieldName)"
+            },
+            "operator": {
+                "operator": "enum(FilterOperator)"
+            },
+            "values": {
+                "values": [
+                    "String"
+                ]
+            }
+        },
+        "EventsMeasure": {
+            "aggType": {
+                "aggType": "enum(AggregationType)"
+            },
+            "fieldName": {
+                "fieldName": "enum(EventFieldName)"
+            },
+            "trend": {
+                "trend": "Boolean"
+            }
+        },
+        "buckets": "Int",
+        "perSecond": "Boolean",
+        "timeFrame": "TimeFrame",
+        "withMissingData": "Boolean"
+    }
+}

@@ -1,0 +1,47 @@
+{
+    "operationName": "sitesUpdateNetworkRange",
+    "query": "mutation sitesUpdateNetworkRange ( $networkRangeId:ID! $UpdateNetworkRangeInput:UpdateNetworkRangeInput! ) { sites ( ) { updateNetworkRange ( networkRangeId:$networkRangeId input:$UpdateNetworkRangeInput ) { networkRangeId } } }",
+    "variables": {
+        "UpdateNetworkRangeInput": {
+            "NetworkDhcpSettingsInput": {
+                "dhcpType": {
+                    "dhcpType": "enum(DhcpType)"
+                },
+                "ipRange": {
+                    "ipRange": "IPRange"
+                },
+                "relayGroupId": {
+                    "relayGroupId": "ID"
+                }
+            },
+            "azureFloatingIp": {
+                "azureFloatingIp": "IPAddress"
+            },
+            "gateway": {
+                "gateway": "IPAddress"
+            },
+            "localIp": {
+                "localIp": "IPAddress"
+            },
+            "mdnsReflector": {
+                "mdnsReflector": "Boolean"
+            },
+            "name": {
+                "name": "String"
+            },
+            "rangeType": {
+                "rangeType": "enum(SubnetType)"
+            },
+            "subnet": {
+                "subnet": "IPSubnet"
+            },
+            "translatedSubnet": {
+                "translatedSubnet": "IPSubnet"
+            },
+            "vlan": {
+                "vlan": "Int"
+            }
+        },
+        "networkRangeId": "ID"
+    }
+}

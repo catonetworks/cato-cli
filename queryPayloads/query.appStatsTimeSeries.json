@@ -1,0 +1,39 @@
+{
+    "operationName": "appStatsTimeSeries",
+    "query": "query appStatsTimeSeries ( $perSecond:Boolean $withMissingData:Boolean $buckets:Int! $timeFrame:TimeFrame! $Measure:[Measure] $Dimension:[Dimension] $AppStatsFilter:[AppStatsFilter!] ) { appStatsTimeSeries ( timeFrame:$timeFrame measures:$Measure dimensions:$Dimension filters:$AppStatsFilter ) { id from to granularity timeseries ( buckets:$buckets ) { data ( perSecond:$perSecond withMissingData:$withMissingData ) label DimensionDataDimensions: dimensions { label value } TimeseriesKeyKey: key { measureFieldName dimensions { fieldName value } } sum UnitTypeUnits: units info } } }",
+    "variables": {
+        "AppStatsFilter": {
+            "fieldName": {
+                "fieldName": "enum(AppStatsFieldName)"
+            },
+            "operator": {
+                "operator": "enum(FilterOperator)"
+            },
+            "values": {
+                "values": [
+                    "String"
+                ]
+            }
+        },
+        "Dimension": {
+            "fieldName": {
+                "fieldName": "enum(AppStatsFieldName)"
+            }
+        },
+        "Measure": {
+            "aggType": {
+                "aggType": "enum(AggregationType)"
+            },
+            "fieldName": {
+                "fieldName": "enum(AppStatsFieldName)"
+            },
+            "trend": {
+                "trend": "Boolean"
+            }
+        },
+        "buckets": "Int",
+        "perSecond": "Boolean",
+        "timeFrame": "TimeFrame",
+        "withMissingData": "Boolean"
+    }
+}

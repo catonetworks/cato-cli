@@ -1,0 +1,639 @@
+{
+    "operationName": "policyInternetFirewallAddRule",
+    "query": "mutation policyInternetFirewallAddRule ( $InternetFirewallAddRuleInput:InternetFirewallAddRuleInput! $InternetFirewallPolicyMutationInput:InternetFirewallPolicyMutationInput ) { policy ( ) { internetFirewall ( input:$InternetFirewallPolicyMutationInput ) { addRule ( input:$InternetFirewallAddRuleInput ) { InternetFirewallRulePayloadRule: rule { audit { updatedTime updatedBy } rule { id name description index PolicySectionInfoSection: section { id name } enabled InternetFirewallSourceSource: source { ip HostRefHost: host { id name } SiteRefSite: site { id name } subnet IpAddressRangeIpRange: ipRange { from to } GlobalIpRangeRefGlobalIpRange: globalIpRange { id name } NetworkInterfaceRefNetworkInterface: networkInterface { id name } SiteNetworkSubnetRefSiteNetworkSubnet: siteNetworkSubnet { id name } FloatingSubnetRefFloatingSubnet: floatingSubnet { id name } UserRefUser: user { id name } UsersGroupRefUsersGroup: usersGroup { id name } GroupRefGroup: group { id name } SystemGroupRefSystemGroup: systemGroup { id name } } ConnectionOriginEnumConnectionOrigin: connectionOrigin CountryRefCountry: country { id name } DeviceProfileRefDevice: device { id name } OperatingSystemDeviceOS: deviceOS InternetFirewallDestinationDestination: destination { ApplicationRefApplication: application { id name } CustomApplicationRefCustomApp: customApp { id name } ApplicationCategoryRefAppCategory: appCategory { id name } CustomCategoryRefCustomCategory: customCategory { id name } SanctionedAppsCategoryRefSanctionedAppsCategory: sanctionedAppsCategory { id name } CountryRefCountry: country { id name } domain fqdn ip subnet IpAddressRangeIpRange: ipRange { from to } GlobalIpRangeRefGlobalIpRange: globalIpRange { id name } remoteAsn ContainerRefContainer: container { id name } InternetFirewallContainerContainers: containers { FqdnContainerRefFqdnContainer: fqdnContainer { id name } IpAddressRangeContainerRefIpAddressRangeContainer: ipAddressRangeContainer { id name } } } InternetFirewallServiceTypeService: service { ServiceRefStandard: standard { id name } CustomServiceCustom: custom { port PortRangePortRange: portRange { from to } IpProtocolProtocol: protocol } } InternetFirewallActionEnumAction: action PolicyTrackingTracking: tracking { PolicyRuleTrackingEventEvent: event { enabled } PolicyRuleTrackingAlertAlert: alert { enabled PolicyRuleTrackingFrequencyEnumFrequency: frequency SubscriptionGroupRefSubscriptionGroup: subscriptionGroup { id name } SubscriptionWebhookRefWebhook: webhook { id name } SubscriptionMailingListRefMailingList: mailingList { id name } } } PolicyScheduleSchedule: schedule { PolicyActiveOnEnumActiveOn: activeOn PolicyCustomTimeframeCustomTimeframe: customTimeframe { from to } PolicyCustomRecurringCustomRecurring: customRecurring { from to days } } InternetFirewallRuleExceptionExceptions: exceptions { name InternetFirewallSourceSource: source { ip HostRefHost: host { id name } SiteRefSite: site { id name } subnet IpAddressRangeIpRange: ipRange { from to } GlobalIpRangeRefGlobalIpRange: globalIpRange { id name } NetworkInterfaceRefNetworkInterface: networkInterface { id name } SiteNetworkSubnetRefSiteNetworkSubnet: siteNetworkSubnet { id name } FloatingSubnetRefFloatingSubnet: floatingSubnet { id name } UserRefUser: user { id name } UsersGroupRefUsersGroup: usersGroup { id name } GroupRefGroup: group { id name } SystemGroupRefSystemGroup: systemGroup { id name } } OperatingSystemDeviceOS: deviceOS CountryRefCountry: country { id name } DeviceProfileRefDevice: device { id name } InternetFirewallDestinationDestination: destination { ApplicationRefApplication: application { id name } CustomApplicationRefCustomApp: customApp { id name } ApplicationCategoryRefAppCategory: appCategory { id name } CustomCategoryRefCustomCategory: customCategory { id name } SanctionedAppsCategoryRefSanctionedAppsCategory: sanctionedAppsCategory { id name } CountryRefCountry: country { id name } domain fqdn ip subnet IpAddressRangeIpRange: ipRange { from to } GlobalIpRangeRefGlobalIpRange: globalIpRange { id name } remoteAsn ContainerRefContainer: container { id name } InternetFirewallContainerContainers: containers { FqdnContainerRefFqdnContainer: fqdnContainer {  id  name } IpAddressRangeContainerRefIpAddressRangeContainer: ipAddressRangeContainer {  id  name } } } InternetFirewallServiceTypeService: service { ServiceRefStandard: standard { id name } CustomServiceCustom: custom { port PortRangePortRange: portRange {  from  to } IpProtocolProtocol: protocol } } ConnectionOriginEnumConnectionOrigin: connectionOrigin } } properties } PolicyMutationStatusStatus: status PolicyMutationErrorErrors: errors { errorMessage errorCode } } } } }",
+    "variables": {
+        "InternetFirewallAddRuleInput": {
+            "InternetFirewallAddRuleDataInput": {
+                "action": {
+                    "action": "enum(InternetFirewallActionEnum)"
+                },
+                "connectionOrigin": {
+                    "connectionOrigin": "enum(ConnectionOriginEnum)"
+                },
+                "country": {
+                    "by": {
+                        "by": "enum(ObjectRefBy)"
+                    },
+                    "input": {
+                        "input": "String"
+                    }
+                },
+                "description": {
+                    "description": "String"
+                },
+                "destination": {
+                    "appCategory": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "application": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "container": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "containers": {
+                        "fqdnContainer": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "ipAddressRangeContainer": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        }
+                    },
+                    "country": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "customApp": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "customCategory": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "domain": {
+                        "domain": [
+                            "Domain"
+                        ]
+                    },
+                    "fqdn": {
+                        "fqdn": [
+                            "Fqdn"
+                        ]
+                    },
+                    "globalIpRange": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "ip": {
+                        "ip": [
+                            "IPAddress"
+                        ]
+                    },
+                    "ipRange": {
+                        "from": {
+                            "from": "IPAddress"
+                        },
+                        "to": {
+                            "to": "IPAddress"
+                        }
+                    },
+                    "remoteAsn": {
+                        "remoteAsn": [
+                            "Asn16"
+                        ]
+                    },
+                    "sanctionedAppsCategory": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "subnet": {
+                        "subnet": [
+                            "NetworkSubnet"
+                        ]
+                    }
+                },
+                "device": {
+                    "by": {
+                        "by": "enum(ObjectRefBy)"
+                    },
+                    "input": {
+                        "input": "String"
+                    }
+                },
+                "deviceOS": {
+                    "deviceOS": "enum(OperatingSystem)"
+                },
+                "enabled": {
+                    "enabled": "Boolean"
+                },
+                "exceptions": {
+                    "connectionOrigin": {
+                        "connectionOrigin": "enum(ConnectionOriginEnum)"
+                    },
+                    "country": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "destination": {
+                        "appCategory": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "application": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "container": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "containers": {
+                            "fqdnContainer": {
+                                "by": {
+                                    "by": "enum(ObjectRefBy)"
+                                },
+                                "input": {
+                                    "input": "String"
+                                }
+                            },
+                            "ipAddressRangeContainer": {
+                                "by": {
+                                    "by": "enum(ObjectRefBy)"
+                                },
+                                "input": {
+                                    "input": "String"
+                                }
+                            }
+                        },
+                        "country": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "customApp": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "customCategory": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "domain": {
+                            "domain": [
+                                "Domain"
+                            ]
+                        },
+                        "fqdn": {
+                            "fqdn": [
+                                "Fqdn"
+                            ]
+                        },
+                        "globalIpRange": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "ip": {
+                            "ip": [
+                                "IPAddress"
+                            ]
+                        },
+                        "ipRange": {
+                            "from": {
+                                "from": "IPAddress"
+                            },
+                            "to": {
+                                "to": "IPAddress"
+                            }
+                        },
+                        "remoteAsn": {
+                            "remoteAsn": [
+                                "Asn16"
+                            ]
+                        },
+                        "sanctionedAppsCategory": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "subnet": {
+                            "subnet": [
+                                "NetworkSubnet"
+                            ]
+                        }
+                    },
+                    "device": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "deviceOS": {
+                        "deviceOS": "enum(OperatingSystem)"
+                    },
+                    "name": {
+                        "name": "String"
+                    },
+                    "service": {
+                        "custom": {
+                            "port": {
+                                "port": [
+                                    "Port"
+                                ]
+                            },
+                            "portRange": {
+                                "from": {
+                                    "from": "Port"
+                                },
+                                "to": {
+                                    "to": "Port"
+                                }
+                            },
+                            "protocol": {
+                                "protocol": "enum(IpProtocol)"
+                            }
+                        },
+                        "standard": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        }
+                    },
+                    "source": {
+                        "floatingSubnet": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "globalIpRange": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "group": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "host": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "ip": {
+                            "ip": [
+                                "IPAddress"
+                            ]
+                        },
+                        "ipRange": {
+                            "from": {
+                                "from": "IPAddress"
+                            },
+                            "to": {
+                                "to": "IPAddress"
+                            }
+                        },
+                        "networkInterface": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "site": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "siteNetworkSubnet": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "subnet": {
+                            "subnet": [
+                                "NetworkSubnet"
+                            ]
+                        },
+                        "systemGroup": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "user": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "usersGroup": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        }
+                    }
+                },
+                "name": {
+                    "name": "String"
+                },
+                "schedule": {
+                    "activeOn": {
+                        "activeOn": "enum(PolicyActiveOnEnum)"
+                    },
+                    "customRecurring": {
+                        "days": {
+                            "days": "enum(DayOfWeek)"
+                        },
+                        "from": {
+                            "from": "Time"
+                        },
+                        "to": {
+                            "to": "Time"
+                        }
+                    },
+                    "customTimeframe": {
+                        "from": {
+                            "from": "DateTime"
+                        },
+                        "to": {
+                            "to": "DateTime"
+                        }
+                    }
+                },
+                "service": {
+                    "custom": {
+                        "port": {
+                            "port": [
+                                "Port"
+                            ]
+                        },
+                        "portRange": {
+                            "from": {
+                                "from": "Port"
+                            },
+                            "to": {
+                                "to": "Port"
+                            }
+                        },
+                        "protocol": {
+                            "protocol": "enum(IpProtocol)"
+                        }
+                    },
+                    "standard": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    }
+                },
+                "source": {
+                    "floatingSubnet": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "globalIpRange": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "group": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "host": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "ip": {
+                        "ip": [
+                            "IPAddress"
+                        ]
+                    },
+                    "ipRange": {
+                        "from": {
+                            "from": "IPAddress"
+                        },
+                        "to": {
+                            "to": "IPAddress"
+                        }
+                    },
+                    "networkInterface": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "site": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "siteNetworkSubnet": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "subnet": {
+                        "subnet": [
+                            "NetworkSubnet"
+                        ]
+                    },
+                    "systemGroup": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "user": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "usersGroup": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    }
+                },
+                "tracking": {
+                    "alert": {
+                        "enabled": {
+                            "enabled": "Boolean"
+                        },
+                        "frequency": {
+                            "frequency": "enum(PolicyRuleTrackingFrequencyEnum)"
+                        },
+                        "mailingList": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "subscriptionGroup": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "webhook": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        }
+                    },
+                    "event": {
+                        "enabled": {
+                            "enabled": "Boolean"
+                        }
+                    }
+                }
+            },
+            "PolicyRulePositionInput": {
+                "position": {
+                    "position": "enum(PolicyRulePositionEnum)"
+                },
+                "ref": {
+                    "ref": "ID"
+                }
+            }
+        },
+        "InternetFirewallPolicyMutationInput": {
+            "PolicyMutationRevisionInput": {
+                "id": {
+                    "id": "ID"
+                }
+            }
+        }
+    }
+}

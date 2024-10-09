@@ -1,0 +1,24 @@
+{
+    "operationName": "eventsFeed",
+    "query": "query eventsFeed ( $fieldNames:[EventFieldName!] $accountIDs:[ID!] $EventFeedFieldFilterInput:[EventFeedFieldFilterInput!] $marker:String ) { eventsFeed ( accountIDs:$accountIDs filters:$EventFeedFieldFilterInput marker:$marker ) { marker fetchedCount accounts { id errorString EventRecordRecords: records ( fieldNames:$fieldNames ) { time flatFields } } } }",
+    "variables": {
+        "EventFeedFieldFilterInput": {
+            "fieldName": {
+                "fieldName": "enum(EventFeedFilterFieldName)"
+            },
+            "operator": {
+                "operator": "enum(EventFeedFilterOperator)"
+            },
+            "values": {
+                "values": [
+                    "String"
+                ]
+            }
+        },
+        "accountIDs": [
+            "ID"
+        ],
+        "fieldNames": "enum(EventFieldName)",
+        "marker": "String"
+    }
+}

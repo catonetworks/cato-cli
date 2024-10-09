@@ -1,0 +1,45 @@
+{
+    "operationName": "sitesUpdateIpsecIkeV2SiteTunnels",
+    "query": "mutation sitesUpdateIpsecIkeV2SiteTunnels ( $siteId:ID! $UpdateIpsecIkeV2SiteTunnelsInput:UpdateIpsecIkeV2SiteTunnelsInput! ) { sites ( ) { updateIpsecIkeV2SiteTunnels ( siteId:$siteId input:$UpdateIpsecIkeV2SiteTunnelsInput ) { siteId primary { fqdn tunnels { IPSecV2InterfaceIdTunnelId: tunnelId localId } } secondary { fqdn tunnels { IPSecV2InterfaceIdTunnelId: tunnelId localId } } } } }",
+    "variables": {
+        "UpdateIpsecIkeV2SiteTunnelsInput": {
+            "UpdateIpsecIkeV2TunnelsInput": {
+                "destinationType": {
+                    "destinationType": "enum(DestinationType)"
+                },
+                "popLocationId": {
+                    "popLocationId": "ID"
+                },
+                "publicCatoIpId": {
+                    "publicCatoIpId": "ID"
+                },
+                "tunnels": {
+                    "lastMileBw": {
+                        "downstream": {
+                            "downstream": "Int"
+                        },
+                        "upstream": {
+                            "upstream": "Int"
+                        }
+                    },
+                    "privateCatoIp": {
+                        "privateCatoIp": "IPAddress"
+                    },
+                    "privateSiteIp": {
+                        "privateSiteIp": "IPAddress"
+                    },
+                    "psk": {
+                        "psk": "String"
+                    },
+                    "publicSiteIp": {
+                        "publicSiteIp": "IPAddress"
+                    },
+                    "tunnelId": {
+                        "tunnelId": "enum(IPSecV2InterfaceId)"
+                    }
+                }
+            }
+        },
+        "siteId": "ID"
+    }
+}

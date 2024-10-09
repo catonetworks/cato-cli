@@ -162,7 +162,7 @@ def generateGraphqlPayload(variablesObj,operation,operationName):
 	return body
 
 def get_help(path):
-	matchCmd = "cato "+path.replace("_"," ")
+	matchCmd = "catocli "+path.replace("_"," ")
 	import os
 	pwd = os.path.dirname(__file__)
 	doc = path+"/README.md"
@@ -204,13 +204,16 @@ def validateArgs(variablesObj,operation):
 
 def loadJSON(file):
 	CONFIG = {}
+	module_dir_ary = os.path.dirname(__file__).split("/")
+	del module_dir_ary[-1]
+	del module_dir_ary[-1]
+	module_dir = "/".join(module_dir_ary)
 	try:
-		with open(file, 'r') as data:
+		with open(module_dir+'/'+file, 'r') as data:
 			CONFIG = json.load(data)
-			# logging.warning("Loaded "+file+" data")
 			return CONFIG
 	except:
-		logging.warning("File \""+file+"\" not found.")
+		logging.warning("File \""+module_dir+'/'+file+"\" not found.")
 		exit()
 
 def renderCamelCase(pathStr):

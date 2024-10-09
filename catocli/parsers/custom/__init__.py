@@ -1,29 +1,34 @@
 
-import cato.parsers.custom.customLib as customLib
+import catocli.parsers.custom.customLib as customLib
 
 def custom_parse(subparsers):
-	site_parser = subparsers.add_parser('site', help='Site', usage='cato site <operationName> [options]')
-	site_subparsers = site_parser.add_subparsers(description='valid subcommands', help='additional help')
+	entityTypes = ["account","admin","allocatedIP","any","availablePooledUsage","availableSiteUsage","dhcpRelayGroup","groupSubscription","host","lanFirewall","localRouting","location","mailingListSubscription","networkInterface","portProtocol","simpleService","site","siteRange","timezone","vpnUser","webhookSubscription"]
+	entity_parser = subparsers.add_parser('entity', help='Entity Lookup', usage='catocli entity <operationName> [options]')
+	entity_subparsers = entity_parser.add_subparsers(description='valid subcommands', help='additional help')
 
-	site_list_parser = site_subparsers.add_parser('list', 
-			help='site list', 
-			usage=get_help_custom("site_list"))
+	for entity in entityTypes:
+		item_parser = entity_subparsers.add_parser(entity, help=entity, usage='catocli entity '+entity+' <operationName> [options]')
+		item_subparsers = item_parser.add_subparsers(description='valid subcommands', help='additional help')
 
-	site_list_parser.add_argument('accountID', help='The Account ID.')
-	site_list_parser.add_argument('-s', help='Search string', default='', nargs='?')
-	site_list_parser.add_argument('-f', default="csv", choices=["json","csv"], nargs='?', 
-		help='Specify format for output')
-	site_list_parser.add_argument('-t', const=True, default=False, nargs='?', 
-		help='Print test request preview without sending api call')
-	site_list_parser.add_argument('-v', const=True, default=False, nargs='?', 
-		help='Verbose output')
-	site_list_parser.add_argument('-p', const=True, default=False, nargs='?', 
-		help='Pretty print')
-	
-	site_list_parser.set_defaults(func=customLib.entityTypeList,operation_name='site')
+		item_list_parser = item_subparsers.add_parser('list', 
+				help='entity '+entity+' list', 
+				usage=get_help_custom("entity_"+entity+"_list"))
+
+		item_list_parser.add_argument('accountID', help='The Account ID.')
+		item_list_parser.add_argument('-s', help='Search string', default='', nargs='?')
+		item_list_parser.add_argument('-f', default="csv", choices=["json","csv"], nargs='?', 
+			help='Specify format for output')
+		item_list_parser.add_argument('-t', const=True, default=False, nargs='?', 
+			help='Print test request preview without sending api call')
+		item_list_parser.add_argument('-v', const=True, default=False, nargs='?', 
+			help='Verbose output')
+		item_list_parser.add_argument('-p', const=True, default=False, nargs='?', 
+			help='Pretty print')
+		
+		item_list_parser.set_defaults(func=customLib.entityTypeList,operation_name=entity)
 
 def get_help_custom(path):
-	matchCmd = "cato "+path.replace("_"," ")
+	matchCmd = "catocli "+path.replace("_"," ")
 	import os
 	pwd = os.path.dirname(__file__)
 	# doc = path+"/README.md"

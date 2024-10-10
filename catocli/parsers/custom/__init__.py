@@ -7,7 +7,7 @@ def custom_parse(subparsers):
 	entity_subparsers = entity_parser.add_subparsers(description='valid subcommands', help='additional help')
 
 	for entity in entityTypes:
-		item_parser = entity_subparsers.add_parser(entity, help=entity, usage='catocli entity '+entity+' <operationName> [options]')
+		item_parser = entity_subparsers.add_parser(entity, help="entityLookup() for type: "+entity, usage='catocli entity '+entity+' <operationName> [options]')
 		item_subparsers = item_parser.add_subparsers(description='valid subcommands', help='additional help')
 
 		item_list_parser = item_subparsers.add_parser('list', 

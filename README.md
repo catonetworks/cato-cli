@@ -8,9 +8,12 @@ The package provides a simple to use CLI that reflects industry standards (such 
 ## Authentication - Setting up the required environment variables:
 Set [environment variables](https://en.wikipedia.org/wiki/Environment_variable) to configure a token for authentication, and the specific hub endpoint, example:  
 
-	export CATO_TOKEN="12345-abcde"  
-    export CATO_HOST="12345-abcde" (defaults to https://api.catonetworks.com/api/v1/graphql2, add this environment variable for developoment purposes to specify alternative cato host)  
+	export CATO_TOKEN="12345-abcde-12345-abcde"  
+	export CATO_ACCOUNT_ID="12345"
     export CATO_DEBUG=True (Optional to see cli debug logs in terminal output) 
+
+    // Add this environment variable for developoment purposes to specify alternative cato host
+    export CATO_HOST="https://some.dev.endpoint.catonetworks.com/api/v1/graphql2" (defaults to https://api.catonetworks.com/api/v1/graphql2,  
 	
 [CLICK HERE](https://support.catonetworks.com/hc/en-us/articles/4413280536081-Generating-API-Keys-for-the-Cato-API) to see how create an API key to authenticate.
 
@@ -18,7 +21,10 @@ Set [environment variables](https://en.wikipedia.org/wiki/Environment_variable) 
 	catocli -h
 	catocli query -h
 	catocli query entityLookup -h
-	catocli query entityLookup 10454 '{"type":"country"}`
+	catocli query entityLookup '{"type":"country"}`
+    
+    // Override the accountID value as a cli argument
+	catocli query entityLookup -accountID=12345 '{"type":"country"}`
 
 ## Check out run locally not as pip package
 	git clone git@github.com:Cato-Networks/cato-cli.git

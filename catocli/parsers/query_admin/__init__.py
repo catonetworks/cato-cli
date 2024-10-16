@@ -6,8 +6,8 @@ def query_admin_parse(query_subparsers):
 			help='admin() query operation', 
 			usage=get_help("query_admin"))
 
-	query_admin_parser.add_argument('accountID', help='The Account ID.')
 	query_admin_parser.add_argument('json', help='Variables in JSON format.')
+	query_admin_parser.add_argument('-accountID', help='The Account ID.')
 	query_admin_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	query_admin_parser.add_argument('-v', const=True, default=False, nargs='?', 

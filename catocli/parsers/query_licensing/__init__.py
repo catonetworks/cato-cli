@@ -6,8 +6,8 @@ def query_licensing_parse(query_subparsers):
 			help='licensing() query operation', 
 			usage=get_help("query_licensing"))
 
-	query_licensing_parser.add_argument('accountID', help='The Account ID.')
 	query_licensing_parser.add_argument('json', help='Variables in JSON format.')
+	query_licensing_parser.add_argument('-accountID', help='The Account ID.')
 	query_licensing_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	query_licensing_parser.add_argument('-v', const=True, default=False, nargs='?', 

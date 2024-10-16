@@ -8,9 +8,9 @@
 
 `catocli query admin <accountID> <json>`
 
-`catocli query admin 12345 "$(cat < admin.json)"`
+`catocli query admin "$(cat < admin.json)"`
 
-`catocli query admin 12345 '{"adminID": "ID"}'`
+`catocli query admin '{"adminID": "ID"}'`
 
 #### Operation Arguments for query.admin ####
 `accountId` [ID] - (required) N/A 

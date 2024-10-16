@@ -8,9 +8,9 @@
 
 `catocli mutation policy internetFirewall updatePolicy <accountID> <json>`
 
-`catocli mutation policy internetFirewall updatePolicy 12345 "$(cat < updatePolicy.json)"`
+`catocli mutation policy internetFirewall updatePolicy "$(cat < updatePolicy.json)"`
 
-`catocli mutation policy internetFirewall updatePolicy 12345 '{"InternetFirewallPolicyMutationInput": {"PolicyMutationRevisionInput": {"id": {"id": "ID"}}}, "InternetFirewallPolicyUpdateInput": {"state": {"state": "enum(PolicyToggleState)"}}}'`
+`catocli mutation policy internetFirewall updatePolicy '{"InternetFirewallPolicyMutationInput": {"PolicyMutationRevisionInput": {"id": {"id": "ID"}}}, "InternetFirewallPolicyUpdateInput": {"state": {"state": "enum(PolicyToggleState)"}}}'`
 
 #### Operation Arguments for mutation.policy.internetFirewall.updatePolicy ####
 `InternetFirewallPolicyMutationInput` [InternetFirewallPolicyMutationInput] - (optional) N/A 

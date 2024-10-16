@@ -8,9 +8,9 @@
 
 `catocli mutation sites addSocketSite <accountID> <json>`
 
-`catocli mutation sites addSocketSite 12345 "$(cat < addSocketSite.json)"`
+`catocli mutation sites addSocketSite "$(cat < addSocketSite.json)"`
 
-`catocli mutation sites addSocketSite 12345 '{"AddSocketSiteInput": {"AddSiteLocationInput": {"address": {"address": "String"}, "city": {"city": "String"}, "countryCode": {"countryCode": "String"}, "stateCode": {"stateCode": "String"}, "timezone": {"timezone": "String"}}, "connectionType": {"connectionType": "enum(SiteConnectionTypeEnum)"}, "description": {"description": "String"}, "name": {"name": "String"}, "nativeNetworkRange": {"nativeNetworkRange": "IPSubnet"}, "siteType": {"siteType": "enum(SiteType)"}, "translatedSubnet": {"translatedSubnet": "IPSubnet"}}}'`
+`catocli mutation sites addSocketSite '{"AddSocketSiteInput": {"AddSiteLocationInput": {"address": {"address": "String"}, "city": {"city": "String"}, "countryCode": {"countryCode": "String"}, "stateCode": {"stateCode": "String"}, "timezone": {"timezone": "String"}}, "connectionType": {"connectionType": "enum(SiteConnectionTypeEnum)"}, "description": {"description": "String"}, "name": {"name": "String"}, "nativeNetworkRange": {"nativeNetworkRange": "IPSubnet"}, "siteType": {"siteType": "enum(SiteType)"}, "translatedSubnet": {"translatedSubnet": "IPSubnet"}}}'`
 
 #### Operation Arguments for mutation.sites.addSocketSite ####
 `AddSocketSiteInput` [AddSocketSiteInput] - (required) N/A 

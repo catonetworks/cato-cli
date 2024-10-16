@@ -8,9 +8,9 @@
 
 `catocli mutation container delete <accountID> <json>`
 
-`catocli mutation container delete 12345 "$(cat < delete.json)"`
+`catocli mutation container delete "$(cat < delete.json)"`
 
-`catocli mutation container delete 12345 '{"DeleteContainerInput": {"ContainerRefInput": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}}}'`
+`catocli mutation container delete '{"DeleteContainerInput": {"ContainerRefInput": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}}}'`
 
 #### Operation Arguments for mutation.container.delete ####
 `DeleteContainerInput` [DeleteContainerInput] - (required) N/A 

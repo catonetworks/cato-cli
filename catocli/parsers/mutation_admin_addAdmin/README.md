@@ -8,9 +8,9 @@
 
 `catocli mutation admin addAdmin <accountID> <json>`
 
-`catocli mutation admin addAdmin 12345 "$(cat < addAdmin.json)"`
+`catocli mutation admin addAdmin "$(cat < addAdmin.json)"`
 
-`catocli mutation admin addAdmin 12345 '{"AddAdminInput": {"UpdateAdminRoleInput": {"allowedAccounts": {"allowedAccounts": ["ID"]}, "allowedEntities": {"id": {"id": "ID"}, "name": {"name": "String"}, "type": {"type": "enum(EntityType)"}}, "role": {"id": {"id": "ID"}, "name": {"name": "String"}}}, "email": {"email": "String"}, "firstName": {"firstName": "String"}, "lastName": {"lastName": "String"}, "mfaEnabled": {"mfaEnabled": "Boolean"}, "passwordNeverExpires": {"passwordNeverExpires": "Boolean"}}}'`
+`catocli mutation admin addAdmin '{"AddAdminInput": {"UpdateAdminRoleInput": {"allowedAccounts": {"allowedAccounts": ["ID"]}, "allowedEntities": {"id": {"id": "ID"}, "name": {"name": "String"}, "type": {"type": "enum(EntityType)"}}, "role": {"id": {"id": "ID"}, "name": {"name": "String"}}}, "email": {"email": "String"}, "firstName": {"firstName": "String"}, "lastName": {"lastName": "String"}, "mfaEnabled": {"mfaEnabled": "Boolean"}, "passwordNeverExpires": {"passwordNeverExpires": "Boolean"}}}'`
 
 #### Operation Arguments for mutation.admin.addAdmin ####
 `AddAdminInput` [AddAdminInput] - (required) N/A 

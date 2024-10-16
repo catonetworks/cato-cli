@@ -8,9 +8,9 @@
 
 `catocli query eventsFeed <accountID> <json>`
 
-`catocli query eventsFeed 12345 "$(cat < eventsFeed.json)"`
+`catocli query eventsFeed "$(cat < eventsFeed.json)"`
 
-`catocli query eventsFeed 12345 '{"EventFeedFieldFilterInput": {"fieldName": {"fieldName": "enum(EventFeedFilterFieldName)"}, "operator": {"operator": "enum(EventFeedFilterOperator)"}, "values": {"values": ["String"]}}, "accountIDs": ["ID"], "fieldNames": "enum(EventFieldName)", "marker": "String"}'`
+`catocli query eventsFeed '{"EventFeedFieldFilterInput": {"fieldName": {"fieldName": "enum(EventFeedFilterFieldName)"}, "operator": {"operator": "enum(EventFeedFilterOperator)"}, "values": {"values": ["String"]}}, "accountIDs": ["ID"], "fieldNames": "enum(EventFieldName)", "marker": "String"}'`
 
 #### Operation Arguments for query.eventsFeed ####
 `EventFeedFieldFilterInput` [EventFeedFieldFilterInput[]] - (optional) N/A 

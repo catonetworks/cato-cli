@@ -17,10 +17,7 @@ def createRequest(args, configuration):
 	except ValueError as e:
 		print("ERROR: Query argument must be valid json in quotes. ",e,'\n\nExample: \'{"yourKey":"yourValue"}\'')
 		exit()
-	if "accountID" in operation["operationArgs"]:
-		variablesObj["accountID"] = params["accountID"]	
-	elif "accountId" in operation["args"]:
-		variablesObj["accountId"] = params["accountID"]	
+	variablesObj["accountID"] = configuration.accountID
 	isOk, invalidVars, message = validateArgs(variablesObj,operation)
 	if isOk==True:
 		body = generateGraphqlPayload(variablesObj,operation,operationName)

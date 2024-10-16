@@ -8,9 +8,9 @@
 
 `catocli query events <accountID> <json>`
 
-`catocli query events 12345 "$(cat < events.json)"`
+`catocli query events "$(cat < events.json)"`
 
-`catocli query events 12345 '{"EventsDimension": {"fieldName": {"fieldName": "enum(EventFieldName)"}}, "EventsFilter": {"fieldName": {"fieldName": "enum(EventFieldName)"}, "operator": {"operator": "enum(FilterOperator)"}, "values": {"values": ["String"]}}, "EventsMeasure": {"aggType": {"aggType": "enum(AggregationType)"}, "fieldName": {"fieldName": "enum(EventFieldName)"}, "trend": {"trend": "Boolean"}}, "EventsSort": {"fieldName": {"fieldName": "enum(EventFieldName)"}, "order": {"order": "enum(DirectionEnum)"}}, "from": "Int", "limit": "Int", "timeFrame": "TimeFrame"}'`
+`catocli query events '{"EventsDimension": {"fieldName": {"fieldName": "enum(EventFieldName)"}}, "EventsFilter": {"fieldName": {"fieldName": "enum(EventFieldName)"}, "operator": {"operator": "enum(FilterOperator)"}, "values": {"values": ["String"]}}, "EventsMeasure": {"aggType": {"aggType": "enum(AggregationType)"}, "fieldName": {"fieldName": "enum(EventFieldName)"}, "trend": {"trend": "Boolean"}}, "EventsSort": {"fieldName": {"fieldName": "enum(EventFieldName)"}, "order": {"order": "enum(DirectionEnum)"}}, "from": "Int", "limit": "Int", "timeFrame": "TimeFrame"}'`
 
 #### Operation Arguments for query.events ####
 `EventsDimension` [EventsDimension[]] - (optional) N/A 

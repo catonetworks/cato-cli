@@ -8,9 +8,9 @@
 
 `catocli mutation policy wanFirewall moveRule <accountID> <json>`
 
-`catocli mutation policy wanFirewall moveRule 12345 "$(cat < moveRule.json)"`
+`catocli mutation policy wanFirewall moveRule "$(cat < moveRule.json)"`
 
-`catocli mutation policy wanFirewall moveRule 12345 '{"PolicyMoveRuleInput": {"PolicyRulePositionInput": {"position": {"position": "enum(PolicyRulePositionEnum)"}, "ref": {"ref": "ID"}}, "id": {"id": "ID"}}, "WanFirewallPolicyMutationInput": {"PolicyMutationRevisionInput": {"id": {"id": "ID"}}}}'`
+`catocli mutation policy wanFirewall moveRule '{"PolicyMoveRuleInput": {"PolicyRulePositionInput": {"position": {"position": "enum(PolicyRulePositionEnum)"}, "ref": {"ref": "ID"}}, "id": {"id": "ID"}}, "WanFirewallPolicyMutationInput": {"PolicyMutationRevisionInput": {"id": {"id": "ID"}}}}'`
 
 #### Operation Arguments for mutation.policy.wanFirewall.moveRule ####
 `PolicyMoveRuleInput` [PolicyMoveRuleInput] - (required) N/A 

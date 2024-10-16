@@ -8,9 +8,9 @@
 
 `catocli query accountBySubdomain <accountID> <json>`
 
-`catocli query accountBySubdomain 12345 "$(cat < accountBySubdomain.json)"`
+`catocli query accountBySubdomain "$(cat < accountBySubdomain.json)"`
 
-`catocli query accountBySubdomain 12345 '{"subdomains": ["String"]}'`
+`catocli query accountBySubdomain '{"subdomains": ["String"]}'`
 
 #### Operation Arguments for query.accountBySubdomain ####
 `accountID` [ID] - (required) N/A 

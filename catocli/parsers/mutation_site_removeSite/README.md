@@ -8,9 +8,9 @@
 
 `catocli mutation site removeSite <accountID> <json>`
 
-`catocli mutation site removeSite 12345 "$(cat < removeSite.json)"`
+`catocli mutation site removeSite "$(cat < removeSite.json)"`
 
-`catocli mutation site removeSite 12345 '{"siteId": "ID"}'`
+`catocli mutation site removeSite '{"siteId": "ID"}'`
 
 #### Operation Arguments for mutation.site.removeSite ####
 `accountId` [ID] - (required) N/A 

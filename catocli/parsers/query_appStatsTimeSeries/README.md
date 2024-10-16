@@ -8,9 +8,9 @@
 
 `catocli query appStatsTimeSeries <accountID> <json>`
 
-`catocli query appStatsTimeSeries 12345 "$(cat < appStatsTimeSeries.json)"`
+`catocli query appStatsTimeSeries "$(cat < appStatsTimeSeries.json)"`
 
-`catocli query appStatsTimeSeries 12345 '{"AppStatsFilter": {"fieldName": {"fieldName": "enum(AppStatsFieldName)"}, "operator": {"operator": "enum(FilterOperator)"}, "values": {"values": ["String"]}}, "Dimension": {"fieldName": {"fieldName": "enum(AppStatsFieldName)"}}, "Measure": {"aggType": {"aggType": "enum(AggregationType)"}, "fieldName": {"fieldName": "enum(AppStatsFieldName)"}, "trend": {"trend": "Boolean"}}, "buckets": "Int", "perSecond": "Boolean", "timeFrame": "TimeFrame", "withMissingData": "Boolean"}'`
+`catocli query appStatsTimeSeries '{"AppStatsFilter": {"fieldName": {"fieldName": "enum(AppStatsFieldName)"}, "operator": {"operator": "enum(FilterOperator)"}, "values": {"values": ["String"]}}, "Dimension": {"fieldName": {"fieldName": "enum(AppStatsFieldName)"}}, "Measure": {"aggType": {"aggType": "enum(AggregationType)"}, "fieldName": {"fieldName": "enum(AppStatsFieldName)"}, "trend": {"trend": "Boolean"}}, "buckets": "Int", "perSecond": "Boolean", "timeFrame": "TimeFrame", "withMissingData": "Boolean"}'`
 
 #### Operation Arguments for query.appStatsTimeSeries ####
 `AppStatsFilter` [AppStatsFilter[]] - (optional) N/A 

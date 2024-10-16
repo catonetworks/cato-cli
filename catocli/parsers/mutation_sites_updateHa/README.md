@@ -8,9 +8,9 @@
 
 `catocli mutation sites updateHa <accountID> <json>`
 
-`catocli mutation sites updateHa 12345 "$(cat < updateHa.json)"`
+`catocli mutation sites updateHa "$(cat < updateHa.json)"`
 
-`catocli mutation sites updateHa 12345 '{"UpdateHaInput": {"primaryManagementIp": {"primaryManagementIp": "IPAddress"}, "secondaryManagementIp": {"secondaryManagementIp": "IPAddress"}, "vrid": {"vrid": "Int"}}, "siteId": "ID"}'`
+`catocli mutation sites updateHa '{"UpdateHaInput": {"primaryManagementIp": {"primaryManagementIp": "IPAddress"}, "secondaryManagementIp": {"secondaryManagementIp": "IPAddress"}, "vrid": {"vrid": "Int"}}, "siteId": "ID"}'`
 
 #### Operation Arguments for mutation.sites.updateHa ####
 `UpdateHaInput` [UpdateHaInput] - (required) N/A 

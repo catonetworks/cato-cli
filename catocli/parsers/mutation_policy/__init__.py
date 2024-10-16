@@ -18,8 +18,8 @@ def mutation_policy_parse(mutation_subparsers):
 			help='addRule() internetFirewall operation', 
 			usage=get_help("mutation_policy_internetFirewall_addRule"))
 
-	mutation_policy_internetFirewall_addRule_parser.add_argument('accountID', help='The Account ID.')
 	mutation_policy_internetFirewall_addRule_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_internetFirewall_addRule_parser.add_argument('-accountID', help='The Account ID.')
 	mutation_policy_internetFirewall_addRule_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_policy_internetFirewall_addRule_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -32,8 +32,8 @@ def mutation_policy_parse(mutation_subparsers):
 			help='addSection() internetFirewall operation', 
 			usage=get_help("mutation_policy_internetFirewall_addSection"))
 
-	mutation_policy_internetFirewall_addSection_parser.add_argument('accountID', help='The Account ID.')
 	mutation_policy_internetFirewall_addSection_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_internetFirewall_addSection_parser.add_argument('-accountID', help='The Account ID.')
 	mutation_policy_internetFirewall_addSection_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_policy_internetFirewall_addSection_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -46,8 +46,8 @@ def mutation_policy_parse(mutation_subparsers):
 			help='createPolicyRevision() internetFirewall operation', 
 			usage=get_help("mutation_policy_internetFirewall_createPolicyRevision"))
 
-	mutation_policy_internetFirewall_createPolicyRevision_parser.add_argument('accountID', help='The Account ID.')
 	mutation_policy_internetFirewall_createPolicyRevision_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_internetFirewall_createPolicyRevision_parser.add_argument('-accountID', help='The Account ID.')
 	mutation_policy_internetFirewall_createPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_policy_internetFirewall_createPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -60,8 +60,8 @@ def mutation_policy_parse(mutation_subparsers):
 			help='discardPolicyRevision() internetFirewall operation', 
 			usage=get_help("mutation_policy_internetFirewall_discardPolicyRevision"))
 
-	mutation_policy_internetFirewall_discardPolicyRevision_parser.add_argument('accountID', help='The Account ID.')
 	mutation_policy_internetFirewall_discardPolicyRevision_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_internetFirewall_discardPolicyRevision_parser.add_argument('-accountID', help='The Account ID.')
 	mutation_policy_internetFirewall_discardPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_policy_internetFirewall_discardPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -74,8 +74,8 @@ def mutation_policy_parse(mutation_subparsers):
 			help='moveRule() internetFirewall operation', 
 			usage=get_help("mutation_policy_internetFirewall_moveRule"))
 
-	mutation_policy_internetFirewall_moveRule_parser.add_argument('accountID', help='The Account ID.')
 	mutation_policy_internetFirewall_moveRule_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_internetFirewall_moveRule_parser.add_argument('-accountID', help='The Account ID.')
 	mutation_policy_internetFirewall_moveRule_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_policy_internetFirewall_moveRule_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -88,8 +88,8 @@ def mutation_policy_parse(mutation_subparsers):
 			help='moveSection() internetFirewall operation', 
 			usage=get_help("mutation_policy_internetFirewall_moveSection"))
 
-	mutation_policy_internetFirewall_moveSection_parser.add_argument('accountID', help='The Account ID.')
 	mutation_policy_internetFirewall_moveSection_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_internetFirewall_moveSection_parser.add_argument('-accountID', help='The Account ID.')
 	mutation_policy_internetFirewall_moveSection_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_policy_internetFirewall_moveSection_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -102,8 +102,8 @@ def mutation_policy_parse(mutation_subparsers):
 			help='publishPolicyRevision() internetFirewall operation', 
 			usage=get_help("mutation_policy_internetFirewall_publishPolicyRevision"))
 
-	mutation_policy_internetFirewall_publishPolicyRevision_parser.add_argument('accountID', help='The Account ID.')
 	mutation_policy_internetFirewall_publishPolicyRevision_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_internetFirewall_publishPolicyRevision_parser.add_argument('-accountID', help='The Account ID.')
 	mutation_policy_internetFirewall_publishPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_policy_internetFirewall_publishPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -116,8 +116,8 @@ def mutation_policy_parse(mutation_subparsers):
 			help='removeRule() internetFirewall operation', 
 			usage=get_help("mutation_policy_internetFirewall_removeRule"))
 
-	mutation_policy_internetFirewall_removeRule_parser.add_argument('accountID', help='The Account ID.')
 	mutation_policy_internetFirewall_removeRule_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_internetFirewall_removeRule_parser.add_argument('-accountID', help='The Account ID.')
 	mutation_policy_internetFirewall_removeRule_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_policy_internetFirewall_removeRule_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -130,8 +130,8 @@ def mutation_policy_parse(mutation_subparsers):
 			help='removeSection() internetFirewall operation', 
 			usage=get_help("mutation_policy_internetFirewall_removeSection"))
 
-	mutation_policy_internetFirewall_removeSection_parser.add_argument('accountID', help='The Account ID.')
 	mutation_policy_internetFirewall_removeSection_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_internetFirewall_removeSection_parser.add_argument('-accountID', help='The Account ID.')
 	mutation_policy_internetFirewall_removeSection_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_policy_internetFirewall_removeSection_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -144,8 +144,8 @@ def mutation_policy_parse(mutation_subparsers):
 			help='updatePolicy() internetFirewall operation', 
 			usage=get_help("mutation_policy_internetFirewall_updatePolicy"))
 
-	mutation_policy_internetFirewall_updatePolicy_parser.add_argument('accountID', help='The Account ID.')
 	mutation_policy_internetFirewall_updatePolicy_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_internetFirewall_updatePolicy_parser.add_argument('-accountID', help='The Account ID.')
 	mutation_policy_internetFirewall_updatePolicy_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_policy_internetFirewall_updatePolicy_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -158,8 +158,8 @@ def mutation_policy_parse(mutation_subparsers):
 			help='updateRule() internetFirewall operation', 
 			usage=get_help("mutation_policy_internetFirewall_updateRule"))
 
-	mutation_policy_internetFirewall_updateRule_parser.add_argument('accountID', help='The Account ID.')
 	mutation_policy_internetFirewall_updateRule_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_internetFirewall_updateRule_parser.add_argument('-accountID', help='The Account ID.')
 	mutation_policy_internetFirewall_updateRule_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_policy_internetFirewall_updateRule_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -172,8 +172,8 @@ def mutation_policy_parse(mutation_subparsers):
 			help='updateSection() internetFirewall operation', 
 			usage=get_help("mutation_policy_internetFirewall_updateSection"))
 
-	mutation_policy_internetFirewall_updateSection_parser.add_argument('accountID', help='The Account ID.')
 	mutation_policy_internetFirewall_updateSection_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_internetFirewall_updateSection_parser.add_argument('-accountID', help='The Account ID.')
 	mutation_policy_internetFirewall_updateSection_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_policy_internetFirewall_updateSection_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -192,8 +192,8 @@ def mutation_policy_parse(mutation_subparsers):
 			help='addRule() wanFirewall operation', 
 			usage=get_help("mutation_policy_wanFirewall_addRule"))
 
-	mutation_policy_wanFirewall_addRule_parser.add_argument('accountID', help='The Account ID.')
 	mutation_policy_wanFirewall_addRule_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_wanFirewall_addRule_parser.add_argument('-accountID', help='The Account ID.')
 	mutation_policy_wanFirewall_addRule_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_policy_wanFirewall_addRule_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -206,8 +206,8 @@ def mutation_policy_parse(mutation_subparsers):
 			help='addSection() wanFirewall operation', 
 			usage=get_help("mutation_policy_wanFirewall_addSection"))
 
-	mutation_policy_wanFirewall_addSection_parser.add_argument('accountID', help='The Account ID.')
 	mutation_policy_wanFirewall_addSection_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_wanFirewall_addSection_parser.add_argument('-accountID', help='The Account ID.')
 	mutation_policy_wanFirewall_addSection_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_policy_wanFirewall_addSection_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -220,8 +220,8 @@ def mutation_policy_parse(mutation_subparsers):
 			help='createPolicyRevision() wanFirewall operation', 
 			usage=get_help("mutation_policy_wanFirewall_createPolicyRevision"))
 
-	mutation_policy_wanFirewall_createPolicyRevision_parser.add_argument('accountID', help='The Account ID.')
 	mutation_policy_wanFirewall_createPolicyRevision_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_wanFirewall_createPolicyRevision_parser.add_argument('-accountID', help='The Account ID.')
 	mutation_policy_wanFirewall_createPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_policy_wanFirewall_createPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -234,8 +234,8 @@ def mutation_policy_parse(mutation_subparsers):
 			help='discardPolicyRevision() wanFirewall operation', 
 			usage=get_help("mutation_policy_wanFirewall_discardPolicyRevision"))
 
-	mutation_policy_wanFirewall_discardPolicyRevision_parser.add_argument('accountID', help='The Account ID.')
 	mutation_policy_wanFirewall_discardPolicyRevision_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_wanFirewall_discardPolicyRevision_parser.add_argument('-accountID', help='The Account ID.')
 	mutation_policy_wanFirewall_discardPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_policy_wanFirewall_discardPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -248,8 +248,8 @@ def mutation_policy_parse(mutation_subparsers):
 			help='moveRule() wanFirewall operation', 
 			usage=get_help("mutation_policy_wanFirewall_moveRule"))
 
-	mutation_policy_wanFirewall_moveRule_parser.add_argument('accountID', help='The Account ID.')
 	mutation_policy_wanFirewall_moveRule_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_wanFirewall_moveRule_parser.add_argument('-accountID', help='The Account ID.')
 	mutation_policy_wanFirewall_moveRule_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_policy_wanFirewall_moveRule_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -262,8 +262,8 @@ def mutation_policy_parse(mutation_subparsers):
 			help='moveSection() wanFirewall operation', 
 			usage=get_help("mutation_policy_wanFirewall_moveSection"))
 
-	mutation_policy_wanFirewall_moveSection_parser.add_argument('accountID', help='The Account ID.')
 	mutation_policy_wanFirewall_moveSection_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_wanFirewall_moveSection_parser.add_argument('-accountID', help='The Account ID.')
 	mutation_policy_wanFirewall_moveSection_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_policy_wanFirewall_moveSection_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -276,8 +276,8 @@ def mutation_policy_parse(mutation_subparsers):
 			help='publishPolicyRevision() wanFirewall operation', 
 			usage=get_help("mutation_policy_wanFirewall_publishPolicyRevision"))
 
-	mutation_policy_wanFirewall_publishPolicyRevision_parser.add_argument('accountID', help='The Account ID.')
 	mutation_policy_wanFirewall_publishPolicyRevision_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_wanFirewall_publishPolicyRevision_parser.add_argument('-accountID', help='The Account ID.')
 	mutation_policy_wanFirewall_publishPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_policy_wanFirewall_publishPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -290,8 +290,8 @@ def mutation_policy_parse(mutation_subparsers):
 			help='removeRule() wanFirewall operation', 
 			usage=get_help("mutation_policy_wanFirewall_removeRule"))
 
-	mutation_policy_wanFirewall_removeRule_parser.add_argument('accountID', help='The Account ID.')
 	mutation_policy_wanFirewall_removeRule_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_wanFirewall_removeRule_parser.add_argument('-accountID', help='The Account ID.')
 	mutation_policy_wanFirewall_removeRule_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_policy_wanFirewall_removeRule_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -304,8 +304,8 @@ def mutation_policy_parse(mutation_subparsers):
 			help='removeSection() wanFirewall operation', 
 			usage=get_help("mutation_policy_wanFirewall_removeSection"))
 
-	mutation_policy_wanFirewall_removeSection_parser.add_argument('accountID', help='The Account ID.')
 	mutation_policy_wanFirewall_removeSection_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_wanFirewall_removeSection_parser.add_argument('-accountID', help='The Account ID.')
 	mutation_policy_wanFirewall_removeSection_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_policy_wanFirewall_removeSection_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -318,8 +318,8 @@ def mutation_policy_parse(mutation_subparsers):
 			help='updatePolicy() wanFirewall operation', 
 			usage=get_help("mutation_policy_wanFirewall_updatePolicy"))
 
-	mutation_policy_wanFirewall_updatePolicy_parser.add_argument('accountID', help='The Account ID.')
 	mutation_policy_wanFirewall_updatePolicy_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_wanFirewall_updatePolicy_parser.add_argument('-accountID', help='The Account ID.')
 	mutation_policy_wanFirewall_updatePolicy_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_policy_wanFirewall_updatePolicy_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -332,8 +332,8 @@ def mutation_policy_parse(mutation_subparsers):
 			help='updateRule() wanFirewall operation', 
 			usage=get_help("mutation_policy_wanFirewall_updateRule"))
 
-	mutation_policy_wanFirewall_updateRule_parser.add_argument('accountID', help='The Account ID.')
 	mutation_policy_wanFirewall_updateRule_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_wanFirewall_updateRule_parser.add_argument('-accountID', help='The Account ID.')
 	mutation_policy_wanFirewall_updateRule_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_policy_wanFirewall_updateRule_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -346,8 +346,8 @@ def mutation_policy_parse(mutation_subparsers):
 			help='updateSection() wanFirewall operation', 
 			usage=get_help("mutation_policy_wanFirewall_updateSection"))
 
-	mutation_policy_wanFirewall_updateSection_parser.add_argument('accountID', help='The Account ID.')
 	mutation_policy_wanFirewall_updateSection_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_wanFirewall_updateSection_parser.add_argument('-accountID', help='The Account ID.')
 	mutation_policy_wanFirewall_updateSection_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_policy_wanFirewall_updateSection_parser.add_argument('-v', const=True, default=False, nargs='?', 

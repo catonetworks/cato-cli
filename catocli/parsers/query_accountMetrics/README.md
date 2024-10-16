@@ -8,9 +8,9 @@
 
 `catocli query accountMetrics <accountID> <json>`
 
-`catocli query accountMetrics 12345 "$(cat < accountMetrics.json)"`
+`catocli query accountMetrics "$(cat < accountMetrics.json)"`
 
-`catocli query accountMetrics 12345 '{"buckets": "Int", "groupDevices": "Boolean", "groupInterfaces": "Boolean", "labels": "enum(TimeseriesMetricType)", "perSecond": "Boolean", "siteIDs": ["ID"], "timeFrame": "TimeFrame", "toRate": "Boolean", "types": ["String"], "userIDs": ["ID"], "withMissingData": "Boolean"}'`
+`catocli query accountMetrics '{"buckets": "Int", "groupDevices": "Boolean", "groupInterfaces": "Boolean", "labels": "enum(TimeseriesMetricType)", "perSecond": "Boolean", "siteIDs": ["ID"], "timeFrame": "TimeFrame", "toRate": "Boolean", "types": ["String"], "userIDs": ["ID"], "withMissingData": "Boolean"}'`
 
 #### Operation Arguments for query.accountMetrics ####
 `accountID` [ID] - (optional) Unique Identifier of Account. 

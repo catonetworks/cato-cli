@@ -8,9 +8,9 @@
 
 `catocli mutation policy wanFirewall moveSection <accountID> <json>`
 
-`catocli mutation policy wanFirewall moveSection 12345 "$(cat < moveSection.json)"`
+`catocli mutation policy wanFirewall moveSection "$(cat < moveSection.json)"`
 
-`catocli mutation policy wanFirewall moveSection 12345 '{"PolicyMoveSectionInput": {"PolicySectionPositionInput": {"position": {"position": "enum(PolicySectionPositionEnum)"}, "ref": {"ref": "ID"}}, "id": {"id": "ID"}}, "WanFirewallPolicyMutationInput": {"PolicyMutationRevisionInput": {"id": {"id": "ID"}}}}'`
+`catocli mutation policy wanFirewall moveSection '{"PolicyMoveSectionInput": {"PolicySectionPositionInput": {"position": {"position": "enum(PolicySectionPositionEnum)"}, "ref": {"ref": "ID"}}, "id": {"id": "ID"}}, "WanFirewallPolicyMutationInput": {"PolicyMutationRevisionInput": {"id": {"id": "ID"}}}}'`
 
 #### Operation Arguments for mutation.policy.wanFirewall.moveSection ####
 `PolicyMoveSectionInput` [PolicyMoveSectionInput] - (required) N/A 

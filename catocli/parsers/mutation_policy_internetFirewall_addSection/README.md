@@ -8,9 +8,9 @@
 
 `catocli mutation policy internetFirewall addSection <accountID> <json>`
 
-`catocli mutation policy internetFirewall addSection 12345 "$(cat < addSection.json)"`
+`catocli mutation policy internetFirewall addSection "$(cat < addSection.json)"`
 
-`catocli mutation policy internetFirewall addSection 12345 '{"InternetFirewallPolicyMutationInput": {"PolicyMutationRevisionInput": {"id": {"id": "ID"}}}, "PolicyAddSectionInput": {"PolicyAddSectionInfoInput": {"name": {"name": "String"}}, "PolicySectionPositionInput": {"position": {"position": "enum(PolicySectionPositionEnum)"}, "ref": {"ref": "ID"}}}}'`
+`catocli mutation policy internetFirewall addSection '{"InternetFirewallPolicyMutationInput": {"PolicyMutationRevisionInput": {"id": {"id": "ID"}}}, "PolicyAddSectionInput": {"PolicyAddSectionInfoInput": {"name": {"name": "String"}}, "PolicySectionPositionInput": {"position": {"position": "enum(PolicySectionPositionEnum)"}, "ref": {"ref": "ID"}}}}'`
 
 #### Operation Arguments for mutation.policy.internetFirewall.addSection ####
 `InternetFirewallPolicyMutationInput` [InternetFirewallPolicyMutationInput] - (optional) N/A 

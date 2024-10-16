@@ -6,8 +6,8 @@ def query_siteLocation_parse(query_subparsers):
 			help='siteLocation local cli query', 
 			usage=get_help("query_siteLocation"))
 
-	query_siteLocation_parser.add_argument('accountID', help='The Account ID.')
 	query_siteLocation_parser.add_argument('json', help='Variables in JSON format.')
+	query_siteLocation_parser.add_argument('-accountID', help='The Account ID.')
 	query_siteLocation_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	query_siteLocation_parser.add_argument('-v', const=True, default=False, nargs='?', 

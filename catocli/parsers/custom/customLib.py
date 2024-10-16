@@ -63,7 +63,7 @@ def entityTypeList(args, configuration):
                     else:
                         print("id,name,type,description")
                         for site in response[0].get("data").get("entityLookup").get(params["operation_name"]+"s"):
-                            print(f"{site.get(params["operation_name"]).get('id')},{site.get(params["operation_name"]).get('name')},{site.get(params["operation_name"]).get('type')},{site.get('description')}")
+                            print(site.get(params["operation_name"]).get('id')+","+site.get(params["operation_name"]).get('name')+","+site.get(params["operation_name"]).get('type')+","+site.get('description'))
             except ApiException as e:
                 return e
     else:

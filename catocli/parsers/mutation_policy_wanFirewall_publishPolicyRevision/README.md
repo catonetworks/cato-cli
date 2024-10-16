@@ -8,9 +8,9 @@
 
 `catocli mutation policy wanFirewall publishPolicyRevision <accountID> <json>`
 
-`catocli mutation policy wanFirewall publishPolicyRevision 12345 "$(cat < publishPolicyRevision.json)"`
+`catocli mutation policy wanFirewall publishPolicyRevision "$(cat < publishPolicyRevision.json)"`
 
-`catocli mutation policy wanFirewall publishPolicyRevision 12345 '{"PolicyPublishRevisionInput": {"description": {"description": "String"}, "name": {"name": "String"}}, "WanFirewallPolicyMutationInput": {"PolicyMutationRevisionInput": {"id": {"id": "ID"}}}}'`
+`catocli mutation policy wanFirewall publishPolicyRevision '{"PolicyPublishRevisionInput": {"description": {"description": "String"}, "name": {"name": "String"}}, "WanFirewallPolicyMutationInput": {"PolicyMutationRevisionInput": {"id": {"id": "ID"}}}}'`
 
 #### Operation Arguments for mutation.policy.wanFirewall.publishPolicyRevision ####
 `PolicyPublishRevisionInput` [PolicyPublishRevisionInput] - (optional) N/A 

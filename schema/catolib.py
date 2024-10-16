@@ -556,6 +556,20 @@ mutation_subparsers = mutation_parser.add_subparsers(description='valid subcomma
 def main(args=None):
 	args = parser.parse_args(args=args)
 	try:
+		CATO_ACCOUNT_ID = os.getenv("CATO_ACCOUNT_ID")
+		if args.func.__name__!="createRawRequest":
+			if CATO_ACCOUNT_ID==None and args.accountID==None:
+				print("Missing accountID, please specify an accountID:\\n")
+				print('Option 1: Set the CATO_ACCOUNT_ID environment variable with the value of your account ID.')
+				print('export CATO_ACCOUNT_ID="12345"\\n')
+				print("Option 2: Override the accountID value as a cli argument, example:")
+				print('catocli <operationType> <operationName> -accountID=12345 <json>')
+				print("catocli query entityLookup -accountID=12345 '{\\\"type\\\":\\\"country\\\"}'\\n")
+				exit()
+			elif args.accountID!=None:
+				configuration.accountID = args.accountID
+			else:
+				configuration.accountID = CATO_ACCOUNT_ID
 		response = args.func(args, configuration)
 
 		if type(response) == ApiException:
@@ -596,8 +610,8 @@ def query_siteLocation_parse(query_subparsers):
 			help='siteLocation local cli query', 
 			usage=get_help("query_siteLocation"))
 
-	query_siteLocation_parser.add_argument('accountID', help='The Account ID.')
 	query_siteLocation_parser.add_argument('json', help='Variables in JSON format.')
+	query_siteLocation_parser.add_argument('-accountID', help='The Account ID.')
 	query_siteLocation_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	query_siteLocation_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -629,8 +643,8 @@ def {parserName}_parse({operationType}_subparsers):
 """
 			if "path" in parser:
 				cliDriverStr += f"""
-	{parserName}_parser.add_argument('accountID', help='The Account ID.')
 	{parserName}_parser.add_argument('json', help='Variables in JSON format.')
+	{parserName}_parser.add_argument('-accountID', help='The Account ID.')
 	{parserName}_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	{parserName}_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -661,8 +675,8 @@ def renderSubParser(subParser,parentParserPath):
 		if "path" in subOperation:
 			command = parentParserPath.replace("_"," ")+" "+subOperationName
 			cliDriverStr += f"""
-	{subParserPath}_parser.add_argument('accountID', help='The Account ID.')
 	{subParserPath}_parser.add_argument('json', help='Variables in JSON format.')
+	{subParserPath}_parser.add_argument('-accountID', help='The Account ID.')
 	{subParserPath}_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	{subParserPath}_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -711,18 +725,18 @@ def writeReadmes(catoApiSchema):
 
 `catocli query siteLocation <accountID> <json>`
 
-`catocli query siteLocation 12345 "$(cat < siteLocation.json)"`
+`catocli query siteLocation "$(cat < siteLocation.json)"`
 
-`catocli query siteLocation 12345 '{"filters":[{"search": "Your city here","field":"city","operation":"exact"}]}'`
+`catocli query siteLocation '{"filters":[{"search": "Your city here","field":"city","operation":"exact"}]}'`
 
-`catocli query siteLocation 12345 '{"filters":[{"search": "Your Country here","field":"countryName","operation":"startsWith"}]}'`
+`catocli query siteLocation '{"filters":[{"search": "Your Country here","field":"countryName","operation":"startsWith"}]}'`
 
-`catocli query siteLocation 12345 '{"filters":[{"search": "Your stateName here","field":"stateName","operation":"endsWith"}]}'`
+`catocli query siteLocation '{"filters":[{"search": "Your stateName here","field":"stateName","operation":"endsWith"}]}'`
 
-`catocli query siteLocation 12345 '{filters:[{"search": "Your City here","field":"city","operation":"startsWith"},{"search": "Your StateName here","field":"stateName","operation":"endsWith"},{"search": "Your Country here","field":"countryName","operation":"contains"}}'`
+`catocli query siteLocation '{filters:[{"search": "Your City here","field":"city","operation":"startsWith"},{"search": "Your StateName here","field":"stateName","operation":"endsWith"},{"search": "Your Country here","field":"countryName","operation":"contains"}}'`
 
 #### Operation Arguments for query.siteLocation ####
-`accountID` [ID] - (optional) Unique Identifier of Account. 
+`accountID` [ID] - (required) Unique Identifier of Account. 
 `filters[]` [Array] - (optional) Array of objects consisting of `search`, `field` and `operation` attributes.
 `filters[].search` [String] - (required) String to match countryName, stateName, or city specificed in `filters[].field`.
 `filters[].field` [String] - (required) Specify field to match query against, defaults to look for any.  Possible values: `countryName`, `stateName`, or `city`.
@@ -755,9 +769,9 @@ def writeReadmes(catoApiSchema):
 				readmeStr += f"""
 `catocli {operationCmd} <accountID> <json>`
 
-`catocli {operationCmd} 12345 "$(cat < {operationName}.json)"`
+`catocli {operationCmd} "$(cat < {operationName}.json)"`
 
-`catocli {operationCmd} 12345 '{json.dumps(parser["example"])}'`
+`catocli {operationCmd} '{json.dumps(parser["example"])}'`
 
 #### Operation Arguments for {operationPath} ####
 """
@@ -796,9 +810,9 @@ def renderSubReadme(subParser,operationType,parentOperationPath):
 			readmeStr += f"""
 `catocli {subOperationCmd} <accountID> <json>`
 
-`catocli {subOperationCmd} 12345 "$(cat < {subOperationName}.json)"`
+`catocli {subOperationCmd} "$(cat < {subOperationName}.json)"`
 
-`catocli {subOperationCmd} 12345 '{json.dumps(subOperation["example"])}'`
+`catocli {subOperationCmd} '{json.dumps(subOperation["example"])}'`
 
 #### Operation Arguments for {subOperationPath} ####
 """

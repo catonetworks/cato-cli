@@ -8,9 +8,9 @@
 
 `catocli mutation sites removeStaticHost <accountID> <json>`
 
-`catocli mutation sites removeStaticHost 12345 "$(cat < removeStaticHost.json)"`
+`catocli mutation sites removeStaticHost "$(cat < removeStaticHost.json)"`
 
-`catocli mutation sites removeStaticHost 12345 '{"hostId": "ID"}'`
+`catocli mutation sites removeStaticHost '{"hostId": "ID"}'`
 
 #### Operation Arguments for mutation.sites.removeStaticHost ####
 `accountId` [ID] - (required) N/A 

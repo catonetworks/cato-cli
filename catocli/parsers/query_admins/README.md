@@ -8,9 +8,9 @@
 
 `catocli query admins <accountID> <json>`
 
-`catocli query admins 12345 "$(cat < admins.json)"`
+`catocli query admins "$(cat < admins.json)"`
 
-`catocli query admins 12345 '{"SortInput": {"field": {"field": "String"}, "order": {"order": "enum(DirectionInput)"}}, "adminIDs": ["ID"], "from": "Int", "limit": "Int", "search": "String"}'`
+`catocli query admins '{"SortInput": {"field": {"field": "String"}, "order": {"order": "enum(DirectionInput)"}}, "adminIDs": ["ID"], "from": "Int", "limit": "Int", "search": "String"}'`
 
 #### Operation Arguments for query.admins ####
 `SortInput` [SortInput[]] - (optional) N/A 

@@ -8,9 +8,9 @@
 
 `catocli query auditFeed <accountID> <json>`
 
-`catocli query auditFeed 12345 "$(cat < auditFeed.json)"`
+`catocli query auditFeed "$(cat < auditFeed.json)"`
 
-`catocli query auditFeed 12345 '{"AuditFieldFilterInput": {"FieldNameInput": {"AuditFieldName": {"AuditFieldName": "enum(AuditFieldName)"}, "EventFieldName": {"EventFieldName": "enum(EventFieldName)"}}, "operator": {"operator": "enum(ElasticOperator)"}, "values": {"values": ["String"]}}, "accountIDs": ["ID"], "fieldNames": "enum(AuditFieldName)", "marker": "String", "timeFrame": "TimeFrame"}'`
+`catocli query auditFeed '{"AuditFieldFilterInput": {"FieldNameInput": {"AuditFieldName": {"AuditFieldName": "enum(AuditFieldName)"}, "EventFieldName": {"EventFieldName": "enum(EventFieldName)"}}, "operator": {"operator": "enum(ElasticOperator)"}, "values": {"values": ["String"]}}, "accountIDs": ["ID"], "fieldNames": "enum(AuditFieldName)", "marker": "String", "timeFrame": "TimeFrame"}'`
 
 #### Operation Arguments for query.auditFeed ####
 `AuditFieldFilterInput` [AuditFieldFilterInput[]] - (optional) N/A 

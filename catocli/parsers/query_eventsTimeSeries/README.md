@@ -8,9 +8,9 @@
 
 `catocli query eventsTimeSeries <accountID> <json>`
 
-`catocli query eventsTimeSeries 12345 "$(cat < eventsTimeSeries.json)"`
+`catocli query eventsTimeSeries "$(cat < eventsTimeSeries.json)"`
 
-`catocli query eventsTimeSeries 12345 '{"EventsDimension": {"fieldName": {"fieldName": "enum(EventFieldName)"}}, "EventsFilter": {"fieldName": {"fieldName": "enum(EventFieldName)"}, "operator": {"operator": "enum(FilterOperator)"}, "values": {"values": ["String"]}}, "EventsMeasure": {"aggType": {"aggType": "enum(AggregationType)"}, "fieldName": {"fieldName": "enum(EventFieldName)"}, "trend": {"trend": "Boolean"}}, "buckets": "Int", "perSecond": "Boolean", "timeFrame": "TimeFrame", "withMissingData": "Boolean"}'`
+`catocli query eventsTimeSeries '{"EventsDimension": {"fieldName": {"fieldName": "enum(EventFieldName)"}}, "EventsFilter": {"fieldName": {"fieldName": "enum(EventFieldName)"}, "operator": {"operator": "enum(FilterOperator)"}, "values": {"values": ["String"]}}, "EventsMeasure": {"aggType": {"aggType": "enum(AggregationType)"}, "fieldName": {"fieldName": "enum(EventFieldName)"}, "trend": {"trend": "Boolean"}}, "buckets": "Int", "perSecond": "Boolean", "timeFrame": "TimeFrame", "withMissingData": "Boolean"}'`
 
 #### Operation Arguments for query.eventsTimeSeries ####
 `EventsDimension` [EventsDimension[]] - (optional) N/A 

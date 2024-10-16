@@ -8,9 +8,9 @@
 
 `catocli query subDomains <accountID> <json>`
 
-`catocli query subDomains 12345 "$(cat < subDomains.json)"`
+`catocli query subDomains "$(cat < subDomains.json)"`
 
-`catocli query subDomains 12345 '{"managedAccount": "Boolean"}'`
+`catocli query subDomains '{"managedAccount": "Boolean"}'`
 
 #### Operation Arguments for query.subDomains ####
 `accountID` [ID] - (required) Unique Identifier of Account 

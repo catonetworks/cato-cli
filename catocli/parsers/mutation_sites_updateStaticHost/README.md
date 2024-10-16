@@ -8,9 +8,9 @@
 
 `catocli mutation sites updateStaticHost <accountID> <json>`
 
-`catocli mutation sites updateStaticHost 12345 "$(cat < updateStaticHost.json)"`
+`catocli mutation sites updateStaticHost "$(cat < updateStaticHost.json)"`
 
-`catocli mutation sites updateStaticHost 12345 '{"UpdateStaticHostInput": {"ip": {"ip": "IPAddress"}, "macAddress": {"macAddress": "String"}, "name": {"name": "String"}}, "hostId": "ID"}'`
+`catocli mutation sites updateStaticHost '{"UpdateStaticHostInput": {"ip": {"ip": "IPAddress"}, "macAddress": {"macAddress": "String"}, "name": {"name": "String"}}, "hostId": "ID"}'`
 
 #### Operation Arguments for mutation.sites.updateStaticHost ####
 `UpdateStaticHostInput` [UpdateStaticHostInput] - (required) N/A 

@@ -6,8 +6,8 @@ def query_eventsTimeSeries_parse(query_subparsers):
 			help='eventsTimeSeries() query operation', 
 			usage=get_help("query_eventsTimeSeries"))
 
-	query_eventsTimeSeries_parser.add_argument('accountID', help='The Account ID.')
 	query_eventsTimeSeries_parser.add_argument('json', help='Variables in JSON format.')
+	query_eventsTimeSeries_parser.add_argument('-accountID', help='The Account ID.')
 	query_eventsTimeSeries_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	query_eventsTimeSeries_parser.add_argument('-v', const=True, default=False, nargs='?', 

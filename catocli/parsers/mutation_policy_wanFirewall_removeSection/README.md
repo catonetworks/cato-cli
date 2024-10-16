@@ -8,9 +8,9 @@
 
 `catocli mutation policy wanFirewall removeSection <accountID> <json>`
 
-`catocli mutation policy wanFirewall removeSection 12345 "$(cat < removeSection.json)"`
+`catocli mutation policy wanFirewall removeSection "$(cat < removeSection.json)"`
 
-`catocli mutation policy wanFirewall removeSection 12345 '{"PolicyRemoveSectionInput": {"id": {"id": "ID"}}, "WanFirewallPolicyMutationInput": {"PolicyMutationRevisionInput": {"id": {"id": "ID"}}}}'`
+`catocli mutation policy wanFirewall removeSection '{"PolicyRemoveSectionInput": {"id": {"id": "ID"}}, "WanFirewallPolicyMutationInput": {"PolicyMutationRevisionInput": {"id": {"id": "ID"}}}}'`
 
 #### Operation Arguments for mutation.policy.wanFirewall.removeSection ####
 `PolicyRemoveSectionInput` [PolicyRemoveSectionInput] - (required) N/A 

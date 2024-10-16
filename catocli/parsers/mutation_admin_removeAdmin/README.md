@@ -8,9 +8,9 @@
 
 `catocli mutation admin removeAdmin <accountID> <json>`
 
-`catocli mutation admin removeAdmin 12345 "$(cat < removeAdmin.json)"`
+`catocli mutation admin removeAdmin "$(cat < removeAdmin.json)"`
 
-`catocli mutation admin removeAdmin 12345 '{"adminID": "ID"}'`
+`catocli mutation admin removeAdmin '{"adminID": "ID"}'`
 
 #### Operation Arguments for mutation.admin.removeAdmin ####
 `accountId` [ID] - (required) N/A 

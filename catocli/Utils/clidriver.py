@@ -91,6 +91,20 @@ query_xdr_parser = query_xdr_parse(query_subparsers)
 def main(args=None):
 	args = parser.parse_args(args=args)
 	try:
+		CATO_ACCOUNT_ID = os.getenv("CATO_ACCOUNT_ID")
+		if args.func.__name__!="createRawRequest":
+			if CATO_ACCOUNT_ID==None and args.accountID==None:
+				print("Missing accountID, please specify an accountID:\n")
+				print('Option 1: Set the CATO_ACCOUNT_ID environment variable with the value of your account ID.')
+				print('export CATO_ACCOUNT_ID="12345"\n')
+				print("Option 2: Override the accountID value as a cli argument, example:")
+				print('catocli <operationType> <operationName> -accountID=12345 <json>')
+				print("catocli query entityLookup -accountID=12345 '{\"type\":\"country\"}'\n")
+				exit()
+			elif args.accountID!=None:
+				configuration.accountID = args.accountID
+			else:
+				configuration.accountID = CATO_ACCOUNT_ID
 		response = args.func(args, configuration)
 
 		if type(response) == ApiException:

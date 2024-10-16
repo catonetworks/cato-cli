@@ -8,9 +8,9 @@
 
 `catocli mutation policy internetFirewall removeRule <accountID> <json>`
 
-`catocli mutation policy internetFirewall removeRule 12345 "$(cat < removeRule.json)"`
+`catocli mutation policy internetFirewall removeRule "$(cat < removeRule.json)"`
 
-`catocli mutation policy internetFirewall removeRule 12345 '{"InternetFirewallPolicyMutationInput": {"PolicyMutationRevisionInput": {"id": {"id": "ID"}}}, "InternetFirewallRemoveRuleInput": {"id": {"id": "ID"}}}'`
+`catocli mutation policy internetFirewall removeRule '{"InternetFirewallPolicyMutationInput": {"PolicyMutationRevisionInput": {"id": {"id": "ID"}}}, "InternetFirewallRemoveRuleInput": {"id": {"id": "ID"}}}'`
 
 #### Operation Arguments for mutation.policy.internetFirewall.removeRule ####
 `InternetFirewallPolicyMutationInput` [InternetFirewallPolicyMutationInput] - (optional) N/A 

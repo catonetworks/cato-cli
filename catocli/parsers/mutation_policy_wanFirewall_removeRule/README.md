@@ -8,9 +8,9 @@
 
 `catocli mutation policy wanFirewall removeRule <accountID> <json>`
 
-`catocli mutation policy wanFirewall removeRule 12345 "$(cat < removeRule.json)"`
+`catocli mutation policy wanFirewall removeRule "$(cat < removeRule.json)"`
 
-`catocli mutation policy wanFirewall removeRule 12345 '{"WanFirewallPolicyMutationInput": {"PolicyMutationRevisionInput": {"id": {"id": "ID"}}}, "WanFirewallRemoveRuleInput": {"id": {"id": "ID"}}}'`
+`catocli mutation policy wanFirewall removeRule '{"WanFirewallPolicyMutationInput": {"PolicyMutationRevisionInput": {"id": {"id": "ID"}}}, "WanFirewallRemoveRuleInput": {"id": {"id": "ID"}}}'`
 
 #### Operation Arguments for mutation.policy.wanFirewall.removeRule ####
 `WanFirewallPolicyMutationInput` [WanFirewallPolicyMutationInput] - (optional) N/A 

@@ -8,9 +8,9 @@
 
 `catocli mutation policy internetFirewall createPolicyRevision <accountID> <json>`
 
-`catocli mutation policy internetFirewall createPolicyRevision 12345 "$(cat < createPolicyRevision.json)"`
+`catocli mutation policy internetFirewall createPolicyRevision "$(cat < createPolicyRevision.json)"`
 
-`catocli mutation policy internetFirewall createPolicyRevision 12345 '{"InternetFirewallPolicyMutationInput": {"PolicyMutationRevisionInput": {"id": {"id": "ID"}}}, "PolicyCreateRevisionInput": {"description": {"description": "String"}, "name": {"name": "String"}}}'`
+`catocli mutation policy internetFirewall createPolicyRevision '{"InternetFirewallPolicyMutationInput": {"PolicyMutationRevisionInput": {"id": {"id": "ID"}}}, "PolicyCreateRevisionInput": {"description": {"description": "String"}, "name": {"name": "String"}}}'`
 
 #### Operation Arguments for mutation.policy.internetFirewall.createPolicyRevision ####
 `InternetFirewallPolicyMutationInput` [InternetFirewallPolicyMutationInput] - (optional) N/A 

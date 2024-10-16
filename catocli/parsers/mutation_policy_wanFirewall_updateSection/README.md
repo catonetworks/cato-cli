@@ -8,9 +8,9 @@
 
 `catocli mutation policy wanFirewall updateSection <accountID> <json>`
 
-`catocli mutation policy wanFirewall updateSection 12345 "$(cat < updateSection.json)"`
+`catocli mutation policy wanFirewall updateSection "$(cat < updateSection.json)"`
 
-`catocli mutation policy wanFirewall updateSection 12345 '{"PolicyUpdateSectionInput": {"PolicyUpdateSectionInfoInput": {"name": {"name": "String"}}, "id": {"id": "ID"}}, "WanFirewallPolicyMutationInput": {"PolicyMutationRevisionInput": {"id": {"id": "ID"}}}}'`
+`catocli mutation policy wanFirewall updateSection '{"PolicyUpdateSectionInput": {"PolicyUpdateSectionInfoInput": {"name": {"name": "String"}}, "id": {"id": "ID"}}, "WanFirewallPolicyMutationInput": {"PolicyMutationRevisionInput": {"id": {"id": "ID"}}}}'`
 
 #### Operation Arguments for mutation.policy.wanFirewall.updateSection ####
 `PolicyUpdateSectionInput` [PolicyUpdateSectionInput] - (required) N/A 

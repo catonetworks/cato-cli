@@ -8,9 +8,9 @@
 
 `catocli query accountRoles <accountID> <json>`
 
-`catocli query accountRoles 12345 "$(cat < accountRoles.json)"`
+`catocli query accountRoles "$(cat < accountRoles.json)"`
 
-`catocli query accountRoles 12345 '{"accountType": "enum(AccountType)"}'`
+`catocli query accountRoles '{"accountType": "enum(AccountType)"}'`
 
 #### Operation Arguments for query.accountRoles ####
 `accountID` [ID] - (required) N/A 

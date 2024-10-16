@@ -6,8 +6,8 @@ def query_appStats_parse(query_subparsers):
 			help='appStats() query operation', 
 			usage=get_help("query_appStats"))
 
-	query_appStats_parser.add_argument('accountID', help='The Account ID.')
 	query_appStats_parser.add_argument('json', help='Variables in JSON format.')
+	query_appStats_parser.add_argument('-accountID', help='The Account ID.')
 	query_appStats_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	query_appStats_parser.add_argument('-v', const=True, default=False, nargs='?', 

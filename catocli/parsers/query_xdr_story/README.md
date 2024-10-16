@@ -8,9 +8,9 @@
 
 `catocli query xdr story <accountID> <json>`
 
-`catocli query xdr story 12345 "$(cat < story.json)"`
+`catocli query xdr story "$(cat < story.json)"`
 
-`catocli query xdr story 12345 '{"incidentId": "ID", "perSecond": "Boolean", "producer": "enum(StoryProducerEnum)", "storyId": "ID"}'`
+`catocli query xdr story '{"incidentId": "ID", "perSecond": "Boolean", "producer": "enum(StoryProducerEnum)", "storyId": "ID"}'`
 
 #### Operation Arguments for query.xdr.story ####
 `accountID` [ID] - (required) N/A 

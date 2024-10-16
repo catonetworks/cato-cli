@@ -8,9 +8,9 @@
 
 `catocli query entityLookup <accountID> <json>`
 
-`catocli query entityLookup 12345 "$(cat < entityLookup.json)"`
+`catocli query entityLookup "$(cat < entityLookup.json)"`
 
-`catocli query entityLookup 12345 '{"EntityInput": {"id": {"id": "ID"}, "name": {"name": "String"}, "type": {"type": "enum(EntityType)"}}, "LookupFilterInput": {"filter": {"filter": "enum(LookupFilterType)"}, "value": {"value": "String"}}, "SortInput": {"field": {"field": "String"}, "order": {"order": "enum(DirectionInput)"}}, "entityIDs": ["ID"], "from": "Int", "helperFields": ["String"], "limit": "Int", "search": "String", "type": "enum(EntityType)"}'`
+`catocli query entityLookup '{"EntityInput": {"id": {"id": "ID"}, "name": {"name": "String"}, "type": {"type": "enum(EntityType)"}}, "LookupFilterInput": {"filter": {"filter": "enum(LookupFilterType)"}, "value": {"value": "String"}}, "SortInput": {"field": {"field": "String"}, "order": {"order": "enum(DirectionInput)"}}, "entityIDs": ["ID"], "from": "Int", "helperFields": ["String"], "limit": "Int", "search": "String", "type": "enum(EntityType)"}'`
 
 #### Operation Arguments for query.entityLookup ####
 `EntityInput` [EntityInput] - (optional) Return items under a parent entity (can be site, vpn user, etc),

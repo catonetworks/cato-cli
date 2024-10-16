@@ -8,18 +8,18 @@
 
 `catocli query siteLocation <accountID> <json>`
 
-`catocli query siteLocation 12345 "$(cat < siteLocation.json)"`
+`catocli query siteLocation "$(cat < siteLocation.json)"`
 
-`catocli query siteLocation 12345 '{"filters":[{"search": "Your city here","field":"city","operation":"exact"}]}'`
+`catocli query siteLocation '{"filters":[{"search": "Your city here","field":"city","operation":"exact"}]}'`
 
-`catocli query siteLocation 12345 '{"filters":[{"search": "Your Country here","field":"countryName","operation":"startsWith"}]}'`
+`catocli query siteLocation '{"filters":[{"search": "Your Country here","field":"countryName","operation":"startsWith"}]}'`
 
-`catocli query siteLocation 12345 '{"filters":[{"search": "Your stateName here","field":"stateName","operation":"endsWith"}]}'`
+`catocli query siteLocation '{"filters":[{"search": "Your stateName here","field":"stateName","operation":"endsWith"}]}'`
 
-`catocli query siteLocation 12345 '{filters:[{"search": "Your City here","field":"city","operation":"startsWith"},{"search": "Your StateName here","field":"stateName","operation":"endsWith"},{"search": "Your Country here","field":"countryName","operation":"contains"}}'`
+`catocli query siteLocation '{filters:[{"search": "Your City here","field":"city","operation":"startsWith"},{"search": "Your StateName here","field":"stateName","operation":"endsWith"},{"search": "Your Country here","field":"countryName","operation":"contains"}}'`
 
 #### Operation Arguments for query.siteLocation ####
-`accountID` [ID] - (optional) Unique Identifier of Account. 
+`accountID` [ID] - (required) Unique Identifier of Account. 
 `filters[]` [Array] - (optional) Array of objects consisting of `search`, `field` and `operation` attributes.
 `filters[].search` [String] - (required) String to match countryName, stateName, or city specificed in `filters[].field`.
 `filters[].field` [String] - (required) Specify field to match query against, defaults to look for any.  Possible values: `countryName`, `stateName`, or `city`.

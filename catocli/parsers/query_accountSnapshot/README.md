@@ -8,9 +8,9 @@
 
 `catocli query accountSnapshot <accountID> <json>`
 
-`catocli query accountSnapshot 12345 "$(cat < accountSnapshot.json)"`
+`catocli query accountSnapshot "$(cat < accountSnapshot.json)"`
 
-`catocli query accountSnapshot 12345 '{"siteIDs": ["ID"], "userIDs": ["ID"]}'`
+`catocli query accountSnapshot '{"siteIDs": ["ID"], "userIDs": ["ID"]}'`
 
 #### Operation Arguments for query.accountSnapshot ####
 `accountID` [ID] - (optional) Unique Identifier of Account. 

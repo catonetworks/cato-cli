@@ -6,7 +6,7 @@
 
 `catocli mutation site updateStaticHost -h`
 
-`catocli mutation site updateStaticHost <accountID> <json>`
+`catocli mutation site updateStaticHost <json>`
 
 `catocli mutation site updateStaticHost "$(cat < updateStaticHost.json)"`
 

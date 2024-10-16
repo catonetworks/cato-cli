@@ -6,7 +6,7 @@
 
 `catocli query siteLocation -h`
 
-`catocli query siteLocation <accountID> <json>`
+`catocli query siteLocation <json>`
 
 `catocli query siteLocation "$(cat < siteLocation.json)"`
 

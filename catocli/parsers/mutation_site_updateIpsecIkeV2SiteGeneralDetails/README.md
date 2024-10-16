@@ -6,7 +6,7 @@
 
 `catocli mutation site updateIpsecIkeV2SiteGeneralDetails -h`
 
-`catocli mutation site updateIpsecIkeV2SiteGeneralDetails <accountID> <json>`
+`catocli mutation site updateIpsecIkeV2SiteGeneralDetails <json>`
 
 `catocli mutation site updateIpsecIkeV2SiteGeneralDetails "$(cat < updateIpsecIkeV2SiteGeneralDetails.json)"`
 

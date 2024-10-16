@@ -6,7 +6,7 @@
 
 `catocli mutation policy wanFirewall moveSection -h`
 
-`catocli mutation policy wanFirewall moveSection <accountID> <json>`
+`catocli mutation policy wanFirewall moveSection <json>`
 
 `catocli mutation policy wanFirewall moveSection "$(cat < moveSection.json)"`
 

@@ -6,7 +6,7 @@
 
 `catocli query admins -h`
 
-`catocli query admins <accountID> <json>`
+`catocli query admins <json>`
 
 `catocli query admins "$(cat < admins.json)"`
 

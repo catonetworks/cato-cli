@@ -6,7 +6,7 @@
 
 `catocli mutation site updateSocketInterface -h`
 
-`catocli mutation site updateSocketInterface <accountID> <json>`
+`catocli mutation site updateSocketInterface <json>`
 
 `catocli mutation site updateSocketInterface "$(cat < updateSocketInterface.json)"`
 

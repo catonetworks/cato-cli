@@ -6,7 +6,7 @@
 
 `catocli mutation sites addNetworkRange -h`
 
-`catocli mutation sites addNetworkRange <accountID> <json>`
+`catocli mutation sites addNetworkRange <json>`
 
 `catocli mutation sites addNetworkRange "$(cat < addNetworkRange.json)"`
 

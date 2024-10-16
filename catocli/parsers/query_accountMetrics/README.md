@@ -6,7 +6,7 @@
 
 `catocli query accountMetrics -h`
 
-`catocli query accountMetrics <accountID> <json>`
+`catocli query accountMetrics <json>`
 
 `catocli query accountMetrics "$(cat < accountMetrics.json)"`
 

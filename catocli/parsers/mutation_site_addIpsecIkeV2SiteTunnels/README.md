@@ -6,7 +6,7 @@
 
 `catocli mutation site addIpsecIkeV2SiteTunnels -h`
 
-`catocli mutation site addIpsecIkeV2SiteTunnels <accountID> <json>`
+`catocli mutation site addIpsecIkeV2SiteTunnels <json>`
 
 `catocli mutation site addIpsecIkeV2SiteTunnels "$(cat < addIpsecIkeV2SiteTunnels.json)"`
 

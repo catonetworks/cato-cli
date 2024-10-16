@@ -13,7 +13,7 @@ def mutation_container_parse(mutation_subparsers):
 			usage=get_help("mutation_container_delete"))
 
 	mutation_container_delete_parser.add_argument('json', help='Variables in JSON format.')
-	mutation_container_delete_parser.add_argument('-accountID', help='The Account ID.')
+	mutation_container_delete_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
 	mutation_container_delete_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_container_delete_parser.add_argument('-v', const=True, default=False, nargs='?', 

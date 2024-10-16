@@ -6,7 +6,7 @@
 
 `catocli query accountSnapshot -h`
 
-`catocli query accountSnapshot <accountID> <json>`
+`catocli query accountSnapshot <json>`
 
 `catocli query accountSnapshot "$(cat < accountSnapshot.json)"`
 

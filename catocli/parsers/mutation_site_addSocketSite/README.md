@@ -6,7 +6,7 @@
 
 `catocli mutation site addSocketSite -h`
 
-`catocli mutation site addSocketSite <accountID> <json>`
+`catocli mutation site addSocketSite <json>`
 
 `catocli mutation site addSocketSite "$(cat < addSocketSite.json)"`
 

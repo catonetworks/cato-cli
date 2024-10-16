@@ -6,7 +6,7 @@
 
 `catocli query eventsFeed -h`
 
-`catocli query eventsFeed <accountID> <json>`
+`catocli query eventsFeed <json>`
 
 `catocli query eventsFeed "$(cat < eventsFeed.json)"`
 

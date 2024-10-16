@@ -6,7 +6,7 @@
 
 `catocli query licensing -h`
 
-`catocli query licensing <accountID> <json>`
+`catocli query licensing <json>`
 
 `catocli query licensing "$(cat < licensing.json)"`
 

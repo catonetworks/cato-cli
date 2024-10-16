@@ -6,7 +6,7 @@
 
 `catocli mutation sites removeNetworkRange -h`
 
-`catocli mutation sites removeNetworkRange <accountID> <json>`
+`catocli mutation sites removeNetworkRange <json>`
 
 `catocli mutation sites removeNetworkRange "$(cat < removeNetworkRange.json)"`
 

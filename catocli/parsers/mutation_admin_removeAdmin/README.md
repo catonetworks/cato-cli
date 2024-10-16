@@ -6,7 +6,7 @@
 
 `catocli mutation admin removeAdmin -h`
 
-`catocli mutation admin removeAdmin <accountID> <json>`
+`catocli mutation admin removeAdmin <json>`
 
 `catocli mutation admin removeAdmin "$(cat < removeAdmin.json)"`
 

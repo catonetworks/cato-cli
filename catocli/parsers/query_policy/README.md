@@ -6,7 +6,7 @@
 
 `catocli query policy -h`
 
-`catocli query policy <accountID> <json>`
+`catocli query policy <json>`
 
 `catocli query policy "$(cat < policy.json)"`
 

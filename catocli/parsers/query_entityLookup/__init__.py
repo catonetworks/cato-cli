@@ -7,7 +7,7 @@ def query_entityLookup_parse(query_subparsers):
 			usage=get_help("query_entityLookup"))
 
 	query_entityLookup_parser.add_argument('json', help='Variables in JSON format.')
-	query_entityLookup_parser.add_argument('-accountID', help='The Account ID.')
+	query_entityLookup_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
 	query_entityLookup_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	query_entityLookup_parser.add_argument('-v', const=True, default=False, nargs='?', 

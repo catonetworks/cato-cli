@@ -13,7 +13,7 @@ def mutation_sites_parse(mutation_subparsers):
 			usage=get_help("mutation_sites_addIpsecIkeV2Site"))
 
 	mutation_sites_addIpsecIkeV2Site_parser.add_argument('json', help='Variables in JSON format.')
-	mutation_sites_addIpsecIkeV2Site_parser.add_argument('-accountID', help='The Account ID.')
+	mutation_sites_addIpsecIkeV2Site_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
 	mutation_sites_addIpsecIkeV2Site_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_sites_addIpsecIkeV2Site_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -27,7 +27,7 @@ def mutation_sites_parse(mutation_subparsers):
 			usage=get_help("mutation_sites_addIpsecIkeV2SiteTunnels"))
 
 	mutation_sites_addIpsecIkeV2SiteTunnels_parser.add_argument('json', help='Variables in JSON format.')
-	mutation_sites_addIpsecIkeV2SiteTunnels_parser.add_argument('-accountID', help='The Account ID.')
+	mutation_sites_addIpsecIkeV2SiteTunnels_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
 	mutation_sites_addIpsecIkeV2SiteTunnels_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_sites_addIpsecIkeV2SiteTunnels_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -41,7 +41,7 @@ def mutation_sites_parse(mutation_subparsers):
 			usage=get_help("mutation_sites_addNetworkRange"))
 
 	mutation_sites_addNetworkRange_parser.add_argument('json', help='Variables in JSON format.')
-	mutation_sites_addNetworkRange_parser.add_argument('-accountID', help='The Account ID.')
+	mutation_sites_addNetworkRange_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
 	mutation_sites_addNetworkRange_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_sites_addNetworkRange_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -55,7 +55,7 @@ def mutation_sites_parse(mutation_subparsers):
 			usage=get_help("mutation_sites_addSocketSite"))
 
 	mutation_sites_addSocketSite_parser.add_argument('json', help='Variables in JSON format.')
-	mutation_sites_addSocketSite_parser.add_argument('-accountID', help='The Account ID.')
+	mutation_sites_addSocketSite_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
 	mutation_sites_addSocketSite_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_sites_addSocketSite_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -69,7 +69,7 @@ def mutation_sites_parse(mutation_subparsers):
 			usage=get_help("mutation_sites_addStaticHost"))
 
 	mutation_sites_addStaticHost_parser.add_argument('json', help='Variables in JSON format.')
-	mutation_sites_addStaticHost_parser.add_argument('-accountID', help='The Account ID.')
+	mutation_sites_addStaticHost_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
 	mutation_sites_addStaticHost_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_sites_addStaticHost_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -83,7 +83,7 @@ def mutation_sites_parse(mutation_subparsers):
 			usage=get_help("mutation_sites_removeNetworkRange"))
 
 	mutation_sites_removeNetworkRange_parser.add_argument('json', help='Variables in JSON format.')
-	mutation_sites_removeNetworkRange_parser.add_argument('-accountID', help='The Account ID.')
+	mutation_sites_removeNetworkRange_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
 	mutation_sites_removeNetworkRange_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_sites_removeNetworkRange_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -97,7 +97,7 @@ def mutation_sites_parse(mutation_subparsers):
 			usage=get_help("mutation_sites_removeSite"))
 
 	mutation_sites_removeSite_parser.add_argument('json', help='Variables in JSON format.')
-	mutation_sites_removeSite_parser.add_argument('-accountID', help='The Account ID.')
+	mutation_sites_removeSite_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
 	mutation_sites_removeSite_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_sites_removeSite_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -111,7 +111,7 @@ def mutation_sites_parse(mutation_subparsers):
 			usage=get_help("mutation_sites_removeStaticHost"))
 
 	mutation_sites_removeStaticHost_parser.add_argument('json', help='Variables in JSON format.')
-	mutation_sites_removeStaticHost_parser.add_argument('-accountID', help='The Account ID.')
+	mutation_sites_removeStaticHost_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
 	mutation_sites_removeStaticHost_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_sites_removeStaticHost_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -125,7 +125,7 @@ def mutation_sites_parse(mutation_subparsers):
 			usage=get_help("mutation_sites_updateHa"))
 
 	mutation_sites_updateHa_parser.add_argument('json', help='Variables in JSON format.')
-	mutation_sites_updateHa_parser.add_argument('-accountID', help='The Account ID.')
+	mutation_sites_updateHa_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
 	mutation_sites_updateHa_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_sites_updateHa_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -139,7 +139,7 @@ def mutation_sites_parse(mutation_subparsers):
 			usage=get_help("mutation_sites_updateIpsecIkeV2SiteGeneralDetails"))
 
 	mutation_sites_updateIpsecIkeV2SiteGeneralDetails_parser.add_argument('json', help='Variables in JSON format.')
-	mutation_sites_updateIpsecIkeV2SiteGeneralDetails_parser.add_argument('-accountID', help='The Account ID.')
+	mutation_sites_updateIpsecIkeV2SiteGeneralDetails_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
 	mutation_sites_updateIpsecIkeV2SiteGeneralDetails_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_sites_updateIpsecIkeV2SiteGeneralDetails_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -153,7 +153,7 @@ def mutation_sites_parse(mutation_subparsers):
 			usage=get_help("mutation_sites_updateIpsecIkeV2SiteTunnels"))
 
 	mutation_sites_updateIpsecIkeV2SiteTunnels_parser.add_argument('json', help='Variables in JSON format.')
-	mutation_sites_updateIpsecIkeV2SiteTunnels_parser.add_argument('-accountID', help='The Account ID.')
+	mutation_sites_updateIpsecIkeV2SiteTunnels_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
 	mutation_sites_updateIpsecIkeV2SiteTunnels_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_sites_updateIpsecIkeV2SiteTunnels_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -167,7 +167,7 @@ def mutation_sites_parse(mutation_subparsers):
 			usage=get_help("mutation_sites_updateNetworkRange"))
 
 	mutation_sites_updateNetworkRange_parser.add_argument('json', help='Variables in JSON format.')
-	mutation_sites_updateNetworkRange_parser.add_argument('-accountID', help='The Account ID.')
+	mutation_sites_updateNetworkRange_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
 	mutation_sites_updateNetworkRange_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_sites_updateNetworkRange_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -181,7 +181,7 @@ def mutation_sites_parse(mutation_subparsers):
 			usage=get_help("mutation_sites_updateSiteGeneralDetails"))
 
 	mutation_sites_updateSiteGeneralDetails_parser.add_argument('json', help='Variables in JSON format.')
-	mutation_sites_updateSiteGeneralDetails_parser.add_argument('-accountID', help='The Account ID.')
+	mutation_sites_updateSiteGeneralDetails_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
 	mutation_sites_updateSiteGeneralDetails_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_sites_updateSiteGeneralDetails_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -195,7 +195,7 @@ def mutation_sites_parse(mutation_subparsers):
 			usage=get_help("mutation_sites_updateSocketInterface"))
 
 	mutation_sites_updateSocketInterface_parser.add_argument('json', help='Variables in JSON format.')
-	mutation_sites_updateSocketInterface_parser.add_argument('-accountID', help='The Account ID.')
+	mutation_sites_updateSocketInterface_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
 	mutation_sites_updateSocketInterface_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_sites_updateSocketInterface_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -209,7 +209,7 @@ def mutation_sites_parse(mutation_subparsers):
 			usage=get_help("mutation_sites_updateStaticHost"))
 
 	mutation_sites_updateStaticHost_parser.add_argument('json', help='Variables in JSON format.')
-	mutation_sites_updateStaticHost_parser.add_argument('-accountID', help='The Account ID.')
+	mutation_sites_updateStaticHost_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
 	mutation_sites_updateStaticHost_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_sites_updateStaticHost_parser.add_argument('-v', const=True, default=False, nargs='?', 

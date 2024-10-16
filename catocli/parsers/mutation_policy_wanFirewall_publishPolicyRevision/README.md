@@ -6,7 +6,7 @@
 
 `catocli mutation policy wanFirewall publishPolicyRevision -h`
 
-`catocli mutation policy wanFirewall publishPolicyRevision <accountID> <json>`
+`catocli mutation policy wanFirewall publishPolicyRevision <json>`
 
 `catocli mutation policy wanFirewall publishPolicyRevision "$(cat < publishPolicyRevision.json)"`
 

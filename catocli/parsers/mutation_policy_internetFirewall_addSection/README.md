@@ -6,7 +6,7 @@
 
 `catocli mutation policy internetFirewall addSection -h`
 
-`catocli mutation policy internetFirewall addSection <accountID> <json>`
+`catocli mutation policy internetFirewall addSection <json>`
 
 `catocli mutation policy internetFirewall addSection "$(cat < addSection.json)"`
 

@@ -6,7 +6,7 @@
 
 `catocli mutation policy wanFirewall updateRule -h`
 
-`catocli mutation policy wanFirewall updateRule <accountID> <json>`
+`catocli mutation policy wanFirewall updateRule <json>`
 
 `catocli mutation policy wanFirewall updateRule "$(cat < updateRule.json)"`
 

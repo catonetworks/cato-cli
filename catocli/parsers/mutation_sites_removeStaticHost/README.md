@@ -6,7 +6,7 @@
 
 `catocli mutation sites removeStaticHost -h`
 
-`catocli mutation sites removeStaticHost <accountID> <json>`
+`catocli mutation sites removeStaticHost <json>`
 
 `catocli mutation sites removeStaticHost "$(cat < removeStaticHost.json)"`
 

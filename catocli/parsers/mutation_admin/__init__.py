@@ -13,7 +13,7 @@ def mutation_admin_parse(mutation_subparsers):
 			usage=get_help("mutation_admin_addAdmin"))
 
 	mutation_admin_addAdmin_parser.add_argument('json', help='Variables in JSON format.')
-	mutation_admin_addAdmin_parser.add_argument('-accountID', help='The Account ID.')
+	mutation_admin_addAdmin_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
 	mutation_admin_addAdmin_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_admin_addAdmin_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -27,7 +27,7 @@ def mutation_admin_parse(mutation_subparsers):
 			usage=get_help("mutation_admin_removeAdmin"))
 
 	mutation_admin_removeAdmin_parser.add_argument('json', help='Variables in JSON format.')
-	mutation_admin_removeAdmin_parser.add_argument('-accountID', help='The Account ID.')
+	mutation_admin_removeAdmin_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
 	mutation_admin_removeAdmin_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_admin_removeAdmin_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -41,7 +41,7 @@ def mutation_admin_parse(mutation_subparsers):
 			usage=get_help("mutation_admin_updateAdmin"))
 
 	mutation_admin_updateAdmin_parser.add_argument('json', help='Variables in JSON format.')
-	mutation_admin_updateAdmin_parser.add_argument('-accountID', help='The Account ID.')
+	mutation_admin_updateAdmin_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
 	mutation_admin_updateAdmin_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	mutation_admin_updateAdmin_parser.add_argument('-v', const=True, default=False, nargs='?', 

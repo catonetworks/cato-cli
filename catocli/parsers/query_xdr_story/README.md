@@ -6,7 +6,7 @@
 
 `catocli query xdr story -h`
 
-`catocli query xdr story <accountID> <json>`
+`catocli query xdr story <json>`
 
 `catocli query xdr story "$(cat < story.json)"`
 

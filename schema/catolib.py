@@ -611,7 +611,7 @@ def query_siteLocation_parse(query_subparsers):
 			usage=get_help("query_siteLocation"))
 
 	query_siteLocation_parser.add_argument('json', help='Variables in JSON format.')
-	query_siteLocation_parser.add_argument('-accountID', help='The Account ID.')
+	query_siteLocation_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
 	query_siteLocation_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	query_siteLocation_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -644,7 +644,7 @@ def {parserName}_parse({operationType}_subparsers):
 			if "path" in parser:
 				cliDriverStr += f"""
 	{parserName}_parser.add_argument('json', help='Variables in JSON format.')
-	{parserName}_parser.add_argument('-accountID', help='The Account ID.')
+	{parserName}_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
 	{parserName}_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	{parserName}_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -676,7 +676,7 @@ def renderSubParser(subParser,parentParserPath):
 			command = parentParserPath.replace("_"," ")+" "+subOperationName
 			cliDriverStr += f"""
 	{subParserPath}_parser.add_argument('json', help='Variables in JSON format.')
-	{subParserPath}_parser.add_argument('-accountID', help='The Account ID.')
+	{subParserPath}_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
 	{subParserPath}_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	{subParserPath}_parser.add_argument('-v', const=True, default=False, nargs='?', 
@@ -723,7 +723,7 @@ def writeReadmes(catoApiSchema):
 
 `catocli query siteLocation -h`
 
-`catocli query siteLocation <accountID> <json>`
+`catocli query siteLocation <json>`
 
 `catocli query siteLocation "$(cat < siteLocation.json)"`
 
@@ -767,7 +767,7 @@ def writeReadmes(catoApiSchema):
 """
 			if "path" in parser:
 				readmeStr += f"""
-`catocli {operationCmd} <accountID> <json>`
+`catocli {operationCmd} <json>`
 
 `catocli {operationCmd} "$(cat < {operationName}.json)"`
 
@@ -808,7 +808,7 @@ def renderSubReadme(subParser,operationType,parentOperationPath):
 """
 		if "path" in subOperation:
 			readmeStr += f"""
-`catocli {subOperationCmd} <accountID> <json>`
+`catocli {subOperationCmd} <json>`
 
 `catocli {subOperationCmd} "$(cat < {subOperationName}.json)"`
 

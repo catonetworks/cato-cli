@@ -6,7 +6,7 @@
 
 `catocli query subDomains -h`
 
-`catocli query subDomains <accountID> <json>`
+`catocli query subDomains <json>`
 
 `catocli query subDomains "$(cat < subDomains.json)"`
 

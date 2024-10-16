@@ -7,7 +7,7 @@ def query_auditFeed_parse(query_subparsers):
 			usage=get_help("query_auditFeed"))
 
 	query_auditFeed_parser.add_argument('json', help='Variables in JSON format.')
-	query_auditFeed_parser.add_argument('-accountID', help='The Account ID.')
+	query_auditFeed_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
 	query_auditFeed_parser.add_argument('-t', const=True, default=False, nargs='?', 
 		help='Print test request preview without sending api call')
 	query_auditFeed_parser.add_argument('-v', const=True, default=False, nargs='?', 

@@ -6,7 +6,7 @@
 
 `catocli query accountRoles -h`
 
-`catocli query accountRoles <accountID> <json>`
+`catocli query accountRoles <json>`
 
 `catocli query accountRoles "$(cat < accountRoles.json)"`
 

@@ -6,7 +6,7 @@
 
 `catocli query entityLookup -h`
 
-`catocli query entityLookup <accountID> <json>`
+`catocli query entityLookup <json>`
 
 `catocli query entityLookup "$(cat < entityLookup.json)"`
 

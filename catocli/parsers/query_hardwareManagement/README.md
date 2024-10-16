@@ -6,7 +6,7 @@
 
 `catocli query hardwareManagement -h`
 
-`catocli query hardwareManagement <accountID> <json>`
+`catocli query hardwareManagement <json>`
 
 `catocli query hardwareManagement "$(cat < hardwareManagement.json)"`
 

@@ -6,7 +6,7 @@
 
 `catocli mutation admin updateAdmin -h`
 
-`catocli mutation admin updateAdmin <accountID> <json>`
+`catocli mutation admin updateAdmin <json>`
 
 `catocli mutation admin updateAdmin "$(cat < updateAdmin.json)"`
 

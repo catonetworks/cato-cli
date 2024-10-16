@@ -6,7 +6,7 @@
 
 `catocli query container -h`
 
-`catocli query container <accountID> <json>`
+`catocli query container <json>`
 
 `catocli query container "$(cat < container.json)"`
 

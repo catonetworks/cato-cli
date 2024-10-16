@@ -6,7 +6,7 @@
 
 `catocli mutation site updateSiteGeneralDetails -h`
 
-`catocli mutation site updateSiteGeneralDetails <accountID> <json>`
+`catocli mutation site updateSiteGeneralDetails <json>`
 
 `catocli mutation site updateSiteGeneralDetails "$(cat < updateSiteGeneralDetails.json)"`
 

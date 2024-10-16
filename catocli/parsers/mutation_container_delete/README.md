@@ -6,7 +6,7 @@
 
 `catocli mutation container delete -h`
 
-`catocli mutation container delete <accountID> <json>`
+`catocli mutation container delete <json>`
 
 `catocli mutation container delete "$(cat < delete.json)"`
 

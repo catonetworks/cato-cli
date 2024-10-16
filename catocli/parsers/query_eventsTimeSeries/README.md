@@ -6,7 +6,7 @@
 
 `catocli query eventsTimeSeries -h`
 
-`catocli query eventsTimeSeries <accountID> <json>`
+`catocli query eventsTimeSeries <json>`
 
 `catocli query eventsTimeSeries "$(cat < eventsTimeSeries.json)"`
 

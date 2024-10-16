@@ -6,7 +6,7 @@
 
 `catocli query auditFeed -h`
 
-`catocli query auditFeed <accountID> <json>`
+`catocli query auditFeed <json>`
 
 `catocli query auditFeed "$(cat < auditFeed.json)"`
 

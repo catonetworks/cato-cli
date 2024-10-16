@@ -6,7 +6,7 @@
 
 `catocli mutation policy wanFirewall discardPolicyRevision -h`
 
-`catocli mutation policy wanFirewall discardPolicyRevision <accountID> <json>`
+`catocli mutation policy wanFirewall discardPolicyRevision <json>`
 
 `catocli mutation policy wanFirewall discardPolicyRevision "$(cat < discardPolicyRevision.json)"`
 

@@ -6,7 +6,7 @@
 
 `catocli mutation sites removeSite -h`
 
-`catocli mutation sites removeSite <accountID> <json>`
+`catocli mutation sites removeSite <json>`
 
 `catocli mutation sites removeSite "$(cat < removeSite.json)"`
 

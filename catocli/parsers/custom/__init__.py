@@ -14,7 +14,7 @@ def custom_parse(subparsers):
 				help='entity '+entity+' list', 
 				usage=get_help_custom("entity_"+entity+"_list"))
 
-		item_list_parser.add_argument('accountID', help='The Account ID.')
+		item_list_parser.add_argument('-accountID', help='The Account ID.')
 		item_list_parser.add_argument('-s', help='Search string', default='', nargs='?')
 		item_list_parser.add_argument('-f', default="csv", choices=["json","csv"], nargs='?', 
 			help='Specify format for output')

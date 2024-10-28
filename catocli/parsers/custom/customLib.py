@@ -18,7 +18,6 @@ def entityTypeList(args, configuration):
 
     instance = CallApi(ApiClient(configuration))
     operationName = params["operation_name"]
-    accountID = params.get("accountID") if params.get("accountID") else params.get("accountId")    
     query = '''query entityLookup ( $type:EntityType! $accountID:ID! $search:String ) {
         entityLookup ( accountID:$accountID type:$type search:$search ) {
             '''+params["operation_name"]+'''s: items {
@@ -35,7 +34,7 @@ def entityTypeList(args, configuration):
         "query": query,
         "operationName": "entityLookup",
         "variables": {
-            "accountID": accountID,
+            "accountID": configuration.accountID,
             "type": params["operation_name"],
             "search": (params.get("s") if params.get("s")!=None else "")
         }

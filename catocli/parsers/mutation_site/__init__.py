@@ -78,6 +78,20 @@ def mutation_site_parse(mutation_subparsers):
 		help='Pretty print')
 	mutation_site_addStaticHost_parser.set_defaults(func=createRequest,operation_name='mutation.site.addStaticHost')
 
+	mutation_site_removeIpsecIkeV2SiteTunnels_parser = mutation_site_subparsers.add_parser('removeIpsecIkeV2SiteTunnels', 
+			help='removeIpsecIkeV2SiteTunnels() site operation', 
+			usage=get_help("mutation_site_removeIpsecIkeV2SiteTunnels"))
+
+	mutation_site_removeIpsecIkeV2SiteTunnels_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_site_removeIpsecIkeV2SiteTunnels_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_site_removeIpsecIkeV2SiteTunnels_parser.add_argument('-t', const=True, default=False, nargs='?', 
+		help='Print test request preview without sending api call')
+	mutation_site_removeIpsecIkeV2SiteTunnels_parser.add_argument('-v', const=True, default=False, nargs='?', 
+		help='Verbose output')
+	mutation_site_removeIpsecIkeV2SiteTunnels_parser.add_argument('-p', const=True, default=False, nargs='?', 
+		help='Pretty print')
+	mutation_site_removeIpsecIkeV2SiteTunnels_parser.set_defaults(func=createRequest,operation_name='mutation.site.removeIpsecIkeV2SiteTunnels')
+
 	mutation_site_removeNetworkRange_parser = mutation_site_subparsers.add_parser('removeNetworkRange', 
 			help='removeNetworkRange() site operation', 
 			usage=get_help("mutation_site_removeNetworkRange"))

@@ -51,7 +51,9 @@ def entityTypeList(args, configuration):
         else:
             try:
                 response = instance.call_api(body,params)
-                if params["f"]=="json":
+                if params["v"]==True:
+                    print(json.dumps(response[0]))
+                elif params["f"]=="json":
                     if params["p"]==True:
                         print(json.dumps(response[0].get("data").get("entityLookup").get(params["operation_name"]+"s"),indent=2,sort_keys=True).replace("\\n", "\n").replace("\\t", "  "))
                     else:

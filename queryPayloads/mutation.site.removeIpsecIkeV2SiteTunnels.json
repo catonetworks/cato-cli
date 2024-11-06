@@ -1,0 +1,12 @@
+{
+    "operationName": "siteRemoveIpsecIkeV2SiteTunnels",
+    "query": "mutation siteRemoveIpsecIkeV2SiteTunnels ( $siteId:ID! $RemoveIpsecIkeV2SiteTunnelsInput:RemoveIpsecIkeV2SiteTunnelsInput! ) { site ( ) { removeIpsecIkeV2SiteTunnels ( siteId:$siteId input:$RemoveIpsecIkeV2SiteTunnelsInput ) { siteId primary { fqdn tunnels { IPSecV2InterfaceIdTunnelId: tunnelId localId } } secondary { fqdn tunnels { IPSecV2InterfaceIdTunnelId: tunnelId localId } } } } }",
+    "variables": {
+        "RemoveIpsecIkeV2SiteTunnelsInput": {
+            "tunnelId": {
+                "tunnelId": "enum(IPSecV2InterfaceId)"
+            }
+        },
+        "siteId": "ID"
+    }
+}

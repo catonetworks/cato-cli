@@ -6,6 +6,7 @@ import catocli
 from graphql_client import Configuration
 from graphql_client.api_client import ApiException
 from ..parsers.parserApiClient import get_help
+import traceback
 import sys
 sys.path.insert(0, 'vendor')
 import urllib3
@@ -113,5 +114,13 @@ def main(args=None):
 		else:
 			if response!=None:
 				print(json.dumps(response[0], sort_keys=True, indent=4))
-	except AttributeError:
-		print('Missing arguments. Usage: catocli <operation> -h')
+	except Exception as e:
+		if isinstance(e, AttributeError):
+			print('Missing arguments. Usage: catocli <operation> -h')
+			if "v" in args and args.v==True:
+				print('ERROR: ',e)
+				traceback.print_exc()
+		else:
+			print('ERROR: ',e)
+			traceback.print_exc()
+		exit(1)

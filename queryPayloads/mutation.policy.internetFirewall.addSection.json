@@ -1,21 +1,21 @@
 {
     "operationName": "policyInternetFirewallAddSection",
-    "query": "mutation policyInternetFirewallAddSection ( $PolicyAddSectionInput:PolicyAddSectionInput! $InternetFirewallPolicyMutationInput:InternetFirewallPolicyMutationInput ) { policy ( ) { internetFirewall ( input:$InternetFirewallPolicyMutationInput ) { addSection ( input:$PolicyAddSectionInput ) { PolicySectionPayloadSection: section { audit { updatedTime updatedBy } section { id name } properties } PolicyMutationStatusStatus: status PolicyMutationErrorErrors: errors { errorMessage errorCode } } } } }",
+    "query": "mutation policyInternetFirewallAddSection ( $policyAddSectionInput:PolicyAddSectionInput! $internetFirewallPolicyMutationInput:InternetFirewallPolicyMutationInput ) { policy ( ) { internetFirewall ( input:$internetFirewallPolicyMutationInput ) { addSection ( input:$policyAddSectionInput ) { policySectionPayloadSection: section { audit { updatedTime updatedBy } section { id name } properties } policyMutationStatusStatus: status policyMutationErrorErrors: errors { errorMessage errorCode } } } } }",
     "variables": {
-        "InternetFirewallPolicyMutationInput": {
-            "PolicyMutationRevisionInput": {
+        "internetFirewallPolicyMutationInput": {
+            "policyMutationRevisionInput": {
                 "id": {
                     "id": "ID"
                 }
             }
         },
-        "PolicyAddSectionInput": {
-            "PolicyAddSectionInfoInput": {
+        "policyAddSectionInput": {
+            "policyAddSectionInfoInput": {
                 "name": {
                     "name": "String"
                 }
             },
-            "PolicySectionPositionInput": {
+            "policySectionPositionInput": {
                 "position": {
                     "position": "enum(PolicySectionPositionEnum)"
                 },

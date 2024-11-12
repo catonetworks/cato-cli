@@ -1,9 +1,22 @@
 {
     "operationName": "adminUpdateAdmin",
-    "query": "mutation adminUpdateAdmin ( $adminID:ID! $UpdateAdminInput:UpdateAdminInput! ) { admin ( ) { updateAdmin ( adminID:$adminID input:$UpdateAdminInput ) { adminID } } }",
+    "query": "mutation adminUpdateAdmin ( $adminID:ID! $updateAdminInput:UpdateAdminInput! ) { admin ( ) { updateAdmin ( adminID:$adminID input:$updateAdminInput ) { adminID } } }",
     "variables": {
-        "UpdateAdminInput": {
-            "UpdateAdminRoleInput": {
+        "adminID": "ID",
+        "updateAdminInput": {
+            "firstName": {
+                "firstName": "String"
+            },
+            "lastName": {
+                "lastName": "String"
+            },
+            "mfaEnabled": {
+                "mfaEnabled": "Boolean"
+            },
+            "passwordNeverExpires": {
+                "passwordNeverExpires": "Boolean"
+            },
+            "updateAdminRoleInput": {
                 "allowedAccounts": {
                     "allowedAccounts": [
                         "ID"
@@ -28,20 +41,7 @@
                         "name": "String"
                     }
                 }
-            },
-            "firstName": {
-                "firstName": "String"
-            },
-            "lastName": {
-                "lastName": "String"
-            },
-            "mfaEnabled": {
-                "mfaEnabled": "Boolean"
-            },
-            "passwordNeverExpires": {
-                "passwordNeverExpires": "Boolean"
             }
-        },
-        "adminID": "ID"
+        }
     }
 }

@@ -10,9 +10,9 @@
 
 `catocli mutation site updateNetworkRange "$(cat < updateNetworkRange.json)"`
 
-`catocli mutation site updateNetworkRange '{"UpdateNetworkRangeInput": {"NetworkDhcpSettingsInput": {"dhcpType": {"dhcpType": "enum(DhcpType)"}, "ipRange": {"ipRange": "IPRange"}, "relayGroupId": {"relayGroupId": "ID"}}, "azureFloatingIp": {"azureFloatingIp": "IPAddress"}, "gateway": {"gateway": "IPAddress"}, "localIp": {"localIp": "IPAddress"}, "mdnsReflector": {"mdnsReflector": "Boolean"}, "name": {"name": "String"}, "rangeType": {"rangeType": "enum(SubnetType)"}, "subnet": {"subnet": "IPSubnet"}, "translatedSubnet": {"translatedSubnet": "IPSubnet"}, "vlan": {"vlan": "Int"}}, "networkRangeId": "ID"}'`
+`catocli mutation site updateNetworkRange '{"networkRangeId": "ID", "updateNetworkRangeInput": {"azureFloatingIp": {"azureFloatingIp": "IPAddress"}, "gateway": {"gateway": "IPAddress"}, "localIp": {"localIp": "IPAddress"}, "mdnsReflector": {"mdnsReflector": "Boolean"}, "name": {"name": "String"}, "networkDhcpSettingsInput": {"dhcpType": {"dhcpType": "enum(DhcpType)"}, "ipRange": {"ipRange": "IPRange"}, "relayGroupId": {"relayGroupId": "ID"}}, "rangeType": {"rangeType": "enum(SubnetType)"}, "subnet": {"subnet": "IPSubnet"}, "translatedSubnet": {"translatedSubnet": "IPSubnet"}, "vlan": {"vlan": "Int"}}}'`
 
 #### Operation Arguments for mutation.site.updateNetworkRange ####
-`UpdateNetworkRangeInput` [UpdateNetworkRangeInput] - (required) N/A 
 `accountId` [ID] - (required) N/A 
 `networkRangeId` [ID] - (required) N/A 
+`updateNetworkRangeInput` [UpdateNetworkRangeInput] - (required) N/A 

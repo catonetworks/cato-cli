@@ -1,8 +1,11 @@
 {
     "operationName": "eventsFeed",
-    "query": "query eventsFeed ( $fieldNames:[EventFieldName!] $accountIDs:[ID!] $EventFeedFieldFilterInput:[EventFeedFieldFilterInput!] $marker:String ) { eventsFeed ( accountIDs:$accountIDs filters:$EventFeedFieldFilterInput marker:$marker ) { marker fetchedCount accounts { id errorString EventRecordRecords: records ( fieldNames:$fieldNames ) { time flatFields } } } }",
+    "query": "query eventsFeed ( $fieldNames:[EventFieldName!] $accountIDs:[ID!] $eventFeedFieldFilterInput:[EventFeedFieldFilterInput!] $marker:String ) { eventsFeed ( accountIDs:$accountIDs filters:$eventFeedFieldFilterInput marker:$marker ) { marker fetchedCount accounts { id errorString eventRecordRecords: records ( fieldNames:$fieldNames ) { time flatFields } } } }",
     "variables": {
-        "EventFeedFieldFilterInput": {
+        "accountIDs": [
+            "ID"
+        ],
+        "eventFeedFieldFilterInput": {
             "fieldName": {
                 "fieldName": "enum(EventFeedFilterFieldName)"
             },
@@ -15,9 +18,6 @@
                 ]
             }
         },
-        "accountIDs": [
-            "ID"
-        ],
         "fieldNames": "enum(EventFieldName)",
         "marker": "String"
     }

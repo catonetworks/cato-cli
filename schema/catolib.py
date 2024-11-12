@@ -167,7 +167,7 @@ def getChildOperations(operationType, curType, parentType, parentPath):
 def getNestedArgDefinitions(argsAry, parentParamPath, childOperations, parentFields):
 	newArgsList = {}
 	for arg in argsAry:
-		curParamPath = arg["name"] if (parentParamPath == None or parentParamPath == "") else parentParamPath.replace("___",".") + "." + arg["name"]
+		curParamPath = renderCamelCase(arg["name"]) if (parentParamPath == None or parentParamPath == "") else parentParamPath.replace("___",".") + "." + renderCamelCase(arg["name"])
 		if "path" in arg and '.' not in arg["path"]:
 			arg["child"] = True
 			arg["parent"] = arg["path"]		
@@ -928,16 +928,6 @@ def generateGraphqlPayload(variablesObj,operation,operationName):
 		"operationName":renderCamelCase(".".join(operationAry)),
 	}
 	return body
-
-def renderCamelCase(pathStr):
-	str = "";
-	pathAry = pathStr.split(".") 
-	for i, path in enumerate(pathAry):
-		if i == 0:
-			str += path
-		else:
-			str += path[0].upper() + path[1:]
-	return str	
 
 def renderArgsAndFields(responseArgStr, variablesObj, curOperation, definition, indent):
 	for fieldName in definition['fields']:

@@ -17,7 +17,10 @@ def createRequest(args, configuration):
 	except ValueError as e:
 		print("ERROR: Query argument must be valid json in quotes. ",e,'\n\nExample: \'{"yourKey":"yourValue"}\'')
 		exit()
-	variablesObj["accountID"] = configuration.accountID
+	if "accountId" in operation["args"]:
+		variablesObj["accountId"] = configuration.accountID
+	else:
+		variablesObj["accountID"] = configuration.accountID
 	isOk, invalidVars, message = validateArgs(variablesObj,operation)
 	if isOk==True:
 		body = generateGraphqlPayload(variablesObj,operation,operationName)
@@ -185,7 +188,7 @@ def validateArgs(variablesObj,operation):
 		if varName not in operation["operationArgs"]:
 			isOk = False
 			invalidVars.append('"'+varName+'"')
-			message = "Invalid argument names: "
+			message = "Invalid argument names. Looking for: "+", ".join(list(operation["operationArgs"].keys()))
 	if isOk==True:
 		for varName in operation["operationArgs"]:
 			if operation["operationArgs"][varName]["required"] and varName not in variablesObj:
@@ -214,11 +217,11 @@ def loadJSON(file):
 		exit()
 
 def renderCamelCase(pathStr):
-	str = "";
+	str = ""
 	pathAry = pathStr.split(".") 
 	for i, path in enumerate(pathAry):
 		if i == 0:
-			str += path
+			str += path[0].lower() + path[1:]
 		else:
 			str += path[0].upper() + path[1:]
 	return str	

@@ -10,9 +10,9 @@
 
 `catocli mutation policy internetFirewall moveRule "$(cat < moveRule.json)"`
 
-`catocli mutation policy internetFirewall moveRule '{"InternetFirewallPolicyMutationInput": {"PolicyMutationRevisionInput": {"id": {"id": "ID"}}}, "PolicyMoveRuleInput": {"PolicyRulePositionInput": {"position": {"position": "enum(PolicyRulePositionEnum)"}, "ref": {"ref": "ID"}}, "id": {"id": "ID"}}}'`
+`catocli mutation policy internetFirewall moveRule '{"internetFirewallPolicyMutationInput": {"policyMutationRevisionInput": {"id": {"id": "ID"}}}, "policyMoveRuleInput": {"id": {"id": "ID"}, "policyRulePositionInput": {"position": {"position": "enum(PolicyRulePositionEnum)"}, "ref": {"ref": "ID"}}}}'`
 
 #### Operation Arguments for mutation.policy.internetFirewall.moveRule ####
-`InternetFirewallPolicyMutationInput` [InternetFirewallPolicyMutationInput] - (optional) N/A 
-`PolicyMoveRuleInput` [PolicyMoveRuleInput] - (required) N/A 
 `accountId` [ID] - (required) N/A 
+`internetFirewallPolicyMutationInput` [InternetFirewallPolicyMutationInput] - (optional) N/A 
+`policyMoveRuleInput` [PolicyMoveRuleInput] - (required) N/A 

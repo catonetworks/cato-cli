@@ -1,8 +1,8 @@
 {
     "operationName": "appStats",
-    "query": "query appStats ( $limit:Int $from:Int $timeFrame:TimeFrame! $Measure:[Measure] $Dimension:[Dimension] $AppStatsFilter:[AppStatsFilter!] $AppStatsSort:[AppStatsSort!] ) { appStats ( timeFrame:$timeFrame measures:$Measure dimensions:$Dimension filters:$AppStatsFilter sort:$AppStatsSort ) { id from to total totals records ( limit:$limit from:$from ) { trends prevTimeFrame flatFields } } }",
+    "query": "query appStats ( $limit:Int $from:Int $timeFrame:TimeFrame! $measure:[Measure] $dimension:[Dimension] $appStatsFilter:[AppStatsFilter!] $appStatsSort:[AppStatsSort!] ) { appStats ( timeFrame:$timeFrame measures:$measure dimensions:$dimension filters:$appStatsFilter sort:$appStatsSort ) { id from to total totals records ( limit:$limit from:$from ) { trends prevTimeFrame flatFields } } }",
     "variables": {
-        "AppStatsFilter": {
+        "appStatsFilter": {
             "fieldName": {
                 "fieldName": "enum(AppStatsFieldName)"
             },
@@ -15,7 +15,7 @@
                 ]
             }
         },
-        "AppStatsSort": {
+        "appStatsSort": {
             "fieldName": {
                 "fieldName": "enum(AppStatsFieldName)"
             },
@@ -23,12 +23,14 @@
                 "order": "enum(DirectionEnum)"
             }
         },
-        "Dimension": {
+        "dimension": {
             "fieldName": {
                 "fieldName": "enum(AppStatsFieldName)"
             }
         },
-        "Measure": {
+        "from": "Int",
+        "limit": "Int",
+        "measure": {
             "aggType": {
                 "aggType": "enum(AggregationType)"
             },
@@ -39,8 +41,6 @@
                 "trend": "Boolean"
             }
         },
-        "from": "Int",
-        "limit": "Int",
         "timeFrame": "TimeFrame"
     }
 }

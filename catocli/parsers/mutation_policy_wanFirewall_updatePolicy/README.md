@@ -10,9 +10,9 @@
 
 `catocli mutation policy wanFirewall updatePolicy "$(cat < updatePolicy.json)"`
 
-`catocli mutation policy wanFirewall updatePolicy '{"WanFirewallPolicyMutationInput": {"PolicyMutationRevisionInput": {"id": {"id": "ID"}}}, "WanFirewallPolicyUpdateInput": {"state": {"state": "enum(PolicyToggleState)"}}}'`
+`catocli mutation policy wanFirewall updatePolicy '{"wanFirewallPolicyMutationInput": {"policyMutationRevisionInput": {"id": {"id": "ID"}}}, "wanFirewallPolicyUpdateInput": {"state": {"state": "enum(PolicyToggleState)"}}}'`
 
 #### Operation Arguments for mutation.policy.wanFirewall.updatePolicy ####
-`WanFirewallPolicyMutationInput` [WanFirewallPolicyMutationInput] - (optional) N/A 
-`WanFirewallPolicyUpdateInput` [WanFirewallPolicyUpdateInput] - (required) N/A 
 `accountId` [ID] - (required) N/A 
+`wanFirewallPolicyMutationInput` [WanFirewallPolicyMutationInput] - (optional) N/A 
+`wanFirewallPolicyUpdateInput` [WanFirewallPolicyUpdateInput] - (required) N/A 

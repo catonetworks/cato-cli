@@ -1,0 +1,23 @@
+{
+    "operationName": "accountManagementAddAccount",
+    "query": "mutation accountManagementAddAccount ( $addAccountInput:AddAccountInput! ) { accountManagement ( ) { addAccount ( input:$addAccountInput ) { id name description timeZone type tenancy audit { createdBy createdTime } } } }",
+    "variables": {
+        "addAccountInput": {
+            "description": {
+                "description": "String"
+            },
+            "name": {
+                "name": "String"
+            },
+            "tenancy": {
+                "tenancy": "enum(AccountTenancy)"
+            },
+            "timezone": {
+                "timezone": "TimeZone"
+            },
+            "type": {
+                "type": "enum(AccountProfileType)"
+            }
+        }
+    }
+}

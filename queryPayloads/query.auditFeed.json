@@ -1,9 +1,12 @@
 {
     "operationName": "auditFeed",
-    "query": "query auditFeed ( $fieldNames:[AuditFieldName!] $accountIDs:[ID!] $timeFrame:TimeFrame! $AuditFieldFilterInput:[AuditFieldFilterInput!] $marker:String ) { auditFeed ( accountIDs:$accountIDs timeFrame:$timeFrame filters:$AuditFieldFilterInput marker:$marker ) { from to marker fetchedCount hasMore accounts { id AuditRecordRecords: records ( fieldNames:$fieldNames ) { EntityAdmin: admin { id name type } EntityApiKey: apiKey { id name type } EntityObject: object { id name type } EntityInfoAccount: account { entity { id name EntityTypeType: type } description helperFields } time flatFields } } } }",
+    "query": "query auditFeed ( $fieldNames:[AuditFieldName!] $accountIDs:[ID!] $timeFrame:TimeFrame! $auditFieldFilterInput:[AuditFieldFilterInput!] $marker:String ) { auditFeed ( accountIDs:$accountIDs timeFrame:$timeFrame filters:$auditFieldFilterInput marker:$marker ) { from to marker fetchedCount hasMore accounts { id auditRecordRecords: records ( fieldNames:$fieldNames ) { entityAdmin: admin { id name type } entityApiKey: apiKey { id name type } entityObject: object { id name type } entityInfoAccount: account { entity { id name entityTypeType: type } description helperFields } time flatFields } } } }",
     "variables": {
-        "AuditFieldFilterInput": {
-            "FieldNameInput": {
+        "accountIDs": [
+            "ID"
+        ],
+        "auditFieldFilterInput": {
+            "fieldNameInput": {
                 "AuditFieldName": {
                     "AuditFieldName": "enum(AuditFieldName)"
                 },
@@ -20,9 +23,6 @@
                 ]
             }
         },
-        "accountIDs": [
-            "ID"
-        ],
         "fieldNames": "enum(AuditFieldName)",
         "marker": "String",
         "timeFrame": "TimeFrame"

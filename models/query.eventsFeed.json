@@ -26,9 +26,9 @@
             "id_str": "filters",
             "name": "filters",
             "path": "filters",
-            "requestStr": "$EventFeedFieldFilterInput:[EventFeedFieldFilterInput!] ",
+            "requestStr": "$eventFeedFieldFilterInput:[EventFeedFieldFilterInput!] ",
             "required": false,
-            "responseStr": "filters:$EventFeedFieldFilterInput ",
+            "responseStr": "filters:$eventFeedFieldFilterInput ",
             "type": {
                 "definition": {
                     "description": null,
@@ -168,7 +168,7 @@
                 "name": "EventFeedFieldFilterInput",
                 "non_null": false
             },
-            "varName": "EventFeedFieldFilterInput"
+            "varName": "eventFeedFieldFilterInput"
         },
         "marker": {
             "defaultValue": null,
@@ -198,15 +198,35 @@
     "isDeprecated": false,
     "name": "eventsFeed",
     "operationArgs": {
-        "EventFeedFieldFilterInput": {
+        "accountIDs": {
+            "defaultValue": null,
+            "description": "List of Unique Account Identifiers.",
+            "id_str": "accountIDs",
+            "name": "accountIDs",
+            "path": "accountIDs",
+            "requestStr": "$accountIDs:[ID!] ",
+            "required": false,
+            "responseStr": "accountIDs:$accountIDs ",
+            "type": {
+                "kind": [
+                    "LIST",
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountIDs"
+        },
+        "eventFeedFieldFilterInput": {
             "defaultValue": null,
             "description": null,
             "id_str": "filters",
             "name": "filters",
             "path": "filters",
-            "requestStr": "$EventFeedFieldFilterInput:[EventFeedFieldFilterInput!] ",
+            "requestStr": "$eventFeedFieldFilterInput:[EventFeedFieldFilterInput!] ",
             "required": false,
-            "responseStr": "filters:$EventFeedFieldFilterInput ",
+            "responseStr": "filters:$eventFeedFieldFilterInput ",
             "type": {
                 "definition": {
                     "description": null,
@@ -346,27 +366,7 @@
                 "name": "EventFeedFieldFilterInput",
                 "non_null": false
             },
-            "varName": "EventFeedFieldFilterInput"
-        },
-        "accountIDs": {
-            "defaultValue": null,
-            "description": "List of Unique Account Identifiers.",
-            "id_str": "accountIDs",
-            "name": "accountIDs",
-            "path": "accountIDs",
-            "requestStr": "$accountIDs:[ID!] ",
-            "required": false,
-            "responseStr": "accountIDs:$accountIDs ",
-            "type": {
-                "kind": [
-                    "LIST",
-                    "NON_NULL",
-                    "SCALAR"
-                ],
-                "name": "ID",
-                "non_null": false
-            },
-            "varName": "accountIDs"
+            "varName": "eventFeedFieldFilterInput"
         },
         "fieldNames": {
             "defaultValue": null,
@@ -1771,9 +1771,9 @@
                     "isDeprecated": false,
                     "name": "accounts",
                     "path": "accounts",
-                    "requestStr": "$EventsFeedAccountRecords:[EventsFeedAccountRecords] ",
+                    "requestStr": "$eventsFeedAccountRecords:[EventsFeedAccountRecords] ",
                     "required": false,
-                    "responseStr": "accounts:$EventsFeedAccountRecords ",
+                    "responseStr": "accounts:$eventsFeedAccountRecords ",
                     "type": {
                         "definition": {
                             "description": null,
@@ -1820,7 +1820,7 @@
                                     "varName": "id"
                                 },
                                 "records": {
-                                    "alias": "EventRecordRecords: records",
+                                    "alias": "eventRecordRecords: records",
                                     "args": {
                                         "records___fieldNames": {
                                             "defaultValue": null,
@@ -3199,9 +3199,9 @@
                                     "isDeprecated": false,
                                     "name": "records",
                                     "path": "accounts.records",
-                                    "requestStr": "$EventRecord:[EventRecord] ",
+                                    "requestStr": "$eventRecord:[EventRecord] ",
                                     "required": false,
-                                    "responseStr": "records:$EventRecord ",
+                                    "responseStr": "records:$eventRecord ",
                                     "type": {
                                         "definition": {
                                             "description": null,
@@ -3266,7 +3266,7 @@
                                         "name": "EventRecord",
                                         "non_null": false
                                     },
-                                    "varName": "EventRecord"
+                                    "varName": "eventRecord"
                                 }
                             },
                             "inputFields": null,
@@ -3283,7 +3283,7 @@
                         "name": "EventsFeedAccountRecords",
                         "non_null": false
                     },
-                    "varName": "EventsFeedAccountRecords"
+                    "varName": "eventsFeedAccountRecords"
                 },
                 "fetchedCount": {
                     "args": {},
@@ -3341,7 +3341,10 @@
         "non_null": false
     },
     "variablesPayload": {
-        "EventFeedFieldFilterInput": {
+        "accountIDs": [
+            "ID"
+        ],
+        "eventFeedFieldFilterInput": {
             "fieldName": {
                 "fieldName": "enum(EventFeedFilterFieldName)"
             },
@@ -3354,9 +3357,6 @@
                 ]
             }
         },
-        "accountIDs": [
-            "ID"
-        ],
         "fieldNames": "enum(EventFieldName)",
         "marker": "String"
     }

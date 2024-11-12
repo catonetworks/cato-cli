@@ -19,12 +19,14 @@ CATO_DEBUG = bool(os.getenv("CATO_DEBUG", False))
 from ..parsers.raw import raw_parse
 from ..parsers.custom import custom_parse
 from ..parsers.query_siteLocation import query_siteLocation_parse
+from ..parsers.mutation_accountManagement import mutation_accountManagement_parse
 from ..parsers.mutation_admin import mutation_admin_parse
 from ..parsers.mutation_container import mutation_container_parse
 from ..parsers.mutation_policy import mutation_policy_parse
 from ..parsers.mutation_site import mutation_site_parse
 from ..parsers.mutation_sites import mutation_sites_parse
 from ..parsers.query_accountBySubdomain import query_accountBySubdomain_parse
+from ..parsers.query_accountManagement import query_accountManagement_parse
 from ..parsers.query_accountMetrics import query_accountMetrics_parse
 from ..parsers.query_accountRoles import query_accountRoles_parse
 from ..parsers.query_accountSnapshot import query_accountSnapshot_parse
@@ -63,12 +65,14 @@ query_siteLocation_parser = query_siteLocation_parse(query_subparsers)
 mutation_parser = subparsers.add_parser('mutation', help='Mutation', usage='catocli mutation <operationName> [options]')
 mutation_subparsers = mutation_parser.add_subparsers(description='valid subcommands', help='additional help')
 
+mutation_accountManagement_parser = mutation_accountManagement_parse(mutation_subparsers)
 mutation_admin_parser = mutation_admin_parse(mutation_subparsers)
 mutation_container_parser = mutation_container_parse(mutation_subparsers)
 mutation_policy_parser = mutation_policy_parse(mutation_subparsers)
 mutation_site_parser = mutation_site_parse(mutation_subparsers)
 mutation_sites_parser = mutation_sites_parse(mutation_subparsers)
 query_accountBySubdomain_parser = query_accountBySubdomain_parse(query_subparsers)
+query_accountManagement_parser = query_accountManagement_parse(query_subparsers)
 query_accountMetrics_parser = query_accountMetrics_parse(query_subparsers)
 query_accountRoles_parser = query_accountRoles_parse(query_subparsers)
 query_accountSnapshot_parser = query_accountSnapshot_parse(query_subparsers)
@@ -117,7 +121,7 @@ def main(args=None):
 	except Exception as e:
 		if isinstance(e, AttributeError):
 			print('Missing arguments. Usage: catocli <operation> -h')
-			if "v" in args and args.v==True:
+			if args.v==True:
 				print('ERROR: ',e)
 				traceback.print_exc()
 		else:

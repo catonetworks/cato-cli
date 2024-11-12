@@ -1,15 +1,15 @@
 {
     "operationName": "policyInternetFirewallRemoveSection",
-    "query": "mutation policyInternetFirewallRemoveSection ( $PolicyRemoveSectionInput:PolicyRemoveSectionInput! $InternetFirewallPolicyMutationInput:InternetFirewallPolicyMutationInput ) { policy ( ) { internetFirewall ( input:$InternetFirewallPolicyMutationInput ) { removeSection ( input:$PolicyRemoveSectionInput ) { PolicySectionPayloadSection: section { audit { updatedTime updatedBy } section { id name } properties } PolicyMutationStatusStatus: status PolicyMutationErrorErrors: errors { errorMessage errorCode } } } } }",
+    "query": "mutation policyInternetFirewallRemoveSection ( $policyRemoveSectionInput:PolicyRemoveSectionInput! $internetFirewallPolicyMutationInput:InternetFirewallPolicyMutationInput ) { policy ( ) { internetFirewall ( input:$internetFirewallPolicyMutationInput ) { removeSection ( input:$policyRemoveSectionInput ) { policySectionPayloadSection: section { audit { updatedTime updatedBy } section { id name } properties } policyMutationStatusStatus: status policyMutationErrorErrors: errors { errorMessage errorCode } } } } }",
     "variables": {
-        "InternetFirewallPolicyMutationInput": {
-            "PolicyMutationRevisionInput": {
+        "internetFirewallPolicyMutationInput": {
+            "policyMutationRevisionInput": {
                 "id": {
                     "id": "ID"
                 }
             }
         },
-        "PolicyRemoveSectionInput": {
+        "policyRemoveSectionInput": {
             "id": {
                 "id": "ID"
             }

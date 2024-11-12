@@ -1,9 +1,17 @@
 {
     "operationName": "siteUpdateSocketInterface",
-    "query": "mutation siteUpdateSocketInterface ( $siteId:ID! $socketInterfaceId:SocketInterfaceIDEnum! $UpdateSocketInterfaceInput:UpdateSocketInterfaceInput! ) { site ( ) { updateSocketInterface ( siteId:$siteId socketInterfaceId:$socketInterfaceId input:$UpdateSocketInterfaceInput ) { siteId socketInterfaceId } } }",
+    "query": "mutation siteUpdateSocketInterface ( $siteId:ID! $socketInterfaceId:SocketInterfaceIDEnum! $updateSocketInterfaceInput:UpdateSocketInterfaceInput! ) { site ( ) { updateSocketInterface ( siteId:$siteId socketInterfaceId:$socketInterfaceId input:$updateSocketInterfaceInput ) { siteId socketInterfaceId } } }",
     "variables": {
-        "UpdateSocketInterfaceInput": {
-            "SocketInterfaceAltWanInput": {
+        "siteId": "ID",
+        "socketInterfaceId": "enum(SocketInterfaceIDEnum)",
+        "updateSocketInterfaceInput": {
+            "destType": {
+                "destType": "enum(SocketInterfaceDestType)"
+            },
+            "name": {
+                "name": "String"
+            },
+            "socketInterfaceAltWanInput": {
                 "privateGatewayIp": {
                     "privateGatewayIp": "IPAddress"
                 },
@@ -29,7 +37,7 @@
                     "publicVlanTag": "Int"
                 }
             },
-            "SocketInterfaceBandwidthInput": {
+            "socketInterfaceBandwidthInput": {
                 "downstreamBandwidth": {
                     "downstreamBandwidth": "Int"
                 },
@@ -37,12 +45,12 @@
                     "upstreamBandwidth": "Int"
                 }
             },
-            "SocketInterfaceLagInput": {
+            "socketInterfaceLagInput": {
                 "minLinks": {
                     "minLinks": "Int"
                 }
             },
-            "SocketInterfaceLanInput": {
+            "socketInterfaceLanInput": {
                 "localIp": {
                     "localIp": "IPAddress"
                 },
@@ -53,7 +61,7 @@
                     "translatedSubnet": "IPSubnet"
                 }
             },
-            "SocketInterfaceOffCloudInput": {
+            "socketInterfaceOffCloudInput": {
                 "enabled": {
                     "enabled": "Boolean"
                 },
@@ -64,27 +72,19 @@
                     "publicStaticPort": "Int"
                 }
             },
-            "SocketInterfaceVrrpInput": {
+            "socketInterfaceVrrpInput": {
                 "vrrpType": {
                     "vrrpType": "enum(VrrpType)"
                 }
             },
-            "SocketInterfaceWanInput": {
+            "socketInterfaceWanInput": {
                 "precedence": {
                     "precedence": "enum(SocketInterfacePrecedenceEnum)"
                 },
                 "role": {
                     "role": "enum(SocketInterfaceRole)"
                 }
-            },
-            "destType": {
-                "destType": "enum(SocketInterfaceDestType)"
-            },
-            "name": {
-                "name": "String"
             }
-        },
-        "siteId": "ID",
-        "socketInterfaceId": "enum(SocketInterfaceIDEnum)"
+        }
     }
 }

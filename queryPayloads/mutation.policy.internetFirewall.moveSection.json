@@ -1,25 +1,25 @@
 {
     "operationName": "policyInternetFirewallMoveSection",
-    "query": "mutation policyInternetFirewallMoveSection ( $PolicyMoveSectionInput:PolicyMoveSectionInput! $InternetFirewallPolicyMutationInput:InternetFirewallPolicyMutationInput ) { policy ( ) { internetFirewall ( input:$InternetFirewallPolicyMutationInput ) { moveSection ( input:$PolicyMoveSectionInput ) { PolicySectionPayloadSection: section { audit { updatedTime updatedBy } section { id name } properties } PolicyMutationStatusStatus: status PolicyMutationErrorErrors: errors { errorMessage errorCode } } } } }",
+    "query": "mutation policyInternetFirewallMoveSection ( $policyMoveSectionInput:PolicyMoveSectionInput! $internetFirewallPolicyMutationInput:InternetFirewallPolicyMutationInput ) { policy ( ) { internetFirewall ( input:$internetFirewallPolicyMutationInput ) { moveSection ( input:$policyMoveSectionInput ) { policySectionPayloadSection: section { audit { updatedTime updatedBy } section { id name } properties } policyMutationStatusStatus: status policyMutationErrorErrors: errors { errorMessage errorCode } } } } }",
     "variables": {
-        "InternetFirewallPolicyMutationInput": {
-            "PolicyMutationRevisionInput": {
+        "internetFirewallPolicyMutationInput": {
+            "policyMutationRevisionInput": {
                 "id": {
                     "id": "ID"
                 }
             }
         },
-        "PolicyMoveSectionInput": {
-            "PolicySectionPositionInput": {
+        "policyMoveSectionInput": {
+            "id": {
+                "id": "ID"
+            },
+            "policySectionPositionInput": {
                 "position": {
                     "position": "enum(PolicySectionPositionEnum)"
                 },
                 "ref": {
                     "ref": "ID"
                 }
-            },
-            "id": {
-                "id": "ID"
             }
         }
     }

@@ -1,9 +1,9 @@
 {
     "operationName": "hardwareManagement",
-    "query": "query hardwareManagement ( $SocketInventoryInput:SocketInventoryInput ) { hardwareManagement ( ) { socketInventory ( input:$SocketInventoryInput ) { SocketInventoryItemItems: items { id SocketInventoryItemStatusStatus: status serialNumber socketMac socketVersion SiteRefSite: site { id name } AccountRefAccount: account { id name } shippingDate SocketPlatformSocketType: socketType trackingUrl trackingNumber shippingCompany deliverySiteName description isPrimary SocketRegistrationStatusRegistrationStatus: registrationStatus availableUpgradeVersions SocketUpgradeStatusUpgradeStatus: upgradeStatus upgradesPaused } PageInfoPageInfo: pageInfo { total } } } }",
+    "query": "query hardwareManagement ( $socketInventoryInput:SocketInventoryInput ) { hardwareManagement ( ) { socketInventory ( input:$socketInventoryInput ) { socketInventoryItemItems: items { id socketInventoryItemStatusStatus: status serialNumber socketMac socketVersion siteRefSite: site { id name } accountRefAccount: account { id name } shippingDate socketPlatformSocketType: socketType trackingUrl trackingNumber shippingCompany deliverySiteName description isPrimary socketRegistrationStatusRegistrationStatus: registrationStatus availableUpgradeVersions socketUpgradeStatusUpgradeStatus: upgradeStatus upgradesPaused } pageInfoPageInfo: pageInfo { total } } } }",
     "variables": {
-        "SocketInventoryInput": {
-            "PagingInput": {
+        "socketInventoryInput": {
+            "pagingInput": {
                 "from": {
                     "from": "Int"
                 },
@@ -11,14 +11,14 @@
                     "limit": "Int"
                 }
             },
-            "SocketInventoryFilterInput": {
+            "socketInventoryFilterInput": {
                 "freeText": {
                     "search": {
                         "search": "String"
                     }
                 }
             },
-            "SocketInventoryOrderInput": {
+            "socketInventoryOrderInput": {
                 "deliverySiteName": {
                     "direction": {
                         "direction": "enum(SortOrder)"

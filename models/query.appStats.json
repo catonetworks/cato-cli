@@ -25,9 +25,9 @@
             "id_str": "dimensions",
             "name": "dimensions",
             "path": "dimensions",
-            "requestStr": "$Dimension:[Dimension] ",
+            "requestStr": "$dimension:[Dimension] ",
             "required": false,
-            "responseStr": "dimensions:$Dimension ",
+            "responseStr": "dimensions:$dimension ",
             "type": {
                 "definition": {
                     "description": null,
@@ -295,7 +295,7 @@
                 "name": "Dimension",
                 "non_null": false
             },
-            "varName": "Dimension"
+            "varName": "dimension"
         },
         "filters": {
             "defaultValue": null,
@@ -303,9 +303,9 @@
             "id_str": "filters",
             "name": "filters",
             "path": "filters",
-            "requestStr": "$AppStatsFilter:[AppStatsFilter!] ",
+            "requestStr": "$appStatsFilter:[AppStatsFilter!] ",
             "required": false,
-            "responseStr": "filters:$AppStatsFilter ",
+            "responseStr": "filters:$appStatsFilter ",
             "type": {
                 "definition": {
                     "description": null,
@@ -698,7 +698,7 @@
                 "name": "AppStatsFilter",
                 "non_null": false
             },
-            "varName": "AppStatsFilter"
+            "varName": "appStatsFilter"
         },
         "measures": {
             "defaultValue": null,
@@ -706,9 +706,9 @@
             "id_str": "measures",
             "name": "measures",
             "path": "measures",
-            "requestStr": "$Measure:[Measure] ",
+            "requestStr": "$measure:[Measure] ",
             "required": false,
-            "responseStr": "measures:$Measure ",
+            "responseStr": "measures:$measure ",
             "type": {
                 "definition": {
                     "description": null,
@@ -1085,7 +1085,7 @@
                 "name": "Measure",
                 "non_null": false
             },
-            "varName": "Measure"
+            "varName": "measure"
         },
         "sort": {
             "defaultValue": null,
@@ -1093,9 +1093,9 @@
             "id_str": "sort",
             "name": "sort",
             "path": "sort",
-            "requestStr": "$AppStatsSort:[AppStatsSort!] ",
+            "requestStr": "$appStatsSort:[AppStatsSort!] ",
             "required": false,
-            "responseStr": "sort:$AppStatsSort ",
+            "responseStr": "sort:$appStatsSort ",
             "type": {
                 "definition": {
                     "description": null,
@@ -1407,7 +1407,7 @@
                 "name": "AppStatsSort",
                 "non_null": false
             },
-            "varName": "AppStatsSort"
+            "varName": "appStatsSort"
         },
         "timeFrame": {
             "defaultValue": null,
@@ -1437,15 +1437,34 @@
     "isDeprecated": false,
     "name": "appStats",
     "operationArgs": {
-        "AppStatsFilter": {
+        "accountID": {
+            "defaultValue": null,
+            "description": "Account ID",
+            "id_str": "accountID",
+            "name": "accountID",
+            "path": "accountID",
+            "requestStr": "$accountID:ID! ",
+            "required": true,
+            "responseStr": "accountID:$accountID ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountID"
+        },
+        "appStatsFilter": {
             "defaultValue": null,
             "description": null,
             "id_str": "filters",
             "name": "filters",
             "path": "filters",
-            "requestStr": "$AppStatsFilter:[AppStatsFilter!] ",
+            "requestStr": "$appStatsFilter:[AppStatsFilter!] ",
             "required": false,
-            "responseStr": "filters:$AppStatsFilter ",
+            "responseStr": "filters:$appStatsFilter ",
             "type": {
                 "definition": {
                     "description": null,
@@ -1838,17 +1857,17 @@
                 "name": "AppStatsFilter",
                 "non_null": false
             },
-            "varName": "AppStatsFilter"
+            "varName": "appStatsFilter"
         },
-        "AppStatsSort": {
+        "appStatsSort": {
             "defaultValue": null,
             "description": null,
             "id_str": "sort",
             "name": "sort",
             "path": "sort",
-            "requestStr": "$AppStatsSort:[AppStatsSort!] ",
+            "requestStr": "$appStatsSort:[AppStatsSort!] ",
             "required": false,
-            "responseStr": "sort:$AppStatsSort ",
+            "responseStr": "sort:$appStatsSort ",
             "type": {
                 "definition": {
                     "description": null,
@@ -2160,17 +2179,17 @@
                 "name": "AppStatsSort",
                 "non_null": false
             },
-            "varName": "AppStatsSort"
+            "varName": "appStatsSort"
         },
-        "Dimension": {
+        "dimension": {
             "defaultValue": null,
             "description": null,
             "id_str": "dimensions",
             "name": "dimensions",
             "path": "dimensions",
-            "requestStr": "$Dimension:[Dimension] ",
+            "requestStr": "$dimension:[Dimension] ",
             "required": false,
-            "responseStr": "dimensions:$Dimension ",
+            "responseStr": "dimensions:$dimension ",
             "type": {
                 "definition": {
                     "description": null,
@@ -2438,413 +2457,7 @@
                 "name": "Dimension",
                 "non_null": false
             },
-            "varName": "Dimension"
-        },
-        "Measure": {
-            "defaultValue": null,
-            "description": null,
-            "id_str": "measures",
-            "name": "measures",
-            "path": "measures",
-            "requestStr": "$Measure:[Measure] ",
-            "required": false,
-            "responseStr": "measures:$Measure ",
-            "type": {
-                "definition": {
-                    "description": null,
-                    "enumValues": null,
-                    "fields": null,
-                    "inputFields": {
-                        "aggType": {
-                            "defaultValue": null,
-                            "description": null,
-                            "id_str": "measures___aggType",
-                            "name": "aggType",
-                            "path": "measures.aggType",
-                            "requestStr": "$aggType:AggregationType! ",
-                            "required": true,
-                            "responseStr": "aggType:$aggType ",
-                            "type": {
-                                "definition": {
-                                    "description": null,
-                                    "enumValues": [
-                                        {
-                                            "deprecationReason": null,
-                                            "description": null,
-                                            "isDeprecated": false,
-                                            "name": "sum"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": null,
-                                            "isDeprecated": false,
-                                            "name": "count"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": null,
-                                            "isDeprecated": false,
-                                            "name": "count_distinct"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": null,
-                                            "isDeprecated": false,
-                                            "name": "distinct"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": null,
-                                            "isDeprecated": false,
-                                            "name": "avg"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": null,
-                                            "isDeprecated": false,
-                                            "name": "max"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": null,
-                                            "isDeprecated": false,
-                                            "name": "min"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": null,
-                                            "isDeprecated": false,
-                                            "name": "any"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": null,
-                                            "isDeprecated": false,
-                                            "name": "changes"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": null,
-                                            "isDeprecated": false,
-                                            "name": "uniq_set"
-                                        }
-                                    ],
-                                    "fields": null,
-                                    "inputFields": null,
-                                    "interfaces": null,
-                                    "kind": "ENUM",
-                                    "name": "AggregationType",
-                                    "possibleTypes": null
-                                },
-                                "indexType": "enum",
-                                "kind": [
-                                    "NON_NULL",
-                                    "ENUM"
-                                ],
-                                "name": "AggregationType",
-                                "non_null": false
-                            },
-                            "varName": "aggType"
-                        },
-                        "fieldName": {
-                            "defaultValue": null,
-                            "description": null,
-                            "id_str": "measures___fieldName",
-                            "name": "fieldName",
-                            "path": "measures.fieldName",
-                            "requestStr": "$fieldName:AppStatsFieldName! ",
-                            "required": true,
-                            "responseStr": "fieldName:$fieldName ",
-                            "type": {
-                                "definition": {
-                                    "description": null,
-                                    "enumValues": [
-                                        {
-                                            "deprecationReason": null,
-                                            "description": "The application identifier",
-                                            "isDeprecated": false,
-                                            "name": "app"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": "The application name",
-                                            "isDeprecated": false,
-                                            "name": "application"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": "new cloud application identifier",
-                                            "isDeprecated": false,
-                                            "name": "new_app"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": "",
-                                            "isDeprecated": false,
-                                            "name": "discovered_app"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": "the total sum of upstream and downstream data in bytes",
-                                            "isDeprecated": false,
-                                            "name": "traffic"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": "data uploaded to cloud applications",
-                                            "isDeprecated": false,
-                                            "name": "upstream"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": "data downloaded from cloud applications",
-                                            "isDeprecated": false,
-                                            "name": "downstream"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": "the application risk score assigned by Cato",
-                                            "isDeprecated": false,
-                                            "name": "risk_score"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": "",
-                                            "isDeprecated": false,
-                                            "name": "risk_level"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": "Is the application defined as sanctioned?",
-                                            "isDeprecated": false,
-                                            "name": "sanctioned"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": "the country in which the registered application headquarteres is located",
-                                            "isDeprecated": false,
-                                            "name": "hq_location"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": "indicates whether the application is considered cloud app/SaaS app",
-                                            "isDeprecated": false,
-                                            "name": "is_cloud_app"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": "Cato system category of the application",
-                                            "isDeprecated": false,
-                                            "name": "category"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": "Application description",
-                                            "isDeprecated": false,
-                                            "name": "description"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": "",
-                                            "isDeprecated": false,
-                                            "name": "ip"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": "Name of subnet as defined in Cato Management Application",
-                                            "isDeprecated": false,
-                                            "name": "subnet"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": "",
-                                            "isDeprecated": false,
-                                            "name": "domain"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": "IP for destination host or Cato Client",
-                                            "isDeprecated": false,
-                                            "name": "dest_ip"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": "User identifier",
-                                            "isDeprecated": false,
-                                            "name": "user_id"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": "User name",
-                                            "isDeprecated": false,
-                                            "name": "user_name"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": "Source site or remote user identifier",
-                                            "isDeprecated": false,
-                                            "name": "src_site_id"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": "Source site or remote user name",
-                                            "isDeprecated": false,
-                                            "name": "src_site_name"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": "Country in which the source host is located",
-                                            "isDeprecated": false,
-                                            "name": "site_country"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": "State in which the source host is located",
-                                            "isDeprecated": false,
-                                            "name": "site_state"
-                                        },
-                                        {
-                                            "deprecationReason": "use user_id instead",
-                                            "description": "",
-                                            "isDeprecated": true,
-                                            "name": "vpn_user_id"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": "",
-                                            "isDeprecated": false,
-                                            "name": "flows_created"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": "Destination site or remote user identifier",
-                                            "isDeprecated": false,
-                                            "name": "dest_site"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": "Destination is site or remote user",
-                                            "isDeprecated": false,
-                                            "name": "dest_is_site_or_vpn"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": "Destination Site or remote user identifier",
-                                            "isDeprecated": false,
-                                            "name": "dest_site_id"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": "Destination Site or remote user name",
-                                            "isDeprecated": false,
-                                            "name": "dest_site_name"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": "Traffic direction",
-                                            "isDeprecated": false,
-                                            "name": "traffic_direction"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": "Name for device related to the traffic",
-                                            "isDeprecated": false,
-                                            "name": "device_name"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": "Active Directory name",
-                                            "isDeprecated": false,
-                                            "name": "ad_name"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": "IP for source host or Cato Client",
-                                            "isDeprecated": false,
-                                            "name": "src_ip"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": "Name for Socket interface",
-                                            "isDeprecated": false,
-                                            "name": "socket_interface"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": "Source is site or remote user",
-                                            "isDeprecated": false,
-                                            "name": "src_is_site_or_vpn"
-                                        }
-                                    ],
-                                    "fields": null,
-                                    "inputFields": null,
-                                    "interfaces": null,
-                                    "kind": "ENUM",
-                                    "name": "AppStatsFieldName",
-                                    "possibleTypes": null
-                                },
-                                "indexType": "enum",
-                                "kind": [
-                                    "NON_NULL",
-                                    "ENUM"
-                                ],
-                                "name": "AppStatsFieldName",
-                                "non_null": false
-                            },
-                            "varName": "fieldName"
-                        },
-                        "trend": {
-                            "defaultValue": null,
-                            "description": null,
-                            "id_str": "measures___trend",
-                            "name": "trend",
-                            "path": "measures.trend",
-                            "requestStr": "$trend:Boolean ",
-                            "required": false,
-                            "responseStr": "trend:$trend ",
-                            "type": {
-                                "kind": [
-                                    "SCALAR"
-                                ],
-                                "name": "Boolean",
-                                "non_null": false
-                            },
-                            "varName": "trend"
-                        }
-                    },
-                    "interfaces": null,
-                    "kind": "INPUT_OBJECT",
-                    "name": "Measure",
-                    "possibleTypes": null
-                },
-                "indexType": "input_object",
-                "kind": [
-                    "LIST",
-                    "INPUT_OBJECT"
-                ],
-                "name": "Measure",
-                "non_null": false
-            },
-            "varName": "Measure"
-        },
-        "accountID": {
-            "defaultValue": null,
-            "description": "Account ID",
-            "id_str": "accountID",
-            "name": "accountID",
-            "path": "accountID",
-            "requestStr": "$accountID:ID! ",
-            "required": true,
-            "responseStr": "accountID:$accountID ",
-            "type": {
-                "kind": [
-                    "NON_NULL",
-                    "SCALAR"
-                ],
-                "name": "ID",
-                "non_null": false
-            },
-            "varName": "accountID"
+            "varName": "dimension"
         },
         "from": {
             "defaultValue": null,
@@ -2881,6 +2494,393 @@
                 "non_null": false
             },
             "varName": "limit"
+        },
+        "measure": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "measures",
+            "name": "measures",
+            "path": "measures",
+            "requestStr": "$measure:[Measure] ",
+            "required": false,
+            "responseStr": "measures:$measure ",
+            "type": {
+                "definition": {
+                    "description": null,
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "aggType": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "measures___aggType",
+                            "name": "aggType",
+                            "path": "measures.aggType",
+                            "requestStr": "$aggType:AggregationType! ",
+                            "required": true,
+                            "responseStr": "aggType:$aggType ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": [
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "sum"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "count"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "count_distinct"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "distinct"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "avg"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "max"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "min"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "any"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "changes"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "uniq_set"
+                                        }
+                                    ],
+                                    "fields": null,
+                                    "inputFields": null,
+                                    "interfaces": null,
+                                    "kind": "ENUM",
+                                    "name": "AggregationType",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "enum",
+                                "kind": [
+                                    "NON_NULL",
+                                    "ENUM"
+                                ],
+                                "name": "AggregationType",
+                                "non_null": false
+                            },
+                            "varName": "aggType"
+                        },
+                        "fieldName": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "measures___fieldName",
+                            "name": "fieldName",
+                            "path": "measures.fieldName",
+                            "requestStr": "$fieldName:AppStatsFieldName! ",
+                            "required": true,
+                            "responseStr": "fieldName:$fieldName ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": [
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "The application identifier",
+                                            "isDeprecated": false,
+                                            "name": "app"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "The application name",
+                                            "isDeprecated": false,
+                                            "name": "application"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "new cloud application identifier",
+                                            "isDeprecated": false,
+                                            "name": "new_app"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "",
+                                            "isDeprecated": false,
+                                            "name": "discovered_app"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "the total sum of upstream and downstream data in bytes",
+                                            "isDeprecated": false,
+                                            "name": "traffic"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "data uploaded to cloud applications",
+                                            "isDeprecated": false,
+                                            "name": "upstream"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "data downloaded from cloud applications",
+                                            "isDeprecated": false,
+                                            "name": "downstream"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "the application risk score assigned by Cato",
+                                            "isDeprecated": false,
+                                            "name": "risk_score"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "",
+                                            "isDeprecated": false,
+                                            "name": "risk_level"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Is the application defined as sanctioned?",
+                                            "isDeprecated": false,
+                                            "name": "sanctioned"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "the country in which the registered application headquarteres is located",
+                                            "isDeprecated": false,
+                                            "name": "hq_location"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "indicates whether the application is considered cloud app/SaaS app",
+                                            "isDeprecated": false,
+                                            "name": "is_cloud_app"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato system category of the application",
+                                            "isDeprecated": false,
+                                            "name": "category"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Application description",
+                                            "isDeprecated": false,
+                                            "name": "description"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "",
+                                            "isDeprecated": false,
+                                            "name": "ip"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Name of subnet as defined in Cato Management Application",
+                                            "isDeprecated": false,
+                                            "name": "subnet"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "",
+                                            "isDeprecated": false,
+                                            "name": "domain"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "IP for destination host or Cato Client",
+                                            "isDeprecated": false,
+                                            "name": "dest_ip"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "User identifier",
+                                            "isDeprecated": false,
+                                            "name": "user_id"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "User name",
+                                            "isDeprecated": false,
+                                            "name": "user_name"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Source site or remote user identifier",
+                                            "isDeprecated": false,
+                                            "name": "src_site_id"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Source site or remote user name",
+                                            "isDeprecated": false,
+                                            "name": "src_site_name"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Country in which the source host is located",
+                                            "isDeprecated": false,
+                                            "name": "site_country"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "State in which the source host is located",
+                                            "isDeprecated": false,
+                                            "name": "site_state"
+                                        },
+                                        {
+                                            "deprecationReason": "use user_id instead",
+                                            "description": "",
+                                            "isDeprecated": true,
+                                            "name": "vpn_user_id"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "",
+                                            "isDeprecated": false,
+                                            "name": "flows_created"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Destination site or remote user identifier",
+                                            "isDeprecated": false,
+                                            "name": "dest_site"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Destination is site or remote user",
+                                            "isDeprecated": false,
+                                            "name": "dest_is_site_or_vpn"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Destination Site or remote user identifier",
+                                            "isDeprecated": false,
+                                            "name": "dest_site_id"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Destination Site or remote user name",
+                                            "isDeprecated": false,
+                                            "name": "dest_site_name"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Traffic direction",
+                                            "isDeprecated": false,
+                                            "name": "traffic_direction"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Name for device related to the traffic",
+                                            "isDeprecated": false,
+                                            "name": "device_name"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Active Directory name",
+                                            "isDeprecated": false,
+                                            "name": "ad_name"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "IP for source host or Cato Client",
+                                            "isDeprecated": false,
+                                            "name": "src_ip"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Name for Socket interface",
+                                            "isDeprecated": false,
+                                            "name": "socket_interface"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Source is site or remote user",
+                                            "isDeprecated": false,
+                                            "name": "src_is_site_or_vpn"
+                                        }
+                                    ],
+                                    "fields": null,
+                                    "inputFields": null,
+                                    "interfaces": null,
+                                    "kind": "ENUM",
+                                    "name": "AppStatsFieldName",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "enum",
+                                "kind": [
+                                    "NON_NULL",
+                                    "ENUM"
+                                ],
+                                "name": "AppStatsFieldName",
+                                "non_null": false
+                            },
+                            "varName": "fieldName"
+                        },
+                        "trend": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "measures___trend",
+                            "name": "trend",
+                            "path": "measures.trend",
+                            "requestStr": "$trend:Boolean ",
+                            "required": false,
+                            "responseStr": "trend:$trend ",
+                            "type": {
+                                "kind": [
+                                    "SCALAR"
+                                ],
+                                "name": "Boolean",
+                                "non_null": false
+                            },
+                            "varName": "trend"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "Measure",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "LIST",
+                    "INPUT_OBJECT"
+                ],
+                "name": "Measure",
+                "non_null": false
+            },
+            "varName": "measure"
         },
         "timeFrame": {
             "defaultValue": null,
@@ -2993,9 +2993,9 @@
                     "isDeprecated": false,
                     "name": "records",
                     "path": "records",
-                    "requestStr": "$AppStatsRecord:[AppStatsRecord] ",
+                    "requestStr": "$appStatsRecord:[AppStatsRecord] ",
                     "required": false,
-                    "responseStr": "records:$AppStatsRecord ",
+                    "responseStr": "records:$appStatsRecord ",
                     "type": {
                         "definition": {
                             "description": null,
@@ -3080,7 +3080,7 @@
                         "name": "AppStatsRecord",
                         "non_null": false
                     },
-                    "varName": "AppStatsRecord"
+                    "varName": "appStatsRecord"
                 },
                 "to": {
                     "args": {},
@@ -3157,7 +3157,7 @@
         "non_null": false
     },
     "variablesPayload": {
-        "AppStatsFilter": {
+        "appStatsFilter": {
             "fieldName": {
                 "fieldName": "enum(AppStatsFieldName)"
             },
@@ -3170,7 +3170,7 @@
                 ]
             }
         },
-        "AppStatsSort": {
+        "appStatsSort": {
             "fieldName": {
                 "fieldName": "enum(AppStatsFieldName)"
             },
@@ -3178,12 +3178,14 @@
                 "order": "enum(DirectionEnum)"
             }
         },
-        "Dimension": {
+        "dimension": {
             "fieldName": {
                 "fieldName": "enum(AppStatsFieldName)"
             }
         },
-        "Measure": {
+        "from": "Int",
+        "limit": "Int",
+        "measure": {
             "aggType": {
                 "aggType": "enum(AggregationType)"
             },
@@ -3194,8 +3196,6 @@
                 "trend": "Boolean"
             }
         },
-        "from": "Int",
-        "limit": "Int",
         "timeFrame": "TimeFrame"
     }
 }

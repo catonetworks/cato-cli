@@ -10,8 +10,8 @@
 
 `catocli mutation container delete "$(cat < delete.json)"`
 
-`catocli mutation container delete '{"DeleteContainerInput": {"ContainerRefInput": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}}}'`
+`catocli mutation container delete '{"deleteContainerInput": {"containerRefInput": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}}}'`
 
 #### Operation Arguments for mutation.container.delete ####
-`DeleteContainerInput` [DeleteContainerInput] - (required) N/A 
 `accountId` [ID] - (required) N/A 
+`deleteContainerInput` [DeleteContainerInput] - (required) N/A 

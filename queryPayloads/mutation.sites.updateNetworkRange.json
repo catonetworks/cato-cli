@@ -1,19 +1,9 @@
 {
     "operationName": "sitesUpdateNetworkRange",
-    "query": "mutation sitesUpdateNetworkRange ( $networkRangeId:ID! $UpdateNetworkRangeInput:UpdateNetworkRangeInput! ) { sites ( ) { updateNetworkRange ( networkRangeId:$networkRangeId input:$UpdateNetworkRangeInput ) { networkRangeId } } }",
+    "query": "mutation sitesUpdateNetworkRange ( $networkRangeId:ID! $updateNetworkRangeInput:UpdateNetworkRangeInput! ) { sites ( ) { updateNetworkRange ( networkRangeId:$networkRangeId input:$updateNetworkRangeInput ) { networkRangeId } } }",
     "variables": {
-        "UpdateNetworkRangeInput": {
-            "NetworkDhcpSettingsInput": {
-                "dhcpType": {
-                    "dhcpType": "enum(DhcpType)"
-                },
-                "ipRange": {
-                    "ipRange": "IPRange"
-                },
-                "relayGroupId": {
-                    "relayGroupId": "ID"
-                }
-            },
+        "networkRangeId": "ID",
+        "updateNetworkRangeInput": {
             "azureFloatingIp": {
                 "azureFloatingIp": "IPAddress"
             },
@@ -29,6 +19,17 @@
             "name": {
                 "name": "String"
             },
+            "networkDhcpSettingsInput": {
+                "dhcpType": {
+                    "dhcpType": "enum(DhcpType)"
+                },
+                "ipRange": {
+                    "ipRange": "IPRange"
+                },
+                "relayGroupId": {
+                    "relayGroupId": "ID"
+                }
+            },
             "rangeType": {
                 "rangeType": "enum(SubnetType)"
             },
@@ -41,7 +42,6 @@
             "vlan": {
                 "vlan": "Int"
             }
-        },
-        "networkRangeId": "ID"
+        }
     }
 }

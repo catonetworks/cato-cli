@@ -1,0 +1,908 @@
+{
+    "args": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        }
+    },
+    "childOperations": {
+        "addAccount": {
+            "args": {
+                "addAccount___input": {
+                    "defaultValue": null,
+                    "description": null,
+                    "id_str": "addAccount___input",
+                    "name": "input",
+                    "path": "addAccount.input",
+                    "requestStr": "$addAccountInput:AddAccountInput! ",
+                    "required": true,
+                    "responseStr": "input:$addAccountInput ",
+                    "type": {
+                        "definition": {
+                            "description": null,
+                            "enumValues": null,
+                            "fields": null,
+                            "inputFields": {
+                                "description": {
+                                    "defaultValue": null,
+                                    "description": "User-defined information as defined by an account admin",
+                                    "id_str": "addAccount___input___description",
+                                    "name": "description",
+                                    "path": "addAccount.input.description",
+                                    "requestStr": "$description:String ",
+                                    "required": false,
+                                    "responseStr": "description:$description ",
+                                    "type": {
+                                        "kind": [
+                                            "SCALAR"
+                                        ],
+                                        "name": "String",
+                                        "non_null": false
+                                    },
+                                    "varName": "description"
+                                },
+                                "name": {
+                                    "defaultValue": null,
+                                    "description": "The name of the account",
+                                    "id_str": "addAccount___input___name",
+                                    "name": "name",
+                                    "path": "addAccount.input.name",
+                                    "requestStr": "$name:String! ",
+                                    "required": true,
+                                    "responseStr": "name:$name ",
+                                    "type": {
+                                        "kind": [
+                                            "NON_NULL",
+                                            "SCALAR"
+                                        ],
+                                        "name": "String",
+                                        "non_null": false
+                                    },
+                                    "varName": "name"
+                                },
+                                "tenancy": {
+                                    "defaultValue": null,
+                                    "description": "The account tenancy (single-tenant / multi-tenant)",
+                                    "id_str": "addAccount___input___tenancy",
+                                    "name": "tenancy",
+                                    "path": "addAccount.input.tenancy",
+                                    "requestStr": "$tenancy:AccountTenancy! ",
+                                    "required": true,
+                                    "responseStr": "tenancy:$tenancy ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "enum for account tenancy",
+                                            "enumValues": [
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Single tenant account - default for customer accounts",
+                                                    "isDeprecated": false,
+                                                    "name": "SINGLE_TENANT"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Multi tenant account - default for partner accounts",
+                                                    "isDeprecated": false,
+                                                    "name": "MULTI_TENANT"
+                                                }
+                                            ],
+                                            "fields": null,
+                                            "inputFields": null,
+                                            "interfaces": null,
+                                            "kind": "ENUM",
+                                            "name": "AccountTenancy",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "enum",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "ENUM"
+                                        ],
+                                        "name": "AccountTenancy",
+                                        "non_null": false
+                                    },
+                                    "varName": "tenancy"
+                                },
+                                "timezone": {
+                                    "defaultValue": null,
+                                    "description": "The time zone of the account. Default: UTC (GMT + 0).",
+                                    "id_str": "addAccount___input___timezone",
+                                    "name": "timezone",
+                                    "path": "addAccount.input.timezone",
+                                    "requestStr": "$timezone:TimeZone! ",
+                                    "required": true,
+                                    "responseStr": "timezone:$timezone ",
+                                    "type": {
+                                        "kind": [
+                                            "NON_NULL",
+                                            "SCALAR"
+                                        ],
+                                        "name": "TimeZone",
+                                        "non_null": false
+                                    },
+                                    "varName": "timezone"
+                                },
+                                "type": {
+                                    "defaultValue": null,
+                                    "description": "The account type (Partner / customer)",
+                                    "id_str": "addAccount___input___type",
+                                    "name": "type",
+                                    "path": "addAccount.input.type",
+                                    "requestStr": "$type:AccountProfileType! ",
+                                    "required": true,
+                                    "responseStr": "type:$type ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "enum for account type",
+                                            "enumValues": [
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "A customer account",
+                                                    "isDeprecated": false,
+                                                    "name": "CUSTOMER"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "A partner account",
+                                                    "isDeprecated": false,
+                                                    "name": "PARTNER"
+                                                }
+                                            ],
+                                            "fields": null,
+                                            "inputFields": null,
+                                            "interfaces": null,
+                                            "kind": "ENUM",
+                                            "name": "AccountProfileType",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "enum",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "ENUM"
+                                        ],
+                                        "name": "AccountProfileType",
+                                        "non_null": false
+                                    },
+                                    "varName": "type"
+                                }
+                            },
+                            "interfaces": null,
+                            "kind": "INPUT_OBJECT",
+                            "name": "AddAccountInput",
+                            "possibleTypes": null
+                        },
+                        "indexType": "input_object",
+                        "kind": [
+                            "NON_NULL",
+                            "INPUT_OBJECT"
+                        ],
+                        "name": "AddAccountInput",
+                        "non_null": false
+                    },
+                    "varName": "addAccountInput"
+                }
+            },
+            "deprecationReason": null,
+            "description": "Add a new account",
+            "isDeprecated": false,
+            "name": "addAccount",
+            "type": {
+                "kind": "OBJECT",
+                "name": "AccountInfo",
+                "ofType": null
+            }
+        }
+    },
+    "deprecationReason": null,
+    "description": null,
+    "fieldTypes": {
+        "AccountAuditData": true,
+        "AccountInfo": true,
+        "AccountProfileType": true,
+        "AccountTenancy": true
+    },
+    "isDeprecated": false,
+    "name": "accountManagement",
+    "operationArgs": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        },
+        "addAccountInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "addAccount___input",
+            "name": "input",
+            "path": "addAccount.input",
+            "requestStr": "$addAccountInput:AddAccountInput! ",
+            "required": true,
+            "responseStr": "input:$addAccountInput ",
+            "type": {
+                "definition": {
+                    "description": null,
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "description": {
+                            "defaultValue": null,
+                            "description": "User-defined information as defined by an account admin",
+                            "id_str": "addAccount___input___description",
+                            "name": "description",
+                            "path": "addAccount.input.description",
+                            "requestStr": "$description:String ",
+                            "required": false,
+                            "responseStr": "description:$description ",
+                            "type": {
+                                "kind": [
+                                    "SCALAR"
+                                ],
+                                "name": "String",
+                                "non_null": false
+                            },
+                            "varName": "description"
+                        },
+                        "name": {
+                            "defaultValue": null,
+                            "description": "The name of the account",
+                            "id_str": "addAccount___input___name",
+                            "name": "name",
+                            "path": "addAccount.input.name",
+                            "requestStr": "$name:String! ",
+                            "required": true,
+                            "responseStr": "name:$name ",
+                            "type": {
+                                "kind": [
+                                    "NON_NULL",
+                                    "SCALAR"
+                                ],
+                                "name": "String",
+                                "non_null": false
+                            },
+                            "varName": "name"
+                        },
+                        "tenancy": {
+                            "defaultValue": null,
+                            "description": "The account tenancy (single-tenant / multi-tenant)",
+                            "id_str": "addAccount___input___tenancy",
+                            "name": "tenancy",
+                            "path": "addAccount.input.tenancy",
+                            "requestStr": "$tenancy:AccountTenancy! ",
+                            "required": true,
+                            "responseStr": "tenancy:$tenancy ",
+                            "type": {
+                                "definition": {
+                                    "description": "enum for account tenancy",
+                                    "enumValues": [
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Single tenant account - default for customer accounts",
+                                            "isDeprecated": false,
+                                            "name": "SINGLE_TENANT"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Multi tenant account - default for partner accounts",
+                                            "isDeprecated": false,
+                                            "name": "MULTI_TENANT"
+                                        }
+                                    ],
+                                    "fields": null,
+                                    "inputFields": null,
+                                    "interfaces": null,
+                                    "kind": "ENUM",
+                                    "name": "AccountTenancy",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "enum",
+                                "kind": [
+                                    "NON_NULL",
+                                    "ENUM"
+                                ],
+                                "name": "AccountTenancy",
+                                "non_null": false
+                            },
+                            "varName": "tenancy"
+                        },
+                        "timezone": {
+                            "defaultValue": null,
+                            "description": "The time zone of the account. Default: UTC (GMT + 0).",
+                            "id_str": "addAccount___input___timezone",
+                            "name": "timezone",
+                            "path": "addAccount.input.timezone",
+                            "requestStr": "$timezone:TimeZone! ",
+                            "required": true,
+                            "responseStr": "timezone:$timezone ",
+                            "type": {
+                                "kind": [
+                                    "NON_NULL",
+                                    "SCALAR"
+                                ],
+                                "name": "TimeZone",
+                                "non_null": false
+                            },
+                            "varName": "timezone"
+                        },
+                        "type": {
+                            "defaultValue": null,
+                            "description": "The account type (Partner / customer)",
+                            "id_str": "addAccount___input___type",
+                            "name": "type",
+                            "path": "addAccount.input.type",
+                            "requestStr": "$type:AccountProfileType! ",
+                            "required": true,
+                            "responseStr": "type:$type ",
+                            "type": {
+                                "definition": {
+                                    "description": "enum for account type",
+                                    "enumValues": [
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "A customer account",
+                                            "isDeprecated": false,
+                                            "name": "CUSTOMER"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "A partner account",
+                                            "isDeprecated": false,
+                                            "name": "PARTNER"
+                                        }
+                                    ],
+                                    "fields": null,
+                                    "inputFields": null,
+                                    "interfaces": null,
+                                    "kind": "ENUM",
+                                    "name": "AccountProfileType",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "enum",
+                                "kind": [
+                                    "NON_NULL",
+                                    "ENUM"
+                                ],
+                                "name": "AccountProfileType",
+                                "non_null": false
+                            },
+                            "varName": "type"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "AddAccountInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "AddAccountInput",
+                "non_null": false
+            },
+            "varName": "addAccountInput"
+        }
+    },
+    "path": "mutation.accountManagement.addAccount",
+    "type": {
+        "definition": {
+            "description": null,
+            "enumValues": null,
+            "fields": {
+                "addAccount": {
+                    "args": {
+                        "addAccount___input": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "addAccount___input",
+                            "name": "input",
+                            "path": "addAccount.input",
+                            "requestStr": "$addAccountInput:AddAccountInput! ",
+                            "required": true,
+                            "responseStr": "input:$addAccountInput ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "description": {
+                                            "defaultValue": null,
+                                            "description": "User-defined information as defined by an account admin",
+                                            "id_str": "addAccount___input___description",
+                                            "name": "description",
+                                            "path": "addAccount.input.description",
+                                            "requestStr": "$description:String ",
+                                            "required": false,
+                                            "responseStr": "description:$description ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "String",
+                                                "non_null": false
+                                            },
+                                            "varName": "description"
+                                        },
+                                        "name": {
+                                            "defaultValue": null,
+                                            "description": "The name of the account",
+                                            "id_str": "addAccount___input___name",
+                                            "name": "name",
+                                            "path": "addAccount.input.name",
+                                            "requestStr": "$name:String! ",
+                                            "required": true,
+                                            "responseStr": "name:$name ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "String",
+                                                "non_null": false
+                                            },
+                                            "varName": "name"
+                                        },
+                                        "tenancy": {
+                                            "defaultValue": null,
+                                            "description": "The account tenancy (single-tenant / multi-tenant)",
+                                            "id_str": "addAccount___input___tenancy",
+                                            "name": "tenancy",
+                                            "path": "addAccount.input.tenancy",
+                                            "requestStr": "$tenancy:AccountTenancy! ",
+                                            "required": true,
+                                            "responseStr": "tenancy:$tenancy ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "enum for account tenancy",
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Single tenant account - default for customer accounts",
+                                                            "isDeprecated": false,
+                                                            "name": "SINGLE_TENANT"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Multi tenant account - default for partner accounts",
+                                                            "isDeprecated": false,
+                                                            "name": "MULTI_TENANT"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "AccountTenancy",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "ENUM"
+                                                ],
+                                                "name": "AccountTenancy",
+                                                "non_null": false
+                                            },
+                                            "varName": "tenancy"
+                                        },
+                                        "timezone": {
+                                            "defaultValue": null,
+                                            "description": "The time zone of the account. Default: UTC (GMT + 0).",
+                                            "id_str": "addAccount___input___timezone",
+                                            "name": "timezone",
+                                            "path": "addAccount.input.timezone",
+                                            "requestStr": "$timezone:TimeZone! ",
+                                            "required": true,
+                                            "responseStr": "timezone:$timezone ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "TimeZone",
+                                                "non_null": false
+                                            },
+                                            "varName": "timezone"
+                                        },
+                                        "type": {
+                                            "defaultValue": null,
+                                            "description": "The account type (Partner / customer)",
+                                            "id_str": "addAccount___input___type",
+                                            "name": "type",
+                                            "path": "addAccount.input.type",
+                                            "requestStr": "$type:AccountProfileType! ",
+                                            "required": true,
+                                            "responseStr": "type:$type ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "enum for account type",
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "A customer account",
+                                                            "isDeprecated": false,
+                                                            "name": "CUSTOMER"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "A partner account",
+                                                            "isDeprecated": false,
+                                                            "name": "PARTNER"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "AccountProfileType",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "ENUM"
+                                                ],
+                                                "name": "AccountProfileType",
+                                                "non_null": false
+                                            },
+                                            "varName": "type"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "AddAccountInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "NON_NULL",
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "AddAccountInput",
+                                "non_null": false
+                            },
+                            "varName": "addAccountInput"
+                        }
+                    },
+                    "deprecationReason": null,
+                    "description": "Add a new account",
+                    "id_str": "addAccount",
+                    "isDeprecated": false,
+                    "name": "addAccount",
+                    "path": "addAccount",
+                    "requestStr": "$accountInfo:AccountInfo ",
+                    "required": false,
+                    "responseStr": "addAccount:$accountInfo ",
+                    "type": {
+                        "definition": {
+                            "description": null,
+                            "enumValues": null,
+                            "fields": {
+                                "audit": {
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": "Audit data for the account",
+                                    "id_str": "addAccount___audit",
+                                    "isDeprecated": false,
+                                    "name": "audit",
+                                    "path": "addAccount.audit",
+                                    "requestStr": "$accountAuditData:AccountAuditData! ",
+                                    "required": true,
+                                    "responseStr": "audit:$accountAuditData ",
+                                    "type": {
+                                        "definition": {
+                                            "description": null,
+                                            "enumValues": null,
+                                            "fields": {
+                                                "createdBy": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "The Admin / API key name used for creating the account",
+                                                    "id_str": "addAccount___audit___createdBy",
+                                                    "isDeprecated": false,
+                                                    "name": "createdBy",
+                                                    "path": "addAccount.audit.createdBy",
+                                                    "requestStr": "$createdBy:String! ",
+                                                    "required": true,
+                                                    "responseStr": "createdBy:$createdBy ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "createdBy"
+                                                },
+                                                "createdTime": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "The date when the account created",
+                                                    "id_str": "addAccount___audit___createdTime",
+                                                    "isDeprecated": false,
+                                                    "name": "createdTime",
+                                                    "path": "addAccount.audit.createdTime",
+                                                    "requestStr": "$createdTime:DateTime! ",
+                                                    "required": true,
+                                                    "responseStr": "createdTime:$createdTime ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "DateTime",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "createdTime"
+                                                }
+                                            },
+                                            "inputFields": null,
+                                            "interfaces": {},
+                                            "kind": "OBJECT",
+                                            "name": "AccountAuditData",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "object",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "OBJECT"
+                                        ],
+                                        "name": "AccountAuditData",
+                                        "non_null": false
+                                    },
+                                    "varName": "accountAuditData"
+                                },
+                                "description": {
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": "User-defined information as defined by an account admin",
+                                    "id_str": "addAccount___description",
+                                    "isDeprecated": false,
+                                    "name": "description",
+                                    "path": "addAccount.description",
+                                    "requestStr": "$description:String ",
+                                    "required": false,
+                                    "responseStr": "description:$description ",
+                                    "type": {
+                                        "kind": [
+                                            "SCALAR"
+                                        ],
+                                        "name": "String",
+                                        "non_null": false
+                                    },
+                                    "varName": "description"
+                                },
+                                "id": {
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": "The ID of the account",
+                                    "id_str": "addAccount___id",
+                                    "isDeprecated": false,
+                                    "name": "id",
+                                    "path": "addAccount.id",
+                                    "requestStr": "$id:ID! ",
+                                    "required": true,
+                                    "responseStr": "id:$id ",
+                                    "type": {
+                                        "kind": [
+                                            "NON_NULL",
+                                            "SCALAR"
+                                        ],
+                                        "name": "ID",
+                                        "non_null": false
+                                    },
+                                    "varName": "id"
+                                },
+                                "name": {
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": "The name of the account",
+                                    "id_str": "addAccount___name",
+                                    "isDeprecated": false,
+                                    "name": "name",
+                                    "path": "addAccount.name",
+                                    "requestStr": "$name:String! ",
+                                    "required": true,
+                                    "responseStr": "name:$name ",
+                                    "type": {
+                                        "kind": [
+                                            "NON_NULL",
+                                            "SCALAR"
+                                        ],
+                                        "name": "String",
+                                        "non_null": false
+                                    },
+                                    "varName": "name"
+                                },
+                                "tenancy": {
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": "The account tenancy e.g. single-tenant / multi-tenant",
+                                    "id_str": "addAccount___tenancy",
+                                    "isDeprecated": false,
+                                    "name": "tenancy",
+                                    "path": "addAccount.tenancy",
+                                    "requestStr": "$tenancy:AccountTenancy! ",
+                                    "required": true,
+                                    "responseStr": "tenancy:$tenancy ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "enum for account tenancy",
+                                            "enumValues": [
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Single tenant account - default for customer accounts",
+                                                    "isDeprecated": false,
+                                                    "name": "SINGLE_TENANT"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Multi tenant account - default for partner accounts",
+                                                    "isDeprecated": false,
+                                                    "name": "MULTI_TENANT"
+                                                }
+                                            ],
+                                            "fields": null,
+                                            "inputFields": null,
+                                            "interfaces": null,
+                                            "kind": "ENUM",
+                                            "name": "AccountTenancy",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "enum",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "ENUM"
+                                        ],
+                                        "name": "AccountTenancy",
+                                        "non_null": false
+                                    },
+                                    "varName": "tenancy"
+                                },
+                                "timeZone": {
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": "The time zone of the account. Default: UTC (GMT + 0).",
+                                    "id_str": "addAccount___timeZone",
+                                    "isDeprecated": false,
+                                    "name": "timeZone",
+                                    "path": "addAccount.timeZone",
+                                    "requestStr": "$timeZone:TimeZone! ",
+                                    "required": true,
+                                    "responseStr": "timeZone:$timeZone ",
+                                    "type": {
+                                        "kind": [
+                                            "NON_NULL",
+                                            "SCALAR"
+                                        ],
+                                        "name": "TimeZone",
+                                        "non_null": false
+                                    },
+                                    "varName": "timeZone"
+                                },
+                                "type": {
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": "The account type e.g. Partner or Customer",
+                                    "id_str": "addAccount___type",
+                                    "isDeprecated": false,
+                                    "name": "type",
+                                    "path": "addAccount.type",
+                                    "requestStr": "$type:AccountProfileType! ",
+                                    "required": true,
+                                    "responseStr": "type:$type ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "enum for account type",
+                                            "enumValues": [
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "A customer account",
+                                                    "isDeprecated": false,
+                                                    "name": "CUSTOMER"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "A partner account",
+                                                    "isDeprecated": false,
+                                                    "name": "PARTNER"
+                                                }
+                                            ],
+                                            "fields": null,
+                                            "inputFields": null,
+                                            "interfaces": null,
+                                            "kind": "ENUM",
+                                            "name": "AccountProfileType",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "enum",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "ENUM"
+                                        ],
+                                        "name": "AccountProfileType",
+                                        "non_null": false
+                                    },
+                                    "varName": "type"
+                                }
+                            },
+                            "inputFields": null,
+                            "interfaces": {},
+                            "kind": "OBJECT",
+                            "name": "AccountInfo",
+                            "possibleTypes": null
+                        },
+                        "indexType": "object",
+                        "kind": [
+                            "OBJECT"
+                        ],
+                        "name": "AccountInfo",
+                        "non_null": false
+                    },
+                    "varName": "accountInfo"
+                }
+            },
+            "inputFields": null,
+            "interfaces": [],
+            "kind": "OBJECT",
+            "name": "AccountManagementMutations",
+            "possibleTypes": null
+        },
+        "indexType": "object",
+        "kind": [
+            "OBJECT"
+        ],
+        "name": "AccountManagementMutations",
+        "non_null": false
+    },
+    "variablesPayload": {
+        "addAccountInput": {
+            "description": {
+                "description": "String"
+            },
+            "name": {
+                "name": "String"
+            },
+            "tenancy": {
+                "tenancy": "enum(AccountTenancy)"
+            },
+            "timezone": {
+                "timezone": "TimeZone"
+            },
+            "type": {
+                "type": "enum(AccountProfileType)"
+            }
+        }
+    }
+}

@@ -1,9 +1,10 @@
 {
     "operationName": "siteUpdateIpsecIkeV2SiteTunnels",
-    "query": "mutation siteUpdateIpsecIkeV2SiteTunnels ( $siteId:ID! $UpdateIpsecIkeV2SiteTunnelsInput:UpdateIpsecIkeV2SiteTunnelsInput! ) { site ( ) { updateIpsecIkeV2SiteTunnels ( siteId:$siteId input:$UpdateIpsecIkeV2SiteTunnelsInput ) { siteId primary { fqdn tunnels { IPSecV2InterfaceIdTunnelId: tunnelId localId } } secondary { fqdn tunnels { IPSecV2InterfaceIdTunnelId: tunnelId localId } } } } }",
+    "query": "mutation siteUpdateIpsecIkeV2SiteTunnels ( $siteId:ID! $updateIpsecIkeV2SiteTunnelsInput:UpdateIpsecIkeV2SiteTunnelsInput! ) { site ( ) { updateIpsecIkeV2SiteTunnels ( siteId:$siteId input:$updateIpsecIkeV2SiteTunnelsInput ) { siteId primary { fqdn tunnels { iPSecV2InterfaceIdTunnelId: tunnelId localId } } secondary { fqdn tunnels { iPSecV2InterfaceIdTunnelId: tunnelId localId } } } } }",
     "variables": {
-        "UpdateIpsecIkeV2SiteTunnelsInput": {
-            "UpdateIpsecIkeV2TunnelsInput": {
+        "siteId": "ID",
+        "updateIpsecIkeV2SiteTunnelsInput": {
+            "updateIpsecIkeV2TunnelsInput": {
                 "destinationType": {
                     "destinationType": "enum(DestinationType)"
                 },
@@ -39,7 +40,6 @@
                     }
                 }
             }
-        },
-        "siteId": "ID"
+        }
     }
 }

@@ -10,9 +10,9 @@
 
 `catocli query policy "$(cat < policy.json)"`
 
-`catocli query policy '{"InternetFirewallPolicyInput": {"PolicyRevisionInput": {"id": {"id": "ID"}, "type": {"type": "enum(PolicyRevisionType)"}}}, "WanFirewallPolicyInput": {"PolicyRevisionInput": {"id": {"id": "ID"}, "type": {"type": "enum(PolicyRevisionType)"}}}}'`
+`catocli query policy '{"internetFirewallPolicyInput": {"policyRevisionInput": {"id": {"id": "ID"}, "type": {"type": "enum(PolicyRevisionType)"}}}, "wanFirewallPolicyInput": {"policyRevisionInput": {"id": {"id": "ID"}, "type": {"type": "enum(PolicyRevisionType)"}}}}'`
 
 #### Operation Arguments for query.policy ####
-`InternetFirewallPolicyInput` [InternetFirewallPolicyInput] - (optional) N/A 
-`WanFirewallPolicyInput` [WanFirewallPolicyInput] - (optional) N/A 
 `accountId` [ID] - (required) N/A 
+`internetFirewallPolicyInput` [InternetFirewallPolicyInput] - (optional) N/A 
+`wanFirewallPolicyInput` [WanFirewallPolicyInput] - (optional) N/A 

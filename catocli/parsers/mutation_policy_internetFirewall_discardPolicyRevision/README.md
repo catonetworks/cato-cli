@@ -10,9 +10,9 @@
 
 `catocli mutation policy internetFirewall discardPolicyRevision "$(cat < discardPolicyRevision.json)"`
 
-`catocli mutation policy internetFirewall discardPolicyRevision '{"InternetFirewallPolicyMutationInput": {"PolicyMutationRevisionInput": {"id": {"id": "ID"}}}, "PolicyDiscardRevisionInput": {"id": {"id": "ID"}}}'`
+`catocli mutation policy internetFirewall discardPolicyRevision '{"internetFirewallPolicyMutationInput": {"policyMutationRevisionInput": {"id": {"id": "ID"}}}, "policyDiscardRevisionInput": {"id": {"id": "ID"}}}'`
 
 #### Operation Arguments for mutation.policy.internetFirewall.discardPolicyRevision ####
-`InternetFirewallPolicyMutationInput` [InternetFirewallPolicyMutationInput] - (optional) N/A 
-`PolicyDiscardRevisionInput` [PolicyDiscardRevisionInput] - (optional) N/A 
 `accountId` [ID] - (required) N/A 
+`internetFirewallPolicyMutationInput` [InternetFirewallPolicyMutationInput] - (optional) N/A 
+`policyDiscardRevisionInput` [PolicyDiscardRevisionInput] - (optional) N/A 

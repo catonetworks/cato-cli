@@ -1,8 +1,8 @@
 {
     "operationName": "appStatsTimeSeries",
-    "query": "query appStatsTimeSeries ( $perSecond:Boolean $withMissingData:Boolean $buckets:Int! $timeFrame:TimeFrame! $Measure:[Measure] $Dimension:[Dimension] $AppStatsFilter:[AppStatsFilter!] ) { appStatsTimeSeries ( timeFrame:$timeFrame measures:$Measure dimensions:$Dimension filters:$AppStatsFilter ) { id from to granularity timeseries ( buckets:$buckets ) { data ( perSecond:$perSecond withMissingData:$withMissingData ) label DimensionDataDimensions: dimensions { label value } TimeseriesKeyKey: key { measureFieldName dimensions { fieldName value } } sum UnitTypeUnits: units info } } }",
+    "query": "query appStatsTimeSeries ( $perSecond:Boolean $withMissingData:Boolean $buckets:Int! $timeFrame:TimeFrame! $measure:[Measure] $dimension:[Dimension] $appStatsFilter:[AppStatsFilter!] ) { appStatsTimeSeries ( timeFrame:$timeFrame measures:$measure dimensions:$dimension filters:$appStatsFilter ) { id from to granularity timeseries ( buckets:$buckets ) { data ( perSecond:$perSecond withMissingData:$withMissingData ) label dimensionDataDimensions: dimensions { label value } timeseriesKeyKey: key { measureFieldName dimensions { fieldName value } } sum unitTypeUnits: units info } } }",
     "variables": {
-        "AppStatsFilter": {
+        "appStatsFilter": {
             "fieldName": {
                 "fieldName": "enum(AppStatsFieldName)"
             },
@@ -15,12 +15,13 @@
                 ]
             }
         },
-        "Dimension": {
+        "buckets": "Int",
+        "dimension": {
             "fieldName": {
                 "fieldName": "enum(AppStatsFieldName)"
             }
         },
-        "Measure": {
+        "measure": {
             "aggType": {
                 "aggType": "enum(AggregationType)"
             },
@@ -31,7 +32,6 @@
                 "trend": "Boolean"
             }
         },
-        "buckets": "Int",
         "perSecond": "Boolean",
         "timeFrame": "TimeFrame",
         "withMissingData": "Boolean"

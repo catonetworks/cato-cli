@@ -25,9 +25,9 @@
             "id_str": "dimensions",
             "name": "dimensions",
             "path": "dimensions",
-            "requestStr": "$Dimension:[Dimension] ",
+            "requestStr": "$dimension:[Dimension] ",
             "required": false,
-            "responseStr": "dimensions:$Dimension ",
+            "responseStr": "dimensions:$dimension ",
             "type": {
                 "definition": {
                     "description": null,
@@ -295,7 +295,7 @@
                 "name": "Dimension",
                 "non_null": false
             },
-            "varName": "Dimension"
+            "varName": "dimension"
         },
         "filters": {
             "defaultValue": null,
@@ -303,9 +303,9 @@
             "id_str": "filters",
             "name": "filters",
             "path": "filters",
-            "requestStr": "$AppStatsFilter:[AppStatsFilter!] ",
+            "requestStr": "$appStatsFilter:[AppStatsFilter!] ",
             "required": false,
-            "responseStr": "filters:$AppStatsFilter ",
+            "responseStr": "filters:$appStatsFilter ",
             "type": {
                 "definition": {
                     "description": null,
@@ -698,7 +698,7 @@
                 "name": "AppStatsFilter",
                 "non_null": false
             },
-            "varName": "AppStatsFilter"
+            "varName": "appStatsFilter"
         },
         "measures": {
             "defaultValue": null,
@@ -706,9 +706,9 @@
             "id_str": "measures",
             "name": "measures",
             "path": "measures",
-            "requestStr": "$Measure:[Measure] ",
+            "requestStr": "$measure:[Measure] ",
             "required": false,
-            "responseStr": "measures:$Measure ",
+            "responseStr": "measures:$measure ",
             "type": {
                 "definition": {
                     "description": null,
@@ -1085,7 +1085,7 @@
                 "name": "Measure",
                 "non_null": false
             },
-            "varName": "Measure"
+            "varName": "measure"
         },
         "timeFrame": {
             "defaultValue": null,
@@ -1119,15 +1119,34 @@
     "isDeprecated": false,
     "name": "appStatsTimeSeries",
     "operationArgs": {
-        "AppStatsFilter": {
+        "accountID": {
+            "defaultValue": null,
+            "description": "Account ID",
+            "id_str": "accountID",
+            "name": "accountID",
+            "path": "accountID",
+            "requestStr": "$accountID:ID! ",
+            "required": true,
+            "responseStr": "accountID:$accountID ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountID"
+        },
+        "appStatsFilter": {
             "defaultValue": null,
             "description": null,
             "id_str": "filters",
             "name": "filters",
             "path": "filters",
-            "requestStr": "$AppStatsFilter:[AppStatsFilter!] ",
+            "requestStr": "$appStatsFilter:[AppStatsFilter!] ",
             "required": false,
-            "responseStr": "filters:$AppStatsFilter ",
+            "responseStr": "filters:$appStatsFilter ",
             "type": {
                 "definition": {
                     "description": null,
@@ -1520,17 +1539,36 @@
                 "name": "AppStatsFilter",
                 "non_null": false
             },
-            "varName": "AppStatsFilter"
+            "varName": "appStatsFilter"
         },
-        "Dimension": {
+        "buckets": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "timeseries___buckets",
+            "name": "buckets",
+            "path": "timeseries.buckets",
+            "requestStr": "$buckets:Int! ",
+            "required": true,
+            "responseStr": "buckets:$buckets ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "Int",
+                "non_null": false
+            },
+            "varName": "buckets"
+        },
+        "dimension": {
             "defaultValue": null,
             "description": null,
             "id_str": "dimensions",
             "name": "dimensions",
             "path": "dimensions",
-            "requestStr": "$Dimension:[Dimension] ",
+            "requestStr": "$dimension:[Dimension] ",
             "required": false,
-            "responseStr": "dimensions:$Dimension ",
+            "responseStr": "dimensions:$dimension ",
             "type": {
                 "definition": {
                     "description": null,
@@ -1798,17 +1836,17 @@
                 "name": "Dimension",
                 "non_null": false
             },
-            "varName": "Dimension"
+            "varName": "dimension"
         },
-        "Measure": {
+        "measure": {
             "defaultValue": null,
             "description": null,
             "id_str": "measures",
             "name": "measures",
             "path": "measures",
-            "requestStr": "$Measure:[Measure] ",
+            "requestStr": "$measure:[Measure] ",
             "required": false,
-            "responseStr": "measures:$Measure ",
+            "responseStr": "measures:$measure ",
             "type": {
                 "definition": {
                     "description": null,
@@ -2185,45 +2223,7 @@
                 "name": "Measure",
                 "non_null": false
             },
-            "varName": "Measure"
-        },
-        "accountID": {
-            "defaultValue": null,
-            "description": "Account ID",
-            "id_str": "accountID",
-            "name": "accountID",
-            "path": "accountID",
-            "requestStr": "$accountID:ID! ",
-            "required": true,
-            "responseStr": "accountID:$accountID ",
-            "type": {
-                "kind": [
-                    "NON_NULL",
-                    "SCALAR"
-                ],
-                "name": "ID",
-                "non_null": false
-            },
-            "varName": "accountID"
-        },
-        "buckets": {
-            "defaultValue": null,
-            "description": null,
-            "id_str": "timeseries___buckets",
-            "name": "buckets",
-            "path": "timeseries.buckets",
-            "requestStr": "$buckets:Int! ",
-            "required": true,
-            "responseStr": "buckets:$buckets ",
-            "type": {
-                "kind": [
-                    "NON_NULL",
-                    "SCALAR"
-                ],
-                "name": "Int",
-                "non_null": false
-            },
-            "varName": "buckets"
+            "varName": "measure"
         },
         "perSecond": {
             "defaultValue": "true",
@@ -2375,9 +2375,9 @@
                     "isDeprecated": false,
                     "name": "timeseries",
                     "path": "timeseries",
-                    "requestStr": "$Timeseries:[Timeseries] ",
+                    "requestStr": "$timeseries:[Timeseries] ",
                     "required": false,
-                    "responseStr": "timeseries:$Timeseries ",
+                    "responseStr": "timeseries:$timeseries ",
                     "type": {
                         "definition": {
                             "description": null,
@@ -2444,7 +2444,7 @@
                                     "varName": "data"
                                 },
                                 "dimensions": {
-                                    "alias": "DimensionDataDimensions: dimensions",
+                                    "alias": "dimensionDataDimensions: dimensions",
                                     "args": {},
                                     "deprecationReason": null,
                                     "description": "List of dimension values for this timeseries",
@@ -2452,9 +2452,9 @@
                                     "isDeprecated": false,
                                     "name": "dimensions",
                                     "path": "timeseries.dimensions",
-                                    "requestStr": "$DimensionData:[DimensionData] ",
+                                    "requestStr": "$dimensionData:[DimensionData] ",
                                     "required": false,
-                                    "responseStr": "dimensions:$DimensionData ",
+                                    "responseStr": "dimensions:$dimensionData ",
                                     "type": {
                                         "definition": {
                                             "description": null,
@@ -2517,7 +2517,7 @@
                                         "name": "DimensionData",
                                         "non_null": false
                                     },
-                                    "varName": "DimensionData"
+                                    "varName": "dimensionData"
                                 },
                                 "info": {
                                     "args": {},
@@ -2542,7 +2542,7 @@
                                     "varName": "info"
                                 },
                                 "key": {
-                                    "alias": "TimeseriesKeyKey: key",
+                                    "alias": "timeseriesKeyKey: key",
                                     "args": {},
                                     "deprecationReason": null,
                                     "description": "Timeseries key: measure and dimension values",
@@ -2550,9 +2550,9 @@
                                     "isDeprecated": false,
                                     "name": "key",
                                     "path": "timeseries.key",
-                                    "requestStr": "$TimeseriesKey:TimeseriesKey ",
+                                    "requestStr": "$timeseriesKey:TimeseriesKey ",
                                     "required": false,
-                                    "responseStr": "key:$TimeseriesKey ",
+                                    "responseStr": "key:$timeseriesKey ",
                                     "type": {
                                         "definition": {
                                             "description": null,
@@ -2566,9 +2566,9 @@
                                                     "isDeprecated": false,
                                                     "name": "dimensions",
                                                     "path": "timeseries.key.dimensions",
-                                                    "requestStr": "$DimensionKey:[DimensionKey] ",
+                                                    "requestStr": "$dimensionKey:[DimensionKey] ",
                                                     "required": false,
-                                                    "responseStr": "dimensions:$DimensionKey ",
+                                                    "responseStr": "dimensions:$dimensionKey ",
                                                     "type": {
                                                         "definition": {
                                                             "description": null,
@@ -2631,7 +2631,7 @@
                                                         "name": "DimensionKey",
                                                         "non_null": false
                                                     },
-                                                    "varName": "DimensionKey"
+                                                    "varName": "dimensionKey"
                                                 },
                                                 "measureFieldName": {
                                                     "args": {},
@@ -2668,7 +2668,7 @@
                                         "name": "TimeseriesKey",
                                         "non_null": false
                                     },
-                                    "varName": "TimeseriesKey"
+                                    "varName": "timeseriesKey"
                                 },
                                 "label": {
                                     "args": {},
@@ -2712,7 +2712,7 @@
                                     "varName": "sum"
                                 },
                                 "units": {
-                                    "alias": "UnitTypeUnits: units",
+                                    "alias": "unitTypeUnits: units",
                                     "args": {},
                                     "deprecationReason": null,
                                     "description": "Identifies what unit of data this timeseries represents. Note that toRate is only available for particular types\nof data to make sense.",
@@ -2826,7 +2826,7 @@
                         "name": "Timeseries",
                         "non_null": false
                     },
-                    "varName": "Timeseries"
+                    "varName": "timeseries"
                 },
                 "to": {
                     "args": {},
@@ -2863,7 +2863,7 @@
         "non_null": false
     },
     "variablesPayload": {
-        "AppStatsFilter": {
+        "appStatsFilter": {
             "fieldName": {
                 "fieldName": "enum(AppStatsFieldName)"
             },
@@ -2876,12 +2876,13 @@
                 ]
             }
         },
-        "Dimension": {
+        "buckets": "Int",
+        "dimension": {
             "fieldName": {
                 "fieldName": "enum(AppStatsFieldName)"
             }
         },
-        "Measure": {
+        "measure": {
             "aggType": {
                 "aggType": "enum(AggregationType)"
             },
@@ -2892,7 +2893,6 @@
                 "trend": "Boolean"
             }
         },
-        "buckets": "Int",
         "perSecond": "Boolean",
         "timeFrame": "TimeFrame",
         "withMissingData": "Boolean"

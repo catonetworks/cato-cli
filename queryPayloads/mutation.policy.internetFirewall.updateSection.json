@@ -1,22 +1,22 @@
 {
     "operationName": "policyInternetFirewallUpdateSection",
-    "query": "mutation policyInternetFirewallUpdateSection ( $PolicyUpdateSectionInput:PolicyUpdateSectionInput! $InternetFirewallPolicyMutationInput:InternetFirewallPolicyMutationInput ) { policy ( ) { internetFirewall ( input:$InternetFirewallPolicyMutationInput ) { updateSection ( input:$PolicyUpdateSectionInput ) { PolicySectionPayloadSection: section { audit { updatedTime updatedBy } section { id name } properties } PolicyMutationStatusStatus: status PolicyMutationErrorErrors: errors { errorMessage errorCode } } } } }",
+    "query": "mutation policyInternetFirewallUpdateSection ( $policyUpdateSectionInput:PolicyUpdateSectionInput! $internetFirewallPolicyMutationInput:InternetFirewallPolicyMutationInput ) { policy ( ) { internetFirewall ( input:$internetFirewallPolicyMutationInput ) { updateSection ( input:$policyUpdateSectionInput ) { policySectionPayloadSection: section { audit { updatedTime updatedBy } section { id name } properties } policyMutationStatusStatus: status policyMutationErrorErrors: errors { errorMessage errorCode } } } } }",
     "variables": {
-        "InternetFirewallPolicyMutationInput": {
-            "PolicyMutationRevisionInput": {
+        "internetFirewallPolicyMutationInput": {
+            "policyMutationRevisionInput": {
                 "id": {
                     "id": "ID"
                 }
             }
         },
-        "PolicyUpdateSectionInput": {
-            "PolicyUpdateSectionInfoInput": {
+        "policyUpdateSectionInput": {
+            "id": {
+                "id": "ID"
+            },
+            "policyUpdateSectionInfoInput": {
                 "name": {
                     "name": "String"
                 }
-            },
-            "id": {
-                "id": "ID"
             }
         }
     }

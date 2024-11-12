@@ -10,9 +10,9 @@
 
 `catocli mutation site addIpsecIkeV2SiteTunnels "$(cat < addIpsecIkeV2SiteTunnels.json)"`
 
-`catocli mutation site addIpsecIkeV2SiteTunnels '{"AddIpsecIkeV2SiteTunnelsInput": {"AddIpsecIkeV2TunnelsInput": {"destinationType": {"destinationType": "enum(DestinationType)"}, "popLocationId": {"popLocationId": "ID"}, "publicCatoIpId": {"publicCatoIpId": "ID"}, "tunnels": {"lastMileBw": {"downstream": {"downstream": "Int"}, "upstream": {"upstream": "Int"}}, "name": {"name": "String"}, "privateCatoIp": {"privateCatoIp": "IPAddress"}, "privateSiteIp": {"privateSiteIp": "IPAddress"}, "psk": {"psk": "String"}, "publicSiteIp": {"publicSiteIp": "IPAddress"}, "role": {"role": "enum(IPSecV2TunnelRole)"}}}}, "siteId": "ID"}'`
+`catocli mutation site addIpsecIkeV2SiteTunnels '{"addIpsecIkeV2SiteTunnelsInput": {"addIpsecIkeV2TunnelsInput": {"destinationType": {"destinationType": "enum(DestinationType)"}, "popLocationId": {"popLocationId": "ID"}, "publicCatoIpId": {"publicCatoIpId": "ID"}, "tunnels": {"lastMileBw": {"downstream": {"downstream": "Int"}, "upstream": {"upstream": "Int"}}, "name": {"name": "String"}, "privateCatoIp": {"privateCatoIp": "IPAddress"}, "privateSiteIp": {"privateSiteIp": "IPAddress"}, "psk": {"psk": "String"}, "publicSiteIp": {"publicSiteIp": "IPAddress"}, "role": {"role": "enum(IPSecV2TunnelRole)"}}}}, "siteId": "ID"}'`
 
 #### Operation Arguments for mutation.site.addIpsecIkeV2SiteTunnels ####
-`AddIpsecIkeV2SiteTunnelsInput` [AddIpsecIkeV2SiteTunnelsInput] - (required) N/A 
 `accountId` [ID] - (required) N/A 
+`addIpsecIkeV2SiteTunnelsInput` [AddIpsecIkeV2SiteTunnelsInput] - (required) N/A 
 `siteId` [ID] - (required) N/A 

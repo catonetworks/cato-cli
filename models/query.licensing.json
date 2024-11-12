@@ -78,9 +78,9 @@
                     "isDeprecated": false,
                     "name": "licensingInfo",
                     "path": "licensingInfo",
-                    "requestStr": "$LicensingInfo:LicensingInfo ",
+                    "requestStr": "$licensingInfo:LicensingInfo ",
                     "required": false,
-                    "responseStr": "licensingInfo:$LicensingInfo ",
+                    "responseStr": "licensingInfo:$licensingInfo ",
                     "type": {
                         "definition": {
                             "description": "Public license API",
@@ -94,16 +94,16 @@
                                     "isDeprecated": false,
                                     "name": "globalLicenseAllocations",
                                     "path": "licensingInfo.globalLicenseAllocations",
-                                    "requestStr": "$GlobalLicenseAllocations:GlobalLicenseAllocations! ",
+                                    "requestStr": "$globalLicenseAllocations:GlobalLicenseAllocations! ",
                                     "required": true,
-                                    "responseStr": "globalLicenseAllocations:$GlobalLicenseAllocations ",
+                                    "responseStr": "globalLicenseAllocations:$globalLicenseAllocations ",
                                     "type": {
                                         "definition": {
                                             "description": "License usage and allocation across all accounts",
                                             "enumValues": null,
                                             "fields": {
                                                 "publicIps": {
-                                                    "alias": "PublicIpsLicenseAllocationsPublicIps: publicIps",
+                                                    "alias": "publicIpsLicenseAllocationsPublicIps: publicIps",
                                                     "args": {},
                                                     "deprecationReason": null,
                                                     "description": "Public IP addresses usage across the accounts",
@@ -111,9 +111,9 @@
                                                     "isDeprecated": false,
                                                     "name": "publicIps",
                                                     "path": "licensingInfo.globalLicenseAllocations.publicIps",
-                                                    "requestStr": "$PublicIpsLicenseAllocations:PublicIpsLicenseAllocations ",
+                                                    "requestStr": "$publicIpsLicenseAllocations:PublicIpsLicenseAllocations ",
                                                     "required": false,
-                                                    "responseStr": "publicIps:$PublicIpsLicenseAllocations ",
+                                                    "responseStr": "publicIps:$publicIpsLicenseAllocations ",
                                                     "type": {
                                                         "definition": {
                                                             "description": "IP addresses license usage and allocation across all accounts",
@@ -196,10 +196,10 @@
                                                         "name": "PublicIpsLicenseAllocations",
                                                         "non_null": false
                                                     },
-                                                    "varName": "PublicIpsLicenseAllocations"
+                                                    "varName": "publicIpsLicenseAllocations"
                                                 },
                                                 "ztnaUsers": {
-                                                    "alias": "ZtnaUsersLicenseAllocationsZtnaUsers: ztnaUsers",
+                                                    "alias": "ztnaUsersLicenseAllocationsZtnaUsers: ztnaUsers",
                                                     "args": {},
                                                     "deprecationReason": null,
                                                     "description": "ZTNA license allocation across the accounts",
@@ -207,9 +207,9 @@
                                                     "isDeprecated": false,
                                                     "name": "ztnaUsers",
                                                     "path": "licensingInfo.globalLicenseAllocations.ztnaUsers",
-                                                    "requestStr": "$ZtnaUsersLicenseAllocations:ZtnaUsersLicenseAllocations ",
+                                                    "requestStr": "$ztnaUsersLicenseAllocations:ZtnaUsersLicenseAllocations ",
                                                     "required": false,
-                                                    "responseStr": "ztnaUsers:$ZtnaUsersLicenseAllocations ",
+                                                    "responseStr": "ztnaUsers:$ztnaUsersLicenseAllocations ",
                                                     "type": {
                                                         "definition": {
                                                             "description": "Global ZTNA license usage and allocation across all accounts",
@@ -292,7 +292,7 @@
                                                         "name": "ZtnaUsersLicenseAllocations",
                                                         "non_null": false
                                                     },
-                                                    "varName": "ZtnaUsersLicenseAllocations"
+                                                    "varName": "ztnaUsersLicenseAllocations"
                                                 }
                                             },
                                             "inputFields": null,
@@ -309,7 +309,7 @@
                                         "name": "GlobalLicenseAllocations",
                                         "non_null": false
                                     },
-                                    "varName": "GlobalLicenseAllocations"
+                                    "varName": "globalLicenseAllocations"
                                 },
                                 "licenses": {
                                     "args": {},
@@ -319,9 +319,9 @@
                                     "isDeprecated": false,
                                     "name": "licenses",
                                     "path": "licensingInfo.licenses",
-                                    "requestStr": "$License:[License]! ",
+                                    "requestStr": "$license:[License]! ",
                                     "required": true,
-                                    "responseStr": "licenses:$License ",
+                                    "responseStr": "licenses:$license ",
                                     "type": {
                                         "definition": {
                                             "description": "An interface containing properties that are common to all license types",
@@ -389,7 +389,7 @@
                                                     "varName": "lastUpdated"
                                                 },
                                                 "plan": {
-                                                    "alias": "LicensePlanPlan: plan",
+                                                    "alias": "licensePlanPlan: plan",
                                                     "args": {},
                                                     "deprecationReason": null,
                                                     "description": "License plan type",
@@ -435,7 +435,7 @@
                                                     "varName": "plan"
                                                 },
                                                 "sku": {
-                                                    "alias": "LicenseSkuSku: sku",
+                                                    "alias": "licenseSkuSku: sku",
                                                     "args": {},
                                                     "deprecationReason": null,
                                                     "description": "The license SKU",
@@ -602,6 +602,12 @@
                                                                 },
                                                                 {
                                                                     "deprecationReason": null,
+                                                                    "description": "Cato IoT/OT Security service SKU",
+                                                                    "isDeprecated": false,
+                                                                    "name": "CATO_IOT_OT"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
                                                                     "description": "Cato Threat Prevention (legacy) service SKU",
                                                                     "isDeprecated": false,
                                                                     "name": "CATO_THREAT_PREVENTION"
@@ -675,7 +681,7 @@
                                                     "varName": "startDate"
                                                 },
                                                 "status": {
-                                                    "alias": "LicenseStatusStatus: status",
+                                                    "alias": "licenseStatusStatus: status",
                                                     "args": {},
                                                     "deprecationReason": null,
                                                     "description": "License activation status",
@@ -749,7 +755,7 @@
                                                     "enumValues": null,
                                                     "fields": {
                                                         "description": {
-                                                            "alias": "CasbLicenseDescription: description",
+                                                            "alias": "casbLicenseDescription: description",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -770,7 +776,7 @@
                                                             "varName": "description"
                                                         },
                                                         "expirationDate": {
-                                                            "alias": "CasbLicenseExpirationDate: expirationDate",
+                                                            "alias": "casbLicenseExpirationDate: expirationDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License expiration date",
@@ -792,7 +798,7 @@
                                                             "varName": "expirationDate"
                                                         },
                                                         "lastUpdated": {
-                                                            "alias": "CasbLicenseLastUpdated: lastUpdated",
+                                                            "alias": "casbLicenseLastUpdated: lastUpdated",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The date of the last update to the license",
@@ -813,7 +819,7 @@
                                                             "varName": "lastUpdated"
                                                         },
                                                         "plan": {
-                                                            "alias": "CasbLicensePlan: plan",
+                                                            "alias": "casbLicensePlan: plan",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License plan type",
@@ -859,7 +865,7 @@
                                                             "varName": "plan"
                                                         },
                                                         "sku": {
-                                                            "alias": "CasbLicenseSku: sku",
+                                                            "alias": "casbLicenseSku: sku",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The license SKU",
@@ -1026,6 +1032,12 @@
                                                                         },
                                                                         {
                                                                             "deprecationReason": null,
+                                                                            "description": "Cato IoT/OT Security service SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_IOT_OT"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
                                                                             "description": "Cato Threat Prevention (legacy) service SKU",
                                                                             "isDeprecated": false,
                                                                             "name": "CATO_THREAT_PREVENTION"
@@ -1079,7 +1091,7 @@
                                                             "varName": "sku"
                                                         },
                                                         "startDate": {
-                                                            "alias": "CasbLicenseStartDate: startDate",
+                                                            "alias": "casbLicenseStartDate: startDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License start date",
@@ -1100,7 +1112,7 @@
                                                             "varName": "startDate"
                                                         },
                                                         "status": {
-                                                            "alias": "CasbLicenseStatus: status",
+                                                            "alias": "casbLicenseStatus: status",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License activation status",
@@ -1175,7 +1187,7 @@
                                                     "enumValues": null,
                                                     "fields": {
                                                         "description": {
-                                                            "alias": "DataLakeLicenseDescription: description",
+                                                            "alias": "dataLakeLicenseDescription: description",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -1247,7 +1259,7 @@
                                                             "varName": "dpaVersion"
                                                         },
                                                         "expirationDate": {
-                                                            "alias": "DataLakeLicenseExpirationDate: expirationDate",
+                                                            "alias": "dataLakeLicenseExpirationDate: expirationDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License expiration date",
@@ -1269,7 +1281,7 @@
                                                             "varName": "expirationDate"
                                                         },
                                                         "lastUpdated": {
-                                                            "alias": "DataLakeLicenseLastUpdated: lastUpdated",
+                                                            "alias": "dataLakeLicenseLastUpdated: lastUpdated",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The date of the last update to the license",
@@ -1290,7 +1302,7 @@
                                                             "varName": "lastUpdated"
                                                         },
                                                         "plan": {
-                                                            "alias": "DataLakeLicensePlan: plan",
+                                                            "alias": "dataLakeLicensePlan: plan",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License plan type",
@@ -1356,7 +1368,7 @@
                                                             "varName": "retentionPeriod"
                                                         },
                                                         "sku": {
-                                                            "alias": "DataLakeLicenseSku: sku",
+                                                            "alias": "dataLakeLicenseSku: sku",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The license SKU",
@@ -1523,6 +1535,12 @@
                                                                         },
                                                                         {
                                                                             "deprecationReason": null,
+                                                                            "description": "Cato IoT/OT Security service SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_IOT_OT"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
                                                                             "description": "Cato Threat Prevention (legacy) service SKU",
                                                                             "isDeprecated": false,
                                                                             "name": "CATO_THREAT_PREVENTION"
@@ -1576,7 +1594,7 @@
                                                             "varName": "sku"
                                                         },
                                                         "startDate": {
-                                                            "alias": "DataLakeLicenseStartDate: startDate",
+                                                            "alias": "dataLakeLicenseStartDate: startDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License start date",
@@ -1597,7 +1615,7 @@
                                                             "varName": "startDate"
                                                         },
                                                         "status": {
-                                                            "alias": "DataLakeLicenseStatus: status",
+                                                            "alias": "dataLakeLicenseStatus: status",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License activation status",
@@ -1693,7 +1711,7 @@
                                                     "enumValues": null,
                                                     "fields": {
                                                         "description": {
-                                                            "alias": "DemLicenseDescription: description",
+                                                            "alias": "demLicenseDescription: description",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -1714,7 +1732,7 @@
                                                             "varName": "description"
                                                         },
                                                         "expirationDate": {
-                                                            "alias": "DemLicenseExpirationDate: expirationDate",
+                                                            "alias": "demLicenseExpirationDate: expirationDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License expiration date",
@@ -1736,7 +1754,7 @@
                                                             "varName": "expirationDate"
                                                         },
                                                         "lastUpdated": {
-                                                            "alias": "DemLicenseLastUpdated: lastUpdated",
+                                                            "alias": "demLicenseLastUpdated: lastUpdated",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The date of the last update to the license",
@@ -1757,7 +1775,7 @@
                                                             "varName": "lastUpdated"
                                                         },
                                                         "plan": {
-                                                            "alias": "DemLicensePlan: plan",
+                                                            "alias": "demLicensePlan: plan",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License plan type",
@@ -1803,7 +1821,7 @@
                                                             "varName": "plan"
                                                         },
                                                         "sku": {
-                                                            "alias": "DemLicenseSku: sku",
+                                                            "alias": "demLicenseSku: sku",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The license SKU",
@@ -1970,6 +1988,12 @@
                                                                         },
                                                                         {
                                                                             "deprecationReason": null,
+                                                                            "description": "Cato IoT/OT Security service SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_IOT_OT"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
                                                                             "description": "Cato Threat Prevention (legacy) service SKU",
                                                                             "isDeprecated": false,
                                                                             "name": "CATO_THREAT_PREVENTION"
@@ -2023,7 +2047,7 @@
                                                             "varName": "sku"
                                                         },
                                                         "startDate": {
-                                                            "alias": "DemLicenseStartDate: startDate",
+                                                            "alias": "demLicenseStartDate: startDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License start date",
@@ -2044,7 +2068,7 @@
                                                             "varName": "startDate"
                                                         },
                                                         "status": {
-                                                            "alias": "DemLicenseStatus: status",
+                                                            "alias": "demLicenseStatus: status",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License activation status",
@@ -2140,7 +2164,7 @@
                                                     "enumValues": null,
                                                     "fields": {
                                                         "description": {
-                                                            "alias": "DemProLicenseDescription: description",
+                                                            "alias": "demProLicenseDescription: description",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -2161,7 +2185,7 @@
                                                             "varName": "description"
                                                         },
                                                         "expirationDate": {
-                                                            "alias": "DemProLicenseExpirationDate: expirationDate",
+                                                            "alias": "demProLicenseExpirationDate: expirationDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License expiration date",
@@ -2183,7 +2207,7 @@
                                                             "varName": "expirationDate"
                                                         },
                                                         "lastUpdated": {
-                                                            "alias": "DemProLicenseLastUpdated: lastUpdated",
+                                                            "alias": "demProLicenseLastUpdated: lastUpdated",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The date of the last update to the license",
@@ -2204,7 +2228,7 @@
                                                             "varName": "lastUpdated"
                                                         },
                                                         "plan": {
-                                                            "alias": "DemProLicensePlan: plan",
+                                                            "alias": "demProLicensePlan: plan",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License plan type",
@@ -2250,7 +2274,7 @@
                                                             "varName": "plan"
                                                         },
                                                         "sku": {
-                                                            "alias": "DemProLicenseSku: sku",
+                                                            "alias": "demProLicenseSku: sku",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The license SKU",
@@ -2417,6 +2441,12 @@
                                                                         },
                                                                         {
                                                                             "deprecationReason": null,
+                                                                            "description": "Cato IoT/OT Security service SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_IOT_OT"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
                                                                             "description": "Cato Threat Prevention (legacy) service SKU",
                                                                             "isDeprecated": false,
                                                                             "name": "CATO_THREAT_PREVENTION"
@@ -2470,7 +2500,7 @@
                                                             "varName": "sku"
                                                         },
                                                         "startDate": {
-                                                            "alias": "DemProLicenseStartDate: startDate",
+                                                            "alias": "demProLicenseStartDate: startDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License start date",
@@ -2491,7 +2521,7 @@
                                                             "varName": "startDate"
                                                         },
                                                         "status": {
-                                                            "alias": "DemProLicenseStatus: status",
+                                                            "alias": "demProLicenseStatus: status",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License activation status",
@@ -2587,7 +2617,7 @@
                                                     "enumValues": null,
                                                     "fields": {
                                                         "description": {
-                                                            "alias": "DlpLicenseDescription: description",
+                                                            "alias": "dlpLicenseDescription: description",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -2608,7 +2638,7 @@
                                                             "varName": "description"
                                                         },
                                                         "expirationDate": {
-                                                            "alias": "DlpLicenseExpirationDate: expirationDate",
+                                                            "alias": "dlpLicenseExpirationDate: expirationDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License expiration date",
@@ -2630,7 +2660,7 @@
                                                             "varName": "expirationDate"
                                                         },
                                                         "lastUpdated": {
-                                                            "alias": "DlpLicenseLastUpdated: lastUpdated",
+                                                            "alias": "dlpLicenseLastUpdated: lastUpdated",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The date of the last update to the license",
@@ -2651,7 +2681,7 @@
                                                             "varName": "lastUpdated"
                                                         },
                                                         "plan": {
-                                                            "alias": "DlpLicensePlan: plan",
+                                                            "alias": "dlpLicensePlan: plan",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License plan type",
@@ -2697,7 +2727,7 @@
                                                             "varName": "plan"
                                                         },
                                                         "sku": {
-                                                            "alias": "DlpLicenseSku: sku",
+                                                            "alias": "dlpLicenseSku: sku",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The license SKU",
@@ -2864,6 +2894,12 @@
                                                                         },
                                                                         {
                                                                             "deprecationReason": null,
+                                                                            "description": "Cato IoT/OT Security service SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_IOT_OT"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
                                                                             "description": "Cato Threat Prevention (legacy) service SKU",
                                                                             "isDeprecated": false,
                                                                             "name": "CATO_THREAT_PREVENTION"
@@ -2917,7 +2953,7 @@
                                                             "varName": "sku"
                                                         },
                                                         "startDate": {
-                                                            "alias": "DlpLicenseStartDate: startDate",
+                                                            "alias": "dlpLicenseStartDate: startDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License start date",
@@ -2938,7 +2974,7 @@
                                                             "varName": "startDate"
                                                         },
                                                         "status": {
-                                                            "alias": "DlpLicenseStatus: status",
+                                                            "alias": "dlpLicenseStatus: status",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License activation status",
@@ -3013,7 +3049,7 @@
                                                     "enumValues": null,
                                                     "fields": {
                                                         "description": {
-                                                            "alias": "EndpointProtectionLicenseDescription: description",
+                                                            "alias": "endpointProtectionLicenseDescription: description",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -3034,7 +3070,7 @@
                                                             "varName": "description"
                                                         },
                                                         "expirationDate": {
-                                                            "alias": "EndpointProtectionLicenseExpirationDate: expirationDate",
+                                                            "alias": "endpointProtectionLicenseExpirationDate: expirationDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License expiration date",
@@ -3056,7 +3092,7 @@
                                                             "varName": "expirationDate"
                                                         },
                                                         "lastUpdated": {
-                                                            "alias": "EndpointProtectionLicenseLastUpdated: lastUpdated",
+                                                            "alias": "endpointProtectionLicenseLastUpdated: lastUpdated",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The date of the last update to the license",
@@ -3077,7 +3113,7 @@
                                                             "varName": "lastUpdated"
                                                         },
                                                         "plan": {
-                                                            "alias": "EndpointProtectionLicensePlan: plan",
+                                                            "alias": "endpointProtectionLicensePlan: plan",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License plan type",
@@ -3123,7 +3159,7 @@
                                                             "varName": "plan"
                                                         },
                                                         "sku": {
-                                                            "alias": "EndpointProtectionLicenseSku: sku",
+                                                            "alias": "endpointProtectionLicenseSku: sku",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The license SKU",
@@ -3290,6 +3326,12 @@
                                                                         },
                                                                         {
                                                                             "deprecationReason": null,
+                                                                            "description": "Cato IoT/OT Security service SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_IOT_OT"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
                                                                             "description": "Cato Threat Prevention (legacy) service SKU",
                                                                             "isDeprecated": false,
                                                                             "name": "CATO_THREAT_PREVENTION"
@@ -3343,7 +3385,7 @@
                                                             "varName": "sku"
                                                         },
                                                         "startDate": {
-                                                            "alias": "EndpointProtectionLicenseStartDate: startDate",
+                                                            "alias": "endpointProtectionLicenseStartDate: startDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License start date",
@@ -3364,7 +3406,7 @@
                                                             "varName": "startDate"
                                                         },
                                                         "status": {
-                                                            "alias": "EndpointProtectionLicenseStatus: status",
+                                                            "alias": "endpointProtectionLicenseStatus: status",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License activation status",
@@ -3460,7 +3502,7 @@
                                                     "enumValues": null,
                                                     "fields": {
                                                         "description": {
-                                                            "alias": "IlmmLicenseDescription: description",
+                                                            "alias": "ilmmLicenseDescription: description",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -3481,7 +3523,7 @@
                                                             "varName": "description"
                                                         },
                                                         "expirationDate": {
-                                                            "alias": "IlmmLicenseExpirationDate: expirationDate",
+                                                            "alias": "ilmmLicenseExpirationDate: expirationDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License expiration date",
@@ -3503,7 +3545,7 @@
                                                             "varName": "expirationDate"
                                                         },
                                                         "lastUpdated": {
-                                                            "alias": "IlmmLicenseLastUpdated: lastUpdated",
+                                                            "alias": "ilmmLicenseLastUpdated: lastUpdated",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The date of the last update to the license",
@@ -3524,7 +3566,7 @@
                                                             "varName": "lastUpdated"
                                                         },
                                                         "plan": {
-                                                            "alias": "IlmmLicensePlan: plan",
+                                                            "alias": "ilmmLicensePlan: plan",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License plan type",
@@ -3570,7 +3612,7 @@
                                                             "varName": "plan"
                                                         },
                                                         "sku": {
-                                                            "alias": "IlmmLicenseSku: sku",
+                                                            "alias": "ilmmLicenseSku: sku",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The license SKU",
@@ -3737,6 +3779,12 @@
                                                                         },
                                                                         {
                                                                             "deprecationReason": null,
+                                                                            "description": "Cato IoT/OT Security service SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_IOT_OT"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
                                                                             "description": "Cato Threat Prevention (legacy) service SKU",
                                                                             "isDeprecated": false,
                                                                             "name": "CATO_THREAT_PREVENTION"
@@ -3790,7 +3838,7 @@
                                                             "varName": "sku"
                                                         },
                                                         "startDate": {
-                                                            "alias": "IlmmLicenseStartDate: startDate",
+                                                            "alias": "ilmmLicenseStartDate: startDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License start date",
@@ -3811,7 +3859,7 @@
                                                             "varName": "startDate"
                                                         },
                                                         "status": {
-                                                            "alias": "IlmmLicenseStatus: status",
+                                                            "alias": "ilmmLicenseStatus: status",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License activation status",
@@ -3902,12 +3950,444 @@
                                                     "name": "IlmmLicense",
                                                     "possibleTypes": null
                                                 },
+                                                "IotOtLicense": {
+                                                    "description": "IoT/OT Security service license details",
+                                                    "enumValues": null,
+                                                    "fields": {
+                                                        "description": {
+                                                            "alias": "iotOtLicenseDescription: description",
+                                                            "args": {},
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "id_str": "licensingInfo___licenses___IotOtLicense___description",
+                                                            "isDeprecated": false,
+                                                            "name": "description",
+                                                            "path": "licensingInfo.licenses.IotOtLicense.description",
+                                                            "requestStr": "$description:String ",
+                                                            "required": false,
+                                                            "responseStr": "description:$description ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "description"
+                                                        },
+                                                        "expirationDate": {
+                                                            "alias": "iotOtLicenseExpirationDate: expirationDate",
+                                                            "args": {},
+                                                            "deprecationReason": null,
+                                                            "description": "License expiration date",
+                                                            "id_str": "licensingInfo___licenses___IotOtLicense___expirationDate",
+                                                            "isDeprecated": false,
+                                                            "name": "expirationDate",
+                                                            "path": "licensingInfo.licenses.IotOtLicense.expirationDate",
+                                                            "requestStr": "$expirationDate:DateTime! ",
+                                                            "required": true,
+                                                            "responseStr": "expirationDate:$expirationDate ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "DateTime",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "expirationDate"
+                                                        },
+                                                        "lastUpdated": {
+                                                            "alias": "iotOtLicenseLastUpdated: lastUpdated",
+                                                            "args": {},
+                                                            "deprecationReason": null,
+                                                            "description": "The date of the last update to the license",
+                                                            "id_str": "licensingInfo___licenses___IotOtLicense___lastUpdated",
+                                                            "isDeprecated": false,
+                                                            "name": "lastUpdated",
+                                                            "path": "licensingInfo.licenses.IotOtLicense.lastUpdated",
+                                                            "requestStr": "$lastUpdated:DateTime ",
+                                                            "required": false,
+                                                            "responseStr": "lastUpdated:$lastUpdated ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "DateTime",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "lastUpdated"
+                                                        },
+                                                        "plan": {
+                                                            "alias": "iotOtLicensePlan: plan",
+                                                            "args": {},
+                                                            "deprecationReason": null,
+                                                            "description": "License plan type",
+                                                            "id_str": "licensingInfo___licenses___IotOtLicense___plan",
+                                                            "isDeprecated": false,
+                                                            "name": "plan",
+                                                            "path": "licensingInfo.licenses.IotOtLicense.plan",
+                                                            "requestStr": "$plan:LicensePlan! ",
+                                                            "required": true,
+                                                            "responseStr": "plan:$plan ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": "enum for license plan type (site license, service license, etc...)",
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "COMMERCIAL"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "TRIAL"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "LicensePlan",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "LicensePlan",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "plan"
+                                                        },
+                                                        "sku": {
+                                                            "alias": "iotOtLicenseSku: sku",
+                                                            "args": {},
+                                                            "deprecationReason": null,
+                                                            "description": "The license SKU",
+                                                            "id_str": "licensingInfo___licenses___IotOtLicense___sku",
+                                                            "isDeprecated": false,
+                                                            "name": "sku",
+                                                            "path": "licensingInfo.licenses.IotOtLicense.sku",
+                                                            "requestStr": "$sku:LicenseSku! ",
+                                                            "required": true,
+                                                            "responseStr": "sku:$sku ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "Site bandwidth SASE SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_SITE"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "Site bandwidth SSE SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_SSE_SITE"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "Site pooled bandwidth SASE SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_PB"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "Site pooled bandwidth SSE SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_PB_SSE"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": "replaced with CATO_ZTNA_USERS",
+                                                                            "description": "ZTNA remote users SKU",
+                                                                            "isDeprecated": true,
+                                                                            "name": "MOBILE_USERS"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "ZTNA remote users SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_ZTNA_USERS"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "Cato EPP service SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_EPP"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "Cato IPS (legacy) service SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_IPS"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "Cato Anti Malware (legacy) service SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_ANTI_MALWARE"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "Cato Anti Malware Next Generation (legacy) service SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_ANTI_MALWARE_NG"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "Cato CASB service SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_CASB"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "Cato DLP service SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_DLP"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "Cato ILMM service SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_ILMM"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "Cato MDR (XDR Pro) service SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_MDR"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "Cato Managed XDR service SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_MANAGED_XDR"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "Cato NOCaaS service SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_NOCAAS_HF"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "Cato Remote Browser Isolation (RBI) service SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_RBI"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "Cato SAAS Group SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_SAAS"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "Cato SAAS Security API with one application integration (legacy) service SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_SAAS_SECURITY_API_ONE_APP"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "Cato SAAS Security API with two applications integration (legacy) service SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_SAAS_SECURITY_API_TWO_APPS"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "Cato SAAS Security API with more than two Applications integration (legacy) service SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_SAAS_SECURITY_API_ALL_APPS"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_SAAS_SECURITY_API"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "Cato XDR service SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_XDR_PRO"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": "replaced with CATO_DEM",
+                                                                            "description": "Cato DEM Pro service SKU",
+                                                                            "isDeprecated": true,
+                                                                            "name": "CATO_DEM_PRO"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "Cato DEM service SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_DEM"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "Cato IoT/OT Security service SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_IOT_OT"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "Cato Threat Prevention (legacy) service SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_THREAT_PREVENTION"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "Public IPs SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_IP_ADD"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "Cato datalake Group SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_DATALAKE"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "3 months data retention SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_DATALAKE_3M"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "6 months data retention SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_DATALAKE_6M"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "12 months data retention SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_DATALAKE_12M"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "LicenseSku",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "LicenseSku",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "sku"
+                                                        },
+                                                        "startDate": {
+                                                            "alias": "iotOtLicenseStartDate: startDate",
+                                                            "args": {},
+                                                            "deprecationReason": null,
+                                                            "description": "License start date",
+                                                            "id_str": "licensingInfo___licenses___IotOtLicense___startDate",
+                                                            "isDeprecated": false,
+                                                            "name": "startDate",
+                                                            "path": "licensingInfo.licenses.IotOtLicense.startDate",
+                                                            "requestStr": "$startDate:DateTime ",
+                                                            "required": false,
+                                                            "responseStr": "startDate:$startDate ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "DateTime",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "startDate"
+                                                        },
+                                                        "status": {
+                                                            "alias": "iotOtLicenseStatus: status",
+                                                            "args": {},
+                                                            "deprecationReason": null,
+                                                            "description": "License activation status",
+                                                            "id_str": "licensingInfo___licenses___IotOtLicense___status",
+                                                            "isDeprecated": false,
+                                                            "name": "status",
+                                                            "path": "licensingInfo.licenses.IotOtLicense.status",
+                                                            "requestStr": "$status:LicenseStatus! ",
+                                                            "required": true,
+                                                            "responseStr": "status:$status ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": "enum for account plan status \u2013 the current license status within the license lifecycle",
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "A license that is currently active",
+                                                                            "isDeprecated": false,
+                                                                            "name": "ACTIVE"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "An existing license with a future start date that is not currently active",
+                                                                            "isDeprecated": false,
+                                                                            "name": "SCHEDULED"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "A license that is active before its start date, for partners and customers to verify the relevant configurations",
+                                                                            "isDeprecated": false,
+                                                                            "name": "STAGING"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "A license in a grace period",
+                                                                            "isDeprecated": false,
+                                                                            "name": "LOCKED"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "An expired license is no longer active",
+                                                                            "isDeprecated": false,
+                                                                            "name": "DISABLED"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "LicenseStatus",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "LicenseStatus",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "status"
+                                                        }
+                                                    },
+                                                    "inputFields": null,
+                                                    "interfaces": {},
+                                                    "kind": "OBJECT",
+                                                    "name": "IotOtLicense",
+                                                    "possibleTypes": null
+                                                },
                                                 "IpsLicense": {
                                                     "description": "Intrusion Prevention System (IPS) service license (Legacy license, replaced by TP)",
                                                     "enumValues": null,
                                                     "fields": {
                                                         "description": {
-                                                            "alias": "IpsLicenseDescription: description",
+                                                            "alias": "ipsLicenseDescription: description",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -3928,7 +4408,7 @@
                                                             "varName": "description"
                                                         },
                                                         "expirationDate": {
-                                                            "alias": "IpsLicenseExpirationDate: expirationDate",
+                                                            "alias": "ipsLicenseExpirationDate: expirationDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License expiration date",
@@ -3950,7 +4430,7 @@
                                                             "varName": "expirationDate"
                                                         },
                                                         "lastUpdated": {
-                                                            "alias": "IpsLicenseLastUpdated: lastUpdated",
+                                                            "alias": "ipsLicenseLastUpdated: lastUpdated",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The date of the last update to the license",
@@ -3971,7 +4451,7 @@
                                                             "varName": "lastUpdated"
                                                         },
                                                         "plan": {
-                                                            "alias": "IpsLicensePlan: plan",
+                                                            "alias": "ipsLicensePlan: plan",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License plan type",
@@ -4017,7 +4497,7 @@
                                                             "varName": "plan"
                                                         },
                                                         "sku": {
-                                                            "alias": "IpsLicenseSku: sku",
+                                                            "alias": "ipsLicenseSku: sku",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The license SKU",
@@ -4184,6 +4664,12 @@
                                                                         },
                                                                         {
                                                                             "deprecationReason": null,
+                                                                            "description": "Cato IoT/OT Security service SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_IOT_OT"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
                                                                             "description": "Cato Threat Prevention (legacy) service SKU",
                                                                             "isDeprecated": false,
                                                                             "name": "CATO_THREAT_PREVENTION"
@@ -4237,7 +4723,7 @@
                                                             "varName": "sku"
                                                         },
                                                         "startDate": {
-                                                            "alias": "IpsLicenseStartDate: startDate",
+                                                            "alias": "ipsLicenseStartDate: startDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License start date",
@@ -4258,7 +4744,7 @@
                                                             "varName": "startDate"
                                                         },
                                                         "status": {
-                                                            "alias": "IpsLicenseStatus: status",
+                                                            "alias": "ipsLicenseStatus: status",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License activation status",
@@ -4333,7 +4819,7 @@
                                                     "enumValues": null,
                                                     "fields": {
                                                         "description": {
-                                                            "alias": "MalwareProtectionLicenseDescription: description",
+                                                            "alias": "malwareProtectionLicenseDescription: description",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -4354,7 +4840,7 @@
                                                             "varName": "description"
                                                         },
                                                         "expirationDate": {
-                                                            "alias": "MalwareProtectionLicenseExpirationDate: expirationDate",
+                                                            "alias": "malwareProtectionLicenseExpirationDate: expirationDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License expiration date",
@@ -4376,7 +4862,7 @@
                                                             "varName": "expirationDate"
                                                         },
                                                         "lastUpdated": {
-                                                            "alias": "MalwareProtectionLicenseLastUpdated: lastUpdated",
+                                                            "alias": "malwareProtectionLicenseLastUpdated: lastUpdated",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The date of the last update to the license",
@@ -4397,7 +4883,7 @@
                                                             "varName": "lastUpdated"
                                                         },
                                                         "plan": {
-                                                            "alias": "MalwareProtectionLicensePlan: plan",
+                                                            "alias": "malwareProtectionLicensePlan: plan",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License plan type",
@@ -4443,7 +4929,7 @@
                                                             "varName": "plan"
                                                         },
                                                         "sku": {
-                                                            "alias": "MalwareProtectionLicenseSku: sku",
+                                                            "alias": "malwareProtectionLicenseSku: sku",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The license SKU",
@@ -4610,6 +5096,12 @@
                                                                         },
                                                                         {
                                                                             "deprecationReason": null,
+                                                                            "description": "Cato IoT/OT Security service SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_IOT_OT"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
                                                                             "description": "Cato Threat Prevention (legacy) service SKU",
                                                                             "isDeprecated": false,
                                                                             "name": "CATO_THREAT_PREVENTION"
@@ -4663,7 +5155,7 @@
                                                             "varName": "sku"
                                                         },
                                                         "startDate": {
-                                                            "alias": "MalwareProtectionLicenseStartDate: startDate",
+                                                            "alias": "malwareProtectionLicenseStartDate: startDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License start date",
@@ -4684,7 +5176,7 @@
                                                             "varName": "startDate"
                                                         },
                                                         "status": {
-                                                            "alias": "MalwareProtectionLicenseStatus: status",
+                                                            "alias": "malwareProtectionLicenseStatus: status",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License activation status",
@@ -4759,7 +5251,7 @@
                                                     "enumValues": null,
                                                     "fields": {
                                                         "description": {
-                                                            "alias": "ManagedXdrLicenseDescription: description",
+                                                            "alias": "managedXdrLicenseDescription: description",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -4780,7 +5272,7 @@
                                                             "varName": "description"
                                                         },
                                                         "expirationDate": {
-                                                            "alias": "ManagedXdrLicenseExpirationDate: expirationDate",
+                                                            "alias": "managedXdrLicenseExpirationDate: expirationDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License expiration date",
@@ -4802,7 +5294,7 @@
                                                             "varName": "expirationDate"
                                                         },
                                                         "lastUpdated": {
-                                                            "alias": "ManagedXdrLicenseLastUpdated: lastUpdated",
+                                                            "alias": "managedXdrLicenseLastUpdated: lastUpdated",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The date of the last update to the license",
@@ -4823,7 +5315,7 @@
                                                             "varName": "lastUpdated"
                                                         },
                                                         "plan": {
-                                                            "alias": "ManagedXdrLicensePlan: plan",
+                                                            "alias": "managedXdrLicensePlan: plan",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License plan type",
@@ -4869,7 +5361,7 @@
                                                             "varName": "plan"
                                                         },
                                                         "sku": {
-                                                            "alias": "ManagedXdrLicenseSku: sku",
+                                                            "alias": "managedXdrLicenseSku: sku",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The license SKU",
@@ -5036,6 +5528,12 @@
                                                                         },
                                                                         {
                                                                             "deprecationReason": null,
+                                                                            "description": "Cato IoT/OT Security service SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_IOT_OT"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
                                                                             "description": "Cato Threat Prevention (legacy) service SKU",
                                                                             "isDeprecated": false,
                                                                             "name": "CATO_THREAT_PREVENTION"
@@ -5089,7 +5587,7 @@
                                                             "varName": "sku"
                                                         },
                                                         "startDate": {
-                                                            "alias": "ManagedXdrLicenseStartDate: startDate",
+                                                            "alias": "managedXdrLicenseStartDate: startDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License start date",
@@ -5110,7 +5608,7 @@
                                                             "varName": "startDate"
                                                         },
                                                         "status": {
-                                                            "alias": "ManagedXdrLicenseStatus: status",
+                                                            "alias": "managedXdrLicenseStatus: status",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License activation status",
@@ -5185,7 +5683,7 @@
                                                     "enumValues": null,
                                                     "fields": {
                                                         "description": {
-                                                            "alias": "NOCaaSLicenseDescription: description",
+                                                            "alias": "nOCaaSLicenseDescription: description",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -5206,7 +5704,7 @@
                                                             "varName": "description"
                                                         },
                                                         "expirationDate": {
-                                                            "alias": "NOCaaSLicenseExpirationDate: expirationDate",
+                                                            "alias": "nOCaaSLicenseExpirationDate: expirationDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License expiration date",
@@ -5228,7 +5726,7 @@
                                                             "varName": "expirationDate"
                                                         },
                                                         "lastUpdated": {
-                                                            "alias": "NOCaaSLicenseLastUpdated: lastUpdated",
+                                                            "alias": "nOCaaSLicenseLastUpdated: lastUpdated",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The date of the last update to the license",
@@ -5249,7 +5747,7 @@
                                                             "varName": "lastUpdated"
                                                         },
                                                         "plan": {
-                                                            "alias": "NOCaaSLicensePlan: plan",
+                                                            "alias": "nOCaaSLicensePlan: plan",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License plan type",
@@ -5295,7 +5793,7 @@
                                                             "varName": "plan"
                                                         },
                                                         "sku": {
-                                                            "alias": "NOCaaSLicenseSku: sku",
+                                                            "alias": "nOCaaSLicenseSku: sku",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The license SKU",
@@ -5462,6 +5960,12 @@
                                                                         },
                                                                         {
                                                                             "deprecationReason": null,
+                                                                            "description": "Cato IoT/OT Security service SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_IOT_OT"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
                                                                             "description": "Cato Threat Prevention (legacy) service SKU",
                                                                             "isDeprecated": false,
                                                                             "name": "CATO_THREAT_PREVENTION"
@@ -5515,7 +6019,7 @@
                                                             "varName": "sku"
                                                         },
                                                         "startDate": {
-                                                            "alias": "NOCaaSLicenseStartDate: startDate",
+                                                            "alias": "nOCaaSLicenseStartDate: startDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License start date",
@@ -5536,7 +6040,7 @@
                                                             "varName": "startDate"
                                                         },
                                                         "status": {
-                                                            "alias": "NOCaaSLicenseStatus: status",
+                                                            "alias": "nOCaaSLicenseStatus: status",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License activation status",
@@ -5611,7 +6115,7 @@
                                                     "enumValues": null,
                                                     "fields": {
                                                         "description": {
-                                                            "alias": "NextGenMalwareProtectionLicenseDescription: description",
+                                                            "alias": "nextGenMalwareProtectionLicenseDescription: description",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -5632,7 +6136,7 @@
                                                             "varName": "description"
                                                         },
                                                         "expirationDate": {
-                                                            "alias": "NextGenMalwareProtectionLicenseExpirationDate: expirationDate",
+                                                            "alias": "nextGenMalwareProtectionLicenseExpirationDate: expirationDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License expiration date",
@@ -5654,7 +6158,7 @@
                                                             "varName": "expirationDate"
                                                         },
                                                         "lastUpdated": {
-                                                            "alias": "NextGenMalwareProtectionLicenseLastUpdated: lastUpdated",
+                                                            "alias": "nextGenMalwareProtectionLicenseLastUpdated: lastUpdated",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The date of the last update to the license",
@@ -5675,7 +6179,7 @@
                                                             "varName": "lastUpdated"
                                                         },
                                                         "plan": {
-                                                            "alias": "NextGenMalwareProtectionLicensePlan: plan",
+                                                            "alias": "nextGenMalwareProtectionLicensePlan: plan",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License plan type",
@@ -5721,7 +6225,7 @@
                                                             "varName": "plan"
                                                         },
                                                         "sku": {
-                                                            "alias": "NextGenMalwareProtectionLicenseSku: sku",
+                                                            "alias": "nextGenMalwareProtectionLicenseSku: sku",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The license SKU",
@@ -5888,6 +6392,12 @@
                                                                         },
                                                                         {
                                                                             "deprecationReason": null,
+                                                                            "description": "Cato IoT/OT Security service SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_IOT_OT"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
                                                                             "description": "Cato Threat Prevention (legacy) service SKU",
                                                                             "isDeprecated": false,
                                                                             "name": "CATO_THREAT_PREVENTION"
@@ -5941,7 +6451,7 @@
                                                             "varName": "sku"
                                                         },
                                                         "startDate": {
-                                                            "alias": "NextGenMalwareProtectionLicenseStartDate: startDate",
+                                                            "alias": "nextGenMalwareProtectionLicenseStartDate: startDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License start date",
@@ -5962,7 +6472,7 @@
                                                             "varName": "startDate"
                                                         },
                                                         "status": {
-                                                            "alias": "NextGenMalwareProtectionLicenseStatus: status",
+                                                            "alias": "nextGenMalwareProtectionLicenseStatus: status",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License activation status",
@@ -6044,16 +6554,16 @@
                                                             "isDeprecated": false,
                                                             "name": "accounts",
                                                             "path": "licensingInfo.licenses.PooledBandwidthLicense.accounts",
-                                                            "requestStr": "$PartnerPooledBandwidthLicenseAccount:[PartnerPooledBandwidthLicenseAccount]! ",
+                                                            "requestStr": "$partnerPooledBandwidthLicenseAccount:[PartnerPooledBandwidthLicenseAccount]! ",
                                                             "required": true,
-                                                            "responseStr": "accounts:$PartnerPooledBandwidthLicenseAccount ",
+                                                            "responseStr": "accounts:$partnerPooledBandwidthLicenseAccount ",
                                                             "type": {
                                                                 "definition": {
                                                                     "description": null,
                                                                     "enumValues": null,
                                                                     "fields": {
                                                                         "account": {
-                                                                            "alias": "AccountRefAccount: account",
+                                                                            "alias": "accountRefAccount: account",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": "Identifying data for the account",
@@ -6061,9 +6571,9 @@
                                                                             "isDeprecated": false,
                                                                             "name": "account",
                                                                             "path": "licensingInfo.licenses.PooledBandwidthLicense.accounts.account",
-                                                                            "requestStr": "$AccountRef:AccountRef! ",
+                                                                            "requestStr": "$accountRef:AccountRef! ",
                                                                             "required": true,
-                                                                            "responseStr": "account:$AccountRef ",
+                                                                            "responseStr": "account:$accountRef ",
                                                                             "type": {
                                                                                 "definition": {
                                                                                     "description": null,
@@ -6126,7 +6636,7 @@
                                                                                 "name": "AccountRef",
                                                                                 "non_null": false
                                                                             },
-                                                                            "varName": "AccountRef"
+                                                                            "varName": "accountRef"
                                                                         },
                                                                         "allocatedBandwidth": {
                                                                             "args": {},
@@ -6166,7 +6676,7 @@
                                                                 "name": "PartnerPooledBandwidthLicenseAccount",
                                                                 "non_null": false
                                                             },
-                                                            "varName": "PartnerPooledBandwidthLicenseAccount"
+                                                            "varName": "partnerPooledBandwidthLicenseAccount"
                                                         },
                                                         "allocatedBandwidth": {
                                                             "args": {},
@@ -6190,7 +6700,7 @@
                                                             "varName": "allocatedBandwidth"
                                                         },
                                                         "description": {
-                                                            "alias": "PooledBandwidthLicenseDescription: description",
+                                                            "alias": "pooledBandwidthLicenseDescription: description",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -6211,7 +6721,7 @@
                                                             "varName": "description"
                                                         },
                                                         "expirationDate": {
-                                                            "alias": "PooledBandwidthLicenseExpirationDate: expirationDate",
+                                                            "alias": "pooledBandwidthLicenseExpirationDate: expirationDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License expiration date",
@@ -6233,7 +6743,7 @@
                                                             "varName": "expirationDate"
                                                         },
                                                         "lastUpdated": {
-                                                            "alias": "PooledBandwidthLicenseLastUpdated: lastUpdated",
+                                                            "alias": "pooledBandwidthLicenseLastUpdated: lastUpdated",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The date of the last update to the license",
@@ -6254,7 +6764,7 @@
                                                             "varName": "lastUpdated"
                                                         },
                                                         "plan": {
-                                                            "alias": "PooledBandwidthLicensePlan: plan",
+                                                            "alias": "pooledBandwidthLicensePlan: plan",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License plan type",
@@ -6463,9 +6973,9 @@
                                                             "isDeprecated": false,
                                                             "name": "sites",
                                                             "path": "licensingInfo.licenses.PooledBandwidthLicense.sites",
-                                                            "requestStr": "$PooledBandwidthLicenseSite:[PooledBandwidthLicenseSite]! ",
+                                                            "requestStr": "$pooledBandwidthLicenseSite:[PooledBandwidthLicenseSite]! ",
                                                             "required": true,
-                                                            "responseStr": "sites:$PooledBandwidthLicenseSite ",
+                                                            "responseStr": "sites:$pooledBandwidthLicenseSite ",
                                                             "type": {
                                                                 "definition": {
                                                                     "description": null,
@@ -6493,7 +7003,7 @@
                                                                             "varName": "allocatedBandwidth"
                                                                         },
                                                                         "site": {
-                                                                            "alias": "SiteRefSite: site",
+                                                                            "alias": "siteRefSite: site",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": "Identifying data for the site",
@@ -6501,9 +7011,9 @@
                                                                             "isDeprecated": false,
                                                                             "name": "site",
                                                                             "path": "licensingInfo.licenses.PooledBandwidthLicense.sites.site",
-                                                                            "requestStr": "$SiteRef:SiteRef! ",
+                                                                            "requestStr": "$siteRef:SiteRef! ",
                                                                             "required": true,
-                                                                            "responseStr": "site:$SiteRef ",
+                                                                            "responseStr": "site:$siteRef ",
                                                                             "type": {
                                                                                 "definition": {
                                                                                     "description": null,
@@ -6566,7 +7076,7 @@
                                                                                 "name": "SiteRef",
                                                                                 "non_null": false
                                                                             },
-                                                                            "varName": "SiteRef"
+                                                                            "varName": "siteRef"
                                                                         }
                                                                     },
                                                                     "inputFields": null,
@@ -6585,10 +7095,10 @@
                                                                 "name": "PooledBandwidthLicenseSite",
                                                                 "non_null": false
                                                             },
-                                                            "varName": "PooledBandwidthLicenseSite"
+                                                            "varName": "pooledBandwidthLicenseSite"
                                                         },
                                                         "sku": {
-                                                            "alias": "PooledBandwidthLicenseSku: sku",
+                                                            "alias": "pooledBandwidthLicenseSku: sku",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The license SKU",
@@ -6755,6 +7265,12 @@
                                                                         },
                                                                         {
                                                                             "deprecationReason": null,
+                                                                            "description": "Cato IoT/OT Security service SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_IOT_OT"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
                                                                             "description": "Cato Threat Prevention (legacy) service SKU",
                                                                             "isDeprecated": false,
                                                                             "name": "CATO_THREAT_PREVENTION"
@@ -6808,7 +7324,7 @@
                                                             "varName": "sku"
                                                         },
                                                         "startDate": {
-                                                            "alias": "PooledBandwidthLicenseStartDate: startDate",
+                                                            "alias": "pooledBandwidthLicenseStartDate: startDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License start date",
@@ -6829,7 +7345,7 @@
                                                             "varName": "startDate"
                                                         },
                                                         "status": {
-                                                            "alias": "PooledBandwidthLicenseStatus: status",
+                                                            "alias": "pooledBandwidthLicenseStatus: status",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License activation status",
@@ -6925,7 +7441,7 @@
                                                     "enumValues": null,
                                                     "fields": {
                                                         "description": {
-                                                            "alias": "PublicIpsLicenseDescription: description",
+                                                            "alias": "publicIpsLicenseDescription: description",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -6946,7 +7462,7 @@
                                                             "varName": "description"
                                                         },
                                                         "expirationDate": {
-                                                            "alias": "PublicIpsLicenseExpirationDate: expirationDate",
+                                                            "alias": "publicIpsLicenseExpirationDate: expirationDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License expiration date",
@@ -6968,7 +7484,7 @@
                                                             "varName": "expirationDate"
                                                         },
                                                         "lastUpdated": {
-                                                            "alias": "PublicIpsLicenseLastUpdated: lastUpdated",
+                                                            "alias": "publicIpsLicenseLastUpdated: lastUpdated",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The date of the last update to the license",
@@ -6989,7 +7505,7 @@
                                                             "varName": "lastUpdated"
                                                         },
                                                         "plan": {
-                                                            "alias": "PublicIpsLicensePlan: plan",
+                                                            "alias": "publicIpsLicensePlan: plan",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License plan type",
@@ -7035,7 +7551,7 @@
                                                             "varName": "plan"
                                                         },
                                                         "sku": {
-                                                            "alias": "PublicIpsLicenseSku: sku",
+                                                            "alias": "publicIpsLicenseSku: sku",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The license SKU",
@@ -7202,6 +7718,12 @@
                                                                         },
                                                                         {
                                                                             "deprecationReason": null,
+                                                                            "description": "Cato IoT/OT Security service SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_IOT_OT"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
                                                                             "description": "Cato Threat Prevention (legacy) service SKU",
                                                                             "isDeprecated": false,
                                                                             "name": "CATO_THREAT_PREVENTION"
@@ -7255,7 +7777,7 @@
                                                             "varName": "sku"
                                                         },
                                                         "startDate": {
-                                                            "alias": "PublicIpsLicenseStartDate: startDate",
+                                                            "alias": "publicIpsLicenseStartDate: startDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License start date",
@@ -7276,7 +7798,7 @@
                                                             "varName": "startDate"
                                                         },
                                                         "status": {
-                                                            "alias": "PublicIpsLicenseStatus: status",
+                                                            "alias": "publicIpsLicenseStatus: status",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License activation status",
@@ -7372,7 +7894,7 @@
                                                     "enumValues": null,
                                                     "fields": {
                                                         "description": {
-                                                            "alias": "RbiLicenseDescription: description",
+                                                            "alias": "rbiLicenseDescription: description",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -7393,7 +7915,7 @@
                                                             "varName": "description"
                                                         },
                                                         "expirationDate": {
-                                                            "alias": "RbiLicenseExpirationDate: expirationDate",
+                                                            "alias": "rbiLicenseExpirationDate: expirationDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License expiration date",
@@ -7415,7 +7937,7 @@
                                                             "varName": "expirationDate"
                                                         },
                                                         "lastUpdated": {
-                                                            "alias": "RbiLicenseLastUpdated: lastUpdated",
+                                                            "alias": "rbiLicenseLastUpdated: lastUpdated",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The date of the last update to the license",
@@ -7436,7 +7958,7 @@
                                                             "varName": "lastUpdated"
                                                         },
                                                         "plan": {
-                                                            "alias": "RbiLicensePlan: plan",
+                                                            "alias": "rbiLicensePlan: plan",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License plan type",
@@ -7482,7 +8004,7 @@
                                                             "varName": "plan"
                                                         },
                                                         "sku": {
-                                                            "alias": "RbiLicenseSku: sku",
+                                                            "alias": "rbiLicenseSku: sku",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The license SKU",
@@ -7649,6 +8171,12 @@
                                                                         },
                                                                         {
                                                                             "deprecationReason": null,
+                                                                            "description": "Cato IoT/OT Security service SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_IOT_OT"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
                                                                             "description": "Cato Threat Prevention (legacy) service SKU",
                                                                             "isDeprecated": false,
                                                                             "name": "CATO_THREAT_PREVENTION"
@@ -7702,7 +8230,7 @@
                                                             "varName": "sku"
                                                         },
                                                         "startDate": {
-                                                            "alias": "RbiLicenseStartDate: startDate",
+                                                            "alias": "rbiLicenseStartDate: startDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License start date",
@@ -7723,7 +8251,7 @@
                                                             "varName": "startDate"
                                                         },
                                                         "status": {
-                                                            "alias": "RbiLicenseStatus: status",
+                                                            "alias": "rbiLicenseStatus: status",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License activation status",
@@ -7798,7 +8326,7 @@
                                                     "enumValues": null,
                                                     "fields": {
                                                         "description": {
-                                                            "alias": "SaasSecurityApiLicenseDescription: description",
+                                                            "alias": "saasSecurityApiLicenseDescription: description",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -7819,7 +8347,7 @@
                                                             "varName": "description"
                                                         },
                                                         "expirationDate": {
-                                                            "alias": "SaasSecurityApiLicenseExpirationDate: expirationDate",
+                                                            "alias": "saasSecurityApiLicenseExpirationDate: expirationDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License expiration date",
@@ -7841,7 +8369,7 @@
                                                             "varName": "expirationDate"
                                                         },
                                                         "lastUpdated": {
-                                                            "alias": "SaasSecurityApiLicenseLastUpdated: lastUpdated",
+                                                            "alias": "saasSecurityApiLicenseLastUpdated: lastUpdated",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The date of the last update to the license",
@@ -7862,7 +8390,7 @@
                                                             "varName": "lastUpdated"
                                                         },
                                                         "plan": {
-                                                            "alias": "SaasSecurityApiLicensePlan: plan",
+                                                            "alias": "saasSecurityApiLicensePlan: plan",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License plan type",
@@ -7908,7 +8436,7 @@
                                                             "varName": "plan"
                                                         },
                                                         "sku": {
-                                                            "alias": "SaasSecurityApiLicenseSku: sku",
+                                                            "alias": "saasSecurityApiLicenseSku: sku",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The license SKU",
@@ -8075,6 +8603,12 @@
                                                                         },
                                                                         {
                                                                             "deprecationReason": null,
+                                                                            "description": "Cato IoT/OT Security service SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_IOT_OT"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
                                                                             "description": "Cato Threat Prevention (legacy) service SKU",
                                                                             "isDeprecated": false,
                                                                             "name": "CATO_THREAT_PREVENTION"
@@ -8128,7 +8662,7 @@
                                                             "varName": "sku"
                                                         },
                                                         "startDate": {
-                                                            "alias": "SaasSecurityApiLicenseStartDate: startDate",
+                                                            "alias": "saasSecurityApiLicenseStartDate: startDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License start date",
@@ -8149,7 +8683,7 @@
                                                             "varName": "startDate"
                                                         },
                                                         "status": {
-                                                            "alias": "SaasSecurityApiLicenseStatus: status",
+                                                            "alias": "saasSecurityApiLicenseStatus: status",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License activation status",
@@ -8245,7 +8779,7 @@
                                                     "enumValues": null,
                                                     "fields": {
                                                         "description": {
-                                                            "alias": "SiteLicenseDescription: description",
+                                                            "alias": "siteLicenseDescription: description",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -8266,7 +8800,7 @@
                                                             "varName": "description"
                                                         },
                                                         "expirationDate": {
-                                                            "alias": "SiteLicenseExpirationDate: expirationDate",
+                                                            "alias": "siteLicenseExpirationDate: expirationDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License expiration date",
@@ -8288,7 +8822,7 @@
                                                             "varName": "expirationDate"
                                                         },
                                                         "lastUpdated": {
-                                                            "alias": "SiteLicenseLastUpdated: lastUpdated",
+                                                            "alias": "siteLicenseLastUpdated: lastUpdated",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The date of the last update to the license",
@@ -8309,7 +8843,7 @@
                                                             "varName": "lastUpdated"
                                                         },
                                                         "plan": {
-                                                            "alias": "SiteLicensePlan: plan",
+                                                            "alias": "siteLicensePlan: plan",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License plan type",
@@ -8406,9 +8940,9 @@
                                                             "isDeprecated": false,
                                                             "name": "site",
                                                             "path": "licensingInfo.licenses.SiteLicense.site",
-                                                            "requestStr": "$SiteRef:SiteRef ",
+                                                            "requestStr": "$siteRef:SiteRef ",
                                                             "required": false,
-                                                            "responseStr": "site:$SiteRef ",
+                                                            "responseStr": "site:$siteRef ",
                                                             "type": {
                                                                 "definition": {
                                                                     "description": null,
@@ -8470,7 +9004,7 @@
                                                                 "name": "SiteRef",
                                                                 "non_null": false
                                                             },
-                                                            "varName": "SiteRef"
+                                                            "varName": "siteRef"
                                                         },
                                                         "siteLicenseGroup": {
                                                             "args": {},
@@ -8629,7 +9163,7 @@
                                                             "varName": "siteLicenseType"
                                                         },
                                                         "sku": {
-                                                            "alias": "SiteLicenseSku: sku",
+                                                            "alias": "siteLicenseSku: sku",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The license SKU",
@@ -8796,6 +9330,12 @@
                                                                         },
                                                                         {
                                                                             "deprecationReason": null,
+                                                                            "description": "Cato IoT/OT Security service SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_IOT_OT"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
                                                                             "description": "Cato Threat Prevention (legacy) service SKU",
                                                                             "isDeprecated": false,
                                                                             "name": "CATO_THREAT_PREVENTION"
@@ -8849,7 +9389,7 @@
                                                             "varName": "sku"
                                                         },
                                                         "startDate": {
-                                                            "alias": "SiteLicenseStartDate: startDate",
+                                                            "alias": "siteLicenseStartDate: startDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License start date",
@@ -8870,7 +9410,7 @@
                                                             "varName": "startDate"
                                                         },
                                                         "status": {
-                                                            "alias": "SiteLicenseStatus: status",
+                                                            "alias": "siteLicenseStatus: status",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License activation status",
@@ -8966,7 +9506,7 @@
                                                     "enumValues": null,
                                                     "fields": {
                                                         "description": {
-                                                            "alias": "ThreatPreventionLicenseDescription: description",
+                                                            "alias": "threatPreventionLicenseDescription: description",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -8987,7 +9527,7 @@
                                                             "varName": "description"
                                                         },
                                                         "expirationDate": {
-                                                            "alias": "ThreatPreventionLicenseExpirationDate: expirationDate",
+                                                            "alias": "threatPreventionLicenseExpirationDate: expirationDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License expiration date",
@@ -9009,7 +9549,7 @@
                                                             "varName": "expirationDate"
                                                         },
                                                         "lastUpdated": {
-                                                            "alias": "ThreatPreventionLicenseLastUpdated: lastUpdated",
+                                                            "alias": "threatPreventionLicenseLastUpdated: lastUpdated",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The date of the last update to the license",
@@ -9030,7 +9570,7 @@
                                                             "varName": "lastUpdated"
                                                         },
                                                         "plan": {
-                                                            "alias": "ThreatPreventionLicensePlan: plan",
+                                                            "alias": "threatPreventionLicensePlan: plan",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License plan type",
@@ -9076,7 +9616,7 @@
                                                             "varName": "plan"
                                                         },
                                                         "sku": {
-                                                            "alias": "ThreatPreventionLicenseSku: sku",
+                                                            "alias": "threatPreventionLicenseSku: sku",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The license SKU",
@@ -9243,6 +9783,12 @@
                                                                         },
                                                                         {
                                                                             "deprecationReason": null,
+                                                                            "description": "Cato IoT/OT Security service SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_IOT_OT"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
                                                                             "description": "Cato Threat Prevention (legacy) service SKU",
                                                                             "isDeprecated": false,
                                                                             "name": "CATO_THREAT_PREVENTION"
@@ -9296,7 +9842,7 @@
                                                             "varName": "sku"
                                                         },
                                                         "startDate": {
-                                                            "alias": "ThreatPreventionLicenseStartDate: startDate",
+                                                            "alias": "threatPreventionLicenseStartDate: startDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License start date",
@@ -9317,7 +9863,7 @@
                                                             "varName": "startDate"
                                                         },
                                                         "status": {
-                                                            "alias": "ThreatPreventionLicenseStatus: status",
+                                                            "alias": "threatPreventionLicenseStatus: status",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License activation status",
@@ -9392,7 +9938,7 @@
                                                     "enumValues": null,
                                                     "fields": {
                                                         "description": {
-                                                            "alias": "XdrProLicenseDescription: description",
+                                                            "alias": "xdrProLicenseDescription: description",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -9413,7 +9959,7 @@
                                                             "varName": "description"
                                                         },
                                                         "expirationDate": {
-                                                            "alias": "XdrProLicenseExpirationDate: expirationDate",
+                                                            "alias": "xdrProLicenseExpirationDate: expirationDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License expiration date",
@@ -9435,7 +9981,7 @@
                                                             "varName": "expirationDate"
                                                         },
                                                         "lastUpdated": {
-                                                            "alias": "XdrProLicenseLastUpdated: lastUpdated",
+                                                            "alias": "xdrProLicenseLastUpdated: lastUpdated",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The date of the last update to the license",
@@ -9456,7 +10002,7 @@
                                                             "varName": "lastUpdated"
                                                         },
                                                         "plan": {
-                                                            "alias": "XdrProLicensePlan: plan",
+                                                            "alias": "xdrProLicensePlan: plan",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License plan type",
@@ -9502,7 +10048,7 @@
                                                             "varName": "plan"
                                                         },
                                                         "sku": {
-                                                            "alias": "XdrProLicenseSku: sku",
+                                                            "alias": "xdrProLicenseSku: sku",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The license SKU",
@@ -9669,6 +10215,12 @@
                                                                         },
                                                                         {
                                                                             "deprecationReason": null,
+                                                                            "description": "Cato IoT/OT Security service SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_IOT_OT"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
                                                                             "description": "Cato Threat Prevention (legacy) service SKU",
                                                                             "isDeprecated": false,
                                                                             "name": "CATO_THREAT_PREVENTION"
@@ -9722,7 +10274,7 @@
                                                             "varName": "sku"
                                                         },
                                                         "startDate": {
-                                                            "alias": "XdrProLicenseStartDate: startDate",
+                                                            "alias": "xdrProLicenseStartDate: startDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License start date",
@@ -9743,7 +10295,7 @@
                                                             "varName": "startDate"
                                                         },
                                                         "status": {
-                                                            "alias": "XdrProLicenseStatus: status",
+                                                            "alias": "xdrProLicenseStatus: status",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License activation status",
@@ -9839,7 +10391,7 @@
                                                     "enumValues": null,
                                                     "fields": {
                                                         "description": {
-                                                            "alias": "ZtnaUsersLicenseDescription: description",
+                                                            "alias": "ztnaUsersLicenseDescription: description",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -9860,7 +10412,7 @@
                                                             "varName": "description"
                                                         },
                                                         "expirationDate": {
-                                                            "alias": "ZtnaUsersLicenseExpirationDate: expirationDate",
+                                                            "alias": "ztnaUsersLicenseExpirationDate: expirationDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License expiration date",
@@ -9882,7 +10434,7 @@
                                                             "varName": "expirationDate"
                                                         },
                                                         "lastUpdated": {
-                                                            "alias": "ZtnaUsersLicenseLastUpdated: lastUpdated",
+                                                            "alias": "ztnaUsersLicenseLastUpdated: lastUpdated",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The date of the last update to the license",
@@ -9903,7 +10455,7 @@
                                                             "varName": "lastUpdated"
                                                         },
                                                         "plan": {
-                                                            "alias": "ZtnaUsersLicensePlan: plan",
+                                                            "alias": "ztnaUsersLicensePlan: plan",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License plan type",
@@ -9949,7 +10501,7 @@
                                                             "varName": "plan"
                                                         },
                                                         "sku": {
-                                                            "alias": "ZtnaUsersLicenseSku: sku",
+                                                            "alias": "ztnaUsersLicenseSku: sku",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "The license SKU",
@@ -10116,6 +10668,12 @@
                                                                         },
                                                                         {
                                                                             "deprecationReason": null,
+                                                                            "description": "Cato IoT/OT Security service SKU",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CATO_IOT_OT"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
                                                                             "description": "Cato Threat Prevention (legacy) service SKU",
                                                                             "isDeprecated": false,
                                                                             "name": "CATO_THREAT_PREVENTION"
@@ -10169,7 +10727,7 @@
                                                             "varName": "sku"
                                                         },
                                                         "startDate": {
-                                                            "alias": "ZtnaUsersLicenseStartDate: startDate",
+                                                            "alias": "ztnaUsersLicenseStartDate: startDate",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License start date",
@@ -10190,7 +10748,7 @@
                                                             "varName": "startDate"
                                                         },
                                                         "status": {
-                                                            "alias": "ZtnaUsersLicenseStatus: status",
+                                                            "alias": "ztnaUsersLicenseStatus: status",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "License activation status",
@@ -10362,7 +10920,7 @@
                                         "name": "License",
                                         "non_null": false
                                     },
-                                    "varName": "License"
+                                    "varName": "license"
                                 }
                             },
                             "inputFields": null,
@@ -10378,7 +10936,7 @@
                         "name": "LicensingInfo",
                         "non_null": false
                     },
-                    "varName": "LicensingInfo"
+                    "varName": "licensingInfo"
                 }
             },
             "inputFields": null,

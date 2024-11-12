@@ -1,13 +1,13 @@
 {
     "operationName": "events",
-    "query": "query events ( $limit:Int $from:Int $timeFrame:TimeFrame! $EventsMeasure:[EventsMeasure] $EventsDimension:[EventsDimension] $EventsFilter:[EventsFilter!] $EventsSort:[EventsSort!] ) { events ( timeFrame:$timeFrame measures:$EventsMeasure dimensions:$EventsDimension filters:$EventsFilter sort:$EventsSort ) { id from to total totals records ( limit:$limit from:$from ) { trends prevTimeFrame flatFields } } }",
+    "query": "query events ( $limit:Int $from:Int $timeFrame:TimeFrame! $eventsMeasure:[EventsMeasure] $eventsDimension:[EventsDimension] $eventsFilter:[EventsFilter!] $eventsSort:[EventsSort!] ) { events ( timeFrame:$timeFrame measures:$eventsMeasure dimensions:$eventsDimension filters:$eventsFilter sort:$eventsSort ) { id from to total totals records ( limit:$limit from:$from ) { trends prevTimeFrame flatFields } } }",
     "variables": {
-        "EventsDimension": {
+        "eventsDimension": {
             "fieldName": {
                 "fieldName": "enum(EventFieldName)"
             }
         },
-        "EventsFilter": {
+        "eventsFilter": {
             "fieldName": {
                 "fieldName": "enum(EventFieldName)"
             },
@@ -20,7 +20,7 @@
                 ]
             }
         },
-        "EventsMeasure": {
+        "eventsMeasure": {
             "aggType": {
                 "aggType": "enum(AggregationType)"
             },
@@ -31,7 +31,7 @@
                 "trend": "Boolean"
             }
         },
-        "EventsSort": {
+        "eventsSort": {
             "fieldName": {
                 "fieldName": "enum(EventFieldName)"
             },

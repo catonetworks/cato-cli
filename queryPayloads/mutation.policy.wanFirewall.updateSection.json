@@ -1,19 +1,19 @@
 {
     "operationName": "policyWanFirewallUpdateSection",
-    "query": "mutation policyWanFirewallUpdateSection ( $PolicyUpdateSectionInput:PolicyUpdateSectionInput! $WanFirewallPolicyMutationInput:WanFirewallPolicyMutationInput ) { policy ( ) { wanFirewall ( input:$WanFirewallPolicyMutationInput ) { updateSection ( input:$PolicyUpdateSectionInput ) { PolicySectionPayloadSection: section { audit { updatedTime updatedBy } section { id name } properties } PolicyMutationStatusStatus: status PolicyMutationErrorErrors: errors { errorMessage errorCode } } } } }",
+    "query": "mutation policyWanFirewallUpdateSection ( $policyUpdateSectionInput:PolicyUpdateSectionInput! $wanFirewallPolicyMutationInput:WanFirewallPolicyMutationInput ) { policy ( ) { wanFirewall ( input:$wanFirewallPolicyMutationInput ) { updateSection ( input:$policyUpdateSectionInput ) { policySectionPayloadSection: section { audit { updatedTime updatedBy } section { id name } properties } policyMutationStatusStatus: status policyMutationErrorErrors: errors { errorMessage errorCode } } } } }",
     "variables": {
-        "PolicyUpdateSectionInput": {
-            "PolicyUpdateSectionInfoInput": {
+        "policyUpdateSectionInput": {
+            "id": {
+                "id": "ID"
+            },
+            "policyUpdateSectionInfoInput": {
                 "name": {
                     "name": "String"
                 }
-            },
-            "id": {
-                "id": "ID"
             }
         },
-        "WanFirewallPolicyMutationInput": {
-            "PolicyMutationRevisionInput": {
+        "wanFirewallPolicyMutationInput": {
+            "policyMutationRevisionInput": {
                 "id": {
                     "id": "ID"
                 }

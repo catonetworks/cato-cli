@@ -1,9 +1,19 @@
 {
     "operationName": "sitesUpdateSiteGeneralDetails",
-    "query": "mutation sitesUpdateSiteGeneralDetails ( $siteId:ID! $UpdateSiteGeneralDetailsInput:UpdateSiteGeneralDetailsInput! ) { sites ( ) { updateSiteGeneralDetails ( siteId:$siteId input:$UpdateSiteGeneralDetailsInput ) { siteId } } }",
+    "query": "mutation sitesUpdateSiteGeneralDetails ( $siteId:ID! $updateSiteGeneralDetailsInput:UpdateSiteGeneralDetailsInput! ) { sites ( ) { updateSiteGeneralDetails ( siteId:$siteId input:$updateSiteGeneralDetailsInput ) { siteId } } }",
     "variables": {
-        "UpdateSiteGeneralDetailsInput": {
-            "UpdateSiteLocationInput": {
+        "siteId": "ID",
+        "updateSiteGeneralDetailsInput": {
+            "description": {
+                "description": "String"
+            },
+            "name": {
+                "name": "String"
+            },
+            "siteType": {
+                "siteType": "enum(SiteType)"
+            },
+            "updateSiteLocationInput": {
                 "address": {
                     "address": "String"
                 },
@@ -19,17 +29,7 @@
                 "timezone": {
                     "timezone": "String"
                 }
-            },
-            "description": {
-                "description": "String"
-            },
-            "name": {
-                "name": "String"
-            },
-            "siteType": {
-                "siteType": "enum(SiteType)"
             }
-        },
-        "siteId": "ID"
+        }
     }
 }

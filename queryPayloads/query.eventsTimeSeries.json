@@ -1,13 +1,14 @@
 {
     "operationName": "eventsTimeSeries",
-    "query": "query eventsTimeSeries ( $perSecond:Boolean $withMissingData:Boolean $buckets:Int! $timeFrame:TimeFrame! $EventsMeasure:[EventsMeasure] $EventsDimension:[EventsDimension] $EventsFilter:[EventsFilter!] ) { eventsTimeSeries ( timeFrame:$timeFrame measures:$EventsMeasure dimensions:$EventsDimension filters:$EventsFilter ) { id from to granularity timeseries ( buckets:$buckets ) { data ( perSecond:$perSecond withMissingData:$withMissingData ) label DimensionDataDimensions: dimensions { label value } TimeseriesKeyKey: key { measureFieldName dimensions { fieldName value } } sum UnitTypeUnits: units info } } }",
+    "query": "query eventsTimeSeries ( $perSecond:Boolean $withMissingData:Boolean $buckets:Int! $timeFrame:TimeFrame! $eventsMeasure:[EventsMeasure] $eventsDimension:[EventsDimension] $eventsFilter:[EventsFilter!] ) { eventsTimeSeries ( timeFrame:$timeFrame measures:$eventsMeasure dimensions:$eventsDimension filters:$eventsFilter ) { id from to granularity timeseries ( buckets:$buckets ) { data ( perSecond:$perSecond withMissingData:$withMissingData ) label dimensionDataDimensions: dimensions { label value } timeseriesKeyKey: key { measureFieldName dimensions { fieldName value } } sum unitTypeUnits: units info } } }",
     "variables": {
-        "EventsDimension": {
+        "buckets": "Int",
+        "eventsDimension": {
             "fieldName": {
                 "fieldName": "enum(EventFieldName)"
             }
         },
-        "EventsFilter": {
+        "eventsFilter": {
             "fieldName": {
                 "fieldName": "enum(EventFieldName)"
             },
@@ -20,7 +21,7 @@
                 ]
             }
         },
-        "EventsMeasure": {
+        "eventsMeasure": {
             "aggType": {
                 "aggType": "enum(AggregationType)"
             },
@@ -31,7 +32,6 @@
                 "trend": "Boolean"
             }
         },
-        "buckets": "Int",
         "perSecond": "Boolean",
         "timeFrame": "TimeFrame",
         "withMissingData": "Boolean"

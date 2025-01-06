@@ -1,0 +1,122 @@
+{
+    "operationName": "policyRemotePortFwdUpdateRule",
+    "query": "mutation policyRemotePortFwdUpdateRule ( $remotePortFwdUpdateRuleInput:RemotePortFwdUpdateRuleInput! $remotePortFwdPolicyMutationInput:RemotePortFwdPolicyMutationInput ) { policy ( ) { remotePortFwd ( input:$remotePortFwdPolicyMutationInput ) { updateRule ( input:$remotePortFwdUpdateRuleInput ) { remotePortFwdRulePayloadRule: rule { audit { updatedTime updatedBy } rule { id name description index policySectionInfoSection: section { id name } enabled forwardIcmp allocatedIpRefExternalIp: externalIp { id name } portRangeExternalPortRange: externalPortRange { from to } internalIp portRangeInternalPortRange: internalPortRange { from to } remotePortFwdRemoteIpsRemoteIPs: remoteIPs { ip ipAddressRangeIpRange: ipRange { from to } subnet globalIpRangeRefGlobalIpRange: globalIpRange { id name } } remotePortFwdRestrictionTypeRestrictionType: restrictionType policyRuleTrackingAlertTracking: tracking { enabled policyRuleTrackingFrequencyEnumFrequency: frequency subscriptionGroupRefSubscriptionGroup: subscriptionGroup { id name } subscriptionWebhookRefWebhook: webhook { id name } subscriptionMailingListRefMailingList: mailingList { id name } } } properties } policyMutationStatusStatus: status policyMutationErrorErrors: errors { errorMessage errorCode } } } } }",
+    "variables": {
+        "remotePortFwdPolicyMutationInput": {
+            "policyMutationRevisionInput": {
+                "id": {
+                    "id": "ID"
+                }
+            }
+        },
+        "remotePortFwdUpdateRuleInput": {
+            "id": {
+                "id": "ID"
+            },
+            "remotePortFwdUpdateRuleDataInput": {
+                "description": {
+                    "description": "String"
+                },
+                "enabled": {
+                    "enabled": "Boolean"
+                },
+                "externalIp": {
+                    "by": {
+                        "by": "enum(ObjectRefBy)"
+                    },
+                    "input": {
+                        "input": "String"
+                    }
+                },
+                "externalPortRange": {
+                    "from": {
+                        "from": "Port"
+                    },
+                    "to": {
+                        "to": "Port"
+                    }
+                },
+                "forwardIcmp": {
+                    "forwardIcmp": "Boolean"
+                },
+                "internalIp": {
+                    "internalIp": "IPAddress"
+                },
+                "internalPortRange": {
+                    "from": {
+                        "from": "Port"
+                    },
+                    "to": {
+                        "to": "Port"
+                    }
+                },
+                "name": {
+                    "name": "String"
+                },
+                "remoteIPs": {
+                    "globalIpRange": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "ip": {
+                        "ip": [
+                            "IPAddress"
+                        ]
+                    },
+                    "ipRange": {
+                        "from": {
+                            "from": "IPAddress"
+                        },
+                        "to": {
+                            "to": "IPAddress"
+                        }
+                    },
+                    "subnet": {
+                        "subnet": [
+                            "NetworkSubnet"
+                        ]
+                    }
+                },
+                "restrictionType": {
+                    "restrictionType": "enum(RemotePortFwdRestrictionType)"
+                },
+                "tracking": {
+                    "enabled": {
+                        "enabled": "Boolean"
+                    },
+                    "frequency": {
+                        "frequency": "enum(PolicyRuleTrackingFrequencyEnum)"
+                    },
+                    "mailingList": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "subscriptionGroup": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "webhook": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

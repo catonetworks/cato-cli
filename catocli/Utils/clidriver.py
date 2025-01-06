@@ -43,6 +43,7 @@ from ..parsers.query_eventsTimeSeries import query_eventsTimeSeries_parse
 from ..parsers.query_hardwareManagement import query_hardwareManagement_parse
 from ..parsers.query_licensing import query_licensing_parse
 from ..parsers.query_policy import query_policy_parse
+from ..parsers.query_site import query_site_parse
 from ..parsers.query_subDomains import query_subDomains_parse
 from ..parsers.query_xdr import query_xdr_parse
 
@@ -53,7 +54,18 @@ configuration.host = "{}".format(catocli.__cato_host__)
 configuration.debug = CATO_DEBUG
 configuration.version = "{}".format(catocli.__version__)
 
-parser = argparse.ArgumentParser(prog='catocli', usage='%(prog)s <operationType> <operationName> [options]', description="CLI for query on CATO via API.")
+defaultReadmeStr = """
+The Cato CLI is a command-line interface tool designed to simplify the management and automation of Cato Networks’ configurations and operations. 
+It enables users to interact with Cato’s API for tasks such as managing Cato Management Application (CMA) site and account configurations, security policies, retrieving events, etc.
+
+
+For assistance in generating syntax for the cli to perform various operations, please refer to the Cato API Explorer application.
+
+
+https://github.com/catonetworks/cato-api-explorer
+"""
+
+parser = argparse.ArgumentParser(prog='catocli', usage='%(prog)s <operationType> <operationName> [options]', description=defaultReadmeStr)
 parser.add_argument('--version', action='version', version=catocli.__version__)
 subparsers = parser.add_subparsers()
 custom_parsers = custom_parse(subparsers)
@@ -89,6 +101,7 @@ query_eventsTimeSeries_parser = query_eventsTimeSeries_parse(query_subparsers)
 query_hardwareManagement_parser = query_hardwareManagement_parse(query_subparsers)
 query_licensing_parser = query_licensing_parse(query_subparsers)
 query_policy_parser = query_policy_parse(query_subparsers)
+query_site_parser = query_site_parse(query_subparsers)
 query_subDomains_parser = query_subDomains_parse(query_subparsers)
 query_xdr_parser = query_xdr_parse(query_subparsers)
 

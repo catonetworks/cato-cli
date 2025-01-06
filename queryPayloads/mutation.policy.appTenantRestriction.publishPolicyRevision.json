@@ -1,0 +1,21 @@
+{
+    "operationName": "policyAppTenantRestrictionPublishPolicyRevision",
+    "query": "mutation policyAppTenantRestrictionPublishPolicyRevision ( $policyPublishRevisionInput:PolicyPublishRevisionInput $appTenantRestrictionPolicyMutationInput:AppTenantRestrictionPolicyMutationInput ) { policy ( ) { appTenantRestriction ( input:$appTenantRestrictionPolicyMutationInput ) { publishPolicyRevision ( input:$policyPublishRevisionInput ) { appTenantRestrictionPolicyPolicy: policy { enabled rules { policyElementAuditAudit: audit { updatedTime updatedBy } appTenantRestrictionRuleRule: rule { id name description index policySectionInfoSection: section { id name } enabled applicationRefApplication: application { id name } appTenantRestrictionHeaderValueHeaders: headers { name value } appTenantRestrictionSourceSource: source { ip hostRefHost: host { id name } siteRefSite: site { id name } subnet ipAddressRangeIpRange: ipRange { from to } globalIpRangeRefGlobalIpRange: globalIpRange { id name } networkInterfaceRefNetworkInterface: networkInterface { id name } siteNetworkSubnetRefSiteNetworkSubnet: siteNetworkSubnet { id name } floatingSubnetRefFloatingSubnet: floatingSubnet { id name } userRefUser: user { id name } usersGroupRefUsersGroup: usersGroup { id name } groupRefGroup: group { id name } systemGroupRefSystemGroup: systemGroup { id name } countryRefCountry: country { id name } } policyScheduleSchedule: schedule { policyActiveOnEnumActiveOn: activeOn policyCustomTimeframeCustomTimeframe: customTimeframe { from to } policyCustomRecurringCustomRecurring: customRecurring { from to days } } appTenantRestrictionActionEnumAction: action appTenantRestrictionSeverityEnumSeverity: severity } policyElementPropertiesEnumProperties: properties } sections { policyElementAuditAudit: audit { updatedTime updatedBy } policySectionInfoSection: section { id name } policyElementPropertiesEnumProperties: properties } audit { publishedTime publishedBy } revision { id name description changes createdTime updatedTime } } policyMutationStatusStatus: status policyMutationErrorErrors: errors { errorMessage errorCode } } } } }",
+    "variables": {
+        "appTenantRestrictionPolicyMutationInput": {
+            "policyMutationRevisionInput": {
+                "id": {
+                    "id": "ID"
+                }
+            }
+        },
+        "policyPublishRevisionInput": {
+            "description": {
+                "description": "String"
+            },
+            "name": {
+                "name": "String"
+            }
+        }
+    }
+}

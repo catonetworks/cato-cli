@@ -8,6 +8,48 @@ def mutation_sites_parse(mutation_subparsers):
 
 	mutation_sites_subparsers = mutation_sites_parser.add_subparsers()
 
+	mutation_sites_addBgpPeer_parser = mutation_sites_subparsers.add_parser('addBgpPeer', 
+			help='addBgpPeer() sites operation', 
+			usage=get_help("mutation_sites_addBgpPeer"))
+
+	mutation_sites_addBgpPeer_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_sites_addBgpPeer_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_sites_addBgpPeer_parser.add_argument('-t', const=True, default=False, nargs='?', 
+		help='Print test request preview without sending api call')
+	mutation_sites_addBgpPeer_parser.add_argument('-v', const=True, default=False, nargs='?', 
+		help='Verbose output')
+	mutation_sites_addBgpPeer_parser.add_argument('-p', const=True, default=False, nargs='?', 
+		help='Pretty print')
+	mutation_sites_addBgpPeer_parser.set_defaults(func=createRequest,operation_name='mutation.sites.addBgpPeer')
+
+	mutation_sites_addCloudInterconnectPhysicalConnection_parser = mutation_sites_subparsers.add_parser('addCloudInterconnectPhysicalConnection', 
+			help='addCloudInterconnectPhysicalConnection() sites operation', 
+			usage=get_help("mutation_sites_addCloudInterconnectPhysicalConnection"))
+
+	mutation_sites_addCloudInterconnectPhysicalConnection_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_sites_addCloudInterconnectPhysicalConnection_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_sites_addCloudInterconnectPhysicalConnection_parser.add_argument('-t', const=True, default=False, nargs='?', 
+		help='Print test request preview without sending api call')
+	mutation_sites_addCloudInterconnectPhysicalConnection_parser.add_argument('-v', const=True, default=False, nargs='?', 
+		help='Verbose output')
+	mutation_sites_addCloudInterconnectPhysicalConnection_parser.add_argument('-p', const=True, default=False, nargs='?', 
+		help='Pretty print')
+	mutation_sites_addCloudInterconnectPhysicalConnection_parser.set_defaults(func=createRequest,operation_name='mutation.sites.addCloudInterconnectPhysicalConnection')
+
+	mutation_sites_addCloudInterconnectSite_parser = mutation_sites_subparsers.add_parser('addCloudInterconnectSite', 
+			help='addCloudInterconnectSite() sites operation', 
+			usage=get_help("mutation_sites_addCloudInterconnectSite"))
+
+	mutation_sites_addCloudInterconnectSite_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_sites_addCloudInterconnectSite_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_sites_addCloudInterconnectSite_parser.add_argument('-t', const=True, default=False, nargs='?', 
+		help='Print test request preview without sending api call')
+	mutation_sites_addCloudInterconnectSite_parser.add_argument('-v', const=True, default=False, nargs='?', 
+		help='Verbose output')
+	mutation_sites_addCloudInterconnectSite_parser.add_argument('-p', const=True, default=False, nargs='?', 
+		help='Pretty print')
+	mutation_sites_addCloudInterconnectSite_parser.set_defaults(func=createRequest,operation_name='mutation.sites.addCloudInterconnectSite')
+
 	mutation_sites_addIpsecIkeV2Site_parser = mutation_sites_subparsers.add_parser('addIpsecIkeV2Site', 
 			help='addIpsecIkeV2Site() sites operation', 
 			usage=get_help("mutation_sites_addIpsecIkeV2Site"))
@@ -78,6 +120,34 @@ def mutation_sites_parse(mutation_subparsers):
 		help='Pretty print')
 	mutation_sites_addStaticHost_parser.set_defaults(func=createRequest,operation_name='mutation.sites.addStaticHost')
 
+	mutation_sites_removeBgpPeer_parser = mutation_sites_subparsers.add_parser('removeBgpPeer', 
+			help='removeBgpPeer() sites operation', 
+			usage=get_help("mutation_sites_removeBgpPeer"))
+
+	mutation_sites_removeBgpPeer_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_sites_removeBgpPeer_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_sites_removeBgpPeer_parser.add_argument('-t', const=True, default=False, nargs='?', 
+		help='Print test request preview without sending api call')
+	mutation_sites_removeBgpPeer_parser.add_argument('-v', const=True, default=False, nargs='?', 
+		help='Verbose output')
+	mutation_sites_removeBgpPeer_parser.add_argument('-p', const=True, default=False, nargs='?', 
+		help='Pretty print')
+	mutation_sites_removeBgpPeer_parser.set_defaults(func=createRequest,operation_name='mutation.sites.removeBgpPeer')
+
+	mutation_sites_removeCloudInterconnectPhysicalConnection_parser = mutation_sites_subparsers.add_parser('removeCloudInterconnectPhysicalConnection', 
+			help='removeCloudInterconnectPhysicalConnection() sites operation', 
+			usage=get_help("mutation_sites_removeCloudInterconnectPhysicalConnection"))
+
+	mutation_sites_removeCloudInterconnectPhysicalConnection_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_sites_removeCloudInterconnectPhysicalConnection_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_sites_removeCloudInterconnectPhysicalConnection_parser.add_argument('-t', const=True, default=False, nargs='?', 
+		help='Print test request preview without sending api call')
+	mutation_sites_removeCloudInterconnectPhysicalConnection_parser.add_argument('-v', const=True, default=False, nargs='?', 
+		help='Verbose output')
+	mutation_sites_removeCloudInterconnectPhysicalConnection_parser.add_argument('-p', const=True, default=False, nargs='?', 
+		help='Pretty print')
+	mutation_sites_removeCloudInterconnectPhysicalConnection_parser.set_defaults(func=createRequest,operation_name='mutation.sites.removeCloudInterconnectPhysicalConnection')
+
 	mutation_sites_removeIpsecIkeV2SiteTunnels_parser = mutation_sites_subparsers.add_parser('removeIpsecIkeV2SiteTunnels', 
 			help='removeIpsecIkeV2SiteTunnels() sites operation', 
 			usage=get_help("mutation_sites_removeIpsecIkeV2SiteTunnels"))
@@ -133,6 +203,34 @@ def mutation_sites_parse(mutation_subparsers):
 	mutation_sites_removeStaticHost_parser.add_argument('-p', const=True, default=False, nargs='?', 
 		help='Pretty print')
 	mutation_sites_removeStaticHost_parser.set_defaults(func=createRequest,operation_name='mutation.sites.removeStaticHost')
+
+	mutation_sites_updateBgpPeer_parser = mutation_sites_subparsers.add_parser('updateBgpPeer', 
+			help='updateBgpPeer() sites operation', 
+			usage=get_help("mutation_sites_updateBgpPeer"))
+
+	mutation_sites_updateBgpPeer_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_sites_updateBgpPeer_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_sites_updateBgpPeer_parser.add_argument('-t', const=True, default=False, nargs='?', 
+		help='Print test request preview without sending api call')
+	mutation_sites_updateBgpPeer_parser.add_argument('-v', const=True, default=False, nargs='?', 
+		help='Verbose output')
+	mutation_sites_updateBgpPeer_parser.add_argument('-p', const=True, default=False, nargs='?', 
+		help='Pretty print')
+	mutation_sites_updateBgpPeer_parser.set_defaults(func=createRequest,operation_name='mutation.sites.updateBgpPeer')
+
+	mutation_sites_updateCloudInterconnectPhysicalConnection_parser = mutation_sites_subparsers.add_parser('updateCloudInterconnectPhysicalConnection', 
+			help='updateCloudInterconnectPhysicalConnection() sites operation', 
+			usage=get_help("mutation_sites_updateCloudInterconnectPhysicalConnection"))
+
+	mutation_sites_updateCloudInterconnectPhysicalConnection_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_sites_updateCloudInterconnectPhysicalConnection_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_sites_updateCloudInterconnectPhysicalConnection_parser.add_argument('-t', const=True, default=False, nargs='?', 
+		help='Print test request preview without sending api call')
+	mutation_sites_updateCloudInterconnectPhysicalConnection_parser.add_argument('-v', const=True, default=False, nargs='?', 
+		help='Verbose output')
+	mutation_sites_updateCloudInterconnectPhysicalConnection_parser.add_argument('-p', const=True, default=False, nargs='?', 
+		help='Pretty print')
+	mutation_sites_updateCloudInterconnectPhysicalConnection_parser.set_defaults(func=createRequest,operation_name='mutation.sites.updateCloudInterconnectPhysicalConnection')
 
 	mutation_sites_updateHa_parser = mutation_sites_subparsers.add_parser('updateHa', 
 			help='updateHa() sites operation', 

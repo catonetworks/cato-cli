@@ -1,0 +1,28 @@
+{
+    "operationName": "policyAppTenantRestrictionAddSection",
+    "query": "mutation policyAppTenantRestrictionAddSection ( $policyAddSectionInput:PolicyAddSectionInput! $appTenantRestrictionPolicyMutationInput:AppTenantRestrictionPolicyMutationInput ) { policy ( ) { appTenantRestriction ( input:$appTenantRestrictionPolicyMutationInput ) { addSection ( input:$policyAddSectionInput ) { policySectionPayloadSection: section { audit { updatedTime updatedBy } section { id name } properties } policyMutationStatusStatus: status policyMutationErrorErrors: errors { errorMessage errorCode } } } } }",
+    "variables": {
+        "appTenantRestrictionPolicyMutationInput": {
+            "policyMutationRevisionInput": {
+                "id": {
+                    "id": "ID"
+                }
+            }
+        },
+        "policyAddSectionInput": {
+            "policyAddSectionInfoInput": {
+                "name": {
+                    "name": "String"
+                }
+            },
+            "policySectionPositionInput": {
+                "position": {
+                    "position": "enum(PolicySectionPositionEnum)"
+                },
+                "ref": {
+                    "ref": "ID"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "operationName": "policyAppTenantRestrictionUpdateSection",
+    "query": "mutation policyAppTenantRestrictionUpdateSection ( $policyUpdateSectionInput:PolicyUpdateSectionInput! $appTenantRestrictionPolicyMutationInput:AppTenantRestrictionPolicyMutationInput ) { policy ( ) { appTenantRestriction ( input:$appTenantRestrictionPolicyMutationInput ) { updateSection ( input:$policyUpdateSectionInput ) { policySectionPayloadSection: section { audit { updatedTime updatedBy } section { id name } properties } policyMutationStatusStatus: status policyMutationErrorErrors: errors { errorMessage errorCode } } } } }",
+    "variables": {
+        "appTenantRestrictionPolicyMutationInput": {
+            "policyMutationRevisionInput": {
+                "id": {
+                    "id": "ID"
+                }
+            }
+        },
+        "policyUpdateSectionInput": {
+            "id": {
+                "id": "ID"
+            },
+            "policyUpdateSectionInfoInput": {
+                "name": {
+                    "name": "String"
+                }
+            }
+        }
+    }
+}

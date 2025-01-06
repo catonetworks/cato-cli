@@ -1,0 +1,57 @@
+{
+    "operationName": "site",
+    "query": "query site ( $cloudInterconnectPhysicalConnectionInput:CloudInterconnectPhysicalConnectionInput! $cloudInterconnectPhysicalConnectionIdInput:CloudInterconnectPhysicalConnectionIdInput! $cloudInterconnectConnectionConnectivityInput:CloudInterconnectConnectionConnectivityInput! $bgpPeerRefInput:BgpPeerRefInput! $bgpPeerListInput:BgpPeerListInput! $siteBgpStatusInput:SiteBgpStatusInput! ) { site ( ) { cloudInterconnectPhysicalConnection ( input:$cloudInterconnectPhysicalConnectionInput ) { id site { id name } haRole popLocation { id name } serviceProviderName encapsulationMethod subnet privateCatoIp privateSiteIp upstreamBwLimit downstreamBwLimit vlan sVlan cVlan } cloudInterconnectPhysicalConnectionId ( input:$cloudInterconnectPhysicalConnectionIdInput ) { id } cloudInterconnectConnectionConnectivity ( input:$cloudInterconnectConnectionConnectivityInput ) { success } bgpPeer ( input:$bgpPeerRefInput ) { site { id name } id name peerAsn catoAsn peerIp catoIp advertiseDefaultRoute advertiseAllRoutes advertiseSummaryRoutes summaryRoute { id route bgpCommunityCommunity: community { from to } } defaultAction performNat md5AuthKey metric holdTime keepaliveInterval bfdEnabled bfdSettings { transmitInterval receiveInterval multiplier } tracking { id enabled alertFrequency subscriptionId } } bgpPeerList ( input:$bgpPeerListInput ) { bgpPeer { siteRefSite: site { id name } id name peerAsn catoAsn peerIp catoIp advertiseDefaultRoute advertiseAllRoutes advertiseSummaryRoutes bgpSummaryRouteSummaryRoute: summaryRoute { id route bgpCommunityCommunity: community { from to } } bgpDefaultActionDefaultAction: defaultAction performNat md5AuthKey metric holdTime keepaliveInterval bfdEnabled bfdSettingsBfdSettings: bfdSettings { transmitInterval receiveInterval multiplier } bgpTrackingTracking: tracking { id enabled alertFrequency subscriptionId } } total } siteBgpStatus ( input:$siteBgpStatusInput ) { status { remoteIp bgpSession bfdSession routesFromPeer routesToPeer bgpRejectedRoutesFromPeerRejectedRoutesFromPeer: rejectedRoutesFromPeer { subnet type bgpCommunityCommunity: community { from to } rule lastPublishAttempt } } rawStatus } } }",
+    "variables": {
+        "bgpPeerListInput": {
+            "siteRefInput": {
+                "by": {
+                    "by": "enum(ObjectRefBy)"
+                },
+                "input": {
+                    "input": "String"
+                }
+            }
+        },
+        "bgpPeerRefInput": {
+            "by": {
+                "by": "enum(ObjectRefBy)"
+            },
+            "input": {
+                "input": "String"
+            }
+        },
+        "cloudInterconnectConnectionConnectivityInput": {
+            "id": {
+                "id": "ID"
+            }
+        },
+        "cloudInterconnectPhysicalConnectionIdInput": {
+            "haRole": {
+                "haRole": "enum(HaRole)"
+            },
+            "siteRefInput": {
+                "by": {
+                    "by": "enum(ObjectRefBy)"
+                },
+                "input": {
+                    "input": "String"
+                }
+            }
+        },
+        "cloudInterconnectPhysicalConnectionInput": {
+            "id": {
+                "id": "ID"
+            }
+        },
+        "siteBgpStatusInput": {
+            "siteRefInput": {
+                "by": {
+                    "by": "enum(ObjectRefBy)"
+                },
+                "input": {
+                    "input": "String"
+                }
+            }
+        }
+    }
+}

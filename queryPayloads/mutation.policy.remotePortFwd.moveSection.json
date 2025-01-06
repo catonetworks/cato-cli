@@ -1,0 +1,26 @@
+{
+    "operationName": "policyRemotePortFwdMoveSection",
+    "query": "mutation policyRemotePortFwdMoveSection ( $policyMoveSectionInput:PolicyMoveSectionInput! $remotePortFwdPolicyMutationInput:RemotePortFwdPolicyMutationInput ) { policy ( ) { remotePortFwd ( input:$remotePortFwdPolicyMutationInput ) { moveSection ( input:$policyMoveSectionInput ) { policySectionPayloadSection: section { audit { updatedTime updatedBy } section { id name } properties } policyMutationStatusStatus: status policyMutationErrorErrors: errors { errorMessage errorCode } } } } }",
+    "variables": {
+        "policyMoveSectionInput": {
+            "id": {
+                "id": "ID"
+            },
+            "policySectionPositionInput": {
+                "position": {
+                    "position": "enum(PolicySectionPositionEnum)"
+                },
+                "ref": {
+                    "ref": "ID"
+                }
+            }
+        },
+        "remotePortFwdPolicyMutationInput": {
+            "policyMutationRevisionInput": {
+                "id": {
+                    "id": "ID"
+                }
+            }
+        }
+    }
+}

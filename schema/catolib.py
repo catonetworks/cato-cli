@@ -503,6 +503,9 @@ def writeCliDriver(catoApiSchema):
 			operationNameAry = operation.split(".")
 			parsersIndex[operationNameAry[0]+"_"+operationNameAry[1]] = True
 	parsers = list(parsersIndex.keys())
+
+
+
 	cliDriverStr = """
 import os
 import argparse
@@ -536,7 +539,14 @@ configuration.host = "{}".format(catocli.__cato_host__)
 configuration.debug = CATO_DEBUG
 configuration.version = "{}".format(catocli.__version__)
 
-parser = argparse.ArgumentParser(prog='catocli', usage='%(prog)s <operationType> <operationName> [options]', description="CLI for query on CATO via API.")
+defaultReadmeStr = \"""
+The Cato CLI is a command-line interface tool designed to simplify the management and automation of Cato Networks’ configurations and operations. 
+It enables users to interact with Cato’s API for tasks such as managing Cato Management Application (CMA) site and account configurations, security policies, retrieving events, etc.\n\n
+For assistance in generating syntax for the cli to perform various operations, please refer to the Cato API Explorer application.\n\n
+https://github.com/catonetworks/cato-api-explorer
+\"""
+
+parser = argparse.ArgumentParser(prog='catocli', usage='%(prog)s <operationType> <operationName> [options]', description=defaultReadmeStr)
 parser.add_argument('--version', action='version', version=catocli.__version__)
 subparsers = parser.add_subparsers()
 custom_parsers = custom_parse(subparsers)

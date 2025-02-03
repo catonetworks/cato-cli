@@ -752,7 +752,7 @@ def writeReadmes(catoApiSchema):
 
 `catocli query siteLocation '{"filters":[{"search": "Your stateName here","field":"stateName","operation":"endsWith"}]}'`
 
-`catocli query siteLocation '{filters:[{"search": "Your City here","field":"city","operation":"startsWith"},{"search": "Your StateName here","field":"stateName","operation":"endsWith"},{"search": "Your Country here","field":"countryName","operation":"contains"}}'`
+`catocli query siteLocation '{"filters":[{"search": "Your City here","field":"city","operation":"startsWith"},{"search": "Your StateName here","field":"stateName","operation":"endsWith"},{"search": "Your Country here","field":"countryName","operation":"contains"}}'`
 
 #### Operation Arguments for query.siteLocation ####
 `accountID` [ID] - (required) Unique Identifier of Account. 

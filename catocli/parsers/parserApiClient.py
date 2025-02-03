@@ -45,28 +45,28 @@ def querySiteLocation(args, configuration):
 	try:
 		variablesObj = json.loads(params["json"])	
 	except ValueError as e:
-		print("ERROR: Query argument must be valid json in quotes. ",e,'\n\nExample: \'{filters:[{"search": "Your city here","field":"city","opeation":"exact"}}\'')
+		print("ERROR: Query argument must be valid json in quotes. ",e,'\n\nExample: \'{"filters":[{"search": "Your city here","field":"city","opeation":"exact"}}\'')
 		exit()
 	if not variablesObj.get("filters"):
-		print("ERROR: Missing argument, must include filters array. ",e,'\n\nExample: \'{filters:[{"search": "Your city here","field":"city","opeation":"exact"}}\'')
+		print("ERROR: Missing argument, must include filters array. ",e,'\n\nExample: \'{"filters":[{"search": "Your city here","field":"city","opeation":"exact"}}\'')
 		exit()
 	if not isinstance(variablesObj.get("filters"), list):
-		print("ERROR: Invalid argument, must include filters array. ",e,'\n\nExample: \'{filters:[{"search": "Your city here","field":"city","opeation":"exact"}}\'')
+		print("ERROR: Invalid argument, must include filters array. ",e,'\n\nExample: \'{"filters":[{"search": "Your city here","field":"city","opeation":"exact"}}\'')
 		exit()
 	requiredFields = ["search","field","operation"]
 	for filter in variablesObj["filters"]:
 		if not isinstance(filter, dict):
-			print("ERROR: Invalid filter '"+str(filter)+"', filters must be valid json and include 'search', 'field', and 'operation'. ",'\n\nExample: \'{filters:[{"search": "Your city here","field":"city","opeation":"exact"}}\'',type(filter))
+			print("ERROR: Invalid filter '"+str(filter)+"', filters must be valid json and include 'search', 'field', and 'operation'. ",'\n\nExample: \'{"filters":[{"search": "Your city here","field":"city","opeation":"exact"}}\'',type(filter))
 			exit()	
 		for param in filter:
 			if param not in requiredFields:
-				print("ERROR: Invalid field '"+param+"', filters must include 'search', 'field', and 'operation'. ",'\n\nExample: \'{filters:[{"search": "Your city here","field":"city","opeation":"exact"}}\'')
+				print("ERROR: Invalid field '"+param+"', filters must include 'search', 'field', and 'operation'. ",'\n\nExample: \'{"filters":[{"search": "Your city here","field":"city","opeation":"exact"}}\'')
 				exit()	
 	for filter in variablesObj["filters"]:
 		for param in filter:
 			val = filter.get(param)
 			if param=="search" and (not isinstance(val, str) or len(val)<3):
-				print("ERROR: Invalid search '"+val+"', must be a string value and at least 3 characters in lengh. ",'\n\nExample: \'{filters:[{"search": "Your city here","field":"city","opeation":"exact"}}\'')
+				print("ERROR: Invalid search '"+val+"', must be a string value and at least 3 characters in lengh. ",'\n\nExample: \'{"filters":[{"search": "Your city here","field":"city","opeation":"exact"}}\'')
 				exit()
 			if param=="field" and (not isinstance(val, str) or val not in [ 'countryName', 'stateName', 'city']):
 				print("ERROR: Invalid field '"+val+"', must be one of the following: 'countryName', 'stateName', or 'city'.",'\n\nExample: \'{"search":"your query here","field":"city"}\'')

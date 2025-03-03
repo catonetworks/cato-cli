@@ -32,18 +32,17 @@ def initParser():
 	if "CATO_TOKEN" not in os.environ:
 		print("Missing authentication, please set the CATO_TOKEN environment variable with your api key.")
 		exit()
+	if "CATO_ACCOUNT_ID" not in os.environ:
+		print("Missing authentication, please set the CATO_ACCOUNT_ID environment variable with your api key.")
+		exit()
 	
 	# Process options
 	parser = OptionParser()
-	parser.add_option("-I", dest="ID", help="Account ID")
 	parser.add_option("-P", dest="prettify", action="store_true", help="Prettify output")
 	parser.add_option("-p", dest="print_entities", action="store_true", help="Print entity records")
 	parser.add_option("-v", dest="verbose", action="store_true", help="Print debug info")
 	(options, args) = parser.parse_args()
 	options.api_key = os.getenv("CATO_TOKEN")
-	if options.ID is None is None:
-		parser.print_help()
-		sys.exit()
 	if options.verbose:
 		logging.getLogger().setLevel(logging.DEBUG)
 	else:

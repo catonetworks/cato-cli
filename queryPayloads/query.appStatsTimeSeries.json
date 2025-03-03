@@ -1,6 +1,6 @@
 {
     "operationName": "appStatsTimeSeries",
-    "query": "query appStatsTimeSeries ( $perSecond:Boolean $withMissingData:Boolean $buckets:Int! $timeFrame:TimeFrame! $measure:[Measure] $dimension:[Dimension] $appStatsFilter:[AppStatsFilter!] ) { appStatsTimeSeries ( timeFrame:$timeFrame measures:$measure dimensions:$dimension filters:$appStatsFilter ) { id from to granularity timeseries ( buckets:$buckets ) { data ( perSecond:$perSecond withMissingData:$withMissingData ) label dimensionDataDimensions: dimensions { label value } timeseriesKeyKey: key { measureFieldName dimensions { fieldName value } } sum unitTypeUnits: units info } } }",
+    "query": "query appStatsTimeSeries ( $perSecond:Boolean $withMissingData:Boolean $useDefaultSizeBucket:Boolean $buckets:Int! $timeFrame:TimeFrame! $measure:[Measure] $dimension:[Dimension] $appStatsFilter:[AppStatsFilter!] ) { appStatsTimeSeries ( timeFrame:$timeFrame measures:$measure dimensions:$dimension filters:$appStatsFilter ) { id from to granularity timeseries ( buckets:$buckets ) { data ( perSecond:$perSecond withMissingData:$withMissingData useDefaultSizeBucket:$useDefaultSizeBucket ) label dimensionDataDimensions: dimensions { label value } timeseriesKeyKey: key { measureFieldName dimensions { fieldName value } } sum unitTypeUnits: units info } } }",
     "variables": {
         "appStatsFilter": {
             "fieldName": {
@@ -34,6 +34,7 @@
         },
         "perSecond": "Boolean",
         "timeFrame": "TimeFrame",
+        "useDefaultSizeBucket": "Boolean",
         "withMissingData": "Boolean"
     }
 }

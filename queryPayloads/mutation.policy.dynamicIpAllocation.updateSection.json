@@ -1,0 +1,23 @@
+{
+    "operationName": "policyDynamicIpAllocationUpdateSection",
+    "query": "mutation policyDynamicIpAllocationUpdateSection ( $policyUpdateSectionInput:PolicyUpdateSectionInput! $dynamicIpAllocationPolicyMutationInput:DynamicIpAllocationPolicyMutationInput ) { policy ( ) { dynamicIpAllocation ( input:$dynamicIpAllocationPolicyMutationInput ) { updateSection ( input:$policyUpdateSectionInput ) { policySectionPayloadSection: section { audit { updatedTime updatedBy } section { id name } properties } policyMutationStatusStatus: status policyMutationErrorErrors: errors { errorMessage errorCode } } } } }",
+    "variables": {
+        "dynamicIpAllocationPolicyMutationInput": {
+            "policyMutationRevisionInput": {
+                "id": {
+                    "id": "ID"
+                }
+            }
+        },
+        "policyUpdateSectionInput": {
+            "id": {
+                "id": "ID"
+            },
+            "policyUpdateSectionInfoInput": {
+                "name": {
+                    "name": "String"
+                }
+            }
+        }
+    }
+}

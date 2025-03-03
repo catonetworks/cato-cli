@@ -16,5 +16,5 @@
 `accountID` [ID] - (required) N/A 
 `incidentId` [ID] - (optional) N/A 
 `perSecond` [Boolean] - (optional) whether to normalize the data into per second (i.e. divide by granularity) 
-`producer` [StoryProducerEnum] - (optional) N/A Default Value: ['AnomalyStats', 'AnomalyEvents', 'ThreatHunt', 'ThreatPrevention', 'NetworkMonitor', 'NetworkXDR', 'MicrosoftEndpointDefender', 'CatoEndpointAlert', 'EntraIdAlert']
+`producer` [StoryProducerEnum] - (optional) N/A Default Value: ['AnomalyStats', 'AnomalyEvents', 'AnomalyExperience', 'ThreatHunt', 'ThreatPrevention', 'NetworkMonitor', 'NetworkXDR', 'MicrosoftEndpointDefender', 'CatoEndpointAlert', 'EntraIdAlert']
 `storyId` [ID] - (optional) N/A 

@@ -10,7 +10,7 @@
 
 `catocli query accountMetrics "$(cat < accountMetrics.json)"`
 
-`catocli query accountMetrics '{"buckets": "Int", "groupDevices": "Boolean", "groupInterfaces": "Boolean", "labels": "enum(TimeseriesMetricType)", "perSecond": "Boolean", "siteIDs": ["ID"], "timeFrame": "TimeFrame", "toRate": "Boolean", "types": ["String"], "userIDs": ["ID"], "withMissingData": "Boolean"}'`
+`catocli query accountMetrics '{"buckets": "Int", "groupDevices": "Boolean", "groupInterfaces": "Boolean", "labels": "enum(TimeseriesMetricType)", "perSecond": "Boolean", "siteIDs": ["ID"], "timeFrame": "TimeFrame", "toRate": "Boolean", "types": ["String"], "useDefaultSizeBucket": "Boolean", "userIDs": ["ID"], "withMissingData": "Boolean"}'`
 
 #### Operation Arguments for query.accountMetrics ####
 `accountID` [ID] - (optional) Unique Identifier of Account. 
@@ -28,5 +28,6 @@ interfaces are aggregated to a single interface.
 `timeFrame` [TimeFrame] - (required) The time frame for the data that the query returns. The argument is in the format type.time value. This argument is mandatory. 
 `toRate` [Boolean] - (optional) Normalize collected metrics as per-second values 
 `types` [String[]] - (optional) N/A 
+`useDefaultSizeBucket` [Boolean] - (optional) In case we want to have the default size bucket (from properties) 
 `userIDs` [ID[]] - (optional) A list of unique IDs for each user. If specified, only users in this list are returned. Otherwise, no user metrics are returned. 
 `withMissingData` [Boolean] - (optional) If false, the data field will be set to '0' for buckets with no reported data. Otherwise it will be set to -1 

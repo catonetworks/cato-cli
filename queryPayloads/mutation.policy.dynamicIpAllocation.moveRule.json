@@ -1,0 +1,26 @@
+{
+    "operationName": "policyDynamicIpAllocationMoveRule",
+    "query": "mutation policyDynamicIpAllocationMoveRule ( $policyMoveRuleInput:PolicyMoveRuleInput! $dynamicIpAllocationPolicyMutationInput:DynamicIpAllocationPolicyMutationInput ) { policy ( ) { dynamicIpAllocation ( input:$dynamicIpAllocationPolicyMutationInput ) { moveRule ( input:$policyMoveRuleInput ) { dynamicIpAllocationRulePayloadRule: rule { audit { updatedTime updatedBy } rule { id name description index policySectionInfoSection: section { id name } enabled dynamicIpAllocationSourceSource: source { userRefUser: user { id name } usersGroupRefUsersGroup: usersGroup { id name } } operatingSystemPlatform: platform countryRefCountry: country { id name } dynamicIpAllocationRangeRange: range { globalIpRangeRefGlobalIpRange: globalIpRange { id name } } } properties } policyMutationStatusStatus: status policyMutationErrorErrors: errors { errorMessage errorCode } } } } }",
+    "variables": {
+        "dynamicIpAllocationPolicyMutationInput": {
+            "policyMutationRevisionInput": {
+                "id": {
+                    "id": "ID"
+                }
+            }
+        },
+        "policyMoveRuleInput": {
+            "id": {
+                "id": "ID"
+            },
+            "policyRulePositionInput": {
+                "position": {
+                    "position": "enum(PolicyRulePositionEnum)"
+                },
+                "ref": {
+                    "ref": "ID"
+                }
+            }
+        }
+    }
+}

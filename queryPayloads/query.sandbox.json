@@ -1,0 +1,107 @@
+{
+    "operationName": "sandbox",
+    "query": "query sandbox ( $sandboxReportsInput:SandboxReportsInput ) { sandbox ( ) { reports ( input:$sandboxReportsInput ) { sandboxReportReport: report { fileName fileHash creationDate expirationDate sandboxVerdictVerdict: verdict sandboxStatusStatus: status downloadUrl } pageInfoPageInfo: pageInfo { total } } } }",
+    "variables": {
+        "sandboxReportsInput": {
+            "pagingInput": {
+                "from": {
+                    "from": "Int"
+                },
+                "limit": {
+                    "limit": "Int"
+                }
+            },
+            "sandboxReportsFilterInput": {
+                "fileHash": {
+                    "eq": {
+                        "eq": "String"
+                    },
+                    "in": {
+                        "in": [
+                            "String"
+                        ]
+                    },
+                    "neq": {
+                        "neq": "String"
+                    },
+                    "nin": {
+                        "nin": [
+                            "String"
+                        ]
+                    }
+                },
+                "fileName": {
+                    "eq": {
+                        "eq": "String"
+                    },
+                    "in": {
+                        "in": [
+                            "String"
+                        ]
+                    },
+                    "neq": {
+                        "neq": "String"
+                    },
+                    "nin": {
+                        "nin": [
+                            "String"
+                        ]
+                    }
+                },
+                "reportCreateDate": {
+                    "between": {
+                        "between": [
+                            "DateTime"
+                        ]
+                    },
+                    "eq": {
+                        "eq": "DateTime"
+                    },
+                    "gt": {
+                        "gt": "DateTime"
+                    },
+                    "gte": {
+                        "gte": "DateTime"
+                    },
+                    "in": {
+                        "in": [
+                            "DateTime"
+                        ]
+                    },
+                    "lt": {
+                        "lt": "DateTime"
+                    },
+                    "lte": {
+                        "lte": "DateTime"
+                    },
+                    "neq": {
+                        "neq": "DateTime"
+                    },
+                    "nin": {
+                        "nin": [
+                            "DateTime"
+                        ]
+                    }
+                }
+            },
+            "sandboxReportsSortInput": {
+                "fileName": {
+                    "direction": {
+                        "direction": "enum(SortOrder)"
+                    },
+                    "priority": {
+                        "priority": "Int"
+                    }
+                },
+                "reportCreateDate": {
+                    "direction": {
+                        "direction": "enum(SortOrder)"
+                    },
+                    "priority": {
+                        "priority": "Int"
+                    }
+                }
+            }
+        }
+    }
+}

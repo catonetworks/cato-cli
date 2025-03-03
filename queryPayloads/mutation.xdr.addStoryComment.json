@@ -1,0 +1,14 @@
+{
+    "operationName": "xdrAddStoryComment",
+    "query": "mutation xdrAddStoryComment ( $addStoryCommentInput:AddStoryCommentInput! ) { xdr ( ) { addStoryComment ( input:$addStoryCommentInput ) { comment { id createdAt text actorRefActor: actor { id name ... on AdminRef { adminRefId: id adminRefName: name } ... on ApiKeyRef { apiKeyRefId: id apiKeyRefName: name } } } } } }",
+    "variables": {
+        "addStoryCommentInput": {
+            "storyId": {
+                "storyId": "ID"
+            },
+            "text": {
+                "text": "String"
+            }
+        }
+    }
+}

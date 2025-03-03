@@ -23,8 +23,10 @@ from ..parsers.mutation_accountManagement import mutation_accountManagement_pars
 from ..parsers.mutation_admin import mutation_admin_parse
 from ..parsers.mutation_container import mutation_container_parse
 from ..parsers.mutation_policy import mutation_policy_parse
+from ..parsers.mutation_sandbox import mutation_sandbox_parse
 from ..parsers.mutation_site import mutation_site_parse
 from ..parsers.mutation_sites import mutation_sites_parse
+from ..parsers.mutation_xdr import mutation_xdr_parse
 from ..parsers.query_accountBySubdomain import query_accountBySubdomain_parse
 from ..parsers.query_accountManagement import query_accountManagement_parse
 from ..parsers.query_accountMetrics import query_accountMetrics_parse
@@ -43,6 +45,7 @@ from ..parsers.query_eventsTimeSeries import query_eventsTimeSeries_parse
 from ..parsers.query_hardwareManagement import query_hardwareManagement_parse
 from ..parsers.query_licensing import query_licensing_parse
 from ..parsers.query_policy import query_policy_parse
+from ..parsers.query_sandbox import query_sandbox_parse
 from ..parsers.query_site import query_site_parse
 from ..parsers.query_subDomains import query_subDomains_parse
 from ..parsers.query_xdr import query_xdr_parse
@@ -81,8 +84,10 @@ mutation_accountManagement_parser = mutation_accountManagement_parse(mutation_su
 mutation_admin_parser = mutation_admin_parse(mutation_subparsers)
 mutation_container_parser = mutation_container_parse(mutation_subparsers)
 mutation_policy_parser = mutation_policy_parse(mutation_subparsers)
+mutation_sandbox_parser = mutation_sandbox_parse(mutation_subparsers)
 mutation_site_parser = mutation_site_parse(mutation_subparsers)
 mutation_sites_parser = mutation_sites_parse(mutation_subparsers)
+mutation_xdr_parser = mutation_xdr_parse(mutation_subparsers)
 query_accountBySubdomain_parser = query_accountBySubdomain_parse(query_subparsers)
 query_accountManagement_parser = query_accountManagement_parse(query_subparsers)
 query_accountMetrics_parser = query_accountMetrics_parse(query_subparsers)
@@ -101,6 +106,7 @@ query_eventsTimeSeries_parser = query_eventsTimeSeries_parse(query_subparsers)
 query_hardwareManagement_parser = query_hardwareManagement_parse(query_subparsers)
 query_licensing_parser = query_licensing_parse(query_subparsers)
 query_policy_parser = query_policy_parse(query_subparsers)
+query_sandbox_parser = query_sandbox_parse(query_subparsers)
 query_site_parser = query_site_parse(query_subparsers)
 query_subDomains_parser = query_subDomains_parse(query_subparsers)
 query_xdr_parser = query_xdr_parse(query_subparsers)

@@ -1,0 +1,68 @@
+{
+    "operationName": "policyDynamicIpAllocationUpdateRule",
+    "query": "mutation policyDynamicIpAllocationUpdateRule ( $dynamicIpAllocationUpdateRuleInput:DynamicIpAllocationUpdateRuleInput! $dynamicIpAllocationPolicyMutationInput:DynamicIpAllocationPolicyMutationInput ) { policy ( ) { dynamicIpAllocation ( input:$dynamicIpAllocationPolicyMutationInput ) { updateRule ( input:$dynamicIpAllocationUpdateRuleInput ) { dynamicIpAllocationRulePayloadRule: rule { audit { updatedTime updatedBy } rule { id name description index policySectionInfoSection: section { id name } enabled dynamicIpAllocationSourceSource: source { userRefUser: user { id name } usersGroupRefUsersGroup: usersGroup { id name } } operatingSystemPlatform: platform countryRefCountry: country { id name } dynamicIpAllocationRangeRange: range { globalIpRangeRefGlobalIpRange: globalIpRange { id name } } } properties } policyMutationStatusStatus: status policyMutationErrorErrors: errors { errorMessage errorCode } } } } }",
+    "variables": {
+        "dynamicIpAllocationPolicyMutationInput": {
+            "policyMutationRevisionInput": {
+                "id": {
+                    "id": "ID"
+                }
+            }
+        },
+        "dynamicIpAllocationUpdateRuleInput": {
+            "dynamicIpAllocationUpdateRuleDataInput": {
+                "country": {
+                    "by": {
+                        "by": "enum(ObjectRefBy)"
+                    },
+                    "input": {
+                        "input": "String"
+                    }
+                },
+                "description": {
+                    "description": "String"
+                },
+                "enabled": {
+                    "enabled": "Boolean"
+                },
+                "name": {
+                    "name": "String"
+                },
+                "platform": {
+                    "platform": "enum(OperatingSystem)"
+                },
+                "range": {
+                    "globalIpRange": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    }
+                },
+                "source": {
+                    "user": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "usersGroup": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    }
+                }
+            },
+            "id": {
+                "id": "ID"
+            }
+        }
+    }
+}

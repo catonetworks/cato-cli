@@ -92,6 +92,34 @@ def mutation_sites_parse(mutation_subparsers):
 		help='Pretty print')
 	mutation_sites_addNetworkRange_parser.set_defaults(func=createRequest,operation_name='mutation.sites.addNetworkRange')
 
+	mutation_sites_addSecondaryAwsVSocket_parser = mutation_sites_subparsers.add_parser('addSecondaryAwsVSocket', 
+			help='addSecondaryAwsVSocket() sites operation', 
+			usage=get_help("mutation_sites_addSecondaryAwsVSocket"))
+
+	mutation_sites_addSecondaryAwsVSocket_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_sites_addSecondaryAwsVSocket_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_sites_addSecondaryAwsVSocket_parser.add_argument('-t', const=True, default=False, nargs='?', 
+		help='Print test request preview without sending api call')
+	mutation_sites_addSecondaryAwsVSocket_parser.add_argument('-v', const=True, default=False, nargs='?', 
+		help='Verbose output')
+	mutation_sites_addSecondaryAwsVSocket_parser.add_argument('-p', const=True, default=False, nargs='?', 
+		help='Pretty print')
+	mutation_sites_addSecondaryAwsVSocket_parser.set_defaults(func=createRequest,operation_name='mutation.sites.addSecondaryAwsVSocket')
+
+	mutation_sites_addSecondaryAzureVSocket_parser = mutation_sites_subparsers.add_parser('addSecondaryAzureVSocket', 
+			help='addSecondaryAzureVSocket() sites operation', 
+			usage=get_help("mutation_sites_addSecondaryAzureVSocket"))
+
+	mutation_sites_addSecondaryAzureVSocket_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_sites_addSecondaryAzureVSocket_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_sites_addSecondaryAzureVSocket_parser.add_argument('-t', const=True, default=False, nargs='?', 
+		help='Print test request preview without sending api call')
+	mutation_sites_addSecondaryAzureVSocket_parser.add_argument('-v', const=True, default=False, nargs='?', 
+		help='Verbose output')
+	mutation_sites_addSecondaryAzureVSocket_parser.add_argument('-p', const=True, default=False, nargs='?', 
+		help='Pretty print')
+	mutation_sites_addSecondaryAzureVSocket_parser.set_defaults(func=createRequest,operation_name='mutation.sites.addSecondaryAzureVSocket')
+
 	mutation_sites_addSocketSite_parser = mutation_sites_subparsers.add_parser('addSocketSite', 
 			help='addSocketSite() sites operation', 
 			usage=get_help("mutation_sites_addSocketSite"))

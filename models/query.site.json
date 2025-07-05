@@ -25,16 +25,22 @@
     "fieldTypes": {
         "BfdSettings": true,
         "BgpCommunity": true,
+        "BgpCommunityFilterPredicate": true,
+        "BgpCommunityFilterRule": true,
         "BgpDefaultAction": true,
         "BgpDetailedStatus": true,
+        "BgpFilterRule": true,
         "BgpPeer": true,
         "BgpPeerListPayload": true,
         "BgpRejectedRoutesFromPeer": true,
+        "BgpRouteExactAndInclusiveFilterRule": true,
+        "BgpRouteExactFilterRule": true,
         "BgpSummaryRoute": true,
         "BgpTracking": true,
         "CloudInterconnectConnectionConnectivity": true,
         "CloudInterconnectPhysicalConnection": true,
         "CloudInterconnectPhysicalConnectionId": true,
+        "GlobalIpRangeRef": true,
         "HaRole": true,
         "ObjectRefBy": true,
         "PolicyRuleTrackingFrequencyEnum": true,
@@ -1057,6 +1063,665 @@
                                     },
                                     "varName": "defaultAction"
                                 },
+                                "defaultActionExclusion": {
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": "Rules excluded from the default action.",
+                                    "id_str": "bgpPeer___defaultActionExclusion",
+                                    "isDeprecated": false,
+                                    "name": "defaultActionExclusion",
+                                    "path": "bgpPeer.defaultActionExclusion",
+                                    "requestStr": "$bgpFilterRule:[BgpFilterRule]! ",
+                                    "required": true,
+                                    "responseStr": "defaultActionExclusion:$bgpFilterRule ",
+                                    "type": {
+                                        "definition": {
+                                            "description": null,
+                                            "enumValues": null,
+                                            "fields": {
+                                                "bgpRouteExactAndInclusiveFilterRule": {
+                                                    "alias": "bgpRouteExactAndInclusiveFilterRuleBgpRouteExactAndInclusiveFilterRule: bgpRouteExactAndInclusiveFilterRule",
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Exact and inclusive filter rule. Please choose only one filter rule type.",
+                                                    "id_str": "bgpPeer___defaultActionExclusion___bgpRouteExactAndInclusiveFilterRule",
+                                                    "isDeprecated": false,
+                                                    "name": "bgpRouteExactAndInclusiveFilterRule",
+                                                    "path": "bgpPeer.defaultActionExclusion.bgpRouteExactAndInclusiveFilterRule",
+                                                    "requestStr": "$bgpRouteExactAndInclusiveFilterRule:BgpRouteExactAndInclusiveFilterRule ",
+                                                    "required": false,
+                                                    "responseStr": "bgpRouteExactAndInclusiveFilterRule:$bgpRouteExactAndInclusiveFilterRule ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": null,
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "ge": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Minimum prefix length for the filter rule.",
+                                                                    "id_str": "bgpPeer___defaultActionExclusion___bgpRouteExactAndInclusiveFilterRule___ge",
+                                                                    "isDeprecated": false,
+                                                                    "name": "ge",
+                                                                    "path": "bgpPeer.defaultActionExclusion.bgpRouteExactAndInclusiveFilterRule.ge",
+                                                                    "requestStr": "$ge:Int ",
+                                                                    "required": false,
+                                                                    "responseStr": "ge:$ge ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "Int",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "ge"
+                                                                },
+                                                                "globalIpRange": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Global IP ranges to include.",
+                                                                    "id_str": "bgpPeer___defaultActionExclusion___bgpRouteExactAndInclusiveFilterRule___globalIpRange",
+                                                                    "isDeprecated": false,
+                                                                    "name": "globalIpRange",
+                                                                    "path": "bgpPeer.defaultActionExclusion.bgpRouteExactAndInclusiveFilterRule.globalIpRange",
+                                                                    "requestStr": "$globalIpRangeRef:[GlobalIpRangeRef]! ",
+                                                                    "required": true,
+                                                                    "responseStr": "globalIpRange:$globalIpRangeRef ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": "A reference identifying the GlobalIpRange object. ID: Unique GlobalIpRange Identifier, Name: The GlobalIpRange Name",
+                                                                            "enumValues": null,
+                                                                            "fields": {
+                                                                                "id": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "id_str": "bgpPeer___defaultActionExclusion___bgpRouteExactAndInclusiveFilterRule___globalIpRange___id",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "id",
+                                                                                    "path": "bgpPeer.defaultActionExclusion.bgpRouteExactAndInclusiveFilterRule.globalIpRange.id",
+                                                                                    "requestStr": "$id:ID! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "id:$id ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "ID",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "id"
+                                                                                },
+                                                                                "name": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "id_str": "bgpPeer___defaultActionExclusion___bgpRouteExactAndInclusiveFilterRule___globalIpRange___name",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "name",
+                                                                                    "path": "bgpPeer.defaultActionExclusion.bgpRouteExactAndInclusiveFilterRule.globalIpRange.name",
+                                                                                    "requestStr": "$name:String! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "name:$name ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "String",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "name"
+                                                                                }
+                                                                            },
+                                                                            "inputFields": null,
+                                                                            "interfaces": {},
+                                                                            "kind": "OBJECT",
+                                                                            "name": "GlobalIpRangeRef",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "object",
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "LIST",
+                                                                            "NON_NULL",
+                                                                            "OBJECT"
+                                                                        ],
+                                                                        "name": "GlobalIpRangeRef",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "globalIpRangeRef"
+                                                                },
+                                                                "globalIpRangeException": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Global IP ranges to exclude.",
+                                                                    "id_str": "bgpPeer___defaultActionExclusion___bgpRouteExactAndInclusiveFilterRule___globalIpRangeException",
+                                                                    "isDeprecated": false,
+                                                                    "name": "globalIpRangeException",
+                                                                    "path": "bgpPeer.defaultActionExclusion.bgpRouteExactAndInclusiveFilterRule.globalIpRangeException",
+                                                                    "requestStr": "$globalIpRangeRef:[GlobalIpRangeRef]! ",
+                                                                    "required": true,
+                                                                    "responseStr": "globalIpRangeException:$globalIpRangeRef ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": "A reference identifying the GlobalIpRange object. ID: Unique GlobalIpRange Identifier, Name: The GlobalIpRange Name",
+                                                                            "enumValues": null,
+                                                                            "fields": {
+                                                                                "id": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "id_str": "bgpPeer___defaultActionExclusion___bgpRouteExactAndInclusiveFilterRule___globalIpRangeException___id",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "id",
+                                                                                    "path": "bgpPeer.defaultActionExclusion.bgpRouteExactAndInclusiveFilterRule.globalIpRangeException.id",
+                                                                                    "requestStr": "$id:ID! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "id:$id ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "ID",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "id"
+                                                                                },
+                                                                                "name": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "id_str": "bgpPeer___defaultActionExclusion___bgpRouteExactAndInclusiveFilterRule___globalIpRangeException___name",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "name",
+                                                                                    "path": "bgpPeer.defaultActionExclusion.bgpRouteExactAndInclusiveFilterRule.globalIpRangeException.name",
+                                                                                    "requestStr": "$name:String! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "name:$name ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "String",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "name"
+                                                                                }
+                                                                            },
+                                                                            "inputFields": null,
+                                                                            "interfaces": {},
+                                                                            "kind": "OBJECT",
+                                                                            "name": "GlobalIpRangeRef",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "object",
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "LIST",
+                                                                            "NON_NULL",
+                                                                            "OBJECT"
+                                                                        ],
+                                                                        "name": "GlobalIpRangeRef",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "globalIpRangeRef"
+                                                                },
+                                                                "id": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Unique identifier of the filter rule.",
+                                                                    "id_str": "bgpPeer___defaultActionExclusion___bgpRouteExactAndInclusiveFilterRule___id",
+                                                                    "isDeprecated": false,
+                                                                    "name": "id",
+                                                                    "path": "bgpPeer.defaultActionExclusion.bgpRouteExactAndInclusiveFilterRule.id",
+                                                                    "requestStr": "$id:ID! ",
+                                                                    "required": true,
+                                                                    "responseStr": "id:$id ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "ID",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "id"
+                                                                },
+                                                                "le": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Maximum prefix length for the filter rule.",
+                                                                    "id_str": "bgpPeer___defaultActionExclusion___bgpRouteExactAndInclusiveFilterRule___le",
+                                                                    "isDeprecated": false,
+                                                                    "name": "le",
+                                                                    "path": "bgpPeer.defaultActionExclusion.bgpRouteExactAndInclusiveFilterRule.le",
+                                                                    "requestStr": "$le:Int ",
+                                                                    "required": false,
+                                                                    "responseStr": "le:$le ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "Int",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "le"
+                                                                },
+                                                                "networkSubnet": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Network subnets to include.",
+                                                                    "id_str": "bgpPeer___defaultActionExclusion___bgpRouteExactAndInclusiveFilterRule___networkSubnet",
+                                                                    "isDeprecated": false,
+                                                                    "name": "networkSubnet",
+                                                                    "path": "bgpPeer.defaultActionExclusion.bgpRouteExactAndInclusiveFilterRule.networkSubnet",
+                                                                    "requestStr": "$networkSubnet:[NetworkSubnet]! ",
+                                                                    "required": true,
+                                                                    "responseStr": "networkSubnet:$networkSubnet ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "LIST",
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "NetworkSubnet",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "networkSubnet"
+                                                                },
+                                                                "networkSubnetException": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Network subnets to exclude.",
+                                                                    "id_str": "bgpPeer___defaultActionExclusion___bgpRouteExactAndInclusiveFilterRule___networkSubnetException",
+                                                                    "isDeprecated": false,
+                                                                    "name": "networkSubnetException",
+                                                                    "path": "bgpPeer.defaultActionExclusion.bgpRouteExactAndInclusiveFilterRule.networkSubnetException",
+                                                                    "requestStr": "$networkSubnetException:[NetworkSubnet]! ",
+                                                                    "required": true,
+                                                                    "responseStr": "networkSubnetException:$networkSubnetException ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "LIST",
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "NetworkSubnet",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "networkSubnetException"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "BgpRouteExactAndInclusiveFilterRule",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "BgpRouteExactAndInclusiveFilterRule",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "bgpRouteExactAndInclusiveFilterRule"
+                                                },
+                                                "bgpRouteExactFilterRule": {
+                                                    "alias": "bgpRouteExactFilterRuleBgpRouteExactFilterRule: bgpRouteExactFilterRule",
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Exact route filter rule. Please choose only one filter rule type.",
+                                                    "id_str": "bgpPeer___defaultActionExclusion___bgpRouteExactFilterRule",
+                                                    "isDeprecated": false,
+                                                    "name": "bgpRouteExactFilterRule",
+                                                    "path": "bgpPeer.defaultActionExclusion.bgpRouteExactFilterRule",
+                                                    "requestStr": "$bgpRouteExactFilterRule:BgpRouteExactFilterRule ",
+                                                    "required": false,
+                                                    "responseStr": "bgpRouteExactFilterRule:$bgpRouteExactFilterRule ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": null,
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "globalIpRange": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Global IP ranges to include.",
+                                                                    "id_str": "bgpPeer___defaultActionExclusion___bgpRouteExactFilterRule___globalIpRange",
+                                                                    "isDeprecated": false,
+                                                                    "name": "globalIpRange",
+                                                                    "path": "bgpPeer.defaultActionExclusion.bgpRouteExactFilterRule.globalIpRange",
+                                                                    "requestStr": "$globalIpRangeRef:[GlobalIpRangeRef]! ",
+                                                                    "required": true,
+                                                                    "responseStr": "globalIpRange:$globalIpRangeRef ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": "A reference identifying the GlobalIpRange object. ID: Unique GlobalIpRange Identifier, Name: The GlobalIpRange Name",
+                                                                            "enumValues": null,
+                                                                            "fields": {
+                                                                                "id": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "id_str": "bgpPeer___defaultActionExclusion___bgpRouteExactFilterRule___globalIpRange___id",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "id",
+                                                                                    "path": "bgpPeer.defaultActionExclusion.bgpRouteExactFilterRule.globalIpRange.id",
+                                                                                    "requestStr": "$id:ID! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "id:$id ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "ID",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "id"
+                                                                                },
+                                                                                "name": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "id_str": "bgpPeer___defaultActionExclusion___bgpRouteExactFilterRule___globalIpRange___name",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "name",
+                                                                                    "path": "bgpPeer.defaultActionExclusion.bgpRouteExactFilterRule.globalIpRange.name",
+                                                                                    "requestStr": "$name:String! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "name:$name ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "String",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "name"
+                                                                                }
+                                                                            },
+                                                                            "inputFields": null,
+                                                                            "interfaces": {},
+                                                                            "kind": "OBJECT",
+                                                                            "name": "GlobalIpRangeRef",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "object",
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "LIST",
+                                                                            "NON_NULL",
+                                                                            "OBJECT"
+                                                                        ],
+                                                                        "name": "GlobalIpRangeRef",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "globalIpRangeRef"
+                                                                },
+                                                                "id": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Unique identifier of the exact filter rule.",
+                                                                    "id_str": "bgpPeer___defaultActionExclusion___bgpRouteExactFilterRule___id",
+                                                                    "isDeprecated": false,
+                                                                    "name": "id",
+                                                                    "path": "bgpPeer.defaultActionExclusion.bgpRouteExactFilterRule.id",
+                                                                    "requestStr": "$id:ID! ",
+                                                                    "required": true,
+                                                                    "responseStr": "id:$id ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "ID",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "id"
+                                                                },
+                                                                "networkSubnet": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Network subnets to include.",
+                                                                    "id_str": "bgpPeer___defaultActionExclusion___bgpRouteExactFilterRule___networkSubnet",
+                                                                    "isDeprecated": false,
+                                                                    "name": "networkSubnet",
+                                                                    "path": "bgpPeer.defaultActionExclusion.bgpRouteExactFilterRule.networkSubnet",
+                                                                    "requestStr": "$networkSubnet:[NetworkSubnet]! ",
+                                                                    "required": true,
+                                                                    "responseStr": "networkSubnet:$networkSubnet ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "LIST",
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "NetworkSubnet",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "networkSubnet"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "BgpRouteExactFilterRule",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "BgpRouteExactFilterRule",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "bgpRouteExactFilterRule"
+                                                },
+                                                "communityFilterRule": {
+                                                    "alias": "bgpCommunityFilterRuleCommunityFilterRule: communityFilterRule",
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Community filter rule. Please choose only one filter rule type.",
+                                                    "id_str": "bgpPeer___defaultActionExclusion___communityFilterRule",
+                                                    "isDeprecated": false,
+                                                    "name": "communityFilterRule",
+                                                    "path": "bgpPeer.defaultActionExclusion.communityFilterRule",
+                                                    "requestStr": "$bgpCommunityFilterRule:BgpCommunityFilterRule ",
+                                                    "required": false,
+                                                    "responseStr": "communityFilterRule:$bgpCommunityFilterRule ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": null,
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "community": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Community values to match.",
+                                                                    "id_str": "bgpPeer___defaultActionExclusion___communityFilterRule___community",
+                                                                    "isDeprecated": false,
+                                                                    "name": "community",
+                                                                    "path": "bgpPeer.defaultActionExclusion.communityFilterRule.community",
+                                                                    "requestStr": "$bgpCommunity:[BgpCommunity]! ",
+                                                                    "required": true,
+                                                                    "responseStr": "community:$bgpCommunity ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": null,
+                                                                            "enumValues": null,
+                                                                            "fields": {
+                                                                                "from": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Start of the community range.",
+                                                                                    "id_str": "bgpPeer___defaultActionExclusion___communityFilterRule___community___from",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "from",
+                                                                                    "path": "bgpPeer.defaultActionExclusion.communityFilterRule.community.from",
+                                                                                    "requestStr": "$from:Asn16! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "from:$from ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "Asn16",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "from"
+                                                                                },
+                                                                                "to": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "End of the community range.",
+                                                                                    "id_str": "bgpPeer___defaultActionExclusion___communityFilterRule___community___to",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "to",
+                                                                                    "path": "bgpPeer.defaultActionExclusion.communityFilterRule.community.to",
+                                                                                    "requestStr": "$to:Asn16! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "to:$to ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "Asn16",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "to"
+                                                                                }
+                                                                            },
+                                                                            "inputFields": null,
+                                                                            "interfaces": {},
+                                                                            "kind": "OBJECT",
+                                                                            "name": "BgpCommunity",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "object",
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "LIST",
+                                                                            "NON_NULL",
+                                                                            "OBJECT"
+                                                                        ],
+                                                                        "name": "BgpCommunity",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "bgpCommunity"
+                                                                },
+                                                                "id": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Unique identifier of the community filter rule.",
+                                                                    "id_str": "bgpPeer___defaultActionExclusion___communityFilterRule___id",
+                                                                    "isDeprecated": false,
+                                                                    "name": "id",
+                                                                    "path": "bgpPeer.defaultActionExclusion.communityFilterRule.id",
+                                                                    "requestStr": "$id:ID! ",
+                                                                    "required": true,
+                                                                    "responseStr": "id:$id ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "ID",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "id"
+                                                                },
+                                                                "predicate": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Predicate to apply to the community filter (e.g., EQUAL, NOT_EQUAL).",
+                                                                    "id_str": "bgpPeer___defaultActionExclusion___communityFilterRule___predicate",
+                                                                    "isDeprecated": false,
+                                                                    "name": "predicate",
+                                                                    "path": "bgpPeer.defaultActionExclusion.communityFilterRule.predicate",
+                                                                    "requestStr": "$predicate:BgpCommunityFilterPredicate! ",
+                                                                    "required": true,
+                                                                    "responseStr": "predicate:$predicate ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": null,
+                                                                            "enumValues": [
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Matches exactly the specified community value.",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "EQUAL"
+                                                                                },
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Matches any community value except the specified one.",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "NOT_EQUAL"
+                                                                                }
+                                                                            ],
+                                                                            "fields": null,
+                                                                            "inputFields": null,
+                                                                            "interfaces": null,
+                                                                            "kind": "ENUM",
+                                                                            "name": "BgpCommunityFilterPredicate",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "enum",
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "ENUM"
+                                                                        ],
+                                                                        "name": "BgpCommunityFilterPredicate",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "predicate"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "BgpCommunityFilterRule",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "BgpCommunityFilterRule",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "bgpCommunityFilterRule"
+                                                }
+                                            },
+                                            "inputFields": null,
+                                            "interfaces": {},
+                                            "kind": "OBJECT",
+                                            "name": "BgpFilterRule",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "object",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "LIST",
+                                            "NON_NULL",
+                                            "OBJECT"
+                                        ],
+                                        "name": "BgpFilterRule",
+                                        "non_null": false
+                                    },
+                                    "varName": "bgpFilterRule"
+                                },
                                 "holdTime": {
                                     "args": {},
                                     "deprecationReason": null,
@@ -1258,7 +1923,7 @@
                                     "responseStr": "site:$siteRef ",
                                     "type": {
                                         "definition": {
-                                            "description": null,
+                                            "description": "A reference identifying the Site object. ID: Unique Site Identifier, Name: The Site Name",
                                             "enumValues": null,
                                             "fields": {
                                                 "id": {
@@ -2067,6 +2732,666 @@
                                                     },
                                                     "varName": "defaultAction"
                                                 },
+                                                "defaultActionExclusion": {
+                                                    "alias": "bgpFilterRuleDefaultActionExclusion: defaultActionExclusion",
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Rules excluded from the default action.",
+                                                    "id_str": "bgpPeerList___bgpPeer___defaultActionExclusion",
+                                                    "isDeprecated": false,
+                                                    "name": "defaultActionExclusion",
+                                                    "path": "bgpPeerList.bgpPeer.defaultActionExclusion",
+                                                    "requestStr": "$bgpFilterRule:[BgpFilterRule]! ",
+                                                    "required": true,
+                                                    "responseStr": "defaultActionExclusion:$bgpFilterRule ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": null,
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "bgpRouteExactAndInclusiveFilterRule": {
+                                                                    "alias": "bgpRouteExactAndInclusiveFilterRuleBgpRouteExactAndInclusiveFilterRule: bgpRouteExactAndInclusiveFilterRule",
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Exact and inclusive filter rule. Please choose only one filter rule type.",
+                                                                    "id_str": "bgpPeerList___bgpPeer___defaultActionExclusion___bgpRouteExactAndInclusiveFilterRule",
+                                                                    "isDeprecated": false,
+                                                                    "name": "bgpRouteExactAndInclusiveFilterRule",
+                                                                    "path": "bgpPeerList.bgpPeer.defaultActionExclusion.bgpRouteExactAndInclusiveFilterRule",
+                                                                    "requestStr": "$bgpRouteExactAndInclusiveFilterRule:BgpRouteExactAndInclusiveFilterRule ",
+                                                                    "required": false,
+                                                                    "responseStr": "bgpRouteExactAndInclusiveFilterRule:$bgpRouteExactAndInclusiveFilterRule ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": null,
+                                                                            "enumValues": null,
+                                                                            "fields": {
+                                                                                "ge": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Minimum prefix length for the filter rule.",
+                                                                                    "id_str": "bgpPeerList___bgpPeer___defaultActionExclusion___bgpRouteExactAndInclusiveFilterRule___ge",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "ge",
+                                                                                    "path": "bgpPeerList.bgpPeer.defaultActionExclusion.bgpRouteExactAndInclusiveFilterRule.ge",
+                                                                                    "requestStr": "$ge:Int ",
+                                                                                    "required": false,
+                                                                                    "responseStr": "ge:$ge ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "Int",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "ge"
+                                                                                },
+                                                                                "globalIpRange": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Global IP ranges to include.",
+                                                                                    "id_str": "bgpPeerList___bgpPeer___defaultActionExclusion___bgpRouteExactAndInclusiveFilterRule___globalIpRange",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "globalIpRange",
+                                                                                    "path": "bgpPeerList.bgpPeer.defaultActionExclusion.bgpRouteExactAndInclusiveFilterRule.globalIpRange",
+                                                                                    "requestStr": "$globalIpRangeRef:[GlobalIpRangeRef]! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "globalIpRange:$globalIpRangeRef ",
+                                                                                    "type": {
+                                                                                        "definition": {
+                                                                                            "description": "A reference identifying the GlobalIpRange object. ID: Unique GlobalIpRange Identifier, Name: The GlobalIpRange Name",
+                                                                                            "enumValues": null,
+                                                                                            "fields": {
+                                                                                                "id": {
+                                                                                                    "args": {},
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": null,
+                                                                                                    "id_str": "bgpPeerList___bgpPeer___defaultActionExclusion___bgpRouteExactAndInclusiveFilterRule___globalIpRange___id",
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "id",
+                                                                                                    "path": "bgpPeerList.bgpPeer.defaultActionExclusion.bgpRouteExactAndInclusiveFilterRule.globalIpRange.id",
+                                                                                                    "requestStr": "$id:ID! ",
+                                                                                                    "required": true,
+                                                                                                    "responseStr": "id:$id ",
+                                                                                                    "type": {
+                                                                                                        "kind": [
+                                                                                                            "NON_NULL",
+                                                                                                            "SCALAR"
+                                                                                                        ],
+                                                                                                        "name": "ID",
+                                                                                                        "non_null": false
+                                                                                                    },
+                                                                                                    "varName": "id"
+                                                                                                },
+                                                                                                "name": {
+                                                                                                    "args": {},
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": null,
+                                                                                                    "id_str": "bgpPeerList___bgpPeer___defaultActionExclusion___bgpRouteExactAndInclusiveFilterRule___globalIpRange___name",
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "name",
+                                                                                                    "path": "bgpPeerList.bgpPeer.defaultActionExclusion.bgpRouteExactAndInclusiveFilterRule.globalIpRange.name",
+                                                                                                    "requestStr": "$name:String! ",
+                                                                                                    "required": true,
+                                                                                                    "responseStr": "name:$name ",
+                                                                                                    "type": {
+                                                                                                        "kind": [
+                                                                                                            "NON_NULL",
+                                                                                                            "SCALAR"
+                                                                                                        ],
+                                                                                                        "name": "String",
+                                                                                                        "non_null": false
+                                                                                                    },
+                                                                                                    "varName": "name"
+                                                                                                }
+                                                                                            },
+                                                                                            "inputFields": null,
+                                                                                            "interfaces": {},
+                                                                                            "kind": "OBJECT",
+                                                                                            "name": "GlobalIpRangeRef",
+                                                                                            "possibleTypes": null
+                                                                                        },
+                                                                                        "indexType": "object",
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "LIST",
+                                                                                            "NON_NULL",
+                                                                                            "OBJECT"
+                                                                                        ],
+                                                                                        "name": "GlobalIpRangeRef",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "globalIpRangeRef"
+                                                                                },
+                                                                                "globalIpRangeException": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Global IP ranges to exclude.",
+                                                                                    "id_str": "bgpPeerList___bgpPeer___defaultActionExclusion___bgpRouteExactAndInclusiveFilterRule___globalIpRangeException",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "globalIpRangeException",
+                                                                                    "path": "bgpPeerList.bgpPeer.defaultActionExclusion.bgpRouteExactAndInclusiveFilterRule.globalIpRangeException",
+                                                                                    "requestStr": "$globalIpRangeRef:[GlobalIpRangeRef]! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "globalIpRangeException:$globalIpRangeRef ",
+                                                                                    "type": {
+                                                                                        "definition": {
+                                                                                            "description": "A reference identifying the GlobalIpRange object. ID: Unique GlobalIpRange Identifier, Name: The GlobalIpRange Name",
+                                                                                            "enumValues": null,
+                                                                                            "fields": {
+                                                                                                "id": {
+                                                                                                    "args": {},
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": null,
+                                                                                                    "id_str": "bgpPeerList___bgpPeer___defaultActionExclusion___bgpRouteExactAndInclusiveFilterRule___globalIpRangeException___id",
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "id",
+                                                                                                    "path": "bgpPeerList.bgpPeer.defaultActionExclusion.bgpRouteExactAndInclusiveFilterRule.globalIpRangeException.id",
+                                                                                                    "requestStr": "$id:ID! ",
+                                                                                                    "required": true,
+                                                                                                    "responseStr": "id:$id ",
+                                                                                                    "type": {
+                                                                                                        "kind": [
+                                                                                                            "NON_NULL",
+                                                                                                            "SCALAR"
+                                                                                                        ],
+                                                                                                        "name": "ID",
+                                                                                                        "non_null": false
+                                                                                                    },
+                                                                                                    "varName": "id"
+                                                                                                },
+                                                                                                "name": {
+                                                                                                    "args": {},
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": null,
+                                                                                                    "id_str": "bgpPeerList___bgpPeer___defaultActionExclusion___bgpRouteExactAndInclusiveFilterRule___globalIpRangeException___name",
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "name",
+                                                                                                    "path": "bgpPeerList.bgpPeer.defaultActionExclusion.bgpRouteExactAndInclusiveFilterRule.globalIpRangeException.name",
+                                                                                                    "requestStr": "$name:String! ",
+                                                                                                    "required": true,
+                                                                                                    "responseStr": "name:$name ",
+                                                                                                    "type": {
+                                                                                                        "kind": [
+                                                                                                            "NON_NULL",
+                                                                                                            "SCALAR"
+                                                                                                        ],
+                                                                                                        "name": "String",
+                                                                                                        "non_null": false
+                                                                                                    },
+                                                                                                    "varName": "name"
+                                                                                                }
+                                                                                            },
+                                                                                            "inputFields": null,
+                                                                                            "interfaces": {},
+                                                                                            "kind": "OBJECT",
+                                                                                            "name": "GlobalIpRangeRef",
+                                                                                            "possibleTypes": null
+                                                                                        },
+                                                                                        "indexType": "object",
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "LIST",
+                                                                                            "NON_NULL",
+                                                                                            "OBJECT"
+                                                                                        ],
+                                                                                        "name": "GlobalIpRangeRef",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "globalIpRangeRef"
+                                                                                },
+                                                                                "id": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Unique identifier of the filter rule.",
+                                                                                    "id_str": "bgpPeerList___bgpPeer___defaultActionExclusion___bgpRouteExactAndInclusiveFilterRule___id",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "id",
+                                                                                    "path": "bgpPeerList.bgpPeer.defaultActionExclusion.bgpRouteExactAndInclusiveFilterRule.id",
+                                                                                    "requestStr": "$id:ID! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "id:$id ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "ID",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "id"
+                                                                                },
+                                                                                "le": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Maximum prefix length for the filter rule.",
+                                                                                    "id_str": "bgpPeerList___bgpPeer___defaultActionExclusion___bgpRouteExactAndInclusiveFilterRule___le",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "le",
+                                                                                    "path": "bgpPeerList.bgpPeer.defaultActionExclusion.bgpRouteExactAndInclusiveFilterRule.le",
+                                                                                    "requestStr": "$le:Int ",
+                                                                                    "required": false,
+                                                                                    "responseStr": "le:$le ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "Int",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "le"
+                                                                                },
+                                                                                "networkSubnet": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Network subnets to include.",
+                                                                                    "id_str": "bgpPeerList___bgpPeer___defaultActionExclusion___bgpRouteExactAndInclusiveFilterRule___networkSubnet",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "networkSubnet",
+                                                                                    "path": "bgpPeerList.bgpPeer.defaultActionExclusion.bgpRouteExactAndInclusiveFilterRule.networkSubnet",
+                                                                                    "requestStr": "$networkSubnet:[NetworkSubnet]! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "networkSubnet:$networkSubnet ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "LIST",
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "NetworkSubnet",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "networkSubnet"
+                                                                                },
+                                                                                "networkSubnetException": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Network subnets to exclude.",
+                                                                                    "id_str": "bgpPeerList___bgpPeer___defaultActionExclusion___bgpRouteExactAndInclusiveFilterRule___networkSubnetException",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "networkSubnetException",
+                                                                                    "path": "bgpPeerList.bgpPeer.defaultActionExclusion.bgpRouteExactAndInclusiveFilterRule.networkSubnetException",
+                                                                                    "requestStr": "$networkSubnetException:[NetworkSubnet]! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "networkSubnetException:$networkSubnetException ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "LIST",
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "NetworkSubnet",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "networkSubnetException"
+                                                                                }
+                                                                            },
+                                                                            "inputFields": null,
+                                                                            "interfaces": {},
+                                                                            "kind": "OBJECT",
+                                                                            "name": "BgpRouteExactAndInclusiveFilterRule",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "object",
+                                                                        "kind": [
+                                                                            "OBJECT"
+                                                                        ],
+                                                                        "name": "BgpRouteExactAndInclusiveFilterRule",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "bgpRouteExactAndInclusiveFilterRule"
+                                                                },
+                                                                "bgpRouteExactFilterRule": {
+                                                                    "alias": "bgpRouteExactFilterRuleBgpRouteExactFilterRule: bgpRouteExactFilterRule",
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Exact route filter rule. Please choose only one filter rule type.",
+                                                                    "id_str": "bgpPeerList___bgpPeer___defaultActionExclusion___bgpRouteExactFilterRule",
+                                                                    "isDeprecated": false,
+                                                                    "name": "bgpRouteExactFilterRule",
+                                                                    "path": "bgpPeerList.bgpPeer.defaultActionExclusion.bgpRouteExactFilterRule",
+                                                                    "requestStr": "$bgpRouteExactFilterRule:BgpRouteExactFilterRule ",
+                                                                    "required": false,
+                                                                    "responseStr": "bgpRouteExactFilterRule:$bgpRouteExactFilterRule ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": null,
+                                                                            "enumValues": null,
+                                                                            "fields": {
+                                                                                "globalIpRange": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Global IP ranges to include.",
+                                                                                    "id_str": "bgpPeerList___bgpPeer___defaultActionExclusion___bgpRouteExactFilterRule___globalIpRange",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "globalIpRange",
+                                                                                    "path": "bgpPeerList.bgpPeer.defaultActionExclusion.bgpRouteExactFilterRule.globalIpRange",
+                                                                                    "requestStr": "$globalIpRangeRef:[GlobalIpRangeRef]! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "globalIpRange:$globalIpRangeRef ",
+                                                                                    "type": {
+                                                                                        "definition": {
+                                                                                            "description": "A reference identifying the GlobalIpRange object. ID: Unique GlobalIpRange Identifier, Name: The GlobalIpRange Name",
+                                                                                            "enumValues": null,
+                                                                                            "fields": {
+                                                                                                "id": {
+                                                                                                    "args": {},
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": null,
+                                                                                                    "id_str": "bgpPeerList___bgpPeer___defaultActionExclusion___bgpRouteExactFilterRule___globalIpRange___id",
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "id",
+                                                                                                    "path": "bgpPeerList.bgpPeer.defaultActionExclusion.bgpRouteExactFilterRule.globalIpRange.id",
+                                                                                                    "requestStr": "$id:ID! ",
+                                                                                                    "required": true,
+                                                                                                    "responseStr": "id:$id ",
+                                                                                                    "type": {
+                                                                                                        "kind": [
+                                                                                                            "NON_NULL",
+                                                                                                            "SCALAR"
+                                                                                                        ],
+                                                                                                        "name": "ID",
+                                                                                                        "non_null": false
+                                                                                                    },
+                                                                                                    "varName": "id"
+                                                                                                },
+                                                                                                "name": {
+                                                                                                    "args": {},
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": null,
+                                                                                                    "id_str": "bgpPeerList___bgpPeer___defaultActionExclusion___bgpRouteExactFilterRule___globalIpRange___name",
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "name",
+                                                                                                    "path": "bgpPeerList.bgpPeer.defaultActionExclusion.bgpRouteExactFilterRule.globalIpRange.name",
+                                                                                                    "requestStr": "$name:String! ",
+                                                                                                    "required": true,
+                                                                                                    "responseStr": "name:$name ",
+                                                                                                    "type": {
+                                                                                                        "kind": [
+                                                                                                            "NON_NULL",
+                                                                                                            "SCALAR"
+                                                                                                        ],
+                                                                                                        "name": "String",
+                                                                                                        "non_null": false
+                                                                                                    },
+                                                                                                    "varName": "name"
+                                                                                                }
+                                                                                            },
+                                                                                            "inputFields": null,
+                                                                                            "interfaces": {},
+                                                                                            "kind": "OBJECT",
+                                                                                            "name": "GlobalIpRangeRef",
+                                                                                            "possibleTypes": null
+                                                                                        },
+                                                                                        "indexType": "object",
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "LIST",
+                                                                                            "NON_NULL",
+                                                                                            "OBJECT"
+                                                                                        ],
+                                                                                        "name": "GlobalIpRangeRef",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "globalIpRangeRef"
+                                                                                },
+                                                                                "id": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Unique identifier of the exact filter rule.",
+                                                                                    "id_str": "bgpPeerList___bgpPeer___defaultActionExclusion___bgpRouteExactFilterRule___id",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "id",
+                                                                                    "path": "bgpPeerList.bgpPeer.defaultActionExclusion.bgpRouteExactFilterRule.id",
+                                                                                    "requestStr": "$id:ID! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "id:$id ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "ID",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "id"
+                                                                                },
+                                                                                "networkSubnet": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Network subnets to include.",
+                                                                                    "id_str": "bgpPeerList___bgpPeer___defaultActionExclusion___bgpRouteExactFilterRule___networkSubnet",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "networkSubnet",
+                                                                                    "path": "bgpPeerList.bgpPeer.defaultActionExclusion.bgpRouteExactFilterRule.networkSubnet",
+                                                                                    "requestStr": "$networkSubnet:[NetworkSubnet]! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "networkSubnet:$networkSubnet ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "LIST",
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "NetworkSubnet",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "networkSubnet"
+                                                                                }
+                                                                            },
+                                                                            "inputFields": null,
+                                                                            "interfaces": {},
+                                                                            "kind": "OBJECT",
+                                                                            "name": "BgpRouteExactFilterRule",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "object",
+                                                                        "kind": [
+                                                                            "OBJECT"
+                                                                        ],
+                                                                        "name": "BgpRouteExactFilterRule",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "bgpRouteExactFilterRule"
+                                                                },
+                                                                "communityFilterRule": {
+                                                                    "alias": "bgpCommunityFilterRuleCommunityFilterRule: communityFilterRule",
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Community filter rule. Please choose only one filter rule type.",
+                                                                    "id_str": "bgpPeerList___bgpPeer___defaultActionExclusion___communityFilterRule",
+                                                                    "isDeprecated": false,
+                                                                    "name": "communityFilterRule",
+                                                                    "path": "bgpPeerList.bgpPeer.defaultActionExclusion.communityFilterRule",
+                                                                    "requestStr": "$bgpCommunityFilterRule:BgpCommunityFilterRule ",
+                                                                    "required": false,
+                                                                    "responseStr": "communityFilterRule:$bgpCommunityFilterRule ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": null,
+                                                                            "enumValues": null,
+                                                                            "fields": {
+                                                                                "community": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Community values to match.",
+                                                                                    "id_str": "bgpPeerList___bgpPeer___defaultActionExclusion___communityFilterRule___community",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "community",
+                                                                                    "path": "bgpPeerList.bgpPeer.defaultActionExclusion.communityFilterRule.community",
+                                                                                    "requestStr": "$bgpCommunity:[BgpCommunity]! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "community:$bgpCommunity ",
+                                                                                    "type": {
+                                                                                        "definition": {
+                                                                                            "description": null,
+                                                                                            "enumValues": null,
+                                                                                            "fields": {
+                                                                                                "from": {
+                                                                                                    "args": {},
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": "Start of the community range.",
+                                                                                                    "id_str": "bgpPeerList___bgpPeer___defaultActionExclusion___communityFilterRule___community___from",
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "from",
+                                                                                                    "path": "bgpPeerList.bgpPeer.defaultActionExclusion.communityFilterRule.community.from",
+                                                                                                    "requestStr": "$from:Asn16! ",
+                                                                                                    "required": true,
+                                                                                                    "responseStr": "from:$from ",
+                                                                                                    "type": {
+                                                                                                        "kind": [
+                                                                                                            "NON_NULL",
+                                                                                                            "SCALAR"
+                                                                                                        ],
+                                                                                                        "name": "Asn16",
+                                                                                                        "non_null": false
+                                                                                                    },
+                                                                                                    "varName": "from"
+                                                                                                },
+                                                                                                "to": {
+                                                                                                    "args": {},
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": "End of the community range.",
+                                                                                                    "id_str": "bgpPeerList___bgpPeer___defaultActionExclusion___communityFilterRule___community___to",
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "to",
+                                                                                                    "path": "bgpPeerList.bgpPeer.defaultActionExclusion.communityFilterRule.community.to",
+                                                                                                    "requestStr": "$to:Asn16! ",
+                                                                                                    "required": true,
+                                                                                                    "responseStr": "to:$to ",
+                                                                                                    "type": {
+                                                                                                        "kind": [
+                                                                                                            "NON_NULL",
+                                                                                                            "SCALAR"
+                                                                                                        ],
+                                                                                                        "name": "Asn16",
+                                                                                                        "non_null": false
+                                                                                                    },
+                                                                                                    "varName": "to"
+                                                                                                }
+                                                                                            },
+                                                                                            "inputFields": null,
+                                                                                            "interfaces": {},
+                                                                                            "kind": "OBJECT",
+                                                                                            "name": "BgpCommunity",
+                                                                                            "possibleTypes": null
+                                                                                        },
+                                                                                        "indexType": "object",
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "LIST",
+                                                                                            "NON_NULL",
+                                                                                            "OBJECT"
+                                                                                        ],
+                                                                                        "name": "BgpCommunity",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "bgpCommunity"
+                                                                                },
+                                                                                "id": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Unique identifier of the community filter rule.",
+                                                                                    "id_str": "bgpPeerList___bgpPeer___defaultActionExclusion___communityFilterRule___id",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "id",
+                                                                                    "path": "bgpPeerList.bgpPeer.defaultActionExclusion.communityFilterRule.id",
+                                                                                    "requestStr": "$id:ID! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "id:$id ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "ID",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "id"
+                                                                                },
+                                                                                "predicate": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Predicate to apply to the community filter (e.g., EQUAL, NOT_EQUAL).",
+                                                                                    "id_str": "bgpPeerList___bgpPeer___defaultActionExclusion___communityFilterRule___predicate",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "predicate",
+                                                                                    "path": "bgpPeerList.bgpPeer.defaultActionExclusion.communityFilterRule.predicate",
+                                                                                    "requestStr": "$predicate:BgpCommunityFilterPredicate! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "predicate:$predicate ",
+                                                                                    "type": {
+                                                                                        "definition": {
+                                                                                            "description": null,
+                                                                                            "enumValues": [
+                                                                                                {
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": "Matches exactly the specified community value.",
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "EQUAL"
+                                                                                                },
+                                                                                                {
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": "Matches any community value except the specified one.",
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "NOT_EQUAL"
+                                                                                                }
+                                                                                            ],
+                                                                                            "fields": null,
+                                                                                            "inputFields": null,
+                                                                                            "interfaces": null,
+                                                                                            "kind": "ENUM",
+                                                                                            "name": "BgpCommunityFilterPredicate",
+                                                                                            "possibleTypes": null
+                                                                                        },
+                                                                                        "indexType": "enum",
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "ENUM"
+                                                                                        ],
+                                                                                        "name": "BgpCommunityFilterPredicate",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "predicate"
+                                                                                }
+                                                                            },
+                                                                            "inputFields": null,
+                                                                            "interfaces": {},
+                                                                            "kind": "OBJECT",
+                                                                            "name": "BgpCommunityFilterRule",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "object",
+                                                                        "kind": [
+                                                                            "OBJECT"
+                                                                        ],
+                                                                        "name": "BgpCommunityFilterRule",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "bgpCommunityFilterRule"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "BgpFilterRule",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "LIST",
+                                                            "NON_NULL",
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "BgpFilterRule",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "bgpFilterRule"
+                                                },
                                                 "holdTime": {
                                                     "args": {},
                                                     "deprecationReason": null,
@@ -2269,7 +3594,7 @@
                                                     "responseStr": "site:$siteRef ",
                                                     "type": {
                                                         "definition": {
-                                                            "description": null,
+                                                            "description": "A reference identifying the Site object. ID: Unique Site Identifier, Name: The Site Name",
                                                             "enumValues": null,
                                                             "fields": {
                                                                 "id": {
@@ -3031,7 +4356,7 @@
                                     "responseStr": "popLocation:$popLocationRef ",
                                     "type": {
                                         "definition": {
-                                            "description": null,
+                                            "description": "A reference identifying the PopLocation object. ID: Unique PopLocation Identifier, Name: The PopLocation Name",
                                             "enumValues": null,
                                             "fields": {
                                                 "id": {
@@ -3189,7 +4514,7 @@
                                     "responseStr": "site:$siteRef ",
                                     "type": {
                                         "definition": {
-                                            "description": null,
+                                            "description": "A reference identifying the Site object. ID: Unique Site Identifier, Name: The Site Name",
                                             "enumValues": null,
                                             "fields": {
                                                 "id": {

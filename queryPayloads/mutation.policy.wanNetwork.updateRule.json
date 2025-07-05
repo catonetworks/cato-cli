@@ -1,0 +1,677 @@
+{
+    "operationName": "policyWanNetworkUpdateRule",
+    "query": "mutation policyWanNetworkUpdateRule ( $wanNetworkUpdateRuleInput:WanNetworkUpdateRuleInput! $wanNetworkPolicyMutationInput:WanNetworkPolicyMutationInput ) { policy ( ) { wanNetwork ( input:$wanNetworkPolicyMutationInput ) { updateRule ( input:$wanNetworkUpdateRuleInput ) { wanNetworkRulePayloadRule: rule { audit { updatedTime updatedBy } rule { id name description index policySectionInfoSection: section { id name } enabled wanNetworkRuleTypeRuleType: ruleType wanNetworkRuleRouteTypeRouteType: routeType wanNetworkRuleSourceSource: source { userRefUser: user { id name } floatingSubnetRefFloatingSubnet: floatingSubnet { id name } globalIpRangeRefGlobalIpRange: globalIpRange { id name } groupRefGroup: group { id name } hostRefHost: host { id name } ip ipAddressRangeIpRange: ipRange { from to } networkInterfaceRefNetworkInterface: networkInterface { id name } subnet siteRefSite: site { id name } siteNetworkSubnetRefSiteNetworkSubnet: siteNetworkSubnet { id name } systemGroupRefSystemGroup: systemGroup { id name } usersGroupRefUsersGroup: usersGroup { id name } } wanNetworkRuleDestinationDestination: destination { userRefUser: user { id name } floatingSubnetRefFloatingSubnet: floatingSubnet { id name } globalIpRangeRefGlobalIpRange: globalIpRange { id name } groupRefGroup: group { id name } hostRefHost: host { id name } ip ipAddressRangeIpRange: ipRange { from to } networkInterfaceRefNetworkInterface: networkInterface { id name } subnet siteRefSite: site { id name } siteNetworkSubnetRefSiteNetworkSubnet: siteNetworkSubnet { id name } systemGroupRefSystemGroup: systemGroup { id name } usersGroupRefUsersGroup: usersGroup { id name } } wanNetworkRuleApplicationApplication: application { applicationRefApplication: application { id name } applicationCategoryRefAppCategory: appCategory { id name } customApplicationRefCustomApp: customApp { id name } customCategoryRefCustomCategory: customCategory { id name } customServiceIpCustomServiceIp: customServiceIp { name ip ipAddressRangeIpRange: ipRange { from to } } customServiceCustomService: customService { port portRangePortRange: portRange { from to } ipProtocolProtocol: protocol } domain fqdn serviceRefService: service { id name } } wanNetworkRuleConfigurationConfiguration: configuration { activeTcpAcceleration packetLossMitigation preserveSourcePort wanNetworkRuleTransportPrimaryTransport: primaryTransport { wanNetworkRuleTransportTypeTransportType: transportType wanNetworkRuleInterfaceRolePrimaryInterfaceRole: primaryInterfaceRole wanNetworkRuleInterfaceRoleSecondaryInterfaceRole: secondaryInterfaceRole } wanNetworkRuleTransportSecondaryTransport: secondaryTransport { wanNetworkRuleTransportTypeTransportType: transportType wanNetworkRuleInterfaceRolePrimaryInterfaceRole: primaryInterfaceRole wanNetworkRuleInterfaceRoleSecondaryInterfaceRole: secondaryInterfaceRole } allocatedIpRefAllocationIp: allocationIp { id name } popLocationRefPopLocation: popLocation { id name } siteRefBackhaulingSite: backhaulingSite { id name } } bandwidthManagementRefBandwidthPriority: bandwidthPriority { id name } wanNetworkRuleExceptionExceptions: exceptions { name wanNetworkRuleSourceSource: source { userRefUser: user { id name } floatingSubnetRefFloatingSubnet: floatingSubnet { id name } globalIpRangeRefGlobalIpRange: globalIpRange { id name } groupRefGroup: group { id name } hostRefHost: host { id name } ip ipAddressRangeIpRange: ipRange { from to } networkInterfaceRefNetworkInterface: networkInterface { id name } subnet siteRefSite: site { id name } siteNetworkSubnetRefSiteNetworkSubnet: siteNetworkSubnet { id name } systemGroupRefSystemGroup: systemGroup { id name } usersGroupRefUsersGroup: usersGroup { id name } } wanNetworkRuleDestinationDestination: destination { userRefUser: user { id name } floatingSubnetRefFloatingSubnet: floatingSubnet { id name } globalIpRangeRefGlobalIpRange: globalIpRange { id name } groupRefGroup: group { id name } hostRefHost: host { id name } ip ipAddressRangeIpRange: ipRange { from to } networkInterfaceRefNetworkInterface: networkInterface { id name } subnet siteRefSite: site { id name } siteNetworkSubnetRefSiteNetworkSubnet: siteNetworkSubnet { id name } systemGroupRefSystemGroup: systemGroup { id name } usersGroupRefUsersGroup: usersGroup { id name } } wanNetworkRuleApplicationApplication: application { applicationRefApplication: application { id name } applicationCategoryRefAppCategory: appCategory { id name } customApplicationRefCustomApp: customApp { id name } customCategoryRefCustomCategory: customCategory { id name } customServiceIpCustomServiceIp: customServiceIp { name ip ipAddressRangeIpRange: ipRange {  from  to } } customServiceCustomService: customService { port portRangePortRange: portRange {  from  to } ipProtocolProtocol: protocol } domain fqdn serviceRefService: service { id name } } } } properties } policyMutationStatusStatus: status policyMutationErrorErrors: errors { errorMessage errorCode } } } } }",
+    "variables": {
+        "wanNetworkPolicyMutationInput": {
+            "policyMutationRevisionInput": {
+                "id": {
+                    "id": "ID"
+                }
+            }
+        },
+        "wanNetworkUpdateRuleInput": {
+            "id": {
+                "id": "ID"
+            },
+            "wanNetworkUpdateRuleDataInput": {
+                "application": {
+                    "appCategory": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "application": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "customApp": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "customCategory": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "customService": {
+                        "port": {
+                            "port": [
+                                "Port"
+                            ]
+                        },
+                        "portRange": {
+                            "from": {
+                                "from": "Port"
+                            },
+                            "to": {
+                                "to": "Port"
+                            }
+                        },
+                        "protocol": {
+                            "protocol": "enum(IpProtocol)"
+                        }
+                    },
+                    "customServiceIp": {
+                        "ip": {
+                            "ip": "IPAddress"
+                        },
+                        "ipRange": {
+                            "from": {
+                                "from": "IPAddress"
+                            },
+                            "to": {
+                                "to": "IPAddress"
+                            }
+                        },
+                        "name": {
+                            "name": "String"
+                        }
+                    },
+                    "domain": {
+                        "domain": [
+                            "Domain"
+                        ]
+                    },
+                    "fqdn": {
+                        "fqdn": [
+                            "Fqdn"
+                        ]
+                    },
+                    "service": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    }
+                },
+                "bandwidthPriority": {
+                    "by": {
+                        "by": "enum(ObjectRefBy)"
+                    },
+                    "input": {
+                        "input": "String"
+                    }
+                },
+                "configuration": {
+                    "activeTcpAcceleration": {
+                        "activeTcpAcceleration": "Boolean"
+                    },
+                    "allocationIp": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "backhaulingSite": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "packetLossMitigation": {
+                        "packetLossMitigation": "Boolean"
+                    },
+                    "popLocation": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "preserveSourcePort": {
+                        "preserveSourcePort": "Boolean"
+                    },
+                    "primaryTransport": {
+                        "primaryInterfaceRole": {
+                            "primaryInterfaceRole": "enum(WanNetworkRuleInterfaceRole)"
+                        },
+                        "secondaryInterfaceRole": {
+                            "secondaryInterfaceRole": "enum(WanNetworkRuleInterfaceRole)"
+                        },
+                        "transportType": {
+                            "transportType": "enum(WanNetworkRuleTransportType)"
+                        }
+                    },
+                    "secondaryTransport": {
+                        "primaryInterfaceRole": {
+                            "primaryInterfaceRole": "enum(WanNetworkRuleInterfaceRole)"
+                        },
+                        "secondaryInterfaceRole": {
+                            "secondaryInterfaceRole": "enum(WanNetworkRuleInterfaceRole)"
+                        },
+                        "transportType": {
+                            "transportType": "enum(WanNetworkRuleTransportType)"
+                        }
+                    }
+                },
+                "description": {
+                    "description": "String"
+                },
+                "destination": {
+                    "floatingSubnet": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "globalIpRange": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "group": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "host": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "ip": {
+                        "ip": [
+                            "IPAddress"
+                        ]
+                    },
+                    "ipRange": {
+                        "from": {
+                            "from": "IPAddress"
+                        },
+                        "to": {
+                            "to": "IPAddress"
+                        }
+                    },
+                    "networkInterface": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "site": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "siteNetworkSubnet": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "subnet": {
+                        "subnet": [
+                            "NetworkSubnet"
+                        ]
+                    },
+                    "systemGroup": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "user": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "usersGroup": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    }
+                },
+                "enabled": {
+                    "enabled": "Boolean"
+                },
+                "exceptions": {
+                    "application": {
+                        "appCategory": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "application": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "customApp": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "customCategory": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "customService": {
+                            "port": {
+                                "port": [
+                                    "Port"
+                                ]
+                            },
+                            "portRange": {
+                                "from": {
+                                    "from": "Port"
+                                },
+                                "to": {
+                                    "to": "Port"
+                                }
+                            },
+                            "protocol": {
+                                "protocol": "enum(IpProtocol)"
+                            }
+                        },
+                        "customServiceIp": {
+                            "ip": {
+                                "ip": "IPAddress"
+                            },
+                            "ipRange": {
+                                "from": {
+                                    "from": "IPAddress"
+                                },
+                                "to": {
+                                    "to": "IPAddress"
+                                }
+                            },
+                            "name": {
+                                "name": "String"
+                            }
+                        },
+                        "domain": {
+                            "domain": [
+                                "Domain"
+                            ]
+                        },
+                        "fqdn": {
+                            "fqdn": [
+                                "Fqdn"
+                            ]
+                        },
+                        "service": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        }
+                    },
+                    "destination": {
+                        "floatingSubnet": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "globalIpRange": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "group": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "host": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "ip": {
+                            "ip": [
+                                "IPAddress"
+                            ]
+                        },
+                        "ipRange": {
+                            "from": {
+                                "from": "IPAddress"
+                            },
+                            "to": {
+                                "to": "IPAddress"
+                            }
+                        },
+                        "networkInterface": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "site": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "siteNetworkSubnet": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "subnet": {
+                            "subnet": [
+                                "NetworkSubnet"
+                            ]
+                        },
+                        "systemGroup": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "user": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "usersGroup": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        }
+                    },
+                    "name": {
+                        "name": "String"
+                    },
+                    "source": {
+                        "floatingSubnet": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "globalIpRange": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "group": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "host": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "ip": {
+                            "ip": [
+                                "IPAddress"
+                            ]
+                        },
+                        "ipRange": {
+                            "from": {
+                                "from": "IPAddress"
+                            },
+                            "to": {
+                                "to": "IPAddress"
+                            }
+                        },
+                        "networkInterface": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "site": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "siteNetworkSubnet": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "subnet": {
+                            "subnet": [
+                                "NetworkSubnet"
+                            ]
+                        },
+                        "systemGroup": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "user": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        },
+                        "usersGroup": {
+                            "by": {
+                                "by": "enum(ObjectRefBy)"
+                            },
+                            "input": {
+                                "input": "String"
+                            }
+                        }
+                    }
+                },
+                "name": {
+                    "name": "String"
+                },
+                "routeType": {
+                    "routeType": "enum(WanNetworkRuleRouteType)"
+                },
+                "ruleType": {
+                    "ruleType": "enum(WanNetworkRuleType)"
+                },
+                "source": {
+                    "floatingSubnet": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "globalIpRange": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "group": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "host": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "ip": {
+                        "ip": [
+                            "IPAddress"
+                        ]
+                    },
+                    "ipRange": {
+                        "from": {
+                            "from": "IPAddress"
+                        },
+                        "to": {
+                            "to": "IPAddress"
+                        }
+                    },
+                    "networkInterface": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "site": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "siteNetworkSubnet": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "subnet": {
+                        "subnet": [
+                            "NetworkSubnet"
+                        ]
+                    },
+                    "systemGroup": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "user": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    },
+                    "usersGroup": {
+                        "by": {
+                            "by": "enum(ObjectRefBy)"
+                        },
+                        "input": {
+                            "input": "String"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

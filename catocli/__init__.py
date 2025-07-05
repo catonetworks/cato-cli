@@ -1,2 +1,2 @@
-__version__ = "1.0.20"
+__version__ = "2.0.0"
 __cato_host__ = "https://api.catonetworks.com/api/v1/graphql2"

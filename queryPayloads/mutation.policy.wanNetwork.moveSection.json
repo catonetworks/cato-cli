@@ -1,0 +1,26 @@
+{
+    "operationName": "policyWanNetworkMoveSection",
+    "query": "mutation policyWanNetworkMoveSection ( $policyMoveSectionInput:PolicyMoveSectionInput! $wanNetworkPolicyMutationInput:WanNetworkPolicyMutationInput ) { policy ( ) { wanNetwork ( input:$wanNetworkPolicyMutationInput ) { moveSection ( input:$policyMoveSectionInput ) { policySectionPayloadSection: section { audit { updatedTime updatedBy } section { id name } properties } policyMutationStatusStatus: status policyMutationErrorErrors: errors { errorMessage errorCode } } } } }",
+    "variables": {
+        "policyMoveSectionInput": {
+            "id": {
+                "id": "ID"
+            },
+            "policySectionPositionInput": {
+                "position": {
+                    "position": "enum(PolicySectionPositionEnum)"
+                },
+                "ref": {
+                    "ref": "ID"
+                }
+            }
+        },
+        "wanNetworkPolicyMutationInput": {
+            "policyMutationRevisionInput": {
+                "id": {
+                    "id": "ID"
+                }
+            }
+        }
+    }
+}

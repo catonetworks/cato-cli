@@ -704,6 +704,180 @@ def mutation_policy_parse(mutation_subparsers):
 		help='Pretty print')
 	mutation_policy_remotePortFwd_updateSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.remotePortFwd.updateSection')
 
+	mutation_policy_socketLan_parser = mutation_policy_subparsers.add_parser('socketLan', 
+			help='socketLan() policy operation', 
+			usage=get_help("mutation_policy_socketLan"))
+
+	mutation_policy_socketLan_subparsers = mutation_policy_socketLan_parser.add_subparsers()
+
+	mutation_policy_socketLan_addRule_parser = mutation_policy_socketLan_subparsers.add_parser('addRule', 
+			help='addRule() socketLan operation', 
+			usage=get_help("mutation_policy_socketLan_addRule"))
+
+	mutation_policy_socketLan_addRule_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_socketLan_addRule_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_policy_socketLan_addRule_parser.add_argument('-t', const=True, default=False, nargs='?', 
+		help='Print test request preview without sending api call')
+	mutation_policy_socketLan_addRule_parser.add_argument('-v', const=True, default=False, nargs='?', 
+		help='Verbose output')
+	mutation_policy_socketLan_addRule_parser.add_argument('-p', const=True, default=False, nargs='?', 
+		help='Pretty print')
+	mutation_policy_socketLan_addRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.socketLan.addRule')
+
+	mutation_policy_socketLan_addSection_parser = mutation_policy_socketLan_subparsers.add_parser('addSection', 
+			help='addSection() socketLan operation', 
+			usage=get_help("mutation_policy_socketLan_addSection"))
+
+	mutation_policy_socketLan_addSection_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_socketLan_addSection_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_policy_socketLan_addSection_parser.add_argument('-t', const=True, default=False, nargs='?', 
+		help='Print test request preview without sending api call')
+	mutation_policy_socketLan_addSection_parser.add_argument('-v', const=True, default=False, nargs='?', 
+		help='Verbose output')
+	mutation_policy_socketLan_addSection_parser.add_argument('-p', const=True, default=False, nargs='?', 
+		help='Pretty print')
+	mutation_policy_socketLan_addSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.socketLan.addSection')
+
+	mutation_policy_socketLan_createPolicyRevision_parser = mutation_policy_socketLan_subparsers.add_parser('createPolicyRevision', 
+			help='createPolicyRevision() socketLan operation', 
+			usage=get_help("mutation_policy_socketLan_createPolicyRevision"))
+
+	mutation_policy_socketLan_createPolicyRevision_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_socketLan_createPolicyRevision_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_policy_socketLan_createPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', 
+		help='Print test request preview without sending api call')
+	mutation_policy_socketLan_createPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', 
+		help='Verbose output')
+	mutation_policy_socketLan_createPolicyRevision_parser.add_argument('-p', const=True, default=False, nargs='?', 
+		help='Pretty print')
+	mutation_policy_socketLan_createPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.socketLan.createPolicyRevision')
+
+	mutation_policy_socketLan_discardPolicyRevision_parser = mutation_policy_socketLan_subparsers.add_parser('discardPolicyRevision', 
+			help='discardPolicyRevision() socketLan operation', 
+			usage=get_help("mutation_policy_socketLan_discardPolicyRevision"))
+
+	mutation_policy_socketLan_discardPolicyRevision_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_socketLan_discardPolicyRevision_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_policy_socketLan_discardPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', 
+		help='Print test request preview without sending api call')
+	mutation_policy_socketLan_discardPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', 
+		help='Verbose output')
+	mutation_policy_socketLan_discardPolicyRevision_parser.add_argument('-p', const=True, default=False, nargs='?', 
+		help='Pretty print')
+	mutation_policy_socketLan_discardPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.socketLan.discardPolicyRevision')
+
+	mutation_policy_socketLan_moveRule_parser = mutation_policy_socketLan_subparsers.add_parser('moveRule', 
+			help='moveRule() socketLan operation', 
+			usage=get_help("mutation_policy_socketLan_moveRule"))
+
+	mutation_policy_socketLan_moveRule_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_socketLan_moveRule_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_policy_socketLan_moveRule_parser.add_argument('-t', const=True, default=False, nargs='?', 
+		help='Print test request preview without sending api call')
+	mutation_policy_socketLan_moveRule_parser.add_argument('-v', const=True, default=False, nargs='?', 
+		help='Verbose output')
+	mutation_policy_socketLan_moveRule_parser.add_argument('-p', const=True, default=False, nargs='?', 
+		help='Pretty print')
+	mutation_policy_socketLan_moveRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.socketLan.moveRule')
+
+	mutation_policy_socketLan_moveSection_parser = mutation_policy_socketLan_subparsers.add_parser('moveSection', 
+			help='moveSection() socketLan operation', 
+			usage=get_help("mutation_policy_socketLan_moveSection"))
+
+	mutation_policy_socketLan_moveSection_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_socketLan_moveSection_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_policy_socketLan_moveSection_parser.add_argument('-t', const=True, default=False, nargs='?', 
+		help='Print test request preview without sending api call')
+	mutation_policy_socketLan_moveSection_parser.add_argument('-v', const=True, default=False, nargs='?', 
+		help='Verbose output')
+	mutation_policy_socketLan_moveSection_parser.add_argument('-p', const=True, default=False, nargs='?', 
+		help='Pretty print')
+	mutation_policy_socketLan_moveSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.socketLan.moveSection')
+
+	mutation_policy_socketLan_publishPolicyRevision_parser = mutation_policy_socketLan_subparsers.add_parser('publishPolicyRevision', 
+			help='publishPolicyRevision() socketLan operation', 
+			usage=get_help("mutation_policy_socketLan_publishPolicyRevision"))
+
+	mutation_policy_socketLan_publishPolicyRevision_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_socketLan_publishPolicyRevision_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_policy_socketLan_publishPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', 
+		help='Print test request preview without sending api call')
+	mutation_policy_socketLan_publishPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', 
+		help='Verbose output')
+	mutation_policy_socketLan_publishPolicyRevision_parser.add_argument('-p', const=True, default=False, nargs='?', 
+		help='Pretty print')
+	mutation_policy_socketLan_publishPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.socketLan.publishPolicyRevision')
+
+	mutation_policy_socketLan_removeRule_parser = mutation_policy_socketLan_subparsers.add_parser('removeRule', 
+			help='removeRule() socketLan operation', 
+			usage=get_help("mutation_policy_socketLan_removeRule"))
+
+	mutation_policy_socketLan_removeRule_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_socketLan_removeRule_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_policy_socketLan_removeRule_parser.add_argument('-t', const=True, default=False, nargs='?', 
+		help='Print test request preview without sending api call')
+	mutation_policy_socketLan_removeRule_parser.add_argument('-v', const=True, default=False, nargs='?', 
+		help='Verbose output')
+	mutation_policy_socketLan_removeRule_parser.add_argument('-p', const=True, default=False, nargs='?', 
+		help='Pretty print')
+	mutation_policy_socketLan_removeRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.socketLan.removeRule')
+
+	mutation_policy_socketLan_removeSection_parser = mutation_policy_socketLan_subparsers.add_parser('removeSection', 
+			help='removeSection() socketLan operation', 
+			usage=get_help("mutation_policy_socketLan_removeSection"))
+
+	mutation_policy_socketLan_removeSection_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_socketLan_removeSection_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_policy_socketLan_removeSection_parser.add_argument('-t', const=True, default=False, nargs='?', 
+		help='Print test request preview without sending api call')
+	mutation_policy_socketLan_removeSection_parser.add_argument('-v', const=True, default=False, nargs='?', 
+		help='Verbose output')
+	mutation_policy_socketLan_removeSection_parser.add_argument('-p', const=True, default=False, nargs='?', 
+		help='Pretty print')
+	mutation_policy_socketLan_removeSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.socketLan.removeSection')
+
+	mutation_policy_socketLan_updatePolicy_parser = mutation_policy_socketLan_subparsers.add_parser('updatePolicy', 
+			help='updatePolicy() socketLan operation', 
+			usage=get_help("mutation_policy_socketLan_updatePolicy"))
+
+	mutation_policy_socketLan_updatePolicy_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_socketLan_updatePolicy_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_policy_socketLan_updatePolicy_parser.add_argument('-t', const=True, default=False, nargs='?', 
+		help='Print test request preview without sending api call')
+	mutation_policy_socketLan_updatePolicy_parser.add_argument('-v', const=True, default=False, nargs='?', 
+		help='Verbose output')
+	mutation_policy_socketLan_updatePolicy_parser.add_argument('-p', const=True, default=False, nargs='?', 
+		help='Pretty print')
+	mutation_policy_socketLan_updatePolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.socketLan.updatePolicy')
+
+	mutation_policy_socketLan_updateRule_parser = mutation_policy_socketLan_subparsers.add_parser('updateRule', 
+			help='updateRule() socketLan operation', 
+			usage=get_help("mutation_policy_socketLan_updateRule"))
+
+	mutation_policy_socketLan_updateRule_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_socketLan_updateRule_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_policy_socketLan_updateRule_parser.add_argument('-t', const=True, default=False, nargs='?', 
+		help='Print test request preview without sending api call')
+	mutation_policy_socketLan_updateRule_parser.add_argument('-v', const=True, default=False, nargs='?', 
+		help='Verbose output')
+	mutation_policy_socketLan_updateRule_parser.add_argument('-p', const=True, default=False, nargs='?', 
+		help='Pretty print')
+	mutation_policy_socketLan_updateRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.socketLan.updateRule')
+
+	mutation_policy_socketLan_updateSection_parser = mutation_policy_socketLan_subparsers.add_parser('updateSection', 
+			help='updateSection() socketLan operation', 
+			usage=get_help("mutation_policy_socketLan_updateSection"))
+
+	mutation_policy_socketLan_updateSection_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_socketLan_updateSection_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_policy_socketLan_updateSection_parser.add_argument('-t', const=True, default=False, nargs='?', 
+		help='Print test request preview without sending api call')
+	mutation_policy_socketLan_updateSection_parser.add_argument('-v', const=True, default=False, nargs='?', 
+		help='Verbose output')
+	mutation_policy_socketLan_updateSection_parser.add_argument('-p', const=True, default=False, nargs='?', 
+		help='Pretty print')
+	mutation_policy_socketLan_updateSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.socketLan.updateSection')
+
 	mutation_policy_wanFirewall_parser = mutation_policy_subparsers.add_parser('wanFirewall', 
 			help='wanFirewall() policy operation', 
 			usage=get_help("mutation_policy_wanFirewall"))
@@ -877,3 +1051,177 @@ def mutation_policy_parse(mutation_subparsers):
 	mutation_policy_wanFirewall_updateSection_parser.add_argument('-p', const=True, default=False, nargs='?', 
 		help='Pretty print')
 	mutation_policy_wanFirewall_updateSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanFirewall.updateSection')
+
+	mutation_policy_wanNetwork_parser = mutation_policy_subparsers.add_parser('wanNetwork', 
+			help='wanNetwork() policy operation', 
+			usage=get_help("mutation_policy_wanNetwork"))
+
+	mutation_policy_wanNetwork_subparsers = mutation_policy_wanNetwork_parser.add_subparsers()
+
+	mutation_policy_wanNetwork_addRule_parser = mutation_policy_wanNetwork_subparsers.add_parser('addRule', 
+			help='addRule() wanNetwork operation', 
+			usage=get_help("mutation_policy_wanNetwork_addRule"))
+
+	mutation_policy_wanNetwork_addRule_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_wanNetwork_addRule_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_policy_wanNetwork_addRule_parser.add_argument('-t', const=True, default=False, nargs='?', 
+		help='Print test request preview without sending api call')
+	mutation_policy_wanNetwork_addRule_parser.add_argument('-v', const=True, default=False, nargs='?', 
+		help='Verbose output')
+	mutation_policy_wanNetwork_addRule_parser.add_argument('-p', const=True, default=False, nargs='?', 
+		help='Pretty print')
+	mutation_policy_wanNetwork_addRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanNetwork.addRule')
+
+	mutation_policy_wanNetwork_addSection_parser = mutation_policy_wanNetwork_subparsers.add_parser('addSection', 
+			help='addSection() wanNetwork operation', 
+			usage=get_help("mutation_policy_wanNetwork_addSection"))
+
+	mutation_policy_wanNetwork_addSection_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_wanNetwork_addSection_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_policy_wanNetwork_addSection_parser.add_argument('-t', const=True, default=False, nargs='?', 
+		help='Print test request preview without sending api call')
+	mutation_policy_wanNetwork_addSection_parser.add_argument('-v', const=True, default=False, nargs='?', 
+		help='Verbose output')
+	mutation_policy_wanNetwork_addSection_parser.add_argument('-p', const=True, default=False, nargs='?', 
+		help='Pretty print')
+	mutation_policy_wanNetwork_addSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanNetwork.addSection')
+
+	mutation_policy_wanNetwork_createPolicyRevision_parser = mutation_policy_wanNetwork_subparsers.add_parser('createPolicyRevision', 
+			help='createPolicyRevision() wanNetwork operation', 
+			usage=get_help("mutation_policy_wanNetwork_createPolicyRevision"))
+
+	mutation_policy_wanNetwork_createPolicyRevision_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_wanNetwork_createPolicyRevision_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_policy_wanNetwork_createPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', 
+		help='Print test request preview without sending api call')
+	mutation_policy_wanNetwork_createPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', 
+		help='Verbose output')
+	mutation_policy_wanNetwork_createPolicyRevision_parser.add_argument('-p', const=True, default=False, nargs='?', 
+		help='Pretty print')
+	mutation_policy_wanNetwork_createPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanNetwork.createPolicyRevision')
+
+	mutation_policy_wanNetwork_discardPolicyRevision_parser = mutation_policy_wanNetwork_subparsers.add_parser('discardPolicyRevision', 
+			help='discardPolicyRevision() wanNetwork operation', 
+			usage=get_help("mutation_policy_wanNetwork_discardPolicyRevision"))
+
+	mutation_policy_wanNetwork_discardPolicyRevision_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_wanNetwork_discardPolicyRevision_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_policy_wanNetwork_discardPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', 
+		help='Print test request preview without sending api call')
+	mutation_policy_wanNetwork_discardPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', 
+		help='Verbose output')
+	mutation_policy_wanNetwork_discardPolicyRevision_parser.add_argument('-p', const=True, default=False, nargs='?', 
+		help='Pretty print')
+	mutation_policy_wanNetwork_discardPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanNetwork.discardPolicyRevision')
+
+	mutation_policy_wanNetwork_moveRule_parser = mutation_policy_wanNetwork_subparsers.add_parser('moveRule', 
+			help='moveRule() wanNetwork operation', 
+			usage=get_help("mutation_policy_wanNetwork_moveRule"))
+
+	mutation_policy_wanNetwork_moveRule_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_wanNetwork_moveRule_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_policy_wanNetwork_moveRule_parser.add_argument('-t', const=True, default=False, nargs='?', 
+		help='Print test request preview without sending api call')
+	mutation_policy_wanNetwork_moveRule_parser.add_argument('-v', const=True, default=False, nargs='?', 
+		help='Verbose output')
+	mutation_policy_wanNetwork_moveRule_parser.add_argument('-p', const=True, default=False, nargs='?', 
+		help='Pretty print')
+	mutation_policy_wanNetwork_moveRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanNetwork.moveRule')
+
+	mutation_policy_wanNetwork_moveSection_parser = mutation_policy_wanNetwork_subparsers.add_parser('moveSection', 
+			help='moveSection() wanNetwork operation', 
+			usage=get_help("mutation_policy_wanNetwork_moveSection"))
+
+	mutation_policy_wanNetwork_moveSection_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_wanNetwork_moveSection_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_policy_wanNetwork_moveSection_parser.add_argument('-t', const=True, default=False, nargs='?', 
+		help='Print test request preview without sending api call')
+	mutation_policy_wanNetwork_moveSection_parser.add_argument('-v', const=True, default=False, nargs='?', 
+		help='Verbose output')
+	mutation_policy_wanNetwork_moveSection_parser.add_argument('-p', const=True, default=False, nargs='?', 
+		help='Pretty print')
+	mutation_policy_wanNetwork_moveSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanNetwork.moveSection')
+
+	mutation_policy_wanNetwork_publishPolicyRevision_parser = mutation_policy_wanNetwork_subparsers.add_parser('publishPolicyRevision', 
+			help='publishPolicyRevision() wanNetwork operation', 
+			usage=get_help("mutation_policy_wanNetwork_publishPolicyRevision"))
+
+	mutation_policy_wanNetwork_publishPolicyRevision_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_wanNetwork_publishPolicyRevision_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_policy_wanNetwork_publishPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', 
+		help='Print test request preview without sending api call')
+	mutation_policy_wanNetwork_publishPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', 
+		help='Verbose output')
+	mutation_policy_wanNetwork_publishPolicyRevision_parser.add_argument('-p', const=True, default=False, nargs='?', 
+		help='Pretty print')
+	mutation_policy_wanNetwork_publishPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanNetwork.publishPolicyRevision')
+
+	mutation_policy_wanNetwork_removeRule_parser = mutation_policy_wanNetwork_subparsers.add_parser('removeRule', 
+			help='removeRule() wanNetwork operation', 
+			usage=get_help("mutation_policy_wanNetwork_removeRule"))
+
+	mutation_policy_wanNetwork_removeRule_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_wanNetwork_removeRule_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_policy_wanNetwork_removeRule_parser.add_argument('-t', const=True, default=False, nargs='?', 
+		help='Print test request preview without sending api call')
+	mutation_policy_wanNetwork_removeRule_parser.add_argument('-v', const=True, default=False, nargs='?', 
+		help='Verbose output')
+	mutation_policy_wanNetwork_removeRule_parser.add_argument('-p', const=True, default=False, nargs='?', 
+		help='Pretty print')
+	mutation_policy_wanNetwork_removeRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanNetwork.removeRule')
+
+	mutation_policy_wanNetwork_removeSection_parser = mutation_policy_wanNetwork_subparsers.add_parser('removeSection', 
+			help='removeSection() wanNetwork operation', 
+			usage=get_help("mutation_policy_wanNetwork_removeSection"))
+
+	mutation_policy_wanNetwork_removeSection_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_wanNetwork_removeSection_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_policy_wanNetwork_removeSection_parser.add_argument('-t', const=True, default=False, nargs='?', 
+		help='Print test request preview without sending api call')
+	mutation_policy_wanNetwork_removeSection_parser.add_argument('-v', const=True, default=False, nargs='?', 
+		help='Verbose output')
+	mutation_policy_wanNetwork_removeSection_parser.add_argument('-p', const=True, default=False, nargs='?', 
+		help='Pretty print')
+	mutation_policy_wanNetwork_removeSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanNetwork.removeSection')
+
+	mutation_policy_wanNetwork_updatePolicy_parser = mutation_policy_wanNetwork_subparsers.add_parser('updatePolicy', 
+			help='updatePolicy() wanNetwork operation', 
+			usage=get_help("mutation_policy_wanNetwork_updatePolicy"))
+
+	mutation_policy_wanNetwork_updatePolicy_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_wanNetwork_updatePolicy_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_policy_wanNetwork_updatePolicy_parser.add_argument('-t', const=True, default=False, nargs='?', 
+		help='Print test request preview without sending api call')
+	mutation_policy_wanNetwork_updatePolicy_parser.add_argument('-v', const=True, default=False, nargs='?', 
+		help='Verbose output')
+	mutation_policy_wanNetwork_updatePolicy_parser.add_argument('-p', const=True, default=False, nargs='?', 
+		help='Pretty print')
+	mutation_policy_wanNetwork_updatePolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanNetwork.updatePolicy')
+
+	mutation_policy_wanNetwork_updateRule_parser = mutation_policy_wanNetwork_subparsers.add_parser('updateRule', 
+			help='updateRule() wanNetwork operation', 
+			usage=get_help("mutation_policy_wanNetwork_updateRule"))
+
+	mutation_policy_wanNetwork_updateRule_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_wanNetwork_updateRule_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_policy_wanNetwork_updateRule_parser.add_argument('-t', const=True, default=False, nargs='?', 
+		help='Print test request preview without sending api call')
+	mutation_policy_wanNetwork_updateRule_parser.add_argument('-v', const=True, default=False, nargs='?', 
+		help='Verbose output')
+	mutation_policy_wanNetwork_updateRule_parser.add_argument('-p', const=True, default=False, nargs='?', 
+		help='Pretty print')
+	mutation_policy_wanNetwork_updateRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanNetwork.updateRule')
+
+	mutation_policy_wanNetwork_updateSection_parser = mutation_policy_wanNetwork_subparsers.add_parser('updateSection', 
+			help='updateSection() wanNetwork operation', 
+			usage=get_help("mutation_policy_wanNetwork_updateSection"))
+
+	mutation_policy_wanNetwork_updateSection_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_policy_wanNetwork_updateSection_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_policy_wanNetwork_updateSection_parser.add_argument('-t', const=True, default=False, nargs='?', 
+		help='Print test request preview without sending api call')
+	mutation_policy_wanNetwork_updateSection_parser.add_argument('-v', const=True, default=False, nargs='?', 
+		help='Verbose output')
+	mutation_policy_wanNetwork_updateSection_parser.add_argument('-p', const=True, default=False, nargs='?', 
+		help='Pretty print')
+	mutation_policy_wanNetwork_updateSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanNetwork.updateSection')

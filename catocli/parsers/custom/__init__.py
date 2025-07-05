@@ -1,5 +1,8 @@
 
 import catocli.parsers.custom.customLib as customLib
+from catocli.parsers.custom.export_rules import export_parse
+from catocli.parsers.custom.import_rules_to_tf import import_parse
+from catocli.parsers.configure import configure_parse
 
 def custom_parse(subparsers):
 	entityTypes = ["account","admin","allocatedIP","any","availablePooledUsage","availableSiteUsage","dhcpRelayGroup","groupSubscription","host","lanFirewall","localRouting","location","mailingListSubscription","networkInterface","portProtocol","simpleService","site","siteRange","timezone","vpnUser","webhookSubscription"]
@@ -11,7 +14,7 @@ def custom_parse(subparsers):
 		item_subparsers = item_parser.add_subparsers(description='valid subcommands', help='additional help')
 
 		item_list_parser = item_subparsers.add_parser('list', 
-				help='entity '+entity+' list', 
+				help='entity'+entity+' list', 
 				usage=get_help_custom("entity_"+entity+"_list"))
 
 		item_list_parser.add_argument('-accountID', help='The Account ID.')
@@ -26,6 +29,11 @@ def custom_parse(subparsers):
 			help='Pretty print')
 		
 		item_list_parser.set_defaults(func=customLib.entityTypeList,operation_name=entity)
+
+	# Add additional custom parsers here 
+	export_parse(subparsers)
+	import_parse(subparsers)
+	configure_parse(subparsers)
 
 def get_help_custom(path):
 	matchCmd = "catocli "+path.replace("_"," ")

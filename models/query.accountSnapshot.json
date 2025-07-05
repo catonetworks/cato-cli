@@ -44,6 +44,7 @@
         "SiteSnapshot": true,
         "SiteType": true,
         "SocketInfo": true,
+        "SocketInterfaceWanRole": true,
         "SocketPlatform": true,
         "UserInfo": true,
         "UserSnapshot": true
@@ -1087,6 +1088,68 @@
                                                                                         "non_null": false
                                                                                     },
                                                                                     "varName": "upstreamBandwidthMbpsPrecision"
+                                                                                },
+                                                                                "wanRole": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Role for the WAN interface",
+                                                                                    "id_str": "sites___devices___interfaces___info___wanRole",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "wanRole",
+                                                                                    "path": "sites.devices.interfaces.info.wanRole",
+                                                                                    "requestStr": "$wanRole:SocketInterfaceWanRole ",
+                                                                                    "required": false,
+                                                                                    "responseStr": "wanRole:$wanRole ",
+                                                                                    "type": {
+                                                                                        "definition": {
+                                                                                            "description": null,
+                                                                                            "enumValues": [
+                                                                                                {
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": null,
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "WAN_1"
+                                                                                                },
+                                                                                                {
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": null,
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "WAN_2"
+                                                                                                },
+                                                                                                {
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": null,
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "WAN_3"
+                                                                                                },
+                                                                                                {
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": null,
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "WAN_4"
+                                                                                                },
+                                                                                                {
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": null,
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "NONE"
+                                                                                                }
+                                                                                            ],
+                                                                                            "fields": null,
+                                                                                            "inputFields": null,
+                                                                                            "interfaces": null,
+                                                                                            "kind": "ENUM",
+                                                                                            "name": "SocketInterfaceWanRole",
+                                                                                            "possibleTypes": null
+                                                                                        },
+                                                                                        "indexType": "enum",
+                                                                                        "kind": [
+                                                                                            "ENUM"
+                                                                                        ],
+                                                                                        "name": "SocketInterfaceWanRole",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "wanRole"
                                                                                 }
                                                                             },
                                                                             "inputFields": null,
@@ -2409,6 +2472,12 @@
                                                                                     "description": null,
                                                                                     "isDeprecated": false,
                                                                                     "name": "X1600_LTE"
+                                                                                },
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "GCP1500"
                                                                                 }
                                                                             ],
                                                                             "fields": null,
@@ -2847,6 +2916,26 @@
                                             "description": "Basic Site configuration information",
                                             "enumValues": null,
                                             "fields": {
+                                                "address": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Address of the physical site location",
+                                                    "id_str": "sites___info___address",
+                                                    "isDeprecated": false,
+                                                    "name": "address",
+                                                    "path": "sites.info.address",
+                                                    "requestStr": "$address:String ",
+                                                    "required": false,
+                                                    "responseStr": "address:$address ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "address"
+                                                },
                                                 "cityName": {
                                                     "args": {},
                                                     "deprecationReason": null,
@@ -2953,6 +3042,12 @@
                                                                     "description": null,
                                                                     "isDeprecated": false,
                                                                     "name": "SOCKET_X1600_LTE"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "SOCKET_GCP1500"
                                                                 }
                                                             ],
                                                             "fields": null,
@@ -3227,6 +3322,69 @@
                                                                         "non_null": false
                                                                     },
                                                                     "varName": "upstreamBandwidthMbpsPrecision"
+                                                                },
+                                                                "wanRole": {
+                                                                    "alias": "socketInterfaceWanRoleWanRole: wanRole",
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Role for the WAN interface",
+                                                                    "id_str": "sites___info___interfaces___wanRole",
+                                                                    "isDeprecated": false,
+                                                                    "name": "wanRole",
+                                                                    "path": "sites.info.interfaces.wanRole",
+                                                                    "requestStr": "$wanRole:SocketInterfaceWanRole ",
+                                                                    "required": false,
+                                                                    "responseStr": "wanRole:$wanRole ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": null,
+                                                                            "enumValues": [
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "WAN_1"
+                                                                                },
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "WAN_2"
+                                                                                },
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "WAN_3"
+                                                                                },
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "WAN_4"
+                                                                                },
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "NONE"
+                                                                                }
+                                                                            ],
+                                                                            "fields": null,
+                                                                            "inputFields": null,
+                                                                            "interfaces": null,
+                                                                            "kind": "ENUM",
+                                                                            "name": "SocketInterfaceWanRole",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "enum",
+                                                                        "kind": [
+                                                                            "ENUM"
+                                                                        ],
+                                                                        "name": "SocketInterfaceWanRole",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "wanRole"
                                                                 }
                                                             },
                                                             "inputFields": null,
@@ -3551,6 +3709,12 @@
                                                                                     "description": null,
                                                                                     "isDeprecated": false,
                                                                                     "name": "X1600_LTE"
+                                                                                },
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "GCP1500"
                                                                                 }
                                                                             ],
                                                                             "fields": null,
@@ -4843,6 +5007,68 @@
                                                                                         "non_null": false
                                                                                     },
                                                                                     "varName": "upstreamBandwidthMbpsPrecision"
+                                                                                },
+                                                                                "wanRole": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Role for the WAN interface",
+                                                                                    "id_str": "users___devices___interfaces___info___wanRole",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "wanRole",
+                                                                                    "path": "users.devices.interfaces.info.wanRole",
+                                                                                    "requestStr": "$wanRole:SocketInterfaceWanRole ",
+                                                                                    "required": false,
+                                                                                    "responseStr": "wanRole:$wanRole ",
+                                                                                    "type": {
+                                                                                        "definition": {
+                                                                                            "description": null,
+                                                                                            "enumValues": [
+                                                                                                {
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": null,
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "WAN_1"
+                                                                                                },
+                                                                                                {
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": null,
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "WAN_2"
+                                                                                                },
+                                                                                                {
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": null,
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "WAN_3"
+                                                                                                },
+                                                                                                {
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": null,
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "WAN_4"
+                                                                                                },
+                                                                                                {
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": null,
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "NONE"
+                                                                                                }
+                                                                                            ],
+                                                                                            "fields": null,
+                                                                                            "inputFields": null,
+                                                                                            "interfaces": null,
+                                                                                            "kind": "ENUM",
+                                                                                            "name": "SocketInterfaceWanRole",
+                                                                                            "possibleTypes": null
+                                                                                        },
+                                                                                        "indexType": "enum",
+                                                                                        "kind": [
+                                                                                            "ENUM"
+                                                                                        ],
+                                                                                        "name": "SocketInterfaceWanRole",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "wanRole"
                                                                                 }
                                                                             },
                                                                             "inputFields": null,
@@ -6165,6 +6391,12 @@
                                                                                     "description": null,
                                                                                     "isDeprecated": false,
                                                                                     "name": "X1600_LTE"
+                                                                                },
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "GCP1500"
                                                                                 }
                                                                             ],
                                                                             "fields": null,

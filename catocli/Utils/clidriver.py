@@ -6,15 +6,16 @@ import catocli
 from graphql_client import Configuration
 from graphql_client.api_client import ApiException
 from ..parsers.parserApiClient import get_help
+from .profile_manager import get_profile_manager
+from .version_checker import check_for_updates, force_check_updates
 import traceback
 import sys
 sys.path.insert(0, 'vendor')
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-if "CATO_TOKEN" not in os.environ:
-	print("Missing authentication, please set the CATO_TOKEN environment variable with your api key.")
-	exit()
-CATO_TOKEN = os.getenv("CATO_TOKEN")
+
+# Initialize profile manager
+profile_manager = get_profile_manager()
 CATO_DEBUG = bool(os.getenv("CATO_DEBUG", False))
 from ..parsers.raw import raw_parse
 from ..parsers.custom import custom_parse
@@ -22,6 +23,7 @@ from ..parsers.query_siteLocation import query_siteLocation_parse
 from ..parsers.mutation_accountManagement import mutation_accountManagement_parse
 from ..parsers.mutation_admin import mutation_admin_parse
 from ..parsers.mutation_container import mutation_container_parse
+from ..parsers.mutation_hardware import mutation_hardware_parse
 from ..parsers.mutation_policy import mutation_policy_parse
 from ..parsers.mutation_sandbox import mutation_sandbox_parse
 from ..parsers.mutation_site import mutation_site_parse
@@ -37,11 +39,14 @@ from ..parsers.query_admins import query_admins_parse
 from ..parsers.query_appStats import query_appStats_parse
 from ..parsers.query_appStatsTimeSeries import query_appStatsTimeSeries_parse
 from ..parsers.query_auditFeed import query_auditFeed_parse
+from ..parsers.query_catalogs import query_catalogs_parse
 from ..parsers.query_container import query_container_parse
+from ..parsers.query_devices import query_devices_parse
 from ..parsers.query_entityLookup import query_entityLookup_parse
 from ..parsers.query_events import query_events_parse
 from ..parsers.query_eventsFeed import query_eventsFeed_parse
 from ..parsers.query_eventsTimeSeries import query_eventsTimeSeries_parse
+from ..parsers.query_hardware import query_hardware_parse
 from ..parsers.query_hardwareManagement import query_hardwareManagement_parse
 from ..parsers.query_licensing import query_licensing_parse
 from ..parsers.query_policy import query_policy_parse
@@ -50,12 +55,59 @@ from ..parsers.query_site import query_site_parse
 from ..parsers.query_subDomains import query_subDomains_parse
 from ..parsers.query_xdr import query_xdr_parse
 
-configuration = Configuration()
-configuration.verify_ssl = False
-configuration.api_key["x-api-key"] = CATO_TOKEN
-configuration.host = "{}".format(catocli.__cato_host__)
-configuration.debug = CATO_DEBUG
-configuration.version = "{}".format(catocli.__version__)
+def show_version_info(args, configuration=None):
+	"""Show version information and check for updates"""
+	print(f"catocli version {catocli.__version__}")
+	
+	if not args.current_only:
+		if args.check_updates:
+			# Force check for updates
+			is_newer, latest_version, source = force_check_updates()
+		else:
+			# Regular check (uses cache)
+			is_newer, latest_version, source = check_for_updates(show_if_available=False)
+		
+		if latest_version:
+			if is_newer:
+				print(f"Latest version: {latest_version} (from {source}) - UPDATE AVAILABLE!")
+				print()
+				print("To upgrade, run:")
+				print("pip install --upgrade catocli")
+			else:
+				print(f"Latest version: {latest_version} (from {source}) - You are up to date!")
+		else:
+			print("Unable to check for updates (check your internet connection)")
+	
+	return [{"success": True, "current_version": catocli.__version__, "latest_version": latest_version if not args.current_only else None}]
+
+def get_configuration():
+	"""Get configuration from active profile"""
+	configuration = Configuration()
+	configuration.verify_ssl = False
+	configuration.debug = CATO_DEBUG
+	configuration.version = "{}".format(catocli.__version__)
+	
+	# Try to migrate from environment variables first
+	profile_manager.migrate_from_environment()
+	
+	# Get credentials from profile
+	credentials = profile_manager.get_credentials()
+	if not credentials:
+		print("No Cato CLI profile configured.")
+		print("Run 'catocli configure set' to set up your credentials.")
+		exit(1)
+	
+	if not credentials.get('cato_token') or not credentials.get('account_id'):
+		profile_name = profile_manager.get_current_profile()
+		print(f"Profile '{profile_name}' is missing required credentials.")
+		print(f"Run 'catocli configure set --profile {profile_name}' to update your credentials.")
+		exit(1)
+	
+	configuration.api_key["x-api-key"] = credentials['cato_token']
+	configuration.host = credentials['endpoint']
+	configuration.accountID = credentials['account_id']
+	
+	return configuration
 
 defaultReadmeStr = """
 The Cato CLI is a command-line interface tool designed to simplify the management and automation of Cato Networks’ configurations and operations. 
@@ -70,7 +122,14 @@ https://github.com/catonetworks/cato-api-explorer
 
 parser = argparse.ArgumentParser(prog='catocli', usage='%(prog)s <operationType> <operationName> [options]', description=defaultReadmeStr)
 parser.add_argument('--version', action='version', version=catocli.__version__)
+parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
 subparsers = parser.add_subparsers()
+
+# Version command - enhanced with update checking
+version_parser = subparsers.add_parser('version', help='Show version information and check for updates')
+version_parser.add_argument('--check-updates', action='store_true', help='Force check for updates (ignores cache)')
+version_parser.add_argument('--current-only', action='store_true', help='Show only current version')
+version_parser.set_defaults(func=show_version_info)
 custom_parsers = custom_parse(subparsers)
 raw_parsers = subparsers.add_parser('raw', help='Raw GraphQL', usage=get_help("raw"))
 raw_parser = raw_parse(raw_parsers)
@@ -83,6 +142,7 @@ mutation_subparsers = mutation_parser.add_subparsers(description='valid subcomma
 mutation_accountManagement_parser = mutation_accountManagement_parse(mutation_subparsers)
 mutation_admin_parser = mutation_admin_parse(mutation_subparsers)
 mutation_container_parser = mutation_container_parse(mutation_subparsers)
+mutation_hardware_parser = mutation_hardware_parse(mutation_subparsers)
 mutation_policy_parser = mutation_policy_parse(mutation_subparsers)
 mutation_sandbox_parser = mutation_sandbox_parse(mutation_subparsers)
 mutation_site_parser = mutation_site_parse(mutation_subparsers)
@@ -98,11 +158,14 @@ query_admins_parser = query_admins_parse(query_subparsers)
 query_appStats_parser = query_appStats_parse(query_subparsers)
 query_appStatsTimeSeries_parser = query_appStatsTimeSeries_parse(query_subparsers)
 query_auditFeed_parser = query_auditFeed_parse(query_subparsers)
+query_catalogs_parser = query_catalogs_parse(query_subparsers)
 query_container_parser = query_container_parse(query_subparsers)
+query_devices_parser = query_devices_parse(query_subparsers)
 query_entityLookup_parser = query_entityLookup_parse(query_subparsers)
 query_events_parser = query_events_parse(query_subparsers)
 query_eventsFeed_parser = query_eventsFeed_parse(query_subparsers)
 query_eventsTimeSeries_parser = query_eventsTimeSeries_parse(query_subparsers)
+query_hardware_parser = query_hardware_parse(query_subparsers)
 query_hardwareManagement_parser = query_hardwareManagement_parse(query_subparsers)
 query_licensing_parser = query_licensing_parse(query_subparsers)
 query_policy_parser = query_policy_parse(query_subparsers)
@@ -112,24 +175,56 @@ query_subDomains_parser = query_subDomains_parse(query_subparsers)
 query_xdr_parser = query_xdr_parse(query_subparsers)
 
 
+
+
+def parse_headers(header_strings):
+	"""Parse header strings in 'Key: Value' format into a dictionary"""
+	headers = {}
+	if header_strings:
+		for header_string in header_strings:
+			if ':' not in header_string:
+				print(f"ERROR: Invalid header format '{header_string}'. Use 'Key: Value' format.")
+				exit(1)
+			key, value = header_string.split(':', 1)
+			headers[key.strip()] = value.strip()
+	return headers
+
 def main(args=None):
+	# Check if no arguments provided or help is requested
+	if args is None:
+		args = sys.argv[1:]
+	
+	# Show version check when displaying help or when no command specified
+	if not args or '-h' in args or '--help' in args:
+		# Check for updates in background (non-blocking)
+		try:
+			check_for_updates(show_if_available=True)
+		except Exception:
+			# Don't let version check interfere with CLI operation
+			pass
+	
 	args = parser.parse_args(args=args)
 	try:
-		CATO_ACCOUNT_ID = os.getenv("CATO_ACCOUNT_ID")
-		if args.func.__name__!="createRawRequest":
-			if CATO_ACCOUNT_ID==None and args.accountID==None:
-				print("Missing accountID, please specify an accountID:\n")
-				print('Option 1: Set the CATO_ACCOUNT_ID environment variable with the value of your account ID.')
-				print('export CATO_ACCOUNT_ID="12345"\n')
-				print("Option 2: Override the accountID value as a cli argument, example:")
-				print('catocli <operationType> <operationName> -accountID=12345 <json>')
-				print("catocli query entityLookup -accountID=12345 '{\"type\":\"country\"}'\n")
-				exit()
-			elif args.accountID!=None:
-				configuration.accountID = args.accountID
-			else:
-				configuration.accountID = CATO_ACCOUNT_ID
-		response = args.func(args, configuration)
+		# Skip authentication for configure commands
+		if hasattr(args, 'func') and hasattr(args.func, '__module__') and 'configure' in str(args.func.__module__):
+			response = args.func(args, None)
+		else:
+			# Get configuration from profiles
+			configuration = get_configuration()
+			
+			# Parse custom headers if provided
+			if hasattr(args, 'headers') and args.headers:
+				custom_headers = parse_headers(args.headers)
+				configuration.custom_headers.update(custom_headers)
+				
+			# Handle account ID override
+			if args.func.__name__ != "createRawRequest":
+				if hasattr(args, 'accountID') and args.accountID is not None:
+					# Command line override takes precedence
+					configuration.accountID = args.accountID
+				# Otherwise use the account ID from the profile (already set in get_configuration)
+				
+			response = args.func(args, configuration)
 
 		if type(response) == ApiException:
 			print("ERROR! Status code: {}".format(response.status))

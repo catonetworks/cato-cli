@@ -3,6 +3,9 @@
     "query": "mutation adminAddAdmin ( $addAdminInput:AddAdminInput! ) { admin ( ) { addAdmin ( input:$addAdminInput ) { adminID } } }",
     "variables": {
         "addAdminInput": {
+            "adminType": {
+                "adminType": "enum(AdminType)"
+            },
             "email": {
                 "email": "String"
             },
@@ -11,9 +14,6 @@
             },
             "lastName": {
                 "lastName": "String"
-            },
-            "mfaEnabled": {
-                "mfaEnabled": "Boolean"
             },
             "passwordNeverExpires": {
                 "passwordNeverExpires": "Boolean"

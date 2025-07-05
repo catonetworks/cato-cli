@@ -10,7 +10,7 @@
 
 `catocli query auditFeed "$(cat < auditFeed.json)"`
 
-`catocli query auditFeed '{"accountIDs": ["ID"], "auditFieldFilterInput": {"fieldNameInput": {"AuditFieldName": {"AuditFieldName": "enum(AuditFieldName)"}, "EventFieldName": {"EventFieldName": "enum(EventFieldName)"}}, "operator": {"operator": "enum(ElasticOperator)"}, "values": {"values": ["String"]}}, "fieldNames": "enum(AuditFieldName)", "marker": "String", "timeFrame": "TimeFrame"}'`
+`catocli query auditFeed '{"accountIDs": ["ID"], "auditFieldFilterInput": {"fieldNameInput": {"AuditFieldName": {"AuditFieldName": "enum(AuditFieldName)"}}, "operator": {"operator": "enum(ElasticOperator)"}, "values": {"values": ["String"]}}, "fieldNames": "enum(AuditFieldName)", "marker": "String", "timeFrame": "TimeFrame"}'`
 
 #### Operation Arguments for query.auditFeed ####
 `accountIDs` [ID[]] - (optional) List of Unique Account Identifiers. 

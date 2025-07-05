@@ -1,0 +1,18 @@
+{
+    "operationName": "policyWanNetworkRemoveSection",
+    "query": "mutation policyWanNetworkRemoveSection ( $policyRemoveSectionInput:PolicyRemoveSectionInput! $wanNetworkPolicyMutationInput:WanNetworkPolicyMutationInput ) { policy ( ) { wanNetwork ( input:$wanNetworkPolicyMutationInput ) { removeSection ( input:$policyRemoveSectionInput ) {  policySectionPayloadSection: section { audit {  updatedTime  updatedBy } section {  id  name } properties  } policyMutationStatusStatus: status  policyMutationErrorErrors: errors { errorMessage errorCode  }  } } } }",
+    "variables": {
+        "policyRemoveSectionInput": {
+            "id": {
+                "id": "ID"
+            }
+        },
+        "wanNetworkPolicyMutationInput": {
+            "policyMutationRevisionInput": {
+                "id": {
+                    "id": "ID"
+                }
+            }
+        }
+    }
+}

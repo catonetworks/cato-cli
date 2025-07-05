@@ -5,16 +5,49 @@ The package provides a simple to use CLI that reflects industry standards (such 
 ## Installation
     pip3 install catocli
 
-## Authentication - Setting up the required environment variables:
-Set [environment variables](https://en.wikipedia.org/wiki/Environment_variable) to configure a token for authentication, and the specific hub endpoint, example:  
+## Authentication
 
-	export CATO_TOKEN="12345-abcde-12345-abcde"  
-	export CATO_ACCOUNT_ID="12345"
-    export CATO_DEBUG=True (Optional to see cli debug logs in terminal output) 
+The Cato CLI uses a profile-based authentication system similar to AWS CLI. You can configure multiple profiles for different environments or accounts.
 
-    // Add this environment variable for developoment purposes to specify alternative cato host
-    export CATO_HOST="https://some.dev.endpoint.catonetworks.com/api/v1/graphql2" (defaults to https://api.catonetworks.com/api/v1/graphql2,  
-	
+### Quick Setup
+
+```bash
+# Configure your first profile (interactive)
+catocli configure set
+
+# Or configure non-interactively
+catocli configure set --cato-token "your-api-token" --account-id "12345"
+```
+
+### Profile Management
+
+```bash
+# List profiles
+catocli configure list
+
+# Switch profiles
+catocli configure use prod
+
+# Show current profile
+catocli configure show
+```
+
+### Legacy Environment Variables (deprecated)
+
+For backward compatibility, you can still use environment variables:
+
+```bash
+export CATO_TOKEN="12345-abcde-12345-abcde"
+export CATO_ACCOUNT_ID="12345"
+export CATO_DEBUG=True  # Optional for debug logs
+```
+
+The CLI will automatically migrate these to a default profile on first run.
+
+### Documentation
+
+For detailed information about profile management, see [PROFILES.md](PROFILES.md).
+
 [CLICK HERE](https://support.catonetworks.com/hc/en-us/articles/4413280536081-Generating-API-Keys-for-the-Cato-API) to see how create an API key to authenticate.
 
 ## Running the CLI

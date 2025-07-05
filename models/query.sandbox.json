@@ -26,6 +26,7 @@
         "DateTimeFilterInput": true,
         "PageInfo": true,
         "PagingInput": true,
+        "SandboxFailureReason": true,
         "SandboxReport": true,
         "SandboxReportsFilterInput": true,
         "SandboxReportsPayload": true,
@@ -64,8 +65,8 @@
             "id_str": "reports___input",
             "name": "input",
             "path": "reports.input",
-            "requestStr": "$sandboxReportsInput:SandboxReportsInput ",
-            "required": false,
+            "requestStr": "$sandboxReportsInput:SandboxReportsInput! ",
+            "required": true,
             "responseStr": "input:$sandboxReportsInput ",
             "type": {
                 "definition": {
@@ -811,6 +812,7 @@
                 },
                 "indexType": "input_object",
                 "kind": [
+                    "NON_NULL",
                     "INPUT_OBJECT"
                 ],
                 "name": "SandboxReportsInput",
@@ -833,8 +835,8 @@
                             "id_str": "reports___input",
                             "name": "input",
                             "path": "reports.input",
-                            "requestStr": "$sandboxReportsInput:SandboxReportsInput ",
-                            "required": false,
+                            "requestStr": "$sandboxReportsInput:SandboxReportsInput! ",
+                            "required": true,
                             "responseStr": "input:$sandboxReportsInput ",
                             "type": {
                                 "definition": {
@@ -1580,6 +1582,7 @@
                                 },
                                 "indexType": "input_object",
                                 "kind": [
+                                    "NON_NULL",
                                     "INPUT_OBJECT"
                                 ],
                                 "name": "SandboxReportsInput",
@@ -1734,6 +1737,69 @@
                                                         "non_null": false
                                                     },
                                                     "varName": "expirationDate"
+                                                },
+                                                "failureReason": {
+                                                    "alias": "sandboxFailureReasonFailureReason: failureReason",
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": " Sandbox analysis failure reason (if any) ",
+                                                    "id_str": "reports___report___failureReason",
+                                                    "isDeprecated": false,
+                                                    "name": "failureReason",
+                                                    "path": "reports.report.failureReason",
+                                                    "requestStr": "$failureReason:SandboxFailureReason ",
+                                                    "required": false,
+                                                    "responseStr": "failureReason:$failureReason ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": " Sandbox analysis failure reason ",
+                                                            "enumValues": [
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": " Unsupported file type ",
+                                                                    "isDeprecated": false,
+                                                                    "name": "UNSUPPORTED_FILE_TYPE"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": " Invalid file size (0 or too large) ",
+                                                                    "isDeprecated": false,
+                                                                    "name": "INVALID_FILE_SIZE"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": " Failed to submit file for sandbox analysis ",
+                                                                    "isDeprecated": false,
+                                                                    "name": "SUBMISSION_ERROR"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": " Failed to fetch report from sandbox service after 10 minutes ",
+                                                                    "isDeprecated": false,
+                                                                    "name": "ANALYSIS_TIMEOUT"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": " Internal server error ",
+                                                                    "isDeprecated": false,
+                                                                    "name": "INTERNAL_ERROR"
+                                                                }
+                                                            ],
+                                                            "fields": null,
+                                                            "inputFields": null,
+                                                            "interfaces": null,
+                                                            "kind": "ENUM",
+                                                            "name": "SandboxFailureReason",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "enum",
+                                                        "kind": [
+                                                            "ENUM"
+                                                        ],
+                                                        "name": "SandboxFailureReason",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "failureReason"
                                                 },
                                                 "fileHash": {
                                                     "args": {},

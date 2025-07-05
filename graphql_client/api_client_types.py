@@ -103,9 +103,10 @@ class ApiClient(object):
 			else:
 				return_data = None
 
-		if "errors" in return_data:
-			print(json.dumps(return_data))
-			exit(1)
+		# Temporarily commented out to allow custom error handling
+		# if "errors" in return_data:
+		#	print(json.dumps(return_data))
+		#	exit(1)
 
 		if _return_http_data_only:
 			return (return_data)

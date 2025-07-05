@@ -10,7 +10,7 @@
 
 `catocli mutation admin updateAdmin "$(cat < updateAdmin.json)"`
 
-`catocli mutation admin updateAdmin '{"adminID": "ID", "updateAdminInput": {"firstName": {"firstName": "String"}, "lastName": {"lastName": "String"}, "mfaEnabled": {"mfaEnabled": "Boolean"}, "passwordNeverExpires": {"passwordNeverExpires": "Boolean"}, "updateAdminRoleInput": {"allowedAccounts": {"allowedAccounts": ["ID"]}, "allowedEntities": {"id": {"id": "ID"}, "name": {"name": "String"}, "type": {"type": "enum(EntityType)"}}, "role": {"id": {"id": "ID"}, "name": {"name": "String"}}}}}'`
+`catocli mutation admin updateAdmin '{"adminID": "ID", "updateAdminInput": {"firstName": {"firstName": "String"}, "lastName": {"lastName": "String"}, "passwordNeverExpires": {"passwordNeverExpires": "Boolean"}, "updateAdminRoleInput": {"allowedAccounts": {"allowedAccounts": ["ID"]}, "allowedEntities": {"id": {"id": "ID"}, "name": {"name": "String"}, "type": {"type": "enum(EntityType)"}}, "role": {"id": {"id": "ID"}, "name": {"name": "String"}}}}}'`
 
 #### Operation Arguments for mutation.admin.updateAdmin ####
 `accountId` [ID] - (required) N/A 

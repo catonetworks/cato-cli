@@ -14,4 +14,4 @@
 
 #### Operation Arguments for query.sandbox ####
 `accountId` [ID] - (required) N/A 
-`sandboxReportsInput` [SandboxReportsInput] - (optional) N/A 
+`sandboxReportsInput` [SandboxReportsInput] - (required) N/A 

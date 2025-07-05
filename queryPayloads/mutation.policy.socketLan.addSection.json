@@ -1,0 +1,28 @@
+{
+    "operationName": "policySocketLanAddSection",
+    "query": "mutation policySocketLanAddSection ( $policyAddSectionInput:PolicyAddSectionInput! $socketLanPolicyMutationInput:SocketLanPolicyMutationInput ) { policy ( ) { socketLan ( input:$socketLanPolicyMutationInput ) { addSection ( input:$policyAddSectionInput ) {  policySectionPayloadSection: section { audit {  updatedTime  updatedBy } section {  id  name } properties  } policyMutationStatusStatus: status  policyMutationErrorErrors: errors { errorMessage errorCode  }  } } } }",
+    "variables": {
+        "policyAddSectionInput": {
+            "policyAddSectionInfoInput": {
+                "name": {
+                    "name": "String"
+                }
+            },
+            "policySectionPositionInput": {
+                "position": {
+                    "position": "enum(PolicySectionPositionEnum)"
+                },
+                "ref": {
+                    "ref": "ID"
+                }
+            }
+        },
+        "socketLanPolicyMutationInput": {
+            "policyMutationRevisionInput": {
+                "id": {
+                    "id": "ID"
+                }
+            }
+        }
+    }
+}

@@ -88,6 +88,8 @@ class Configuration(six.with_metaclass(TypeWithDefault, object)):
         self.proxy = None
         # Safe chars for path_param
         self.safe_chars_for_path_param = ''
+        # Custom headers
+        self.custom_headers = {}
 
     @property
     def logger_file(self):

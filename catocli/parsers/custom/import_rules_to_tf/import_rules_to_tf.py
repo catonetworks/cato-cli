@@ -135,7 +135,7 @@ def import_sections(sections, module_name, verbose=False,
         section_id = section['section_id']
         section_name = section['section_name']
         section_index = section['section_index']
-        resource_address = f'{module_name}.{resource_type}.{resource_name}["{str(section_index)}"]'
+        resource_address = f'{module_name}.{resource_type}.{resource_name}["{str(section_name)}"]'
         print(f"\n[{i+1}/{total_sections}] Section: {section_name} (index: {section_index})")
 
         # For sections, we use the section name as the ID since that's how Cato identifies them
@@ -166,7 +166,7 @@ def import_rules(rules, module_name, verbose=False,
         terraform_key = sanitize_name_for_terraform(rule_name)
         
         # Use array index syntax instead of rule ID
-        resource_address = f'{module_name}.{resource_type}.{resource_name}["{str(rule_index)}"]'
+        resource_address = f'{module_name}.{resource_type}.{resource_name}["{str(rule_name)}"]'
         print(f"\n[{i+1}/{total_rules}] Rule: {rule_name} (index: {rule_index})")
         
         success, stdout, stderr = run_terraform_import(resource_address, rule_id, verbose=verbose)
@@ -439,7 +439,7 @@ def import_wf_sections(sections, module_name, verbose=False,
         section_id = section['section_id']
         section_name = section['section_name']
         section_index = section['section_index']
-        resource_address = f'{module_name}.{resource_type}.{resource_name}["{str(section_index)}"]'
+        resource_address = f'{module_name}.{resource_type}.{resource_name}["{str(section_name)}"]'
         print(f"\n[{i+1}/{total_sections}] Section: {section_name} (index: {section_index})")
 
         # For sections, we use the section name as the ID since that's how Cato identifies them
@@ -470,7 +470,7 @@ def import_wf_rules(rules, module_name, verbose=False,
         terraform_key = sanitize_name_for_terraform(rule_name)
         
         # Use array index syntax instead of rule ID
-        resource_address = f'{module_name}.{resource_type}.{resource_name}["{str(rule_index)}"]'
+        resource_address = f'{module_name}.{resource_type}.{resource_name}["{str(rule_name)}"]'
         print(f"\n[{i+1}/{total_rules}] Rule: {rule_name} (index: {rule_index})")
         
         success, stdout, stderr = run_terraform_import(resource_address, rule_id, verbose=verbose)

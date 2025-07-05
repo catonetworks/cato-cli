@@ -13,7 +13,6 @@ import sys
 sys.path.insert(0, 'vendor')
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-
 # Initialize profile manager
 profile_manager = get_profile_manager()
 CATO_DEBUG = bool(os.getenv("CATO_DEBUG", False))
@@ -56,7 +55,6 @@ from ..parsers.query_subDomains import query_subDomains_parse
 from ..parsers.query_xdr import query_xdr_parse
 
 def show_version_info(args, configuration=None):
-	"""Show version information and check for updates"""
 	print(f"catocli version {catocli.__version__}")
 	
 	if not args.current_only:
@@ -77,11 +75,9 @@ def show_version_info(args, configuration=None):
 				print(f"Latest version: {latest_version} (from {source}) - You are up to date!")
 		else:
 			print("Unable to check for updates (check your internet connection)")
-	
 	return [{"success": True, "current_version": catocli.__version__, "latest_version": latest_version if not args.current_only else None}]
 
 def get_configuration():
-	"""Get configuration from active profile"""
 	configuration = Configuration()
 	configuration.verify_ssl = False
 	configuration.debug = CATO_DEBUG
@@ -96,7 +92,7 @@ def get_configuration():
 		print("No Cato CLI profile configured.")
 		print("Run 'catocli configure set' to set up your credentials.")
 		exit(1)
-	
+
 	if not credentials.get('cato_token') or not credentials.get('account_id'):
 		profile_name = profile_manager.get_current_profile()
 		print(f"Profile '{profile_name}' is missing required credentials.")
@@ -130,6 +126,7 @@ version_parser = subparsers.add_parser('version', help='Show version information
 version_parser.add_argument('--check-updates', action='store_true', help='Force check for updates (ignores cache)')
 version_parser.add_argument('--current-only', action='store_true', help='Show only current version')
 version_parser.set_defaults(func=show_version_info)
+
 custom_parsers = custom_parse(subparsers)
 raw_parsers = subparsers.add_parser('raw', help='Raw GraphQL', usage=get_help("raw"))
 raw_parser = raw_parse(raw_parsers)
@@ -175,10 +172,7 @@ query_subDomains_parser = query_subDomains_parse(query_subparsers)
 query_xdr_parser = query_xdr_parse(query_subparsers)
 
 
-
-
 def parse_headers(header_strings):
-	"""Parse header strings in 'Key: Value' format into a dictionary"""
 	headers = {}
 	if header_strings:
 		for header_string in header_strings:
@@ -193,7 +187,7 @@ def main(args=None):
 	# Check if no arguments provided or help is requested
 	if args is None:
 		args = sys.argv[1:]
-	
+
 	# Show version check when displaying help or when no command specified
 	if not args or '-h' in args or '--help' in args:
 		# Check for updates in background (non-blocking)
@@ -202,7 +196,7 @@ def main(args=None):
 		except Exception:
 			# Don't let version check interfere with CLI operation
 			pass
-	
+
 	args = parser.parse_args(args=args)
 	try:
 		# Skip authentication for configure commands
@@ -215,15 +209,13 @@ def main(args=None):
 			# Parse custom headers if provided
 			if hasattr(args, 'headers') and args.headers:
 				custom_headers = parse_headers(args.headers)
-				configuration.custom_headers.update(custom_headers)
-				
+				configuration.custom_headers.update(custom_headers)					
 			# Handle account ID override
 			if args.func.__name__ != "createRawRequest":
 				if hasattr(args, 'accountID') and args.accountID is not None:
 					# Command line override takes precedence
 					configuration.accountID = args.accountID
 				# Otherwise use the account ID from the profile (already set in get_configuration)
-				
 			response = args.func(args, configuration)
 
 		if type(response) == ApiException:

@@ -1,0 +1,26 @@
+{
+    "operationName": "policyTerminalServerMoveRule",
+    "query": "mutation policyTerminalServerMoveRule ( $policyMoveRuleInput:PolicyMoveRuleInput! $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput ) { policy ( ) { terminalServer ( input:$terminalServerPolicyMutationInput ) { moveRule ( input:$policyMoveRuleInput ) {  terminalServerRulePayloadRule: rule { audit {  updatedTime  updatedBy } rule {  id  name  description  index  policySectionInfoSection: section {  id  name  }  enabled  globalIpRangeRefAllowedHostIP: allowedHostIP {  id  name  }  globalIpRangeRefExcludeTraffic: excludeTraffic {  id  name  }  } properties  } policyMutationStatusStatus: status  policyMutationErrorErrors: errors { errorMessage errorCode  }  } } } }",
+    "variables": {
+        "policyMoveRuleInput": {
+            "id": {
+                "id": "ID"
+            },
+            "policyRulePositionInput": {
+                "position": {
+                    "position": "enum(PolicyRulePositionEnum)"
+                },
+                "ref": {
+                    "ref": "ID"
+                }
+            }
+        },
+        "terminalServerPolicyMutationInput": {
+            "policyMutationRevisionInput": {
+                "id": {
+                    "id": "ID"
+                }
+            }
+        }
+    }
+}

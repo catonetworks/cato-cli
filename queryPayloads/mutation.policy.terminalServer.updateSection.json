@@ -1,0 +1,23 @@
+{
+    "operationName": "policyTerminalServerUpdateSection",
+    "query": "mutation policyTerminalServerUpdateSection ( $policyUpdateSectionInput:PolicyUpdateSectionInput! $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput ) { policy ( ) { terminalServer ( input:$terminalServerPolicyMutationInput ) { updateSection ( input:$policyUpdateSectionInput ) {  policySectionPayloadSection: section { audit {  updatedTime  updatedBy } section {  id  name } properties  } policyMutationStatusStatus: status  policyMutationErrorErrors: errors { errorMessage errorCode  }  } } } }",
+    "variables": {
+        "policyUpdateSectionInput": {
+            "id": {
+                "id": "ID"
+            },
+            "policyUpdateSectionInfoInput": {
+                "name": {
+                    "name": "String"
+                }
+            }
+        },
+        "terminalServerPolicyMutationInput": {
+            "policyMutationRevisionInput": {
+                "id": {
+                    "id": "ID"
+                }
+            }
+        }
+    }
+}

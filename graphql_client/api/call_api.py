@@ -51,10 +51,12 @@ class CallApi(object):
 		body_params = None
 		if 'body' in params:
 			body_params = params['body']
-		header_params['Accept'] = self.api_client.select_header_accept(['application/json'])
-		header_params['Content-Type'] = self.api_client.select_header_content_type(['application/json'])
-		header_params['x-api-key'] = self.api_client.configuration.api_key['x-api-key']
-		header_params['User-Agent'] = "Cato-CLI-v"+self.api_client.configuration.version
+			header_params['Accept'] = self.api_client.select_header_accept(['application/json'])
+			header_params['Content-Type'] = self.api_client.select_header_content_type(['application/json'])
+			# Only add x-api-key if it exists in configuration (not using headers file)
+			if 'x-api-key' in self.api_client.configuration.api_key:
+				header_params['x-api-key'] = self.api_client.configuration.api_key['x-api-key']
+			header_params['User-Agent'] = "Cato-CLI-v"+self.api_client.configuration.version
 		
 		# Add custom headers from configuration
 		if hasattr(self.api_client.configuration, 'custom_headers'):
@@ -62,9 +64,13 @@ class CallApi(object):
 
 		if args.get("v")==True:
 			print("Host: ",self.api_client.configuration.host)
-			print("Request Headers:",json.dumps(header_params,indent=4,sort_keys=True))
+			# Create a copy of header_params with masked API key for verbose output
+			masked_headers = header_params.copy()
+			if 'x-api-key' in masked_headers:
+				masked_headers['x-api-key'] = '***MASKED***'
+			print("Request Headers:",json.dumps(masked_headers,indent=4,sort_keys=True))
 			print("Request Data:",json.dumps(body_params,indent=4,sort_keys=True),"\n\n")
-		
+			
 		return self.api_client.call_api(
 			header_params,
 			body=body_params,

@@ -1,0 +1,50 @@
+{
+    "operationName": "policyTerminalServerAddRule",
+    "query": "mutation policyTerminalServerAddRule ( $terminalServerAddRuleInput:TerminalServerAddRuleInput! $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput ) { policy ( ) { terminalServer ( input:$terminalServerPolicyMutationInput ) { addRule ( input:$terminalServerAddRuleInput ) {  terminalServerRulePayloadRule: rule { audit {  updatedTime  updatedBy } rule {  id  name  description  index  policySectionInfoSection: section {  id  name  }  enabled  globalIpRangeRefAllowedHostIP: allowedHostIP {  id  name  }  globalIpRangeRefExcludeTraffic: excludeTraffic {  id  name  }  } properties  } policyMutationStatusStatus: status  policyMutationErrorErrors: errors { errorMessage errorCode  }  } } } }",
+    "variables": {
+        "terminalServerAddRuleInput": {
+            "policyRulePositionInput": {
+                "position": {
+                    "position": "enum(PolicyRulePositionEnum)"
+                },
+                "ref": {
+                    "ref": "ID"
+                }
+            },
+            "terminalServerAddRuleDataInput": {
+                "allowedHostIP": {
+                    "by": {
+                        "by": "enum(ObjectRefBy)"
+                    },
+                    "input": {
+                        "input": "String"
+                    }
+                },
+                "description": {
+                    "description": "String"
+                },
+                "enabled": {
+                    "enabled": "Boolean"
+                },
+                "excludeTraffic": {
+                    "by": {
+                        "by": "enum(ObjectRefBy)"
+                    },
+                    "input": {
+                        "input": "String"
+                    }
+                },
+                "name": {
+                    "name": "String"
+                }
+            }
+        },
+        "terminalServerPolicyMutationInput": {
+            "policyMutationRevisionInput": {
+                "id": {
+                    "id": "ID"
+                }
+            }
+        }
+    }
+}

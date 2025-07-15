@@ -1,0 +1,45 @@
+{
+    "operationName": "policyTerminalServerUpdateRule",
+    "query": "mutation policyTerminalServerUpdateRule ( $terminalServerUpdateRuleInput:TerminalServerUpdateRuleInput! $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput ) { policy ( ) { terminalServer ( input:$terminalServerPolicyMutationInput ) { updateRule ( input:$terminalServerUpdateRuleInput ) {  terminalServerRulePayloadRule: rule { audit {  updatedTime  updatedBy } rule {  id  name  description  index  policySectionInfoSection: section {  id  name  }  enabled  globalIpRangeRefAllowedHostIP: allowedHostIP {  id  name  }  globalIpRangeRefExcludeTraffic: excludeTraffic {  id  name  }  } properties  } policyMutationStatusStatus: status  policyMutationErrorErrors: errors { errorMessage errorCode  }  } } } }",
+    "variables": {
+        "terminalServerPolicyMutationInput": {
+            "policyMutationRevisionInput": {
+                "id": {
+                    "id": "ID"
+                }
+            }
+        },
+        "terminalServerUpdateRuleInput": {
+            "id": {
+                "id": "ID"
+            },
+            "terminalServerUpdateRuleDataInput": {
+                "allowedHostIP": {
+                    "by": {
+                        "by": "enum(ObjectRefBy)"
+                    },
+                    "input": {
+                        "input": "String"
+                    }
+                },
+                "description": {
+                    "description": "String"
+                },
+                "enabled": {
+                    "enabled": "Boolean"
+                },
+                "excludeTraffic": {
+                    "by": {
+                        "by": "enum(ObjectRefBy)"
+                    },
+                    "input": {
+                        "input": "String"
+                    }
+                },
+                "name": {
+                    "name": "String"
+                }
+            }
+        }
+    }
+}

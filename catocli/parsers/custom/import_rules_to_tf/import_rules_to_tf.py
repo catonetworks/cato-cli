@@ -60,14 +60,13 @@ def extract_rules_and_sections(policy_data):
             })
     
     # Extract sections
-    section_ids = policy_data.get('section_ids', {})
     for section in policy_data.get('sections', []):
         if section.get('section_name'):
             sections.append({
                 'section_name': section['section_name'],
                 'section_index': section.get('section_index', 0),
-                'section_id': section_ids.get(section['section_name'], '')
-            })  
+                'section_id': section.get('section_id', '')
+            })
     return rules, sections
 
 
@@ -123,8 +122,8 @@ def find_rule_index(rules, rule_name):
     return None
 
 
-def import_sections(sections, module_name, verbose=False,
-                   resource_type="cato_if_section", resource_name="sections"):
+def import_sections(sections, module_name, resource_type,
+                    resource_name="sections", verbose=False):
     """Import all sections"""
     print("\nStarting section imports...")
     total_sections = len(sections)
@@ -135,7 +134,7 @@ def import_sections(sections, module_name, verbose=False,
         section_id = section['section_id']
         section_name = section['section_name']
         section_index = section['section_index']
-        resource_address = f'{module_name}.{resource_type}.{resource_name}["{str(section_name)}"]'
+        resource_address = f'{module_name}.{resource_type}.{resource_name}["{section_name}"]'
         print(f"\n[{i+1}/{total_sections}] Section: {section_name} (index: {section_index})")
 
         # For sections, we use the section name as the ID since that's how Cato identifies them
@@ -376,7 +375,7 @@ def import_if_rules_to_tf(args, configuration):
         
         # Import sections first (if not skipped)
         if not args.rules_only and sections:
-            successful, failed = import_sections(sections, module_name=args.module_name, verbose=args.verbose)
+            successful, failed = import_sections(sections, module_name=args.module_name, resource_type="cato_if_section", verbose=args.verbose)
             total_successful += successful
             total_failed += failed
         
@@ -439,7 +438,10 @@ def import_wf_sections(sections, module_name, verbose=False,
         section_id = section['section_id']
         section_name = section['section_name']
         section_index = section['section_index']
-        resource_address = f'{module_name}.{resource_type}.{resource_name}["{str(section_name)}"]'
+        # Add module. prefix if not present
+        if not module_name.startswith('module.'):
+            module_name = f'module.{module_name}'
+        resource_address = f'{module_name}.{resource_type}.{resource_name}["{section_name}"]'
         print(f"\n[{i+1}/{total_sections}] Section: {section_name} (index: {section_index})")
 
         # For sections, we use the section name as the ID since that's how Cato identifies them
@@ -469,6 +471,10 @@ def import_wf_rules(rules, module_name, verbose=False,
         rule_index = find_rule_index(rules, rule_name)
         terraform_key = sanitize_name_for_terraform(rule_name)
         
+        # Add module. prefix if not present
+        if not module_name.startswith('module.'):
+            module_name = f'module.{module_name}'
+
         # Use array index syntax instead of rule ID
         resource_address = f'{module_name}.{resource_type}.{resource_name}["{str(rule_name)}"]'
         print(f"\n[{i+1}/{total_rules}] Rule: {rule_name} (index: {rule_index})")
@@ -519,8 +525,12 @@ def import_wf_rules_to_tf(args, configuration):
             print(" No rules or sections found. Exiting.")
             return [{"success": False, "error": "No rules or sections found"}]
         
+        # Add module. prefix if not present
+        module_name = args.module_name
+        if not module_name.startswith('module.'):
+            module_name = f'module.{module_name}'
         # Validate Terraform environment before proceeding
-        validate_terraform_environment(args.module_name, verbose=args.verbose)
+        validate_terraform_environment(module_name, verbose=args.verbose)
         
         # Ask for confirmation (unless auto-approved)
         if not args.rules_only and not args.sections_only:

@@ -77,7 +77,7 @@ def show_version_info(args, configuration=None):
 			print("Unable to check for updates (check your internet connection)")
 	return [{"success": True, "current_version": catocli.__version__, "latest_version": latest_version if not args.current_only else None}]
 
-def get_configuration():
+def get_configuration(skip_api_key=False):
 	configuration = Configuration()
 	configuration.verify_ssl = False
 	configuration.debug = CATO_DEBUG
@@ -99,7 +99,9 @@ def get_configuration():
 		print(f"Run 'catocli configure set --profile {profile_name}' to update your credentials.")
 		exit(1)
 	
-	configuration.api_key["x-api-key"] = credentials['cato_token']
+	# Only set API key if not using custom headers file
+	if not skip_api_key:
+		configuration.api_key["x-api-key"] = credentials['cato_token']
 	configuration.host = credentials['endpoint']
 	configuration.accountID = credentials['account_id']
 	
@@ -119,6 +121,7 @@ https://github.com/catonetworks/cato-api-explorer
 parser = argparse.ArgumentParser(prog='catocli', usage='%(prog)s <operationType> <operationName> [options]', description=defaultReadmeStr)
 parser.add_argument('--version', action='version', version=catocli.__version__)
 parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
 subparsers = parser.add_subparsers()
 
 # Version command - enhanced with update checking
@@ -183,6 +186,28 @@ def parse_headers(header_strings):
 			headers[key.strip()] = value.strip()
 	return headers
 
+def parse_headers_from_file(file_path):
+	headers = {}
+	try:
+		with open(file_path, 'r') as f:
+			for line_num, line in enumerate(f, 1):
+				line = line.strip()
+				if not line or line.startswith('#'):
+					# Skip empty lines and comments
+					continue
+				if ':' not in line:
+					print(f"ERROR: Invalid header format in {file_path} at line {line_num}: '{line}'. Use 'Key: Value' format.")
+					exit(1)
+				key, value = line.split(':', 1)
+				headers[key.strip()] = value.strip()
+	except FileNotFoundError:
+		print(f"ERROR: Headers file '{file_path}' not found.")
+		exit(1)
+	except IOError as e:
+		print(f"ERROR: Could not read headers file '{file_path}': {e}")
+		exit(1)
+	return headers
+
 def main(args=None):
 	# Check if no arguments provided or help is requested
 	if args is None:
@@ -203,13 +228,20 @@ def main(args=None):
 		if hasattr(args, 'func') and hasattr(args.func, '__module__') and 'configure' in str(args.func.__module__):
 			response = args.func(args, None)
 		else:
+			# Check if using headers file to determine if we should skip API key
+			using_headers_file = hasattr(args, 'headers_file') and args.headers_file
+			
 			# Get configuration from profiles
-			configuration = get_configuration()
+			configuration = get_configuration(skip_api_key=using_headers_file)
 			
 			# Parse custom headers if provided
+			custom_headers = {}
 			if hasattr(args, 'headers') and args.headers:
-				custom_headers = parse_headers(args.headers)
-				configuration.custom_headers.update(custom_headers)					
+				custom_headers.update(parse_headers(args.headers))
+			if hasattr(args, 'headers_file') and args.headers_file:
+				custom_headers.update(parse_headers_from_file(args.headers_file))
+			if custom_headers:
+				configuration.custom_headers.update(custom_headers)
 			# Handle account ID override
 			if args.func.__name__ != "createRawRequest":
 				if hasattr(args, 'accountID') and args.accountID is not None:

@@ -1,11 +1,15 @@
 import catocli.parsers.custom.export_rules.export_rules as export_rules
 
-def export_parse(subparsers):
+def export_rules_parse(subparsers):
     """Create export command parsers"""
     
     # Create the main export parser
     export_parser = subparsers.add_parser('export', help='Export data to various formats', usage='catocli export <operation> [options]')
     export_subparsers = export_parser.add_subparsers(description='valid export operations', help='additional help')
+    
+    # Add sites export functionality
+    from catocli.parsers.custom.export_sites import export_sites_parse
+    export_sites_parse(export_subparsers)
     
     # Add if_rules command
     if_rules_parser = export_subparsers.add_parser(

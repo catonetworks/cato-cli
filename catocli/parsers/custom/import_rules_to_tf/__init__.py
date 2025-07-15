@@ -11,7 +11,7 @@ def import_parse(subparsers):
     if_rules_parser = import_subparsers.add_parser(
         'if_rules_to_tf', 
         help='Import Internet Firewall rules to Terraform state',
-        usage='catocli import if_rules_to_tf <json_file> --module-name <module_name> [options]'
+        usage='catocli import if_rules_to_tf <json_file> --module-name <module_name> [options]\n\nexample: catocli import if_rules_to_tf config_data/all_wf_rules_and_sections.json --module-name module.if_rules'
     )
     
     if_rules_parser.add_argument('json_file', help='Path to the JSON file containing IFW rules and sections')
@@ -35,7 +35,7 @@ def import_parse(subparsers):
     wf_rules_parser = import_subparsers.add_parser(
         'wf_rules_to_tf', 
         help='Import WAN Firewall rules to Terraform state',
-        usage='catocli import wf_rules_to_tf <json_file> --module-name <module_name> [options]'
+        usage='catocli import wf_rules_to_tf <json_file> --module-name <module_name> [options]\n\nexample: catocli import wf_rules_to_tf config_data/all_wf_rules_and_sections.json --module-name module.wf_rules'
     )
     
     wf_rules_parser.add_argument('json_file', help='Path to the JSON file containing WF rules and sections')

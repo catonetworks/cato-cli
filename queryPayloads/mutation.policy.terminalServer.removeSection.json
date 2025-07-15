@@ -1,0 +1,18 @@
+{
+    "operationName": "policyTerminalServerRemoveSection",
+    "query": "mutation policyTerminalServerRemoveSection ( $policyRemoveSectionInput:PolicyRemoveSectionInput! $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput ) { policy ( ) { terminalServer ( input:$terminalServerPolicyMutationInput ) { removeSection ( input:$policyRemoveSectionInput ) {  policySectionPayloadSection: section { audit {  updatedTime  updatedBy } section {  id  name } properties  } policyMutationStatusStatus: status  policyMutationErrorErrors: errors { errorMessage errorCode  }  } } } }",
+    "variables": {
+        "policyRemoveSectionInput": {
+            "id": {
+                "id": "ID"
+            }
+        },
+        "terminalServerPolicyMutationInput": {
+            "policyMutationRevisionInput": {
+                "id": {
+                    "id": "ID"
+                }
+            }
+        }
+    }
+}

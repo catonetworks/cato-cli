@@ -49,6 +49,9 @@
         "DeviceV2Category": true,
         "DeviceV2FilterInput": true,
         "DevicesPayload": true,
+        "ExportJobResponse": true,
+        "ExportJobStatus": true,
+        "ExportStatusResponse": true,
         "IdFilterInput": true,
         "IntFilterInput": true,
         "MacAddressFilterInput": true,
@@ -3768,7 +3771,7 @@
                             "varName": "pagingInput"
                         },
                         "sort": {
-                            "defaultValue": "{id: {direction: ASC, priority: 1}}",
+                            "defaultValue": "{lastSeen: {direction: DESC, priority: 1}}",
                             "description": null,
                             "id_str": "list___input___sort",
                             "name": "sort",
@@ -6017,6 +6020,25 @@
             },
             "varName": "deviceV2Input"
         },
+        "jobId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "csvExportStatus___jobId",
+            "name": "jobId",
+            "path": "csvExportStatus.jobId",
+            "requestStr": "$jobId:ID! ",
+            "required": true,
+            "responseStr": "jobId:$jobId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "jobId"
+        },
         "sortOrderInput": {
             "defaultValue": null,
             "description": null,
@@ -7989,6 +8011,292 @@
                         "non_null": false
                     },
                     "varName": "deviceAttributesCatalogQueries"
+                },
+                "csvExport": {
+                    "args": {},
+                    "deprecationReason": null,
+                    "description": null,
+                    "id_str": "csvExport",
+                    "isDeprecated": false,
+                    "name": "csvExport",
+                    "path": "csvExport",
+                    "requestStr": "$exportJobResponse:ExportJobResponse! ",
+                    "required": true,
+                    "responseStr": "csvExport:$exportJobResponse ",
+                    "type": {
+                        "definition": {
+                            "description": null,
+                            "enumValues": null,
+                            "fields": {
+                                "jobId": {
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": null,
+                                    "id_str": "csvExport___jobId",
+                                    "isDeprecated": false,
+                                    "name": "jobId",
+                                    "path": "csvExport.jobId",
+                                    "requestStr": "$jobId:ID! ",
+                                    "required": true,
+                                    "responseStr": "jobId:$jobId ",
+                                    "type": {
+                                        "kind": [
+                                            "NON_NULL",
+                                            "SCALAR"
+                                        ],
+                                        "name": "ID",
+                                        "non_null": false
+                                    },
+                                    "varName": "jobId"
+                                },
+                                "message": {
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": null,
+                                    "id_str": "csvExport___message",
+                                    "isDeprecated": false,
+                                    "name": "message",
+                                    "path": "csvExport.message",
+                                    "requestStr": "$message:String ",
+                                    "required": false,
+                                    "responseStr": "message:$message ",
+                                    "type": {
+                                        "kind": [
+                                            "SCALAR"
+                                        ],
+                                        "name": "String",
+                                        "non_null": false
+                                    },
+                                    "varName": "message"
+                                }
+                            },
+                            "inputFields": null,
+                            "interfaces": {},
+                            "kind": "OBJECT",
+                            "name": "ExportJobResponse",
+                            "possibleTypes": null
+                        },
+                        "indexType": "object",
+                        "kind": [
+                            "NON_NULL",
+                            "OBJECT"
+                        ],
+                        "name": "ExportJobResponse",
+                        "non_null": false
+                    },
+                    "varName": "exportJobResponse"
+                },
+                "csvExportStatus": {
+                    "args": {
+                        "csvExportStatus___jobId": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "csvExportStatus___jobId",
+                            "name": "jobId",
+                            "path": "csvExportStatus.jobId",
+                            "requestStr": "$jobId:ID! ",
+                            "required": true,
+                            "responseStr": "jobId:$jobId ",
+                            "type": {
+                                "kind": [
+                                    "NON_NULL",
+                                    "SCALAR"
+                                ],
+                                "name": "ID",
+                                "non_null": false
+                            },
+                            "varName": "jobId"
+                        }
+                    },
+                    "deprecationReason": null,
+                    "description": null,
+                    "id_str": "csvExportStatus",
+                    "isDeprecated": false,
+                    "name": "csvExportStatus",
+                    "path": "csvExportStatus",
+                    "requestStr": "$exportStatusResponse:ExportStatusResponse! ",
+                    "required": true,
+                    "responseStr": "csvExportStatus:$exportStatusResponse ",
+                    "type": {
+                        "definition": {
+                            "description": null,
+                            "enumValues": null,
+                            "fields": {
+                                "downloadUrl": {
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": null,
+                                    "id_str": "csvExportStatus___downloadUrl",
+                                    "isDeprecated": false,
+                                    "name": "downloadUrl",
+                                    "path": "csvExportStatus.downloadUrl",
+                                    "requestStr": "$downloadUrl:String ",
+                                    "required": false,
+                                    "responseStr": "downloadUrl:$downloadUrl ",
+                                    "type": {
+                                        "kind": [
+                                            "SCALAR"
+                                        ],
+                                        "name": "String",
+                                        "non_null": false
+                                    },
+                                    "varName": "downloadUrl"
+                                },
+                                "expiresAt": {
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": null,
+                                    "id_str": "csvExportStatus___expiresAt",
+                                    "isDeprecated": false,
+                                    "name": "expiresAt",
+                                    "path": "csvExportStatus.expiresAt",
+                                    "requestStr": "$expiresAt:DateTime ",
+                                    "required": false,
+                                    "responseStr": "expiresAt:$expiresAt ",
+                                    "type": {
+                                        "kind": [
+                                            "SCALAR"
+                                        ],
+                                        "name": "DateTime",
+                                        "non_null": false
+                                    },
+                                    "varName": "expiresAt"
+                                },
+                                "jobId": {
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": null,
+                                    "id_str": "csvExportStatus___jobId",
+                                    "isDeprecated": false,
+                                    "name": "jobId",
+                                    "path": "csvExportStatus.jobId",
+                                    "requestStr": "$jobId:ID! ",
+                                    "required": true,
+                                    "responseStr": "jobId:$jobId ",
+                                    "type": {
+                                        "kind": [
+                                            "NON_NULL",
+                                            "SCALAR"
+                                        ],
+                                        "name": "ID",
+                                        "non_null": false
+                                    },
+                                    "varName": "jobId"
+                                },
+                                "message": {
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": null,
+                                    "id_str": "csvExportStatus___message",
+                                    "isDeprecated": false,
+                                    "name": "message",
+                                    "path": "csvExportStatus.message",
+                                    "requestStr": "$message:String ",
+                                    "required": false,
+                                    "responseStr": "message:$message ",
+                                    "type": {
+                                        "kind": [
+                                            "SCALAR"
+                                        ],
+                                        "name": "String",
+                                        "non_null": false
+                                    },
+                                    "varName": "message"
+                                },
+                                "progress": {
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": null,
+                                    "id_str": "csvExportStatus___progress",
+                                    "isDeprecated": false,
+                                    "name": "progress",
+                                    "path": "csvExportStatus.progress",
+                                    "requestStr": "$progress:Float ",
+                                    "required": false,
+                                    "responseStr": "progress:$progress ",
+                                    "type": {
+                                        "kind": [
+                                            "SCALAR"
+                                        ],
+                                        "name": "Float",
+                                        "non_null": false
+                                    },
+                                    "varName": "progress"
+                                },
+                                "status": {
+                                    "alias": "exportJobStatusStatus: status",
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": null,
+                                    "id_str": "csvExportStatus___status",
+                                    "isDeprecated": false,
+                                    "name": "status",
+                                    "path": "csvExportStatus.status",
+                                    "requestStr": "$status:ExportJobStatus! ",
+                                    "required": true,
+                                    "responseStr": "status:$status ",
+                                    "type": {
+                                        "definition": {
+                                            "description": null,
+                                            "enumValues": [
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "isDeprecated": false,
+                                                    "name": "PENDING"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "isDeprecated": false,
+                                                    "name": "IN_PROGRESS"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "isDeprecated": false,
+                                                    "name": "COMPLETED"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "isDeprecated": false,
+                                                    "name": "FAILED"
+                                                }
+                                            ],
+                                            "fields": null,
+                                            "inputFields": null,
+                                            "interfaces": null,
+                                            "kind": "ENUM",
+                                            "name": "ExportJobStatus",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "enum",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "ENUM"
+                                        ],
+                                        "name": "ExportJobStatus",
+                                        "non_null": false
+                                    },
+                                    "varName": "status"
+                                }
+                            },
+                            "inputFields": null,
+                            "interfaces": {},
+                            "kind": "OBJECT",
+                            "name": "ExportStatusResponse",
+                            "possibleTypes": null
+                        },
+                        "indexType": "object",
+                        "kind": [
+                            "NON_NULL",
+                            "OBJECT"
+                        ],
+                        "name": "ExportStatusResponse",
+                        "non_null": false
+                    },
+                    "varName": "exportStatusResponse"
                 },
                 "list": {
                     "args": {
@@ -11377,7 +11685,7 @@
                                             "varName": "pagingInput"
                                         },
                                         "sort": {
-                                            "defaultValue": "{id: {direction: ASC, priority: 1}}",
+                                            "defaultValue": "{lastSeen: {direction: DESC, priority: 1}}",
                                             "description": null,
                                             "id_str": "list___input___sort",
                                             "name": "sort",
@@ -15457,6 +15765,7 @@
                 }
             }
         },
+        "jobId": "ID",
         "sortOrderInput": {
             "direction": {
                 "direction": "enum(SortOrder)"

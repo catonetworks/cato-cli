@@ -1,0 +1,18 @@
+{
+    "operationName": "policyTerminalServerRemoveRule",
+    "query": "mutation policyTerminalServerRemoveRule ( $terminalServerRemoveRuleInput:TerminalServerRemoveRuleInput! $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput ) { policy ( ) { terminalServer ( input:$terminalServerPolicyMutationInput ) { removeRule ( input:$terminalServerRemoveRuleInput ) {  terminalServerRulePayloadRule: rule { audit {  updatedTime  updatedBy } rule {  id  name  description  index  policySectionInfoSection: section {  id  name  }  enabled  globalIpRangeRefAllowedHostIP: allowedHostIP {  id  name  }  globalIpRangeRefExcludeTraffic: excludeTraffic {  id  name  }  } properties  } policyMutationStatusStatus: status  policyMutationErrorErrors: errors { errorMessage errorCode  }  } } } }",
+    "variables": {
+        "terminalServerPolicyMutationInput": {
+            "policyMutationRevisionInput": {
+                "id": {
+                    "id": "ID"
+                }
+            }
+        },
+        "terminalServerRemoveRuleInput": {
+            "id": {
+                "id": "ID"
+            }
+        }
+    }
+}

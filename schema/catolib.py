@@ -717,12 +717,13 @@ def writeOperationParsers(catoApiSchema):
 from ..parserApiClient import createRawRequest, get_help
 
 def raw_parse(raw_parser):
-	raw_parser.add_argument('json', help='Query, Variables and opertaionName in JSON format.')
-	raw_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	raw_parser.add_argument('json', nargs='?', default='{{}}', help='Query, Variables and opertaionName in JSON format (defaults to empty object if not provided).')
+	raw_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	raw_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	raw_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	raw_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
 	raw_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+	raw_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint URL (e.g., https://api.catonetworks.com/api/v1/graphql2)')
 	raw_parser.set_defaults(func=createRawRequest,operation_name='raw')
 """
 	parserPath = "../catocli/parsers/raw"
@@ -738,9 +739,9 @@ def query_siteLocation_parse(query_subparsers):
 	query_siteLocation_parser = query_subparsers.add_parser('siteLocation', 
 			help='siteLocation local cli query', 
 			usage=get_help("query_siteLocation"))
-	query_siteLocation_parser.add_argument('json', help='Variables in JSON format.')
+	query_siteLocation_parser.add_argument('json', nargs='?', default='{{}}', help='Variables in JSON format (defaults to empty object if not provided).')
 	query_siteLocation_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	query_siteLocation_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	query_siteLocation_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	query_siteLocation_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	query_siteLocation_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	query_siteLocation_parser.set_defaults(func=querySiteLocation,operation_name='query.siteLocation')
@@ -768,9 +769,9 @@ def {parserName}_parse({operationType}_subparsers):
 """
 			if "path" in parser:
 				cliDriverStr += f"""
-	{parserName}_parser.add_argument('json', help='Variables in JSON format.')
+	{parserName}_parser.add_argument('json', nargs='?', default='{{}}', help='Variables in JSON format (defaults to empty object if not provided).')
 	{parserName}_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	{parserName}_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	{parserName}_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	{parserName}_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	{parserName}_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	{parserName}_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
@@ -799,9 +800,9 @@ def renderSubParser(subParser,parentParserPath):
 		if "path" in subOperation:
 			command = parentParserPath.replace("_"," ")+" "+subOperationName
 			cliDriverStr += f"""
-	{subParserPath}_parser.add_argument('json', help='Variables in JSON format.')
+	{subParserPath}_parser.add_argument('json', nargs='?', default='{{}}', help='Variables in JSON format (defaults to empty object if not provided).')
 	{subParserPath}_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	{subParserPath}_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	{subParserPath}_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	{subParserPath}_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	{subParserPath}_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	{subParserPath}_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
@@ -831,6 +832,10 @@ def writeReadmes(catoApiSchema):
 `catocli raw '{ "query": "query operationNameHere($yourArgument:String!) { field1 field2 }", "variables": { "yourArgument": "string", "accountID": "10949" }, "operationName": "operationNameHere" } '`
 
 `catocli raw '{ "query": "mutation operationNameHere($yourArgument:String!) { field1 field2 }", "variables": { "yourArgument": "string", "accountID": "10949" }, "operationName": "operationNameHere" } '`
+
+#### Override API endpoint
+
+`catocli raw --endpoint https://custom-api.example.com/graphql '<json>'`
 """
 	parserPath = "../catocli/parsers/raw"
 	if not os.path.exists(parserPath):
@@ -1037,7 +1042,7 @@ def generateGraphqlPayload(variablesObj,operation,operationName):
 	queryStr += ") {\n" + renderArgsAndFields("", variablesObj, operation, operation["type"]["definition"], "		") + "	}"
 	queryStr += indent + "\n}";
 	body = {
-		"query":queryStr.replace("\n", " ").replace("\t", " ").replace("	", " ").replace("   ", " ").replace("  ", " "),
+		"query":queryStr,
 		"variables":variablesObj,
 		"operationName":renderCamelCase(".".join(operationAry)),
 	}

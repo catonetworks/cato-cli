@@ -1,6 +1,6 @@
 import catocli.parsers.custom.import_rules_to_tf.import_rules_to_tf as import_rules_to_tf
 
-def import_parse(subparsers):
+def rule_import_parse(subparsers):
     """Create import command parsers"""
     
     # Create the main import parser

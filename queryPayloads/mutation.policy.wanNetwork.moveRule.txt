@@ -1,1 +1,380 @@
-mutation policyWanNetworkMoveRule ( $policyMoveRuleInput:PolicyMoveRuleInput! $wanNetworkPolicyMutationInput:WanNetworkPolicyMutationInput ) { policy ( ) { wanNetwork ( input:$wanNetworkPolicyMutationInput ) { moveRule ( input:$policyMoveRuleInput ) {  wanNetworkRulePayloadRule: rule { audit {  updatedTime  updatedBy } rule {  id  name  description  index  policySectionInfoSection: section {  id  name  }  enabled  wanNetworkRuleTypeRuleType: ruleType  wanNetworkRuleRouteTypeRouteType: routeType  wanNetworkRuleSourceSource: source {  userRefUser: user {  id  name  }  floatingSubnetRefFloatingSubnet: floatingSubnet {  id  name  }  globalIpRangeRefGlobalIpRange: globalIpRange {  id  name  }  groupRefGroup: group {  id  name  }  hostRefHost: host {  id  name  }  ip  ipAddressRangeIpRange: ipRange {  from  to  }  networkInterfaceRefNetworkInterface: networkInterface {  id  name  }  subnet  siteRefSite: site {  id  name  }  siteNetworkSubnetRefSiteNetworkSubnet: siteNetworkSubnet {  id  name  }  systemGroupRefSystemGroup: systemGroup {  id  name  }  usersGroupRefUsersGroup: usersGroup {  id  name  }  }  wanNetworkRuleDestinationDestination: destination {  userRefUser: user {  id  name  }  floatingSubnetRefFloatingSubnet: floatingSubnet {  id  name  }  globalIpRangeRefGlobalIpRange: globalIpRange {  id  name  }  groupRefGroup: group {  id  name  }  hostRefHost: host {  id  name  }  ip  ipAddressRangeIpRange: ipRange {  from  to  }  networkInterfaceRefNetworkInterface: networkInterface {  id  name  }  subnet  siteRefSite: site {  id  name  }  siteNetworkSubnetRefSiteNetworkSubnet: siteNetworkSubnet {  id  name  }  systemGroupRefSystemGroup: systemGroup {  id  name  }  usersGroupRefUsersGroup: usersGroup {  id  name  }  }  wanNetworkRuleApplicationApplication: application {  applicationRefApplication: application {  id  name  }  applicationCategoryRefAppCategory: appCategory {  id  name  }  customApplicationRefCustomApp: customApp {  id  name  }  customCategoryRefCustomCategory: customCategory {  id  name  }  customServiceIpCustomServiceIp: customServiceIp {  name  ip  ipAddressRangeIpRange: ipRange {  from  to  }  }  customServiceCustomService: customService {  port  portRangePortRange: portRange {  from  to  }  ipProtocolProtocol: protocol  }  domain  fqdn  serviceRefService: service {  id  name  }  }  wanNetworkRuleConfigurationConfiguration: configuration {  activeTcpAcceleration  packetLossMitigation  preserveSourcePort  wanNetworkRuleTransportPrimaryTransport: primaryTransport {  wanNetworkRuleTransportTypeTransportType: transportType  wanNetworkRuleInterfaceRolePrimaryInterfaceRole: primaryInterfaceRole  wanNetworkRuleInterfaceRoleSecondaryInterfaceRole: secondaryInterfaceRole  }  wanNetworkRuleTransportSecondaryTransport: secondaryTransport {  wanNetworkRuleTransportTypeTransportType: transportType  wanNetworkRuleInterfaceRolePrimaryInterfaceRole: primaryInterfaceRole  wanNetworkRuleInterfaceRoleSecondaryInterfaceRole: secondaryInterfaceRole  }  allocatedIpRefAllocationIp: allocationIp {  id  name  }  popLocationRefPopLocation: popLocation {  id  name  }  siteRefBackhaulingSite: backhaulingSite {  id  name  }  }  bandwidthManagementRefBandwidthPriority: bandwidthPriority {  id  name  }  wanNetworkRuleExceptionExceptions: exceptions {  name  wanNetworkRuleSourceSource: source {  userRefUser: user {  id  name  }  floatingSubnetRefFloatingSubnet: floatingSubnet {  id  name  }  globalIpRangeRefGlobalIpRange: globalIpRange {  id  name  }  groupRefGroup: group {  id  name  }  hostRefHost: host {  id  name  }  ip  ipAddressRangeIpRange: ipRange {  from  to  }  networkInterfaceRefNetworkInterface: networkInterface {  id  name  }  subnet  siteRefSite: site {  id  name  }  siteNetworkSubnetRefSiteNetworkSubnet: siteNetworkSubnet {  id  name  }  systemGroupRefSystemGroup: systemGroup {  id  name  }  usersGroupRefUsersGroup: usersGroup {  id  name  }  }  wanNetworkRuleDestinationDestination: destination {  userRefUser: user {  id  name  }  floatingSubnetRefFloatingSubnet: floatingSubnet {  id  name  }  globalIpRangeRefGlobalIpRange: globalIpRange {  id  name  }  groupRefGroup: group {  id  name  }  hostRefHost: host {  id  name  }  ip  ipAddressRangeIpRange: ipRange {  from  to  }  networkInterfaceRefNetworkInterface: networkInterface {  id  name  }  subnet  siteRefSite: site {  id  name  }  siteNetworkSubnetRefSiteNetworkSubnet: siteNetworkSubnet {  id  name  }  systemGroupRefSystemGroup: systemGroup {  id  name  }  usersGroupRefUsersGroup: usersGroup {  id  name  }  }  wanNetworkRuleApplicationApplication: application {  applicationRefApplication: application {  id  name  }  applicationCategoryRefAppCategory: appCategory {  id  name  }  customApplicationRefCustomApp: customApp {  id  name  }  customCategoryRefCustomCategory: customCategory {  id  name  }  customServiceIpCustomServiceIp: customServiceIp {  name  ip  ipAddressRangeIpRange: ipRange {   from   to  }  }  customServiceCustomService: customService {  port  portRangePortRange: portRange {   from   to  }  ipProtocolProtocol: protocol  }  domain  fqdn  serviceRefService: service {  id  name  }  }  }  } properties  } policyMutationStatusStatus: status  policyMutationErrorErrors: errors { errorMessage errorCode  }  } } } }
+mutation policyWanNetworkMoveRule ( $policyMoveRuleInput:PolicyMoveRuleInput! $wanNetworkPolicyMutationInput:WanNetworkPolicyMutationInput ) {
+	policy ( ) {
+		wanNetwork ( input:$wanNetworkPolicyMutationInput  )  {
+			moveRule ( input:$policyMoveRuleInput   ) {
+				wanNetworkRulePayloadRule: rule {
+					audit {
+						updatedTime
+						updatedBy
+					}
+					rule {
+						id
+						name
+						description
+						index
+						policySectionInfoSection: section {
+							id
+							name
+						}
+
+						enabled
+						wanNetworkRuleTypeRuleType: ruleType
+						wanNetworkRuleRouteTypeRouteType: routeType
+						wanNetworkRuleSourceSource: source {
+							userRefUser: user {
+								id
+								name
+							}
+							floatingSubnetRefFloatingSubnet: floatingSubnet {
+								id
+								name
+							}
+							globalIpRangeRefGlobalIpRange: globalIpRange {
+								id
+								name
+							}
+							groupRefGroup: group {
+								id
+								name
+							}
+							hostRefHost: host {
+								id
+								name
+							}
+							ip
+							ipAddressRangeIpRange: ipRange {
+								from
+								to
+							}
+							networkInterfaceRefNetworkInterface: networkInterface {
+								id
+								name
+							}
+							subnet
+							siteRefSite: site {
+								id
+								name
+							}
+							siteNetworkSubnetRefSiteNetworkSubnet: siteNetworkSubnet {
+								id
+								name
+							}
+							systemGroupRefSystemGroup: systemGroup {
+								id
+								name
+							}
+							usersGroupRefUsersGroup: usersGroup {
+								id
+								name
+							}
+						}
+
+						wanNetworkRuleDestinationDestination: destination {
+							userRefUser: user {
+								id
+								name
+							}
+							floatingSubnetRefFloatingSubnet: floatingSubnet {
+								id
+								name
+							}
+							globalIpRangeRefGlobalIpRange: globalIpRange {
+								id
+								name
+							}
+							groupRefGroup: group {
+								id
+								name
+							}
+							hostRefHost: host {
+								id
+								name
+							}
+							ip
+							ipAddressRangeIpRange: ipRange {
+								from
+								to
+							}
+							networkInterfaceRefNetworkInterface: networkInterface {
+								id
+								name
+							}
+							subnet
+							siteRefSite: site {
+								id
+								name
+							}
+							siteNetworkSubnetRefSiteNetworkSubnet: siteNetworkSubnet {
+								id
+								name
+							}
+							systemGroupRefSystemGroup: systemGroup {
+								id
+								name
+							}
+							usersGroupRefUsersGroup: usersGroup {
+								id
+								name
+							}
+						}
+
+						wanNetworkRuleApplicationApplication: application {
+							applicationRefApplication: application {
+								id
+								name
+							}
+							applicationCategoryRefAppCategory: appCategory {
+								id
+								name
+							}
+							customApplicationRefCustomApp: customApp {
+								id
+								name
+							}
+							customCategoryRefCustomCategory: customCategory {
+								id
+								name
+							}
+							customServiceIpCustomServiceIp: customServiceIp {
+								name
+								ip
+								ipAddressRangeIpRange: ipRange {
+									from
+									to
+								}
+
+							}
+							customServiceCustomService: customService {
+								port
+								portRangePortRange: portRange {
+									from
+									to
+								}
+
+								ipProtocolProtocol: protocol
+							}
+							domain
+							fqdn
+							serviceRefService: service {
+								id
+								name
+							}
+						}
+
+						wanNetworkRuleConfigurationConfiguration: configuration {
+							activeTcpAcceleration
+							packetLossMitigation
+							preserveSourcePort
+							wanNetworkRuleTransportPrimaryTransport: primaryTransport {
+								wanNetworkRuleTransportTypeTransportType: transportType
+								wanNetworkRuleInterfaceRolePrimaryInterfaceRole: primaryInterfaceRole
+								wanNetworkRuleInterfaceRoleSecondaryInterfaceRole: secondaryInterfaceRole
+							}
+							wanNetworkRuleTransportSecondaryTransport: secondaryTransport {
+								wanNetworkRuleTransportTypeTransportType: transportType
+								wanNetworkRuleInterfaceRolePrimaryInterfaceRole: primaryInterfaceRole
+								wanNetworkRuleInterfaceRoleSecondaryInterfaceRole: secondaryInterfaceRole
+							}
+							allocatedIpRefAllocationIp: allocationIp {
+								id
+								name
+							}
+							popLocationRefPopLocation: popLocation {
+								id
+								name
+							}
+							siteRefBackhaulingSite: backhaulingSite {
+								id
+								name
+							}
+						}
+
+						bandwidthManagementRefBandwidthPriority: bandwidthPriority {
+							id
+							name
+						}
+
+						wanNetworkRuleExceptionExceptions: exceptions {
+							name
+							wanNetworkRuleSourceSource: source {
+								userRefUser: user {
+									id
+									name
+								}
+
+								floatingSubnetRefFloatingSubnet: floatingSubnet {
+									id
+									name
+								}
+
+								globalIpRangeRefGlobalIpRange: globalIpRange {
+									id
+									name
+								}
+
+								groupRefGroup: group {
+									id
+									name
+								}
+
+								hostRefHost: host {
+									id
+									name
+								}
+
+								ip
+								ipAddressRangeIpRange: ipRange {
+									from
+									to
+								}
+
+								networkInterfaceRefNetworkInterface: networkInterface {
+									id
+									name
+								}
+
+								subnet
+								siteRefSite: site {
+									id
+									name
+								}
+
+								siteNetworkSubnetRefSiteNetworkSubnet: siteNetworkSubnet {
+									id
+									name
+								}
+
+								systemGroupRefSystemGroup: systemGroup {
+									id
+									name
+								}
+
+								usersGroupRefUsersGroup: usersGroup {
+									id
+									name
+								}
+
+							}
+							wanNetworkRuleDestinationDestination: destination {
+								userRefUser: user {
+									id
+									name
+								}
+
+								floatingSubnetRefFloatingSubnet: floatingSubnet {
+									id
+									name
+								}
+
+								globalIpRangeRefGlobalIpRange: globalIpRange {
+									id
+									name
+								}
+
+								groupRefGroup: group {
+									id
+									name
+								}
+
+								hostRefHost: host {
+									id
+									name
+								}
+
+								ip
+								ipAddressRangeIpRange: ipRange {
+									from
+									to
+								}
+
+								networkInterfaceRefNetworkInterface: networkInterface {
+									id
+									name
+								}
+
+								subnet
+								siteRefSite: site {
+									id
+									name
+								}
+
+								siteNetworkSubnetRefSiteNetworkSubnet: siteNetworkSubnet {
+									id
+									name
+								}
+
+								systemGroupRefSystemGroup: systemGroup {
+									id
+									name
+								}
+
+								usersGroupRefUsersGroup: usersGroup {
+									id
+									name
+								}
+
+							}
+							wanNetworkRuleApplicationApplication: application {
+								applicationRefApplication: application {
+									id
+									name
+								}
+
+								applicationCategoryRefAppCategory: appCategory {
+									id
+									name
+								}
+
+								customApplicationRefCustomApp: customApp {
+									id
+									name
+								}
+
+								customCategoryRefCustomCategory: customCategory {
+									id
+									name
+								}
+
+								customServiceIpCustomServiceIp: customServiceIp {
+									name
+									ip
+									ipAddressRangeIpRange: ipRange {
+										from
+										to
+									}
+								}
+
+								customServiceCustomService: customService {
+									port
+									portRangePortRange: portRange {
+										from
+										to
+									}
+									ipProtocolProtocol: protocol
+								}
+
+								domain
+								fqdn
+								serviceRefService: service {
+									id
+									name
+								}
+
+							}
+						}
+
+					}
+					properties
+				}
+
+				policyMutationStatusStatus: status
+				policyMutationErrorErrors: errors {
+					errorMessage
+					errorCode
+				}
+
+			}
+		}
+
+	}	
+}

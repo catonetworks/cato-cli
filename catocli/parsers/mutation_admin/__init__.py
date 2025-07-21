@@ -12,9 +12,9 @@ def mutation_admin_parse(mutation_subparsers):
 			help='addAdmin() admin operation', 
 			usage=get_help("mutation_admin_addAdmin"))
 
-	mutation_admin_addAdmin_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_admin_addAdmin_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
 	mutation_admin_addAdmin_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	mutation_admin_addAdmin_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	mutation_admin_addAdmin_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	mutation_admin_addAdmin_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	mutation_admin_addAdmin_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	mutation_admin_addAdmin_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
@@ -25,9 +25,9 @@ def mutation_admin_parse(mutation_subparsers):
 			help='removeAdmin() admin operation', 
 			usage=get_help("mutation_admin_removeAdmin"))
 
-	mutation_admin_removeAdmin_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_admin_removeAdmin_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
 	mutation_admin_removeAdmin_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	mutation_admin_removeAdmin_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	mutation_admin_removeAdmin_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	mutation_admin_removeAdmin_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	mutation_admin_removeAdmin_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	mutation_admin_removeAdmin_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
@@ -38,9 +38,9 @@ def mutation_admin_parse(mutation_subparsers):
 			help='updateAdmin() admin operation', 
 			usage=get_help("mutation_admin_updateAdmin"))
 
-	mutation_admin_updateAdmin_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_admin_updateAdmin_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
 	mutation_admin_updateAdmin_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	mutation_admin_updateAdmin_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	mutation_admin_updateAdmin_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	mutation_admin_updateAdmin_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	mutation_admin_updateAdmin_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	mutation_admin_updateAdmin_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')

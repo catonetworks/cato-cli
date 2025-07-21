@@ -1,1 +1,15 @@
-query events ( $limit:Int $from:Int $timeFrame:TimeFrame! $eventsMeasure:[EventsMeasure] $eventsDimension:[EventsDimension] $eventsFilter:[EventsFilter!] $eventsSort:[EventsSort!] ) { events ( timeFrame:$timeFrame measures:$eventsMeasure dimensions:$eventsDimension filters:$eventsFilter sort:$eventsSort ) { id from to total totals records ( limit:$limit from:$from ) { trends prevTimeFrame flatFields } } }
+query events ( $limit:Int $from:Int $timeFrame:TimeFrame! $eventsMeasure:[EventsMeasure] $eventsDimension:[EventsDimension] $eventsFilter:[EventsFilter!] $eventsSort:[EventsSort!] ) {
+	events ( timeFrame:$timeFrame measures:$eventsMeasure dimensions:$eventsDimension filters:$eventsFilter sort:$eventsSort ) {
+		id
+		from
+		to
+		total
+		totals
+		records ( limit:$limit  from:$from  )  {
+			trends
+			prevTimeFrame
+			flatFields
+		}
+
+	}	
+}

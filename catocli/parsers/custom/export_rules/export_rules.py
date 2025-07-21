@@ -187,7 +187,7 @@ def export_wf_rules_to_json(args, configuration):
         processed_sections = [] 
         for index, section_data in enumerate(sections_with_ids):
             processed_sections.append({
-                "section_index": index,
+                "section_index": index+1,
                 "section_name": section_data['section']['name'],
                 "section_id": section_data['section']['id']
             })

@@ -1,5 +1,7 @@
 import os
 import json
+import traceback
+import sys
 from graphql_client.api.call_api import ApiClient, CallApi
 from graphql_client.api_client import ApiException
 from ..customLib import writeDataToFile, makeCall, getAccountID
@@ -8,9 +10,19 @@ def export_socket_site_to_json(args, configuration):
     """
     Export consolidated site and socket data to JSON format
     """
-    processed_data = {'sites':{}}
+    processed_data = {'sites':[]}
+    warning_stats = {
+        'missing_sites': 0,
+        'missing_interfaces': 0,
+        'missing_data': 0,
+        'missing_interface_details': []
+    }
     
     try:
+        settings = {}
+        with open(os.path.join(os.path.dirname(__file__), '../../../../settings.json'), 'r', encoding='utf-8') as f:
+            settings = json.load(f)
+
         account_id = getAccountID(args, configuration)
         # Get account snapshot with siteIDs if provided
         # Get siteIDs from args if provided (comma-separated string)
@@ -32,68 +44,162 @@ def export_socket_site_to_json(args, configuration):
         ##################################################################
         ## Create processed_data object indexed by siteId with location ##
         ##################################################################
-        for site_data in snapshot_sites:
+        for snapshot_site in snapshot_sites['data']['accountSnapshot']['sites']:
             cur_site = {
-                'wan_interfaces': {},
-                'lan_interfaces': {},
+                'wan_interfaces': [],
+                'lan_interfaces': [],
             }
-            site_id = site_data.get('id')
-            cur_site['id'] = site_id
-            cur_site['name'] = site_data.get('infoSiteSnapshot', {}).get('name')
-            cur_site['description'] = site_data.get('infoSiteSnapshot', {}).get('description')
-            cur_site['connectionType'] = site_data.get('infoSiteSnapshot', {}).get('connType')
-            cur_site['type'] = site_data.get('infoSiteSnapshot', {}).get('type')
-            cur_site = populateSiteLocationData(args, site_data, cur_site)
+            site_id = snapshot_site.get('id')
+            connectionType = snapshot_site.get('infoSiteSnapshot', {}).get('connType', "")
+            if connectionType not in settings["ignore_export_by_socket_type"]:
+                cur_site['id'] = site_id
+                cur_site['name'] = snapshot_site.get('infoSiteSnapshot', {}).get('name')
+                cur_site['description'] = snapshot_site.get('infoSiteSnapshot', {}).get('description')
+                cur_site['connectionType'] = connectionType
+                cur_site['type'] = snapshot_site.get('infoSiteSnapshot', {}).get('type')
+                cur_site = populateSiteLocationData(args, snapshot_site, cur_site)
 
-            site_interfaces = site_data.get('infoSiteSnapshot', {}).get('interfaces', [])
-            for wan_ni in site_interfaces:
-                cur_wan_interface = {}
-                id = wan_ni.get('wanRoleInterfaceInfo', "")
-                if id[0:3] == "wan":
-                    cur_wan_interface['id'] = id
-                    cur_wan_interface['name'] = wan_ni.get('name', "")
-                    cur_wan_interface['upstreamBandwidth'] = wan_ni.get('upstreamBandwidth', 0)
-                    cur_wan_interface['downstreamBandwidth'] = wan_ni.get('downstreamBandwidth', 0)
-                    cur_wan_interface['destType'] = wan_ni.get('destType', "")
-                    cur_site['wan_interfaces'][id] = cur_wan_interface
+                site_interfaces = snapshot_site.get('infoSiteSnapshot', {}).get('interfaces', [])
+                for wan_ni in site_interfaces:
+                    cur_wan_interface = {}
+                    role = wan_ni.get('wanRoleInterfaceInfo', "")
+                    if role is not None and role[0:3] == "wan":
+                        if connectionType == "SOCKET_X1500":
+                            cur_wan_interface['id'] = site_id+":"+ wan_ni.get('id', "")
+                        else:
+                            cur_wan_interface['id'] = site_id+":INT_"+ wan_ni.get('id', "")
+                        cur_wan_interface['id'] = site_id+":INT_"+ wan_ni.get('id', "")
+                        cur_wan_interface['name'] = wan_ni.get('name', "")
+                        cur_wan_interface['upstreamBandwidth'] = wan_ni.get('upstreamBandwidth', 0)
+                        cur_wan_interface['downstreamBandwidth'] = wan_ni.get('downstreamBandwidth', 0)
+                        cur_wan_interface['destType'] = wan_ni.get('destType', "")
+                        cur_wan_interface['role'] = role
+                        cur_site['wan_interfaces'].append(cur_wan_interface)
 
-            if site_id:
-                processed_data['sites'][site_id] = cur_site
+                if site_id:
+                    processed_data['sites'].append(cur_site)
 
         ##################################################################################
         ## Process entity lookup LAN network interfaces adding to site object by site_id##
         ##################################################################################
+        interface_map = {}
         for lan_ni in entity_network_interfaces:
             cur_lan_interface = {
-                'network_ranges': {},
+                'network_ranges': [],
             }
-            site_id = lan_ni.get("helperFields","").get('siteId', "")
-            id = lan_ni.get('entity', "").get('id', "")
-            interfaceName = lan_ni.get('entity', "").get('interfaceName', "")
+            site_id = str(lan_ni.get("helperFields","").get('siteId', ""))
+            id = str(lan_ni.get('entity', "").get('id', ""))
+            interfaceName = lan_ni.get('helperFields', "").get('interfaceName', "")
             cur_lan_interface['id'] = id
             cur_lan_interface['name'] = interfaceName
+            # Split interfaceName on " \ " and take the last element
             cur_lan_interface['index'] = lan_ni.get("helperFields","").get('interfaceId', "")
-            cur_lan_interface['upstreamBandwidth'] = lan_ni.get('upstreamBandwidth', 0)
-            cur_lan_interface['downstreamBandwidth'] = lan_ni.get('downstreamBandwidth', 0)
-            cur_lan_interface['destType'] = lan_ni.get('destType', "")
-            processed_data['sites'][site_id]['lan_interfaces'][interfaceName] = cur_lan_interface
+            cur_lan_interface['destType'] = lan_ni.get("helperFields","").get('destType', "")
+            
+            # Create a composite key for interface mapping that includes site_id
+            interface_key = f"{site_id}_{interfaceName}"
+            interface_map[interface_key] = id
+            
+            # Only add interface if the site exists in processed_data
+            site_entry = next((site for site in processed_data['sites'] if site['id'] == site_id), None)
+            if site_entry:
+                site_entry['lan_interfaces'].append(cur_lan_interface)
+            else:
+                if hasattr(args, 'verbose') and args.verbose:
+                    print(f"WARNING: Site {site_id} not found in snapshot data, skipping interface {interfaceName} ({id})")
 
         #############################################################################
         ## Process entity lookup network ranges populating by network interface id ##
         #############################################################################
         for range in entity_network_ranges:
+            if hasattr(args, 'verbose') and args.verbose:
+                print(f"Processing network range: {type(range)} - {range}")
             cur_range = {}
-            site_id = lan_ni.get("helperFields","").get('siteId', "")
-            id = lan_ni.get('entity', "").get('id', "")
-            interface_name = lan_ni.get('entity', "").get('interfaceName', "")
-            cur_lan_interface['id'] = id
-            cur_lan_interface['subnet'] = lan_ni.get("helperFields","").get('subnet', "")
-            cur_lan_interface['vlanTag'] = lan_ni.get("helperFields","").get('vlanTag', "")
-            cur_lan_interface['microsegmentation'] = lan_ni.get("helperFields","").get('microsegmentation', "")
+            helper_fields = range.get("helperFields", {})
+            entity_data = range.get('entity', {})
             
-            processed_data['sites'][site_id]['lan_interfaces'][interface_name] = cur_range
+            if hasattr(args, 'verbose') and args.verbose:
+                print(f"  helperFields type: {type(helper_fields)}, value: {helper_fields}")
+                print(f"  entity type: {type(entity_data)}, value: {entity_data}")
+            
+            range_id = entity_data.get('id', "")
+            site_id = str(helper_fields.get('siteId', ""))
+            interface_name = str(helper_fields.get('interfaceName', ""))
+            # Use the composite key to lookup interface_id
+            interface_key = f"{site_id}_{interface_name}"
+            interface_id = str(interface_map.get(interface_key, ""))
+            cur_range['id'] = range_id
+            range_name = entity_data.get('name', "")
+            if range_name and " \\ " in range_name:
+                cur_range['rangeName'] = range_name.split(" \\ ").pop()
+            else:
+                cur_range['rangeName'] = range_name
+            cur_range['name'] = range_name
+            cur_range['subnet'] = helper_fields.get('subnet', "")
+            cur_range['vlanTag'] = helper_fields.get('vlanTag', "")
+            cur_range['microsegmentation'] = helper_fields.get('microsegmentation', "")
+            
+            # Safely add to processed_data with existence checks
+            if site_id and interface_id and range_id:
+                site_entry = next((site for site in processed_data['sites'] if site['id'] == site_id), None)
+                if not site_entry:
+                    # print(f"WARNING: Site ID {site_id} not found in processed_data")
+                    warning_stats['missing_sites'] += 1
+                    continue
+                
+                # Find the interface in the lan_interfaces array
+                interface_entry = next((iface for iface in site_entry['lan_interfaces'] if iface['id'] == interface_id), None)
+                if not interface_entry:
+                    print(f"WARNING: Interface {interface_id} (name: {interface_name}) not found in site {site_id}. Range {range_id} will be skipped.")
+                    warning_stats['missing_interfaces'] += 1
+                    warning_stats['missing_interface_details'].append({
+                        'interface_id': interface_id,
+                        'interface_name': interface_name,
+                        'site_id': site_id,
+                        'range_id': range_id
+                    })
+                    if hasattr(args, 'verbose') and args.verbose:
+                        available_interfaces = [iface['id'] for iface in site_entry['lan_interfaces']]
+                        print(f"  Available interfaces in site {site_id}: {available_interfaces}")
+                        print(f"  Looked up interface with key: {interface_key}")
+                    continue                
+                interface_entry['network_ranges'].append(cur_range)
+                if hasattr(args, 'verbose') and args.verbose:
+                    print(f"  Successfully added range {range_id} to site {site_id}, interface_name {interface_name} with interface_id {interface_id}")
+            else:
+                if not interface_id:
+                    print(f"WARNING: Interface lookup failed for range {range_id}. Site: {site_id}, Interface name: {interface_name}, Lookup key: {interface_key}")
+                    if hasattr(args, 'verbose') and args.verbose:
+                        print(f"  Available interface keys: {list(interface_map.keys())[:10]}...")  # Show first 10 keys
+                else:
+                    print(f"WARNING: Missing required data for range: site_id={site_id}, interface_id={interface_id}, range_id={range_id}")
+                warning_stats['missing_data'] += 1
 
-
+        # Print warning summary
+        total_warnings = warning_stats['missing_sites'] + warning_stats['missing_interfaces'] + warning_stats['missing_data']
+        if total_warnings > 0:
+            print(f"\n=== WARNING SUMMARY ===")
+            print(f"Total warnings: {total_warnings}")
+            print(f"- Missing sites: {warning_stats['missing_sites']}")
+            print(f"- Missing interfaces: {warning_stats['missing_interfaces']}")
+            print(f"- Missing data: {warning_stats['missing_data']}")
+            
+            if warning_stats['missing_interfaces'] > 0:
+                print(f"\nMissing interface details:")
+                unique_interfaces = {}
+                for detail in warning_stats['missing_interface_details']:
+                    key = f"{detail['interface_id']} ({detail['interface_name']})"
+                    if key not in unique_interfaces:
+                        unique_interfaces[key] = []
+                    unique_interfaces[key].append(detail['site_id'])
+                
+                for interface, sites in unique_interfaces.items():
+                    print(f"  - Interface {interface} missing in sites: {', '.join(sites)}")
+            
+            print(f"\nThese warnings indicate network ranges that reference interfaces that don't exist in the site data.")
+            print(f"This is usually caused by data inconsistencies and can be safely ignored if the export completes successfully.")
+            print(f"=========================\n")
+        
         # Write the processed data to file using the general-purpose function
         output_file = writeDataToFile(
             data=processed_data,
@@ -106,8 +212,33 @@ def export_socket_site_to_json(args, configuration):
         return [{"success": True, "output_file": output_file, "account_id": account_id}]
             
     except Exception as e:
-        print(f"ERROR: {str(e)}")
-        return [{"success": False, "error": str(e)}]
+        # Get the current exception info
+        exc_type, exc_value, exc_traceback = sys.exc_info()
+        
+        # Get the line number where the error occurred
+        line_number = exc_traceback.tb_lineno
+        filename = exc_traceback.tb_frame.f_code.co_filename
+        function_name = exc_traceback.tb_frame.f_code.co_name
+        
+        # Get the full traceback as a string
+        full_traceback = traceback.format_exc()
+        
+        # Create detailed error message
+        error_details = {
+            "error_type": exc_type.__name__,
+            "error_message": str(exc_value),
+            "line_number": line_number,
+            "function_name": function_name,
+            "filename": os.path.basename(filename),
+            "full_traceback": full_traceback
+        }
+        
+        # Print detailed error information
+        print(f"ERROR: {exc_type.__name__}: {str(exc_value)}")
+        print(f"Location: {os.path.basename(filename)}:{line_number} in {function_name}()")
+        print(f"Full traceback:\n{full_traceback}")
+        
+        return [{"success": False, "error": str(e), "error_details": error_details}]
 
 
 ##########################################################################
@@ -135,16 +266,17 @@ def populateSiteLocationData(args, site_data, cur_site):
             print(f"Warning: Could not load site location data: {e}")
 
     ## siteLocation attributes
-    cur_site['address'] = site_data.get('infoSiteSnapshot', {}).get('address')
-    cur_site['city'] = site_data.get('infoSiteSnapshot', {}).get('cityName')                
-    cur_site['stateName'] = site_data.get('infoSiteSnapshot', {}).get('countryStateName')
-    cur_site['countryCode'] = site_data.get('infoSiteSnapshot', {}).get('countryCode')
-    cur_site['countryName'] = site_data.get('infoSiteSnapshot', {}).get('countryName')
+    cur_site['site_location'] = {}
+    cur_site['site_location']['address'] = site_data.get('infoSiteSnapshot', {}).get('address')
+    cur_site['site_location']['city'] = site_data.get('infoSiteSnapshot', {}).get('cityName')                
+    cur_site['site_location']['stateName'] = site_data.get('infoSiteSnapshot', {}).get('countryStateName')
+    cur_site['site_location']['countryCode'] = site_data.get('infoSiteSnapshot', {}).get('countryCode')
+    cur_site['site_location']['countryName'] = site_data.get('infoSiteSnapshot', {}).get('countryName')
 
     # Look up timezone and state code from location data
-    country_name = cur_site['countryName']
-    state_name = cur_site['stateName']
-    city = cur_site['city']
+    country_name = cur_site['site_location']['countryName']
+    state_name = cur_site['site_location']['stateName']
+    city = cur_site['site_location']['city']
 
     # Create lookup key based on available data
     if state_name:
@@ -173,7 +305,7 @@ def populateSiteLocationData(args, site_data, cur_site):
 
     # Get timezone - always use the 0 element in the timezones array
     timezones = location_data.get('timezone', [])
-    cur_site['timezone'] = timezones[0] if timezones else None
+    cur_site['site_location']['timezone'] = timezones[0] if timezones else None
     return cur_site
 
 def getEntityLookup(args, configuration, account_id, entity_type):

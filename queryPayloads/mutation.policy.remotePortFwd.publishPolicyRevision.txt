@@ -1,1 +1,112 @@
-mutation policyRemotePortFwdPublishPolicyRevision ( $policyPublishRevisionInput:PolicyPublishRevisionInput $remotePortFwdPolicyMutationInput:RemotePortFwdPolicyMutationInput ) { policy ( ) { remotePortFwd ( input:$remotePortFwdPolicyMutationInput ) { publishPolicyRevision ( input:$policyPublishRevisionInput ) {  remotePortFwdPolicyPolicy: policy { enabled rules {  policyElementAuditAudit: audit {  updatedTime  updatedBy  }  remotePortFwdRuleRule: rule {  id  name  description  index  policySectionInfoSection: section {  id  name  }  enabled  forwardIcmp  allocatedIpRefExternalIp: externalIp {  id  name  }  portRangeExternalPortRange: externalPortRange {  from  to  }  internalIp  portRangeInternalPortRange: internalPortRange {  from  to  }  remotePortFwdRemoteIpsRemoteIPs: remoteIPs {  ip  ipAddressRangeIpRange: ipRange {  from  to  }  subnet  globalIpRangeRefGlobalIpRange: globalIpRange {  id  name  }  }  remotePortFwdRestrictionTypeRestrictionType: restrictionType  policyRuleTrackingAlertTracking: tracking {  enabled  policyRuleTrackingFrequencyEnumFrequency: frequency  subscriptionGroupRefSubscriptionGroup: subscriptionGroup {  id  name  }  subscriptionWebhookRefWebhook: webhook {  id  name  }  subscriptionMailingListRefMailingList: mailingList {  id  name  }  }  }  policyElementPropertiesEnumProperties: properties } sections {  policyElementAuditAudit: audit {  updatedTime  updatedBy  }  policySectionInfoSection: section {  id  name  }  policyElementPropertiesEnumProperties: properties } audit {  publishedTime  publishedBy } revision {  id  name  description  changes  createdTime  updatedTime }  } policyMutationStatusStatus: status  policyMutationErrorErrors: errors { errorMessage errorCode  }  } } } }
+mutation policyRemotePortFwdPublishPolicyRevision ( $policyPublishRevisionInput:PolicyPublishRevisionInput $remotePortFwdPolicyMutationInput:RemotePortFwdPolicyMutationInput ) {
+	policy ( ) {
+		remotePortFwd ( input:$remotePortFwdPolicyMutationInput  )  {
+			publishPolicyRevision ( input:$policyPublishRevisionInput   ) {
+				remotePortFwdPolicyPolicy: policy {
+					enabled
+					rules {
+						policyElementAuditAudit: audit {
+							updatedTime
+							updatedBy
+						}
+
+						remotePortFwdRuleRule: rule {
+							id
+							name
+							description
+							index
+							policySectionInfoSection: section {
+								id
+								name
+							}
+							enabled
+							forwardIcmp
+							allocatedIpRefExternalIp: externalIp {
+								id
+								name
+							}
+							portRangeExternalPortRange: externalPortRange {
+								from
+								to
+							}
+							internalIp
+							portRangeInternalPortRange: internalPortRange {
+								from
+								to
+							}
+							remotePortFwdRemoteIpsRemoteIPs: remoteIPs {
+								ip
+								ipAddressRangeIpRange: ipRange {
+									from
+									to
+								}
+
+								subnet
+								globalIpRangeRefGlobalIpRange: globalIpRange {
+									id
+									name
+								}
+
+							}
+							remotePortFwdRestrictionTypeRestrictionType: restrictionType
+							policyRuleTrackingAlertTracking: tracking {
+								enabled
+								policyRuleTrackingFrequencyEnumFrequency: frequency
+								subscriptionGroupRefSubscriptionGroup: subscriptionGroup {
+									id
+									name
+								}
+
+								subscriptionWebhookRefWebhook: webhook {
+									id
+									name
+								}
+
+								subscriptionMailingListRefMailingList: mailingList {
+									id
+									name
+								}
+
+							}
+						}
+
+						policyElementPropertiesEnumProperties: properties
+					}
+					sections {
+						policyElementAuditAudit: audit {
+							updatedTime
+							updatedBy
+						}
+
+						policySectionInfoSection: section {
+							id
+							name
+						}
+
+						policyElementPropertiesEnumProperties: properties
+					}
+					audit {
+						publishedTime
+						publishedBy
+					}
+					revision {
+						id
+						name
+						description
+						changes
+						createdTime
+						updatedTime
+					}
+				}
+
+				policyMutationStatusStatus: status
+				policyMutationErrorErrors: errors {
+					errorMessage
+					errorCode
+				}
+
+			}
+		}
+
+	}	
+}

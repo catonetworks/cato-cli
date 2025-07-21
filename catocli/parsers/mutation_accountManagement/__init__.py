@@ -12,9 +12,9 @@ def mutation_accountManagement_parse(mutation_subparsers):
 			help='addAccount() accountManagement operation', 
 			usage=get_help("mutation_accountManagement_addAccount"))
 
-	mutation_accountManagement_addAccount_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_accountManagement_addAccount_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
 	mutation_accountManagement_addAccount_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	mutation_accountManagement_addAccount_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	mutation_accountManagement_addAccount_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	mutation_accountManagement_addAccount_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	mutation_accountManagement_addAccount_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	mutation_accountManagement_addAccount_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
@@ -25,9 +25,9 @@ def mutation_accountManagement_parse(mutation_subparsers):
 			help='removeAccount() accountManagement operation', 
 			usage=get_help("mutation_accountManagement_removeAccount"))
 
-	mutation_accountManagement_removeAccount_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_accountManagement_removeAccount_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
 	mutation_accountManagement_removeAccount_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	mutation_accountManagement_removeAccount_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	mutation_accountManagement_removeAccount_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	mutation_accountManagement_removeAccount_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	mutation_accountManagement_removeAccount_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	mutation_accountManagement_removeAccount_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
@@ -38,9 +38,9 @@ def mutation_accountManagement_parse(mutation_subparsers):
 			help='updateAccount() accountManagement operation', 
 			usage=get_help("mutation_accountManagement_updateAccount"))
 
-	mutation_accountManagement_updateAccount_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_accountManagement_updateAccount_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
 	mutation_accountManagement_updateAccount_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	mutation_accountManagement_updateAccount_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	mutation_accountManagement_updateAccount_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	mutation_accountManagement_updateAccount_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	mutation_accountManagement_updateAccount_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	mutation_accountManagement_updateAccount_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')

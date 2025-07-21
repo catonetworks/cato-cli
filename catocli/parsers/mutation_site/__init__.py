@@ -12,9 +12,9 @@ def mutation_site_parse(mutation_subparsers):
 			help='addBgpPeer() site operation', 
 			usage=get_help("mutation_site_addBgpPeer"))
 
-	mutation_site_addBgpPeer_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_site_addBgpPeer_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
 	mutation_site_addBgpPeer_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	mutation_site_addBgpPeer_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	mutation_site_addBgpPeer_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	mutation_site_addBgpPeer_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	mutation_site_addBgpPeer_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	mutation_site_addBgpPeer_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
@@ -25,9 +25,9 @@ def mutation_site_parse(mutation_subparsers):
 			help='addCloudInterconnectPhysicalConnection() site operation', 
 			usage=get_help("mutation_site_addCloudInterconnectPhysicalConnection"))
 
-	mutation_site_addCloudInterconnectPhysicalConnection_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_site_addCloudInterconnectPhysicalConnection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
 	mutation_site_addCloudInterconnectPhysicalConnection_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	mutation_site_addCloudInterconnectPhysicalConnection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	mutation_site_addCloudInterconnectPhysicalConnection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	mutation_site_addCloudInterconnectPhysicalConnection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	mutation_site_addCloudInterconnectPhysicalConnection_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	mutation_site_addCloudInterconnectPhysicalConnection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
@@ -38,9 +38,9 @@ def mutation_site_parse(mutation_subparsers):
 			help='addCloudInterconnectSite() site operation', 
 			usage=get_help("mutation_site_addCloudInterconnectSite"))
 
-	mutation_site_addCloudInterconnectSite_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_site_addCloudInterconnectSite_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
 	mutation_site_addCloudInterconnectSite_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	mutation_site_addCloudInterconnectSite_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	mutation_site_addCloudInterconnectSite_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	mutation_site_addCloudInterconnectSite_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	mutation_site_addCloudInterconnectSite_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	mutation_site_addCloudInterconnectSite_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
@@ -51,9 +51,9 @@ def mutation_site_parse(mutation_subparsers):
 			help='addIpsecIkeV2Site() site operation', 
 			usage=get_help("mutation_site_addIpsecIkeV2Site"))
 
-	mutation_site_addIpsecIkeV2Site_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_site_addIpsecIkeV2Site_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
 	mutation_site_addIpsecIkeV2Site_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	mutation_site_addIpsecIkeV2Site_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	mutation_site_addIpsecIkeV2Site_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	mutation_site_addIpsecIkeV2Site_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	mutation_site_addIpsecIkeV2Site_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	mutation_site_addIpsecIkeV2Site_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
@@ -64,9 +64,9 @@ def mutation_site_parse(mutation_subparsers):
 			help='addIpsecIkeV2SiteTunnels() site operation', 
 			usage=get_help("mutation_site_addIpsecIkeV2SiteTunnels"))
 
-	mutation_site_addIpsecIkeV2SiteTunnels_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_site_addIpsecIkeV2SiteTunnels_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
 	mutation_site_addIpsecIkeV2SiteTunnels_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	mutation_site_addIpsecIkeV2SiteTunnels_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	mutation_site_addIpsecIkeV2SiteTunnels_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	mutation_site_addIpsecIkeV2SiteTunnels_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	mutation_site_addIpsecIkeV2SiteTunnels_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	mutation_site_addIpsecIkeV2SiteTunnels_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
@@ -77,9 +77,9 @@ def mutation_site_parse(mutation_subparsers):
 			help='addNetworkRange() site operation', 
 			usage=get_help("mutation_site_addNetworkRange"))
 
-	mutation_site_addNetworkRange_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_site_addNetworkRange_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
 	mutation_site_addNetworkRange_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	mutation_site_addNetworkRange_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	mutation_site_addNetworkRange_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	mutation_site_addNetworkRange_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	mutation_site_addNetworkRange_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	mutation_site_addNetworkRange_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
@@ -90,9 +90,9 @@ def mutation_site_parse(mutation_subparsers):
 			help='addSecondaryAwsVSocket() site operation', 
 			usage=get_help("mutation_site_addSecondaryAwsVSocket"))
 
-	mutation_site_addSecondaryAwsVSocket_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_site_addSecondaryAwsVSocket_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
 	mutation_site_addSecondaryAwsVSocket_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	mutation_site_addSecondaryAwsVSocket_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	mutation_site_addSecondaryAwsVSocket_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	mutation_site_addSecondaryAwsVSocket_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	mutation_site_addSecondaryAwsVSocket_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	mutation_site_addSecondaryAwsVSocket_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
@@ -103,9 +103,9 @@ def mutation_site_parse(mutation_subparsers):
 			help='addSecondaryAzureVSocket() site operation', 
 			usage=get_help("mutation_site_addSecondaryAzureVSocket"))
 
-	mutation_site_addSecondaryAzureVSocket_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_site_addSecondaryAzureVSocket_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
 	mutation_site_addSecondaryAzureVSocket_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	mutation_site_addSecondaryAzureVSocket_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	mutation_site_addSecondaryAzureVSocket_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	mutation_site_addSecondaryAzureVSocket_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	mutation_site_addSecondaryAzureVSocket_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	mutation_site_addSecondaryAzureVSocket_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
@@ -116,9 +116,9 @@ def mutation_site_parse(mutation_subparsers):
 			help='addSocketAddOnCard() site operation', 
 			usage=get_help("mutation_site_addSocketAddOnCard"))
 
-	mutation_site_addSocketAddOnCard_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_site_addSocketAddOnCard_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
 	mutation_site_addSocketAddOnCard_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	mutation_site_addSocketAddOnCard_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	mutation_site_addSocketAddOnCard_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	mutation_site_addSocketAddOnCard_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	mutation_site_addSocketAddOnCard_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	mutation_site_addSocketAddOnCard_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
@@ -129,9 +129,9 @@ def mutation_site_parse(mutation_subparsers):
 			help='addSocketSite() site operation', 
 			usage=get_help("mutation_site_addSocketSite"))
 
-	mutation_site_addSocketSite_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_site_addSocketSite_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
 	mutation_site_addSocketSite_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	mutation_site_addSocketSite_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	mutation_site_addSocketSite_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	mutation_site_addSocketSite_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	mutation_site_addSocketSite_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	mutation_site_addSocketSite_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
@@ -142,9 +142,9 @@ def mutation_site_parse(mutation_subparsers):
 			help='addStaticHost() site operation', 
 			usage=get_help("mutation_site_addStaticHost"))
 
-	mutation_site_addStaticHost_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_site_addStaticHost_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
 	mutation_site_addStaticHost_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	mutation_site_addStaticHost_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	mutation_site_addStaticHost_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	mutation_site_addStaticHost_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	mutation_site_addStaticHost_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	mutation_site_addStaticHost_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
@@ -155,9 +155,9 @@ def mutation_site_parse(mutation_subparsers):
 			help='removeBgpPeer() site operation', 
 			usage=get_help("mutation_site_removeBgpPeer"))
 
-	mutation_site_removeBgpPeer_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_site_removeBgpPeer_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
 	mutation_site_removeBgpPeer_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	mutation_site_removeBgpPeer_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	mutation_site_removeBgpPeer_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	mutation_site_removeBgpPeer_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	mutation_site_removeBgpPeer_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	mutation_site_removeBgpPeer_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
@@ -168,9 +168,9 @@ def mutation_site_parse(mutation_subparsers):
 			help='removeCloudInterconnectPhysicalConnection() site operation', 
 			usage=get_help("mutation_site_removeCloudInterconnectPhysicalConnection"))
 
-	mutation_site_removeCloudInterconnectPhysicalConnection_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_site_removeCloudInterconnectPhysicalConnection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
 	mutation_site_removeCloudInterconnectPhysicalConnection_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	mutation_site_removeCloudInterconnectPhysicalConnection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	mutation_site_removeCloudInterconnectPhysicalConnection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	mutation_site_removeCloudInterconnectPhysicalConnection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	mutation_site_removeCloudInterconnectPhysicalConnection_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	mutation_site_removeCloudInterconnectPhysicalConnection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
@@ -181,9 +181,9 @@ def mutation_site_parse(mutation_subparsers):
 			help='removeIpsecIkeV2SiteTunnels() site operation', 
 			usage=get_help("mutation_site_removeIpsecIkeV2SiteTunnels"))
 
-	mutation_site_removeIpsecIkeV2SiteTunnels_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_site_removeIpsecIkeV2SiteTunnels_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
 	mutation_site_removeIpsecIkeV2SiteTunnels_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	mutation_site_removeIpsecIkeV2SiteTunnels_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	mutation_site_removeIpsecIkeV2SiteTunnels_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	mutation_site_removeIpsecIkeV2SiteTunnels_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	mutation_site_removeIpsecIkeV2SiteTunnels_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	mutation_site_removeIpsecIkeV2SiteTunnels_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
@@ -194,9 +194,9 @@ def mutation_site_parse(mutation_subparsers):
 			help='removeNetworkRange() site operation', 
 			usage=get_help("mutation_site_removeNetworkRange"))
 
-	mutation_site_removeNetworkRange_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_site_removeNetworkRange_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
 	mutation_site_removeNetworkRange_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	mutation_site_removeNetworkRange_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	mutation_site_removeNetworkRange_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	mutation_site_removeNetworkRange_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	mutation_site_removeNetworkRange_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	mutation_site_removeNetworkRange_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
@@ -207,9 +207,9 @@ def mutation_site_parse(mutation_subparsers):
 			help='removeSite() site operation', 
 			usage=get_help("mutation_site_removeSite"))
 
-	mutation_site_removeSite_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_site_removeSite_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
 	mutation_site_removeSite_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	mutation_site_removeSite_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	mutation_site_removeSite_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	mutation_site_removeSite_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	mutation_site_removeSite_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	mutation_site_removeSite_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
@@ -220,9 +220,9 @@ def mutation_site_parse(mutation_subparsers):
 			help='removeSocketAddOnCard() site operation', 
 			usage=get_help("mutation_site_removeSocketAddOnCard"))
 
-	mutation_site_removeSocketAddOnCard_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_site_removeSocketAddOnCard_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
 	mutation_site_removeSocketAddOnCard_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	mutation_site_removeSocketAddOnCard_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	mutation_site_removeSocketAddOnCard_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	mutation_site_removeSocketAddOnCard_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	mutation_site_removeSocketAddOnCard_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	mutation_site_removeSocketAddOnCard_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
@@ -233,9 +233,9 @@ def mutation_site_parse(mutation_subparsers):
 			help='removeStaticHost() site operation', 
 			usage=get_help("mutation_site_removeStaticHost"))
 
-	mutation_site_removeStaticHost_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_site_removeStaticHost_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
 	mutation_site_removeStaticHost_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	mutation_site_removeStaticHost_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	mutation_site_removeStaticHost_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	mutation_site_removeStaticHost_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	mutation_site_removeStaticHost_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	mutation_site_removeStaticHost_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
@@ -246,9 +246,9 @@ def mutation_site_parse(mutation_subparsers):
 			help='startSiteUpgrade() site operation', 
 			usage=get_help("mutation_site_startSiteUpgrade"))
 
-	mutation_site_startSiteUpgrade_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_site_startSiteUpgrade_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
 	mutation_site_startSiteUpgrade_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	mutation_site_startSiteUpgrade_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	mutation_site_startSiteUpgrade_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	mutation_site_startSiteUpgrade_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	mutation_site_startSiteUpgrade_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	mutation_site_startSiteUpgrade_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
@@ -259,9 +259,9 @@ def mutation_site_parse(mutation_subparsers):
 			help='updateBgpPeer() site operation', 
 			usage=get_help("mutation_site_updateBgpPeer"))
 
-	mutation_site_updateBgpPeer_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_site_updateBgpPeer_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
 	mutation_site_updateBgpPeer_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	mutation_site_updateBgpPeer_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	mutation_site_updateBgpPeer_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	mutation_site_updateBgpPeer_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	mutation_site_updateBgpPeer_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	mutation_site_updateBgpPeer_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
@@ -272,9 +272,9 @@ def mutation_site_parse(mutation_subparsers):
 			help='updateCloudInterconnectPhysicalConnection() site operation', 
 			usage=get_help("mutation_site_updateCloudInterconnectPhysicalConnection"))
 
-	mutation_site_updateCloudInterconnectPhysicalConnection_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_site_updateCloudInterconnectPhysicalConnection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
 	mutation_site_updateCloudInterconnectPhysicalConnection_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	mutation_site_updateCloudInterconnectPhysicalConnection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	mutation_site_updateCloudInterconnectPhysicalConnection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	mutation_site_updateCloudInterconnectPhysicalConnection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	mutation_site_updateCloudInterconnectPhysicalConnection_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	mutation_site_updateCloudInterconnectPhysicalConnection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
@@ -285,9 +285,9 @@ def mutation_site_parse(mutation_subparsers):
 			help='updateHa() site operation', 
 			usage=get_help("mutation_site_updateHa"))
 
-	mutation_site_updateHa_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_site_updateHa_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
 	mutation_site_updateHa_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	mutation_site_updateHa_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	mutation_site_updateHa_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	mutation_site_updateHa_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	mutation_site_updateHa_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	mutation_site_updateHa_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
@@ -298,9 +298,9 @@ def mutation_site_parse(mutation_subparsers):
 			help='updateIpsecIkeV2SiteGeneralDetails() site operation', 
 			usage=get_help("mutation_site_updateIpsecIkeV2SiteGeneralDetails"))
 
-	mutation_site_updateIpsecIkeV2SiteGeneralDetails_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_site_updateIpsecIkeV2SiteGeneralDetails_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
 	mutation_site_updateIpsecIkeV2SiteGeneralDetails_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	mutation_site_updateIpsecIkeV2SiteGeneralDetails_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	mutation_site_updateIpsecIkeV2SiteGeneralDetails_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	mutation_site_updateIpsecIkeV2SiteGeneralDetails_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	mutation_site_updateIpsecIkeV2SiteGeneralDetails_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	mutation_site_updateIpsecIkeV2SiteGeneralDetails_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
@@ -311,9 +311,9 @@ def mutation_site_parse(mutation_subparsers):
 			help='updateIpsecIkeV2SiteTunnels() site operation', 
 			usage=get_help("mutation_site_updateIpsecIkeV2SiteTunnels"))
 
-	mutation_site_updateIpsecIkeV2SiteTunnels_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_site_updateIpsecIkeV2SiteTunnels_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
 	mutation_site_updateIpsecIkeV2SiteTunnels_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	mutation_site_updateIpsecIkeV2SiteTunnels_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	mutation_site_updateIpsecIkeV2SiteTunnels_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	mutation_site_updateIpsecIkeV2SiteTunnels_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	mutation_site_updateIpsecIkeV2SiteTunnels_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	mutation_site_updateIpsecIkeV2SiteTunnels_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
@@ -324,9 +324,9 @@ def mutation_site_parse(mutation_subparsers):
 			help='updateNetworkRange() site operation', 
 			usage=get_help("mutation_site_updateNetworkRange"))
 
-	mutation_site_updateNetworkRange_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_site_updateNetworkRange_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
 	mutation_site_updateNetworkRange_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	mutation_site_updateNetworkRange_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	mutation_site_updateNetworkRange_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	mutation_site_updateNetworkRange_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	mutation_site_updateNetworkRange_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	mutation_site_updateNetworkRange_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
@@ -337,9 +337,9 @@ def mutation_site_parse(mutation_subparsers):
 			help='updateSiteGeneralDetails() site operation', 
 			usage=get_help("mutation_site_updateSiteGeneralDetails"))
 
-	mutation_site_updateSiteGeneralDetails_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_site_updateSiteGeneralDetails_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
 	mutation_site_updateSiteGeneralDetails_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	mutation_site_updateSiteGeneralDetails_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	mutation_site_updateSiteGeneralDetails_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	mutation_site_updateSiteGeneralDetails_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	mutation_site_updateSiteGeneralDetails_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	mutation_site_updateSiteGeneralDetails_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
@@ -350,9 +350,9 @@ def mutation_site_parse(mutation_subparsers):
 			help='updateSocketInterface() site operation', 
 			usage=get_help("mutation_site_updateSocketInterface"))
 
-	mutation_site_updateSocketInterface_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_site_updateSocketInterface_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
 	mutation_site_updateSocketInterface_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	mutation_site_updateSocketInterface_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	mutation_site_updateSocketInterface_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	mutation_site_updateSocketInterface_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	mutation_site_updateSocketInterface_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	mutation_site_updateSocketInterface_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
@@ -363,9 +363,9 @@ def mutation_site_parse(mutation_subparsers):
 			help='updateStaticHost() site operation', 
 			usage=get_help("mutation_site_updateStaticHost"))
 
-	mutation_site_updateStaticHost_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_site_updateStaticHost_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
 	mutation_site_updateStaticHost_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	mutation_site_updateStaticHost_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	mutation_site_updateStaticHost_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	mutation_site_updateStaticHost_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	mutation_site_updateStaticHost_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	mutation_site_updateStaticHost_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')

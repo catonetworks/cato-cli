@@ -1,1 +1,61 @@
-query hardware ( $hardwareSearchInput:HardwareSearchInput ) { hardware ( ) { hardware ( input:$hardwareSearchInput ) { items {  id  accountRefAccount: account { id name  } siteCountryName  productType  model  serialNumber  macAddress  poNumber  quoteId  licenseId  licenseStartDate  shippingTrackingShippingTracking: shippingTracking { shippingStatus shippingDate trackingUrl trackingNumber carrier  } shippingDetailsShippingDetail: shippingDetail { companyName street cityName countryName stateName zipCode incoterms instruction vatId contact {  name  phone  email } comment powerCable  } hardwareValidationValidation: validation { completed incompleteReason addressValidationStatus  } lastModified } pageInfo {  total } } } }
+query hardware ( $hardwareSearchInput:HardwareSearchInput ) {
+	hardware ( ) {
+		hardware ( input:$hardwareSearchInput  )  {
+			items {
+				id
+				accountRefAccount: account {
+					id
+					name
+				}
+
+				siteCountryName
+				productType
+				model
+				serialNumber
+				macAddress
+				poNumber
+				quoteId
+				licenseId
+				licenseStartDate
+				shippingTrackingShippingTracking: shippingTracking {
+					shippingStatus
+					shippingDate
+					trackingUrl
+					trackingNumber
+					carrier
+				}
+
+				shippingDetailsShippingDetail: shippingDetail {
+					companyName
+					street
+					cityName
+					countryName
+					stateName
+					zipCode
+					incoterms
+					instruction
+					vatId
+					contact {
+						name
+						phone
+						email
+					}
+					comment
+					powerCable
+				}
+
+				hardwareValidationValidation: validation {
+					completed
+					incompleteReason
+					addressValidationStatus
+				}
+
+				lastModified
+			}
+			pageInfo {
+				total
+			}
+		}
+
+	}	
+}

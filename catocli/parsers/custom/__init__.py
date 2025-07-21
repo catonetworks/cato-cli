@@ -1,7 +1,8 @@
 
 import catocli.parsers.custom.customLib as customLib
 from catocli.parsers.custom.export_rules import export_rules_parse
-from catocli.parsers.custom.import_rules_to_tf import import_parse
+from catocli.parsers.custom.import_rules_to_tf import rule_import_parse
+from catocli.parsers.custom.import_sites_to_tf import site_import_parse
 from catocli.parsers.configure import configure_parse
 from catocli.parsers.custom.export_sites import export_sites_parse
 
@@ -33,14 +34,14 @@ def custom_parse(subparsers):
 
 	# Add additional custom parsers here 
 	export_rules_parse(subparsers)
-	import_parse(subparsers)
+	import_parser = rule_import_parse(subparsers)
+	site_import_parse(subparsers, import_parser)
 	configure_parse(subparsers)
 
 def get_help_custom(path):
 	matchCmd = "catocli "+path.replace("_"," ")
 	import os
 	pwd = os.path.dirname(__file__)
-	# doc = path+"/README.md"
 	abs_path = os.path.join(pwd, "README.md")
 	new_line = "\nEXAMPLES:\n"
 	lines = open(abs_path, "r").readlines()

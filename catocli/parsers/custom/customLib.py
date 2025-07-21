@@ -1,5 +1,8 @@
 import os
 import json
+import subprocess
+import glob
+from pathlib import Path
 from graphql_client.api.call_api import ApiClient, CallApi
 from graphql_client.api_client import ApiException
 import logging
@@ -321,3 +324,238 @@ def getAccountID(args, configuration):
         raise ValueError("Account ID is required. Provide it using the -accountID flag or set CATO_ACCOUNT_ID environment variable.")
     
     return account_id
+
+def check_terraform_binary():
+    """Check if terraform binary is available"""
+    try:
+        result = subprocess.run(['terraform', '--version'], capture_output=True, text=True)
+        if result.returncode == 0:
+            return True, result.stdout.strip().split('\n')[0]
+        else:
+            return False, "Terraform binary not found or not working"
+    except FileNotFoundError:
+        return False, "Terraform binary not found in PATH"
+    except Exception as e:
+        return False, f"Error checking terraform binary: {e}"
+
+
+def check_terraform_config_files():
+    """Check if Terraform configuration files exist in current directory"""
+    tf_files = glob.glob('*.tf') + glob.glob('*.tf.json')
+    if tf_files:
+        return True, tf_files
+    else:
+        return False, []
+
+
+def check_terraform_init():
+    """Check if Terraform has been initialized"""
+    terraform_dir = Path('.terraform')
+    if terraform_dir.exists() and terraform_dir.is_dir():
+        # Check for providers
+        providers_dir = terraform_dir / 'providers'
+        if providers_dir.exists():
+            return True, "Terraform is initialized"
+        else:
+            return False, "Terraform directory exists but no providers found"
+    else:
+        return False, "Terraform not initialized (.terraform directory not found)"
+
+
+def check_module_exists(module_name):
+    """Check if the specified module exists in Terraform configuration"""
+    try:
+        # Remove 'module.' prefix if present
+        clean_module_name = module_name.replace('module.', '')
+        
+        # Method 1: Check .tf files directly for module definitions
+        tf_files = glob.glob('*.tf') + glob.glob('*.tf.json')
+        for tf_file in tf_files:
+            try:
+                with open(tf_file, 'r') as f:
+                    content = f.read()
+                    # Look for module "module_name" blocks
+                    if f'module "{clean_module_name}"' in content or f"module '{clean_module_name}'" in content:
+                        return True, f"Module '{clean_module_name}' found in {tf_file}"
+            except Exception as e:
+                print(f"Warning: Could not read {tf_file}: {e}")
+                continue
+        
+        # Method 2: Try terraform show -json as fallback
+        try:
+            result = subprocess.run(
+                ['terraform', 'show', '-json'],
+                capture_output=True,
+                text=True,
+                cwd=Path.cwd()
+            )
+            
+            if result.returncode == 0:
+                state_data = json.loads(result.stdout)
+                
+                # Check if module exists in configuration
+                if 'configuration' in state_data and state_data['configuration']:
+                    modules = state_data.get('configuration', {}).get('root_module', {}).get('module_calls', {})
+                    if clean_module_name in modules:
+                        return True, f"Module '{clean_module_name}' found in Terraform state"
+                
+                # Also check in planned_values for modules
+                if 'planned_values' in state_data and state_data['planned_values']:
+                    modules = state_data.get('planned_values', {}).get('root_module', {}).get('child_modules', [])
+                    for module in modules:
+                        module_addr = module.get('address', '')
+                        if clean_module_name in module_addr:
+                            return True, f"Module '{clean_module_name}' found in planned values"
+        except (subprocess.SubprocessError, json.JSONDecodeError) as e:
+            print(f"Warning: Could not check terraform state: {e}")
+        
+        return False, f"Module '{clean_module_name}' not found in Terraform configuration files"
+            
+    except Exception as e:
+        return False, f"Error checking module existence: {e}"
+
+
+def validate_terraform_environment(module_name, verbose=False):
+    """Validate the complete Terraform environment"""
+    print("\n Validating Terraform environment...")
+    
+    # 1. Check terraform binary
+    print("\n Checking Terraform binary...")
+    has_terraform, terraform_msg = check_terraform_binary()
+    if not has_terraform:
+        raise Exception(f" Terraform not available: {terraform_msg}")
+    if verbose:
+        print(f" {terraform_msg}")
+    else:
+        print(" Terraform binary found")
+    
+    # 2. Check for configuration files
+    print("\n Checking Terraform configuration files...")
+    has_config, config_files = check_terraform_config_files()
+    if not has_config:
+        raise Exception(" No Terraform configuration files (.tf or .tf.json) found in current directory")
+    if verbose:
+        print(f" Found {len(config_files)} configuration files: {', '.join(config_files)}")
+    else:
+        print(f" Found {len(config_files)} Terraform configuration files")
+    
+    # 3. Check if terraform is initialized
+    print("\n Checking Terraform initialization...")
+    is_initialized, init_msg = check_terraform_init()
+    if not is_initialized:
+        raise Exception(f" {init_msg}. Run 'terraform init' first.")
+    if verbose:
+        print(f" {init_msg}")
+    else:
+        print(" Terraform is initialized")
+    
+    # 4. Check if the specified module exists
+    print(f"\n Checking if module '{module_name}' exists...")
+    module_exists, module_msg = check_module_exists(module_name)
+    if not module_exists:
+        raise Exception(f" {module_msg}. Please add the module to your Terraform configuration first.")
+    if verbose:
+        print(f" {module_msg}")
+    else:
+        print(f" Module '{module_name}' found")
+    
+    # 5. Check if modules are properly installed by running terraform validate
+    print("\n Checking if modules are properly installed...")
+    try:
+        result = subprocess.run(
+            ['terraform', 'validate'],
+            capture_output=True,
+            text=True,
+            cwd=Path.cwd()
+        )
+        
+        if result.returncode != 0:
+            error_output = result.stderr.strip()
+            if "module is not yet installed" in error_output or "Module not installed" in error_output:
+                raise Exception(f" Terraform modules are not installed. Please run 'terraform init' to install all required modules.")
+            else:
+                raise Exception(f" Terraform validation failed:\n\n{error_output}")
+        
+        print(" All modules are properly installed")
+        
+    except subprocess.SubprocessError as e:
+        raise Exception(f" Failed to validate Terraform configuration: {e}")
+    
+    print("\n All Terraform environment checks passed!")
+
+
+
+def check_terraform_config_files():
+    """Check if Terraform configuration files exist in current directory"""
+    tf_files = glob.glob('*.tf') + glob.glob('*.tf.json')
+    if tf_files:
+        return True, tf_files
+    else:
+        return False, []
+
+
+def check_terraform_init():
+    """Check if Terraform has been initialized"""
+    terraform_dir = Path('.terraform')
+    if terraform_dir.exists() and terraform_dir.is_dir():
+        # Check for providers
+        providers_dir = terraform_dir / 'providers'
+        if providers_dir.exists():
+            return True, "Terraform is initialized"
+        else:
+            return False, "Terraform directory exists but no providers found"
+    else:
+        return False, "Terraform not initialized (.terraform directory not found)"
+
+
+def check_module_exists(module_name):
+    """Check if the specified module exists in Terraform configuration"""
+    try:
+        # Remove 'module.' prefix if present
+        clean_module_name = module_name.replace('module.', '')
+        
+        # Method 1: Check .tf files directly for module definitions
+        tf_files = glob.glob('*.tf') + glob.glob('*.tf.json')
+        for tf_file in tf_files:
+            try:
+                with open(tf_file, 'r') as f:
+                    content = f.read()
+                    # Look for module "module_name" blocks
+                    if f'module "{clean_module_name}"' in content or f"module '{clean_module_name}'" in content:
+                        return True, f"Module '{clean_module_name}' found in {tf_file}"
+            except Exception as e:
+                print(f"Warning: Could not read {tf_file}: {e}")
+                continue
+        
+        # Method 2: Try terraform show -json as fallback
+        try:
+            result = subprocess.run(
+                ['terraform', 'show', '-json'],
+                capture_output=True,
+                text=True,
+                cwd=Path.cwd()
+            )
+            
+            if result.returncode == 0:
+                state_data = json.loads(result.stdout)
+                
+                # Check if module exists in configuration
+                if 'configuration' in state_data and state_data['configuration']:
+                    modules = state_data.get('configuration', {}).get('root_module', {}).get('module_calls', {})
+                    if clean_module_name in modules:
+                        return True, f"Module '{clean_module_name}' found in Terraform state"
+                
+                # Also check in planned_values for modules
+                if 'planned_values' in state_data and state_data['planned_values']:
+                    modules = state_data.get('planned_values', {}).get('root_module', {}).get('child_modules', [])
+                    for module in modules:
+                        module_addr = module.get('address', '')
+                        if clean_module_name in module_addr:
+                            return True, f"Module '{clean_module_name}' found in planned values"
+        except (subprocess.SubprocessError, json.JSONDecodeError) as e:
+            print(f"Warning: Could not check terraform state: {e}")
+        
+        return False, f"Module '{clean_module_name}' not found in Terraform configuration files"
+            
+    except Exception as e:
+        return False, f"Error checking module existence: {e}"

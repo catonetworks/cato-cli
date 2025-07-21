@@ -12,9 +12,9 @@ def mutation_xdr_parse(mutation_subparsers):
 			help='addStoryComment() xdr operation', 
 			usage=get_help("mutation_xdr_addStoryComment"))
 
-	mutation_xdr_addStoryComment_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_xdr_addStoryComment_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
 	mutation_xdr_addStoryComment_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	mutation_xdr_addStoryComment_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	mutation_xdr_addStoryComment_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	mutation_xdr_addStoryComment_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	mutation_xdr_addStoryComment_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	mutation_xdr_addStoryComment_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
@@ -25,9 +25,9 @@ def mutation_xdr_parse(mutation_subparsers):
 			help='analystFeedback() xdr operation', 
 			usage=get_help("mutation_xdr_analystFeedback"))
 
-	mutation_xdr_analystFeedback_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_xdr_analystFeedback_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
 	mutation_xdr_analystFeedback_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	mutation_xdr_analystFeedback_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	mutation_xdr_analystFeedback_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	mutation_xdr_analystFeedback_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	mutation_xdr_analystFeedback_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	mutation_xdr_analystFeedback_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
@@ -38,9 +38,9 @@ def mutation_xdr_parse(mutation_subparsers):
 			help='deleteStoryComment() xdr operation', 
 			usage=get_help("mutation_xdr_deleteStoryComment"))
 
-	mutation_xdr_deleteStoryComment_parser.add_argument('json', help='Variables in JSON format.')
+	mutation_xdr_deleteStoryComment_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
 	mutation_xdr_deleteStoryComment_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
-	mutation_xdr_deleteStoryComment_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print test request preview without sending api call')
+	mutation_xdr_deleteStoryComment_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
 	mutation_xdr_deleteStoryComment_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
 	mutation_xdr_deleteStoryComment_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
 	mutation_xdr_deleteStoryComment_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')

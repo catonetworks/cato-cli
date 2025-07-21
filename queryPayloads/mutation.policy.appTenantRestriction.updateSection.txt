@@ -1,1 +1,27 @@
-mutation policyAppTenantRestrictionUpdateSection ( $policyUpdateSectionInput:PolicyUpdateSectionInput! $appTenantRestrictionPolicyMutationInput:AppTenantRestrictionPolicyMutationInput ) { policy ( ) { appTenantRestriction ( input:$appTenantRestrictionPolicyMutationInput ) { updateSection ( input:$policyUpdateSectionInput ) {  policySectionPayloadSection: section { audit {  updatedTime  updatedBy } section {  id  name } properties  } policyMutationStatusStatus: status  policyMutationErrorErrors: errors { errorMessage errorCode  }  } } } }
+mutation policyAppTenantRestrictionUpdateSection ( $policyUpdateSectionInput:PolicyUpdateSectionInput! $appTenantRestrictionPolicyMutationInput:AppTenantRestrictionPolicyMutationInput ) {
+	policy ( ) {
+		appTenantRestriction ( input:$appTenantRestrictionPolicyMutationInput  )  {
+			updateSection ( input:$policyUpdateSectionInput   ) {
+				policySectionPayloadSection: section {
+					audit {
+						updatedTime
+						updatedBy
+					}
+					section {
+						id
+						name
+					}
+					properties
+				}
+
+				policyMutationStatusStatus: status
+				policyMutationErrorErrors: errors {
+					errorMessage
+					errorCode
+				}
+
+			}
+		}
+
+	}	
+}

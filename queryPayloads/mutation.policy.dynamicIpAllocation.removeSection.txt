@@ -1,1 +1,27 @@
-mutation policyDynamicIpAllocationRemoveSection ( $policyRemoveSectionInput:PolicyRemoveSectionInput! $dynamicIpAllocationPolicyMutationInput:DynamicIpAllocationPolicyMutationInput ) { policy ( ) { dynamicIpAllocation ( input:$dynamicIpAllocationPolicyMutationInput ) { removeSection ( input:$policyRemoveSectionInput ) {  policySectionPayloadSection: section { audit {  updatedTime  updatedBy } section {  id  name } properties  } policyMutationStatusStatus: status  policyMutationErrorErrors: errors { errorMessage errorCode  }  } } } }
+mutation policyDynamicIpAllocationRemoveSection ( $policyRemoveSectionInput:PolicyRemoveSectionInput! $dynamicIpAllocationPolicyMutationInput:DynamicIpAllocationPolicyMutationInput ) {
+	policy ( ) {
+		dynamicIpAllocation ( input:$dynamicIpAllocationPolicyMutationInput  )  {
+			removeSection ( input:$policyRemoveSectionInput   ) {
+				policySectionPayloadSection: section {
+					audit {
+						updatedTime
+						updatedBy
+					}
+					section {
+						id
+						name
+					}
+					properties
+				}
+
+				policyMutationStatusStatus: status
+				policyMutationErrorErrors: errors {
+					errorMessage
+					errorCode
+				}
+
+			}
+		}
+
+	}	
+}

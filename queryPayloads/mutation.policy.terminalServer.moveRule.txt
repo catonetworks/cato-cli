@@ -1,1 +1,45 @@
-mutation policyTerminalServerMoveRule ( $policyMoveRuleInput:PolicyMoveRuleInput! $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput ) { policy ( ) { terminalServer ( input:$terminalServerPolicyMutationInput ) { moveRule ( input:$policyMoveRuleInput ) {  terminalServerRulePayloadRule: rule { audit {  updatedTime  updatedBy } rule {  id  name  description  index  policySectionInfoSection: section {  id  name  }  enabled  globalIpRangeRefAllowedHostIP: allowedHostIP {  id  name  }  globalIpRangeRefExcludeTraffic: excludeTraffic {  id  name  }  } properties  } policyMutationStatusStatus: status  policyMutationErrorErrors: errors { errorMessage errorCode  }  } } } }
+mutation policyTerminalServerMoveRule ( $policyMoveRuleInput:PolicyMoveRuleInput! $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput ) {
+	policy ( ) {
+		terminalServer ( input:$terminalServerPolicyMutationInput  )  {
+			moveRule ( input:$policyMoveRuleInput   ) {
+				terminalServerRulePayloadRule: rule {
+					audit {
+						updatedTime
+						updatedBy
+					}
+					rule {
+						id
+						name
+						description
+						index
+						policySectionInfoSection: section {
+							id
+							name
+						}
+
+						enabled
+						globalIpRangeRefAllowedHostIP: allowedHostIP {
+							id
+							name
+						}
+
+						globalIpRangeRefExcludeTraffic: excludeTraffic {
+							id
+							name
+						}
+
+					}
+					properties
+				}
+
+				policyMutationStatusStatus: status
+				policyMutationErrorErrors: errors {
+					errorMessage
+					errorCode
+				}
+
+			}
+		}
+
+	}	
+}

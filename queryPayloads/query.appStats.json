@@ -1,6 +1,6 @@
 {
     "operationName": "appStats",
-    "query": "query appStats ( $limit:Int $from:Int $timeFrame:TimeFrame! $measure:[Measure] $dimension:[Dimension] $appStatsFilter:[AppStatsFilter!] $appStatsSort:[AppStatsSort!] ) { appStats ( timeFrame:$timeFrame measures:$measure dimensions:$dimension filters:$appStatsFilter sort:$appStatsSort ) { id from to total totals records ( limit:$limit from:$from ) { trends prevTimeFrame flatFields } } }",
+    "query": "query appStats ( $limit:Int $from:Int $timeFrame:TimeFrame! $measure:[Measure] $dimension:[Dimension] $appStatsFilter:[AppStatsFilter!] $appStatsSort:[AppStatsSort!] ) {\n\tappStats ( timeFrame:$timeFrame measures:$measure dimensions:$dimension filters:$appStatsFilter sort:$appStatsSort ) {\n\t\tid\n\t\tfrom\n\t\tto\n\t\ttotal\n\t\ttotals\n\t\trecords ( limit:$limit  from:$from  )  {\n\t\t\ttrends\n\t\t\tprevTimeFrame\n\t\t\tflatFields\n\t\t}\n\n\t}\t\n}",
     "variables": {
         "appStatsFilter": {
             "fieldName": {

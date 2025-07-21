@@ -12,23 +12,38 @@ def createRequest(args, configuration):
 	instance = CallApi(ApiClient(configuration))
 	operationName = params["operation_name"]
 	operation = loadJSON("models/"+operationName+".json")
-	try:
-		variablesObj = json.loads(params["json"])	
-	except ValueError as e:
-		print("ERROR: Query argument must be valid json in quotes. ",e,'\n\nExample: \'{"yourKey":"yourValue"}\'')
-		exit()
+	variablesObj = {}
+	if params["json"] and not params["t"]:
+		try:
+			variablesObj = json.loads(params["json"])
+		except ValueError as e:
+			print("ERROR: Query argument must be valid json in quotes. ",e,'\n\nExample: \'{"yourKey":"yourValue"}\'')
+			exit()
+	elif not params["t"] and params["json"] is None:
+		# Default to empty object if no json provided and not using -t flag
+		variablesObj = {}
 	if "accountId" in operation["args"]:
 		variablesObj["accountId"] = configuration.accountID
 	else:
 		variablesObj["accountID"] = configuration.accountID
-	isOk, invalidVars, message = validateArgs(variablesObj,operation)
+	if params["t"]==True:
+		# Skip validation when using -t flag
+		isOk = True
+	else:
+		isOk, invalidVars, message = validateArgs(variablesObj,operation)
 	if isOk==True:
 		body = generateGraphqlPayload(variablesObj,operation,operationName)
 		if params["t"]==True:
-			if params["p"]==True:
-				print(json.dumps(body,indent=2,sort_keys=True).replace("\\n", "\n").replace("\\t", "  "))
-			else:
-				print(json.dumps(body).replace("\\n", " ").replace("\\t", " ").replace("    "," ").replace("  "," "))
+			# Load query from queryPayloads file
+			try:
+				queryPayloadFile = "queryPayloads/" + operationName + ".json"
+				queryPayload = loadJSON(queryPayloadFile)
+				if queryPayload and "query" in queryPayload:
+					print(queryPayload["query"])
+				else:
+					print("ERROR: Query not found in " + queryPayloadFile)
+			except Exception as e:
+				print("ERROR: Could not load query from " + queryPayloadFile + ": " + str(e))
 			return None
 		else:
 			try:
@@ -37,7 +52,13 @@ def createRequest(args, configuration):
 				return e
 	else:
 		print("ERROR: "+message,", ".join(invalidVars))
-
+		try:
+			queryPayloadFile = "queryPayloads/" + operationName + ".json"
+			queryPayload = loadJSON(queryPayloadFile)
+			print("\nExample: catocli "+operationName.replace(".", " "), json.dumps(queryPayload['variables']))
+		except Exception as e:
+			print("ERROR: Could not load query from " + queryPayloadFile + ": " + str(e))
+		
 def querySiteLocation(args, configuration):
 	params = vars(args)
 	operationName = params["operation_name"]
@@ -110,6 +131,9 @@ def querySiteLocation(args, configuration):
 		
 def createRawRequest(args, configuration):
 	params = vars(args)
+	# Handle endpoint override
+	if hasattr(args, 'endpoint') and args.endpoint:
+		configuration.host = args.endpoint
 	instance = CallApi(ApiClient(configuration))
 	isOk = False
 	try:
@@ -189,6 +213,7 @@ def validateArgs(variablesObj,operation):
 			isOk = False
 			invalidVars.append('"'+varName+'"')
 			message = "Invalid argument names. Looking for: "+", ".join(list(operation["operationArgs"].keys()))
+
 	if isOk==True:
 		for varName in operation["operationArgs"]:
 			if operation["operationArgs"][varName]["required"] and varName not in variablesObj:

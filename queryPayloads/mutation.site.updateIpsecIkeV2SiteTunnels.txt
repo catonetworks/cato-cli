@@ -1,1 +1,24 @@
-mutation siteUpdateIpsecIkeV2SiteTunnels ( $siteId:ID! $updateIpsecIkeV2SiteTunnelsInput:UpdateIpsecIkeV2SiteTunnelsInput! ) { site ( ) { updateIpsecIkeV2SiteTunnels ( siteId:$siteId input:$updateIpsecIkeV2SiteTunnelsInput ) { siteId primary {  fqdn  tunnels { iPSecV2InterfaceIdTunnelId: tunnelId localId  }  } secondary {  fqdn  tunnels { iPSecV2InterfaceIdTunnelId: tunnelId localId  }  } } } }
+mutation siteUpdateIpsecIkeV2SiteTunnels ( $siteId:ID! $updateIpsecIkeV2SiteTunnelsInput:UpdateIpsecIkeV2SiteTunnelsInput! ) {
+	site ( ) {
+		updateIpsecIkeV2SiteTunnels ( siteId:$siteId  input:$updateIpsecIkeV2SiteTunnelsInput  )  {
+			siteId
+			primary {
+				fqdn
+				tunnels {
+					iPSecV2InterfaceIdTunnelId: tunnelId
+					localId
+				}
+
+			}
+			secondary {
+				fqdn
+				tunnels {
+					iPSecV2InterfaceIdTunnelId: tunnelId
+					localId
+				}
+
+			}
+		}
+
+	}	
+}

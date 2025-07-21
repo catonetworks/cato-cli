@@ -1,1 +1,27 @@
-mutation policyRemotePortFwdUpdateSection ( $policyUpdateSectionInput:PolicyUpdateSectionInput! $remotePortFwdPolicyMutationInput:RemotePortFwdPolicyMutationInput ) { policy ( ) { remotePortFwd ( input:$remotePortFwdPolicyMutationInput ) { updateSection ( input:$policyUpdateSectionInput ) {  policySectionPayloadSection: section { audit {  updatedTime  updatedBy } section {  id  name } properties  } policyMutationStatusStatus: status  policyMutationErrorErrors: errors { errorMessage errorCode  }  } } } }
+mutation policyRemotePortFwdUpdateSection ( $policyUpdateSectionInput:PolicyUpdateSectionInput! $remotePortFwdPolicyMutationInput:RemotePortFwdPolicyMutationInput ) {
+	policy ( ) {
+		remotePortFwd ( input:$remotePortFwdPolicyMutationInput  )  {
+			updateSection ( input:$policyUpdateSectionInput   ) {
+				policySectionPayloadSection: section {
+					audit {
+						updatedTime
+						updatedBy
+					}
+					section {
+						id
+						name
+					}
+					properties
+				}
+
+				policyMutationStatusStatus: status
+				policyMutationErrorErrors: errors {
+					errorMessage
+					errorCode
+				}
+
+			}
+		}
+
+	}	
+}

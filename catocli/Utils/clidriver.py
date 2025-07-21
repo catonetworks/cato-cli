@@ -256,6 +256,9 @@ def main(args=None):
 		else:
 			if response!=None:
 				print(json.dumps(response[0], sort_keys=True, indent=4))
+	except KeyboardInterrupt:
+		print("\n\nOperation interrupted by user (Ctrl+C). Exiting gracefully...")
+		exit(130)  # Standard exit code for SIGINT
 	except Exception as e:
 		if isinstance(e, AttributeError):
 			print('Missing arguments. Usage: catocli <operation> -h')
@@ -265,4 +268,4 @@ def main(args=None):
 		else:
 			print('ERROR: ',e)
 			traceback.print_exc()
-		exit(1)
+	exit(1)

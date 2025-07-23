@@ -6,6 +6,8 @@ from graphql_client import ApiClient, CallApi
 from graphql_client.api_client import ApiException
 import logging
 import pprint
+import uuid
+from urllib3.filepost import encode_multipart_formdata
 
 def createRequest(args, configuration):
 	params = vars(args)
@@ -134,6 +136,11 @@ def createRawRequest(args, configuration):
 	# Handle endpoint override
 	if hasattr(args, 'endpoint') and args.endpoint:
 		configuration.host = args.endpoint
+	
+	# Check if binary/multipart mode is enabled
+	if hasattr(args, 'binary') and args.binary:
+		return createRawBinaryRequest(args, configuration)
+		
 	instance = CallApi(ApiClient(configuration))
 	isOk = False
 	try:
@@ -334,4 +341,159 @@ def renderArgsAndFields(responseArgStr, variablesObj, curOperation, definition, 
 					responseArgStr += indent + "	}\n"
 			responseArgStr += indent + "}\n"
 		responseArgStr += "\n"
-	return responseArgStr
+		return responseArgStr
+
+def createRawBinaryRequest(args, configuration):
+	"""Handle multipart/form-data requests for file uploads and binary content"""
+	params = vars(args)
+	
+	
+	# Parse the JSON body
+	try:
+		body = json.loads(params["json"])
+	except ValueError as e:
+		print("ERROR: JSON argument must be valid json. ", e)
+		return
+	except Exception as e:
+		print("ERROR: ", e)
+		return
+	
+	# Build form data
+	form_fields = {}
+	files = []
+	
+	# Add the operations field containing the GraphQL payload
+	form_fields['operations'] = json.dumps(body)
+	
+	# Handle file mappings if files are specified
+	if hasattr(args, 'files') and args.files:
+		# Build the map object for file uploads
+		file_map = {}
+		for i, (field_name, file_path) in enumerate(args.files):
+			file_index = str(i + 1)
+			file_map[file_index] = [field_name]
+			
+			# Read file content
+			try:
+				with open(file_path, 'rb') as f:
+					file_content = f.read()
+				files.append((file_index, (os.path.basename(file_path), file_content, 'application/octet-stream')))
+			except IOError as e:
+				print(f"ERROR: Could not read file {file_path}: {e}")
+				return
+				
+		# Add the map field
+		form_fields['map'] = json.dumps(file_map)
+	
+	# Test mode - just print the request structure
+	if params.get("t") == True:
+		print("Multipart form data request:")
+		if params.get("p") == True:
+			print(f"Operations: {json.dumps(json.loads(form_fields.get('operations')), indent=2)}")
+		else:
+			print(f"Operations: {form_fields.get('operations')}")
+		if 'map' in form_fields:
+			print(f"Map: {form_fields.get('map')}")
+		if files:
+			print(f"Files: {[f[0] + ': ' + f[1][0] for f in files]}")
+		return None
+	
+	# Perform the multipart request
+	try:
+		return sendMultipartRequest(configuration, form_fields, files, params)
+	except Exception as e:
+		# Safely handle exception string conversion
+		try:
+			error_str = str(e)
+		except Exception:
+			error_str = f"Exception of type {type(e).__name__}"
+		
+		if params.get("v") == True:
+			import traceback
+			print(f"ERROR: Failed to send multipart request: {error_str}")
+			traceback.print_exc()
+		else:
+			print(f"ERROR: Failed to send multipart request: {error_str}")
+		return None
+
+def sendMultipartRequest(configuration, form_fields, files, params):
+	"""Send a multipart/form-data request directly using urllib3"""
+	import urllib3
+	
+	# Create pool manager
+	pool_manager = urllib3.PoolManager(
+		cert_reqs='CERT_NONE' if not getattr(configuration, 'verify_ssl', False) else 'CERT_REQUIRED'
+	)
+	
+	# Prepare form data
+	fields = []
+	for key, value in form_fields.items():
+		fields.append((key, value))
+	
+	for file_key, (filename, content, content_type) in files:
+		fields.append((file_key, (filename, content, content_type)))
+	
+	# Encode multipart data
+	body_data, content_type = encode_multipart_formdata(fields)
+	
+	# Prepare headers
+	headers = {
+		'Content-Type': content_type,
+		'User-Agent': f"Cato-CLI-v{getattr(configuration, 'version', 'unknown')}"
+	}
+	
+	# Add API key if not using headers file
+	if hasattr(configuration, 'api_key') and hasattr(configuration, 'api_key') and configuration.api_key and 'x-api-key' in configuration.api_key:
+		headers['x-api-key'] = configuration.api_key['x-api-key']
+	
+	# Add custom headers
+	if hasattr(configuration, 'custom_headers') and configuration.custom_headers:
+		headers.update(configuration.custom_headers)
+	
+	# Verbose output
+	if params.get("v") == True:
+		print(f"Host: {getattr(configuration, 'host', 'unknown')}")
+		masked_headers = headers.copy()
+		if 'x-api-key' in masked_headers:
+			masked_headers['x-api-key'] = '***MASKED***'
+		print(f"Request Headers: {json.dumps(masked_headers, indent=4, sort_keys=True)}")
+		print(f"Content-Type: {content_type}")
+		print(f"Form fields: {list(form_fields.keys())}")
+		print(f"Files: {[f[0] for f in files]}\n")
+	
+	try:
+		# Make the request
+		resp = pool_manager.request(
+			'POST',
+			getattr(configuration, 'host', 'https://api.catonetworks.com/api/v1/graphql'),
+			body=body_data,
+			headers=headers
+		)
+		
+		# Parse response
+		if resp.status < 200 or resp.status >= 300:
+			reason = resp.reason if resp.reason is not None else "Unknown Error"
+			error_msg = f"HTTP {resp.status}: {reason}"
+			if resp.data:
+				try:
+					error_msg += f"\n{resp.data.decode('utf-8')}"
+				except Exception:
+					error_msg += f"\n{resp.data}"
+			print(f"ERROR: {error_msg}")
+			return None
+		
+		try:
+			response_data = json.loads(resp.data.decode('utf-8'))
+		except json.JSONDecodeError:
+			response_data = resp.data.decode('utf-8')
+		
+		return [response_data]
+		
+	except Exception as e:
+		# Safely handle exception string conversion
+		try:
+			error_str = str(e)
+		except Exception:
+			error_str = f"Exception of type {type(e).__name__}"
+		print(f"ERROR: Network/request error: {error_str}")
+		return None

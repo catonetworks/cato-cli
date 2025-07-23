@@ -2,6 +2,7 @@ import os
 import json
 import traceback
 import sys
+from datetime import datetime
 from graphql_client.api.call_api import ApiClient, CallApi
 from graphql_client.api_client import ApiException
 from ..customLib import writeDataToFile, makeCall, getAccountID
@@ -200,12 +201,18 @@ def export_socket_site_to_json(args, configuration):
             print(f"This is usually caused by data inconsistencies and can be safely ignored if the export completes successfully.")
             print(f"=========================\n")
         
+        # Handle timestamp in filename if requested
+        filename_template = "socket_sites_{account_id}.json"
+        if hasattr(args, 'append_timestamp') and args.append_timestamp:
+            timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+            filename_template = "socket_sites_{account_id}_" + timestamp + ".json"
+            
         # Write the processed data to file using the general-purpose function
         output_file = writeDataToFile(
             data=processed_data,
             args=args,
             account_id=account_id,
-            default_filename_template="socket_sites_{account_id}.json",
+            default_filename_template=filename_template,
             default_directory="config_data"
         )
         

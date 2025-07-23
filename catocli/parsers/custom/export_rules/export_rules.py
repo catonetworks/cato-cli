@@ -1,6 +1,7 @@
 import os
 import json
 import sys
+from datetime import datetime
 from graphql_client.api.call_api import ApiClient, CallApi
 from graphql_client.api_client import ApiException
 from ..customLib import writeDataToFile, makeCall, getAccountID
@@ -64,10 +65,15 @@ def export_if_rules_to_json(args, configuration):
         processed_data['data']['policy']['internetFirewall']['policy']['rules'] = filtered_rules
         
         # Add index_in_section to each rule
-        # Group rules by section and add index_in_section
+        # Handle empty section names by assigning a default section name
         section_counters = {}
         for rule_data in processed_data['data']['policy']['internetFirewall']['policy']['rules']:
             section_name = rule_data['rule']['section']['name']
+            # If section name is empty, use "Default Section" as the section name
+            if not section_name or section_name.strip() == "":
+                section_name = "Default Section"
+                rule_data['rule']['section']['name'] = section_name
+            
             if section_name not in section_counters:
                 section_counters[section_name] = 0
             section_counters[section_name] += 1
@@ -104,12 +110,18 @@ def export_if_rules_to_json(args, configuration):
         
         # Replace the original sections array with the reformatted one
         processed_data['data']['policy']['internetFirewall']['policy']['sections'] = processed_sections
+        
+        # Handle timestamp in filename if requested
+        filename_template = "all_ifw_rules_and_sections_{account_id}.json"
+        if hasattr(args, 'append_timestamp') and args.append_timestamp:
+            timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+            filename_template = "all_ifw_rules_and_sections_{account_id}_" + timestamp + ".json"
             
         output_file = writeDataToFile(
             data=processed_data,
             args=args,
             account_id=account_id,
-            default_filename_template="all_ifw_rules_and_sections_{account_id}.json",
+            default_filename_template=filename_template,
             default_directory="config_data"
         )
 
@@ -157,9 +169,15 @@ def export_wf_rules_to_json(args, configuration):
         processed_data['data']['policy']['wanFirewall']['policy']['rules'] = filtered_rules
         
         # Add index_in_section to each rule
+        # Handle empty section names by assigning a default section name
         section_counters = {}
         for rule_data in processed_data['data']['policy']['wanFirewall']['policy']['rules']:
             section_name = rule_data['rule']['section']['name']
+            # If section name is empty, use "Default Section" as the section name
+            if not section_name or section_name.strip() == "":
+                section_name = "Default Section"
+                rule_data['rule']['section']['name'] = section_name
+            
             if section_name not in section_counters:
                 section_counters[section_name] = 0
             section_counters[section_name] += 1
@@ -174,8 +192,8 @@ def export_wf_rules_to_json(args, configuration):
                 "section_name": rule_info['section']['name'],
                 "rule_name": rule_info['name']
             })
-            # rule_info.pop("index_in_section", None)
-            # rule_info.pop("index", None)
+            rule_info.pop("index_in_section", None)
+            rule_info.pop("index", None)
             # rule_info["enabled"] = True
 
         # Add rules_in_sections to the policy structure
@@ -194,12 +212,18 @@ def export_wf_rules_to_json(args, configuration):
         
         # Replace the original sections array with the reformatted one
         processed_data['data']['policy']['wanFirewall']['policy']['sections'] = processed_sections
+        
+        # Handle timestamp in filename if requested
+        filename_template = "all_wf_rules_and_sections_{account_id}.json"
+        if hasattr(args, 'append_timestamp') and args.append_timestamp:
+            timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+            filename_template = "all_wf_rules_and_sections_{account_id}_" + timestamp + ".json"
             
         output_file = writeDataToFile(
             data=processed_data,
             args=args,
             account_id=account_id,
-            default_filename_template="all_wf_rules_and_sections_{account_id}.json",
+            default_filename_template=filename_template,
             default_directory="config_data"
         )
         

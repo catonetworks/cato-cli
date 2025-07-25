@@ -1,0 +1,26 @@
+query siteSiteBgpStatus ( $siteBgpStatusInput:SiteBgpStatusInput! ) {
+	site ( ) {
+		siteBgpStatus ( input:$siteBgpStatusInput  )  {
+			status {
+				remoteIp
+				bgpSession
+				bfdSession
+				routesFromPeer
+				routesToPeer
+				bgpRejectedRoutesFromPeerRejectedRoutesFromPeer: rejectedRoutesFromPeer {
+					subnet
+					type
+					bgpCommunityCommunity: community {
+						from
+						to
+					}
+					rule
+					lastPublishAttempt
+				}
+
+			}
+			rawStatus
+		}
+
+	}	
+}

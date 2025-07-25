@@ -1,0 +1,397 @@
+query policyInternetFirewallPolicy ( $internetFirewallPolicyInput:InternetFirewallPolicyInput ) {
+	policy ( ) {
+		internetFirewall {
+			policy ( input:$internetFirewallPolicyInput   ) {
+				enabled
+				internetFirewallRulePayloadRules: rules {
+					policyElementAuditAudit: audit {
+						updatedTime
+						updatedBy
+					}
+					internetFirewallRuleRule: rule {
+						id
+						name
+						description
+						index
+						policySectionInfoSection: section {
+							id
+							name
+							policyId
+						}
+
+						enabled
+						internetFirewallSourceSource: source {
+							ip
+							hostRefHost: host {
+								id
+								name
+							}
+							siteRefSite: site {
+								id
+								name
+							}
+							subnet
+							ipAddressRangeIpRange: ipRange {
+								from
+								to
+							}
+							globalIpRangeRefGlobalIpRange: globalIpRange {
+								id
+								name
+							}
+							networkInterfaceRefNetworkInterface: networkInterface {
+								id
+								name
+							}
+							siteNetworkSubnetRefSiteNetworkSubnet: siteNetworkSubnet {
+								id
+								name
+							}
+							floatingSubnetRefFloatingSubnet: floatingSubnet {
+								id
+								name
+							}
+							userRefUser: user {
+								id
+								name
+							}
+							usersGroupRefUsersGroup: usersGroup {
+								id
+								name
+							}
+							groupRefGroup: group {
+								id
+								name
+							}
+							systemGroupRefSystemGroup: systemGroup {
+								id
+								name
+							}
+						}
+
+						connectionOriginEnumConnectionOrigin: connectionOrigin
+						countryRefCountry: country {
+							id
+							name
+						}
+
+						deviceProfileRefDevice: device {
+							id
+							name
+						}
+
+						operatingSystemDeviceOS: deviceOS
+						deviceAttributesDeviceAttributes: deviceAttributes {
+							category
+							type
+							model
+							manufacturer
+							os
+							osVersion
+						}
+
+						internetFirewallDestinationDestination: destination {
+							applicationRefApplication: application {
+								id
+								name
+							}
+							customApplicationRefCustomApp: customApp {
+								id
+								name
+							}
+							applicationCategoryRefAppCategory: appCategory {
+								id
+								name
+							}
+							customCategoryRefCustomCategory: customCategory {
+								id
+								name
+							}
+							sanctionedAppsCategoryRefSanctionedAppsCategory: sanctionedAppsCategory {
+								id
+								name
+							}
+							countryRefCountry: country {
+								id
+								name
+							}
+							domain
+							fqdn
+							ip
+							subnet
+							ipAddressRangeIpRange: ipRange {
+								from
+								to
+							}
+							globalIpRangeRefGlobalIpRange: globalIpRange {
+								id
+								name
+							}
+							remoteAsn
+							internetFirewallContainerContainers: containers {
+								fqdnContainerRefFqdnContainer: fqdnContainer {
+									id
+									name
+								}
+
+								ipAddressRangeContainerRefIpAddressRangeContainer: ipAddressRangeContainer {
+									id
+									name
+								}
+
+							}
+						}
+
+						internetFirewallServiceTypeService: service {
+							serviceRefStandard: standard {
+								id
+								name
+							}
+							customServiceCustom: custom {
+								port
+								portRangePortRange: portRange {
+									from
+									to
+								}
+
+								ipProtocolProtocol: protocol
+							}
+						}
+
+						internetFirewallActionEnumAction: action
+						policyTrackingTracking: tracking {
+							policyRuleTrackingEventEvent: event {
+								enabled
+							}
+							policyRuleTrackingAlertAlert: alert {
+								enabled
+								policyRuleTrackingFrequencyEnumFrequency: frequency
+								subscriptionGroupRefSubscriptionGroup: subscriptionGroup {
+									id
+									name
+								}
+
+								subscriptionWebhookRefWebhook: webhook {
+									id
+									name
+								}
+
+								subscriptionMailingListRefMailingList: mailingList {
+									id
+									name
+								}
+
+							}
+						}
+
+						policyScheduleSchedule: schedule {
+							policyActiveOnEnumActiveOn: activeOn
+							policyCustomTimeframeCustomTimeframe: customTimeframe {
+								from
+								to
+							}
+							policyCustomRecurringCustomRecurring: customRecurring {
+								from
+								to
+								days
+							}
+						}
+
+						policyRuleActivePeriodActivePeriod: activePeriod {
+							useEffectiveFrom
+							effectiveFrom
+							useExpiresAt
+							expiresAt
+						}
+
+						internetFirewallRuleExceptionExceptions: exceptions {
+							name
+							internetFirewallSourceSource: source {
+								ip
+								hostRefHost: host {
+									id
+									name
+								}
+
+								siteRefSite: site {
+									id
+									name
+								}
+
+								subnet
+								ipAddressRangeIpRange: ipRange {
+									from
+									to
+								}
+
+								globalIpRangeRefGlobalIpRange: globalIpRange {
+									id
+									name
+								}
+
+								networkInterfaceRefNetworkInterface: networkInterface {
+									id
+									name
+								}
+
+								siteNetworkSubnetRefSiteNetworkSubnet: siteNetworkSubnet {
+									id
+									name
+								}
+
+								floatingSubnetRefFloatingSubnet: floatingSubnet {
+									id
+									name
+								}
+
+								userRefUser: user {
+									id
+									name
+								}
+
+								usersGroupRefUsersGroup: usersGroup {
+									id
+									name
+								}
+
+								groupRefGroup: group {
+									id
+									name
+								}
+
+								systemGroupRefSystemGroup: systemGroup {
+									id
+									name
+								}
+
+							}
+							operatingSystemDeviceOS: deviceOS
+							countryRefCountry: country {
+								id
+								name
+							}
+							deviceProfileRefDevice: device {
+								id
+								name
+							}
+							deviceAttributesDeviceAttributes: deviceAttributes {
+								category
+								type
+								model
+								manufacturer
+								os
+								osVersion
+							}
+							internetFirewallDestinationDestination: destination {
+								applicationRefApplication: application {
+									id
+									name
+								}
+
+								customApplicationRefCustomApp: customApp {
+									id
+									name
+								}
+
+								applicationCategoryRefAppCategory: appCategory {
+									id
+									name
+								}
+
+								customCategoryRefCustomCategory: customCategory {
+									id
+									name
+								}
+
+								sanctionedAppsCategoryRefSanctionedAppsCategory: sanctionedAppsCategory {
+									id
+									name
+								}
+
+								countryRefCountry: country {
+									id
+									name
+								}
+
+								domain
+								fqdn
+								ip
+								subnet
+								ipAddressRangeIpRange: ipRange {
+									from
+									to
+								}
+
+								globalIpRangeRefGlobalIpRange: globalIpRange {
+									id
+									name
+								}
+
+								remoteAsn
+								internetFirewallContainerContainers: containers {
+									fqdnContainerRefFqdnContainer: fqdnContainer {
+										id
+										name
+									}
+									ipAddressRangeContainerRefIpAddressRangeContainer: ipAddressRangeContainer {
+										id
+										name
+									}
+								}
+
+							}
+							internetFirewallServiceTypeService: service {
+								serviceRefStandard: standard {
+									id
+									name
+								}
+
+								customServiceCustom: custom {
+									port
+									portRangePortRange: portRange {
+										from
+										to
+									}
+									ipProtocolProtocol: protocol
+								}
+
+							}
+							connectionOriginEnumConnectionOrigin: connectionOrigin
+						}
+
+					}
+					policyElementPropertiesEnumProperties: properties
+				}
+
+				policySectionPayloadSections: sections {
+					policyElementAuditAudit: audit {
+						updatedTime
+						updatedBy
+					}
+					policySectionInfoSection: section {
+						id
+						name
+						policyId
+					}
+					policyElementPropertiesEnumProperties: properties
+				}
+
+				policyAuditAudit: audit {
+					publishedTime
+					publishedBy
+				}
+
+				policyRevisionRevision: revision {
+					id
+					name
+					description
+					changes
+					createdTime
+					updatedTime
+				}
+
+			}
+		}
+
+	}	
+}

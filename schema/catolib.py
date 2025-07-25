@@ -78,6 +78,11 @@ def openFile(fileName, readMode="rt"):
 ############ parsing schema ############
 
 def parseSchema(schema):
+	# Load settings to get childOperationParent and childOperationObjects configuration
+	settings = loadJSON("../settings.json")
+	childOperationParent = settings.get("childOperationParent", {})
+	childOperationObjects = settings.get("childOperationObjects", {})
+	
 	mutationOperationsTMP = {}
 	queryOperationsTMP = {}
 	for i, type in enumerate(schema["data"]["__schema"]["types"]):
@@ -94,7 +99,7 @@ def parseSchema(schema):
 		elif type["kind"] == "OBJECT":
 			if type["name"] == "Query":
 				for field in type["fields"]:
-					if field["name"] =="xdr":
+					if field["name"] in childOperationParent:
 						queryOperationsTMP[field["name"]] = copy.deepcopy(field)
 					else:
 						catoApiSchema["query"]["query."+field["name"]] = copy.deepcopy(field)
@@ -107,11 +112,11 @@ def parseSchema(schema):
 	
 	for queryType in queryOperationsTMP:
 		parentQueryOperationType = copy.deepcopy(queryOperationsTMP[queryType])
-		getChildOperations("query", parentQueryOperationType, parentQueryOperationType, "query." + queryType)
+		getChildOperations("query", parentQueryOperationType, parentQueryOperationType, "query." + queryType, childOperationObjects)
 	
 	for mutationType in mutationOperationsTMP:
 		parentMutationOperationType = copy.deepcopy(mutationOperationsTMP[mutationType])
-		getChildOperations("mutation", parentMutationOperationType, parentMutationOperationType, "mutation." + mutationType)
+		getChildOperations("mutation", parentMutationOperationType, parentMutationOperationType, "mutation." + mutationType, childOperationObjects)
 
 	for operationType in catoApiSchema:
 		for operationName in catoApiSchema[operationType]:
@@ -129,7 +134,7 @@ def parseSchema(schema):
 			payload = generateGraphqlPayload(parsedOperation["variablesPayload"],parsedOperation,operationName)
 			writeFile("../queryPayloads/"+operationName+".txt",payload["query"])
 
-def getChildOperations(operationType, curType, parentType, parentPath):
+def getChildOperations(operationType, curType, parentType, parentPath, childOperationObjects):
 	# Parse fields for nested args to map out all child operations
 	# This will separate fields like stories and story for query.xdr, 
 	# and all fields which are actually sub operations from mutation.internetFirewall, etc 
@@ -154,12 +159,14 @@ def getChildOperations(operationType, curType, parentType, parentPath):
 		parentFields = []
 		for field in curOfType["fields"]:
 			curFieldObject = copy.deepcopy(field)
-			if "args" in curFieldObject and len(curFieldObject["args"])>0:
+			if (("args" in curFieldObject and len(curFieldObject["args"])>0) or 
+				(curFieldObject["name"] in childOperationObjects) or 
+				(curOfType["name"] in childOperationObjects)):
 				hasChildren = True
 				curParentType = copy.deepcopy(parentType)
 				curFieldObject["args"] = getNestedArgDefinitions(curFieldObject["args"], curFieldObject["name"],None,None)
 				curParentType["childOperations"][curFieldObject["name"]] = curFieldObject
-				getChildOperations(operationType, curFieldObject, curParentType, parentPath + "." + curFieldObject["name"])
+				getChildOperations(operationType, curFieldObject, curParentType, parentPath + "." + curFieldObject["name"], childOperationObjects)
 	if not hasChildren:
 		catoApiSchema[operationType][parentPath] = parentType
 

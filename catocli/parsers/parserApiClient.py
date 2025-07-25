@@ -262,10 +262,15 @@ def renderArgsAndFields(responseArgStr, variablesObj, curOperation, definition, 
 	for fieldName in definition['fields']:
 		field = definition['fields'][fieldName]
 		field_name = field['alias'] if 'alias' in field else field['name']				
-		responseArgStr += indent + field_name
+		
+		# Check if field has arguments and whether they are present in variables
+		should_include_field = True
+		argsPresent = False
+		argStr = ""
+		
 		if field.get("args") and not isinstance(field['args'], list):
 			if (len(list(field['args'].keys()))>0):
-				argsPresent = False
+				# Field has arguments - only include if arguments are present in variables
 				argStr = " ( "
 				for argName in field['args']:
 					arg = field['args'][argName]
@@ -273,9 +278,16 @@ def renderArgsAndFields(responseArgStr, variablesObj, curOperation, definition, 
 						argStr += arg['responseStr'] + " "
 						argsPresent = True
 				argStr += ") "
-				if argsPresent==True:
-					responseArgStr += argStr
-		if field.get("type") and field['type'].get('definition') and field['type']['definition']['fields'] is not None:
+				# Only include fields with arguments if the arguments are present
+				should_include_field = argsPresent
+		
+		# Only process field if we should include it
+		if should_include_field:
+			responseArgStr += indent + field_name
+			if argsPresent:
+				responseArgStr += argStr
+				
+		if should_include_field and field.get("type") and field['type'].get('definition') and field['type']['definition']['fields'] is not None:
 			responseArgStr += " {\n"
 			for subfieldIndex in field['type']['definition']['fields']:
 				subfield = field['type']['definition']['fields'][subfieldIndex]
@@ -322,7 +334,7 @@ def renderArgsAndFields(responseArgStr, variablesObj, curOperation, definition, 
 						responseArgStr = renderArgsAndFields(responseArgStr, variablesObj, curOperation, possibleType, indent + "		")
 					responseArgStr += indent + "	}\n"
 			responseArgStr += indent + "}\n"
-		if field.get('type') and field['type'].get('definition') and field['type']['definition'].get('inputFields'):
+		if should_include_field and field.get('type') and field['type'].get('definition') and field['type']['definition'].get('inputFields'):
 			responseArgStr += " {\n"
 			for subfieldName in field['type']['definition'].get('inputFields'):
 				subfield = field['type']['definition']['inputFields'][subfieldName]
@@ -340,8 +352,9 @@ def renderArgsAndFields(responseArgStr, variablesObj, curOperation, definition, 
 						responseArgStr = renderArgsAndFields(responseArgStr, variablesObj, curOperation, possibleType, indent + "		")
 					responseArgStr += indent + "	}\n"
 			responseArgStr += indent + "}\n"
-		responseArgStr += "\n"
-		return responseArgStr
+		if should_include_field:
+			responseArgStr += "\n"
+	return responseArgStr
 
 def createRawBinaryRequest(args, configuration):
 	"""Handle multipart/form-data requests for file uploads and binary content"""
@@ -442,12 +455,13 @@ def sendMultipartRequest(configuration, form_fields, files, params):
 		'User-Agent': f"Cato-CLI-v{getattr(configuration, 'version', 'unknown')}"
 	}
 	
-	# Add API key if not using headers file
-	if hasattr(configuration, 'api_key') and hasattr(configuration, 'api_key') and configuration.api_key and 'x-api-key' in configuration.api_key:
+	# Add API key if not using headers file or custom headers
+	using_custom_headers = hasattr(configuration, 'custom_headers') and configuration.custom_headers
+	if not using_custom_headers and hasattr(configuration, 'api_key') and hasattr(configuration, 'api_key') and configuration.api_key and 'x-api-key' in configuration.api_key:
 		headers['x-api-key'] = configuration.api_key['x-api-key']
 	
 	# Add custom headers
-	if hasattr(configuration, 'custom_headers') and configuration.custom_headers:
+	if using_custom_headers:
 		headers.update(configuration.custom_headers)
 	
 	# Verbose output

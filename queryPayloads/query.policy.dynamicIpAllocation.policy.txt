@@ -1,0 +1,82 @@
+query policyDynamicIpAllocationPolicy ( $dynamicIpAllocationPolicyInput:DynamicIpAllocationPolicyInput ) {
+	policy ( ) {
+		dynamicIpAllocation {
+			policy ( input:$dynamicIpAllocationPolicyInput   ) {
+				enabled
+				dynamicIpAllocationRulePayloadRules: rules {
+					policyElementAuditAudit: audit {
+						updatedTime
+						updatedBy
+					}
+					dynamicIpAllocationRuleRule: rule {
+						id
+						name
+						description
+						index
+						policySectionInfoSection: section {
+							id
+							name
+							policyId
+						}
+
+						enabled
+						dynamicIpAllocationSourceSource: source {
+							userRefUser: user {
+								id
+								name
+							}
+							usersGroupRefUsersGroup: usersGroup {
+								id
+								name
+							}
+						}
+
+						operatingSystemPlatform: platform
+						countryRefCountry: country {
+							id
+							name
+						}
+
+						dynamicIpAllocationRangeRange: range {
+							globalIpRangeRefGlobalIpRange: globalIpRange {
+								id
+								name
+							}
+						}
+
+					}
+					policyElementPropertiesEnumProperties: properties
+				}
+
+				policySectionPayloadSections: sections {
+					policyElementAuditAudit: audit {
+						updatedTime
+						updatedBy
+					}
+					policySectionInfoSection: section {
+						id
+						name
+						policyId
+					}
+					policyElementPropertiesEnumProperties: properties
+				}
+
+				policyAuditAudit: audit {
+					publishedTime
+					publishedBy
+				}
+
+				policyRevisionRevision: revision {
+					id
+					name
+					description
+					changes
+					createdTime
+					updatedTime
+				}
+
+			}
+		}
+
+	}	
+}

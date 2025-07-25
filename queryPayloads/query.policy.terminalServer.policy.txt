@@ -1,0 +1,68 @@
+query policyTerminalServerPolicy ( $terminalServerPolicyInput:TerminalServerPolicyInput ) {
+	policy ( ) {
+		terminalServer {
+			policy ( input:$terminalServerPolicyInput   ) {
+				enabled
+				terminalServerRulePayloadRules: rules {
+					policyElementAuditAudit: audit {
+						updatedTime
+						updatedBy
+					}
+					terminalServerRuleRule: rule {
+						id
+						name
+						description
+						index
+						policySectionInfoSection: section {
+							id
+							name
+							policyId
+						}
+
+						enabled
+						globalIpRangeRefAllowedHostIP: allowedHostIP {
+							id
+							name
+						}
+
+						globalIpRangeRefExcludeTraffic: excludeTraffic {
+							id
+							name
+						}
+
+					}
+					policyElementPropertiesEnumProperties: properties
+				}
+
+				policySectionPayloadSections: sections {
+					policyElementAuditAudit: audit {
+						updatedTime
+						updatedBy
+					}
+					policySectionInfoSection: section {
+						id
+						name
+						policyId
+					}
+					policyElementPropertiesEnumProperties: properties
+				}
+
+				policyAuditAudit: audit {
+					publishedTime
+					publishedBy
+				}
+
+				policyRevisionRevision: revision {
+					id
+					name
+					description
+					changes
+					createdTime
+					updatedTime
+				}
+
+			}
+		}
+
+	}	
+}

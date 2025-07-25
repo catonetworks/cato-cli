@@ -15,6 +15,7 @@ mutation policyInternetFirewallRemoveRule ( $internetFirewallRemoveRuleInput:Int
 						policySectionInfoSection: section {
 							id
 							name
+							policyId
 						}
 
 						enabled
@@ -193,6 +194,13 @@ mutation policyInternetFirewallRemoveRule ( $internetFirewallRemoveRuleInput:Int
 								to
 								days
 							}
+						}
+
+						policyRuleActivePeriodActivePeriod: activePeriod {
+							useEffectiveFrom
+							effectiveFrom
+							useExpiresAt
+							expiresAt
 						}
 
 						internetFirewallRuleExceptionExceptions: exceptions {

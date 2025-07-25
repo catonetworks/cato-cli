@@ -18,6 +18,7 @@ mutation policyWanFirewallUpdatePolicy ( $wanFirewallPolicyUpdateInput:WanFirewa
 							policySectionInfoSection: section {
 								id
 								name
+								policyId
 							}
 							enabled
 							wanFirewallSourceSource: source {
@@ -251,6 +252,12 @@ mutation policyWanFirewallUpdatePolicy ( $wanFirewallPolicyUpdateInput:WanFirewa
 								}
 
 							}
+							policyRuleActivePeriodActivePeriod: activePeriod {
+								useEffectiveFrom
+								effectiveFrom
+								useExpiresAt
+								expiresAt
+							}
 							wanFirewallDirectionEnumDirection: direction
 							wanFirewallRuleExceptionExceptions: exceptions {
 								name
@@ -439,6 +446,7 @@ mutation policyWanFirewallUpdatePolicy ( $wanFirewallPolicyUpdateInput:WanFirewa
 						policySectionInfoSection: section {
 							id
 							name
+							policyId
 						}
 
 						policyElementPropertiesEnumProperties: properties

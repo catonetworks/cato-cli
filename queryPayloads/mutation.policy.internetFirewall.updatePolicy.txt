@@ -18,6 +18,7 @@ mutation policyInternetFirewallUpdatePolicy ( $internetFirewallPolicyUpdateInput
 							policySectionInfoSection: section {
 								id
 								name
+								policyId
 							}
 							enabled
 							internetFirewallSourceSource: source {
@@ -209,6 +210,12 @@ mutation policyInternetFirewallUpdatePolicy ( $internetFirewallPolicyUpdateInput
 								}
 
 							}
+							policyRuleActivePeriodActivePeriod: activePeriod {
+								useEffectiveFrom
+								effectiveFrom
+								useExpiresAt
+								expiresAt
+							}
 							internetFirewallRuleExceptionExceptions: exceptions {
 								name
 								internetFirewallSourceSource: source {
@@ -363,6 +370,7 @@ mutation policyInternetFirewallUpdatePolicy ( $internetFirewallPolicyUpdateInput
 						policySectionInfoSection: section {
 							id
 							name
+							policyId
 						}
 
 						policyElementPropertiesEnumProperties: properties

@@ -1,0 +1,14 @@
+{
+    "operationName": "siteBgpPeer",
+    "query": "query siteBgpPeer ( $bgpPeerRefInput:BgpPeerRefInput! ) {\n\tsite ( ) {\n\t\tbgpPeer ( input:$bgpPeerRefInput  )  {\n\t\t\tsite {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t}\n\t\t\tid\n\t\t\tname\n\t\t\tpeerAsn\n\t\t\tcatoAsn\n\t\t\tpeerIp\n\t\t\tcatoIp\n\t\t\tadvertiseDefaultRoute\n\t\t\tadvertiseAllRoutes\n\t\t\tadvertiseSummaryRoutes\n\t\t\tsummaryRoute {\n\t\t\t\tid\n\t\t\t\troute\n\t\t\t\tbgpCommunityCommunity: community {\n\t\t\t\t\tfrom\n\t\t\t\t\tto\n\t\t\t\t}\n\n\t\t\t}\n\t\t\tdefaultAction\n\t\t\tdefaultActionExclusion {\n\t\t\t\tbgpRouteExactFilterRuleBgpRouteExactFilterRule: bgpRouteExactFilterRule {\n\t\t\t\t\tid\n\t\t\t\t\tglobalIpRange {\n\t\t\t\t\t\tid\n\t\t\t\t\t\tname\n\t\t\t\t\t}\n\t\t\t\t\tnetworkSubnet\n\t\t\t\t}\n\n\t\t\t\tbgpRouteExactAndInclusiveFilterRuleBgpRouteExactAndInclusiveFilterRule: bgpRouteExactAndInclusiveFilterRule {\n\t\t\t\t\tid\n\t\t\t\t\tglobalIpRange {\n\t\t\t\t\t\tid\n\t\t\t\t\t\tname\n\t\t\t\t\t}\n\t\t\t\t\tglobalIpRangeException {\n\t\t\t\t\t\tid\n\t\t\t\t\t\tname\n\t\t\t\t\t}\n\t\t\t\t\tnetworkSubnet\n\t\t\t\t\tnetworkSubnetException\n\t\t\t\t\tle\n\t\t\t\t\tge\n\t\t\t\t}\n\n\t\t\t\tbgpCommunityFilterRuleCommunityFilterRule: communityFilterRule {\n\t\t\t\t\tid\n\t\t\t\t\tpredicate\n\t\t\t\t\tcommunity {\n\t\t\t\t\t\tfrom\n\t\t\t\t\t\tto\n\t\t\t\t\t}\n\t\t\t\t}\n\n\t\t\t}\n\t\t\tperformNat\n\t\t\tmd5AuthKey\n\t\t\tmetric\n\t\t\tholdTime\n\t\t\tkeepaliveInterval\n\t\t\tbfdEnabled\n\t\t\tbfdSettings {\n\t\t\t\ttransmitInterval\n\t\t\t\treceiveInterval\n\t\t\t\tmultiplier\n\t\t\t}\n\t\t\ttracking {\n\t\t\t\tid\n\t\t\t\tenabled\n\t\t\t\talertFrequency\n\t\t\t\tsubscriptionId\n\t\t\t}\n\t\t}\n\n\t}\t\n}",
+    "variables": {
+        "bgpPeerRefInput": {
+            "by": {
+                "by": "enum(ObjectRefBy)"
+            },
+            "input": {
+                "input": "String"
+            }
+        }
+    }
+}

@@ -64,12 +64,12 @@ def export_socket_site_to_json(args, configuration):
                 for wan_ni in site_interfaces:
                     cur_wan_interface = {}
                     role = wan_ni.get('wanRoleInterfaceInfo', "")
+                    interfaceName = wan_ni.get('id', "")
                     if role is not None and role[0:3] == "wan":
-                        if connectionType == "SOCKET_X1500":
+                        if interfaceName[0:3] in ("WAN", "USB", "LTE"):
                             cur_wan_interface['id'] = site_id+":"+ wan_ni.get('id', "")
                         else:
                             cur_wan_interface['id'] = site_id+":INT_"+ wan_ni.get('id', "")
-                        cur_wan_interface['id'] = site_id+":INT_"+ wan_ni.get('id', "")
                         cur_wan_interface['name'] = wan_ni.get('name', "")
                         cur_wan_interface['upstreamBandwidth'] = wan_ni.get('upstreamBandwidth', 0)
                         cur_wan_interface['downstreamBandwidth'] = wan_ni.get('downstreamBandwidth', 0)

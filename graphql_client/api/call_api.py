@@ -53,13 +53,14 @@ class CallApi(object):
 			body_params = params['body']
 			header_params['Accept'] = self.api_client.select_header_accept(['application/json'])
 			header_params['Content-Type'] = self.api_client.select_header_content_type(['application/json'])
-			# Only add x-api-key if it exists in configuration (not using headers file)
-			if 'x-api-key' in self.api_client.configuration.api_key:
+			# Only add x-api-key if not using custom headers
+			using_custom_headers = hasattr(self.api_client.configuration, 'custom_headers') and self.api_client.configuration.custom_headers
+			if not using_custom_headers and 'x-api-key' in self.api_client.configuration.api_key:
 				header_params['x-api-key'] = self.api_client.configuration.api_key['x-api-key']
 			header_params['User-Agent'] = "Cato-CLI-v"+self.api_client.configuration.version
 		
 		# Add custom headers from configuration
-		if hasattr(self.api_client.configuration, 'custom_headers'):
+		if using_custom_headers:
 			header_params.update(self.api_client.configuration.custom_headers)
 
 		if args.get("v")==True:

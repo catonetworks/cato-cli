@@ -1,0 +1,83 @@
+query siteBgpPeer ( $bgpPeerRefInput:BgpPeerRefInput! ) {
+	site ( ) {
+		bgpPeer ( input:$bgpPeerRefInput  )  {
+			site {
+				id
+				name
+			}
+			id
+			name
+			peerAsn
+			catoAsn
+			peerIp
+			catoIp
+			advertiseDefaultRoute
+			advertiseAllRoutes
+			advertiseSummaryRoutes
+			summaryRoute {
+				id
+				route
+				bgpCommunityCommunity: community {
+					from
+					to
+				}
+
+			}
+			defaultAction
+			defaultActionExclusion {
+				bgpRouteExactFilterRuleBgpRouteExactFilterRule: bgpRouteExactFilterRule {
+					id
+					globalIpRange {
+						id
+						name
+					}
+					networkSubnet
+				}
+
+				bgpRouteExactAndInclusiveFilterRuleBgpRouteExactAndInclusiveFilterRule: bgpRouteExactAndInclusiveFilterRule {
+					id
+					globalIpRange {
+						id
+						name
+					}
+					globalIpRangeException {
+						id
+						name
+					}
+					networkSubnet
+					networkSubnetException
+					le
+					ge
+				}
+
+				bgpCommunityFilterRuleCommunityFilterRule: communityFilterRule {
+					id
+					predicate
+					community {
+						from
+						to
+					}
+				}
+
+			}
+			performNat
+			md5AuthKey
+			metric
+			holdTime
+			keepaliveInterval
+			bfdEnabled
+			bfdSettings {
+				transmitInterval
+				receiveInterval
+				multiplier
+			}
+			tracking {
+				id
+				enabled
+				alertFrequency
+				subscriptionId
+			}
+		}
+
+	}	
+}

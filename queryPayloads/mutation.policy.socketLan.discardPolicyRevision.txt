@@ -1,152 +1,150 @@
 mutation policySocketLanDiscardPolicyRevision ( $policyDiscardRevisionInput:PolicyDiscardRevisionInput $socketLanPolicyMutationInput:SocketLanPolicyMutationInput ) {
 	policy ( ) {
 		socketLan ( input:$socketLanPolicyMutationInput  )  {
-			discardPolicyRevision ( input:$policyDiscardRevisionInput   ) {
-				socketLanPolicyPolicy: policy {
+			discardPolicyRevisionSocketLanPolicyMutations: discardPolicyRevision ( input:$policyDiscardRevisionInput   ) {
+				policySocketLanPolicyMutationPayload: policy {
 					enabled
-					rules {
-						policyElementAuditAudit: audit {
+					rulesSocketLanPolicy: rules {
+						auditSocketLanRulePayload: audit {
 							updatedTime
 							updatedBy
 						}
 
-						socketLanRuleRule: rule {
+						ruleSocketLanRulePayload: rule {
 							id
 							name
 							description
 							index
-							policySectionInfoSection: section {
+							sectionSocketLanRule: section {
 								id
 								name
-								policyId
 							}
 							enabled
-							socketLanFirewallRulePayloadFirewall: firewall {
-								policyElementAuditAudit: audit {
+							firewallSocketLanRule: firewall {
+								auditSocketLanFirewallRulePayload: audit {
 									updatedTime
 									updatedBy
 								}
 
-								socketLanFirewallRuleRule: rule {
+								ruleSocketLanFirewallRulePayload: rule {
 									id
 									name
 									description
 									index
-									policySectionInfoSection: section {
+									sectionSocketLanFirewallRule: section {
 										id
 										name
-										policyId
 									}
 									enabled
-									socketLanFirewallSourceSource: source {
+									sourceSocketLanFirewallRule: source {
 										vlan
 										mac
-										ipAddressRangeIpRange: ipRange {
+										ipRangeSocketLanFirewallSource: ipRange {
 											from
 											to
 										}
 
-										groupRefGroup: group {
+										groupSocketLanFirewallSource: group {
 											id
 											name
 										}
 
 										subnet
-										siteRefSite: site {
+										siteSocketLanFirewallSource: site {
 											id
 											name
 										}
 
-										networkInterfaceRefNetworkInterface: networkInterface {
+										networkInterfaceSocketLanFirewallSource: networkInterface {
 											id
 											name
 										}
 
-										systemGroupRefSystemGroup: systemGroup {
+										systemGroupSocketLanFirewallSource: systemGroup {
 											id
 											name
 										}
 
-										hostRefHost: host {
+										hostSocketLanFirewallSource: host {
 											id
 											name
 										}
 
 										ip
-										globalIpRangeRefGlobalIpRange: globalIpRange {
+										globalIpRangeSocketLanFirewallSource: globalIpRange {
 											id
 											name
 										}
 
-										floatingSubnetRefFloatingSubnet: floatingSubnet {
+										floatingSubnetSocketLanFirewallSource: floatingSubnet {
 											id
 											name
 										}
 
-										siteNetworkSubnetRefSiteNetworkSubnet: siteNetworkSubnet {
+										siteNetworkSubnetSocketLanFirewallSource: siteNetworkSubnet {
 											id
 											name
 										}
 
 									}
-									socketLanFirewallDestinationDestination: destination {
+									destinationSocketLanFirewallRule: destination {
 										vlan
-										ipAddressRangeIpRange: ipRange {
+										ipRangeSocketLanFirewallDestination: ipRange {
 											from
 											to
 										}
 
 										subnet
-										siteRefSite: site {
+										siteSocketLanFirewallDestination: site {
 											id
 											name
 										}
 
-										networkInterfaceRefNetworkInterface: networkInterface {
+										networkInterfaceSocketLanFirewallDestination: networkInterface {
 											id
 											name
 										}
 
-										systemGroupRefSystemGroup: systemGroup {
+										systemGroupSocketLanFirewallDestination: systemGroup {
 											id
 											name
 										}
 
-										hostRefHost: host {
+										hostSocketLanFirewallDestination: host {
 											id
 											name
 										}
 
 										ip
-										globalIpRangeRefGlobalIpRange: globalIpRange {
+										globalIpRangeSocketLanFirewallDestination: globalIpRange {
 											id
 											name
 										}
 
-										groupRefGroup: group {
+										groupSocketLanFirewallDestination: group {
 											id
 											name
 										}
 
-										floatingSubnetRefFloatingSubnet: floatingSubnet {
+										floatingSubnetSocketLanFirewallDestination: floatingSubnet {
 											id
 											name
 										}
 
-										siteNetworkSubnetRefSiteNetworkSubnet: siteNetworkSubnet {
+										siteNetworkSubnetSocketLanFirewallDestination: siteNetworkSubnet {
 											id
 											name
 										}
 
 									}
-									socketLanFirewallDirectionDirection: direction
-									socketLanFirewallApplicationApplication: application {
-										applicationRefApplication: application {
+									directionSocketLanFirewallRule: direction
+									applicationSocketLanFirewallRule: application {
+										applicationSocketLanFirewallApplication: application {
 											id
 											name
 										}
 
-										customApplicationRefCustomApp: customApp {
+										customAppSocketLanFirewallApplication: customApp {
 											id
 											name
 										}
@@ -155,55 +153,55 @@ mutation policySocketLanDiscardPolicyRevision ( $policyDiscardRevisionInput:Poli
 										fqdn
 										ip
 										subnet
-										ipAddressRangeIpRange: ipRange {
+										ipRangeSocketLanFirewallApplication: ipRange {
 											from
 											to
 										}
 
-										globalIpRangeRefGlobalIpRange: globalIpRange {
+										globalIpRangeSocketLanFirewallApplication: globalIpRange {
 											id
 											name
 										}
 
 									}
-									socketLanFirewallServiceTypeService: service {
-										simpleServiceSimple: simple {
-											simpleServiceTypeName: name
+									serviceSocketLanFirewallRule: service {
+										simpleSocketLanFirewallServiceType: simple {
+											nameSimpleService: name
 										}
 
-										serviceRefStandard: standard {
+										standardSocketLanFirewallServiceType: standard {
 											id
 											name
 										}
 
-										customServiceCustom: custom {
+										customSocketLanFirewallServiceType: custom {
 											port
-											portRangePortRange: portRange {
+											portRangeCustomService: portRange {
 												from
 												to
 											}
-											ipProtocolProtocol: protocol
+											protocolCustomService: protocol
 										}
 
 									}
-									socketLanFirewallActionAction: action
-									policyTrackingTracking: tracking {
-										policyRuleTrackingEventEvent: event {
+									actionSocketLanFirewallRule: action
+									trackingSocketLanFirewallRule: tracking {
+										eventPolicyTracking: event {
 											enabled
 										}
 
-										policyRuleTrackingAlertAlert: alert {
+										alertPolicyTracking: alert {
 											enabled
-											policyRuleTrackingFrequencyEnumFrequency: frequency
-											subscriptionGroupRefSubscriptionGroup: subscriptionGroup {
+											frequencyPolicyRuleTrackingAlert: frequency
+											subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
 												id
 												name
 											}
-											subscriptionWebhookRefWebhook: webhook {
+											webhookPolicyRuleTrackingAlert: webhook {
 												id
 												name
 											}
-											subscriptionMailingListRefMailingList: mailingList {
+											mailingListPolicyRuleTrackingAlert: mailingList {
 												id
 												name
 											}
@@ -212,154 +210,153 @@ mutation policySocketLanDiscardPolicyRevision ( $policyDiscardRevisionInput:Poli
 									}
 								}
 
-								policyElementPropertiesEnumProperties: properties
+								propertiesSocketLanFirewallRulePayload: properties
 							}
-							socketLanSiteSite: site {
-								siteRefSite: site {
+							siteSocketLanRule: site {
+								siteSocketLanSite: site {
 									id
 									name
 								}
 
-								groupRefGroup: group {
+								groupSocketLanSite: group {
 									id
 									name
 								}
 
 							}
-							socketLanSourceSource: source {
+							sourceSocketLanRule: source {
 								vlan
-								ipAddressRangeIpRange: ipRange {
+								ipRangeSocketLanSource: ipRange {
 									from
 									to
 								}
 
-								groupRefGroup: group {
+								groupSocketLanSource: group {
 									id
 									name
 								}
 
 								subnet
-								networkInterfaceRefNetworkInterface: networkInterface {
+								networkInterfaceSocketLanSource: networkInterface {
 									id
 									name
 								}
 
-								systemGroupRefSystemGroup: systemGroup {
+								systemGroupSocketLanSource: systemGroup {
 									id
 									name
 								}
 
-								hostRefHost: host {
+								hostSocketLanSource: host {
 									id
 									name
 								}
 
 								ip
-								globalIpRangeRefGlobalIpRange: globalIpRange {
+								globalIpRangeSocketLanSource: globalIpRange {
 									id
 									name
 								}
 
-								floatingSubnetRefFloatingSubnet: floatingSubnet {
+								floatingSubnetSocketLanSource: floatingSubnet {
 									id
 									name
 								}
 
-								siteNetworkSubnetRefSiteNetworkSubnet: siteNetworkSubnet {
+								siteNetworkSubnetSocketLanSource: siteNetworkSubnet {
 									id
 									name
 								}
 
 							}
-							socketLanDestinationDestination: destination {
+							destinationSocketLanRule: destination {
 								vlan
-								ipAddressRangeIpRange: ipRange {
+								ipRangeSocketLanDestination: ipRange {
 									from
 									to
 								}
 
 								subnet
-								networkInterfaceRefNetworkInterface: networkInterface {
+								networkInterfaceSocketLanDestination: networkInterface {
 									id
 									name
 								}
 
-								systemGroupRefSystemGroup: systemGroup {
+								systemGroupSocketLanDestination: systemGroup {
 									id
 									name
 								}
 
-								hostRefHost: host {
+								hostSocketLanDestination: host {
 									id
 									name
 								}
 
 								ip
-								globalIpRangeRefGlobalIpRange: globalIpRange {
+								globalIpRangeSocketLanDestination: globalIpRange {
 									id
 									name
 								}
 
-								groupRefGroup: group {
+								groupSocketLanDestination: group {
 									id
 									name
 								}
 
-								floatingSubnetRefFloatingSubnet: floatingSubnet {
+								floatingSubnetSocketLanDestination: floatingSubnet {
 									id
 									name
 								}
 
-								siteNetworkSubnetRefSiteNetworkSubnet: siteNetworkSubnet {
+								siteNetworkSubnetSocketLanDestination: siteNetworkSubnet {
 									id
 									name
 								}
 
 							}
-							socketLanDirectionDirection: direction
-							socketLanServiceService: service {
-								simpleServiceSimple: simple {
-									simpleServiceTypeName: name
+							directionSocketLanRule: direction
+							serviceSocketLanRule: service {
+								simpleSocketLanService: simple {
+									nameSimpleService: name
 								}
 
-								customServiceCustom: custom {
+								customSocketLanService: custom {
 									port
-									portRangePortRange: portRange {
+									portRangeCustomService: portRange {
 										from
 										to
 									}
-									ipProtocolProtocol: protocol
+									protocolCustomService: protocol
 								}
 
 							}
-							socketLanNatSettingsNat: nat {
+							natSocketLanRule: nat {
 								enabled
-								socketLanNatTypeNatType: natType
+								natTypeSocketLanNatSettings: natType
 							}
-							socketLanTransportTypeTransport: transport
+							transportSocketLanRule: transport
 						}
 
-						policyElementPropertiesEnumProperties: properties
+						propertiesSocketLanRulePayload: properties
 					}
-					sections {
-						policyElementAuditAudit: audit {
+					sectionsSocketLanPolicy: sections {
+						auditPolicySectionPayload: audit {
 							updatedTime
 							updatedBy
 						}
 
-						policySectionInfoSection: section {
+						sectionPolicySectionPayload: section {
 							id
 							name
-							policyId
 						}
 
-						policyElementPropertiesEnumProperties: properties
+						propertiesPolicySectionPayload: properties
 					}
-					audit {
+					auditSocketLanPolicy: audit {
 						publishedTime
 						publishedBy
 					}
-					revision {
+					revisionSocketLanPolicy: revision {
 						id
 						name
 						description
@@ -369,8 +366,8 @@ mutation policySocketLanDiscardPolicyRevision ( $policyDiscardRevisionInput:Poli
 					}
 				}
 
-				policyMutationStatusStatus: status
-				policyMutationErrorErrors: errors {
+				statusSocketLanPolicyMutationPayload: status
+				errorsSocketLanPolicyMutationPayload: errors {
 					errorMessage
 					errorCode
 				}

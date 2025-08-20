@@ -1,57 +1,55 @@
 mutation policyTerminalServerUpdatePolicy ( $terminalServerPolicyUpdateInput:TerminalServerPolicyUpdateInput! $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput ) {
 	policy ( ) {
 		terminalServer ( input:$terminalServerPolicyMutationInput  )  {
-			updatePolicy ( input:$terminalServerPolicyUpdateInput   ) {
-				terminalServerPolicyPolicy: policy {
+			updatePolicyTerminalServerPolicyMutations: updatePolicy ( input:$terminalServerPolicyUpdateInput   ) {
+				policyTerminalServerPolicyMutationPayload: policy {
 					enabled
-					rules {
-						policyElementAuditAudit: audit {
+					rulesTerminalServerPolicy: rules {
+						auditTerminalServerRulePayload: audit {
 							updatedTime
 							updatedBy
 						}
 
-						terminalServerRuleRule: rule {
+						ruleTerminalServerRulePayload: rule {
 							id
 							name
 							description
 							index
-							policySectionInfoSection: section {
+							sectionTerminalServerRule: section {
 								id
 								name
-								policyId
 							}
 							enabled
-							globalIpRangeRefAllowedHostIP: allowedHostIP {
+							allowedHostIPTerminalServerRule: allowedHostIP {
 								id
 								name
 							}
-							globalIpRangeRefExcludeTraffic: excludeTraffic {
+							excludeTrafficTerminalServerRule: excludeTraffic {
 								id
 								name
 							}
 						}
 
-						policyElementPropertiesEnumProperties: properties
+						propertiesTerminalServerRulePayload: properties
 					}
-					sections {
-						policyElementAuditAudit: audit {
+					sectionsTerminalServerPolicy: sections {
+						auditPolicySectionPayload: audit {
 							updatedTime
 							updatedBy
 						}
 
-						policySectionInfoSection: section {
+						sectionPolicySectionPayload: section {
 							id
 							name
-							policyId
 						}
 
-						policyElementPropertiesEnumProperties: properties
+						propertiesPolicySectionPayload: properties
 					}
-					audit {
+					auditTerminalServerPolicy: audit {
 						publishedTime
 						publishedBy
 					}
-					revision {
+					revisionTerminalServerPolicy: revision {
 						id
 						name
 						description
@@ -61,8 +59,8 @@ mutation policyTerminalServerUpdatePolicy ( $terminalServerPolicyUpdateInput:Ter
 					}
 				}
 
-				policyMutationStatusStatus: status
-				policyMutationErrorErrors: errors {
+				statusTerminalServerPolicyMutationPayload: status
+				errorsTerminalServerPolicyMutationPayload: errors {
 					errorMessage
 					errorCode
 				}

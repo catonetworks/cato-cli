@@ -6,8 +6,8 @@ query accountMetrics ( $toRate:Boolean $perSecond:Boolean $withMissingData:Boole
 		granularity
 		sites ( siteIDs:$siteIDs  )  {
 			id
-			interfaceMetricsInterfaces: interfaces {
-				metricsMetrics: metrics ( toRate:$toRate  )  {
+			interfacesSiteMetrics: interfaces {
+				metricsInterfaceMetrics: metrics ( toRate:$toRate  )  {
 					duration
 					granularity
 					bytesDownstream
@@ -30,14 +30,14 @@ query accountMetrics ( $toRate:Boolean $perSecond:Boolean $withMissingData:Boole
 				}
 
 				name
-				timeseriesTimeseries: timeseries ( buckets:$buckets  labels:$labels  )  {
+				timeseriesInterfaceMetrics: timeseries ( buckets:$buckets  labels:$labels  )  {
 					data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket   )
 					label
-					dimensionDataDimensions: dimensions {
+					dimensionsTimeseries: dimensions {
 						label
 						value
 					}
-					timeseriesKeyKey: key {
+					keyTimeseries: key {
 						measureFieldName
 						dimensions {
 							fieldName
@@ -46,24 +46,24 @@ query accountMetrics ( $toRate:Boolean $perSecond:Boolean $withMissingData:Boole
 
 					}
 					sum
-					unitTypeUnits: units
+					unitsTimeseries: units
 					info
 				}
 
-				timeAnnotationAnnotations: annotations ( types:$types  )  {
+				annotationsInterfaceMetrics: annotations ( types:$types  )  {
 					time
 					label
 					shortLabel
-					annotationTypeType: type
+					typeTimeAnnotation: type
 				}
 
-				timePeriodPeriods: periods {
+				periodsInterfaceMetrics: periods {
 					duration
 					title
-					periodTypeType: type
+					typeTimePeriod: type
 				}
 
-				iPInfoRemoteIPInfo: remoteIPInfo {
+				remoteIPInfoInterfaceMetrics: remoteIPInfo {
 					ip
 					countryCode
 					countryName
@@ -75,23 +75,23 @@ query accountMetrics ( $toRate:Boolean $perSecond:Boolean $withMissingData:Boole
 				}
 
 				remoteIP
-				socketInfoSocketInfo: socketInfo {
+				socketInfoInterfaceMetrics: socketInfo {
 					id
 					serial
 					isPrimary
-					platform
+					platformSocketInfo: platform
 					version
 					versionUpdateTime
 				}
 
-				iPSecInfoIpsecInfo: ipsecInfo {
+				ipsecInfoInterfaceMetrics: ipsecInfo {
 					isPrimary
 					catoIP
 					remoteIP
 					ikeVersion
 				}
 
-				interfaceInfoInterfaceInfo: interfaceInfo {
+				interfaceInfoInterfaceMetrics: interfaceInfo {
 					id
 					name
 					upstreamBandwidth
@@ -99,11 +99,11 @@ query accountMetrics ( $toRate:Boolean $perSecond:Boolean $withMissingData:Boole
 					upstreamBandwidthMbpsPrecision
 					downstreamBandwidthMbpsPrecision
 					destType
-					wanRole
+					wanRoleInterfaceInfo: wanRole
 				}
 
 			}
-			metricsMetrics: metrics ( toRate:$toRate   ) {
+			metricsSiteMetrics: metrics ( toRate:$toRate   ) {
 				duration
 				granularity
 				bytesDownstream
@@ -125,7 +125,7 @@ query accountMetrics ( $toRate:Boolean $perSecond:Boolean $withMissingData:Boole
 				flowCount
 			}
 			name
-			siteInfoInfo: info {
+			infoSiteMetrics: info {
 				name
 				type
 				description
@@ -146,14 +146,14 @@ query accountMetrics ( $toRate:Boolean $perSecond:Boolean $withMissingData:Boole
 					upstreamBandwidthMbpsPrecision
 					downstreamBandwidthMbpsPrecision
 					destType
-					socketInterfaceWanRoleWanRole: wanRole
+					wanRoleInterfaceInfo: wanRole
 				}
 
 				sockets {
 					id
 					serial
 					isPrimary
-					socketPlatformPlatform: platform
+					platformSocketInfo: platform
 					version
 					versionUpdateTime
 				}
@@ -166,7 +166,7 @@ query accountMetrics ( $toRate:Boolean $perSecond:Boolean $withMissingData:Boole
 				}
 
 			}
-			timeseriesHostCount: hostCount {
+			hostCountSiteMetrics: hostCount {
 				data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket  ) 
 				label
 				dimensions {
@@ -176,7 +176,7 @@ query accountMetrics ( $toRate:Boolean $perSecond:Boolean $withMissingData:Boole
 
 				key {
 					measureFieldName
-					dimensions {
+					dimensionsTimeseriesKey: dimensions {
 						fieldName
 						value
 					}
@@ -186,7 +186,7 @@ query accountMetrics ( $toRate:Boolean $perSecond:Boolean $withMissingData:Boole
 				units
 				info
 			}
-			timeseriesFlowCount: flowCount {
+			flowCountSiteMetrics: flowCount {
 				data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket  ) 
 				label
 				dimensions {
@@ -196,7 +196,7 @@ query accountMetrics ( $toRate:Boolean $perSecond:Boolean $withMissingData:Boole
 
 				key {
 					measureFieldName
-					dimensions {
+					dimensionsTimeseriesKey: dimensions {
 						fieldName
 						value
 					}
@@ -206,7 +206,7 @@ query accountMetrics ( $toRate:Boolean $perSecond:Boolean $withMissingData:Boole
 				units
 				info
 			}
-			timeseriesHostLimit: hostLimit {
+			hostLimitSiteMetrics: hostLimit {
 				data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket  ) 
 				label
 				dimensions {
@@ -216,7 +216,7 @@ query accountMetrics ( $toRate:Boolean $perSecond:Boolean $withMissingData:Boole
 
 				key {
 					measureFieldName
-					dimensions {
+					dimensionsTimeseriesKey: dimensions {
 						fieldName
 						value
 					}
@@ -231,8 +231,8 @@ query accountMetrics ( $toRate:Boolean $perSecond:Boolean $withMissingData:Boole
 
 		users ( userIDs:$userIDs  )  {
 			id
-			interfaceMetricsInterfaces: interfaces {
-				metricsMetrics: metrics ( toRate:$toRate  )  {
+			interfacesSiteMetrics: interfaces {
+				metricsInterfaceMetrics: metrics ( toRate:$toRate  )  {
 					duration
 					granularity
 					bytesDownstream
@@ -255,14 +255,14 @@ query accountMetrics ( $toRate:Boolean $perSecond:Boolean $withMissingData:Boole
 				}
 
 				name
-				timeseriesTimeseries: timeseries ( buckets:$buckets  labels:$labels  )  {
+				timeseriesInterfaceMetrics: timeseries ( buckets:$buckets  labels:$labels  )  {
 					data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket   )
 					label
-					dimensionDataDimensions: dimensions {
+					dimensionsTimeseries: dimensions {
 						label
 						value
 					}
-					timeseriesKeyKey: key {
+					keyTimeseries: key {
 						measureFieldName
 						dimensions {
 							fieldName
@@ -271,24 +271,24 @@ query accountMetrics ( $toRate:Boolean $perSecond:Boolean $withMissingData:Boole
 
 					}
 					sum
-					unitTypeUnits: units
+					unitsTimeseries: units
 					info
 				}
 
-				timeAnnotationAnnotations: annotations ( types:$types  )  {
+				annotationsInterfaceMetrics: annotations ( types:$types  )  {
 					time
 					label
 					shortLabel
-					annotationTypeType: type
+					typeTimeAnnotation: type
 				}
 
-				timePeriodPeriods: periods {
+				periodsInterfaceMetrics: periods {
 					duration
 					title
-					periodTypeType: type
+					typeTimePeriod: type
 				}
 
-				iPInfoRemoteIPInfo: remoteIPInfo {
+				remoteIPInfoInterfaceMetrics: remoteIPInfo {
 					ip
 					countryCode
 					countryName
@@ -300,23 +300,23 @@ query accountMetrics ( $toRate:Boolean $perSecond:Boolean $withMissingData:Boole
 				}
 
 				remoteIP
-				socketInfoSocketInfo: socketInfo {
+				socketInfoInterfaceMetrics: socketInfo {
 					id
 					serial
 					isPrimary
-					platform
+					platformSocketInfo: platform
 					version
 					versionUpdateTime
 				}
 
-				iPSecInfoIpsecInfo: ipsecInfo {
+				ipsecInfoInterfaceMetrics: ipsecInfo {
 					isPrimary
 					catoIP
 					remoteIP
 					ikeVersion
 				}
 
-				interfaceInfoInterfaceInfo: interfaceInfo {
+				interfaceInfoInterfaceMetrics: interfaceInfo {
 					id
 					name
 					upstreamBandwidth
@@ -324,11 +324,11 @@ query accountMetrics ( $toRate:Boolean $perSecond:Boolean $withMissingData:Boole
 					upstreamBandwidthMbpsPrecision
 					downstreamBandwidthMbpsPrecision
 					destType
-					wanRole
+					wanRoleInterfaceInfo: wanRole
 				}
 
 			}
-			metricsMetrics: metrics ( toRate:$toRate   ) {
+			metricsSiteMetrics: metrics ( toRate:$toRate   ) {
 				duration
 				granularity
 				bytesDownstream
@@ -350,7 +350,7 @@ query accountMetrics ( $toRate:Boolean $perSecond:Boolean $withMissingData:Boole
 				flowCount
 			}
 			name
-			siteInfoInfo: info {
+			infoSiteMetrics: info {
 				name
 				type
 				description
@@ -371,14 +371,14 @@ query accountMetrics ( $toRate:Boolean $perSecond:Boolean $withMissingData:Boole
 					upstreamBandwidthMbpsPrecision
 					downstreamBandwidthMbpsPrecision
 					destType
-					socketInterfaceWanRoleWanRole: wanRole
+					wanRoleInterfaceInfo: wanRole
 				}
 
 				sockets {
 					id
 					serial
 					isPrimary
-					socketPlatformPlatform: platform
+					platformSocketInfo: platform
 					version
 					versionUpdateTime
 				}
@@ -391,7 +391,7 @@ query accountMetrics ( $toRate:Boolean $perSecond:Boolean $withMissingData:Boole
 				}
 
 			}
-			timeseriesHostCount: hostCount {
+			hostCountSiteMetrics: hostCount {
 				data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket  ) 
 				label
 				dimensions {
@@ -401,7 +401,7 @@ query accountMetrics ( $toRate:Boolean $perSecond:Boolean $withMissingData:Boole
 
 				key {
 					measureFieldName
-					dimensions {
+					dimensionsTimeseriesKey: dimensions {
 						fieldName
 						value
 					}
@@ -411,7 +411,7 @@ query accountMetrics ( $toRate:Boolean $perSecond:Boolean $withMissingData:Boole
 				units
 				info
 			}
-			timeseriesFlowCount: flowCount {
+			flowCountSiteMetrics: flowCount {
 				data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket  ) 
 				label
 				dimensions {
@@ -421,7 +421,7 @@ query accountMetrics ( $toRate:Boolean $perSecond:Boolean $withMissingData:Boole
 
 				key {
 					measureFieldName
-					dimensions {
+					dimensionsTimeseriesKey: dimensions {
 						fieldName
 						value
 					}
@@ -431,7 +431,7 @@ query accountMetrics ( $toRate:Boolean $perSecond:Boolean $withMissingData:Boole
 				units
 				info
 			}
-			timeseriesHostLimit: hostLimit {
+			hostLimitSiteMetrics: hostLimit {
 				data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket  ) 
 				label
 				dimensions {
@@ -441,7 +441,7 @@ query accountMetrics ( $toRate:Boolean $perSecond:Boolean $withMissingData:Boole
 
 				key {
 					measureFieldName
-					dimensions {
+					dimensionsTimeseriesKey: dimensions {
 						fieldName
 						value
 					}
@@ -457,11 +457,11 @@ query accountMetrics ( $toRate:Boolean $perSecond:Boolean $withMissingData:Boole
 		timeseries ( labels:$labels  buckets:$buckets  )  {
 			data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket   )
 			label
-			dimensionDataDimensions: dimensions {
+			dimensionsTimeseries: dimensions {
 				label
 				value
 			}
-			timeseriesKeyKey: key {
+			keyTimeseries: key {
 				measureFieldName
 				dimensions {
 					fieldName
@@ -470,7 +470,7 @@ query accountMetrics ( $toRate:Boolean $perSecond:Boolean $withMissingData:Boole
 
 			}
 			sum
-			unitTypeUnits: units
+			unitsTimeseries: units
 			info
 		}
 

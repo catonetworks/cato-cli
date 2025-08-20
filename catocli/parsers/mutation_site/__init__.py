@@ -151,6 +151,19 @@ def mutation_site_parse(mutation_subparsers):
 	mutation_site_addStaticHost_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
 	mutation_site_addStaticHost_parser.set_defaults(func=createRequest,operation_name='mutation.site.addStaticHost')
 
+	mutation_site_assignSiteBwLicense_parser = mutation_site_subparsers.add_parser('assignSiteBwLicense', 
+			help='assignSiteBwLicense() site operation', 
+			usage=get_help("mutation_site_assignSiteBwLicense"))
+
+	mutation_site_assignSiteBwLicense_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+	mutation_site_assignSiteBwLicense_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_site_assignSiteBwLicense_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+	mutation_site_assignSiteBwLicense_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+	mutation_site_assignSiteBwLicense_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+	mutation_site_assignSiteBwLicense_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+	mutation_site_assignSiteBwLicense_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+	mutation_site_assignSiteBwLicense_parser.set_defaults(func=createRequest,operation_name='mutation.site.assignSiteBwLicense')
+
 	mutation_site_removeBgpPeer_parser = mutation_site_subparsers.add_parser('removeBgpPeer', 
 			help='removeBgpPeer() site operation', 
 			usage=get_help("mutation_site_removeBgpPeer"))
@@ -203,6 +216,32 @@ def mutation_site_parse(mutation_subparsers):
 	mutation_site_removeNetworkRange_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
 	mutation_site_removeNetworkRange_parser.set_defaults(func=createRequest,operation_name='mutation.site.removeNetworkRange')
 
+	mutation_site_removeSecondaryAwsVSocket_parser = mutation_site_subparsers.add_parser('removeSecondaryAwsVSocket', 
+			help='removeSecondaryAwsVSocket() site operation', 
+			usage=get_help("mutation_site_removeSecondaryAwsVSocket"))
+
+	mutation_site_removeSecondaryAwsVSocket_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+	mutation_site_removeSecondaryAwsVSocket_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_site_removeSecondaryAwsVSocket_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+	mutation_site_removeSecondaryAwsVSocket_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+	mutation_site_removeSecondaryAwsVSocket_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+	mutation_site_removeSecondaryAwsVSocket_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+	mutation_site_removeSecondaryAwsVSocket_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+	mutation_site_removeSecondaryAwsVSocket_parser.set_defaults(func=createRequest,operation_name='mutation.site.removeSecondaryAwsVSocket')
+
+	mutation_site_removeSecondaryAzureVSocket_parser = mutation_site_subparsers.add_parser('removeSecondaryAzureVSocket', 
+			help='removeSecondaryAzureVSocket() site operation', 
+			usage=get_help("mutation_site_removeSecondaryAzureVSocket"))
+
+	mutation_site_removeSecondaryAzureVSocket_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+	mutation_site_removeSecondaryAzureVSocket_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_site_removeSecondaryAzureVSocket_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+	mutation_site_removeSecondaryAzureVSocket_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+	mutation_site_removeSecondaryAzureVSocket_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+	mutation_site_removeSecondaryAzureVSocket_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+	mutation_site_removeSecondaryAzureVSocket_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+	mutation_site_removeSecondaryAzureVSocket_parser.set_defaults(func=createRequest,operation_name='mutation.site.removeSecondaryAzureVSocket')
+
 	mutation_site_removeSite_parser = mutation_site_subparsers.add_parser('removeSite', 
 			help='removeSite() site operation', 
 			usage=get_help("mutation_site_removeSite"))
@@ -215,6 +254,19 @@ def mutation_site_parse(mutation_subparsers):
 	mutation_site_removeSite_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
 	mutation_site_removeSite_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
 	mutation_site_removeSite_parser.set_defaults(func=createRequest,operation_name='mutation.site.removeSite')
+
+	mutation_site_removeSiteBwLicense_parser = mutation_site_subparsers.add_parser('removeSiteBwLicense', 
+			help='removeSiteBwLicense() site operation', 
+			usage=get_help("mutation_site_removeSiteBwLicense"))
+
+	mutation_site_removeSiteBwLicense_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+	mutation_site_removeSiteBwLicense_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_site_removeSiteBwLicense_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+	mutation_site_removeSiteBwLicense_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+	mutation_site_removeSiteBwLicense_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+	mutation_site_removeSiteBwLicense_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+	mutation_site_removeSiteBwLicense_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+	mutation_site_removeSiteBwLicense_parser.set_defaults(func=createRequest,operation_name='mutation.site.removeSiteBwLicense')
 
 	mutation_site_removeSocketAddOnCard_parser = mutation_site_subparsers.add_parser('removeSocketAddOnCard', 
 			help='removeSocketAddOnCard() site operation', 
@@ -241,6 +293,19 @@ def mutation_site_parse(mutation_subparsers):
 	mutation_site_removeStaticHost_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
 	mutation_site_removeStaticHost_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
 	mutation_site_removeStaticHost_parser.set_defaults(func=createRequest,operation_name='mutation.site.removeStaticHost')
+
+	mutation_site_replaceSiteBwLicense_parser = mutation_site_subparsers.add_parser('replaceSiteBwLicense', 
+			help='replaceSiteBwLicense() site operation', 
+			usage=get_help("mutation_site_replaceSiteBwLicense"))
+
+	mutation_site_replaceSiteBwLicense_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+	mutation_site_replaceSiteBwLicense_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_site_replaceSiteBwLicense_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+	mutation_site_replaceSiteBwLicense_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+	mutation_site_replaceSiteBwLicense_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+	mutation_site_replaceSiteBwLicense_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+	mutation_site_replaceSiteBwLicense_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+	mutation_site_replaceSiteBwLicense_parser.set_defaults(func=createRequest,operation_name='mutation.site.replaceSiteBwLicense')
 
 	mutation_site_startSiteUpgrade_parser = mutation_site_subparsers.add_parser('startSiteUpgrade', 
 			help='startSiteUpgrade() site operation', 
@@ -332,6 +397,45 @@ def mutation_site_parse(mutation_subparsers):
 	mutation_site_updateNetworkRange_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
 	mutation_site_updateNetworkRange_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
 	mutation_site_updateNetworkRange_parser.set_defaults(func=createRequest,operation_name='mutation.site.updateNetworkRange')
+
+	mutation_site_updateSecondaryAwsVSocket_parser = mutation_site_subparsers.add_parser('updateSecondaryAwsVSocket', 
+			help='updateSecondaryAwsVSocket() site operation', 
+			usage=get_help("mutation_site_updateSecondaryAwsVSocket"))
+
+	mutation_site_updateSecondaryAwsVSocket_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+	mutation_site_updateSecondaryAwsVSocket_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_site_updateSecondaryAwsVSocket_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+	mutation_site_updateSecondaryAwsVSocket_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+	mutation_site_updateSecondaryAwsVSocket_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+	mutation_site_updateSecondaryAwsVSocket_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+	mutation_site_updateSecondaryAwsVSocket_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+	mutation_site_updateSecondaryAwsVSocket_parser.set_defaults(func=createRequest,operation_name='mutation.site.updateSecondaryAwsVSocket')
+
+	mutation_site_updateSecondaryAzureVSocket_parser = mutation_site_subparsers.add_parser('updateSecondaryAzureVSocket', 
+			help='updateSecondaryAzureVSocket() site operation', 
+			usage=get_help("mutation_site_updateSecondaryAzureVSocket"))
+
+	mutation_site_updateSecondaryAzureVSocket_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+	mutation_site_updateSecondaryAzureVSocket_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_site_updateSecondaryAzureVSocket_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+	mutation_site_updateSecondaryAzureVSocket_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+	mutation_site_updateSecondaryAzureVSocket_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+	mutation_site_updateSecondaryAzureVSocket_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+	mutation_site_updateSecondaryAzureVSocket_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+	mutation_site_updateSecondaryAzureVSocket_parser.set_defaults(func=createRequest,operation_name='mutation.site.updateSecondaryAzureVSocket')
+
+	mutation_site_updateSiteBwLicense_parser = mutation_site_subparsers.add_parser('updateSiteBwLicense', 
+			help='updateSiteBwLicense() site operation', 
+			usage=get_help("mutation_site_updateSiteBwLicense"))
+
+	mutation_site_updateSiteBwLicense_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+	mutation_site_updateSiteBwLicense_parser.add_argument('-accountID', help='Override the CATO_ACCOUNT_ID environment variable with this value.')
+	mutation_site_updateSiteBwLicense_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+	mutation_site_updateSiteBwLicense_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+	mutation_site_updateSiteBwLicense_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+	mutation_site_updateSiteBwLicense_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+	mutation_site_updateSiteBwLicense_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+	mutation_site_updateSiteBwLicense_parser.set_defaults(func=createRequest,operation_name='mutation.site.updateSiteBwLicense')
 
 	mutation_site_updateSiteGeneralDetails_parser = mutation_site_subparsers.add_parser('updateSiteGeneralDetails', 
 			help='updateSiteGeneralDetails() site operation', 

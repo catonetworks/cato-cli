@@ -1,22 +1,21 @@
 mutation policyInternetFirewallRemoveSection ( $policyRemoveSectionInput:PolicyRemoveSectionInput! $internetFirewallPolicyMutationInput:InternetFirewallPolicyMutationInput ) {
 	policy ( ) {
 		internetFirewall ( input:$internetFirewallPolicyMutationInput  )  {
-			removeSection ( input:$policyRemoveSectionInput   ) {
-				policySectionPayloadSection: section {
-					audit {
+			removeSectionInternetFirewallPolicyMutations: removeSection ( input:$policyRemoveSectionInput   ) {
+				sectionPolicySectionMutationPayload: section {
+					auditPolicySectionPayload: audit {
 						updatedTime
 						updatedBy
 					}
-					section {
+					sectionPolicySectionPayload: section {
 						id
 						name
-						policyId
 					}
-					properties
+					propertiesPolicySectionPayload: properties
 				}
 
-				policyMutationStatusStatus: status
-				policyMutationErrorErrors: errors {
+				statusPolicySectionMutationPayload: status
+				errorsPolicySectionMutationPayload: errors {
 					errorMessage
 					errorCode
 				}

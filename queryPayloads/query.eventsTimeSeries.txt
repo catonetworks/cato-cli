@@ -7,11 +7,11 @@ query eventsTimeSeries ( $perSecond:Boolean $withMissingData:Boolean $useDefault
 		timeseries ( buckets:$buckets  )  {
 			data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket   )
 			label
-			dimensionDataDimensions: dimensions {
+			dimensionsTimeseries: dimensions {
 				label
 				value
 			}
-			timeseriesKeyKey: key {
+			keyTimeseries: key {
 				measureFieldName
 				dimensions {
 					fieldName
@@ -20,7 +20,7 @@ query eventsTimeSeries ( $perSecond:Boolean $withMissingData:Boolean $useDefault
 
 			}
 			sum
-			unitTypeUnits: units
+			unitsTimeseries: units
 			info
 		}
 

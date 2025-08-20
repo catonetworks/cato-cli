@@ -214,11 +214,11 @@
     "deprecationReason": null,
     "description": null,
     "fieldTypes": {
-        "BulkUpgradeSiteInfo": true,
         "ObjectRefBy": true,
+        "SiteRef": true,
         "SiteRefInput": true,
+        "SiteUpgradeInfo": true,
         "SiteUpgradeRequest": true,
-        "SiteUpgradeResult": true,
         "StartSiteUpgradePayload": true
     },
     "isDeprecated": false,
@@ -627,16 +627,37 @@
                                     "isDeprecated": false,
                                     "name": "results",
                                     "path": "startSiteUpgrade.results",
-                                    "requestStr": "$siteUpgradeResult:[SiteUpgradeResult]! ",
+                                    "requestStr": "$siteUpgradeInfo:[SiteUpgradeInfo]! ",
                                     "required": true,
-                                    "responseStr": "results:$siteUpgradeResult ",
+                                    "responseStr": "results:$siteUpgradeInfo ",
                                     "type": {
                                         "definition": {
-                                            "description": "Represents the result of an upgrade request.",
+                                            "description": "Information about a site upgrade.",
                                             "enumValues": null,
                                             "fields": {
+                                                "scheduledAt": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "The scheduled UTC time for the upgrade.",
+                                                    "id_str": "startSiteUpgrade___results___scheduledAt",
+                                                    "isDeprecated": false,
+                                                    "name": "scheduledAt",
+                                                    "path": "startSiteUpgrade.results.scheduledAt",
+                                                    "requestStr": "$scheduledAt:String! ",
+                                                    "required": true,
+                                                    "responseStr": "scheduledAt:$scheduledAt ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "scheduledAt"
+                                                },
                                                 "site": {
-                                                    "alias": "bulkUpgradeSiteInfoSite: site",
+                                                    "alias": "siteSiteUpgradeInfo: site",
                                                     "args": {},
                                                     "deprecationReason": null,
                                                     "description": null,
@@ -644,12 +665,12 @@
                                                     "isDeprecated": false,
                                                     "name": "site",
                                                     "path": "startSiteUpgrade.results.site",
-                                                    "requestStr": "$bulkUpgradeSiteInfo:BulkUpgradeSiteInfo! ",
+                                                    "requestStr": "$siteRef:SiteRef! ",
                                                     "required": true,
-                                                    "responseStr": "site:$bulkUpgradeSiteInfo ",
+                                                    "responseStr": "site:$siteRef ",
                                                     "type": {
                                                         "definition": {
-                                                            "description": null,
+                                                            "description": "A reference identifying the Site object. ID: Unique Site Identifier, Name: The Site Name",
                                                             "enumValues": null,
                                                             "fields": {
                                                                 "id": {
@@ -698,7 +719,7 @@
                                                             "inputFields": null,
                                                             "interfaces": {},
                                                             "kind": "OBJECT",
-                                                            "name": "BulkUpgradeSiteInfo",
+                                                            "name": "SiteRef",
                                                             "possibleTypes": null
                                                         },
                                                         "indexType": "object",
@@ -706,10 +727,10 @@
                                                             "NON_NULL",
                                                             "OBJECT"
                                                         ],
-                                                        "name": "BulkUpgradeSiteInfo",
+                                                        "name": "SiteRef",
                                                         "non_null": false
                                                     },
-                                                    "varName": "bulkUpgradeSiteInfo"
+                                                    "varName": "siteRef"
                                                 },
                                                 "targetVersion": {
                                                     "args": {},
@@ -736,7 +757,7 @@
                                             "inputFields": null,
                                             "interfaces": {},
                                             "kind": "OBJECT",
-                                            "name": "SiteUpgradeResult",
+                                            "name": "SiteUpgradeInfo",
                                             "possibleTypes": null
                                         },
                                         "indexType": "object",
@@ -746,10 +767,10 @@
                                             "NON_NULL",
                                             "OBJECT"
                                         ],
-                                        "name": "SiteUpgradeResult",
+                                        "name": "SiteUpgradeInfo",
                                         "non_null": false
                                     },
-                                    "varName": "siteUpgradeResult"
+                                    "varName": "siteUpgradeInfo"
                                 }
                             },
                             "inputFields": null,

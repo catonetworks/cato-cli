@@ -1,78 +1,77 @@
 mutation policyRemotePortFwdAddRule ( $remotePortFwdAddRuleInput:RemotePortFwdAddRuleInput! $remotePortFwdPolicyMutationInput:RemotePortFwdPolicyMutationInput ) {
 	policy ( ) {
 		remotePortFwd ( input:$remotePortFwdPolicyMutationInput  )  {
-			addRule ( input:$remotePortFwdAddRuleInput   ) {
-				remotePortFwdRulePayloadRule: rule {
-					audit {
+			addRuleRemotePortFwdPolicyMutations: addRule ( input:$remotePortFwdAddRuleInput   ) {
+				ruleRemotePortFwdRuleMutationPayload: rule {
+					auditRemotePortFwdRulePayload: audit {
 						updatedTime
 						updatedBy
 					}
-					rule {
+					ruleRemotePortFwdRulePayload: rule {
 						id
 						name
 						description
 						index
-						policySectionInfoSection: section {
+						sectionRemotePortFwdRule: section {
 							id
 							name
-							policyId
 						}
 
 						enabled
 						forwardIcmp
-						allocatedIpRefExternalIp: externalIp {
+						externalIpRemotePortFwdRule: externalIp {
 							id
 							name
 						}
 
-						portRangeExternalPortRange: externalPortRange {
+						externalPortRangeRemotePortFwdRule: externalPortRange {
 							from
 							to
 						}
 
 						internalIp
-						portRangeInternalPortRange: internalPortRange {
+						internalPortRangeRemotePortFwdRule: internalPortRange {
 							from
 							to
 						}
 
-						remotePortFwdRemoteIpsRemoteIPs: remoteIPs {
+						remoteIPsRemotePortFwdRule: remoteIPs {
 							ip
-							ipAddressRangeIpRange: ipRange {
+							ipRangeRemotePortFwdRemoteIps: ipRange {
 								from
 								to
 							}
 							subnet
-							globalIpRangeRefGlobalIpRange: globalIpRange {
+							globalIpRangeRemotePortFwdRemoteIps: globalIpRange {
 								id
 								name
 							}
 						}
 
-						remotePortFwdRestrictionTypeRestrictionType: restrictionType
-						policyRuleTrackingAlertTracking: tracking {
+						restrictionTypeRemotePortFwdRule: restrictionType
+						trackingRemotePortFwdRule: tracking {
 							enabled
-							policyRuleTrackingFrequencyEnumFrequency: frequency
-							subscriptionGroupRefSubscriptionGroup: subscriptionGroup {
+							frequencyPolicyRuleTrackingAlert: frequency
+							subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
 								id
 								name
 							}
-							subscriptionWebhookRefWebhook: webhook {
+							webhookPolicyRuleTrackingAlert: webhook {
 								id
 								name
 							}
-							subscriptionMailingListRefMailingList: mailingList {
+							mailingListPolicyRuleTrackingAlert: mailingList {
 								id
 								name
 							}
 						}
 
 					}
-					properties
+					propertiesRemotePortFwdRulePayload: properties
 				}
 
-				policyMutationStatusStatus: status
-				policyMutationErrorErrors: errors {
+				statusRemotePortFwdRuleMutationPayload: status
+				errorsRemotePortFwdRuleMutationPayload: errors {
 					errorMessage
 					errorCode
 				}

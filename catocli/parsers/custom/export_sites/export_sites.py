@@ -97,6 +97,23 @@ def export_socket_site_to_json(args, configuration):
             cur_lan_interface['index'] = lan_ni.get("helperFields","").get('interfaceId', "")
             cur_lan_interface['destType'] = lan_ni.get("helperFields","").get('destType', "")
             
+            for range in entity_network_ranges:
+                if hasattr(args, 'verbose') and args.verbose:
+                    print(f"Processing network range: {type(range)} - {range}")
+                helper_fields = range.get("helperFields", {})
+                entity_data = range.get('entity', {})
+                range_name = entity_data.get('name', "")
+                if range_name and " \\ " in range_name:
+                    range_name = range_name.split(" \\ ").pop()
+                else:
+                    range_name = range_name
+                network_range_site_id = str(helper_fields.get('siteId', ""))
+                network_range_interface_name = str(helper_fields.get('interfaceName', ""))
+                if site_id == network_range_site_id and interfaceName == network_range_interface_name and range_name == "Native Range":
+                    cur_lan_interface['subnet'] = helper_fields.get('subnet', "")
+                    cur_lan_interface['vlanTag'] = helper_fields.get('vlanTag', "")
+                    cur_lan_interface['microsegmentation'] = helper_fields.get('microsegmentation', "")
+
             # Create a composite key for interface mapping that includes site_id
             interface_key = f"{site_id}_{interfaceName}"
             interface_map[interface_key] = id
@@ -141,7 +158,7 @@ def export_socket_site_to_json(args, configuration):
             cur_range['microsegmentation'] = helper_fields.get('microsegmentation', "")
             
             # Safely add to processed_data with existence checks
-            if site_id and interface_id and range_id:
+            if site_id and interface_id and range_id and cur_range['rangeName'] != "Native Range":
                 site_entry = next((site for site in processed_data['sites'] if site['id'] == site_id), None)
                 if not site_entry:
                     # print(f"WARNING: Site ID {site_id} not found in processed_data")

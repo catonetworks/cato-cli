@@ -1,8 +1,8 @@
 query siteBgpPeerList ( $bgpPeerListInput:BgpPeerListInput! ) {
 	site ( ) {
 		bgpPeerList ( input:$bgpPeerListInput  )  {
-			bgpPeer {
-				siteRefSite: site {
+			bgpPeerBgpPeerListPayload: bgpPeer {
+				siteBgpPeer: site {
 					id
 					name
 				}
@@ -16,18 +16,18 @@ query siteBgpPeerList ( $bgpPeerListInput:BgpPeerListInput! ) {
 				advertiseDefaultRoute
 				advertiseAllRoutes
 				advertiseSummaryRoutes
-				bgpSummaryRouteSummaryRoute: summaryRoute {
+				summaryRouteBgpPeer: summaryRoute {
 					id
 					route
-					bgpCommunityCommunity: community {
+					communityBgpSummaryRoute: community {
 						from
 						to
 					}
 				}
 
-				bgpDefaultActionDefaultAction: defaultAction
-				bgpFilterRuleDefaultActionExclusion: defaultActionExclusion {
-					bgpRouteExactFilterRuleBgpRouteExactFilterRule: bgpRouteExactFilterRule {
+				defaultActionBgpPeer: defaultAction
+				defaultActionExclusionBgpPeer: defaultActionExclusion {
+					bgpRouteExactFilterRuleBgpFilterRule: bgpRouteExactFilterRule {
 						id
 						globalIpRange {
 							id
@@ -36,7 +36,7 @@ query siteBgpPeerList ( $bgpPeerListInput:BgpPeerListInput! ) {
 
 						networkSubnet
 					}
-					bgpRouteExactAndInclusiveFilterRuleBgpRouteExactAndInclusiveFilterRule: bgpRouteExactAndInclusiveFilterRule {
+					bgpRouteExactAndInclusiveFilterRuleBgpFilterRule: bgpRouteExactAndInclusiveFilterRule {
 						id
 						globalIpRange {
 							id
@@ -53,7 +53,7 @@ query siteBgpPeerList ( $bgpPeerListInput:BgpPeerListInput! ) {
 						le
 						ge
 					}
-					bgpCommunityFilterRuleCommunityFilterRule: communityFilterRule {
+					communityFilterRuleBgpFilterRule: communityFilterRule {
 						id
 						predicate
 						community {
@@ -70,16 +70,16 @@ query siteBgpPeerList ( $bgpPeerListInput:BgpPeerListInput! ) {
 				holdTime
 				keepaliveInterval
 				bfdEnabled
-				bfdSettingsBfdSettings: bfdSettings {
+				bfdSettingsBgpPeer: bfdSettings {
 					transmitInterval
 					receiveInterval
 					multiplier
 				}
 
-				bgpTrackingTracking: tracking {
+				trackingBgpPeer: tracking {
 					id
 					enabled
-					alertFrequency
+					alertFrequencyBgpTracking: alertFrequency
 					subscriptionId
 				}
 

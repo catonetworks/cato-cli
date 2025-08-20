@@ -10,7 +10,7 @@
 
 `catocli mutation sites updateSiteGeneralDetails "$(cat < updateSiteGeneralDetails.json)"`
 
-`catocli mutation sites updateSiteGeneralDetails '{"siteId": "ID", "updateSiteGeneralDetailsInput": {"description": {"description": "String"}, "name": {"name": "String"}, "siteType": {"siteType": "enum(SiteType)"}, "updateSiteLocationInput": {"address": {"address": "String"}, "cityName": {"cityName": "String"}, "countryCode": {"countryCode": "String"}, "stateCode": {"stateCode": "String"}, "timezone": {"timezone": "String"}}}}'`
+`catocli mutation sites updateSiteGeneralDetails '{"siteId": "ID", "updateSiteGeneralDetailsInput": {"description": {"description": "String"}, "name": {"name": "String"}, "siteType": {"siteType": "enum(SiteType)"}, "updateSiteLocationInput": {"address": {"address": "String"}, "cityName": {"cityName": "String"}, "countryCode": {"countryCode": "String"}, "stateCode": {"stateCode": "String"}, "timezone": {"timezone": "String"}}, "updateSitePreferredPopLocationInput": {"preferredOnly": {"preferredOnly": "Boolean"}, "primary": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "secondary": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}}}}'`
 
 #### Operation Arguments for mutation.sites.updateSiteGeneralDetails ####
 `accountId` [ID] - (required) N/A 

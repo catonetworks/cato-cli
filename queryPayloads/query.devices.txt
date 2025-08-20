@@ -1,14 +1,14 @@
 query devices ( $deviceV2Input:DeviceV2Input $sortOrderInput:SortOrderInput $deviceAttributeCatalogInput:DeviceAttributeCatalogInput $jobId:ID! ) {
 	devices ( ) {
 		list ( input:$deviceV2Input  )  {
-			device {
+			deviceDevicesPayload: device {
 				id
-				siteRefSite: site {
+				siteDeviceV2: site {
 					id
 					name
 				}
 
-				userRefUser: user {
+				userDeviceV2: user {
 					id
 					name
 				}
@@ -17,78 +17,77 @@ query devices ( $deviceV2Input:DeviceV2Input $sortOrderInput:SortOrderInput $dev
 				firstSeen
 				lastSeen
 				ip
-				deviceV2CategoryCategories: categories
 				category
 				riskScore
-				deviceNicNic: nic {
+				nicDeviceV2: nic {
 					macAddress
 					vendor
 				}
 
-				deviceOsOs: os {
+				osDeviceV2: os {
 					product
 					vendor
 					version
 				}
 
-				deviceHwHw: hw {
+				hwDeviceV2: hw {
 					type
 					model
 					manufacturer
 				}
 
-				deviceNetworkNetwork: network {
+				networkDeviceV2: network {
 					subnet
 					networkName
 				}
 
-				deviceNetworkRefNetworkInfo: networkInfo
-				deviceConnectionProfileConnectionProfile: connectionProfile {
+				networkInfoDeviceV2: networkInfo
+				connectionProfileDeviceV2: connectionProfile {
 					destApps
 					destDomains
 					destHosts
 					directions
 				}
 
-				deviceConfidenceLevelConfidence: confidence
+				confidenceDeviceV2: confidence
 			}
-			paging {
+			pagingDevicesPayload: paging {
 				total
 			}
 		}
 
 		attributesCatalog {
-			deviceAttributeCatalogPayloadCategory: category ( sort:$sortOrderInput   ) {
+			categoryDeviceAttributesCatalogQueries: category ( sort:$sortOrderInput   ) {
 				items
-				pageInfoPageInfo: pageInfo {
+				pageInfoDeviceAttributeCatalogPayload: pageInfo {
 					total
 				}
 
 			}
-			deviceAttributeCatalogPayloadType: type ( input:$deviceAttributeCatalogInput   ) {
+			typeDeviceAttributesCatalogQueries: type ( input:$deviceAttributeCatalogInput   ) {
 				items
-				pageInfoPageInfo: pageInfo {
+				pageInfoDeviceAttributeCatalogPayload: pageInfo {
 					total
 				}
 
 			}
-			deviceAttributeCatalogPayloadModel: model ( input:$deviceAttributeCatalogInput   ) {
+			modelDeviceAttributesCatalogQueries: model ( input:$deviceAttributeCatalogInput   ) {
 				items
-				pageInfoPageInfo: pageInfo {
+				pageInfoDeviceAttributeCatalogPayload: pageInfo {
 					total
 				}
 
 			}
-			deviceAttributeCatalogPayloadManufacturer: manufacturer ( input:$deviceAttributeCatalogInput   ) {
+			manufacturerDeviceAttributesCatalogQueries: manufacturer ( input:$deviceAttributeCatalogInput   ) {
 				items
-				pageInfoPageInfo: pageInfo {
+				pageInfoDeviceAttributeCatalogPayload: pageInfo {
 					total
 				}
 
 			}
-			deviceAttributeCatalogPayloadOs: os ( input:$deviceAttributeCatalogInput   ) {
+			osDeviceAttributesCatalogQueries: os ( input:$deviceAttributeCatalogInput   ) {
 				items
-				pageInfoPageInfo: pageInfo {
+				pageInfoDeviceAttributeCatalogPayload: pageInfo {
 					total
 				}
 
@@ -102,7 +101,7 @@ query devices ( $deviceV2Input:DeviceV2Input $sortOrderInput:SortOrderInput $dev
 
 		csvExportStatus ( jobId:$jobId  )  {
 			jobId
-			exportJobStatusStatus: status
+			statusExportStatusResponse: status
 			progress
 			message
 			downloadUrl

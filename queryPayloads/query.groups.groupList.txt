@@ -1,0 +1,48 @@
+query groupsGroupList ( $groupMembersListInput:GroupMembersListInput! $groupListInput:GroupListInput ) {
+	groups ( ) {
+		groupList ( input:$groupListInput  )  {
+			itemsGroupListPayload: items {
+				id
+				name
+				description
+				auditGroup: audit {
+					updatedTime
+					updatedByAuditingMetadata: updatedBy {
+						id
+						name
+						... on AdminRef {
+							adminRefId: id
+							adminRefName: name
+						}
+						... on ApiKeyRef {
+							apiKeyRefId: id
+							apiKeyRefName: name
+						}
+					}
+				}
+
+				membersGroup: members ( input:$groupMembersListInput  )  {
+					itemsGroupMembersListPayload: items {
+						id
+						name
+						typeGroupMemberRefTyped: type
+					}
+					pagingGroupMembersListPayload: paging {
+						total
+					}
+				}
+
+				membersCount
+				membersCountPerTypeGroup: membersCountPerType {
+					typeGroupMemberTypeCount: type
+					membersCount
+				}
+
+			}
+			pagingGroupListPayload: paging {
+				total
+			}
+		}
+
+	}	
+}

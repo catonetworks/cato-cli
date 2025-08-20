@@ -1,72 +1,70 @@
 query policyDynamicIpAllocationPolicy ( $dynamicIpAllocationPolicyInput:DynamicIpAllocationPolicyInput ) {
 	policy ( ) {
 		dynamicIpAllocation {
-			policy ( input:$dynamicIpAllocationPolicyInput   ) {
+			policyDynamicIpAllocationPolicyQueries: policy ( input:$dynamicIpAllocationPolicyInput   ) {
 				enabled
-				dynamicIpAllocationRulePayloadRules: rules {
-					policyElementAuditAudit: audit {
+				rulesDynamicIpAllocationPolicy: rules {
+					auditDynamicIpAllocationRulePayload: audit {
 						updatedTime
 						updatedBy
 					}
-					dynamicIpAllocationRuleRule: rule {
+					ruleDynamicIpAllocationRulePayload: rule {
 						id
 						name
 						description
 						index
-						policySectionInfoSection: section {
+						sectionDynamicIpAllocationRule: section {
 							id
 							name
-							policyId
 						}
 
 						enabled
-						dynamicIpAllocationSourceSource: source {
-							userRefUser: user {
+						sourceDynamicIpAllocationRule: source {
+							userDynamicIpAllocationSource: user {
 								id
 								name
 							}
-							usersGroupRefUsersGroup: usersGroup {
+							usersGroupDynamicIpAllocationSource: usersGroup {
 								id
 								name
 							}
 						}
 
-						operatingSystemPlatform: platform
-						countryRefCountry: country {
+						platformDynamicIpAllocationRule: platform
+						countryDynamicIpAllocationRule: country {
 							id
 							name
 						}
 
-						dynamicIpAllocationRangeRange: range {
-							globalIpRangeRefGlobalIpRange: globalIpRange {
+						rangeDynamicIpAllocationRule: range {
+							globalIpRangeDynamicIpAllocationRange: globalIpRange {
 								id
 								name
 							}
 						}
 
 					}
-					policyElementPropertiesEnumProperties: properties
+					propertiesDynamicIpAllocationRulePayload: properties
 				}
 
-				policySectionPayloadSections: sections {
-					policyElementAuditAudit: audit {
+				sectionsDynamicIpAllocationPolicy: sections {
+					auditPolicySectionPayload: audit {
 						updatedTime
 						updatedBy
 					}
-					policySectionInfoSection: section {
+					sectionPolicySectionPayload: section {
 						id
 						name
-						policyId
 					}
-					policyElementPropertiesEnumProperties: properties
+					propertiesPolicySectionPayload: properties
 				}
 
-				policyAuditAudit: audit {
+				auditDynamicIpAllocationPolicy: audit {
 					publishedTime
 					publishedBy
 				}
 
-				policyRevisionRevision: revision {
+				revisionDynamicIpAllocationPolicy: revision {
 					id
 					name
 					description

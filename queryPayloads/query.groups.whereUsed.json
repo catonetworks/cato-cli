@@ -1,0 +1,14 @@
+{
+    "operationName": "groupsWhereUsed",
+    "query": "query groupsWhereUsed ( $groupRefInput:GroupRefInput! ) {\n\tgroups ( ) {\n\t\twhereUsed ( input:$groupRefInput  )  {\n\t\t\tused\n\t\t\tusageGroupWhereUsedPayload: usage {\n\t\t\t\ttype\n\t\t\t\tfield\n\t\t\t}\n\t\t\tinvalidMemberTypesGroupWhereUsedPayload: invalidMemberTypes {\n\t\t\t\ttypeInvalidGroupMemberTypeInScope: type\n\t\t\t\tscopeInvalidGroupMemberTypeInScope: scope {\n\t\t\t\t\ttype\n\t\t\t\t\tfield\n\t\t\t\t}\n\n\t\t\t}\n\t\t}\n\n\t}\t\n}",
+    "variables": {
+        "groupRefInput": {
+            "by": {
+                "by": "enum(ObjectRefBy)"
+            },
+            "input": {
+                "input": "String"
+            }
+        }
+    }
+}

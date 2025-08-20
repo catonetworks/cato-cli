@@ -1,69 +1,68 @@
 mutation policyRemotePortFwdUpdatePolicy ( $remotePortFwdPolicyUpdateInput:RemotePortFwdPolicyUpdateInput! $remotePortFwdPolicyMutationInput:RemotePortFwdPolicyMutationInput ) {
 	policy ( ) {
 		remotePortFwd ( input:$remotePortFwdPolicyMutationInput  )  {
-			updatePolicy ( input:$remotePortFwdPolicyUpdateInput   ) {
-				remotePortFwdPolicyPolicy: policy {
+			updatePolicyRemotePortFwdPolicyMutations: updatePolicy ( input:$remotePortFwdPolicyUpdateInput   ) {
+				policyRemotePortFwdPolicyMutationPayload: policy {
 					enabled
-					rules {
-						policyElementAuditAudit: audit {
+					rulesRemotePortFwdPolicy: rules {
+						auditRemotePortFwdRulePayload: audit {
 							updatedTime
 							updatedBy
 						}
 
-						remotePortFwdRuleRule: rule {
+						ruleRemotePortFwdRulePayload: rule {
 							id
 							name
 							description
 							index
-							policySectionInfoSection: section {
+							sectionRemotePortFwdRule: section {
 								id
 								name
-								policyId
 							}
 							enabled
 							forwardIcmp
-							allocatedIpRefExternalIp: externalIp {
+							externalIpRemotePortFwdRule: externalIp {
 								id
 								name
 							}
-							portRangeExternalPortRange: externalPortRange {
+							externalPortRangeRemotePortFwdRule: externalPortRange {
 								from
 								to
 							}
 							internalIp
-							portRangeInternalPortRange: internalPortRange {
+							internalPortRangeRemotePortFwdRule: internalPortRange {
 								from
 								to
 							}
-							remotePortFwdRemoteIpsRemoteIPs: remoteIPs {
+							remoteIPsRemotePortFwdRule: remoteIPs {
 								ip
-								ipAddressRangeIpRange: ipRange {
+								ipRangeRemotePortFwdRemoteIps: ipRange {
 									from
 									to
 								}
 
 								subnet
-								globalIpRangeRefGlobalIpRange: globalIpRange {
+								globalIpRangeRemotePortFwdRemoteIps: globalIpRange {
 									id
 									name
 								}
 
 							}
-							remotePortFwdRestrictionTypeRestrictionType: restrictionType
-							policyRuleTrackingAlertTracking: tracking {
+							restrictionTypeRemotePortFwdRule: restrictionType
+							trackingRemotePortFwdRule: tracking {
 								enabled
-								policyRuleTrackingFrequencyEnumFrequency: frequency
-								subscriptionGroupRefSubscriptionGroup: subscriptionGroup {
+								frequencyPolicyRuleTrackingAlert: frequency
+								subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
 									id
 									name
 								}
 
-								subscriptionWebhookRefWebhook: webhook {
+								webhookPolicyRuleTrackingAlert: webhook {
 									id
 									name
 								}
 
-								subscriptionMailingListRefMailingList: mailingList {
+								mailingListPolicyRuleTrackingAlert: mailingList {
 									id
 									name
 								}
@@ -71,27 +70,26 @@ mutation policyRemotePortFwdUpdatePolicy ( $remotePortFwdPolicyUpdateInput:Remot
 							}
 						}
 
-						policyElementPropertiesEnumProperties: properties
+						propertiesRemotePortFwdRulePayload: properties
 					}
-					sections {
-						policyElementAuditAudit: audit {
+					sectionsRemotePortFwdPolicy: sections {
+						auditPolicySectionPayload: audit {
 							updatedTime
 							updatedBy
 						}
 
-						policySectionInfoSection: section {
+						sectionPolicySectionPayload: section {
 							id
 							name
-							policyId
 						}
 
-						policyElementPropertiesEnumProperties: properties
+						propertiesPolicySectionPayload: properties
 					}
-					audit {
+					auditRemotePortFwdPolicy: audit {
 						publishedTime
 						publishedBy
 					}
-					revision {
+					revisionRemotePortFwdPolicy: revision {
 						id
 						name
 						description
@@ -101,8 +99,8 @@ mutation policyRemotePortFwdUpdatePolicy ( $remotePortFwdPolicyUpdateInput:Remot
 					}
 				}
 
-				policyMutationStatusStatus: status
-				policyMutationErrorErrors: errors {
+				statusRemotePortFwdPolicyMutationPayload: status
+				errorsRemotePortFwdPolicyMutationPayload: errors {
 					errorMessage
 					errorCode
 				}

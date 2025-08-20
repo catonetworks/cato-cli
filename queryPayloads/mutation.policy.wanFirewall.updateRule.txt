@@ -1,86 +1,85 @@
 mutation policyWanFirewallUpdateRule ( $wanFirewallUpdateRuleInput:WanFirewallUpdateRuleInput! $wanFirewallPolicyMutationInput:WanFirewallPolicyMutationInput ) {
 	policy ( ) {
 		wanFirewall ( input:$wanFirewallPolicyMutationInput  )  {
-			updateRule ( input:$wanFirewallUpdateRuleInput   ) {
-				wanFirewallRulePayloadRule: rule {
-					audit {
+			updateRuleWanFirewallPolicyMutations: updateRule ( input:$wanFirewallUpdateRuleInput   ) {
+				ruleWanFirewallRuleMutationPayload: rule {
+					auditWanFirewallRulePayload: audit {
 						updatedTime
 						updatedBy
 					}
-					rule {
+					ruleWanFirewallRulePayload: rule {
 						id
 						name
 						description
 						index
-						policySectionInfoSection: section {
+						sectionWanFirewallRule: section {
 							id
 							name
-							policyId
 						}
 
 						enabled
-						wanFirewallSourceSource: source {
-							hostRefHost: host {
+						sourceWanFirewallRule: source {
+							hostWanFirewallSource: host {
 								id
 								name
 							}
-							siteRefSite: site {
+							siteWanFirewallSource: site {
 								id
 								name
 							}
 							subnet
 							ip
-							ipAddressRangeIpRange: ipRange {
+							ipRangeWanFirewallSource: ipRange {
 								from
 								to
 							}
-							globalIpRangeRefGlobalIpRange: globalIpRange {
+							globalIpRangeWanFirewallSource: globalIpRange {
 								id
 								name
 							}
-							networkInterfaceRefNetworkInterface: networkInterface {
+							networkInterfaceWanFirewallSource: networkInterface {
 								id
 								name
 							}
-							siteNetworkSubnetRefSiteNetworkSubnet: siteNetworkSubnet {
+							siteNetworkSubnetWanFirewallSource: siteNetworkSubnet {
 								id
 								name
 							}
-							floatingSubnetRefFloatingSubnet: floatingSubnet {
+							floatingSubnetWanFirewallSource: floatingSubnet {
 								id
 								name
 							}
-							userRefUser: user {
+							userWanFirewallSource: user {
 								id
 								name
 							}
-							usersGroupRefUsersGroup: usersGroup {
+							usersGroupWanFirewallSource: usersGroup {
 								id
 								name
 							}
-							groupRefGroup: group {
+							groupWanFirewallSource: group {
 								id
 								name
 							}
-							systemGroupRefSystemGroup: systemGroup {
+							systemGroupWanFirewallSource: systemGroup {
 								id
 								name
 							}
 						}
 
-						connectionOriginEnumConnectionOrigin: connectionOrigin
-						countryRefCountry: country {
+						connectionOriginWanFirewallRule: connectionOrigin
+						countryWanFirewallRule: country {
 							id
 							name
 						}
 
-						deviceProfileRefDevice: device {
+						deviceWanFirewallRule: device {
 							id
 							name
 						}
 
-						operatingSystemDeviceOS: deviceOS
-						deviceAttributesDeviceAttributes: deviceAttributes {
+						deviceOSWanFirewallRule: deviceOS
+						deviceAttributesWanFirewallRule: deviceAttributes {
 							category
 							type
 							model
@@ -89,73 +88,73 @@ mutation policyWanFirewallUpdateRule ( $wanFirewallUpdateRuleInput:WanFirewallUp
 							osVersion
 						}
 
-						wanFirewallDestinationDestination: destination {
-							hostRefHost: host {
+						destinationWanFirewallRule: destination {
+							hostWanFirewallDestination: host {
 								id
 								name
 							}
-							siteRefSite: site {
+							siteWanFirewallDestination: site {
 								id
 								name
 							}
 							subnet
 							ip
-							ipAddressRangeIpRange: ipRange {
+							ipRangeWanFirewallDestination: ipRange {
 								from
 								to
 							}
-							globalIpRangeRefGlobalIpRange: globalIpRange {
+							globalIpRangeWanFirewallDestination: globalIpRange {
 								id
 								name
 							}
-							networkInterfaceRefNetworkInterface: networkInterface {
+							networkInterfaceWanFirewallDestination: networkInterface {
 								id
 								name
 							}
-							siteNetworkSubnetRefSiteNetworkSubnet: siteNetworkSubnet {
+							siteNetworkSubnetWanFirewallDestination: siteNetworkSubnet {
 								id
 								name
 							}
-							floatingSubnetRefFloatingSubnet: floatingSubnet {
+							floatingSubnetWanFirewallDestination: floatingSubnet {
 								id
 								name
 							}
-							userRefUser: user {
+							userWanFirewallDestination: user {
 								id
 								name
 							}
-							usersGroupRefUsersGroup: usersGroup {
+							usersGroupWanFirewallDestination: usersGroup {
 								id
 								name
 							}
-							groupRefGroup: group {
+							groupWanFirewallDestination: group {
 								id
 								name
 							}
-							systemGroupRefSystemGroup: systemGroup {
+							systemGroupWanFirewallDestination: systemGroup {
 								id
 								name
 							}
 						}
 
-						wanFirewallApplicationApplication: application {
-							applicationRefApplication: application {
+						applicationWanFirewallRule: application {
+							applicationWanFirewallApplication: application {
 								id
 								name
 							}
-							applicationCategoryRefAppCategory: appCategory {
+							appCategoryWanFirewallApplication: appCategory {
 								id
 								name
 							}
-							customApplicationRefCustomApp: customApp {
+							customAppWanFirewallApplication: customApp {
 								id
 								name
 							}
-							customCategoryRefCustomCategory: customCategory {
+							customCategoryWanFirewallApplication: customCategory {
 								id
 								name
 							}
-							sanctionedAppsCategoryRefSanctionedAppsCategory: sanctionedAppsCategory {
+							sanctionedAppsCategoryWanFirewallApplication: sanctionedAppsCategory {
 								id
 								name
 							}
@@ -163,51 +162,51 @@ mutation policyWanFirewallUpdateRule ( $wanFirewallUpdateRuleInput:WanFirewallUp
 							fqdn
 							ip
 							subnet
-							ipAddressRangeIpRange: ipRange {
+							ipRangeWanFirewallApplication: ipRange {
 								from
 								to
 							}
-							globalIpRangeRefGlobalIpRange: globalIpRange {
+							globalIpRangeWanFirewallApplication: globalIpRange {
 								id
 								name
 							}
 						}
 
-						wanFirewallServiceTypeService: service {
-							serviceRefStandard: standard {
+						serviceWanFirewallRule: service {
+							standardWanFirewallServiceType: standard {
 								id
 								name
 							}
-							customServiceCustom: custom {
+							customWanFirewallServiceType: custom {
 								port
-								portRangePortRange: portRange {
+								portRangeCustomService: portRange {
 									from
 									to
 								}
 
-								ipProtocolProtocol: protocol
+								protocolCustomService: protocol
 							}
 						}
 
-						wanFirewallActionEnumAction: action
-						policyTrackingTracking: tracking {
-							policyRuleTrackingEventEvent: event {
+						actionWanFirewallRule: action
+						trackingWanFirewallRule: tracking {
+							eventPolicyTracking: event {
 								enabled
 							}
-							policyRuleTrackingAlertAlert: alert {
+							alertPolicyTracking: alert {
 								enabled
-								policyRuleTrackingFrequencyEnumFrequency: frequency
-								subscriptionGroupRefSubscriptionGroup: subscriptionGroup {
+								frequencyPolicyRuleTrackingAlert: frequency
+								subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
 									id
 									name
 								}
 
-								subscriptionWebhookRefWebhook: webhook {
+								webhookPolicyRuleTrackingAlert: webhook {
 									id
 									name
 								}
 
-								subscriptionMailingListRefMailingList: mailingList {
+								mailingListPolicyRuleTrackingAlert: mailingList {
 									id
 									name
 								}
@@ -215,157 +214,157 @@ mutation policyWanFirewallUpdateRule ( $wanFirewallUpdateRuleInput:WanFirewallUp
 							}
 						}
 
-						policyScheduleSchedule: schedule {
-							policyActiveOnEnumActiveOn: activeOn
-							policyCustomTimeframeCustomTimeframe: customTimeframe {
+						scheduleWanFirewallRule: schedule {
+							activeOnPolicySchedule: activeOn
+							customTimeframePolicySchedule: customTimeframe {
 								from
 								to
 							}
-							policyCustomRecurringCustomRecurring: customRecurring {
+							customRecurringPolicySchedule: customRecurring {
 								from
 								to
 								days
 							}
 						}
 
-						policyRuleActivePeriodActivePeriod: activePeriod {
+						activePeriodWanFirewallRule: activePeriod {
 							useEffectiveFrom
 							effectiveFrom
 							useExpiresAt
 							expiresAt
 						}
 
-						wanFirewallDirectionEnumDirection: direction
-						wanFirewallRuleExceptionExceptions: exceptions {
+						directionWanFirewallRule: direction
+						exceptionsWanFirewallRule: exceptions {
 							name
-							wanFirewallSourceSource: source {
-								hostRefHost: host {
+							sourceWanFirewallRuleException: source {
+								hostWanFirewallSource: host {
 									id
 									name
 								}
 
-								siteRefSite: site {
-									id
-									name
-								}
-
-								subnet
-								ip
-								ipAddressRangeIpRange: ipRange {
-									from
-									to
-								}
-
-								globalIpRangeRefGlobalIpRange: globalIpRange {
-									id
-									name
-								}
-
-								networkInterfaceRefNetworkInterface: networkInterface {
-									id
-									name
-								}
-
-								siteNetworkSubnetRefSiteNetworkSubnet: siteNetworkSubnet {
-									id
-									name
-								}
-
-								floatingSubnetRefFloatingSubnet: floatingSubnet {
-									id
-									name
-								}
-
-								userRefUser: user {
-									id
-									name
-								}
-
-								usersGroupRefUsersGroup: usersGroup {
-									id
-									name
-								}
-
-								groupRefGroup: group {
-									id
-									name
-								}
-
-								systemGroupRefSystemGroup: systemGroup {
-									id
-									name
-								}
-
-							}
-							operatingSystemDeviceOS: deviceOS
-							wanFirewallDestinationDestination: destination {
-								hostRefHost: host {
-									id
-									name
-								}
-
-								siteRefSite: site {
+								siteWanFirewallSource: site {
 									id
 									name
 								}
 
 								subnet
 								ip
-								ipAddressRangeIpRange: ipRange {
+								ipRangeWanFirewallSource: ipRange {
 									from
 									to
 								}
 
-								globalIpRangeRefGlobalIpRange: globalIpRange {
+								globalIpRangeWanFirewallSource: globalIpRange {
 									id
 									name
 								}
 
-								networkInterfaceRefNetworkInterface: networkInterface {
+								networkInterfaceWanFirewallSource: networkInterface {
 									id
 									name
 								}
 
-								siteNetworkSubnetRefSiteNetworkSubnet: siteNetworkSubnet {
+								siteNetworkSubnetWanFirewallSource: siteNetworkSubnet {
 									id
 									name
 								}
 
-								floatingSubnetRefFloatingSubnet: floatingSubnet {
+								floatingSubnetWanFirewallSource: floatingSubnet {
 									id
 									name
 								}
 
-								userRefUser: user {
+								userWanFirewallSource: user {
 									id
 									name
 								}
 
-								usersGroupRefUsersGroup: usersGroup {
+								usersGroupWanFirewallSource: usersGroup {
 									id
 									name
 								}
 
-								groupRefGroup: group {
+								groupWanFirewallSource: group {
 									id
 									name
 								}
 
-								systemGroupRefSystemGroup: systemGroup {
+								systemGroupWanFirewallSource: systemGroup {
 									id
 									name
 								}
 
 							}
-							countryRefCountry: country {
+							deviceOSWanFirewallRuleException: deviceOS
+							destinationWanFirewallRuleException: destination {
+								hostWanFirewallDestination: host {
+									id
+									name
+								}
+
+								siteWanFirewallDestination: site {
+									id
+									name
+								}
+
+								subnet
+								ip
+								ipRangeWanFirewallDestination: ipRange {
+									from
+									to
+								}
+
+								globalIpRangeWanFirewallDestination: globalIpRange {
+									id
+									name
+								}
+
+								networkInterfaceWanFirewallDestination: networkInterface {
+									id
+									name
+								}
+
+								siteNetworkSubnetWanFirewallDestination: siteNetworkSubnet {
+									id
+									name
+								}
+
+								floatingSubnetWanFirewallDestination: floatingSubnet {
+									id
+									name
+								}
+
+								userWanFirewallDestination: user {
+									id
+									name
+								}
+
+								usersGroupWanFirewallDestination: usersGroup {
+									id
+									name
+								}
+
+								groupWanFirewallDestination: group {
+									id
+									name
+								}
+
+								systemGroupWanFirewallDestination: systemGroup {
+									id
+									name
+								}
+
+							}
+							countryWanFirewallRuleException: country {
 								id
 								name
 							}
-							deviceProfileRefDevice: device {
+							deviceWanFirewallRuleException: device {
 								id
 								name
 							}
-							deviceAttributesDeviceAttributes: deviceAttributes {
+							deviceAttributesWanFirewallRuleException: deviceAttributes {
 								category
 								type
 								model
@@ -373,28 +372,28 @@ mutation policyWanFirewallUpdateRule ( $wanFirewallUpdateRuleInput:WanFirewallUp
 								os
 								osVersion
 							}
-							wanFirewallApplicationApplication: application {
-								applicationRefApplication: application {
+							applicationWanFirewallRuleException: application {
+								applicationWanFirewallApplication: application {
 									id
 									name
 								}
 
-								applicationCategoryRefAppCategory: appCategory {
+								appCategoryWanFirewallApplication: appCategory {
 									id
 									name
 								}
 
-								customApplicationRefCustomApp: customApp {
+								customAppWanFirewallApplication: customApp {
 									id
 									name
 								}
 
-								customCategoryRefCustomCategory: customCategory {
+								customCategoryWanFirewallApplication: customCategory {
 									id
 									name
 								}
 
-								sanctionedAppsCategoryRefSanctionedAppsCategory: sanctionedAppsCategory {
+								sanctionedAppsCategoryWanFirewallApplication: sanctionedAppsCategory {
 									id
 									name
 								}
@@ -403,43 +402,43 @@ mutation policyWanFirewallUpdateRule ( $wanFirewallUpdateRuleInput:WanFirewallUp
 								fqdn
 								ip
 								subnet
-								ipAddressRangeIpRange: ipRange {
+								ipRangeWanFirewallApplication: ipRange {
 									from
 									to
 								}
 
-								globalIpRangeRefGlobalIpRange: globalIpRange {
+								globalIpRangeWanFirewallApplication: globalIpRange {
 									id
 									name
 								}
 
 							}
-							wanFirewallServiceTypeService: service {
-								serviceRefStandard: standard {
+							serviceWanFirewallRuleException: service {
+								standardWanFirewallServiceType: standard {
 									id
 									name
 								}
 
-								customServiceCustom: custom {
+								customWanFirewallServiceType: custom {
 									port
-									portRangePortRange: portRange {
+									portRangeCustomService: portRange {
 										from
 										to
 									}
-									ipProtocolProtocol: protocol
+									protocolCustomService: protocol
 								}
 
 							}
-							connectionOriginEnumConnectionOrigin: connectionOrigin
-							wanFirewallDirectionEnumDirection: direction
+							connectionOriginWanFirewallRuleException: connectionOrigin
+							directionWanFirewallRuleException: direction
 						}
 
 					}
-					properties
+					propertiesWanFirewallRulePayload: properties
 				}
 
-				policyMutationStatusStatus: status
-				policyMutationErrorErrors: errors {
+				statusWanFirewallRuleMutationPayload: status
+				errorsWanFirewallRuleMutationPayload: errors {
 					errorMessage
 					errorCode
 				}

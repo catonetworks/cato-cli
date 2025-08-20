@@ -1,54 +1,53 @@
 mutation policyDynamicIpAllocationAddRule ( $dynamicIpAllocationAddRuleInput:DynamicIpAllocationAddRuleInput! $dynamicIpAllocationPolicyMutationInput:DynamicIpAllocationPolicyMutationInput ) {
 	policy ( ) {
 		dynamicIpAllocation ( input:$dynamicIpAllocationPolicyMutationInput  )  {
-			addRule ( input:$dynamicIpAllocationAddRuleInput   ) {
-				dynamicIpAllocationRulePayloadRule: rule {
-					audit {
+			addRuleDynamicIpAllocationPolicyMutations: addRule ( input:$dynamicIpAllocationAddRuleInput   ) {
+				ruleDynamicIpAllocationRuleMutationPayload: rule {
+					auditDynamicIpAllocationRulePayload: audit {
 						updatedTime
 						updatedBy
 					}
-					rule {
+					ruleDynamicIpAllocationRulePayload: rule {
 						id
 						name
 						description
 						index
-						policySectionInfoSection: section {
+						sectionDynamicIpAllocationRule: section {
 							id
 							name
-							policyId
 						}
 
 						enabled
-						dynamicIpAllocationSourceSource: source {
-							userRefUser: user {
+						sourceDynamicIpAllocationRule: source {
+							userDynamicIpAllocationSource: user {
 								id
 								name
 							}
-							usersGroupRefUsersGroup: usersGroup {
+							usersGroupDynamicIpAllocationSource: usersGroup {
 								id
 								name
 							}
 						}
 
-						operatingSystemPlatform: platform
-						countryRefCountry: country {
+						platformDynamicIpAllocationRule: platform
+						countryDynamicIpAllocationRule: country {
 							id
 							name
 						}
 
-						dynamicIpAllocationRangeRange: range {
-							globalIpRangeRefGlobalIpRange: globalIpRange {
+						rangeDynamicIpAllocationRule: range {
+							globalIpRangeDynamicIpAllocationRange: globalIpRange {
 								id
 								name
 							}
 						}
 
 					}
-					properties
+					propertiesDynamicIpAllocationRulePayload: properties
 				}
 
-				policyMutationStatusStatus: status
-				policyMutationErrorErrors: errors {
+				statusDynamicIpAllocationRuleMutationPayload: status
+				errorsDynamicIpAllocationRuleMutationPayload: errors {
 					errorMessage
 					errorCode
 				}

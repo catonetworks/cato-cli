@@ -1,0 +1,18 @@
+mutation sitesRemoveSecondaryAwsVSocket ( $socketId:ID! ) {
+	sites ( ) {
+		removeSecondaryAwsVSocket ( socketId:$socketId  )  {
+			secondaryAwsVSocketRemoveSecondaryAwsVSocketPayload: secondaryAwsVSocket {
+				siteSecondaryAwsVSocket: site {
+					id
+					name
+				}
+
+				id
+				ipAddress
+				subnet
+				routeTableId
+			}
+		}
+
+	}	
+}

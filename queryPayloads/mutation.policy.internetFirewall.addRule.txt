@@ -1,86 +1,85 @@
 mutation policyInternetFirewallAddRule ( $internetFirewallAddRuleInput:InternetFirewallAddRuleInput! $internetFirewallPolicyMutationInput:InternetFirewallPolicyMutationInput ) {
 	policy ( ) {
 		internetFirewall ( input:$internetFirewallPolicyMutationInput  )  {
-			addRule ( input:$internetFirewallAddRuleInput   ) {
-				internetFirewallRulePayloadRule: rule {
-					audit {
+			addRuleInternetFirewallPolicyMutations: addRule ( input:$internetFirewallAddRuleInput   ) {
+				ruleInternetFirewallRuleMutationPayload: rule {
+					auditInternetFirewallRulePayload: audit {
 						updatedTime
 						updatedBy
 					}
-					rule {
+					ruleInternetFirewallRulePayload: rule {
 						id
 						name
 						description
 						index
-						policySectionInfoSection: section {
+						sectionInternetFirewallRule: section {
 							id
 							name
-							policyId
 						}
 
 						enabled
-						internetFirewallSourceSource: source {
+						sourceInternetFirewallRule: source {
 							ip
-							hostRefHost: host {
+							hostInternetFirewallSource: host {
 								id
 								name
 							}
-							siteRefSite: site {
+							siteInternetFirewallSource: site {
 								id
 								name
 							}
 							subnet
-							ipAddressRangeIpRange: ipRange {
+							ipRangeInternetFirewallSource: ipRange {
 								from
 								to
 							}
-							globalIpRangeRefGlobalIpRange: globalIpRange {
+							globalIpRangeInternetFirewallSource: globalIpRange {
 								id
 								name
 							}
-							networkInterfaceRefNetworkInterface: networkInterface {
+							networkInterfaceInternetFirewallSource: networkInterface {
 								id
 								name
 							}
-							siteNetworkSubnetRefSiteNetworkSubnet: siteNetworkSubnet {
+							siteNetworkSubnetInternetFirewallSource: siteNetworkSubnet {
 								id
 								name
 							}
-							floatingSubnetRefFloatingSubnet: floatingSubnet {
+							floatingSubnetInternetFirewallSource: floatingSubnet {
 								id
 								name
 							}
-							userRefUser: user {
+							userInternetFirewallSource: user {
 								id
 								name
 							}
-							usersGroupRefUsersGroup: usersGroup {
+							usersGroupInternetFirewallSource: usersGroup {
 								id
 								name
 							}
-							groupRefGroup: group {
+							groupInternetFirewallSource: group {
 								id
 								name
 							}
-							systemGroupRefSystemGroup: systemGroup {
+							systemGroupInternetFirewallSource: systemGroup {
 								id
 								name
 							}
 						}
 
-						connectionOriginEnumConnectionOrigin: connectionOrigin
-						countryRefCountry: country {
+						connectionOriginInternetFirewallRule: connectionOrigin
+						countryInternetFirewallRule: country {
 							id
 							name
 						}
 
-						deviceProfileRefDevice: device {
+						deviceInternetFirewallRule: device {
 							id
 							name
 						}
 
-						operatingSystemDeviceOS: deviceOS
-						deviceAttributesDeviceAttributes: deviceAttributes {
+						deviceOSInternetFirewallRule: deviceOS
+						deviceAttributesInternetFirewallRule: deviceAttributes {
 							category
 							type
 							model
@@ -89,28 +88,28 @@ mutation policyInternetFirewallAddRule ( $internetFirewallAddRuleInput:InternetF
 							osVersion
 						}
 
-						internetFirewallDestinationDestination: destination {
-							applicationRefApplication: application {
+						destinationInternetFirewallRule: destination {
+							applicationInternetFirewallDestination: application {
 								id
 								name
 							}
-							customApplicationRefCustomApp: customApp {
+							customAppInternetFirewallDestination: customApp {
 								id
 								name
 							}
-							applicationCategoryRefAppCategory: appCategory {
+							appCategoryInternetFirewallDestination: appCategory {
 								id
 								name
 							}
-							customCategoryRefCustomCategory: customCategory {
+							customCategoryInternetFirewallDestination: customCategory {
 								id
 								name
 							}
-							sanctionedAppsCategoryRefSanctionedAppsCategory: sanctionedAppsCategory {
+							sanctionedAppsCategoryInternetFirewallDestination: sanctionedAppsCategory {
 								id
 								name
 							}
-							countryRefCountry: country {
+							countryInternetFirewallDestination: country {
 								id
 								name
 							}
@@ -118,22 +117,22 @@ mutation policyInternetFirewallAddRule ( $internetFirewallAddRuleInput:InternetF
 							fqdn
 							ip
 							subnet
-							ipAddressRangeIpRange: ipRange {
+							ipRangeInternetFirewallDestination: ipRange {
 								from
 								to
 							}
-							globalIpRangeRefGlobalIpRange: globalIpRange {
+							globalIpRangeInternetFirewallDestination: globalIpRange {
 								id
 								name
 							}
 							remoteAsn
-							internetFirewallContainerContainers: containers {
-								fqdnContainerRefFqdnContainer: fqdnContainer {
+							containersInternetFirewallDestination: containers {
+								fqdnContainerInternetFirewallContainer: fqdnContainer {
 									id
 									name
 								}
 
-								ipAddressRangeContainerRefIpAddressRangeContainer: ipAddressRangeContainer {
+								ipAddressRangeContainerInternetFirewallContainer: ipAddressRangeContainer {
 									id
 									name
 								}
@@ -141,41 +140,41 @@ mutation policyInternetFirewallAddRule ( $internetFirewallAddRuleInput:InternetF
 							}
 						}
 
-						internetFirewallServiceTypeService: service {
-							serviceRefStandard: standard {
+						serviceInternetFirewallRule: service {
+							standardInternetFirewallServiceType: standard {
 								id
 								name
 							}
-							customServiceCustom: custom {
+							customInternetFirewallServiceType: custom {
 								port
-								portRangePortRange: portRange {
+								portRangeCustomService: portRange {
 									from
 									to
 								}
 
-								ipProtocolProtocol: protocol
+								protocolCustomService: protocol
 							}
 						}
 
-						internetFirewallActionEnumAction: action
-						policyTrackingTracking: tracking {
-							policyRuleTrackingEventEvent: event {
+						actionInternetFirewallRule: action
+						trackingInternetFirewallRule: tracking {
+							eventPolicyTracking: event {
 								enabled
 							}
-							policyRuleTrackingAlertAlert: alert {
+							alertPolicyTracking: alert {
 								enabled
-								policyRuleTrackingFrequencyEnumFrequency: frequency
-								subscriptionGroupRefSubscriptionGroup: subscriptionGroup {
+								frequencyPolicyRuleTrackingAlert: frequency
+								subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
 									id
 									name
 								}
 
-								subscriptionWebhookRefWebhook: webhook {
+								webhookPolicyRuleTrackingAlert: webhook {
 									id
 									name
 								}
 
-								subscriptionMailingListRefMailingList: mailingList {
+								mailingListPolicyRuleTrackingAlert: mailingList {
 									id
 									name
 								}
@@ -183,97 +182,97 @@ mutation policyInternetFirewallAddRule ( $internetFirewallAddRuleInput:InternetF
 							}
 						}
 
-						policyScheduleSchedule: schedule {
-							policyActiveOnEnumActiveOn: activeOn
-							policyCustomTimeframeCustomTimeframe: customTimeframe {
+						scheduleInternetFirewallRule: schedule {
+							activeOnPolicySchedule: activeOn
+							customTimeframePolicySchedule: customTimeframe {
 								from
 								to
 							}
-							policyCustomRecurringCustomRecurring: customRecurring {
+							customRecurringPolicySchedule: customRecurring {
 								from
 								to
 								days
 							}
 						}
 
-						policyRuleActivePeriodActivePeriod: activePeriod {
+						activePeriodInternetFirewallRule: activePeriod {
 							useEffectiveFrom
 							effectiveFrom
 							useExpiresAt
 							expiresAt
 						}
 
-						internetFirewallRuleExceptionExceptions: exceptions {
+						exceptionsInternetFirewallRule: exceptions {
 							name
-							internetFirewallSourceSource: source {
+							sourceInternetFirewallRuleException: source {
 								ip
-								hostRefHost: host {
+								hostInternetFirewallSource: host {
 									id
 									name
 								}
 
-								siteRefSite: site {
+								siteInternetFirewallSource: site {
 									id
 									name
 								}
 
 								subnet
-								ipAddressRangeIpRange: ipRange {
+								ipRangeInternetFirewallSource: ipRange {
 									from
 									to
 								}
 
-								globalIpRangeRefGlobalIpRange: globalIpRange {
+								globalIpRangeInternetFirewallSource: globalIpRange {
 									id
 									name
 								}
 
-								networkInterfaceRefNetworkInterface: networkInterface {
+								networkInterfaceInternetFirewallSource: networkInterface {
 									id
 									name
 								}
 
-								siteNetworkSubnetRefSiteNetworkSubnet: siteNetworkSubnet {
+								siteNetworkSubnetInternetFirewallSource: siteNetworkSubnet {
 									id
 									name
 								}
 
-								floatingSubnetRefFloatingSubnet: floatingSubnet {
+								floatingSubnetInternetFirewallSource: floatingSubnet {
 									id
 									name
 								}
 
-								userRefUser: user {
+								userInternetFirewallSource: user {
 									id
 									name
 								}
 
-								usersGroupRefUsersGroup: usersGroup {
+								usersGroupInternetFirewallSource: usersGroup {
 									id
 									name
 								}
 
-								groupRefGroup: group {
+								groupInternetFirewallSource: group {
 									id
 									name
 								}
 
-								systemGroupRefSystemGroup: systemGroup {
+								systemGroupInternetFirewallSource: systemGroup {
 									id
 									name
 								}
 
 							}
-							operatingSystemDeviceOS: deviceOS
-							countryRefCountry: country {
+							deviceOSInternetFirewallRuleException: deviceOS
+							countryInternetFirewallRuleException: country {
 								id
 								name
 							}
-							deviceProfileRefDevice: device {
+							deviceInternetFirewallRuleException: device {
 								id
 								name
 							}
-							deviceAttributesDeviceAttributes: deviceAttributes {
+							deviceAttributesInternetFirewallRuleException: deviceAttributes {
 								category
 								type
 								model
@@ -281,33 +280,33 @@ mutation policyInternetFirewallAddRule ( $internetFirewallAddRuleInput:InternetF
 								os
 								osVersion
 							}
-							internetFirewallDestinationDestination: destination {
-								applicationRefApplication: application {
+							destinationInternetFirewallRuleException: destination {
+								applicationInternetFirewallDestination: application {
 									id
 									name
 								}
 
-								customApplicationRefCustomApp: customApp {
+								customAppInternetFirewallDestination: customApp {
 									id
 									name
 								}
 
-								applicationCategoryRefAppCategory: appCategory {
+								appCategoryInternetFirewallDestination: appCategory {
 									id
 									name
 								}
 
-								customCategoryRefCustomCategory: customCategory {
+								customCategoryInternetFirewallDestination: customCategory {
 									id
 									name
 								}
 
-								sanctionedAppsCategoryRefSanctionedAppsCategory: sanctionedAppsCategory {
+								sanctionedAppsCategoryInternetFirewallDestination: sanctionedAppsCategory {
 									id
 									name
 								}
 
-								countryRefCountry: country {
+								countryInternetFirewallDestination: country {
 									id
 									name
 								}
@@ -316,54 +315,54 @@ mutation policyInternetFirewallAddRule ( $internetFirewallAddRuleInput:InternetF
 								fqdn
 								ip
 								subnet
-								ipAddressRangeIpRange: ipRange {
+								ipRangeInternetFirewallDestination: ipRange {
 									from
 									to
 								}
 
-								globalIpRangeRefGlobalIpRange: globalIpRange {
+								globalIpRangeInternetFirewallDestination: globalIpRange {
 									id
 									name
 								}
 
 								remoteAsn
-								internetFirewallContainerContainers: containers {
-									fqdnContainerRefFqdnContainer: fqdnContainer {
+								containersInternetFirewallDestination: containers {
+									fqdnContainerInternetFirewallContainer: fqdnContainer {
 										id
 										name
 									}
-									ipAddressRangeContainerRefIpAddressRangeContainer: ipAddressRangeContainer {
+									ipAddressRangeContainerInternetFirewallContainer: ipAddressRangeContainer {
 										id
 										name
 									}
 								}
 
 							}
-							internetFirewallServiceTypeService: service {
-								serviceRefStandard: standard {
+							serviceInternetFirewallRuleException: service {
+								standardInternetFirewallServiceType: standard {
 									id
 									name
 								}
 
-								customServiceCustom: custom {
+								customInternetFirewallServiceType: custom {
 									port
-									portRangePortRange: portRange {
+									portRangeCustomService: portRange {
 										from
 										to
 									}
-									ipProtocolProtocol: protocol
+									protocolCustomService: protocol
 								}
 
 							}
-							connectionOriginEnumConnectionOrigin: connectionOrigin
+							connectionOriginInternetFirewallRuleException: connectionOrigin
 						}
 
 					}
-					properties
+					propertiesInternetFirewallRulePayload: properties
 				}
 
-				policyMutationStatusStatus: status
-				policyMutationErrorErrors: errors {
+				statusInternetFirewallRuleMutationPayload: status
+				errorsInternetFirewallRuleMutationPayload: errors {
 					errorMessage
 					errorCode
 				}

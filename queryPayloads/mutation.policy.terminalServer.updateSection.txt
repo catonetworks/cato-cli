@@ -1,22 +1,21 @@
 mutation policyTerminalServerUpdateSection ( $policyUpdateSectionInput:PolicyUpdateSectionInput! $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput ) {
 	policy ( ) {
 		terminalServer ( input:$terminalServerPolicyMutationInput  )  {
-			updateSection ( input:$policyUpdateSectionInput   ) {
-				policySectionPayloadSection: section {
-					audit {
+			updateSectionTerminalServerPolicyMutations: updateSection ( input:$policyUpdateSectionInput   ) {
+				sectionPolicySectionMutationPayload: section {
+					auditPolicySectionPayload: audit {
 						updatedTime
 						updatedBy
 					}
-					section {
+					sectionPolicySectionPayload: section {
 						id
 						name
-						policyId
 					}
-					properties
+					propertiesPolicySectionPayload: properties
 				}
 
-				policyMutationStatusStatus: status
-				policyMutationErrorErrors: errors {
+				statusPolicySectionMutationPayload: status
+				errorsPolicySectionMutationPayload: errors {
 					errorMessage
 					errorCode
 				}

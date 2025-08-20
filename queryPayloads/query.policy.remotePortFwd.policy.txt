@@ -1,96 +1,94 @@
 query policyRemotePortFwdPolicy ( $remotePortFwdPolicyInput:RemotePortFwdPolicyInput ) {
 	policy ( ) {
 		remotePortFwd {
-			policy ( input:$remotePortFwdPolicyInput   ) {
+			policyRemotePortFwdPolicyQueries: policy ( input:$remotePortFwdPolicyInput   ) {
 				enabled
-				remotePortFwdRulePayloadRules: rules {
-					policyElementAuditAudit: audit {
+				rulesRemotePortFwdPolicy: rules {
+					auditRemotePortFwdRulePayload: audit {
 						updatedTime
 						updatedBy
 					}
-					remotePortFwdRuleRule: rule {
+					ruleRemotePortFwdRulePayload: rule {
 						id
 						name
 						description
 						index
-						policySectionInfoSection: section {
+						sectionRemotePortFwdRule: section {
 							id
 							name
-							policyId
 						}
 
 						enabled
 						forwardIcmp
-						allocatedIpRefExternalIp: externalIp {
+						externalIpRemotePortFwdRule: externalIp {
 							id
 							name
 						}
 
-						portRangeExternalPortRange: externalPortRange {
+						externalPortRangeRemotePortFwdRule: externalPortRange {
 							from
 							to
 						}
 
 						internalIp
-						portRangeInternalPortRange: internalPortRange {
+						internalPortRangeRemotePortFwdRule: internalPortRange {
 							from
 							to
 						}
 
-						remotePortFwdRemoteIpsRemoteIPs: remoteIPs {
+						remoteIPsRemotePortFwdRule: remoteIPs {
 							ip
-							ipAddressRangeIpRange: ipRange {
+							ipRangeRemotePortFwdRemoteIps: ipRange {
 								from
 								to
 							}
 							subnet
-							globalIpRangeRefGlobalIpRange: globalIpRange {
+							globalIpRangeRemotePortFwdRemoteIps: globalIpRange {
 								id
 								name
 							}
 						}
 
-						remotePortFwdRestrictionTypeRestrictionType: restrictionType
-						policyRuleTrackingAlertTracking: tracking {
+						restrictionTypeRemotePortFwdRule: restrictionType
+						trackingRemotePortFwdRule: tracking {
 							enabled
-							policyRuleTrackingFrequencyEnumFrequency: frequency
-							subscriptionGroupRefSubscriptionGroup: subscriptionGroup {
+							frequencyPolicyRuleTrackingAlert: frequency
+							subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
 								id
 								name
 							}
-							subscriptionWebhookRefWebhook: webhook {
+							webhookPolicyRuleTrackingAlert: webhook {
 								id
 								name
 							}
-							subscriptionMailingListRefMailingList: mailingList {
+							mailingListPolicyRuleTrackingAlert: mailingList {
 								id
 								name
 							}
 						}
 
 					}
-					policyElementPropertiesEnumProperties: properties
+					propertiesRemotePortFwdRulePayload: properties
 				}
 
-				policySectionPayloadSections: sections {
-					policyElementAuditAudit: audit {
+				sectionsRemotePortFwdPolicy: sections {
+					auditPolicySectionPayload: audit {
 						updatedTime
 						updatedBy
 					}
-					policySectionInfoSection: section {
+					sectionPolicySectionPayload: section {
 						id
 						name
-						policyId
 					}
-					policyElementPropertiesEnumProperties: properties
+					propertiesPolicySectionPayload: properties
 				}
 
-				policyAuditAudit: audit {
+				auditRemotePortFwdPolicy: audit {
 					publishedTime
 					publishedBy
 				}
 
-				policyRevisionRevision: revision {
+				revisionRemotePortFwdPolicy: revision {
 					id
 					name
 					description

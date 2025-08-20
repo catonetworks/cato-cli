@@ -1,22 +1,21 @@
 mutation policyTerminalServerMoveSection ( $policyMoveSectionInput:PolicyMoveSectionInput! $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput ) {
 	policy ( ) {
 		terminalServer ( input:$terminalServerPolicyMutationInput  )  {
-			moveSection ( input:$policyMoveSectionInput   ) {
-				policySectionPayloadSection: section {
-					audit {
+			moveSectionTerminalServerPolicyMutations: moveSection ( input:$policyMoveSectionInput   ) {
+				sectionPolicySectionMutationPayload: section {
+					auditPolicySectionPayload: audit {
 						updatedTime
 						updatedBy
 					}
-					section {
+					sectionPolicySectionPayload: section {
 						id
 						name
-						policyId
 					}
-					properties
+					propertiesPolicySectionPayload: properties
 				}
 
-				policyMutationStatusStatus: status
-				policyMutationErrorErrors: errors {
+				statusPolicySectionMutationPayload: status
+				errorsPolicySectionMutationPayload: errors {
 					errorMessage
 					errorCode
 				}

@@ -47,6 +47,7 @@ def sanitize_name_for_terraform(name):
 def extract_socket_sites_data(sites_data):
     """Extract socket sites, WAN interfaces, and network ranges from the sites data"""
     sites = []
+    lan_interfaces = []
     wan_interfaces = []
     network_ranges = []
     
@@ -110,6 +111,14 @@ def extract_socket_sites_data(sites_data):
         for lan_interface in site.get('lan_interfaces', []):
             interface_id = lan_interface.get('id', '')
             interface_name = lan_interface.get('name', '')
+            lan_interfaces.append({
+                'site_id': site['id'],
+                'interface_id': lan_interface['id'],
+                'name': lan_interface['name'],
+                'dest_type': lan_interface.get('destType', 'CATO'),
+                'subnet': lan_interface.get('subnet', ''),
+                'local_ip': lan_interface.get('local_ip', ''),
+            })
             
             for network_range in lan_interface.get('network_ranges', []):
                 if network_range.get('id') and network_range.get('subnet'):
@@ -608,6 +617,54 @@ def import_wan_interfaces(wan_interfaces, module_name, verbose=False,
     print(f"\nWAN Interface Import Summary: {successful_imports} successful, {failed_imports} failed")
     return successful_imports, failed_imports
 
+def import_lan_interfaces(lan_interfaces, module_name, verbose=False,
+                         resource_type="cato_lan_interface", resource_name="lan_interfaces",
+                         batch_size=10, delay_between_batches=2, auto_approve=False):
+    """Import all WAN interfaces in batches"""
+    print("\nStarting WAN interface imports...")
+    successful_imports = 0
+    failed_imports = 0
+    total_interfaces = len(lan_interfaces)
+
+    for i, interface in enumerate(lan_interfaces):
+        site_id = interface['site_id']
+        interface_id = interface['id']
+        interface_index = interface['index']
+        interface_name = interface['name']
+        site_name = interface['site_name']
+        
+        # Add module. prefix if not present
+        if not module_name.startswith('module.'):
+            module_name = f'module.{module_name}'
+        
+        # Use correct resource addressing for WAN interfaces
+        # WAN interfaces use the interface role as the key
+        lan_role = interface['role']
+        resource_address = f'{module_name}.module.socket-site["{site_name}"].cato_lan_interface.lan["{interface_index}"]'
+
+        print(f"\n[{i+1}/{total_interfaces}] LAN Interface: {interface_name} on {site_name} (ID: {interface_id})")
+
+        success, stdout, stderr = run_terraform_import(resource_address, interface_id, verbose=verbose)
+        
+        if success:
+            successful_imports += 1
+        else:
+            failed_imports += 1
+            
+            # Ask user if they want to continue on failure (unless auto-approved)
+            if failed_imports <= 3 and not auto_approve:  # Only prompt for first few failures
+                response = input(f"\nContinue with remaining imports? (y/n): ").lower()
+                if response == 'n':
+                    print("Import process stopped by user.")
+                    break
+        
+        # Delay between batches
+        if (i + 1) % batch_size == 0 and i < total_interfaces - 1:
+            print(f"\n  Batch complete. Waiting {delay_between_batches}s before next batch...")
+            time.sleep(delay_between_batches)
+    
+    print(f"\nWAN Interface Import Summary: {successful_imports} successful, {failed_imports} failed")
+    return successful_imports, failed_imports
 
 def import_network_ranges(network_ranges, module_name, verbose=False,
                          resource_type="cato_network_range", resource_name="network_ranges",
@@ -640,9 +697,9 @@ def import_network_ranges(network_ranges, module_name, verbose=False,
         else:
             terraform_interface_id = interface_id
         
-        resource_address = f'{module_name}.module.socket-site["{site_name}"].module.lan_interfaces["{terraform_interface_id}"].module.network_range["{subnet}"].cato_network_range.no_dhcp[0]'
+        resource_address = f'{module_name}.module.socket-site["{site_name}"].module.lan_interfaces["{terraform_interface_id}"].module.network_range["{network_range_id}"].cato_network_range.no_dhcp[0]'
         
-        print(f"\n[{i+1}/{total_ranges}] Network Range: {range_name} ({subnet}) on {site_name} (ID: {network_range_id})")
+        print(f"\n[{i+1}/{total_ranges}] Network Range: {range_name} - {subnet} ({network_range_id}) on {site_name} (ID: {network_range_id})")
         
         success, stdout, stderr = run_terraform_import(resource_address, network_range_id, verbose=verbose)
         
@@ -825,8 +882,8 @@ def import_socket_sites_to_tf(args, configuration):
             import_summary.append(f"{len(network_ranges)} network ranges")
         elif args.sites_only:
             import_summary.append(f"{len(sites)} sites only")
-        elif args.interfaces_only:
-            import_summary.append(f"{len(wan_interfaces)} WAN interfaces only")
+        elif args.lan_interfaces_only:
+            import_summary.append(f"{len(lan_interfaces)} LAN interfaces only")
         elif args.network_ranges_only:
             import_summary.append(f"{len(network_ranges)} network ranges only")
         
@@ -860,7 +917,16 @@ def import_socket_sites_to_tf(args, configuration):
                                                       auto_approve=getattr(args, 'auto_approve', False))
             total_successful += successful
             total_failed += failed
-        
+
+        # Import LAN interfaces (if not skipped)
+        if not args.sites_only and not args.network_ranges_only and lan_interfaces:
+            successful, failed = import_lan_interfaces(lan_interfaces, module_name=args.module_name, 
+                                                      verbose=args.verbose, batch_size=args.batch_size, 
+                                                      delay_between_batches=args.delay,
+                                                      auto_approve=getattr(args, 'auto_approve', False))
+            total_successful += successful
+            total_failed += failed
+     
         # Import network ranges (if not skipped)
         if not args.sites_only and not args.interfaces_only and network_ranges:
             successful, failed = import_network_ranges(network_ranges, module_name=args.module_name, 

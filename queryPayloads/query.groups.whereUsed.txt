@@ -1,0 +1,20 @@
+query groupsWhereUsed ( $groupRefInput:GroupRefInput! ) {
+	groups ( ) {
+		whereUsed ( input:$groupRefInput  )  {
+			used
+			usageGroupWhereUsedPayload: usage {
+				type
+				field
+			}
+			invalidMemberTypesGroupWhereUsedPayload: invalidMemberTypes {
+				typeInvalidGroupMemberTypeInScope: type
+				scopeInvalidGroupMemberTypeInScope: scope {
+					type
+					field
+				}
+
+			}
+		}
+
+	}	
+}

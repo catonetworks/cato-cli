@@ -1,0 +1,287 @@
+mutation siteRemoveSiteBwLicense ( $removeSiteBwLicenseInput:RemoveSiteBwLicenseInput! ) {
+	site ( ) {
+		removeSiteBwLicense ( input:$removeSiteBwLicenseInput  )  {
+			licenseRemoveSiteBwLicensePayload: license {
+				id
+				description
+				planLicense: plan
+				skuLicense: sku
+				statusLicense: status
+				startDate
+				expirationDate
+				lastUpdated
+				... on DataLakeLicense {
+					dataLakeLicenseId: id
+					dataLakeLicenseDescription: description
+					dataLakeLicensePlan: plan
+					dataLakeLicenseSku: sku
+					dataLakeLicenseStatus: status
+					dataLakeLicenseStartDate: startDate
+					dataLakeLicenseExpirationDate: expirationDate
+					dataLakeLicenseLastUpdated: lastUpdated
+					dpaVersion
+					retentionPeriod
+					total
+				}
+				... on PublicIpsLicense {
+					publicIpsLicenseId: id
+					publicIpsLicenseDescription: description
+					publicIpsLicensePlan: plan
+					publicIpsLicenseSku: sku
+					publicIpsLicenseStatus: status
+					publicIpsLicenseStartDate: startDate
+					publicIpsLicenseExpirationDate: expirationDate
+					publicIpsLicenseLastUpdated: lastUpdated
+					total
+				}
+				... on SiteLicense {
+					siteLicenseId: id
+					siteLicenseDescription: description
+					siteLicensePlan: plan
+					siteLicenseSku: sku
+					siteLicenseStatus: status
+					siteLicenseStartDate: startDate
+					siteLicenseExpirationDate: expirationDate
+					siteLicenseLastUpdated: lastUpdated
+					siteLicenseGroup
+					regionality
+					siteLicenseType
+					total
+					site {
+						id
+						name
+					}
+
+				}
+				... on PooledBandwidthLicense {
+					pooledBandwidthLicenseId: id
+					pooledBandwidthLicenseDescription: description
+					pooledBandwidthLicensePlan: plan
+					pooledBandwidthLicenseSku: sku
+					pooledBandwidthLicenseStatus: status
+					pooledBandwidthLicenseStartDate: startDate
+					pooledBandwidthLicenseExpirationDate: expirationDate
+					pooledBandwidthLicenseLastUpdated: lastUpdated
+					siteLicenseGroup
+					siteLicenseType
+					total
+					allocatedBandwidth
+					sites {
+						sitePooledBandwidthLicenseSite: site {
+							id
+							name
+						}
+						allocatedBandwidth
+					}
+
+					accounts {
+						accountPartnerPooledBandwidthLicenseAccount: account {
+							id
+							name
+						}
+						allocatedBandwidth
+					}
+
+				}
+				... on ZtnaUsersLicense {
+					ztnaUsersLicenseId: id
+					ztnaUsersLicenseDescription: description
+					ztnaUsersLicensePlan: plan
+					ztnaUsersLicenseSku: sku
+					ztnaUsersLicenseStatus: status
+					ztnaUsersLicenseStartDate: startDate
+					ztnaUsersLicenseExpirationDate: expirationDate
+					ztnaUsersLicenseLastUpdated: lastUpdated
+					ztnaUsersLicenseGroup
+					total
+				}
+				... on EndpointProtectionLicense {
+					endpointProtectionLicenseId: id
+					endpointProtectionLicenseDescription: description
+					endpointProtectionLicensePlan: plan
+					endpointProtectionLicenseSku: sku
+					endpointProtectionLicenseStatus: status
+					endpointProtectionLicenseStartDate: startDate
+					endpointProtectionLicenseExpirationDate: expirationDate
+					endpointProtectionLicenseLastUpdated: lastUpdated
+					total
+				}
+				... on IlmmLicense {
+					ilmmLicenseId: id
+					ilmmLicenseDescription: description
+					ilmmLicensePlan: plan
+					ilmmLicenseSku: sku
+					ilmmLicenseStatus: status
+					ilmmLicenseStartDate: startDate
+					ilmmLicenseExpirationDate: expirationDate
+					ilmmLicenseLastUpdated: lastUpdated
+					total
+				}
+				... on IpsLicense {
+					ipsLicenseId: id
+					ipsLicenseDescription: description
+					ipsLicensePlan: plan
+					ipsLicenseSku: sku
+					ipsLicenseStatus: status
+					ipsLicenseStartDate: startDate
+					ipsLicenseExpirationDate: expirationDate
+					ipsLicenseLastUpdated: lastUpdated
+				}
+				... on MalwareProtectionLicense {
+					malwareProtectionLicenseId: id
+					malwareProtectionLicenseDescription: description
+					malwareProtectionLicensePlan: plan
+					malwareProtectionLicenseSku: sku
+					malwareProtectionLicenseStatus: status
+					malwareProtectionLicenseStartDate: startDate
+					malwareProtectionLicenseExpirationDate: expirationDate
+					malwareProtectionLicenseLastUpdated: lastUpdated
+				}
+				... on NextGenMalwareProtectionLicense {
+					nextGenMalwareProtectionLicenseId: id
+					nextGenMalwareProtectionLicenseDescription: description
+					nextGenMalwareProtectionLicensePlan: plan
+					nextGenMalwareProtectionLicenseSku: sku
+					nextGenMalwareProtectionLicenseStatus: status
+					nextGenMalwareProtectionLicenseStartDate: startDate
+					nextGenMalwareProtectionLicenseExpirationDate: expirationDate
+					nextGenMalwareProtectionLicenseLastUpdated: lastUpdated
+				}
+				... on ThreatPreventionLicense {
+					threatPreventionLicenseId: id
+					threatPreventionLicenseDescription: description
+					threatPreventionLicensePlan: plan
+					threatPreventionLicenseSku: sku
+					threatPreventionLicenseStatus: status
+					threatPreventionLicenseStartDate: startDate
+					threatPreventionLicenseExpirationDate: expirationDate
+					threatPreventionLicenseLastUpdated: lastUpdated
+				}
+				... on NOCaaSLicense {
+					nOCaaSLicenseId: id
+					nOCaaSLicenseDescription: description
+					nOCaaSLicensePlan: plan
+					nOCaaSLicenseSku: sku
+					nOCaaSLicenseStatus: status
+					nOCaaSLicenseStartDate: startDate
+					nOCaaSLicenseExpirationDate: expirationDate
+					nOCaaSLicenseLastUpdated: lastUpdated
+				}
+				... on CasbLicense {
+					casbLicenseId: id
+					casbLicenseDescription: description
+					casbLicensePlan: plan
+					casbLicenseSku: sku
+					casbLicenseStatus: status
+					casbLicenseStartDate: startDate
+					casbLicenseExpirationDate: expirationDate
+					casbLicenseLastUpdated: lastUpdated
+				}
+				... on DlpLicense {
+					dlpLicenseId: id
+					dlpLicenseDescription: description
+					dlpLicensePlan: plan
+					dlpLicenseSku: sku
+					dlpLicenseStatus: status
+					dlpLicenseStartDate: startDate
+					dlpLicenseExpirationDate: expirationDate
+					dlpLicenseLastUpdated: lastUpdated
+				}
+				... on MdrLicense {
+					mdrLicenseId: id
+					mdrLicenseDescription: description
+					mdrLicensePlan: plan
+					mdrLicenseSku: sku
+					mdrLicenseStatus: status
+					mdrLicenseStartDate: startDate
+					mdrLicenseExpirationDate: expirationDate
+					mdrLicenseLastUpdated: lastUpdated
+				}
+				... on ManagedXdrLicense {
+					managedXdrLicenseId: id
+					managedXdrLicenseDescription: description
+					managedXdrLicensePlan: plan
+					managedXdrLicenseSku: sku
+					managedXdrLicenseStatus: status
+					managedXdrLicenseStartDate: startDate
+					managedXdrLicenseExpirationDate: expirationDate
+					managedXdrLicenseLastUpdated: lastUpdated
+				}
+				... on RbiLicense {
+					rbiLicenseId: id
+					rbiLicenseDescription: description
+					rbiLicensePlan: plan
+					rbiLicenseSku: sku
+					rbiLicenseStatus: status
+					rbiLicenseStartDate: startDate
+					rbiLicenseExpirationDate: expirationDate
+					rbiLicenseLastUpdated: lastUpdated
+				}
+				... on SaasSecurityApiLicense {
+					saasSecurityApiLicenseId: id
+					saasSecurityApiLicenseDescription: description
+					saasSecurityApiLicensePlan: plan
+					saasSecurityApiLicenseSku: sku
+					saasSecurityApiLicenseStatus: status
+					saasSecurityApiLicenseStartDate: startDate
+					saasSecurityApiLicenseExpirationDate: expirationDate
+					saasSecurityApiLicenseLastUpdated: lastUpdated
+					total
+				}
+				... on XdrProLicense {
+					xdrProLicenseId: id
+					xdrProLicenseDescription: description
+					xdrProLicensePlan: plan
+					xdrProLicenseSku: sku
+					xdrProLicenseStatus: status
+					xdrProLicenseStartDate: startDate
+					xdrProLicenseExpirationDate: expirationDate
+					xdrProLicenseLastUpdated: lastUpdated
+					total
+				}
+				... on DemLicense {
+					demLicenseId: id
+					demLicenseDescription: description
+					demLicensePlan: plan
+					demLicenseSku: sku
+					demLicenseStatus: status
+					demLicenseStartDate: startDate
+					demLicenseExpirationDate: expirationDate
+					demLicenseLastUpdated: lastUpdated
+					total
+				}
+				... on IotOtLicense {
+					iotOtLicenseId: id
+					iotOtLicenseDescription: description
+					iotOtLicensePlan: plan
+					iotOtLicenseSku: sku
+					iotOtLicenseStatus: status
+					iotOtLicenseStartDate: startDate
+					iotOtLicenseExpirationDate: expirationDate
+					iotOtLicenseLastUpdated: lastUpdated
+				}
+				... on AtpLicense {
+					atpLicenseId: id
+					atpLicenseDescription: description
+					atpLicensePlan: plan
+					atpLicenseSku: sku
+					atpLicenseStatus: status
+					atpLicenseStartDate: startDate
+					atpLicenseExpirationDate: expirationDate
+					atpLicenseLastUpdated: lastUpdated
+				}
+				... on XOpsLicense {
+					xOpsLicenseId: id
+					xOpsLicenseDescription: description
+					xOpsLicensePlan: plan
+					xOpsLicenseSku: sku
+					xOpsLicenseStatus: status
+					xOpsLicenseStartDate: startDate
+					xOpsLicenseExpirationDate: expirationDate
+					xOpsLicenseLastUpdated: lastUpdated
+				}
+			}
+		}
+
+	}	
+}

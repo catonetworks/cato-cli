@@ -1,0 +1,14 @@
+query socketPortMetrics ( $limit:Int $from:Int $timeFrame:TimeFrame! $socketPortMetricsMeasure:[SocketPortMetricsMeasure] $socketPortMetricsDimension:[SocketPortMetricsDimension] $socketPortMetricsFilter:[SocketPortMetricsFilter!] $socketPortMetricsSort:[SocketPortMetricsSort!] ) {
+	socketPortMetrics ( timeFrame:$timeFrame measures:$socketPortMetricsMeasure dimensions:$socketPortMetricsDimension filters:$socketPortMetricsFilter sort:$socketPortMetricsSort ) {
+		id
+		from
+		to
+		total
+		totals
+		records ( limit:$limit  from:$from  )  {
+			trends
+			prevTimeFrame
+		}
+
+	}	
+}

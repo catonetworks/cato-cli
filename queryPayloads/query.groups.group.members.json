@@ -1,0 +1,79 @@
+{
+    "operationName": "groupsGroupMembers",
+    "query": "query groupsGroupMembers ( $groupMembersListInput:GroupMembersListInput! $groupRefInput:GroupRefInput! ) {\n\tgroups ( ) {\n\t\tgroup ( input:$groupRefInput  )  {\n\t\t\tmembersGroup: members ( input:$groupMembersListInput   ) {\n\t\t\t\titemsGroupMembersListPayload: items {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t\ttypeGroupMemberRefTyped: type\n\t\t\t\t}\n\n\t\t\t\tpagingGroupMembersListPayload: paging {\n\t\t\t\t\ttotal\n\t\t\t\t}\n\n\t\t\t}\n\t\t}\n\n\t}\t\n}",
+    "variables": {
+        "groupMembersListInput": {
+            "groupMembersListFilterInput": {
+                "name": {
+                    "eq": {
+                        "eq": "String"
+                    },
+                    "in": {
+                        "in": [
+                            "String"
+                        ]
+                    },
+                    "neq": {
+                        "neq": "String"
+                    },
+                    "nin": {
+                        "nin": [
+                            "String"
+                        ]
+                    },
+                    "regex": {
+                        "regex": "String"
+                    }
+                },
+                "type": {
+                    "eq": {
+                        "eq": "enum(GroupMemberRefType)"
+                    },
+                    "in": {
+                        "in": "enum(GroupMemberRefType)"
+                    },
+                    "neq": {
+                        "neq": "enum(GroupMemberRefType)"
+                    },
+                    "nin": {
+                        "nin": "enum(GroupMemberRefType)"
+                    }
+                }
+            },
+            "groupMembersListSortInput": {
+                "name": {
+                    "direction": {
+                        "direction": "enum(SortOrder)"
+                    },
+                    "priority": {
+                        "priority": "Int"
+                    }
+                },
+                "type": {
+                    "direction": {
+                        "direction": "enum(SortOrder)"
+                    },
+                    "priority": {
+                        "priority": "Int"
+                    }
+                }
+            },
+            "pagingInput": {
+                "from": {
+                    "from": "Int"
+                },
+                "limit": {
+                    "limit": "Int"
+                }
+            }
+        },
+        "groupRefInput": {
+            "by": {
+                "by": "enum(ObjectRefBy)"
+            },
+            "input": {
+                "input": "String"
+            }
+        }
+    }
+}

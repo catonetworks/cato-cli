@@ -1,45 +1,44 @@
 mutation policyDynamicIpAllocationDiscardPolicyRevision ( $policyDiscardRevisionInput:PolicyDiscardRevisionInput $dynamicIpAllocationPolicyMutationInput:DynamicIpAllocationPolicyMutationInput ) {
 	policy ( ) {
 		dynamicIpAllocation ( input:$dynamicIpAllocationPolicyMutationInput  )  {
-			discardPolicyRevision ( input:$policyDiscardRevisionInput   ) {
-				dynamicIpAllocationPolicyPolicy: policy {
+			discardPolicyRevisionDynamicIpAllocationPolicyMutations: discardPolicyRevision ( input:$policyDiscardRevisionInput   ) {
+				policyDynamicIpAllocationPolicyMutationPayload: policy {
 					enabled
-					rules {
-						policyElementAuditAudit: audit {
+					rulesDynamicIpAllocationPolicy: rules {
+						auditDynamicIpAllocationRulePayload: audit {
 							updatedTime
 							updatedBy
 						}
 
-						dynamicIpAllocationRuleRule: rule {
+						ruleDynamicIpAllocationRulePayload: rule {
 							id
 							name
 							description
 							index
-							policySectionInfoSection: section {
+							sectionDynamicIpAllocationRule: section {
 								id
 								name
-								policyId
 							}
 							enabled
-							dynamicIpAllocationSourceSource: source {
-								userRefUser: user {
+							sourceDynamicIpAllocationRule: source {
+								userDynamicIpAllocationSource: user {
 									id
 									name
 								}
 
-								usersGroupRefUsersGroup: usersGroup {
+								usersGroupDynamicIpAllocationSource: usersGroup {
 									id
 									name
 								}
 
 							}
-							operatingSystemPlatform: platform
-							countryRefCountry: country {
+							platformDynamicIpAllocationRule: platform
+							countryDynamicIpAllocationRule: country {
 								id
 								name
 							}
-							dynamicIpAllocationRangeRange: range {
-								globalIpRangeRefGlobalIpRange: globalIpRange {
+							rangeDynamicIpAllocationRule: range {
+								globalIpRangeDynamicIpAllocationRange: globalIpRange {
 									id
 									name
 								}
@@ -47,27 +46,26 @@ mutation policyDynamicIpAllocationDiscardPolicyRevision ( $policyDiscardRevision
 							}
 						}
 
-						policyElementPropertiesEnumProperties: properties
+						propertiesDynamicIpAllocationRulePayload: properties
 					}
-					sections {
-						policyElementAuditAudit: audit {
+					sectionsDynamicIpAllocationPolicy: sections {
+						auditPolicySectionPayload: audit {
 							updatedTime
 							updatedBy
 						}
 
-						policySectionInfoSection: section {
+						sectionPolicySectionPayload: section {
 							id
 							name
-							policyId
 						}
 
-						policyElementPropertiesEnumProperties: properties
+						propertiesPolicySectionPayload: properties
 					}
-					audit {
+					auditDynamicIpAllocationPolicy: audit {
 						publishedTime
 						publishedBy
 					}
-					revision {
+					revisionDynamicIpAllocationPolicy: revision {
 						id
 						name
 						description
@@ -77,8 +75,8 @@ mutation policyDynamicIpAllocationDiscardPolicyRevision ( $policyDiscardRevision
 					}
 				}
 
-				policyMutationStatusStatus: status
-				policyMutationErrorErrors: errors {
+				statusDynamicIpAllocationPolicyMutationPayload: status
+				errorsDynamicIpAllocationPolicyMutationPayload: errors {
 					errorMessage
 					errorCode
 				}

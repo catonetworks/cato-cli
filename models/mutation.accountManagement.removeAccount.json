@@ -59,7 +59,9 @@
     "fieldTypes": {
         "AccountAuditData": true,
         "AccountInfo": true,
+        "AccountPlan": true,
         "AccountProfileType": true,
+        "AccountStatus": true,
         "AccountTenancy": true,
         "RemoveAccountPayload": true
     },
@@ -145,7 +147,7 @@
                                             "enumValues": null,
                                             "fields": {
                                                 "audit": {
-                                                    "alias": "accountAuditDataAudit: audit",
+                                                    "alias": "auditAccountInfo: audit",
                                                     "args": {},
                                                     "deprecationReason": null,
                                                     "description": "Audit data for the account",
@@ -282,8 +284,105 @@
                                                     },
                                                     "varName": "name"
                                                 },
+                                                "plan": {
+                                                    "alias": "planAccountInfo: plan",
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "The account plan",
+                                                    "id_str": "removeAccount___accountInfo___plan",
+                                                    "isDeprecated": false,
+                                                    "name": "plan",
+                                                    "path": "removeAccount.accountInfo.plan",
+                                                    "requestStr": "$plan:AccountPlan ",
+                                                    "required": false,
+                                                    "responseStr": "plan:$plan ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "enum that shows account license status",
+                                                            "enumValues": [
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "COMMERCIAL"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "TRIAL"
+                                                                }
+                                                            ],
+                                                            "fields": null,
+                                                            "inputFields": null,
+                                                            "interfaces": null,
+                                                            "kind": "ENUM",
+                                                            "name": "AccountPlan",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "enum",
+                                                        "kind": [
+                                                            "ENUM"
+                                                        ],
+                                                        "name": "AccountPlan",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "plan"
+                                                },
+                                                "status": {
+                                                    "alias": "statusAccountInfo: status",
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "The account status",
+                                                    "id_str": "removeAccount___accountInfo___status",
+                                                    "isDeprecated": false,
+                                                    "name": "status",
+                                                    "path": "removeAccount.accountInfo.status",
+                                                    "requestStr": "$status:AccountStatus! ",
+                                                    "required": true,
+                                                    "responseStr": "status:$status ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "enum that shows account license status",
+                                                            "enumValues": [
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "ACTIVE"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "LOCKED"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "DISABLED"
+                                                                }
+                                                            ],
+                                                            "fields": null,
+                                                            "inputFields": null,
+                                                            "interfaces": null,
+                                                            "kind": "ENUM",
+                                                            "name": "AccountStatus",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "enum",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "ENUM"
+                                                        ],
+                                                        "name": "AccountStatus",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "status"
+                                                },
                                                 "tenancy": {
-                                                    "alias": "accountTenancyTenancy: tenancy",
+                                                    "alias": "tenancyAccountInfo: tenancy",
                                                     "args": {},
                                                     "deprecationReason": null,
                                                     "description": "The account tenancy e.g. single-tenant / multi-tenant",
@@ -350,7 +449,7 @@
                                                     "varName": "timeZone"
                                                 },
                                                 "type": {
-                                                    "alias": "accountProfileTypeType: type",
+                                                    "alias": "typeAccountInfo: type",
                                                     "args": {},
                                                     "deprecationReason": null,
                                                     "description": "The account type e.g. Partner or Customer",

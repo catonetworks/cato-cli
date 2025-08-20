@@ -33,8 +33,10 @@ def site_import_parse(subparsers, import_parser):
                                 help='Delay between batches in seconds (default: 2)')
     socket_sites_parser.add_argument('--sites-only', action='store_true', 
                                 help='Import only sites, skip interfaces and network ranges')
-    socket_sites_parser.add_argument('--interfaces-only', action='store_true', 
+    socket_sites_parser.add_argument('--wan-interfaces-only', action='store_true', 
                                 help='Import only WAN interfaces, skip sites and network ranges')
+    socket_sites_parser.add_argument('--lan-interfaces-only', action='store_true', 
+                                help='Import only LAN interfaces, skip sites and network ranges')
     socket_sites_parser.add_argument('--network-ranges-only', action='store_true', 
                                 help='Import only network ranges, skip sites and interfaces')
     socket_sites_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')

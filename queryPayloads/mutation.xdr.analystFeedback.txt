@@ -1,7 +1,7 @@
 mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFeedbackInput! ) {
 	xdr ( ) {
 		analystFeedback ( input:$analystFeedbackInput  )  {
-			story {
+			storyAnalystFeedbackPayload: story {
 				id
 				accountId
 				analystName
@@ -15,23 +15,23 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 					id
 					firstSignal
 					lastSignal
-					storyEngineTypeEnumEngineType: engineType
-					vendorEnumVendor: vendor
-					storyProducerEnumProducer: producer
+					engineTypeMergedIncident: engineType
+					vendorMergedIncident: vendor
+					producerMergedIncident: producer
 					producerName
-					connectionTypeEnumConnectionType: connectionType
+					connectionTypeMergedIncident: connectionType
 					indication
 					queryName
 					criticality
 					source
 					ticket
-					storyStatusEnumStatus: status
+					statusMergedIncident: status
 					research
 					siteName
 					storyDuration
 					description
 					sourceIp
-					analystFeedbackAnalystFeedback: analystFeedback {
+					analystFeedbackMergedIncident: analystFeedback {
 						verdict
 						severity
 						threatType {
@@ -43,15 +43,15 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 						threatClassification
 						additionalInfo
 					}
-					siteRefSite: site {
+					siteMergedIncident: site {
 						id
 						name
 					}
-					userRefUser: user {
+					userMergedIncident: user {
 						id
 						name
 					}
-					storyVerdictEnumPredictedVerdict: predictedVerdict
+					predictedVerdictMergedIncident: predictedVerdict
 					predictedThreatType
 					... on MicrosoftEndpoint {
 						microsoftEndpointId: id
@@ -74,9 +74,9 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 						microsoftEndpointDescription: description
 						microsoftEndpointSourceIp: sourceIp
 						analystFeedback: analystFeedback {
-							verdict
-							severity
-							threatType {
+							verdictAnalystFeedback: verdict
+							severityAnalystFeedback: severity
+							threatTypeAnalystFeedback: threatType {
 								name
 								recommendedAction
 								details
@@ -109,12 +109,12 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 						device {
 							id
 							deviceName
-							osDetails {
+							osDetailsMicrosoftDeviceDetails: osDetails {
 								osType
 								osBuild
 								osVersion
 							}
-							loggedOnUsers {
+							loggedOnUsersMicrosoftDeviceDetails: loggedOnUsers {
 								id
 								name
 								... on MicrosoftEndpointUser {
@@ -133,15 +133,15 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 							externalIp
 							localIp
 							firstSeenDateTime
-							avStatus
-							healthStatus
-							rbacGroup {
+							avStatusMicrosoftDeviceDetails: avStatus
+							healthStatusMicrosoftDeviceDetails: healthStatus
+							rbacGroupMicrosoftDeviceDetails: rbacGroup {
 								id
 								name
 							}
 							ipInterfaces
 							azureAdDeviceId
-							onboardingStatus
+							onboardingStatusMicrosoftDeviceDetails: onboardingStatus
 						}
 
 						alerts {
@@ -149,23 +149,23 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 							title
 							description
 							threatName
-							mitreMitreTechnique: mitreTechnique {
+							mitreTechniqueMicrosoftDefenderEndpointAlert: mitreTechnique {
 								id
 								name
 							}
-							mitreMitreSubTechnique: mitreSubTechnique {
+							mitreSubTechniqueMicrosoftDefenderEndpointAlert: mitreSubTechnique {
 								id
 								name
 							}
 							createdDateTime
-							microsoftEndpointResourceResources: resources {
+							resourcesMicrosoftDefenderEndpointAlert: resources {
 								id
 								createdDateTime
-								remediationStatusEnumRemediationStatus: remediationStatus
+								remediationStatusMicrosoftEndpointResource: remediationStatus
 								remediationStatusDetails
 								tags
-								resourceRoleEnumRoles: roles
-								msResourceVerdictEnumVerdict: verdict
+								rolesMicrosoftEndpointResource: roles
+								verdictMicrosoftEndpointResource: verdict
 								... on MicrosoftProcessResource {
 									microsoftProcessResourceId: id
 									microsoftProcessResourceCreatedDateTime: createdDateTime
@@ -243,7 +243,7 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 									valueType
 								}
 							}
-							microsoftActivityActivities: activities {
+							activitiesMicrosoftDefenderEndpointAlert: activities {
 								id
 								resourceId
 								parentResourceId
@@ -266,12 +266,12 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 							lastUpdateDateTime
 							destinationIp
 							destinationUrl
-							msAlertStatusStatus: status
+							statusMicrosoftDefenderEndpointAlert: status
 							providerAlertId
 							alertWebUrl
-							alertDeterminationEnumDetermination: determination
-							detectionSourceEnumDetectionSource: detectionSource
-							alertClassificationEnumClassification: classification
+							determinationMicrosoftDefenderEndpointAlert: determination
+							detectionSourceMicrosoftDefenderEndpointAlert: detectionSource
+							classificationMicrosoftDefenderEndpointAlert: classification
 						}
 
 					}
@@ -295,9 +295,9 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 						anomalyStatsStoryDuration: storyDuration
 						anomalyStatsDescription: description
 						analystFeedback: analystFeedback {
-							verdict
-							severity
-							threatType {
+							verdictAnalystFeedback: verdict
+							severityAnalystFeedback: severity
+							threatTypeAnalystFeedback: threatType {
 								name
 								recommendedAction
 								details
@@ -376,9 +376,9 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 							data ( perSecond:$perSecond   )
 							label
 							sum
-							unitTypeUnits: units
+							unitsIncidentTimeseries: units
 							info
-							timeseriesKeyKey: key {
+							keyIncidentTimeseries: key {
 								measureFieldName
 								dimensions {
 									fieldName
@@ -389,7 +389,7 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 						}
 
 						targets {
-							targetTypeType: type
+							typeIncidentTargetRep: type
 							name
 							analysisScore
 							infectionSource
@@ -401,7 +401,7 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 							countryOfRegistration
 							searchHits
 							engines
-							eventEventData: eventData {
+							eventDataIncidentTargetRep: eventData {
 								signatureId
 								eventType
 								threatType
@@ -410,7 +410,7 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 								action
 								ruleId
 								virusName
-								scanResultScanResult: scanResult
+								scanResultEvent: scanResult
 								appId
 								appName
 								dnsProtectionCategory
@@ -439,9 +439,9 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 						anomalyEventsStoryDuration: storyDuration
 						anomalyEventsDescription: description
 						analystFeedback: analystFeedback {
-							verdict
-							severity
-							threatType {
+							verdictAnalystFeedback: verdict
+							severityAnalystFeedback: severity
+							threatTypeAnalystFeedback: threatType {
 								name
 								recommendedAction
 								details
@@ -520,9 +520,9 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 							data ( perSecond:$perSecond   )
 							label
 							sum
-							unitTypeUnits: units
+							unitsIncidentTimeseries: units
 							info
-							timeseriesKeyKey: key {
+							keyIncidentTimeseries: key {
 								measureFieldName
 								dimensions {
 									fieldName
@@ -533,7 +533,7 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 						}
 
 						targets {
-							targetTypeType: type
+							typeIncidentTargetRep: type
 							name
 							analysisScore
 							infectionSource
@@ -545,7 +545,7 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 							countryOfRegistration
 							searchHits
 							engines
-							eventEventData: eventData {
+							eventDataIncidentTargetRep: eventData {
 								signatureId
 								eventType
 								threatType
@@ -554,7 +554,7 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 								action
 								ruleId
 								virusName
-								scanResultScanResult: scanResult
+								scanResultEvent: scanResult
 								appId
 								appName
 								dnsProtectionCategory
@@ -583,9 +583,9 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 						threatStoryDuration: storyDuration
 						threatDescription: description
 						analystFeedback: analystFeedback {
-							verdict
-							severity
-							threatType {
+							verdictAnalystFeedback: verdict
+							severityAnalystFeedback: severity
+							threatTypeAnalystFeedback: threatType {
 								name
 								recommendedAction
 								details
@@ -634,7 +634,7 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 							action
 							ruleId
 							virusName
-							scanResultScanResult: scanResult
+							scanResultEvent: scanResult
 							appId
 							appName
 							dnsProtectionCategory
@@ -649,9 +649,9 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 							data ( perSecond:$perSecond   )
 							label
 							sum
-							unitTypeUnits: units
+							unitsIncidentTimeseries: units
 							info
-							timeseriesKeyKey: key {
+							keyIncidentTimeseries: key {
 								measureFieldName
 								dimensions {
 									fieldName
@@ -662,7 +662,7 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 						}
 
 						targets {
-							targetTypeType: type
+							typeIncidentTargetRep: type
 							name
 							analysisScore
 							infectionSource
@@ -674,7 +674,7 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 							countryOfRegistration
 							searchHits
 							engines
-							eventEventData: eventData {
+							eventDataIncidentTargetRep: eventData {
 								signatureId
 								eventType
 								threatType
@@ -683,7 +683,7 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 								action
 								ruleId
 								virusName
-								scanResultScanResult: scanResult
+								scanResultEvent: scanResult
 								appId
 								appName
 								dnsProtectionCategory
@@ -738,9 +738,9 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 						threatPreventionStoryDuration: storyDuration
 						threatPreventionDescription: description
 						analystFeedback: analystFeedback {
-							verdict
-							severity
-							threatType {
+							verdictAnalystFeedback: verdict
+							severityAnalystFeedback: severity
+							threatTypeAnalystFeedback: threatType {
 								name
 								recommendedAction
 								details
@@ -789,7 +789,7 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 							action
 							ruleId
 							virusName
-							scanResultScanResult: scanResult
+							scanResultEvent: scanResult
 							appId
 							appName
 							dnsProtectionCategory
@@ -804,9 +804,9 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 							data ( perSecond:$perSecond   )
 							label
 							sum
-							unitTypeUnits: units
+							unitsIncidentTimeseries: units
 							info
-							timeseriesKeyKey: key {
+							keyIncidentTimeseries: key {
 								measureFieldName
 								dimensions {
 									fieldName
@@ -817,7 +817,7 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 						}
 
 						targets {
-							targetTypeType: type
+							typeIncidentTargetRep: type
 							name
 							analysisScore
 							infectionSource
@@ -829,7 +829,7 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 							countryOfRegistration
 							searchHits
 							engines
-							eventEventData: eventData {
+							eventDataIncidentTargetRep: eventData {
 								signatureId
 								eventType
 								threatType
@@ -838,7 +838,7 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 								action
 								ruleId
 								virusName
-								scanResultScanResult: scanResult
+								scanResultEvent: scanResult
 								appId
 								appName
 								dnsProtectionCategory
@@ -894,9 +894,9 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 						networkXDRIncidentDescription: description
 						networkXDRIncidentSourceIp: sourceIp
 						analystFeedback: analystFeedback {
-							verdict
-							severity
-							threatType {
+							verdictAnalystFeedback: verdict
+							severityAnalystFeedback: severity
+							threatTypeAnalystFeedback: threatType {
 								name
 								recommendedAction
 								details
@@ -930,29 +930,29 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 							created
 							validated
 							description
-							networkXDREventTypeEnumEventType: eventType
+							eventTypeNetworkTimelineEvent: eventType
 							incidentId
-							networkEventSourceEnumNetworkEventSource: networkEventSource
+							networkEventSourceNetworkTimelineEvent: networkEventSource
 							eventIds
 							acknowledged
 							linkId
 							linkName
-							linkConfigPrecedenceEnumLinkConfigPrecedence: linkConfigPrecedence
-							linkStatusEnumLinkStatus: linkStatus
+							linkConfigPrecedenceNetworkTimelineEvent: linkConfigPrecedence
+							linkStatusNetworkTimelineEvent: linkStatus
 							linkConfigBandwidth
-							deviceConfigHaRoleEnumDeviceConfigHaRole: deviceConfigHaRole
-							deviceHaRoleStateEnumDeviceHaRoleState: deviceHaRoleState
+							deviceConfigHaRoleNetworkTimelineEvent: deviceConfigHaRole
+							deviceHaRoleStateNetworkTimelineEvent: deviceHaRoleState
 							socketSerialId
 							pop
 							isp
-							bGPConnectionBgpConnection: bgpConnection {
+							bgpConnectionNetworkTimelineEvent: bgpConnection {
 								connectionName
 								peerIp
 								peerAsn
 								catoIp
 								catoAsn
 							}
-							linkQualityIssueLinkQualityIssue: linkQualityIssue {
+							linkQualityIssueNetworkTimelineEvent: linkQualityIssue {
 								issueType
 								direction
 								current
@@ -989,7 +989,7 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 						ruleName
 						muted
 						ilmmDetails {
-							linkDetails {
+							linkDetailsIlmmDetails: linkDetails {
 								linkId
 								description
 								ispLinkId
@@ -997,7 +997,7 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 								onboardingStatus
 								activeLicense
 							}
-							ispDetails {
+							ispDetailsIlmmDetails: ispDetails {
 								name
 								ispAccountId
 								supportEmail
@@ -1011,7 +1011,7 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 								}
 
 							}
-							contacts {
+							contactsIlmmDetails: contacts {
 								name
 								phone
 								email
@@ -1040,9 +1040,9 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 						catoEndpointDescription: description
 						catoEndpointSourceIp: sourceIp
 						analystFeedback: analystFeedback {
-							verdict
-							severity
-							threatType {
+							verdictAnalystFeedback: verdict
+							severityAnalystFeedback: severity
+							threatTypeAnalystFeedback: threatType {
 								name
 								recommendedAction
 								details
@@ -1075,12 +1075,12 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 						device {
 							id
 							deviceName
-							osDetails {
+							osDetailsCatoEndpointDeviceDetails: osDetails {
 								osType
 								osBuild
 								osVersion
 							}
-							loggedOnUsers {
+							loggedOnUsersCatoEndpointDeviceDetails: loggedOnUsers {
 								id
 								name
 								... on MicrosoftEndpointUser {
@@ -1106,19 +1106,19 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 							title
 							description
 							threatName
-							mitreMitreTechnique: mitreTechnique {
+							mitreTechniqueCatoEndpointAlert: mitreTechnique {
 								id
 								name
 							}
-							mitreMitreSubTechnique: mitreSubTechnique {
+							mitreSubTechniqueCatoEndpointAlert: mitreSubTechnique {
 								id
 								name
 							}
 							createdDateTime
-							catoResourceResources: resources {
+							resourcesCatoEndpointAlert: resources {
 								id
 								createdDateTime
-								remediationStatusEnumRemediationStatus: remediationStatus
+								remediationStatusCatoResource: remediationStatus
 								... on CatoProcessResource {
 									catoProcessResourceId: id
 									catoProcessResourceCreatedDateTime: createdDateTime
@@ -1174,14 +1174,14 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 									detectionStatus
 								}
 							}
-							catoActivityActivities: activities {
+							activitiesCatoEndpointAlert: activities {
 								id
 								resourceId
 								parentResourceId
 							}
 							criticality
-							catoEndpointEngineTypeEngineType: engineType
-							remediationStatusEnumStatus: status
+							engineTypeCatoEndpointAlert: engineType
+							statusCatoEndpointAlert: status
 							endpointProtectionProfile
 							externalIp
 							localIp
@@ -1194,11 +1194,11 @@ mutation xdrAnalystFeedback ( $perSecond:Boolean $analystFeedbackInput:AnalystFe
 					createdAt
 					description
 					context
-					timelineTypeEnumType: type
+					typeTimelineItem: type
 					descriptions
-					timelineItemCategoryEnumCategory: category
+					categoryTimelineItem: category
 					additionalInfo
-					analystInfoAnalystInfo: analystInfo {
+					analystInfoTimelineItem: analystInfo {
 						name
 						email
 					}

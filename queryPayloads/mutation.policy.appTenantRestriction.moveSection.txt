@@ -1,22 +1,21 @@
 mutation policyAppTenantRestrictionMoveSection ( $policyMoveSectionInput:PolicyMoveSectionInput! $appTenantRestrictionPolicyMutationInput:AppTenantRestrictionPolicyMutationInput ) {
 	policy ( ) {
 		appTenantRestriction ( input:$appTenantRestrictionPolicyMutationInput  )  {
-			moveSection ( input:$policyMoveSectionInput   ) {
-				policySectionPayloadSection: section {
-					audit {
+			moveSectionAppTenantRestrictionPolicyMutations: moveSection ( input:$policyMoveSectionInput   ) {
+				sectionPolicySectionMutationPayload: section {
+					auditPolicySectionPayload: audit {
 						updatedTime
 						updatedBy
 					}
-					section {
+					sectionPolicySectionPayload: section {
 						id
 						name
-						policyId
 					}
-					properties
+					propertiesPolicySectionPayload: properties
 				}
 
-				policyMutationStatusStatus: status
-				policyMutationErrorErrors: errors {
+				statusPolicySectionMutationPayload: status
+				errorsPolicySectionMutationPayload: errors {
 					errorMessage
 					errorCode
 				}

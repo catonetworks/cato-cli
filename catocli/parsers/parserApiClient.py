@@ -236,16 +236,17 @@ def validateArgs(variablesObj,operation):
 
 def loadJSON(file):
 	CONFIG = {}
-	module_dir_ary = os.path.dirname(__file__).split("/")
-	del module_dir_ary[-1]
-	del module_dir_ary[-1]
-	module_dir = "/".join(module_dir_ary)
+	module_dir = os.path.dirname(__file__)
+	# Navigate up two directory levels (from parsers/ to catocli/ to root)
+	module_dir = os.path.dirname(module_dir)  # Go up from parsers/
+	module_dir = os.path.dirname(module_dir)  # Go up from catocli/
 	try:
-		with open(module_dir+'/'+file, 'r') as data:
+		file_path = os.path.join(module_dir, file)
+		with open(file_path, 'r') as data:
 			CONFIG = json.load(data)
 			return CONFIG
 	except:
-		logging.warning("File \""+module_dir+'/'+file+"\" not found.")
+		logging.warning(f"File \"{os.path.join(module_dir, file)}\" not found.")
 		exit()
 
 def renderCamelCase(pathStr):
@@ -291,7 +292,8 @@ def renderArgsAndFields(responseArgStr, variablesObj, curOperation, definition, 
 			responseArgStr += " {\n"
 			for subfieldIndex in field['type']['definition']['fields']:
 				subfield = field['type']['definition']['fields'][subfieldIndex]
-				subfield_name = subfield['alias'] if 'alias' in subfield else subfield['name']				
+				# Use the alias if it exists, otherwise use the field name
+				subfield_name = subfield['alias'] if 'alias' in subfield else subfield['name']
 				responseArgStr += indent + "	" + subfield_name
 				if subfield.get("args") and len(list(subfield["args"].keys()))>0:
 					argsPresent = False
@@ -338,7 +340,14 @@ def renderArgsAndFields(responseArgStr, variablesObj, curOperation, definition, 
 			responseArgStr += " {\n"
 			for subfieldName in field['type']['definition'].get('inputFields'):
 				subfield = field['type']['definition']['inputFields'][subfieldName]
-				subfield_name = subfield['alias'] if 'alias' in subfield else subfield['name']
+				# Updated aliasing logic for inputFields
+				if (subfield.get('type') and subfield['type'].get('name') and 
+					curOperation.get('fieldTypes', {}).get(subfield['type']['name']) and 
+					subfield.get('type', {}).get('kind') and 
+					'SCALAR' not in str(subfield['type']['kind'])):
+					subfield_name = f"{subfield['name']}{field['type']['definition']['name']}: {subfield['name']}"
+				else:
+					subfield_name = subfield['name']  # Always use the raw field name, not incorrect aliases
 				responseArgStr += indent + "	" + subfield_name
 				if subfield.get('type') and subfield['type'].get('definition') and (subfield['type']['definition'].get('fields') or subfield['type']['definition'].get('inputFields')):
 					responseArgStr += " {\n"

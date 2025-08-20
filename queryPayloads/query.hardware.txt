@@ -1,9 +1,9 @@
 query hardware ( $hardwareSearchInput:HardwareSearchInput ) {
 	hardware ( ) {
 		hardware ( input:$hardwareSearchInput  )  {
-			items {
+			itemsHardwarePayload: items {
 				id
-				accountRefAccount: account {
+				accountHardware: account {
 					id
 					name
 				}
@@ -17,15 +17,15 @@ query hardware ( $hardwareSearchInput:HardwareSearchInput ) {
 				quoteId
 				licenseId
 				licenseStartDate
-				shippingTrackingShippingTracking: shippingTracking {
-					shippingStatus
+				shippingTrackingHardware: shippingTracking {
+					shippingStatusShippingTracking: shippingStatus
 					shippingDate
 					trackingUrl
 					trackingNumber
 					carrier
 				}
 
-				shippingDetailsShippingDetail: shippingDetail {
+				shippingDetailHardware: shippingDetail {
 					companyName
 					street
 					cityName
@@ -35,7 +35,7 @@ query hardware ( $hardwareSearchInput:HardwareSearchInput ) {
 					incoterms
 					instruction
 					vatId
-					contact {
+					contactShippingDetails: contact {
 						name
 						phone
 						email
@@ -44,15 +44,16 @@ query hardware ( $hardwareSearchInput:HardwareSearchInput ) {
 					powerCable
 				}
 
-				hardwareValidationValidation: validation {
+				validationHardware: validation {
 					completed
 					incompleteReason
-					addressValidationStatus
+					addressValidationStatusHardwareValidation: addressValidationStatus
 				}
 
 				lastModified
+				locationId
 			}
-			pageInfo {
+			pageInfoHardwarePayload: pageInfo {
 				total
 			}
 		}

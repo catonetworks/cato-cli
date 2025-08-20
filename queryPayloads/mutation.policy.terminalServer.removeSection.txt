@@ -1,22 +1,21 @@
 mutation policyTerminalServerRemoveSection ( $policyRemoveSectionInput:PolicyRemoveSectionInput! $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput ) {
 	policy ( ) {
 		terminalServer ( input:$terminalServerPolicyMutationInput  )  {
-			removeSection ( input:$policyRemoveSectionInput   ) {
-				policySectionPayloadSection: section {
-					audit {
+			removeSectionTerminalServerPolicyMutations: removeSection ( input:$policyRemoveSectionInput   ) {
+				sectionPolicySectionMutationPayload: section {
+					auditPolicySectionPayload: audit {
 						updatedTime
 						updatedBy
 					}
-					section {
+					sectionPolicySectionPayload: section {
 						id
 						name
-						policyId
 					}
-					properties
+					propertiesPolicySectionPayload: properties
 				}
 
-				policyMutationStatusStatus: status
-				policyMutationErrorErrors: errors {
+				statusPolicySectionMutationPayload: status
+				errorsPolicySectionMutationPayload: errors {
 					errorMessage
 					errorCode
 				}

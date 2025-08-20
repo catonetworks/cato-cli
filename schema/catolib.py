@@ -200,7 +200,7 @@ def getNestedArgDefinitions(argsAry, parentParamPath, childOperations, parentFie
 	# print("getNestedArgDefinitions()",newArgsList.keys())
 	return newArgsList
 
-def getOfType(curType, ofType, parentParamPath, childOperations, parentFields):
+def getOfType(curType, ofType, parentParamPath, childOperations, parentFields, parentTypeName=None):
 	ofType["kind"].append(copy.deepcopy(curType["kind"]))
 	curParamPath = "" if (parentParamPath == None) else parentParamPath + "___"
 	if curType["ofType"] != None:
@@ -216,7 +216,7 @@ def getOfType(curType, ofType, parentParamPath, childOperations, parentFields):
 		ofType["indexType"] = "input_object"
 		ofType["definition"] = copy.deepcopy(catoApiIntrospection["input_objects"][ofType["name"]])
 		if ofType["definition"]["inputFields"] != None:
-			ofType["definition"]["inputFields"] = getNestedFieldDefinitions(copy.deepcopy(ofType["definition"]["inputFields"]), curParamPath, childOperations, parentFields)
+			ofType["definition"]["inputFields"] = getNestedFieldDefinitions(copy.deepcopy(ofType["definition"]["inputFields"]), curParamPath, childOperations, parentFields, ofType["name"])
 	elif "UNION" in ofType["kind"]:
 		ofType["indexType"] = "interface"
 		ofType["definition"] = copy.deepcopy(catoApiIntrospection["unions"][ofType["name"]])
@@ -243,14 +243,14 @@ def getOfType(curType, ofType, parentParamPath, childOperations, parentFields):
 		ofType["definition"] = copy.deepcopy(catoApiIntrospection["objects"][ofType["name"]])
 		if ofType["definition"]["fields"] != None and childOperations!=None:
 			ofType["definition"]["fields"] = checkForChildOperation(copy.deepcopy(ofType["definition"]["fields"]),childOperations)
-			ofType["definition"]["fields"] = getNestedFieldDefinitions(copy.deepcopy(ofType["definition"]["fields"]), curParamPath,childOperations, parentFields)
+			ofType["definition"]["fields"] = getNestedFieldDefinitions(copy.deepcopy(ofType["definition"]["fields"]), curParamPath,childOperations, parentFields, ofType["name"])
 		if ofType["definition"]["interfaces"] != None:
 			ofType["definition"]["interfaces"] = getNestedInterfaceDefinitions(copy.deepcopy(ofType["definition"]["interfaces"]), curParamPath,childOperations, parentFields)
 	elif "INTERFACE" in ofType["kind"]:
 		ofType["indexType"] = "interface"
 		ofType["definition"] = copy.deepcopy(catoApiIntrospection["interfaces"][ofType["name"]])
 		if ofType["definition"]["fields"] != None:
-			ofType["definition"]["fields"] = getNestedFieldDefinitions(copy.deepcopy(ofType["definition"]["fields"]), curParamPath, childOperations, parentFields)
+			ofType["definition"]["fields"] = getNestedFieldDefinitions(copy.deepcopy(ofType["definition"]["fields"]), curParamPath, childOperations, parentFields, ofType["name"])
 		if ofType["definition"]["possibleTypes"] != None:
 			ofType["definition"]["possibleTypes"] = getNestedInterfaceDefinitions(copy.deepcopy(ofType["definition"]["possibleTypes"]), curParamPath, childOperations, parentFields)
 			for interfaceName in ofType["definition"]["possibleTypes"]:
@@ -277,14 +277,14 @@ def getOfType(curType, ofType, parentParamPath, childOperations, parentFields):
 		ofType["definition"] = copy.deepcopy(catoApiIntrospection["enums"][ofType["name"]])
 	return ofType
 
-def getNestedFieldDefinitions(fieldsAry, parentParamPath,childOperations, parentFields):
+def getNestedFieldDefinitions(fieldsAry, parentParamPath,childOperations, parentFields, parentTypeName=None):
 	newFieldsList = {}
 	for field in fieldsAry:
 		if isinstance(field,str):
 			field = fieldsAry[field]
 		curParamPath = field["name"] if (parentParamPath == None) else (parentParamPath.replace("___",".") + field["name"])
 		# curParamPath = field["name"] if (parentParamPath == None) else (parentParamPath + "." + field["name"])
-		field["type"] = getOfType(field["type"], { "non_null": False, "kind": [], "name": None }, curParamPath,childOperations, parentFields)
+		field["type"] = getOfType(field["type"], { "non_null": False, "kind": [], "name": None }, curParamPath,childOperations, parentFields, parentTypeName)
 		field["path"] = curParamPath
 		field["id_str"] = curParamPath.replace(".","___")
 		if isinstance(field["type"]["kind"], list):
@@ -312,7 +312,11 @@ def getNestedFieldDefinitions(fieldsAry, parentParamPath,childOperations, parent
 				# print(json.dumps(field,indent=2,sort_keys=True))
 				# print(field["path"],parentFields)
 			# field["alias"] = renderCamelCase(field["type"]["name"]+"."+field["name"])+": "+field["name"]
-			field["alias"] = renderCamelCase(field["type"]["name"]+"."+field["name"])+": "+field["name"]
+			# Use parent type name instead of field type name for alias
+			if parentTypeName:
+				field["alias"] = renderCamelCase(field["name"]+"."+parentTypeName)+": "+field["name"]
+			else:
+				field["alias"] = renderCamelCase(field["type"]["name"]+"."+field["name"])+": "+field["name"]
 		if "records.fields" not in field["path"]:
 			newFieldsList[field["name"]] = field	
 	# for (fieldPath in newFieldList) {
@@ -333,9 +337,9 @@ def getNestedInterfaceDefinitions(possibleTypesAry, parentParamPath,childOperati
 		curInterface = curInterfaces[curInterfaceName]
 		curParamPath = "" if parentParamPath == None else parentParamPath + curInterface["name"] + "___"
 		if "fields" in curInterface and curInterface["fields"] != None:
-			curInterface["fields"] = getNestedFieldDefinitions(copy.deepcopy(curInterface["fields"]), curParamPath,childOperations, parentFields)
+			curInterface["fields"] = getNestedFieldDefinitions(copy.deepcopy(curInterface["fields"]), curParamPath,childOperations, parentFields, curInterface["name"])
 		if "inputFields" in curInterface and curInterface["inputFields"] != None:
-			curInterface["inputFields"] = getNestedFieldDefinitions(copy.deepcopy(curInterface["inputFields"]), curParamPath,childOperations, parentFields)
+			curInterface["inputFields"] = getNestedFieldDefinitions(copy.deepcopy(curInterface["inputFields"]), curParamPath,childOperations, parentFields, curInterface["name"])
 		if "interfaces" in curInterface and curInterface["interfaces"] != None:
 			curInterface["interfaces"] = getNestedInterfaceDefinitions(copy.deepcopy(curInterface["interfaces"]), curParamPath,childOperations, parentFields)
 		if "possibleTypes" in curInterface and curInterface["possibleTypes"] != None:
@@ -357,10 +361,10 @@ def parseOperation(curOperation,childOperations):
 			# for field in curOperation["type"]["definition"]["fields"]:
 			# 	parentFields.append(field["name"])
 			curOperation["type"]["definition"]["fields"] = checkForChildOperation(copy.deepcopy(curOperation["type"]["definition"]["fields"]),childOperations)
-			curOperation["type"]["definition"]["fields"] = copy.deepcopy(getNestedFieldDefinitions(curOperation["type"]["definition"]["fields"], None,childOperations,[]))
+			curOperation["type"]["definition"]["fields"] = copy.deepcopy(getNestedFieldDefinitions(curOperation["type"]["definition"]["fields"], None,childOperations,[], curOperation["type"]["name"]))
 		if "inputFields" in curOperation["type"]["definition"] and curOperation["type"]["definition"]["inputFields"] != None:
 			parentFields = curOperation["type"]["definition"]["inputFields"].keys()
-			curOperation["type"]["definition"]["inputFields"] = copy.deepcopy(getNestedFieldDefinitions(curOperation["type"]["definition"]["inputFields"], None,childOperations,parentFields))
+			curOperation["type"]["definition"]["inputFields"] = copy.deepcopy(getNestedFieldDefinitions(curOperation["type"]["definition"]["inputFields"], None,childOperations,parentFields, curOperation["type"]["name"]))
 	return curOperation
 
 def checkForChildOperation(fieldsAry,childOperations):
@@ -1076,7 +1080,12 @@ def renderArgsAndFields(responseArgStr, variablesObj, curOperation, definition, 
 			responseArgStr += " {\n"
 			for subfieldIndex in field['type']['definition']['fields']:
 				subfield = field['type']['definition']['fields'][subfieldIndex]
-				subfield_name = subfield['alias'] if 'alias' in subfield else subfield['name']				
+				# updated logic: use fieldTypes to determine if aliasing is needed
+				if (subfield['type']['name'] in curOperation.get('fieldTypes', {}) and 
+					'SCALAR' not in subfield['type'].get('kind', [])):
+					subfield_name = subfield['name'] + field['type']['definition']['name'] + ": " + subfield['name']
+				else:
+					subfield_name = subfield['alias'] if 'alias' in subfield else subfield['name']
 				responseArgStr += indent + "	" + subfield_name
 				if subfield.get("args") and len(list(subfield["args"].keys()))>0:
 					argsPresent = False

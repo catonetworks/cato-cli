@@ -1,7 +1,7 @@
 query siteBgpPeer ( $bgpPeerRefInput:BgpPeerRefInput! ) {
 	site ( ) {
 		bgpPeer ( input:$bgpPeerRefInput  )  {
-			site {
+			siteBgpPeer: site {
 				id
 				name
 			}
@@ -14,33 +14,33 @@ query siteBgpPeer ( $bgpPeerRefInput:BgpPeerRefInput! ) {
 			advertiseDefaultRoute
 			advertiseAllRoutes
 			advertiseSummaryRoutes
-			summaryRoute {
+			summaryRouteBgpPeer: summaryRoute {
 				id
 				route
-				bgpCommunityCommunity: community {
+				communityBgpSummaryRoute: community {
 					from
 					to
 				}
 
 			}
-			defaultAction
-			defaultActionExclusion {
-				bgpRouteExactFilterRuleBgpRouteExactFilterRule: bgpRouteExactFilterRule {
+			defaultActionBgpPeer: defaultAction
+			defaultActionExclusionBgpPeer: defaultActionExclusion {
+				bgpRouteExactFilterRuleBgpFilterRule: bgpRouteExactFilterRule {
 					id
-					globalIpRange {
+					globalIpRangeBgpRouteExactFilterRule: globalIpRange {
 						id
 						name
 					}
 					networkSubnet
 				}
 
-				bgpRouteExactAndInclusiveFilterRuleBgpRouteExactAndInclusiveFilterRule: bgpRouteExactAndInclusiveFilterRule {
+				bgpRouteExactAndInclusiveFilterRuleBgpFilterRule: bgpRouteExactAndInclusiveFilterRule {
 					id
-					globalIpRange {
+					globalIpRangeBgpRouteExactAndInclusiveFilterRule: globalIpRange {
 						id
 						name
 					}
-					globalIpRangeException {
+					globalIpRangeExceptionBgpRouteExactAndInclusiveFilterRule: globalIpRangeException {
 						id
 						name
 					}
@@ -50,10 +50,10 @@ query siteBgpPeer ( $bgpPeerRefInput:BgpPeerRefInput! ) {
 					ge
 				}
 
-				bgpCommunityFilterRuleCommunityFilterRule: communityFilterRule {
+				communityFilterRuleBgpFilterRule: communityFilterRule {
 					id
-					predicate
-					community {
+					predicateBgpCommunityFilterRule: predicate
+					communityBgpCommunityFilterRule: community {
 						from
 						to
 					}
@@ -66,12 +66,12 @@ query siteBgpPeer ( $bgpPeerRefInput:BgpPeerRefInput! ) {
 			holdTime
 			keepaliveInterval
 			bfdEnabled
-			bfdSettings {
+			bfdSettingsBgpPeer: bfdSettings {
 				transmitInterval
 				receiveInterval
 				multiplier
 			}
-			tracking {
+			trackingBgpPeer: tracking {
 				id
 				enabled
 				alertFrequency

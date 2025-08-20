@@ -5,104 +5,104 @@ query catalogs ( $applicationRefInput:ApplicationRefInput! $catalogApplicationLi
 			name
 			descriptionSummary
 			description
-			category {
+			categoryCatalogApplication: category {
 				id
 				name
 			}
-			complianceAttributes {
-				catalogApplicationAttributeIso27001: iso27001
-				catalogApplicationAttributeSox: sox
-				catalogApplicationAttributeHippa: hippa
-				catalogApplicationAttributeSoc1: soc1
-				catalogApplicationAttributeSoc2: soc2
-				catalogApplicationAttributeSoc3: soc3
-				catalogApplicationAttributeIsae3402: isae3402
-				catalogApplicationAttributePciDss: pciDss
+			complianceAttributesCatalogApplication: complianceAttributes {
+				iso27001CatalogApplicationComplianceAttributes: iso27001
+				soxCatalogApplicationComplianceAttributes: sox
+				hippaCatalogApplicationComplianceAttributes: hippa
+				soc1CatalogApplicationComplianceAttributes: soc1
+				soc2CatalogApplicationComplianceAttributes: soc2
+				soc3CatalogApplicationComplianceAttributes: soc3
+				isae3402CatalogApplicationComplianceAttributes: isae3402
+				pciDssCatalogApplicationComplianceAttributes: pciDss
 			}
-			securityAttributes {
-				catalogApplicationAttributeMfa: mfa
-				catalogApplicationAttributeEncryptionAtRest: encryptionAtRest
-				catalogApplicationAttributeAuditTrail: auditTrail
-				catalogApplicationAttributeRbac: rbac
-				catalogApplicationAttributeRememberPassword: rememberPassword
-				catalogApplicationAttributeSso: sso
-				catalogApplicationAttributeTrustedCertificate: trustedCertificate
-				catalogApplicationAttributeTlsEnforcement: tlsEnforcement
-				catalogApplicationAttributeHttpSecurityHeaders: httpSecurityHeaders
+			securityAttributesCatalogApplication: securityAttributes {
+				mfaCatalogApplicationSecurityAttributes: mfa
+				encryptionAtRestCatalogApplicationSecurityAttributes: encryptionAtRest
+				auditTrailCatalogApplicationSecurityAttributes: auditTrail
+				rbacCatalogApplicationSecurityAttributes: rbac
+				rememberPasswordCatalogApplicationSecurityAttributes: rememberPassword
+				ssoCatalogApplicationSecurityAttributes: sso
+				trustedCertificateCatalogApplicationSecurityAttributes: trustedCertificate
+				tlsEnforcementCatalogApplicationSecurityAttributes: tlsEnforcement
+				httpSecurityHeadersCatalogApplicationSecurityAttributes: httpSecurityHeaders
 			}
 			ipoStatus
 			website
-			originCountry {
+			originCountryCatalogApplication: originCountry {
 				id
 				name
 			}
 			region
 			city
 			risk
-			numOfEmployees
-			capability
-			activity {
+			numOfEmployeesCatalogApplication: numOfEmployees
+			capabilityCatalogApplication: capability
+			activityCatalogApplication: activity {
 				id
 				name
-				catalogApplicationActivityFieldFields: fields {
+				fieldsCatalogApplicationActivity: fields {
 					id
 					name
-					catalogApplicationActivityFieldOperatorPossibleOperators: possibleOperators
+					possibleOperatorsCatalogApplicationActivityField: possibleOperators
 					possibleValues
 				}
 
 			}
-			type
+			typeCatalogApplication: type
 			sanctioned
 			recentlyAdded
-			standardPorts {
+			standardPortsCatalogApplication: standardPorts {
 				port
-				portRangePortRange: portRange {
+				portRangeCustomService: portRange {
 					from
 					to
 				}
 
-				ipProtocolProtocol: protocol
+				protocolCustomService: protocol
 			}
 		}
 
 		catalogApplicationList ( input:$catalogApplicationListInput  )  {
-			application {
+			applicationCatalogApplicationListPayload: application {
 				id
 				name
 				descriptionSummary
 				description
-				applicationCategoryRefCategory: category {
+				categoryCatalogApplication: category {
 					id
 					name
 				}
 
-				catalogApplicationComplianceAttributesComplianceAttributes: complianceAttributes {
-					catalogApplicationAttributeIso27001: iso27001
-					catalogApplicationAttributeSox: sox
-					catalogApplicationAttributeHippa: hippa
-					catalogApplicationAttributeSoc1: soc1
-					catalogApplicationAttributeSoc2: soc2
-					catalogApplicationAttributeSoc3: soc3
-					catalogApplicationAttributeIsae3402: isae3402
-					catalogApplicationAttributePciDss: pciDss
+				complianceAttributesCatalogApplication: complianceAttributes {
+					iso27001CatalogApplicationComplianceAttributes: iso27001
+					soxCatalogApplicationComplianceAttributes: sox
+					hippaCatalogApplicationComplianceAttributes: hippa
+					soc1CatalogApplicationComplianceAttributes: soc1
+					soc2CatalogApplicationComplianceAttributes: soc2
+					soc3CatalogApplicationComplianceAttributes: soc3
+					isae3402CatalogApplicationComplianceAttributes: isae3402
+					pciDssCatalogApplicationComplianceAttributes: pciDss
 				}
 
-				catalogApplicationSecurityAttributesSecurityAttributes: securityAttributes {
-					catalogApplicationAttributeMfa: mfa
-					catalogApplicationAttributeEncryptionAtRest: encryptionAtRest
-					catalogApplicationAttributeAuditTrail: auditTrail
-					catalogApplicationAttributeRbac: rbac
-					catalogApplicationAttributeRememberPassword: rememberPassword
-					catalogApplicationAttributeSso: sso
-					catalogApplicationAttributeTrustedCertificate: trustedCertificate
-					catalogApplicationAttributeTlsEnforcement: tlsEnforcement
-					catalogApplicationAttributeHttpSecurityHeaders: httpSecurityHeaders
+				securityAttributesCatalogApplication: securityAttributes {
+					mfaCatalogApplicationSecurityAttributes: mfa
+					encryptionAtRestCatalogApplicationSecurityAttributes: encryptionAtRest
+					auditTrailCatalogApplicationSecurityAttributes: auditTrail
+					rbacCatalogApplicationSecurityAttributes: rbac
+					rememberPasswordCatalogApplicationSecurityAttributes: rememberPassword
+					ssoCatalogApplicationSecurityAttributes: sso
+					trustedCertificateCatalogApplicationSecurityAttributes: trustedCertificate
+					tlsEnforcementCatalogApplicationSecurityAttributes: tlsEnforcement
+					httpSecurityHeadersCatalogApplicationSecurityAttributes: httpSecurityHeaders
 				}
 
 				ipoStatus
 				website
-				countryRefOriginCountry: originCountry {
+				originCountryCatalogApplication: originCountry {
 					id
 					name
 				}
@@ -110,48 +110,48 @@ query catalogs ( $applicationRefInput:ApplicationRefInput! $catalogApplicationLi
 				region
 				city
 				risk
-				employeeRangeNumOfEmployees: numOfEmployees
-				catalogApplicationCapabilityCapability: capability
-				catalogApplicationActivityActivity: activity {
+				numOfEmployeesCatalogApplication: numOfEmployees
+				capabilityCatalogApplication: capability
+				activityCatalogApplication: activity {
 					id
 					name
-					catalogApplicationActivityFieldFields: fields {
+					fieldsCatalogApplicationActivity: fields {
 						id
 						name
-						catalogApplicationActivityFieldOperatorPossibleOperators: possibleOperators
+						possibleOperatorsCatalogApplicationActivityField: possibleOperators
 						possibleValues
 					}
 				}
 
-				catalogApplicationTypeType: type
+				typeCatalogApplication: type
 				sanctioned
 				recentlyAdded
-				customServiceStandardPorts: standardPorts {
+				standardPortsCatalogApplication: standardPorts {
 					port
-					portRangePortRange: portRange {
+					portRangeCustomService: portRange {
 						from
 						to
 					}
-					ipProtocolProtocol: protocol
+					protocolCustomService: protocol
 				}
 
 			}
-			pageInfo {
+			pageInfoCatalogApplicationListPayload: pageInfo {
 				total
 			}
 		}
 
 		contentTypeGroupList ( input:$catalogApplicationContentTypeGroupListInput  )  {
-			contentTypeGroup {
+			contentTypeGroupCatalogApplicationContentTypeGroupListPayload: contentTypeGroup {
 				id
 				name
-				catalogApplicationContentTypeContentType: contentType {
+				contentTypeCatalogApplicationContentTypeGroup: contentType {
 					id
 					name
 				}
 
 			}
-			pageInfo {
+			pageInfoCatalogApplicationContentTypeGroupListPayload: pageInfo {
 				total
 			}
 		}

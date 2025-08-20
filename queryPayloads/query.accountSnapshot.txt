@@ -4,24 +4,24 @@ query accountSnapshot ( $siteIDs:[ID!] $userIDs:[ID!] ) {
 		sites ( siteIDs:$siteIDs  )  {
 			id
 			protoId
-			connectivityStatusConnectivityStatus: connectivityStatus
-			haStatusHaStatus: haStatus {
+			connectivityStatusSiteSnapshot: connectivityStatus
+			haStatusSiteSnapshot: haStatus {
 				readiness
 				wanConnectivity
 				keepalive
 				socketVersion
 			}
-			operationalStatusOperationalStatus: operationalStatus
+			operationalStatusSiteSnapshot: operationalStatus
 			lastConnected
 			connectedSince
 			popName
-			deviceSnapshotDevices: devices {
+			devicesSiteSnapshot: devices {
 				id
 				name
 				identifier
 				connected
 				haRole
-				interfaceSnapshotInterfaces: interfaces {
+				interfacesDeviceSnapshot: interfaces {
 					connected
 					id
 					name
@@ -33,7 +33,7 @@ query accountSnapshot ( $siteIDs:[ID!] $userIDs:[ID!] ) {
 					tunnelConnectionReason
 					tunnelUptime
 					tunnelRemoteIP
-					iPInfoTunnelRemoteIPInfo: tunnelRemoteIPInfo {
+					tunnelRemoteIPInfoInterfaceSnapshot: tunnelRemoteIPInfo {
 						ip
 						countryCode
 						countryName
@@ -44,7 +44,7 @@ query accountSnapshot ( $siteIDs:[ID!] $userIDs:[ID!] ) {
 						longitude
 					}
 					type
-					interfaceInfoInfo: info {
+					infoInterfaceSnapshot: info {
 						id
 						name
 						upstreamBandwidth
@@ -54,7 +54,7 @@ query accountSnapshot ( $siteIDs:[ID!] $userIDs:[ID!] ) {
 						destType
 						wanRole
 					}
-					cellularInterfaceCellularInterfaceInfo: cellularInterfaceInfo {
+					cellularInterfaceInfoInterfaceSnapshot: cellularInterfaceInfo {
 						networkType
 						simSlotId
 						modemStatus
@@ -79,14 +79,14 @@ query accountSnapshot ( $siteIDs:[ID!] $userIDs:[ID!] ) {
 				connectedSince
 				lastPopID
 				lastPopName
-				recentConnectionRecentConnections: recentConnections {
+				recentConnectionsDeviceSnapshot: recentConnections {
 					duration
 					interfaceName
 					deviceName
 					lastConnected
 					popName
 					remoteIP
-					iPInfoRemoteIPInfo: remoteIPInfo {
+					remoteIPInfoRecentConnection: remoteIPInfo {
 						ip
 						countryCode
 						countryName
@@ -100,16 +100,16 @@ query accountSnapshot ( $siteIDs:[ID!] $userIDs:[ID!] ) {
 
 				type
 				deviceUptime
-				socketInfoSocketInfo: socketInfo {
+				socketInfoDeviceSnapshot: socketInfo {
 					id
 					serial
 					isPrimary
-					platform
+					platformSocketInfo: platform
 					version
 					versionUpdateTime
 				}
 
-				interfaceLinkStateInterfacesLinkState: interfacesLinkState {
+				interfacesLinkStateDeviceSnapshot: interfacesLinkState {
 					id
 					up
 					mediaIn
@@ -129,7 +129,7 @@ query accountSnapshot ( $siteIDs:[ID!] $userIDs:[ID!] ) {
 				mfaCreationTime
 				internalIP
 			}
-			siteInfoInfo: info {
+			infoSiteSnapshot: info {
 				name
 				type
 				description
@@ -150,14 +150,14 @@ query accountSnapshot ( $siteIDs:[ID!] $userIDs:[ID!] ) {
 					upstreamBandwidthMbpsPrecision
 					downstreamBandwidthMbpsPrecision
 					destType
-					socketInterfaceWanRoleWanRole: wanRole
+					wanRoleInterfaceInfo: wanRole
 				}
 
 				sockets {
 					id
 					serial
 					isPrimary
-					socketPlatformPlatform: platform
+					platformSocketInfo: platform
 					version
 					versionUpdateTime
 				}
@@ -176,8 +176,8 @@ query accountSnapshot ( $siteIDs:[ID!] $userIDs:[ID!] ) {
 
 		users ( userIDs:$userIDs  )  {
 			id
-			connectivityStatusConnectivityStatus: connectivityStatus
-			operationalStatusOperationalStatus: operationalStatus
+			connectivityStatusUserSnapshot: connectivityStatus
+			operationalStatusUserSnapshot: operationalStatus
 			name
 			deviceName
 			uptime
@@ -187,7 +187,7 @@ query accountSnapshot ( $siteIDs:[ID!] $userIDs:[ID!] ) {
 			popID
 			popName
 			remoteIP
-			iPInfoRemoteIPInfo: remoteIPInfo {
+			remoteIPInfoUserSnapshot: remoteIPInfo {
 				ip
 				countryCode
 				countryName
@@ -200,13 +200,13 @@ query accountSnapshot ( $siteIDs:[ID!] $userIDs:[ID!] ) {
 			internalIP
 			osType
 			osVersion
-			deviceSnapshotDevices: devices {
+			devicesUserSnapshot: devices {
 				id
 				name
 				identifier
 				connected
 				haRole
-				interfaceSnapshotInterfaces: interfaces {
+				interfacesDeviceSnapshot: interfaces {
 					connected
 					id
 					name
@@ -218,7 +218,7 @@ query accountSnapshot ( $siteIDs:[ID!] $userIDs:[ID!] ) {
 					tunnelConnectionReason
 					tunnelUptime
 					tunnelRemoteIP
-					iPInfoTunnelRemoteIPInfo: tunnelRemoteIPInfo {
+					tunnelRemoteIPInfoInterfaceSnapshot: tunnelRemoteIPInfo {
 						ip
 						countryCode
 						countryName
@@ -229,7 +229,7 @@ query accountSnapshot ( $siteIDs:[ID!] $userIDs:[ID!] ) {
 						longitude
 					}
 					type
-					interfaceInfoInfo: info {
+					infoInterfaceSnapshot: info {
 						id
 						name
 						upstreamBandwidth
@@ -239,7 +239,7 @@ query accountSnapshot ( $siteIDs:[ID!] $userIDs:[ID!] ) {
 						destType
 						wanRole
 					}
-					cellularInterfaceCellularInterfaceInfo: cellularInterfaceInfo {
+					cellularInterfaceInfoInterfaceSnapshot: cellularInterfaceInfo {
 						networkType
 						simSlotId
 						modemStatus
@@ -264,14 +264,14 @@ query accountSnapshot ( $siteIDs:[ID!] $userIDs:[ID!] ) {
 				connectedSince
 				lastPopID
 				lastPopName
-				recentConnectionRecentConnections: recentConnections {
+				recentConnectionsDeviceSnapshot: recentConnections {
 					duration
 					interfaceName
 					deviceName
 					lastConnected
 					popName
 					remoteIP
-					iPInfoRemoteIPInfo: remoteIPInfo {
+					remoteIPInfoRecentConnection: remoteIPInfo {
 						ip
 						countryCode
 						countryName
@@ -285,16 +285,16 @@ query accountSnapshot ( $siteIDs:[ID!] $userIDs:[ID!] ) {
 
 				type
 				deviceUptime
-				socketInfoSocketInfo: socketInfo {
+				socketInfoDeviceSnapshot: socketInfo {
 					id
 					serial
 					isPrimary
-					platform
+					platformSocketInfo: platform
 					version
 					versionUpdateTime
 				}
 
-				interfaceLinkStateInterfacesLinkState: interfacesLinkState {
+				interfacesLinkStateDeviceSnapshot: interfacesLinkState {
 					id
 					up
 					mediaIn
@@ -315,7 +315,7 @@ query accountSnapshot ( $siteIDs:[ID!] $userIDs:[ID!] ) {
 				internalIP
 			}
 			connectedInOffice
-			userInfoInfo: info {
+			infoUserSnapshot: info {
 				name
 				status
 				email
@@ -324,14 +324,14 @@ query accountSnapshot ( $siteIDs:[ID!] $userIDs:[ID!] ) {
 				origin
 				authMethod
 			}
-			recentConnectionRecentConnections: recentConnections {
+			recentConnectionsUserSnapshot: recentConnections {
 				duration
 				interfaceName
 				deviceName
 				lastConnected
 				popName
 				remoteIP
-				iPInfoRemoteIPInfo: remoteIPInfo {
+				remoteIPInfoRecentConnection: remoteIPInfo {
 					ip
 					countryCode
 					countryName

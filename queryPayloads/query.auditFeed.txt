@@ -7,30 +7,30 @@ query auditFeed ( $fieldNames:[AuditFieldName!] $accountIDs:[ID!] $timeFrame:Tim
 		hasMore
 		accounts {
 			id
-			auditRecordRecords: records ( fieldNames:$fieldNames   ) {
-				entityAdmin: admin {
+			recordsAuditFeedAccountRecords: records ( fieldNames:$fieldNames   ) {
+				adminAuditRecord: admin {
 					id
 					name
-					type
+					typeEntity: type
 				}
 
-				entityApiKey: apiKey {
+				apiKeyAuditRecord: apiKey {
 					id
 					name
-					type
+					typeEntity: type
 				}
 
-				entityObject: object {
+				objectAuditRecord: object {
 					id
 					name
-					type
+					typeEntity: type
 				}
 
-				entityInfoAccount: account {
-					entity {
+				accountAuditRecord: account {
+					entityEntityInfo: entity {
 						id
 						name
-						entityTypeType: type
+						typeEntity: type
 					}
 					description
 					helperFields

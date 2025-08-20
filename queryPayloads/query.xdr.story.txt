@@ -10,30 +10,30 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 			createdAt
 			playbook
 			summary
-			incident {
+			incidentStory: incident {
 				id
 				firstSignal
 				lastSignal
-				storyEngineTypeEnumEngineType: engineType
-				vendorEnumVendor: vendor
-				storyProducerEnumProducer: producer
+				engineTypeMergedIncident: engineType
+				vendorMergedIncident: vendor
+				producerMergedIncident: producer
 				producerName
-				connectionTypeEnumConnectionType: connectionType
+				connectionTypeMergedIncident: connectionType
 				indication
 				queryName
 				criticality
 				source
 				ticket
-				storyStatusEnumStatus: status
+				statusMergedIncident: status
 				research
 				siteName
 				storyDuration
 				description
 				sourceIp
-				analystFeedbackAnalystFeedback: analystFeedback {
-					verdict
-					severity
-					threatType {
+				analystFeedbackMergedIncident: analystFeedback {
+					verdictAnalystFeedback: verdict
+					severityAnalystFeedback: severity
+					threatTypeAnalystFeedback: threatType {
 						name
 						recommendedAction
 						details
@@ -42,17 +42,17 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 					additionalInfo
 				}
 
-				siteRefSite: site {
+				siteMergedIncident: site {
 					id
 					name
 				}
 
-				userRefUser: user {
+				userMergedIncident: user {
 					id
 					name
 				}
 
-				storyVerdictEnumPredictedVerdict: predictedVerdict
+				predictedVerdictMergedIncident: predictedVerdict
 				predictedThreatType
 				... on MicrosoftEndpoint {
 					microsoftEndpointId: id
@@ -75,9 +75,9 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 					microsoftEndpointDescription: description
 					microsoftEndpointSourceIp: sourceIp
 					analystFeedback: analystFeedback {
-						verdict
-						severity
-						threatType {
+						verdictAnalystFeedback: verdict
+						severityAnalystFeedback: severity
+						threatTypeAnalystFeedback: threatType {
 							name
 							recommendedAction
 							details
@@ -110,12 +110,12 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 					device {
 						id
 						deviceName
-						osDetails {
+						osDetailsMicrosoftDeviceDetails: osDetails {
 							osType
 							osBuild
 							osVersion
 						}
-						loggedOnUsers {
+						loggedOnUsersMicrosoftDeviceDetails: loggedOnUsers {
 							id
 							name
 							... on MicrosoftEndpointUser {
@@ -134,15 +134,15 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 						externalIp
 						localIp
 						firstSeenDateTime
-						avStatus
-						healthStatus
-						rbacGroup {
+						avStatusMicrosoftDeviceDetails: avStatus
+						healthStatusMicrosoftDeviceDetails: healthStatus
+						rbacGroupMicrosoftDeviceDetails: rbacGroup {
 							id
 							name
 						}
 						ipInterfaces
 						azureAdDeviceId
-						onboardingStatus
+						onboardingStatusMicrosoftDeviceDetails: onboardingStatus
 					}
 
 					alerts {
@@ -150,23 +150,23 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 						title
 						description
 						threatName
-						mitreMitreTechnique: mitreTechnique {
+						mitreTechniqueMicrosoftDefenderEndpointAlert: mitreTechnique {
 							id
 							name
 						}
-						mitreMitreSubTechnique: mitreSubTechnique {
+						mitreSubTechniqueMicrosoftDefenderEndpointAlert: mitreSubTechnique {
 							id
 							name
 						}
 						createdDateTime
-						microsoftEndpointResourceResources: resources {
+						resourcesMicrosoftDefenderEndpointAlert: resources {
 							id
 							createdDateTime
-							remediationStatusEnumRemediationStatus: remediationStatus
+							remediationStatusMicrosoftEndpointResource: remediationStatus
 							remediationStatusDetails
 							tags
-							resourceRoleEnumRoles: roles
-							msResourceVerdictEnumVerdict: verdict
+							rolesMicrosoftEndpointResource: roles
+							verdictMicrosoftEndpointResource: verdict
 							... on MicrosoftProcessResource {
 								microsoftProcessResourceId: id
 								microsoftProcessResourceCreatedDateTime: createdDateTime
@@ -244,7 +244,7 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 								valueType
 							}
 						}
-						microsoftActivityActivities: activities {
+						activitiesMicrosoftDefenderEndpointAlert: activities {
 							id
 							resourceId
 							parentResourceId
@@ -267,12 +267,12 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 						lastUpdateDateTime
 						destinationIp
 						destinationUrl
-						msAlertStatusStatus: status
+						statusMicrosoftDefenderEndpointAlert: status
 						providerAlertId
 						alertWebUrl
-						alertDeterminationEnumDetermination: determination
-						detectionSourceEnumDetectionSource: detectionSource
-						alertClassificationEnumClassification: classification
+						determinationMicrosoftDefenderEndpointAlert: determination
+						detectionSourceMicrosoftDefenderEndpointAlert: detectionSource
+						classificationMicrosoftDefenderEndpointAlert: classification
 					}
 
 				}
@@ -296,9 +296,9 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 					anomalyStatsStoryDuration: storyDuration
 					anomalyStatsDescription: description
 					analystFeedback: analystFeedback {
-						verdict
-						severity
-						threatType {
+						verdictAnalystFeedback: verdict
+						severityAnalystFeedback: severity
+						threatTypeAnalystFeedback: threatType {
 							name
 							recommendedAction
 							details
@@ -377,9 +377,9 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 						data ( perSecond:$perSecond   )
 						label
 						sum
-						unitTypeUnits: units
+						unitsIncidentTimeseries: units
 						info
-						timeseriesKeyKey: key {
+						keyIncidentTimeseries: key {
 							measureFieldName
 							dimensions {
 								fieldName
@@ -390,7 +390,7 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 					}
 
 					targets {
-						targetTypeType: type
+						typeIncidentTargetRep: type
 						name
 						analysisScore
 						infectionSource
@@ -402,7 +402,7 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 						countryOfRegistration
 						searchHits
 						engines
-						eventEventData: eventData {
+						eventDataIncidentTargetRep: eventData {
 							signatureId
 							eventType
 							threatType
@@ -411,7 +411,7 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 							action
 							ruleId
 							virusName
-							scanResultScanResult: scanResult
+							scanResultEvent: scanResult
 							appId
 							appName
 							dnsProtectionCategory
@@ -440,9 +440,9 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 					anomalyEventsStoryDuration: storyDuration
 					anomalyEventsDescription: description
 					analystFeedback: analystFeedback {
-						verdict
-						severity
-						threatType {
+						verdictAnalystFeedback: verdict
+						severityAnalystFeedback: severity
+						threatTypeAnalystFeedback: threatType {
 							name
 							recommendedAction
 							details
@@ -521,9 +521,9 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 						data ( perSecond:$perSecond   )
 						label
 						sum
-						unitTypeUnits: units
+						unitsIncidentTimeseries: units
 						info
-						timeseriesKeyKey: key {
+						keyIncidentTimeseries: key {
 							measureFieldName
 							dimensions {
 								fieldName
@@ -534,7 +534,7 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 					}
 
 					targets {
-						targetTypeType: type
+						typeIncidentTargetRep: type
 						name
 						analysisScore
 						infectionSource
@@ -546,7 +546,7 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 						countryOfRegistration
 						searchHits
 						engines
-						eventEventData: eventData {
+						eventDataIncidentTargetRep: eventData {
 							signatureId
 							eventType
 							threatType
@@ -555,7 +555,7 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 							action
 							ruleId
 							virusName
-							scanResultScanResult: scanResult
+							scanResultEvent: scanResult
 							appId
 							appName
 							dnsProtectionCategory
@@ -584,9 +584,9 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 					threatStoryDuration: storyDuration
 					threatDescription: description
 					analystFeedback: analystFeedback {
-						verdict
-						severity
-						threatType {
+						verdictAnalystFeedback: verdict
+						severityAnalystFeedback: severity
+						threatTypeAnalystFeedback: threatType {
 							name
 							recommendedAction
 							details
@@ -635,7 +635,7 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 						action
 						ruleId
 						virusName
-						scanResultScanResult: scanResult
+						scanResultEvent: scanResult
 						appId
 						appName
 						dnsProtectionCategory
@@ -650,9 +650,9 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 						data ( perSecond:$perSecond   )
 						label
 						sum
-						unitTypeUnits: units
+						unitsIncidentTimeseries: units
 						info
-						timeseriesKeyKey: key {
+						keyIncidentTimeseries: key {
 							measureFieldName
 							dimensions {
 								fieldName
@@ -663,7 +663,7 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 					}
 
 					targets {
-						targetTypeType: type
+						typeIncidentTargetRep: type
 						name
 						analysisScore
 						infectionSource
@@ -675,7 +675,7 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 						countryOfRegistration
 						searchHits
 						engines
-						eventEventData: eventData {
+						eventDataIncidentTargetRep: eventData {
 							signatureId
 							eventType
 							threatType
@@ -684,7 +684,7 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 							action
 							ruleId
 							virusName
-							scanResultScanResult: scanResult
+							scanResultEvent: scanResult
 							appId
 							appName
 							dnsProtectionCategory
@@ -739,9 +739,9 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 					threatPreventionStoryDuration: storyDuration
 					threatPreventionDescription: description
 					analystFeedback: analystFeedback {
-						verdict
-						severity
-						threatType {
+						verdictAnalystFeedback: verdict
+						severityAnalystFeedback: severity
+						threatTypeAnalystFeedback: threatType {
 							name
 							recommendedAction
 							details
@@ -790,7 +790,7 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 						action
 						ruleId
 						virusName
-						scanResultScanResult: scanResult
+						scanResultEvent: scanResult
 						appId
 						appName
 						dnsProtectionCategory
@@ -805,9 +805,9 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 						data ( perSecond:$perSecond   )
 						label
 						sum
-						unitTypeUnits: units
+						unitsIncidentTimeseries: units
 						info
-						timeseriesKeyKey: key {
+						keyIncidentTimeseries: key {
 							measureFieldName
 							dimensions {
 								fieldName
@@ -818,7 +818,7 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 					}
 
 					targets {
-						targetTypeType: type
+						typeIncidentTargetRep: type
 						name
 						analysisScore
 						infectionSource
@@ -830,7 +830,7 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 						countryOfRegistration
 						searchHits
 						engines
-						eventEventData: eventData {
+						eventDataIncidentTargetRep: eventData {
 							signatureId
 							eventType
 							threatType
@@ -839,7 +839,7 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 							action
 							ruleId
 							virusName
-							scanResultScanResult: scanResult
+							scanResultEvent: scanResult
 							appId
 							appName
 							dnsProtectionCategory
@@ -895,9 +895,9 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 					networkXDRIncidentDescription: description
 					networkXDRIncidentSourceIp: sourceIp
 					analystFeedback: analystFeedback {
-						verdict
-						severity
-						threatType {
+						verdictAnalystFeedback: verdict
+						severityAnalystFeedback: severity
+						threatTypeAnalystFeedback: threatType {
 							name
 							recommendedAction
 							details
@@ -931,29 +931,29 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 						created
 						validated
 						description
-						networkXDREventTypeEnumEventType: eventType
+						eventTypeNetworkTimelineEvent: eventType
 						incidentId
-						networkEventSourceEnumNetworkEventSource: networkEventSource
+						networkEventSourceNetworkTimelineEvent: networkEventSource
 						eventIds
 						acknowledged
 						linkId
 						linkName
-						linkConfigPrecedenceEnumLinkConfigPrecedence: linkConfigPrecedence
-						linkStatusEnumLinkStatus: linkStatus
+						linkConfigPrecedenceNetworkTimelineEvent: linkConfigPrecedence
+						linkStatusNetworkTimelineEvent: linkStatus
 						linkConfigBandwidth
-						deviceConfigHaRoleEnumDeviceConfigHaRole: deviceConfigHaRole
-						deviceHaRoleStateEnumDeviceHaRoleState: deviceHaRoleState
+						deviceConfigHaRoleNetworkTimelineEvent: deviceConfigHaRole
+						deviceHaRoleStateNetworkTimelineEvent: deviceHaRoleState
 						socketSerialId
 						pop
 						isp
-						bGPConnectionBgpConnection: bgpConnection {
+						bgpConnectionNetworkTimelineEvent: bgpConnection {
 							connectionName
 							peerIp
 							peerAsn
 							catoIp
 							catoAsn
 						}
-						linkQualityIssueLinkQualityIssue: linkQualityIssue {
+						linkQualityIssueNetworkTimelineEvent: linkQualityIssue {
 							issueType
 							direction
 							current
@@ -990,7 +990,7 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 					ruleName
 					muted
 					ilmmDetails {
-						linkDetails {
+						linkDetailsIlmmDetails: linkDetails {
 							linkId
 							description
 							ispLinkId
@@ -998,7 +998,7 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 							onboardingStatus
 							activeLicense
 						}
-						ispDetails {
+						ispDetailsIlmmDetails: ispDetails {
 							name
 							ispAccountId
 							supportEmail
@@ -1012,7 +1012,7 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 							}
 
 						}
-						contacts {
+						contactsIlmmDetails: contacts {
 							name
 							phone
 							email
@@ -1041,9 +1041,9 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 					catoEndpointDescription: description
 					catoEndpointSourceIp: sourceIp
 					analystFeedback: analystFeedback {
-						verdict
-						severity
-						threatType {
+						verdictAnalystFeedback: verdict
+						severityAnalystFeedback: severity
+						threatTypeAnalystFeedback: threatType {
 							name
 							recommendedAction
 							details
@@ -1076,12 +1076,12 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 					device {
 						id
 						deviceName
-						osDetails {
+						osDetailsCatoEndpointDeviceDetails: osDetails {
 							osType
 							osBuild
 							osVersion
 						}
-						loggedOnUsers {
+						loggedOnUsersCatoEndpointDeviceDetails: loggedOnUsers {
 							id
 							name
 							... on MicrosoftEndpointUser {
@@ -1107,19 +1107,19 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 						title
 						description
 						threatName
-						mitreMitreTechnique: mitreTechnique {
+						mitreTechniqueCatoEndpointAlert: mitreTechnique {
 							id
 							name
 						}
-						mitreMitreSubTechnique: mitreSubTechnique {
+						mitreSubTechniqueCatoEndpointAlert: mitreSubTechnique {
 							id
 							name
 						}
 						createdDateTime
-						catoResourceResources: resources {
+						resourcesCatoEndpointAlert: resources {
 							id
 							createdDateTime
-							remediationStatusEnumRemediationStatus: remediationStatus
+							remediationStatusCatoResource: remediationStatus
 							... on CatoProcessResource {
 								catoProcessResourceId: id
 								catoProcessResourceCreatedDateTime: createdDateTime
@@ -1175,14 +1175,14 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 								detectionStatus
 							}
 						}
-						catoActivityActivities: activities {
+						activitiesCatoEndpointAlert: activities {
 							id
 							resourceId
 							parentResourceId
 						}
 						criticality
-						catoEndpointEngineTypeEngineType: engineType
-						remediationStatusEnumStatus: status
+						engineTypeCatoEndpointAlert: engineType
+						statusCatoEndpointAlert: status
 						endpointProtectionProfile
 						externalIp
 						localIp
@@ -1190,15 +1190,15 @@ query xdrStory ( $perSecond:Boolean $storyId:ID $producer:StoryProducerEnum $inc
 
 				}
 			}
-			timeline {
+			timelineStory: timeline {
 				createdAt
 				description
 				context
-				timelineTypeEnumType: type
+				typeTimelineItem: type
 				descriptions
-				timelineItemCategoryEnumCategory: category
+				categoryTimelineItem: category
 				additionalInfo
-				analystInfoAnalystInfo: analystInfo {
+				analystInfoTimelineItem: analystInfo {
 					name
 					email
 				}

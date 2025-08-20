@@ -1,15 +1,17 @@
 query licensing ( ) {
 	licensing ( ) {
 		licensingInfo {
-			licenses {
+			licensesLicensingInfo: licenses {
+				id
 				description
-				licensePlanPlan: plan
-				licenseSkuSku: sku
-				licenseStatusStatus: status
+				planLicense: plan
+				skuLicense: sku
+				statusLicense: status
 				startDate
 				expirationDate
 				lastUpdated
 				... on DataLakeLicense {
+					dataLakeLicenseId: id
 					dataLakeLicenseDescription: description
 					dataLakeLicensePlan: plan
 					dataLakeLicenseSku: sku
@@ -22,6 +24,7 @@ query licensing ( ) {
 					total
 				}
 				... on PublicIpsLicense {
+					publicIpsLicenseId: id
 					publicIpsLicenseDescription: description
 					publicIpsLicensePlan: plan
 					publicIpsLicenseSku: sku
@@ -32,6 +35,7 @@ query licensing ( ) {
 					total
 				}
 				... on SiteLicense {
+					siteLicenseId: id
 					siteLicenseDescription: description
 					siteLicensePlan: plan
 					siteLicenseSku: sku
@@ -50,6 +54,7 @@ query licensing ( ) {
 
 				}
 				... on PooledBandwidthLicense {
+					pooledBandwidthLicenseId: id
 					pooledBandwidthLicenseDescription: description
 					pooledBandwidthLicensePlan: plan
 					pooledBandwidthLicenseSku: sku
@@ -62,7 +67,7 @@ query licensing ( ) {
 					total
 					allocatedBandwidth
 					sites {
-						siteRefSite: site {
+						sitePooledBandwidthLicenseSite: site {
 							id
 							name
 						}
@@ -70,7 +75,7 @@ query licensing ( ) {
 					}
 
 					accounts {
-						accountRefAccount: account {
+						accountPartnerPooledBandwidthLicenseAccount: account {
 							id
 							name
 						}
@@ -79,6 +84,7 @@ query licensing ( ) {
 
 				}
 				... on ZtnaUsersLicense {
+					ztnaUsersLicenseId: id
 					ztnaUsersLicenseDescription: description
 					ztnaUsersLicensePlan: plan
 					ztnaUsersLicenseSku: sku
@@ -90,6 +96,7 @@ query licensing ( ) {
 					total
 				}
 				... on EndpointProtectionLicense {
+					endpointProtectionLicenseId: id
 					endpointProtectionLicenseDescription: description
 					endpointProtectionLicensePlan: plan
 					endpointProtectionLicenseSku: sku
@@ -100,6 +107,7 @@ query licensing ( ) {
 					total
 				}
 				... on IlmmLicense {
+					ilmmLicenseId: id
 					ilmmLicenseDescription: description
 					ilmmLicensePlan: plan
 					ilmmLicenseSku: sku
@@ -110,6 +118,7 @@ query licensing ( ) {
 					total
 				}
 				... on IpsLicense {
+					ipsLicenseId: id
 					ipsLicenseDescription: description
 					ipsLicensePlan: plan
 					ipsLicenseSku: sku
@@ -119,6 +128,7 @@ query licensing ( ) {
 					ipsLicenseLastUpdated: lastUpdated
 				}
 				... on MalwareProtectionLicense {
+					malwareProtectionLicenseId: id
 					malwareProtectionLicenseDescription: description
 					malwareProtectionLicensePlan: plan
 					malwareProtectionLicenseSku: sku
@@ -128,6 +138,7 @@ query licensing ( ) {
 					malwareProtectionLicenseLastUpdated: lastUpdated
 				}
 				... on NextGenMalwareProtectionLicense {
+					nextGenMalwareProtectionLicenseId: id
 					nextGenMalwareProtectionLicenseDescription: description
 					nextGenMalwareProtectionLicensePlan: plan
 					nextGenMalwareProtectionLicenseSku: sku
@@ -137,6 +148,7 @@ query licensing ( ) {
 					nextGenMalwareProtectionLicenseLastUpdated: lastUpdated
 				}
 				... on ThreatPreventionLicense {
+					threatPreventionLicenseId: id
 					threatPreventionLicenseDescription: description
 					threatPreventionLicensePlan: plan
 					threatPreventionLicenseSku: sku
@@ -146,6 +158,7 @@ query licensing ( ) {
 					threatPreventionLicenseLastUpdated: lastUpdated
 				}
 				... on NOCaaSLicense {
+					nOCaaSLicenseId: id
 					nOCaaSLicenseDescription: description
 					nOCaaSLicensePlan: plan
 					nOCaaSLicenseSku: sku
@@ -155,6 +168,7 @@ query licensing ( ) {
 					nOCaaSLicenseLastUpdated: lastUpdated
 				}
 				... on CasbLicense {
+					casbLicenseId: id
 					casbLicenseDescription: description
 					casbLicensePlan: plan
 					casbLicenseSku: sku
@@ -164,6 +178,7 @@ query licensing ( ) {
 					casbLicenseLastUpdated: lastUpdated
 				}
 				... on DlpLicense {
+					dlpLicenseId: id
 					dlpLicenseDescription: description
 					dlpLicensePlan: plan
 					dlpLicenseSku: sku
@@ -173,6 +188,7 @@ query licensing ( ) {
 					dlpLicenseLastUpdated: lastUpdated
 				}
 				... on MdrLicense {
+					mdrLicenseId: id
 					mdrLicenseDescription: description
 					mdrLicensePlan: plan
 					mdrLicenseSku: sku
@@ -182,6 +198,7 @@ query licensing ( ) {
 					mdrLicenseLastUpdated: lastUpdated
 				}
 				... on ManagedXdrLicense {
+					managedXdrLicenseId: id
 					managedXdrLicenseDescription: description
 					managedXdrLicensePlan: plan
 					managedXdrLicenseSku: sku
@@ -191,6 +208,7 @@ query licensing ( ) {
 					managedXdrLicenseLastUpdated: lastUpdated
 				}
 				... on RbiLicense {
+					rbiLicenseId: id
 					rbiLicenseDescription: description
 					rbiLicensePlan: plan
 					rbiLicenseSku: sku
@@ -200,6 +218,7 @@ query licensing ( ) {
 					rbiLicenseLastUpdated: lastUpdated
 				}
 				... on SaasSecurityApiLicense {
+					saasSecurityApiLicenseId: id
 					saasSecurityApiLicenseDescription: description
 					saasSecurityApiLicensePlan: plan
 					saasSecurityApiLicenseSku: sku
@@ -210,6 +229,7 @@ query licensing ( ) {
 					total
 				}
 				... on XdrProLicense {
+					xdrProLicenseId: id
 					xdrProLicenseDescription: description
 					xdrProLicensePlan: plan
 					xdrProLicenseSku: sku
@@ -220,6 +240,7 @@ query licensing ( ) {
 					total
 				}
 				... on DemLicense {
+					demLicenseId: id
 					demLicenseDescription: description
 					demLicensePlan: plan
 					demLicenseSku: sku
@@ -230,6 +251,7 @@ query licensing ( ) {
 					total
 				}
 				... on IotOtLicense {
+					iotOtLicenseId: id
 					iotOtLicenseDescription: description
 					iotOtLicensePlan: plan
 					iotOtLicenseSku: sku
@@ -239,6 +261,7 @@ query licensing ( ) {
 					iotOtLicenseLastUpdated: lastUpdated
 				}
 				... on AtpLicense {
+					atpLicenseId: id
 					atpLicenseDescription: description
 					atpLicensePlan: plan
 					atpLicenseSku: sku
@@ -248,6 +271,7 @@ query licensing ( ) {
 					atpLicenseLastUpdated: lastUpdated
 				}
 				... on XOpsLicense {
+					xOpsLicenseId: id
 					xOpsLicenseDescription: description
 					xOpsLicensePlan: plan
 					xOpsLicenseSku: sku
@@ -257,68 +281,72 @@ query licensing ( ) {
 					xOpsLicenseLastUpdated: lastUpdated
 				}
 			}
-			dataLake {
+			dataLakeLicensingInfo: dataLake {
+				id
 				description
-				licensePlanPlan: plan
-				licenseSkuSku: sku
-				licenseStatusStatus: status
+				planDataLakeLicense: plan
+				skuDataLakeLicense: sku
+				statusDataLakeLicense: status
 				startDate
 				expirationDate
 				lastUpdated
-				dpaVersionDpaVersion: dpaVersion
+				dpaVersionDataLakeLicense: dpaVersion
 				retentionPeriod
 				total
 			}
-			publicIps {
+			publicIpsLicensingInfo: publicIps {
+				id
 				description
-				licensePlanPlan: plan
-				licenseSkuSku: sku
-				licenseStatusStatus: status
+				planPublicIpsLicense: plan
+				skuPublicIpsLicense: sku
+				statusPublicIpsLicense: status
 				startDate
 				expirationDate
 				lastUpdated
 				total
 			}
-			site {
+			siteLicensingInfo: site {
+				id
 				description
-				licensePlanPlan: plan
-				licenseSkuSku: sku
-				licenseStatusStatus: status
+				planSiteLicense: plan
+				skuSiteLicense: sku
+				statusSiteLicense: status
 				startDate
 				expirationDate
 				lastUpdated
-				siteLicenseGroupSiteLicenseGroup: siteLicenseGroup
-				regionalityRegionality: regionality
-				siteLicenseTypeSiteLicenseType: siteLicenseType
+				siteLicenseGroupSiteLicense: siteLicenseGroup
+				regionalitySiteLicense: regionality
+				siteLicenseTypeSiteLicense: siteLicenseType
 				total
-				siteRefSite: site {
+				siteSiteLicense: site {
 					id
 					name
 				}
 
 			}
-			pooledBandwidth {
+			pooledBandwidthLicensingInfo: pooledBandwidth {
+				id
 				description
-				licensePlanPlan: plan
-				licenseSkuSku: sku
-				licenseStatusStatus: status
+				planPooledBandwidthLicense: plan
+				skuPooledBandwidthLicense: sku
+				statusPooledBandwidthLicense: status
 				startDate
 				expirationDate
 				lastUpdated
-				siteLicenseGroupSiteLicenseGroup: siteLicenseGroup
-				siteLicenseTypeSiteLicenseType: siteLicenseType
+				siteLicenseGroupPooledBandwidthLicense: siteLicenseGroup
+				siteLicenseTypePooledBandwidthLicense: siteLicenseType
 				total
 				allocatedBandwidth
-				pooledBandwidthLicenseSiteSites: sites {
-					siteRefSite: site {
+				sitesPooledBandwidthLicense: sites {
+					sitePooledBandwidthLicenseSite: site {
 						id
 						name
 					}
 					allocatedBandwidth
 				}
 
-				partnerPooledBandwidthLicenseAccountAccounts: accounts {
-					accountRefAccount: account {
+				accountsPooledBandwidthLicense: accounts {
+					accountPartnerPooledBandwidthLicenseAccount: account {
 						id
 						name
 					}
@@ -326,174 +354,211 @@ query licensing ( ) {
 				}
 
 			}
-			ztnaUsers {
+			ztnaUsersLicensingInfo: ztnaUsers {
+				id
 				description
-				licensePlanPlan: plan
-				licenseSkuSku: sku
-				licenseStatusStatus: status
+				planZtnaUsersLicense: plan
+				skuZtnaUsersLicense: sku
+				statusZtnaUsersLicense: status
 				startDate
 				expirationDate
 				lastUpdated
-				ztnaUsersLicenseGroupZtnaUsersLicenseGroup: ztnaUsersLicenseGroup
+				ztnaUsersLicenseGroupZtnaUsersLicense: ztnaUsersLicenseGroup
 				total
 			}
-			endpointProtection {
+			endpointProtectionLicensingInfo: endpointProtection {
+				id
 				description
-				licensePlanPlan: plan
-				licenseSkuSku: sku
-				licenseStatusStatus: status
-				startDate
-				expirationDate
-				lastUpdated
-				total
-			}
-			ilmm {
-				description
-				licensePlanPlan: plan
-				licenseSkuSku: sku
-				licenseStatusStatus: status
+				planEndpointProtectionLicense: plan
+				skuEndpointProtectionLicense: sku
+				statusEndpointProtectionLicense: status
 				startDate
 				expirationDate
 				lastUpdated
 				total
 			}
-			ips {
+			ilmmLicensingInfo: ilmm {
+				id
 				description
-				licensePlanPlan: plan
-				licenseSkuSku: sku
-				licenseStatusStatus: status
-				startDate
-				expirationDate
-				lastUpdated
-			}
-			malwareProtection {
-				description
-				licensePlanPlan: plan
-				licenseSkuSku: sku
-				licenseStatusStatus: status
-				startDate
-				expirationDate
-				lastUpdated
-			}
-			nextGenMalwareProtection {
-				description
-				licensePlanPlan: plan
-				licenseSkuSku: sku
-				licenseStatusStatus: status
-				startDate
-				expirationDate
-				lastUpdated
-			}
-			threatPrevention {
-				description
-				licensePlanPlan: plan
-				licenseSkuSku: sku
-				licenseStatusStatus: status
-				startDate
-				expirationDate
-				lastUpdated
-			}
-			nocaas {
-				description
-				licensePlanPlan: plan
-				licenseSkuSku: sku
-				licenseStatusStatus: status
-				startDate
-				expirationDate
-				lastUpdated
-			}
-			casb {
-				description
-				licensePlanPlan: plan
-				licenseSkuSku: sku
-				licenseStatusStatus: status
-				startDate
-				expirationDate
-				lastUpdated
-			}
-			dlp {
-				description
-				licensePlanPlan: plan
-				licenseSkuSku: sku
-				licenseStatusStatus: status
-				startDate
-				expirationDate
-				lastUpdated
-			}
-			managedXdr {
-				description
-				licensePlanPlan: plan
-				licenseSkuSku: sku
-				licenseStatusStatus: status
-				startDate
-				expirationDate
-				lastUpdated
-			}
-			rbi {
-				description
-				licensePlanPlan: plan
-				licenseSkuSku: sku
-				licenseStatusStatus: status
-				startDate
-				expirationDate
-				lastUpdated
-			}
-			saasSecurityApi {
-				description
-				licensePlanPlan: plan
-				licenseSkuSku: sku
-				licenseStatusStatus: status
+				planIlmmLicense: plan
+				skuIlmmLicense: sku
+				statusIlmmLicense: status
 				startDate
 				expirationDate
 				lastUpdated
 				total
 			}
-			xdrPro {
+			ipsLicensingInfo: ips {
+				id
 				description
-				licensePlanPlan: plan
-				licenseSkuSku: sku
-				licenseStatusStatus: status
+				planIpsLicense: plan
+				skuIpsLicense: sku
+				statusIpsLicense: status
+				startDate
+				expirationDate
+				lastUpdated
+			}
+			malwareProtectionLicensingInfo: malwareProtection {
+				id
+				description
+				planMalwareProtectionLicense: plan
+				skuMalwareProtectionLicense: sku
+				statusMalwareProtectionLicense: status
+				startDate
+				expirationDate
+				lastUpdated
+			}
+			nextGenMalwareProtectionLicensingInfo: nextGenMalwareProtection {
+				id
+				description
+				planNextGenMalwareProtectionLicense: plan
+				skuNextGenMalwareProtectionLicense: sku
+				statusNextGenMalwareProtectionLicense: status
+				startDate
+				expirationDate
+				lastUpdated
+			}
+			threatPreventionLicensingInfo: threatPrevention {
+				id
+				description
+				planThreatPreventionLicense: plan
+				skuThreatPreventionLicense: sku
+				statusThreatPreventionLicense: status
+				startDate
+				expirationDate
+				lastUpdated
+			}
+			nocaasLicensingInfo: nocaas {
+				id
+				description
+				planNOCaaSLicense: plan
+				skuNOCaaSLicense: sku
+				statusNOCaaSLicense: status
+				startDate
+				expirationDate
+				lastUpdated
+			}
+			casbLicensingInfo: casb {
+				id
+				description
+				planCasbLicense: plan
+				skuCasbLicense: sku
+				statusCasbLicense: status
+				startDate
+				expirationDate
+				lastUpdated
+			}
+			dlpLicensingInfo: dlp {
+				id
+				description
+				planDlpLicense: plan
+				skuDlpLicense: sku
+				statusDlpLicense: status
+				startDate
+				expirationDate
+				lastUpdated
+			}
+			mdrLicensingInfo: mdr {
+				id
+				description
+				planMdrLicense: plan
+				skuMdrLicense: sku
+				statusMdrLicense: status
+				startDate
+				expirationDate
+				lastUpdated
+			}
+			managedXdrLicensingInfo: managedXdr {
+				id
+				description
+				planManagedXdrLicense: plan
+				skuManagedXdrLicense: sku
+				statusManagedXdrLicense: status
+				startDate
+				expirationDate
+				lastUpdated
+			}
+			rbiLicensingInfo: rbi {
+				id
+				description
+				planRbiLicense: plan
+				skuRbiLicense: sku
+				statusRbiLicense: status
+				startDate
+				expirationDate
+				lastUpdated
+			}
+			saasSecurityApiLicensingInfo: saasSecurityApi {
+				id
+				description
+				planSaasSecurityApiLicense: plan
+				skuSaasSecurityApiLicense: sku
+				statusSaasSecurityApiLicense: status
 				startDate
 				expirationDate
 				lastUpdated
 				total
 			}
-			dem {
+			xdrProLicensingInfo: xdrPro {
+				id
 				description
-				licensePlanPlan: plan
-				licenseSkuSku: sku
-				licenseStatusStatus: status
+				planXdrProLicense: plan
+				skuXdrProLicense: sku
+				statusXdrProLicense: status
 				startDate
 				expirationDate
 				lastUpdated
 				total
 			}
-			iotOt {
+			demLicensingInfo: dem {
+				id
 				description
-				licensePlanPlan: plan
-				licenseSkuSku: sku
-				licenseStatusStatus: status
+				planDemLicense: plan
+				skuDemLicense: sku
+				statusDemLicense: status
+				startDate
+				expirationDate
+				lastUpdated
+				total
+			}
+			iotOtLicensingInfo: iotOt {
+				id
+				description
+				planIotOtLicense: plan
+				skuIotOtLicense: sku
+				statusIotOtLicense: status
 				startDate
 				expirationDate
 				lastUpdated
 			}
-			atp {
+			atpLicensingInfo: atp {
+				id
 				description
-				licensePlanPlan: plan
-				licenseSkuSku: sku
-				licenseStatusStatus: status
+				planAtpLicense: plan
+				skuAtpLicense: sku
+				statusAtpLicense: status
 				startDate
 				expirationDate
 				lastUpdated
 			}
-			globalLicenseAllocations {
-				publicIpsLicenseAllocationsPublicIps: publicIps {
+			xOpsLicensingInfo: xOps {
+				id
+				description
+				planXOpsLicense: plan
+				skuXOpsLicense: sku
+				statusXOpsLicense: status
+				startDate
+				expirationDate
+				lastUpdated
+			}
+			globalLicenseAllocationsLicensingInfo: globalLicenseAllocations {
+				publicIpsGlobalLicenseAllocations: publicIps {
 					total
 					allocated
 					available
 				}
 
-				ztnaUsersLicenseAllocationsZtnaUsers: ztnaUsers {
+				ztnaUsersGlobalLicenseAllocations: ztnaUsers {
 					total
 					allocated
 					available

@@ -1,22 +1,21 @@
 mutation policyRemotePortFwdMoveSection ( $policyMoveSectionInput:PolicyMoveSectionInput! $remotePortFwdPolicyMutationInput:RemotePortFwdPolicyMutationInput ) {
 	policy ( ) {
 		remotePortFwd ( input:$remotePortFwdPolicyMutationInput  )  {
-			moveSection ( input:$policyMoveSectionInput   ) {
-				policySectionPayloadSection: section {
-					audit {
+			moveSectionRemotePortFwdPolicyMutations: moveSection ( input:$policyMoveSectionInput   ) {
+				sectionPolicySectionMutationPayload: section {
+					auditPolicySectionPayload: audit {
 						updatedTime
 						updatedBy
 					}
-					section {
+					sectionPolicySectionPayload: section {
 						id
 						name
-						policyId
 					}
-					properties
+					propertiesPolicySectionPayload: properties
 				}
 
-				policyMutationStatusStatus: status
-				policyMutationErrorErrors: errors {
+				statusPolicySectionMutationPayload: status
+				errorsPolicySectionMutationPayload: errors {
 					errorMessage
 					errorCode
 				}

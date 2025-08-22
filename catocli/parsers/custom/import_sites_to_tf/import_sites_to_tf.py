@@ -174,6 +174,9 @@ def run_terraform_import(resource_address, resource_id, timeout=60, verbose=Fals
             print(f"Error: {result.stderr}")
             return False, result.stdout, result.stderr
             
+    except KeyboardInterrupt:
+        print(f"\nImport cancelled by user (Ctrl+C)")
+        raise  # Re-raise to allow higher-level handling
     except subprocess.TimeoutExpired:
         print(f"Timeout: {resource_address} (exceeded {timeout}s)")
         return False, "", f"Command timed out after {timeout} seconds"
@@ -951,7 +954,11 @@ def import_socket_sites_to_tf(args, configuration):
             "total_failed": total_failed,
             "module_name": args.module_name
         }]
-        
+    
+    except KeyboardInterrupt:
+        print("\nImport process cancelled by user (Ctrl+C).")
+        print("Partial imports may have been completed.")
+        return [{"success": False, "error": "Import cancelled by user"}]
     except Exception as e:
         print(f"ERROR: {str(e)}")
         return [{"success": False, "error": str(e)}]

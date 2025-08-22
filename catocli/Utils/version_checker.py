@@ -14,7 +14,7 @@ from .. import __version__
 
 # Cache settings
 CACHE_FILE = os.path.expanduser("~/.catocli_version_cache")
-CACHE_DURATION = 3600 * 24  # 24 hours in seconds
+CACHE_DURATION = 3600 * 4  # 4 hours in seconds
 
 def get_cached_version_info():
     """Get cached version information if still valid"""

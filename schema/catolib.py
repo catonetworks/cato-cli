@@ -534,6 +534,7 @@ profile_manager = get_profile_manager()
 CATO_DEBUG = bool(os.getenv("CATO_DEBUG", False))
 from ..parsers.raw import raw_parse
 from ..parsers.custom import custom_parse
+from ..parsers.custom_private import private_parse
 from ..parsers.query_siteLocation import query_siteLocation_parse
 """
 	for parserName in parsers:
@@ -563,6 +564,15 @@ def show_version_info(args, configuration=None):
 			print("Unable to check for updates (check your internet connection)")
 	return [{"success": True, "current_version": catocli.__version__, "latest_version": latest_version if not args.current_only else None}]
 
+def load_private_settings():
+	# Load private settings from ~/.cato/settings.json
+	settings_file = os.path.expanduser("~/.cato/settings.json")
+	try:
+		with open(settings_file, 'r') as f:
+			return json.load(f)
+	except (FileNotFoundError, json.JSONDecodeError):
+		return {}
+	
 def get_configuration(skip_api_key=False):
 	configuration = Configuration()
 	configuration.verify_ssl = False
@@ -585,10 +595,13 @@ def get_configuration(skip_api_key=False):
 		print(f"Run 'catocli configure set --profile {profile_name}' to update your credentials.")
 		exit(1)
 	
+	# Use standard endpoint from profile for regular API calls
+	configuration.host = credentials['endpoint']
+		
 	# Only set API key if not using custom headers file
+	# (Private settings are handled separately in createPrivateRequest)
 	if not skip_api_key:
 		configuration.api_key["x-api-key"] = credentials['cato_token']
-	configuration.host = credentials['endpoint']
 	configuration.accountID = credentials['account_id']
 	
 	return configuration
@@ -613,6 +626,7 @@ version_parser.add_argument('--current-only', action='store_true', help='Show on
 version_parser.set_defaults(func=show_version_info)
 
 custom_parsers = custom_parse(subparsers)
+private_parsers = private_parse(subparsers)
 raw_parsers = subparsers.add_parser('raw', help='Raw GraphQL', usage=get_help("raw"))
 raw_parser = raw_parse(raw_parsers)
 query_parser = subparsers.add_parser('query', help='Query', usage='catocli query <operationName> [options]')
@@ -681,6 +695,7 @@ def main(args=None):
 			response = args.func(args, None)
 		else:
 			# Check if using headers file to determine if we should skip API key
+			# Note: Private settings should NOT affect regular API calls - only private commands
 			using_headers_file = hasattr(args, 'headers_file') and args.headers_file
 			
 			# Get configuration from profiles
@@ -694,8 +709,8 @@ def main(args=None):
 				custom_headers.update(parse_headers_from_file(args.headers_file))
 			if custom_headers:
 				configuration.custom_headers.update(custom_headers)
-			# Handle account ID override
-			if args.func.__name__ != "createRawRequest":
+			# Handle account ID override (applies to all commands except raw)
+			if args.func.__name__ not in ["createRawRequest"]:
 				if hasattr(args, 'accountID') and args.accountID is not None:
 					# Command line override takes precedence
 					configuration.accountID = args.accountID
@@ -708,6 +723,9 @@ def main(args=None):
 		else:
 			if response!=None:
 				print(json.dumps(response[0], sort_keys=True, indent=4))
+	except KeyboardInterrupt:
+		print('Operation cancelled by user (Ctrl+C).')
+		exit(130)  # Standard exit code for SIGINT
 	except Exception as e:
 		if isinstance(e, AttributeError):
 			print('Missing arguments. Usage: catocli <operation> -h')
@@ -717,7 +735,7 @@ def main(args=None):
 		else:
 			print('ERROR: ',e)
 			traceback.print_exc()
-		exit(1)
+	exit(1)
 """
 	writeFile("../catocli/Utils/clidriver.py",cliDriverStr)
 

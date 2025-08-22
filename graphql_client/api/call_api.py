@@ -59,9 +59,27 @@ class CallApi(object):
 				header_params['x-api-key'] = self.api_client.configuration.api_key['x-api-key']
 			header_params['User-Agent'] = "Cato-CLI-v"+self.api_client.configuration.version
 		
-		# Add custom headers from configuration
+		# Add custom headers from configuration with proper encoding handling
 		if using_custom_headers:
-			header_params.update(self.api_client.configuration.custom_headers)
+			for key, value in self.api_client.configuration.custom_headers.items():
+				# Ensure header values can be encoded as latin-1 (HTTP header encoding)
+				try:
+					# Try to encode as latin-1 first (HTTP standard)
+					if isinstance(value, str):
+						value.encode('latin-1')
+					header_params[key] = value
+				except UnicodeEncodeError:
+					# If latin-1 encoding fails, encode as UTF-8 and then decode as latin-1
+					# This handles Unicode characters by converting them to percent-encoded format
+					if isinstance(value, str):
+						try:
+							# URL encode problematic Unicode characters
+							import urllib.parse
+							encoded_value = urllib.parse.quote(value, safe=':;=?@&')
+							header_params[key] = encoded_value
+						except Exception:
+							# As a last resort, replace problematic characters
+							header_params[key] = value.encode('ascii', 'replace').decode('ascii')
 
 		if args.get("v")==True:
 			print("Host: ",self.api_client.configuration.host)

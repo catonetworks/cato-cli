@@ -7,7 +7,10 @@
 - Added export functions for IFW and WAN rules and sections into json
 - Added import function into tf module for backup and restore, adjusted to use name of section and rule instead of index in source data to align with accompanying module 
 
-## 2.0.2 (2025-07-14)
+## 2.1.0 (2025-08-22)
 
 ### Features
 
+- Optimized exception handling for bulk rule import 
+- Added exception handling keyboard escape 
+- Added custom settings support

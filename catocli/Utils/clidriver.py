@@ -84,15 +84,14 @@ def show_version_info(args, configuration=None):
 	return [{"success": True, "current_version": catocli.__version__, "latest_version": latest_version if not args.current_only else None}]
 
 def load_private_settings():
-	"""Load private settings from ~/.cato/settings.json"""
+	# Load private settings from ~/.cato/settings.json
 	settings_file = os.path.expanduser("~/.cato/settings.json")
 	try:
 		with open(settings_file, 'r') as f:
 			return json.load(f)
 	except (FileNotFoundError, json.JSONDecodeError):
 		return {}
-
-
+	
 def get_configuration(skip_api_key=False):
 	configuration = Configuration()
 	configuration.verify_ssl = False
@@ -117,12 +116,11 @@ def get_configuration(skip_api_key=False):
 	
 	# Use standard endpoint from profile for regular API calls
 	configuration.host = credentials['endpoint']
-	
+		
 	# Only set API key if not using custom headers file
 	# (Private settings are handled separately in createPrivateRequest)
 	if not skip_api_key:
 		configuration.api_key["x-api-key"] = credentials['cato_token']
-	
 	configuration.accountID = credentials['account_id']
 	
 	return configuration
@@ -284,7 +282,7 @@ def main(args=None):
 			if response!=None:
 				print(json.dumps(response[0], sort_keys=True, indent=4))
 	except KeyboardInterrupt:
-		print('\nOperation cancelled by user (Ctrl+C).')
+		print('Operation cancelled by user (Ctrl+C).')
 		exit(130)  # Standard exit code for SIGINT
 	except Exception as e:
 		if isinstance(e, AttributeError):

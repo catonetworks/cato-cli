@@ -77,11 +77,11 @@ This CLI is a Python 3 application and has been tested with Python 3.6 -> 3.8
 
     CLI for query, and mutation operations via API.
 
-    positional arguments:
+    Positional arguments:
       {entityLookup}
 		entityLookup         entityLookup reference.
 
-    optional arguments:
+    Optional arguments:
       -h, --help            show this help message and exit
       --version             show program's version number and exit
 

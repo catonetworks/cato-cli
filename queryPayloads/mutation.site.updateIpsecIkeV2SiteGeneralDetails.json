@@ -1,34 +1,21 @@
 {
     "operationName": "siteUpdateIpsecIkeV2SiteGeneralDetails",
-    "query": "mutation siteUpdateIpsecIkeV2SiteGeneralDetails ( $siteId:ID! $updateIpsecIkeV2SiteGeneralDetailsInput:UpdateIpsecIkeV2SiteGeneralDetailsInput! ) {\n\tsite ( ) {\n\t\tupdateIpsecIkeV2SiteGeneralDetails ( siteId:$siteId  input:$updateIpsecIkeV2SiteGeneralDetailsInput  )  {\n\t\t\tsiteId\n\t\t\tlocalId\n\t\t}\n\n\t}\t\n}",
+    "query": "mutation siteUpdateIpsecIkeV2SiteGeneralDetails ( $siteId:ID! $updateIpsecIkeV2SiteGeneralDetailsInput:UpdateIpsecIkeV2SiteGeneralDetailsInput! ) {\n\tsite ( ) {\n\t\tupdateIpsecIkeV2SiteGeneralDetails\n\t}\t\n}",
     "variables": {
-        "siteId": "ID",
+        "siteId": "id",
         "updateIpsecIkeV2SiteGeneralDetailsInput": {
-            "connectionMode": {
-                "connectionMode": "enum(ConnectionMode)"
-            },
-            "identificationType": {
-                "identificationType": "enum(IdentificationType)"
-            },
+            "connectionMode": "RESPONDER_ONLY",
+            "identificationType": "IPV4",
             "ipsecIkeV2MessageInput": {
-                "cipher": {
-                    "cipher": "enum(IpSecCipher)"
-                },
-                "dhGroup": {
-                    "dhGroup": "enum(IpSecDHGroup)"
-                },
-                "integrity": {
-                    "integrity": "enum(IpSecHash)"
-                },
-                "prf": {
-                    "prf": "enum(IpSecHash)"
-                }
+                "cipher": "NONE",
+                "dhGroup": "NONE",
+                "integrity": "NONE",
+                "prf": "NONE"
             },
-            "networkRanges": {
-                "networkRanges": [
-                    "IPSubnet"
-                ]
-            }
+            "networkRanges": [
+                "example1",
+                "example2"
+            ]
         }
     }
 }

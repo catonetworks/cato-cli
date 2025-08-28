@@ -1,42 +1,25 @@
 {
     "operationName": "adminUpdateAdmin",
-    "query": "mutation adminUpdateAdmin ( $adminID:ID! $updateAdminInput:UpdateAdminInput! ) {\n\tadmin ( ) {\n\t\tupdateAdmin ( adminID:$adminID  input:$updateAdminInput  )  {\n\t\t\tadminID\n\t\t}\n\n\t}\t\n}",
+    "query": "mutation adminUpdateAdmin ( $adminID:ID! $updateAdminInput:UpdateAdminInput! ) {\n\tadmin ( ) {\n\t\tupdateAdmin\n\t}\t\n}",
     "variables": {
-        "adminID": "ID",
+        "adminID": "id",
         "updateAdminInput": {
-            "firstName": {
-                "firstName": "String"
-            },
-            "lastName": {
-                "lastName": "String"
-            },
-            "passwordNeverExpires": {
-                "passwordNeverExpires": "Boolean"
-            },
+            "firstName": "string",
+            "lastName": "string",
+            "passwordNeverExpires": true,
             "updateAdminRoleInput": {
-                "allowedAccounts": {
-                    "allowedAccounts": [
-                        "ID"
-                    ]
-                },
+                "allowedAccounts": [
+                    "id1",
+                    "id2"
+                ],
                 "allowedEntities": {
-                    "id": {
-                        "id": "ID"
-                    },
-                    "name": {
-                        "name": "String"
-                    },
-                    "type": {
-                        "type": "enum(EntityType)"
-                    }
+                    "id": "id",
+                    "name": "string",
+                    "type": "account"
                 },
                 "role": {
-                    "id": {
-                        "id": "ID"
-                    },
-                    "name": {
-                        "name": "String"
-                    }
+                    "id": "id",
+                    "name": "string"
                 }
             }
         }

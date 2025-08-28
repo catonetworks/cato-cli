@@ -1,25 +1,15 @@
 {
     "operationName": "containerFqdnUpdateFromFile",
-    "query": "mutation containerFqdnUpdateFromFile ( $updateFqdnContainerFromFileInput:UpdateFqdnContainerFromFileInput! ) {\n\tcontainer ( ) {\n\t\tfqdn {\n\t\t\tupdateFromFileFqdnContainerMutations: updateFromFile ( input:$updateFqdnContainerFromFileInput   ) {\n\t\t\t\tcontainerUpdateFqdnContainerFromFilePayload: container {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t\tdescription\n\t\t\t\t\tsize\n\t\t\t\t\tauditFqdnContainer: audit {\n\t\t\t\t\t\tcreatedBy\n\t\t\t\t\t\tlastModifiedBy\n\t\t\t\t\t\tlastModifiedAt\n\t\t\t\t\t\tcreatedAt\n\t\t\t\t\t}\n\t\t\t\t}\n\n\t\t\t}\n\t\t}\n\n\t}\t\n}",
+    "query": "mutation containerFqdnUpdateFromFile ( $updateFqdnContainerFromFileInput:UpdateFqdnContainerFromFileInput! ) {\n\tcontainer ( ) {\n\t\tfqdn\n\t}\t\n}",
     "variables": {
         "updateFqdnContainerFromFileInput": {
             "containerRefInput": {
-                "by": {
-                    "by": "enum(ObjectRefBy)"
-                },
-                "input": {
-                    "input": "String"
-                }
+                "by": "ID",
+                "input": "string"
             },
-            "description": {
-                "description": "String"
-            },
-            "fileType": {
-                "fileType": "enum(ContainerFileType)"
-            },
-            "uploadFile": {
-                "uploadFile": "Upload"
-            }
+            "description": "string",
+            "fileType": "STIX",
+            "uploadFile": "example_value"
         }
     }
 }

@@ -1,6 +1,6 @@
 
 ## CATO-CLI - mutation.container.fqdn.removeValues:
-[Click here](https://api.catonetworks.com/documentation/#mutation-removeValues) for documentation on this operation.
+[Click here](https://api.catonetworks.com/documentation/#mutation-mutation.container.fqdn.removeValues) for documentation on this operation.
 
 ### Usage for mutation.container.fqdn.removeValues:
 
@@ -8,10 +8,12 @@
 
 `catocli mutation container fqdn removeValues <json>`
 
-`catocli mutation container fqdn removeValues "$(cat < removeValues.json)"`
+`catocli mutation container fqdn removeValues "$(cat < mutation.container.fqdn.removeValues.json)"`
 
-`catocli mutation container fqdn removeValues '{"fqdnContainerRemoveValuesInput": {"containerRefInput": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "values": {"values": ["Fqdn"]}}}'`
+`catocli mutation container fqdn removeValues '{"fqdnContainerRemoveValuesInput":{"containerRefInput":{"by":"ID","input":"string"},"values":["example1","example2"]}}'`
+
 
 #### Operation Arguments for mutation.container.fqdn.removeValues ####
-`accountId` [ID] - (required) N/A 
-`fqdnContainerRemoveValuesInput` [FqdnContainerRemoveValuesInput] - (required) N/A 
+
+`accountId` [ID] - (required) N/A    
+`fqdnContainerRemoveValuesInput` [FqdnContainerRemoveValuesInput] - (required) N/A    

@@ -1,6 +1,6 @@
 
 ## CATO-CLI - mutation.policy.wanNetwork.publishPolicyRevision:
-[Click here](https://api.catonetworks.com/documentation/#mutation-publishPolicyRevision) for documentation on this operation.
+[Click here](https://api.catonetworks.com/documentation/#mutation-mutation.policy.wanNetwork.publishPolicyRevision) for documentation on this operation.
 
 ### Usage for mutation.policy.wanNetwork.publishPolicyRevision:
 
@@ -8,11 +8,13 @@
 
 `catocli mutation policy wanNetwork publishPolicyRevision <json>`
 
-`catocli mutation policy wanNetwork publishPolicyRevision "$(cat < publishPolicyRevision.json)"`
+`catocli mutation policy wanNetwork publishPolicyRevision "$(cat < mutation.policy.wanNetwork.publishPolicyRevision.json)"`
 
-`catocli mutation policy wanNetwork publishPolicyRevision '{"policyPublishRevisionInput": {"description": {"description": "String"}, "name": {"name": "String"}}, "wanNetworkPolicyMutationInput": {"policyMutationRevisionInput": {"id": {"id": "ID"}}}}'`
+`catocli mutation policy wanNetwork publishPolicyRevision '{"policyPublishRevisionInput":{"description":"string","name":"string"},"wanNetworkPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
+
 
 #### Operation Arguments for mutation.policy.wanNetwork.publishPolicyRevision ####
-`accountId` [ID] - (required) N/A 
-`policyPublishRevisionInput` [PolicyPublishRevisionInput] - (optional) N/A 
-`wanNetworkPolicyMutationInput` [WanNetworkPolicyMutationInput] - (optional) N/A 
+
+`accountId` [ID] - (required) N/A    
+`policyPublishRevisionInput` [PolicyPublishRevisionInput] - (required) N/A    
+`wanNetworkPolicyMutationInput` [WanNetworkPolicyMutationInput] - (required) N/A    

@@ -1,53 +1,25 @@
 {
     "operationName": "sitesAddNetworkRange",
-    "query": "mutation sitesAddNetworkRange ( $lanSocketInterfaceId:ID! $addNetworkRangeInput:AddNetworkRangeInput! ) {\n\tsites ( ) {\n\t\taddNetworkRange ( lanSocketInterfaceId:$lanSocketInterfaceId  input:$addNetworkRangeInput  )  {\n\t\t\tnetworkRangeId\n\t\t}\n\n\t}\t\n}",
+    "query": "mutation sitesAddNetworkRange ( $lanSocketInterfaceId:ID! $addNetworkRangeInput:AddNetworkRangeInput! ) {\n\tsites ( ) {\n\t\taddNetworkRange\n\t}\t\n}",
     "variables": {
         "addNetworkRangeInput": {
-            "azureFloatingIp": {
-                "azureFloatingIp": "IPAddress"
-            },
-            "gateway": {
-                "gateway": "IPAddress"
-            },
-            "internetOnly": {
-                "internetOnly": "Boolean"
-            },
-            "localIp": {
-                "localIp": "IPAddress"
-            },
-            "mdnsReflector": {
-                "mdnsReflector": "Boolean"
-            },
-            "name": {
-                "name": "String"
-            },
+            "azureFloatingIp": "example_value",
+            "gateway": "example_value",
+            "internetOnly": true,
+            "localIp": "example_value",
+            "mdnsReflector": true,
+            "name": "string",
             "networkDhcpSettingsInput": {
-                "dhcpMicrosegmentation": {
-                    "dhcpMicrosegmentation": "Boolean"
-                },
-                "dhcpType": {
-                    "dhcpType": "enum(DhcpType)"
-                },
-                "ipRange": {
-                    "ipRange": "IPRange"
-                },
-                "relayGroupId": {
-                    "relayGroupId": "ID"
-                }
+                "dhcpMicrosegmentation": true,
+                "dhcpType": "DHCP_RELAY",
+                "ipRange": "example_value",
+                "relayGroupId": "id"
             },
-            "rangeType": {
-                "rangeType": "enum(SubnetType)"
-            },
-            "subnet": {
-                "subnet": "IPSubnet"
-            },
-            "translatedSubnet": {
-                "translatedSubnet": "IPSubnet"
-            },
-            "vlan": {
-                "vlan": "Int"
-            }
+            "rangeType": "Routed",
+            "subnet": "example_value",
+            "translatedSubnet": "example_value",
+            "vlan": 1
         },
-        "lanSocketInterfaceId": "ID"
+        "lanSocketInterfaceId": "id"
     }
 }

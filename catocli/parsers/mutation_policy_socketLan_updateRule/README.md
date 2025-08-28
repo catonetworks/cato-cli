@@ -1,6 +1,6 @@
 
 ## CATO-CLI - mutation.policy.socketLan.updateRule:
-[Click here](https://api.catonetworks.com/documentation/#mutation-updateRule) for documentation on this operation.
+[Click here](https://api.catonetworks.com/documentation/#mutation-mutation.policy.socketLan.updateRule) for documentation on this operation.
 
 ### Usage for mutation.policy.socketLan.updateRule:
 
@@ -8,11 +8,13 @@
 
 `catocli mutation policy socketLan updateRule <json>`
 
-`catocli mutation policy socketLan updateRule "$(cat < updateRule.json)"`
+`catocli mutation policy socketLan updateRule "$(cat < mutation.policy.socketLan.updateRule.json)"`
 
-`catocli mutation policy socketLan updateRule '{"socketLanPolicyMutationInput": {"policyMutationRevisionInput": {"id": {"id": "ID"}}}, "socketLanUpdateRuleInput": {"id": {"id": "ID"}, "socketLanUpdateRuleDataInput": {"description": {"description": "String"}, "destination": {"floatingSubnet": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "globalIpRange": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "group": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "host": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "ip": {"ip": ["IPAddress"]}, "ipRange": {"from": {"from": "IPAddress"}, "to": {"to": "IPAddress"}}, "networkInterface": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "siteNetworkSubnet": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "subnet": {"subnet": ["NetworkSubnet"]}, "systemGroup": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "vlan": {"vlan": ["Vlan"]}}, "direction": {"direction": "enum(SocketLanDirection)"}, "enabled": {"enabled": "Boolean"}, "name": {"name": "String"}, "nat": {"enabled": {"enabled": "Boolean"}, "natType": {"natType": "enum(SocketLanNatType)"}}, "service": {"custom": {"port": {"port": ["Port"]}, "portRange": {"from": {"from": "Port"}, "to": {"to": "Port"}}, "protocol": {"protocol": "enum(IpProtocol)"}}, "simple": {"name": {"name": "enum(SimpleServiceType)"}}}, "site": {"group": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "site": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}}, "source": {"floatingSubnet": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "globalIpRange": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "group": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "host": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "ip": {"ip": ["IPAddress"]}, "ipRange": {"from": {"from": "IPAddress"}, "to": {"to": "IPAddress"}}, "networkInterface": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "siteNetworkSubnet": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "subnet": {"subnet": ["NetworkSubnet"]}, "systemGroup": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "vlan": {"vlan": ["Vlan"]}}, "transport": {"transport": "enum(SocketLanTransportType)"}}}}'`
+`catocli mutation policy socketLan updateRule '{"socketLanPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"socketLanUpdateRuleInput":{"id":"id","socketLanUpdateRuleDataInput":{"description":"string","destination":{"floatingSubnet":{"by":"ID","input":"string"},"globalIpRange":{"by":"ID","input":"string"},"group":{"by":"ID","input":"string"},"host":{"by":"ID","input":"string"},"ip":["example1","example2"],"ipRange":{"from":"example_value","to":"example_value"},"networkInterface":{"by":"ID","input":"string"},"siteNetworkSubnet":{"by":"ID","input":"string"},"subnet":["example1","example2"],"systemGroup":{"by":"ID","input":"string"},"vlan":["example1","example2"]},"direction":"TO","enabled":true,"name":"string","nat":{"enabled":true,"natType":"DYNAMIC_PAT"},"service":{"custom":{"port":["example1","example2"],"portRange":{"from":"example_value","to":"example_value"},"protocol":"ANY"},"simple":{"name":"HTTP"}},"site":{"group":{"by":"ID","input":"string"},"site":{"by":"ID","input":"string"}},"source":{"floatingSubnet":{"by":"ID","input":"string"},"globalIpRange":{"by":"ID","input":"string"},"group":{"by":"ID","input":"string"},"host":{"by":"ID","input":"string"},"ip":["example1","example2"],"ipRange":{"from":"example_value","to":"example_value"},"networkInterface":{"by":"ID","input":"string"},"siteNetworkSubnet":{"by":"ID","input":"string"},"subnet":["example1","example2"],"systemGroup":{"by":"ID","input":"string"},"vlan":["example1","example2"]},"transport":"WAN"}}}'`
+
 
 #### Operation Arguments for mutation.policy.socketLan.updateRule ####
-`accountId` [ID] - (required) N/A 
-`socketLanPolicyMutationInput` [SocketLanPolicyMutationInput] - (optional) N/A 
-`socketLanUpdateRuleInput` [SocketLanUpdateRuleInput] - (required) N/A 
+
+`accountId` [ID] - (required) N/A    
+`socketLanPolicyMutationInput` [SocketLanPolicyMutationInput] - (required) N/A    
+`socketLanUpdateRuleInput` [SocketLanUpdateRuleInput] - (required) N/A    

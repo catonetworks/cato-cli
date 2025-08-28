@@ -1,283 +1,174 @@
 {
     "operationName": "catalogs",
-    "query": "query catalogs ( $applicationRefInput:ApplicationRefInput! $catalogApplicationListInput:CatalogApplicationListInput! $catalogApplicationContentTypeGroupListInput:CatalogApplicationContentTypeGroupListInput! ) {\n\tcatalogs ( ) {\n\t\tcatalogApplication ( input:$applicationRefInput  )  {\n\t\t\tid\n\t\t\tname\n\t\t\tdescriptionSummary\n\t\t\tdescription\n\t\t\tcategoryCatalogApplication: category {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t}\n\t\t\tcomplianceAttributesCatalogApplication: complianceAttributes {\n\t\t\t\tiso27001CatalogApplicationComplianceAttributes: iso27001\n\t\t\t\tsoxCatalogApplicationComplianceAttributes: sox\n\t\t\t\thippaCatalogApplicationComplianceAttributes: hippa\n\t\t\t\tsoc1CatalogApplicationComplianceAttributes: soc1\n\t\t\t\tsoc2CatalogApplicationComplianceAttributes: soc2\n\t\t\t\tsoc3CatalogApplicationComplianceAttributes: soc3\n\t\t\t\tisae3402CatalogApplicationComplianceAttributes: isae3402\n\t\t\t\tpciDssCatalogApplicationComplianceAttributes: pciDss\n\t\t\t}\n\t\t\tsecurityAttributesCatalogApplication: securityAttributes {\n\t\t\t\tmfaCatalogApplicationSecurityAttributes: mfa\n\t\t\t\tencryptionAtRestCatalogApplicationSecurityAttributes: encryptionAtRest\n\t\t\t\tauditTrailCatalogApplicationSecurityAttributes: auditTrail\n\t\t\t\trbacCatalogApplicationSecurityAttributes: rbac\n\t\t\t\trememberPasswordCatalogApplicationSecurityAttributes: rememberPassword\n\t\t\t\tssoCatalogApplicationSecurityAttributes: sso\n\t\t\t\ttrustedCertificateCatalogApplicationSecurityAttributes: trustedCertificate\n\t\t\t\ttlsEnforcementCatalogApplicationSecurityAttributes: tlsEnforcement\n\t\t\t\thttpSecurityHeadersCatalogApplicationSecurityAttributes: httpSecurityHeaders\n\t\t\t}\n\t\t\tipoStatus\n\t\t\twebsite\n\t\t\toriginCountryCatalogApplication: originCountry {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t}\n\t\t\tregion\n\t\t\tcity\n\t\t\trisk\n\t\t\tnumOfEmployeesCatalogApplication: numOfEmployees\n\t\t\tcapabilityCatalogApplication: capability\n\t\t\tactivityCatalogApplication: activity {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t\tfieldsCatalogApplicationActivity: fields {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t\tpossibleOperatorsCatalogApplicationActivityField: possibleOperators\n\t\t\t\t\tpossibleValues\n\t\t\t\t}\n\n\t\t\t}\n\t\t\ttypeCatalogApplication: type\n\t\t\tsanctioned\n\t\t\trecentlyAdded\n\t\t\tstandardPortsCatalogApplication: standardPorts {\n\t\t\t\tport\n\t\t\t\tportRangeCustomService: portRange {\n\t\t\t\t\tfrom\n\t\t\t\t\tto\n\t\t\t\t}\n\n\t\t\t\tprotocolCustomService: protocol\n\t\t\t}\n\t\t}\n\n\t\tcatalogApplicationList ( input:$catalogApplicationListInput  )  {\n\t\t\tapplicationCatalogApplicationListPayload: application {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t\tdescriptionSummary\n\t\t\t\tdescription\n\t\t\t\tcategoryCatalogApplication: category {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\n\t\t\t\tcomplianceAttributesCatalogApplication: complianceAttributes {\n\t\t\t\t\tiso27001CatalogApplicationComplianceAttributes: iso27001\n\t\t\t\t\tsoxCatalogApplicationComplianceAttributes: sox\n\t\t\t\t\thippaCatalogApplicationComplianceAttributes: hippa\n\t\t\t\t\tsoc1CatalogApplicationComplianceAttributes: soc1\n\t\t\t\t\tsoc2CatalogApplicationComplianceAttributes: soc2\n\t\t\t\t\tsoc3CatalogApplicationComplianceAttributes: soc3\n\t\t\t\t\tisae3402CatalogApplicationComplianceAttributes: isae3402\n\t\t\t\t\tpciDssCatalogApplicationComplianceAttributes: pciDss\n\t\t\t\t}\n\n\t\t\t\tsecurityAttributesCatalogApplication: securityAttributes {\n\t\t\t\t\tmfaCatalogApplicationSecurityAttributes: mfa\n\t\t\t\t\tencryptionAtRestCatalogApplicationSecurityAttributes: encryptionAtRest\n\t\t\t\t\tauditTrailCatalogApplicationSecurityAttributes: auditTrail\n\t\t\t\t\trbacCatalogApplicationSecurityAttributes: rbac\n\t\t\t\t\trememberPasswordCatalogApplicationSecurityAttributes: rememberPassword\n\t\t\t\t\tssoCatalogApplicationSecurityAttributes: sso\n\t\t\t\t\ttrustedCertificateCatalogApplicationSecurityAttributes: trustedCertificate\n\t\t\t\t\ttlsEnforcementCatalogApplicationSecurityAttributes: tlsEnforcement\n\t\t\t\t\thttpSecurityHeadersCatalogApplicationSecurityAttributes: httpSecurityHeaders\n\t\t\t\t}\n\n\t\t\t\tipoStatus\n\t\t\t\twebsite\n\t\t\t\toriginCountryCatalogApplication: originCountry {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\n\t\t\t\tregion\n\t\t\t\tcity\n\t\t\t\trisk\n\t\t\t\tnumOfEmployeesCatalogApplication: numOfEmployees\n\t\t\t\tcapabilityCatalogApplication: capability\n\t\t\t\tactivityCatalogApplication: activity {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t\tfieldsCatalogApplicationActivity: fields {\n\t\t\t\t\t\tid\n\t\t\t\t\t\tname\n\t\t\t\t\t\tpossibleOperatorsCatalogApplicationActivityField: possibleOperators\n\t\t\t\t\t\tpossibleValues\n\t\t\t\t\t}\n\t\t\t\t}\n\n\t\t\t\ttypeCatalogApplication: type\n\t\t\t\tsanctioned\n\t\t\t\trecentlyAdded\n\t\t\t\tstandardPortsCatalogApplication: standardPorts {\n\t\t\t\t\tport\n\t\t\t\t\tportRangeCustomService: portRange {\n\t\t\t\t\t\tfrom\n\t\t\t\t\t\tto\n\t\t\t\t\t}\n\t\t\t\t\tprotocolCustomService: protocol\n\t\t\t\t}\n\n\t\t\t}\n\t\t\tpageInfoCatalogApplicationListPayload: pageInfo {\n\t\t\t\ttotal\n\t\t\t}\n\t\t}\n\n\t\tcontentTypeGroupList ( input:$catalogApplicationContentTypeGroupListInput  )  {\n\t\t\tcontentTypeGroupCatalogApplicationContentTypeGroupListPayload: contentTypeGroup {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t\tcontentTypeCatalogApplicationContentTypeGroup: contentType {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\n\t\t\t}\n\t\t\tpageInfoCatalogApplicationContentTypeGroupListPayload: pageInfo {\n\t\t\t\ttotal\n\t\t\t}\n\t\t}\n\n\t}\t\n}",
+    "query": "query catalogs ( $applicationRefInput:ApplicationRefInput! $catalogApplicationListInput:CatalogApplicationListInput! $catalogApplicationContentTypeGroupListInput:CatalogApplicationContentTypeGroupListInput! ) {\n\tcatalogs ( ) {\n\t\tcatalogApplication\n\t\tcatalogApplicationList\n\t\tcontentTypeGroupList\n\t}\t\n}",
     "variables": {
         "applicationRefInput": {
-            "by": {
-                "by": "enum(ObjectRefBy)"
-            },
-            "input": {
-                "input": "String"
-            }
+            "by": "ID",
+            "input": "string"
         },
         "catalogApplicationContentTypeGroupListInput": {
             "catalogApplicationContentTypeGroupFilterInput": {
                 "contentType": {
                     "id": {
-                        "eq": {
-                            "eq": "ID"
-                        },
-                        "in": {
-                            "in": [
-                                "ID"
-                            ]
-                        },
-                        "neq": {
-                            "neq": "ID"
-                        },
-                        "nin": {
-                            "nin": [
-                                "ID"
-                            ]
-                        }
+                        "eq": "id",
+                        "in": [
+                            "id1",
+                            "id2"
+                        ],
+                        "neq": "id",
+                        "nin": [
+                            "id1",
+                            "id2"
+                        ]
                     },
                     "name": {
-                        "eq": {
-                            "eq": "String"
-                        },
-                        "in": {
-                            "in": [
-                                "String"
-                            ]
-                        },
-                        "neq": {
-                            "neq": "String"
-                        },
-                        "nin": {
-                            "nin": [
-                                "String"
-                            ]
-                        }
+                        "eq": "string",
+                        "in": [
+                            "string1",
+                            "string2"
+                        ],
+                        "neq": "string",
+                        "nin": [
+                            "string1",
+                            "string2"
+                        ]
                     }
                 },
                 "id": {
-                    "eq": {
-                        "eq": "ID"
-                    },
-                    "in": {
-                        "in": [
-                            "ID"
-                        ]
-                    },
-                    "neq": {
-                        "neq": "ID"
-                    },
-                    "nin": {
-                        "nin": [
-                            "ID"
-                        ]
-                    }
+                    "eq": "id",
+                    "in": [
+                        "id1",
+                        "id2"
+                    ],
+                    "neq": "id",
+                    "nin": [
+                        "id1",
+                        "id2"
+                    ]
                 },
                 "name": {
-                    "eq": {
-                        "eq": "String"
-                    },
-                    "in": {
-                        "in": [
-                            "String"
-                        ]
-                    },
-                    "neq": {
-                        "neq": "String"
-                    },
-                    "nin": {
-                        "nin": [
-                            "String"
-                        ]
-                    }
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
                 }
             },
             "catalogApplicationContentTypeGroupSortInput": {
                 "name": {
-                    "direction": {
-                        "direction": "enum(SortOrder)"
-                    },
-                    "priority": {
-                        "priority": "Int"
-                    }
+                    "direction": "ASC",
+                    "priority": 1
                 }
             },
             "pagingInput": {
-                "from": {
-                    "from": "Int"
-                },
-                "limit": {
-                    "limit": "Int"
-                }
+                "from": 1,
+                "limit": 1
             }
         },
         "catalogApplicationListInput": {
             "catalogApplicationFilterInput": {
                 "activity": {
                     "hasAny": {
-                        "by": {
-                            "by": "enum(ObjectRefBy)"
-                        },
-                        "input": {
-                            "input": "String"
-                        }
+                        "by": "ID",
+                        "input": "string"
                     }
                 },
                 "capability": {
-                    "hasAny": {
-                        "hasAny": "enum(CatalogApplicationCapability)"
-                    }
+                    "hasAny": "APP_CONTROL_INLINE"
                 },
                 "category": {
                     "hasAny": {
-                        "by": {
-                            "by": "enum(ObjectRefBy)"
-                        },
-                        "input": {
-                            "input": "String"
-                        }
+                        "by": "ID",
+                        "input": "string"
                     }
                 },
                 "id": {
-                    "eq": {
-                        "eq": "ID"
-                    },
-                    "in": {
-                        "in": [
-                            "ID"
-                        ]
-                    },
-                    "neq": {
-                        "neq": "ID"
-                    },
-                    "nin": {
-                        "nin": [
-                            "ID"
-                        ]
-                    }
+                    "eq": "id",
+                    "in": [
+                        "id1",
+                        "id2"
+                    ],
+                    "neq": "id",
+                    "nin": [
+                        "id1",
+                        "id2"
+                    ]
                 },
                 "name": {
-                    "eq": {
-                        "eq": "String"
-                    },
-                    "in": {
-                        "in": [
-                            "String"
-                        ]
-                    },
-                    "neq": {
-                        "neq": "String"
-                    },
-                    "nin": {
-                        "nin": [
-                            "String"
-                        ]
-                    }
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
                 },
                 "recentlyAdded": {
-                    "eq": {
-                        "eq": "Boolean"
-                    },
-                    "neq": {
-                        "neq": "Boolean"
-                    }
+                    "eq": true,
+                    "neq": true
                 },
                 "risk": {
-                    "between": {
-                        "between": [
-                            "Int"
-                        ]
-                    },
-                    "eq": {
-                        "eq": "Int"
-                    },
-                    "gt": {
-                        "gt": "Int"
-                    },
-                    "gte": {
-                        "gte": "Int"
-                    },
-                    "in": {
-                        "in": [
-                            "Int"
-                        ]
-                    },
-                    "lt": {
-                        "lt": "Int"
-                    },
-                    "lte": {
-                        "lte": "Int"
-                    },
-                    "neq": {
-                        "neq": "Int"
-                    },
-                    "nin": {
-                        "nin": [
-                            "Int"
-                        ]
-                    }
+                    "between": [
+                        1,
+                        2
+                    ],
+                    "eq": 1,
+                    "gt": 1,
+                    "gte": 1,
+                    "in": [
+                        1,
+                        2
+                    ],
+                    "lt": 1,
+                    "lte": 1,
+                    "neq": 1,
+                    "nin": [
+                        1,
+                        2
+                    ]
                 },
                 "type": {
-                    "eq": {
-                        "eq": "enum(CatalogApplicationType)"
-                    },
-                    "in": {
-                        "in": "enum(CatalogApplicationType)"
-                    },
-                    "neq": {
-                        "neq": "enum(CatalogApplicationType)"
-                    },
-                    "nin": {
-                        "nin": "enum(CatalogApplicationType)"
-                    }
+                    "eq": "APPLICATION",
+                    "in": "APPLICATION",
+                    "neq": "APPLICATION",
+                    "nin": "APPLICATION"
                 }
             },
             "catalogApplicationSortInput": {
                 "category": {
                     "name": {
-                        "direction": {
-                            "direction": "enum(SortOrder)"
-                        },
-                        "priority": {
-                            "priority": "Int"
-                        }
+                        "direction": "ASC",
+                        "priority": 1
                     }
                 },
                 "description": {
-                    "direction": {
-                        "direction": "enum(SortOrder)"
-                    },
-                    "priority": {
-                        "priority": "Int"
-                    }
+                    "direction": "ASC",
+                    "priority": 1
                 },
                 "name": {
-                    "direction": {
-                        "direction": "enum(SortOrder)"
-                    },
-                    "priority": {
-                        "priority": "Int"
-                    }
+                    "direction": "ASC",
+                    "priority": 1
                 },
                 "risk": {
-                    "direction": {
-                        "direction": "enum(SortOrder)"
-                    },
-                    "priority": {
-                        "priority": "Int"
-                    }
+                    "direction": "ASC",
+                    "priority": 1
                 },
                 "type": {
-                    "direction": {
-                        "direction": "enum(SortOrder)"
-                    },
-                    "priority": {
-                        "priority": "Int"
-                    }
+                    "direction": "ASC",
+                    "priority": 1
                 }
             },
             "pagingInput": {
-                "from": {
-                    "from": "Int"
-                },
-                "limit": {
-                    "limit": "Int"
-                }
+                "from": 1,
+                "limit": 1
             }
         }
     }

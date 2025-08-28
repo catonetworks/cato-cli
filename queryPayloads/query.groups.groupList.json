@@ -1,212 +1,127 @@
 {
     "operationName": "groupsGroupList",
-    "query": "query groupsGroupList ( $groupMembersListInput:GroupMembersListInput! $groupListInput:GroupListInput ) {\n\tgroups ( ) {\n\t\tgroupList ( input:$groupListInput  )  {\n\t\t\titemsGroupListPayload: items {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t\tdescription\n\t\t\t\tauditGroup: audit {\n\t\t\t\t\tupdatedTime\n\t\t\t\t\tupdatedByAuditingMetadata: updatedBy {\n\t\t\t\t\t\tid\n\t\t\t\t\t\tname\n\t\t\t\t\t\t... on AdminRef {\n\t\t\t\t\t\t\tadminRefId: id\n\t\t\t\t\t\t\tadminRefName: name\n\t\t\t\t\t\t}\n\t\t\t\t\t\t... on ApiKeyRef {\n\t\t\t\t\t\t\tapiKeyRefId: id\n\t\t\t\t\t\t\tapiKeyRefName: name\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\n\t\t\t\tmembersGroup: members ( input:$groupMembersListInput  )  {\n\t\t\t\t\titemsGroupMembersListPayload: items {\n\t\t\t\t\t\tid\n\t\t\t\t\t\tname\n\t\t\t\t\t\ttypeGroupMemberRefTyped: type\n\t\t\t\t\t}\n\t\t\t\t\tpagingGroupMembersListPayload: paging {\n\t\t\t\t\t\ttotal\n\t\t\t\t\t}\n\t\t\t\t}\n\n\t\t\t\tmembersCount\n\t\t\t\tmembersCountPerTypeGroup: membersCountPerType {\n\t\t\t\t\ttypeGroupMemberTypeCount: type\n\t\t\t\t\tmembersCount\n\t\t\t\t}\n\n\t\t\t}\n\t\t\tpagingGroupListPayload: paging {\n\t\t\t\ttotal\n\t\t\t}\n\t\t}\n\n\t}\t\n}",
+    "query": "query groupsGroupList ( $groupMembersListInput:GroupMembersListInput! $groupListInput:GroupListInput ) {\n\tgroups ( ) {\n\t\tgroupList\n\t}\t\n}",
     "variables": {
         "groupListInput": {
             "groupListFilterInput": {
                 "audit": {
                     "updatedBy": {
-                        "by": {
-                            "by": "enum(ObjectRefBy)"
-                        },
-                        "input": {
-                            "input": "String"
-                        }
+                        "by": "ID",
+                        "input": "string"
                     },
                     "updatedTime": {
-                        "between": {
-                            "between": [
-                                "DateTime"
-                            ]
-                        },
-                        "eq": {
-                            "eq": "DateTime"
-                        },
-                        "gt": {
-                            "gt": "DateTime"
-                        },
-                        "gte": {
-                            "gte": "DateTime"
-                        },
-                        "in": {
-                            "in": [
-                                "DateTime"
-                            ]
-                        },
-                        "lt": {
-                            "lt": "DateTime"
-                        },
-                        "lte": {
-                            "lte": "DateTime"
-                        },
-                        "neq": {
-                            "neq": "DateTime"
-                        },
-                        "nin": {
-                            "nin": [
-                                "DateTime"
-                            ]
-                        }
+                        "between": [
+                            "example1",
+                            "example2"
+                        ],
+                        "eq": "example_value",
+                        "gt": "example_value",
+                        "gte": "example_value",
+                        "in": [
+                            "example1",
+                            "example2"
+                        ],
+                        "lt": "example_value",
+                        "lte": "example_value",
+                        "neq": "example_value",
+                        "nin": [
+                            "example1",
+                            "example2"
+                        ]
                     }
                 },
                 "freeText": {
-                    "search": {
-                        "search": "String"
-                    }
+                    "search": "string"
                 },
                 "id": {
-                    "eq": {
-                        "eq": "ID"
-                    },
-                    "in": {
-                        "in": [
-                            "ID"
-                        ]
-                    },
-                    "neq": {
-                        "neq": "ID"
-                    },
-                    "nin": {
-                        "nin": [
-                            "ID"
-                        ]
-                    }
+                    "eq": "id",
+                    "in": [
+                        "id1",
+                        "id2"
+                    ],
+                    "neq": "id",
+                    "nin": [
+                        "id1",
+                        "id2"
+                    ]
                 },
                 "member": {
                     "ref": {
-                        "by": {
-                            "by": "enum(ObjectRefBy)"
-                        },
-                        "input": {
-                            "input": "String"
-                        },
-                        "type": {
-                            "type": "enum(GroupMemberRefType)"
-                        }
+                        "by": "ID",
+                        "input": "string",
+                        "type": "SITE"
                     }
                 },
                 "name": {
-                    "eq": {
-                        "eq": "String"
-                    },
-                    "in": {
-                        "in": [
-                            "String"
-                        ]
-                    },
-                    "neq": {
-                        "neq": "String"
-                    },
-                    "nin": {
-                        "nin": [
-                            "String"
-                        ]
-                    },
-                    "regex": {
-                        "regex": "String"
-                    }
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ],
+                    "regex": "string"
                 }
             },
             "groupListSortInput": {
                 "audit": {
                     "updatedBy": {
-                        "direction": {
-                            "direction": "enum(SortOrder)"
-                        },
-                        "priority": {
-                            "priority": "Int"
-                        }
+                        "direction": "ASC",
+                        "priority": 1
                     },
                     "updatedTime": {
-                        "direction": {
-                            "direction": "enum(SortOrder)"
-                        },
-                        "priority": {
-                            "priority": "Int"
-                        }
+                        "direction": "ASC",
+                        "priority": 1
                     }
                 },
                 "name": {
-                    "direction": {
-                        "direction": "enum(SortOrder)"
-                    },
-                    "priority": {
-                        "priority": "Int"
-                    }
+                    "direction": "ASC",
+                    "priority": 1
                 }
             },
             "pagingInput": {
-                "from": {
-                    "from": "Int"
-                },
-                "limit": {
-                    "limit": "Int"
-                }
+                "from": 1,
+                "limit": 1
             }
         },
         "groupMembersListInput": {
             "groupMembersListFilterInput": {
                 "name": {
-                    "eq": {
-                        "eq": "String"
-                    },
-                    "in": {
-                        "in": [
-                            "String"
-                        ]
-                    },
-                    "neq": {
-                        "neq": "String"
-                    },
-                    "nin": {
-                        "nin": [
-                            "String"
-                        ]
-                    },
-                    "regex": {
-                        "regex": "String"
-                    }
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ],
+                    "regex": "string"
                 },
                 "type": {
-                    "eq": {
-                        "eq": "enum(GroupMemberRefType)"
-                    },
-                    "in": {
-                        "in": "enum(GroupMemberRefType)"
-                    },
-                    "neq": {
-                        "neq": "enum(GroupMemberRefType)"
-                    },
-                    "nin": {
-                        "nin": "enum(GroupMemberRefType)"
-                    }
+                    "eq": "SITE",
+                    "in": "SITE",
+                    "neq": "SITE",
+                    "nin": "SITE"
                 }
             },
             "groupMembersListSortInput": {
                 "name": {
-                    "direction": {
-                        "direction": "enum(SortOrder)"
-                    },
-                    "priority": {
-                        "priority": "Int"
-                    }
+                    "direction": "ASC",
+                    "priority": 1
                 },
                 "type": {
-                    "direction": {
-                        "direction": "enum(SortOrder)"
-                    },
-                    "priority": {
-                        "priority": "Int"
-                    }
+                    "direction": "ASC",
+                    "priority": 1
                 }
             },
             "pagingInput": {
-                "from": {
-                    "from": "Int"
-                },
-                "limit": {
-                    "limit": "Int"
-                }
+                "from": 1,
+                "limit": 1
             }
         }
     }

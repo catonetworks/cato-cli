@@ -1,40 +1,27 @@
 {
     "operationName": "appStatsTimeSeries",
-    "query": "query appStatsTimeSeries ( $perSecond:Boolean $withMissingData:Boolean $useDefaultSizeBucket:Boolean $buckets:Int! $timeFrame:TimeFrame! $measure:[Measure] $dimension:[Dimension] $appStatsFilter:[AppStatsFilter!] ) {\n\tappStatsTimeSeries ( timeFrame:$timeFrame measures:$measure dimensions:$dimension filters:$appStatsFilter ) {\n\t\tid\n\t\tfrom\n\t\tto\n\t\tgranularity\n\t\ttimeseries ( buckets:$buckets  )  {\n\t\t\tdata ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket   )\n\t\t\tlabel\n\t\t\tdimensionsTimeseries: dimensions {\n\t\t\t\tlabel\n\t\t\t\tvalue\n\t\t\t}\n\t\t\tkeyTimeseries: key {\n\t\t\t\tmeasureFieldName\n\t\t\t\tdimensions {\n\t\t\t\t\tfieldName\n\t\t\t\t\tvalue\n\t\t\t\t}\n\n\t\t\t}\n\t\t\tsum\n\t\t\tunitsTimeseries: units\n\t\t\tinfo\n\t\t}\n\n\t}\t\n}",
+    "query": "query appStatsTimeSeries ( $perSecond:Boolean $withMissingData:Boolean $useDefaultSizeBucket:Boolean $buckets:Int! $timeFrame:TimeFrame! $measure:[Measure] $dimension:[Dimension] $appStatsFilter:[AppStatsFilter!] ) {\n\tappStatsTimeSeries ( timeFrame:$timeFrame measures:$measure dimensions:$dimension filters:$appStatsFilter ) {\n\t\tid\n\t\tfrom\n\t\tto\n\t\tgranularity\n\t\ttimeseries\n\t}\t\n}",
     "variables": {
         "appStatsFilter": {
-            "fieldName": {
-                "fieldName": "enum(AppStatsFieldName)"
-            },
-            "operator": {
-                "operator": "enum(FilterOperator)"
-            },
-            "values": {
-                "values": [
-                    "String"
-                ]
-            }
+            "fieldName": "ad_name",
+            "operator": "is",
+            "values": [
+                "string1",
+                "string2"
+            ]
         },
-        "buckets": "Int",
+        "buckets": 1,
         "dimension": {
-            "fieldName": {
-                "fieldName": "enum(AppStatsFieldName)"
-            }
+            "fieldName": "ad_name"
         },
         "measure": {
-            "aggType": {
-                "aggType": "enum(AggregationType)"
-            },
-            "fieldName": {
-                "fieldName": "enum(AppStatsFieldName)"
-            },
-            "trend": {
-                "trend": "Boolean"
-            }
+            "aggType": "sum",
+            "fieldName": "ad_name",
+            "trend": true
         },
-        "perSecond": "Boolean",
-        "timeFrame": "TimeFrame",
-        "useDefaultSizeBucket": "Boolean",
-        "withMissingData": "Boolean"
+        "perSecond": true,
+        "timeFrame": "example_value",
+        "useDefaultSizeBucket": true,
+        "withMissingData": true
     }
 }

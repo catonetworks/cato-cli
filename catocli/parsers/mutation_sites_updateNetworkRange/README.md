@@ -1,6 +1,6 @@
 
 ## CATO-CLI - mutation.sites.updateNetworkRange:
-[Click here](https://api.catonetworks.com/documentation/#mutation-updateNetworkRange) for documentation on this operation.
+[Click here](https://api.catonetworks.com/documentation/#mutation-mutation.sites.updateNetworkRange) for documentation on this operation.
 
 ### Usage for mutation.sites.updateNetworkRange:
 
@@ -8,11 +8,13 @@
 
 `catocli mutation sites updateNetworkRange <json>`
 
-`catocli mutation sites updateNetworkRange "$(cat < updateNetworkRange.json)"`
+`catocli mutation sites updateNetworkRange "$(cat < mutation.sites.updateNetworkRange.json)"`
 
-`catocli mutation sites updateNetworkRange '{"networkRangeId": "ID", "updateNetworkRangeInput": {"azureFloatingIp": {"azureFloatingIp": "IPAddress"}, "gateway": {"gateway": "IPAddress"}, "internetOnly": {"internetOnly": "Boolean"}, "localIp": {"localIp": "IPAddress"}, "mdnsReflector": {"mdnsReflector": "Boolean"}, "name": {"name": "String"}, "networkDhcpSettingsInput": {"dhcpMicrosegmentation": {"dhcpMicrosegmentation": "Boolean"}, "dhcpType": {"dhcpType": "enum(DhcpType)"}, "ipRange": {"ipRange": "IPRange"}, "relayGroupId": {"relayGroupId": "ID"}}, "rangeType": {"rangeType": "enum(SubnetType)"}, "subnet": {"subnet": "IPSubnet"}, "translatedSubnet": {"translatedSubnet": "IPSubnet"}, "vlan": {"vlan": "Int"}}}'`
+`catocli mutation sites updateNetworkRange '{"networkRangeId":"id","updateNetworkRangeInput":{"azureFloatingIp":"example_value","gateway":"example_value","internetOnly":true,"localIp":"example_value","mdnsReflector":true,"name":"string","networkDhcpSettingsInput":{"dhcpMicrosegmentation":true,"dhcpType":"DHCP_RELAY","ipRange":"example_value","relayGroupId":"id"},"rangeType":"Routed","subnet":"example_value","translatedSubnet":"example_value","vlan":1}}'`
+
 
 #### Operation Arguments for mutation.sites.updateNetworkRange ####
-`accountId` [ID] - (required) N/A 
-`networkRangeId` [ID] - (required) N/A 
-`updateNetworkRangeInput` [UpdateNetworkRangeInput] - (required) N/A 
+
+`accountId` [ID] - (required) N/A    
+`networkRangeId` [ID] - (required) N/A    
+`updateNetworkRangeInput` [UpdateNetworkRangeInput] - (required) N/A    

@@ -1,6 +1,6 @@
 
 ## CATO-CLI - mutation.policy.socketLan.addSection:
-[Click here](https://api.catonetworks.com/documentation/#mutation-addSection) for documentation on this operation.
+[Click here](https://api.catonetworks.com/documentation/#mutation-mutation.policy.socketLan.addSection) for documentation on this operation.
 
 ### Usage for mutation.policy.socketLan.addSection:
 
@@ -8,11 +8,13 @@
 
 `catocli mutation policy socketLan addSection <json>`
 
-`catocli mutation policy socketLan addSection "$(cat < addSection.json)"`
+`catocli mutation policy socketLan addSection "$(cat < mutation.policy.socketLan.addSection.json)"`
 
-`catocli mutation policy socketLan addSection '{"policyAddSectionInput": {"policyAddSectionInfoInput": {"name": {"name": "String"}}, "policySectionPositionInput": {"position": {"position": "enum(PolicySectionPositionEnum)"}, "ref": {"ref": "ID"}}}, "socketLanPolicyMutationInput": {"policyMutationRevisionInput": {"id": {"id": "ID"}}}}'`
+`catocli mutation policy socketLan addSection '{"policyAddSectionInput":{"policyAddSectionInfoInput":{"name":"string"},"policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}},"socketLanPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
+
 
 #### Operation Arguments for mutation.policy.socketLan.addSection ####
-`accountId` [ID] - (required) N/A 
-`policyAddSectionInput` [PolicyAddSectionInput] - (required) N/A 
-`socketLanPolicyMutationInput` [SocketLanPolicyMutationInput] - (optional) N/A 
+
+`accountId` [ID] - (required) N/A    
+`policyAddSectionInput` [PolicyAddSectionInput] - (required) N/A    
+`socketLanPolicyMutationInput` [SocketLanPolicyMutationInput] - (required) N/A    

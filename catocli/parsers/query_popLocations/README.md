@@ -1,6 +1,6 @@
 
 ## CATO-CLI - query.popLocations:
-[Click here](https://api.catonetworks.com/documentation/#query-popLocations) for documentation on this operation.
+[Click here](https://api.catonetworks.com/documentation/#query-query.popLocations) for documentation on this operation.
 
 ### Usage for query.popLocations:
 
@@ -8,10 +8,12 @@
 
 `catocli query popLocations <json>`
 
-`catocli query popLocations "$(cat < popLocations.json)"`
+`catocli query popLocations "$(cat < query.popLocations.json)"`
 
-`catocli query popLocations '{"popLocationFilterInput": {"booleanFilterInput": {"eq": {"eq": "Boolean"}, "neq": {"neq": "Boolean"}}, "countryRefFilterInput": {"eq": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "in": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "neq": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "nin": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}}, "idFilterInput": {"eq": {"eq": "ID"}, "in": {"in": ["ID"]}, "neq": {"neq": "ID"}, "nin": {"nin": ["ID"]}}, "popLocationCloudInterconnectFilterInput": {"taggingMethod": {"eq": {"eq": "enum(TaggingMethod)"}, "in": {"in": "enum(TaggingMethod)"}, "neq": {"neq": "enum(TaggingMethod)"}, "nin": {"nin": "enum(TaggingMethod)"}}}, "stringFilterInput": {"eq": {"eq": "String"}, "in": {"in": ["String"]}, "neq": {"neq": "String"}, "nin": {"nin": ["String"]}}}}'`
+`catocli query popLocations '{"popLocationFilterInput":{"booleanFilterInput":{"eq":true,"neq":true},"countryRefFilterInput":{"eq":{"by":"ID","input":"string"},"in":{"by":"ID","input":"string"},"neq":{"by":"ID","input":"string"},"nin":{"by":"ID","input":"string"}},"idFilterInput":{"eq":"id","in":["id1","id2"],"neq":"id","nin":["id1","id2"]},"popLocationCloudInterconnectFilterInput":{"taggingMethod":{"eq":"DOT1Q","in":"DOT1Q","neq":"DOT1Q","nin":"DOT1Q"}},"stringFilterInput":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}}}'`
+
 
 #### Operation Arguments for query.popLocations ####
-`accountId` [ID] - (required) N/A 
-`popLocationFilterInput` [PopLocationFilterInput] - (optional) N/A 
+
+`accountId` [ID] - (required) N/A    
+`popLocationFilterInput` [PopLocationFilterInput] - (required) N/A    

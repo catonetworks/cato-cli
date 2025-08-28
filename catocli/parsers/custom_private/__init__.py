@@ -7,7 +7,7 @@ Dynamically loads commands from ~/.cato/settings.json
 import os
 import json
 import argparse
-from ..parserApiClient import createPrivateRequest, get_private_help
+from ..customParserApiClient import createPrivateRequest, get_private_help
 
 
 def load_private_settings():

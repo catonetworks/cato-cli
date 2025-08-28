@@ -1,6 +1,6 @@
 
 ## CATO-CLI - query.hardwareManagement:
-[Click here](https://api.catonetworks.com/documentation/#query-hardwareManagement) for documentation on this operation.
+[Click here](https://api.catonetworks.com/documentation/#query-query.hardwareManagement) for documentation on this operation.
 
 ### Usage for query.hardwareManagement:
 
@@ -8,10 +8,12 @@
 
 `catocli query hardwareManagement <json>`
 
-`catocli query hardwareManagement "$(cat < hardwareManagement.json)"`
+`catocli query hardwareManagement "$(cat < query.hardwareManagement.json)"`
 
-`catocli query hardwareManagement '{"socketInventoryInput": {"pagingInput": {"from": {"from": "Int"}, "limit": {"limit": "Int"}}, "socketInventoryFilterInput": {"freeText": {"search": {"search": "String"}}}, "socketInventoryOrderInput": {"accountName": {"direction": {"direction": "enum(SortOrder)"}, "priority": {"priority": "Int"}}, "deliverySiteName": {"direction": {"direction": "enum(SortOrder)"}, "priority": {"priority": "Int"}}, "description": {"direction": {"direction": "enum(SortOrder)"}, "priority": {"priority": "Int"}}, "installedSite": {"direction": {"direction": "enum(SortOrder)"}, "priority": {"priority": "Int"}}, "serialNumber": {"direction": {"direction": "enum(SortOrder)"}, "priority": {"priority": "Int"}}, "shippingCompany": {"direction": {"direction": "enum(SortOrder)"}, "priority": {"priority": "Int"}}, "shippingDate": {"direction": {"direction": "enum(SortOrder)"}, "priority": {"priority": "Int"}}, "socketType": {"direction": {"direction": "enum(SortOrder)"}, "priority": {"priority": "Int"}}, "status": {"direction": {"direction": "enum(SortOrder)"}, "priority": {"priority": "Int"}}}}}'`
+`catocli query hardwareManagement '{"socketInventoryInput":{"pagingInput":{"from":1,"limit":1},"socketInventoryFilterInput":{"freeText":{"search":"string"}},"socketInventoryOrderInput":{"accountName":{"direction":"ASC","priority":1},"deliverySiteName":{"direction":"ASC","priority":1},"description":{"direction":"ASC","priority":1},"installedSite":{"direction":"ASC","priority":1},"serialNumber":{"direction":"ASC","priority":1},"shippingCompany":{"direction":"ASC","priority":1},"shippingDate":{"direction":"ASC","priority":1},"socketType":{"direction":"ASC","priority":1},"status":{"direction":"ASC","priority":1}}}}'`
+
 
 #### Operation Arguments for query.hardwareManagement ####
-`accountId` [ID] - (required) N/A 
-`socketInventoryInput` [SocketInventoryInput] - (optional) N/A 
+
+`accountId` [ID] - (required) N/A    
+`socketInventoryInput` [SocketInventoryInput] - (required) N/A    

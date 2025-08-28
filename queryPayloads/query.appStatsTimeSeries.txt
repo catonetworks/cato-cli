@@ -4,25 +4,6 @@ query appStatsTimeSeries ( $perSecond:Boolean $withMissingData:Boolean $useDefau
 		from
 		to
 		granularity
-		timeseries ( buckets:$buckets  )  {
-			data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket   )
-			label
-			dimensionsTimeseries: dimensions {
-				label
-				value
-			}
-			keyTimeseries: key {
-				measureFieldName
-				dimensions {
-					fieldName
-					value
-				}
-
-			}
-			sum
-			unitsTimeseries: units
-			info
-		}
-
+		timeseries
 	}	
 }

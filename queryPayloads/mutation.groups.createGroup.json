@@ -1,89 +1,51 @@
 {
     "operationName": "groupsCreateGroup",
-    "query": "mutation groupsCreateGroup ( $groupMembersListInput:GroupMembersListInput! $createGroupInput:CreateGroupInput! ) {\n\tgroups ( ) {\n\t\tcreateGroup ( input:$createGroupInput  )  {\n\t\t\tgroupCreateGroupPayload: group {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t\tdescription\n\t\t\t\tauditGroup: audit {\n\t\t\t\t\tupdatedTime\n\t\t\t\t\tupdatedByAuditingMetadata: updatedBy {\n\t\t\t\t\t\tid\n\t\t\t\t\t\tname\n\t\t\t\t\t\t... on AdminRef {\n\t\t\t\t\t\t\tadminRefId: id\n\t\t\t\t\t\t\tadminRefName: name\n\t\t\t\t\t\t}\n\t\t\t\t\t\t... on ApiKeyRef {\n\t\t\t\t\t\t\tapiKeyRefId: id\n\t\t\t\t\t\t\tapiKeyRefName: name\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\n\t\t\t\tmembersGroup: members ( input:$groupMembersListInput  )  {\n\t\t\t\t\titemsGroupMembersListPayload: items {\n\t\t\t\t\t\tid\n\t\t\t\t\t\tname\n\t\t\t\t\t\ttypeGroupMemberRefTyped: type\n\t\t\t\t\t}\n\t\t\t\t\tpagingGroupMembersListPayload: paging {\n\t\t\t\t\t\ttotal\n\t\t\t\t\t}\n\t\t\t\t}\n\n\t\t\t\tmembersCount\n\t\t\t\tmembersCountPerTypeGroup: membersCountPerType {\n\t\t\t\t\ttypeGroupMemberTypeCount: type\n\t\t\t\t\tmembersCount\n\t\t\t\t}\n\n\t\t\t}\n\t\t}\n\n\t}\t\n}",
+    "query": "mutation groupsCreateGroup ( $groupMembersListInput:GroupMembersListInput! $createGroupInput:CreateGroupInput! ) {\n\tgroups ( ) {\n\t\tcreateGroup\n\t}\t\n}",
     "variables": {
         "createGroupInput": {
-            "description": {
-                "description": "String"
-            },
+            "description": "string",
             "groupMemberRefTypedInput": {
-                "by": {
-                    "by": "enum(ObjectRefBy)"
-                },
-                "input": {
-                    "input": "String"
-                },
-                "type": {
-                    "type": "enum(GroupMemberRefType)"
-                }
+                "by": "ID",
+                "input": "string",
+                "type": "SITE"
             },
-            "name": {
-                "name": "String"
-            }
+            "name": "string"
         },
         "groupMembersListInput": {
             "groupMembersListFilterInput": {
                 "name": {
-                    "eq": {
-                        "eq": "String"
-                    },
-                    "in": {
-                        "in": [
-                            "String"
-                        ]
-                    },
-                    "neq": {
-                        "neq": "String"
-                    },
-                    "nin": {
-                        "nin": [
-                            "String"
-                        ]
-                    },
-                    "regex": {
-                        "regex": "String"
-                    }
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ],
+                    "regex": "string"
                 },
                 "type": {
-                    "eq": {
-                        "eq": "enum(GroupMemberRefType)"
-                    },
-                    "in": {
-                        "in": "enum(GroupMemberRefType)"
-                    },
-                    "neq": {
-                        "neq": "enum(GroupMemberRefType)"
-                    },
-                    "nin": {
-                        "nin": "enum(GroupMemberRefType)"
-                    }
+                    "eq": "SITE",
+                    "in": "SITE",
+                    "neq": "SITE",
+                    "nin": "SITE"
                 }
             },
             "groupMembersListSortInput": {
                 "name": {
-                    "direction": {
-                        "direction": "enum(SortOrder)"
-                    },
-                    "priority": {
-                        "priority": "Int"
-                    }
+                    "direction": "ASC",
+                    "priority": 1
                 },
                 "type": {
-                    "direction": {
-                        "direction": "enum(SortOrder)"
-                    },
-                    "priority": {
-                        "priority": "Int"
-                    }
+                    "direction": "ASC",
+                    "priority": 1
                 }
             },
             "pagingInput": {
-                "from": {
-                    "from": "Int"
-                },
-                "limit": {
-                    "limit": "Int"
-                }
+                "from": 1,
+                "limit": 1
             }
         }
     }

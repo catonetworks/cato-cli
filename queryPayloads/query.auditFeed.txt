@@ -5,41 +5,6 @@ query auditFeed ( $fieldNames:[AuditFieldName!] $accountIDs:[ID!] $timeFrame:Tim
 		marker
 		fetchedCount
 		hasMore
-		accounts {
-			id
-			recordsAuditFeedAccountRecords: records ( fieldNames:$fieldNames   ) {
-				adminAuditRecord: admin {
-					id
-					name
-					typeEntity: type
-				}
-
-				apiKeyAuditRecord: apiKey {
-					id
-					name
-					typeEntity: type
-				}
-
-				objectAuditRecord: object {
-					id
-					name
-					typeEntity: type
-				}
-
-				accountAuditRecord: account {
-					entityEntityInfo: entity {
-						id
-						name
-						typeEntity: type
-					}
-					description
-					helperFields
-				}
-
-				time
-				flatFields
-			}
-		}
-
+		accounts
 	}	
 }

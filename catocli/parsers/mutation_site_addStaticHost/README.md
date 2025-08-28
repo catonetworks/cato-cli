@@ -1,6 +1,6 @@
 
 ## CATO-CLI - mutation.site.addStaticHost:
-[Click here](https://api.catonetworks.com/documentation/#mutation-addStaticHost) for documentation on this operation.
+[Click here](https://api.catonetworks.com/documentation/#mutation-mutation.site.addStaticHost) for documentation on this operation.
 
 ### Usage for mutation.site.addStaticHost:
 
@@ -8,11 +8,13 @@
 
 `catocli mutation site addStaticHost <json>`
 
-`catocli mutation site addStaticHost "$(cat < addStaticHost.json)"`
+`catocli mutation site addStaticHost "$(cat < mutation.site.addStaticHost.json)"`
 
-`catocli mutation site addStaticHost '{"addStaticHostInput": {"ip": {"ip": "IPAddress"}, "macAddress": {"macAddress": "String"}, "name": {"name": "String"}}, "siteId": "ID"}'`
+`catocli mutation site addStaticHost '{"addStaticHostInput":{"ip":"example_value","macAddress":"string","name":"string"},"siteId":"id"}'`
+
 
 #### Operation Arguments for mutation.site.addStaticHost ####
-`accountId` [ID] - (required) N/A 
-`addStaticHostInput` [AddStaticHostInput] - (required) N/A 
-`siteId` [ID] - (required) N/A 
+
+`accountId` [ID] - (required) N/A    
+`addStaticHostInput` [AddStaticHostInput] - (required) N/A    
+`siteId` [ID] - (required) N/A    

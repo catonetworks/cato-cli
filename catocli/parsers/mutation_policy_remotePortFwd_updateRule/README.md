@@ -1,6 +1,6 @@
 
 ## CATO-CLI - mutation.policy.remotePortFwd.updateRule:
-[Click here](https://api.catonetworks.com/documentation/#mutation-updateRule) for documentation on this operation.
+[Click here](https://api.catonetworks.com/documentation/#mutation-mutation.policy.remotePortFwd.updateRule) for documentation on this operation.
 
 ### Usage for mutation.policy.remotePortFwd.updateRule:
 
@@ -8,11 +8,13 @@
 
 `catocli mutation policy remotePortFwd updateRule <json>`
 
-`catocli mutation policy remotePortFwd updateRule "$(cat < updateRule.json)"`
+`catocli mutation policy remotePortFwd updateRule "$(cat < mutation.policy.remotePortFwd.updateRule.json)"`
 
-`catocli mutation policy remotePortFwd updateRule '{"remotePortFwdPolicyMutationInput": {"policyMutationRevisionInput": {"id": {"id": "ID"}}}, "remotePortFwdUpdateRuleInput": {"id": {"id": "ID"}, "remotePortFwdUpdateRuleDataInput": {"description": {"description": "String"}, "enabled": {"enabled": "Boolean"}, "externalIp": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "externalPortRange": {"from": {"from": "Port"}, "to": {"to": "Port"}}, "forwardIcmp": {"forwardIcmp": "Boolean"}, "internalIp": {"internalIp": "IPAddress"}, "internalPortRange": {"from": {"from": "Port"}, "to": {"to": "Port"}}, "name": {"name": "String"}, "remoteIPs": {"globalIpRange": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "ip": {"ip": ["IPAddress"]}, "ipRange": {"from": {"from": "IPAddress"}, "to": {"to": "IPAddress"}}, "subnet": {"subnet": ["NetworkSubnet"]}}, "restrictionType": {"restrictionType": "enum(RemotePortFwdRestrictionType)"}, "tracking": {"enabled": {"enabled": "Boolean"}, "frequency": {"frequency": "enum(PolicyRuleTrackingFrequencyEnum)"}, "mailingList": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "subscriptionGroup": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "webhook": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}}}}}'`
+`catocli mutation policy remotePortFwd updateRule '{"remotePortFwdPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"remotePortFwdUpdateRuleInput":{"id":"id","remotePortFwdUpdateRuleDataInput":{"description":"string","enabled":true,"externalIp":{"by":"ID","input":"string"},"externalPortRange":{"from":"example_value","to":"example_value"},"forwardIcmp":true,"internalIp":"example_value","internalPortRange":{"from":"example_value","to":"example_value"},"name":"string","remoteIPs":{"globalIpRange":{"by":"ID","input":"string"},"ip":["example1","example2"],"ipRange":{"from":"example_value","to":"example_value"},"subnet":["example1","example2"]},"restrictionType":"ALLOW_LIST","tracking":{"enabled":true,"frequency":"HOURLY","mailingList":{"by":"ID","input":"string"},"subscriptionGroup":{"by":"ID","input":"string"},"webhook":{"by":"ID","input":"string"}}}}}'`
+
 
 #### Operation Arguments for mutation.policy.remotePortFwd.updateRule ####
-`accountId` [ID] - (required) N/A 
-`remotePortFwdPolicyMutationInput` [RemotePortFwdPolicyMutationInput] - (optional) N/A 
-`remotePortFwdUpdateRuleInput` [RemotePortFwdUpdateRuleInput] - (required) N/A 
+
+`accountId` [ID] - (required) N/A    
+`remotePortFwdPolicyMutationInput` [RemotePortFwdPolicyMutationInput] - (required) N/A    
+`remotePortFwdUpdateRuleInput` [RemotePortFwdUpdateRuleInput] - (required) N/A    

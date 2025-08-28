@@ -1,27 +1,5 @@
 mutation policyAppTenantRestrictionRemoveSection ( $policyRemoveSectionInput:PolicyRemoveSectionInput! $appTenantRestrictionPolicyMutationInput:AppTenantRestrictionPolicyMutationInput ) {
 	policy ( ) {
-		appTenantRestriction ( input:$appTenantRestrictionPolicyMutationInput  )  {
-			removeSectionAppTenantRestrictionPolicyMutations: removeSection ( input:$policyRemoveSectionInput   ) {
-				sectionPolicySectionMutationPayload: section {
-					auditPolicySectionPayload: audit {
-						updatedTime
-						updatedBy
-					}
-					sectionPolicySectionPayload: section {
-						id
-						name
-					}
-					propertiesPolicySectionPayload: properties
-				}
-
-				statusPolicySectionMutationPayload: status
-				errorsPolicySectionMutationPayload: errors {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+		appTenantRestriction
 	}	
 }

@@ -1,25 +1,5 @@
 mutation xdrAddStoryComment ( $addStoryCommentInput:AddStoryCommentInput! ) {
 	xdr ( ) {
-		addStoryComment ( input:$addStoryCommentInput  )  {
-			commentAddStoryCommentPayload: comment {
-				id
-				createdAt
-				text
-				actorStoryComment: actor {
-					id
-					name
-					... on AdminRef {
-						adminRefId: id
-						adminRefName: name
-					}
-					... on ApiKeyRef {
-						apiKeyRefId: id
-						apiKeyRefName: name
-					}
-				}
-
-			}
-		}
-
+		addStoryComment
 	}	
 }

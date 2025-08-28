@@ -1,54 +1,28 @@
 {
     "operationName": "siteAddIpsecIkeV2SiteTunnels",
-    "query": "mutation siteAddIpsecIkeV2SiteTunnels ( $siteId:ID! $addIpsecIkeV2SiteTunnelsInput:AddIpsecIkeV2SiteTunnelsInput! ) {\n\tsite ( ) {\n\t\taddIpsecIkeV2SiteTunnels ( siteId:$siteId  input:$addIpsecIkeV2SiteTunnelsInput  )  {\n\t\t\tsiteId\n\t\t\tprimaryAddIpsecIkeV2SiteTunnelsPayload: primary {\n\t\t\t\tfqdn\n\t\t\t\ttunnels {\n\t\t\t\t\ttunnelIdAddIpsecIkeV2SiteTunnelPayload: tunnelId\n\t\t\t\t\tlocalId\n\t\t\t\t}\n\n\t\t\t}\n\t\t\tsecondaryAddIpsecIkeV2SiteTunnelsPayload: secondary {\n\t\t\t\tfqdn\n\t\t\t\ttunnels {\n\t\t\t\t\ttunnelIdAddIpsecIkeV2SiteTunnelPayload: tunnelId\n\t\t\t\t\tlocalId\n\t\t\t\t}\n\n\t\t\t}\n\t\t}\n\n\t}\t\n}",
+    "query": "mutation siteAddIpsecIkeV2SiteTunnels ( $siteId:ID! $addIpsecIkeV2SiteTunnelsInput:AddIpsecIkeV2SiteTunnelsInput! ) {\n\tsite ( ) {\n\t\taddIpsecIkeV2SiteTunnels\n\t}\t\n}",
     "variables": {
         "addIpsecIkeV2SiteTunnelsInput": {
             "addIpsecIkeV2TunnelsInput": {
-                "destinationType": {
-                    "destinationType": "enum(DestinationType)"
-                },
-                "popLocationId": {
-                    "popLocationId": "ID"
-                },
-                "publicCatoIpId": {
-                    "publicCatoIpId": "ID"
-                },
+                "destinationType": "IPv4",
+                "popLocationId": "id",
+                "publicCatoIpId": "id",
                 "tunnels": {
                     "lastMileBw": {
-                        "downstream": {
-                            "downstream": "Int"
-                        },
-                        "downstreamMbpsPrecision": {
-                            "downstreamMbpsPrecision": "Float"
-                        },
-                        "upstream": {
-                            "upstream": "Int"
-                        },
-                        "upstreamMbpsPrecision": {
-                            "upstreamMbpsPrecision": "Float"
-                        }
+                        "downstream": 1,
+                        "downstreamMbpsPrecision": 1.5,
+                        "upstream": 1,
+                        "upstreamMbpsPrecision": 1.5
                     },
-                    "name": {
-                        "name": "String"
-                    },
-                    "privateCatoIp": {
-                        "privateCatoIp": "IPAddress"
-                    },
-                    "privateSiteIp": {
-                        "privateSiteIp": "IPAddress"
-                    },
-                    "psk": {
-                        "psk": "String"
-                    },
-                    "publicSiteIp": {
-                        "publicSiteIp": "IPAddress"
-                    },
-                    "role": {
-                        "role": "enum(IPSecV2TunnelRole)"
-                    }
+                    "name": "string",
+                    "privateCatoIp": "example_value",
+                    "privateSiteIp": "example_value",
+                    "psk": "string",
+                    "publicSiteIp": "example_value",
+                    "role": "WAN1"
                 }
             }
         },
-        "siteId": "ID"
+        "siteId": "id"
     }
 }

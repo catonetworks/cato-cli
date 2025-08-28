@@ -14,3 +14,10 @@
 - Optimized exception handling for bulk rule import 
 - Added exception handling keyboard escape 
 - Added custom settings support
+
+## 2.1.2 (2025-08-228)
+
+### Features
+
+- Updated dynamic cli generator to support multi-threaded processing and fixed missing fields in sub operations
+- Added support for custom documentation in cli generation process, first examples in appStats and appStatsTimeSeries

@@ -1,24 +1,20 @@
 {
     "operationName": "eventsFeed",
-    "query": "query eventsFeed ( $fieldNames:[EventFieldName!] $accountIDs:[ID!] $eventFeedFieldFilterInput:[EventFeedFieldFilterInput!] $marker:String ) {\n\teventsFeed ( accountIDs:$accountIDs filters:$eventFeedFieldFilterInput marker:$marker ) {\n\t\tmarker\n\t\tfetchedCount\n\t\taccounts {\n\t\t\tid\n\t\t\terrorString\n\t\t\trecordsEventsFeedAccountRecords: records ( fieldNames:$fieldNames   ) {\n\t\t\t\ttime\n\t\t\t\tflatFields\n\t\t\t}\n\t\t}\n\n\t}\t\n}",
+    "query": "query eventsFeed ( $fieldNames:[EventFieldName!] $accountIDs:[ID!] $eventFeedFieldFilterInput:[EventFeedFieldFilterInput!] $marker:String ) {\n\teventsFeed ( accountIDs:$accountIDs filters:$eventFeedFieldFilterInput marker:$marker ) {\n\t\tmarker\n\t\tfetchedCount\n\t\taccounts\n\t}\t\n}",
     "variables": {
         "accountIDs": [
-            "ID"
+            "id1",
+            "id2"
         ],
         "eventFeedFieldFilterInput": {
-            "fieldName": {
-                "fieldName": "enum(EventFeedFilterFieldName)"
-            },
-            "operator": {
-                "operator": "enum(EventFeedFilterOperator)"
-            },
-            "values": {
-                "values": [
-                    "String"
-                ]
-            }
+            "fieldName": "event_sub_type",
+            "operator": "is",
+            "values": [
+                "string1",
+                "string2"
+            ]
         },
-        "fieldNames": "enum(EventFieldName)",
-        "marker": "String"
+        "fieldNames": "access_method",
+        "marker": "string"
     }
 }

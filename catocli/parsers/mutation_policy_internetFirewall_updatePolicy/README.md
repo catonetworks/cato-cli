@@ -1,6 +1,6 @@
 
 ## CATO-CLI - mutation.policy.internetFirewall.updatePolicy:
-[Click here](https://api.catonetworks.com/documentation/#mutation-updatePolicy) for documentation on this operation.
+[Click here](https://api.catonetworks.com/documentation/#mutation-mutation.policy.internetFirewall.updatePolicy) for documentation on this operation.
 
 ### Usage for mutation.policy.internetFirewall.updatePolicy:
 
@@ -8,11 +8,13 @@
 
 `catocli mutation policy internetFirewall updatePolicy <json>`
 
-`catocli mutation policy internetFirewall updatePolicy "$(cat < updatePolicy.json)"`
+`catocli mutation policy internetFirewall updatePolicy "$(cat < mutation.policy.internetFirewall.updatePolicy.json)"`
 
-`catocli mutation policy internetFirewall updatePolicy '{"internetFirewallPolicyMutationInput": {"policyMutationRevisionInput": {"id": {"id": "ID"}}}, "internetFirewallPolicyUpdateInput": {"state": {"state": "enum(PolicyToggleState)"}}}'`
+`catocli mutation policy internetFirewall updatePolicy '{"internetFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"internetFirewallPolicyUpdateInput":{"state":"ENABLED"}}'`
+
 
 #### Operation Arguments for mutation.policy.internetFirewall.updatePolicy ####
-`accountId` [ID] - (required) N/A 
-`internetFirewallPolicyMutationInput` [InternetFirewallPolicyMutationInput] - (optional) N/A 
-`internetFirewallPolicyUpdateInput` [InternetFirewallPolicyUpdateInput] - (required) N/A 
+
+`accountId` [ID] - (required) N/A    
+`internetFirewallPolicyMutationInput` [InternetFirewallPolicyMutationInput] - (required) N/A    
+`internetFirewallPolicyUpdateInput` [InternetFirewallPolicyUpdateInput] - (required) N/A    

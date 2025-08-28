@@ -1,25 +1,5 @@
 mutation xdrDeleteStoryComment ( $deleteStoryCommentInput:DeleteStoryCommentInput! ) {
 	xdr ( ) {
-		deleteStoryComment ( input:$deleteStoryCommentInput  )  {
-			commentDeleteStoryCommentPayload: comment {
-				id
-				createdAt
-				text
-				actorStoryComment: actor {
-					id
-					name
-					... on AdminRef {
-						adminRefId: id
-						adminRefName: name
-					}
-					... on ApiKeyRef {
-						apiKeyRefId: id
-						apiKeyRefName: name
-					}
-				}
-
-			}
-		}
-
+		deleteStoryComment
 	}	
 }

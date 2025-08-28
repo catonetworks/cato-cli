@@ -1,59 +1,6 @@
 query admins ( $limit:Int $from:Int $search:String $sortInput:[SortInput] $adminIDs:[ID!] ) {
 	admins ( limit:$limit from:$from search:$search sort:$sortInput adminIDs:$adminIDs ) {
-		items {
-			id
-			version
-			roleAdmin: role
-			firstName
-			lastName
-			email
-			creationDate
-			modifyDate
-			statusAdmin: status
-			passwordNeverExpires
-			mfaEnabled
-			nativeAccountID
-			allowedItemsAdmin: allowedItems {
-				id
-				name
-				typeEntity: type
-			}
-			presentUsageAndEvents
-			managedRolesAdmin: managedRoles {
-				roleAdminRole: role {
-					id
-					name
-					description
-					isPredefined
-				}
-
-				allowedEntitiesAdminRole: allowedEntities {
-					id
-					name
-					typeEntity: type
-				}
-
-				allowedAccounts
-			}
-			resellerRolesAdmin: resellerRoles {
-				roleAdminRole: role {
-					id
-					name
-					description
-					isPredefined
-				}
-
-				allowedEntitiesAdminRole: allowedEntities {
-					id
-					name
-					typeEntity: type
-				}
-
-				allowedAccounts
-			}
-			adminTypeAdmin: adminType
-		}
-
+		items
 		total
 	}	
 }

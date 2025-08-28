@@ -1,101 +1,61 @@
 {
     "operationName": "popLocations",
-    "query": "query popLocations ( $popLocationFilterInput:PopLocationFilterInput ) {\n\tpopLocations ( ) {\n\t\tpopLocationList ( input:$popLocationFilterInput  )  {\n\t\t\tstatsPopLocationPayload: stats {\n\t\t\t\tconnectedSites\n\t\t\t\tconnectedUsers\n\t\t\t\tpossiblyAffectedSites\n\t\t\t\tpossiblyAffectedUsers\n\t\t\t\tinUse\n\t\t\t}\n\t\t\titemsPopLocationPayload: items {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t\tdisplayName\n\t\t\t\tcountryPopLocation: country {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\n\t\t\t\tisPrivate\n\t\t\t\tcloudInterconnectPopLocation: cloudInterconnect {\n\t\t\t\t\ttaggingMethodPopLocationCloudInterconnect: taggingMethod\n\t\t\t\t\tproviderName\n\t\t\t\t}\n\n\t\t\t}\n\t\t}\n\n\t}\t\n}",
+    "query": "query popLocations ( $popLocationFilterInput:PopLocationFilterInput ) {\n\tpopLocations ( ) {\n\t\tpopLocationList\n\t}\t\n}",
     "variables": {
         "popLocationFilterInput": {
             "booleanFilterInput": {
-                "eq": {
-                    "eq": "Boolean"
-                },
-                "neq": {
-                    "neq": "Boolean"
-                }
+                "eq": true,
+                "neq": true
             },
             "countryRefFilterInput": {
                 "eq": {
-                    "by": {
-                        "by": "enum(ObjectRefBy)"
-                    },
-                    "input": {
-                        "input": "String"
-                    }
+                    "by": "ID",
+                    "input": "string"
                 },
                 "in": {
-                    "by": {
-                        "by": "enum(ObjectRefBy)"
-                    },
-                    "input": {
-                        "input": "String"
-                    }
+                    "by": "ID",
+                    "input": "string"
                 },
                 "neq": {
-                    "by": {
-                        "by": "enum(ObjectRefBy)"
-                    },
-                    "input": {
-                        "input": "String"
-                    }
+                    "by": "ID",
+                    "input": "string"
                 },
                 "nin": {
-                    "by": {
-                        "by": "enum(ObjectRefBy)"
-                    },
-                    "input": {
-                        "input": "String"
-                    }
+                    "by": "ID",
+                    "input": "string"
                 }
             },
             "idFilterInput": {
-                "eq": {
-                    "eq": "ID"
-                },
-                "in": {
-                    "in": [
-                        "ID"
-                    ]
-                },
-                "neq": {
-                    "neq": "ID"
-                },
-                "nin": {
-                    "nin": [
-                        "ID"
-                    ]
-                }
+                "eq": "id",
+                "in": [
+                    "id1",
+                    "id2"
+                ],
+                "neq": "id",
+                "nin": [
+                    "id1",
+                    "id2"
+                ]
             },
             "popLocationCloudInterconnectFilterInput": {
                 "taggingMethod": {
-                    "eq": {
-                        "eq": "enum(TaggingMethod)"
-                    },
-                    "in": {
-                        "in": "enum(TaggingMethod)"
-                    },
-                    "neq": {
-                        "neq": "enum(TaggingMethod)"
-                    },
-                    "nin": {
-                        "nin": "enum(TaggingMethod)"
-                    }
+                    "eq": "DOT1Q",
+                    "in": "DOT1Q",
+                    "neq": "DOT1Q",
+                    "nin": "DOT1Q"
                 }
             },
             "stringFilterInput": {
-                "eq": {
-                    "eq": "String"
-                },
-                "in": {
-                    "in": [
-                        "String"
-                    ]
-                },
-                "neq": {
-                    "neq": "String"
-                },
-                "nin": {
-                    "nin": [
-                        "String"
-                    ]
-                }
+                "eq": "string",
+                "in": [
+                    "string1",
+                    "string2"
+                ],
+                "neq": "string",
+                "nin": [
+                    "string1",
+                    "string2"
+                ]
             }
         }
     }

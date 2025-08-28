@@ -326,10 +326,12 @@
     "description": "Audit Feed for account changes",
     "fieldTypes": {
         "AuditFeedAccountRecords": true,
+        "AuditField": true,
         "AuditRecord": true,
         "Entity": true,
         "EntityInfo": true,
-        "EntityType": true
+        "EntityType": true,
+        "Value": true
     },
     "isDeprecated": false,
     "name": "auditFeed",
@@ -1753,6 +1755,217 @@
                                                     },
                                                     "varName": "entity"
                                                 },
+                                                "fields": {
+                                                    "alias": "fieldsAuditRecord: fields",
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "All fields in the audit record (including the admin and object)",
+                                                    "id_str": "accounts___records___fields",
+                                                    "isDeprecated": false,
+                                                    "name": "fields",
+                                                    "path": "accounts.records.fields",
+                                                    "requestStr": "$auditField:[AuditField] ",
+                                                    "required": false,
+                                                    "responseStr": "fields:$auditField ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": null,
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "name": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "id_str": "accounts___records___fields___name",
+                                                                    "isDeprecated": false,
+                                                                    "name": "name",
+                                                                    "path": "accounts.records.fields.name",
+                                                                    "requestStr": "$name:String! ",
+                                                                    "required": true,
+                                                                    "responseStr": "name:$name ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "name"
+                                                                },
+                                                                "value": {
+                                                                    "alias": "valueAuditField: value",
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "id_str": "accounts___records___fields___value",
+                                                                    "isDeprecated": false,
+                                                                    "name": "value",
+                                                                    "path": "accounts.records.fields.value",
+                                                                    "requestStr": "$value:Value! ",
+                                                                    "required": true,
+                                                                    "responseStr": "value:$value ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": null,
+                                                                            "enumValues": null,
+                                                                            "fields": null,
+                                                                            "inputFields": null,
+                                                                            "interfaces": null,
+                                                                            "kind": "UNION",
+                                                                            "name": "Value",
+                                                                            "possibleTypes": {
+                                                                                "DateValue": {
+                                                                                    "description": null,
+                                                                                    "enumValues": null,
+                                                                                    "fields": [
+                                                                                        {
+                                                                                            "args": [],
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "date",
+                                                                                            "type": {
+                                                                                                "kind": "SCALAR",
+                                                                                                "name": "DateTime",
+                                                                                                "ofType": null
+                                                                                            }
+                                                                                        }
+                                                                                    ],
+                                                                                    "inputFields": null,
+                                                                                    "interfaces": [],
+                                                                                    "kind": "OBJECT",
+                                                                                    "name": "DateValue",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "Entity": {
+                                                                                    "description": null,
+                                                                                    "enumValues": null,
+                                                                                    "fields": [
+                                                                                        {
+                                                                                            "args": [],
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "id",
+                                                                                            "type": {
+                                                                                                "kind": "NON_NULL",
+                                                                                                "name": null,
+                                                                                                "ofType": {
+                                                                                                    "kind": "SCALAR",
+                                                                                                    "name": "ID",
+                                                                                                    "ofType": null
+                                                                                                }
+                                                                                            }
+                                                                                        },
+                                                                                        {
+                                                                                            "args": [],
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "name",
+                                                                                            "type": {
+                                                                                                "kind": "SCALAR",
+                                                                                                "name": "String",
+                                                                                                "ofType": null
+                                                                                            }
+                                                                                        },
+                                                                                        {
+                                                                                            "args": [],
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "type",
+                                                                                            "type": {
+                                                                                                "kind": "NON_NULL",
+                                                                                                "name": null,
+                                                                                                "ofType": {
+                                                                                                    "kind": "ENUM",
+                                                                                                    "name": "EntityType",
+                                                                                                    "ofType": null
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    ],
+                                                                                    "inputFields": null,
+                                                                                    "interfaces": [],
+                                                                                    "kind": "OBJECT",
+                                                                                    "name": "Entity",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "StringValue": {
+                                                                                    "description": null,
+                                                                                    "enumValues": null,
+                                                                                    "fields": [
+                                                                                        {
+                                                                                            "args": [],
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "string",
+                                                                                            "type": {
+                                                                                                "kind": "SCALAR",
+                                                                                                "name": "String",
+                                                                                                "ofType": null
+                                                                                            }
+                                                                                        }
+                                                                                    ],
+                                                                                    "inputFields": null,
+                                                                                    "interfaces": [],
+                                                                                    "kind": "OBJECT",
+                                                                                    "name": "StringValue",
+                                                                                    "possibleTypes": null
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        "indexType": "interface",
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "UNION"
+                                                                        ],
+                                                                        "name": "Value",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "value"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "AuditField",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "LIST",
+                                                            "NON_NULL",
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "AuditField",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "auditField"
+                                                },
+                                                "fieldsMap": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "fields in map format (see Map scalar)",
+                                                    "id_str": "accounts___records___fieldsMap",
+                                                    "isDeprecated": false,
+                                                    "name": "fieldsMap",
+                                                    "path": "accounts.records.fieldsMap",
+                                                    "requestStr": "$fieldsMap:Map ",
+                                                    "required": false,
+                                                    "responseStr": "fieldsMap:$fieldsMap ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Map",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "fieldsMap"
+                                                },
                                                 "flatFields": {
                                                     "args": {},
                                                     "deprecationReason": null,
@@ -2199,25 +2412,21 @@
     },
     "variablesPayload": {
         "accountIDs": [
-            "ID"
+            "id1",
+            "id2"
         ],
         "auditFieldFilterInput": {
             "fieldNameInput": {
-                "AuditFieldName": {
-                    "AuditFieldName": "enum(AuditFieldName)"
-                }
+                "AuditFieldName": "admin"
             },
-            "operator": {
-                "operator": "enum(ElasticOperator)"
-            },
-            "values": {
-                "values": [
-                    "String"
-                ]
-            }
+            "operator": "is",
+            "values": [
+                "string1",
+                "string2"
+            ]
         },
-        "fieldNames": "enum(AuditFieldName)",
-        "marker": "String",
-        "timeFrame": "TimeFrame"
+        "fieldNames": "admin",
+        "marker": "string",
+        "timeFrame": "example_value"
     }
 }

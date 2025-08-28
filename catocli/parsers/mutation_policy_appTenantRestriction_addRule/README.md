@@ -1,6 +1,6 @@
 
 ## CATO-CLI - mutation.policy.appTenantRestriction.addRule:
-[Click here](https://api.catonetworks.com/documentation/#mutation-addRule) for documentation on this operation.
+[Click here](https://api.catonetworks.com/documentation/#mutation-mutation.policy.appTenantRestriction.addRule) for documentation on this operation.
 
 ### Usage for mutation.policy.appTenantRestriction.addRule:
 
@@ -8,11 +8,13 @@
 
 `catocli mutation policy appTenantRestriction addRule <json>`
 
-`catocli mutation policy appTenantRestriction addRule "$(cat < addRule.json)"`
+`catocli mutation policy appTenantRestriction addRule "$(cat < mutation.policy.appTenantRestriction.addRule.json)"`
 
-`catocli mutation policy appTenantRestriction addRule '{"appTenantRestrictionAddRuleInput": {"appTenantRestrictionAddRuleDataInput": {"action": {"action": "enum(AppTenantRestrictionActionEnum)"}, "application": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "description": {"description": "String"}, "enabled": {"enabled": "Boolean"}, "headers": {"name": {"name": "HttpHeaderName"}, "value": {"value": "HttpHeaderValue"}}, "name": {"name": "String"}, "schedule": {"activeOn": {"activeOn": "enum(PolicyActiveOnEnum)"}, "customRecurring": {"days": {"days": "enum(DayOfWeek)"}, "from": {"from": "Time"}, "to": {"to": "Time"}}, "customTimeframe": {"from": {"from": "DateTime"}, "to": {"to": "DateTime"}}}, "severity": {"severity": "enum(AppTenantRestrictionSeverityEnum)"}, "source": {"country": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "floatingSubnet": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "globalIpRange": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "group": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "host": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "ip": {"ip": ["IPAddress"]}, "ipRange": {"from": {"from": "IPAddress"}, "to": {"to": "IPAddress"}}, "networkInterface": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "site": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "siteNetworkSubnet": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "subnet": {"subnet": ["NetworkSubnet"]}, "systemGroup": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "user": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "usersGroup": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}}}, "policyRulePositionInput": {"position": {"position": "enum(PolicyRulePositionEnum)"}, "ref": {"ref": "ID"}}}, "appTenantRestrictionPolicyMutationInput": {"policyMutationRevisionInput": {"id": {"id": "ID"}}}}'`
+`catocli mutation policy appTenantRestriction addRule '{"appTenantRestrictionAddRuleInput":{"appTenantRestrictionAddRuleDataInput":{"action":"INJECT_HEADERS","application":{"by":"ID","input":"string"},"description":"string","enabled":true,"headers":{"name":"example_value","value":"example_value"},"name":"string","schedule":{"activeOn":"ALWAYS","customRecurring":{"days":"SUNDAY","from":"example_value","to":"example_value"},"customTimeframe":{"from":"example_value","to":"example_value"}},"severity":"HIGH","source":{"country":{"by":"ID","input":"string"},"floatingSubnet":{"by":"ID","input":"string"},"globalIpRange":{"by":"ID","input":"string"},"group":{"by":"ID","input":"string"},"host":{"by":"ID","input":"string"},"ip":["example1","example2"],"ipRange":{"from":"example_value","to":"example_value"},"networkInterface":{"by":"ID","input":"string"},"site":{"by":"ID","input":"string"},"siteNetworkSubnet":{"by":"ID","input":"string"},"subnet":["example1","example2"],"systemGroup":{"by":"ID","input":"string"},"user":{"by":"ID","input":"string"},"usersGroup":{"by":"ID","input":"string"}}},"policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"}},"appTenantRestrictionPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
+
 
 #### Operation Arguments for mutation.policy.appTenantRestriction.addRule ####
-`accountId` [ID] - (required) N/A 
-`appTenantRestrictionAddRuleInput` [AppTenantRestrictionAddRuleInput] - (required) N/A 
-`appTenantRestrictionPolicyMutationInput` [AppTenantRestrictionPolicyMutationInput] - (optional) N/A 
+
+`accountId` [ID] - (required) N/A    
+`appTenantRestrictionAddRuleInput` [AppTenantRestrictionAddRuleInput] - (required) N/A    
+`appTenantRestrictionPolicyMutationInput` [AppTenantRestrictionPolicyMutationInput] - (required) N/A    

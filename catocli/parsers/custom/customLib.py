@@ -6,7 +6,7 @@ from pathlib import Path
 from graphql_client.api.call_api import ApiClient, CallApi
 from graphql_client.api_client import ApiException
 import logging
-from ..parserApiClient import validateArgs
+from ..customParserApiClient import validateArgs
 
 def entityTypeList(args, configuration):
     params = vars(args)

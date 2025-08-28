@@ -1,243 +1,143 @@
 {
     "operationName": "hardware",
-    "query": "query hardware ( $hardwareSearchInput:HardwareSearchInput ) {\n\thardware ( ) {\n\t\thardware ( input:$hardwareSearchInput  )  {\n\t\t\titemsHardwarePayload: items {\n\t\t\t\tid\n\t\t\t\taccountHardware: account {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\n\t\t\t\tsiteCountryName\n\t\t\t\tproductType\n\t\t\t\tmodel\n\t\t\t\tserialNumber\n\t\t\t\tmacAddress\n\t\t\t\tpoNumber\n\t\t\t\tquoteId\n\t\t\t\tlicenseId\n\t\t\t\tlicenseStartDate\n\t\t\t\tshippingTrackingHardware: shippingTracking {\n\t\t\t\t\tshippingStatusShippingTracking: shippingStatus\n\t\t\t\t\tshippingDate\n\t\t\t\t\ttrackingUrl\n\t\t\t\t\ttrackingNumber\n\t\t\t\t\tcarrier\n\t\t\t\t}\n\n\t\t\t\tshippingDetailHardware: shippingDetail {\n\t\t\t\t\tcompanyName\n\t\t\t\t\tstreet\n\t\t\t\t\tcityName\n\t\t\t\t\tcountryName\n\t\t\t\t\tstateName\n\t\t\t\t\tzipCode\n\t\t\t\t\tincoterms\n\t\t\t\t\tinstruction\n\t\t\t\t\tvatId\n\t\t\t\t\tcontactShippingDetails: contact {\n\t\t\t\t\t\tname\n\t\t\t\t\t\tphone\n\t\t\t\t\t\temail\n\t\t\t\t\t}\n\t\t\t\t\tcomment\n\t\t\t\t\tpowerCable\n\t\t\t\t}\n\n\t\t\t\tvalidationHardware: validation {\n\t\t\t\t\tcompleted\n\t\t\t\t\tincompleteReason\n\t\t\t\t\taddressValidationStatusHardwareValidation: addressValidationStatus\n\t\t\t\t}\n\n\t\t\t\tlastModified\n\t\t\t\tlocationId\n\t\t\t}\n\t\t\tpageInfoHardwarePayload: pageInfo {\n\t\t\t\ttotal\n\t\t\t}\n\t\t}\n\n\t}\t\n}",
+    "query": "query hardware ( $hardwareSearchInput:HardwareSearchInput ) {\n\thardware ( ) {\n\t\thardware\n\t}\t\n}",
     "variables": {
         "hardwareSearchInput": {
             "hardwareFilterInput": {
                 "account": {
-                    "accountInclusion": {
-                        "accountInclusion": "enum(AccountInclusion)"
-                    },
-                    "in": {
-                        "in": [
-                            "ID"
-                        ]
-                    }
+                    "accountInclusion": "ALL_ACCOUNTS",
+                    "in": [
+                        "id1",
+                        "id2"
+                    ]
                 },
                 "countryName": {
-                    "eq": {
-                        "eq": "String"
-                    },
-                    "in": {
-                        "in": [
-                            "String"
-                        ]
-                    },
-                    "neq": {
-                        "neq": "String"
-                    },
-                    "nin": {
-                        "nin": [
-                            "String"
-                        ]
-                    }
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
                 },
                 "freeText": {
-                    "search": {
-                        "search": "String"
-                    }
+                    "search": "string"
                 },
                 "id": {
-                    "eq": {
-                        "eq": "ID"
-                    },
-                    "in": {
-                        "in": [
-                            "ID"
-                        ]
-                    },
-                    "neq": {
-                        "neq": "ID"
-                    },
-                    "nin": {
-                        "nin": [
-                            "ID"
-                        ]
-                    }
+                    "eq": "id",
+                    "in": [
+                        "id1",
+                        "id2"
+                    ],
+                    "neq": "id",
+                    "nin": [
+                        "id1",
+                        "id2"
+                    ]
                 },
                 "licenseStartDate": {
-                    "between": {
-                        "between": [
-                            "DateTime"
-                        ]
-                    },
-                    "eq": {
-                        "eq": "DateTime"
-                    },
-                    "gt": {
-                        "gt": "DateTime"
-                    },
-                    "gte": {
-                        "gte": "DateTime"
-                    },
-                    "in": {
-                        "in": [
-                            "DateTime"
-                        ]
-                    },
-                    "lt": {
-                        "lt": "DateTime"
-                    },
-                    "lte": {
-                        "lte": "DateTime"
-                    },
-                    "neq": {
-                        "neq": "DateTime"
-                    },
-                    "nin": {
-                        "nin": [
-                            "DateTime"
-                        ]
-                    }
+                    "between": [
+                        "example1",
+                        "example2"
+                    ],
+                    "eq": "example_value",
+                    "gt": "example_value",
+                    "gte": "example_value",
+                    "in": [
+                        "example1",
+                        "example2"
+                    ],
+                    "lt": "example_value",
+                    "lte": "example_value",
+                    "neq": "example_value",
+                    "nin": [
+                        "example1",
+                        "example2"
+                    ]
                 },
                 "product": {
-                    "eq": {
-                        "eq": "String"
-                    },
-                    "in": {
-                        "in": [
-                            "String"
-                        ]
-                    },
-                    "neq": {
-                        "neq": "String"
-                    },
-                    "nin": {
-                        "nin": [
-                            "String"
-                        ]
-                    }
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
                 },
                 "serialNumber": {
-                    "eq": {
-                        "eq": "String"
-                    },
-                    "in": {
-                        "in": [
-                            "String"
-                        ]
-                    },
-                    "neq": {
-                        "neq": "String"
-                    },
-                    "nin": {
-                        "nin": [
-                            "String"
-                        ]
-                    }
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
                 },
                 "shippingStatus": {
-                    "eq": {
-                        "eq": "enum(ShippingStatus)"
-                    },
-                    "in": {
-                        "in": "enum(ShippingStatus)"
-                    },
-                    "neq": {
-                        "neq": "enum(ShippingStatus)"
-                    },
-                    "nin": {
-                        "nin": "enum(ShippingStatus)"
-                    }
+                    "eq": "PENDING_INFO",
+                    "in": "PENDING_INFO",
+                    "neq": "PENDING_INFO",
+                    "nin": "PENDING_INFO"
                 },
                 "validAddress": {
-                    "eq": {
-                        "eq": "Boolean"
-                    },
-                    "neq": {
-                        "neq": "Boolean"
-                    }
+                    "eq": true,
+                    "neq": true
                 }
             },
             "hardwareSortInput": {
                 "accountName": {
-                    "direction": {
-                        "direction": "enum(SortOrder)"
-                    },
-                    "priority": {
-                        "priority": "Int"
-                    }
+                    "direction": "ASC",
+                    "priority": 1
                 },
                 "country": {
-                    "direction": {
-                        "direction": "enum(SortOrder)"
-                    },
-                    "priority": {
-                        "priority": "Int"
-                    }
+                    "direction": "ASC",
+                    "priority": 1
                 },
                 "incoterms": {
-                    "direction": {
-                        "direction": "enum(SortOrder)"
-                    },
-                    "priority": {
-                        "priority": "Int"
-                    }
+                    "direction": "ASC",
+                    "priority": 1
                 },
                 "licenseId": {
-                    "direction": {
-                        "direction": "enum(SortOrder)"
-                    },
-                    "priority": {
-                        "priority": "Int"
-                    }
+                    "direction": "ASC",
+                    "priority": 1
                 },
                 "licenseStartDate": {
-                    "direction": {
-                        "direction": "enum(SortOrder)"
-                    },
-                    "priority": {
-                        "priority": "Int"
-                    }
+                    "direction": "ASC",
+                    "priority": 1
                 },
                 "productType": {
-                    "direction": {
-                        "direction": "enum(SortOrder)"
-                    },
-                    "priority": {
-                        "priority": "Int"
-                    }
+                    "direction": "ASC",
+                    "priority": 1
                 },
                 "quoteId": {
-                    "direction": {
-                        "direction": "enum(SortOrder)"
-                    },
-                    "priority": {
-                        "priority": "Int"
-                    }
+                    "direction": "ASC",
+                    "priority": 1
                 },
                 "shippingDate": {
-                    "direction": {
-                        "direction": "enum(SortOrder)"
-                    },
-                    "priority": {
-                        "priority": "Int"
-                    }
+                    "direction": "ASC",
+                    "priority": 1
                 },
                 "shippingStatus": {
-                    "direction": {
-                        "direction": "enum(SortOrder)"
-                    },
-                    "priority": {
-                        "priority": "Int"
-                    }
+                    "direction": "ASC",
+                    "priority": 1
                 },
                 "siteName": {
-                    "direction": {
-                        "direction": "enum(SortOrder)"
-                    },
-                    "priority": {
-                        "priority": "Int"
-                    }
+                    "direction": "ASC",
+                    "priority": 1
                 }
             },
             "pagingInput": {
-                "from": {
-                    "from": "Int"
-                },
-                "limit": {
-                    "limit": "Int"
-                }
+                "from": 1,
+                "limit": 1
             }
         }
     }

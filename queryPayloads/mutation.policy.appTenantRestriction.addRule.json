@@ -1,187 +1,101 @@
 {
     "operationName": "policyAppTenantRestrictionAddRule",
-    "query": "mutation policyAppTenantRestrictionAddRule ( $appTenantRestrictionAddRuleInput:AppTenantRestrictionAddRuleInput! $appTenantRestrictionPolicyMutationInput:AppTenantRestrictionPolicyMutationInput ) {\n\tpolicy ( ) {\n\t\tappTenantRestriction ( input:$appTenantRestrictionPolicyMutationInput  )  {\n\t\t\taddRuleAppTenantRestrictionPolicyMutations: addRule ( input:$appTenantRestrictionAddRuleInput   ) {\n\t\t\t\truleAppTenantRestrictionRuleMutationPayload: rule {\n\t\t\t\t\tauditAppTenantRestrictionRulePayload: audit {\n\t\t\t\t\t\tupdatedTime\n\t\t\t\t\t\tupdatedBy\n\t\t\t\t\t}\n\t\t\t\t\truleAppTenantRestrictionRulePayload: rule {\n\t\t\t\t\t\tid\n\t\t\t\t\t\tname\n\t\t\t\t\t\tdescription\n\t\t\t\t\t\tindex\n\t\t\t\t\t\tsectionAppTenantRestrictionRule: section {\n\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\tname\n\t\t\t\t\t\t}\n\n\t\t\t\t\t\tenabled\n\t\t\t\t\t\tapplicationAppTenantRestrictionRule: application {\n\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\tname\n\t\t\t\t\t\t}\n\n\t\t\t\t\t\theadersAppTenantRestrictionRule: headers {\n\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\tvalue\n\t\t\t\t\t\t}\n\n\t\t\t\t\t\tsourceAppTenantRestrictionRule: source {\n\t\t\t\t\t\t\tip\n\t\t\t\t\t\t\thostAppTenantRestrictionSource: host {\n\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tsiteAppTenantRestrictionSource: site {\n\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tsubnet\n\t\t\t\t\t\t\tipRangeAppTenantRestrictionSource: ipRange {\n\t\t\t\t\t\t\t\tfrom\n\t\t\t\t\t\t\t\tto\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tglobalIpRangeAppTenantRestrictionSource: globalIpRange {\n\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tnetworkInterfaceAppTenantRestrictionSource: networkInterface {\n\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tsiteNetworkSubnetAppTenantRestrictionSource: siteNetworkSubnet {\n\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tfloatingSubnetAppTenantRestrictionSource: floatingSubnet {\n\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tuserAppTenantRestrictionSource: user {\n\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tusersGroupAppTenantRestrictionSource: usersGroup {\n\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tgroupAppTenantRestrictionSource: group {\n\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tsystemGroupAppTenantRestrictionSource: systemGroup {\n\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tcountryAppTenantRestrictionSource: country {\n\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\n\t\t\t\t\t\tscheduleAppTenantRestrictionRule: schedule {\n\t\t\t\t\t\t\tactiveOnPolicySchedule: activeOn\n\t\t\t\t\t\t\tcustomTimeframePolicySchedule: customTimeframe {\n\t\t\t\t\t\t\t\tfrom\n\t\t\t\t\t\t\t\tto\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tcustomRecurringPolicySchedule: customRecurring {\n\t\t\t\t\t\t\t\tfrom\n\t\t\t\t\t\t\t\tto\n\t\t\t\t\t\t\t\tdays\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\n\t\t\t\t\t\tactionAppTenantRestrictionRule: action\n\t\t\t\t\t\tseverityAppTenantRestrictionRule: severity\n\t\t\t\t\t}\n\t\t\t\t\tpropertiesAppTenantRestrictionRulePayload: properties\n\t\t\t\t}\n\n\t\t\t\tstatusAppTenantRestrictionRuleMutationPayload: status\n\t\t\t\terrorsAppTenantRestrictionRuleMutationPayload: errors {\n\t\t\t\t\terrorMessage\n\t\t\t\t\terrorCode\n\t\t\t\t}\n\n\t\t\t}\n\t\t}\n\n\t}\t\n}",
+    "query": "mutation policyAppTenantRestrictionAddRule ( $appTenantRestrictionAddRuleInput:AppTenantRestrictionAddRuleInput! $appTenantRestrictionPolicyMutationInput:AppTenantRestrictionPolicyMutationInput ) {\n\tpolicy ( ) {\n\t\tappTenantRestriction\n\t}\t\n}",
     "variables": {
         "appTenantRestrictionAddRuleInput": {
             "appTenantRestrictionAddRuleDataInput": {
-                "action": {
-                    "action": "enum(AppTenantRestrictionActionEnum)"
-                },
+                "action": "INJECT_HEADERS",
                 "application": {
-                    "by": {
-                        "by": "enum(ObjectRefBy)"
-                    },
-                    "input": {
-                        "input": "String"
-                    }
+                    "by": "ID",
+                    "input": "string"
                 },
-                "description": {
-                    "description": "String"
-                },
-                "enabled": {
-                    "enabled": "Boolean"
-                },
+                "description": "string",
+                "enabled": true,
                 "headers": {
-                    "name": {
-                        "name": "HttpHeaderName"
-                    },
-                    "value": {
-                        "value": "HttpHeaderValue"
-                    }
+                    "name": "example_value",
+                    "value": "example_value"
                 },
-                "name": {
-                    "name": "String"
-                },
+                "name": "string",
                 "schedule": {
-                    "activeOn": {
-                        "activeOn": "enum(PolicyActiveOnEnum)"
-                    },
+                    "activeOn": "ALWAYS",
                     "customRecurring": {
-                        "days": {
-                            "days": "enum(DayOfWeek)"
-                        },
-                        "from": {
-                            "from": "Time"
-                        },
-                        "to": {
-                            "to": "Time"
-                        }
+                        "days": "SUNDAY",
+                        "from": "example_value",
+                        "to": "example_value"
                     },
                     "customTimeframe": {
-                        "from": {
-                            "from": "DateTime"
-                        },
-                        "to": {
-                            "to": "DateTime"
-                        }
+                        "from": "example_value",
+                        "to": "example_value"
                     }
                 },
-                "severity": {
-                    "severity": "enum(AppTenantRestrictionSeverityEnum)"
-                },
+                "severity": "HIGH",
                 "source": {
                     "country": {
-                        "by": {
-                            "by": "enum(ObjectRefBy)"
-                        },
-                        "input": {
-                            "input": "String"
-                        }
+                        "by": "ID",
+                        "input": "string"
                     },
                     "floatingSubnet": {
-                        "by": {
-                            "by": "enum(ObjectRefBy)"
-                        },
-                        "input": {
-                            "input": "String"
-                        }
+                        "by": "ID",
+                        "input": "string"
                     },
                     "globalIpRange": {
-                        "by": {
-                            "by": "enum(ObjectRefBy)"
-                        },
-                        "input": {
-                            "input": "String"
-                        }
+                        "by": "ID",
+                        "input": "string"
                     },
                     "group": {
-                        "by": {
-                            "by": "enum(ObjectRefBy)"
-                        },
-                        "input": {
-                            "input": "String"
-                        }
+                        "by": "ID",
+                        "input": "string"
                     },
                     "host": {
-                        "by": {
-                            "by": "enum(ObjectRefBy)"
-                        },
-                        "input": {
-                            "input": "String"
-                        }
+                        "by": "ID",
+                        "input": "string"
                     },
-                    "ip": {
-                        "ip": [
-                            "IPAddress"
-                        ]
-                    },
+                    "ip": [
+                        "example1",
+                        "example2"
+                    ],
                     "ipRange": {
-                        "from": {
-                            "from": "IPAddress"
-                        },
-                        "to": {
-                            "to": "IPAddress"
-                        }
+                        "from": "example_value",
+                        "to": "example_value"
                     },
                     "networkInterface": {
-                        "by": {
-                            "by": "enum(ObjectRefBy)"
-                        },
-                        "input": {
-                            "input": "String"
-                        }
+                        "by": "ID",
+                        "input": "string"
                     },
                     "site": {
-                        "by": {
-                            "by": "enum(ObjectRefBy)"
-                        },
-                        "input": {
-                            "input": "String"
-                        }
+                        "by": "ID",
+                        "input": "string"
                     },
                     "siteNetworkSubnet": {
-                        "by": {
-                            "by": "enum(ObjectRefBy)"
-                        },
-                        "input": {
-                            "input": "String"
-                        }
+                        "by": "ID",
+                        "input": "string"
                     },
-                    "subnet": {
-                        "subnet": [
-                            "NetworkSubnet"
-                        ]
-                    },
+                    "subnet": [
+                        "example1",
+                        "example2"
+                    ],
                     "systemGroup": {
-                        "by": {
-                            "by": "enum(ObjectRefBy)"
-                        },
-                        "input": {
-                            "input": "String"
-                        }
+                        "by": "ID",
+                        "input": "string"
                     },
                     "user": {
-                        "by": {
-                            "by": "enum(ObjectRefBy)"
-                        },
-                        "input": {
-                            "input": "String"
-                        }
+                        "by": "ID",
+                        "input": "string"
                     },
                     "usersGroup": {
-                        "by": {
-                            "by": "enum(ObjectRefBy)"
-                        },
-                        "input": {
-                            "input": "String"
-                        }
+                        "by": "ID",
+                        "input": "string"
                     }
                 }
             },
             "policyRulePositionInput": {
-                "position": {
-                    "position": "enum(PolicyRulePositionEnum)"
-                },
-                "ref": {
-                    "ref": "ID"
-                }
+                "position": "AFTER_RULE",
+                "ref": "id"
             }
         },
         "appTenantRestrictionPolicyMutationInput": {
             "policyMutationRevisionInput": {
-                "id": {
-                    "id": "ID"
-                }
+                "id": "id"
             }
         }
     }

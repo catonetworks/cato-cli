@@ -1,43 +1,31 @@
 {
     "operationName": "entityLookup",
-    "query": "query entityLookup ( $type:EntityType! $limit:Int $from:Int $entityInput:EntityInput $search:String $entityIDs:[ID!] $sortInput:[SortInput] $lookupFilterInput:[LookupFilterInput] $helperFields:[String!] ) {\n\tentityLookup ( type:$type limit:$limit from:$from parent:$entityInput search:$search entityIDs:$entityIDs sort:$sortInput filters:$lookupFilterInput helperFields:$helperFields ) {\n\t\titems {\n\t\t\tentityEntityInfo: entity {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t\ttypeEntity: type\n\t\t\t}\n\t\t\tdescription\n\t\t\thelperFields\n\t\t}\n\n\t\ttotal\n\t}\t\n}",
+    "query": "query entityLookup ( $type:EntityType! $limit:Int $from:Int $entityInput:EntityInput $search:String $entityIDs:[ID!] $sortInput:[SortInput] $lookupFilterInput:[LookupFilterInput] $helperFields:[String!] ) {\n\tentityLookup ( type:$type limit:$limit from:$from parent:$entityInput search:$search entityIDs:$entityIDs sort:$sortInput filters:$lookupFilterInput helperFields:$helperFields ) {\n\t\titems\n\t\ttotal\n\t}\t\n}",
     "variables": {
         "entityIDs": [
-            "ID"
+            "id1",
+            "id2"
         ],
         "entityInput": {
-            "id": {
-                "id": "ID"
-            },
-            "name": {
-                "name": "String"
-            },
-            "type": {
-                "type": "enum(EntityType)"
-            }
+            "id": "id",
+            "name": "string",
+            "type": "account"
         },
-        "from": "Int",
+        "from": 1,
         "helperFields": [
-            "String"
+            "string1",
+            "string2"
         ],
-        "limit": "Int",
+        "limit": 1,
         "lookupFilterInput": {
-            "filter": {
-                "filter": "enum(LookupFilterType)"
-            },
-            "value": {
-                "value": "String"
-            }
+            "filter": "filterByConnectionTypeFamily",
+            "value": "string"
         },
-        "search": "String",
+        "search": "string",
         "sortInput": {
-            "field": {
-                "field": "String"
-            },
-            "order": {
-                "order": "enum(DirectionInput)"
-            }
+            "field": "string",
+            "order": "asc"
         },
-        "type": "enum(EntityType)"
+        "type": "account"
     }
 }

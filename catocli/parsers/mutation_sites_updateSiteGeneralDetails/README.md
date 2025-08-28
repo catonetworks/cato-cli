@@ -1,6 +1,6 @@
 
 ## CATO-CLI - mutation.sites.updateSiteGeneralDetails:
-[Click here](https://api.catonetworks.com/documentation/#mutation-updateSiteGeneralDetails) for documentation on this operation.
+[Click here](https://api.catonetworks.com/documentation/#mutation-mutation.sites.updateSiteGeneralDetails) for documentation on this operation.
 
 ### Usage for mutation.sites.updateSiteGeneralDetails:
 
@@ -8,11 +8,13 @@
 
 `catocli mutation sites updateSiteGeneralDetails <json>`
 
-`catocli mutation sites updateSiteGeneralDetails "$(cat < updateSiteGeneralDetails.json)"`
+`catocli mutation sites updateSiteGeneralDetails "$(cat < mutation.sites.updateSiteGeneralDetails.json)"`
 
-`catocli mutation sites updateSiteGeneralDetails '{"siteId": "ID", "updateSiteGeneralDetailsInput": {"description": {"description": "String"}, "name": {"name": "String"}, "siteType": {"siteType": "enum(SiteType)"}, "updateSiteLocationInput": {"address": {"address": "String"}, "cityName": {"cityName": "String"}, "countryCode": {"countryCode": "String"}, "stateCode": {"stateCode": "String"}, "timezone": {"timezone": "String"}}, "updateSitePreferredPopLocationInput": {"preferredOnly": {"preferredOnly": "Boolean"}, "primary": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "secondary": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}}}}'`
+`catocli mutation sites updateSiteGeneralDetails '{"siteId":"id","updateSiteGeneralDetailsInput":{"description":"string","name":"string","siteType":"BRANCH","updateSiteLocationInput":{"address":"string","cityName":"string","countryCode":"string","stateCode":"string","timezone":"string"},"updateSitePreferredPopLocationInput":{"preferredOnly":true,"primary":{"by":"ID","input":"string"},"secondary":{"by":"ID","input":"string"}}}}'`
+
 
 #### Operation Arguments for mutation.sites.updateSiteGeneralDetails ####
-`accountId` [ID] - (required) N/A 
-`siteId` [ID] - (required) N/A 
-`updateSiteGeneralDetailsInput` [UpdateSiteGeneralDetailsInput] - (required) N/A 
+
+`accountId` [ID] - (required) N/A    
+`siteId` [ID] - (required) N/A    
+`updateSiteGeneralDetailsInput` [UpdateSiteGeneralDetailsInput] - (required) N/A    

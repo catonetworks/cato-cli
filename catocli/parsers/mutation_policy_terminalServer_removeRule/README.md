@@ -1,6 +1,6 @@
 
 ## CATO-CLI - mutation.policy.terminalServer.removeRule:
-[Click here](https://api.catonetworks.com/documentation/#mutation-removeRule) for documentation on this operation.
+[Click here](https://api.catonetworks.com/documentation/#mutation-mutation.policy.terminalServer.removeRule) for documentation on this operation.
 
 ### Usage for mutation.policy.terminalServer.removeRule:
 
@@ -8,11 +8,13 @@
 
 `catocli mutation policy terminalServer removeRule <json>`
 
-`catocli mutation policy terminalServer removeRule "$(cat < removeRule.json)"`
+`catocli mutation policy terminalServer removeRule "$(cat < mutation.policy.terminalServer.removeRule.json)"`
 
-`catocli mutation policy terminalServer removeRule '{"terminalServerPolicyMutationInput": {"policyMutationRevisionInput": {"id": {"id": "ID"}}}, "terminalServerRemoveRuleInput": {"id": {"id": "ID"}}}'`
+`catocli mutation policy terminalServer removeRule '{"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"terminalServerRemoveRuleInput":{"id":"id"}}'`
+
 
 #### Operation Arguments for mutation.policy.terminalServer.removeRule ####
-`accountId` [ID] - (required) N/A 
-`terminalServerPolicyMutationInput` [TerminalServerPolicyMutationInput] - (optional) N/A 
-`terminalServerRemoveRuleInput` [TerminalServerRemoveRuleInput] - (required) N/A 
+
+`accountId` [ID] - (required) N/A    
+`terminalServerPolicyMutationInput` [TerminalServerPolicyMutationInput] - (required) N/A    
+`terminalServerRemoveRuleInput` [TerminalServerRemoveRuleInput] - (required) N/A    

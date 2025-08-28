@@ -1,15 +1,11 @@
 {
     "operationName": "siteSiteBgpStatus",
-    "query": "query siteSiteBgpStatus ( $siteBgpStatusInput:SiteBgpStatusInput! ) {\n\tsite ( ) {\n\t\tsiteBgpStatus ( input:$siteBgpStatusInput  )  {\n\t\t\tstatusSiteBgpStatus: status {\n\t\t\t\tremoteIp\n\t\t\t\tbgpSession\n\t\t\t\tbfdSession\n\t\t\t\troutesFromPeer\n\t\t\t\troutesToPeer\n\t\t\t\trejectedRoutesFromPeerBgpDetailedStatus: rejectedRoutesFromPeer {\n\t\t\t\t\tsubnet\n\t\t\t\t\ttype\n\t\t\t\t\tcommunityBgpRejectedRoutesFromPeer: community {\n\t\t\t\t\t\tfrom\n\t\t\t\t\t\tto\n\t\t\t\t\t}\n\t\t\t\t\trule\n\t\t\t\t\tlastPublishAttempt\n\t\t\t\t}\n\n\t\t\t}\n\t\t\trawStatus\n\t\t}\n\n\t}\t\n}",
+    "query": "query siteSiteBgpStatus ( $siteBgpStatusInput:SiteBgpStatusInput! ) {\n\tsite ( ) {\n\t\tsiteBgpStatus\n\t}\t\n}",
     "variables": {
         "siteBgpStatusInput": {
             "siteRefInput": {
-                "by": {
-                    "by": "enum(ObjectRefBy)"
-                },
-                "input": {
-                    "input": "String"
-                }
+                "by": "ID",
+                "input": "string"
             }
         }
     }

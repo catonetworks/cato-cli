@@ -1,6 +1,6 @@
 
 ## CATO-CLI - query.groups.groupList:
-[Click here](https://api.catonetworks.com/documentation/#query-groupList) for documentation on this operation.
+[Click here](https://api.catonetworks.com/documentation/#query-query.groups.groupList) for documentation on this operation.
 
 ### Usage for query.groups.groupList:
 
@@ -8,11 +8,13 @@
 
 `catocli query groups groupList <json>`
 
-`catocli query groups groupList "$(cat < groupList.json)"`
+`catocli query groups groupList "$(cat < query.groups.groupList.json)"`
 
-`catocli query groups groupList '{"groupListInput": {"groupListFilterInput": {"audit": {"updatedBy": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "updatedTime": {"between": {"between": ["DateTime"]}, "eq": {"eq": "DateTime"}, "gt": {"gt": "DateTime"}, "gte": {"gte": "DateTime"}, "in": {"in": ["DateTime"]}, "lt": {"lt": "DateTime"}, "lte": {"lte": "DateTime"}, "neq": {"neq": "DateTime"}, "nin": {"nin": ["DateTime"]}}}, "freeText": {"search": {"search": "String"}}, "id": {"eq": {"eq": "ID"}, "in": {"in": ["ID"]}, "neq": {"neq": "ID"}, "nin": {"nin": ["ID"]}}, "member": {"ref": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}, "type": {"type": "enum(GroupMemberRefType)"}}}, "name": {"eq": {"eq": "String"}, "in": {"in": ["String"]}, "neq": {"neq": "String"}, "nin": {"nin": ["String"]}, "regex": {"regex": "String"}}}, "groupListSortInput": {"audit": {"updatedBy": {"direction": {"direction": "enum(SortOrder)"}, "priority": {"priority": "Int"}}, "updatedTime": {"direction": {"direction": "enum(SortOrder)"}, "priority": {"priority": "Int"}}}, "name": {"direction": {"direction": "enum(SortOrder)"}, "priority": {"priority": "Int"}}}, "pagingInput": {"from": {"from": "Int"}, "limit": {"limit": "Int"}}}, "groupMembersListInput": {"groupMembersListFilterInput": {"name": {"eq": {"eq": "String"}, "in": {"in": ["String"]}, "neq": {"neq": "String"}, "nin": {"nin": ["String"]}, "regex": {"regex": "String"}}, "type": {"eq": {"eq": "enum(GroupMemberRefType)"}, "in": {"in": "enum(GroupMemberRefType)"}, "neq": {"neq": "enum(GroupMemberRefType)"}, "nin": {"nin": "enum(GroupMemberRefType)"}}}, "groupMembersListSortInput": {"name": {"direction": {"direction": "enum(SortOrder)"}, "priority": {"priority": "Int"}}, "type": {"direction": {"direction": "enum(SortOrder)"}, "priority": {"priority": "Int"}}}, "pagingInput": {"from": {"from": "Int"}, "limit": {"limit": "Int"}}}}'`
+`catocli query groups groupList '{"groupListInput":{"groupListFilterInput":{"audit":{"updatedBy":{"by":"ID","input":"string"},"updatedTime":{"between":["example1","example2"],"eq":"example_value","gt":"example_value","gte":"example_value","in":["example1","example2"],"lt":"example_value","lte":"example_value","neq":"example_value","nin":["example1","example2"]}},"freeText":{"search":"string"},"id":{"eq":"id","in":["id1","id2"],"neq":"id","nin":["id1","id2"]},"member":{"ref":{"by":"ID","input":"string","type":"SITE"}},"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"],"regex":"string"}},"groupListSortInput":{"audit":{"updatedBy":{"direction":"ASC","priority":1},"updatedTime":{"direction":"ASC","priority":1}},"name":{"direction":"ASC","priority":1}},"pagingInput":{"from":1,"limit":1}},"groupMembersListInput":{"groupMembersListFilterInput":{"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"],"regex":"string"},"type":{"eq":"SITE","in":"SITE","neq":"SITE","nin":"SITE"}},"groupMembersListSortInput":{"name":{"direction":"ASC","priority":1},"type":{"direction":"ASC","priority":1}},"pagingInput":{"from":1,"limit":1}}}'`
+
 
 #### Operation Arguments for query.groups.groupList ####
-`accountId` [ID] - (required) N/A 
-`groupListInput` [GroupListInput] - (optional) N/A 
-`groupMembersListInput` [GroupMembersListInput] - (required) N/A 
+
+`accountId` [ID] - (required) N/A    
+`groupListInput` [GroupListInput] - (required) N/A    
+`groupMembersListInput` [GroupMembersListInput] - (required) N/A    

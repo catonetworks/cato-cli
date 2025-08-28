@@ -1,6 +1,6 @@
 
 ## CATO-CLI - mutation.site.startSiteUpgrade:
-[Click here](https://api.catonetworks.com/documentation/#mutation-startSiteUpgrade) for documentation on this operation.
+[Click here](https://api.catonetworks.com/documentation/#mutation-mutation.site.startSiteUpgrade) for documentation on this operation.
 
 ### Usage for mutation.site.startSiteUpgrade:
 
@@ -8,10 +8,12 @@
 
 `catocli mutation site startSiteUpgrade <json>`
 
-`catocli mutation site startSiteUpgrade "$(cat < startSiteUpgrade.json)"`
+`catocli mutation site startSiteUpgrade "$(cat < mutation.site.startSiteUpgrade.json)"`
 
-`catocli mutation site startSiteUpgrade '{"startSiteUpgradeInput": {"siteUpgradeRequest": {"site": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "targetVersion": {"targetVersion": "String"}}}}'`
+`catocli mutation site startSiteUpgrade '{"startSiteUpgradeInput":{"siteUpgradeRequest":{"site":{"by":"ID","input":"string"},"targetVersion":"string"}}}'`
+
 
 #### Operation Arguments for mutation.site.startSiteUpgrade ####
-`accountId` [ID] - (required) N/A 
-`startSiteUpgradeInput` [StartSiteUpgradeInput] - (required) N/A 
+
+`accountId` [ID] - (required) N/A    
+`startSiteUpgradeInput` [StartSiteUpgradeInput] - (required) N/A    

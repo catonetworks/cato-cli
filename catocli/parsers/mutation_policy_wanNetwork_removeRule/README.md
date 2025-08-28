@@ -1,6 +1,6 @@
 
 ## CATO-CLI - mutation.policy.wanNetwork.removeRule:
-[Click here](https://api.catonetworks.com/documentation/#mutation-removeRule) for documentation on this operation.
+[Click here](https://api.catonetworks.com/documentation/#mutation-mutation.policy.wanNetwork.removeRule) for documentation on this operation.
 
 ### Usage for mutation.policy.wanNetwork.removeRule:
 
@@ -8,11 +8,13 @@
 
 `catocli mutation policy wanNetwork removeRule <json>`
 
-`catocli mutation policy wanNetwork removeRule "$(cat < removeRule.json)"`
+`catocli mutation policy wanNetwork removeRule "$(cat < mutation.policy.wanNetwork.removeRule.json)"`
 
-`catocli mutation policy wanNetwork removeRule '{"wanNetworkPolicyMutationInput": {"policyMutationRevisionInput": {"id": {"id": "ID"}}}, "wanNetworkRemoveRuleInput": {"id": {"id": "ID"}}}'`
+`catocli mutation policy wanNetwork removeRule '{"wanNetworkPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"wanNetworkRemoveRuleInput":{"id":"id"}}'`
+
 
 #### Operation Arguments for mutation.policy.wanNetwork.removeRule ####
-`accountId` [ID] - (required) N/A 
-`wanNetworkPolicyMutationInput` [WanNetworkPolicyMutationInput] - (optional) N/A 
-`wanNetworkRemoveRuleInput` [WanNetworkRemoveRuleInput] - (required) N/A 
+
+`accountId` [ID] - (required) N/A    
+`wanNetworkPolicyMutationInput` [WanNetworkPolicyMutationInput] - (required) N/A    
+`wanNetworkRemoveRuleInput` [WanNetworkRemoveRuleInput] - (required) N/A    

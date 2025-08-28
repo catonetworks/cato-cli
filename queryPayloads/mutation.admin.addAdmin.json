@@ -1,47 +1,26 @@
 {
     "operationName": "adminAddAdmin",
-    "query": "mutation adminAddAdmin ( $addAdminInput:AddAdminInput! ) {\n\tadmin ( ) {\n\t\taddAdmin ( input:$addAdminInput  )  {\n\t\t\tadminID\n\t\t}\n\n\t}\t\n}",
+    "query": "mutation adminAddAdmin ( $addAdminInput:AddAdminInput! ) {\n\tadmin ( ) {\n\t\taddAdmin\n\t}\t\n}",
     "variables": {
         "addAdminInput": {
-            "adminType": {
-                "adminType": "enum(AdminType)"
-            },
-            "email": {
-                "email": "String"
-            },
-            "firstName": {
-                "firstName": "String"
-            },
-            "lastName": {
-                "lastName": "String"
-            },
-            "passwordNeverExpires": {
-                "passwordNeverExpires": "Boolean"
-            },
+            "adminType": "LOGIN",
+            "email": "string",
+            "firstName": "string",
+            "lastName": "string",
+            "passwordNeverExpires": true,
             "updateAdminRoleInput": {
-                "allowedAccounts": {
-                    "allowedAccounts": [
-                        "ID"
-                    ]
-                },
+                "allowedAccounts": [
+                    "id1",
+                    "id2"
+                ],
                 "allowedEntities": {
-                    "id": {
-                        "id": "ID"
-                    },
-                    "name": {
-                        "name": "String"
-                    },
-                    "type": {
-                        "type": "enum(EntityType)"
-                    }
+                    "id": "id",
+                    "name": "string",
+                    "type": "account"
                 },
                 "role": {
-                    "id": {
-                        "id": "ID"
-                    },
-                    "name": {
-                        "name": "String"
-                    }
+                    "id": "id",
+                    "name": "string"
                 }
             }
         }

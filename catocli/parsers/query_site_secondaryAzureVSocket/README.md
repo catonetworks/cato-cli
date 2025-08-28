@@ -1,6 +1,6 @@
 
 ## CATO-CLI - query.site.secondaryAzureVSocket:
-[Click here](https://api.catonetworks.com/documentation/#query-secondaryAzureVSocket) for documentation on this operation.
+[Click here](https://api.catonetworks.com/documentation/#query-query.site.secondaryAzureVSocket) for documentation on this operation.
 
 ### Usage for query.site.secondaryAzureVSocket:
 
@@ -8,10 +8,12 @@
 
 `catocli query site secondaryAzureVSocket <json>`
 
-`catocli query site secondaryAzureVSocket "$(cat < secondaryAzureVSocket.json)"`
+`catocli query site secondaryAzureVSocket "$(cat < query.site.secondaryAzureVSocket.json)"`
 
-`catocli query site secondaryAzureVSocket '{"socketId": "ID"}'`
+`catocli query site secondaryAzureVSocket '{"socketId":"id"}'`
+
 
 #### Operation Arguments for query.site.secondaryAzureVSocket ####
-`accountId` [ID] - (required) N/A 
-`socketId` [ID] - (required) N/A 
+
+`accountId` [ID] - (required) N/A    
+`socketId` [ID] - (required) N/A    

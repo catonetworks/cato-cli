@@ -1,6 +1,6 @@
 
 ## CATO-CLI - mutation.policy.dynamicIpAllocation.updateRule:
-[Click here](https://api.catonetworks.com/documentation/#mutation-updateRule) for documentation on this operation.
+[Click here](https://api.catonetworks.com/documentation/#mutation-mutation.policy.dynamicIpAllocation.updateRule) for documentation on this operation.
 
 ### Usage for mutation.policy.dynamicIpAllocation.updateRule:
 
@@ -8,11 +8,13 @@
 
 `catocli mutation policy dynamicIpAllocation updateRule <json>`
 
-`catocli mutation policy dynamicIpAllocation updateRule "$(cat < updateRule.json)"`
+`catocli mutation policy dynamicIpAllocation updateRule "$(cat < mutation.policy.dynamicIpAllocation.updateRule.json)"`
 
-`catocli mutation policy dynamicIpAllocation updateRule '{"dynamicIpAllocationPolicyMutationInput": {"policyMutationRevisionInput": {"id": {"id": "ID"}}}, "dynamicIpAllocationUpdateRuleInput": {"dynamicIpAllocationUpdateRuleDataInput": {"country": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "description": {"description": "String"}, "enabled": {"enabled": "Boolean"}, "name": {"name": "String"}, "platform": {"platform": "enum(OperatingSystem)"}, "range": {"globalIpRange": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}}, "source": {"user": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}, "usersGroup": {"by": {"by": "enum(ObjectRefBy)"}, "input": {"input": "String"}}}}, "id": {"id": "ID"}}}'`
+`catocli mutation policy dynamicIpAllocation updateRule '{"dynamicIpAllocationPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"dynamicIpAllocationUpdateRuleInput":{"dynamicIpAllocationUpdateRuleDataInput":{"country":{"by":"ID","input":"string"},"description":"string","enabled":true,"name":"string","platform":"WINDOWS","range":{"globalIpRange":{"by":"ID","input":"string"}},"source":{"user":{"by":"ID","input":"string"},"usersGroup":{"by":"ID","input":"string"}}},"id":"id"}}'`
+
 
 #### Operation Arguments for mutation.policy.dynamicIpAllocation.updateRule ####
-`accountId` [ID] - (required) N/A 
-`dynamicIpAllocationPolicyMutationInput` [DynamicIpAllocationPolicyMutationInput] - (optional) N/A 
-`dynamicIpAllocationUpdateRuleInput` [DynamicIpAllocationUpdateRuleInput] - (required) N/A 
+
+`accountId` [ID] - (required) N/A    
+`dynamicIpAllocationPolicyMutationInput` [DynamicIpAllocationPolicyMutationInput] - (required) N/A    
+`dynamicIpAllocationUpdateRuleInput` [DynamicIpAllocationUpdateRuleInput] - (required) N/A    

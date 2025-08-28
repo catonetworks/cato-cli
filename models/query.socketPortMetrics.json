@@ -1048,7 +1048,11 @@
     "deprecationReason": null,
     "description": "Provides historical metrics for physical and logical interfaces on Cato Sockets.\nThis API enables detailed monitoring of LAN, WAN, Tunnel, Bypass, and Off-Cloud traffic, including throughput, bandwidth usage, and cellular signal quality.",
     "fieldTypes": {
-        "SocketPortMetricsRecord": true
+        "SocketPortMetricsField": true,
+        "SocketPortMetricsFieldName": true,
+        "SocketPortMetricsRecord": true,
+        "UnitType": true,
+        "Value": true
     },
     "isDeprecated": false,
     "name": "socketPortMetrics",
@@ -2233,6 +2237,451 @@
                             "description": null,
                             "enumValues": null,
                             "fields": {
+                                "fields": {
+                                    "alias": "fieldsSocketPortMetricsRecord: fields",
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": null,
+                                    "id_str": "records___fields",
+                                    "isDeprecated": false,
+                                    "name": "fields",
+                                    "path": "records.fields",
+                                    "requestStr": "$socketPortMetricsField:[SocketPortMetricsField] ",
+                                    "required": false,
+                                    "responseStr": "fields:$socketPortMetricsField ",
+                                    "type": {
+                                        "definition": {
+                                            "description": null,
+                                            "enumValues": null,
+                                            "fields": {
+                                                "name": {
+                                                    "alias": "nameSocketPortMetricsField: name",
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "id_str": "records___fields___name",
+                                                    "isDeprecated": false,
+                                                    "name": "name",
+                                                    "path": "records.fields.name",
+                                                    "requestStr": "$name:SocketPortMetricsFieldName! ",
+                                                    "required": true,
+                                                    "responseStr": "name:$name ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": null,
+                                                            "enumValues": [
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Unique identifier of the account that owns the site.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "account_id"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Unique identifier of the site where the socket is deployed.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "site_id"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Unique identifier of the Socket (Cato edge device).",
+                                                                    "isDeprecated": false,
+                                                                    "name": "device_id"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "The name or ID of the physical or logical interface on the Socket device (e.g., eth0, cell1).",
+                                                                    "isDeprecated": false,
+                                                                    "name": "socket_interface"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Describes the interface role such as primary, backup, cellular, or none.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "socket_interface_role"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Indicates the high-availability (HA) role of the device (e.g., active, standby).",
+                                                                    "isDeprecated": false,
+                                                                    "name": "ha_role"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Type of physical interface (e.g., ethernet, cellular).",
+                                                                    "isDeprecated": false,
+                                                                    "name": "physical_interface_type"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Type of transport used by the interface (e.g., wired, lte, 5g, wifi).",
+                                                                    "isDeprecated": false,
+                                                                    "name": "transport_type"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "SIM card number (for cellular interfaces).",
+                                                                    "isDeprecated": false,
+                                                                    "name": "sim_num"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Total bytes sent upstream (from the device to the network).",
+                                                                    "isDeprecated": false,
+                                                                    "name": "bytes_upstream"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Total bytes received downstream (from the network to the device).",
+                                                                    "isDeprecated": false,
+                                                                    "name": "bytes_downstream"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Combined total of upstream and downstream bytes.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "bytes_total"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Current upload throughput in Mbps.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "throughput_upstream"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Current download throughput in Mbps.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "throughput_downstream"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Human-readable name of the site.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "site_name"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Generic signal strength indicator (often maps to bars or percentage).",
+                                                                    "isDeprecated": false,
+                                                                    "name": "cellular_signal_strength"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Reference Signal Received Quality \u2013 a key LTE/5G metric for link quality (dB).",
+                                                                    "isDeprecated": false,
+                                                                    "name": "cellular_rsrq"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Reference Signal Received Power \u2013 measures LTE/5G signal strength (dBm).",
+                                                                    "isDeprecated": false,
+                                                                    "name": "cellular_rsrp"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Received Signal Strength Indicator \u2013 legacy strength metric (dBm).",
+                                                                    "isDeprecated": false,
+                                                                    "name": "cellular_rssi"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Signal to Interference + Noise Ratio \u2013 LTE/5G metric for signal clarity (dB).",
+                                                                    "isDeprecated": false,
+                                                                    "name": "cellular_sinr"
+                                                                }
+                                                            ],
+                                                            "fields": null,
+                                                            "inputFields": null,
+                                                            "interfaces": null,
+                                                            "kind": "ENUM",
+                                                            "name": "SocketPortMetricsFieldName",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "enum",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "ENUM"
+                                                        ],
+                                                        "name": "SocketPortMetricsFieldName",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "name"
+                                                },
+                                                "value": {
+                                                    "alias": "valueSocketPortMetricsField: value",
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "id_str": "records___fields___value",
+                                                    "isDeprecated": false,
+                                                    "name": "value",
+                                                    "path": "records.fields.value",
+                                                    "requestStr": "$value:Value! ",
+                                                    "required": true,
+                                                    "responseStr": "value:$value ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": null,
+                                                            "enumValues": null,
+                                                            "fields": null,
+                                                            "inputFields": null,
+                                                            "interfaces": null,
+                                                            "kind": "UNION",
+                                                            "name": "Value",
+                                                            "possibleTypes": {
+                                                                "DateValue": {
+                                                                    "description": null,
+                                                                    "enumValues": null,
+                                                                    "fields": [
+                                                                        {
+                                                                            "args": [],
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "date",
+                                                                            "type": {
+                                                                                "kind": "SCALAR",
+                                                                                "name": "DateTime",
+                                                                                "ofType": null
+                                                                            }
+                                                                        }
+                                                                    ],
+                                                                    "inputFields": null,
+                                                                    "interfaces": [],
+                                                                    "kind": "OBJECT",
+                                                                    "name": "DateValue",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "Entity": {
+                                                                    "description": null,
+                                                                    "enumValues": null,
+                                                                    "fields": [
+                                                                        {
+                                                                            "args": [],
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "id",
+                                                                            "type": {
+                                                                                "kind": "NON_NULL",
+                                                                                "name": null,
+                                                                                "ofType": {
+                                                                                    "kind": "SCALAR",
+                                                                                    "name": "ID",
+                                                                                    "ofType": null
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        {
+                                                                            "args": [],
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "name",
+                                                                            "type": {
+                                                                                "kind": "SCALAR",
+                                                                                "name": "String",
+                                                                                "ofType": null
+                                                                            }
+                                                                        },
+                                                                        {
+                                                                            "args": [],
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "type",
+                                                                            "type": {
+                                                                                "kind": "NON_NULL",
+                                                                                "name": null,
+                                                                                "ofType": {
+                                                                                    "kind": "ENUM",
+                                                                                    "name": "EntityType",
+                                                                                    "ofType": null
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    ],
+                                                                    "inputFields": null,
+                                                                    "interfaces": [],
+                                                                    "kind": "OBJECT",
+                                                                    "name": "Entity",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "StringValue": {
+                                                                    "description": null,
+                                                                    "enumValues": null,
+                                                                    "fields": [
+                                                                        {
+                                                                            "args": [],
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "string",
+                                                                            "type": {
+                                                                                "kind": "SCALAR",
+                                                                                "name": "String",
+                                                                                "ofType": null
+                                                                            }
+                                                                        }
+                                                                    ],
+                                                                    "inputFields": null,
+                                                                    "interfaces": [],
+                                                                    "kind": "OBJECT",
+                                                                    "name": "StringValue",
+                                                                    "possibleTypes": null
+                                                                }
+                                                            }
+                                                        },
+                                                        "indexType": "interface",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "UNION"
+                                                        ],
+                                                        "name": "Value",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "value"
+                                                }
+                                            },
+                                            "inputFields": null,
+                                            "interfaces": {},
+                                            "kind": "OBJECT",
+                                            "name": "SocketPortMetricsField",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "object",
+                                        "kind": [
+                                            "LIST",
+                                            "NON_NULL",
+                                            "OBJECT"
+                                        ],
+                                        "name": "SocketPortMetricsField",
+                                        "non_null": false
+                                    },
+                                    "varName": "socketPortMetricsField"
+                                },
+                                "fieldsMap": {
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": "fields in map format (see Map scalar)",
+                                    "id_str": "records___fieldsMap",
+                                    "isDeprecated": false,
+                                    "name": "fieldsMap",
+                                    "path": "records.fieldsMap",
+                                    "requestStr": "$fieldsMap:Map ",
+                                    "required": false,
+                                    "responseStr": "fieldsMap:$fieldsMap ",
+                                    "type": {
+                                        "kind": [
+                                            "SCALAR"
+                                        ],
+                                        "name": "Map",
+                                        "non_null": false
+                                    },
+                                    "varName": "fieldsMap"
+                                },
+                                "fieldsUnitTypes": {
+                                    "alias": "fieldsUnitTypesSocketPortMetricsRecord: fieldsUnitTypes",
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": null,
+                                    "id_str": "records___fieldsUnitTypes",
+                                    "isDeprecated": false,
+                                    "name": "fieldsUnitTypes",
+                                    "path": "records.fieldsUnitTypes",
+                                    "requestStr": "$fieldsUnitTypes:[UnitType] ",
+                                    "required": false,
+                                    "responseStr": "fieldsUnitTypes:$fieldsUnitTypes ",
+                                    "type": {
+                                        "definition": {
+                                            "description": null,
+                                            "enumValues": [
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "isDeprecated": false,
+                                                    "name": "bytes"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "isDeprecated": false,
+                                                    "name": "packets"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "isDeprecated": false,
+                                                    "name": "bits"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "isDeprecated": false,
+                                                    "name": "ms"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "isDeprecated": false,
+                                                    "name": "percent"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "health analytics for the site",
+                                                    "isDeprecated": false,
+                                                    "name": "score"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "The number of occurrences for this unit",
+                                                    "isDeprecated": false,
+                                                    "name": "count"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "For metrics that are measured in seconds, such as tunnelAge, the number of seconds",
+                                                    "isDeprecated": false,
+                                                    "name": "seconds"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Bits per second",
+                                                    "isDeprecated": false,
+                                                    "name": "bps"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Bytes per second",
+                                                    "isDeprecated": false,
+                                                    "name": "bytesPerSec"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "isDeprecated": false,
+                                                    "name": "none"
+                                                }
+                                            ],
+                                            "fields": null,
+                                            "inputFields": null,
+                                            "interfaces": null,
+                                            "kind": "ENUM",
+                                            "name": "UnitType",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "enum",
+                                        "kind": [
+                                            "LIST",
+                                            "NON_NULL",
+                                            "ENUM"
+                                        ],
+                                        "name": "UnitType",
+                                        "non_null": false
+                                    },
+                                    "varName": "fieldsUnitTypes"
+                                },
                                 "prevTimeFrame": {
                                     "args": {},
                                     "deprecationReason": null,
@@ -2366,45 +2815,28 @@
         "non_null": false
     },
     "variablesPayload": {
-        "from": "Int",
-        "limit": "Int",
+        "from": 1,
+        "limit": 1,
         "socketPortMetricsDimension": {
-            "fieldName": {
-                "fieldName": "enum(SocketPortMetricsFieldName)"
-            }
+            "fieldName": "account_id"
         },
         "socketPortMetricsFilter": {
-            "fieldName": {
-                "fieldName": "enum(SocketPortMetricsFieldName)"
-            },
-            "operator": {
-                "operator": "enum(FilterOperator)"
-            },
-            "values": {
-                "values": [
-                    "String"
-                ]
-            }
+            "fieldName": "account_id",
+            "operator": "is",
+            "values": [
+                "string1",
+                "string2"
+            ]
         },
         "socketPortMetricsMeasure": {
-            "aggType": {
-                "aggType": "enum(AggregationType)"
-            },
-            "fieldName": {
-                "fieldName": "enum(SocketPortMetricsFieldName)"
-            },
-            "trend": {
-                "trend": "Boolean"
-            }
+            "aggType": "sum",
+            "fieldName": "account_id",
+            "trend": true
         },
         "socketPortMetricsSort": {
-            "fieldName": {
-                "fieldName": "enum(SocketPortMetricsFieldName)"
-            },
-            "order": {
-                "order": "enum(DirectionEnum)"
-            }
+            "fieldName": "account_id",
+            "order": "asc"
         },
-        "timeFrame": "TimeFrame"
+        "timeFrame": "example_value"
     }
 }

@@ -1,95 +1,53 @@
 {
     "operationName": "hardwareManagement",
-    "query": "query hardwareManagement ( $socketInventoryInput:SocketInventoryInput ) {\n\thardwareManagement ( ) {\n\t\tsocketInventory ( input:$socketInventoryInput  )  {\n\t\t\titemsSocketInventoryPayload: items {\n\t\t\t\tid\n\t\t\t\tstatusSocketInventoryItem: status\n\t\t\t\tserialNumber\n\t\t\t\tsocketMac\n\t\t\t\tsocketVersion\n\t\t\t\tsiteSocketInventoryItem: site {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\n\t\t\t\taccountSocketInventoryItem: account {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\n\t\t\t\tshippingDate\n\t\t\t\tsocketTypeSocketInventoryItem: socketType\n\t\t\t\ttrackingUrl\n\t\t\t\ttrackingNumber\n\t\t\t\tshippingCompany\n\t\t\t\tdeliverySiteName\n\t\t\t\tdescription\n\t\t\t\tisPrimary\n\t\t\t\tregistrationStatusSocketInventoryItem: registrationStatus\n\t\t\t\tavailableUpgradeVersions\n\t\t\t\tupgradeStatusSocketInventoryItem: upgradeStatus\n\t\t\t\tupgradesPaused\n\t\t\t}\n\t\t\tpageInfoSocketInventoryPayload: pageInfo {\n\t\t\t\ttotal\n\t\t\t}\n\t\t}\n\n\t}\t\n}",
+    "query": "query hardwareManagement ( $socketInventoryInput:SocketInventoryInput ) {\n\thardwareManagement ( ) {\n\t\tsocketInventory\n\t}\t\n}",
     "variables": {
         "socketInventoryInput": {
             "pagingInput": {
-                "from": {
-                    "from": "Int"
-                },
-                "limit": {
-                    "limit": "Int"
-                }
+                "from": 1,
+                "limit": 1
             },
             "socketInventoryFilterInput": {
                 "freeText": {
-                    "search": {
-                        "search": "String"
-                    }
+                    "search": "string"
                 }
             },
             "socketInventoryOrderInput": {
                 "accountName": {
-                    "direction": {
-                        "direction": "enum(SortOrder)"
-                    },
-                    "priority": {
-                        "priority": "Int"
-                    }
+                    "direction": "ASC",
+                    "priority": 1
                 },
                 "deliverySiteName": {
-                    "direction": {
-                        "direction": "enum(SortOrder)"
-                    },
-                    "priority": {
-                        "priority": "Int"
-                    }
+                    "direction": "ASC",
+                    "priority": 1
                 },
                 "description": {
-                    "direction": {
-                        "direction": "enum(SortOrder)"
-                    },
-                    "priority": {
-                        "priority": "Int"
-                    }
+                    "direction": "ASC",
+                    "priority": 1
                 },
                 "installedSite": {
-                    "direction": {
-                        "direction": "enum(SortOrder)"
-                    },
-                    "priority": {
-                        "priority": "Int"
-                    }
+                    "direction": "ASC",
+                    "priority": 1
                 },
                 "serialNumber": {
-                    "direction": {
-                        "direction": "enum(SortOrder)"
-                    },
-                    "priority": {
-                        "priority": "Int"
-                    }
+                    "direction": "ASC",
+                    "priority": 1
                 },
                 "shippingCompany": {
-                    "direction": {
-                        "direction": "enum(SortOrder)"
-                    },
-                    "priority": {
-                        "priority": "Int"
-                    }
+                    "direction": "ASC",
+                    "priority": 1
                 },
                 "shippingDate": {
-                    "direction": {
-                        "direction": "enum(SortOrder)"
-                    },
-                    "priority": {
-                        "priority": "Int"
-                    }
+                    "direction": "ASC",
+                    "priority": 1
                 },
                 "socketType": {
-                    "direction": {
-                        "direction": "enum(SortOrder)"
-                    },
-                    "priority": {
-                        "priority": "Int"
-                    }
+                    "direction": "ASC",
+                    "priority": 1
                 },
                 "status": {
-                    "direction": {
-                        "direction": "enum(SortOrder)"
-                    },
-                    "priority": {
-                        "priority": "Int"
-                    }
+                    "direction": "ASC",
+                    "priority": 1
                 }
             }
         }

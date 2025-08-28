@@ -1,27 +1,5 @@
 mutation policyDynamicIpAllocationAddSection ( $policyAddSectionInput:PolicyAddSectionInput! $dynamicIpAllocationPolicyMutationInput:DynamicIpAllocationPolicyMutationInput ) {
 	policy ( ) {
-		dynamicIpAllocation ( input:$dynamicIpAllocationPolicyMutationInput  )  {
-			addSectionDynamicIpAllocationPolicyMutations: addSection ( input:$policyAddSectionInput   ) {
-				sectionPolicySectionMutationPayload: section {
-					auditPolicySectionPayload: audit {
-						updatedTime
-						updatedBy
-					}
-					sectionPolicySectionPayload: section {
-						id
-						name
-					}
-					propertiesPolicySectionPayload: properties
-				}
-
-				statusPolicySectionMutationPayload: status
-				errorsPolicySectionMutationPayload: errors {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+		dynamicIpAllocation
 	}	
 }

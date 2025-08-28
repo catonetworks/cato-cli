@@ -1,6 +1,6 @@
 
 ## CATO-CLI - query.auditFeed:
-[Click here](https://api.catonetworks.com/documentation/#query-auditFeed) for documentation on this operation.
+[Click here](https://api.catonetworks.com/documentation/#query-query.auditFeed) for documentation on this operation.
 
 ### Usage for query.auditFeed:
 
@@ -8,13 +8,15 @@
 
 `catocli query auditFeed <json>`
 
-`catocli query auditFeed "$(cat < auditFeed.json)"`
+`catocli query auditFeed "$(cat < query.auditFeed.json)"`
 
-`catocli query auditFeed '{"accountIDs": ["ID"], "auditFieldFilterInput": {"fieldNameInput": {"AuditFieldName": {"AuditFieldName": "enum(AuditFieldName)"}}, "operator": {"operator": "enum(ElasticOperator)"}, "values": {"values": ["String"]}}, "fieldNames": "enum(AuditFieldName)", "marker": "String", "timeFrame": "TimeFrame"}'`
+`catocli query auditFeed '{"accountIDs":["id1","id2"],"auditFieldFilterInput":{"fieldNameInput":{"AuditFieldName":"admin"},"operator":"is","values":["string1","string2"]},"fieldNames":"admin","marker":"string","timeFrame":"example_value"}'`
+
 
 #### Operation Arguments for query.auditFeed ####
-`accountIDs` [ID[]] - (optional) List of Unique Account Identifiers. 
-`auditFieldFilterInput` [AuditFieldFilterInput[]] - (optional) N/A 
-`fieldNames` [AuditFieldName[]] - (optional) N/A Default Value: ['admin', 'apiKey', 'model_name', 'admin_id', 'module', 'audit_creation_type', 'insertion_date', 'change_type', 'creation_date', 'model_type', 'account', 'account_id']
-`marker` [String] - (optional) Marker to use to get results from 
-`timeFrame` [TimeFrame] - (required) N/A 
+
+`accountIDs` [ID[]] - (required) List of Unique Account Identifiers.    
+`auditFieldFilterInput` [AuditFieldFilterInput[]] - (required) N/A    
+`fieldNames` [AuditFieldName[]] - (required) N/A Default Value: ['admin', 'apiKey', 'model_name', 'admin_id', 'module', 'audit_creation_type', 'insertion_date', 'change_type', 'creation_date', 'model_type', 'account', 'account_id']   
+`marker` [String] - (required) Marker to use to get results from    
+`timeFrame` [TimeFrame] - (required) N/A    

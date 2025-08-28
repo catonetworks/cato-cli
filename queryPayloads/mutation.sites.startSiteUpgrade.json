@@ -1,20 +1,14 @@
 {
     "operationName": "sitesStartSiteUpgrade",
-    "query": "mutation sitesStartSiteUpgrade ( $startSiteUpgradeInput:StartSiteUpgradeInput! ) {\n\tsites ( ) {\n\t\tstartSiteUpgrade ( input:$startSiteUpgradeInput  )  {\n\t\t\tresultsStartSiteUpgradePayload: results {\n\t\t\t\tsiteSiteUpgradeInfo: site {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\n\t\t\t\ttargetVersion\n\t\t\t\tscheduledAt\n\t\t\t}\n\t\t}\n\n\t}\t\n}",
+    "query": "mutation sitesStartSiteUpgrade ( $startSiteUpgradeInput:StartSiteUpgradeInput! ) {\n\tsites ( ) {\n\t\tstartSiteUpgrade\n\t}\t\n}",
     "variables": {
         "startSiteUpgradeInput": {
             "siteUpgradeRequest": {
                 "site": {
-                    "by": {
-                        "by": "enum(ObjectRefBy)"
-                    },
-                    "input": {
-                        "input": "String"
-                    }
+                    "by": "ID",
+                    "input": "string"
                 },
-                "targetVersion": {
-                    "targetVersion": "String"
-                }
+                "targetVersion": "string"
             }
         }
     }

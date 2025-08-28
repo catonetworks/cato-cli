@@ -1,46 +1,29 @@
 {
     "operationName": "events",
-    "query": "query events ( $limit:Int $from:Int $timeFrame:TimeFrame! $eventsMeasure:[EventsMeasure] $eventsDimension:[EventsDimension] $eventsFilter:[EventsFilter!] $eventsSort:[EventsSort!] ) {\n\tevents ( timeFrame:$timeFrame measures:$eventsMeasure dimensions:$eventsDimension filters:$eventsFilter sort:$eventsSort ) {\n\t\tid\n\t\tfrom\n\t\tto\n\t\ttotal\n\t\ttotals\n\t\trecords ( limit:$limit  from:$from  )  {\n\t\t\ttrends\n\t\t\tprevTimeFrame\n\t\t\tflatFields\n\t\t}\n\n\t}\t\n}",
+    "query": "query events ( $limit:Int $from:Int $timeFrame:TimeFrame! $eventsMeasure:[EventsMeasure] $eventsDimension:[EventsDimension] $eventsFilter:[EventsFilter!] $eventsSort:[EventsSort!] ) {\n\tevents ( timeFrame:$timeFrame measures:$eventsMeasure dimensions:$eventsDimension filters:$eventsFilter sort:$eventsSort ) {\n\t\tid\n\t\tfrom\n\t\tto\n\t\ttotal\n\t\ttotals\n\t\trecords\n\t}\t\n}",
     "variables": {
         "eventsDimension": {
-            "fieldName": {
-                "fieldName": "enum(EventFieldName)"
-            }
+            "fieldName": "access_method"
         },
         "eventsFilter": {
-            "fieldName": {
-                "fieldName": "enum(EventFieldName)"
-            },
-            "operator": {
-                "operator": "enum(FilterOperator)"
-            },
-            "values": {
-                "values": [
-                    "String"
-                ]
-            }
+            "fieldName": "access_method",
+            "operator": "is",
+            "values": [
+                "string1",
+                "string2"
+            ]
         },
         "eventsMeasure": {
-            "aggType": {
-                "aggType": "enum(AggregationType)"
-            },
-            "fieldName": {
-                "fieldName": "enum(EventFieldName)"
-            },
-            "trend": {
-                "trend": "Boolean"
-            }
+            "aggType": "sum",
+            "fieldName": "access_method",
+            "trend": true
         },
         "eventsSort": {
-            "fieldName": {
-                "fieldName": "enum(EventFieldName)"
-            },
-            "order": {
-                "order": "enum(DirectionEnum)"
-            }
+            "fieldName": "access_method",
+            "order": "asc"
         },
-        "from": "Int",
-        "limit": "Int",
-        "timeFrame": "TimeFrame"
+        "from": 1,
+        "limit": 1,
+        "timeFrame": "example_value"
     }
 }

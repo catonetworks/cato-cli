@@ -1,6 +1,6 @@
 
 ## CATO-CLI - mutation.site.removeStaticHost:
-[Click here](https://api.catonetworks.com/documentation/#mutation-removeStaticHost) for documentation on this operation.
+[Click here](https://api.catonetworks.com/documentation/#mutation-mutation.site.removeStaticHost) for documentation on this operation.
 
 ### Usage for mutation.site.removeStaticHost:
 
@@ -8,10 +8,12 @@
 
 `catocli mutation site removeStaticHost <json>`
 
-`catocli mutation site removeStaticHost "$(cat < removeStaticHost.json)"`
+`catocli mutation site removeStaticHost "$(cat < mutation.site.removeStaticHost.json)"`
 
-`catocli mutation site removeStaticHost '{"hostId": "ID"}'`
+`catocli mutation site removeStaticHost '{"hostId":"id"}'`
+
 
 #### Operation Arguments for mutation.site.removeStaticHost ####
-`accountId` [ID] - (required) N/A 
-`hostId` [ID] - (required) N/A 
+
+`accountId` [ID] - (required) N/A    
+`hostId` [ID] - (required) N/A    

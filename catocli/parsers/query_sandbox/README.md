@@ -1,6 +1,6 @@
 
 ## CATO-CLI - query.sandbox:
-[Click here](https://api.catonetworks.com/documentation/#query-sandbox) for documentation on this operation.
+[Click here](https://api.catonetworks.com/documentation/#query-query.sandbox) for documentation on this operation.
 
 ### Usage for query.sandbox:
 
@@ -8,10 +8,12 @@
 
 `catocli query sandbox <json>`
 
-`catocli query sandbox "$(cat < sandbox.json)"`
+`catocli query sandbox "$(cat < query.sandbox.json)"`
 
-`catocli query sandbox '{"sandboxReportsInput": {"pagingInput": {"from": {"from": "Int"}, "limit": {"limit": "Int"}}, "sandboxReportsFilterInput": {"fileHash": {"eq": {"eq": "String"}, "in": {"in": ["String"]}, "neq": {"neq": "String"}, "nin": {"nin": ["String"]}}, "fileName": {"eq": {"eq": "String"}, "in": {"in": ["String"]}, "neq": {"neq": "String"}, "nin": {"nin": ["String"]}}, "reportCreateDate": {"between": {"between": ["DateTime"]}, "eq": {"eq": "DateTime"}, "gt": {"gt": "DateTime"}, "gte": {"gte": "DateTime"}, "in": {"in": ["DateTime"]}, "lt": {"lt": "DateTime"}, "lte": {"lte": "DateTime"}, "neq": {"neq": "DateTime"}, "nin": {"nin": ["DateTime"]}}}, "sandboxReportsSortInput": {"fileName": {"direction": {"direction": "enum(SortOrder)"}, "priority": {"priority": "Int"}}, "reportCreateDate": {"direction": {"direction": "enum(SortOrder)"}, "priority": {"priority": "Int"}}}}}'`
+`catocli query sandbox '{"sandboxReportsInput":{"pagingInput":{"from":1,"limit":1},"sandboxReportsFilterInput":{"fileHash":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"fileName":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"reportCreateDate":{"between":["example1","example2"],"eq":"example_value","gt":"example_value","gte":"example_value","in":["example1","example2"],"lt":"example_value","lte":"example_value","neq":"example_value","nin":["example1","example2"]}},"sandboxReportsSortInput":{"fileName":{"direction":"ASC","priority":1},"reportCreateDate":{"direction":"ASC","priority":1}}}}'`
+
 
 #### Operation Arguments for query.sandbox ####
-`accountId` [ID] - (required) N/A 
-`sandboxReportsInput` [SandboxReportsInput] - (required) N/A 
+
+`accountId` [ID] - (required) N/A    
+`sandboxReportsInput` [SandboxReportsInput] - (required) N/A    

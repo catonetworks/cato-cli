@@ -1,105 +1,66 @@
 {
     "operationName": "sandbox",
-    "query": "query sandbox ( $sandboxReportsInput:SandboxReportsInput! ) {\n\tsandbox ( ) {\n\t\treports ( input:$sandboxReportsInput  )  {\n\t\t\treportSandboxReportsPayload: report {\n\t\t\t\tfileName\n\t\t\t\tfileHash\n\t\t\t\tcreationDate\n\t\t\t\texpirationDate\n\t\t\t\tverdictSandboxReport: verdict\n\t\t\t\tstatusSandboxReport: status\n\t\t\t\tdownloadUrl\n\t\t\t\tfailureReasonSandboxReport: failureReason\n\t\t\t}\n\t\t\tpageInfoSandboxReportsPayload: pageInfo {\n\t\t\t\ttotal\n\t\t\t}\n\t\t}\n\n\t}\t\n}",
+    "query": "query sandbox ( $sandboxReportsInput:SandboxReportsInput! ) {\n\tsandbox ( ) {\n\t\treports\n\t}\t\n}",
     "variables": {
         "sandboxReportsInput": {
             "pagingInput": {
-                "from": {
-                    "from": "Int"
-                },
-                "limit": {
-                    "limit": "Int"
-                }
+                "from": 1,
+                "limit": 1
             },
             "sandboxReportsFilterInput": {
                 "fileHash": {
-                    "eq": {
-                        "eq": "String"
-                    },
-                    "in": {
-                        "in": [
-                            "String"
-                        ]
-                    },
-                    "neq": {
-                        "neq": "String"
-                    },
-                    "nin": {
-                        "nin": [
-                            "String"
-                        ]
-                    }
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
                 },
                 "fileName": {
-                    "eq": {
-                        "eq": "String"
-                    },
-                    "in": {
-                        "in": [
-                            "String"
-                        ]
-                    },
-                    "neq": {
-                        "neq": "String"
-                    },
-                    "nin": {
-                        "nin": [
-                            "String"
-                        ]
-                    }
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
                 },
                 "reportCreateDate": {
-                    "between": {
-                        "between": [
-                            "DateTime"
-                        ]
-                    },
-                    "eq": {
-                        "eq": "DateTime"
-                    },
-                    "gt": {
-                        "gt": "DateTime"
-                    },
-                    "gte": {
-                        "gte": "DateTime"
-                    },
-                    "in": {
-                        "in": [
-                            "DateTime"
-                        ]
-                    },
-                    "lt": {
-                        "lt": "DateTime"
-                    },
-                    "lte": {
-                        "lte": "DateTime"
-                    },
-                    "neq": {
-                        "neq": "DateTime"
-                    },
-                    "nin": {
-                        "nin": [
-                            "DateTime"
-                        ]
-                    }
+                    "between": [
+                        "example1",
+                        "example2"
+                    ],
+                    "eq": "example_value",
+                    "gt": "example_value",
+                    "gte": "example_value",
+                    "in": [
+                        "example1",
+                        "example2"
+                    ],
+                    "lt": "example_value",
+                    "lte": "example_value",
+                    "neq": "example_value",
+                    "nin": [
+                        "example1",
+                        "example2"
+                    ]
                 }
             },
             "sandboxReportsSortInput": {
                 "fileName": {
-                    "direction": {
-                        "direction": "enum(SortOrder)"
-                    },
-                    "priority": {
-                        "priority": "Int"
-                    }
+                    "direction": "ASC",
+                    "priority": 1
                 },
                 "reportCreateDate": {
-                    "direction": {
-                        "direction": "enum(SortOrder)"
-                    },
-                    "priority": {
-                        "priority": "Int"
-                    }
+                    "direction": "ASC",
+                    "priority": 1
                 }
             }
         }

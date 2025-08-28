@@ -1,6 +1,6 @@
 
 ## CATO-CLI - query.accountRoles:
-[Click here](https://api.catonetworks.com/documentation/#query-accountRoles) for documentation on this operation.
+[Click here](https://api.catonetworks.com/documentation/#query-query.accountRoles) for documentation on this operation.
 
 ### Usage for query.accountRoles:
 
@@ -8,10 +8,12 @@
 
 `catocli query accountRoles <json>`
 
-`catocli query accountRoles "$(cat < accountRoles.json)"`
+`catocli query accountRoles "$(cat < query.accountRoles.json)"`
 
-`catocli query accountRoles '{"accountType": "enum(AccountType)"}'`
+`catocli query accountRoles '{"accountType":"SYSTEM"}'`
+
 
 #### Operation Arguments for query.accountRoles ####
-`accountID` [ID] - (required) N/A 
-`accountType` [AccountType] - (optional) N/A Default Value: ['SYSTEM', 'REGULAR', 'RESELLER', 'ALL']
+
+`accountID` [ID] - (required) N/A    
+`accountType` [AccountType] - (required) N/A Default Value: ['SYSTEM', 'REGULAR', 'RESELLER', 'ALL']   

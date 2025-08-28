@@ -1,27 +1,23 @@
 {
     "operationName": "auditFeed",
-    "query": "query auditFeed ( $fieldNames:[AuditFieldName!] $accountIDs:[ID!] $timeFrame:TimeFrame! $auditFieldFilterInput:[AuditFieldFilterInput!] $marker:String ) {\n\tauditFeed ( accountIDs:$accountIDs timeFrame:$timeFrame filters:$auditFieldFilterInput marker:$marker ) {\n\t\tfrom\n\t\tto\n\t\tmarker\n\t\tfetchedCount\n\t\thasMore\n\t\taccounts {\n\t\t\tid\n\t\t\trecordsAuditFeedAccountRecords: records ( fieldNames:$fieldNames   ) {\n\t\t\t\tadminAuditRecord: admin {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t\ttypeEntity: type\n\t\t\t\t}\n\n\t\t\t\tapiKeyAuditRecord: apiKey {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t\ttypeEntity: type\n\t\t\t\t}\n\n\t\t\t\tobjectAuditRecord: object {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t\ttypeEntity: type\n\t\t\t\t}\n\n\t\t\t\taccountAuditRecord: account {\n\t\t\t\t\tentityEntityInfo: entity {\n\t\t\t\t\t\tid\n\t\t\t\t\t\tname\n\t\t\t\t\t\ttypeEntity: type\n\t\t\t\t\t}\n\t\t\t\t\tdescription\n\t\t\t\t\thelperFields\n\t\t\t\t}\n\n\t\t\t\ttime\n\t\t\t\tflatFields\n\t\t\t}\n\t\t}\n\n\t}\t\n}",
+    "query": "query auditFeed ( $fieldNames:[AuditFieldName!] $accountIDs:[ID!] $timeFrame:TimeFrame! $auditFieldFilterInput:[AuditFieldFilterInput!] $marker:String ) {\n\tauditFeed ( accountIDs:$accountIDs timeFrame:$timeFrame filters:$auditFieldFilterInput marker:$marker ) {\n\t\tfrom\n\t\tto\n\t\tmarker\n\t\tfetchedCount\n\t\thasMore\n\t\taccounts\n\t}\t\n}",
     "variables": {
         "accountIDs": [
-            "ID"
+            "id1",
+            "id2"
         ],
         "auditFieldFilterInput": {
             "fieldNameInput": {
-                "AuditFieldName": {
-                    "AuditFieldName": "enum(AuditFieldName)"
-                }
+                "AuditFieldName": "admin"
             },
-            "operator": {
-                "operator": "enum(ElasticOperator)"
-            },
-            "values": {
-                "values": [
-                    "String"
-                ]
-            }
+            "operator": "is",
+            "values": [
+                "string1",
+                "string2"
+            ]
         },
-        "fieldNames": "enum(AuditFieldName)",
-        "marker": "String",
-        "timeFrame": "TimeFrame"
+        "fieldNames": "admin",
+        "marker": "string",
+        "timeFrame": "example_value"
     }
 }

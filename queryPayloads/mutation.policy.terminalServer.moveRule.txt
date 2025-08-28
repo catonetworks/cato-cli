@@ -1,45 +1,5 @@
 mutation policyTerminalServerMoveRule ( $policyMoveRuleInput:PolicyMoveRuleInput! $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput ) {
 	policy ( ) {
-		terminalServer ( input:$terminalServerPolicyMutationInput  )  {
-			moveRuleTerminalServerPolicyMutations: moveRule ( input:$policyMoveRuleInput   ) {
-				ruleTerminalServerRuleMutationPayload: rule {
-					auditTerminalServerRulePayload: audit {
-						updatedTime
-						updatedBy
-					}
-					ruleTerminalServerRulePayload: rule {
-						id
-						name
-						description
-						index
-						sectionTerminalServerRule: section {
-							id
-							name
-						}
-
-						enabled
-						allowedHostIPTerminalServerRule: allowedHostIP {
-							id
-							name
-						}
-
-						excludeTrafficTerminalServerRule: excludeTraffic {
-							id
-							name
-						}
-
-					}
-					propertiesTerminalServerRulePayload: properties
-				}
-
-				statusTerminalServerRuleMutationPayload: status
-				errorsTerminalServerRuleMutationPayload: errors {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+		terminalServer
 	}	
 }

@@ -1,119 +1,65 @@
 {
     "operationName": "policyRemotePortFwdUpdateRule",
-    "query": "mutation policyRemotePortFwdUpdateRule ( $remotePortFwdUpdateRuleInput:RemotePortFwdUpdateRuleInput! $remotePortFwdPolicyMutationInput:RemotePortFwdPolicyMutationInput ) {\n\tpolicy ( ) {\n\t\tremotePortFwd ( input:$remotePortFwdPolicyMutationInput  )  {\n\t\t\tupdateRuleRemotePortFwdPolicyMutations: updateRule ( input:$remotePortFwdUpdateRuleInput   ) {\n\t\t\t\truleRemotePortFwdRuleMutationPayload: rule {\n\t\t\t\t\tauditRemotePortFwdRulePayload: audit {\n\t\t\t\t\t\tupdatedTime\n\t\t\t\t\t\tupdatedBy\n\t\t\t\t\t}\n\t\t\t\t\truleRemotePortFwdRulePayload: rule {\n\t\t\t\t\t\tid\n\t\t\t\t\t\tname\n\t\t\t\t\t\tdescription\n\t\t\t\t\t\tindex\n\t\t\t\t\t\tsectionRemotePortFwdRule: section {\n\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\tname\n\t\t\t\t\t\t}\n\n\t\t\t\t\t\tenabled\n\t\t\t\t\t\tforwardIcmp\n\t\t\t\t\t\texternalIpRemotePortFwdRule: externalIp {\n\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\tname\n\t\t\t\t\t\t}\n\n\t\t\t\t\t\texternalPortRangeRemotePortFwdRule: externalPortRange {\n\t\t\t\t\t\t\tfrom\n\t\t\t\t\t\t\tto\n\t\t\t\t\t\t}\n\n\t\t\t\t\t\tinternalIp\n\t\t\t\t\t\tinternalPortRangeRemotePortFwdRule: internalPortRange {\n\t\t\t\t\t\t\tfrom\n\t\t\t\t\t\t\tto\n\t\t\t\t\t\t}\n\n\t\t\t\t\t\tremoteIPsRemotePortFwdRule: remoteIPs {\n\t\t\t\t\t\t\tip\n\t\t\t\t\t\t\tipRangeRemotePortFwdRemoteIps: ipRange {\n\t\t\t\t\t\t\t\tfrom\n\t\t\t\t\t\t\t\tto\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tsubnet\n\t\t\t\t\t\t\tglobalIpRangeRemotePortFwdRemoteIps: globalIpRange {\n\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\n\t\t\t\t\t\trestrictionTypeRemotePortFwdRule: restrictionType\n\t\t\t\t\t\ttrackingRemotePortFwdRule: tracking {\n\t\t\t\t\t\t\tenabled\n\t\t\t\t\t\t\tfrequencyPolicyRuleTrackingAlert: frequency\n\t\t\t\t\t\t\tsubscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {\n\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\twebhookPolicyRuleTrackingAlert: webhook {\n\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tmailingListPolicyRuleTrackingAlert: mailingList {\n\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\n\t\t\t\t\t}\n\t\t\t\t\tpropertiesRemotePortFwdRulePayload: properties\n\t\t\t\t}\n\n\t\t\t\tstatusRemotePortFwdRuleMutationPayload: status\n\t\t\t\terrorsRemotePortFwdRuleMutationPayload: errors {\n\t\t\t\t\terrorMessage\n\t\t\t\t\terrorCode\n\t\t\t\t}\n\n\t\t\t}\n\t\t}\n\n\t}\t\n}",
+    "query": "mutation policyRemotePortFwdUpdateRule ( $remotePortFwdUpdateRuleInput:RemotePortFwdUpdateRuleInput! $remotePortFwdPolicyMutationInput:RemotePortFwdPolicyMutationInput ) {\n\tpolicy ( ) {\n\t\tremotePortFwd\n\t}\t\n}",
     "variables": {
         "remotePortFwdPolicyMutationInput": {
             "policyMutationRevisionInput": {
-                "id": {
-                    "id": "ID"
-                }
+                "id": "id"
             }
         },
         "remotePortFwdUpdateRuleInput": {
-            "id": {
-                "id": "ID"
-            },
+            "id": "id",
             "remotePortFwdUpdateRuleDataInput": {
-                "description": {
-                    "description": "String"
-                },
-                "enabled": {
-                    "enabled": "Boolean"
-                },
+                "description": "string",
+                "enabled": true,
                 "externalIp": {
-                    "by": {
-                        "by": "enum(ObjectRefBy)"
-                    },
-                    "input": {
-                        "input": "String"
-                    }
+                    "by": "ID",
+                    "input": "string"
                 },
                 "externalPortRange": {
-                    "from": {
-                        "from": "Port"
-                    },
-                    "to": {
-                        "to": "Port"
-                    }
+                    "from": "example_value",
+                    "to": "example_value"
                 },
-                "forwardIcmp": {
-                    "forwardIcmp": "Boolean"
-                },
-                "internalIp": {
-                    "internalIp": "IPAddress"
-                },
+                "forwardIcmp": true,
+                "internalIp": "example_value",
                 "internalPortRange": {
-                    "from": {
-                        "from": "Port"
-                    },
-                    "to": {
-                        "to": "Port"
-                    }
+                    "from": "example_value",
+                    "to": "example_value"
                 },
-                "name": {
-                    "name": "String"
-                },
+                "name": "string",
                 "remoteIPs": {
                     "globalIpRange": {
-                        "by": {
-                            "by": "enum(ObjectRefBy)"
-                        },
-                        "input": {
-                            "input": "String"
-                        }
+                        "by": "ID",
+                        "input": "string"
                     },
-                    "ip": {
-                        "ip": [
-                            "IPAddress"
-                        ]
-                    },
+                    "ip": [
+                        "example1",
+                        "example2"
+                    ],
                     "ipRange": {
-                        "from": {
-                            "from": "IPAddress"
-                        },
-                        "to": {
-                            "to": "IPAddress"
-                        }
+                        "from": "example_value",
+                        "to": "example_value"
                     },
-                    "subnet": {
-                        "subnet": [
-                            "NetworkSubnet"
-                        ]
-                    }
+                    "subnet": [
+                        "example1",
+                        "example2"
+                    ]
                 },
-                "restrictionType": {
-                    "restrictionType": "enum(RemotePortFwdRestrictionType)"
-                },
+                "restrictionType": "ALLOW_LIST",
                 "tracking": {
-                    "enabled": {
-                        "enabled": "Boolean"
-                    },
-                    "frequency": {
-                        "frequency": "enum(PolicyRuleTrackingFrequencyEnum)"
-                    },
+                    "enabled": true,
+                    "frequency": "HOURLY",
                     "mailingList": {
-                        "by": {
-                            "by": "enum(ObjectRefBy)"
-                        },
-                        "input": {
-                            "input": "String"
-                        }
+                        "by": "ID",
+                        "input": "string"
                     },
                     "subscriptionGroup": {
-                        "by": {
-                            "by": "enum(ObjectRefBy)"
-                        },
-                        "input": {
-                            "input": "String"
-                        }
+                        "by": "ID",
+                        "input": "string"
                     },
                     "webhook": {
-                        "by": {
-                            "by": "enum(ObjectRefBy)"
-                        },
-                        "input": {
-                            "input": "String"
-                        }
+                        "by": "ID",
+                        "input": "string"
                     }
                 }
             }

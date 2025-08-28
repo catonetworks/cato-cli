@@ -1,53 +1,25 @@
 {
     "operationName": "siteUpdateNetworkRange",
-    "query": "mutation siteUpdateNetworkRange ( $networkRangeId:ID! $updateNetworkRangeInput:UpdateNetworkRangeInput! ) {\n\tsite ( ) {\n\t\tupdateNetworkRange ( networkRangeId:$networkRangeId  input:$updateNetworkRangeInput  )  {\n\t\t\tnetworkRangeId\n\t\t}\n\n\t}\t\n}",
+    "query": "mutation siteUpdateNetworkRange ( $networkRangeId:ID! $updateNetworkRangeInput:UpdateNetworkRangeInput! ) {\n\tsite ( ) {\n\t\tupdateNetworkRange\n\t}\t\n}",
     "variables": {
-        "networkRangeId": "ID",
+        "networkRangeId": "id",
         "updateNetworkRangeInput": {
-            "azureFloatingIp": {
-                "azureFloatingIp": "IPAddress"
-            },
-            "gateway": {
-                "gateway": "IPAddress"
-            },
-            "internetOnly": {
-                "internetOnly": "Boolean"
-            },
-            "localIp": {
-                "localIp": "IPAddress"
-            },
-            "mdnsReflector": {
-                "mdnsReflector": "Boolean"
-            },
-            "name": {
-                "name": "String"
-            },
+            "azureFloatingIp": "example_value",
+            "gateway": "example_value",
+            "internetOnly": true,
+            "localIp": "example_value",
+            "mdnsReflector": true,
+            "name": "string",
             "networkDhcpSettingsInput": {
-                "dhcpMicrosegmentation": {
-                    "dhcpMicrosegmentation": "Boolean"
-                },
-                "dhcpType": {
-                    "dhcpType": "enum(DhcpType)"
-                },
-                "ipRange": {
-                    "ipRange": "IPRange"
-                },
-                "relayGroupId": {
-                    "relayGroupId": "ID"
-                }
+                "dhcpMicrosegmentation": true,
+                "dhcpType": "DHCP_RELAY",
+                "ipRange": "example_value",
+                "relayGroupId": "id"
             },
-            "rangeType": {
-                "rangeType": "enum(SubnetType)"
-            },
-            "subnet": {
-                "subnet": "IPSubnet"
-            },
-            "translatedSubnet": {
-                "translatedSubnet": "IPSubnet"
-            },
-            "vlan": {
-                "vlan": "Int"
-            }
+            "rangeType": "Routed",
+            "subnet": "example_value",
+            "translatedSubnet": "example_value",
+            "vlan": 1
         }
     }
 }

@@ -1,27 +1,19 @@
 {
     "operationName": "policyWanFirewallAddSection",
-    "query": "mutation policyWanFirewallAddSection ( $policyAddSectionInput:PolicyAddSectionInput! $wanFirewallPolicyMutationInput:WanFirewallPolicyMutationInput ) {\n\tpolicy ( ) {\n\t\twanFirewall ( input:$wanFirewallPolicyMutationInput  )  {\n\t\t\taddSectionWanFirewallPolicyMutations: addSection ( input:$policyAddSectionInput   ) {\n\t\t\t\tsectionPolicySectionMutationPayload: section {\n\t\t\t\t\tauditPolicySectionPayload: audit {\n\t\t\t\t\t\tupdatedTime\n\t\t\t\t\t\tupdatedBy\n\t\t\t\t\t}\n\t\t\t\t\tsectionPolicySectionPayload: section {\n\t\t\t\t\t\tid\n\t\t\t\t\t\tname\n\t\t\t\t\t}\n\t\t\t\t\tpropertiesPolicySectionPayload: properties\n\t\t\t\t}\n\n\t\t\t\tstatusPolicySectionMutationPayload: status\n\t\t\t\terrorsPolicySectionMutationPayload: errors {\n\t\t\t\t\terrorMessage\n\t\t\t\t\terrorCode\n\t\t\t\t}\n\n\t\t\t}\n\t\t}\n\n\t}\t\n}",
+    "query": "mutation policyWanFirewallAddSection ( $policyAddSectionInput:PolicyAddSectionInput! $wanFirewallPolicyMutationInput:WanFirewallPolicyMutationInput ) {\n\tpolicy ( ) {\n\t\twanFirewall\n\t}\t\n}",
     "variables": {
         "policyAddSectionInput": {
             "policyAddSectionInfoInput": {
-                "name": {
-                    "name": "String"
-                }
+                "name": "string"
             },
             "policySectionPositionInput": {
-                "position": {
-                    "position": "enum(PolicySectionPositionEnum)"
-                },
-                "ref": {
-                    "ref": "ID"
-                }
+                "position": "AFTER_SECTION",
+                "ref": "id"
             }
         },
         "wanFirewallPolicyMutationInput": {
             "policyMutationRevisionInput": {
-                "id": {
-                    "id": "ID"
-                }
+                "id": "id"
             }
         }
     }

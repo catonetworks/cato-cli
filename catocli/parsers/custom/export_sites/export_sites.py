@@ -6,6 +6,7 @@ from datetime import datetime
 from graphql_client.api.call_api import ApiClient, CallApi
 from graphql_client.api_client import ApiException
 from ..customLib import writeDataToFile, makeCall, getAccountID
+from ....Utils.cliutils import load_cli_settings
 
 def export_socket_site_to_json(args, configuration):
     """
@@ -20,9 +21,8 @@ def export_socket_site_to_json(args, configuration):
     }
 
     try:
-        settings = {}
-        with open(os.path.join(os.path.dirname(__file__), '../../../../settings.json'), 'r', encoding='utf-8') as f:
-            settings = json.load(f)
+        # Load CLI settings using the robust function
+        settings = load_cli_settings()
 
         account_id = getAccountID(args, configuration)
         # Get account snapshot with siteIDs if provided

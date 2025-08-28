@@ -4,21 +4,9 @@ Private commands parser for custom GraphQL payloads
 Dynamically loads commands from ~/.cato/settings.json
 """
 
-import os
-import json
 import argparse
 from ..customParserApiClient import createPrivateRequest, get_private_help
-
-
-def load_private_settings():
-    """Load private settings from ~/.cato/settings.json"""
-    settings_file = os.path.expanduser("~/.cato/settings.json")
-    try:
-        with open(settings_file, 'r') as f:
-            settings = json.load(f)
-            return settings.get('privateCommands', {})
-    except (FileNotFoundError, json.JSONDecodeError, KeyError):
-        return {}
+from ...Utils.cliutils import load_private_settings
 
 
 def private_parse(subparsers):

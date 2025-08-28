@@ -55,12 +55,12 @@ from ..parsers.mutation_xdr import mutation_xdr_parse
 from ..parsers.mutation_site import mutation_site_parse
 from ..parsers.mutation_sites import mutation_sites_parse
 from ..parsers.mutation_container import mutation_container_parse
-from ..parsers.mutation_admin import mutation_admin_parse
 from ..parsers.mutation_policy import mutation_policy_parse
 from ..parsers.mutation_accountManagement import mutation_accountManagement_parse
 from ..parsers.mutation_sandbox import mutation_sandbox_parse
-from ..parsers.mutation_groups import mutation_groups_parse
+from ..parsers.mutation_admin import mutation_admin_parse
 from ..parsers.mutation_hardware import mutation_hardware_parse
+from ..parsers.mutation_groups import mutation_groups_parse
 from ..parsers.mutation_enterpriseDirectory import mutation_enterpriseDirectory_parse
 
 def show_version_info(args, configuration=None):
@@ -86,14 +86,6 @@ def show_version_info(args, configuration=None):
             print("Unable to check for updates (check your internet connection)")
     return [{"success": True, "current_version": catocli.__version__, "latest_version": latest_version if not args.current_only else None}]
 
-def load_private_settings():
-    # Load private settings from ~/.cato/settings.json
-    settings_file = os.path.expanduser("~/.cato/settings.json")
-    try:
-        with open(settings_file, 'r') as f:
-            return json.load(f)
-    except (FileNotFoundError, json.JSONDecodeError):
-        return {}
         
 def get_configuration(skip_api_key=False):
     configuration = Configuration()
@@ -196,12 +188,12 @@ mutation_xdr_parser = mutation_xdr_parse(mutation_subparsers)
 mutation_site_parser = mutation_site_parse(mutation_subparsers)
 mutation_sites_parser = mutation_sites_parse(mutation_subparsers)
 mutation_container_parser = mutation_container_parse(mutation_subparsers)
-mutation_admin_parser = mutation_admin_parse(mutation_subparsers)
 mutation_policy_parser = mutation_policy_parse(mutation_subparsers)
 mutation_accountManagement_parser = mutation_accountManagement_parse(mutation_subparsers)
 mutation_sandbox_parser = mutation_sandbox_parse(mutation_subparsers)
-mutation_groups_parser = mutation_groups_parse(mutation_subparsers)
+mutation_admin_parser = mutation_admin_parse(mutation_subparsers)
 mutation_hardware_parser = mutation_hardware_parse(mutation_subparsers)
+mutation_groups_parser = mutation_groups_parse(mutation_subparsers)
 mutation_enterpriseDirectory_parser = mutation_enterpriseDirectory_parse(mutation_subparsers)
 
 

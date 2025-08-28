@@ -94,7 +94,7 @@ def parseSchema(schema):
     print("  - Loading settings and initializing...")
     
     # Load settings to get childOperationParent and childOperationObjects configuration
-    settings = loadJSON("../settings.json")
+    settings = loadJSON("../clisettings.json")
     childOperationParent = settings.get("childOperationParent", {})
     childOperationObjects = settings.get("childOperationObjects", {})
     
@@ -786,15 +786,6 @@ def show_version_info(args, configuration=None):
         else:
             print("Unable to check for updates (check your internet connection)")
     return [{"success": True, "current_version": catocli.__version__, "latest_version": latest_version if not args.current_only else None}]
-
-def load_private_settings():
-    # Load private settings from ~/.cato/settings.json
-    settings_file = os.path.expanduser("~/.cato/settings.json")
-    try:
-        with open(settings_file, 'r') as f:
-            return json.load(f)
-    except (FileNotFoundError, json.JSONDecodeError):
-        return {}
         
 def get_configuration(skip_api_key=False):
     configuration = Configuration()

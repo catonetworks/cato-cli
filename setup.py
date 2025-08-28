@@ -13,7 +13,7 @@ setuptools.setup(
     },
     install_requires=['urllib3', 'certifi', 'six'],
     package_data={
-        '': ['vendor/*'],
+        '': ['vendor/*', 'clisettings.json'],
     },
     python_requires='>=3.6',
     url='https://github.com/Cato-Networks/cato-cli',

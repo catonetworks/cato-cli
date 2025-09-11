@@ -95,6 +95,24 @@ def create_private_command_parser(subparsers, command_name, command_config):
         help='Override the account ID from profile with this value.'
     )
     
+    # Add CSV output arguments (if the command supports CSV)
+    if 'csvOutputOperation' in command_config:
+        cmd_parser.add_argument(
+            '-f', '--format',
+            choices=['json', 'csv'],
+            default='json',
+            help='Output format (default: json)'
+        )
+        cmd_parser.add_argument(
+            '--csv-filename',
+            help=f'Override CSV file name (default: {command_name}.csv)'
+        )
+        cmd_parser.add_argument(
+            '--append-timestamp',
+            action='store_true',
+            help='Append timestamp to the CSV file name'
+        )
+    
     # Add dynamic arguments based on command configuration (excluding accountId since it's handled above)
     if 'arguments' in command_config:
         for arg in command_config['arguments']:

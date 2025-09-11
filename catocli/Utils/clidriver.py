@@ -49,18 +49,18 @@ from ..parsers.query_devices import query_devices_parse
 from ..parsers.query_catalogs import query_catalogs_parse
 from ..parsers.query_site import query_site_parse
 from ..parsers.query_xdr import query_xdr_parse
-from ..parsers.query_policy import query_policy_parse
 from ..parsers.query_groups import query_groups_parse
+from ..parsers.query_policy import query_policy_parse
 from ..parsers.mutation_xdr import mutation_xdr_parse
-from ..parsers.mutation_site import mutation_site_parse
 from ..parsers.mutation_sites import mutation_sites_parse
+from ..parsers.mutation_site import mutation_site_parse
 from ..parsers.mutation_container import mutation_container_parse
 from ..parsers.mutation_admin import mutation_admin_parse
-from ..parsers.mutation_policy import mutation_policy_parse
 from ..parsers.mutation_accountManagement import mutation_accountManagement_parse
 from ..parsers.mutation_sandbox import mutation_sandbox_parse
 from ..parsers.mutation_hardware import mutation_hardware_parse
 from ..parsers.mutation_groups import mutation_groups_parse
+from ..parsers.mutation_policy import mutation_policy_parse
 from ..parsers.mutation_enterpriseDirectory import mutation_enterpriseDirectory_parse
 
 def show_version_info(args, configuration=None):
@@ -134,6 +134,8 @@ parser = argparse.ArgumentParser(prog='catocli', usage='%(prog)s <operationType>
 parser.add_argument('--version', action='version', version=catocli.__version__)
 parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
 parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
 subparsers = parser.add_subparsers()
 
 # Version command - enhanced with update checking
@@ -181,18 +183,18 @@ query_devices_parser = query_devices_parse(query_subparsers)
 query_catalogs_parser = query_catalogs_parse(query_subparsers)
 query_site_parser = query_site_parse(query_subparsers)
 query_xdr_parser = query_xdr_parse(query_subparsers)
-query_policy_parser = query_policy_parse(query_subparsers)
 query_groups_parser = query_groups_parse(query_subparsers)
+query_policy_parser = query_policy_parse(query_subparsers)
 mutation_xdr_parser = mutation_xdr_parse(mutation_subparsers)
-mutation_site_parser = mutation_site_parse(mutation_subparsers)
 mutation_sites_parser = mutation_sites_parse(mutation_subparsers)
+mutation_site_parser = mutation_site_parse(mutation_subparsers)
 mutation_container_parser = mutation_container_parse(mutation_subparsers)
 mutation_admin_parser = mutation_admin_parse(mutation_subparsers)
-mutation_policy_parser = mutation_policy_parse(mutation_subparsers)
 mutation_accountManagement_parser = mutation_accountManagement_parse(mutation_subparsers)
 mutation_sandbox_parser = mutation_sandbox_parse(mutation_subparsers)
 mutation_hardware_parser = mutation_hardware_parse(mutation_subparsers)
 mutation_groups_parser = mutation_groups_parse(mutation_subparsers)
+mutation_policy_parser = mutation_policy_parse(mutation_subparsers)
 mutation_enterpriseDirectory_parser = mutation_enterpriseDirectory_parse(mutation_subparsers)
 
 
@@ -276,7 +278,14 @@ def main(args=None):
             print(response)
         else:
             if response!=None:
-                print(json.dumps(response[0], sort_keys=True, indent=4))
+                # Check if this is CSV output
+                if (isinstance(response, list) and len(response) > 0 and 
+                    isinstance(response[0], dict) and "__csv_output__" in response[0]):
+                    # Print CSV output directly without JSON formatting
+                    print(response[0]["__csv_output__"], end='')
+                else:
+                    # Standard JSON output
+                    print(json.dumps(response[0], sort_keys=True, indent=4))
     except KeyboardInterrupt:
         print('Operation cancelled by user (Ctrl+C).')
         exit(130)  # Standard exit code for SIGINT

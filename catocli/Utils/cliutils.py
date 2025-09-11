@@ -60,20 +60,7 @@ def load_cli_settings():
             continue
     
     # If all locations fail, return default settings for socket export
-    return {
-        "export_by_socket_type": {
-            "SOCKET_X1500": True,
-            "SOCKET_X1600": True,
-            "SOCKET_X1600_LTE": True,
-            "SOCKET_X1700": True
-        },
-        "default_socket_interface_map": {
-            "SOCKET_X1500": "LAN1",
-            "SOCKET_X1600": "INT_5",
-            "SOCKET_X1600_LTE": "INT_5",
-            "SOCKET_X1700": "INT_3"
-        }
-    }
+    return {}
 
 
 def get_cli_settings_path():

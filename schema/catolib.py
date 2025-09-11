@@ -831,6 +831,8 @@ parser = argparse.ArgumentParser(prog='catocli', usage='%(prog)s <operationType>
 parser.add_argument('--version', action='version', version=catocli.__version__)
 parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
 parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
 subparsers = parser.add_subparsers()
 
 # Version command - enhanced with update checking
@@ -935,7 +937,14 @@ def main(args=None):
             print(response)
         else:
             if response!=None:
-                print(json.dumps(response[0], sort_keys=True, indent=4))
+                # Check if this is CSV output
+                if (isinstance(response, list) and len(response) > 0 and 
+                    isinstance(response[0], dict) and "__csv_output__" in response[0]):
+                    # Print CSV output directly without JSON formatting
+                    print(response[0]["__csv_output__"], end='')
+                else:
+                    # Standard JSON output
+                    print(json.dumps(response[0], sort_keys=True, indent=4))
     except KeyboardInterrupt:
         print('Operation cancelled by user (Ctrl+C).')
         exit(130)  # Standard exit code for SIGINT
@@ -958,6 +967,10 @@ def writeOperationParsers(catoApiSchema):
     """Write operation parsers - thread-safe implementation"""
     parserMapping = {"query":{},"mutation":{}}
     
+    # Load settings to get CSV-supported operations
+    settings = loadJSON("../clisettings.json")
+    csv_supported_operations = settings.get("queryOperationCsvOutput", {})
+    
     ## Write the raw query parser ##
     cliDriverStr =f"""
 from ..customParserApiClient import createRawRequest, get_help
@@ -967,9 +980,11 @@ def raw_parse(raw_parser):
     raw_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     raw_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
     raw_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    raw_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    raw_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     raw_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     raw_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-    raw_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint URL (e.g., https://api.catonetworks.com/api/v1/graphql2)')
+    raw_parser.add_argument('-e', '--endpoint', dest='endpoint', help='Override the API endpoint URL (e.g., https://api.catonetworks.com/api/v1/graphql2)')
     raw_parser.set_defaults(func=createRawRequest,operation_name='raw')
 """
     parserPath = "../catocli/parsers/raw"
@@ -991,6 +1006,8 @@ def query_siteLocation_parse(query_subparsers):
     query_siteLocation_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     query_siteLocation_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
     query_siteLocation_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    query_siteLocation_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    query_siteLocation_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_siteLocation_parser.set_defaults(func=querySiteLocation,operation_name='query.siteLocation')
 """
     parserPath = "../catocli/parsers/query_siteLocation"
@@ -1019,16 +1036,31 @@ def {parserName}_parse({operationType}_subparsers):
             usage=get_help("{operationType}_{operationName}"))
 """
             if "path" in parser:
+                # Check if this operation supports CSV output
+                operation_path = parserName.replace("_", ".")
+                supports_csv = operation_path in csv_supported_operations
+                
                 cliDriverStr += f"""
     {parserName}_parser.add_argument('json', nargs='?', default='{{}}', help='Variables in JSON format (defaults to empty object if not provided).')
     {parserName}_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     {parserName}_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     {parserName}_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
     {parserName}_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    {parserName}_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    {parserName}_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     {parserName}_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     {parserName}_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-    {parserName}_parser.set_defaults(func=createRequest,operation_name='{parserName.replace("_",".")}')
 """
+                # Add -f flag for CSV-supported operations
+                if supports_csv:
+                    cliDriverStr += f"""
+    {parserName}_parser.add_argument('-f', '--format', choices=['json', 'csv'], default='json', help='Output format (default: json)')
+    {parserName}_parser.add_argument('--csv-filename', dest='csv_filename', help='Override CSV file name (default: accountmetrics.csv)')
+    {parserName}_parser.add_argument('--append-timestamp', dest='append_timestamp', action='store_true', help='Append timestamp to the CSV file name')
+"""
+                
+                cliDriverStr += f"    {parserName}_parser.set_defaults(func=createRequest,operation_name='{parserName.replace("_",".")}')"
+                cliDriverStr += "\n"
             else:
                 cliDriverStr += renderSubParser(parser,operationType+"_"+operationName)
             
@@ -1331,6 +1363,9 @@ def renderSubParser(subParser, parentParserPath):
     if not isinstance(subParser, dict):
         return ""
         
+    settings = loadJSON("../clisettings.json")
+    csv_supported_operations = settings.get("queryOperationCsvOutput", {})
+
     cliDriverStr = f"""
     {parentParserPath}_subparsers = {parentParserPath}_parser.add_subparsers()
 """
@@ -1350,16 +1385,28 @@ def renderSubParser(subParser, parentParserPath):
         if isinstance(subOperation, dict) and "path" in subOperation:
             command = parentParserPath.replace("_"," ")+" "+subOperationName
             operation_path = subOperation.get("path", "")
+            operation_path_csv = subParserPath.replace("_", ".")
+            supports_csv = operation_path_csv in csv_supported_operations
             cliDriverStr += f"""
     {subParserPath}_parser.add_argument('json', nargs='?', default='{{}}', help='Variables in JSON format (defaults to empty object if not provided).')
     {subParserPath}_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     {subParserPath}_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     {subParserPath}_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
     {subParserPath}_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    {subParserPath}_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    {subParserPath}_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     {subParserPath}_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     {subParserPath}_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
     {subParserPath}_parser.set_defaults(func=createRequest,operation_name='{operation_path}')
 """
+                            # Add -f flag for CSV-supported operations
+            if supports_csv:
+                cliDriverStr += f"""
+    {subParserPath}_parser.add_argument('-f', '--format', choices=['json', 'csv'], default='json', help='Output format (default: json)')
+    {subParserPath}_parser.add_argument('--csv-filename', dest='csv_filename', help='Override CSV file name (default: accountmetrics.csv)')
+    {subParserPath}_parser.add_argument('--append-timestamp', dest='append_timestamp', action='store_true', help='Append timestamp to the CSV file name')
+"""
+
         else:
             cliDriverStr += renderSubParser(subOperation,subParserPath)
     return cliDriverStr
@@ -1421,7 +1468,7 @@ def renderSubReadme(subParser, operationType, parentOperationPath):
             renderSubReadme(subOperation, operationType, subOperationPath)
 
 def main():
-    """Main execution function with threading support"""
+    # Main execution function with threading support
     options = initParser()
     
     # Load the introspection schema

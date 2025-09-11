@@ -45,7 +45,8 @@ def sanitize_name_for_terraform(name):
 
 
 def extract_socket_sites_data(sites_data):
-    """Extract socket sites, WAN interfaces, and network ranges from the sites data"""
+    """Extract socket sites, WAN interfaces, and network ranges from the sites data.
+    Supports both legacy (camelCase) and new (snake_case) JSON formats."""
     sites = []
     lan_interfaces = []
     wan_interfaces = []
@@ -63,17 +64,16 @@ def extract_socket_sites_data(sites_data):
                 'address': site_location.get('address', '')
             }
             
-            # Transform native_range data
+            # Transform native_range data (handle both shapes)
             native_range = {
-                'native_network_range': site.get('native_network_range', ''),
-                'local_ip': site.get('local_ip', ''),
-                'translated_subnet': site.get('translated_subnet', ''),
-                'native_network_range_id': site.get('native_network_range_id', '')
+                'native_network_range': site.get('native_network_range', site.get('native_range', {}).get('subnet', '')),
+                'local_ip': site.get('local_ip', site.get('native_range', {}).get('local_ip', '')),
+                'translated_subnet': site.get('translated_subnet', site.get('native_range', {}).get('translated_subnet', '')),
+                'native_network_range_id': site.get('native_network_range_id', site.get('native_range', {}).get('range_id', ''))
             }
-            
-            # Handle dhcp_settings - ensure it's a proper object with required fields
-            dhcp_settings = site.get('dhcp_settings')
-            if dhcp_settings and isinstance(dhcp_settings, dict) and dhcp_settings.get('dhcp_type'):
+            # Optional DHCP
+            dhcp_settings = site.get('dhcp_settings', site.get('native_range', {}).get('dhcp_settings'))
+            if dhcp_settings and isinstance(dhcp_settings, dict) and (dhcp_settings.get('dhcp_type') or dhcp_settings.get('ip_range') or dhcp_settings.get('relay_group_id')):
                 native_range['dhcp_settings'] = {
                     'dhcp_type': dhcp_settings.get('dhcp_type', ''),
                     'ip_range': dhcp_settings.get('ip_range', ''),
@@ -86,7 +86,7 @@ def extract_socket_sites_data(sites_data):
                 'id': site['id'],
                 'name': site['name'],
                 'description': site.get('description', ''),
-                'connection_type': site.get('connectionType', ''),
+                'connection_type': site.get('connectionType', site.get('connection_type', '')),
                 'site_type': site.get('type', ''),
                 'site_location': transformed_location,
                 'native_range': native_range
@@ -94,48 +94,105 @@ def extract_socket_sites_data(sites_data):
         
         # Extract WAN interfaces for this site
         for wan_interface in site.get('wan_interfaces', []):
-            if wan_interface.get('id') and wan_interface.get('name'):
+            # Accept both key styles
+            name = wan_interface.get('name')
+            wid = wan_interface.get('id')
+            index = wan_interface.get('index')
+            if wid and name and index:
+                # Apply the same index formatting logic as the Terraform module
+                try:
+                    # If index is a number, format as INT_X
+                    int(index)
+                    formatted_index = f"INT_{index}"
+                except ValueError:
+                    # If not a number, use as-is
+                    formatted_index = index
+                
                 wan_interfaces.append({
                     'site_id': site['id'],
                     'site_name': site['name'],
-                    'interface_id': wan_interface['id'],
-                    'name': wan_interface['name'],
-                    'upstream_bandwidth': wan_interface.get('upstreamBandwidth', 25),
-                    'downstream_bandwidth': wan_interface.get('downstreamBandwidth', 25),
-                    'dest_type': wan_interface.get('destType', 'CATO'),
-                    'role': wan_interface.get('id', 'wan_1'),  # Use interface ID as role
+                    'interface_id': wid,  # Full ID for actual import
+                    'interface_index': formatted_index,  # Formatted index for Terraform key
+                    'name': name,
+                    'upstream_bandwidth': wan_interface.get('upstreamBandwidth', wan_interface.get('upstream_bandwidth', 25)),
+                    'downstream_bandwidth': wan_interface.get('downstreamBandwidth', wan_interface.get('downstream_bandwidth', 25)),
+                    'dest_type': wan_interface.get('destType', wan_interface.get('dest_type', 'CATO')),
+                    'role': wan_interface.get('role', 'wan_1'),
                     'precedence': 'ACTIVE'
                 })
         
-        # Extract network ranges for this site
+        # Extract network ranges for this site (through LAN interfaces)
         for lan_interface in site.get('lan_interfaces', []):
-            interface_id = lan_interface.get('id', '')
-            interface_name = lan_interface.get('name', '')
-            lan_interfaces.append({
-                'site_id': site['id'],
-                'interface_id': lan_interface['id'],
-                'name': lan_interface['name'],
-                'dest_type': lan_interface.get('destType', 'CATO'),
-                'subnet': lan_interface.get('subnet', ''),
-                'local_ip': lan_interface.get('local_ip', ''),
-            })
+            interface_id = lan_interface.get('id', None)
+            interface_name = lan_interface.get('name', None)
+            interface_index = lan_interface.get('index', None)
+            is_default_lan = lan_interface.get('default_lan', False)
+            
+            # If this is a default_lan interface, get interface info from native_range
+            if is_default_lan:
+                native_range = site.get('native_range', {})
+                interface_id = native_range.get('interface_id')
+                interface_name = native_range.get('interface_name')
+                interface_index = native_range.get('index')
+            
+            # print(f"Processing LAN interface: interface_name={interface_name}, interface_id={interface_id}, interface_index={interface_index}, default_lan={is_default_lan}")
+            # Add LAN interfaces that have valid interface_id and interface_index (including default_lan interfaces)
+            if interface_id!=None and interface_index!=None:
+                # For default_lan interfaces, get additional info from the interface itself or native_range
+                subnet = lan_interface.get('subnet', '')
+                local_ip = lan_interface.get('local_ip', '')
+                
+                # If this is a default_lan interface and we don't have subnet/local_ip, get from native_range
+                if is_default_lan:
+                    native_range_data = site.get('native_range', {})
+                    if not subnet:
+                        subnet = native_range_data.get('subnet', '')
+                    if not local_ip:
+                        local_ip = native_range_data.get('local_ip', '')
+                
+                lan_interfaces.append({
+                    'site_id': site['id'],
+                    'id': interface_id,
+                    'index': interface_index,
+                    'name': interface_name,
+                    'dest_type': lan_interface.get('destType', lan_interface.get('dest_type', 'LAN')),
+                    'subnet': subnet,
+                    'local_ip': local_ip,
+                    'role': interface_index or interface_name,
+                    'site_name': site.get('name', ''),
+                })
             
             for network_range in lan_interface.get('network_ranges', []):
-                if network_range.get('id') and network_range.get('subnet'):
+                subnet = network_range.get('subnet')
+                if network_range.get('id') and subnet and "native_range" not in network_range:
+                    # Use the same interface info logic for network ranges
+                    range_interface_id = interface_id
+                    range_interface_index = interface_index
+                    range_interface_name = interface_name
+                    
+                    # If this is a default_lan interface, use native_range info
+                    if is_default_lan:
+                        native_range = site.get('native_range', {})
+                        range_interface_id = native_range.get('interface_id')
+                        range_interface_name = native_range.get('interface_name')
+                        range_interface_index = native_range.get('index')
+                    
+                    # print(f"Processing Network Range subnet={subnet}, interface_id={range_interface_id}, network_range_id={network_range['id']}, default_lan={is_default_lan}")
                     network_ranges.append({
                         'site_id': site['id'],
                         'site_name': site['name'],
-                        'interface_id': interface_id,
-                        'interface_name': interface_name,
+                        'interface_id': range_interface_id,  # Use actual interface ID, not index
+                        'interface_index': range_interface_index,  # Also pass interface index separately
+                        'interface_name': range_interface_name,
                         'network_range_id': network_range['id'],
-                        'name': network_range.get('rangeName', ''),
-                        'subnet': network_range['subnet'],
-                        'vlan_tag': network_range.get('vlanTag', ''),
-                        'range_type': 'VLAN' if network_range.get('vlanTag') and network_range.get('vlanTag') != '' else 'Native',
+                        'name': network_range.get('rangeName', network_range.get('name', '')),
+                        'subnet': subnet,
+                        'vlan_tag': network_range.get('vlanTag', network_range.get('vlan', '')),
+                        'range_type': 'VLAN' if (network_range.get('vlanTag') or network_range.get('vlan')) else 'Native',
                         'microsegmentation': network_range.get('microsegmentation', False)
                     })
     
-    return sites, wan_interfaces, network_ranges
+    return sites, wan_interfaces, lan_interfaces, network_ranges
 
 
 def run_terraform_import(resource_address, resource_id, timeout=60, verbose=False):
@@ -185,340 +242,340 @@ def run_terraform_import(resource_address, resource_id, timeout=60, verbose=Fals
         return False, "", str(e)
 
 
-def find_rule_index(rules, rule_name):
-    """Find rule index by name."""
-    for index, rule in enumerate(rules):
-        if rule['name'] == rule_name:
-            return index
-    return None
+# def find_rule_index(rules, rule_name):
+#     """Find rule index by name."""
+#     for index, rule in enumerate(rules):
+#         if rule['name'] == rule_name:
+#             return index
+#     return None
 
 
-def import_sections(sections, module_name, resource_type,
-                    resource_name="sections", verbose=False):
-    """Import all sections"""
-    print("\nStarting section imports...")
-    total_sections = len(sections)
-    successful_imports = 0
-    failed_imports = 0
+# def import_sections(sections, module_name, resource_type,
+#                     resource_name="sections", verbose=False):
+#     """Import all sections"""
+#     print("\nStarting section imports...")
+#     total_sections = len(sections)
+#     successful_imports = 0
+#     failed_imports = 0
     
-    for i, section in enumerate(sections):
-        section_id = section['section_id']
-        section_name = section['section_name']
-        section_index = section['section_index']
-        resource_address = f'{module_name}.{resource_type}.{resource_name}["{section_name}"]'
-        print(f"\n[{i+1}/{total_sections}] Section: {section_name} (index: {section_index})")
+#     for i, section in enumerate(sections):
+#         section_id = section['section_id']
+#         section_name = section['section_name']
+#         section_index = section['section_index']
+#         resource_address = f'{module_name}.{resource_type}.{resource_name}["{section_name}"]'
+#         print(f"\n[{i+1}/{total_sections}] Section: {section_name} (index: {section_index})")
 
-        # For sections, we use the section name as the ID since that's how Cato identifies them
-        success, stdout, stderr = run_terraform_import(resource_address, section_id, verbose=verbose)
+#         # For sections, we use the section name as the ID since that's how Cato identifies them
+#         success, stdout, stderr = run_terraform_import(resource_address, section_id, verbose=verbose)
         
-        if success:
-            successful_imports += 1
-        else:
-            failed_imports += 1
+#         if success:
+#             successful_imports += 1
+#         else:
+#             failed_imports += 1
     
-    print(f"\nSection Import Summary: {successful_imports} successful, {failed_imports} failed")
-    return successful_imports, failed_imports
+#     print(f"\nSection Import Summary: {successful_imports} successful, {failed_imports} failed")
+#     return successful_imports, failed_imports
 
 
-def import_rules(rules, module_name, verbose=False,
-                resource_type="cato_if_rule", resource_name="rules",
-                batch_size=10, delay_between_batches=2, auto_approve=False):
-    """Import all rules in batches"""
-    print("\nStarting rule imports...")
-    successful_imports = 0
-    failed_imports = 0
-    total_rules = len(rules)
+# def import_rules(rules, module_name, verbose=False,
+#                 resource_type="cato_if_rule", resource_name="rules",
+#                 batch_size=10, delay_between_batches=2, auto_approve=False):
+#     """Import all rules in batches"""
+#     print("\nStarting rule imports...")
+#     successful_imports = 0
+#     failed_imports = 0
+#     total_rules = len(rules)
     
-    for i, rule in enumerate(rules):
-        rule_id = rule['id']
-        rule_name = rule['name']
-        rule_index = find_rule_index(rules, rule_name)
-        terraform_key = sanitize_name_for_terraform(rule_name)
+#     for i, rule in enumerate(rules):
+#         rule_id = rule['id']
+#         rule_name = rule['name']
+#         rule_index = find_rule_index(rules, rule_name)
+#         terraform_key = sanitize_name_for_terraform(rule_name)
         
-        # Use array index syntax instead of rule ID
-        resource_address = f'{module_name}.{resource_type}.{resource_name}["{str(rule_name)}"]'
-        print(f"\n[{i+1}/{total_rules}] Rule: {rule_name} (index: {rule_index})")
+#         # Use array index syntax instead of rule ID
+#         resource_address = f'{module_name}.{resource_type}.{resource_name}["{str(rule_name)}"]'
+#         print(f"\n[{i+1}/{total_rules}] Rule: {rule_name} (index: {rule_index})")
         
-        success, stdout, stderr = run_terraform_import(resource_address, rule_id, verbose=verbose)
+#         success, stdout, stderr = run_terraform_import(resource_address, rule_id, verbose=verbose)
         
-        if success:
-            successful_imports += 1
-        else:
-            failed_imports += 1
+#         if success:
+#             successful_imports += 1
+#         else:
+#             failed_imports += 1
             
-            # Ask user if they want to continue on failure (unless auto-approved)
-            if failed_imports <= 3 and not auto_approve:  # Only prompt for first few failures
-                response = input(f"\nContinue with remaining imports? (y/n): ").lower()
-                if response == 'n':
-                    print("Import process stopped by user.")
-                    break
+#             # Ask user if they want to continue on failure (unless auto-approved)
+#             if failed_imports <= 3 and not auto_approve:  # Only prompt for first few failures
+#                 response = input(f"\nContinue with remaining imports? (y/n): ").lower()
+#                 if response == 'n':
+#                     print("Import process stopped by user.")
+#                     break
         
-        # Delay between batches
-        if (i + 1) % batch_size == 0 and i < total_rules - 1:
-            print(f"\n  Batch complete. Waiting {delay_between_batches}s before next batch...")
-            time.sleep(delay_between_batches)
+#         # Delay between batches
+#         if (i + 1) % batch_size == 0 and i < total_rules - 1:
+#             print(f"\n  Batch complete. Waiting {delay_between_batches}s before next batch...")
+#             time.sleep(delay_between_batches)
     
-    print(f"\n Rule Import Summary: {successful_imports} successful, {failed_imports} failed")
-    return successful_imports, failed_imports
+#     print(f"\n Rule Import Summary: {successful_imports} successful, {failed_imports} failed")
+#     return successful_imports, failed_imports
 
 
-def import_if_rules_to_tf(args, configuration):
-    """Main function to orchestrate the import process"""
-    try:
-        print(" Terraform Import Tool - Cato IFW Rules & Sections")
-        print("=" * 60)
+# def import_if_rules_to_tf(args, configuration):
+#     """Main function to orchestrate the import process"""
+#     try:
+#         print(" Terraform Import Tool - Cato IFW Rules & Sections")
+#         print("=" * 60)
         
-        # Load data
-        print(f" Loading data from {args.json_file}...")
-        policy_data = load_json_data(args.json_file)
+#         # Load data
+#         print(f" Loading data from {args.json_file}...")
+#         policy_data = load_json_data(args.json_file)
         
-        # Extract rules and sections
-        rules, sections = extract_rules_and_sections(policy_data)
+#         # Extract rules and sections
+#         rules, sections = extract_rules_and_sections(policy_data)
         
-        if hasattr(args, 'verbose') and args.verbose:
-            print(f"section_ids: {json.dumps(policy_data.get('section_ids', {}), indent=2)}")
+#         if hasattr(args, 'verbose') and args.verbose:
+#             print(f"section_ids: {json.dumps(policy_data.get('section_ids', {}), indent=2)}")
         
-        print(f" Found {len(rules)} rules")
-        print(f"  Found {len(sections)} sections")
+#         print(f" Found {len(rules)} rules")
+#         print(f"  Found {len(sections)} sections")
         
-        if not rules and not sections:
-            print(" No rules or sections found. Exiting.")
-            return [{"success": False, "error": "No rules or sections found"}]
+#         if not rules and not sections:
+#             print(" No rules or sections found. Exiting.")
+#             return [{"success": False, "error": "No rules or sections found"}]
         
-        # Validate Terraform environment before proceeding
-        validate_terraform_environment(args.module_name, verbose=args.verbose)
+#         # Validate Terraform environment before proceeding
+#         validate_terraform_environment(args.module_name, verbose=args.verbose)
         
-        # Ask for confirmation (unless auto-approved)
-        if not args.rules_only and not args.sections_only:
-            print(f"\n Ready to import {len(sections)} sections and {len(rules)} rules.")
-        elif args.rules_only:
-            print(f"\n Ready to import {len(rules)} rules only.")
-        elif args.sections_only:
-            print(f"\n Ready to import {len(sections)} sections only.")
+#         # Ask for confirmation (unless auto-approved)
+#         if not args.rules_only and not args.sections_only:
+#             print(f"\n Ready to import {len(sections)} sections and {len(rules)} rules.")
+#         elif args.rules_only:
+#             print(f"\n Ready to import {len(rules)} rules only.")
+#         elif args.sections_only:
+#             print(f"\n Ready to import {len(sections)} sections only.")
         
-        if hasattr(args, 'auto_approve') and args.auto_approve:
-            print("\nAuto-approve enabled, proceeding with import...")
-        else:
-            confirm = input(f"\nProceed with import? (y/n): ").lower()
-            if confirm != 'y':
-                print("Import cancelled.")
-                return [{"success": False, "error": "Import cancelled by user"}]
+#         if hasattr(args, 'auto_approve') and args.auto_approve:
+#             print("\nAuto-approve enabled, proceeding with import...")
+#         else:
+#             confirm = input(f"\nProceed with import? (y/n): ").lower()
+#             if confirm != 'y':
+#                 print("Import cancelled.")
+#                 return [{"success": False, "error": "Import cancelled by user"}]
         
-        total_successful = 0
-        total_failed = 0
+#         total_successful = 0
+#         total_failed = 0
         
-        # Import sections first (if not skipped)
-        if not args.rules_only and sections:
-            successful, failed = import_sections(sections, module_name=args.module_name, resource_type="cato_if_section", verbose=args.verbose)
-            total_successful += successful
-            total_failed += failed
+#         # Import sections first (if not skipped)
+#         if not args.rules_only and sections:
+#             successful, failed = import_sections(sections, module_name=args.module_name, resource_type="cato_if_section", verbose=args.verbose)
+#             total_successful += successful
+#             total_failed += failed
         
-        # Import rules (if not skipped)
-        if not args.sections_only and rules:
-            successful, failed = import_rules(rules, module_name=args.module_name, 
-                                            verbose=args.verbose, batch_size=args.batch_size, 
-                                            delay_between_batches=args.delay,
-                                            auto_approve=getattr(args, 'auto_approve', False))
-            total_successful += successful
-            total_failed += failed
+#         # Import rules (if not skipped)
+#         if not args.sections_only and rules:
+#             successful, failed = import_rules(rules, module_name=args.module_name, 
+#                                             verbose=args.verbose, batch_size=args.batch_size, 
+#                                             delay_between_batches=args.delay,
+#                                             auto_approve=getattr(args, 'auto_approve', False))
+#             total_successful += successful
+#             total_failed += failed
         
-        # Final summary
-        print("\n" + "=" * 60)
-        print(" FINAL IMPORT SUMMARY")
-        print("=" * 60)
-        print(f" Total successful imports: {total_successful}")
-        print(f" Total failed imports: {total_failed}")
-        print(f" Overall success rate: {(total_successful / (total_successful + total_failed) * 100):.1f}%" if (total_successful + total_failed) > 0 else "N/A")
-        print("\n Import process completed!")
+#         # Final summary
+#         print("\n" + "=" * 60)
+#         print(" FINAL IMPORT SUMMARY")
+#         print("=" * 60)
+#         print(f" Total successful imports: {total_successful}")
+#         print(f" Total failed imports: {total_failed}")
+#         print(f" Overall success rate: {(total_successful / (total_successful + total_failed) * 100):.1f}%" if (total_successful + total_failed) > 0 else "N/A")
+#         print("\n Import process completed!")
         
-        return [{
-            "success": True, 
-            "total_successful": total_successful,
-            "total_failed": total_failed,
-            "module_name": args.module_name
-        }]
+#         return [{
+#             "success": True, 
+#             "total_successful": total_successful,
+#             "total_failed": total_failed,
+#             "module_name": args.module_name
+#         }]
         
-    except Exception as e:
-        print(f"ERROR: {str(e)}")
-        return [{"success": False, "error": str(e)}]
+#     except Exception as e:
+#         print(f"ERROR: {str(e)}")
+#         return [{"success": False, "error": str(e)}]
 
 
-def load_wf_json_data(json_file):
-    """Load WAN Firewall data from JSON file"""
-    try:
-        with open(json_file, 'r') as f:
-            data = json.load(f)
-            return data['data']['policy']['wanFirewall']['policy']
-    except FileNotFoundError:
-        print(f"Error: JSON file '{json_file}' not found")
-        sys.exit(1)
-    except json.JSONDecodeError as e:
-        print(f"Error: Invalid JSON in '{json_file}': {e}")
-        sys.exit(1)
-    except KeyError as e:
-        print(f"Error: Expected JSON structure not found in '{json_file}': {e}")
-        sys.exit(1)
+# def load_wf_json_data(json_file):
+#     """Load WAN Firewall data from JSON file"""
+#     try:
+#         with open(json_file, 'r') as f:
+#             data = json.load(f)
+#             return data['data']['policy']['wanFirewall']['policy']
+#     except FileNotFoundError:
+#         print(f"Error: JSON file '{json_file}' not found")
+#         sys.exit(1)
+#     except json.JSONDecodeError as e:
+#         print(f"Error: Invalid JSON in '{json_file}': {e}")
+#         sys.exit(1)
+#     except KeyError as e:
+#         print(f"Error: Expected JSON structure not found in '{json_file}': {e}")
+#         sys.exit(1)
 
 
-def import_wf_sections(sections, module_name, verbose=False,
-                      resource_type="cato_wf_section", resource_name="sections"):
-    """Import all WAN Firewall sections"""
-    print("\nStarting WAN Firewall section imports...")
-    total_sections = len(sections)
-    successful_imports = 0
-    failed_imports = 0
+# def import_wf_sections(sections, module_name, verbose=False,
+#                       resource_type="cato_wf_section", resource_name="sections"):
+#     """Import all WAN Firewall sections"""
+#     print("\nStarting WAN Firewall section imports...")
+#     total_sections = len(sections)
+#     successful_imports = 0
+#     failed_imports = 0
     
-    for i, section in enumerate(sections):
-        section_id = section['section_id']
-        section_name = section['section_name']
-        section_index = section['section_index']
-        # Add module. prefix if not present
-        if not module_name.startswith('module.'):
-            module_name = f'module.{module_name}'
-        resource_address = f'{module_name}.{resource_type}.{resource_name}["{section_name}"]'
-        print(f"\n[{i+1}/{total_sections}] Section: {section_name} (index: {section_index})")
+#     for i, section in enumerate(sections):
+#         section_id = section['section_id']
+#         section_name = section['section_name']
+#         section_index = section['section_index']
+#         # Add module. prefix if not present
+#         if not module_name.startswith('module.'):
+#             module_name = f'module.{module_name}'
+#         resource_address = f'{module_name}.{resource_type}.{resource_name}["{section_name}"]'
+#         print(f"\n[{i+1}/{total_sections}] Section: {section_name} (index: {section_index})")
 
-        # For sections, we use the section name as the ID since that's how Cato identifies them
-        success, stdout, stderr = run_terraform_import(resource_address, section_id, verbose=verbose)
+#         # For sections, we use the section name as the ID since that's how Cato identifies them
+#         success, stdout, stderr = run_terraform_import(resource_address, section_id, verbose=verbose)
         
-        if success:
-            successful_imports += 1
-        else:
-            failed_imports += 1
+#         if success:
+#             successful_imports += 1
+#         else:
+#             failed_imports += 1
     
-    print(f"\nWAN Firewall Section Import Summary: {successful_imports} successful, {failed_imports} failed")
-    return successful_imports, failed_imports
+#     print(f"\nWAN Firewall Section Import Summary: {successful_imports} successful, {failed_imports} failed")
+#     return successful_imports, failed_imports
 
 
-def import_wf_rules(rules, module_name, verbose=False,
-                   resource_type="cato_wf_rule", resource_name="rules",
-                   batch_size=10, delay_between_batches=2, auto_approve=False):
-    """Import all WAN Firewall rules in batches"""
-    print("\nStarting WAN Firewall rule imports...")
-    successful_imports = 0
-    failed_imports = 0
-    total_rules = len(rules)
+# def import_wf_rules(rules, module_name, verbose=False,
+#                    resource_type="cato_wf_rule", resource_name="rules",
+#                    batch_size=10, delay_between_batches=2, auto_approve=False):
+#     """Import all WAN Firewall rules in batches"""
+#     print("\nStarting WAN Firewall rule imports...")
+#     successful_imports = 0
+#     failed_imports = 0
+#     total_rules = len(rules)
     
-    for i, rule in enumerate(rules):
-        rule_id = rule['id']
-        rule_name = rule['name']
-        rule_index = find_rule_index(rules, rule_name)
-        terraform_key = sanitize_name_for_terraform(rule_name)
+#     for i, rule in enumerate(rules):
+#         rule_id = rule['id']
+#         rule_name = rule['name']
+#         rule_index = find_rule_index(rules, rule_name)
+#         terraform_key = sanitize_name_for_terraform(rule_name)
         
-        # Add module. prefix if not present
-        if not module_name.startswith('module.'):
-            module_name = f'module.{module_name}'
+#         # Add module. prefix if not present
+#         if not module_name.startswith('module.'):
+#             module_name = f'module.{module_name}'
 
-        # Use array index syntax instead of rule ID
-        resource_address = f'{module_name}.{resource_type}.{resource_name}["{str(rule_name)}"]'
-        print(f"\n[{i+1}/{total_rules}] Rule: {rule_name} (index: {rule_index})")
+#         # Use array index syntax instead of rule ID
+#         resource_address = f'{module_name}.{resource_type}.{resource_name}["{str(rule_name)}"]'
+#         print(f"\n[{i+1}/{total_rules}] Rule: {rule_name} (index: {rule_index})")
         
-        success, stdout, stderr = run_terraform_import(resource_address, rule_id, verbose=verbose)
+#         success, stdout, stderr = run_terraform_import(resource_address, rule_id, verbose=verbose)
         
-        if success:
-            successful_imports += 1
-        else:
-            failed_imports += 1
+#         if success:
+#             successful_imports += 1
+#         else:
+#             failed_imports += 1
             
-            # Ask user if they want to continue on failure (unless auto-approved)
-            if failed_imports <= 3 and not auto_approve:  # Only prompt for first few failures
-                response = input(f"\nContinue with remaining imports? (y/n): ").lower()
-                if response == 'n':
-                    print("Import process stopped by user.")
-                    break
+#             # Ask user if they want to continue on failure (unless auto-approved)
+#             if failed_imports <= 3 and not auto_approve:  # Only prompt for first few failures
+#                 response = input(f"\nContinue with remaining imports? (y/n): ").lower()
+#                 if response == 'n':
+#                     print("Import process stopped by user.")
+#                     break
         
-        # Delay between batches
-        if (i + 1) % batch_size == 0 and i < total_rules - 1:
-            print(f"\n   Batch complete. Waiting {delay_between_batches}s before next batch...")
-            time.sleep(delay_between_batches)
+#         # Delay between batches
+#         if (i + 1) % batch_size == 0 and i < total_rules - 1:
+#             print(f"\n   Batch complete. Waiting {delay_between_batches}s before next batch...")
+#             time.sleep(delay_between_batches)
     
-    print(f"\nWAN Firewall Rule Import Summary: {successful_imports} successful, {failed_imports} failed")
-    return successful_imports, failed_imports
+#     print(f"\nWAN Firewall Rule Import Summary: {successful_imports} successful, {failed_imports} failed")
+#     return successful_imports, failed_imports
 
 
-def import_wf_rules_to_tf(args, configuration):
-    """Main function to orchestrate the WAN Firewall import process"""
-    try:
-        print(" Terraform Import Tool - Cato WF Rules & Sections")
-        print("=" * 60)
+# def import_wf_rules_to_tf(args, configuration):
+#     """Main function to orchestrate the WAN Firewall import process"""
+#     try:
+#         print(" Terraform Import Tool - Cato WF Rules & Sections")
+#         print("=" * 60)
         
-        # Load data
-        print(f" Loading data from {args.json_file}...")
-        policy_data = load_wf_json_data(args.json_file)
+#         # Load data
+#         print(f" Loading data from {args.json_file}...")
+#         policy_data = load_wf_json_data(args.json_file)
         
-        # Extract rules and sections
-        rules, sections = extract_rules_and_sections(policy_data)
+#         # Extract rules and sections
+#         rules, sections = extract_rules_and_sections(policy_data)
         
-        if hasattr(args, 'verbose') and args.verbose:
-            print(f"section_ids: {json.dumps(policy_data.get('section_ids', {}), indent=2)}")
+#         if hasattr(args, 'verbose') and args.verbose:
+#             print(f"section_ids: {json.dumps(policy_data.get('section_ids', {}), indent=2)}")
         
-        print(f" Found {len(rules)} rules")
-        print(f"  Found {len(sections)} sections")
+#         print(f" Found {len(rules)} rules")
+#         print(f"  Found {len(sections)} sections")
         
-        if not rules and not sections:
-            print(" No rules or sections found. Exiting.")
-            return [{"success": False, "error": "No rules or sections found"}]
+#         if not rules and not sections:
+#             print(" No rules or sections found. Exiting.")
+#             return [{"success": False, "error": "No rules or sections found"}]
         
-        # Add module. prefix if not present
-        module_name = args.module_name
-        if not module_name.startswith('module.'):
-            module_name = f'module.{module_name}'
-        # Validate Terraform environment before proceeding
-        validate_terraform_environment(module_name, verbose=args.verbose)
+#         # Add module. prefix if not present
+#         module_name = args.module_name
+#         if not module_name.startswith('module.'):
+#             module_name = f'module.{module_name}'
+#         # Validate Terraform environment before proceeding
+#         validate_terraform_environment(module_name, verbose=args.verbose)
         
-        # Ask for confirmation (unless auto-approved)
-        if not args.rules_only and not args.sections_only:
-            print(f"\n Ready to import {len(sections)} sections and {len(rules)} rules.")
-        elif args.rules_only:
-            print(f"\n Ready to import {len(rules)} rules only.")
-        elif args.sections_only:
-            print(f"\n Ready to import {len(sections)} sections only.")
+#         # Ask for confirmation (unless auto-approved)
+#         if not args.rules_only and not args.sections_only:
+#             print(f"\n Ready to import {len(sections)} sections and {len(rules)} rules.")
+#         elif args.rules_only:
+#             print(f"\n Ready to import {len(rules)} rules only.")
+#         elif args.sections_only:
+#             print(f"\n Ready to import {len(sections)} sections only.")
         
-        if hasattr(args, 'auto_approve') and args.auto_approve:
-            print("\nAuto-approve enabled, proceeding with import...")
-        else:
-            confirm = input(f"\nProceed with import? (y/n): ").lower()
-            if confirm != 'y':
-                print("Import cancelled.")
-                return [{"success": False, "error": "Import cancelled by user"}]
+#         if hasattr(args, 'auto_approve') and args.auto_approve:
+#             print("\nAuto-approve enabled, proceeding with import...")
+#         else:
+#             confirm = input(f"\nProceed with import? (y/n): ").lower()
+#             if confirm != 'y':
+#                 print("Import cancelled.")
+#                 return [{"success": False, "error": "Import cancelled by user"}]
         
-        total_successful = 0
-        total_failed = 0
+#         total_successful = 0
+#         total_failed = 0
         
-        # Import sections first (if not skipped)
-        if not args.rules_only and sections:
-            successful, failed = import_wf_sections(sections, module_name=args.module_name, verbose=args.verbose)
-            total_successful += successful
-            total_failed += failed
+#         # Import sections first (if not skipped)
+#         if not args.rules_only and sections:
+#             successful, failed = import_wf_sections(sections, module_name=args.module_name, verbose=args.verbose)
+#             total_successful += successful
+#             total_failed += failed
         
-        # Import rules (if not skipped)
-        if not args.sections_only and rules:
-            successful, failed = import_wf_rules(rules, module_name=args.module_name, 
-                                                verbose=args.verbose, batch_size=args.batch_size, 
-                                                delay_between_batches=args.delay,
-                                                auto_approve=getattr(args, 'auto_approve', False))
-            total_successful += successful
-            total_failed += failed
+#         # Import rules (if not skipped)
+#         if not args.sections_only and rules:
+#             successful, failed = import_wf_rules(rules, module_name=args.module_name, 
+#                                                 verbose=args.verbose, batch_size=args.batch_size, 
+#                                                 delay_between_batches=args.delay,
+#                                                 auto_approve=getattr(args, 'auto_approve', False))
+#             total_successful += successful
+#             total_failed += failed
         
-        # Final summary
-        print("\n" + "=" * 60)
-        print(" FINAL IMPORT SUMMARY")
-        print("=" * 60)
-        print(f" Total successful imports: {total_successful}")
-        print(f" Total failed imports: {total_failed}")
-        print(f" Overall success rate: {(total_successful / (total_successful + total_failed) * 100):.1f}%" if (total_successful + total_failed) > 0 else "N/A")
-        print("\n Import process completed!")
+#         # Final summary
+#         print("\n" + "=" * 60)
+#         print(" FINAL IMPORT SUMMARY")
+#         print("=" * 60)
+#         print(f" Total successful imports: {total_successful}")
+#         print(f" Total failed imports: {total_failed}")
+#         print(f" Overall success rate: {(total_successful / (total_successful + total_failed) * 100):.1f}%" if (total_successful + total_failed) > 0 else "N/A")
+#         print("\n Import process completed!")
         
-        return [{
-            "success": True, 
-            "total_successful": total_successful,
-            "total_failed": total_failed,
-            "module_name": args.module_name
-        }]
+#         return [{
+#             "success": True, 
+#             "total_successful": total_successful,
+#             "total_failed": total_failed,
+#             "module_name": args.module_name
+#         }]
         
-    except Exception as e:
-        print(f"ERROR: {str(e)}")
-        return [{"success": False, "error": str(e)}]
+#     except Exception as e:
+#         print(f"ERROR: {str(e)}")
+#         return [{"success": False, "error": str(e)}]
 
 
 def import_socket_sites(sites, module_name, verbose=False,
@@ -567,7 +624,7 @@ def import_socket_sites(sites, module_name, verbose=False,
 
 
 def import_wan_interfaces(wan_interfaces, module_name, verbose=False,
-                         resource_type="cato_wan_interface", resource_name="wan_interfaces",
+                         resource_type="cato_wan_interface", resource_name="wan",
                          batch_size=10, delay_between_batches=2, auto_approve=False):
     """Import all WAN interfaces in batches"""
     print("\nStarting WAN interface imports...")
@@ -585,18 +642,17 @@ def import_wan_interfaces(wan_interfaces, module_name, verbose=False,
         if not module_name.startswith('module.'):
             module_name = f'module.{module_name}'
         
-        # Use correct resource addressing for WAN interfaces
-        # WAN interfaces use the interface role as the key
-        wan_role = interface['role']
-        resource_address = f'{module_name}.module.socket-site["{site_name}"].cato_wan_interface.wan["{wan_role}"]'
+        # In the module, cato_wan_interface.wan is now keyed by interface_index, which we
+        # format from the JSON "index" field. Use interface_index as the key.
+        wan_key = interface.get('interface_index', interface_id)  # Use formatted index, fallback to ID
+        resource_address = f'{module_name}.module.socket-site["{site_name}"].cato_wan_interface.wan["{wan_key}"]'
         
-        # WAN interface import needs site_id:interface_id format
-        # Check if interface_id is already in the correct format (contains ':')
+        # WAN import id must be "site_id:interface_part"
         if ':' in interface_id:
-            import_id = interface_id  # Already in correct format
+            import_id = interface_id
         else:
-            import_id = f"{site_id}:{interface_id}"  # Need to add site_id
-        print(f"\n[{i+1}/{total_interfaces}] WAN Interface: {interface_name} on {site_name} (ID: {import_id})")
+            import_id = f"{site_id}:{interface_id}"
+        print(f"\n[{i+1}/{total_interfaces}] WAN Interface: {interface_name} on {site_name} (Key: {wan_key})")
         
         success, stdout, stderr = run_terraform_import(resource_address, import_id, verbose=verbose)
         
@@ -605,14 +661,12 @@ def import_wan_interfaces(wan_interfaces, module_name, verbose=False,
         else:
             failed_imports += 1
             
-            # Ask user if they want to continue on failure (unless auto-approved)
-            if failed_imports <= 3 and not auto_approve:  # Only prompt for first few failures
+            if failed_imports <= 3 and not auto_approve:
                 response = input(f"\nContinue with remaining imports? (y/n): ").lower()
                 if response == 'n':
                     print("Import process stopped by user.")
                     break
         
-        # Delay between batches
         if (i + 1) % batch_size == 0 and i < total_interfaces - 1:
             print(f"\n  Batch complete. Waiting {delay_between_batches}s before next batch...")
             time.sleep(delay_between_batches)
@@ -621,10 +675,10 @@ def import_wan_interfaces(wan_interfaces, module_name, verbose=False,
     return successful_imports, failed_imports
 
 def import_lan_interfaces(lan_interfaces, module_name, verbose=False,
-                         resource_type="cato_lan_interface", resource_name="lan_interfaces",
+                         resource_type="cato_lan_interface", resource_name="interface",
                          batch_size=10, delay_between_batches=2, auto_approve=False):
-    """Import all WAN interfaces in batches"""
-    print("\nStarting WAN interface imports...")
+    """Import all LAN interfaces in batches"""
+    print("\nStarting LAN interface imports...")
     successful_imports = 0
     failed_imports = 0
     total_interfaces = len(lan_interfaces)
@@ -640,12 +694,20 @@ def import_lan_interfaces(lan_interfaces, module_name, verbose=False,
         if not module_name.startswith('module.'):
             module_name = f'module.{module_name}'
         
-        # Use correct resource addressing for WAN interfaces
-        # WAN interfaces use the interface role as the key
-        lan_role = interface['role']
-        resource_address = f'{module_name}.module.socket-site["{site_name}"].cato_lan_interface.lan["{interface_index}"]'
+        # Updated addressing to use interface_index-based indexing:
+        # module.sites.module.socket-site[site].module.lan_interfaces[interface_index].cato_lan_interface.interface[interface_id]
+        # Apply the same index formatting logic as the Terraform module
+        try:
+            # If index is a number, format as INT_X
+            int(interface_index)
+            formatted_index = f"INT_{interface_index}"
+        except (ValueError, TypeError):
+            # If not a number or None, use as-is
+            formatted_index = interface_index if interface_index else interface_id
+        
+        resource_address = f'{module_name}.module.socket-site["{site_name}"].module.lan_interfaces["{formatted_index}"].cato_lan_interface.interface["{formatted_index}"]'
 
-        print(f"\n[{i+1}/{total_interfaces}] LAN Interface: {interface_name} on {site_name} (ID: {interface_id})")
+        print(f"\n[{i+1}/{total_interfaces}] LAN Interface: {interface_name} on {site_name} (Index: {interface_index}, ID: {interface_id})")
 
         success, stdout, stderr = run_terraform_import(resource_address, interface_id, verbose=verbose)
         
@@ -654,23 +716,21 @@ def import_lan_interfaces(lan_interfaces, module_name, verbose=False,
         else:
             failed_imports += 1
             
-            # Ask user if they want to continue on failure (unless auto-approved)
-            if failed_imports <= 3 and not auto_approve:  # Only prompt for first few failures
+            if failed_imports <= 3 and not auto_approve:
                 response = input(f"\nContinue with remaining imports? (y/n): ").lower()
                 if response == 'n':
                     print("Import process stopped by user.")
                     break
         
-        # Delay between batches
         if (i + 1) % batch_size == 0 and i < total_interfaces - 1:
             print(f"\n  Batch complete. Waiting {delay_between_batches}s before next batch...")
             time.sleep(delay_between_batches)
     
-    print(f"\nWAN Interface Import Summary: {successful_imports} successful, {failed_imports} failed")
+    print(f"\nLAN Interface Import Summary: {successful_imports} successful, {failed_imports} failed")
     return successful_imports, failed_imports
 
 def import_network_ranges(network_ranges, module_name, verbose=False,
-                         resource_type="cato_network_range", resource_name="network_ranges",
+                         resource_type="cato_network_range", resource_name="network_range",
                          batch_size=10, delay_between_batches=2, auto_approve=False):
     """Import all network ranges in batches"""
     print("\nStarting network range imports...")
@@ -688,19 +748,25 @@ def import_network_ranges(network_ranges, module_name, verbose=False,
         if not module_name.startswith('module.'):
             module_name = f'module.{module_name}'
         
-        # Use correct resource addressing for network ranges
-        # Based on terraform plan output, network ranges are structured as:
-        # module.sites.module.socket-site["site_name"].module.lan_interfaces["interface_id"].module.network_range["subnet"].cato_network_range.no_dhcp[0]
-        interface_id = network_range['interface_id']
-        # Convert interface_id to the format used in terraform (e.g., "161570" -> "INT_5")
-        if interface_id.isdigit():
-            # This is a numeric interface ID, need to convert to INT_X format
-            # For now, we'll use the interface_id as is and let terraform handle the mapping
-            terraform_interface_id = interface_id
-        else:
-            terraform_interface_id = interface_id
+        # Use correct resource addressing for network ranges with interface_index-based addressing
+        # module.sites.module.socket-site["site_name"].module.lan_interfaces["interface_index"].module.network_ranges.module.network_range["range_key"].cato_network_range.no_dhcp[0]
+        interface_index = network_range['interface_index']  # Use interface index for addressing
         
-        resource_address = f'{module_name}.module.socket-site["{site_name}"].module.lan_interfaces["{terraform_interface_id}"].module.network_range["{network_range_id}"].cato_network_range.no_dhcp[0]'
+        # Apply the same index formatting logic as the Terraform module
+        try:
+            # If index is a number, format as INT_X
+            int(interface_index)
+            formatted_index = f"INT_{interface_index}"
+        except (ValueError, TypeError):
+            # If not a number or None, use as-is (fallback to interface_id if needed)
+            formatted_index = interface_index if interface_index else network_range['interface_id']
+        
+        # Generate the same key format as the Terraform configuration:
+        # "${network_range.interface_index}-${replace(network_range.name, " ", "_")}"
+        sanitized_range_name = range_name.replace(" ", "_")
+        range_key = f"{formatted_index}-{sanitized_range_name}"
+        
+        resource_address = f'{module_name}.module.socket-site["{site_name}"].module.lan_interfaces["{formatted_index}"].module.network_ranges.module.network_range["{range_key}"].cato_network_range.no_dhcp[0]'
         
         print(f"\n[{i+1}/{total_ranges}] Network Range: {range_name} - {subnet} ({network_range_id}) on {site_name} (ID: {network_range_id})")
         
@@ -835,9 +901,14 @@ def import_socket_sites_to_tf(args, configuration):
         print(f" Loading data from {args.json_file}...")
         sites_data = load_json_data(args.json_file)
         
-        # Extract sites, WAN interfaces, and network ranges
-        sites, wan_interfaces, network_ranges = extract_socket_sites_data(sites_data)
-        
+        # Extract sites, WAN interfaces, LAN interfaces, and network ranges
+        sites, wan_interfaces, lan_interfaces, network_ranges = extract_socket_sites_data(sites_data)
+        # print("\n==================== DEBUG =====================\n")
+        # print("sites",json.dumps( sites, indent=2))
+        # print("wan_interfaces",json.dumps( wan_interfaces, indent=2))
+        # print("lan_interfaces",json.dumps( lan_interfaces, indent=2))
+        # print("network_ranges",json.dumps( network_ranges, indent=2))
+        # print("\n==================== DEBUG =====================\n")
         if hasattr(args, 'verbose') and args.verbose:
             print(f"\nExtracted data summary:")
             print(f"  Sites: {len(sites)}")
@@ -878,16 +949,25 @@ def import_socket_sites_to_tf(args, configuration):
         validate_terraform_environment(module_name, verbose=args.verbose)
         
         # Ask for confirmation (unless auto-approved)
+        # Determine which categories to import based on flags
+        sites_only = getattr(args, 'sites_only', False)
+        wan_only = getattr(args, 'wan_interfaces_only', False)
+        lan_only = getattr(args, 'lan_interfaces_only', False)
+        ranges_only = getattr(args, 'network_ranges_only', False)
+
         import_summary = []
-        if not args.sites_only and not args.interfaces_only and not args.network_ranges_only:
+        if not (sites_only or wan_only or lan_only or ranges_only):
             import_summary.append(f"{len(sites)} sites")
             import_summary.append(f"{len(wan_interfaces)} WAN interfaces")
+            import_summary.append(f"{len(lan_interfaces)} LAN interfaces")
             import_summary.append(f"{len(network_ranges)} network ranges")
-        elif args.sites_only:
+        elif sites_only:
             import_summary.append(f"{len(sites)} sites only")
-        elif args.lan_interfaces_only:
+        elif wan_only:
+            import_summary.append(f"{len(wan_interfaces)} WAN interfaces only")
+        elif lan_only:
             import_summary.append(f"{len(lan_interfaces)} LAN interfaces only")
-        elif args.network_ranges_only:
+        elif ranges_only:
             import_summary.append(f"{len(network_ranges)} network ranges only")
         
         print(f"\n Ready to import {', '.join(import_summary)}.")
@@ -903,8 +983,8 @@ def import_socket_sites_to_tf(args, configuration):
         total_successful = 0
         total_failed = 0
         
-        # Import sites first (if not skipped)
-        if not args.interfaces_only and not args.network_ranges_only and sites:
+        # Import sites first (if selected)
+        if (sites_only or not (wan_only or lan_only or ranges_only)) and sites:
             successful, failed = import_socket_sites(sites, module_name=args.module_name, 
                                                    verbose=args.verbose, batch_size=args.batch_size, 
                                                    delay_between_batches=args.delay,
@@ -912,8 +992,8 @@ def import_socket_sites_to_tf(args, configuration):
             total_successful += successful
             total_failed += failed
         
-        # Import WAN interfaces (if not skipped)
-        if not args.sites_only and not args.network_ranges_only and wan_interfaces:
+        # Import WAN interfaces (if selected)
+        if (wan_only or (not sites_only and not lan_only and not ranges_only)) and wan_interfaces:
             successful, failed = import_wan_interfaces(wan_interfaces, module_name=args.module_name, 
                                                       verbose=args.verbose, batch_size=args.batch_size, 
                                                       delay_between_batches=args.delay,
@@ -921,8 +1001,8 @@ def import_socket_sites_to_tf(args, configuration):
             total_successful += successful
             total_failed += failed
 
-        # Import LAN interfaces (if not skipped)
-        if not args.sites_only and not args.network_ranges_only and lan_interfaces:
+        # Import LAN interfaces (if selected)
+        if (lan_only or (not sites_only and not wan_only and not ranges_only)) and lan_interfaces:
             successful, failed = import_lan_interfaces(lan_interfaces, module_name=args.module_name, 
                                                       verbose=args.verbose, batch_size=args.batch_size, 
                                                       delay_between_batches=args.delay,
@@ -930,8 +1010,8 @@ def import_socket_sites_to_tf(args, configuration):
             total_successful += successful
             total_failed += failed
      
-        # Import network ranges (if not skipped)
-        if not args.sites_only and not args.interfaces_only and network_ranges:
+        # Import network ranges (if selected)
+        if (ranges_only or (not sites_only and not wan_only and not lan_only)) and network_ranges:
             successful, failed = import_network_ranges(network_ranges, module_name=args.module_name, 
                                                       verbose=args.verbose, batch_size=args.batch_size, 
                                                       delay_between_batches=args.delay,

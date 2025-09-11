@@ -24,7 +24,14 @@ import pprint
 import uuid
 import string
 from urllib3.filepost import encode_multipart_formdata
-
+import base64
+import hmac
+import hashlib
+import datetime
+import ssl
+import urllib.request
+import urllib.error
+import socket
 
 class CustomAPIClient:
     """Enhanced API Client with custom query generation capabilities"""
@@ -66,6 +73,10 @@ def createRequest(args, configuration):
         API response or error object
     """
     params = vars(args)
+    
+    # Process output routing options
+    network_config, sentinel_config = process_output_options(args)
+    
     instance = CallApi(ApiClient(configuration))
     operation_name = params["operation_name"]
     
@@ -74,6 +85,24 @@ def createRequest(args, configuration):
     except Exception as e:
         print(f"ERROR: Failed to load operation model for {operation_name}: {e}")
         return None
+        
+    # Load CSV configuration for this operation
+    csv_function = None
+    output_format = getattr(args, 'format', 'json')  # Default to json if -f not provided
+    
+    if output_format == 'csv':
+        try:
+            settings = loadJSON("clisettings.json")
+            csv_supported_operations = settings.get("queryOperationCsvOutput", {})
+            csv_function = csv_supported_operations.get(operation_name)
+        except Exception as e:
+            print(f"WARNING: Could not load CSV settings: {e}")
+            csv_function = None
+        
+        if not csv_function:
+            print(f"ERROR: CSV output not supported for operation '{operation_name}'")
+            print(f"Supported CSV operations: {list(csv_supported_operations.keys()) if 'csv_supported_operations' in locals() else 'none'}")
+            return None
         
     variables_obj = {}
     
@@ -106,8 +135,8 @@ def createRequest(args, configuration):
         variables_obj["accountID"] = configuration.accountID
     
     # Validation logic
-    if params["t"]:
-        # Skip validation when using -t flag
+    if params["t"] or params.get("skip_validation", False):
+        # Skip validation when using -t flag or --skip-validation flag
         is_ok = True
     else:
         is_ok, invalid_vars, message = validateArgs(variables_obj, operation)
@@ -121,7 +150,104 @@ def createRequest(args, configuration):
             return None
         else:
             try:
-                return instance.call_api(body, params)
+                response = instance.call_api(body, params)
+                
+                # Handle output routing if network or sentinel options are specified
+                if (network_config or sentinel_config) and response:
+                    # Get the response data
+                    response_data = response[0] if isinstance(response, list) and len(response) > 0 else response
+                    
+                    # Send to network endpoint if specified
+                    if network_config:
+                        send_events_to_network(response_data, network_config['host'], network_config['port'])
+                    
+                    # Send to Sentinel if specified  
+                    if sentinel_config:
+                        # Convert response to JSON bytes for Sentinel
+                        json_data = json.dumps(response_data).encode('utf-8')
+                        result_code = post_sentinel_data(
+                            sentinel_config['customer_id'], 
+                            sentinel_config['shared_key'], 
+                            json_data
+                        )
+                        print(f"Sentinel API response code: {result_code}")
+                
+                # Apply CSV formatting if requested
+                if output_format == 'csv' and csv_function and response:
+                    try:
+                        # Import the CSV formatter dynamically
+                        # Get the response data (handle both list and tuple responses)
+                        if isinstance(response, (list, tuple)) and len(response) > 0:
+                            response_data = response[0]
+                        else:
+                            response_data = response
+                        
+                        # Add Utils directory to path and import csv_formatter
+                        current_dir = os.path.dirname(os.path.abspath(__file__))
+                        utils_dir = os.path.join(os.path.dirname(current_dir), 'Utils')
+                        if utils_dir not in sys.path:
+                            sys.path.insert(0, utils_dir)
+                        
+                        # Import the csv_formatter module
+                        import csv_formatter
+                        
+                        # Call the appropriate CSV formatter function
+                        if hasattr(csv_formatter, csv_function):
+                            csv_formatter_func = getattr(csv_formatter, csv_function)
+                            csv_output = csv_formatter_func(response_data)
+                            
+                            if csv_output:
+                                # Determine output directory (reports) in current folder
+                                reports_dir = os.path.join(os.getcwd(), 'reports')
+                                if not os.path.exists(reports_dir):
+                                    os.makedirs(reports_dir)
+                                
+                                # Default filename is the operation name (second segment) lowercased
+                                op_base = operation_name.split('.')[-1].lower()
+                                default_filename = f"{op_base}.csv"
+                                filename = default_filename
+                                
+                                # Override filename if provided
+                                if hasattr(args, 'csv_filename') and getattr(args, 'csv_filename'):
+                                    filename = getattr(args, 'csv_filename')
+                                    # Ensure .csv extension
+                                    if not filename.lower().endswith('.csv'):
+                                        filename += '.csv'
+                                
+                                # Append timestamp if requested
+                                if hasattr(args, 'append_timestamp') and getattr(args, 'append_timestamp'):
+                                    ts = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+                                    name, ext = os.path.splitext(filename)
+                                    filename = f"{name}_{ts}{ext}"
+                                
+                                output_path = os.path.join(reports_dir, filename)
+                                
+                                # Write CSV to file
+                                try:
+                                    with open(output_path, 'w', encoding='utf-8', newline='') as f:
+                                        f.write(csv_output)
+                                except Exception as write_err:
+                                    print(f"ERROR: Failed to write CSV to file {output_path}: {write_err}")
+                                    # Fallback: return CSV to stdout behavior
+                                    return [{"__csv_output__": csv_output}]
+                                
+                                if params.get('v'):
+                                    print(f"Saved CSV report to: {output_path}")
+                                
+                                # Return structured response similar to export functions
+                                return [{"success": True, "output_file": output_path, "operation": operation_name}]
+                            else:
+                                print("WARNING: CSV formatter returned empty result")
+                                return response
+                        else:
+                            print(f"ERROR: CSV formatter function '{csv_function}' not found")
+                            return response
+                    except Exception as e:
+                        print(f"ERROR: Failed to format CSV output: {e}")
+                        return response
+                
+                return response
+                
             except ApiException as e:
                 return e
     else:
@@ -235,11 +361,148 @@ def querySiteLocation(args, configuration):
     return [response]
 
 
+def process_output_options(args):
+    """
+    Process network streaming and sentinel output options
+    
+    Returns:
+        tuple: (network_config, sentinel_config) where each is None or dict with parsed options
+    """
+    network_config = None
+    sentinel_config = None
+    
+    # Process network options
+    if hasattr(args, 'stream_events') and args.stream_events is not None:
+        network_elements = args.stream_events.split(":")
+        if len(network_elements) != 2:
+            print("Error: -n value must be in the form of host:port")
+            sys.exit(1)
+        
+        try:
+            host = network_elements[0]
+            port = int(network_elements[1])
+            network_config = {'host': host, 'port': port}
+        except ValueError:
+            print("Error: -n port must be a valid integer")
+            sys.exit(1)
+    
+    # Process sentinel options  
+    if hasattr(args, 'sentinel') and args.sentinel is not None:
+        sentinel_elements = args.sentinel.split(":")
+        if len(sentinel_elements) != 2:
+            print("Error: -z value must be in the form of customerid:sharedkey")
+            sys.exit(1)
+        
+        customer_id = sentinel_elements[0]
+        shared_key = sentinel_elements[1]
+        sentinel_config = {'customer_id': customer_id, 'shared_key': shared_key}
+    
+    return network_config, sentinel_config
+
+
+def send_events_to_network(data, host, port):
+    """
+    Send events over network to host:port TCP
+    
+    Args:
+        data: JSON data to send
+        host: Target hostname or IP
+        port: Target port number
+    """
+    try:
+        # Convert data to JSON string if it's not already
+        if isinstance(data, (dict, list)):
+            json_data = json.dumps(data)
+        else:
+            json_data = str(data)
+        
+        # Create TCP socket and send data
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+            sock.connect((host, port))
+            sock.sendall(json_data.encode('utf-8'))
+            
+        print(f"Successfully sent data to {host}:{port}")
+        
+    except socket.error as e:
+        print(f"Network error sending to {host}:{port}: {e}")
+        sys.exit(1)
+    except Exception as e:
+        print(f"Error sending data to network: {e}")
+        sys.exit(1)
+
+
+def build_signature(customer_id, shared_key, date, content_length):
+    """
+    Build the API signature for Sentinel
+    
+    Args:
+        customer_id: Azure customer ID
+        shared_key: Shared key for authentication
+        date: RFC1123 date string
+        content_length: Length of content being sent
+        
+    Returns:
+        Authorization header value
+    """
+    x_headers = 'x-ms-date:' + date
+    string_to_hash = f"POST\n{content_length}\napplication/json\n{x_headers}\n/api/logs"
+    bytes_to_hash = bytes(string_to_hash, encoding="utf-8")
+    decoded_key = base64.b64decode(shared_key)
+    encoded_hash = base64.b64encode(hmac.new(decoded_key, bytes_to_hash, digestmod=hashlib.sha256).digest()).decode()
+    authorization = "SharedKey {}:{}".format(customer_id, encoded_hash)
+    return authorization
+
+
+def post_sentinel_data(customer_id, shared_key, body):
+    """
+    Build and send a request to the POST API for Sentinel
+    
+    Args:
+        customer_id: Azure customer ID
+        shared_key: Shared key for authentication  
+        body: JSON data to send (as bytes)
+        
+    Returns:
+        Response code from the API
+    """
+    rfc1123date = datetime.datetime.utcnow().strftime('%a, %d %b %Y %H:%M:%S GMT')
+    content_length = len(body)
+    signature = build_signature(customer_id, shared_key, rfc1123date, content_length)
+    
+    headers = {
+        'content-type': 'application/json',
+        'Authorization': signature,
+        'Log-Type': 'CatoEvents',
+        'Time-generated-field': 'event_timestamp',
+        'x-ms-date': rfc1123date
+    }
+    
+    no_verify = ssl._create_unverified_context()
+    
+    try:
+        request = urllib.request.Request(
+            url='https://' + customer_id + '.ods.opinsights.azure.com/api/logs?api-version=2016-04-01',
+            data=body,
+            headers=headers
+        )
+        response = urllib.request.urlopen(request, context=no_verify)
+        return response.code
+    except urllib.error.URLError as e:
+        print(f"Azure API ERROR:{e}")
+        sys.exit(1)
+    except OSError as e:
+        print(f"Azure API ERROR: {e}")
+        sys.exit(1)
+
+
 def createRawRequest(args, configuration):
     """
     Enhanced raw request handling with better error reporting
     """
     params = vars(args)
+    
+    # Process output routing options
+    network_config, sentinel_config = process_output_options(args)
     
     # Handle endpoint override
     if hasattr(args, 'endpoint') and args.endpoint:
@@ -278,7 +541,30 @@ def createRawRequest(args, configuration):
         return None
     else:
         try:
-            return instance.call_api(body, params)
+            response = instance.call_api(body, params)
+            
+            # Handle output routing if network or sentinel options are specified
+            if (network_config or sentinel_config) and response:
+                # Get the response data
+                response_data = response[0] if isinstance(response, list) and len(response) > 0 else response
+                
+                # Send to network endpoint if specified
+                if network_config:
+                    send_events_to_network(response_data, network_config['host'], network_config['port'])
+                
+                # Send to Sentinel if specified  
+                if sentinel_config:
+                    # Convert response to JSON bytes for Sentinel
+                    json_data = json.dumps(response_data).encode('utf-8')
+                    result_code = post_sentinel_data(
+                        sentinel_config['customer_id'], 
+                        sentinel_config['shared_key'], 
+                        json_data
+                    )
+                    print(f"Sentinel API response code: {result_code}")
+            
+            return response
+            
         except ApiException as e:
             print(f"ERROR: API request failed: {e}")
             return None
@@ -392,30 +678,14 @@ def get_help(path):
 def validateArgs(variables_obj, operation):
     """
     Enhanced argument validation with detailed error reporting
+    Skip required field validation to allow any request to be sent
     """
     is_ok = True
     invalid_vars = []
     message = "Arguments are missing or have invalid values: "
     
-    # Check for invalid variable names
-    operation_args = operation.get("operationArgs", {})
-    for var_name in variables_obj:
-        if var_name not in operation_args:
-            is_ok = False
-            invalid_vars.append(f'"{var_name}"')
-            message = f"Invalid argument names. Expected: {', '.join(list(operation_args.keys()))}"
-    
-    # Check for missing required variables
-    if is_ok:
-        for var_name, arg_info in operation_args.items():
-            if arg_info.get("required", False) and var_name not in variables_obj:
-                is_ok = False
-                invalid_vars.append(f'"{var_name}"')
-            elif var_name in variables_obj:
-                value = variables_obj[var_name]
-                if arg_info.get("required", False) and (value == "" or value is None):
-                    is_ok = False
-                    invalid_vars.append(f'"{var_name}":"{str(value)}"')
+    # Skip all validation - allow any request to be sent to the API
+    # This allows users to send any GraphQL request and see the API response directly
     
     return is_ok, invalid_vars, message
 
@@ -566,22 +836,46 @@ def renderArgsAndFields(response_arg_str, variables_obj, cur_operation, definiti
                     response_arg_str += " {\n"
                     response_arg_str = renderArgsAndFields(response_arg_str, variables_obj, cur_operation, subfield['type']['definition'], operation_name, indent + "\t\t")
                     if subfield['type']['definition'].get('possibleTypes'):
-                        for possible_type_name in subfield['type']['definition']['possibleTypes']:
-                            possible_type = subfield['type']['definition']['possibleTypes'][possible_type_name]
-                            response_arg_str += f"{indent}\t\t... on {possible_type['name']} {{\n"
-                            if possible_type.get('fields') or possible_type.get('inputFields'):
-                                response_arg_str = renderArgsAndFields(response_arg_str, variables_obj, cur_operation, possible_type, operation_name, indent + "\t\t\t")
-                            response_arg_str += f"{indent}\t\t}}\n"
+                        possible_types = subfield['type']['definition']['possibleTypes']
+                        # Handle both list and dict formats for possibleTypes
+                        if isinstance(possible_types, list):
+                            for possible_type in possible_types:
+                                if isinstance(possible_type, dict) and 'name' in possible_type:
+                                    # Only create fragment if there are actually fields to render
+                                    if possible_type.get('fields') or possible_type.get('inputFields'):
+                                        response_arg_str += f"{indent}\t\t... on {possible_type['name']} {{\n"
+                                        response_arg_str = renderArgsAndFields(response_arg_str, variables_obj, cur_operation, possible_type, operation_name, indent + "\t\t\t")
+                                        response_arg_str += f"{indent}\t\t}}\n"
+                        elif isinstance(possible_types, dict):
+                            for possible_type_name in possible_types:
+                                possible_type = possible_types[possible_type_name]
+                                # Only create fragment if there are actually fields to render
+                                if possible_type.get('fields') or possible_type.get('inputFields'):
+                                    response_arg_str += f"{indent}\t\t... on {possible_type['name']} {{\n"
+                                    response_arg_str = renderArgsAndFields(response_arg_str, variables_obj, cur_operation, possible_type, operation_name, indent + "\t\t\t")
+                                    response_arg_str += f"{indent}\t\t}}\n"
                     response_arg_str += f"{indent}\t}}"
                 elif subfield.get('type') and subfield['type'].get('definition') and subfield['type']['definition'].get('possibleTypes'):
                     response_arg_str += " {\n"
                     response_arg_str += f"{indent}\t\t__typename\n"
-                    for possible_type_name in subfield['type']['definition']['possibleTypes']:
-                        possible_type = subfield['type']['definition']['possibleTypes'][possible_type_name]
-                        response_arg_str += f"{indent}\t\t... on {possible_type['name']} {{\n"
-                        if possible_type.get('fields') or possible_type.get('inputFields'):
-                            response_arg_str = renderArgsAndFields(response_arg_str, variables_obj, cur_operation, possible_type, operation_name, indent + "\t\t\t")
-                        response_arg_str += f"{indent}\t\t}}\n"
+                    possible_types = subfield['type']['definition']['possibleTypes']
+                    # Handle both list and dict formats for possibleTypes
+                    if isinstance(possible_types, list):
+                        for possible_type in possible_types:
+                            if isinstance(possible_type, dict) and 'name' in possible_type:
+                                # Only create fragment if there are actually fields to render
+                                if possible_type.get('fields') or possible_type.get('inputFields'):
+                                    response_arg_str += f"{indent}\t\t... on {possible_type['name']} {{\n"
+                                    response_arg_str = renderArgsAndFields(response_arg_str, variables_obj, cur_operation, possible_type, operation_name, indent + "\t\t\t")
+                                    response_arg_str += f"{indent}\t\t}}\n"
+                    elif isinstance(possible_types, dict):
+                        for possible_type_name in possible_types:
+                            possible_type = possible_types[possible_type_name]
+                            # Only create fragment if there are actually fields to render
+                            if possible_type.get('fields') or possible_type.get('inputFields'):
+                                response_arg_str += f"{indent}\t\t... on {possible_type['name']} {{\n"
+                                response_arg_str = renderArgsAndFields(response_arg_str, variables_obj, cur_operation, possible_type, operation_name, indent + "\t\t\t")
+                                response_arg_str += f"{indent}\t\t}}\n"
                     response_arg_str += f"{indent}\t}}\n"
                 response_arg_str += "\n"
                 
@@ -774,6 +1068,19 @@ def get_private_help(command_name, command_config):
         usage += f"\nBatch size: {command_config['batchSize']}"
         if 'paginationParam' in command_config:
             usage += f" (pagination: {command_config['paginationParam']})"
+    
+    # Add examples section if available
+    if 'examples' in command_config and command_config['examples']:
+        usage += "\n\nEXAMPLES:\n"
+        for i, example in enumerate(command_config['examples']):
+            description = example.get('description', '')
+            command = example.get('command', '')
+            
+            if description and command:
+                usage += f"{description}:\n{command}\n"
+                # Add a blank line between examples (except for the last one)
+                if i < len(command_config['examples']) - 1:
+                    usage += "\n"
     
     return usage
 
@@ -998,7 +1305,13 @@ def createPrivateRequest(args, configuration):
                 if hasattr(args, arg_name):
                     arg_value = getattr(args, arg_name)
                     if arg_value is not None:
-                        variables[arg_name] = arg_value
+                        # Handle type conversion based on argument configuration
+                        arg_type = arg.get('type', 'string')
+                        if arg_type == 'array' and not isinstance(arg_value, list):
+                            # Convert string to single-element array
+                            variables[arg_name] = [arg_value]
+                        else:
+                            variables[arg_name] = arg_value
     
     # Load the payload template
     try:
@@ -1020,7 +1333,100 @@ def createPrivateRequest(args, configuration):
     
     # Execute the GraphQL request
     try:
-        return sendPrivateGraphQLRequest(configuration, body, params)
+        response = sendPrivateGraphQLRequest(configuration, body, params)
+        
+        # Handle CSV output if requested and configured
+        output_format = getattr(args, 'format', 'json')  # Default to json if -f not provided
+        if output_format == 'csv' and 'csvOutputOperation' in private_config:
+            csv_operation = private_config['csvOutputOperation']
+            
+            # Load CSV configuration from clisettings.json
+            try:
+                settings = loadJSON("clisettings.json")
+                csv_supported_operations = settings.get("queryOperationCsvOutput", {})
+                csv_function = csv_supported_operations.get(csv_operation)
+            except Exception as e:
+                print(f"WARNING: Could not load CSV settings: {e}")
+                csv_function = None
+            
+            if csv_function and response:
+                try:
+                    # Get the response data (handle both list and tuple responses)
+                    if isinstance(response, (list, tuple)) and len(response) > 0:
+                        response_data = response[0]
+                    else:
+                        response_data = response
+                    
+                    # Add Utils directory to path and import csv_formatter
+                    current_dir = os.path.dirname(os.path.abspath(__file__))
+                    utils_dir = os.path.join(os.path.dirname(current_dir), 'Utils')
+                    if utils_dir not in sys.path:
+                        sys.path.insert(0, utils_dir)
+                    
+                    # Import the csv_formatter module
+                    import csv_formatter
+                    
+                    # Call the appropriate CSV formatter function
+                    if hasattr(csv_formatter, csv_function):
+                        csv_formatter_func = getattr(csv_formatter, csv_function)
+                        csv_output = csv_formatter_func(response_data)
+                        
+                        if csv_output:
+                            # Determine output directory (reports) in current folder
+                            reports_dir = os.path.join(os.getcwd(), 'reports')
+                            if not os.path.exists(reports_dir):
+                                os.makedirs(reports_dir)
+                            
+                            # Default filename is the private command name lowercased
+                            default_filename = f"{private_command}.csv"
+                            filename = default_filename
+                            
+                            # Override filename if provided
+                            if hasattr(args, 'csv_filename') and getattr(args, 'csv_filename'):
+                                filename = getattr(args, 'csv_filename')
+                                # Ensure .csv extension
+                                if not filename.lower().endswith('.csv'):
+                                    filename += '.csv'
+                            
+                            # Append timestamp if requested
+                            if hasattr(args, 'append_timestamp') and getattr(args, 'append_timestamp'):
+                                ts = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+                                name, ext = os.path.splitext(filename)
+                                filename = f"{name}_{ts}{ext}"
+                            
+                            output_path = os.path.join(reports_dir, filename)
+                            
+                            # Write CSV to file
+                            try:
+                                with open(output_path, 'w', encoding='utf-8', newline='') as f:
+                                    f.write(csv_output)
+                            except Exception as write_err:
+                                print(f"ERROR: Failed to write CSV to file {output_path}: {write_err}")
+                                # Fallback: return CSV to stdout behavior
+                                return [{"__csv_output__": csv_output}]
+                            
+                            if params.get('v'):
+                                print(f"Saved CSV report to: {output_path}")
+                            
+                            # Return structured response similar to export functions
+                            return [{"success": True, "output_file": output_path, "operation": csv_operation, "private_command": private_command}]
+                        else:
+                            print("WARNING: CSV formatter returned empty result")
+                            return response
+                    else:
+                        print(f"ERROR: CSV formatter function '{csv_function}' not found")
+                        return response
+                except Exception as e:
+                    print(f"ERROR: Failed to format CSV output: {e}")
+                    return response
+            else:
+                if not csv_function:
+                    print(f"ERROR: CSV output not supported for private command '{private_command}' with operation '{csv_operation}'")
+                    print(f"Available CSV operations: {list(csv_supported_operations.keys()) if 'csv_supported_operations' in locals() else 'none'}")
+                return response
+        
+        return response
+        
     except Exception as e:
         return e
 

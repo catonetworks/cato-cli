@@ -19,8 +19,6 @@ def export_rules_parse(subparsers):
     )
     
     if_rules_parser.add_argument('-accountID', help='Account ID to export rules from (uses CATO_ACCOUNT_ID environment variable if not specified)', required=False)
-    if_rules_parser.add_argument('--output-file-path', help='Full path including filename and extension for output file. If not specified, uses default: config_data/all_ifw_rules_and_sections_{account_id}.json')
-    if_rules_parser.add_argument('--append-timestamp', action='store_true', help='Append timestamp to the filename after account ID (format: YYYY-MM-DD_HH-MM-SS)')
     if_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
     
     if_rules_parser.set_defaults(func=export_rules.export_if_rules_to_json)
@@ -33,8 +31,6 @@ def export_rules_parse(subparsers):
     )
     
     wf_rules_parser.add_argument('-accountID', help='Account ID to export rules from (uses CATO_ACCOUNT_ID environment variable if not specified)', required=False)
-    wf_rules_parser.add_argument('--output-file-path', help='Full path including filename and extension for output file. If not specified, uses default: config_data/all_wf_rules_and_sections_{account_id}.json')
-    wf_rules_parser.add_argument('--append-timestamp', action='store_true', help='Append timestamp to the filename after account ID (format: YYYY-MM-DD_HH-MM-SS)')
     wf_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
     
     wf_rules_parser.set_defaults(func=export_rules.export_wf_rules_to_json)

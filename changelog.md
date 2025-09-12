@@ -15,9 +15,17 @@
 - Added exception handling keyboard escape 
 - Added custom settings support
 
-## 2.1.2 (2025-08-228)
+## 2.1.2 (2025-08-28)
 
 ### Features
 
 - Updated dynamic cli generator to support multi-threaded processing and fixed missing fields in sub operations
 - Added support for custom documentation in cli generation process, first examples in appStats and appStatsTimeSeries
+
+## 2.1.4 (2025-09-11)
+
+### Features
+
+- Added all latest APIs
+- Updated bulk site export/import functions to include all nested attributes for socket_sites, interfaces, and network_ranges
+- Added support for csv output for appStats, appStatsTimeSeries, accountMetrics, and socketPortMetricsTimeSeries operations with some examples in the readmes

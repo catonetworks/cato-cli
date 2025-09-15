@@ -3,6 +3,7 @@ import json
 import traceback
 import sys
 import ipaddress
+import csv
 from datetime import datetime
 from graphql_client.api.call_api import ApiClient, CallApi
 from graphql_client.api_client import ApiException
@@ -39,6 +40,18 @@ def calculateLocalIp(subnet):
     except (ipaddress.AddressValueError, ipaddress.NetmaskValueError, ValueError) as e:
         # Invalid subnet format
         return None
+
+def export_socket_sites_dispatcher(args, configuration):
+    """
+    Dispatcher function that routes to JSON or CSV export based on format argument
+    """
+    export_format = getattr(args, 'export_format', 'json')
+    
+    if export_format == 'csv':
+        return export_socket_site_to_csv(args, configuration)
+    else:
+        return export_socket_site_to_json(args, configuration)
+
 
 def export_socket_site_to_json(args, configuration):
     """
@@ -136,7 +149,12 @@ def export_socket_site_to_json(args, configuration):
                             cur_wan_interface['id'] = site_id+":"+ wan_ni.get('id', "")
                         else:
                             cur_wan_interface['id'] = site_id+":INT_"+ wan_ni.get('id', "")
-                        cur_wan_interface['index'] = wan_ni.get('id', "")
+                        # Format WAN interface index: INT_X for numeric values, keep as-is for non-numeric
+                        wan_interface_id = wan_ni.get('id', "")
+                        if isinstance(wan_interface_id, (int, str)) and str(wan_interface_id).isdigit():
+                            cur_wan_interface['index'] = f"INT_{wan_interface_id}"
+                        else:
+                            cur_wan_interface['index'] = wan_interface_id
                         cur_wan_interface['name'] = wan_ni.get('name', "")
                         cur_wan_interface['upstream_bandwidth'] = wan_ni.get('upstreamBandwidth', 0)
                         cur_wan_interface['downstream_bandwidth'] = wan_ni.get('downstreamBandwidth', 0)
@@ -174,7 +192,7 @@ def export_socket_site_to_json(args, configuration):
                     cur_site_entry["native_range"]["subnet"] = lan_ni_subnet
                     cur_site_entry["native_range"]["index"] = ni_index
                     # Add entry to lan interfaces for default_lan
-                    cur_site_entry['lan_interfaces'].append({"network_ranges": [],"default_lan":True})                    
+                    cur_site_entry['lan_interfaces'].append({"network_ranges": [],"default_lan":True})
                 else:
                     cur_lan_interface['id'] = ni_interface_id
                     cur_lan_interface['name'] = ni_interface_name
@@ -185,7 +203,9 @@ def export_socket_site_to_json(args, configuration):
                     cur_site_entry['lan_interfaces'].append(cur_lan_interface)
             else:
                 if hasattr(args, 'verbose') and args.verbose:
-                    print(f"WARNING: Site {lan_ni_site_id} not found in snapshot data, skipping interface {ni_interface_name} ({id})")
+                    ni_interface_name = lan_ni_helper_fields.get('interfaceName', "")
+                    ni_interface_id = lan_ni_entity_data.get('id', "")
+                    print(f"WARNING: Site {lan_ni_site_id} not found in snapshot data, skipping interface {ni_interface_name} ({ni_interface_id})")
 
         #############################################################################
         ## Process entity lookup network ranges populating by network interface id ##
@@ -388,6 +408,618 @@ def export_socket_site_to_json(args, configuration):
         print(f"Full traceback:\n{full_traceback}")
         
         return [{"success": False, "error": str(e), "error_details": error_details}]
+
+
+def export_socket_site_to_csv(args, configuration):
+    """
+    Export consolidated site and socket data to CSV format
+    Creates main sites CSV and individual network ranges CSV files
+    """
+    try:
+        # First get the JSON data using existing function
+        json_result = export_socket_site_to_json(args, configuration)
+        
+        if not json_result or not json_result[0].get('success'):
+            return json_result
+        
+        # Load the processed data from the JSON function
+        # We'll re-use the data processing logic but output to CSV instead
+        processed_data = get_processed_site_data(args, configuration)
+        
+        if not processed_data or not processed_data.get('sites'):
+            return [{"success": False, "error": "No sites data found to export"}]
+        
+        account_id = getAccountID(args, configuration)
+        output_files = []
+        
+        # Export main sites CSV
+        sites_csv_file = export_sites_to_csv(processed_data['sites'], args, account_id)
+        output_files.append(sites_csv_file)
+        
+        # Export individual network ranges CSV files for each site
+        for site in processed_data['sites']:
+            ranges_csv_file = export_network_ranges_to_csv(site, args, account_id)
+            if ranges_csv_file:
+                output_files.append(ranges_csv_file)
+        
+        return [{"success": True, "output_files": output_files, "account_id": account_id}]
+        
+    except Exception as e:
+        exc_type, exc_value, exc_traceback = sys.exc_info()
+        line_number = exc_traceback.tb_lineno
+        filename = exc_traceback.tb_frame.f_code.co_filename
+        function_name = exc_traceback.tb_frame.f_code.co_name
+        full_traceback = traceback.format_exc()
+        
+        error_details = {
+            "error_type": exc_type.__name__,
+            "error_message": str(exc_value),
+            "line_number": line_number,
+            "function_name": function_name,
+            "filename": os.path.basename(filename),
+            "full_traceback": full_traceback
+        }
+        
+        print(f"ERROR: {exc_type.__name__}: {str(exc_value)}")
+        print(f"Location: {os.path.basename(filename)}:{line_number} in {function_name}()")
+        print(f"Full traceback:\n{full_traceback}")
+        
+        return [{"success": False, "error": str(e), "error_details": error_details}]
+
+
+def get_processed_site_data(args, configuration):
+    """
+    Get processed site data without writing to JSON file
+    Reuses the logic from export_socket_site_to_json but returns data instead
+    """
+    processed_data = {'sites': []}
+    
+    # Load CLI settings
+    settings = load_cli_settings()
+    if not settings:
+        raise ValueError("Unable to load clisettings.json. Cannot proceed with export.")
+    
+    account_id = getAccountID(args, configuration)
+    
+    # Get siteIDs from args if provided
+    site_ids = []
+    if hasattr(args, 'siteIDs') and args.siteIDs:
+        site_ids = [site_id.strip() for site_id in args.siteIDs.split(',') if site_id.strip()]
+    
+    # Call APIs to retrieve sites, interface and network ranges
+    snapshot_sites = getAccountSnapshot(args, configuration, account_id, site_ids)
+    sites_list = snapshot_sites['data']['accountSnapshot']['sites']
+    
+    if not sites_list or len(sites_list) == 0:
+        return processed_data
+    
+    entity_network_interfaces = getEntityLookup(args, configuration, account_id, "networkInterface")
+    entity_network_ranges = getEntityLookup(args, configuration, account_id, "siteRange")
+    entity_sites = getEntityLookup(args, configuration, account_id, "site")
+    
+    # Process sites (reuse existing logic)
+    for snapshot_site in snapshot_sites['data']['accountSnapshot']['sites']:
+        site_id = snapshot_site.get('id')
+        connectionType = snapshot_site.get('infoSiteSnapshot', {}).get('connType', "")
+        
+        cur_site = {
+            'wan_interfaces': [],
+            'lan_interfaces': [],
+            'native_range': {}
+        }
+        
+        if connectionType in settings["export_by_socket_type"]:
+            cur_site['id'] = site_id
+            cur_site['name'] = snapshot_site.get('infoSiteSnapshot', {}).get('name')
+            cur_site['description'] = snapshot_site.get('infoSiteSnapshot', {}).get('description')
+            cur_site['connection_type'] = connectionType
+            cur_site['type'] = snapshot_site.get('infoSiteSnapshot', {}).get('type')
+            cur_site = populateSiteLocationData(args, snapshot_site, cur_site)
+            
+            # Process WAN interfaces
+            site_interfaces = snapshot_site.get('infoSiteSnapshot', {}).get('interfaces', [])
+            for wan_ni in site_interfaces:
+                cur_wan_interface = {}
+                role = wan_ni.get('wanRoleInterfaceInfo', "")
+                interfaceName = wan_ni.get('id', "")
+                if role is not None and role[0:3] == "wan":
+                    if interfaceName[0:3] in ("WAN", "USB", "LTE"):
+                        cur_wan_interface['id'] = site_id+":"+ wan_ni.get('id', "")
+                    else:
+                        cur_wan_interface['id'] = site_id+":INT_"+ wan_ni.get('id', "")
+                    # Format WAN interface index: INT_X for numeric values, keep as-is for non-numeric
+                    wan_interface_id = wan_ni.get('id', "")
+                    if isinstance(wan_interface_id, (int, str)) and str(wan_interface_id).isdigit():
+                        cur_wan_interface['index'] = f"INT_{wan_interface_id}"
+                    else:
+                        cur_wan_interface['index'] = wan_interface_id
+                    cur_wan_interface['name'] = wan_ni.get('name', "")
+                    cur_wan_interface['upstream_bandwidth'] = wan_ni.get('upstreamBandwidth', 0)
+                    cur_wan_interface['downstream_bandwidth'] = wan_ni.get('downstreamBandwidth', 0)
+                    cur_wan_interface['dest_type'] = wan_ni.get('destType', "")
+                    cur_wan_interface['role'] = role
+                    cur_wan_interface['precedence'] = "ACTIVE"
+                    cur_site['wan_interfaces'].append(cur_wan_interface)
+            
+            if site_id:
+                processed_data['sites'].append(cur_site)
+    
+    # Process LAN interfaces (reuse existing logic)
+    for lan_ni in entity_network_interfaces:
+        lan_ni_helper_fields = lan_ni.get("helperFields", {})
+        lan_ni_entity_data = lan_ni.get('entity', {})
+        lan_ni_site_id = str(lan_ni_helper_fields.get('siteId', ""))
+        cur_site_entry = next((site for site in processed_data['sites'] if site['id'] == lan_ni_site_id), None)
+        if cur_site_entry:
+            cur_lan_interface = {'network_ranges': []}
+            ni_interface_id = lan_ni_entity_data.get('id', "")
+            ni_interface_name = lan_ni_helper_fields.get('interfaceName', "")
+            lan_ni_subnet = str(lan_ni_helper_fields.get('subnet', ""))
+            ni_index = lan_ni_helper_fields.get('interfaceId', "")
+            ni_index = f"INT_{ni_index}" if isinstance(ni_index, (int, str)) and str(ni_index).isdigit() else ni_index
+            
+            if cur_site_entry["connection_type"] in settings["default_socket_interface_map"] and ni_index in settings["default_socket_interface_map"][cur_site_entry["connection_type"]]:
+                cur_site_entry["native_range"]["interface_id"] = ni_interface_id
+                cur_site_entry["native_range"]["interface_name"] = ni_interface_name
+                cur_site_entry["native_range"]["subnet"] = lan_ni_subnet
+                cur_site_entry["native_range"]["index"] = ni_index
+                cur_site_entry['lan_interfaces'].append({"network_ranges": [], "default_lan": True})
+            else:
+                cur_lan_interface['id'] = ni_interface_id
+                cur_lan_interface['name'] = ni_interface_name
+                cur_lan_interface['index'] = ni_index
+                cur_lan_interface['dest_type'] = lan_ni_helper_fields.get('destType', "")
+                cur_lan_interface['subnet'] = lan_ni_subnet
+                cur_site_entry['lan_interfaces'].append(cur_lan_interface)
+    
+    # Process network ranges (reuse existing logic)
+    for range in entity_network_ranges:
+        nr_helper_fields = range.get("helperFields", {})
+        nr_entity_data = range.get('entity', {})
+        nr_interface_name = str(nr_helper_fields.get('interfaceName', ""))
+        nr_site_id = str(nr_helper_fields.get('siteId', ""))
+        range_id = nr_entity_data.get('id', "")
+        
+        nr_site_entry = next((site for site in processed_data['sites'] if site['id'] == nr_site_id), None)
+        if nr_site_entry:
+            nr_subnet = nr_helper_fields.get('subnet', None)
+            nr_vlan = nr_helper_fields.get('vlanTag', None)
+            nr_mdns_reflector = nr_helper_fields.get('mdnsReflector', False)
+            nr_dhcp_microsegmentation = nr_helper_fields.get('microsegmentation', False)
+            range_name = nr_entity_data.get('name', nr_interface_name)
+            if range_name and " \\ " in range_name:
+                range_name = range_name.split(" \\ ").pop()
+            
+            # Set defaults for missing fields
+            nr_dhcp_type = "DHCP_DISABLED"
+            nr_ip_range = None
+            nr_relay_group_name = None
+            nr_gateway = None
+            nr_translated_subnet = None
+            nr_local_ip = None
+            nr_range_type = "VLAN" if nr_vlan != None else "Direct"
+            
+            # Calculate local IP if requested
+            if hasattr(args, 'calculate_local_ip') and args.calculate_local_ip and nr_subnet:
+                calculated_ip = calculateLocalIp(nr_subnet)
+                if calculated_ip:
+                    nr_local_ip = calculated_ip
+            
+            site_native_range = nr_site_entry.get('native_range', {})
+            
+            if site_native_range.get("interface_name", "") == nr_interface_name:
+                if range_name != "Native Range":
+                    nr_lan_interface_entry = next((lan_nic for lan_nic in nr_site_entry["lan_interfaces"] if 'default_lan' in lan_nic and lan_nic['default_lan']), None)
+                    if nr_lan_interface_entry:
+                        cur_range = {
+                            'id': range_id, 'name': range_name, 'subnet': nr_subnet, 'vlan': nr_vlan,
+                            'mdns_reflector': nr_mdns_reflector, 'gateway': nr_gateway, 'range_type': nr_range_type,
+                            'translated_subnet': nr_translated_subnet, 'local_ip': nr_local_ip,
+                            'dhcp_settings': {
+                                'dhcp_type': nr_dhcp_type, 'ip_range': nr_ip_range, 'relay_group_id': None,
+                                'relay_group_name': nr_relay_group_name, 'dhcp_microsegmentation': nr_dhcp_microsegmentation
+                            }
+                        }
+                        nr_lan_interface_entry["network_ranges"].append(cur_range)
+                else:
+                    site_native_range['range_name'] = range_name
+                    site_native_range['range_id'] = range_id
+                    site_native_range['vlan'] = nr_vlan
+                    site_native_range['mdns_reflector'] = nr_mdns_reflector
+                    site_native_range['gateway'] = nr_gateway
+                    site_native_range['range_type'] = nr_range_type
+                    site_native_range['translated_subnet'] = nr_translated_subnet
+                    site_native_range['local_ip'] = nr_local_ip
+                    site_native_range['dhcp_settings'] = {
+                        'dhcp_type': nr_dhcp_type, 'ip_range': nr_ip_range, 'relay_group_id': None,
+                        'relay_group_name': nr_relay_group_name, 'dhcp_microsegmentation': nr_dhcp_microsegmentation
+                    }
+            else:
+                nr_lan_interface_entry = next((lan_nic for lan_nic in nr_site_entry["lan_interfaces"] if ('default_lan' not in lan_nic or not lan_nic['default_lan']) and lan_nic['name'] == nr_interface_name), None)
+                if nr_lan_interface_entry:
+                    cur_range = {
+                        'id': range_id, 'name': range_name, 'subnet': nr_subnet, 'vlan': nr_vlan,
+                        'mdns_reflector': nr_mdns_reflector, 'gateway': nr_gateway, 'range_type': nr_range_type,
+                        'translated_subnet': nr_translated_subnet, 'local_ip': nr_local_ip,
+                        'dhcp_settings': {
+                            'dhcp_type': nr_dhcp_type, 'ip_range': nr_ip_range, 'relay_group_id': None,
+                            'relay_group_name': nr_relay_group_name, 'dhcp_microsegmentation': nr_dhcp_microsegmentation
+                        }
+                    }
+                    
+                    if "subnet" in nr_lan_interface_entry and nr_subnet == nr_lan_interface_entry["subnet"]:
+                        cur_range['native_range'] = True
+                        del nr_lan_interface_entry["subnet"]
+                    
+                    nr_lan_interface_entry["network_ranges"].append(cur_range)
+    
+    return processed_data
+
+
+def export_sites_to_csv(sites, args, account_id):
+    """
+    Export main sites data to CSV file in bulk-sites format
+    One row per WAN interface, site attributes only on first row per site
+    """
+    # Handle custom filename and timestamp
+    if hasattr(args, 'csv_filename') and args.csv_filename:
+        base_filename = args.csv_filename
+        if base_filename.endswith('.csv'):
+            base_filename = base_filename[:-4]
+        
+        if hasattr(args, 'append_timestamp') and args.append_timestamp:
+            timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+            filename_template = f"{base_filename}_{timestamp}.csv"
+        else:
+            filename_template = f"{base_filename}.csv"
+    else:
+        if hasattr(args, 'append_timestamp') and args.append_timestamp:
+            timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+            filename_template = f"socket_sites_{{account_id}}_{timestamp}.csv"
+        else:
+            filename_template = "socket_sites_{account_id}.csv"
+    
+    # Replace account_id placeholder
+    filename = filename_template.format(account_id=account_id)
+    
+    # Determine output directory
+    output_dir = getattr(args, 'output_directory', None)
+    if not output_dir:
+        output_dir = 'config_data'
+    if not os.path.isabs(output_dir):
+        output_dir = os.path.join(os.getcwd(), output_dir)
+    
+    os.makedirs(output_dir, exist_ok=True)
+    filepath = os.path.join(output_dir, filename)
+    
+    # Define CSV headers matching bulk-sites.csv format
+    headers = [
+        'site_id',
+        'site_name',
+        'wan_interface_id',
+        'wan_interface_index',
+        'wan_interface_name', 
+        'wan_upstream_bw',
+        'wan_downstream_bw',
+        'wan_role',
+        'wan_precedence',
+        'site_description',
+        'native_range_subnet',
+        'native_range_name',
+        'native_range_id',
+        'native_range_vlan',
+        'native_range_mdns_reflector',
+        'native_range_gateway',
+        'native_range_type',
+        'native_range_translated_subnet',
+        'native_range_interface_id',
+        'native_range_interface_index',
+        'native_range_interface_name',
+        'native_range_dhcp_type',
+        'native_range_dhcp_ip_range',
+        'native_range_dhcp_relay_group_id',
+        'native_range_dhcp_relay_group_name',
+        'native_range_dhcp_microsegmentation',
+        'native_range_local_ip',
+        'site_type',
+        'connection_type',
+        'site_location_address',
+        'site_location_city',
+        'site_location_country_code',
+        'site_location_state_code',
+        'site_location_timezone'
+    ]
+    
+    rows = []
+    total_interfaces = 0
+    
+    for site in sites:
+        site_name = site.get('name', '')
+        wan_interfaces = site.get('wan_interfaces', [])
+        
+        # Sort WAN interfaces to ensure 'wan_1' role appears first
+        # This organizes the CSV so wan_1 interfaces are on the first line for each site
+        def wan_interface_sort_key(interface):
+            role = interface.get('role', '').lower()
+            if role == 'wan_1':
+                return 0  # wan_1 comes first
+            elif role == 'wan_2':
+                return 1
+            elif role == 'wan_3':
+                return 2
+            elif role == 'wan_4':
+                return 3
+            else:
+                return 9  # Unknown/other roles come last
+        
+        wan_interfaces.sort(key=wan_interface_sort_key)
+        
+        # If no WAN interfaces, create one empty row for the site
+        if not wan_interfaces:
+            wan_interfaces = [{}]  # Empty interface to ensure site is included
+        
+        for idx, wan_interface in enumerate(wan_interfaces):
+            # Site-specific attributes only on first row per site
+            is_first_interface = (idx == 0)
+            
+            # Calculate local IP from native range subnet if available
+            native_range = site.get('native_range', {})
+            native_subnet = native_range.get('subnet', '')
+            local_ip = ''
+            if native_subnet and hasattr(args, 'calculate_local_ip') and args.calculate_local_ip:
+                calculated_ip = calculateLocalIp(native_subnet)
+                if calculated_ip:
+                    local_ip = calculated_ip
+            elif native_range.get('local_ip'):
+                local_ip = native_range.get('local_ip', '')
+            
+            row = {
+                'site_id': site.get('id', '') if is_first_interface else '',
+                'site_name': site_name,
+                'wan_interface_id': wan_interface.get('id', '') if wan_interface else '',
+                'wan_interface_index': wan_interface.get('index', '') if wan_interface else '',
+                'wan_interface_name': wan_interface.get('name', '') if wan_interface else '',
+                'wan_upstream_bw': wan_interface.get('upstream_bandwidth', '') if wan_interface else '',
+                'wan_downstream_bw': wan_interface.get('downstream_bandwidth', '') if wan_interface else '',
+                'wan_role': wan_interface.get('role', '') if wan_interface else '',
+                'wan_precedence': wan_interface.get('precedence', '') if wan_interface else '',
+                
+                # Site attributes - only populate on first interface row
+                'site_description': site.get('description', '') if is_first_interface else '',
+                'native_range_subnet': native_subnet if is_first_interface else '',
+                'native_range_name': native_range.get('range_name', '') if is_first_interface else '',
+                'native_range_id': native_range.get('range_id', '') if is_first_interface else '',
+                'native_range_vlan': native_range.get('vlan', '') if is_first_interface else '',
+                'native_range_mdns_reflector': str(native_range.get('mdns_reflector', '')).upper() if is_first_interface and native_range.get('mdns_reflector') != '' else '' if is_first_interface else '',
+                'native_range_gateway': native_range.get('gateway', '') if is_first_interface else '',
+                'native_range_type': native_range.get('range_type', '') if is_first_interface else '',
+                'native_range_translated_subnet': native_range.get('translated_subnet', '') if is_first_interface else '',
+                'native_range_interface_id': native_range.get('interface_id', '') if is_first_interface else '',
+                'native_range_interface_index': native_range.get('index', '') if is_first_interface else '',
+                'native_range_interface_name': native_range.get('interface_name', '') if is_first_interface else '',
+                'native_range_dhcp_type': native_range.get('dhcp_settings', {}).get('dhcp_type', '') if is_first_interface else '',
+                'native_range_dhcp_ip_range': native_range.get('dhcp_settings', {}).get('ip_range', '') if is_first_interface else '',
+                'native_range_dhcp_relay_group_id': native_range.get('dhcp_settings', {}).get('relay_group_id', '') if is_first_interface else '',
+                'native_range_dhcp_relay_group_name': native_range.get('dhcp_settings', {}).get('relay_group_name', '') if is_first_interface else '',
+                'native_range_dhcp_microsegmentation': str(native_range.get('dhcp_settings', {}).get('dhcp_microsegmentation', '')).upper() if is_first_interface and native_range.get('dhcp_settings', {}).get('dhcp_microsegmentation') != '' else '' if is_first_interface else '',
+                'native_range_local_ip': local_ip if is_first_interface else '',
+                'site_type': site.get('type', '') if is_first_interface else '',
+                'connection_type': site.get('connection_type', '') if is_first_interface else '',
+                'site_location_address': site.get('site_location', {}).get('address', '') if is_first_interface else '',
+                'site_location_city': site.get('site_location', {}).get('city', '') if is_first_interface else '',
+                'site_location_country_code': site.get('site_location', {}).get('countryCode', '') if is_first_interface else '',
+                'site_location_state_code': site.get('site_location', {}).get('stateCode', '') if is_first_interface else '',
+                'site_location_timezone': site.get('site_location', {}).get('timezone', '') if is_first_interface else ''
+            }
+            
+            rows.append(row)
+            total_interfaces += 1 if wan_interface else 0
+    
+    with open(filepath, 'w', newline='', encoding='utf-8') as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=headers)
+        writer.writeheader()
+        writer.writerows(rows)
+    
+    if hasattr(args, 'verbose') and args.verbose:
+        print(f"Exported {len(sites)} sites with {total_interfaces} WAN interfaces to {filepath}")
+    
+    return filepath
+
+
+def export_network_ranges_to_csv(site, args, account_id):
+    """
+    Export network ranges for a single site to CSV file
+    Structure: LAN interface as parent with network ranges as children
+    First row per interface contains interface details, subsequent rows contain only network range details
+    """
+    site_name = site.get('name', '')
+    if not site_name:
+        return None
+    
+    # Sanitize site name for filename
+    safe_site_name = "".join(c for c in site_name if c.isalnum() or c in ('-', '_')).rstrip()
+    
+    # Determine output directory
+    output_dir = getattr(args, 'output_directory', None)
+    if not output_dir:
+        output_dir = 'config_data'
+    if not os.path.isabs(output_dir):
+        output_dir = os.path.join(os.getcwd(), output_dir)
+    
+    # Create sites_config subdirectory with account ID
+    sites_config_dir = os.path.join(output_dir, f'sites_config_{account_id}')
+    os.makedirs(sites_config_dir, exist_ok=True)
+    
+    filename = f"{safe_site_name}_network_ranges.csv"
+    filepath = os.path.join(sites_config_dir, filename)
+    
+    # Define CSV headers - Reordered LAN interface columns first, then network range columns
+    headers = [
+        # LAN Interface columns (first 3 columns, is_native_range 4th, lan_interface_index 5th)
+        'lan_interface_id', 'lan_interface_name', 'lan_interface_dest_type', 'is_native_range', 'lan_interface_index',
+        # Network Range columns (populated on all rows)
+        'network_range_id', 'network_range_name', 'subnet', 'vlan', 'mdns_reflector', 
+        'gateway', 'range_type', 'translated_subnet', 'local_ip', 
+        'dhcp_type', 'dhcp_ip_range', 'dhcp_relay_group_id', 'dhcp_relay_group_name', 'dhcp_microsegmentation'
+    ]
+    
+    rows = []
+    
+    # Get the native range subnet from the site to exclude it from detailed CSV
+    native_range_subnet = site.get('native_range', {}).get('subnet', '')
+    
+    # Process default LAN interface (from native_range) - ONLY if it has additional networks
+    native_range = site.get('native_range', {})
+    native_range_index = native_range.get('index', '')  # The default interface index from parent CSV
+    default_lan_interfaces = [lan_nic for lan_nic in site.get('lan_interfaces', []) if lan_nic.get('default_lan', False)]
+    
+    if default_lan_interfaces:
+        for default_lan_interface in default_lan_interfaces:
+            interface_id = native_range.get('interface_id', '')
+            interface_name = native_range.get('interface_name', '')
+            interface_index = native_range.get('index', '')  # Use actual interface index like INT_5
+            interface_dest_type = 'LAN'
+            
+            network_ranges = default_lan_interface.get('network_ranges', [])
+            
+            # Filter out the network range that matches the parent CSV native_range_subnet
+            filtered_ranges = [nr for nr in network_ranges if nr.get('subnet', '') != native_range_subnet]
+            
+            # For default_lan interfaces, ONLY create entries if there are additional ranges
+            # Do NOT create an entry with is_native_range=TRUE since native range is managed at parent level
+            if filtered_ranges:
+                # Process filtered ranges - all marked as additional (non-native) ranges
+                for idx, network_range in enumerate(filtered_ranges):
+                    # First row for this interface includes interface details
+                    is_first_range = (idx == 0)
+                    
+                    # For default_lan interfaces, all ranges are additional (is_native_range=FALSE)
+                    # because the native range is already defined in the parent CSV
+                    
+                    row = {
+                        # LAN Interface details - for default LAN interfaces, don't populate interface ID, name, type since managed at parent level
+                        'lan_interface_id': '',  # Empty for default LAN interfaces (managed at parent level)
+                        'lan_interface_name': '',  # Empty for default LAN interfaces (managed at parent level)
+                        'lan_interface_dest_type': '',  # Empty for default LAN interfaces (managed at parent level)
+                        'is_native_range': '',  # Always empty for default LAN interfaces
+                        'lan_interface_index': interface_index,  # Populated for every row
+                        
+                        # Network Range details (on all rows)
+                        'network_range_id': network_range.get('id', ''),
+                        'network_range_name': network_range.get('name', ''),
+                        'subnet': network_range.get('subnet', ''),
+                        'vlan': network_range.get('vlan', ''),
+                        'mdns_reflector': str(network_range.get('mdns_reflector', False)).upper(),
+                        'gateway': network_range.get('gateway', ''),
+                        'range_type': network_range.get('range_type', ''),
+                        'translated_subnet': network_range.get('translated_subnet', ''),
+                        'local_ip': network_range.get('local_ip', ''),
+                        'dhcp_type': network_range.get('dhcp_settings', {}).get('dhcp_type', ''),
+                        'dhcp_ip_range': network_range.get('dhcp_settings', {}).get('ip_range', ''),
+                        'dhcp_relay_group_id': network_range.get('dhcp_settings', {}).get('relay_group_id', ''),
+                        'dhcp_relay_group_name': network_range.get('dhcp_settings', {}).get('relay_group_name', ''),
+                        'dhcp_microsegmentation': str(network_range.get('dhcp_settings', {}).get('dhcp_microsegmentation', False)).upper()
+                    }
+                    rows.append(row)
+    
+    # Process regular LAN interfaces and their network ranges
+    for lan_interface in site.get('lan_interfaces', []):
+        is_default_lan = lan_interface.get('default_lan', False)
+        
+        # Skip default_lan interfaces (already processed above)
+        if is_default_lan:
+            continue
+            
+        interface_id = lan_interface.get('id', '')
+        interface_name = lan_interface.get('name', '')
+        interface_index = lan_interface.get('index', '')
+        interface_dest_type = lan_interface.get('dest_type', '')
+        
+        network_ranges = lan_interface.get('network_ranges', [])
+        
+        # Filter out the network range that matches the parent CSV native_range_subnet
+        filtered_ranges = [nr for nr in network_ranges if nr.get('subnet', '') != native_range_subnet]
+        
+        # If no filtered ranges, create at least one row with just the LAN interface info  
+        # For regular LAN interfaces, mark as native range if this is the first/only interface
+        if not filtered_ranges:
+            row = {
+                # LAN Interface details - first 3 columns reordered, is_native_range 4th, lan_interface_index 5th
+                'lan_interface_id': interface_id,
+                'lan_interface_name': interface_name,
+                'lan_interface_dest_type': interface_dest_type,
+                'is_native_range': 'TRUE',  # Mark as native range for non-default LAN interfaces with no additional ranges
+                'lan_interface_index': interface_index,
+                
+                # Network Range details (empty since no additional ranges)
+                'network_range_id': '',
+                'network_range_name': '',
+                'subnet': '',
+                'vlan': '',
+                'mdns_reflector': '',
+                'gateway': '',
+                'range_type': '',
+                'translated_subnet': '',
+                'local_ip': '',
+                'dhcp_type': '',
+                'dhcp_ip_range': '',
+                'dhcp_relay_group_id': '',
+                'dhcp_relay_group_name': '',
+                'dhcp_microsegmentation': ''
+            }
+            rows.append(row)
+        else:
+            # Process filtered ranges as before
+            for idx, network_range in enumerate(filtered_ranges):
+                # First row for this interface includes interface details
+                is_first_range = (idx == 0)
+                
+                # For non-default_lan interfaces, first range should be marked as is_native_range
+                is_native_range = is_first_range
+                
+                row = {
+                    # LAN Interface details - first 3 columns reordered, is_native_range 4th, lan_interface_index 5th
+                    'lan_interface_id': interface_id if is_first_range else '',
+                    'lan_interface_name': interface_name if is_first_range else '',
+                    'lan_interface_dest_type': interface_dest_type if is_first_range else '',
+                    'is_native_range': 'TRUE' if is_native_range else '',
+                    'lan_interface_index': interface_index,  # Populated for every row
+                    
+                    # Network Range details (on all rows)
+                    'network_range_id': network_range.get('id', ''),
+                    'network_range_name': network_range.get('name', ''),
+                    'subnet': network_range.get('subnet', ''),
+                    'vlan': network_range.get('vlan', ''),
+                    'mdns_reflector': str(network_range.get('mdns_reflector', False)).upper(),
+                    'gateway': network_range.get('gateway', ''),
+                    'range_type': network_range.get('range_type', ''),
+                    'translated_subnet': network_range.get('translated_subnet', ''),
+                        'local_ip': network_range.get('local_ip', ''),
+                        'dhcp_type': network_range.get('dhcp_settings', {}).get('dhcp_type', ''),
+                    'dhcp_ip_range': network_range.get('dhcp_settings', {}).get('ip_range', ''),
+                    'dhcp_relay_group_id': network_range.get('dhcp_settings', {}).get('relay_group_id', ''),
+                    'dhcp_relay_group_name': network_range.get('dhcp_settings', {}).get('relay_group_name', ''),
+                    'dhcp_microsegmentation': str(network_range.get('dhcp_settings', {}).get('dhcp_microsegmentation', False)).upper()
+                }
+                rows.append(row)
+    
+    # If still no rows, it means the site only has the default LAN interface (managed at parent level)
+    # In this case, create an empty CSV file - no entries needed since default interface is handled in parent CSV
+    # This is correct behavior: sites with only default LAN interfaces should have empty site-level CSV files
+    
+    # Always create file now (removed the early return)
+    # if not rows:
+    #     return None
+    
+    with open(filepath, 'w', newline='', encoding='utf-8') as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=headers)
+        writer.writeheader()
+        writer.writerows(rows)
+    
+    if hasattr(args, 'verbose') and args.verbose:
+        print(f"Exported {len(rows)} network ranges for site '{site_name}' to {filepath}")
+    
+    return filepath
 
 
 ##########################################################################

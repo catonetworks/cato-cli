@@ -52,6 +52,7 @@
         "ExportJobResponse": true,
         "ExportJobStatus": true,
         "ExportStatusResponse": true,
+        "IPAddressFilterInput": true,
         "IdFilterInput": true,
         "IntFilterInput": true,
         "MacAddressFilterInput": true,
@@ -1415,35 +1416,55 @@
                                             },
                                             "varName": "idFilterInput"
                                         },
-                                        "ip": {
+                                        "ipAddress": {
                                             "defaultValue": null,
                                             "description": null,
-                                            "id_str": "list___input___filter___ip",
-                                            "name": "ip",
-                                            "path": "list.input.filter.ip",
-                                            "requestStr": "$stringFilterInput:[StringFilterInput] ",
+                                            "id_str": "list___input___filter___ipAddress",
+                                            "name": "ipAddress",
+                                            "path": "list.input.filter.ipAddress",
+                                            "requestStr": "$iPAddressFilterInput:[IPAddressFilterInput] ",
                                             "required": false,
-                                            "responseStr": "ip:$stringFilterInput ",
+                                            "responseStr": "ipAddress:$iPAddressFilterInput ",
                                             "type": {
                                                 "definition": {
                                                     "description": null,
                                                     "enumValues": null,
                                                     "fields": null,
                                                     "inputFields": {
+                                                        "between": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "list___input___filter___ipAddress___between",
+                                                            "name": "between",
+                                                            "path": "list.input.filter.ipAddress.between",
+                                                            "requestStr": "$between:[IPAddress] ",
+                                                            "required": false,
+                                                            "responseStr": "between:$between ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "LIST",
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "IPAddress",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "between"
+                                                        },
                                                         "eq": {
                                                             "defaultValue": null,
                                                             "description": null,
-                                                            "id_str": "list___input___filter___ip___eq",
+                                                            "id_str": "list___input___filter___ipAddress___eq",
                                                             "name": "eq",
-                                                            "path": "list.input.filter.ip.eq",
-                                                            "requestStr": "$eq:String ",
+                                                            "path": "list.input.filter.ipAddress.eq",
+                                                            "requestStr": "$eq:IPAddress ",
                                                             "required": false,
                                                             "responseStr": "eq:$eq ",
                                                             "type": {
                                                                 "kind": [
                                                                     "SCALAR"
                                                                 ],
-                                                                "name": "String",
+                                                                "name": "IPAddress",
                                                                 "non_null": false
                                                             },
                                                             "varName": "eq"
@@ -1451,10 +1472,10 @@
                                                         "in": {
                                                             "defaultValue": null,
                                                             "description": null,
-                                                            "id_str": "list___input___filter___ip___in",
+                                                            "id_str": "list___input___filter___ipAddress___in",
                                                             "name": "in",
-                                                            "path": "list.input.filter.ip.in",
-                                                            "requestStr": "$in:[String] ",
+                                                            "path": "list.input.filter.ipAddress.in",
+                                                            "requestStr": "$in:[IPAddress] ",
                                                             "required": false,
                                                             "responseStr": "in:$in ",
                                                             "type": {
@@ -1463,7 +1484,7 @@
                                                                     "NON_NULL",
                                                                     "SCALAR"
                                                                 ],
-                                                                "name": "String",
+                                                                "name": "IPAddress",
                                                                 "non_null": false
                                                             },
                                                             "varName": "in"
@@ -1471,17 +1492,17 @@
                                                         "neq": {
                                                             "defaultValue": null,
                                                             "description": null,
-                                                            "id_str": "list___input___filter___ip___neq",
+                                                            "id_str": "list___input___filter___ipAddress___neq",
                                                             "name": "neq",
-                                                            "path": "list.input.filter.ip.neq",
-                                                            "requestStr": "$neq:String ",
+                                                            "path": "list.input.filter.ipAddress.neq",
+                                                            "requestStr": "$neq:IPAddress ",
                                                             "required": false,
                                                             "responseStr": "neq:$neq ",
                                                             "type": {
                                                                 "kind": [
                                                                     "SCALAR"
                                                                 ],
-                                                                "name": "String",
+                                                                "name": "IPAddress",
                                                                 "non_null": false
                                                             },
                                                             "varName": "neq"
@@ -1489,10 +1510,10 @@
                                                         "nin": {
                                                             "defaultValue": null,
                                                             "description": null,
-                                                            "id_str": "list___input___filter___ip___nin",
+                                                            "id_str": "list___input___filter___ipAddress___nin",
                                                             "name": "nin",
-                                                            "path": "list.input.filter.ip.nin",
-                                                            "requestStr": "$nin:[String] ",
+                                                            "path": "list.input.filter.ipAddress.nin",
+                                                            "requestStr": "$nin:[IPAddress] ",
                                                             "required": false,
                                                             "responseStr": "nin:$nin ",
                                                             "type": {
@@ -1501,15 +1522,51 @@
                                                                     "NON_NULL",
                                                                     "SCALAR"
                                                                 ],
-                                                                "name": "String",
+                                                                "name": "IPAddress",
                                                                 "non_null": false
                                                             },
                                                             "varName": "nin"
+                                                        },
+                                                        "nwithin": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "list___input___filter___ipAddress___nwithin",
+                                                            "name": "nwithin",
+                                                            "path": "list.input.filter.ipAddress.nwithin",
+                                                            "requestStr": "$nwithin:NetworkSubnet ",
+                                                            "required": false,
+                                                            "responseStr": "nwithin:$nwithin ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "NetworkSubnet",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "nwithin"
+                                                        },
+                                                        "within": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "list___input___filter___ipAddress___within",
+                                                            "name": "within",
+                                                            "path": "list.input.filter.ipAddress.within",
+                                                            "requestStr": "$within:NetworkSubnet ",
+                                                            "required": false,
+                                                            "responseStr": "within:$within ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "NetworkSubnet",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "within"
                                                         }
                                                     },
                                                     "interfaces": null,
                                                     "kind": "INPUT_OBJECT",
-                                                    "name": "StringFilterInput",
+                                                    "name": "IPAddressFilterInput",
                                                     "possibleTypes": null
                                                 },
                                                 "indexType": "input_object",
@@ -1518,10 +1575,10 @@
                                                     "NON_NULL",
                                                     "INPUT_OBJECT"
                                                 ],
-                                                "name": "StringFilterInput",
+                                                "name": "IPAddressFilterInput",
                                                 "non_null": false
                                             },
-                                            "varName": "stringFilterInput"
+                                            "varName": "iPAddressFilterInput"
                                         },
                                         "isManaged": {
                                             "defaultValue": null,
@@ -9397,35 +9454,55 @@
                                                             },
                                                             "varName": "idFilterInput"
                                                         },
-                                                        "ip": {
+                                                        "ipAddress": {
                                                             "defaultValue": null,
                                                             "description": null,
-                                                            "id_str": "list___input___filter___ip",
-                                                            "name": "ip",
-                                                            "path": "list.input.filter.ip",
-                                                            "requestStr": "$stringFilterInput:[StringFilterInput] ",
+                                                            "id_str": "list___input___filter___ipAddress",
+                                                            "name": "ipAddress",
+                                                            "path": "list.input.filter.ipAddress",
+                                                            "requestStr": "$iPAddressFilterInput:[IPAddressFilterInput] ",
                                                             "required": false,
-                                                            "responseStr": "ip:$stringFilterInput ",
+                                                            "responseStr": "ipAddress:$iPAddressFilterInput ",
                                                             "type": {
                                                                 "definition": {
                                                                     "description": null,
                                                                     "enumValues": null,
                                                                     "fields": null,
                                                                     "inputFields": {
+                                                                        "between": {
+                                                                            "defaultValue": null,
+                                                                            "description": null,
+                                                                            "id_str": "list___input___filter___ipAddress___between",
+                                                                            "name": "between",
+                                                                            "path": "list.input.filter.ipAddress.between",
+                                                                            "requestStr": "$between:[IPAddress] ",
+                                                                            "required": false,
+                                                                            "responseStr": "between:$between ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "LIST",
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "IPAddress",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "between"
+                                                                        },
                                                                         "eq": {
                                                                             "defaultValue": null,
                                                                             "description": null,
-                                                                            "id_str": "list___input___filter___ip___eq",
+                                                                            "id_str": "list___input___filter___ipAddress___eq",
                                                                             "name": "eq",
-                                                                            "path": "list.input.filter.ip.eq",
-                                                                            "requestStr": "$eq:String ",
+                                                                            "path": "list.input.filter.ipAddress.eq",
+                                                                            "requestStr": "$eq:IPAddress ",
                                                                             "required": false,
                                                                             "responseStr": "eq:$eq ",
                                                                             "type": {
                                                                                 "kind": [
                                                                                     "SCALAR"
                                                                                 ],
-                                                                                "name": "String",
+                                                                                "name": "IPAddress",
                                                                                 "non_null": false
                                                                             },
                                                                             "varName": "eq"
@@ -9433,10 +9510,10 @@
                                                                         "in": {
                                                                             "defaultValue": null,
                                                                             "description": null,
-                                                                            "id_str": "list___input___filter___ip___in",
+                                                                            "id_str": "list___input___filter___ipAddress___in",
                                                                             "name": "in",
-                                                                            "path": "list.input.filter.ip.in",
-                                                                            "requestStr": "$in:[String] ",
+                                                                            "path": "list.input.filter.ipAddress.in",
+                                                                            "requestStr": "$in:[IPAddress] ",
                                                                             "required": false,
                                                                             "responseStr": "in:$in ",
                                                                             "type": {
@@ -9445,7 +9522,7 @@
                                                                                     "NON_NULL",
                                                                                     "SCALAR"
                                                                                 ],
-                                                                                "name": "String",
+                                                                                "name": "IPAddress",
                                                                                 "non_null": false
                                                                             },
                                                                             "varName": "in"
@@ -9453,17 +9530,17 @@
                                                                         "neq": {
                                                                             "defaultValue": null,
                                                                             "description": null,
-                                                                            "id_str": "list___input___filter___ip___neq",
+                                                                            "id_str": "list___input___filter___ipAddress___neq",
                                                                             "name": "neq",
-                                                                            "path": "list.input.filter.ip.neq",
-                                                                            "requestStr": "$neq:String ",
+                                                                            "path": "list.input.filter.ipAddress.neq",
+                                                                            "requestStr": "$neq:IPAddress ",
                                                                             "required": false,
                                                                             "responseStr": "neq:$neq ",
                                                                             "type": {
                                                                                 "kind": [
                                                                                     "SCALAR"
                                                                                 ],
-                                                                                "name": "String",
+                                                                                "name": "IPAddress",
                                                                                 "non_null": false
                                                                             },
                                                                             "varName": "neq"
@@ -9471,10 +9548,10 @@
                                                                         "nin": {
                                                                             "defaultValue": null,
                                                                             "description": null,
-                                                                            "id_str": "list___input___filter___ip___nin",
+                                                                            "id_str": "list___input___filter___ipAddress___nin",
                                                                             "name": "nin",
-                                                                            "path": "list.input.filter.ip.nin",
-                                                                            "requestStr": "$nin:[String] ",
+                                                                            "path": "list.input.filter.ipAddress.nin",
+                                                                            "requestStr": "$nin:[IPAddress] ",
                                                                             "required": false,
                                                                             "responseStr": "nin:$nin ",
                                                                             "type": {
@@ -9483,15 +9560,51 @@
                                                                                     "NON_NULL",
                                                                                     "SCALAR"
                                                                                 ],
-                                                                                "name": "String",
+                                                                                "name": "IPAddress",
                                                                                 "non_null": false
                                                                             },
                                                                             "varName": "nin"
+                                                                        },
+                                                                        "nwithin": {
+                                                                            "defaultValue": null,
+                                                                            "description": null,
+                                                                            "id_str": "list___input___filter___ipAddress___nwithin",
+                                                                            "name": "nwithin",
+                                                                            "path": "list.input.filter.ipAddress.nwithin",
+                                                                            "requestStr": "$nwithin:NetworkSubnet ",
+                                                                            "required": false,
+                                                                            "responseStr": "nwithin:$nwithin ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "NetworkSubnet",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "nwithin"
+                                                                        },
+                                                                        "within": {
+                                                                            "defaultValue": null,
+                                                                            "description": null,
+                                                                            "id_str": "list___input___filter___ipAddress___within",
+                                                                            "name": "within",
+                                                                            "path": "list.input.filter.ipAddress.within",
+                                                                            "requestStr": "$within:NetworkSubnet ",
+                                                                            "required": false,
+                                                                            "responseStr": "within:$within ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "NetworkSubnet",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "within"
                                                                         }
                                                                     },
                                                                     "interfaces": null,
                                                                     "kind": "INPUT_OBJECT",
-                                                                    "name": "StringFilterInput",
+                                                                    "name": "IPAddressFilterInput",
                                                                     "possibleTypes": null
                                                                 },
                                                                 "indexType": "input_object",
@@ -9500,10 +9613,10 @@
                                                                     "NON_NULL",
                                                                     "INPUT_OBJECT"
                                                                 ],
-                                                                "name": "StringFilterInput",
+                                                                "name": "IPAddressFilterInput",
                                                                 "non_null": false
                                                             },
-                                                            "varName": "stringFilterInput"
+                                                            "varName": "iPAddressFilterInput"
                                                         },
                                                         "isManaged": {
                                                             "defaultValue": null,
@@ -14434,10 +14547,10 @@
                                                 },
                                                 "ip": {
                                                     "args": {},
-                                                    "deprecationReason": null,
+                                                    "deprecationReason": "Use ipAddress instead",
                                                     "description": null,
                                                     "id_str": "list___device___ip",
-                                                    "isDeprecated": false,
+                                                    "isDeprecated": true,
                                                     "name": "ip",
                                                     "path": "list.device.ip",
                                                     "requestStr": "$ip:String ",
@@ -14451,6 +14564,26 @@
                                                         "non_null": false
                                                     },
                                                     "varName": "ip"
+                                                },
+                                                "ipAddress": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "id_str": "list___device___ipAddress",
+                                                    "isDeprecated": false,
+                                                    "name": "ipAddress",
+                                                    "path": "list.device.ipAddress",
+                                                    "requestStr": "$ipAddress:IPAddress ",
+                                                    "required": false,
+                                                    "responseStr": "ipAddress:$ipAddress ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "IPAddress",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "ipAddress"
                                                 },
                                                 "isManaged": {
                                                     "args": {},
@@ -15456,17 +15589,23 @@
                         "id2"
                     ]
                 },
-                "ip": {
-                    "eq": "string",
-                    "in": [
-                        "string1",
-                        "string2"
+                "ipAddress": {
+                    "between": [
+                        "example1",
+                        "example2"
                     ],
-                    "neq": "string",
+                    "eq": "example_value",
+                    "in": [
+                        "example1",
+                        "example2"
+                    ],
+                    "neq": "example_value",
                     "nin": [
-                        "string1",
-                        "string2"
-                    ]
+                        "example1",
+                        "example2"
+                    ],
+                    "nwithin": "example_value",
+                    "within": "example_value"
                 },
                 "isManaged": {
                     "eq": true,

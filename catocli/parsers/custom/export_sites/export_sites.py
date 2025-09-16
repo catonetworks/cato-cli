@@ -68,8 +68,7 @@ def export_socket_site_to_json(args, configuration):
     try:
         # Load CLI settings using the robust function
         settings = load_cli_settings()
-        if not settings:
-            raise ValueError("Unable to load clisettings.json. Cannot proceed with export.")
+        # Note: load_cli_settings() now returns embedded defaults if file cannot be loaded
         
         account_id = getAccountID(args, configuration)
         # Get account snapshot with siteIDs if provided
@@ -476,8 +475,7 @@ def get_processed_site_data(args, configuration):
     
     # Load CLI settings
     settings = load_cli_settings()
-    if not settings:
-        raise ValueError("Unable to load clisettings.json. Cannot proceed with export.")
+    # Note: load_cli_settings() now returns embedded defaults if file cannot be loaded
     
     account_id = getAccountID(args, configuration)
     

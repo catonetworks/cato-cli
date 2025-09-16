@@ -39,15 +39,56 @@ def load_cli_settings():
     Load clisettings.json from multiple possible locations:
     1. Package resource (for installed packages)
     2. Repository location (for development)
+    3. Adjacent file location (for development)
+    4. Embedded defaults as final fallback
     
     Returns:
-        dict: The loaded settings or default settings if loading fails
+        dict: The loaded settings or embedded default settings if all loading fails
     """
+    # Embedded default settings as final fallback
+    default_settings = {
+        "export_by_socket_type": {
+            "SOCKET_X1500": True,
+            "SOCKET_X1600": True,
+            "SOCKET_X1600_LTE": True,
+            "SOCKET_X1700": True
+        },
+        "default_socket_interface_map": {
+            "SOCKET_X1500": "LAN1",
+            "SOCKET_X1600": "INT_5",
+            "SOCKET_X1600_LTE": "INT_5",
+            "SOCKET_X1700": "INT_3"
+        },
+        "childOperationParent": {
+            "xdr": True,
+            "policy": True,
+            "groups": True,
+            "newGroups": True,
+            "site": True
+        },
+        "childOperationObjects": {
+            "ipAddressRange": True,
+            "fqdn": True,
+            "PolicyQueries": True,
+            "GroupsQueries": True,
+            "ContainerQueries": True,
+            "SiteQueries": True
+        },
+        "queryOperationCsvOutput": {
+            "query.appStats": "format_app_stats_to_csv",
+            "query.appStatsTimeSeries": "format_app_stats_timeseries_to_csv",
+            "query.accountMetrics": "format_account_metrics_to_csv",
+            "query.socketPortMetricsTimeSeries": "format_socket_port_metrics_timeseries_to_csv"
+        }
+    }
+    
     settings_locations = [
         # Try package resource first (for installed packages)
         lambda: json.loads(get_package_resource('catocli', 'clisettings.json')),
         # Try repository location (for development)
-        lambda: json.load(open(os.path.join(os.path.dirname(__file__), '../../clisettings.json'), 'r', encoding='utf-8'))
+        lambda: json.load(open(os.path.join(os.path.dirname(__file__), '../../clisettings.json'), 'r', encoding='utf-8')),
+        # Try adjacent file location (for development - new location)
+        lambda: json.load(open(os.path.join(os.path.dirname(__file__), '../clisettings.json'), 'r', encoding='utf-8'))
     ]
     
     for i, load_func in enumerate(settings_locations):
@@ -59,8 +100,8 @@ def load_cli_settings():
             # Continue to next location
             continue
     
-    # If all locations fail, return default settings for socket export
-    return {}
+    # If all locations fail, return embedded default settings
+    return default_settings
 
 
 def get_cli_settings_path():

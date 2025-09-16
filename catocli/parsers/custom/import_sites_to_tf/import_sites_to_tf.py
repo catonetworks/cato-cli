@@ -970,9 +970,9 @@ def load_site_network_ranges_csv(site, ranges_csv_file):
         # Load CLI settings to get default interface mapping
         from ....Utils.cliutils import load_cli_settings
         settings = load_cli_settings()
-        if not settings:
-            print(f"Warning: Unable to load clisettings.json for site {site['name']}")
-            settings = {"default_socket_interface_map": {}}
+        # Note: load_cli_settings() now returns embedded defaults if file cannot be loaded
+        if not settings.get("default_socket_interface_map"):
+            print(f"Warning: No default socket interface mapping found for site {site['name']}")
         
         with open(ranges_csv_file, 'r', newline='', encoding='utf-8') as f:
             reader = csv.DictReader(f)

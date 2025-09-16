@@ -94,7 +94,7 @@ def parseSchema(schema):
     print("  - Loading settings and initializing...")
     
     # Load settings to get childOperationParent and childOperationObjects configuration
-    settings = loadJSON("../clisettings.json")
+    settings = loadJSON("../catocli/clisettings.json")
     childOperationParent = settings.get("childOperationParent", {})
     childOperationObjects = settings.get("childOperationObjects", {})
     
@@ -968,7 +968,7 @@ def writeOperationParsers(catoApiSchema):
     parserMapping = {"query":{},"mutation":{}}
     
     # Load settings to get CSV-supported operations
-    settings = loadJSON("../clisettings.json")
+    settings = loadJSON("../catocli/clisettings.json")
     csv_supported_operations = settings.get("queryOperationCsvOutput", {})
     
     ## Write the raw query parser ##
@@ -1363,7 +1363,7 @@ def renderSubParser(subParser, parentParserPath):
     if not isinstance(subParser, dict):
         return ""
         
-    settings = loadJSON("../clisettings.json")
+    settings = loadJSON("../catocli/clisettings.json")
     csv_supported_operations = settings.get("queryOperationCsvOutput", {})
 
     cliDriverStr = f"""

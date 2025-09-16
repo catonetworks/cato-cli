@@ -695,23 +695,30 @@ def loadJSON(file):
     Enhanced JSON loading with better error handling and path resolution
     """
     module_dir = os.path.dirname(__file__)
-    # Navigate up two directory levels (from parsers/ to catocli/ to root)
-    module_dir = os.path.dirname(module_dir)  # Go up from parsers/
-    module_dir = os.path.dirname(module_dir)  # Go up from catocli/
+    
+    # Special handling for clisettings.json - it's in catocli/ directory
+    if file == "clisettings.json":
+        # From parsers/ go up to catocli/ and look for clisettings.json
+        catocli_dir = os.path.dirname(module_dir)  # Go up from parsers/ to catocli/
+        file_path = os.path.join(catocli_dir, file)
+    else:
+        # For other files (like models), navigate up two directory levels (from parsers/ to catocli/ to root)
+        module_dir = os.path.dirname(module_dir)  # Go up from parsers/
+        module_dir = os.path.dirname(module_dir)  # Go up from catocli/
+        file_path = os.path.join(module_dir, file)
     
     try:
-        file_path = os.path.join(module_dir, file)
         with open(file_path, 'r') as data:
             config = json.load(data)
             return config
     except FileNotFoundError:
-        logging.error(f"File \"{os.path.join(module_dir, file)}\" not found.")
+        logging.error(f"File \"{file_path}\" not found.")
         raise
     except json.JSONDecodeError as e:
-        logging.error(f"Invalid JSON in file \"{os.path.join(module_dir, file)}\": {e}")
+        logging.error(f"Invalid JSON in file \"{file_path}\": {e}")
         raise
     except Exception as e:
-        logging.error(f"Error loading file \"{os.path.join(module_dir, file)}\": {e}")
+        logging.error(f"Error loading file \"{file_path}\": {e}")
         raise
 
 

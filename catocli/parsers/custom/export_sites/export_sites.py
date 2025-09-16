@@ -237,7 +237,7 @@ def export_socket_site_to_json(args, configuration):
                 nr_relay_group_name = nr_helper_fields.get('XXXXX', None)
                 nr_gateway = nr_helper_fields.get('XXXXX', None)
                 nr_translated_subnet = nr_helper_fields.get('XXXXX', None)
-                # nr_internet_only = nr_helper_fields.get('XXXXX', None)
+                nr_internet_only = nr_helper_fields.get('XXXXX', None)  # Default to None for JSON
                 nr_local_ip = nr_helper_fields.get('XXXXX', None)
                 nr_range_type = nr_helper_fields.get('XXXXX', None)
                 # Adding logic to pre-populate with default value
@@ -271,8 +271,7 @@ def export_socket_site_to_json(args, configuration):
                             cur_range['gateway'] = nr_gateway
                             cur_range['range_type'] = nr_range_type
                             cur_range['translated_subnet'] = nr_translated_subnet
-                            # # Not available to set for native_range via API today
-                            # cur_range['internet_only'] = nr_internet_only
+                            cur_range['internet_only'] = nr_internet_only
                             cur_range['local_ip'] = nr_local_ip  # Use the calculated or original value
                             cur_range['dhcp_settings'] = {
                                 'dhcp_type': nr_dhcp_type,
@@ -291,8 +290,7 @@ def export_socket_site_to_json(args, configuration):
                         site_native_range['gateway'] = nr_gateway
                         site_native_range['range_type'] = nr_range_type
                         site_native_range['translated_subnet'] = nr_translated_subnet
-                        # # Not available to set for native_range via API today
-                        # site_native_range['internet_only'] = nr_internet_only
+                        site_native_range['internet_only'] = nr_internet_only
                         site_native_range['local_ip'] = nr_local_ip
                         site_native_range['dhcp_settings'] = {
                             'dhcp_type': nr_dhcp_type,
@@ -314,8 +312,7 @@ def export_socket_site_to_json(args, configuration):
                         cur_range['gateway'] = nr_gateway
                         cur_range['range_type'] = nr_range_type
                         cur_range['translated_subnet'] = nr_translated_subnet
-                        # # Not available to set for native_range via API today
-                        # cur_range['internet_only'] = nr_internet_only
+                        cur_range['internet_only'] = nr_internet_only
                         cur_range['local_ip'] = nr_local_ip  # Use the calculated or original value
                         cur_range['dhcp_settings'] = {
                             'dhcp_type': nr_dhcp_type,
@@ -594,6 +591,7 @@ def get_processed_site_data(args, configuration):
             nr_relay_group_name = None
             nr_gateway = None
             nr_translated_subnet = None
+            nr_internet_only = None  # Default to None for JSON
             nr_local_ip = None
             nr_range_type = "VLAN" if nr_vlan != None else "Direct"
             
@@ -612,7 +610,7 @@ def get_processed_site_data(args, configuration):
                         cur_range = {
                             'id': range_id, 'name': range_name, 'subnet': nr_subnet, 'vlan': nr_vlan,
                             'mdns_reflector': nr_mdns_reflector, 'gateway': nr_gateway, 'range_type': nr_range_type,
-                            'translated_subnet': nr_translated_subnet, 'local_ip': nr_local_ip,
+                            'translated_subnet': nr_translated_subnet, 'internet_only': nr_internet_only, 'local_ip': nr_local_ip,
                             'dhcp_settings': {
                                 'dhcp_type': nr_dhcp_type, 'ip_range': nr_ip_range, 'relay_group_id': None,
                                 'relay_group_name': nr_relay_group_name, 'dhcp_microsegmentation': nr_dhcp_microsegmentation
@@ -627,6 +625,7 @@ def get_processed_site_data(args, configuration):
                     site_native_range['gateway'] = nr_gateway
                     site_native_range['range_type'] = nr_range_type
                     site_native_range['translated_subnet'] = nr_translated_subnet
+                    site_native_range['internet_only'] = nr_internet_only
                     site_native_range['local_ip'] = nr_local_ip
                     site_native_range['dhcp_settings'] = {
                         'dhcp_type': nr_dhcp_type, 'ip_range': nr_ip_range, 'relay_group_id': None,
@@ -638,7 +637,7 @@ def get_processed_site_data(args, configuration):
                     cur_range = {
                         'id': range_id, 'name': range_name, 'subnet': nr_subnet, 'vlan': nr_vlan,
                         'mdns_reflector': nr_mdns_reflector, 'gateway': nr_gateway, 'range_type': nr_range_type,
-                        'translated_subnet': nr_translated_subnet, 'local_ip': nr_local_ip,
+                        'translated_subnet': nr_translated_subnet, 'internet_only': nr_internet_only, 'local_ip': nr_local_ip,
                         'dhcp_settings': {
                             'dhcp_type': nr_dhcp_type, 'ip_range': nr_ip_range, 'relay_group_id': None,
                             'relay_group_name': nr_relay_group_name, 'dhcp_microsegmentation': nr_dhcp_microsegmentation
@@ -857,7 +856,7 @@ def export_network_ranges_to_csv(site, args, account_id):
         'lan_interface_id', 'lan_interface_name', 'lan_interface_dest_type', 'is_native_range', 'lan_interface_index',
         # Network Range columns (populated on all rows)
         'network_range_id', 'network_range_name', 'subnet', 'vlan', 'mdns_reflector', 
-        'gateway', 'range_type', 'translated_subnet', 'local_ip', 
+        'gateway', 'range_type', 'translated_subnet', 'internet_only', 'local_ip', 
         'dhcp_type', 'dhcp_ip_range', 'dhcp_relay_group_id', 'dhcp_relay_group_name', 'dhcp_microsegmentation'
     ]
     
@@ -911,6 +910,7 @@ def export_network_ranges_to_csv(site, args, account_id):
                         'gateway': network_range.get('gateway', ''),
                         'range_type': network_range.get('range_type', ''),
                         'translated_subnet': network_range.get('translated_subnet', ''),
+                        'internet_only': network_range.get('internet_only', ''),
                         'local_ip': network_range.get('local_ip', ''),
                         'dhcp_type': network_range.get('dhcp_settings', {}).get('dhcp_type', ''),
                         'dhcp_ip_range': network_range.get('dhcp_settings', {}).get('ip_range', ''),
@@ -958,6 +958,7 @@ def export_network_ranges_to_csv(site, args, account_id):
                 'gateway': '',
                 'range_type': '',
                 'translated_subnet': '',
+                'internet_only': '',
                 'local_ip': '',
                 'dhcp_type': '',
                 'dhcp_ip_range': '',
@@ -992,8 +993,9 @@ def export_network_ranges_to_csv(site, args, account_id):
                     'gateway': network_range.get('gateway', ''),
                     'range_type': network_range.get('range_type', ''),
                     'translated_subnet': network_range.get('translated_subnet', ''),
-                        'local_ip': network_range.get('local_ip', ''),
-                        'dhcp_type': network_range.get('dhcp_settings', {}).get('dhcp_type', ''),
+                    'internet_only': network_range.get('internet_only', ''),
+                    'local_ip': network_range.get('local_ip', ''),
+                    'dhcp_type': network_range.get('dhcp_settings', {}).get('dhcp_type', ''),
                     'dhcp_ip_range': network_range.get('dhcp_settings', {}).get('ip_range', ''),
                     'dhcp_relay_group_id': network_range.get('dhcp_settings', {}).get('relay_group_id', ''),
                     'dhcp_relay_group_name': network_range.get('dhcp_settings', {}).get('relay_group_name', ''),

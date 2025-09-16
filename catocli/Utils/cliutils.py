@@ -85,10 +85,10 @@ def load_cli_settings():
     settings_locations = [
         # Try package resource first (for installed packages)
         lambda: json.loads(get_package_resource('catocli', 'clisettings.json')),
-        # Try repository location (for development)
-        lambda: json.load(open(os.path.join(os.path.dirname(__file__), '../../clisettings.json'), 'r', encoding='utf-8')),
         # Try adjacent file location (for development - new location)
-        lambda: json.load(open(os.path.join(os.path.dirname(__file__), '../clisettings.json'), 'r', encoding='utf-8'))
+        lambda: json.load(open(os.path.join(os.path.dirname(__file__), '../clisettings.json'), 'r', encoding='utf-8')),
+        # Try repository location (for development - fallback)
+        lambda: json.load(open(os.path.join(os.path.dirname(__file__), '../../clisettings.json'), 'r', encoding='utf-8'))
     ]
     
     for i, load_func in enumerate(settings_locations):
@@ -112,7 +112,9 @@ def get_cli_settings_path():
         str or None: Path to the settings file if found, None otherwise
     """
     possible_paths = [
-        # Repository location (for development)
+        # Adjacent file location (for development - new location)
+        os.path.join(os.path.dirname(__file__), '../clisettings.json'),
+        # Repository location (for development - fallback)
         os.path.join(os.path.dirname(__file__), '../../clisettings.json'),
         # Current directory
         os.path.join(os.getcwd(), 'clisettings.json'),

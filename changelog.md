@@ -30,7 +30,7 @@
 - Updated bulk site export/import functions to include all nested attributes for socket_sites, interfaces, and network_ranges
 - Added support for csv output for appStats, appStatsTimeSeries, accountMetrics, and socketPortMetricsTimeSeries operations with some examples in the readmes
 
-## 2.1.5 (2025-09-15)
+## 2.1.6 (2025-09-15)
 
 - Added licensing mutation support - New mutation_licensing parser for commercial license operations
 - Enhanced export functionality - Added CSV export format support alongside existing JSON export for socket sites 

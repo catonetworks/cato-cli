@@ -39,3 +39,7 @@
 - Improved network range management - Better handling of native ranges and default LAN interfaces in import/export workflows
 - Updated query models - Refreshed device and events data models with latest API schema
 - Code organization improvements - Reordered imports for better maintainability
+
+## 2.1.8 (2025-09-15)
+
+- Updated path to settings file

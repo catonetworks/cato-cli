@@ -433,12 +433,26 @@ def import_network_ranges(network_ranges, lan_interfaces, module_name, verbose=F
     failed_imports = 0
     total_ranges = len(network_ranges)
     
+    # Pre-calculate indices for network ranges to match Terraform module logic
+    # The Terraform module generates keys like: "${interface_index}-${name}-${idx}"
+    # We need to group by interface and calculate the index within each interface
+    interface_range_indices = {}
+    
+    for network_range in network_ranges:
+        interface_key = f"{network_range['site_name']}-{network_range['interface_index']}"
+        if interface_key not in interface_range_indices:
+            interface_range_indices[interface_key] = 0
+        else:
+            interface_range_indices[interface_key] += 1
+        network_range['calculated_index'] = interface_range_indices[interface_key]
+    
     for i, network_range in enumerate(network_ranges):
         network_range_id = network_range['network_range_id']
         range_name = network_range['name']
         site_name = network_range['site_name']
         subnet = network_range['subnet']
         interface_index = network_range['interface_index']
+        calculated_index = network_range['calculated_index']
         
         # Add module. prefix if not present
         if not module_name.startswith('module.'):
@@ -467,10 +481,12 @@ def import_network_ranges(network_ranges, lan_interfaces, module_name, verbose=F
         sanitized_range_name = range_name.replace(" ", "_")
         if is_default_interface:
             # For default interface ranges, use "DEFAULT" as the prefix to match socket module logic
-            range_key = f"DEFAULT-{sanitized_range_name}"
+            # Include the calculated index to match Terraform module key generation
+            range_key = f"DEFAULT-{sanitized_range_name}-{calculated_index}"
         else:
-            # For regular LAN interface ranges, use the formatted interface index
-            range_key = f"{formatted_index}-{sanitized_range_name}"
+            # For regular LAN interface ranges, use the formatted interface index with calculated index
+            # This matches the Terraform module pattern: "${interface_index}-${name}-${idx}"
+            range_key = f"{formatted_index}-{sanitized_range_name}-{calculated_index}"
         
         # Determine the correct resource addressing based on whether this is a default interface
         if is_default_interface:

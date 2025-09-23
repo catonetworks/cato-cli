@@ -138,30 +138,70 @@ def export_socket_site_to_json(args, configuration):
                 # print("connectionType={connectionType} site_id={site_id} site_name={site_name}".format(connectionType=connectionType, site_id=site_id, site_name=cur_site['name']))
                 # if connectionType in settings["default_socket_interface_map"]:
                 #     print("default_interface__index="+settings["default_socket_interface_map"][connectionType])
+                
+                # Create a map of interfaces from account snapshot for native range lookup
                 site_interfaces = snapshot_site.get('infoSiteSnapshot', {}).get('interfaces', [])
-                for wan_ni in site_interfaces:
-                    cur_wan_interface = {}
-                    role = wan_ni.get('wanRoleInterfaceInfo', "")
-                    interfaceName = wan_ni.get('id', "")
+                interface_lookup = {}  # Map interface ID to interface data
+                lan_lag_member_count = 0  # Count LAN_LAG_MEMBER interfaces for lag calculation
+                
+                for interface in site_interfaces:
+                    role = interface.get('wanRoleInterfaceInfo', "")
+                    dest_type = interface.get('destType', "")
+                    interfaceName = interface.get('id', "")
+                    
+                    # Store interface data for lookup
+                    interface_lookup[interfaceName] = {
+                        'dest_type': dest_type,
+                        'name': interface.get('name', ""),
+                        'role': role
+                    }
+                    
+                    # Count LAN_LAG_MEMBER interfaces for lag calculation
+                    if dest_type == "LAN_LAG_MEMBER":
+                        lan_lag_member_count += 1
+                    
+                    # Process WAN interfaces
                     if role is not None and role[0:3] == "wan":
+                        cur_wan_interface = {}
                         if interfaceName[0:3] in ("WAN", "USB", "LTE"):
-                            cur_wan_interface['id'] = site_id+":"+ wan_ni.get('id', "")
+                            cur_wan_interface['id'] = site_id+":"+ interface.get('id', "")
                         else:
-                            cur_wan_interface['id'] = site_id+":INT_"+ wan_ni.get('id', "")
+                            cur_wan_interface['id'] = site_id+":INT_"+ interface.get('id', "")
                         # Format WAN interface index: INT_X for numeric values, keep as-is for non-numeric
-                        wan_interface_id = wan_ni.get('id', "")
+                        wan_interface_id = interface.get('id', "")
                         if isinstance(wan_interface_id, (int, str)) and str(wan_interface_id).isdigit():
                             cur_wan_interface['index'] = f"INT_{wan_interface_id}"
                         else:
                             cur_wan_interface['index'] = wan_interface_id
-                        cur_wan_interface['name'] = wan_ni.get('name', "")
-                        cur_wan_interface['upstream_bandwidth'] = wan_ni.get('upstreamBandwidth', 0)
-                        cur_wan_interface['downstream_bandwidth'] = wan_ni.get('downstreamBandwidth', 0)
-                        cur_wan_interface['dest_type'] = wan_ni.get('destType', "")
+                        cur_wan_interface['name'] = interface.get('name', "")
+                        cur_wan_interface['upstream_bandwidth'] = interface.get('upstreamBandwidth', 0)
+                        cur_wan_interface['downstream_bandwidth'] = interface.get('downstreamBandwidth', 0)
+                        cur_wan_interface['dest_type'] = dest_type
                         cur_wan_interface['role'] = role
                         # Not supported via API to be populated later when available
                         cur_wan_interface['precedence'] = "ACTIVE"
                         cur_site['wan_interfaces'].append(cur_wan_interface)
+                    
+                    # Process LAN_LAG_MEMBER interfaces
+                    elif dest_type == "LAN_LAG_MEMBER":
+                        cur_lan_interface = {
+                            'network_ranges': []
+                        }
+                        # LAN_LAG_MEMBER interfaces don't have a numeric ID, only index and name
+                        cur_lan_interface['id'] = ''  # No ID for LAN_LAG_MEMBER
+                        cur_lan_interface['name'] = interface.get('name', "")
+                        # Format interface index: INT_X for numeric values, keep as-is for non-numeric
+                        interface_id = interface.get('id', "")
+                        if isinstance(interface_id, (int, str)) and str(interface_id).isdigit():
+                            cur_lan_interface['index'] = f"INT_{interface_id}"
+                        else:
+                            cur_lan_interface['index'] = interface_id
+                        cur_lan_interface['dest_type'] = dest_type
+                        cur_site['lan_interfaces'].append(cur_lan_interface)
+                
+                # Store the interface lookup and LAN_LAG_MEMBER count for later use
+                cur_site['_interface_lookup'] = interface_lookup
+                cur_site['_lan_lag_member_count'] = lan_lag_member_count
 
                 if site_id:
                     processed_data['sites'].append(cur_site)
@@ -190,6 +230,20 @@ def export_socket_site_to_json(args, configuration):
                     cur_site_entry["native_range"]["interface_name"] = ni_interface_name
                     cur_site_entry["native_range"]["subnet"] = lan_ni_subnet
                     cur_site_entry["native_range"]["index"] = ni_index
+                    
+                    # Get interface details from the stored lookup data
+                    interface_lookup = cur_site_entry.get('_interface_lookup', {})
+                    interface_details = interface_lookup.get(str(lan_ni_helper_fields.get('interfaceId', '')), {})
+                    native_range_dest_type = interface_details.get('dest_type', '')
+                    cur_site_entry["native_range"]["dest_type"] = native_range_dest_type
+                    
+                    # Calculate lag_min_links for native range interface if it's LAN_LAG_MASTER
+                    lag_min_links = ''
+                    if native_range_dest_type == 'LAN_LAG_MASTER':
+                        lan_lag_member_count = cur_site_entry.get('_lan_lag_member_count', 0)
+                        lag_min_links = str(lan_lag_member_count) if lan_lag_member_count > 0 else ''
+                    cur_site_entry["native_range"]["lag_min_links"] = lag_min_links
+                    
                     # Add entry to lan interfaces for default_lan
                     cur_site_entry['lan_interfaces'].append({"network_ranges": [],"default_lan":True})
                 else:
@@ -412,14 +466,7 @@ def export_socket_site_to_csv(args, configuration):
     Creates main sites CSV and individual network ranges CSV files
     """
     try:
-        # First get the JSON data using existing function
-        json_result = export_socket_site_to_json(args, configuration)
-        
-        if not json_result or not json_result[0].get('success'):
-            return json_result
-        
-        # Load the processed data from the JSON function
-        # We'll re-use the data processing logic but output to CSV instead
+        # Get the processed data directly without creating JSON file
         processed_data = get_processed_site_data(args, configuration)
         
         if not processed_data or not processed_data.get('sites'):
@@ -511,33 +558,85 @@ def get_processed_site_data(args, configuration):
             cur_site['type'] = snapshot_site.get('infoSiteSnapshot', {}).get('type')
             cur_site = populateSiteLocationData(args, snapshot_site, cur_site)
             
-            # Process WAN interfaces
+            # Create a map of interfaces from account snapshot for native range lookup
             site_interfaces = snapshot_site.get('infoSiteSnapshot', {}).get('interfaces', [])
-            for wan_ni in site_interfaces:
-                cur_wan_interface = {}
-                role = wan_ni.get('wanRoleInterfaceInfo', "")
-                interfaceName = wan_ni.get('id', "")
+            interface_lookup = {}  # Map interface ID to interface data
+            lan_lag_member_count = 0  # Count LAN_LAG_MEMBER interfaces for lag calculation
+            
+            if hasattr(args, 'verbose') and args.verbose:        
+                print(f"DEBUG: Processing site {site_id} ({cur_site['name']}) with {len(site_interfaces)} interfaces")
+            
+            for interface in site_interfaces:
+                role = interface.get('wanRoleInterfaceInfo', "")
+                dest_type = interface.get('destType', "")
+                interfaceName = interface.get('id', "")
+                
+                # Store interface data for lookup
+                interface_lookup[interfaceName] = {
+                    'dest_type': dest_type,
+                    'name': interface.get('name', ""),
+                    'role': role
+                }
+                
+                # Count LAN_LAG_MEMBER interfaces for lag calculation
+                if dest_type == "LAN_LAG_MEMBER":
+                    lan_lag_member_count += 1
+                
+                # Process WAN interfaces
                 if role is not None and role[0:3] == "wan":
+                    cur_wan_interface = {}
                     if interfaceName[0:3] in ("WAN", "USB", "LTE"):
-                        cur_wan_interface['id'] = site_id+":"+ wan_ni.get('id', "")
+                        cur_wan_interface['id'] = site_id+":"+ interface.get('id', "")
                     else:
-                        cur_wan_interface['id'] = site_id+":INT_"+ wan_ni.get('id', "")
+                        cur_wan_interface['id'] = site_id+":INT_"+ interface.get('id', "")
                     # Format WAN interface index: INT_X for numeric values, keep as-is for non-numeric
-                    wan_interface_id = wan_ni.get('id', "")
+                    wan_interface_id = interface.get('id', "")
                     if isinstance(wan_interface_id, (int, str)) and str(wan_interface_id).isdigit():
                         cur_wan_interface['index'] = f"INT_{wan_interface_id}"
                     else:
                         cur_wan_interface['index'] = wan_interface_id
-                    cur_wan_interface['name'] = wan_ni.get('name', "")
-                    cur_wan_interface['upstream_bandwidth'] = wan_ni.get('upstreamBandwidth', 0)
-                    cur_wan_interface['downstream_bandwidth'] = wan_ni.get('downstreamBandwidth', 0)
-                    cur_wan_interface['dest_type'] = wan_ni.get('destType', "")
+                    cur_wan_interface['name'] = interface.get('name', "")
+                    cur_wan_interface['upstream_bandwidth'] = interface.get('upstreamBandwidth', 0)
+                    cur_wan_interface['downstream_bandwidth'] = interface.get('downstreamBandwidth', 0)
+                    cur_wan_interface['dest_type'] = dest_type
                     cur_wan_interface['role'] = role
                     cur_wan_interface['precedence'] = "ACTIVE"
                     cur_site['wan_interfaces'].append(cur_wan_interface)
+                
+                # Process LAN_LAG_MEMBER interfaces
+                elif dest_type == "LAN_LAG_MEMBER":
+                    if hasattr(args, 'verbose') and args.verbose:            
+                        print(f"DEBUG: Processing LAN_LAG_MEMBER interface for site {site_id}: {interface.get('name', '')} (id: {interface.get('id', '')})")
+                    cur_lan_interface = {
+                        'network_ranges': []
+                    }
+                    # LAN_LAG_MEMBER interfaces don't have a numeric ID, only index and name
+                    cur_lan_interface['id'] = ''  # No ID for LAN_LAG_MEMBER
+                    cur_lan_interface['name'] = interface.get('name', "")
+                    # Format interface index: INT_X for numeric values, keep as-is for non-numeric
+                    interface_id = interface.get('id', "")
+                    if isinstance(interface_id, (int, str)) and str(interface_id).isdigit():
+                        cur_lan_interface['index'] = f"INT_{interface_id}"
+                    else:
+                        cur_lan_interface['index'] = interface_id
+                    cur_lan_interface['dest_type'] = dest_type
+                    cur_site['lan_interfaces'].append(cur_lan_interface)
+                    if hasattr(args, 'verbose') and args.verbose:
+                        print(f"DEBUG: Added LAN_LAG_MEMBER interface: {cur_lan_interface}")
+            
+            # Store the interface lookup and LAN_LAG_MEMBER count for later use
+            cur_site['_interface_lookup'] = interface_lookup
+            cur_site['_lan_lag_member_count'] = lan_lag_member_count
             
             if site_id:
                 processed_data['sites'].append(cur_site)
+                if hasattr(args, 'verbose') and args.verbose:        
+                    print(f"DEBUG: Added site {site_id} ({cur_site['name']}) with {len(cur_site['lan_interfaces'])} LAN interfaces (including {lan_lag_member_count} LAN_LAG_MEMBER interfaces)")
+    
+    # Print summary of LAN_LAG_MEMBER interfaces found
+    total_lag_members = sum(len([intf for intf in site['lan_interfaces'] if intf.get('dest_type') == 'LAN_LAG_MEMBER']) for site in processed_data['sites'])
+    if hasattr(args, 'verbose') and args.verbose:
+        print(f"DEBUG: Total LAN_LAG_MEMBER interfaces found across all sites: {total_lag_members}")
     
     # Process LAN interfaces (reuse existing logic)
     for lan_ni in entity_network_interfaces:
@@ -558,6 +657,20 @@ def get_processed_site_data(args, configuration):
                 cur_site_entry["native_range"]["interface_name"] = ni_interface_name
                 cur_site_entry["native_range"]["subnet"] = lan_ni_subnet
                 cur_site_entry["native_range"]["index"] = ni_index
+                
+                # Get interface details from the stored lookup data
+                interface_lookup = cur_site_entry.get('_interface_lookup', {})
+                interface_details = interface_lookup.get(str(lan_ni_helper_fields.get('interfaceId', '')), {})
+                native_range_dest_type = interface_details.get('dest_type', '')
+                cur_site_entry["native_range"]["dest_type"] = native_range_dest_type
+                
+                # Calculate lag_min_links for native range interface if it's LAN_LAG_MASTER
+                lag_min_links = ''
+                if native_range_dest_type == 'LAN_LAG_MASTER':
+                    lan_lag_member_count = cur_site_entry.get('_lan_lag_member_count', 0)
+                    lag_min_links = str(lan_lag_member_count) if lan_lag_member_count > 0 else ''
+                cur_site_entry["native_range"]["lag_min_links"] = lag_min_links
+                
                 cur_site_entry['lan_interfaces'].append({"network_ranges": [], "default_lan": True})
             else:
                 cur_lan_interface['id'] = ni_interface_id
@@ -712,6 +825,8 @@ def export_sites_to_csv(sites, args, account_id):
         'native_range_interface_id',
         'native_range_interface_index',
         'native_range_interface_name',
+        'native_range_interface_dest_type',
+        'native_range_interface_lag_min_links',
         'native_range_dhcp_type',
         'native_range_dhcp_ip_range',
         'native_range_dhcp_relay_group_id',
@@ -794,6 +909,8 @@ def export_sites_to_csv(sites, args, account_id):
                 'native_range_interface_id': native_range.get('interface_id', '') if is_first_interface else '',
                 'native_range_interface_index': native_range.get('index', '') if is_first_interface else '',
                 'native_range_interface_name': native_range.get('interface_name', '') if is_first_interface else '',
+                'native_range_interface_dest_type': native_range.get('dest_type', '') if is_first_interface else '',
+                'native_range_interface_lag_min_links': native_range.get('lag_min_links', '') if is_first_interface else '',
                 'native_range_dhcp_type': native_range.get('dhcp_settings', {}).get('dhcp_type', '') if is_first_interface else '',
                 'native_range_dhcp_ip_range': native_range.get('dhcp_settings', {}).get('ip_range', '') if is_first_interface else '',
                 'native_range_dhcp_relay_group_id': native_range.get('dhcp_settings', {}).get('relay_group_id', '') if is_first_interface else '',
@@ -852,8 +969,8 @@ def export_network_ranges_to_csv(site, args, account_id):
     
     # Define CSV headers - Reordered LAN interface columns first, then network range columns
     headers = [
-        # LAN Interface columns (first 3 columns, is_native_range 4th, lan_interface_index 5th)
-        'lan_interface_id', 'lan_interface_name', 'lan_interface_dest_type', 'is_native_range', 'lan_interface_index',
+        # LAN Interface columns (first 3 columns, lag_min_links 4th, is_native_range 5th, lan_interface_index 6th)
+        'lan_interface_id', 'lan_interface_name', 'lan_interface_dest_type', 'lag_min_links', 'is_native_range', 'lan_interface_index',
         # Network Range columns (populated on all rows)
         'network_range_id', 'network_range_name', 'subnet', 'vlan', 'mdns_reflector', 
         'gateway', 'range_type', 'translated_subnet', 'internet_only', 'local_ip', 
@@ -864,6 +981,10 @@ def export_network_ranges_to_csv(site, args, account_id):
     
     # Get the native range subnet from the site to exclude it from detailed CSV
     native_range_subnet = site.get('native_range', {}).get('subnet', '')
+    
+    # Count LAN_LAG_MEMBER interfaces for lag_min_links calculation
+    lan_lag_member_count = len([intf for intf in site.get('lan_interfaces', []) 
+                               if intf.get('dest_type', '') == 'LAN_LAG_MEMBER'])
     
     # Process default LAN interface (from native_range) - ONLY if it has additional networks
     native_range = site.get('native_range', {})
@@ -879,14 +1000,17 @@ def export_network_ranges_to_csv(site, args, account_id):
             
             network_ranges = default_lan_interface.get('network_ranges', [])
             
-            # Filter out the network range that matches the parent CSV native_range_subnet
-            filtered_ranges = [nr for nr in network_ranges if nr.get('subnet', '') != native_range_subnet]
-            
-            # For default_lan interfaces, ONLY create entries if there are additional ranges
-            # Do NOT create an entry with is_native_range=TRUE since native range is managed at parent level
-            if filtered_ranges:
-                # Process filtered ranges - all marked as additional (non-native) ranges
-                for idx, network_range in enumerate(filtered_ranges):
+            # For default_lan interfaces, process all ranges but skip native range
+            # Only process non-native ranges (additional ranges)
+            if network_ranges:
+                # Process all ranges and only include non-native ranges
+                for idx, network_range in enumerate(network_ranges):
+                    current_subnet = network_range.get('subnet', '')
+                    
+                    # Skip the native range since it's managed at parent level
+                    if current_subnet == native_range_subnet:
+                        continue
+                        
                     # First row for this interface includes interface details
                     is_first_range = (idx == 0)
                     
@@ -898,7 +1022,8 @@ def export_network_ranges_to_csv(site, args, account_id):
                         'lan_interface_id': '',  # Empty for default LAN interfaces (managed at parent level)
                         'lan_interface_name': '',  # Empty for default LAN interfaces (managed at parent level)
                         'lan_interface_dest_type': '',  # Empty for default LAN interfaces (managed at parent level)
-                        'is_native_range': '',  # Always empty for default LAN interfaces
+                        'lag_min_links': '',  # Empty for default interfaces
+                        'is_native_range': '',  # Always empty for default LAN interfaces (native is managed at parent level)
                         'lan_interface_index': interface_index,  # Populated for every row
                         
                         # Network Range details (on all rows)
@@ -933,19 +1058,60 @@ def export_network_ranges_to_csv(site, args, account_id):
         interface_index = lan_interface.get('index', '')
         interface_dest_type = lan_interface.get('dest_type', '')
         
+        # Special handling for LAN_LAG_MEMBER interfaces
+        if interface_dest_type == 'LAN_LAG_MEMBER':
+            if hasattr(args, 'verbose') and args.verbose:
+                print(f"DEBUG: Processing LAN_LAG_MEMBER interface in CSV export for site {site.get('name', '')}: {interface_name} (index: {interface_index})")
+            # LAN_LAG_MEMBER interfaces get their own row with only interface details
+            # They don't have is_native_range=TRUE and have no network range data
+            row = {
+                # LAN Interface details - only populate specific fields for LAN_LAG_MEMBER
+                'lan_interface_id': '',  # LAN_LAG_MEMBER interfaces don't have IDs
+                'lan_interface_name': interface_name,
+                'lan_interface_dest_type': interface_dest_type,
+                'lag_min_links': '',  # Empty for LAN_LAG_MEMBER
+                'is_native_range': '',  # Empty - LAN_LAG_MEMBER should NOT have is_native_range=TRUE
+                'lan_interface_index': interface_index,
+                
+                # Network Range details (all empty for LAN_LAG_MEMBER)
+                'network_range_id': '',
+                'network_range_name': '',
+                'subnet': '',
+                'vlan': '',
+                'mdns_reflector': '',
+                'gateway': '',
+                'range_type': '',
+                'translated_subnet': '',
+                'internet_only': '',
+                'local_ip': '',
+                'dhcp_type': '',
+                'dhcp_ip_range': '',
+                'dhcp_relay_group_id': '',
+                'dhcp_relay_group_name': '',
+                'dhcp_microsegmentation': ''
+            }
+            rows.append(row)
+            if hasattr(args, 'verbose') and args.verbose:
+                print(f"DEBUG: Added LAN_LAG_MEMBER row to CSV: {row}")
+            continue  # Skip to next interface
+        
+        # Handle regular (non-LAN_LAG_MEMBER) LAN interfaces
         network_ranges = lan_interface.get('network_ranges', [])
         
-        # Filter out the network range that matches the parent CSV native_range_subnet
-        filtered_ranges = [nr for nr in network_ranges if nr.get('subnet', '') != native_range_subnet]
-        
-        # If no filtered ranges, create at least one row with just the LAN interface info  
+        # If no network ranges at all, create at least one row with just the LAN interface info  
         # For regular LAN interfaces, mark as native range if this is the first/only interface
-        if not filtered_ranges:
+        if not network_ranges:
+            # Calculate lag_min_links for LAN_LAG_MASTER interfaces
+            lag_min_links_value = ''
+            if interface_dest_type == 'LAN_LAG_MASTER':
+                lag_min_links_value = str(lan_lag_member_count) if lan_lag_member_count > 0 else ''
+            
             row = {
-                # LAN Interface details - first 3 columns reordered, is_native_range 4th, lan_interface_index 5th
+                # LAN Interface details - first 3 columns reordered, lag_min_links 4th, is_native_range 5th, lan_interface_index 6th
                 'lan_interface_id': interface_id,
                 'lan_interface_name': interface_name,
                 'lan_interface_dest_type': interface_dest_type,
+                'lag_min_links': lag_min_links_value,  # Populated only for LAN_LAG_MASTER
                 'is_native_range': 'TRUE',  # Mark as native range for non-default LAN interfaces with no additional ranges
                 'lan_interface_index': interface_index,
                 
@@ -968,20 +1134,36 @@ def export_network_ranges_to_csv(site, args, account_id):
             }
             rows.append(row)
         else:
-            # Process filtered ranges as before
-            for idx, network_range in enumerate(filtered_ranges):
+            # Sort network ranges to put "Native Range" first
+            def sort_network_ranges(nr):
+                # Native Range should come first (return 0), all others come after (return 1)
+                range_name = nr.get('name', '')
+                return 0 if range_name == 'Native Range' else 1
+            
+            sorted_network_ranges = sorted(network_ranges, key=sort_network_ranges)
+            
+            # Process all network ranges and identify which one is the native range
+            # Native range is identified by the range name being "Native Range" 
+            for idx, network_range in enumerate(sorted_network_ranges):
                 # First row for this interface includes interface details
                 is_first_range = (idx == 0)
                 
-                # For non-default_lan interfaces, first range should be marked as is_native_range
-                is_native_range = is_first_range
+                # Identify native range by checking if the range name is "Native Range"
+                current_range_name = network_range.get('name', '')
+                is_native_range = (current_range_name == 'Native Range')
+                
+                # Calculate lag_min_links for LAN_LAG_MASTER interfaces (only on first row)
+                lag_min_links_value = ''
+                if is_first_range and interface_dest_type == 'LAN_LAG_MASTER':
+                    lag_min_links_value = str(lan_lag_member_count) if lan_lag_member_count > 0 else ''
                 
                 row = {
-                    # LAN Interface details - first 3 columns reordered, is_native_range 4th, lan_interface_index 5th
+                    # LAN Interface details - first 3 columns reordered, lag_min_links 4th, is_native_range 5th, lan_interface_index 6th
                     'lan_interface_id': interface_id if is_first_range else '',
                     'lan_interface_name': interface_name if is_first_range else '',
                     'lan_interface_dest_type': interface_dest_type if is_first_range else '',
-                    'is_native_range': 'TRUE' if is_native_range else '',
+                    'lag_min_links': lag_min_links_value if is_first_range else '',  # Populated only for LAN_LAG_MASTER on first row
+                    'is_native_range': 'TRUE' if is_native_range else '',  # TRUE only for native range, empty for others
                     'lan_interface_index': interface_index,  # Populated for every row
                     
                     # Network Range details (on all rows)

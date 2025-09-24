@@ -12,6 +12,33 @@
 
 `catocli mutation sites updateSiteGeneralDetails '{"siteId":"id","updateSiteGeneralDetailsInput":{"description":"string","name":"string","siteType":"BRANCH","updateSiteLocationInput":{"address":"string","cityName":"string","countryCode":"string","stateCode":"string","timezone":"string"},"updateSitePreferredPopLocationInput":{"preferredOnly":true,"primary":{"by":"ID","input":"string"},"secondary":{"by":"ID","input":"string"}}}}'`
 
+`catocli mutation sites updateSiteGeneralDetails -p '{
+    "siteId": "id",
+    "updateSiteGeneralDetailsInput": {
+        "description": "string",
+        "name": "string",
+        "siteType": "BRANCH",
+        "updateSiteLocationInput": {
+            "address": "string",
+            "cityName": "string",
+            "countryCode": "string",
+            "stateCode": "string",
+            "timezone": "string"
+        },
+        "updateSitePreferredPopLocationInput": {
+            "preferredOnly": true,
+            "primary": {
+                "by": "ID",
+                "input": "string"
+            },
+            "secondary": {
+                "by": "ID",
+                "input": "string"
+            }
+        }
+    }
+}'`
+
 
 #### Operation Arguments for mutation.sites.updateSiteGeneralDetails ####
 

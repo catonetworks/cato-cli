@@ -12,6 +12,28 @@
 
 `catocli mutation admin updateServicePrincipalAdmin '{"adminID":"id","updateServicePrincipalAdminInput":{"name":"string","updateAdminRoleInput":{"allowedAccounts":["id1","id2"],"allowedEntities":{"id":"id","name":"string","type":"account"},"role":{"id":"id","name":"string"}}}}'`
 
+`catocli mutation admin updateServicePrincipalAdmin -p '{
+    "adminID": "id",
+    "updateServicePrincipalAdminInput": {
+        "name": "string",
+        "updateAdminRoleInput": {
+            "allowedAccounts": [
+                "id1",
+                "id2"
+            ],
+            "allowedEntities": {
+                "id": "id",
+                "name": "string",
+                "type": "account"
+            },
+            "role": {
+                "id": "id",
+                "name": "string"
+            }
+        }
+    }
+}'`
+
 
 #### Operation Arguments for mutation.admin.updateServicePrincipalAdmin ####
 

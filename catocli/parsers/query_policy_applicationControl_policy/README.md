@@ -12,6 +12,15 @@
 
 `catocli query policy applicationControl policy '{"applicationControlPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'`
 
+`catocli query policy applicationControl policy -p '{
+    "applicationControlPolicyInput": {
+        "policyRevisionInput": {
+            "id": "id",
+            "type": "PRIVATE"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for query.policy.applicationControl.policy ####
 

@@ -12,6 +12,17 @@
 
 `catocli mutation policy internetFirewall removeSection '{"internetFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyRemoveSectionInput":{"id":"id"}}'`
 
+`catocli mutation policy internetFirewall removeSection -p '{
+    "internetFirewallPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    },
+    "policyRemoveSectionInput": {
+        "id": "id"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.internetFirewall.removeSection ####
 

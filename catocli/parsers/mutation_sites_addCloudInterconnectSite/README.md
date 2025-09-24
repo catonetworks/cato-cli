@@ -12,6 +12,21 @@
 
 `catocli mutation sites addCloudInterconnectSite '{"addCloudInterconnectSiteInput":{"addSiteLocationInput":{"address":"string","city":"string","countryCode":"string","stateCode":"string","timezone":"string"},"description":"string","name":"string","siteType":"BRANCH"}}'`
 
+`catocli mutation sites addCloudInterconnectSite -p '{
+    "addCloudInterconnectSiteInput": {
+        "addSiteLocationInput": {
+            "address": "string",
+            "city": "string",
+            "countryCode": "string",
+            "stateCode": "string",
+            "timezone": "string"
+        },
+        "description": "string",
+        "name": "string",
+        "siteType": "BRANCH"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.sites.addCloudInterconnectSite ####
 

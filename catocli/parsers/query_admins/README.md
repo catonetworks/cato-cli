@@ -12,6 +12,20 @@
 
 `catocli query admins '{"adminIDs":["id1","id2"],"from":1,"limit":1,"search":"string","sortInput":{"field":"string","order":"asc"}}'`
 
+`catocli query admins -p '{
+    "adminIDs": [
+        "id1",
+        "id2"
+    ],
+    "from": 1,
+    "limit": 1,
+    "search": "string",
+    "sortInput": {
+        "field": "string",
+        "order": "asc"
+    }
+}'`
+
 
 #### Operation Arguments for query.admins ####
 

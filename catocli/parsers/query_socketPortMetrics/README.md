@@ -12,6 +12,32 @@
 
 `catocli query socketPortMetrics '{"from":1,"limit":1,"socketPortMetricsDimension":{"fieldName":"account_id"},"socketPortMetricsFilter":{"fieldName":"account_id","operator":"is","values":["string1","string2"]},"socketPortMetricsMeasure":{"aggType":"sum","fieldName":"account_id","trend":true},"socketPortMetricsSort":{"fieldName":"account_id","order":"asc"},"timeFrame":"example_value"}'`
 
+`catocli query socketPortMetrics -p '{
+    "from": 1,
+    "limit": 1,
+    "socketPortMetricsDimension": {
+        "fieldName": "account_id"
+    },
+    "socketPortMetricsFilter": {
+        "fieldName": "account_id",
+        "operator": "is",
+        "values": [
+            "string1",
+            "string2"
+        ]
+    },
+    "socketPortMetricsMeasure": {
+        "aggType": "sum",
+        "fieldName": "account_id",
+        "trend": true
+    },
+    "socketPortMetricsSort": {
+        "fieldName": "account_id",
+        "order": "asc"
+    },
+    "timeFrame": "example_value"
+}'`
+
 
 #### Operation Arguments for query.socketPortMetrics ####
 

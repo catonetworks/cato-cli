@@ -12,6 +12,17 @@
 
 `catocli mutation policy socketLan discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"socketLanPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
 
+`catocli mutation policy socketLan discardPolicyRevision -p '{
+    "policyDiscardRevisionInput": {
+        "id": "id"
+    },
+    "socketLanPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.socketLan.discardPolicyRevision ####
 

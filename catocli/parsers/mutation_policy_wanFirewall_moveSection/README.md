@@ -12,6 +12,21 @@
 
 `catocli mutation policy wanFirewall moveSection '{"policyMoveSectionInput":{"id":"id","policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}},"wanFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
 
+`catocli mutation policy wanFirewall moveSection -p '{
+    "policyMoveSectionInput": {
+        "id": "id",
+        "policySectionPositionInput": {
+            "position": "AFTER_SECTION",
+            "ref": "id"
+        }
+    },
+    "wanFirewallPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.wanFirewall.moveSection ####
 

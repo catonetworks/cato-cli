@@ -12,6 +12,15 @@
 
 `catocli query policy appTenantRestriction policy '{"appTenantRestrictionPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'`
 
+`catocli query policy appTenantRestriction policy -p '{
+    "appTenantRestrictionPolicyInput": {
+        "policyRevisionInput": {
+            "id": "id",
+            "type": "PRIVATE"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for query.policy.appTenantRestriction.policy ####
 

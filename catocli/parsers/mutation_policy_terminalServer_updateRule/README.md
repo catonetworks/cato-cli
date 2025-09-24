@@ -12,6 +12,30 @@
 
 `catocli mutation policy terminalServer updateRule '{"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"terminalServerUpdateRuleInput":{"id":"id","terminalServerUpdateRuleDataInput":{"allowedHostIP":{"by":"ID","input":"string"},"description":"string","enabled":true,"excludeTraffic":{"by":"ID","input":"string"},"name":"string"}}}'`
 
+`catocli mutation policy terminalServer updateRule -p '{
+    "terminalServerPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    },
+    "terminalServerUpdateRuleInput": {
+        "id": "id",
+        "terminalServerUpdateRuleDataInput": {
+            "allowedHostIP": {
+                "by": "ID",
+                "input": "string"
+            },
+            "description": "string",
+            "enabled": true,
+            "excludeTraffic": {
+                "by": "ID",
+                "input": "string"
+            },
+            "name": "string"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.terminalServer.updateRule ####
 

@@ -12,6 +12,17 @@
 
 `catocli mutation policy applicationControl removeRule '{"applicationControlPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"applicationControlRemoveRuleInput":{"id":"id"}}'`
 
+`catocli mutation policy applicationControl removeRule -p '{
+    "applicationControlPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    },
+    "applicationControlRemoveRuleInput": {
+        "id": "id"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.applicationControl.removeRule ####
 

@@ -12,6 +12,10 @@
 
 `catocli query site secondaryAwsVSocket '{"socketId":"id"}'`
 
+`catocli query site secondaryAwsVSocket -p '{
+    "socketId": "id"
+}'`
+
 
 #### Operation Arguments for query.site.secondaryAwsVSocket ####
 

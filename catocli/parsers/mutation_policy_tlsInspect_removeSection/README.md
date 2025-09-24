@@ -12,6 +12,17 @@
 
 `catocli mutation policy tlsInspect removeSection '{"policyRemoveSectionInput":{"id":"id"},"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
 
+`catocli mutation policy tlsInspect removeSection -p '{
+    "policyRemoveSectionInput": {
+        "id": "id"
+    },
+    "tlsInspectPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.tlsInspect.removeSection ####
 

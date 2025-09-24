@@ -622,6 +622,7 @@ def get_help(path):
     Enhanced help generation with better error handling
     Stop including catocli examples after "Advanced Usage" section
     Add dynamic GitHub link if advanced examples exist
+    Handle multi-line JSON examples properly for -p flag
     """
     match_cmd = f"catocli {path.replace('_', ' ')}"
     pwd = os.path.dirname(__file__)
@@ -642,21 +643,48 @@ def get_help(path):
             
         # Flag to stop processing after Advanced Usage section
         stop_after_advanced = False
+        i = 0
+        
+        while i < len(lines):
+            line = lines[i]
             
-        for line in lines:
             # Check if we've hit the Advanced Usage section
             if "Advanced Usage" in line or "## Advanced" in line:
                 stop_after_advanced = True
+                i += 1
                 continue
                 
             # Skip catocli examples after Advanced Usage
             if stop_after_advanced and match_cmd in line:
+                i += 1
                 continue
                 
             # Include catocli examples before Advanced Usage
             if match_cmd in line:
-                clean_line = line.replace("<br /><br />", "").replace("`", "")
-                new_line += f"{clean_line}\n"
+                # Check if this is a -p example with multi-line JSON
+                if "-p '" in line and line.rstrip().endswith("{"):
+                    # This is the start of a multi-line JSON example
+                    clean_line = line.replace("<br /><br />", "").replace("`", "")
+                    complete_example = clean_line
+                    
+                    # Continue reading lines until we find the closing quote and brace
+                    i += 1
+                    while i < len(lines):
+                        json_line = lines[i]
+                        complete_example += json_line
+                        
+                        # Check if this line ends the JSON (ends with }' and optional whitespace)
+                        if json_line.strip().endswith("}'"): 
+                            break
+                        i += 1
+                    
+                    new_line += complete_example
+                else:
+                    # Regular single-line example
+                    clean_line = line.replace("<br /><br />", "").replace("`", "")
+                    new_line += f"{clean_line}\n"
+            
+            i += 1
         
         # Add GitHub link if advanced examples exist
         if has_advanced_examples:

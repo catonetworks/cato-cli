@@ -12,6 +12,13 @@
 
 `catocli mutation xdr deleteStoryComment '{"deleteStoryCommentInput":{"commentId":"id","storyId":"id"}}'`
 
+`catocli mutation xdr deleteStoryComment -p '{
+    "deleteStoryCommentInput": {
+        "commentId": "id",
+        "storyId": "id"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.xdr.deleteStoryComment ####
 

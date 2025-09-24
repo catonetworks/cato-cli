@@ -12,6 +12,15 @@
 
 `catocli query policy tlsInspect policy '{"tlsInspectPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'`
 
+`catocli query policy tlsInspect policy -p '{
+    "tlsInspectPolicyInput": {
+        "policyRevisionInput": {
+            "id": "id",
+            "type": "PRIVATE"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for query.policy.tlsInspect.policy ####
 

@@ -12,6 +12,12 @@
 
 `catocli mutation accountManagement updateAccount '{"updateAccountInput":{"description":"string"}}'`
 
+`catocli mutation accountManagement updateAccount -p '{
+    "updateAccountInput": {
+        "description": "string"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.accountManagement.updateAccount ####
 

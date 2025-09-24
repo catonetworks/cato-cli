@@ -12,6 +12,18 @@
 
 `catocli mutation policy remotePortFwd createPolicyRevision '{"policyCreateRevisionInput":{"description":"string","name":"string"},"remotePortFwdPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
 
+`catocli mutation policy remotePortFwd createPolicyRevision -p '{
+    "policyCreateRevisionInput": {
+        "description": "string",
+        "name": "string"
+    },
+    "remotePortFwdPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.remotePortFwd.createPolicyRevision ####
 

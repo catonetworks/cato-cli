@@ -12,6 +12,20 @@
 
 `catocli mutation policy socketLan updateSection '{"policyUpdateSectionInput":{"id":"id","policyUpdateSectionInfoInput":{"name":"string"}},"socketLanPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
 
+`catocli mutation policy socketLan updateSection -p '{
+    "policyUpdateSectionInput": {
+        "id": "id",
+        "policyUpdateSectionInfoInput": {
+            "name": "string"
+        }
+    },
+    "socketLanPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.socketLan.updateSection ####
 

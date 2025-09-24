@@ -12,6 +12,32 @@
 
 `catocli query appStats '{"appStatsFilter":{"fieldName":"ad_name","operator":"is","values":["string1","string2"]},"appStatsSort":{"fieldName":"ad_name","order":"asc"},"dimension":{"fieldName":"ad_name"},"from":1,"limit":1,"measure":{"aggType":"sum","fieldName":"ad_name","trend":true},"timeFrame":"example_value"}'`
 
+`catocli query appStats -p '{
+    "appStatsFilter": {
+        "fieldName": "ad_name",
+        "operator": "is",
+        "values": [
+            "string1",
+            "string2"
+        ]
+    },
+    "appStatsSort": {
+        "fieldName": "ad_name",
+        "order": "asc"
+    },
+    "dimension": {
+        "fieldName": "ad_name"
+    },
+    "from": 1,
+    "limit": 1,
+    "measure": {
+        "aggType": "sum",
+        "fieldName": "ad_name",
+        "trend": true
+    },
+    "timeFrame": "example_value"
+}'`
+
 
 ## Advanced Usage
 # Query to export flows_created, and distinct users (user_name) for user_names for last day

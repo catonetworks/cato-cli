@@ -12,6 +12,21 @@
 
 `catocli mutation policy tlsInspect moveRule '{"policyMoveRuleInput":{"id":"id","policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"}},"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
 
+`catocli mutation policy tlsInspect moveRule -p '{
+    "policyMoveRuleInput": {
+        "id": "id",
+        "policyRulePositionInput": {
+            "position": "AFTER_RULE",
+            "ref": "id"
+        }
+    },
+    "tlsInspectPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.tlsInspect.moveRule ####
 

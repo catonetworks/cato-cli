@@ -12,6 +12,19 @@
 
 `catocli mutation container fqdn addValues '{"fqdnContainerAddValuesInput":{"containerRefInput":{"by":"ID","input":"string"},"values":["example1","example2"]}}'`
 
+`catocli mutation container fqdn addValues -p '{
+    "fqdnContainerAddValuesInput": {
+        "containerRefInput": {
+            "by": "ID",
+            "input": "string"
+        },
+        "values": [
+            "example1",
+            "example2"
+        ]
+    }
+}'`
+
 
 #### Operation Arguments for mutation.container.fqdn.addValues ####
 

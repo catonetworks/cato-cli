@@ -12,6 +12,20 @@
 
 `catocli mutation policy appTenantRestriction updateSection '{"appTenantRestrictionPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyUpdateSectionInput":{"id":"id","policyUpdateSectionInfoInput":{"name":"string"}}}'`
 
+`catocli mutation policy appTenantRestriction updateSection -p '{
+    "appTenantRestrictionPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    },
+    "policyUpdateSectionInput": {
+        "id": "id",
+        "policyUpdateSectionInfoInput": {
+            "name": "string"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.appTenantRestriction.updateSection ####
 

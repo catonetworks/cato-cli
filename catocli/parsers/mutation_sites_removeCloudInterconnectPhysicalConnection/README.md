@@ -12,6 +12,12 @@
 
 `catocli mutation sites removeCloudInterconnectPhysicalConnection '{"removeCloudInterconnectPhysicalConnectionInput":{"id":"id"}}'`
 
+`catocli mutation sites removeCloudInterconnectPhysicalConnection -p '{
+    "removeCloudInterconnectPhysicalConnectionInput": {
+        "id": "id"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.sites.removeCloudInterconnectPhysicalConnection ####
 

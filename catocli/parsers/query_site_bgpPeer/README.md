@@ -12,6 +12,13 @@
 
 `catocli query site bgpPeer '{"bgpPeerRefInput":{"by":"ID","input":"string"}}'`
 
+`catocli query site bgpPeer -p '{
+    "bgpPeerRefInput": {
+        "by": "ID",
+        "input": "string"
+    }
+}'`
+
 
 #### Operation Arguments for query.site.bgpPeer ####
 

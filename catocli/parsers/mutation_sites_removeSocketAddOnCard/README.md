@@ -12,6 +12,16 @@
 
 `catocli mutation sites removeSocketAddOnCard '{"removeSocketAddOnCardInput":{"expansionSlotNumbers":"SLOT_1","siteRefInput":{"by":"ID","input":"string"}}}'`
 
+`catocli mutation sites removeSocketAddOnCard -p '{
+    "removeSocketAddOnCardInput": {
+        "expansionSlotNumbers": "SLOT_1",
+        "siteRefInput": {
+            "by": "ID",
+            "input": "string"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for mutation.sites.removeSocketAddOnCard ####
 

@@ -12,6 +12,20 @@
 
 `catocli mutation policy applicationControl updatePolicy '{"applicationControlPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"applicationControlPolicyUpdateInput":{"applicationControlConfigInput":{"dataControlEnabled":"ENABLED"},"state":"ENABLED"}}'`
 
+`catocli mutation policy applicationControl updatePolicy -p '{
+    "applicationControlPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    },
+    "applicationControlPolicyUpdateInput": {
+        "applicationControlConfigInput": {
+            "dataControlEnabled": "ENABLED"
+        },
+        "state": "ENABLED"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.applicationControl.updatePolicy ####
 

@@ -12,6 +12,17 @@
 
 `catocli mutation policy socketLan removeSection '{"policyRemoveSectionInput":{"id":"id"},"socketLanPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
 
+`catocli mutation policy socketLan removeSection -p '{
+    "policyRemoveSectionInput": {
+        "id": "id"
+    },
+    "socketLanPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.socketLan.removeSection ####
 

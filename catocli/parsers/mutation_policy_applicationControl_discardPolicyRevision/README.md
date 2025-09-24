@@ -12,6 +12,17 @@
 
 `catocli mutation policy applicationControl discardPolicyRevision '{"applicationControlPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyDiscardRevisionInput":{"id":"id"}}'`
 
+`catocli mutation policy applicationControl discardPolicyRevision -p '{
+    "applicationControlPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    },
+    "policyDiscardRevisionInput": {
+        "id": "id"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.applicationControl.discardPolicyRevision ####
 

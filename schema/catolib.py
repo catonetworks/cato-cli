@@ -1238,8 +1238,11 @@ def writeReadmes(catoApiSchema):
                 if "example" in parser and parser["example"]:
                     import json
                     example_json = json.dumps(parser["example"], separators=(',', ':'))
+                    example_json_pretty = json.dumps(parser["example"], indent=4)
                     readmeStr += f"""
 `catocli {operationCmd} '{example_json}'`
+
+`catocli {operationCmd} -p '{example_json_pretty}'`
 
 """
                 

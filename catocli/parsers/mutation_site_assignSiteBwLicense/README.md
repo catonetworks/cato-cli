@@ -12,6 +12,17 @@
 
 `catocli mutation site assignSiteBwLicense '{"assignSiteBwLicenseInput":{"bw":1,"licenseId":"id","siteRefInput":{"by":"ID","input":"string"}}}'`
 
+`catocli mutation site assignSiteBwLicense -p '{
+    "assignSiteBwLicenseInput": {
+        "bw": 1,
+        "licenseId": "id",
+        "siteRefInput": {
+            "by": "ID",
+            "input": "string"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for mutation.site.assignSiteBwLicense ####
 

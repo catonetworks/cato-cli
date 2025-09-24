@@ -12,6 +12,30 @@
 
 `catocli query appStatsTimeSeries '{"appStatsFilter":{"fieldName":"ad_name","operator":"is","values":["string1","string2"]},"buckets":1,"dimension":{"fieldName":"ad_name"},"measure":{"aggType":"sum","fieldName":"ad_name","trend":true},"perSecond":true,"timeFrame":"example_value","useDefaultSizeBucket":true,"withMissingData":true}'`
 
+`catocli query appStatsTimeSeries -p '{
+    "appStatsFilter": {
+        "fieldName": "ad_name",
+        "operator": "is",
+        "values": [
+            "string1",
+            "string2"
+        ]
+    },
+    "buckets": 1,
+    "dimension": {
+        "fieldName": "ad_name"
+    },
+    "measure": {
+        "aggType": "sum",
+        "fieldName": "ad_name",
+        "trend": true
+    },
+    "perSecond": true,
+    "timeFrame": "example_value",
+    "useDefaultSizeBucket": true,
+    "withMissingData": true
+}'`
+
 
 ## Advanced Usage
 # Query to export upstream, downstream and traffic for user_name and application_name for last day broken into 1 hour buckets

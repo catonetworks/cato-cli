@@ -12,6 +12,12 @@
 
 `catocli query site cloudInterconnectConnectionConnectivity '{"cloudInterconnectConnectionConnectivityInput":{"id":"id"}}'`
 
+`catocli query site cloudInterconnectConnectionConnectivity -p '{
+    "cloudInterconnectConnectionConnectivityInput": {
+        "id": "id"
+    }
+}'`
+
 
 #### Operation Arguments for query.site.cloudInterconnectConnectionConnectivity ####
 

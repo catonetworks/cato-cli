@@ -12,6 +12,20 @@
 
 `catocli mutation policy internetFirewall updateSection '{"internetFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyUpdateSectionInput":{"id":"id","policyUpdateSectionInfoInput":{"name":"string"}}}'`
 
+`catocli mutation policy internetFirewall updateSection -p '{
+    "internetFirewallPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    },
+    "policyUpdateSectionInput": {
+        "id": "id",
+        "policyUpdateSectionInfoInput": {
+            "name": "string"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.internetFirewall.updateSection ####
 

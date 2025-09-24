@@ -12,6 +12,13 @@
 
 `catocli mutation xdr addStoryComment '{"addStoryCommentInput":{"storyId":"id","text":"string"}}'`
 
+`catocli mutation xdr addStoryComment -p '{
+    "addStoryCommentInput": {
+        "storyId": "id",
+        "text": "string"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.xdr.addStoryComment ####
 

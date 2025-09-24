@@ -12,6 +12,13 @@
 
 `catocli query accountBySubdomain '{"subdomains":["string1","string2"]}'`
 
+`catocli query accountBySubdomain -p '{
+    "subdomains": [
+        "string1",
+        "string2"
+    ]
+}'`
+
 
 #### Operation Arguments for query.accountBySubdomain ####
 

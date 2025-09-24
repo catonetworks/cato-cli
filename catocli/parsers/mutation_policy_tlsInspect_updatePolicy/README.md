@@ -12,6 +12,21 @@
 
 `catocli mutation policy tlsInspect updatePolicy '{"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"tlsInspectPolicyUpdateInput":{"state":"ENABLED","tlsInspectConfigInput":{"defaultRuleAction":"INSPECT","defaultRuleUntrustedCertificateAction":"ALLOW"}}}'`
 
+`catocli mutation policy tlsInspect updatePolicy -p '{
+    "tlsInspectPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    },
+    "tlsInspectPolicyUpdateInput": {
+        "state": "ENABLED",
+        "tlsInspectConfigInput": {
+            "defaultRuleAction": "INSPECT",
+            "defaultRuleUntrustedCertificateAction": "ALLOW"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.tlsInspect.updatePolicy ####
 

@@ -12,6 +12,17 @@
 
 `catocli mutation policy applicationControl removeSection '{"applicationControlPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyRemoveSectionInput":{"id":"id"}}'`
 
+`catocli mutation policy applicationControl removeSection -p '{
+    "applicationControlPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    },
+    "policyRemoveSectionInput": {
+        "id": "id"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.applicationControl.removeSection ####
 

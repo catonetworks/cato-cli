@@ -12,6 +12,15 @@
 
 `catocli mutation site updateStaticHost '{"hostId":"id","updateStaticHostInput":{"ip":"example_value","macAddress":"string","name":"string"}}'`
 
+`catocli mutation site updateStaticHost -p '{
+    "hostId": "id",
+    "updateStaticHostInput": {
+        "ip": "example_value",
+        "macAddress": "string",
+        "name": "string"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.site.updateStaticHost ####
 

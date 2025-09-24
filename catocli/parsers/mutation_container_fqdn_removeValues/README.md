@@ -12,6 +12,19 @@
 
 `catocli mutation container fqdn removeValues '{"fqdnContainerRemoveValuesInput":{"containerRefInput":{"by":"ID","input":"string"},"values":["example1","example2"]}}'`
 
+`catocli mutation container fqdn removeValues -p '{
+    "fqdnContainerRemoveValuesInput": {
+        "containerRefInput": {
+            "by": "ID",
+            "input": "string"
+        },
+        "values": [
+            "example1",
+            "example2"
+        ]
+    }
+}'`
+
 
 #### Operation Arguments for mutation.container.fqdn.removeValues ####
 

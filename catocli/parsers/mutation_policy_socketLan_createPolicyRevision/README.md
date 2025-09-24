@@ -12,6 +12,18 @@
 
 `catocli mutation policy socketLan createPolicyRevision '{"policyCreateRevisionInput":{"description":"string","name":"string"},"socketLanPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
 
+`catocli mutation policy socketLan createPolicyRevision -p '{
+    "policyCreateRevisionInput": {
+        "description": "string",
+        "name": "string"
+    },
+    "socketLanPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.socketLan.createPolicyRevision ####
 

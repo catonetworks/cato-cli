@@ -12,6 +12,14 @@
 
 `catocli mutation sites updateSecondaryAzureVSocket '{"updateSecondaryAzureVSocketInput":{"floatingIp":"example_value","id":"id","interfaceIp":"example_value"}}'`
 
+`catocli mutation sites updateSecondaryAzureVSocket -p '{
+    "updateSecondaryAzureVSocketInput": {
+        "floatingIp": "example_value",
+        "id": "id",
+        "interfaceIp": "example_value"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.sites.updateSecondaryAzureVSocket ####
 

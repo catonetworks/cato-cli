@@ -12,6 +12,18 @@
 
 `catocli mutation policy terminalServer publishPolicyRevision '{"policyPublishRevisionInput":{"description":"string","name":"string"},"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
 
+`catocli mutation policy terminalServer publishPolicyRevision -p '{
+    "policyPublishRevisionInput": {
+        "description": "string",
+        "name": "string"
+    },
+    "terminalServerPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.terminalServer.publishPolicyRevision ####
 

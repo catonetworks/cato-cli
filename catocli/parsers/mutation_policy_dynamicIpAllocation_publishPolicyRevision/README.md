@@ -12,6 +12,18 @@
 
 `catocli mutation policy dynamicIpAllocation publishPolicyRevision '{"dynamicIpAllocationPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyPublishRevisionInput":{"description":"string","name":"string"}}'`
 
+`catocli mutation policy dynamicIpAllocation publishPolicyRevision -p '{
+    "dynamicIpAllocationPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    },
+    "policyPublishRevisionInput": {
+        "description": "string",
+        "name": "string"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.dynamicIpAllocation.publishPolicyRevision ####
 

@@ -12,6 +12,15 @@
 
 `catocli mutation container ipAddressRange createFromFile '{"createIpAddressRangeContainerFromFileInput":{"description":"string","fileType":"STIX","name":"string","uploadFile":"example_value"}}'`
 
+`catocli mutation container ipAddressRange createFromFile -p '{
+    "createIpAddressRangeContainerFromFileInput": {
+        "description": "string",
+        "fileType": "STIX",
+        "name": "string",
+        "uploadFile": "example_value"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.container.ipAddressRange.createFromFile ####
 

@@ -12,6 +12,18 @@
 
 `catocli mutation policy appTenantRestriction createPolicyRevision '{"appTenantRestrictionPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyCreateRevisionInput":{"description":"string","name":"string"}}'`
 
+`catocli mutation policy appTenantRestriction createPolicyRevision -p '{
+    "appTenantRestrictionPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    },
+    "policyCreateRevisionInput": {
+        "description": "string",
+        "name": "string"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.appTenantRestriction.createPolicyRevision ####
 

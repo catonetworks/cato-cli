@@ -12,6 +12,17 @@
 
 `catocli mutation policy dynamicIpAllocation removeSection '{"dynamicIpAllocationPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyRemoveSectionInput":{"id":"id"}}'`
 
+`catocli mutation policy dynamicIpAllocation removeSection -p '{
+    "dynamicIpAllocationPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    },
+    "policyRemoveSectionInput": {
+        "id": "id"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.dynamicIpAllocation.removeSection ####
 

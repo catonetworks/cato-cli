@@ -12,6 +12,26 @@
 
 `catocli query auditFeed '{"accountIDs":["id1","id2"],"auditFieldFilterInput":{"fieldNameInput":{"AuditFieldName":"admin"},"operator":"is","values":["string1","string2"]},"fieldNames":"admin","marker":"string","timeFrame":"example_value"}'`
 
+`catocli query auditFeed -p '{
+    "accountIDs": [
+        "id1",
+        "id2"
+    ],
+    "auditFieldFilterInput": {
+        "fieldNameInput": {
+            "AuditFieldName": "admin"
+        },
+        "operator": "is",
+        "values": [
+            "string1",
+            "string2"
+        ]
+    },
+    "fieldNames": "admin",
+    "marker": "string",
+    "timeFrame": "example_value"
+}'`
+
 
 #### Operation Arguments for query.auditFeed ####
 

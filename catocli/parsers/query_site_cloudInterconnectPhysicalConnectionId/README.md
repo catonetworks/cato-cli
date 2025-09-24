@@ -12,6 +12,16 @@
 
 `catocli query site cloudInterconnectPhysicalConnectionId '{"cloudInterconnectPhysicalConnectionIdInput":{"haRole":"PRIMARY","siteRefInput":{"by":"ID","input":"string"}}}'`
 
+`catocli query site cloudInterconnectPhysicalConnectionId -p '{
+    "cloudInterconnectPhysicalConnectionIdInput": {
+        "haRole": "PRIMARY",
+        "siteRefInput": {
+            "by": "ID",
+            "input": "string"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for query.site.cloudInterconnectPhysicalConnectionId ####
 

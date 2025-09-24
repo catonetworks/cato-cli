@@ -12,6 +12,21 @@
 
 `catocli mutation policy appTenantRestriction moveRule '{"appTenantRestrictionPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyMoveRuleInput":{"id":"id","policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"}}}'`
 
+`catocli mutation policy appTenantRestriction moveRule -p '{
+    "appTenantRestrictionPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    },
+    "policyMoveRuleInput": {
+        "id": "id",
+        "policyRulePositionInput": {
+            "position": "AFTER_RULE",
+            "ref": "id"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.appTenantRestriction.moveRule ####
 

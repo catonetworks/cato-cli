@@ -12,6 +12,15 @@
 
 `catocli mutation container delete '{"deleteContainerInput":{"containerRefInput":{"by":"ID","input":"string"}}}'`
 
+`catocli mutation container delete -p '{
+    "deleteContainerInput": {
+        "containerRefInput": {
+            "by": "ID",
+            "input": "string"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for mutation.container.delete ####
 

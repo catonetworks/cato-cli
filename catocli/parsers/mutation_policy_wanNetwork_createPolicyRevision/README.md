@@ -12,6 +12,18 @@
 
 `catocli mutation policy wanNetwork createPolicyRevision '{"policyCreateRevisionInput":{"description":"string","name":"string"},"wanNetworkPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
 
+`catocli mutation policy wanNetwork createPolicyRevision -p '{
+    "policyCreateRevisionInput": {
+        "description": "string",
+        "name": "string"
+    },
+    "wanNetworkPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.wanNetwork.createPolicyRevision ####
 

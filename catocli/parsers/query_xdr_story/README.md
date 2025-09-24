@@ -12,6 +12,12 @@
 
 `catocli query xdr story '{"incidentId":"id","producer":"AnomalyStats","storyId":"id"}'`
 
+`catocli query xdr story -p '{
+    "incidentId": "id",
+    "producer": "AnomalyStats",
+    "storyId": "id"
+}'`
+
 
 #### Operation Arguments for query.xdr.story ####
 

@@ -12,6 +12,27 @@
 
 `catocli mutation site addCloudInterconnectPhysicalConnection '{"addCloudInterconnectPhysicalConnectionInput":{"downstreamBwLimit":"example_value","encapsulationMethod":"DOT1Q","haRole":"PRIMARY","popLocationRefInput":{"by":"ID","input":"string"},"privateCatoIp":"example_value","privateSiteIp":"example_value","serviceProviderName":"string","siteRefInput":{"by":"ID","input":"string"},"subnet":"example_value","upstreamBwLimit":"example_value"}}'`
 
+`catocli mutation site addCloudInterconnectPhysicalConnection -p '{
+    "addCloudInterconnectPhysicalConnectionInput": {
+        "downstreamBwLimit": "example_value",
+        "encapsulationMethod": "DOT1Q",
+        "haRole": "PRIMARY",
+        "popLocationRefInput": {
+            "by": "ID",
+            "input": "string"
+        },
+        "privateCatoIp": "example_value",
+        "privateSiteIp": "example_value",
+        "serviceProviderName": "string",
+        "siteRefInput": {
+            "by": "ID",
+            "input": "string"
+        },
+        "subnet": "example_value",
+        "upstreamBwLimit": "example_value"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.site.addCloudInterconnectPhysicalConnection ####
 

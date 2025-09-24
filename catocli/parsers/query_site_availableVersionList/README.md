@@ -12,6 +12,15 @@
 
 `catocli query site availableVersionList '{"availableVersionListInput":{"platforms":["string1","string2"]}}'`
 
+`catocli query site availableVersionList -p '{
+    "availableVersionListInput": {
+        "platforms": [
+            "string1",
+            "string2"
+        ]
+    }
+}'`
+
 
 #### Operation Arguments for query.site.availableVersionList ####
 

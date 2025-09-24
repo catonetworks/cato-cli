@@ -12,6 +12,17 @@
 
 `catocli mutation sites updateSiteBwLicense '{"updateSiteBwLicenseInput":{"bw":1,"licenseId":"id","siteRefInput":{"by":"ID","input":"string"}}}'`
 
+`catocli mutation sites updateSiteBwLicense -p '{
+    "updateSiteBwLicenseInput": {
+        "bw": 1,
+        "licenseId": "id",
+        "siteRefInput": {
+            "by": "ID",
+            "input": "string"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for mutation.sites.updateSiteBwLicense ####
 

@@ -12,6 +12,15 @@
 
 `catocli mutation container fqdn createFromFile '{"createFqdnContainerFromFileInput":{"description":"string","fileType":"STIX","name":"string","uploadFile":"example_value"}}'`
 
+`catocli mutation container fqdn createFromFile -p '{
+    "createFqdnContainerFromFileInput": {
+        "description": "string",
+        "fileType": "STIX",
+        "name": "string",
+        "uploadFile": "example_value"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.container.fqdn.createFromFile ####
 

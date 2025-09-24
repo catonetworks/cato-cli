@@ -12,6 +12,10 @@
 
 `catocli query accountRoles '{"accountType":"SYSTEM"}'`
 
+`catocli query accountRoles -p '{
+    "accountType": "SYSTEM"
+}'`
+
 
 #### Operation Arguments for query.accountRoles ####
 

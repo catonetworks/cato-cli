@@ -12,6 +12,17 @@
 
 `catocli mutation policy remotePortFwd discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"remotePortFwdPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
 
+`catocli mutation policy remotePortFwd discardPolicyRevision -p '{
+    "policyDiscardRevisionInput": {
+        "id": "id"
+    },
+    "remotePortFwdPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.remotePortFwd.discardPolicyRevision ####
 

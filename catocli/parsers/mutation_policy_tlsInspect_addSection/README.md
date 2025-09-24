@@ -12,6 +12,23 @@
 
 `catocli mutation policy tlsInspect addSection '{"policyAddSectionInput":{"policyAddSectionInfoInput":{"name":"string"},"policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}},"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
 
+`catocli mutation policy tlsInspect addSection -p '{
+    "policyAddSectionInput": {
+        "policyAddSectionInfoInput": {
+            "name": "string"
+        },
+        "policySectionPositionInput": {
+            "position": "AFTER_SECTION",
+            "ref": "id"
+        }
+    },
+    "tlsInspectPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.tlsInspect.addSection ####
 

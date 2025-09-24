@@ -12,6 +12,17 @@
 
 `catocli mutation policy terminalServer discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
 
+`catocli mutation policy terminalServer discardPolicyRevision -p '{
+    "policyDiscardRevisionInput": {
+        "id": "id"
+    },
+    "terminalServerPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.terminalServer.discardPolicyRevision ####
 

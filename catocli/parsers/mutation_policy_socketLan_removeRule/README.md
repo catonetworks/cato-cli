@@ -12,6 +12,17 @@
 
 `catocli mutation policy socketLan removeRule '{"socketLanPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"socketLanRemoveRuleInput":{"id":"id"}}'`
 
+`catocli mutation policy socketLan removeRule -p '{
+    "socketLanPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    },
+    "socketLanRemoveRuleInput": {
+        "id": "id"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.socketLan.removeRule ####
 

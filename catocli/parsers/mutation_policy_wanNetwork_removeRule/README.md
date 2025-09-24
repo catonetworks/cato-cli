@@ -12,6 +12,17 @@
 
 `catocli mutation policy wanNetwork removeRule '{"wanNetworkPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"wanNetworkRemoveRuleInput":{"id":"id"}}'`
 
+`catocli mutation policy wanNetwork removeRule -p '{
+    "wanNetworkPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    },
+    "wanNetworkRemoveRuleInput": {
+        "id": "id"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.wanNetwork.removeRule ####
 

@@ -12,6 +12,12 @@
 
 `catocli query site cloudInterconnectPhysicalConnection '{"cloudInterconnectPhysicalConnectionInput":{"id":"id"}}'`
 
+`catocli query site cloudInterconnectPhysicalConnection -p '{
+    "cloudInterconnectPhysicalConnectionInput": {
+        "id": "id"
+    }
+}'`
+
 
 #### Operation Arguments for query.site.cloudInterconnectPhysicalConnection ####
 

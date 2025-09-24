@@ -12,6 +12,16 @@
 
 `catocli mutation accountManagement addAccount '{"addAccountInput":{"description":"string","name":"string","tenancy":"SINGLE_TENANT","timezone":"example_value","type":"CUSTOMER"}}'`
 
+`catocli mutation accountManagement addAccount -p '{
+    "addAccountInput": {
+        "description": "string",
+        "name": "string",
+        "tenancy": "SINGLE_TENANT",
+        "timezone": "example_value",
+        "type": "CUSTOMER"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.accountManagement.addAccount ####
 

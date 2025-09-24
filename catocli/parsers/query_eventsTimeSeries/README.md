@@ -12,6 +12,30 @@
 
 `catocli query eventsTimeSeries '{"buckets":1,"eventsDimension":{"fieldName":"access_method"},"eventsFilter":{"fieldName":"access_method","operator":"is","values":["string1","string2"]},"eventsMeasure":{"aggType":"sum","fieldName":"access_method","trend":true},"perSecond":true,"timeFrame":"example_value","useDefaultSizeBucket":true,"withMissingData":true}'`
 
+`catocli query eventsTimeSeries -p '{
+    "buckets": 1,
+    "eventsDimension": {
+        "fieldName": "access_method"
+    },
+    "eventsFilter": {
+        "fieldName": "access_method",
+        "operator": "is",
+        "values": [
+            "string1",
+            "string2"
+        ]
+    },
+    "eventsMeasure": {
+        "aggType": "sum",
+        "fieldName": "access_method",
+        "trend": true
+    },
+    "perSecond": true,
+    "timeFrame": "example_value",
+    "useDefaultSizeBucket": true,
+    "withMissingData": true
+}'`
+
 
 #### Operation Arguments for query.eventsTimeSeries ####
 

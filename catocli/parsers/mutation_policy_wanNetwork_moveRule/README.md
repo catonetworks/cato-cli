@@ -12,6 +12,21 @@
 
 `catocli mutation policy wanNetwork moveRule '{"policyMoveRuleInput":{"id":"id","policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"}},"wanNetworkPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
 
+`catocli mutation policy wanNetwork moveRule -p '{
+    "policyMoveRuleInput": {
+        "id": "id",
+        "policyRulePositionInput": {
+            "position": "AFTER_RULE",
+            "ref": "id"
+        }
+    },
+    "wanNetworkPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.wanNetwork.moveRule ####
 

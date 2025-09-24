@@ -12,6 +12,18 @@
 
 `catocli mutation sites startSiteUpgrade '{"startSiteUpgradeInput":{"siteUpgradeRequest":{"site":{"by":"ID","input":"string"},"targetVersion":"string"}}}'`
 
+`catocli mutation sites startSiteUpgrade -p '{
+    "startSiteUpgradeInput": {
+        "siteUpgradeRequest": {
+            "site": {
+                "by": "ID",
+                "input": "string"
+            },
+            "targetVersion": "string"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for mutation.sites.startSiteUpgrade ####
 

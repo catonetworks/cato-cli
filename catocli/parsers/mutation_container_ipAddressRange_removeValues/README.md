@@ -12,6 +12,19 @@
 
 `catocli mutation container ipAddressRange removeValues '{"ipAddressRangeContainerRemoveValuesInput":{"containerRefInput":{"by":"ID","input":"string"},"ipAddressRangeInput":{"from":"example_value","to":"example_value"}}}'`
 
+`catocli mutation container ipAddressRange removeValues -p '{
+    "ipAddressRangeContainerRemoveValuesInput": {
+        "containerRefInput": {
+            "by": "ID",
+            "input": "string"
+        },
+        "ipAddressRangeInput": {
+            "from": "example_value",
+            "to": "example_value"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for mutation.container.ipAddressRange.removeValues ####
 

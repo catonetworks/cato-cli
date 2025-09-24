@@ -12,6 +12,17 @@
 
 `catocli mutation policy remotePortFwd removeRule '{"remotePortFwdPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"remotePortFwdRemoveRuleInput":{"id":"id"}}'`
 
+`catocli mutation policy remotePortFwd removeRule -p '{
+    "remotePortFwdPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    },
+    "remotePortFwdRemoveRuleInput": {
+        "id": "id"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.remotePortFwd.removeRule ####
 

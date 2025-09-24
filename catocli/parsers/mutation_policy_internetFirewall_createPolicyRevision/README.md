@@ -12,6 +12,18 @@
 
 `catocli mutation policy internetFirewall createPolicyRevision '{"internetFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyCreateRevisionInput":{"description":"string","name":"string"}}'`
 
+`catocli mutation policy internetFirewall createPolicyRevision -p '{
+    "internetFirewallPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    },
+    "policyCreateRevisionInput": {
+        "description": "string",
+        "name": "string"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.internetFirewall.createPolicyRevision ####
 

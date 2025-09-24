@@ -12,6 +12,15 @@
 
 `catocli query policy wanNetwork policy '{"wanNetworkPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'`
 
+`catocli query policy wanNetwork policy -p '{
+    "wanNetworkPolicyInput": {
+        "policyRevisionInput": {
+            "id": "id",
+            "type": "PRIVATE"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for query.policy.wanNetwork.policy ####
 

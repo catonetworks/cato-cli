@@ -12,6 +12,17 @@
 
 `catocli mutation policy wanNetwork discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"wanNetworkPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
 
+`catocli mutation policy wanNetwork discardPolicyRevision -p '{
+    "policyDiscardRevisionInput": {
+        "id": "id"
+    },
+    "wanNetworkPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.wanNetwork.discardPolicyRevision ####
 

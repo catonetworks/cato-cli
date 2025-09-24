@@ -12,6 +12,23 @@
 
 `catocli mutation policy appTenantRestriction addSection '{"appTenantRestrictionPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyAddSectionInput":{"policyAddSectionInfoInput":{"name":"string"},"policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}}}'`
 
+`catocli mutation policy appTenantRestriction addSection -p '{
+    "appTenantRestrictionPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    },
+    "policyAddSectionInput": {
+        "policyAddSectionInfoInput": {
+            "name": "string"
+        },
+        "policySectionPositionInput": {
+            "position": "AFTER_SECTION",
+            "ref": "id"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.appTenantRestriction.addSection ####
 

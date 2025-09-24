@@ -12,6 +12,15 @@
 
 `catocli mutation sites addStaticHost '{"addStaticHostInput":{"ip":"example_value","macAddress":"string","name":"string"},"siteId":"id"}'`
 
+`catocli mutation sites addStaticHost -p '{
+    "addStaticHostInput": {
+        "ip": "example_value",
+        "macAddress": "string",
+        "name": "string"
+    },
+    "siteId": "id"
+}'`
+
 
 #### Operation Arguments for mutation.sites.addStaticHost ####
 

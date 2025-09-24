@@ -12,6 +12,17 @@
 
 `catocli mutation policy internetFirewall discardPolicyRevision '{"internetFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyDiscardRevisionInput":{"id":"id"}}'`
 
+`catocli mutation policy internetFirewall discardPolicyRevision -p '{
+    "internetFirewallPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    },
+    "policyDiscardRevisionInput": {
+        "id": "id"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.internetFirewall.discardPolicyRevision ####
 

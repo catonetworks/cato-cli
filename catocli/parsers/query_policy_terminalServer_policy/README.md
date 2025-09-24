@@ -12,6 +12,15 @@
 
 `catocli query policy terminalServer policy '{"terminalServerPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'`
 
+`catocli query policy terminalServer policy -p '{
+    "terminalServerPolicyInput": {
+        "policyRevisionInput": {
+            "id": "id",
+            "type": "PRIVATE"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for query.policy.terminalServer.policy ####
 

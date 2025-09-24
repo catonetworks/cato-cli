@@ -12,6 +12,32 @@
 
 `catocli query events '{"eventsDimension":{"fieldName":"access_method"},"eventsFilter":{"fieldName":"access_method","operator":"is","values":["string1","string2"]},"eventsMeasure":{"aggType":"sum","fieldName":"access_method","trend":true},"eventsSort":{"fieldName":"access_method","order":"asc"},"from":1,"limit":1,"timeFrame":"example_value"}'`
 
+`catocli query events -p '{
+    "eventsDimension": {
+        "fieldName": "access_method"
+    },
+    "eventsFilter": {
+        "fieldName": "access_method",
+        "operator": "is",
+        "values": [
+            "string1",
+            "string2"
+        ]
+    },
+    "eventsMeasure": {
+        "aggType": "sum",
+        "fieldName": "access_method",
+        "trend": true
+    },
+    "eventsSort": {
+        "fieldName": "access_method",
+        "order": "asc"
+    },
+    "from": 1,
+    "limit": 1,
+    "timeFrame": "example_value"
+}'`
+
 
 #### Operation Arguments for query.events ####
 

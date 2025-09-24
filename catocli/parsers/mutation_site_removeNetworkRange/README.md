@@ -12,6 +12,10 @@
 
 `catocli mutation site removeNetworkRange '{"networkRangeId":"id"}'`
 
+`catocli mutation site removeNetworkRange -p '{
+    "networkRangeId": "id"
+}'`
+
 
 #### Operation Arguments for mutation.site.removeNetworkRange ####
 

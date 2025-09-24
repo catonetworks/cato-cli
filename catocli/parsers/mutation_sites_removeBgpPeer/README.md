@@ -12,6 +12,12 @@
 
 `catocli mutation sites removeBgpPeer '{"removeBgpPeerInput":{"id":"id"}}'`
 
+`catocli mutation sites removeBgpPeer -p '{
+    "removeBgpPeerInput": {
+        "id": "id"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.sites.removeBgpPeer ####
 

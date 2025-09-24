@@ -12,6 +12,17 @@
 
 `catocli mutation policy appTenantRestriction discardPolicyRevision '{"appTenantRestrictionPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyDiscardRevisionInput":{"id":"id"}}'`
 
+`catocli mutation policy appTenantRestriction discardPolicyRevision -p '{
+    "appTenantRestrictionPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    },
+    "policyDiscardRevisionInput": {
+        "id": "id"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.appTenantRestriction.discardPolicyRevision ####
 

@@ -12,6 +12,17 @@
 
 `catocli mutation policy internetFirewall updatePolicy '{"internetFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"internetFirewallPolicyUpdateInput":{"state":"ENABLED"}}'`
 
+`catocli mutation policy internetFirewall updatePolicy -p '{
+    "internetFirewallPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    },
+    "internetFirewallPolicyUpdateInput": {
+        "state": "ENABLED"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.internetFirewall.updatePolicy ####
 

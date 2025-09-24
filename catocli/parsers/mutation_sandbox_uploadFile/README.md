@@ -12,6 +12,12 @@
 
 `catocli mutation sandbox uploadFile '{"uploadFileInput":{"fileName":"string"}}'`
 
+`catocli mutation sandbox uploadFile -p '{
+    "uploadFileInput": {
+        "fileName": "string"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.sandbox.uploadFile ####
 

@@ -12,6 +12,22 @@
 
 `catocli mutation xdr analystFeedback '{"analystFeedbackInput":{"additionalInfo":"string","severity":"High","status":"Open","storyId":"id","storyThreatType":{"details":"string","name":"string","recommendedAction":"string"},"threatClassification":"string","verdict":"Suspicious"}}'`
 
+`catocli mutation xdr analystFeedback -p '{
+    "analystFeedbackInput": {
+        "additionalInfo": "string",
+        "severity": "High",
+        "status": "Open",
+        "storyId": "id",
+        "storyThreatType": {
+            "details": "string",
+            "name": "string",
+            "recommendedAction": "string"
+        },
+        "threatClassification": "string",
+        "verdict": "Suspicious"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.xdr.analystFeedback ####
 

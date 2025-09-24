@@ -12,6 +12,24 @@
 
 `catocli mutation site updateIpsecIkeV2SiteGeneralDetails '{"siteId":"id","updateIpsecIkeV2SiteGeneralDetailsInput":{"connectionMode":"RESPONDER_ONLY","identificationType":"IPV4","ipsecIkeV2MessageInput":{"cipher":"NONE","dhGroup":"NONE","integrity":"NONE","prf":"NONE"},"networkRanges":["example1","example2"]}}'`
 
+`catocli mutation site updateIpsecIkeV2SiteGeneralDetails -p '{
+    "siteId": "id",
+    "updateIpsecIkeV2SiteGeneralDetailsInput": {
+        "connectionMode": "RESPONDER_ONLY",
+        "identificationType": "IPV4",
+        "ipsecIkeV2MessageInput": {
+            "cipher": "NONE",
+            "dhGroup": "NONE",
+            "integrity": "NONE",
+            "prf": "NONE"
+        },
+        "networkRanges": [
+            "example1",
+            "example2"
+        ]
+    }
+}'`
+
 
 #### Operation Arguments for mutation.site.updateIpsecIkeV2SiteGeneralDetails ####
 

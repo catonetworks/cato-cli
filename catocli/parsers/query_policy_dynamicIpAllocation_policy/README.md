@@ -12,6 +12,15 @@
 
 `catocli query policy dynamicIpAllocation policy '{"dynamicIpAllocationPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'`
 
+`catocli query policy dynamicIpAllocation policy -p '{
+    "dynamicIpAllocationPolicyInput": {
+        "policyRevisionInput": {
+            "id": "id",
+            "type": "PRIVATE"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for query.policy.dynamicIpAllocation.policy ####
 

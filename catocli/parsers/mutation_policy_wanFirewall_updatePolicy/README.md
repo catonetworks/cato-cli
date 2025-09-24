@@ -12,6 +12,17 @@
 
 `catocli mutation policy wanFirewall updatePolicy '{"wanFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"wanFirewallPolicyUpdateInput":{"state":"ENABLED"}}'`
 
+`catocli mutation policy wanFirewall updatePolicy -p '{
+    "wanFirewallPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    },
+    "wanFirewallPolicyUpdateInput": {
+        "state": "ENABLED"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.wanFirewall.updatePolicy ####
 

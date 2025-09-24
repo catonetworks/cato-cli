@@ -12,6 +12,30 @@
 
 `catocli query accountMetrics '{"buckets":1,"groupDevices":true,"groupInterfaces":true,"labels":"bytesUpstream","perSecond":true,"siteIDs":["id1","id2"],"timeFrame":"example_value","toRate":true,"types":["string1","string2"],"useDefaultSizeBucket":true,"userIDs":["id1","id2"],"withMissingData":true}'`
 
+`catocli query accountMetrics -p '{
+    "buckets": 1,
+    "groupDevices": true,
+    "groupInterfaces": true,
+    "labels": "bytesUpstream",
+    "perSecond": true,
+    "siteIDs": [
+        "id1",
+        "id2"
+    ],
+    "timeFrame": "example_value",
+    "toRate": true,
+    "types": [
+        "string1",
+        "string2"
+    ],
+    "useDefaultSizeBucket": true,
+    "userIDs": [
+        "id1",
+        "id2"
+    ],
+    "withMissingData": true
+}'`
+
 
 #### Operation Arguments for query.accountMetrics ####
 

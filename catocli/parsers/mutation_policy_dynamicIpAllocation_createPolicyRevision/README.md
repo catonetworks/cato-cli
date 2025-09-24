@@ -12,6 +12,18 @@
 
 `catocli mutation policy dynamicIpAllocation createPolicyRevision '{"dynamicIpAllocationPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyCreateRevisionInput":{"description":"string","name":"string"}}'`
 
+`catocli mutation policy dynamicIpAllocation createPolicyRevision -p '{
+    "dynamicIpAllocationPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    },
+    "policyCreateRevisionInput": {
+        "description": "string",
+        "name": "string"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.dynamicIpAllocation.createPolicyRevision ####
 

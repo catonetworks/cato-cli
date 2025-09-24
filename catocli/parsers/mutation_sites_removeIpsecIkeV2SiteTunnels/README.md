@@ -12,6 +12,13 @@
 
 `catocli mutation sites removeIpsecIkeV2SiteTunnels '{"removeIpsecIkeV2SiteTunnelsInput":{"tunnelId":"PRIMARY1"},"siteId":"id"}'`
 
+`catocli mutation sites removeIpsecIkeV2SiteTunnels -p '{
+    "removeIpsecIkeV2SiteTunnelsInput": {
+        "tunnelId": "PRIMARY1"
+    },
+    "siteId": "id"
+}'`
+
 
 #### Operation Arguments for mutation.sites.removeIpsecIkeV2SiteTunnels ####
 

@@ -12,6 +12,15 @@
 
 `catocli mutation site updateHa '{"siteId":"id","updateHaInput":{"primaryManagementIp":"example_value","secondaryManagementIp":"example_value","vrid":1}}'`
 
+`catocli mutation site updateHa -p '{
+    "siteId": "id",
+    "updateHaInput": {
+        "primaryManagementIp": "example_value",
+        "secondaryManagementIp": "example_value",
+        "vrid": 1
+    }
+}'`
+
 
 #### Operation Arguments for mutation.site.updateHa ####
 

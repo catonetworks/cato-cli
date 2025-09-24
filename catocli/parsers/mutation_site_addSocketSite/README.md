@@ -12,6 +12,25 @@
 
 `catocli mutation site addSocketSite '{"addSocketSiteInput":{"addSiteLocationInput":{"address":"string","city":"string","countryCode":"string","stateCode":"string","timezone":"string"},"connectionType":"SOCKET_X1500","description":"string","name":"string","nativeNetworkRange":"example_value","siteType":"BRANCH","translatedSubnet":"example_value","vlan":"example_value"}}'`
 
+`catocli mutation site addSocketSite -p '{
+    "addSocketSiteInput": {
+        "addSiteLocationInput": {
+            "address": "string",
+            "city": "string",
+            "countryCode": "string",
+            "stateCode": "string",
+            "timezone": "string"
+        },
+        "connectionType": "SOCKET_X1500",
+        "description": "string",
+        "name": "string",
+        "nativeNetworkRange": "example_value",
+        "siteType": "BRANCH",
+        "translatedSubnet": "example_value",
+        "vlan": "example_value"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.site.addSocketSite ####
 

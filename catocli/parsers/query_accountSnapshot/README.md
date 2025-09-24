@@ -12,6 +12,17 @@
 
 `catocli query accountSnapshot '{"siteIDs":["id1","id2"],"userIDs":["id1","id2"]}'`
 
+`catocli query accountSnapshot -p '{
+    "siteIDs": [
+        "id1",
+        "id2"
+    ],
+    "userIDs": [
+        "id1",
+        "id2"
+    ]
+}'`
+
 
 #### Operation Arguments for query.accountSnapshot ####
 

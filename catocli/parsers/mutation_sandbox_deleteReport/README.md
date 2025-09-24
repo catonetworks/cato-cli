@@ -12,6 +12,12 @@
 
 `catocli mutation sandbox deleteReport '{"deleteReportInput":{"fileHash":"string"}}'`
 
+`catocli mutation sandbox deleteReport -p '{
+    "deleteReportInput": {
+        "fileHash": "string"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.sandbox.deleteReport ####
 

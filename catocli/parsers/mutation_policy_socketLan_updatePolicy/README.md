@@ -12,6 +12,17 @@
 
 `catocli mutation policy socketLan updatePolicy '{"socketLanPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"socketLanPolicyUpdateInput":{"state":"ENABLED"}}'`
 
+`catocli mutation policy socketLan updatePolicy -p '{
+    "socketLanPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    },
+    "socketLanPolicyUpdateInput": {
+        "state": "ENABLED"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.socketLan.updatePolicy ####
 

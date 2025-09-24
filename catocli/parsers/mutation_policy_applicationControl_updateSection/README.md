@@ -12,6 +12,20 @@
 
 `catocli mutation policy applicationControl updateSection '{"applicationControlPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyUpdateSectionInput":{"id":"id","policyUpdateSectionInfoInput":{"name":"string"}}}'`
 
+`catocli mutation policy applicationControl updateSection -p '{
+    "applicationControlPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    },
+    "policyUpdateSectionInput": {
+        "id": "id",
+        "policyUpdateSectionInfoInput": {
+            "name": "string"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.applicationControl.updateSection ####
 

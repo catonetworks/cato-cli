@@ -12,6 +12,18 @@
 
 `catocli mutation policy tlsInspect publishPolicyRevision '{"policyPublishRevisionInput":{"description":"string","name":"string"},"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
 
+`catocli mutation policy tlsInspect publishPolicyRevision -p '{
+    "policyPublishRevisionInput": {
+        "description": "string",
+        "name": "string"
+    },
+    "tlsInspectPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.tlsInspect.publishPolicyRevision ####
 

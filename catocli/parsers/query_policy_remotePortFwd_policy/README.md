@@ -12,6 +12,15 @@
 
 `catocli query policy remotePortFwd policy '{"remotePortFwdPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'`
 
+`catocli query policy remotePortFwd policy -p '{
+    "remotePortFwdPolicyInput": {
+        "policyRevisionInput": {
+            "id": "id",
+            "type": "PRIVATE"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for query.policy.remotePortFwd.policy ####
 

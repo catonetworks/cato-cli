@@ -12,6 +12,17 @@
 
 `catocli mutation policy remotePortFwd updatePolicy '{"remotePortFwdPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"remotePortFwdPolicyUpdateInput":{"state":"ENABLED"}}'`
 
+`catocli mutation policy remotePortFwd updatePolicy -p '{
+    "remotePortFwdPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    },
+    "remotePortFwdPolicyUpdateInput": {
+        "state": "ENABLED"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.remotePortFwd.updatePolicy ####
 

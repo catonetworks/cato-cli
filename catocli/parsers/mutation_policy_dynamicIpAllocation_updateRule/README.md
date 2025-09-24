@@ -12,6 +12,43 @@
 
 `catocli mutation policy dynamicIpAllocation updateRule '{"dynamicIpAllocationPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"dynamicIpAllocationUpdateRuleInput":{"dynamicIpAllocationUpdateRuleDataInput":{"country":{"by":"ID","input":"string"},"description":"string","enabled":true,"name":"string","platform":"WINDOWS","range":{"globalIpRange":{"by":"ID","input":"string"}},"source":{"user":{"by":"ID","input":"string"},"usersGroup":{"by":"ID","input":"string"}}},"id":"id"}}'`
 
+`catocli mutation policy dynamicIpAllocation updateRule -p '{
+    "dynamicIpAllocationPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    },
+    "dynamicIpAllocationUpdateRuleInput": {
+        "dynamicIpAllocationUpdateRuleDataInput": {
+            "country": {
+                "by": "ID",
+                "input": "string"
+            },
+            "description": "string",
+            "enabled": true,
+            "name": "string",
+            "platform": "WINDOWS",
+            "range": {
+                "globalIpRange": {
+                    "by": "ID",
+                    "input": "string"
+                }
+            },
+            "source": {
+                "user": {
+                    "by": "ID",
+                    "input": "string"
+                },
+                "usersGroup": {
+                    "by": "ID",
+                    "input": "string"
+                }
+            }
+        },
+        "id": "id"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.dynamicIpAllocation.updateRule ####
 

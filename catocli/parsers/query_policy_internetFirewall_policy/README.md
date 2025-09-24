@@ -12,6 +12,15 @@
 
 `catocli query policy internetFirewall policy '{"internetFirewallPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'`
 
+`catocli query policy internetFirewall policy -p '{
+    "internetFirewallPolicyInput": {
+        "policyRevisionInput": {
+            "id": "id",
+            "type": "PRIVATE"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for query.policy.internetFirewall.policy ####
 

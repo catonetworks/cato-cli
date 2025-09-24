@@ -12,6 +12,15 @@
 
 `catocli query policy wanFirewall policy '{"wanFirewallPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'`
 
+`catocli query policy wanFirewall policy -p '{
+    "wanFirewallPolicyInput": {
+        "policyRevisionInput": {
+            "id": "id",
+            "type": "PRIVATE"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for query.policy.wanFirewall.policy ####
 

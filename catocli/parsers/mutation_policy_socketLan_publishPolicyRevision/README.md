@@ -12,6 +12,18 @@
 
 `catocli mutation policy socketLan publishPolicyRevision '{"policyPublishRevisionInput":{"description":"string","name":"string"},"socketLanPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
 
+`catocli mutation policy socketLan publishPolicyRevision -p '{
+    "policyPublishRevisionInput": {
+        "description": "string",
+        "name": "string"
+    },
+    "socketLanPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.socketLan.publishPolicyRevision ####
 

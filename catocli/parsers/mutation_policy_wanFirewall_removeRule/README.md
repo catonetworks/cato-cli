@@ -12,6 +12,17 @@
 
 `catocli mutation policy wanFirewall removeRule '{"wanFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"wanFirewallRemoveRuleInput":{"id":"id"}}'`
 
+`catocli mutation policy wanFirewall removeRule -p '{
+    "wanFirewallPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    },
+    "wanFirewallRemoveRuleInput": {
+        "id": "id"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.wanFirewall.removeRule ####
 

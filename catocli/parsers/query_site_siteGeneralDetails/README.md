@@ -12,6 +12,13 @@
 
 `catocli query site siteGeneralDetails '{"siteRefInput":{"by":"ID","input":"string"}}'`
 
+`catocli query site siteGeneralDetails -p '{
+    "siteRefInput": {
+        "by": "ID",
+        "input": "string"
+    }
+}'`
+
 
 #### Operation Arguments for query.site.siteGeneralDetails ####
 

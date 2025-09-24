@@ -12,6 +12,10 @@
 
 `catocli query admin '{"adminID":"id"}'`
 
+`catocli query admin -p '{
+    "adminID": "id"
+}'`
+
 
 #### Operation Arguments for query.admin ####
 

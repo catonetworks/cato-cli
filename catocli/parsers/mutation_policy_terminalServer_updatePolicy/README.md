@@ -12,6 +12,17 @@
 
 `catocli mutation policy terminalServer updatePolicy '{"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"terminalServerPolicyUpdateInput":{"state":"ENABLED"}}'`
 
+`catocli mutation policy terminalServer updatePolicy -p '{
+    "terminalServerPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    },
+    "terminalServerPolicyUpdateInput": {
+        "state": "ENABLED"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.terminalServer.updatePolicy ####
 

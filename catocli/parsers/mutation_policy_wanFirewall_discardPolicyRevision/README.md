@@ -12,6 +12,17 @@
 
 `catocli mutation policy wanFirewall discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"wanFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
 
+`catocli mutation policy wanFirewall discardPolicyRevision -p '{
+    "policyDiscardRevisionInput": {
+        "id": "id"
+    },
+    "wanFirewallPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.wanFirewall.discardPolicyRevision ####
 

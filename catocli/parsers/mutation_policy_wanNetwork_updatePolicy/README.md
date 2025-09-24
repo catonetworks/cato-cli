@@ -12,6 +12,17 @@
 
 `catocli mutation policy wanNetwork updatePolicy '{"wanNetworkPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"wanNetworkPolicyUpdateInput":{"state":"ENABLED"}}'`
 
+`catocli mutation policy wanNetwork updatePolicy -p '{
+    "wanNetworkPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    },
+    "wanNetworkPolicyUpdateInput": {
+        "state": "ENABLED"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.wanNetwork.updatePolicy ####
 

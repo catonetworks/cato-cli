@@ -12,6 +12,10 @@
 
 `catocli mutation sites removeSecondaryAzureVSocket '{"socketId":"id"}'`
 
+`catocli mutation sites removeSecondaryAzureVSocket -p '{
+    "socketId": "id"
+}'`
+
 
 #### Operation Arguments for mutation.sites.removeSecondaryAzureVSocket ####
 

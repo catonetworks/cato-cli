@@ -12,6 +12,16 @@
 
 `catocli mutation sites removeSiteBwLicense '{"removeSiteBwLicenseInput":{"licenseId":"id","siteRefInput":{"by":"ID","input":"string"}}}'`
 
+`catocli mutation sites removeSiteBwLicense -p '{
+    "removeSiteBwLicenseInput": {
+        "licenseId": "id",
+        "siteRefInput": {
+            "by": "ID",
+            "input": "string"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for mutation.sites.removeSiteBwLicense ####
 

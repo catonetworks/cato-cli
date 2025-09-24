@@ -12,6 +12,15 @@
 
 `catocli query site siteBgpStatus '{"siteBgpStatusInput":{"siteRefInput":{"by":"ID","input":"string"}}}'`
 
+`catocli query site siteBgpStatus -p '{
+    "siteBgpStatusInput": {
+        "siteRefInput": {
+            "by": "ID",
+            "input": "string"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for query.site.siteBgpStatus ####
 

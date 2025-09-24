@@ -12,6 +12,21 @@
 
 `catocli mutation policy internetFirewall moveRule '{"internetFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyMoveRuleInput":{"id":"id","policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"}}}'`
 
+`catocli mutation policy internetFirewall moveRule -p '{
+    "internetFirewallPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    },
+    "policyMoveRuleInput": {
+        "id": "id",
+        "policyRulePositionInput": {
+            "position": "AFTER_RULE",
+            "ref": "id"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.internetFirewall.moveRule ####
 

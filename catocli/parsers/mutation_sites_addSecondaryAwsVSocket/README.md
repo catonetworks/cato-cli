@@ -12,6 +12,18 @@
 
 `catocli mutation sites addSecondaryAwsVSocket '{"addSecondaryAwsVSocketInput":{"eniIpAddress":"example_value","eniIpSubnet":"example_value","routeTableId":"string","siteRefInput":{"by":"ID","input":"string"}}}'`
 
+`catocli mutation sites addSecondaryAwsVSocket -p '{
+    "addSecondaryAwsVSocketInput": {
+        "eniIpAddress": "example_value",
+        "eniIpSubnet": "example_value",
+        "routeTableId": "string",
+        "siteRefInput": {
+            "by": "ID",
+            "input": "string"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for mutation.sites.addSecondaryAwsVSocket ####
 

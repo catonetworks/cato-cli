@@ -12,6 +12,17 @@
 
 `catocli mutation policy wanFirewall removeSection '{"policyRemoveSectionInput":{"id":"id"},"wanFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
 
+`catocli mutation policy wanFirewall removeSection -p '{
+    "policyRemoveSectionInput": {
+        "id": "id"
+    },
+    "wanFirewallPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.wanFirewall.removeSection ####
 

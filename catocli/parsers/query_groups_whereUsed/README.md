@@ -12,6 +12,13 @@
 
 `catocli query groups whereUsed '{"groupRefInput":{"by":"ID","input":"string"}}'`
 
+`catocli query groups whereUsed -p '{
+    "groupRefInput": {
+        "by": "ID",
+        "input": "string"
+    }
+}'`
+
 
 #### Operation Arguments for query.groups.whereUsed ####
 

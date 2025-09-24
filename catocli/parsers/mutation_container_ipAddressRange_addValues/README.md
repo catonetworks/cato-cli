@@ -12,6 +12,19 @@
 
 `catocli mutation container ipAddressRange addValues '{"ipAddressRangeContainerAddValuesInput":{"containerRefInput":{"by":"ID","input":"string"},"ipAddressRangeInput":{"from":"example_value","to":"example_value"}}}'`
 
+`catocli mutation container ipAddressRange addValues -p '{
+    "ipAddressRangeContainerAddValuesInput": {
+        "containerRefInput": {
+            "by": "ID",
+            "input": "string"
+        },
+        "ipAddressRangeInput": {
+            "from": "example_value",
+            "to": "example_value"
+        }
+    }
+}'`
+
 
 #### Operation Arguments for mutation.container.ipAddressRange.addValues ####
 

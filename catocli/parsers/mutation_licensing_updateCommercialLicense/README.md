@@ -12,6 +12,13 @@
 
 `catocli mutation licensing updateCommercialLicense '{"updateCommercialLicenseInput":{"licenseId":"id","startDate":"example_value"}}'`
 
+`catocli mutation licensing updateCommercialLicense -p '{
+    "updateCommercialLicenseInput": {
+        "licenseId": "id",
+        "startDate": "example_value"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.licensing.updateCommercialLicense ####
 

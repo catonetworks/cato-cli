@@ -12,6 +12,17 @@
 
 `catocli mutation policy appTenantRestriction removeSection '{"appTenantRestrictionPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyRemoveSectionInput":{"id":"id"}}'`
 
+`catocli mutation policy appTenantRestriction removeSection -p '{
+    "appTenantRestrictionPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    },
+    "policyRemoveSectionInput": {
+        "id": "id"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.appTenantRestriction.removeSection ####
 

@@ -12,6 +12,17 @@
 
 `catocli mutation policy tlsInspect removeRule '{"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"tlsInspectRemoveRuleInput":{"id":"id"}}'`
 
+`catocli mutation policy tlsInspect removeRule -p '{
+    "tlsInspectPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    },
+    "tlsInspectRemoveRuleInput": {
+        "id": "id"
+    }
+}'`
+
 
 #### Operation Arguments for mutation.policy.tlsInspect.removeRule ####
 

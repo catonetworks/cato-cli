@@ -49,7 +49,31 @@ def generate_template(args):
     try:
         # Get the directory of this script to locate templates
         script_dir = os.path.dirname(os.path.abspath(__file__))
-        templates_dir = os.path.join(script_dir, '..', '..', '..', '..', 'templates')
+        
+        # Try multiple possible template directory locations
+        # 1. Development mode: go up 4 directories
+        # 2. Installed package: templates should be in the package root
+        possible_template_dirs = [
+            os.path.join(script_dir, '..', '..', '..', '..', 'templates'),  # Development
+            os.path.join(os.path.dirname(script_dir.split('catocli')[0]), 'catocli', 'templates'),  # Installed package
+        ]
+        
+        templates_dir = None
+        for potential_dir in possible_template_dirs:
+            normalized_dir = os.path.normpath(potential_dir)
+            if os.path.exists(normalized_dir):
+                templates_dir = normalized_dir
+                break
+        
+        if templates_dir is None:
+            # Fallback: look for templates directory in catocli package
+            import catocli
+            catocli_root = os.path.dirname(os.path.abspath(catocli.__file__))
+            fallback_templates_dir = os.path.join(catocli_root, 'templates')
+            if os.path.exists(fallback_templates_dir):
+                templates_dir = fallback_templates_dir
+            else:
+                raise Exception(f"Templates directory not found. Searched locations: {possible_template_dirs} and {fallback_templates_dir}")
         
         # Get the template format from export_format argument (defaults to json)
         template_format = getattr(args, 'export_format', 'json')

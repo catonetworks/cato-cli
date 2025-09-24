@@ -18,6 +18,10 @@ def export_sites_parse(subparsers):
     socket_sites_parser.add_argument('-f', '--format', dest='export_format', choices=['json', 'csv'], default='json', 
                                     help='Export format: json (default) or csv')
     
+    # Template generation option
+    socket_sites_parser.add_argument('--generate-template', '-gt', dest='generate_template', action='store_true', 
+                                    help='Generate template files instead of exporting data (use -f to specify format: csv or json)')
+    
     # Filename arguments (updated for both formats)
     socket_sites_parser.add_argument('--json-filename', dest='json_filename', help='Override JSON file name (default: socket_sites_{account_id}.json)')
     socket_sites_parser.add_argument('--csv-filename', dest='csv_filename', help='Override CSV file name (default: socket_sites_{account_id}.csv)')

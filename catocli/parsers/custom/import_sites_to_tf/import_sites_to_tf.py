@@ -1098,9 +1098,13 @@ def load_site_network_ranges_csv(site, ranges_csv_file):
                     if default_interface_index and lan_interface_index == default_interface_index:
                         is_default_interface = True
                 
+                # Check if this is a LAN_LAG_MEMBER interface (special case)
+                is_lan_lag_member = row.get('lan_interface_dest_type', '').strip() == 'LAN_LAG_MEMBER'
+                
                 # If this row has a LAN interface ID, create/update the interface
                 # OR if this is a default interface, get details from parent CSV
-                if (has_lan_interface_id or is_default_interface) and lan_interface_index:
+                # OR if this is a LAN_LAG_MEMBER interface
+                if (has_lan_interface_id or is_default_interface or is_lan_lag_member) and lan_interface_index:
                     
                     # Create or get the interface data
                     if lan_interface_index not in interfaces:
@@ -1114,6 +1118,17 @@ def load_site_network_ranges_csv(site, ranges_csv_file):
                                 'dest_type': 'LAN',  # Default for default interfaces
                                 'default_lan': True,  # Mark as default interface
                                 'network_ranges': []
+                            }
+                        elif is_lan_lag_member:
+                            # For LAN_LAG_MEMBER interfaces, they don't have interface_id but need to be tracked for import
+                            interfaces[lan_interface_index] = {
+                                'id': None,  # LAN LAG members don't have interface_id in CSV
+                                'name': row.get('lan_interface_name', ''),
+                                'index': lan_interface_index,
+                                'dest_type': row.get('lan_interface_dest_type', 'LAN_LAG_MEMBER'),
+                                'default_lan': False,
+                                'network_ranges': [],
+                                'is_lag_member': True  # Special flag for LAN LAG members
                             }
                         else:
                             # For regular interfaces, get details from CSV row

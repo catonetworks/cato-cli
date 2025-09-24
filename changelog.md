@@ -64,3 +64,9 @@
     •  catocli scim update_group - Update SCIM group
     •  catocli scim update_user - Update SCIM user
 - Updated the socket_site export/import to support csv and json to align with bulk socket site module
+
+
+## 3.0.1 (2025-09-24)
+
+- Minor fix to support import lan_lag_member in csv
+- Added support for generating csv and json templates for export/import

@@ -4,6 +4,7 @@ import traceback
 import sys
 import ipaddress
 import csv
+import shutil
 from datetime import datetime
 from graphql_client.api.call_api import ApiClient, CallApi
 from graphql_client.api_client import ApiException
@@ -41,10 +42,78 @@ def calculateLocalIp(subnet):
         # Invalid subnet format
         return None
 
+def generate_template(args):
+    """
+    Generate template files from embedded templates directory
+    """
+    try:
+        # Get the directory of this script to locate templates
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        templates_dir = os.path.join(script_dir, '..', '..', '..', '..', 'templates')
+        
+        # Get the template format from export_format argument (defaults to json)
+        template_format = getattr(args, 'export_format', 'json')
+        
+        # Determine output directory
+        output_dir = getattr(args, 'output_directory', None)
+        if output_dir is None:
+            output_dir = '.'
+        if not os.path.isabs(output_dir):
+            output_dir = os.path.join(os.getcwd(), output_dir)
+        
+        os.makedirs(output_dir, exist_ok=True)
+        
+        copied_files = []
+        
+        if template_format == 'csv':
+            # Copy CSV template files
+            template_files = ['socket_sites.csv', 'Test_network_ranges.csv']
+            for template_file in template_files:
+                src_path = os.path.join(templates_dir, template_file)
+                dst_path = os.path.join(output_dir, template_file)
+                
+                if os.path.exists(src_path):
+                    shutil.copy2(src_path, dst_path)
+                    copied_files.append(dst_path)
+                    if hasattr(args, 'verbose') and args.verbose:
+                        print(f"Copied template: {src_path} -> {dst_path}")
+                else:
+                    print(f"Warning: Template file not found: {src_path}")
+        
+        elif template_format == 'json':
+            # Copy JSON template file
+            template_file = 'socket_sites.json'
+            src_path = os.path.join(templates_dir, template_file)
+            dst_path = os.path.join(output_dir, template_file)
+            
+            if os.path.exists(src_path):
+                shutil.copy2(src_path, dst_path)
+                copied_files.append(dst_path)
+                if hasattr(args, 'verbose') and args.verbose:
+                    print(f"Copied template: {src_path} -> {dst_path}")
+            else:
+                print(f"Warning: Template file not found: {src_path}")
+        
+        if copied_files:
+            print(f"Successfully generated {template_format.upper()} template files:")
+            for file_path in copied_files:
+                print(f"  {file_path}")
+            return [{"success": True, "template_format": template_format, "copied_files": copied_files}]
+        else:
+            return [{"success": False, "error": f"No template files found for format: {template_format}"}]
+    
+    except Exception as e:
+        print(f"Error generating template: {str(e)}")
+        return [{"success": False, "error": str(e)}]
+
 def export_socket_sites_dispatcher(args, configuration):
     """
     Dispatcher function that routes to JSON or CSV export based on format argument
     """
+    # Check if template generation is requested
+    if hasattr(args, 'generate_template') and args.generate_template:
+        return generate_template(args)
+    
     export_format = getattr(args, 'export_format', 'json')
     
     if export_format == 'csv':

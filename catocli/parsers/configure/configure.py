@@ -65,7 +65,7 @@ def configure_profile(args, configuration=None):
     
     try:
         # Interactive mode
-        if args.interactive or (not args.cato_token and not args.account_id and not args.endpoint):
+        if args.interactive or (not args.cato_token and not args.account_id and not args.endpoint and not args.scim_url and not args.scim_token):
             print(f"Configuring profile '{profile_name}'")
             print("Leave blank to keep existing values (if any)")
             print()
@@ -92,11 +92,35 @@ def configure_profile(args, configuration=None):
             account_input = input(f"Account ID [{current_account}]: ").strip()
             account_id = account_input if account_input else current_account
             
+            # SCIM credentials (optional)
+            print()
+            print("SCIM Credentials (optional - for SCIM API operations):")
+            print("For SCIM setup guide: https://support.catonetworks.com/hc/en-us/articles/29492743031581-Using-the-Cato-SCIM-API-for-Custom-SCIM-Apps")
+            
+            # Get SCIM URL
+            current_scim_url = current_config.get('scim_url', '')
+            if current_scim_url:
+                scim_url_input = input(f"SCIM URL [****{current_scim_url[-20:]}]: ").strip()
+            else:
+                scim_url_input = input("SCIM URL (e.g., https://scimservice.catonetworks.com:4443/scim/v2/accountId/sourceId): ").strip()
+            scim_url = scim_url_input if scim_url_input else current_scim_url
+            
+            # Get SCIM token
+            current_scim_token = current_config.get('scim_token', '')
+            if current_scim_token:
+                scim_token_prompt = f"SCIM Bearer Token [****{current_scim_token[-4:]}]: "
+            else:
+                scim_token_prompt = "SCIM Bearer Token: "
+            scim_token_input = getpass.getpass(scim_token_prompt).strip()
+            scim_token = scim_token_input if scim_token_input else current_scim_token
+            
         else:
             # Non-interactive mode
             endpoint = args.endpoint
             cato_token = getattr(args, 'cato_token', None)
             account_id = getattr(args, 'account_id', None)
+            scim_url = getattr(args, 'scim_url', None)
+            scim_token = getattr(args, 'scim_token', None)
         
         # Validate required fields
         if not cato_token or not account_id:
@@ -134,7 +158,9 @@ def configure_profile(args, configuration=None):
             profile_name=profile_name,
             endpoint=endpoint,
             cato_token=cato_token,
-            account_id=account_id
+            account_id=account_id,
+            scim_url=scim_url if 'scim_url' in locals() else None,
+            scim_token=scim_token if 'scim_token' in locals() else None
         )
         
         if success:
@@ -247,6 +273,21 @@ def show_profile(args, configuration=None):
             print(f"Token:      ****{token[-4:]} (configured)")
         else:
             print("Token:      (not configured)")
+            
+        # Show SCIM credentials status
+        print()
+        print("SCIM Credentials:")
+        scim_url = config.get('scim_url', '')
+        if scim_url:
+            print(f"SCIM URL:   ****{scim_url[-20:]} (configured)")
+        else:
+            print("SCIM URL:   (not configured)")
+            
+        scim_token = config.get('scim_token', '')
+        if scim_token:
+            print(f"SCIM Token: ****{scim_token[-4:]} (configured)")
+        else:
+            print("SCIM Token: (not configured)")
         
         # Show if this is the current profile
         current_profile = pm.get_current_profile()

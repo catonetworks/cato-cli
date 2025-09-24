@@ -51,7 +51,7 @@ class ProfileManager:
         config.read(self.credentials_file)
         return list(config.sections())
     
-    def create_profile(self, profile_name, endpoint=None, cato_token=None, account_id=None):
+    def create_profile(self, profile_name, endpoint=None, cato_token=None, account_id=None, scim_url=None, scim_token=None):
         """Create or update a profile"""
         self.ensure_cato_directory()
         
@@ -72,6 +72,12 @@ class ProfileManager:
             
         if account_id:
             config[profile_name]['account_id'] = account_id
+        
+        if scim_url:
+            config[profile_name]['scim_url'] = scim_url
+            
+        if scim_token:
+            config[profile_name]['scim_token'] = scim_token
         
         with open(self.credentials_file, 'w') as f:
             config.write(f)
@@ -145,7 +151,9 @@ class ProfileManager:
         return {
             'endpoint': profile_config.get('endpoint', self.default_endpoint),
             'cato_token': profile_config.get('cato_token'),
-            'account_id': profile_config.get('account_id')
+            'account_id': profile_config.get('account_id'),
+            'scim_url': profile_config.get('scim_url'),
+            'scim_token': profile_config.get('scim_token')
         }
     
     def validate_profile(self, profile_name=None):
@@ -164,6 +172,29 @@ class ProfileManager:
             return False, f"Profile missing required fields: {', '.join(missing)}"
             
         return True, "Profile is valid"
+    
+    def validate_scim_credentials(self, profile_name=None):
+        """Validate that a profile has SCIM credentials"""
+        credentials = self.get_credentials(profile_name)
+        current_profile = profile_name or self.get_current_profile()
+        
+        if not credentials:
+            return False, f"Profile '{current_profile}' not found"
+            
+        missing = []
+        if not credentials.get('scim_url'):
+            missing.append('scim_url')
+        if not credentials.get('scim_token'):
+            missing.append('scim_token')
+            
+        if missing:
+            return False, (
+                f"Profile '{current_profile}' is missing SCIM credentials: {', '.join(missing)}\n"
+                f"Run 'catocli configure set --profile {current_profile}' to add SCIM credentials.\n"
+                f"For more information, see: https://support.catonetworks.com/hc/en-us/articles/29492743031581-Using-the-Cato-SCIM-API-for-Custom-SCIM-Apps"
+            )
+            
+        return True, "SCIM credentials are valid"
     
     def migrate_from_environment(self):
         """Migrate from environment variables to default profile if needed"""

@@ -52,6 +52,14 @@ def configure_parse(subparsers):
         help='Cato account ID'
     )
     config_parser.add_argument(
+        '--scim-url',
+        help='SCIM service URL (e.g., https://scimservice.catonetworks.com:4443/scim/v2/{accountId}/{sourceId})'
+    )
+    config_parser.add_argument(
+        '--scim-token',
+        help='SCIM Bearer token'
+    )
+    config_parser.add_argument(
         '--interactive',
         action='store_true',
         help='Interactive configuration mode'

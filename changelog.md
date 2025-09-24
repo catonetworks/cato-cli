@@ -43,3 +43,24 @@
 ## 2.1.8 (2025-09-15)
 
 - Updated path to settings file
+
+## 3.0.0 (2025-09-24)
+
+- Updated eventFeed operation to support persistent marker and -run to pull events continuously
+- Embedded SCIM SDK into catocli, updating authentication management to prompt for bearer token and scim baseurl, supporting the following operations:
+    •  catocli scim add_members - Add members to SCIM group
+    •  catocli scim create_group - Create new SCIM group  
+    •  catocli scim create_user - Create new SCIM user
+    •  catocli scim disable_group - Disable SCIM group
+    •  catocli scim disable_user - Disable SCIM user
+    •  catocli scim find_group - Find groups by display name
+    •  catocli scim find_users - Find users by field/value
+    •  catocli scim get_group - Get specific SCIM group
+    •  catocli scim get_groups - Get all SCIM groups
+    •  catocli scim get_user - Get specific SCIM user
+    •  catocli scim get_users - Get all SCIM users  
+    •  catocli scim remove_members - Remove members from SCIM group
+    •  catocli scim rename_group - Rename SCIM group
+    •  catocli scim update_group - Update SCIM group
+    •  catocli scim update_user - Update SCIM user
+- Updated the socket_site export/import to support csv and json to align with bulk socket site module

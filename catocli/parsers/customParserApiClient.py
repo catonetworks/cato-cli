@@ -269,7 +269,7 @@ def querySiteLocation(args, configuration):
     
     # Load the site location data (not the model definition)
     try:
-        site_data = loadJSON(f"schema/{operation_name}.json")
+        site_data = loadJSON(f"models/{operation_name}.json")
     except Exception as e:
         print(f"ERROR: Failed to load site location data: {e}")
         return None

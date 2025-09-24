@@ -294,3 +294,37 @@
 #### Operation Arguments for entity.webhookSubscription.search ####
 `accountId` [ID] - (required) N/A
 `search` [String] - (required) N/A
+
+### Usage for eventsFeed (Enhanced):
+
+`catocli eventsFeed -h`
+
+`catocli eventsFeed -K YOURAPIKEY -I 1714 -p`
+
+`catocli eventsFeed -K YOURAPIKEY -I 1714 -pP`
+
+`catocli eventsFeed -K YOURAPIKEY -I 1714 -m "" -v`
+
+`catocli eventsFeed -K YOURAPIKEY -I 1714 -pP -n 192.168.1.1:8000`
+
+`catocli eventsFeed -K YOURAPIKEY -I 1714 -p -t Connectivity`
+
+`catocli eventsFeed -K YOURAPIKEY -I 1714 -p -s "NG Anti Malware,Anti Malware"`
+
+`catocli eventsFeed -K YOURAPIKEY -I 1714 -z customerid:sharedkey`
+
+#### Operation Arguments for eventsFeed ####
+`-K, --api-key` [String] - API key (can use profile setting)
+`-I, --account-id` [ID] - Account ID (can use profile setting)
+`-P, --prettify` [Boolean] - Prettify JSON output
+`-p, --print-events` [Boolean] - Print event records to console
+`-n, --stream-events` [String] - Send events to host:port TCP
+`-z, --sentinel` [String] - Send to Azure Sentinel (customerid:sharedkey)
+`-m, --marker` [String] - Initial marker value
+`-c, --config-file` [String] - Config file location
+`-t, --event-types` [String] - Comma-separated event types filter
+`-s, --event-sub-types` [String] - Comma-separated event sub-types filter
+`-f, --fetch-limit` [Integer] - Stop if fetch returns less than N events
+`-r, --runtime-limit` [Integer] - Stop after N seconds
+`-v, --verbose` [Boolean] - Print debug information
+`-V, --very-verbose` [Boolean] - Print detailed debug information

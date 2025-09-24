@@ -77,7 +77,6 @@ def load_cli_settings():
         "queryOperationCsvOutput": {
             "query.appStats": "format_app_stats_to_csv",
             "query.appStatsTimeSeries": "format_app_stats_timeseries_to_csv",
-            "query.accountMetrics": "format_account_metrics_to_csv",
             "query.socketPortMetricsTimeSeries": "format_socket_port_metrics_timeseries_to_csv"
         }
     }

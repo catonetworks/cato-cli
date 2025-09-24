@@ -15,8 +15,4 @@ def query_accountMetrics_parse(query_subparsers):
     query_accountMetrics_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_accountMetrics_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_accountMetrics_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-
-    query_accountMetrics_parser.add_argument('-f', '--format', choices=['json', 'csv'], default='json', help='Output format (default: json)')
-    query_accountMetrics_parser.add_argument('--csv-filename', dest='csv_filename', help='Override CSV file name (default: accountmetrics.csv)')
-    query_accountMetrics_parser.add_argument('--append-timestamp', dest='append_timestamp', action='store_true', help='Append timestamp to the CSV file name')
     query_accountMetrics_parser.set_defaults(func=createRequest,operation_name='query.accountMetrics')

@@ -51,6 +51,7 @@ def extract_socket_sites_data(sites_data):
     Supports both legacy (camelCase) and new (snake_case) JSON formats."""
     sites = []
     lan_interfaces = []
+    lan_lag_members = []
     wan_interfaces = []
     network_ranges = []
     
@@ -132,6 +133,7 @@ def extract_socket_sites_data(sites_data):
             interface_name = lan_interface.get('name', None)
             interface_index = lan_interface.get('index', None)
             is_default_lan = lan_interface.get('default_lan', False)
+            dest_type = lan_interface.get('destType', lan_interface.get('dest_type', 'LAN'))
             
             # If this is a default_lan interface, get interface info from native_range
             if is_default_lan:
@@ -148,10 +150,24 @@ def extract_socket_sites_data(sites_data):
                 interface_name == native_range_data.get('interface_name')
             )
             
+            # Check if this is a LAN LAG member interface
+            if dest_type == 'LAN_LAG_MEMBER':
+                # LAN LAG members are handled separately
+                lan_lag_members.append({
+                    'site_id': site['id'],
+                    'site_name': site['name'],
+                    'id': interface_id,
+                    'index': interface_index,
+                    'name': interface_name,
+                    'dest_type': dest_type
+                })
+                continue  # Skip to next interface
+            
             # Only include interfaces that:
             # 1. Have both interface_index and interface_id
             # 2. Are NOT the site's default native range interface
-            will_create_interface = (interface_index is not None and interface_id and not is_site_default_native)
+            # 3. Are NOT LAN_LAG_MEMBER interfaces (handled separately)
+            will_create_interface = (interface_index is not None and interface_id and not is_site_default_native and dest_type != 'LAN_LAG_MEMBER')
             
             if will_create_interface:
                 # For default_lan interfaces, get additional info from the interface itself or native_range
@@ -222,7 +238,7 @@ def extract_socket_sites_data(sites_data):
                             'microsegmentation': network_range.get('microsegmentation', False)
                         })
     
-    return sites, wan_interfaces, lan_interfaces, network_ranges
+    return sites, wan_interfaces, lan_interfaces, network_ranges, lan_lag_members
 
 
 def run_terraform_import(resource_address, resource_id, timeout=60, verbose=False):
@@ -365,6 +381,63 @@ def import_wan_interfaces(wan_interfaces, module_name, verbose=False,
             time.sleep(delay_between_batches)
     
     print(f"\nWAN Interface Import Summary: {successful_imports} successful, {failed_imports} failed")
+    return successful_imports, failed_imports
+
+def import_lan_lag_members(lan_lag_members, module_name, verbose=False,
+                          resource_type="cato_lan_interface_lag_member", resource_name="lag_lan_members",
+                          batch_size=10, delay_between_batches=2, auto_approve=False):
+    """Import all LAN LAG member interfaces in batches"""
+    print("\nStarting LAN LAG member imports...")
+    successful_imports = 0
+    failed_imports = 0
+    total_interfaces = len(lan_lag_members)
+
+    for i, interface in enumerate(lan_lag_members):
+        site_id = interface['site_id']
+        interface_id = interface['id'] if interface.get('id') else interface.get('interface_id', '')
+        interface_index = interface['index']
+        interface_name = interface['name']
+        site_name = interface['site_name']
+        
+        # Add module. prefix if not present
+        if not module_name.startswith('module.'):
+            module_name = f'module.{module_name}'
+        
+        # Apply the same index formatting logic as the Terraform module
+        try:
+            # If index is a number, format as INT_X
+            int(interface_index)
+            formatted_index = f"INT_{interface_index}"
+        except (ValueError, TypeError):
+            # If not a number or None, use as-is
+            formatted_index = interface_index if interface_index else interface_id
+        
+        # LAN LAG member addressing pattern from state file:
+        # module.sites_from_csv.module.socket-site["Test"].cato_lan_interface_lag_member.lag_lan_members["INT_6"]
+        resource_address = f'{module_name}.module.socket-site["{site_name}"].cato_lan_interface_lag_member.lag_lan_members["{formatted_index}"]'
+
+        print(f"\n[{i+1}/{total_interfaces}] LAN LAG Member: {interface_name} on {site_name} (Index: {interface_index})")
+
+        # For LAN LAG members, the import ID format is site_id:interface_index
+        import_id = f"{site_id}:{formatted_index}"
+        success, stdout, stderr = run_terraform_import(resource_address, import_id, verbose=verbose)
+        
+        if success:
+            successful_imports += 1
+        else:
+            failed_imports += 1
+            
+            if failed_imports <= 3 and not auto_approve:
+                response = input(f"\nContinue with remaining imports? (y/n): ").lower()
+                if response == 'n':
+                    print("Import process stopped by user.")
+                    break
+        
+        if (i + 1) % batch_size == 0 and i < total_interfaces - 1:
+            print(f"\n  Batch complete. Waiting {delay_between_batches}s before next batch...")
+            time.sleep(delay_between_batches)
+    
+    print(f"\nLAN LAG Member Import Summary: {successful_imports} successful, {failed_imports} failed")
     return successful_imports, failed_imports
 
 def import_lan_interfaces(lan_interfaces, module_name, verbose=False,
@@ -684,7 +757,7 @@ def import_socket_sites_to_tf(args, configuration):
             raise ValueError(f"Unsupported data type: {data_type}")
         
         # Extract sites, WAN interfaces, LAN interfaces, and network ranges
-        sites, wan_interfaces, lan_interfaces, network_ranges = extract_socket_sites_data(sites_data)
+        sites, wan_interfaces, lan_interfaces, network_ranges, lan_lag_members = extract_socket_sites_data(sites_data)
         if hasattr(args, 'verbose') and args.verbose:
             print("\n==================== DEBUG =====================\n")
             print("sites",json.dumps( sites, indent=2))
@@ -701,6 +774,7 @@ def import_socket_sites_to_tf(args, configuration):
         print(f" Found {len(sites)} sites")
         print(f" Found {len(wan_interfaces)} WAN interfaces")
         print(f" Found {len(lan_interfaces)} LAN interfaces")
+        print(f" Found {len(lan_lag_members)} LAN LAG members")
         print(f" Found {len(network_ranges)} network ranges")
         
         if not sites and not wan_interfaces and not network_ranges:
@@ -791,6 +865,15 @@ def import_socket_sites_to_tf(args, configuration):
                                                       verbose=args.verbose, batch_size=args.batch_size, 
                                                       delay_between_batches=args.delay,
                                                       auto_approve=getattr(args, 'auto_approve', False))
+            total_successful += successful
+            total_failed += failed
+
+        # Import LAN LAG members (if any found and not in selective mode)
+        if (not (sites_only or wan_only or lan_only or ranges_only)) and lan_lag_members:
+            successful, failed = import_lan_lag_members(lan_lag_members, module_name=args.module_name, 
+                                                       verbose=args.verbose, batch_size=args.batch_size, 
+                                                       delay_between_batches=args.delay,
+                                                       auto_approve=getattr(args, 'auto_approve', False))
             total_successful += successful
             total_failed += failed
      
@@ -1202,7 +1285,7 @@ def import_socket_sites_from_csv(args, configuration):
         sites_data = load_csv_data(args.csv_file, sites_config_dir)
         
         # Extract sites, WAN interfaces, LAN interfaces, and network ranges using existing function
-        sites, wan_interfaces, lan_interfaces, network_ranges = extract_socket_sites_data(sites_data)
+        sites, wan_interfaces, lan_interfaces, network_ranges, lan_lag_members = extract_socket_sites_data(sites_data)
         
         if hasattr(args, 'verbose') and args.verbose:
             print(f"\nExtracted data summary:")
@@ -1214,6 +1297,7 @@ def import_socket_sites_from_csv(args, configuration):
         print(f" Found {len(sites)} sites")
         print(f" Found {len(wan_interfaces)} WAN interfaces")
         print(f" Found {len(lan_interfaces)} LAN interfaces")
+        print(f" Found {len(lan_lag_members)} LAN LAG members")
         print(f" Found {len(network_ranges)} network ranges")
         
         if not sites and not wan_interfaces and not network_ranges:
@@ -1304,6 +1388,15 @@ def import_socket_sites_from_csv(args, configuration):
                                                       verbose=args.verbose, batch_size=getattr(args, 'batch_size', 10), 
                                                       delay_between_batches=getattr(args, 'delay', 2),
                                                       auto_approve=getattr(args, 'auto_approve', False))
+            total_successful += successful
+            total_failed += failed
+
+        # Import LAN LAG members (if any found and not in selective mode)
+        if (not (sites_only or wan_only or lan_only or ranges_only)) and lan_lag_members:
+            successful, failed = import_lan_lag_members(lan_lag_members, module_name=args.module_name, 
+                                                       verbose=args.verbose, batch_size=getattr(args, 'batch_size', 10), 
+                                                       delay_between_batches=getattr(args, 'delay', 2),
+                                                       auto_approve=getattr(args, 'auto_approve', False))
             total_successful += successful
             total_failed += failed
      

@@ -734,6 +734,9 @@ def writeCliDriver(catoApiSchema):
     for operationType in catoApiSchema:
         for operation in catoApiSchema[operationType]:
             operationNameAry = operation.split(".")
+            # Skip eventsFeed - it's handled as a custom parser
+            if operationNameAry[1] == "eventsFeed":
+                continue
             parsersIndex[operationNameAry[0]+"_"+operationNameAry[1]] = True
     parsers = list(parsersIndex.keys())
 
@@ -759,6 +762,7 @@ from ..parsers.raw import raw_parse
 from ..parsers.custom import custom_parse
 from ..parsers.custom_private import private_parse
 from ..parsers.query_siteLocation import query_siteLocation_parse
+from ..parsers.custom.query_eventsFeed import query_eventsFeed_parse
 """
     for parserName in parsers:
         cliDriverStr += "from ..parsers."+parserName+" import "+parserName+"_parse\n"
@@ -848,6 +852,7 @@ raw_parser = raw_parse(raw_parsers)
 query_parser = subparsers.add_parser('query', help='Query', usage='catocli query <operationName> [options]')
 query_subparsers = query_parser.add_subparsers(description='valid subcommands', help='additional help')
 query_siteLocation_parser = query_siteLocation_parse(query_subparsers)
+query_eventsFeed_parser = query_eventsFeed_parse(query_subparsers)
 mutation_parser = subparsers.add_parser('mutation', help='Mutation', usage='catocli mutation <operationName> [options]')
 mutation_subparsers = mutation_parser.add_subparsers(description='valid subcommands', help='additional help')
 
@@ -1025,6 +1030,9 @@ def query_siteLocation_parse(query_subparsers):
     # Generate parser files for each operation
     for operationType in parserMapping:
         for operationName in parserMapping[operationType]:
+            # Skip eventsFeed - it's handled as a custom parser
+            if operationName == "eventsFeed":
+                continue
             parserName = operationType+"_"+operationName
             parser = parserMapping[operationType][operationName]
             cliDriverStr = f"""
@@ -1142,6 +1150,11 @@ def writeReadmes(catoApiSchema):
         for operationName in catoApiSchema[operationType]:
             # Skip operations that don't start with the operation type (these are nested)
             if not operationName.startswith(operationType + "."):
+                continue
+            
+            # Skip eventsFeed - it's handled as a custom parser with custom documentation
+            operation_parts = operationName.split(".")[1:]
+            if len(operation_parts) > 0 and operation_parts[0] == "eventsFeed":
                 continue
                 
             operation = catoApiSchema[operationType][operationName]

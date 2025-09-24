@@ -1,6 +1,6 @@
 {
     "operationName": "devices",
-    "query": "query devices ( $deviceV2Input:DeviceV2Input $sortOrderInput:SortOrderInput $deviceAttributeCatalogInput:DeviceAttributeCatalogInput $jobId:ID! ) {\n\tdevices ( ) {\n\t\tlist\n\t\tattributesCatalog\n\t\tcsvExport\n\t\tcsvExportStatus\n\t}\t\n}",
+    "query": "query devices ( $deviceV2Input:DeviceV2Input $sortOrderInput:SortOrderInput $deviceAttributeCatalogInput:DeviceAttributeCatalogInput $deviceCsvExportInput:DeviceCsvExportInput $jobId:ID! ) {\n\tdevices ( ) {\n\t\tlist\n\t\tattributesCatalog\n\t\tcsvExport\n\t\tcsvExportStatus\n\t}\t\n}",
     "variables": {
         "deviceAttributeCatalogInput": {
             "pagingInput": {
@@ -22,6 +22,298 @@
                     "string1",
                     "string2"
                 ]
+            }
+        },
+        "deviceCsvExportInput": {
+            "deviceV2FilterInput": {
+                "category": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "confidence": {
+                    "eq": "LOW",
+                    "in": "LOW",
+                    "neq": "LOW",
+                    "nin": "LOW"
+                },
+                "firstSeen": {
+                    "between": [
+                        "example1",
+                        "example2"
+                    ],
+                    "eq": "example_value",
+                    "gt": "example_value",
+                    "gte": "example_value",
+                    "in": [
+                        "example1",
+                        "example2"
+                    ],
+                    "lt": "example_value",
+                    "lte": "example_value",
+                    "neq": "example_value",
+                    "nin": [
+                        "example1",
+                        "example2"
+                    ]
+                },
+                "hw": {
+                    "manufacturer": {
+                        "eq": "string",
+                        "in": [
+                            "string1",
+                            "string2"
+                        ],
+                        "neq": "string",
+                        "nin": [
+                            "string1",
+                            "string2"
+                        ]
+                    },
+                    "model": {
+                        "eq": "string",
+                        "in": [
+                            "string1",
+                            "string2"
+                        ],
+                        "neq": "string",
+                        "nin": [
+                            "string1",
+                            "string2"
+                        ]
+                    },
+                    "type": {
+                        "eq": "string",
+                        "in": [
+                            "string1",
+                            "string2"
+                        ],
+                        "neq": "string",
+                        "nin": [
+                            "string1",
+                            "string2"
+                        ]
+                    }
+                },
+                "id": {
+                    "eq": "id",
+                    "in": [
+                        "id1",
+                        "id2"
+                    ],
+                    "neq": "id",
+                    "nin": [
+                        "id1",
+                        "id2"
+                    ]
+                },
+                "ipAddress": {
+                    "between": [
+                        "example1",
+                        "example2"
+                    ],
+                    "eq": "example_value",
+                    "in": [
+                        "example1",
+                        "example2"
+                    ],
+                    "neq": "example_value",
+                    "nin": [
+                        "example1",
+                        "example2"
+                    ],
+                    "nwithin": "example_value",
+                    "within": "example_value"
+                },
+                "isManaged": {
+                    "eq": true,
+                    "neq": true
+                },
+                "lastSeen": {
+                    "between": [
+                        "example1",
+                        "example2"
+                    ],
+                    "eq": "example_value",
+                    "gt": "example_value",
+                    "gte": "example_value",
+                    "in": [
+                        "example1",
+                        "example2"
+                    ],
+                    "lt": "example_value",
+                    "lte": "example_value",
+                    "neq": "example_value",
+                    "nin": [
+                        "example1",
+                        "example2"
+                    ]
+                },
+                "name": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "network": {
+                    "networkName": {
+                        "eq": "string",
+                        "in": [
+                            "string1",
+                            "string2"
+                        ],
+                        "neq": "string",
+                        "nin": [
+                            "string1",
+                            "string2"
+                        ]
+                    },
+                    "subnet": {
+                        "eq": "string",
+                        "in": [
+                            "string1",
+                            "string2"
+                        ],
+                        "neq": "string",
+                        "nin": [
+                            "string1",
+                            "string2"
+                        ]
+                    }
+                },
+                "nic": {
+                    "macAddress": {
+                        "eq": "example_value",
+                        "in": [
+                            "example1",
+                            "example2"
+                        ],
+                        "neq": "example_value",
+                        "nin": [
+                            "example1",
+                            "example2"
+                        ]
+                    },
+                    "vendor": {
+                        "eq": "string",
+                        "in": [
+                            "string1",
+                            "string2"
+                        ],
+                        "neq": "string",
+                        "nin": [
+                            "string1",
+                            "string2"
+                        ]
+                    }
+                },
+                "os": {
+                    "product": {
+                        "eq": "string",
+                        "in": [
+                            "string1",
+                            "string2"
+                        ],
+                        "neq": "string",
+                        "nin": [
+                            "string1",
+                            "string2"
+                        ]
+                    },
+                    "vendor": {
+                        "eq": "string",
+                        "in": [
+                            "string1",
+                            "string2"
+                        ],
+                        "neq": "string",
+                        "nin": [
+                            "string1",
+                            "string2"
+                        ]
+                    },
+                    "version": {
+                        "eq": "string",
+                        "in": [
+                            "string1",
+                            "string2"
+                        ],
+                        "neq": "string",
+                        "nin": [
+                            "string1",
+                            "string2"
+                        ]
+                    }
+                },
+                "riskScore": {
+                    "between": [
+                        1,
+                        2
+                    ],
+                    "eq": 1,
+                    "gt": 1,
+                    "gte": 1,
+                    "in": [
+                        1,
+                        2
+                    ],
+                    "lt": 1,
+                    "lte": 1,
+                    "neq": 1,
+                    "nin": [
+                        1,
+                        2
+                    ]
+                },
+                "site": {
+                    "eq": {
+                        "by": "ID",
+                        "input": "string"
+                    },
+                    "in": {
+                        "by": "ID",
+                        "input": "string"
+                    },
+                    "neq": {
+                        "by": "ID",
+                        "input": "string"
+                    },
+                    "nin": {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                },
+                "user": {
+                    "eq": {
+                        "by": "ID",
+                        "input": "string"
+                    },
+                    "in": {
+                        "by": "ID",
+                        "input": "string"
+                    },
+                    "neq": {
+                        "by": "ID",
+                        "input": "string"
+                    },
+                    "nin": {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                }
             }
         },
         "deviceV2Input": {

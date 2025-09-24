@@ -188,7 +188,7 @@ def export_socket_site_to_json(args, configuration):
                             'network_ranges': []
                         }
                         # LAN_LAG_MEMBER interfaces don't have a numeric ID, only index and name
-                        cur_lan_interface['id'] = ''  # No ID for LAN_LAG_MEMBER
+                        cur_lan_interface['id'] = None  # Set to null for LAN_LAG_MEMBER
                         cur_lan_interface['name'] = interface.get('name', "")
                         # Format interface index: INT_X for numeric values, keep as-is for non-numeric
                         interface_id = interface.get('id', "")

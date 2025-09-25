@@ -73,3 +73,4 @@
 
 ## 3.0.3 (2025-09-24)
 
+- Updated manifest file to include template directory

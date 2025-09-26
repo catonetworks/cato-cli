@@ -3,12 +3,14 @@
 CSV Formatter for Cato CLI
 
 This module provides functions to convert JSON responses from Cato API
-into CSV format, with special handling for timeseries data in wide format.
+into CSV format, with special handling for timeseries data in long format.
 
 Supports multiple response patterns:
 - Records grid (appStats): records[] with fieldsMap + fieldsUnitTypes  
-- Flat timeseries (appStatsTimeSeries, socketPortMetricsTimeSeries): timeseries[] with labels
-- Hierarchical timeseries (accountMetrics): sites[] → interfaces[] → timeseries[]
+- Long-format timeseries (appStatsTimeSeries, socketPortMetricsTimeSeries): timeseries[] with labels (one row per timestamp)
+- Hierarchical timeseries (userMetrics): sites[] → interfaces[] → timeseries[] (one row per timestamp)
+
+All timeseries formatters now use long format (timestamp_period column) for better readability.
 """
 
 import csv
@@ -233,14 +235,13 @@ def format_app_stats_to_csv(response_data: Dict[str, Any]) -> str:
 
 def format_app_stats_timeseries_to_csv(response_data: Dict[str, Any]) -> str:
     """
-    Convert appStatsTimeSeries JSON response to wide-format CSV
-    Similar to the reference sccm_app_stats_wide_format.csv
+    Convert appStatsTimeSeries JSON response to long-format CSV (one row per timestamp)
     
     Args:
         response_data: JSON response from appStatsTimeSeries query
         
     Returns:
-        CSV formatted string in wide format with timestamps as columns
+        CSV formatted string in long format with one row per timestamp
     """
     if not response_data or 'data' not in response_data or 'appStatsTimeSeries' not in response_data['data']:
         return ""
@@ -304,6 +305,9 @@ def format_app_stats_timeseries_to_csv(response_data: Dict[str, Any]) -> str:
     # Sort timestamps
     sorted_timestamps = sorted(all_timestamps)
     
+    # Collect all data in long format (one row per timestamp and dimension combination)
+    rows = []
+    
     # Get all unique dimension combinations
     dimension_combos = {}
     for series in parsed_series:
@@ -317,62 +321,73 @@ def format_app_stats_timeseries_to_csv(response_data: Dict[str, Any]) -> str:
             print(f"DEBUG: Series dimensions: {series.get('dimensions', {})}")  
             continue
     
+    # Create rows for each timestamp and dimension combination
+    for dim_combo, measures_data in dimension_combos.items():
+        dim_dict = dict(dim_combo)
+        
+        for timestamp in sorted_timestamps:
+            # Build row data for this timestamp
+            row_data = {
+                'timestamp_period': format_timestamp(timestamp)
+            }
+            
+            # Add dimension values
+            for key, value in dim_dict.items():
+                row_data[key] = value
+            
+            # Add measure values for this timestamp
+            for measure, data in measures_data.items():
+                value = data.get(timestamp, '')
+                
+                # Convert bytes measures to MB and add appropriate suffix
+                if measure in ['downstream', 'upstream', 'traffic']:
+                    if value:
+                        try:
+                            mb_value = float(value) / 1048576
+                            formatted_value = f"{mb_value:.3f}".rstrip('0').rstrip('.')
+                            row_data[f'{measure}_mb'] = formatted_value
+                        except (ValueError, ZeroDivisionError):
+                            row_data[f'{measure}_mb'] = value
+                    else:
+                        row_data[f'{measure}_mb'] = value
+                else:
+                    row_data[measure] = value
+            
+            rows.append(row_data)
+    
+    if not rows:
+        return ""
+    
     # Create CSV output
     output = io.StringIO()
     writer = csv.writer(output)
     
-    # Build header
-    dimension_names = set()
-    measures = set()
-    for series in parsed_series:
-        dimension_names.update(series['dimensions'].keys())
-        measures.add(series['measure'])
+    # Build header dynamically from all available columns
+    all_columns = set()
+    for row_data in rows:
+        all_columns.update(row_data.keys())
     
-    dimension_names = sorted(dimension_names)
-    measures = sorted(measures)
+    # Sort columns with timestamp_period first, then dimensions, then measures
+    dimension_columns = []
+    measure_columns = []
     
-    header = dimension_names.copy()
-    # Add timestamp and measure columns for each time period
-    for i, timestamp in enumerate(sorted_timestamps, 1):
-        formatted_ts = format_timestamp(timestamp)
-        header.append(f'timestamp_period_{i}')
-        for measure in measures:
-            # Add _mb suffix for bytes measures
-            if measure in ['downstream', 'upstream', 'traffic']:
-                header.append(f'{measure}_period_{i}_mb')
-            else:
-                header.append(f'{measure}_period_{i}')
+    for col in sorted(all_columns):
+        if col == 'timestamp_period':
+            continue  # Will be added first
+        elif col.endswith('_mb') or col in ['downstream', 'upstream', 'traffic']:
+            measure_columns.append(col)
+        else:
+            dimension_columns.append(col)
     
+    header = ['timestamp_period'] + sorted(dimension_columns) + sorted(measure_columns)
     writer.writerow(header)
     
     # Write data rows
-    for dim_combo, measures_data in dimension_combos.items():
+    for row_data in rows:
         row = []
-        
-        # Add dimension values
-        dim_dict = dict(dim_combo)
-        for dim_name in dimension_names:
-            row.append(dim_dict.get(dim_name, ''))
-        
-        # Add timestamp and measure data for each period
-        for timestamp in sorted_timestamps:
-            formatted_ts = format_timestamp(timestamp)
-            row.append(formatted_ts)
-            
-            for measure in measures:
-                value = measures_data.get(measure, {}).get(timestamp, '')
-                # Convert bytes measures to MB
-                if measure in ['downstream', 'upstream', 'traffic'] and value and str(value).replace('.', '').replace('-', '').isdigit():
-                    try:
-                        # Convert bytes to megabytes
-                        mb_value = float(value) / 1048576
-                        formatted_value = f"{mb_value:.3f}".rstrip('0').rstrip('.')
-                        row.append(formatted_value)
-                    except (ValueError, ZeroDivisionError):
-                        row.append(value)
-                else:
-                    row.append(value)
-        
+        for col in header:
+            value = row_data.get(col, '')
+            row.append(value)
         writer.writerow(row)
     
     return output.getvalue()
@@ -380,13 +395,13 @@ def format_app_stats_timeseries_to_csv(response_data: Dict[str, Any]) -> str:
 
 def format_socket_port_metrics_timeseries_to_csv(response_data: Dict[str, Any]) -> str:
     """
-    Convert socketPortMetricsTimeSeries JSON response to wide-format CSV
+    Convert socketPortMetricsTimeSeries JSON response to long-format CSV (one row per timestamp)
     
     Args:
         response_data: JSON response from socketPortMetricsTimeSeries query
         
     Returns:
-        CSV formatted string in wide format with timestamps as columns
+        CSV formatted string in long format with one row per timestamp
     """
     if not response_data or 'data' not in response_data or 'socketPortMetricsTimeSeries' not in response_data['data']:
         return ""
@@ -435,6 +450,9 @@ def format_socket_port_metrics_timeseries_to_csv(response_data: Dict[str, Any]) 
     # Sort timestamps
     sorted_timestamps = sorted(all_timestamps)
     
+    # Collect all data in long format (one row per timestamp and dimension combination)
+    rows = []
+    
     # Get all unique dimension combinations
     dimension_combos = {}
     for series in parsed_series:
@@ -446,54 +464,176 @@ def format_socket_port_metrics_timeseries_to_csv(response_data: Dict[str, Any]) 
             'units': series['units']
         }
     
+    # Create rows for each timestamp and dimension combination
+    for dim_combo, measures_data in dimension_combos.items():
+        dim_dict = dict(dim_combo)
+        
+        for timestamp in sorted_timestamps:
+            # Build row data for this timestamp
+            row_data = {
+                'timestamp_period': format_timestamp(timestamp)
+            }
+            
+            # Add dimension values
+            for key, value in dim_dict.items():
+                row_data[key] = value
+            
+            # Add measure values for this timestamp
+            for measure, measure_info in measures_data.items():
+                value = measure_info['data'].get(timestamp, '')
+                units = measure_info['units']
+                
+                # Convert bytes measures to MB and add appropriate suffix
+                if is_bytes_measure(measure, units):
+                    if value:
+                        converted_value = convert_bytes_to_mb(value)
+                        row_data[f'{measure}_mb'] = converted_value
+                    else:
+                        row_data[f'{measure}_mb'] = value
+                else:
+                    row_data[measure] = value
+            
+            rows.append(row_data)
+    
+    if not rows:
+        return ""
+    
     # Create CSV output
     output = io.StringIO()
     writer = csv.writer(output)
     
-    # Build header
-    dimension_names = set()
-    measures = set()
-    bytes_measures = set()
+    # Build header dynamically from all available columns
+    all_columns = set()
+    for row_data in rows:
+        all_columns.update(row_data.keys())
     
-    for series in parsed_series:
-        dimension_names.update(series['dimensions'].keys())
-        measures.add(series['measure'])
-        
-        # Check if this measure should be converted to MB
-        if is_bytes_measure(series['measure'], series['units']):
-            bytes_measures.add(series['measure'])
+    # Sort columns with timestamp_period first, then dimensions, then measures
+    dimension_columns = []
+    measure_columns = []
     
-    dimension_names = sorted(dimension_names)
-    measures = sorted(measures)
+    for col in sorted(all_columns):
+        if col == 'timestamp_period':
+            continue  # Will be added first
+        elif col.endswith('_mb') or col in ['throughput_downstream', 'throughput_upstream']:
+            measure_columns.append(col)
+        else:
+            dimension_columns.append(col)
     
-    # Build header using shared helper
-    header = build_wide_timeseries_header(dimension_names, measures, sorted_timestamps, bytes_measures)
+    header = ['timestamp_period'] + sorted(dimension_columns) + sorted(measure_columns)
     writer.writerow(header)
     
     # Write data rows
-    for dim_combo, measures_data in dimension_combos.items():
+    for row_data in rows:
         row = []
+        for col in header:
+            value = row_data.get(col, '')
+            row.append(value)
+        writer.writerow(row)
+    
+    return output.getvalue()
+
+
+def format_user_metrics_to_csv(response_data: Dict[str, Any]) -> str:
+    """
+    Convert userMetrics JSON response to long-format CSV (one row per timestamp)
+    
+    Args:
+        response_data: JSON response from userMetrics query
         
-        # Add dimension values
-        dim_dict = dict(dim_combo)
-        for dim_name in dimension_names:
-            row.append(dim_dict.get(dim_name, ''))
+    Returns:
+        CSV formatted string in long format with one row per timestamp
+    """
+    if not response_data or 'data' not in response_data or 'accountMetrics' not in response_data['data']:
+        return ""
+    
+    account_metrics = response_data['data']['accountMetrics']
+    users = account_metrics.get('users', [])
+    
+    if not users:
+        return ""
+    
+    # Collect all data in long format (one row per timestamp)
+    rows = []
+    
+    for user in users:
+        user_id = user.get('id', '')
+        interfaces = user.get('interfaces', [])
         
-        # Add timestamp and measure data for each period
-        for timestamp in sorted_timestamps:
-            formatted_ts = format_timestamp(timestamp)
-            row.append(formatted_ts)
+        for interface in interfaces:
+            interface_name = interface.get('name', '')
+            timeseries_list = interface.get('timeseries', [])
             
-            for measure in measures:
-                measure_info = measures_data.get(measure, {})
-                value = measure_info.get('data', {}).get(timestamp, '')
+            # Organize timeseries data by timestamp
+            timestamp_data = {}
+            info_fields = {}
+            
+            for timeseries in timeseries_list:
+                label = timeseries.get('label', '')
+                units = timeseries.get('units', '')
+                data_points = timeseries.get('data', [])
+                info = timeseries.get('info', [])
                 
-                # Convert bytes measures to MB
-                if measure in bytes_measures and value:
-                    row.append(convert_bytes_to_mb(value))
-                else:
-                    row.append(value)
-        
+                # Store info fields (should be consistent across timeseries)
+                if info and len(info) >= 2:
+                    info_fields['info_user_id'] = str(info[0])
+                    info_fields['info_interface'] = str(info[1])
+                
+                # Process each data point
+                for point in data_points:
+                    if isinstance(point, (list, tuple)) and len(point) >= 2:
+                        timestamp = int(point[0])
+                        value = point[1]
+                        
+                        if timestamp not in timestamp_data:
+                            timestamp_data[timestamp] = {}
+                        
+                        # Convert bytes measures to MB and add appropriate suffix
+                        if is_bytes_measure(label, units) and value:
+                            converted_value = convert_bytes_to_mb(value)
+                            timestamp_data[timestamp][f'{label}_mb'] = converted_value
+                        else:
+                            timestamp_data[timestamp][label] = value
+            
+            # Create rows for each timestamp
+            for timestamp in sorted(timestamp_data.keys()):
+                row_data = {
+                    'info_interface': info_fields.get('info_interface', interface_name),
+                    'info_user_id': info_fields.get('info_user_id', user_id),
+                    'interface_name': interface_name,
+                    'user_id': user_id,
+                    'timestamp_period': format_timestamp(timestamp)
+                }
+                
+                # Add all measures for this timestamp
+                for measure, value in timestamp_data[timestamp].items():
+                    row_data[measure] = value
+                
+                rows.append(row_data)
+    
+    if not rows:
+        return ""
+    
+    # Create CSV output
+    output = io.StringIO()
+    writer = csv.writer(output)
+    
+    # Build header based on the expected format from the reference file
+    expected_measures = [
+        'bytesDownstream_mb', 'bytesDownstreamMax_mb', 'bytesUpstream_mb', 'bytesUpstreamMax_mb',
+        'health', 'lostDownstreamPcnt', 'lostUpstreamPcnt', 
+        'packetsDiscardedDownstreamPcnt', 'packetsDiscardedUpstreamPcnt', 
+        'rtt', 'tunnelAge'
+    ]
+    
+    header = ['info_interface', 'info_user_id', 'interface_name', 'user_id', 'timestamp_period'] + expected_measures
+    writer.writerow(header)
+    
+    # Write data rows
+    for row_data in rows:
+        row = []
+        for col in header:
+            value = row_data.get(col, '')
+            row.append(value)
         writer.writerow(row)
     
     return output.getvalue()
@@ -516,6 +656,8 @@ def format_to_csv(response_data: Dict[str, Any], operation_name: str) -> str:
         return format_app_stats_timeseries_to_csv(response_data)
     elif operation_name == 'query.socketPortMetricsTimeSeries':
         return format_socket_port_metrics_timeseries_to_csv(response_data)
+    elif operation_name == 'query.userMetrics':
+        return format_user_metrics_to_csv(response_data)
     else:
         # Default: try to convert any JSON response to simple CSV
         return json.dumps(response_data, indent=2)

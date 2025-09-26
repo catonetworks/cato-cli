@@ -74,3 +74,7 @@
 ## 3.0.3 (2025-09-24)
 
 - Updated manifest file to include template directory
+
+## 3.0.4 (2025-09-26)
+
+- Updated csv formatting for appStatsTimeSeries, and socketPortMetricsTimeSeries 

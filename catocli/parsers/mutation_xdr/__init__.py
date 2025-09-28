@@ -1,10 +1,11 @@
 
 from ..customParserApiClient import createRequest, get_help
+from ...Utils.help_formatter import CustomSubparserHelpFormatter
 
 def mutation_xdr_parse(mutation_subparsers):
     mutation_xdr_parser = mutation_subparsers.add_parser('xdr', 
             help='xdr() mutation operation', 
-            usage=get_help("mutation_xdr"))
+            usage=get_help("mutation_xdr"), formatter_class=CustomSubparserHelpFormatter)
 
     mutation_xdr_subparsers = mutation_xdr_parser.add_subparsers()
 

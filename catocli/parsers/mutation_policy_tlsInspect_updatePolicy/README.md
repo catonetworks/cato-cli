@@ -25,7 +25,7 @@
             "defaultRuleUntrustedCertificateAction": "ALLOW"
         }
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.policy.tlsInspect.updatePolicy ####

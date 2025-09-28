@@ -21,7 +21,7 @@
             "id": "id"
         }
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.policy.tlsInspect.removeSection ####

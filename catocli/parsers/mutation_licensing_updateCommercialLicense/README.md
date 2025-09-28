@@ -17,7 +17,7 @@
         "licenseId": "id",
         "startDate": "example_value"
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.licensing.updateCommercialLicense ####

@@ -25,7 +25,7 @@
         "name": "string",
         "siteType": "BRANCH"
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.sites.addCloudInterconnectSite ####

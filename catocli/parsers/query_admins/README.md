@@ -24,7 +24,7 @@
         "field": "string",
         "order": "asc"
     }
-}'`
+}'
 
 
 #### Operation Arguments for query.admins ####

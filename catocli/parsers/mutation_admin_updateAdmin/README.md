@@ -34,7 +34,7 @@
             }
         }
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.admin.updateAdmin ####

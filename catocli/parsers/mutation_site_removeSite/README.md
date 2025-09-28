@@ -14,7 +14,7 @@
 
 `catocli mutation site removeSite -p '{
     "siteId": "id"
-}'`
+}'
 
 
 #### Operation Arguments for mutation.site.removeSite ####

@@ -8,19 +8,23 @@ from .scim_commands import (
     scim_add_members,
     scim_create_group, 
     scim_create_user,
+    scim_create_users_from_csv,
     scim_disable_group,
     scim_disable_user,
+    scim_export_users,
     scim_find_group,
     scim_find_users,
     scim_get_group,
     scim_get_groups,
     scim_get_user,
     scim_get_users,
+    scim_import_users,
     scim_remove_members,
     scim_rename_group,
     scim_update_group,
     scim_update_user
 )
+from ...utils.export_utils import add_common_export_arguments
 
 
 def scim_parse(subparsers):
@@ -30,7 +34,25 @@ def scim_parse(subparsers):
     scim_parser = subparsers.add_parser(
         'scim',
         help='SCIM (System for Cross-domain Identity Management) operations',
-        usage='catocli scim <subcommand> [options]'
+        usage='catocli scim <subcommand> [options]',
+        description='''SCIM operations for user and group management with import/export capabilities.
+
+Common Examples:
+  # Export users to JSON/CSV
+  catocli scim export users -f json
+  catocli scim export users -f csv --append-timestamp
+  
+  # Import users from files
+  catocli scim import users users.csv
+  catocli scim import users users.json -v
+  
+  # Generate templates for import
+  catocli scim export users -gt -f csv
+  
+  # User management
+  catocli scim create_user '{{"email":"user@company.com","given_name":"John","family_name":"Doe","external_id":"john123"}}'
+  catocli scim get_users''',
+        formatter_class=__import__('argparse').RawDescriptionHelpFormatter
     )
     scim_subparsers = scim_parser.add_subparsers(
         description='SCIM operations for user and group management',
@@ -69,6 +91,98 @@ def scim_parse(subparsers):
     create_user_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
     create_user_parser.add_argument('-p', '--pretty', action='store_true', help='Pretty print JSON output')
     create_user_parser.set_defaults(func=scim_create_user)
+    
+    # Create Users from CSV command
+    create_users_csv_parser = scim_subparsers.add_parser(
+        'create_users_from_csv',
+        help='Create multiple SCIM users from a CSV file',
+        usage='catocli scim create_users_from_csv <csv_file_path> [options]'
+    )
+    create_users_csv_parser.add_argument('csv_file_path', help='Path to CSV file containing user data (columns: email,given_name,family_name,external_id,password,active)')
+    create_users_csv_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    create_users_csv_parser.add_argument('-p', '--pretty', action='store_true', help='Pretty print JSON output')
+    create_users_csv_parser.add_argument('--generate-template', '-gt', dest='generate_template', action='store_true', help='Generate CSV template file instead of processing users')
+    create_users_csv_parser.set_defaults(func=scim_create_users_from_csv)
+    
+    # Import Users command
+    import_users_parser = scim_subparsers.add_parser(
+        'import',
+        help='Import users from CSV or JSON files',
+        usage='catocli scim import users <file_path> [options]'
+    )
+    import_subparsers = import_users_parser.add_subparsers(
+        description='Import operations for users',
+        help='Import command operations'
+    )
+    
+    import_users_subparser = import_subparsers.add_parser(
+        'users',
+        help='Import users from CSV or JSON file',
+        usage='catocli scim import users <file_path> [options]',
+        description='''Import SCIM users from CSV or JSON files with automatic format detection.
+
+Examples:
+  # Import from CSV file (auto-detected)
+  catocli scim import users users.csv
+
+  # Import from JSON file with verbose output
+  catocli scim import users users.json -v
+
+  # Specify format explicitly
+  catocli scim import users data.txt -f csv
+
+  # Import with format detection and verbose output
+  catocli scim import users /path/to/users.json -v''',
+        formatter_class=__import__('argparse').RawDescriptionHelpFormatter
+    )
+    import_users_subparser.add_argument('file_path', help='Path to CSV or JSON file containing user data')
+    import_users_subparser.add_argument('-f', '--format', choices=['csv', 'json'], help='File format (auto-detected if not specified)')
+    import_users_subparser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    import_users_subparser.add_argument('-p', '--pretty', action='store_true', help='Pretty print JSON output')
+    import_users_subparser.set_defaults(func=scim_import_users)
+    
+    # Export Users command
+    export_users_parser = scim_subparsers.add_parser(
+        'export',
+        help='Export users to CSV or JSON files',
+        usage='catocli scim export users [options]'
+    )
+    export_subparsers = export_users_parser.add_subparsers(
+        description='Export operations for users',
+        help='Export command operations'
+    )
+    
+    export_users_subparser = export_subparsers.add_parser(
+        'users',
+        help='Export users to CSV or JSON file',
+        usage='catocli scim export users [options]',
+        description='''Export SCIM users to CSV or JSON format with flexible filename and output options.
+
+Examples:
+  # Basic export
+  catocli scim export users -f json
+
+  # Custom filename with timestamp
+  catocli scim export users -f csv --csv-filename users.csv --append-timestamp
+
+  # Generate templates
+  catocli scim export users -f json -gt
+  catocli scim export users -f csv -gt --append-timestamp
+
+  # Custom output directory
+  catocli scim export users --output-directory /path/to/exports''',
+        formatter_class=__import__('argparse').RawDescriptionHelpFormatter
+    )
+    # Add common export arguments using shared utility
+    add_common_export_arguments(export_users_subparser)
+    
+    # Update help text for format-specific filenames
+    for action in export_users_subparser._actions:
+        if action.dest == 'json_filename':
+            action.help = 'Override JSON file name (default: scim_users_export.json)'
+        elif action.dest == 'csv_filename':
+            action.help = 'Override CSV file name (default: scim_users_export.csv)'
+    export_users_subparser.set_defaults(func=scim_export_users)
     
     # Disable Group command
     disable_group_parser = scim_subparsers.add_parser(

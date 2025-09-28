@@ -14,7 +14,7 @@
 
 `catocli query servicePrincipalAdmin -p '{
     "adminID": "id"
-}'`
+}'
 
 
 #### Operation Arguments for query.servicePrincipalAdmin ####

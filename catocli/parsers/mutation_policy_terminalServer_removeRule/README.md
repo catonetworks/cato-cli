@@ -21,7 +21,7 @@
     "terminalServerRemoveRuleInput": {
         "id": "id"
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.policy.terminalServer.removeRule ####

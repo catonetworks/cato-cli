@@ -27,7 +27,7 @@
         "subnet": "example_value",
         "upstreamBwLimit": "example_value"
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.site.updateCloudInterconnectPhysicalConnection ####

@@ -150,7 +150,7 @@
             "transport": "WAN"
         }
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.policy.socketLan.updateRule ####

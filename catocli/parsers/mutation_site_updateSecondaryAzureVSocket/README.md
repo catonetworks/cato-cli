@@ -18,7 +18,7 @@
         "id": "id",
         "interfaceIp": "example_value"
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.site.updateSecondaryAzureVSocket ####

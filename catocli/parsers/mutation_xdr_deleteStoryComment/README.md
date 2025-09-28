@@ -17,7 +17,7 @@
         "commentId": "id",
         "storyId": "id"
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.xdr.deleteStoryComment ####

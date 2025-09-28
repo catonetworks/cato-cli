@@ -21,7 +21,7 @@
     "remotePortFwdPolicyUpdateInput": {
         "state": "ENABLED"
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.policy.remotePortFwd.updatePolicy ####

@@ -37,7 +37,7 @@
             }
         }
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.site.updateSiteGeneralDetails ####

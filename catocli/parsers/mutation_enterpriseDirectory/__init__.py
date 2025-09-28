@@ -1,10 +1,11 @@
 
 from ..customParserApiClient import createRequest, get_help
+from ...Utils.help_formatter import CustomSubparserHelpFormatter
 
 def mutation_enterpriseDirectory_parse(mutation_subparsers):
     mutation_enterpriseDirectory_parser = mutation_subparsers.add_parser('enterpriseDirectory', 
             help='enterpriseDirectory() mutation operation', 
-            usage=get_help("mutation_enterpriseDirectory"))
+            usage=get_help("mutation_enterpriseDirectory"), formatter_class=CustomSubparserHelpFormatter)
 
     mutation_enterpriseDirectory_subparsers = mutation_enterpriseDirectory_parser.add_subparsers()
 

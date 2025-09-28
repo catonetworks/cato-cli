@@ -14,7 +14,7 @@
 
 `catocli query subDomains -p '{
     "managedAccount": true
-}'`
+}'
 
 
 #### Operation Arguments for query.subDomains ####

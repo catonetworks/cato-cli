@@ -7,7 +7,32 @@ def export_sites_parse(subparsers):
     socket_sites_parser = subparsers.add_parser(
         'socket_sites', 
         help='Export consolidated site and socket data to JSON or CSV format',
-        usage='catocli export socket_sites [-accountID <account_id>] [options]'
+        usage='catocli export socket_sites [-accountID <account_id>] [options]',
+        description='''Export consolidated site and socket data to JSON or CSV format with flexible filename and filtering options.
+
+Examples:
+  # Basic export to JSON (default format)
+  catocli export socket_sites
+  
+  # Export to CSV with custom filename and timestamp
+  catocli export socket_sites -f csv --csv-filename sites_export.csv --append-timestamp
+  
+  # Export specific sites with local IP calculation
+  catocli export socket_sites --site-ids "1234,1235,1236" -clip -v
+  
+  # Generate template files
+  catocli export socket_sites -gt -f json
+  catocli export socket_sites -gt -f csv --append-timestamp
+  
+  # Export with custom output directory and account ID
+  catocli export socket_sites -accountID 12345 --output-directory /path/to/exports
+  
+  # Export to JSON with custom filename and verbose output
+  catocli export socket_sites -f json --json-filename my_sites.json -v
+  
+  # Export filtered sites to CSV with all options
+  catocli export socket_sites -f csv --site-ids "100,200,300" --csv-filename filtered_sites.csv --append-timestamp --output-directory ./exports -clip -v''',
+        formatter_class=__import__('argparse').RawDescriptionHelpFormatter
     )
     
     socket_sites_parser.add_argument('-accountID', help='Account ID to export data from (uses CATO_ACCOUNT_ID environment variable if not specified)', required=False)

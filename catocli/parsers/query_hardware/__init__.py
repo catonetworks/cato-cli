@@ -1,10 +1,11 @@
 
 from ..customParserApiClient import createRequest, get_help
+from ...Utils.help_formatter import CustomSubparserHelpFormatter
 
 def query_hardware_parse(query_subparsers):
     query_hardware_parser = query_subparsers.add_parser('hardware', 
             help='hardware() query operation', 
-            usage=get_help("query_hardware"))
+            usage=get_help("query_hardware"), formatter_class=CustomSubparserHelpFormatter)
 
     query_hardware_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
     query_hardware_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')

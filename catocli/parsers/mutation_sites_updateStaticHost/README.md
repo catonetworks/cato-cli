@@ -19,7 +19,7 @@
         "macAddress": "string",
         "name": "string"
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.sites.updateStaticHost ####

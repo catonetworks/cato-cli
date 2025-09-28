@@ -17,7 +17,7 @@
         "storyId": "id",
         "text": "string"
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.xdr.addStoryComment ####

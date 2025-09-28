@@ -1,10 +1,11 @@
 
 from ..customParserApiClient import createRequest, get_help
+from ...Utils.help_formatter import CustomSubparserHelpFormatter
 
 def mutation_licensing_parse(mutation_subparsers):
     mutation_licensing_parser = mutation_subparsers.add_parser('licensing', 
             help='licensing() mutation operation', 
-            usage=get_help("mutation_licensing"))
+            usage=get_help("mutation_licensing"), formatter_class=CustomSubparserHelpFormatter)
 
     mutation_licensing_subparsers = mutation_licensing_parser.add_subparsers()
 

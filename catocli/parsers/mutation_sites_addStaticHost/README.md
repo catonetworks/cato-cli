@@ -19,7 +19,7 @@
         "name": "string"
     },
     "siteId": "id"
-}'`
+}'
 
 
 #### Operation Arguments for mutation.sites.addStaticHost ####

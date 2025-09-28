@@ -32,7 +32,7 @@
             }
         }
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.admin.updateServicePrincipalAdmin ####

@@ -32,7 +32,7 @@
         "vlan": 1
     },
     "lanSocketInterfaceId": "id"
-}'`
+}'
 
 
 #### Operation Arguments for mutation.site.addNetworkRange ####

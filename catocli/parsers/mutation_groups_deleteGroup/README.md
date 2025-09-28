@@ -54,7 +54,7 @@
         "by": "ID",
         "input": "string"
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.groups.deleteGroup ####

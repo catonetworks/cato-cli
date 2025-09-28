@@ -21,7 +21,7 @@
     "terminalServerPolicyUpdateInput": {
         "state": "ENABLED"
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.policy.terminalServer.updatePolicy ####

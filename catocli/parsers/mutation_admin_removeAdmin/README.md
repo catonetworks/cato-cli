@@ -14,7 +14,7 @@
 
 `catocli mutation admin removeAdmin -p '{
     "adminID": "id"
-}'`
+}'
 
 
 #### Operation Arguments for mutation.admin.removeAdmin ####

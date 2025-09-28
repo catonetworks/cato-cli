@@ -1,10 +1,11 @@
 
 from ..customParserApiClient import createRequest, get_help
+from ...Utils.help_formatter import CustomSubparserHelpFormatter
 
 def query_accountSnapshot_parse(query_subparsers):
     query_accountSnapshot_parser = query_subparsers.add_parser('accountSnapshot', 
             help='accountSnapshot() query operation', 
-            usage=get_help("query_accountSnapshot"))
+            usage=get_help("query_accountSnapshot"), formatter_class=CustomSubparserHelpFormatter)
 
     query_accountSnapshot_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
     query_accountSnapshot_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')

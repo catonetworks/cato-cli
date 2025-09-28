@@ -22,7 +22,7 @@
             "targetVersion": "string"
         }
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.site.startSiteUpgrade ####

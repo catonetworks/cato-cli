@@ -1,10 +1,11 @@
 
 from ..customParserApiClient import createRequest, get_help
+from ...Utils.help_formatter import CustomSubparserHelpFormatter
 
 def query_groups_parse(query_subparsers):
     query_groups_parser = query_subparsers.add_parser('groups', 
             help='groups() query operation', 
-            usage=get_help("query_groups"))
+            usage=get_help("query_groups"), formatter_class=CustomSubparserHelpFormatter)
 
     query_groups_subparsers = query_groups_parser.add_subparsers()
 

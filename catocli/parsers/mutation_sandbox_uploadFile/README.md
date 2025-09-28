@@ -16,7 +16,7 @@
     "uploadFileInput": {
         "fileName": "string"
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.sandbox.uploadFile ####

@@ -14,7 +14,7 @@
 
 `catocli mutation enterpriseDirectory archiveLocation -p '{
     "locationId": "id"
-}'`
+}'
 
 
 #### Operation Arguments for mutation.enterpriseDirectory.archiveLocation ####

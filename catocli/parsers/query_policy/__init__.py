@@ -1,10 +1,11 @@
 
 from ..customParserApiClient import createRequest, get_help
+from ...Utils.help_formatter import CustomSubparserHelpFormatter
 
 def query_policy_parse(query_subparsers):
     query_policy_parser = query_subparsers.add_parser('policy', 
             help='policy() query operation', 
-            usage=get_help("query_policy"))
+            usage=get_help("query_policy"), formatter_class=CustomSubparserHelpFormatter)
 
     query_policy_subparsers = query_policy_parser.add_subparsers()
 

@@ -55,7 +55,7 @@
             "role": "wan_1"
         }
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.site.updateSocketInterface ####

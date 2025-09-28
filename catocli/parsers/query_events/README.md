@@ -36,7 +36,7 @@
     "from": 1,
     "limit": 1,
     "timeFrame": "example_value"
-}'`
+}'
 
 
 #### Operation Arguments for query.events ####

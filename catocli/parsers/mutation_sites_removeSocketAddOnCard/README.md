@@ -20,7 +20,7 @@
             "input": "string"
         }
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.sites.removeSocketAddOnCard ####

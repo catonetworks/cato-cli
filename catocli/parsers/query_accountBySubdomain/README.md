@@ -17,7 +17,7 @@
         "string1",
         "string2"
     ]
-}'`
+}'
 
 
 #### Operation Arguments for query.accountBySubdomain ####

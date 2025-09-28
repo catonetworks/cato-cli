@@ -19,7 +19,7 @@
             "string2"
         ]
     }
-}'`
+}'
 
 
 #### Operation Arguments for query.site.availableVersionList ####

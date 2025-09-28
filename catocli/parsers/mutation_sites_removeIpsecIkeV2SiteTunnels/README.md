@@ -17,7 +17,7 @@
         "tunnelId": "PRIMARY1"
     },
     "siteId": "id"
-}'`
+}'
 
 
 #### Operation Arguments for mutation.sites.removeIpsecIkeV2SiteTunnels ####

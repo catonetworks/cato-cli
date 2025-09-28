@@ -17,7 +17,7 @@
         "by": "ID",
         "input": "string"
     }
-}'`
+}'
 
 
 #### Operation Arguments for query.site.siteGeneralDetails ####

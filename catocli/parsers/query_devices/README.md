@@ -730,7 +730,7 @@
         "direction": "ASC",
         "priority": 1
     }
-}'`
+}'
 
 
 #### Operation Arguments for query.devices ####

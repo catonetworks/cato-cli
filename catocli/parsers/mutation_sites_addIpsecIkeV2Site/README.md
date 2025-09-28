@@ -27,7 +27,7 @@
         "siteType": "BRANCH",
         "vlan": "example_value"
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.sites.addIpsecIkeV2Site ####

@@ -26,7 +26,7 @@
         "threatClassification": "string",
         "verdict": "Suspicious"
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.xdr.analystFeedback ####

@@ -1,10 +1,11 @@
 
 from ..customParserApiClient import createRequest, get_help
+from ...Utils.help_formatter import CustomSubparserHelpFormatter
 
 def query_xdr_parse(query_subparsers):
     query_xdr_parser = query_subparsers.add_parser('xdr', 
             help='xdr() query operation', 
-            usage=get_help("query_xdr"))
+            usage=get_help("query_xdr"), formatter_class=CustomSubparserHelpFormatter)
 
     query_xdr_subparsers = query_xdr_parser.add_subparsers()
 

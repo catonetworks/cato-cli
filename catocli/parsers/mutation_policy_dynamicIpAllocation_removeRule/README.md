@@ -21,7 +21,7 @@
     "dynamicIpAllocationRemoveRuleInput": {
         "id": "id"
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.policy.dynamicIpAllocation.removeRule ####

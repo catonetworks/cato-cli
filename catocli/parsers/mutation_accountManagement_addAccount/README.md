@@ -20,7 +20,7 @@
         "timezone": "example_value",
         "type": "CUSTOMER"
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.accountManagement.addAccount ####

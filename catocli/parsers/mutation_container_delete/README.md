@@ -19,7 +19,7 @@
             "input": "string"
         }
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.container.delete ####

@@ -36,7 +36,7 @@
         "trend": true
     },
     "timeFrame": "example_value"
-}'`
+}'
 
 
 ## Advanced Usage

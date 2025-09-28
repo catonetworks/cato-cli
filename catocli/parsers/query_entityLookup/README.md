@@ -38,7 +38,7 @@
         "order": "asc"
     },
     "type": "account"
-}'`
+}'
 
 
 #### Operation Arguments for query.entityLookup ####

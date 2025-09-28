@@ -21,7 +21,7 @@
     "applicationControlRemoveRuleInput": {
         "id": "id"
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.policy.applicationControl.removeRule ####

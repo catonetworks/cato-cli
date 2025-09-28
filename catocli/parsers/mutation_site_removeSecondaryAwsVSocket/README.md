@@ -14,7 +14,7 @@
 
 `catocli mutation site removeSecondaryAwsVSocket -p '{
     "socketId": "id"
-}'`
+}'
 
 
 #### Operation Arguments for mutation.site.removeSecondaryAwsVSocket ####

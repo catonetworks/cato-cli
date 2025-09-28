@@ -21,7 +21,7 @@
     "remotePortFwdRemoveRuleInput": {
         "id": "id"
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.policy.remotePortFwd.removeRule ####

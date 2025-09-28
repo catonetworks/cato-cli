@@ -19,7 +19,7 @@
             "type": "PRIVATE"
         }
     }
-}'`
+}'
 
 
 #### Operation Arguments for query.policy.wanFirewall.policy ####

@@ -59,7 +59,7 @@
             "limit": 1
         }
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.groups.createGroup ####

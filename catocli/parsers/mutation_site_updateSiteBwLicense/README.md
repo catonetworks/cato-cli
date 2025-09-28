@@ -21,7 +21,7 @@
             "input": "string"
         }
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.site.updateSiteBwLicense ####

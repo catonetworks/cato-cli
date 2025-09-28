@@ -14,7 +14,7 @@
 
 `catocli query site secondaryAzureVSocket -p '{
     "socketId": "id"
-}'`
+}'
 
 
 #### Operation Arguments for query.site.secondaryAzureVSocket ####

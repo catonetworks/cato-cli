@@ -1,10 +1,11 @@
 
 from ..customParserApiClient import createRequest, get_help
+from ...Utils.help_formatter import CustomSubparserHelpFormatter
 
 def mutation_groups_parse(mutation_subparsers):
     mutation_groups_parser = mutation_subparsers.add_parser('groups', 
             help='groups() mutation operation', 
-            usage=get_help("mutation_groups"))
+            usage=get_help("mutation_groups"), formatter_class=CustomSubparserHelpFormatter)
 
     mutation_groups_subparsers = mutation_groups_parser.add_subparsers()
 

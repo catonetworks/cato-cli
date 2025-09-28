@@ -16,7 +16,7 @@
     "updateAccountInput": {
         "description": "string"
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.accountManagement.updateAccount ####

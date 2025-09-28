@@ -21,7 +21,7 @@
     "wanFirewallPolicyUpdateInput": {
         "state": "ENABLED"
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.policy.wanFirewall.updatePolicy ####

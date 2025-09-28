@@ -41,7 +41,7 @@
             "id2"
         ]
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.hardware.updateHardwareShipping ####

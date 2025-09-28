@@ -16,7 +16,7 @@
     "removeCloudInterconnectPhysicalConnectionInput": {
         "id": "id"
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.site.removeCloudInterconnectPhysicalConnection ####

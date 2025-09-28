@@ -75,7 +75,7 @@
             }
         }
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.policy.remotePortFwd.updateRule ####

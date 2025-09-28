@@ -34,7 +34,7 @@
     "timeFrame": "example_value",
     "useDefaultSizeBucket": true,
     "withMissingData": true
-}'`
+}'
 
 
 ## Advanced Usage

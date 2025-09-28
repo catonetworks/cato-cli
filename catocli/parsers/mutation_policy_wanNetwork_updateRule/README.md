@@ -376,7 +376,7 @@
             }
         }
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.policy.wanNetwork.updateRule ####

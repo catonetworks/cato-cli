@@ -36,7 +36,7 @@
         "order": "asc"
     },
     "timeFrame": "example_value"
-}'`
+}'
 
 
 #### Operation Arguments for query.socketPortMetrics ####

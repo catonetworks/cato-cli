@@ -23,7 +23,7 @@
             "type": "FOUR_1G_COPPER"
         }
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.site.addSocketAddOnCard ####

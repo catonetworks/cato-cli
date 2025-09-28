@@ -19,7 +19,7 @@
         "routeTableId": "string",
         "subnet": "example_value"
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.site.updateSecondaryAwsVSocket ####

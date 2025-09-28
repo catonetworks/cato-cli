@@ -1,10 +1,11 @@
 
 from ..customParserApiClient import createRequest, get_help
+from ...Utils.help_formatter import CustomSubparserHelpFormatter
 
 def mutation_sandbox_parse(mutation_subparsers):
     mutation_sandbox_parser = mutation_subparsers.add_parser('sandbox', 
             help='sandbox() mutation operation', 
-            usage=get_help("mutation_sandbox"))
+            usage=get_help("mutation_sandbox"), formatter_class=CustomSubparserHelpFormatter)
 
     mutation_sandbox_subparsers = mutation_sandbox_parser.add_subparsers()
 

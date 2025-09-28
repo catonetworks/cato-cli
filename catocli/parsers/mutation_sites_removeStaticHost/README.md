@@ -14,7 +14,7 @@
 
 `catocli mutation sites removeStaticHost -p '{
     "hostId": "id"
-}'`
+}'
 
 
 #### Operation Arguments for mutation.sites.removeStaticHost ####

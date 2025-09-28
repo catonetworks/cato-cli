@@ -1,10 +1,11 @@
 
 from ..customParserApiClient import createRequest, get_help
+from ...Utils.help_formatter import CustomSubparserHelpFormatter
 
 def mutation_policy_parse(mutation_subparsers):
     mutation_policy_parser = mutation_subparsers.add_parser('policy', 
             help='policy() mutation operation', 
-            usage=get_help("mutation_policy"))
+            usage=get_help("mutation_policy"), formatter_class=CustomSubparserHelpFormatter)
 
     mutation_policy_subparsers = mutation_policy_parser.add_subparsers()
 

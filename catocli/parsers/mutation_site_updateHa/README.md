@@ -19,7 +19,7 @@
         "secondaryManagementIp": "example_value",
         "vrid": 1
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.site.updateHa ####

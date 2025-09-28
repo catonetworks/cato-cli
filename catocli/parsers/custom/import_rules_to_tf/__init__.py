@@ -4,7 +4,27 @@ def rule_import_parse(subparsers):
     """Create import command parsers"""
     
     # Create the main import parser
-    import_parser = subparsers.add_parser('import', help='Import data from various sources', usage='catocli import <operation> [options]')
+    import_parser = subparsers.add_parser(
+        'import', 
+        help='Import data from various sources', 
+        usage='catocli import <operation> [options]',
+        description='''Import various types of data into Terraform state for infrastructure management and automation.
+
+Common Examples:
+  # Import firewall rules to Terraform
+  catocli import if_rules_to_tf rules.json --module-name module.if_rules
+  catocli import wf_rules_to_tf rules.json --module-name module.wf_rules
+  
+  # Import socket sites from JSON
+  catocli import socket_sites_to_tf --data-type json --json-file sites.json --module-name module.sites
+  
+  # Import socket sites from CSV with network ranges
+  catocli import socket_sites_to_tf --data-type csv --csv-file sites.csv --csv-folder ranges/ --module-name module.sites
+  
+  # Import with batch processing and verbose output
+  catocli import if_rules_to_tf rules.json --module-name module.rules --batch-size 5 --delay 3 -v''',
+        formatter_class=__import__('argparse').RawDescriptionHelpFormatter
+    )
     import_subparsers = import_parser.add_subparsers(description='valid import operations', help='additional help')
     
     # Add if_rules_to_tf command

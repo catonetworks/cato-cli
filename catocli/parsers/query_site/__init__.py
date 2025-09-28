@@ -1,10 +1,11 @@
 
 from ..customParserApiClient import createRequest, get_help
+from ...Utils.help_formatter import CustomSubparserHelpFormatter
 
 def query_site_parse(query_subparsers):
     query_site_parser = query_subparsers.add_parser('site', 
             help='site() query operation', 
-            usage=get_help("query_site"))
+            usage=get_help("query_site"), formatter_class=CustomSubparserHelpFormatter)
 
     query_site_subparsers = query_site_parser.add_subparsers()
 

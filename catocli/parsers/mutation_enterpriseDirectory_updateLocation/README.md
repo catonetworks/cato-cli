@@ -39,7 +39,7 @@
             "vatId": "string"
         }
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.enterpriseDirectory.updateLocation ####

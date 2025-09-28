@@ -62,7 +62,7 @@
             }
         }
     }
-}'`
+}'
 
 
 #### Operation Arguments for query.hardwareManagement ####

@@ -258,13 +258,33 @@ class CatoSCIMClient:
                     "value": email
                 }
             ],
-            "externalId": externalId,
-            "password": new_password,
-            "active": active
+            "externalId": externalId
         }
-
-        # Send the request
+        
+        # Cato SCIM API requires users to be created as active first
+        # For inactive users, we create them as active then disable them
+        data["active"] = True  # Always create as active initially
+        if password is not None:
+            data["password"] = new_password
+        
+        # Debug logging to see what we're sending
+        logger.debug(f'Sending user data: {json.dumps(data, indent=2)}')
+        logger.info(f'Creating user {email} (requested active: {active})')
+        
+        # Send the request to create the user
         success, result = self.send("POST", "/Users", data)
+        
+        # If user creation succeeded but should be inactive, disable them
+        if success and not active:
+            user_id = result.get('id')
+            if user_id:
+                logger.info(f'Disabling user {email} (id: {user_id}) as requested')
+                disable_success, disable_result = self.disable_user(user_id)
+                if not disable_success:
+                    logger.warning(f'User {email} created but failed to disable: {disable_result}')
+                    # Still return success for user creation, but add a warning to the result
+                    result['warning'] = f'User created as active but could not be disabled: {disable_result}'
+        
         return success, result
 
     def disable_group(self, groupid):

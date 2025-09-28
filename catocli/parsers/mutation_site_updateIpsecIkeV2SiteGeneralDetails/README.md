@@ -28,7 +28,7 @@
             "example2"
         ]
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.site.updateIpsecIkeV2SiteGeneralDetails ####

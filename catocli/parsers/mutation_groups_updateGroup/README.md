@@ -63,7 +63,7 @@
         },
         "name": "string"
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.groups.updateGroup ####

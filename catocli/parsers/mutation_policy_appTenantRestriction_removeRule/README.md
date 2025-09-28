@@ -21,7 +21,7 @@
     "appTenantRestrictionRemoveRuleInput": {
         "id": "id"
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.policy.appTenantRestriction.removeRule ####

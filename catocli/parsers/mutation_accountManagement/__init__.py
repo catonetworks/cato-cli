@@ -1,10 +1,11 @@
 
 from ..customParserApiClient import createRequest, get_help
+from ...Utils.help_formatter import CustomSubparserHelpFormatter
 
 def mutation_accountManagement_parse(mutation_subparsers):
     mutation_accountManagement_parser = mutation_subparsers.add_parser('accountManagement', 
             help='accountManagement() mutation operation', 
-            usage=get_help("mutation_accountManagement"))
+            usage=get_help("mutation_accountManagement"), formatter_class=CustomSubparserHelpFormatter)
 
     mutation_accountManagement_subparsers = mutation_accountManagement_parser.add_subparsers()
 

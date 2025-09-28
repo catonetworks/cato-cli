@@ -146,7 +146,7 @@
             "order": "asc"
         }
     }
-}'`
+}'
 
 
 #### Operation Arguments for query.xdr.stories ####

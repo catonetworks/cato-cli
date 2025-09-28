@@ -16,7 +16,7 @@
     "removeBgpPeerInput": {
         "id": "id"
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.site.removeBgpPeer ####

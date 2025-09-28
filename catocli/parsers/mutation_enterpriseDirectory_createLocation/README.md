@@ -38,7 +38,7 @@
         "name": "string",
         "type": "BRANCH"
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.enterpriseDirectory.createLocation ####

@@ -34,7 +34,7 @@
         "id2"
     ],
     "withMissingData": true
-}'`
+}'
 
 
 #### Operation Arguments for query.accountMetrics ####

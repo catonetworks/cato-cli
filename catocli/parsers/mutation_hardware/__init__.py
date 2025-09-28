@@ -1,10 +1,11 @@
 
 from ..customParserApiClient import createRequest, get_help
+from ...Utils.help_formatter import CustomSubparserHelpFormatter
 
 def mutation_hardware_parse(mutation_subparsers):
     mutation_hardware_parser = mutation_subparsers.add_parser('hardware', 
             help='hardware() mutation operation', 
-            usage=get_help("mutation_hardware"))
+            usage=get_help("mutation_hardware"), formatter_class=CustomSubparserHelpFormatter)
 
     mutation_hardware_subparsers = mutation_hardware_parser.add_subparsers()
 

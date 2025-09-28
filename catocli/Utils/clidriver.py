@@ -21,6 +21,7 @@ from ..parsers.custom import custom_parse
 from ..parsers.custom_private import private_parse
 from ..parsers.query_siteLocation import query_siteLocation_parse
 from ..parsers.custom.query_eventsFeed import query_eventsFeed_parse
+from .help_formatter import CustomSubparserHelpFormatter
 from ..parsers.query_socketPortMetrics import query_socketPortMetrics_parse
 from ..parsers.query_socketPortMetricsTimeSeries import query_socketPortMetricsTimeSeries_parse
 from ..parsers.query_accountMetrics import query_accountMetrics_parse
@@ -49,19 +50,19 @@ from ..parsers.query_accountSnapshot import query_accountSnapshot_parse
 from ..parsers.query_catalogs import query_catalogs_parse
 from ..parsers.query_xdr import query_xdr_parse
 from ..parsers.query_site import query_site_parse
-from ..parsers.query_policy import query_policy_parse
 from ..parsers.query_groups import query_groups_parse
+from ..parsers.query_policy import query_policy_parse
 from ..parsers.mutation_xdr import mutation_xdr_parse
-from ..parsers.mutation_site import mutation_site_parse
-from ..parsers.mutation_policy import mutation_policy_parse
 from ..parsers.mutation_container import mutation_container_parse
 from ..parsers.mutation_sites import mutation_sites_parse
+from ..parsers.mutation_policy import mutation_policy_parse
+from ..parsers.mutation_site import mutation_site_parse
+from ..parsers.mutation_admin import mutation_admin_parse
 from ..parsers.mutation_accountManagement import mutation_accountManagement_parse
 from ..parsers.mutation_sandbox import mutation_sandbox_parse
 from ..parsers.mutation_licensing import mutation_licensing_parse
 from ..parsers.mutation_hardware import mutation_hardware_parse
 from ..parsers.mutation_groups import mutation_groups_parse
-from ..parsers.mutation_admin import mutation_admin_parse
 from ..parsers.mutation_enterpriseDirectory import mutation_enterpriseDirectory_parse
 
 def show_version_info(args, configuration=None):
@@ -149,12 +150,12 @@ custom_parsers = custom_parse(subparsers)
 private_parsers = private_parse(subparsers)
 raw_parsers = subparsers.add_parser('raw', help='Raw GraphQL', usage=get_help("raw"))
 raw_parser = raw_parse(raw_parsers)
-query_parser = subparsers.add_parser('query', help='Query', usage='catocli query <operationName> [options]')
-query_subparsers = query_parser.add_subparsers(description='valid subcommands', help='additional help')
+query_parser = subparsers.add_parser('query', help='Query', usage='catocli query <operationName> [options]', formatter_class=CustomSubparserHelpFormatter)
+query_subparsers = query_parser.add_subparsers(description='Available query operations:', help='Use catocli query <operation> -h for detailed help on each operation')
 query_siteLocation_parser = query_siteLocation_parse(query_subparsers)
 query_eventsFeed_parser = query_eventsFeed_parse(query_subparsers)
-mutation_parser = subparsers.add_parser('mutation', help='Mutation', usage='catocli mutation <operationName> [options]')
-mutation_subparsers = mutation_parser.add_subparsers(description='valid subcommands', help='additional help')
+mutation_parser = subparsers.add_parser('mutation', help='Mutation', usage='catocli mutation <operationName> [options]', formatter_class=CustomSubparserHelpFormatter)
+mutation_subparsers = mutation_parser.add_subparsers(description='Available mutation operations:', help='Use catocli mutation <operation> -h for detailed help on each operation')
 
 query_socketPortMetrics_parser = query_socketPortMetrics_parse(query_subparsers)
 query_socketPortMetricsTimeSeries_parser = query_socketPortMetricsTimeSeries_parse(query_subparsers)
@@ -184,19 +185,19 @@ query_accountSnapshot_parser = query_accountSnapshot_parse(query_subparsers)
 query_catalogs_parser = query_catalogs_parse(query_subparsers)
 query_xdr_parser = query_xdr_parse(query_subparsers)
 query_site_parser = query_site_parse(query_subparsers)
-query_policy_parser = query_policy_parse(query_subparsers)
 query_groups_parser = query_groups_parse(query_subparsers)
+query_policy_parser = query_policy_parse(query_subparsers)
 mutation_xdr_parser = mutation_xdr_parse(mutation_subparsers)
-mutation_site_parser = mutation_site_parse(mutation_subparsers)
-mutation_policy_parser = mutation_policy_parse(mutation_subparsers)
 mutation_container_parser = mutation_container_parse(mutation_subparsers)
 mutation_sites_parser = mutation_sites_parse(mutation_subparsers)
+mutation_policy_parser = mutation_policy_parse(mutation_subparsers)
+mutation_site_parser = mutation_site_parse(mutation_subparsers)
+mutation_admin_parser = mutation_admin_parse(mutation_subparsers)
 mutation_accountManagement_parser = mutation_accountManagement_parse(mutation_subparsers)
 mutation_sandbox_parser = mutation_sandbox_parse(mutation_subparsers)
 mutation_licensing_parser = mutation_licensing_parse(mutation_subparsers)
 mutation_hardware_parser = mutation_hardware_parse(mutation_subparsers)
 mutation_groups_parser = mutation_groups_parse(mutation_subparsers)
-mutation_admin_parser = mutation_admin_parse(mutation_subparsers)
 mutation_enterpriseDirectory_parser = mutation_enterpriseDirectory_parse(mutation_subparsers)
 
 

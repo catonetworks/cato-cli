@@ -27,7 +27,7 @@
             "ref": "id"
         }
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.policy.applicationControl.addSection ####

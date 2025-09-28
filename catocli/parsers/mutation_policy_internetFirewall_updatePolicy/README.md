@@ -21,7 +21,7 @@
     "internetFirewallPolicyUpdateInput": {
         "state": "ENABLED"
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.policy.internetFirewall.updatePolicy ####

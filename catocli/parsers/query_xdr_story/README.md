@@ -16,7 +16,7 @@
     "incidentId": "id",
     "producer": "AnomalyStats",
     "storyId": "id"
-}'`
+}'
 
 
 #### Operation Arguments for query.xdr.story ####

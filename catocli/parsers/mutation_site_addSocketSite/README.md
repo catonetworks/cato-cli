@@ -29,7 +29,7 @@
         "translatedSubnet": "example_value",
         "vlan": "example_value"
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.site.addSocketSite ####

@@ -14,7 +14,7 @@
 
 `catocli mutation enterpriseDirectory restoreLocation -p '{
     "locationId": "id"
-}'`
+}'
 
 
 #### Operation Arguments for mutation.enterpriseDirectory.restoreLocation ####

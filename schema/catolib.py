@@ -763,6 +763,7 @@ from ..parsers.custom import custom_parse
 from ..parsers.custom_private import private_parse
 from ..parsers.query_siteLocation import query_siteLocation_parse
 from ..parsers.custom.query_eventsFeed import query_eventsFeed_parse
+from .help_formatter import CustomSubparserHelpFormatter
 """
     for parserName in parsers:
         cliDriverStr += "from ..parsers."+parserName+" import "+parserName+"_parse\n"
@@ -849,12 +850,12 @@ custom_parsers = custom_parse(subparsers)
 private_parsers = private_parse(subparsers)
 raw_parsers = subparsers.add_parser('raw', help='Raw GraphQL', usage=get_help("raw"))
 raw_parser = raw_parse(raw_parsers)
-query_parser = subparsers.add_parser('query', help='Query', usage='catocli query <operationName> [options]')
-query_subparsers = query_parser.add_subparsers(description='valid subcommands', help='additional help')
+query_parser = subparsers.add_parser('query', help='Query', usage='catocli query <operationName> [options]', formatter_class=CustomSubparserHelpFormatter)
+query_subparsers = query_parser.add_subparsers(description='Available query operations:', help='Use catocli query <operation> -h for detailed help on each operation')
 query_siteLocation_parser = query_siteLocation_parse(query_subparsers)
 query_eventsFeed_parser = query_eventsFeed_parse(query_subparsers)
-mutation_parser = subparsers.add_parser('mutation', help='Mutation', usage='catocli mutation <operationName> [options]')
-mutation_subparsers = mutation_parser.add_subparsers(description='valid subcommands', help='additional help')
+mutation_parser = subparsers.add_parser('mutation', help='Mutation', usage='catocli mutation <operationName> [options]', formatter_class=CustomSubparserHelpFormatter)
+mutation_subparsers = mutation_parser.add_subparsers(description='Available mutation operations:', help='Use catocli mutation <operation> -h for detailed help on each operation')
 
 """
     for parserName in parsers:
@@ -1037,11 +1038,12 @@ def query_siteLocation_parse(query_subparsers):
             parser = parserMapping[operationType][operationName]
             cliDriverStr = f"""
 from ..customParserApiClient import createRequest, get_help
+from ...Utils.help_formatter import CustomSubparserHelpFormatter
 
 def {parserName}_parse({operationType}_subparsers):
     {parserName}_parser = {operationType}_subparsers.add_parser('{operationName}', 
             help='{operationName}() {operationType} operation', 
-            usage=get_help("{operationType}_{operationName}"))
+            usage=get_help("{operationType}_{operationName}"), formatter_class=CustomSubparserHelpFormatter)
 """
             if "path" in parser:
                 # Check if this operation supports CSV output
@@ -1242,7 +1244,7 @@ def writeReadmes(catoApiSchema):
                     readmeStr += f"""
 `catocli {operationCmd} '{example_json}'`
 
-`catocli {operationCmd} -p '{example_json_pretty}'`
+`catocli {operationCmd} -p '{example_json_pretty}'
 
 """
                 

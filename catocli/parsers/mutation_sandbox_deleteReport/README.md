@@ -16,7 +16,7 @@
     "deleteReportInput": {
         "fileHash": "string"
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.sandbox.deleteReport ####

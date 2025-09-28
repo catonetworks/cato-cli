@@ -32,7 +32,7 @@
         "translatedSubnet": "example_value",
         "vlan": 1
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.sites.updateNetworkRange ####

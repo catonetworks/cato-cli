@@ -21,7 +21,7 @@
     "internetFirewallRemoveRuleInput": {
         "id": "id"
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.policy.internetFirewall.removeRule ####

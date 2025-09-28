@@ -34,7 +34,7 @@
             "name": "string"
         }
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.policy.terminalServer.updateRule ####

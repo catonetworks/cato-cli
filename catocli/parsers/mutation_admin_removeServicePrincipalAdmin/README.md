@@ -14,7 +14,7 @@
 
 `catocli mutation admin removeServicePrincipalAdmin -p '{
     "adminID": "id"
-}'`
+}'
 
 
 #### Operation Arguments for mutation.admin.removeServicePrincipalAdmin ####

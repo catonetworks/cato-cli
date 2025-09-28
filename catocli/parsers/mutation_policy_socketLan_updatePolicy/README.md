@@ -21,7 +21,7 @@
     "socketLanPolicyUpdateInput": {
         "state": "ENABLED"
     }
-}'`
+}'
 
 
 #### Operation Arguments for mutation.policy.socketLan.updatePolicy ####

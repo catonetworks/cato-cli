@@ -249,8 +249,13 @@ def main(args=None):
 
     args = parser.parse_args(args=args)
     try:
+        # Check if a function was set (i.e., a valid subcommand was provided)
+        if not hasattr(args, 'func'):
+            print('Missing arguments. Usage: catocli <operation> -h')
+            exit(1)
+        
         # Skip authentication for configure commands
-        if hasattr(args, 'func') and hasattr(args.func, '__module__') and 'configure' in str(args.func.__module__):
+        if hasattr(args.func, '__module__') and 'configure' in str(args.func.__module__):
             response = args.func(args, None)
         else:
             # Check if using headers file to determine if we should skip API key
@@ -269,7 +274,7 @@ def main(args=None):
             if custom_headers:
                 configuration.custom_headers.update(custom_headers)
             # Handle account ID override (applies to all commands except raw)
-            if args.func.__name__ not in ["createRawRequest"]:
+            if hasattr(args, 'func') and args.func.__name__ not in ["createRawRequest"]:
                 if hasattr(args, 'accountID') and args.accountID is not None:
                     # Command line override takes precedence
                     configuration.accountID = args.accountID
@@ -295,7 +300,7 @@ def main(args=None):
     except Exception as e:
         if isinstance(e, AttributeError):
             print('Missing arguments. Usage: catocli <operation> -h')
-            if args.v==True:
+            if hasattr(args, 'v') and args.v == True:
                 print('ERROR: ',e)
                 traceback.print_exc()
         else:

@@ -1,9 +1,28 @@
-query appStatsTimeSeries ( $perSecond:Boolean $withMissingData:Boolean $useDefaultSizeBucket:Boolean $buckets:Int! $timeFrame:TimeFrame! $measure:[Measure] $dimension:[Dimension] $appStatsFilter:[AppStatsFilter!] ) {
-	appStatsTimeSeries ( timeFrame:$timeFrame measures:$measure dimensions:$dimension filters:$appStatsFilter ) {
-		id
-		from
-		to
-		granularity
-		timeseries
+query appStatsTimeSeries ( $perSecond:Boolean $withMissingData:Boolean $useDefaultSizeBucket:Boolean $buckets:Int! $accountID:ID! $timeFrame:TimeFrame! $measure:[Measure] $dimension:[Dimension] $appStatsFilter:[AppStatsFilter!] ) {
+	appStatsTimeSeries ( accountID:$accountID timeFrame:$timeFrame measures:$measure dimensions:$dimension filters:$appStatsFilter ) {
+		id 
+		from 
+		to 
+		granularity 
+		timeseries ( buckets:$buckets  )  {
+			data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket   )
+			label
+			dimensionsTimeseries: dimensions {
+				label 
+				value 
+			}
+			keyTimeseries: key {
+				measureFieldName 
+				dimensions  {
+					fieldName
+					value
+				}
+
+			}
+			sum
+			unitsTimeseries: units
+			info
+		}
+
 	}	
 }

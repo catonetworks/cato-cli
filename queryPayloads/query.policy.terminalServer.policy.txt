@@ -1,5 +1,66 @@
-query policyTerminalServerPolicy ( $terminalServerPolicyInput:TerminalServerPolicyInput ) {
-	policy ( ) {
-		terminalServer
+query policyTerminalServerPolicy ( $terminalServerPolicyInput:TerminalServerPolicyInput $accountId:ID! ) {
+	policy ( accountId:$accountId ) {
+		terminalServer  {
+			policyTerminalServerPolicyQueries: policy ( input:$terminalServerPolicyInput   ) {
+				enabled 
+				rules  {
+					auditTerminalServerRulePayload: audit {
+						updatedTime 
+						updatedBy 
+					}
+					ruleTerminalServerRulePayload: rule {
+						id 
+						name 
+						description 
+						index 
+						section  {
+							id
+							name
+						}
+
+						enabled 
+						allowedHostIP  {
+							id
+							name
+						}
+
+						excludeTraffic  {
+							id
+							name
+						}
+
+					}
+					propertiesTerminalServerRulePayload: properties
+				}
+
+				sections  {
+					auditPolicySectionPayload: audit {
+						updatedTime 
+						updatedBy 
+					}
+					sectionPolicySectionPayload: section {
+						id 
+						name 
+					}
+					propertiesPolicySectionPayload: properties
+				}
+
+				audit  {
+					publishedTime
+					publishedBy
+				}
+
+				revision  {
+					id
+					name
+					description
+					changes
+					createdTime
+					updatedTime
+				}
+
+			}
+		}
+
 	}	
 }

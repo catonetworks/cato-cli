@@ -16,9 +16,21 @@ import threading
 from functools import lru_cache
 import traceback
 
+# Import shared utilities
+from catocli.Utils.graphql_utils import (
+    loadJSON,
+    renderCamelCase,
+    generateGraphqlPayload as shared_generateGraphqlPayload,
+    renderArgsAndFields as shared_renderArgsAndFields,
+    postProcessBareComplexFields
+)
+
 # Increase recursion limit and enable threading-safe operations
 sys.setrecursionlimit(5000)
 thread_local = threading.local()
+
+# Adjust the Python path to include the parent directory for module discovery
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 api_call_count = 0
 start = datetime.datetime.now()
@@ -61,21 +73,15 @@ def initParser():
         logging.getLogger().setLevel(logging.INFO)
     return options
 
-def loadJSON(file):
-    CONFIG = {}
-    try:
-        with open(file, 'r') as data:
-            CONFIG = json.load(data)
-            logging.warning("Loaded "+file+" data")
-            return CONFIG
-    except:
-        logging.warning("File \""+file+"\" not found.")
-        exit()
+# loadJSON is imported from shared utilities
 
 def writeFile(fileName, data):
     with file_write_lock:
-        open(fileName, 'w+').close()
-        with open(fileName, "w+") as file:
+        # Ensure directory exists
+        os.makedirs(os.path.dirname(fileName), exist_ok=True)
+        
+        # Write file directly
+        with open(fileName, "w") as file:
             file.write(data)
 
 def openFile(fileName, readMode="rt"):
@@ -328,6 +334,78 @@ def getNestedArgDefinitions(argsAry, parentParamPath, childOperations, parentFie
         newArgsList[arg["id_str"]] = arg
     return newArgsList
 
+def getNestedInterfaceDefinitions(possibleTypesAry, parentParamPath, childOperations, parentFields):
+    """Thread-safe version of interface definitions processing"""
+    curInterfaces = {}
+    for possibleType in possibleTypesAry:
+        if possibleType["kind"] == "OBJECT":
+            curInterfaces[possibleType["name"]] = copy.deepcopy(catoApiIntrospection["objects"][possibleType["name"]])
+    
+    for interfaceName in curInterfaces:
+        curInterface = curInterfaces[interfaceName]
+        curParamPath = "" if (parentParamPath == None) else parentParamPath + curInterface["name"] + "___"
+        if "fields" in curInterface and curInterface["fields"] != None and curInterface["name"] != "CatoEndpointUser":
+            curInterface["fields"] = getNestedFieldDefinitions(copy.deepcopy(curInterface["fields"]), curParamPath, childOperations, parentFields, curInterface["name"])
+        if "inputFields" in curInterface and curInterface["inputFields"] != None:
+            curInterface["inputFields"] = getNestedFieldDefinitions(copy.deepcopy(curInterface["inputFields"]), curParamPath, childOperations, parentFields, curInterface["name"])
+        if "interfaces" in curInterface and curInterface["interfaces"] != None:
+            curInterface["interfaces"] = getNestedInterfaceDefinitions(copy.deepcopy(curInterface["interfaces"]), parentParamPath, childOperations, parentFields)
+        if "possibleTypes" in curInterface and curInterface["possibleTypes"] != None:
+            curInterface["possibleTypes"] = getNestedInterfaceDefinitions(copy.deepcopy(curInterface["possibleTypes"]), parentParamPath, childOperations, parentFields)
+    
+    return curInterfaces
+
+def generateExampleVariables(operation):
+    """Generate example variables for an operation"""
+    variables = {}
+    
+    # Add accountID if not present
+    if "accountID" not in variables:
+        variables["accountID"] = "example_account_id"
+    
+    for arg_name in operation.get("args", {}):
+        arg = operation["args"][arg_name]
+        var_name = arg.get("varName", arg_name)
+        
+        # Generate example value based on type
+        if "SCALAR" in arg["type"]["kind"]:
+            type_name = arg["type"]["name"]
+            if type_name == "ID":
+                variables[var_name] = "example_id"
+            elif type_name == "String":
+                variables[var_name] = "example_string"
+            elif type_name == "Int":
+                variables[var_name] = 1
+            elif type_name == "Boolean":
+                variables[var_name] = True
+            elif type_name == "Float":
+                variables[var_name] = 1.0
+            else:
+                variables[var_name] = "example_value"
+        elif "INPUT_OBJECT" in arg["type"]["kind"]:
+            variables[var_name] = {}
+        elif "LIST" in arg["type"]["kind"]:
+            variables[var_name] = []
+        else:
+            variables[var_name] = "example_value"
+    
+    return variables
+
+def writeCliDriver(catoApiSchema):
+    """Write CLI driver - placeholder implementation"""
+    print("Writing CLI driver...")
+    pass
+
+def writeOperationParsers(catoApiSchema):
+    """Write operation parsers - placeholder implementation"""
+    print("Writing operation parsers...")
+    pass
+
+def writeReadmes(catoApiSchema):
+    """Write README files - placeholder implementation"""
+    print("Writing README files...")
+    pass
+
 def getOfType(curType, ofType, parentParamPath, childOperations, parentFields, parentTypeName=None):
     """Thread-safe version with recursion depth management"""
     if not hasattr(thread_local, 'depth'):
@@ -377,6 +455,9 @@ def getOfType(curType, ofType, parentParamPath, childOperations, parentFields, p
             ofType["definition"] = copy.deepcopy(catoApiIntrospection["interfaces"][ofType["name"]])
             if ofType["definition"]["fields"] != None:
                 ofType["definition"]["fields"] = getNestedFieldDefinitions(copy.deepcopy(ofType["definition"]["fields"]), curParamPath, childOperations, parentFields, ofType["name"])
+            # CRITICAL FIX: Also handle possibleTypes for interfaces (like MergedIncident)
+            if ofType["definition"]["possibleTypes"] != None:
+                ofType["definition"]["possibleTypes"] = getNestedInterfaceDefinitions(copy.deepcopy(ofType["definition"]["possibleTypes"]), curParamPath, childOperations, parentFields)
         elif "ENUM" in ofType["kind"]:
             ofType["indexType"] = "enum"
             ofType["definition"] = copy.deepcopy(catoApiIntrospection["enums"][ofType["name"]])
@@ -419,12 +500,16 @@ def getNestedFieldDefinitions(fieldsAry, parentParamPath, childOperations, paren
         if "args" in field:
             field["args"] = getNestedArgDefinitions(field["args"], field["name"], childOperations, parentFields)
         
-        ## aliasLogic must
-        if parentFields!=None and field["name"] in parentFields and "SCALAR" not in field["type"]["kind"]:
-            if parentTypeName:
-                field["alias"] = renderCamelCase(field["name"]+"."+parentTypeName)+": "+field["name"]
-            else:
-                field["alias"] = renderCamelCase(field["type"]["name"]+"."+field["name"])+": "+field["name"]
+        ## DISABLED aliasLogic - field aliases don't match API response structure
+        # The original aliasing logic was creating aliases that don't match what the API actually returns
+        # For example: auditWanFirewallRulePayload: audit instead of just audit
+        # Since the API returns simple field names without aliases, we'll disable this logic
+        # 
+        # if parentFields!=None and field["name"] in parentFields and "SCALAR" not in field["type"]["kind"]:
+        #     if parentTypeName:
+        #         field["alias"] = renderCamelCase(field["name"]+"."+parentTypeName)+": "+field["name"]
+        #     else:
+        #         field["alias"] = renderCamelCase(field["type"]["name"]+"."+field["name"])+": "+field["name"]
         
         # CRITICAL FIX: Remove the records___fields exclusion to allow records field
         # The original code had: if "records___fields" != field["id_str"]:
@@ -437,15 +522,7 @@ def getNestedFieldDefinitions(fieldsAry, parentParamPath, childOperations, paren
 # (Including parseOperation, checkForChildOperation, getOperationArgs, etc.)
 # For brevity, I'm showing the key threading-related changes
 
-def renderCamelCase(pathStr):
-    str_result = ""
-    pathAry = pathStr.split(".") 
-    for i, path in enumerate(pathAry):
-        if i == 0:
-            str_result += path[0].lower() + path[1:]
-        else:
-            str_result += path[0].upper() + path[1:]
-    return str_result
+# renderCamelCase is imported from shared utilities
 
 def send(api_key, query, variables={}, operationName=None):
     headers = { 'x-api-key': api_key,'Content-Type':'application/json'}
@@ -505,94 +582,16 @@ def getOperationArgs(curType, curOperation):
     thread_local.depth += 1
     
     try:
-        # Ensure curType is a dictionary
-        if not isinstance(curType, dict):
-            return curOperation
-            
-        # Handle fields - check if it's a dict and not empty
-        if isinstance(curType.get('fields'), dict) and curType['fields']:
-            for fieldName, field in curType["fields"].items():
-                if not isinstance(field, dict):
-                    continue
-                ## aliasLogic
-                if isinstance(field.get("type"), dict) and isinstance(field["type"].get("definition"), dict):
-                    curOperation["fieldTypes"][field["type"]["definition"]["name"]] = True
-                    curOperation = getOperationArgs(field["type"]["definition"], curOperation)
-                if isinstance(field.get("args"), dict):
-                    for argName, arg in field["args"].items():
-                        if isinstance(arg, dict) and "varName" in arg:
-                            curOperation["operationArgs"][arg["varName"]] = arg
-                            if isinstance(arg.get("type"), dict) and isinstance(arg["type"].get("definition"), dict):
-                                curOperation = getOperationArgs(arg["type"]["definition"], curOperation)
-        
-        # Handle inputFields - check if it's a dict and not empty
-        if isinstance(curType.get('inputFields'), dict) and curType['inputFields']:
-            for inputFieldName, inputField in curType["inputFields"].items():
-                if not isinstance(inputField, dict):
-                    continue
-                if isinstance(inputField.get("type"), dict) and isinstance(inputField["type"].get("definition"), dict):
-                    curOperation["fieldTypes"][inputField["type"]["definition"]["name"]] = True
-                    curOperation = getOperationArgs(inputField["type"]["definition"], curOperation)
-                if isinstance(inputField.get("args"), dict):
-                    for argName, arg in inputField["args"].items():
-                        if isinstance(arg, dict) and "varName" in arg:
-                            curOperation["operationArgs"][arg["varName"]] = arg
-                            if isinstance(arg.get("type"), dict) and isinstance(arg["type"].get("definition"), dict):
-                                curOperation = getOperationArgs(arg["type"]["definition"], curOperation)
-        
-        # Handle interfaces - check if it's a list
-        if isinstance(curType.get('interfaces'), list):
-            for interface in curType["interfaces"]:
-                if not isinstance(interface, dict):
-                    continue
-                if isinstance(interface.get("type"), dict) and isinstance(interface["type"].get("definition"), dict):
-                    curOperation["fieldTypes"][interface["type"]["definition"]["name"]] = True
-                    curOperation = getOperationArgs(interface["type"]["definition"], curOperation)
-                if isinstance(interface.get("args"), dict):
-                    for argName, arg in interface["args"].items():
-                        if isinstance(arg, dict) and "varName" in arg:
-                            curOperation["operationArgs"][arg["varName"]] = arg
-                            if isinstance(arg.get("type"), dict) and isinstance(arg["type"].get("definition"), dict):
-                                curOperation = getOperationArgs(arg["type"]["definition"], curOperation)
-        
-        # Handle possibleTypes - check if it's a list first, then dict
-        possibleTypes = curType.get('possibleTypes')
-        if isinstance(possibleTypes, list):
-            for possibleType in possibleTypes:
-                if isinstance(possibleType, dict):
-                    curOperation = getOperationArgs(possibleType, curOperation)
-                    if isinstance(possibleType.get('fields'), dict):
-                        for fieldName, field in possibleType["fields"].items():
-                            if isinstance(field, dict) and isinstance(field.get("args"), dict):
-                                for argName, arg in field["args"].items():
-                                    if isinstance(arg, dict) and "varName" in arg:
-                                        curOperation["operationArgs"][arg["varName"]] = arg
-                                        if isinstance(arg.get("type"), dict) and isinstance(arg["type"].get("definition"), dict):
-                                            curOperation = getOperationArgs(arg["type"]["definition"], curOperation)
-                    if isinstance(possibleType.get("args"), dict):
-                        for argName, arg in possibleType["args"].items():
-                            if isinstance(arg, dict) and "varName" in arg:
-                                curOperation["operationArgs"][arg["varName"]] = arg
-                                if isinstance(arg.get("type"), dict) and isinstance(arg["type"].get("definition"), dict):
-                                    curOperation = getOperationArgs(arg["type"]["definition"], curOperation)
-        elif isinstance(possibleTypes, dict):
-            for possibleTypeName, possibleType in possibleTypes.items():
-                if isinstance(possibleType, dict):
-                    curOperation = getOperationArgs(possibleType, curOperation)
-                    if isinstance(possibleType.get('fields'), dict):
-                        for fieldName, field in possibleType["fields"].items():
-                            if isinstance(field, dict) and isinstance(field.get("args"), dict):
-                                for argName, arg in field["args"].items():
-                                    if isinstance(arg, dict) and "varName" in arg:
-                                        curOperation["operationArgs"][arg["varName"]] = arg
-                                        if isinstance(arg.get("type"), dict) and isinstance(arg["type"].get("definition"), dict):
-                                            curOperation = getOperationArgs(arg["type"]["definition"], curOperation)
-                    if isinstance(possibleType.get("args"), dict):
-                        for argName, arg in possibleType["args"].items():
-                            if isinstance(arg, dict) and "varName" in arg:
-                                curOperation["operationArgs"][arg["varName"]] = arg
-                                if isinstance(arg.get("type"), dict) and isinstance(arg["type"].get("definition"), dict):
-                                    curOperation = getOperationArgs(arg["type"]["definition"], curOperation)
+        # Process operation arguments recursively
+        for argName in curOperation.get("args", {}):
+            arg = curOperation["args"][argName]
+            if "definition" in arg["type"] and arg["type"]["definition"]:
+                if "inputFields" in arg["type"]["definition"] and arg["type"]["definition"]["inputFields"]:
+                    for inputFieldName in arg["type"]["definition"]["inputFields"]:
+                        inputField = arg["type"]["definition"]["inputFields"][inputFieldName]
+                        if "definition" in inputField["type"] and inputField["type"]["definition"]:
+                            if "inputFields" in inputField["type"]["definition"] and inputField["type"]["definition"]["inputFields"]:
+                                getOperationArgs(inputField["type"]["definition"], curOperation)
         
         return curOperation
     finally:
@@ -618,6 +617,32 @@ def generateExampleVariables(operation):
     if "accountId" in variablesObj:
         del variablesObj["accountId"]
     return variablesObj
+
+def renderArgsAndFields(responseArgStr, variablesObj, curOperation, definition, indent, dynamic_operation_args=None, operation_name=None):
+    """Wrapper function to use the shared renderArgsAndFields with proper signature"""
+    # Handle variable argument signatures for backward compatibility
+    if operation_name is None:
+        operation_name = curOperation.get('name', 'unknown_operation')
+    
+    return shared_renderArgsAndFields(
+        responseArgStr, 
+        variablesObj, 
+        curOperation, 
+        definition, 
+        operation_name,
+        indent, 
+        dynamic_operation_args,
+        None  # custom_client
+    )
+
+def generateGraphqlPayload(variables_obj, operation, operation_name):
+    """Wrapper function to use the shared generateGraphqlPayload with renderArgsAndFields"""
+    return shared_generateGraphqlPayload(
+        variables_obj,
+        operation,
+        operation_name,
+        renderArgsAndFields  # Pass our local wrapper function
+    )
 
 def parseNestedArgFields(fieldObj):
     """Parse nested argument fields with realistic examples"""
@@ -679,54 +704,30 @@ def renderInputFieldVal(arg):
     
     return value
 
-def generateGraphqlPayload(variablesObj, operation, operationName):
-    """Generate GraphQL payload"""
-    indent = "\t"
-    queryStr = ""
-    variableStr = ""
-    
-    for varName in variablesObj:
-        if (varName in operation["operationArgs"]):
-            variableStr += operation["operationArgs"][varName]["requestStr"]
-    
-    operationAry = operationName.split(".")
-    operationType = operationAry.pop(0)
-    queryStr = operationType + " "
-    queryStr += renderCamelCase(".".join(operationAry))
-    queryStr += " ( " + variableStr + ") {\n"
-    queryStr += indent + operation["name"] + " ( "
-    
-    for argName in operation["args"]:
-        arg = operation["args"][argName]
-        if arg["varName"] in variablesObj:
-            queryStr += arg["responseStr"]
-    
-    queryStr += ") {\n" + renderArgsAndFields("", variablesObj, operation, operation["type"]["definition"], "\t\t") + "\t}"
-    queryStr += indent + "\n}"
-    
-    body = {
-        "query": queryStr,
-        "variables": variablesObj,
-        "operationName": renderCamelCase(".".join(operationAry)),
-    }
-    return body
-
-def renderArgsAndFields(responseArgStr, variablesObj, curOperation, definition, indent):
-    """Render GraphQL query arguments and fields"""
-    for fieldName in definition['fields']:
-        field = definition['fields'][fieldName]
-        field_name = field['alias'] if 'alias' in field else field['name']
-        responseArgStr += indent + field_name
-        responseArgStr += "\n"
-    return responseArgStr
-
 def getNestedInterfaceDefinitions(possibleTypesAry, parentParamPath, childOperations, parentFields):
-    """Get nested interface definitions"""
-    curInterfaces = {}
+    """Get nested interface definitions - returns expanded possibleTypes array with complete field definitions"""
+    expandedTypes = []
     for possibleType in possibleTypesAry:
-        if "OBJECT" in possibleType["kind"]:
-            curInterfaces[possibleType["name"]] = copy.deepcopy(catoApiIntrospection["objects"][possibleType["name"]])
-    return curInterfaces
+        if "OBJECT" in possibleType["kind"] and possibleType["name"] in catoApiIntrospection["objects"]:
+            # Create expanded possibleType with complete object definition
+            expandedType = copy.deepcopy(possibleType)
+            # Add the complete fields definition from the introspection data
+            objectDef = copy.deepcopy(catoApiIntrospection["objects"][possibleType["name"]])
+            expandedType.update(objectDef)
+            # Process nested fields if they exist
+            if objectDef.get("fields"):
+                expandedType["fields"] = getNestedFieldDefinitions(
+                    copy.deepcopy(objectDef["fields"]), 
+                    parentParamPath, 
+                    childOperations, 
+                    parentFields, 
+                    possibleType["name"]
+                )
+            expandedTypes.append(expandedType)
+        else:
+            # Keep the original possibleType if we can't expand it
+            expandedTypes.append(possibleType)
+    return expandedTypes
 
 def writeCliDriver(catoApiSchema):
     """Write CLI driver - thread-safe implementation"""

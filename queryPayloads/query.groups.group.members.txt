@@ -1,5 +1,19 @@
-query groupsGroupMembers ( $groupMembersListInput:GroupMembersListInput! $groupRefInput:GroupRefInput! ) {
-	groups ( ) {
-		group
+query groupsGroupMembers ( $groupMembersListInput:GroupMembersListInput! $groupRefInput:GroupRefInput! $accountId:ID! ) {
+	groups ( accountId:$accountId ) {
+		group ( input:$groupRefInput  )  {
+			membersGroup: members ( input:$groupMembersListInput   ) {
+				items  {
+					id
+					name
+					typeGroupMemberRefTyped: type
+				}
+
+				paging  {
+					total
+				}
+
+			}
+		}
+
 	}	
 }

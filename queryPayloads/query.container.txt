@@ -1,7 +1,122 @@
-query container ( $containerSearchInput:ContainerSearchInput! $ipAddressRangeContainerSearchInput:IpAddressRangeContainerSearchInput! $ipAddressRangeContainerSearchIpAddressRangeInput:IpAddressRangeContainerSearchIpAddressRangeInput! $downloadIpAddressRangeContainerFileInput:DownloadIpAddressRangeContainerFileInput! $fqdnContainerSearchInput:FqdnContainerSearchInput! $fqdnContainerSearchFqdnInput:FqdnContainerSearchFqdnInput! $downloadFqdnContainerFileInput:DownloadFqdnContainerFileInput! ) {
-	container ( ) {
-		list
-		ipAddressRange
-		fqdn
+query container ( $containerSearchInput:ContainerSearchInput! $ipAddressRangeContainerSearchInput:IpAddressRangeContainerSearchInput! $ipAddressRangeContainerSearchIpAddressRangeInput:IpAddressRangeContainerSearchIpAddressRangeInput! $downloadIpAddressRangeContainerFileInput:DownloadIpAddressRangeContainerFileInput! $fqdnContainerSearchInput:FqdnContainerSearchInput! $fqdnContainerSearchFqdnInput:FqdnContainerSearchFqdnInput! $downloadFqdnContainerFileInput:DownloadFqdnContainerFileInput! $accountId:ID! ) {
+	container ( accountId:$accountId ) {
+		list ( input:$containerSearchInput  )  {
+			containersContainerSearchPayload: containers {
+				id 
+				name 
+				description 
+				size 
+				audit  {
+					createdBy
+					lastModifiedBy
+					lastModifiedAt
+					createdAt
+				}
+
+				... on FqdnContainer {
+					id 
+					name 
+					description 
+					size 
+					audit  {
+						createdBy
+						lastModifiedBy
+						lastModifiedAt
+						createdAt
+					}
+
+				}
+				... on IpAddressRangeContainer {
+					id 
+					name 
+					description 
+					size 
+					audit  {
+						createdBy
+						lastModifiedBy
+						lastModifiedAt
+						createdAt
+					}
+
+				}
+			}
+		}
+
+		ipAddressRange  {
+			searchIpAddressRangeContainerQueries: search ( input:$ipAddressRangeContainerSearchInput   ) {
+				container  {
+					id
+					name
+					description
+					size
+					auditIpAddressRangeContainer: audit {
+						createdBy 
+						lastModifiedBy 
+						lastModifiedAt 
+						createdAt 
+					}
+				}
+
+			}
+			searchIpAddressRangeIpAddressRangeContainerQueries: searchIpAddressRange ( input:$ipAddressRangeContainerSearchIpAddressRangeInput   ) {
+				containers  {
+					id
+					name
+					description
+					size
+					auditIpAddressRangeContainer: audit {
+						createdBy 
+						lastModifiedBy 
+						lastModifiedAt 
+						createdAt 
+					}
+				}
+
+			}
+			downloadFileIpAddressRangeContainerQueries: downloadFile ( input:$downloadIpAddressRangeContainerFileInput   ) {
+				id 
+				name 
+				encodedFile 
+			}
+		}
+
+		fqdn  {
+			searchFqdnContainerQueries: search ( input:$fqdnContainerSearchInput   ) {
+				container  {
+					id
+					name
+					description
+					size
+					auditFqdnContainer: audit {
+						createdBy 
+						lastModifiedBy 
+						lastModifiedAt 
+						createdAt 
+					}
+				}
+
+			}
+			searchFqdnFqdnContainerQueries: searchFqdn ( input:$fqdnContainerSearchFqdnInput   ) {
+				containers  {
+					id
+					name
+					description
+					size
+					auditFqdnContainer: audit {
+						createdBy 
+						lastModifiedBy 
+						lastModifiedAt 
+						createdAt 
+					}
+				}
+
+			}
+			downloadFileFqdnContainerQueries: downloadFile ( input:$downloadFqdnContainerFileInput   ) {
+				id 
+				name 
+				encodedFile 
+			}
+		}
+
 	}	
 }

@@ -1,6 +1,6 @@
 {
     "operationName": "servicePrincipalAdmin",
-    "query": "query servicePrincipalAdmin ( $adminID:ID! ) {\n\tservicePrincipalAdmin ( adminID:$adminID ) {\n\t\tid\n\t\tname\n\t\temail\n\t\tcreationDate\n\t\tadminType\n\t\tmanagedRoles\n\t\tresellerRoles\n\t}\t\n}",
+    "query": "query servicePrincipalAdmin ( $accountId:ID! $adminID:ID! ) {\n\tservicePrincipalAdmin ( accountId:$accountId adminID:$adminID ) {\n\t\tid \n\t\tname \n\t\temail \n\t\tcreationDate \n\t\tadminType \n\t\tmanagedRoles  {\n\t\t\troleAdminRole: role {\n\t\t\t\tid \n\t\t\t\tname \n\t\t\t\tdescription \n\t\t\t\tisPredefined \n\t\t\t}\n\t\t\tallowedEntitiesAdminRole: allowedEntities {\n\t\t\t\tid \n\t\t\t\tname \n\t\t\t\ttype \n\t\t\t}\n\t\t\tallowedAccounts\n\t\t}\n\n\t\tresellerRoles  {\n\t\t\troleAdminRole: role {\n\t\t\t\tid \n\t\t\t\tname \n\t\t\t\tdescription \n\t\t\t\tisPredefined \n\t\t\t}\n\t\t\tallowedEntitiesAdminRole: allowedEntities {\n\t\t\t\tid \n\t\t\t\tname \n\t\t\t\ttype \n\t\t\t}\n\t\t\tallowedAccounts\n\t\t}\n\n\t}\t\n}",
     "variables": {
         "adminID": "id"
     }

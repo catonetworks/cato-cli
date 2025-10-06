@@ -1,10 +1,21 @@
-query appStats ( $limit:Int $from:Int $timeFrame:TimeFrame! $measure:[Measure] $dimension:[Dimension] $appStatsFilter:[AppStatsFilter!] $appStatsSort:[AppStatsSort!] ) {
-	appStats ( timeFrame:$timeFrame measures:$measure dimensions:$dimension filters:$appStatsFilter sort:$appStatsSort ) {
-		id
-		from
-		to
-		total
-		totals
-		records
+query appStats ( $limit:Int $from:Int $accountID:ID! $timeFrame:TimeFrame! $measure:[Measure] $dimension:[Dimension] $appStatsFilter:[AppStatsFilter!] $appStatsSort:[AppStatsSort!] ) {
+	appStats ( accountID:$accountID timeFrame:$timeFrame measures:$measure dimensions:$dimension filters:$appStatsFilter sort:$appStatsSort ) {
+		id 
+		from 
+		to 
+		total 
+		totals 
+		records ( limit:$limit  from:$from  )  {
+			fieldsAppStatsRecord: fields {
+				name 
+				value 
+			}
+			fieldsUnitTypesAppStatsRecord: fieldsUnitTypes
+			fieldsMap
+			trends
+			prevTimeFrame
+			flatFields
+		}
+
 	}	
 }

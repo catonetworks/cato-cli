@@ -1,5 +1,27 @@
-mutation policyInternetFirewallRemoveSection ( $policyRemoveSectionInput:PolicyRemoveSectionInput! $internetFirewallPolicyMutationInput:InternetFirewallPolicyMutationInput ) {
-	policy ( ) {
-		internetFirewall
+mutation policyInternetFirewallRemoveSection ( $policyRemoveSectionInput:PolicyRemoveSectionInput! $internetFirewallPolicyMutationInput:InternetFirewallPolicyMutationInput $accountId:ID! ) {
+	policy ( accountId:$accountId ) {
+		internetFirewall ( input:$internetFirewallPolicyMutationInput  )  {
+			removeSectionInternetFirewallPolicyMutations: removeSection ( input:$policyRemoveSectionInput   ) {
+				section  {
+					auditPolicySectionPayload: audit {
+						updatedTime 
+						updatedBy 
+					}
+					sectionPolicySectionPayload: section {
+						id 
+						name 
+					}
+					propertiesPolicySectionPayload: properties
+				}
+
+				status 
+				errors  {
+					errorMessage
+					errorCode
+				}
+
+			}
+		}
+
 	}	
 }

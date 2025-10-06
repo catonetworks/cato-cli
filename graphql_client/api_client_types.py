@@ -47,8 +47,13 @@ class ApiClient(object):
 		self.user_agent = "Cato-CLI-v"+self.configuration.version
 
 	def __del__(self):
-		self.pool.close()
-		self.pool.join()
+		try:
+			if hasattr(self, 'pool') and self.pool is not None:
+				self.pool.close()
+				self.pool.join()
+		except (OSError, AttributeError):
+			# Suppress common cleanup errors that occur during interpreter shutdown
+			pass
 
 	@property
 	def user_agent(self):

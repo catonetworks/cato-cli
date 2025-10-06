@@ -1,5 +1,83 @@
-mutation policyRemotePortFwdMoveRule ( $policyMoveRuleInput:PolicyMoveRuleInput! $remotePortFwdPolicyMutationInput:RemotePortFwdPolicyMutationInput ) {
-	policy ( ) {
-		remotePortFwd
+mutation policyRemotePortFwdMoveRule ( $policyMoveRuleInput:PolicyMoveRuleInput! $remotePortFwdPolicyMutationInput:RemotePortFwdPolicyMutationInput $accountId:ID! ) {
+	policy ( accountId:$accountId ) {
+		remotePortFwd ( input:$remotePortFwdPolicyMutationInput  )  {
+			moveRuleRemotePortFwdPolicyMutations: moveRule ( input:$policyMoveRuleInput   ) {
+				rule  {
+					auditRemotePortFwdRulePayload: audit {
+						updatedTime 
+						updatedBy 
+					}
+					ruleRemotePortFwdRulePayload: rule {
+						id 
+						name 
+						description 
+						index 
+						section  {
+							id
+							name
+						}
+
+						enabled 
+						forwardIcmp 
+						externalIp  {
+							id
+							name
+						}
+
+						externalPortRange  {
+							from
+							to
+						}
+
+						internalIp 
+						internalPortRange  {
+							from
+							to
+						}
+
+						remoteIPs  {
+							ip
+							ipRangeRemotePortFwdRemoteIps: ipRange {
+								from 
+								to 
+							}
+							subnet
+							globalIpRangeRemotePortFwdRemoteIps: globalIpRange {
+								id 
+								name 
+							}
+						}
+
+						restrictionType 
+						tracking  {
+							enabled
+							frequencyPolicyRuleTrackingAlert: frequency
+							subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
+								id 
+								name 
+							}
+							webhookPolicyRuleTrackingAlert: webhook {
+								id 
+								name 
+							}
+							mailingListPolicyRuleTrackingAlert: mailingList {
+								id 
+								name 
+							}
+						}
+
+					}
+					propertiesRemotePortFwdRulePayload: properties
+				}
+
+				status 
+				errors  {
+					errorMessage
+					errorCode
+				}
+
+			}
+		}
+
 	}	
 }

@@ -1,5 +1,27 @@
-mutation policyTlsInspectRemoveSection ( $policyRemoveSectionInput:PolicyRemoveSectionInput! $tlsInspectPolicyMutationInput:TlsInspectPolicyMutationInput ) {
-	policy ( ) {
-		tlsInspect
+mutation policyTlsInspectRemoveSection ( $policyRemoveSectionInput:PolicyRemoveSectionInput! $tlsInspectPolicyMutationInput:TlsInspectPolicyMutationInput $accountId:ID! ) {
+	policy ( accountId:$accountId ) {
+		tlsInspect ( input:$tlsInspectPolicyMutationInput  )  {
+			removeSectionTlsInspectPolicyMutations: removeSection ( input:$policyRemoveSectionInput   ) {
+				section  {
+					auditPolicySectionPayload: audit {
+						updatedTime 
+						updatedBy 
+					}
+					sectionPolicySectionPayload: section {
+						id 
+						name 
+					}
+					propertiesPolicySectionPayload: properties
+				}
+
+				status 
+				errors  {
+					errorMessage
+					errorCode
+				}
+
+			}
+		}
+
 	}	
 }

@@ -1,6 +1,6 @@
 {
     "operationName": "groupsGroupList",
-    "query": "query groupsGroupList ( $groupMembersListInput:GroupMembersListInput! $groupListInput:GroupListInput ) {\n\tgroups ( ) {\n\t\tgroupList\n\t}\t\n}",
+    "query": "query groupsGroupList ( $groupMembersListInput:GroupMembersListInput! $groupListInput:GroupListInput $accountId:ID! ) {\n\tgroups ( accountId:$accountId ) {\n\t\tgroupList ( input:$groupListInput  )  {\n\t\t\titemsGroupListPayload: items {\n\t\t\t\tid \n\t\t\t\tname \n\t\t\t\tdescription \n\t\t\t\taudit  {\n\t\t\t\t\tupdatedTime\n\t\t\t\t\tupdatedByAuditingMetadata: updatedBy {\n\t\t\t\t\t\tid \n\t\t\t\t\t\tname \n\t\t\t\t\t\t... on AdminRef {\n\t\t\t\t\t\t\tid \n\t\t\t\t\t\t\tname \n\t\t\t\t\t\t}\n\t\t\t\t\t\t... on ApiKeyRef {\n\t\t\t\t\t\t\tid \n\t\t\t\t\t\t\tname \n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\n\t\t\t\tmembers ( input:$groupMembersListInput  )  {\n\t\t\t\t\titemsGroupMembersListPayload: items {\n\t\t\t\t\t\tid \n\t\t\t\t\t\tname \n\t\t\t\t\t\ttype \n\t\t\t\t\t}\n\t\t\t\t\tpagingGroupMembersListPayload: paging {\n\t\t\t\t\t\ttotal \n\t\t\t\t\t}\n\t\t\t\t}\n\n\t\t\t\tmembersCount \n\t\t\t\tmembersCountPerType  {\n\t\t\t\t\ttypeGroupMemberTypeCount: type\n\t\t\t\t\tmembersCount\n\t\t\t\t}\n\n\t\t\t}\n\t\t\tpagingGroupListPayload: paging {\n\t\t\t\ttotal \n\t\t\t}\n\t\t}\n\n\t}\t\n}",
     "variables": {
         "groupListInput": {
             "groupListFilterInput": {

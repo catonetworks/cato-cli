@@ -1,6 +1,6 @@
 {
     "operationName": "siteSecondaryAwsVSocket",
-    "query": "query siteSecondaryAwsVSocket ( $socketId:ID! ) {\n\tsite ( ) {\n\t\tsecondaryAwsVSocket\n\t}\t\n}",
+    "query": "query siteSecondaryAwsVSocket ( $socketId:ID! $accountId:ID! ) {\n\tsite ( accountId:$accountId ) {\n\t\tsecondaryAwsVSocket ( socketId:$socketId  )  {\n\t\t\tsiteSecondaryAwsVSocket: site {\n\t\t\t\tid \n\t\t\t\tname \n\t\t\t}\n\t\t\tid\n\t\t\tipAddress\n\t\t\tsubnet\n\t\t\trouteTableId\n\t\t}\n\n\t}\t\n}",
     "variables": {
         "socketId": "id"
     }

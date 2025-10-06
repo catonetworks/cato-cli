@@ -1,5 +1,8 @@
-mutation siteAddSecondaryAzureVSocket ( $addSecondaryAzureVSocketInput:AddSecondaryAzureVSocketInput! ) {
-	site ( ) {
-		addSecondaryAzureVSocket
+mutation siteAddSecondaryAzureVSocket ( $addSecondaryAzureVSocketInput:AddSecondaryAzureVSocketInput! $accountId:ID! ) {
+	site ( accountId:$accountId ) {
+		addSecondaryAzureVSocket ( input:$addSecondaryAzureVSocketInput  )  {
+			id
+		}
+
 	}	
 }

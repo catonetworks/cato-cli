@@ -1,5 +1,27 @@
-mutation policyApplicationControlMoveSection ( $policyMoveSectionInput:PolicyMoveSectionInput! $applicationControlPolicyMutationInput:ApplicationControlPolicyMutationInput ) {
-	policy ( ) {
-		applicationControl
+mutation policyApplicationControlMoveSection ( $policyMoveSectionInput:PolicyMoveSectionInput! $applicationControlPolicyMutationInput:ApplicationControlPolicyMutationInput $accountId:ID! ) {
+	policy ( accountId:$accountId ) {
+		applicationControl ( input:$applicationControlPolicyMutationInput  )  {
+			moveSectionApplicationControlPolicyMutations: moveSection ( input:$policyMoveSectionInput   ) {
+				section  {
+					auditPolicySectionPayload: audit {
+						updatedTime 
+						updatedBy 
+					}
+					sectionPolicySectionPayload: section {
+						id 
+						name 
+					}
+					propertiesPolicySectionPayload: properties
+				}
+
+				status 
+				errors  {
+					errorMessage
+					errorCode
+				}
+
+			}
+		}
+
 	}	
 }

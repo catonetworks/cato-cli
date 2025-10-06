@@ -1,5 +1,22 @@
-mutation containerIpAddressRangeUpdateFromFile ( $updateIpAddressRangeContainerFromFileInput:UpdateIpAddressRangeContainerFromFileInput! ) {
-	container ( ) {
-		ipAddressRange
+mutation containerIpAddressRangeUpdateFromFile ( $updateIpAddressRangeContainerFromFileInput:UpdateIpAddressRangeContainerFromFileInput! $accountId:ID! ) {
+	container ( accountId:$accountId ) {
+		ipAddressRange  {
+			updateFromFileIpAddressRangeContainerMutations: updateFromFile ( input:$updateIpAddressRangeContainerFromFileInput   ) {
+				container  {
+					id
+					name
+					description
+					size
+					auditIpAddressRangeContainer: audit {
+						createdBy 
+						lastModifiedBy 
+						lastModifiedAt 
+						createdAt 
+					}
+				}
+
+			}
+		}
+
 	}	
 }

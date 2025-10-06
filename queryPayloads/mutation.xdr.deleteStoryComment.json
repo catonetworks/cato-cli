@@ -1,6 +1,6 @@
 {
     "operationName": "xdrDeleteStoryComment",
-    "query": "mutation xdrDeleteStoryComment ( $deleteStoryCommentInput:DeleteStoryCommentInput! ) {\n\txdr ( ) {\n\t\tdeleteStoryComment\n\t}\t\n}",
+    "query": "mutation xdrDeleteStoryComment ( $deleteStoryCommentInput:DeleteStoryCommentInput! $accountId:ID! ) {\n\txdr ( accountId:$accountId ) {\n\t\tdeleteStoryComment ( input:$deleteStoryCommentInput  )  {\n\t\t\tcommentDeleteStoryCommentPayload: comment {\n\t\t\t\tid \n\t\t\t\tcreatedAt \n\t\t\t\ttext \n\t\t\t\tactor  {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t\t... on AdminRef {\n\t\t\t\t\t\tid \n\t\t\t\t\t\tname \n\t\t\t\t\t}\n\t\t\t\t\t... on ApiKeyRef {\n\t\t\t\t\t\tid \n\t\t\t\t\t\tname \n\t\t\t\t\t}\n\t\t\t\t}\n\n\t\t\t}\n\t\t}\n\n\t}\t\n}",
     "variables": {
         "deleteStoryCommentInput": {
             "commentId": "id",

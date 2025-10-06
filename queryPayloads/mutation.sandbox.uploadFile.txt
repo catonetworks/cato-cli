@@ -1,5 +1,8 @@
-mutation sandboxUploadFile ( $uploadFileInput:UploadFileInput! ) {
-	sandbox ( ) {
-		uploadFile
+mutation sandboxUploadFile ( $uploadFileInput:UploadFileInput! $accountId:ID! ) {
+	sandbox ( accountId:$accountId ) {
+		uploadFile ( input:$uploadFileInput  )  {
+			uploadUrl
+		}
+
 	}	
 }

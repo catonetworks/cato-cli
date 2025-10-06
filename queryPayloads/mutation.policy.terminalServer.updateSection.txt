@@ -1,5 +1,27 @@
-mutation policyTerminalServerUpdateSection ( $policyUpdateSectionInput:PolicyUpdateSectionInput! $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput ) {
-	policy ( ) {
-		terminalServer
+mutation policyTerminalServerUpdateSection ( $policyUpdateSectionInput:PolicyUpdateSectionInput! $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput $accountId:ID! ) {
+	policy ( accountId:$accountId ) {
+		terminalServer ( input:$terminalServerPolicyMutationInput  )  {
+			updateSectionTerminalServerPolicyMutations: updateSection ( input:$policyUpdateSectionInput   ) {
+				section  {
+					auditPolicySectionPayload: audit {
+						updatedTime 
+						updatedBy 
+					}
+					sectionPolicySectionPayload: section {
+						id 
+						name 
+					}
+					propertiesPolicySectionPayload: properties
+				}
+
+				status 
+				errors  {
+					errorMessage
+					errorCode
+				}
+
+			}
+		}
+
 	}	
 }

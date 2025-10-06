@@ -1,5 +1,80 @@
-query policyDynamicIpAllocationPolicy ( $dynamicIpAllocationPolicyInput:DynamicIpAllocationPolicyInput ) {
-	policy ( ) {
-		dynamicIpAllocation
+query policyDynamicIpAllocationPolicy ( $dynamicIpAllocationPolicyInput:DynamicIpAllocationPolicyInput $accountId:ID! ) {
+	policy ( accountId:$accountId ) {
+		dynamicIpAllocation  {
+			policyDynamicIpAllocationPolicyQueries: policy ( input:$dynamicIpAllocationPolicyInput   ) {
+				enabled 
+				rules  {
+					auditDynamicIpAllocationRulePayload: audit {
+						updatedTime 
+						updatedBy 
+					}
+					ruleDynamicIpAllocationRulePayload: rule {
+						id 
+						name 
+						description 
+						index 
+						section  {
+							id
+							name
+						}
+
+						enabled 
+						source  {
+							userDynamicIpAllocationSource: user {
+								id 
+								name 
+							}
+							usersGroupDynamicIpAllocationSource: usersGroup {
+								id 
+								name 
+							}
+						}
+
+						platform 
+						country  {
+							id
+							name
+						}
+
+						range  {
+							globalIpRangeDynamicIpAllocationRange: globalIpRange {
+								id 
+								name 
+							}
+						}
+
+					}
+					propertiesDynamicIpAllocationRulePayload: properties
+				}
+
+				sections  {
+					auditPolicySectionPayload: audit {
+						updatedTime 
+						updatedBy 
+					}
+					sectionPolicySectionPayload: section {
+						id 
+						name 
+					}
+					propertiesPolicySectionPayload: properties
+				}
+
+				audit  {
+					publishedTime
+					publishedBy
+				}
+
+				revision  {
+					id
+					name
+					description
+					changes
+					createdTime
+					updatedTime
+				}
+
+			}
+		}
+
 	}	
 }

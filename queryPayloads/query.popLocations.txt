@@ -1,5 +1,23 @@
-query popLocations ( $popLocationFilterInput:PopLocationFilterInput ) {
-	popLocations ( ) {
-		popLocationList
+query popLocations ( $popLocationFilterInput:PopLocationFilterInput $accountId:ID! ) {
+	popLocations ( accountId:$accountId ) {
+		popLocationList ( input:$popLocationFilterInput  )  {
+			itemsPopLocationPayload: items {
+				id 
+				name 
+				displayName 
+				country  {
+					id
+					name
+				}
+
+				isPrivate 
+				cloudInterconnect  {
+					taggingMethodPopLocationCloudInterconnect: taggingMethod
+					providerName
+				}
+
+			}
+		}
+
 	}	
 }

@@ -1,5 +1,626 @@
-mutation policyApplicationControlDiscardPolicyRevision ( $policyDiscardRevisionInput:PolicyDiscardRevisionInput $applicationControlPolicyMutationInput:ApplicationControlPolicyMutationInput ) {
-	policy ( ) {
-		applicationControl
+mutation policyApplicationControlDiscardPolicyRevision ( $policyDiscardRevisionInput:PolicyDiscardRevisionInput $applicationControlPolicyMutationInput:ApplicationControlPolicyMutationInput $accountId:ID! ) {
+	policy ( accountId:$accountId ) {
+		applicationControl ( input:$applicationControlPolicyMutationInput  )  {
+			discardPolicyRevisionApplicationControlPolicyMutations: discardPolicyRevision ( input:$policyDiscardRevisionInput   ) {
+				policy  {
+					enabled
+					rulesApplicationControlPolicy: rules {
+						audit  {
+							updatedTime
+							updatedBy
+						}
+
+						rule  {
+							id
+							name
+							description
+							index
+							sectionApplicationControlRule: section {
+								id 
+								name 
+							}
+							enabled
+							ruleTypeApplicationControlRule: ruleType
+							applicationRuleApplicationControlRule: applicationRule {
+								application  {
+									applicationApplicationControlApplication: application {
+										id 
+										name 
+									}
+									customAppApplicationControlApplication: customApp {
+										id 
+										name 
+									}
+									appCategoryApplicationControlApplication: appCategory {
+										id 
+										name 
+									}
+									customCategoryApplicationControlApplication: customCategory {
+										id 
+										name 
+									}
+									sanctionedAppsCategoryApplicationControlApplication: sanctionedAppsCategory {
+										id 
+										name 
+									}
+									applicationTypeApplicationControlApplication: applicationType
+								}
+
+								applicationActivitySatisfy 
+								applicationActivity  {
+									activityApplicationControlActivity: activity {
+										id 
+										name 
+									}
+									fieldApplicationControlActivity: field {
+										id 
+										name 
+									}
+									operatorApplicationControlActivity: operator
+									value
+									valueSetApplicationControlActivity: valueSet {
+										id 
+										name 
+									}
+								}
+
+								applicationContext  {
+									applicationTenantApplicationControlContext: applicationTenant {
+										operator 
+										value 
+										valueSet  {
+											id
+											name
+										}
+
+									}
+								}
+
+								accessMethod  {
+									accessMethodApplicationControlAccessMethod: accessMethod
+									operatorApplicationControlAccessMethod: operator
+									value
+									valueSetApplicationControlAccessMethod: valueSet {
+										id 
+										name 
+									}
+								}
+
+								source  {
+									countryApplicationControlSource: country {
+										id 
+										name 
+									}
+									hostApplicationControlSource: host {
+										id 
+										name 
+									}
+									siteApplicationControlSource: site {
+										id 
+										name 
+									}
+									subnet
+									ip
+									ipRangeApplicationControlSource: ipRange {
+										from 
+										to 
+									}
+									globalIpRangeApplicationControlSource: globalIpRange {
+										id 
+										name 
+									}
+									networkInterfaceApplicationControlSource: networkInterface {
+										id 
+										name 
+									}
+									siteNetworkSubnetApplicationControlSource: siteNetworkSubnet {
+										id 
+										name 
+									}
+									floatingSubnetApplicationControlSource: floatingSubnet {
+										id 
+										name 
+									}
+									userApplicationControlSource: user {
+										id 
+										name 
+									}
+									usersGroupApplicationControlSource: usersGroup {
+										id 
+										name 
+									}
+									groupApplicationControlSource: group {
+										id 
+										name 
+									}
+									systemGroupApplicationControlSource: systemGroup {
+										id 
+										name 
+									}
+								}
+
+								device  {
+									id
+									name
+								}
+
+								action 
+								tracking  {
+									eventPolicyTracking: event {
+										enabled 
+									}
+									alertPolicyTracking: alert {
+										enabled 
+										frequency 
+										subscriptionGroup  {
+											id
+											name
+										}
+
+										webhook  {
+											id
+											name
+										}
+
+										mailingList  {
+											id
+											name
+										}
+
+									}
+								}
+
+								schedule  {
+									activeOnPolicySchedule: activeOn
+									customTimeframePolicySchedule: customTimeframe {
+										from 
+										to 
+									}
+									customRecurringPolicySchedule: customRecurring {
+										from 
+										to 
+										days 
+									}
+								}
+
+								severity 
+								applicationCriteriaSatisfy 
+								applicationCriteria  {
+									attributesApplicationControlCriteria: attributes {
+										complianceAttributes  {
+											iso27001ApplicationControlComplianceAttributes: iso27001
+											soxApplicationControlComplianceAttributes: sox
+											hippaApplicationControlComplianceAttributes: hippa
+											soc1ApplicationControlComplianceAttributes: soc1
+											soc2ApplicationControlComplianceAttributes: soc2
+											soc3ApplicationControlComplianceAttributes: soc3
+											isae3402ApplicationControlComplianceAttributes: isae3402
+											pciDssApplicationControlComplianceAttributes: pciDss
+										}
+
+										securityAttributes  {
+											mfaApplicationControlSecurityAttributes: mfa
+											encryptionAtRestApplicationControlSecurityAttributes: encryptionAtRest
+											auditTrailApplicationControlSecurityAttributes: auditTrail
+											rbacApplicationControlSecurityAttributes: rbac
+											rememberPasswordApplicationControlSecurityAttributes: rememberPassword
+											ssoApplicationControlSecurityAttributes: sso
+											trustedCertificateApplicationControlSecurityAttributes: trustedCertificate
+											tlsEnforcementApplicationControlSecurityAttributes: tlsEnforcement
+											httpSecurityHeadersApplicationControlSecurityAttributes: httpSecurityHeaders
+										}
+
+									}
+									originCountryApplicationControlCriteria: originCountry {
+										id 
+										name 
+									}
+									riskApplicationControlCriteria: risk {
+										risk 
+										riskOperator 
+									}
+								}
+
+							}
+							dataRuleApplicationControlRule: dataRule {
+								application  {
+									applicationApplicationControlApplication: application {
+										id 
+										name 
+									}
+									customAppApplicationControlApplication: customApp {
+										id 
+										name 
+									}
+									appCategoryApplicationControlApplication: appCategory {
+										id 
+										name 
+									}
+									customCategoryApplicationControlApplication: customCategory {
+										id 
+										name 
+									}
+									sanctionedAppsCategoryApplicationControlApplication: sanctionedAppsCategory {
+										id 
+										name 
+									}
+									applicationTypeApplicationControlApplication: applicationType
+								}
+
+								applicationContext  {
+									applicationTenantApplicationControlContext: applicationTenant {
+										operator 
+										value 
+										valueSet  {
+											id
+											name
+										}
+
+									}
+								}
+
+								applicationActivitySatisfy 
+								applicationActivity  {
+									activityApplicationControlActivity: activity {
+										id 
+										name 
+									}
+									fieldApplicationControlActivity: field {
+										id 
+										name 
+									}
+									operatorApplicationControlActivity: operator
+									value
+									valueSetApplicationControlActivity: valueSet {
+										id 
+										name 
+									}
+								}
+
+								accessMethod  {
+									accessMethodApplicationControlAccessMethod: accessMethod
+									operatorApplicationControlAccessMethod: operator
+									value
+									valueSetApplicationControlAccessMethod: valueSet {
+										id 
+										name 
+									}
+								}
+
+								source  {
+									countryApplicationControlSource: country {
+										id 
+										name 
+									}
+									hostApplicationControlSource: host {
+										id 
+										name 
+									}
+									siteApplicationControlSource: site {
+										id 
+										name 
+									}
+									subnet
+									ip
+									ipRangeApplicationControlSource: ipRange {
+										from 
+										to 
+									}
+									globalIpRangeApplicationControlSource: globalIpRange {
+										id 
+										name 
+									}
+									networkInterfaceApplicationControlSource: networkInterface {
+										id 
+										name 
+									}
+									siteNetworkSubnetApplicationControlSource: siteNetworkSubnet {
+										id 
+										name 
+									}
+									floatingSubnetApplicationControlSource: floatingSubnet {
+										id 
+										name 
+									}
+									userApplicationControlSource: user {
+										id 
+										name 
+									}
+									usersGroupApplicationControlSource: usersGroup {
+										id 
+										name 
+									}
+									groupApplicationControlSource: group {
+										id 
+										name 
+									}
+									systemGroupApplicationControlSource: systemGroup {
+										id 
+										name 
+									}
+								}
+
+								device  {
+									id
+									name
+								}
+
+								action 
+								tracking  {
+									eventPolicyTracking: event {
+										enabled 
+									}
+									alertPolicyTracking: alert {
+										enabled 
+										frequency 
+										subscriptionGroup  {
+											id
+											name
+										}
+
+										webhook  {
+											id
+											name
+										}
+
+										mailingList  {
+											id
+											name
+										}
+
+									}
+								}
+
+								schedule  {
+									activeOnPolicySchedule: activeOn
+									customTimeframePolicySchedule: customTimeframe {
+										from 
+										to 
+									}
+									customRecurringPolicySchedule: customRecurring {
+										from 
+										to 
+										days 
+									}
+								}
+
+								severity 
+								fileAttributeSatisfy 
+								fileAttribute  {
+									fileAttributeApplicationControlFileAttribute: fileAttribute
+									operatorApplicationControlFileAttribute: operator
+									value
+									contentTypeValuesApplicationControlFileAttribute: contentTypeValues {
+										id 
+										name 
+									}
+									contentTypeGroupValuesApplicationControlFileAttribute: contentTypeGroupValues {
+										id 
+										name 
+									}
+								}
+
+								dlpProfile  {
+									contentProfileApplicationControlDlpProfile: contentProfile {
+										id 
+										name 
+									}
+									edmProfileApplicationControlDlpProfile: edmProfile {
+										id 
+										name 
+									}
+								}
+
+							}
+							fileRuleApplicationControlRule: fileRule {
+								application  {
+									applicationApplicationControlApplication: application {
+										id 
+										name 
+									}
+									customAppApplicationControlApplication: customApp {
+										id 
+										name 
+									}
+									appCategoryApplicationControlApplication: appCategory {
+										id 
+										name 
+									}
+									customCategoryApplicationControlApplication: customCategory {
+										id 
+										name 
+									}
+									sanctionedAppsCategoryApplicationControlApplication: sanctionedAppsCategory {
+										id 
+										name 
+									}
+									applicationTypeApplicationControlApplication: applicationType
+								}
+
+								applicationActivitySatisfy 
+								applicationActivity  {
+									activityApplicationControlActivity: activity {
+										id 
+										name 
+									}
+									fieldApplicationControlActivity: field {
+										id 
+										name 
+									}
+									operatorApplicationControlActivity: operator
+									value
+									valueSetApplicationControlActivity: valueSet {
+										id 
+										name 
+									}
+								}
+
+								accessMethod  {
+									accessMethodApplicationControlAccessMethod: accessMethod
+									operatorApplicationControlAccessMethod: operator
+									value
+									valueSetApplicationControlAccessMethod: valueSet {
+										id 
+										name 
+									}
+								}
+
+								source  {
+									countryApplicationControlSource: country {
+										id 
+										name 
+									}
+									hostApplicationControlSource: host {
+										id 
+										name 
+									}
+									siteApplicationControlSource: site {
+										id 
+										name 
+									}
+									subnet
+									ip
+									ipRangeApplicationControlSource: ipRange {
+										from 
+										to 
+									}
+									globalIpRangeApplicationControlSource: globalIpRange {
+										id 
+										name 
+									}
+									networkInterfaceApplicationControlSource: networkInterface {
+										id 
+										name 
+									}
+									siteNetworkSubnetApplicationControlSource: siteNetworkSubnet {
+										id 
+										name 
+									}
+									floatingSubnetApplicationControlSource: floatingSubnet {
+										id 
+										name 
+									}
+									userApplicationControlSource: user {
+										id 
+										name 
+									}
+									usersGroupApplicationControlSource: usersGroup {
+										id 
+										name 
+									}
+									groupApplicationControlSource: group {
+										id 
+										name 
+									}
+									systemGroupApplicationControlSource: systemGroup {
+										id 
+										name 
+									}
+								}
+
+								device  {
+									id
+									name
+								}
+
+								action 
+								tracking  {
+									eventPolicyTracking: event {
+										enabled 
+									}
+									alertPolicyTracking: alert {
+										enabled 
+										frequency 
+										subscriptionGroup  {
+											id
+											name
+										}
+
+										webhook  {
+											id
+											name
+										}
+
+										mailingList  {
+											id
+											name
+										}
+
+									}
+								}
+
+								schedule  {
+									activeOnPolicySchedule: activeOn
+									customTimeframePolicySchedule: customTimeframe {
+										from 
+										to 
+									}
+									customRecurringPolicySchedule: customRecurring {
+										from 
+										to 
+										days 
+									}
+								}
+
+								severity 
+								fileAttributeSatisfy 
+								fileAttribute  {
+									fileAttributeApplicationControlFileAttribute: fileAttribute
+									operatorApplicationControlFileAttribute: operator
+									value
+									contentTypeValuesApplicationControlFileAttribute: contentTypeValues {
+										id 
+										name 
+									}
+									contentTypeGroupValuesApplicationControlFileAttribute: contentTypeGroupValues {
+										id 
+										name 
+									}
+								}
+
+							}
+						}
+
+						properties 
+					}
+					sectionsApplicationControlPolicy: sections {
+						audit  {
+							updatedTime
+							updatedBy
+						}
+
+						section  {
+							id
+							name
+						}
+
+						properties 
+					}
+					auditApplicationControlPolicy: audit {
+						publishedTime 
+						publishedBy 
+					}
+					revisionApplicationControlPolicy: revision {
+						id 
+						name 
+						description 
+						changes 
+						createdTime 
+						updatedTime 
+					}
+					additionalAttributesApplicationControlPolicy: additionalAttributes {
+						dataControlEnabled 
+					}
+				}
+
+				status 
+				errors  {
+					errorMessage
+					errorCode
+				}
+
+			}
+		}
+
 	}	
 }

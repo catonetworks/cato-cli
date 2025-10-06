@@ -1,5 +1,205 @@
-mutation policyTlsInspectDiscardPolicyRevision ( $policyDiscardRevisionInput:PolicyDiscardRevisionInput $tlsInspectPolicyMutationInput:TlsInspectPolicyMutationInput ) {
-	policy ( ) {
-		tlsInspect
+mutation policyTlsInspectDiscardPolicyRevision ( $policyDiscardRevisionInput:PolicyDiscardRevisionInput $tlsInspectPolicyMutationInput:TlsInspectPolicyMutationInput $accountId:ID! ) {
+	policy ( accountId:$accountId ) {
+		tlsInspect ( input:$tlsInspectPolicyMutationInput  )  {
+			discardPolicyRevisionTlsInspectPolicyMutations: discardPolicyRevision ( input:$policyDiscardRevisionInput   ) {
+				policy  {
+					enabled
+					rulesTlsInspectPolicy: rules {
+						audit  {
+							updatedTime
+							updatedBy
+						}
+
+						rule  {
+							id
+							name
+							description
+							index
+							sectionTlsInspectRule: section {
+								id 
+								name 
+							}
+							enabled
+							sourceTlsInspectRule: source {
+								user  {
+									id
+									name
+								}
+
+								floatingSubnet  {
+									id
+									name
+								}
+
+								globalIpRange  {
+									id
+									name
+								}
+
+								group  {
+									id
+									name
+								}
+
+								host  {
+									id
+									name
+								}
+
+								subnet 
+								ipRange  {
+									from
+									to
+								}
+
+								networkInterface  {
+									id
+									name
+								}
+
+								site  {
+									id
+									name
+								}
+
+								systemGroup  {
+									id
+									name
+								}
+
+								usersGroup  {
+									id
+									name
+								}
+
+								ip 
+								siteNetworkSubnet  {
+									id
+									name
+								}
+
+							}
+							platformTlsInspectRule: platform
+							countryTlsInspectRule: country {
+								id 
+								name 
+							}
+							devicePostureProfileTlsInspectRule: devicePostureProfile {
+								id 
+								name 
+							}
+							connectionOriginTlsInspectRule: connectionOrigin
+							applicationTlsInspectRule: application {
+								application  {
+									id
+									name
+								}
+
+								appCategory  {
+									id
+									name
+								}
+
+								country  {
+									id
+									name
+								}
+
+								customApp  {
+									id
+									name
+								}
+
+								customCategory  {
+									id
+									name
+								}
+
+								customServiceIp  {
+									name
+									ip
+									ipRangeCustomServiceIp: ipRange {
+										from 
+										to 
+									}
+								}
+
+								domain 
+								fqdn 
+								subnet 
+								ip 
+								ipRange  {
+									from
+									to
+								}
+
+								globalIpRange  {
+									id
+									name
+								}
+
+								customService  {
+									port
+									portRangeCustomService: portRange {
+										from 
+										to 
+									}
+									protocolCustomService: protocol
+								}
+
+								remoteAsn 
+								service  {
+									id
+									name
+								}
+
+								tlsInspectCategory 
+							}
+							actionTlsInspectRule: action
+							untrustedCertificateActionTlsInspectRule: untrustedCertificateAction
+						}
+
+						properties 
+					}
+					sectionsTlsInspectPolicy: sections {
+						audit  {
+							updatedTime
+							updatedBy
+						}
+
+						section  {
+							id
+							name
+						}
+
+						properties 
+					}
+					auditTlsInspectPolicy: audit {
+						publishedTime 
+						publishedBy 
+					}
+					revisionTlsInspectPolicy: revision {
+						id 
+						name 
+						description 
+						changes 
+						createdTime 
+						updatedTime 
+					}
+					additionalAttributesTlsInspectPolicy: additionalAttributes {
+						defaultRuleAction 
+						defaultRuleUntrustedCertificateAction 
+					}
+				}
+
+				status 
+				errors  {
+					errorMessage
+					errorCode
+				}
+
+			}
+		}
+
 	}	
 }

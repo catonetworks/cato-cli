@@ -1,14 +1,42 @@
-query admin ( $adminID:ID! ) {
-	admin ( adminID:$adminID ) {
-		id
-		firstName
-		lastName
-		email
-		creationDate
-		passwordNeverExpires
-		mfaEnabled
-		adminType
-		managedRoles
-		resellerRoles
+query admin ( $accountId:ID! $adminID:ID! ) {
+	admin ( accountId:$accountId adminID:$adminID ) {
+		id 
+		firstName 
+		lastName 
+		email 
+		creationDate 
+		passwordNeverExpires 
+		mfaEnabled 
+		adminType 
+		managedRoles  {
+			roleAdminRole: role {
+				id 
+				name 
+				description 
+				isPredefined 
+			}
+			allowedEntitiesAdminRole: allowedEntities {
+				id 
+				name 
+				type 
+			}
+			allowedAccounts
+		}
+
+		resellerRoles  {
+			roleAdminRole: role {
+				id 
+				name 
+				description 
+				isPredefined 
+			}
+			allowedEntitiesAdminRole: allowedEntities {
+				id 
+				name 
+				type 
+			}
+			allowedAccounts
+		}
+
 	}	
 }

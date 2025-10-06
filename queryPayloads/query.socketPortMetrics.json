@@ -1,6 +1,6 @@
 {
     "operationName": "socketPortMetrics",
-    "query": "query socketPortMetrics ( $limit:Int $from:Int $timeFrame:TimeFrame! $socketPortMetricsMeasure:[SocketPortMetricsMeasure] $socketPortMetricsDimension:[SocketPortMetricsDimension] $socketPortMetricsFilter:[SocketPortMetricsFilter!] $socketPortMetricsSort:[SocketPortMetricsSort!] ) {\n\tsocketPortMetrics ( timeFrame:$timeFrame measures:$socketPortMetricsMeasure dimensions:$socketPortMetricsDimension filters:$socketPortMetricsFilter sort:$socketPortMetricsSort ) {\n\t\tid\n\t\tfrom\n\t\tto\n\t\ttotal\n\t\ttotals\n\t\trecords\n\t}\t\n}",
+    "query": "query socketPortMetrics ( $limit:Int $from:Int $accountID:ID! $timeFrame:TimeFrame! $socketPortMetricsMeasure:[SocketPortMetricsMeasure] $socketPortMetricsDimension:[SocketPortMetricsDimension] $socketPortMetricsFilter:[SocketPortMetricsFilter!] $socketPortMetricsSort:[SocketPortMetricsSort!] ) {\n\tsocketPortMetrics ( accountID:$accountID timeFrame:$timeFrame measures:$socketPortMetricsMeasure dimensions:$socketPortMetricsDimension filters:$socketPortMetricsFilter sort:$socketPortMetricsSort ) {\n\t\tid \n\t\tfrom \n\t\tto \n\t\ttotal \n\t\ttotals \n\t\trecords ( limit:$limit  from:$from  )  {\n\t\t\tfieldsSocketPortMetricsRecord: fields {\n\t\t\t\tname \n\t\t\t\tvalue \n\t\t\t}\n\t\t\tfieldsUnitTypesSocketPortMetricsRecord: fieldsUnitTypes\n\t\t\tfieldsMap\n\t\t\ttrends\n\t\t\tprevTimeFrame\n\t\t}\n\n\t}\t\n}",
     "variables": {
         "from": 1,
         "limit": 1,

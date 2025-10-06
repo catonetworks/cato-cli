@@ -1,5 +1,8 @@
-mutation siteUpdateSiteGeneralDetails ( $siteId:ID! $updateSiteGeneralDetailsInput:UpdateSiteGeneralDetailsInput! ) {
-	site ( ) {
-		updateSiteGeneralDetails
+mutation siteUpdateSiteGeneralDetails ( $siteId:ID! $updateSiteGeneralDetailsInput:UpdateSiteGeneralDetailsInput! $accountId:ID! ) {
+	site ( accountId:$accountId ) {
+		updateSiteGeneralDetails ( siteId:$siteId  input:$updateSiteGeneralDetailsInput  )  {
+			siteId
+		}
+
 	}	
 }

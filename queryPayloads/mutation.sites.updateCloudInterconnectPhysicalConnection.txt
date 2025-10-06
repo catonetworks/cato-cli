@@ -1,5 +1,8 @@
-mutation sitesUpdateCloudInterconnectPhysicalConnection ( $updateCloudInterconnectPhysicalConnectionInput:UpdateCloudInterconnectPhysicalConnectionInput! ) {
-	sites ( ) {
-		updateCloudInterconnectPhysicalConnection
+mutation sitesUpdateCloudInterconnectPhysicalConnection ( $updateCloudInterconnectPhysicalConnectionInput:UpdateCloudInterconnectPhysicalConnectionInput! $accountId:ID! ) {
+	sites ( accountId:$accountId ) {
+		updateCloudInterconnectPhysicalConnection ( input:$updateCloudInterconnectPhysicalConnectionInput  )  {
+			id
+		}
+
 	}	
 }

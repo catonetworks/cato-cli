@@ -1,5 +1,20 @@
-query sandbox ( $sandboxReportsInput:SandboxReportsInput! ) {
-	sandbox ( ) {
-		reports
+query sandbox ( $sandboxReportsInput:SandboxReportsInput! $accountId:ID! ) {
+	sandbox ( accountId:$accountId ) {
+		reports ( input:$sandboxReportsInput  )  {
+			reportSandboxReportsPayload: report {
+				fileName 
+				fileHash 
+				creationDate 
+				expirationDate 
+				verdict 
+				status 
+				downloadUrl 
+				failureReason 
+			}
+			pageInfoSandboxReportsPayload: pageInfo {
+				total 
+			}
+		}
+
 	}	
 }

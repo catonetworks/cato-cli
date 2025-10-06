@@ -33,6 +33,18 @@ import urllib.request
 import urllib.error
 import socket
 
+# Import shared utilities
+from catocli.Utils.graphql_utils import (
+    loadJSON,
+    renderCamelCase,
+    validateArgs,
+    loadIntrospectionTypes,
+    generateGraphqlPayload,
+    postProcessBareComplexFields,
+    expandFieldWithIntrospection,
+    renderArgsAndFields
+)
+
 class CustomAPIClient:
     """Enhanced API Client with custom query generation capabilities"""
     
@@ -124,15 +136,30 @@ def createRequest(args, configuration):
         # Default to empty object if no json provided
         variables_obj = {}
     
+    # Handle variable name mapping for XDR stories
+    if operation_name == "query.xdr.stories" and "storyInput" in variables_obj:
+        story_input = variables_obj["storyInput"]
+        # Map storyFilterInput to filter if needed
+        if "storyFilterInput" in story_input:
+            story_input["filter"] = story_input.pop("storyFilterInput")
+        # Map pagingInput to paging if needed
+        if "pagingInput" in story_input:
+            story_input["paging"] = story_input.pop("pagingInput")
+    
     # Handle account ID for different operation types
+    # IMPORTANT: Add account ID to variables_obj, don't replace it
     if operation_name in ["query.eventsFeed", "query.auditFeed"]:
         # Only add accountIDs if not already provided in JSON
         if "accountIDs" not in variables_obj:
             variables_obj["accountIDs"] = [configuration.accountID]
     elif "accountId" in operation.get("args", {}):
-        variables_obj["accountId"] = configuration.accountID
+        # Only add accountId if not already provided in JSON
+        if "accountId" not in variables_obj:
+            variables_obj["accountId"] = configuration.accountID
     else:
-        variables_obj["accountID"] = configuration.accountID
+        # Only add accountID if not already provided in JSON
+        if "accountID" not in variables_obj:
+            variables_obj["accountID"] = configuration.accountID
     
     # Validation logic
     if params["t"] or params.get("skip_validation", False):
@@ -142,7 +169,7 @@ def createRequest(args, configuration):
         is_ok, invalid_vars, message = validateArgs(variables_obj, operation)
     
     if is_ok:
-        body = generateGraphqlPayload(variables_obj, operation, operation_name)
+        body = generateGraphqlPayload_local(variables_obj, operation, operation_name)
         
         if params["t"]:
             # Use dynamically generated query with custom field mappings
@@ -570,51 +597,65 @@ def createRawRequest(args, configuration):
             return None
 
 
-def generateGraphqlPayload(variables_obj, operation, operation_name):
+def collectUsedVariables(variables_obj, definition):
     """
-    Enhanced GraphQL payload generation with improved field handling
+    Recursively collect all variables that are used in the GraphQL query fields
     
     Args:
-        variables_obj: Variables for the GraphQL query
-        operation: Operation definition from schema
-        operation_name: Name of the operation (e.g., 'query.appStats')
+        variables_obj: Variables available for the query
+        definition: Field definition to analyze
         
     Returns:
-        Complete GraphQL request payload
+        Set of variable names that are used in the query
     """
-    indent = "\t"
-    query_str = ""
-    variable_str = ""
+    used_variables = set()
     
-    # Generate variable declarations
-    for var_name in variables_obj:
-        if var_name in operation["operationArgs"]:
-            variable_str += operation["operationArgs"][var_name]["requestStr"]
+    if not definition or not isinstance(definition, dict) or 'fields' not in definition:
+        return used_variables
     
-    # Build query structure
-    operation_ary = operation_name.split(".")
-    operation_type = operation_ary.pop(0)
-    query_str = f"{operation_type} "
-    query_str += renderCamelCase(".".join(operation_ary))
-    query_str += f" ( {variable_str}) {{\n"
-    query_str += f"{indent}{operation['name']} ( "
+    for field_name in definition['fields']:
+        field = definition['fields'][field_name]
+        
+        # Check if field has arguments that use variables (with actual values)
+        if field.get("args") and not isinstance(field['args'], list):
+            for arg_name in field['args']:
+                arg = field['args'][arg_name]
+                # Only collect variables that have actual values (not empty/null)
+                if arg["varName"] in variables_obj and variables_obj[arg["varName"]] is not None and variables_obj[arg["varName"]] != "" and variables_obj[arg["varName"]] != [] and variables_obj[arg["varName"]] != {}:
+                    used_variables.add(arg["varName"])
+        
+        # Recursively check nested fields
+        if field.get("type") and field['type'].get('definition'):
+            if field['type']['definition'].get('fields'):
+                used_variables.update(collectUsedVariables(variables_obj, field['type']['definition']))
+            elif field['type']['definition'].get('inputFields'):
+                # Handle inputFields as well
+                nested_def = field['type']['definition']
+                for subfield_name in nested_def.get('inputFields', {}):
+                    subfield = nested_def['inputFields'][subfield_name]
+                    if subfield.get('type') and subfield['type'].get('definition'):
+                        used_variables.update(collectUsedVariables(variables_obj, subfield['type']['definition']))
     
-    # Add operation arguments
-    for arg_name in operation["args"]:
-        arg = operation["args"][arg_name]
-        if arg["varName"] in variables_obj:
-            query_str += arg["responseStr"]
+    return used_variables
+
+
+def generateGraphqlPayload_local(variables_obj, operation, operation_name):
+    """
+    Local wrapper around the shared GraphQL payload generation function.
     
-    # Generate field selection with enhanced rendering
-    query_str += ") {\n" + renderArgsAndFields("", variables_obj, operation, operation["type"]["definition"], operation_name, "\t\t") + "\t}"
-    query_str += f"{indent}\n}}"
+    This wrapper provides the renderArgsAndFields function and custom_client to the shared implementation.
+    """
+    # Define a local renderArgsAndFields function that passes custom_client
+    def local_renderArgsAndFields(response_arg_str, variables_obj, cur_operation, definition, operation_name, indent, dynamic_operation_args=None):
+        return renderArgsAndFields(response_arg_str, variables_obj, cur_operation, definition, operation_name, indent, dynamic_operation_args, custom_client)
     
-    body = {
-        "query": query_str,
-        "variables": variables_obj,
-        "operationName": renderCamelCase(".".join(operation_ary)),
-    }
-    return body
+    # Call the shared implementation with the local renderArgsAndFields function
+    return generateGraphqlPayload(
+        variables_obj, 
+        operation, 
+        operation_name, 
+        renderArgsAndFields_func=local_renderArgsAndFields
+    )
 
 
 def get_help(path):
@@ -702,258 +743,401 @@ def get_help(path):
         
     return new_line
 
-
-def validateArgs(variables_obj, operation):
-    """
-    Enhanced argument validation with detailed error reporting
-    Skip required field validation to allow any request to be sent
-    """
-    is_ok = True
-    invalid_vars = []
-    message = "Arguments are missing or have invalid values: "
+def expandUnionFragment(union_type_name, introspection_types, indent):
+    """Expand a union type into its full field structure"""
+    if union_type_name not in introspection_types:
+        return ""
     
-    # Skip all validation - allow any request to be sent to the API
-    # This allows users to send any GraphQL request and see the API response directly
+    type_def = introspection_types[union_type_name]
+    if type_def['kind'] != 'OBJECT' or not type_def.get('fields'):
+        return ""
     
-    return is_ok, invalid_vars, message
-
-
-def loadJSON(file):
-    """
-    Enhanced JSON loading with better error handling and path resolution
-    """
-    module_dir = os.path.dirname(__file__)
+    fragment_str = ""
+    for field in type_def['fields']:
+        field_name = field['name']
+        fragment_str += f"{indent}\t\t{field_name}"
+        
+        # Handle nested object fields
+        if field['type']['kind'] == 'OBJECT' or (field['type']['kind'] == 'NON_NULL' and field['type']['ofType']['kind'] == 'OBJECT'):
+            nested_type_name = field['type']['name'] if field['type']['kind'] == 'OBJECT' else field['type']['ofType']['name']
+            if nested_type_name in introspection_types:
+                nested_def = introspection_types[nested_type_name]
+                if nested_def.get('fields'):
+                    fragment_str += " {\n"
+                    for nested_field in nested_def['fields']:
+                        fragment_str += f"{indent}\t\t\t{nested_field['name']}\n"
+                    fragment_str += f"{indent}\t\t}}"
+        
+        # Handle list types
+        elif field['type']['kind'] == 'LIST' or (field['type']['kind'] == 'NON_NULL' and field['type']['ofType']['kind'] == 'LIST'):
+            list_type = field['type']['ofType'] if field['type']['kind'] == 'NON_NULL' else field['type']
+            if list_type['ofType']['kind'] == 'OBJECT':
+                nested_type_name = list_type['ofType']['name']
+                if nested_type_name in introspection_types:
+                    nested_def = introspection_types[nested_type_name]
+                    if nested_def.get('fields'):
+                        fragment_str += " {\n"
+                        for nested_field in nested_def['fields']:
+                            fragment_str += f"{indent}\t\t\t{nested_field['name']}\n"
+                        fragment_str += f"{indent}\t\t}}"
+        
+        fragment_str += "\n"
     
-    # Special handling for clisettings.json - it's in catocli/ directory
-    if file == "clisettings.json":
-        # From parsers/ go up to catocli/ and look for clisettings.json
-        catocli_dir = os.path.dirname(module_dir)  # Go up from parsers/ to catocli/
-        file_path = os.path.join(catocli_dir, file)
-    else:
-        # For other files (like models), navigate up two directory levels (from parsers/ to catocli/ to root)
-        module_dir = os.path.dirname(module_dir)  # Go up from parsers/
-        module_dir = os.path.dirname(module_dir)  # Go up from catocli/
-        file_path = os.path.join(module_dir, file)
-    
-    try:
-        with open(file_path, 'r') as data:
-            config = json.load(data)
-            return config
-    except FileNotFoundError:
-        logging.error(f"File \"{file_path}\" not found.")
-        raise
-    except json.JSONDecodeError as e:
-        logging.error(f"Invalid JSON in file \"{file_path}\": {e}")
-        raise
-    except Exception as e:
-        logging.error(f"Error loading file \"{file_path}\": {e}")
-        raise
+    return fragment_str
 
-
-def renderCamelCase(path_str):
+def should_skip_complex_field(field):
     """
-    Convert dot-separated path to camelCase
+    Determine if a field should be skipped because it's a complex object type
+    that would require subfield selections but doesn't have proper definitions
     
     Args:
-        path_str: Dot-separated string like 'app.stats'
+        field: Field definition from the GraphQL schema
         
     Returns:
-        camelCase string like 'appStats'
+        bool: True if field should be skipped, False otherwise
     """
-    if not path_str:
-        return ""
-        
-    result = ""
-    path_ary = path_str.split(".")
+    if not field.get('type'):
+        return False
     
-    for i, path in enumerate(path_ary):
-        if not path:  # Skip empty parts
-            continue
+    field_type = field['type']
+    
+    # Check if this is a direct object type or list of objects that needs subfields
+    # but doesn't have proper field definitions to expand
+    if field_type.get('kind'):
+        kind = field_type['kind']
+        
+        # Handle both single kind and array of kinds
+        if isinstance(kind, list):
+            # Check for OBJECT or LIST containing OBJECT types
+            has_object = 'OBJECT' in kind
+            has_list = 'LIST' in kind
             
-        if i == 0:
-            result += path[0].lower() + path[1:] if len(path) > 1 else path.lower()
-        else:
-            result += path[0].upper() + path[1:] if len(path) > 1 else path.upper()
+            # If it's an object or list of objects
+            if has_object or has_list:
+                # Check if we have proper field definitions to expand
+                definition = field_type.get('definition')
+                if not definition or not definition.get('fields'):
+                    # This is a complex type without proper subfield definitions - skip it
+                    return True
+        elif isinstance(kind, str):
+            # Single kind - check if it's OBJECT
+            if kind == 'OBJECT':
+                definition = field_type.get('definition')
+                if not definition or not definition.get('fields'):
+                    return True
+    
+    return False
+
+
+# postProcessBareComplexFields is imported from shared utilities
+def postProcessBareComplexFields_local_backup(field_selection_str, base_indent):
+    """Post-process the generated field selection to expand any bare complex fields.
+    
+    This function scans the field selection string for fields that appear as bare fields
+    but actually need subfield selections based on introspection data.
+    
+    Args:
+        field_selection_str: The generated field selection string
+        base_indent: The base indentation level
+    
+    Returns:
+        Field selection string with all complex fields properly expanded
+    """
+    try:
+        introspection_types = loadIntrospectionTypes()
+    except:
+        return field_selection_str  # Return unchanged if introspection fails
+    
+    if not introspection_types:
+        return field_selection_str
+    
+    # Common complex field names that often need expansion
+    complex_fields_to_check = [
+        'threatType', 'similarStoriesData', 'osDetails', 'loggedOnUsers', 'rbacGroup', 'alerts',
+        'drillDownFilter', 'extra', 'mitres', 'timeSeries', 'targets', 'events', 'flows',
+        'threatPreventionsEvents', 'networkIncidentTimeline', 'linkDetails', 'ispDetails', 
+        'contacts', 'incidentTimeline', 'analystFeedback', 'device', 'site', 'user',
+        'bgpConnection', 'ilmmDetails', 'accountOperationIncident'
+    ]
+    
+    lines = field_selection_str.split('\n')
+    processed_lines = []
+    i = 0
+    
+    while i < len(lines):
+        line = lines[i]
+        line_expanded = False
+        
+        # Check each complex field
+        for field_name in complex_fields_to_check:
+            # Check if this line contains a bare field (ends with field name, no { after it)
+            if (field_name in line and 
+                line.strip().endswith(field_name) and 
+                '{' not in line and 
+                not line.strip().endswith(':')):
+                
+                # Determine indentation
+                indent_match = len(line) - len(line.lstrip())
+                current_indent = '\t' * (indent_match // 4)  # Convert spaces to tabs
+                
+                # Find the type name for this field in introspection data
+                field_type_candidates = [
+                    'AnalystFeedbackThreatType',  # threatType
+                    'SimilarStoryData',           # similarStoriesData  
+                    'OsDetails',                  # osDetails
+                    'EndpointUser',               # loggedOnUsers
+                    'RbacGroup',                  # rbacGroup
+                    'MicrosoftDefenderEndpointAlert',  # alerts (Microsoft)
+                    'CatoEndpointAlert',          # alerts (Cato)
+                    'StoryDrillDownFilter',       # drillDownFilter
+                    'Extra',                      # extra
+                    'Mitre',                      # mitres
+                    'IncidentTimeseries',         # timeSeries
+                    'IncidentTargetRep',          # targets
+                    'Event',                      # events
+                    'IncidentFlow',               # flows
+                    'ThreatPreventionEvents',     # threatPreventionsEvents
+                    'NetworkTimelineEvent',       # networkIncidentTimeline
+                    'IlmmLinkDetails',            # linkDetails
+                    'IlmmIspDetails',             # ispDetails
+                    'IlmmContact',                # contacts
+                    'AccountOperationsTimelineBase', # incidentTimeline
+                    'DeviceRef',                  # device
+                    'SiteRef',                    # site
+                    'UserRef',                    # user
+                    'BgpConnection',              # bgpConnection
+                    'IlmmDetails',                # ilmmDetails
+                    'AccountOperationIncident'    # accountOperationIncident
+                ]
+                
+                # Try to find matching type for expansion based on field name
+                expansion = ""
+                
+                # Create a more specific mapping of field names to types
+                field_type_mapping = {
+                    'threatType': 'AnalystFeedbackThreatType',
+                    'similarStoriesData': 'SimilarStoryData',
+                    'osDetails': 'OsDetails',
+                    'loggedOnUsers': 'EndpointUser',
+                    'rbacGroup': 'RbacGroup',
+                    'alerts': ['MicrosoftDefenderEndpointAlert', 'CatoEndpointAlert'],
+                    'drillDownFilter': 'StoryDrillDownFilter',
+                    'extra': 'Extra',
+                    'mitres': 'Mitre',
+                    'timeSeries': 'IncidentTimeseries',
+                    'targets': 'IncidentTargetRep',
+                    'events': 'Event',
+                    'flows': 'IncidentFlow',
+                    'threatPreventionsEvents': 'ThreatPreventionEvents',
+                    'networkIncidentTimeline': 'NetworkTimelineEvent',
+                    'linkDetails': 'IlmmLinkDetails',
+                    'ispDetails': 'IlmmIspDetails',
+                    'contacts': 'IlmmContact',
+                    'incidentTimeline': 'AccountOperationsTimelineBase',
+                    'device': 'DeviceRef',
+                    'site': 'SiteRef', 
+                    'user': 'UserRef',
+                    'bgpConnection': 'BgpConnection',
+                    'ilmmDetails': 'IlmmDetails'
+                }
+                
+                # Get the correct type name for this field
+                candidate_types = []
+                if field_name in field_type_mapping:
+                    mapping = field_type_mapping[field_name]
+                    if isinstance(mapping, list):
+                        candidate_types = mapping
+                    else:
+                        candidate_types = [mapping]
+                
+                # Try each candidate type
+                for candidate_type in candidate_types:
+                    if candidate_type in introspection_types:
+                        type_def = introspection_types[candidate_type]
+                        if type_def.get('kind') in ['OBJECT', 'INTERFACE', 'UNION']:
+                            expansion = expandFieldWithIntrospection(field_name, candidate_type, current_indent)
+                            if expansion:
+                                break
+                
+                # If we found an expansion, replace the bare field
+                if expansion:
+                    # Create the expanded field
+                    expanded_field = f"{current_indent}{field_name} {{\n{expansion}{current_indent}}}\n"
+                    processed_lines.append(expanded_field)
+                    line_expanded = True
+                    break
+        
+        # If line wasn't expanded, keep it as is
+        if not line_expanded:
+            processed_lines.append(line + '\n' if not line.endswith('\n') else line)
+        
+        i += 1
+    
+    return ''.join(processed_lines).rstrip() + ('\n' if field_selection_str.endswith('\n') else '')
+
+
+# expandFieldWithIntrospection is imported from shared utilities
+def expandFieldWithIntrospection_local_backup(field_name, field_type_name, indent, already_expanded_fields=None):
+    """Use introspection data to expand a field that needs subfield selections.
+    
+    Enhanced version that provides comprehensive expansion for complex GraphQL types,
+    with better handling of nested objects and lists.
+    
+    Args:
+        field_name: The name of the field to expand
+        field_type_name: The GraphQL type name for this field
+        indent: Current indentation level
+        already_expanded_fields: Set of field names already expanded to prevent cycles
+    
+    Returns:
+        String containing the expanded field with its subfields, or empty string if not expandable
+    """
+    if already_expanded_fields is None:
+        already_expanded_fields = set()
+    
+    if field_name in already_expanded_fields:
+        return ""  # Prevent infinite recursion
+    
+    already_expanded_fields.add(field_name)
+    
+    # Load introspection data
+    introspection_types = loadIntrospectionTypes()
+    if field_type_name not in introspection_types:
+        already_expanded_fields.remove(field_name)
+        return ""  # Can't expand without introspection data
+    
+    type_def = introspection_types[field_type_name]
+    
+    # Only expand complex types
+    if type_def.get('kind') not in ['OBJECT', 'INTERFACE', 'UNION']:
+        already_expanded_fields.remove(field_name)
+        return ""  # Simple types don't need expansion
+    
+    result = ""
+    
+    if type_def.get('kind') == 'OBJECT' and type_def.get('fields'):
+        # Expand object fields with better handling of complex nested types
+        simple_fields = []
+        complex_fields = []
+        
+        for introspection_field in type_def['fields']:
+            field_name_inner = introspection_field['name']
+            field_type_info = introspection_field.get('type', {})
             
+            # Navigate through type wrappers to find the core type
+            current_type = field_type_info
+            while current_type and current_type.get('ofType'):
+                current_type = current_type['ofType']
+            
+            if current_type and current_type.get('kind'):
+                if current_type['kind'] in ['SCALAR', 'ENUM']:
+                    # Simple field - add directly
+                    simple_fields.append(field_name_inner)
+                elif current_type.get('name'):
+                    # Complex field - check if it needs expansion
+                    inner_type_name = current_type['name']
+                    if inner_type_name in introspection_types:
+                        inner_type_def = introspection_types[inner_type_name]
+                        if inner_type_def.get('kind') in ['OBJECT', 'INTERFACE', 'UNION']:
+                            # This is a complex field that needs expansion
+                            complex_fields.append((field_name_inner, inner_type_name))
+                        else:
+                            simple_fields.append(field_name_inner)
+                    else:
+                        simple_fields.append(field_name_inner)
+            else:
+                simple_fields.append(field_name_inner)
+        
+        # Add simple fields
+        for simple_field in simple_fields:
+            result += f"{indent}\t{simple_field}\n"
+        
+        # Add complex fields with recursive expansion (increased depth limit)
+        for complex_field_name, complex_type_name in complex_fields:
+            if complex_field_name not in already_expanded_fields and len(already_expanded_fields) < 6:  # Increased limit
+                expansion = expandFieldWithIntrospection(complex_field_name, complex_type_name, indent + "\t", already_expanded_fields.copy())
+                if expansion:
+                    result += f"{indent}\t{complex_field_name} {{\n{expansion}{indent}\t}}\n"
+                else:
+                    # Fallback: add minimal expansion for known complex types
+                    if complex_type_name in introspection_types:
+                        complex_type_def = introspection_types[complex_type_name]
+                        if complex_type_def.get('fields'):
+                            # Add a simple expansion with key fields
+                            result += f"{indent}\t{complex_field_name} {{\n"
+                            # Add commonly expected fields for GraphQL objects
+                            common_fields = ['id', 'name', 'value', 'type', 'status', 'description']
+                            added_fields = []
+                            for cf in complex_type_def['fields']:
+                                if cf['name'] in common_fields:
+                                    result += f"{indent}\t\t{cf['name']}\n"
+                                    added_fields.append(cf['name'])
+                            # If no common fields found, add first few fields
+                            if not added_fields:
+                                for cf in complex_type_def['fields'][:3]:
+                                    field_type = cf.get('type', {})
+                                    core_type = field_type
+                                    while core_type and core_type.get('ofType'):
+                                        core_type = core_type['ofType']
+                                    if core_type and core_type.get('kind') in ['SCALAR', 'ENUM']:
+                                        result += f"{indent}\t\t{cf['name']}\n"
+                            result += f"{indent}\t}}\n"
+                        else:
+                            result += f"{indent}\t{complex_field_name}\n"
+                    else:
+                        result += f"{indent}\t{complex_field_name}\n"
+            else:
+                result += f"{indent}\t{complex_field_name}\n"
+    
+    elif type_def.get('kind') in ['INTERFACE', 'UNION'] and type_def.get('possibleTypes'):
+        # Add __typename for interface/union types
+        result += f"{indent}\t__typename\n"
+        
+        # Add inline fragments for each possible type (more comprehensive)
+        for possible_type in type_def['possibleTypes']:
+            possible_type_name = possible_type.get('name')
+            if possible_type_name and possible_type_name in introspection_types:
+                possible_type_def = introspection_types[possible_type_name]
+                if possible_type_def.get('fields'):
+                    result += f"{indent}\t... on {possible_type_name} {{\n"
+                    
+                    # Expand fields within this fragment (increased depth)
+                    if len(already_expanded_fields) < 4:  # Increased fragment depth
+                        for poss_field in possible_type_def['fields']:
+                            poss_field_name = poss_field['name']
+                            poss_field_type_info = poss_field.get('type', {})
+                            
+                            # Get the core type
+                            current_type = poss_field_type_info
+                            while current_type and current_type.get('ofType'):
+                                current_type = current_type['ofType']
+                            
+                            if current_type and current_type.get('kind'):
+                                if current_type['kind'] in ['SCALAR', 'ENUM']:
+                                    result += f"{indent}\t\t{poss_field_name}\n"
+                                elif current_type.get('name') and current_type['name'] in introspection_types:
+                                    # Check if this field needs further expansion
+                                    inner_type_def = introspection_types[current_type['name']]
+                                    if inner_type_def.get('kind') in ['OBJECT', 'INTERFACE', 'UNION']:
+                                        # Recursively expand complex fields in fragments
+                                        inner_expansion = expandFieldWithIntrospection(poss_field_name, current_type['name'], indent + "\t", already_expanded_fields.copy())
+                                        if inner_expansion:
+                                            result += f"{indent}\t\t{poss_field_name} {{\n{inner_expansion}{indent}\t\t}}\n"
+                                        else:
+                                            result += f"{indent}\t\t{poss_field_name}\n"
+                                    else:
+                                        result += f"{indent}\t\t{poss_field_name}\n"
+                                else:
+                                    result += f"{indent}\t\t{poss_field_name}\n"
+                            else:
+                                result += f"{indent}\t\t{poss_field_name}\n"
+                    
+                    result += f"{indent}\t}}\n"
+    
+    already_expanded_fields.remove(field_name)
     return result
 
 
-def renderArgsAndFields(response_arg_str, variables_obj, cur_operation, definition, operation_name, indent):
-    """
-    ENHANCED field rendering with custom field expansion support
-    
-    This is the key function that generates the GraphQL field selection.
-    It now includes support for custom field expansions defined in custom_field_mappings.
-    
-    Args:
-        response_arg_str: Current field string being built
-        variables_obj: Variables for the query
-        cur_operation: Current operation definition  
-        definition: Field definitions
-        operation_name: Name of the operation (for custom mappings)
-        indent: Current indentation level
-        
-    Returns:
-        Complete field selection string
-    """
-    if not definition or not isinstance(definition, dict) or 'fields' not in definition:
-        return response_arg_str
-    
-    # DEBUG: Print fields for debugging
-    # print(f"DEBUG: renderArgsAndFields - operation_name={operation_name}, fields={list(definition['fields'].keys())}", file=sys.stderr)
-        
-    for field_name in definition['fields']:
-        field = definition['fields'][field_name]
-        field_display_name = field.get('alias', field['name'])
-        
-        # Check if field has arguments and whether they are present in variables
-        should_include_field = True
-        args_present = False
-        arg_str = ""
-        
-        if field.get("args") and not isinstance(field['args'], list):
-            if len(list(field['args'].keys())) > 0:
-                # Field has arguments - check if any are required or present
-                arg_str = " ( "
-                required_args_missing = False
-                
-                for arg_name in field['args']:
-                    arg = field['args'][arg_name]
-                    if arg["varName"] in variables_obj:
-                        arg_str += arg['responseStr'] + " "
-                        args_present = True
-                    elif arg.get("required", False):
-                        # Required argument is missing
-                        required_args_missing = True
-                        break
-                        
-                arg_str += ") "
-                
-                # Only exclude field if required arguments are missing
-                # If all arguments are optional, include the field even without arguments
-                should_include_field = not required_args_missing
-        
-        # Only process field if we should include it
-        if should_include_field:
-            response_arg_str += f"{indent}{field_display_name}"
-            if args_present:
-                response_arg_str += arg_str
-        
-        # ENHANCED: Check for custom field expansions first
-        custom_fields = custom_client.get_custom_fields(operation_name, field['name'])
-        if should_include_field and custom_fields:
-            response_arg_str += "  {\n"
-            for custom_field in custom_fields:
-                response_arg_str += f"{indent}\t{custom_field}\n"
-            response_arg_str += f"{indent}}}\n"
-        
-        # Standard nested field processing (only if no custom fields defined)
-        elif should_include_field and field.get("type") and field['type'].get('definition') and field['type']['definition']['fields'] is not None:
-            response_arg_str += " {\n"
-            for subfield_index in field['type']['definition']['fields']:
-                subfield = field['type']['definition']['fields'][subfield_index]
-                subfield_name = subfield.get('alias', subfield['name'])
-                response_arg_str += f"{indent}\t{subfield_name}"
-                
-                if subfield.get("args") and len(list(subfield["args"].keys())) > 0:
-                    sub_args_present = False
-                    sub_arg_str = " ( "
-                    for arg_name in subfield['args']:
-                        arg = subfield['args'][arg_name]
-                        if arg["varName"] in variables_obj:
-                            sub_args_present = True
-                            sub_arg_str += arg['responseStr'] + " "
-                    sub_arg_str += " )"
-                    if sub_args_present:
-                        response_arg_str += sub_arg_str
-                
-                if subfield.get("type") and subfield['type'].get("definition") and (subfield['type']['definition'].get("fields") or subfield['type']['definition'].get('inputFields')):
-                    response_arg_str += " {\n"
-                    response_arg_str = renderArgsAndFields(response_arg_str, variables_obj, cur_operation, subfield['type']['definition'], operation_name, indent + "\t\t")
-                    if subfield['type']['definition'].get('possibleTypes'):
-                        possible_types = subfield['type']['definition']['possibleTypes']
-                        # Handle both list and dict formats for possibleTypes
-                        if isinstance(possible_types, list):
-                            for possible_type in possible_types:
-                                if isinstance(possible_type, dict) and 'name' in possible_type:
-                                    # Only create fragment if there are actually fields to render
-                                    if possible_type.get('fields') or possible_type.get('inputFields'):
-                                        response_arg_str += f"{indent}\t\t... on {possible_type['name']} {{\n"
-                                        response_arg_str = renderArgsAndFields(response_arg_str, variables_obj, cur_operation, possible_type, operation_name, indent + "\t\t\t")
-                                        response_arg_str += f"{indent}\t\t}}\n"
-                        elif isinstance(possible_types, dict):
-                            for possible_type_name in possible_types:
-                                possible_type = possible_types[possible_type_name]
-                                # Only create fragment if there are actually fields to render
-                                if possible_type.get('fields') or possible_type.get('inputFields'):
-                                    response_arg_str += f"{indent}\t\t... on {possible_type['name']} {{\n"
-                                    response_arg_str = renderArgsAndFields(response_arg_str, variables_obj, cur_operation, possible_type, operation_name, indent + "\t\t\t")
-                                    response_arg_str += f"{indent}\t\t}}\n"
-                    response_arg_str += f"{indent}\t}}"
-                elif subfield.get('type') and subfield['type'].get('definition') and subfield['type']['definition'].get('possibleTypes'):
-                    response_arg_str += " {\n"
-                    response_arg_str += f"{indent}\t\t__typename\n"
-                    possible_types = subfield['type']['definition']['possibleTypes']
-                    # Handle both list and dict formats for possibleTypes
-                    if isinstance(possible_types, list):
-                        for possible_type in possible_types:
-                            if isinstance(possible_type, dict) and 'name' in possible_type:
-                                # Only create fragment if there are actually fields to render
-                                if possible_type.get('fields') or possible_type.get('inputFields'):
-                                    response_arg_str += f"{indent}\t\t... on {possible_type['name']} {{\n"
-                                    response_arg_str = renderArgsAndFields(response_arg_str, variables_obj, cur_operation, possible_type, operation_name, indent + "\t\t\t")
-                                    response_arg_str += f"{indent}\t\t}}\n"
-                    elif isinstance(possible_types, dict):
-                        for possible_type_name in possible_types:
-                            possible_type = possible_types[possible_type_name]
-                            # Only create fragment if there are actually fields to render
-                            if possible_type.get('fields') or possible_type.get('inputFields'):
-                                response_arg_str += f"{indent}\t\t... on {possible_type['name']} {{\n"
-                                response_arg_str = renderArgsAndFields(response_arg_str, variables_obj, cur_operation, possible_type, operation_name, indent + "\t\t\t")
-                                response_arg_str += f"{indent}\t\t}}\n"
-                    response_arg_str += f"{indent}\t}}\n"
-                response_arg_str += "\n"
-                
-            if field['type']['definition'].get('possibleTypes'):
-                for possible_type_name in field['type']['definition']['possibleTypes']:
-                    possible_type = field['type']['definition']['possibleTypes'][possible_type_name]
-                    response_arg_str += f"{indent}\t... on {possible_type['name']} {{\n"
-                    if possible_type.get('fields') or possible_type.get('inputFields'):
-                        response_arg_str = renderArgsAndFields(response_arg_str, variables_obj, cur_operation, possible_type, operation_name, indent + "\t\t")
-                    response_arg_str += f"{indent}\t}}\n"
-            response_arg_str += f"{indent}}}\n"
-        
-        # Handle inputFields
-        if should_include_field and field.get('type') and field['type'].get('definition') and field['type']['definition'].get('inputFields'):
-            response_arg_str += " {\n"
-            for subfield_name in field['type']['definition'].get('inputFields'):
-                subfield = field['type']['definition']['inputFields'][subfield_name]
-                # Enhanced aliasing logic for inputFields
-                if (subfield.get('type') and subfield['type'].get('name') and 
-                    cur_operation.get('fieldTypes', {}).get(subfield['type']['name']) and 
-                    subfield.get('type', {}).get('kind') and 
-                    'SCALAR' not in str(subfield['type']['kind'])):
-                    subfield_name = f"{subfield['name']}{field['type']['definition']['name']}: {subfield['name']}"
-                else:
-                    subfield_name = subfield['name']
-                response_arg_str += f"{indent}\t{subfield_name}"
-                if subfield.get('type') and subfield['type'].get('definition') and (subfield['type']['definition'].get('fields') or subfield['type']['definition'].get('inputFields')):
-                    response_arg_str += " {\n"
-                    response_arg_str = renderArgsAndFields(response_arg_str, variables_obj, cur_operation, subfield['type']['definition'], operation_name, indent + "\t\t")
-                    response_arg_str += f"{indent}\t}}\n"
-            if field['type']['definition'].get('possibleTypes'):
-                for possible_type_name in field['type']['definition']['possibleTypes']:
-                    possible_type = field['type']['definition']['possibleTypes'][possible_type_name]
-                    response_arg_str += f"{indent}... on {possible_type['name']} {{\n"
-                    if possible_type.get('fields') or possible_type.get('inputFields'):
-                        response_arg_str = renderArgsAndFields(response_arg_str, variables_obj, cur_operation, possible_type, operation_name, indent + "\t\t")
-                    response_arg_str += f"{indent}\t}}\n"
-            response_arg_str += f"{indent}}}\n"
-        
-        if should_include_field:
-            response_arg_str += "\n"
-    
-    return response_arg_str
 
 
 # Binary/Multipart request functions (preserved from original)

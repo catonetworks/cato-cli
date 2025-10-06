@@ -1,5 +1,400 @@
-mutation policyInternetFirewallPublishPolicyRevision ( $policyPublishRevisionInput:PolicyPublishRevisionInput $internetFirewallPolicyMutationInput:InternetFirewallPolicyMutationInput ) {
-	policy ( ) {
-		internetFirewall
+mutation policyInternetFirewallPublishPolicyRevision ( $policyPublishRevisionInput:PolicyPublishRevisionInput $internetFirewallPolicyMutationInput:InternetFirewallPolicyMutationInput $accountId:ID! ) {
+	policy ( accountId:$accountId ) {
+		internetFirewall ( input:$internetFirewallPolicyMutationInput  )  {
+			publishPolicyRevisionInternetFirewallPolicyMutations: publishPolicyRevision ( input:$policyPublishRevisionInput   ) {
+				policy  {
+					enabled
+					rulesInternetFirewallPolicy: rules {
+						audit  {
+							updatedTime
+							updatedBy
+						}
+
+						rule  {
+							id
+							name
+							description
+							index
+							sectionInternetFirewallRule: section {
+								id 
+								name 
+							}
+							enabled
+							sourceInternetFirewallRule: source {
+								ip 
+								host  {
+									id
+									name
+								}
+
+								site  {
+									id
+									name
+								}
+
+								subnet 
+								ipRange  {
+									from
+									to
+								}
+
+								globalIpRange  {
+									id
+									name
+								}
+
+								networkInterface  {
+									id
+									name
+								}
+
+								siteNetworkSubnet  {
+									id
+									name
+								}
+
+								floatingSubnet  {
+									id
+									name
+								}
+
+								user  {
+									id
+									name
+								}
+
+								usersGroup  {
+									id
+									name
+								}
+
+								group  {
+									id
+									name
+								}
+
+								systemGroup  {
+									id
+									name
+								}
+
+							}
+							connectionOriginInternetFirewallRule: connectionOrigin
+							countryInternetFirewallRule: country {
+								id 
+								name 
+							}
+							deviceInternetFirewallRule: device {
+								id 
+								name 
+							}
+							deviceOSInternetFirewallRule: deviceOS
+							deviceAttributesInternetFirewallRule: deviceAttributes {
+								category 
+								type 
+								model 
+								manufacturer 
+								os 
+								osVersion 
+							}
+							destinationInternetFirewallRule: destination {
+								application  {
+									id
+									name
+								}
+
+								customApp  {
+									id
+									name
+								}
+
+								appCategory  {
+									id
+									name
+								}
+
+								customCategory  {
+									id
+									name
+								}
+
+								sanctionedAppsCategory  {
+									id
+									name
+								}
+
+								country  {
+									id
+									name
+								}
+
+								domain 
+								fqdn 
+								ip 
+								subnet 
+								ipRange  {
+									from
+									to
+								}
+
+								globalIpRange  {
+									id
+									name
+								}
+
+								remoteAsn 
+								containers  {
+									fqdnContainerInternetFirewallContainer: fqdnContainer {
+										id 
+										name 
+									}
+									ipAddressRangeContainerInternetFirewallContainer: ipAddressRangeContainer {
+										id 
+										name 
+									}
+								}
+
+							}
+							serviceInternetFirewallRule: service {
+								standard  {
+									id
+									name
+								}
+
+								custom  {
+									port
+									portRangeCustomService: portRange {
+										from 
+										to 
+									}
+									protocolCustomService: protocol
+								}
+
+							}
+							actionInternetFirewallRule: action
+							trackingInternetFirewallRule: tracking {
+								event  {
+									enabled
+								}
+
+								alert  {
+									enabled
+									frequencyPolicyRuleTrackingAlert: frequency
+									subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
+										id 
+										name 
+									}
+									webhookPolicyRuleTrackingAlert: webhook {
+										id 
+										name 
+									}
+									mailingListPolicyRuleTrackingAlert: mailingList {
+										id 
+										name 
+									}
+								}
+
+							}
+							scheduleInternetFirewallRule: schedule {
+								activeOn 
+								customTimeframe  {
+									from
+									to
+								}
+
+								customRecurring  {
+									from
+									to
+									daysPolicyCustomRecurring: days
+								}
+
+							}
+							activePeriodInternetFirewallRule: activePeriod {
+								useEffectiveFrom 
+								effectiveFrom 
+								useExpiresAt 
+								expiresAt 
+							}
+							exceptionsInternetFirewallRule: exceptions {
+								name 
+								source  {
+									ip
+									hostInternetFirewallSource: host {
+										id 
+										name 
+									}
+									siteInternetFirewallSource: site {
+										id 
+										name 
+									}
+									subnet
+									ipRangeInternetFirewallSource: ipRange {
+										from 
+										to 
+									}
+									globalIpRangeInternetFirewallSource: globalIpRange {
+										id 
+										name 
+									}
+									networkInterfaceInternetFirewallSource: networkInterface {
+										id 
+										name 
+									}
+									siteNetworkSubnetInternetFirewallSource: siteNetworkSubnet {
+										id 
+										name 
+									}
+									floatingSubnetInternetFirewallSource: floatingSubnet {
+										id 
+										name 
+									}
+									userInternetFirewallSource: user {
+										id 
+										name 
+									}
+									usersGroupInternetFirewallSource: usersGroup {
+										id 
+										name 
+									}
+									groupInternetFirewallSource: group {
+										id 
+										name 
+									}
+									systemGroupInternetFirewallSource: systemGroup {
+										id 
+										name 
+									}
+								}
+
+								deviceOS 
+								country  {
+									id
+									name
+								}
+
+								device  {
+									id
+									name
+								}
+
+								deviceAttributes  {
+									category
+									type
+									model
+									manufacturer
+									os
+									osVersion
+								}
+
+								destination  {
+									applicationInternetFirewallDestination: application {
+										id 
+										name 
+									}
+									customAppInternetFirewallDestination: customApp {
+										id 
+										name 
+									}
+									appCategoryInternetFirewallDestination: appCategory {
+										id 
+										name 
+									}
+									customCategoryInternetFirewallDestination: customCategory {
+										id 
+										name 
+									}
+									sanctionedAppsCategoryInternetFirewallDestination: sanctionedAppsCategory {
+										id 
+										name 
+									}
+									countryInternetFirewallDestination: country {
+										id 
+										name 
+									}
+									domain
+									fqdn
+									ip
+									subnet
+									ipRangeInternetFirewallDestination: ipRange {
+										from 
+										to 
+									}
+									globalIpRangeInternetFirewallDestination: globalIpRange {
+										id 
+										name 
+									}
+									remoteAsn
+									containersInternetFirewallDestination: containers {
+										fqdnContainer  {
+											id
+											name
+										}
+
+										ipAddressRangeContainer  {
+											id
+											name
+										}
+
+									}
+								}
+
+								service  {
+									standardInternetFirewallServiceType: standard {
+										id 
+										name 
+									}
+									customInternetFirewallServiceType: custom {
+										port 
+										portRange  {
+											from
+											to
+										}
+
+										protocol 
+									}
+								}
+
+								connectionOrigin 
+							}
+						}
+
+						properties 
+					}
+					sectionsInternetFirewallPolicy: sections {
+						audit  {
+							updatedTime
+							updatedBy
+						}
+
+						section  {
+							id
+							name
+						}
+
+						properties 
+					}
+					auditInternetFirewallPolicy: audit {
+						publishedTime 
+						publishedBy 
+					}
+					revisionInternetFirewallPolicy: revision {
+						id 
+						name 
+						description 
+						changes 
+						createdTime 
+						updatedTime 
+					}
+				}
+
+				status 
+				errors  {
+					errorMessage
+					errorCode
+				}
+
+			}
+		}
+
 	}	
 }

@@ -1,5 +1,59 @@
-mutation enterpriseDirectoryRestoreLocation ( $locationId:ID ) {
-	enterpriseDirectory ( ) {
-		restoreLocation
+mutation enterpriseDirectoryRestoreLocation ( $locationId:ID $accountId:ID! ) {
+	enterpriseDirectory ( accountId:$accountId ) {
+		restoreLocation ( locationId:$locationId  )  {
+			locationEnterpriseDirectoryRestoreLocationPayload: location {
+				id 
+				account  {
+					id
+					name
+				}
+
+				type 
+				name 
+				businessUnit 
+				description 
+				details  {
+					companyName
+					postalAddressLocationDetails: postalAddress {
+						street 
+						cityName 
+						country  {
+							id
+							name
+						}
+
+						stateName 
+						zipCode 
+						addressValidated 
+					}
+					vatId
+					contactLocationDetails: contact {
+						name 
+						phone 
+						email 
+					}
+					shippingLocation
+				}
+
+				archived 
+				audit  {
+					updatedTime
+					updatedByAuditingMetadata: updatedBy {
+						id 
+						name 
+						... on AdminRef {
+							id 
+							name 
+						}
+						... on ApiKeyRef {
+							id 
+							name 
+						}
+					}
+				}
+
+			}
+		}
+
 	}	
 }

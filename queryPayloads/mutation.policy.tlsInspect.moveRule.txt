@@ -1,5 +1,157 @@
-mutation policyTlsInspectMoveRule ( $policyMoveRuleInput:PolicyMoveRuleInput! $tlsInspectPolicyMutationInput:TlsInspectPolicyMutationInput ) {
-	policy ( ) {
-		tlsInspect
+mutation policyTlsInspectMoveRule ( $policyMoveRuleInput:PolicyMoveRuleInput! $tlsInspectPolicyMutationInput:TlsInspectPolicyMutationInput $accountId:ID! ) {
+	policy ( accountId:$accountId ) {
+		tlsInspect ( input:$tlsInspectPolicyMutationInput  )  {
+			moveRuleTlsInspectPolicyMutations: moveRule ( input:$policyMoveRuleInput   ) {
+				rule  {
+					auditTlsInspectRulePayload: audit {
+						updatedTime 
+						updatedBy 
+					}
+					ruleTlsInspectRulePayload: rule {
+						id 
+						name 
+						description 
+						index 
+						section  {
+							id
+							name
+						}
+
+						enabled 
+						source  {
+							userTlsInspectSource: user {
+								id 
+								name 
+							}
+							floatingSubnetTlsInspectSource: floatingSubnet {
+								id 
+								name 
+							}
+							globalIpRangeTlsInspectSource: globalIpRange {
+								id 
+								name 
+							}
+							groupTlsInspectSource: group {
+								id 
+								name 
+							}
+							hostTlsInspectSource: host {
+								id 
+								name 
+							}
+							subnet
+							ipRangeTlsInspectSource: ipRange {
+								from 
+								to 
+							}
+							networkInterfaceTlsInspectSource: networkInterface {
+								id 
+								name 
+							}
+							siteTlsInspectSource: site {
+								id 
+								name 
+							}
+							systemGroupTlsInspectSource: systemGroup {
+								id 
+								name 
+							}
+							usersGroupTlsInspectSource: usersGroup {
+								id 
+								name 
+							}
+							ip
+							siteNetworkSubnetTlsInspectSource: siteNetworkSubnet {
+								id 
+								name 
+							}
+						}
+
+						platform 
+						country  {
+							id
+							name
+						}
+
+						devicePostureProfile  {
+							id
+							name
+						}
+
+						connectionOrigin 
+						application  {
+							applicationTlsInspectApplication: application {
+								id 
+								name 
+							}
+							appCategoryTlsInspectApplication: appCategory {
+								id 
+								name 
+							}
+							countryTlsInspectApplication: country {
+								id 
+								name 
+							}
+							customAppTlsInspectApplication: customApp {
+								id 
+								name 
+							}
+							customCategoryTlsInspectApplication: customCategory {
+								id 
+								name 
+							}
+							customServiceIpTlsInspectApplication: customServiceIp {
+								name 
+								ip 
+								ipRange  {
+									from
+									to
+								}
+
+							}
+							domain
+							fqdn
+							subnet
+							ip
+							ipRangeTlsInspectApplication: ipRange {
+								from 
+								to 
+							}
+							globalIpRangeTlsInspectApplication: globalIpRange {
+								id 
+								name 
+							}
+							customServiceTlsInspectApplication: customService {
+								port 
+								portRange  {
+									from
+									to
+								}
+
+								protocol 
+							}
+							remoteAsn
+							serviceTlsInspectApplication: service {
+								id 
+								name 
+							}
+							tlsInspectCategoryTlsInspectApplication: tlsInspectCategory
+						}
+
+						action 
+						untrustedCertificateAction 
+					}
+					propertiesTlsInspectRulePayload: properties
+				}
+
+				status 
+				errors  {
+					errorMessage
+					errorCode
+				}
+
+			}
+		}
+
 	}	
 }

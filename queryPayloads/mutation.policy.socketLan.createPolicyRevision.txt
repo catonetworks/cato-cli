@@ -1,5 +1,379 @@
-mutation policySocketLanCreatePolicyRevision ( $policyCreateRevisionInput:PolicyCreateRevisionInput! $socketLanPolicyMutationInput:SocketLanPolicyMutationInput ) {
-	policy ( ) {
-		socketLan
+mutation policySocketLanCreatePolicyRevision ( $policyCreateRevisionInput:PolicyCreateRevisionInput! $socketLanPolicyMutationInput:SocketLanPolicyMutationInput $accountId:ID! ) {
+	policy ( accountId:$accountId ) {
+		socketLan ( input:$socketLanPolicyMutationInput  )  {
+			createPolicyRevisionSocketLanPolicyMutations: createPolicyRevision ( input:$policyCreateRevisionInput   ) {
+				policy  {
+					enabled
+					rulesSocketLanPolicy: rules {
+						audit  {
+							updatedTime
+							updatedBy
+						}
+
+						rule  {
+							id
+							name
+							description
+							index
+							sectionSocketLanRule: section {
+								id 
+								name 
+							}
+							enabled
+							firewallSocketLanRule: firewall {
+								audit  {
+									updatedTime
+									updatedBy
+								}
+
+								rule  {
+									id
+									name
+									description
+									index
+									sectionSocketLanFirewallRule: section {
+										id 
+										name 
+									}
+									enabled
+									sourceSocketLanFirewallRule: source {
+										vlan 
+										mac 
+										ipRange  {
+											from
+											to
+										}
+
+										group  {
+											id
+											name
+										}
+
+										subnet 
+										site  {
+											id
+											name
+										}
+
+										networkInterface  {
+											id
+											name
+										}
+
+										systemGroup  {
+											id
+											name
+										}
+
+										host  {
+											id
+											name
+										}
+
+										ip 
+										globalIpRange  {
+											id
+											name
+										}
+
+										floatingSubnet  {
+											id
+											name
+										}
+
+										siteNetworkSubnet  {
+											id
+											name
+										}
+
+									}
+									destinationSocketLanFirewallRule: destination {
+										vlan 
+										ipRange  {
+											from
+											to
+										}
+
+										subnet 
+										site  {
+											id
+											name
+										}
+
+										networkInterface  {
+											id
+											name
+										}
+
+										systemGroup  {
+											id
+											name
+										}
+
+										host  {
+											id
+											name
+										}
+
+										ip 
+										globalIpRange  {
+											id
+											name
+										}
+
+										group  {
+											id
+											name
+										}
+
+										floatingSubnet  {
+											id
+											name
+										}
+
+										siteNetworkSubnet  {
+											id
+											name
+										}
+
+									}
+									directionSocketLanFirewallRule: direction
+									applicationSocketLanFirewallRule: application {
+										application  {
+											id
+											name
+										}
+
+										customApp  {
+											id
+											name
+										}
+
+										domain 
+										fqdn 
+										ip 
+										subnet 
+										ipRange  {
+											from
+											to
+										}
+
+										globalIpRange  {
+											id
+											name
+										}
+
+									}
+									serviceSocketLanFirewallRule: service {
+										simple  {
+											nameSimpleService: name
+										}
+
+										standard  {
+											id
+											name
+										}
+
+										custom  {
+											port
+											portRangeCustomService: portRange {
+												from 
+												to 
+											}
+											protocolCustomService: protocol
+										}
+
+									}
+									actionSocketLanFirewallRule: action
+									trackingSocketLanFirewallRule: tracking {
+										event  {
+											enabled
+										}
+
+										alert  {
+											enabled
+											frequencyPolicyRuleTrackingAlert: frequency
+											subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
+												id 
+												name 
+											}
+											webhookPolicyRuleTrackingAlert: webhook {
+												id 
+												name 
+											}
+											mailingListPolicyRuleTrackingAlert: mailingList {
+												id 
+												name 
+											}
+										}
+
+									}
+								}
+
+								properties 
+							}
+							siteSocketLanRule: site {
+								site  {
+									id
+									name
+								}
+
+								group  {
+									id
+									name
+								}
+
+							}
+							sourceSocketLanRule: source {
+								vlan 
+								ipRange  {
+									from
+									to
+								}
+
+								group  {
+									id
+									name
+								}
+
+								subnet 
+								networkInterface  {
+									id
+									name
+								}
+
+								systemGroup  {
+									id
+									name
+								}
+
+								host  {
+									id
+									name
+								}
+
+								ip 
+								globalIpRange  {
+									id
+									name
+								}
+
+								floatingSubnet  {
+									id
+									name
+								}
+
+								siteNetworkSubnet  {
+									id
+									name
+								}
+
+							}
+							destinationSocketLanRule: destination {
+								vlan 
+								ipRange  {
+									from
+									to
+								}
+
+								subnet 
+								networkInterface  {
+									id
+									name
+								}
+
+								systemGroup  {
+									id
+									name
+								}
+
+								host  {
+									id
+									name
+								}
+
+								ip 
+								globalIpRange  {
+									id
+									name
+								}
+
+								group  {
+									id
+									name
+								}
+
+								floatingSubnet  {
+									id
+									name
+								}
+
+								siteNetworkSubnet  {
+									id
+									name
+								}
+
+							}
+							directionSocketLanRule: direction
+							serviceSocketLanRule: service {
+								simple  {
+									nameSimpleService: name
+								}
+
+								custom  {
+									port
+									portRangeCustomService: portRange {
+										from 
+										to 
+									}
+									protocolCustomService: protocol
+								}
+
+							}
+							natSocketLanRule: nat {
+								enabled 
+								natType 
+							}
+							transportSocketLanRule: transport
+						}
+
+						properties 
+					}
+					sectionsSocketLanPolicy: sections {
+						audit  {
+							updatedTime
+							updatedBy
+						}
+
+						section  {
+							id
+							name
+						}
+
+						properties 
+					}
+					auditSocketLanPolicy: audit {
+						publishedTime 
+						publishedBy 
+					}
+					revisionSocketLanPolicy: revision {
+						id 
+						name 
+						description 
+						changes 
+						createdTime 
+						updatedTime 
+					}
+				}
+
+				status 
+				errors  {
+					errorMessage
+					errorCode
+				}
+
+			}
+		}
+
 	}	
 }

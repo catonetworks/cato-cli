@@ -76,30 +76,7 @@
     },
     "deprecationReason": null,
     "description": "The accountMetrics query helps you analyze the state and quality of the connections\nof sites and SDP users to the Cato Cloud. This data is for the traffic inside the DTLS\ntunnel between the site and the Cato Cloud. accountMetrics shows historical metrics,\nstatics, and analytics for the account.",
-    "fieldTypes": {
-        "AnnotationType": true,
-        "DimensionData": true,
-        "DimensionKey": true,
-        "IPInfo": true,
-        "IPSecInfo": true,
-        "InterfaceInfo": true,
-        "InterfaceMetrics": true,
-        "Metrics": true,
-        "PeriodType": true,
-        "ProtoType": true,
-        "SiteInfo": true,
-        "SiteMetrics": true,
-        "SiteType": true,
-        "SocketInfo": true,
-        "SocketInterfaceWanRole": true,
-        "SocketPlatform": true,
-        "TimeAnnotation": true,
-        "TimePeriod": true,
-        "Timeseries": true,
-        "TimeseriesKey": true,
-        "TunnelConfig": true,
-        "UnitType": true
-    },
+    "fieldTypes": {},
     "isDeprecated": false,
     "name": "accountMetrics",
     "operationArgs": {
@@ -120,24 +97,6 @@
                 "non_null": false
             },
             "varName": "accountID"
-        },
-        "buckets": {
-            "defaultValue": null,
-            "description": "number of buckets, defaults to 10, max 1000",
-            "id_str": "timeseries___buckets",
-            "name": "buckets",
-            "path": "timeseries.buckets",
-            "requestStr": "$buckets:Int ",
-            "required": false,
-            "responseStr": "buckets:$buckets ",
-            "type": {
-                "kind": [
-                    "SCALAR"
-                ],
-                "name": "Int",
-                "non_null": false
-            },
-            "varName": "buckets"
         },
         "groupDevices": {
             "defaultValue": null,
@@ -175,208 +134,6 @@
             },
             "varName": "groupInterfaces"
         },
-        "labels": {
-            "defaultValue": null,
-            "description": null,
-            "id_str": "timeseries___labels",
-            "name": "labels",
-            "path": "timeseries.labels",
-            "requestStr": "$labels:[TimeseriesMetricType!] ",
-            "required": false,
-            "responseStr": "labels:$labels ",
-            "type": {
-                "definition": {
-                    "description": null,
-                    "enumValues": [
-                        {
-                            "deprecationReason": null,
-                            "description": "Total avg upstream traffic (from the site to the Cato Cloud)",
-                            "isDeprecated": false,
-                            "name": "bytesUpstream"
-                        },
-                        {
-                            "deprecationReason": null,
-                            "description": "Total avg downstream traffic (from the Cato Cloud to the site)",
-                            "isDeprecated": false,
-                            "name": "bytesDownstream"
-                        },
-                        {
-                            "deprecationReason": null,
-                            "description": "Total max upstream traffic (from the site to the Cato Cloud)",
-                            "isDeprecated": false,
-                            "name": "bytesUpstreamMax"
-                        },
-                        {
-                            "deprecationReason": null,
-                            "description": "Total max downstream traffic (from the site to the Cato Cloud)",
-                            "isDeprecated": false,
-                            "name": "bytesDownstreamMax"
-                        },
-                        {
-                            "deprecationReason": null,
-                            "description": "Total upstream packets",
-                            "isDeprecated": false,
-                            "name": "packetsUpstream"
-                        },
-                        {
-                            "deprecationReason": null,
-                            "description": "Total downstream packets",
-                            "isDeprecated": false,
-                            "name": "packetsDownstream"
-                        },
-                        {
-                            "deprecationReason": null,
-                            "description": "Number of packets lost for upstream traffic",
-                            "isDeprecated": false,
-                            "name": "lostUpstream"
-                        },
-                        {
-                            "deprecationReason": null,
-                            "description": "Number of packets lost for downstream traffic",
-                            "isDeprecated": false,
-                            "name": "lostDownstream"
-                        },
-                        {
-                            "deprecationReason": null,
-                            "description": "Percent of packet loss for upstream traffic",
-                            "isDeprecated": false,
-                            "name": "lostUpstreamPcnt"
-                        },
-                        {
-                            "deprecationReason": null,
-                            "description": "Percent of packet loss for downstream traffic",
-                            "isDeprecated": false,
-                            "name": "lostDownstreamPcnt"
-                        },
-                        {
-                            "deprecationReason": null,
-                            "description": "Total packets discarded for downstream traffic",
-                            "isDeprecated": false,
-                            "name": "packetsDiscardedDownstream"
-                        },
-                        {
-                            "deprecationReason": null,
-                            "description": "Total packets discarded for upstream traffic",
-                            "isDeprecated": false,
-                            "name": "packetsDiscardedUpstream"
-                        },
-                        {
-                            "deprecationReason": null,
-                            "description": "Percent packets discarded for upstream traffic",
-                            "isDeprecated": false,
-                            "name": "packetsDiscardedUpstreamPcnt"
-                        },
-                        {
-                            "deprecationReason": null,
-                            "description": "Percent packets discarded for downstream traffic",
-                            "isDeprecated": false,
-                            "name": "packetsDiscardedDownstreamPcnt"
-                        },
-                        {
-                            "deprecationReason": null,
-                            "description": "Jitter for upstream traffic (difference in time delay in milliseconds (ms) between data packets)",
-                            "isDeprecated": false,
-                            "name": "jitterUpstream"
-                        },
-                        {
-                            "deprecationReason": null,
-                            "description": "Jitter for downstream traffic (difference in time delay in milliseconds (ms) between data packets)",
-                            "isDeprecated": false,
-                            "name": "jitterDownstream"
-                        },
-                        {
-                            "deprecationReason": null,
-                            "description": "Total number of bytes of upstream and downstream traffic",
-                            "isDeprecated": false,
-                            "name": "bytesTotal"
-                        },
-                        {
-                            "deprecationReason": null,
-                            "description": "Round-trip time from the Socket to the Cato Cloud",
-                            "isDeprecated": false,
-                            "name": "rtt"
-                        },
-                        {
-                            "deprecationReason": "No longer supported",
-                            "description": "Health analytics for the site",
-                            "isDeprecated": true,
-                            "name": "health"
-                        },
-                        {
-                            "deprecationReason": null,
-                            "description": "The age of the physical tunnel in milliseconds (It is zeroed even on transparent reconnect)",
-                            "isDeprecated": false,
-                            "name": "tunnelAge"
-                        },
-                        {
-                            "deprecationReason": null,
-                            "description": "Packet loss from socket directly to a well known global services, not through Cato This is used to measure last\nmile provider's performance, independent of the service.",
-                            "isDeprecated": false,
-                            "name": "lastMilePacketLoss"
-                        },
-                        {
-                            "deprecationReason": null,
-                            "description": "Latency from socket directly to a well known global service, not through Cato. This is used to measure last\nmile provider's performance, independent of the service.",
-                            "isDeprecated": false,
-                            "name": "lastMileLatency"
-                        }
-                    ],
-                    "fields": null,
-                    "inputFields": null,
-                    "interfaces": null,
-                    "kind": "ENUM",
-                    "name": "TimeseriesMetricType",
-                    "possibleTypes": null
-                },
-                "indexType": "enum",
-                "kind": [
-                    "LIST",
-                    "NON_NULL",
-                    "ENUM"
-                ],
-                "name": "TimeseriesMetricType",
-                "non_null": false
-            },
-            "varName": "labels"
-        },
-        "perSecond": {
-            "defaultValue": "true",
-            "description": "whether to normalize the data into per second (i.e. divide by granularity)",
-            "id_str": "data___perSecond",
-            "name": "perSecond",
-            "path": "data.perSecond",
-            "requestStr": "$perSecond:Boolean ",
-            "required": false,
-            "responseStr": "perSecond:$perSecond ",
-            "type": {
-                "kind": [
-                    "SCALAR"
-                ],
-                "name": "Boolean",
-                "non_null": false
-            },
-            "varName": "perSecond"
-        },
-        "siteIDs": {
-            "defaultValue": null,
-            "description": "A list of unique IDs for each site. If specified, only sites in this list are returned. Otherwise, all sites are returned.",
-            "id_str": "sites___siteIDs",
-            "name": "siteIDs",
-            "path": "sites.siteIDs",
-            "requestStr": "$siteIDs:[ID!] ",
-            "required": false,
-            "responseStr": "siteIDs:$siteIDs ",
-            "type": {
-                "kind": [
-                    "LIST",
-                    "NON_NULL",
-                    "SCALAR"
-                ],
-                "name": "ID",
-                "non_null": false
-            },
-            "varName": "siteIDs"
-        },
         "timeFrame": {
             "defaultValue": null,
             "description": "The time frame for the data that the query returns. The argument is in the format type.time value. This argument is mandatory.",
@@ -395,100 +152,6 @@
                 "non_null": false
             },
             "varName": "timeFrame"
-        },
-        "toRate": {
-            "defaultValue": "false",
-            "description": "Normalize collected metrics as per-second values",
-            "id_str": "metrics___toRate",
-            "name": "toRate",
-            "path": "metrics.toRate",
-            "requestStr": "$toRate:Boolean ",
-            "required": false,
-            "responseStr": "toRate:$toRate ",
-            "type": {
-                "kind": [
-                    "SCALAR"
-                ],
-                "name": "Boolean",
-                "non_null": false
-            },
-            "varName": "toRate"
-        },
-        "types": {
-            "defaultValue": null,
-            "description": null,
-            "id_str": "annotations___types",
-            "name": "types",
-            "path": "annotations.types",
-            "requestStr": "$types:[String!] ",
-            "required": false,
-            "responseStr": "types:$types ",
-            "type": {
-                "kind": [
-                    "LIST",
-                    "NON_NULL",
-                    "SCALAR"
-                ],
-                "name": "String",
-                "non_null": false
-            },
-            "varName": "types"
-        },
-        "useDefaultSizeBucket": {
-            "defaultValue": "false",
-            "description": "In case we want to have the default size bucket (from properties)",
-            "id_str": "data___useDefaultSizeBucket",
-            "name": "useDefaultSizeBucket",
-            "path": "data.useDefaultSizeBucket",
-            "requestStr": "$useDefaultSizeBucket:Boolean ",
-            "required": false,
-            "responseStr": "useDefaultSizeBucket:$useDefaultSizeBucket ",
-            "type": {
-                "kind": [
-                    "SCALAR"
-                ],
-                "name": "Boolean",
-                "non_null": false
-            },
-            "varName": "useDefaultSizeBucket"
-        },
-        "userIDs": {
-            "defaultValue": null,
-            "description": "A list of unique IDs for each user. If specified, only users in this list are returned. Otherwise, no user metrics are returned.",
-            "id_str": "users___userIDs",
-            "name": "userIDs",
-            "path": "users.userIDs",
-            "requestStr": "$userIDs:[ID!] ",
-            "required": false,
-            "responseStr": "userIDs:$userIDs ",
-            "type": {
-                "kind": [
-                    "LIST",
-                    "NON_NULL",
-                    "SCALAR"
-                ],
-                "name": "ID",
-                "non_null": false
-            },
-            "varName": "userIDs"
-        },
-        "withMissingData": {
-            "defaultValue": "false",
-            "description": "If false, the data field will be set to '0' for buckets with no reported data. Otherwise it will be set to -1",
-            "id_str": "data___withMissingData",
-            "name": "withMissingData",
-            "path": "data.withMissingData",
-            "requestStr": "$withMissingData:Boolean ",
-            "required": false,
-            "responseStr": "withMissingData:$withMissingData ",
-            "type": {
-                "kind": [
-                    "SCALAR"
-                ],
-                "name": "Boolean",
-                "non_null": false
-            },
-            "varName": "withMissingData"
         }
     },
     "path": "query.accountMetrics",
@@ -748,7 +411,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "DimensionData",
                                                             "possibleTypes": null
@@ -861,7 +524,7 @@
                                                                                 }
                                                                             },
                                                                             "inputFields": null,
-                                                                            "interfaces": {},
+                                                                            "interfaces": [],
                                                                             "kind": "OBJECT",
                                                                             "name": "DimensionKey",
                                                                             "possibleTypes": null
@@ -900,7 +563,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "TimeseriesKey",
                                                             "possibleTypes": null
@@ -1055,7 +718,7 @@
                                                 }
                                             },
                                             "inputFields": null,
-                                            "interfaces": {},
+                                            "interfaces": [],
                                             "kind": "OBJECT",
                                             "name": "Timeseries",
                                             "possibleTypes": null
@@ -1223,7 +886,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "DimensionData",
                                                             "possibleTypes": null
@@ -1336,7 +999,7 @@
                                                                                 }
                                                                             },
                                                                             "inputFields": null,
-                                                                            "interfaces": {},
+                                                                            "interfaces": [],
                                                                             "kind": "OBJECT",
                                                                             "name": "DimensionKey",
                                                                             "possibleTypes": null
@@ -1375,7 +1038,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "TimeseriesKey",
                                                             "possibleTypes": null
@@ -1530,7 +1193,7 @@
                                                 }
                                             },
                                             "inputFields": null,
-                                            "interfaces": {},
+                                            "interfaces": [],
                                             "kind": "OBJECT",
                                             "name": "Timeseries",
                                             "possibleTypes": null
@@ -1698,7 +1361,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "DimensionData",
                                                             "possibleTypes": null
@@ -1811,7 +1474,7 @@
                                                                                 }
                                                                             },
                                                                             "inputFields": null,
-                                                                            "interfaces": {},
+                                                                            "interfaces": [],
                                                                             "kind": "OBJECT",
                                                                             "name": "DimensionKey",
                                                                             "possibleTypes": null
@@ -1850,7 +1513,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "TimeseriesKey",
                                                             "possibleTypes": null
@@ -2005,7 +1668,7 @@
                                                 }
                                             },
                                             "inputFields": null,
-                                            "interfaces": {},
+                                            "interfaces": [],
                                             "kind": "OBJECT",
                                             "name": "Timeseries",
                                             "possibleTypes": null
@@ -2546,7 +2209,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "InterfaceInfo",
                                                             "possibleTypes": null
@@ -2737,7 +2400,7 @@
                                                                                 }
                                                                             },
                                                                             "inputFields": null,
-                                                                            "interfaces": {},
+                                                                            "interfaces": [],
                                                                             "kind": "OBJECT",
                                                                             "name": "TunnelConfig",
                                                                             "possibleTypes": null
@@ -2756,7 +2419,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "IPSecInfo",
                                                             "possibleTypes": null
@@ -3049,7 +2712,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "SocketInfo",
                                                             "possibleTypes": null
@@ -3123,7 +2786,7 @@
                                                 }
                                             },
                                             "inputFields": null,
-                                            "interfaces": {},
+                                            "interfaces": [],
                                             "kind": "OBJECT",
                                             "name": "SiteInfo",
                                             "possibleTypes": null
@@ -3315,7 +2978,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "TimeAnnotation",
                                                             "possibleTypes": null
@@ -3553,7 +3216,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "InterfaceInfo",
                                                             "possibleTypes": null
@@ -3742,7 +3405,7 @@
                                                                                 }
                                                                             },
                                                                             "inputFields": null,
-                                                                            "interfaces": {},
+                                                                            "interfaces": [],
                                                                             "kind": "OBJECT",
                                                                             "name": "TunnelConfig",
                                                                             "possibleTypes": null
@@ -3761,7 +3424,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "IPSecInfo",
                                                             "possibleTypes": null
@@ -4193,7 +3856,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "Metrics",
                                                             "possibleTypes": null
@@ -4384,7 +4047,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "TimePeriod",
                                                             "possibleTypes": null
@@ -4599,7 +4262,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "IPInfo",
                                                             "possibleTypes": null
@@ -4830,7 +4493,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "SocketInfo",
                                                             "possibleTypes": null
@@ -5182,7 +4845,7 @@
                                                                                 }
                                                                             },
                                                                             "inputFields": null,
-                                                                            "interfaces": {},
+                                                                            "interfaces": [],
                                                                             "kind": "OBJECT",
                                                                             "name": "DimensionData",
                                                                             "possibleTypes": null
@@ -5296,7 +4959,7 @@
                                                                                                 }
                                                                                             },
                                                                                             "inputFields": null,
-                                                                                            "interfaces": {},
+                                                                                            "interfaces": [],
                                                                                             "kind": "OBJECT",
                                                                                             "name": "DimensionKey",
                                                                                             "possibleTypes": null
@@ -5335,7 +4998,7 @@
                                                                                 }
                                                                             },
                                                                             "inputFields": null,
-                                                                            "interfaces": {},
+                                                                            "interfaces": [],
                                                                             "kind": "OBJECT",
                                                                             "name": "TimeseriesKey",
                                                                             "possibleTypes": null
@@ -5491,7 +5154,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "Timeseries",
                                                             "possibleTypes": null
@@ -5509,7 +5172,7 @@
                                                 }
                                             },
                                             "inputFields": null,
-                                            "interfaces": {},
+                                            "interfaces": [],
                                             "kind": "OBJECT",
                                             "name": "InterfaceMetrics",
                                             "possibleTypes": null
@@ -5943,7 +5606,7 @@
                                                 }
                                             },
                                             "inputFields": null,
-                                            "interfaces": {},
+                                            "interfaces": [],
                                             "kind": "OBJECT",
                                             "name": "Metrics",
                                             "possibleTypes": null
@@ -5999,7 +5662,7 @@
                                 }
                             },
                             "inputFields": null,
-                            "interfaces": {},
+                            "interfaces": [],
                             "kind": "OBJECT",
                             "name": "SiteMetrics",
                             "possibleTypes": null
@@ -6352,7 +6015,7 @@
                                                 }
                                             },
                                             "inputFields": null,
-                                            "interfaces": {},
+                                            "interfaces": [],
                                             "kind": "OBJECT",
                                             "name": "DimensionData",
                                             "possibleTypes": null
@@ -6466,7 +6129,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "DimensionKey",
                                                             "possibleTypes": null
@@ -6505,7 +6168,7 @@
                                                 }
                                             },
                                             "inputFields": null,
-                                            "interfaces": {},
+                                            "interfaces": [],
                                             "kind": "OBJECT",
                                             "name": "TimeseriesKey",
                                             "possibleTypes": null
@@ -6661,7 +6324,7 @@
                                 }
                             },
                             "inputFields": null,
-                            "interfaces": {},
+                            "interfaces": [],
                             "kind": "OBJECT",
                             "name": "Timeseries",
                             "possibleTypes": null
@@ -6888,7 +6551,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "DimensionData",
                                                             "possibleTypes": null
@@ -7001,7 +6664,7 @@
                                                                                 }
                                                                             },
                                                                             "inputFields": null,
-                                                                            "interfaces": {},
+                                                                            "interfaces": [],
                                                                             "kind": "OBJECT",
                                                                             "name": "DimensionKey",
                                                                             "possibleTypes": null
@@ -7040,7 +6703,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "TimeseriesKey",
                                                             "possibleTypes": null
@@ -7195,7 +6858,7 @@
                                                 }
                                             },
                                             "inputFields": null,
-                                            "interfaces": {},
+                                            "interfaces": [],
                                             "kind": "OBJECT",
                                             "name": "Timeseries",
                                             "possibleTypes": null
@@ -7363,7 +7026,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "DimensionData",
                                                             "possibleTypes": null
@@ -7476,7 +7139,7 @@
                                                                                 }
                                                                             },
                                                                             "inputFields": null,
-                                                                            "interfaces": {},
+                                                                            "interfaces": [],
                                                                             "kind": "OBJECT",
                                                                             "name": "DimensionKey",
                                                                             "possibleTypes": null
@@ -7515,7 +7178,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "TimeseriesKey",
                                                             "possibleTypes": null
@@ -7670,7 +7333,7 @@
                                                 }
                                             },
                                             "inputFields": null,
-                                            "interfaces": {},
+                                            "interfaces": [],
                                             "kind": "OBJECT",
                                             "name": "Timeseries",
                                             "possibleTypes": null
@@ -7838,7 +7501,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "DimensionData",
                                                             "possibleTypes": null
@@ -7951,7 +7614,7 @@
                                                                                 }
                                                                             },
                                                                             "inputFields": null,
-                                                                            "interfaces": {},
+                                                                            "interfaces": [],
                                                                             "kind": "OBJECT",
                                                                             "name": "DimensionKey",
                                                                             "possibleTypes": null
@@ -7990,7 +7653,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "TimeseriesKey",
                                                             "possibleTypes": null
@@ -8145,7 +7808,7 @@
                                                 }
                                             },
                                             "inputFields": null,
-                                            "interfaces": {},
+                                            "interfaces": [],
                                             "kind": "OBJECT",
                                             "name": "Timeseries",
                                             "possibleTypes": null
@@ -8686,7 +8349,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "InterfaceInfo",
                                                             "possibleTypes": null
@@ -8877,7 +8540,7 @@
                                                                                 }
                                                                             },
                                                                             "inputFields": null,
-                                                                            "interfaces": {},
+                                                                            "interfaces": [],
                                                                             "kind": "OBJECT",
                                                                             "name": "TunnelConfig",
                                                                             "possibleTypes": null
@@ -8896,7 +8559,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "IPSecInfo",
                                                             "possibleTypes": null
@@ -9189,7 +8852,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "SocketInfo",
                                                             "possibleTypes": null
@@ -9263,7 +8926,7 @@
                                                 }
                                             },
                                             "inputFields": null,
-                                            "interfaces": {},
+                                            "interfaces": [],
                                             "kind": "OBJECT",
                                             "name": "SiteInfo",
                                             "possibleTypes": null
@@ -9455,7 +9118,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "TimeAnnotation",
                                                             "possibleTypes": null
@@ -9693,7 +9356,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "InterfaceInfo",
                                                             "possibleTypes": null
@@ -9882,7 +9545,7 @@
                                                                                 }
                                                                             },
                                                                             "inputFields": null,
-                                                                            "interfaces": {},
+                                                                            "interfaces": [],
                                                                             "kind": "OBJECT",
                                                                             "name": "TunnelConfig",
                                                                             "possibleTypes": null
@@ -9901,7 +9564,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "IPSecInfo",
                                                             "possibleTypes": null
@@ -10333,7 +9996,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "Metrics",
                                                             "possibleTypes": null
@@ -10524,7 +10187,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "TimePeriod",
                                                             "possibleTypes": null
@@ -10739,7 +10402,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "IPInfo",
                                                             "possibleTypes": null
@@ -10970,7 +10633,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "SocketInfo",
                                                             "possibleTypes": null
@@ -11322,7 +10985,7 @@
                                                                                 }
                                                                             },
                                                                             "inputFields": null,
-                                                                            "interfaces": {},
+                                                                            "interfaces": [],
                                                                             "kind": "OBJECT",
                                                                             "name": "DimensionData",
                                                                             "possibleTypes": null
@@ -11436,7 +11099,7 @@
                                                                                                 }
                                                                                             },
                                                                                             "inputFields": null,
-                                                                                            "interfaces": {},
+                                                                                            "interfaces": [],
                                                                                             "kind": "OBJECT",
                                                                                             "name": "DimensionKey",
                                                                                             "possibleTypes": null
@@ -11475,7 +11138,7 @@
                                                                                 }
                                                                             },
                                                                             "inputFields": null,
-                                                                            "interfaces": {},
+                                                                            "interfaces": [],
                                                                             "kind": "OBJECT",
                                                                             "name": "TimeseriesKey",
                                                                             "possibleTypes": null
@@ -11631,7 +11294,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "Timeseries",
                                                             "possibleTypes": null
@@ -11649,7 +11312,7 @@
                                                 }
                                             },
                                             "inputFields": null,
-                                            "interfaces": {},
+                                            "interfaces": [],
                                             "kind": "OBJECT",
                                             "name": "InterfaceMetrics",
                                             "possibleTypes": null
@@ -12083,7 +11746,7 @@
                                                 }
                                             },
                                             "inputFields": null,
-                                            "interfaces": {},
+                                            "interfaces": [],
                                             "kind": "OBJECT",
                                             "name": "Metrics",
                                             "possibleTypes": null
@@ -12139,7 +11802,7 @@
                                 }
                             },
                             "inputFields": null,
-                            "interfaces": {},
+                            "interfaces": [],
                             "kind": "OBJECT",
                             "name": "SiteMetrics",
                             "possibleTypes": null
@@ -12170,26 +11833,9 @@
         "non_null": false
     },
     "variablesPayload": {
-        "buckets": 1,
+        "accountID": "example_id",
         "groupDevices": true,
         "groupInterfaces": true,
-        "labels": "bytesUpstream",
-        "perSecond": true,
-        "siteIDs": [
-            "id1",
-            "id2"
-        ],
-        "timeFrame": "example_value",
-        "toRate": true,
-        "types": [
-            "string1",
-            "string2"
-        ],
-        "useDefaultSizeBucket": true,
-        "userIDs": [
-            "id1",
-            "id2"
-        ],
-        "withMissingData": true
+        "timeFrame": "example_value"
     }
 }

@@ -1,5 +1,25 @@
-mutation xdrDeleteStoryComment ( $deleteStoryCommentInput:DeleteStoryCommentInput! ) {
-	xdr ( ) {
-		deleteStoryComment
+mutation xdrDeleteStoryComment ( $deleteStoryCommentInput:DeleteStoryCommentInput! $accountId:ID! ) {
+	xdr ( accountId:$accountId ) {
+		deleteStoryComment ( input:$deleteStoryCommentInput  )  {
+			commentDeleteStoryCommentPayload: comment {
+				id 
+				createdAt 
+				text 
+				actor  {
+					id
+					name
+					... on AdminRef {
+						id 
+						name 
+					}
+					... on ApiKeyRef {
+						id 
+						name 
+					}
+				}
+
+			}
+		}
+
 	}	
 }

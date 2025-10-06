@@ -19,47 +19,39 @@ def run():
     ######################### CONTINUOUS BUILD PROCESS ##############################
     ## Single continuous process - download, parse, and generate all in one flow
     print("Downloading and processing GraphQL schema...")
-    
-    # Step 1: Download schema with introspection query
     query = {
-        'query': 'query IntrospectionQuery { __schema { description } }',
+        'query': 'query IntrospectionQuery { __schema { queryType { name } mutationType { name } subscriptionType { name } types { ...FullType } directives { name description locations args { ...InputValue } } } }  fragment FullType on __Type { kind name description fields(includeDeprecated: true) { name description args { ...InputValue } type { ...TypeRef } isDeprecated deprecationReason } inputFields { ...InputValue } interfaces { ...TypeRef } enumValues(includeDeprecated: true) { name description isDeprecated deprecationReason } possibleTypes { ...TypeRef } }  fragment InputValue on __InputValue { name description type { ...TypeRef } defaultValue }  fragment TypeRef on __Type { kind name ofType { kind name ofType { kind name ofType { kind name ofType { kind name ofType { kind name ofType { kind name ofType { kind name } } } } } } } }',
         'operationName': 'IntrospectionQuery'
     }
-    
     success, introspection = catolib.send(options.api_key, query)
     if not success:
         print("ERROR: Failed to download schema")
         return
     
     print("• Schema downloaded successfully")
-    
-    # Step 2: Parse schema using multi-threading
-    print("• Parsing schema with multi-threading...")
+    print("• Parsing schema with enhanced dynamic field expansion...")
     catolib.parseSchema(introspection)
     print("• Schema parsed successfully")
-    
-    # Step 3: Generate all CLI components
     print("• Generating CLI components...")
     catolib.writeCliDriver(catolib.catoApiSchema)
     print("• CLI driver generated")
-    
     catolib.writeOperationParsers(catolib.catoApiSchema)
     print("• Operation parsers generated")
-    
     catolib.writeReadmes(catolib.catoApiSchema)
     print("• README files generated")
-    
-    # Save the processed schema files for reference
-    catolib.writeFile("catoApiIntrospection.json", json.dumps(catolib.catoApiIntrospection, indent=4, sort_keys=True))
-    catolib.writeFile("catoApiSchema.json", json.dumps(catolib.catoApiSchema, indent=4, sort_keys=True))
-    catolib.writeFile("introspection.json", json.dumps(introspection, indent=4, sort_keys=True))
-    print("• Schema files saved")
-    
+        
     total_operations = len(catolib.catoApiSchema["query"]) + len(catolib.catoApiSchema["mutation"])
-    print(f"\n- Continuous build completed successfully!")
+    print(f"\n✅ Continuous build completed successfully!")
     print(f"   - Total operations generated: {total_operations}")
     print(f"   - Query operations: {len(catolib.catoApiSchema['query'])}")
     print(f"   - Mutation operations: {len(catolib.catoApiSchema['mutation'])}")
+    print(f"   - Total types processed: {len(catolib.catoApiIntrospection['objects']) + len(catolib.catoApiIntrospection['enums']) + len(catolib.catoApiIntrospection['scalars'])}")
+    
+    print(f"\n🚀 Enhanced Features:")
+    print(f"   ✅ Completely dynamic field expansion (no hardcoded field names)")
+    print(f"   ✅ JavaScript-like introspection-based discovery") 
+    print(f"   ✅ Automatic complex field detection and expansion")
+    print(f"   ✅ Fresh introspection data for enhanced CLI queries")
 
 if __name__ == '__main__':
     run()

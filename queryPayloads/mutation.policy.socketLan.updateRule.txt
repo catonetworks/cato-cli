@@ -1,5 +1,318 @@
-mutation policySocketLanUpdateRule ( $socketLanUpdateRuleInput:SocketLanUpdateRuleInput! $socketLanPolicyMutationInput:SocketLanPolicyMutationInput ) {
-	policy ( ) {
-		socketLan
+mutation policySocketLanUpdateRule ( $socketLanUpdateRuleInput:SocketLanUpdateRuleInput! $socketLanPolicyMutationInput:SocketLanPolicyMutationInput $accountId:ID! ) {
+	policy ( accountId:$accountId ) {
+		socketLan ( input:$socketLanPolicyMutationInput  )  {
+			updateRuleSocketLanPolicyMutations: updateRule ( input:$socketLanUpdateRuleInput   ) {
+				rule  {
+					auditSocketLanRulePayload: audit {
+						updatedTime 
+						updatedBy 
+					}
+					ruleSocketLanRulePayload: rule {
+						id 
+						name 
+						description 
+						index 
+						section  {
+							id
+							name
+						}
+
+						enabled 
+						firewall  {
+							auditSocketLanFirewallRulePayload: audit {
+								updatedTime 
+								updatedBy 
+							}
+							ruleSocketLanFirewallRulePayload: rule {
+								id 
+								name 
+								description 
+								index 
+								section  {
+									id
+									name
+								}
+
+								enabled 
+								source  {
+									vlan
+									mac
+									ipRangeSocketLanFirewallSource: ipRange {
+										from 
+										to 
+									}
+									groupSocketLanFirewallSource: group {
+										id 
+										name 
+									}
+									subnet
+									siteSocketLanFirewallSource: site {
+										id 
+										name 
+									}
+									networkInterfaceSocketLanFirewallSource: networkInterface {
+										id 
+										name 
+									}
+									systemGroupSocketLanFirewallSource: systemGroup {
+										id 
+										name 
+									}
+									hostSocketLanFirewallSource: host {
+										id 
+										name 
+									}
+									ip
+									globalIpRangeSocketLanFirewallSource: globalIpRange {
+										id 
+										name 
+									}
+									floatingSubnetSocketLanFirewallSource: floatingSubnet {
+										id 
+										name 
+									}
+									siteNetworkSubnetSocketLanFirewallSource: siteNetworkSubnet {
+										id 
+										name 
+									}
+								}
+
+								destination  {
+									vlan
+									ipRangeSocketLanFirewallDestination: ipRange {
+										from 
+										to 
+									}
+									subnet
+									siteSocketLanFirewallDestination: site {
+										id 
+										name 
+									}
+									networkInterfaceSocketLanFirewallDestination: networkInterface {
+										id 
+										name 
+									}
+									systemGroupSocketLanFirewallDestination: systemGroup {
+										id 
+										name 
+									}
+									hostSocketLanFirewallDestination: host {
+										id 
+										name 
+									}
+									ip
+									globalIpRangeSocketLanFirewallDestination: globalIpRange {
+										id 
+										name 
+									}
+									groupSocketLanFirewallDestination: group {
+										id 
+										name 
+									}
+									floatingSubnetSocketLanFirewallDestination: floatingSubnet {
+										id 
+										name 
+									}
+									siteNetworkSubnetSocketLanFirewallDestination: siteNetworkSubnet {
+										id 
+										name 
+									}
+								}
+
+								direction 
+								application  {
+									applicationSocketLanFirewallApplication: application {
+										id 
+										name 
+									}
+									customAppSocketLanFirewallApplication: customApp {
+										id 
+										name 
+									}
+									domain
+									fqdn
+									ip
+									subnet
+									ipRangeSocketLanFirewallApplication: ipRange {
+										from 
+										to 
+									}
+									globalIpRangeSocketLanFirewallApplication: globalIpRange {
+										id 
+										name 
+									}
+								}
+
+								service  {
+									simpleSocketLanFirewallServiceType: simple {
+										name 
+									}
+									standardSocketLanFirewallServiceType: standard {
+										id 
+										name 
+									}
+									customSocketLanFirewallServiceType: custom {
+										port 
+										portRange  {
+											from
+											to
+										}
+
+										protocol 
+									}
+								}
+
+								action 
+								tracking  {
+									eventPolicyTracking: event {
+										enabled 
+									}
+									alertPolicyTracking: alert {
+										enabled 
+										frequency 
+										subscriptionGroup  {
+											id
+											name
+										}
+
+										webhook  {
+											id
+											name
+										}
+
+										mailingList  {
+											id
+											name
+										}
+
+									}
+								}
+
+							}
+							propertiesSocketLanFirewallRulePayload: properties
+						}
+
+						site  {
+							siteSocketLanSite: site {
+								id 
+								name 
+							}
+							groupSocketLanSite: group {
+								id 
+								name 
+							}
+						}
+
+						source  {
+							vlan
+							ipRangeSocketLanSource: ipRange {
+								from 
+								to 
+							}
+							groupSocketLanSource: group {
+								id 
+								name 
+							}
+							subnet
+							networkInterfaceSocketLanSource: networkInterface {
+								id 
+								name 
+							}
+							systemGroupSocketLanSource: systemGroup {
+								id 
+								name 
+							}
+							hostSocketLanSource: host {
+								id 
+								name 
+							}
+							ip
+							globalIpRangeSocketLanSource: globalIpRange {
+								id 
+								name 
+							}
+							floatingSubnetSocketLanSource: floatingSubnet {
+								id 
+								name 
+							}
+							siteNetworkSubnetSocketLanSource: siteNetworkSubnet {
+								id 
+								name 
+							}
+						}
+
+						destination  {
+							vlan
+							ipRangeSocketLanDestination: ipRange {
+								from 
+								to 
+							}
+							subnet
+							networkInterfaceSocketLanDestination: networkInterface {
+								id 
+								name 
+							}
+							systemGroupSocketLanDestination: systemGroup {
+								id 
+								name 
+							}
+							hostSocketLanDestination: host {
+								id 
+								name 
+							}
+							ip
+							globalIpRangeSocketLanDestination: globalIpRange {
+								id 
+								name 
+							}
+							groupSocketLanDestination: group {
+								id 
+								name 
+							}
+							floatingSubnetSocketLanDestination: floatingSubnet {
+								id 
+								name 
+							}
+							siteNetworkSubnetSocketLanDestination: siteNetworkSubnet {
+								id 
+								name 
+							}
+						}
+
+						direction 
+						service  {
+							simpleSocketLanService: simple {
+								name 
+							}
+							customSocketLanService: custom {
+								port 
+								portRange  {
+									from
+									to
+								}
+
+								protocol 
+							}
+						}
+
+						nat  {
+							enabled
+							natTypeSocketLanNatSettings: natType
+						}
+
+						transport 
+					}
+					propertiesSocketLanRulePayload: properties
+				}
+
+				status 
+				errors  {
+					errorMessage
+					errorCode
+				}
+
+			}
+		}
+
 	}	
 }

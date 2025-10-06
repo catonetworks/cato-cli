@@ -1,5 +1,287 @@
-mutation siteAssignSiteBwLicense ( $assignSiteBwLicenseInput:AssignSiteBwLicenseInput! ) {
-	site ( ) {
-		assignSiteBwLicense
+mutation siteAssignSiteBwLicense ( $assignSiteBwLicenseInput:AssignSiteBwLicenseInput! $accountId:ID! ) {
+	site ( accountId:$accountId ) {
+		assignSiteBwLicense ( input:$assignSiteBwLicenseInput  )  {
+			licenseAssignSiteBwLicensePayload: license {
+				id 
+				description 
+				plan 
+				sku 
+				status 
+				startDate 
+				expirationDate 
+				lastUpdated 
+				... on DataLakeLicense {
+					id 
+					description 
+					plan 
+					sku 
+					status 
+					startDate 
+					expirationDate 
+					lastUpdated 
+					dpaVersion 
+					retentionPeriod 
+					total 
+				}
+				... on PublicIpsLicense {
+					id 
+					description 
+					plan 
+					sku 
+					status 
+					startDate 
+					expirationDate 
+					lastUpdated 
+					total 
+				}
+				... on SiteLicense {
+					id 
+					description 
+					plan 
+					sku 
+					status 
+					startDate 
+					expirationDate 
+					lastUpdated 
+					siteLicenseGroup 
+					regionality 
+					siteLicenseType 
+					total 
+					site  {
+						id
+						name
+					}
+
+				}
+				... on PooledBandwidthLicense {
+					id 
+					description 
+					plan 
+					sku 
+					status 
+					startDate 
+					expirationDate 
+					lastUpdated 
+					siteLicenseGroup 
+					siteLicenseType 
+					total 
+					allocatedBandwidth 
+					sites  {
+						sitePooledBandwidthLicenseSite: site {
+							id 
+							name 
+						}
+						allocatedBandwidth
+					}
+
+					accounts  {
+						accountPartnerPooledBandwidthLicenseAccount: account {
+							id 
+							name 
+						}
+						allocatedBandwidth
+					}
+
+				}
+				... on ZtnaUsersLicense {
+					id 
+					description 
+					plan 
+					sku 
+					status 
+					startDate 
+					expirationDate 
+					lastUpdated 
+					ztnaUsersLicenseGroup 
+					total 
+				}
+				... on EndpointProtectionLicense {
+					id 
+					description 
+					plan 
+					sku 
+					status 
+					startDate 
+					expirationDate 
+					lastUpdated 
+					total 
+				}
+				... on IlmmLicense {
+					id 
+					description 
+					plan 
+					sku 
+					status 
+					startDate 
+					expirationDate 
+					lastUpdated 
+					total 
+				}
+				... on IpsLicense {
+					id 
+					description 
+					plan 
+					sku 
+					status 
+					startDate 
+					expirationDate 
+					lastUpdated 
+				}
+				... on MalwareProtectionLicense {
+					id 
+					description 
+					plan 
+					sku 
+					status 
+					startDate 
+					expirationDate 
+					lastUpdated 
+				}
+				... on NextGenMalwareProtectionLicense {
+					id 
+					description 
+					plan 
+					sku 
+					status 
+					startDate 
+					expirationDate 
+					lastUpdated 
+				}
+				... on ThreatPreventionLicense {
+					id 
+					description 
+					plan 
+					sku 
+					status 
+					startDate 
+					expirationDate 
+					lastUpdated 
+				}
+				... on NOCaaSLicense {
+					id 
+					description 
+					plan 
+					sku 
+					status 
+					startDate 
+					expirationDate 
+					lastUpdated 
+				}
+				... on CasbLicense {
+					id 
+					description 
+					plan 
+					sku 
+					status 
+					startDate 
+					expirationDate 
+					lastUpdated 
+				}
+				... on DlpLicense {
+					id 
+					description 
+					plan 
+					sku 
+					status 
+					startDate 
+					expirationDate 
+					lastUpdated 
+				}
+				... on MdrLicense {
+					id 
+					description 
+					plan 
+					sku 
+					status 
+					startDate 
+					expirationDate 
+					lastUpdated 
+				}
+				... on ManagedXdrLicense {
+					id 
+					description 
+					plan 
+					sku 
+					status 
+					startDate 
+					expirationDate 
+					lastUpdated 
+				}
+				... on RbiLicense {
+					id 
+					description 
+					plan 
+					sku 
+					status 
+					startDate 
+					expirationDate 
+					lastUpdated 
+				}
+				... on SaasSecurityApiLicense {
+					id 
+					description 
+					plan 
+					sku 
+					status 
+					startDate 
+					expirationDate 
+					lastUpdated 
+					total 
+				}
+				... on XdrProLicense {
+					id 
+					description 
+					plan 
+					sku 
+					status 
+					startDate 
+					expirationDate 
+					lastUpdated 
+					total 
+				}
+				... on DemLicense {
+					id 
+					description 
+					plan 
+					sku 
+					status 
+					startDate 
+					expirationDate 
+					lastUpdated 
+					total 
+				}
+				... on IotOtLicense {
+					id 
+					description 
+					plan 
+					sku 
+					status 
+					startDate 
+					expirationDate 
+					lastUpdated 
+				}
+				... on AtpLicense {
+					id 
+					description 
+					plan 
+					sku 
+					status 
+					startDate 
+					expirationDate 
+					lastUpdated 
+				}
+				... on XOpsLicense {
+					id 
+					description 
+					plan 
+					sku 
+					status 
+					startDate 
+					expirationDate 
+					lastUpdated 
+				}
+			}
+		}
+
 	}	
 }

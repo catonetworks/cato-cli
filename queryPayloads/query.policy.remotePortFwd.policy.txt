@@ -1,5 +1,104 @@
-query policyRemotePortFwdPolicy ( $remotePortFwdPolicyInput:RemotePortFwdPolicyInput ) {
-	policy ( ) {
-		remotePortFwd
+query policyRemotePortFwdPolicy ( $remotePortFwdPolicyInput:RemotePortFwdPolicyInput $accountId:ID! ) {
+	policy ( accountId:$accountId ) {
+		remotePortFwd  {
+			policyRemotePortFwdPolicyQueries: policy ( input:$remotePortFwdPolicyInput   ) {
+				enabled 
+				rules  {
+					auditRemotePortFwdRulePayload: audit {
+						updatedTime 
+						updatedBy 
+					}
+					ruleRemotePortFwdRulePayload: rule {
+						id 
+						name 
+						description 
+						index 
+						section  {
+							id
+							name
+						}
+
+						enabled 
+						forwardIcmp 
+						externalIp  {
+							id
+							name
+						}
+
+						externalPortRange  {
+							from
+							to
+						}
+
+						internalIp 
+						internalPortRange  {
+							from
+							to
+						}
+
+						remoteIPs  {
+							ip
+							ipRangeRemotePortFwdRemoteIps: ipRange {
+								from 
+								to 
+							}
+							subnet
+							globalIpRangeRemotePortFwdRemoteIps: globalIpRange {
+								id 
+								name 
+							}
+						}
+
+						restrictionType 
+						tracking  {
+							enabled
+							frequencyPolicyRuleTrackingAlert: frequency
+							subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
+								id 
+								name 
+							}
+							webhookPolicyRuleTrackingAlert: webhook {
+								id 
+								name 
+							}
+							mailingListPolicyRuleTrackingAlert: mailingList {
+								id 
+								name 
+							}
+						}
+
+					}
+					propertiesRemotePortFwdRulePayload: properties
+				}
+
+				sections  {
+					auditPolicySectionPayload: audit {
+						updatedTime 
+						updatedBy 
+					}
+					sectionPolicySectionPayload: section {
+						id 
+						name 
+					}
+					propertiesPolicySectionPayload: properties
+				}
+
+				audit  {
+					publishedTime
+					publishedBy
+				}
+
+				revision  {
+					id
+					name
+					description
+					changes
+					createdTime
+					updatedTime
+				}
+
+			}
+		}
+
 	}	
 }

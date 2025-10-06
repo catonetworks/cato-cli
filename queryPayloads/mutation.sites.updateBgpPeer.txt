@@ -1,5 +1,90 @@
-mutation sitesUpdateBgpPeer ( $updateBgpPeerInput:UpdateBgpPeerInput! ) {
-	sites ( ) {
-		updateBgpPeer
+mutation sitesUpdateBgpPeer ( $updateBgpPeerInput:UpdateBgpPeerInput! $accountId:ID! ) {
+	sites ( accountId:$accountId ) {
+		updateBgpPeer ( input:$updateBgpPeerInput  )  {
+			bgpPeerUpdateBgpPeerPayload: bgpPeer {
+				site  {
+					id
+					name
+				}
+
+				id 
+				name 
+				peerAsn 
+				catoAsn 
+				peerIp 
+				catoIp 
+				advertiseDefaultRoute 
+				advertiseAllRoutes 
+				advertiseSummaryRoutes 
+				summaryRoute  {
+					id
+					route
+					communityBgpSummaryRoute: community {
+						from 
+						to 
+					}
+				}
+
+				defaultAction 
+				defaultActionExclusion  {
+					bgpRouteExactFilterRuleBgpFilterRule: bgpRouteExactFilterRule {
+						id 
+						globalIpRange  {
+							id
+							name
+						}
+
+						networkSubnet 
+					}
+					bgpRouteExactAndInclusiveFilterRuleBgpFilterRule: bgpRouteExactAndInclusiveFilterRule {
+						id 
+						globalIpRange  {
+							id
+							name
+						}
+
+						globalIpRangeException  {
+							id
+							name
+						}
+
+						networkSubnet 
+						networkSubnetException 
+						le 
+						ge 
+					}
+					communityFilterRuleBgpFilterRule: communityFilterRule {
+						id 
+						predicate 
+						community  {
+							from
+							to
+						}
+
+					}
+				}
+
+				performNat 
+				md5AuthKey 
+				metric 
+				holdTime 
+				keepaliveInterval 
+				bfdEnabled 
+				bfdSettings  {
+					transmitInterval
+					receiveInterval
+					multiplier
+				}
+
+				tracking  {
+					id
+					enabled
+					alertFrequencyBgpTracking: alertFrequency
+					subscriptionId
+				}
+
+			}
+		}
+
 	}	
 }

@@ -1,5 +1,152 @@
-mutation policyAppTenantRestrictionDiscardPolicyRevision ( $policyDiscardRevisionInput:PolicyDiscardRevisionInput $appTenantRestrictionPolicyMutationInput:AppTenantRestrictionPolicyMutationInput ) {
-	policy ( ) {
-		appTenantRestriction
+mutation policyAppTenantRestrictionDiscardPolicyRevision ( $policyDiscardRevisionInput:PolicyDiscardRevisionInput $appTenantRestrictionPolicyMutationInput:AppTenantRestrictionPolicyMutationInput $accountId:ID! ) {
+	policy ( accountId:$accountId ) {
+		appTenantRestriction ( input:$appTenantRestrictionPolicyMutationInput  )  {
+			discardPolicyRevisionAppTenantRestrictionPolicyMutations: discardPolicyRevision ( input:$policyDiscardRevisionInput   ) {
+				policy  {
+					enabled
+					rulesAppTenantRestrictionPolicy: rules {
+						audit  {
+							updatedTime
+							updatedBy
+						}
+
+						rule  {
+							id
+							name
+							description
+							index
+							sectionAppTenantRestrictionRule: section {
+								id 
+								name 
+							}
+							enabled
+							applicationAppTenantRestrictionRule: application {
+								id 
+								name 
+							}
+							headersAppTenantRestrictionRule: headers {
+								name 
+								value 
+							}
+							sourceAppTenantRestrictionRule: source {
+								ip 
+								host  {
+									id
+									name
+								}
+
+								site  {
+									id
+									name
+								}
+
+								subnet 
+								ipRange  {
+									from
+									to
+								}
+
+								globalIpRange  {
+									id
+									name
+								}
+
+								networkInterface  {
+									id
+									name
+								}
+
+								siteNetworkSubnet  {
+									id
+									name
+								}
+
+								floatingSubnet  {
+									id
+									name
+								}
+
+								user  {
+									id
+									name
+								}
+
+								usersGroup  {
+									id
+									name
+								}
+
+								group  {
+									id
+									name
+								}
+
+								systemGroup  {
+									id
+									name
+								}
+
+								country  {
+									id
+									name
+								}
+
+							}
+							scheduleAppTenantRestrictionRule: schedule {
+								activeOn 
+								customTimeframe  {
+									from
+									to
+								}
+
+								customRecurring  {
+									from
+									to
+									daysPolicyCustomRecurring: days
+								}
+
+							}
+							actionAppTenantRestrictionRule: action
+							severityAppTenantRestrictionRule: severity
+						}
+
+						properties 
+					}
+					sectionsAppTenantRestrictionPolicy: sections {
+						audit  {
+							updatedTime
+							updatedBy
+						}
+
+						section  {
+							id
+							name
+						}
+
+						properties 
+					}
+					auditAppTenantRestrictionPolicy: audit {
+						publishedTime 
+						publishedBy 
+					}
+					revisionAppTenantRestrictionPolicy: revision {
+						id 
+						name 
+						description 
+						changes 
+						createdTime 
+						updatedTime 
+					}
+				}
+
+				status 
+				errors  {
+					errorMessage
+					errorCode
+				}
+
+			}
+		}
+
 	}	
 }

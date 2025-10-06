@@ -1,5 +1,62 @@
-query enterpriseDirectory ( $enterpriseDirectoryLocationListInput:EnterpriseDirectoryLocationListInput ) {
-	enterpriseDirectory ( ) {
-		locationList
+query enterpriseDirectory ( $enterpriseDirectoryLocationListInput:EnterpriseDirectoryLocationListInput $accountId:ID! ) {
+	enterpriseDirectory ( accountId:$accountId ) {
+		locationList ( input:$enterpriseDirectoryLocationListInput  )  {
+			itemsEnterpriseDirectoryLocationListPayload: items {
+				id 
+				account  {
+					id
+					name
+				}
+
+				type 
+				name 
+				businessUnit 
+				description 
+				details  {
+					companyName
+					postalAddressLocationDetails: postalAddress {
+						street 
+						cityName 
+						country  {
+							id
+							name
+						}
+
+						stateName 
+						zipCode 
+						addressValidated 
+					}
+					vatId
+					contactLocationDetails: contact {
+						name 
+						phone 
+						email 
+					}
+					shippingLocation
+				}
+
+				archived 
+				audit  {
+					updatedTime
+					updatedByAuditingMetadata: updatedBy {
+						id 
+						name 
+						... on AdminRef {
+							id 
+							name 
+						}
+						... on ApiKeyRef {
+							id 
+							name 
+						}
+					}
+				}
+
+			}
+			pageInfoEnterpriseDirectoryLocationListPayload: pageInfo {
+				total 
+			}
+		}
+
 	}	
 }

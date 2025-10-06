@@ -1,5 +1,22 @@
-mutation containerFqdnUpdateFromFile ( $updateFqdnContainerFromFileInput:UpdateFqdnContainerFromFileInput! ) {
-	container ( ) {
-		fqdn
+mutation containerFqdnUpdateFromFile ( $updateFqdnContainerFromFileInput:UpdateFqdnContainerFromFileInput! $accountId:ID! ) {
+	container ( accountId:$accountId ) {
+		fqdn  {
+			updateFromFileFqdnContainerMutations: updateFromFile ( input:$updateFqdnContainerFromFileInput   ) {
+				container  {
+					id
+					name
+					description
+					size
+					auditFqdnContainer: audit {
+						createdBy 
+						lastModifiedBy 
+						lastModifiedAt 
+						createdAt 
+					}
+				}
+
+			}
+		}
+
 	}	
 }

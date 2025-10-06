@@ -1,5 +1,450 @@
-mutation policyWanFirewallMoveRule ( $policyMoveRuleInput:PolicyMoveRuleInput! $wanFirewallPolicyMutationInput:WanFirewallPolicyMutationInput ) {
-	policy ( ) {
-		wanFirewall
+mutation policyWanFirewallMoveRule ( $policyMoveRuleInput:PolicyMoveRuleInput! $wanFirewallPolicyMutationInput:WanFirewallPolicyMutationInput $accountId:ID! ) {
+	policy ( accountId:$accountId ) {
+		wanFirewall ( input:$wanFirewallPolicyMutationInput  )  {
+			moveRuleWanFirewallPolicyMutations: moveRule ( input:$policyMoveRuleInput   ) {
+				rule  {
+					auditWanFirewallRulePayload: audit {
+						updatedTime 
+						updatedBy 
+					}
+					ruleWanFirewallRulePayload: rule {
+						id 
+						name 
+						description 
+						index 
+						section  {
+							id
+							name
+						}
+
+						enabled 
+						source  {
+							hostWanFirewallSource: host {
+								id 
+								name 
+							}
+							siteWanFirewallSource: site {
+								id 
+								name 
+							}
+							subnet
+							ip
+							ipRangeWanFirewallSource: ipRange {
+								from 
+								to 
+							}
+							globalIpRangeWanFirewallSource: globalIpRange {
+								id 
+								name 
+							}
+							networkInterfaceWanFirewallSource: networkInterface {
+								id 
+								name 
+							}
+							siteNetworkSubnetWanFirewallSource: siteNetworkSubnet {
+								id 
+								name 
+							}
+							floatingSubnetWanFirewallSource: floatingSubnet {
+								id 
+								name 
+							}
+							userWanFirewallSource: user {
+								id 
+								name 
+							}
+							usersGroupWanFirewallSource: usersGroup {
+								id 
+								name 
+							}
+							groupWanFirewallSource: group {
+								id 
+								name 
+							}
+							systemGroupWanFirewallSource: systemGroup {
+								id 
+								name 
+							}
+						}
+
+						connectionOrigin 
+						country  {
+							id
+							name
+						}
+
+						device  {
+							id
+							name
+						}
+
+						deviceOS 
+						deviceAttributes  {
+							category
+							type
+							model
+							manufacturer
+							os
+							osVersion
+						}
+
+						destination  {
+							hostWanFirewallDestination: host {
+								id 
+								name 
+							}
+							siteWanFirewallDestination: site {
+								id 
+								name 
+							}
+							subnet
+							ip
+							ipRangeWanFirewallDestination: ipRange {
+								from 
+								to 
+							}
+							globalIpRangeWanFirewallDestination: globalIpRange {
+								id 
+								name 
+							}
+							networkInterfaceWanFirewallDestination: networkInterface {
+								id 
+								name 
+							}
+							siteNetworkSubnetWanFirewallDestination: siteNetworkSubnet {
+								id 
+								name 
+							}
+							floatingSubnetWanFirewallDestination: floatingSubnet {
+								id 
+								name 
+							}
+							userWanFirewallDestination: user {
+								id 
+								name 
+							}
+							usersGroupWanFirewallDestination: usersGroup {
+								id 
+								name 
+							}
+							groupWanFirewallDestination: group {
+								id 
+								name 
+							}
+							systemGroupWanFirewallDestination: systemGroup {
+								id 
+								name 
+							}
+						}
+
+						application  {
+							applicationWanFirewallApplication: application {
+								id 
+								name 
+							}
+							appCategoryWanFirewallApplication: appCategory {
+								id 
+								name 
+							}
+							customAppWanFirewallApplication: customApp {
+								id 
+								name 
+							}
+							customCategoryWanFirewallApplication: customCategory {
+								id 
+								name 
+							}
+							sanctionedAppsCategoryWanFirewallApplication: sanctionedAppsCategory {
+								id 
+								name 
+							}
+							domain
+							fqdn
+							ip
+							subnet
+							ipRangeWanFirewallApplication: ipRange {
+								from 
+								to 
+							}
+							globalIpRangeWanFirewallApplication: globalIpRange {
+								id 
+								name 
+							}
+						}
+
+						service  {
+							standardWanFirewallServiceType: standard {
+								id 
+								name 
+							}
+							customWanFirewallServiceType: custom {
+								port 
+								portRange  {
+									from
+									to
+								}
+
+								protocol 
+							}
+						}
+
+						action 
+						tracking  {
+							eventPolicyTracking: event {
+								enabled 
+							}
+							alertPolicyTracking: alert {
+								enabled 
+								frequency 
+								subscriptionGroup  {
+									id
+									name
+								}
+
+								webhook  {
+									id
+									name
+								}
+
+								mailingList  {
+									id
+									name
+								}
+
+							}
+						}
+
+						schedule  {
+							activeOnPolicySchedule: activeOn
+							customTimeframePolicySchedule: customTimeframe {
+								from 
+								to 
+							}
+							customRecurringPolicySchedule: customRecurring {
+								from 
+								to 
+								days 
+							}
+						}
+
+						activePeriod  {
+							useEffectiveFrom
+							effectiveFrom
+							useExpiresAt
+							expiresAt
+						}
+
+						direction 
+						exceptions  {
+							name
+							sourceWanFirewallRuleException: source {
+								host  {
+									id
+									name
+								}
+
+								site  {
+									id
+									name
+								}
+
+								subnet 
+								ip 
+								ipRange  {
+									from
+									to
+								}
+
+								globalIpRange  {
+									id
+									name
+								}
+
+								networkInterface  {
+									id
+									name
+								}
+
+								siteNetworkSubnet  {
+									id
+									name
+								}
+
+								floatingSubnet  {
+									id
+									name
+								}
+
+								user  {
+									id
+									name
+								}
+
+								usersGroup  {
+									id
+									name
+								}
+
+								group  {
+									id
+									name
+								}
+
+								systemGroup  {
+									id
+									name
+								}
+
+							}
+							deviceOSWanFirewallRuleException: deviceOS
+							destinationWanFirewallRuleException: destination {
+								host  {
+									id
+									name
+								}
+
+								site  {
+									id
+									name
+								}
+
+								subnet 
+								ip 
+								ipRange  {
+									from
+									to
+								}
+
+								globalIpRange  {
+									id
+									name
+								}
+
+								networkInterface  {
+									id
+									name
+								}
+
+								siteNetworkSubnet  {
+									id
+									name
+								}
+
+								floatingSubnet  {
+									id
+									name
+								}
+
+								user  {
+									id
+									name
+								}
+
+								usersGroup  {
+									id
+									name
+								}
+
+								group  {
+									id
+									name
+								}
+
+								systemGroup  {
+									id
+									name
+								}
+
+							}
+							countryWanFirewallRuleException: country {
+								id 
+								name 
+							}
+							deviceWanFirewallRuleException: device {
+								id 
+								name 
+							}
+							deviceAttributesWanFirewallRuleException: deviceAttributes {
+								category 
+								type 
+								model 
+								manufacturer 
+								os 
+								osVersion 
+							}
+							applicationWanFirewallRuleException: application {
+								application  {
+									id
+									name
+								}
+
+								appCategory  {
+									id
+									name
+								}
+
+								customApp  {
+									id
+									name
+								}
+
+								customCategory  {
+									id
+									name
+								}
+
+								sanctionedAppsCategory  {
+									id
+									name
+								}
+
+								domain 
+								fqdn 
+								ip 
+								subnet 
+								ipRange  {
+									from
+									to
+								}
+
+								globalIpRange  {
+									id
+									name
+								}
+
+							}
+							serviceWanFirewallRuleException: service {
+								standard  {
+									id
+									name
+								}
+
+								custom  {
+									port
+									portRangeCustomService: portRange {
+										from 
+										to 
+									}
+									protocolCustomService: protocol
+								}
+
+							}
+							connectionOriginWanFirewallRuleException: connectionOrigin
+							directionWanFirewallRuleException: direction
+						}
+
+					}
+					propertiesWanFirewallRulePayload: properties
+				}
+
+				status 
+				errors  {
+					errorMessage
+					errorCode
+				}
+
+			}
+		}
+
 	}	
 }

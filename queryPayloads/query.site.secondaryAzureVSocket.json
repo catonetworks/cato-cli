@@ -1,6 +1,6 @@
 {
     "operationName": "siteSecondaryAzureVSocket",
-    "query": "query siteSecondaryAzureVSocket ( $socketId:ID! ) {\n\tsite ( ) {\n\t\tsecondaryAzureVSocket\n\t}\t\n}",
+    "query": "query siteSecondaryAzureVSocket ( $socketId:ID! $accountId:ID! ) {\n\tsite ( accountId:$accountId ) {\n\t\tsecondaryAzureVSocket ( socketId:$socketId  )  {\n\t\t\tsiteSecondaryAzureVSocket: site {\n\t\t\t\tid \n\t\t\t\tname \n\t\t\t}\n\t\t\tid\n\t\t\tinterfaceIp\n\t\t\tfloatingIp\n\t\t}\n\n\t}\t\n}",
     "variables": {
         "socketId": "id"
     }

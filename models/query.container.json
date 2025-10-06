@@ -22,25 +22,7 @@
     },
     "deprecationReason": null,
     "description": null,
-    "fieldTypes": {
-        "Container": true,
-        "ContainerAudit": true,
-        "ContainerRefInput": true,
-        "ContainerSearchPayload": true,
-        "ContainerType": true,
-        "DownloadFqdnContainerFilePayload": true,
-        "DownloadIpAddressRangeContainerFilePayload": true,
-        "FqdnContainer": true,
-        "FqdnContainerQueries": true,
-        "FqdnContainerSearchFqdnPayload": true,
-        "FqdnContainerSearchPayload": true,
-        "IpAddressRangeContainer": true,
-        "IpAddressRangeContainerQueries": true,
-        "IpAddressRangeContainerSearchIpAddressRangePayload": true,
-        "IpAddressRangeContainerSearchPayload": true,
-        "IpAddressRangeInput": true,
-        "ObjectRefBy": true
-    },
+    "fieldTypes": {},
     "isDeprecated": false,
     "name": "container",
     "operationArgs": {
@@ -62,761 +44,6 @@
                 "non_null": false
             },
             "varName": "accountId"
-        },
-        "containerSearchInput": {
-            "defaultValue": null,
-            "description": null,
-            "id_str": "list___input",
-            "name": "input",
-            "path": "list.input",
-            "requestStr": "$containerSearchInput:ContainerSearchInput! ",
-            "required": true,
-            "responseStr": "input:$containerSearchInput ",
-            "type": {
-                "definition": {
-                    "description": "Filtering input to container search",
-                    "enumValues": null,
-                    "fields": null,
-                    "inputFields": {
-                        "refs": {
-                            "defaultValue": "[]",
-                            "description": "Allows filtering container search by container ID or container name",
-                            "id_str": "list___input___refs",
-                            "name": "refs",
-                            "path": "list.input.refs",
-                            "requestStr": "$containerRefInput:[ContainerRefInput]! ",
-                            "required": true,
-                            "responseStr": "refs:$containerRefInput ",
-                            "type": {
-                                "definition": {
-                                    "description": "Add a container by ID or name",
-                                    "enumValues": null,
-                                    "fields": null,
-                                    "inputFields": {
-                                        "by": {
-                                            "defaultValue": "ID",
-                                            "description": "Defines the object identification method \u2013 by ID (default) or by name",
-                                            "id_str": "list___input___refs___by",
-                                            "name": "by",
-                                            "path": "list.input.refs.by",
-                                            "requestStr": "$by:ObjectRefBy! ",
-                                            "required": true,
-                                            "responseStr": "by:$by ",
-                                            "type": {
-                                                "definition": {
-                                                    "description": null,
-                                                    "enumValues": [
-                                                        {
-                                                            "deprecationReason": null,
-                                                            "description": null,
-                                                            "isDeprecated": false,
-                                                            "name": "ID"
-                                                        },
-                                                        {
-                                                            "deprecationReason": null,
-                                                            "description": null,
-                                                            "isDeprecated": false,
-                                                            "name": "NAME"
-                                                        }
-                                                    ],
-                                                    "fields": null,
-                                                    "inputFields": null,
-                                                    "interfaces": null,
-                                                    "kind": "ENUM",
-                                                    "name": "ObjectRefBy",
-                                                    "possibleTypes": null
-                                                },
-                                                "indexType": "enum",
-                                                "kind": [
-                                                    "NON_NULL",
-                                                    "ENUM"
-                                                ],
-                                                "name": "ObjectRefBy",
-                                                "non_null": false
-                                            },
-                                            "varName": "by"
-                                        },
-                                        "input": {
-                                            "defaultValue": null,
-                                            "description": "The object identification (ID or name) value",
-                                            "id_str": "list___input___refs___input",
-                                            "name": "input",
-                                            "path": "list.input.refs.input",
-                                            "requestStr": "$input:String! ",
-                                            "required": true,
-                                            "responseStr": "input:$input ",
-                                            "type": {
-                                                "kind": [
-                                                    "NON_NULL",
-                                                    "SCALAR"
-                                                ],
-                                                "name": "String",
-                                                "non_null": false
-                                            },
-                                            "varName": "input"
-                                        }
-                                    },
-                                    "interfaces": null,
-                                    "kind": "INPUT_OBJECT",
-                                    "name": "ContainerRefInput",
-                                    "possibleTypes": null
-                                },
-                                "indexType": "input_object",
-                                "kind": [
-                                    "NON_NULL",
-                                    "LIST",
-                                    "NON_NULL",
-                                    "INPUT_OBJECT"
-                                ],
-                                "name": "ContainerRefInput",
-                                "non_null": false
-                            },
-                            "varName": "containerRefInput"
-                        },
-                        "types": {
-                            "defaultValue": "[]",
-                            "description": "Allows filtering container search by specific container types",
-                            "id_str": "list___input___types",
-                            "name": "types",
-                            "path": "list.input.types",
-                            "requestStr": "$types:[ContainerType]! ",
-                            "required": true,
-                            "responseStr": "types:$types ",
-                            "type": {
-                                "definition": {
-                                    "description": null,
-                                    "enumValues": [
-                                        {
-                                            "deprecationReason": null,
-                                            "description": null,
-                                            "isDeprecated": false,
-                                            "name": "IP_RANGE"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": null,
-                                            "isDeprecated": false,
-                                            "name": "FQDN"
-                                        }
-                                    ],
-                                    "fields": null,
-                                    "inputFields": null,
-                                    "interfaces": null,
-                                    "kind": "ENUM",
-                                    "name": "ContainerType",
-                                    "possibleTypes": null
-                                },
-                                "indexType": "enum",
-                                "kind": [
-                                    "NON_NULL",
-                                    "LIST",
-                                    "NON_NULL",
-                                    "ENUM"
-                                ],
-                                "name": "ContainerType",
-                                "non_null": false
-                            },
-                            "varName": "types"
-                        }
-                    },
-                    "interfaces": null,
-                    "kind": "INPUT_OBJECT",
-                    "name": "ContainerSearchInput",
-                    "possibleTypes": null
-                },
-                "indexType": "input_object",
-                "kind": [
-                    "NON_NULL",
-                    "INPUT_OBJECT"
-                ],
-                "name": "ContainerSearchInput",
-                "non_null": false
-            },
-            "varName": "containerSearchInput"
-        },
-        "downloadFqdnContainerFileInput": {
-            "defaultValue": null,
-            "description": null,
-            "id_str": "downloadFile___input",
-            "name": "input",
-            "path": "downloadFile.input",
-            "requestStr": "$downloadFqdnContainerFileInput:DownloadFqdnContainerFileInput! ",
-            "required": true,
-            "responseStr": "input:$downloadFqdnContainerFileInput ",
-            "type": {
-                "definition": {
-                    "description": "Input for searching FQDN typed container to download its content",
-                    "enumValues": null,
-                    "fields": null,
-                    "inputFields": {
-                        "by": {
-                            "defaultValue": null,
-                            "description": null,
-                            "id_str": "downloadFile___input___by",
-                            "name": "by",
-                            "path": "downloadFile.input.by",
-                            "requestStr": "$by:ObjectRefBy! ",
-                            "required": true,
-                            "responseStr": "by:$by ",
-                            "type": {
-                                "definition": {
-                                    "description": null,
-                                    "enumValues": [
-                                        {
-                                            "deprecationReason": null,
-                                            "description": null,
-                                            "isDeprecated": false,
-                                            "name": "ID"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": null,
-                                            "isDeprecated": false,
-                                            "name": "NAME"
-                                        }
-                                    ],
-                                    "fields": null,
-                                    "inputFields": null,
-                                    "interfaces": null,
-                                    "kind": "ENUM",
-                                    "name": "ObjectRefBy",
-                                    "possibleTypes": null
-                                },
-                                "indexType": "enum",
-                                "kind": [
-                                    "NON_NULL",
-                                    "ENUM"
-                                ],
-                                "name": "ObjectRefBy",
-                                "non_null": false
-                            },
-                            "varName": "by"
-                        },
-                        "input": {
-                            "defaultValue": null,
-                            "description": null,
-                            "id_str": "downloadFile___input___input",
-                            "name": "input",
-                            "path": "downloadFile.input.input",
-                            "requestStr": "$input:String! ",
-                            "required": true,
-                            "responseStr": "input:$input ",
-                            "type": {
-                                "kind": [
-                                    "NON_NULL",
-                                    "SCALAR"
-                                ],
-                                "name": "String",
-                                "non_null": false
-                            },
-                            "varName": "input"
-                        }
-                    },
-                    "interfaces": null,
-                    "kind": "INPUT_OBJECT",
-                    "name": "DownloadFqdnContainerFileInput",
-                    "possibleTypes": null
-                },
-                "indexType": "input_object",
-                "kind": [
-                    "NON_NULL",
-                    "INPUT_OBJECT"
-                ],
-                "name": "DownloadFqdnContainerFileInput",
-                "non_null": false
-            },
-            "varName": "downloadFqdnContainerFileInput"
-        },
-        "downloadIpAddressRangeContainerFileInput": {
-            "defaultValue": null,
-            "description": null,
-            "id_str": "downloadFile___input",
-            "name": "input",
-            "path": "downloadFile.input",
-            "requestStr": "$downloadIpAddressRangeContainerFileInput:DownloadIpAddressRangeContainerFileInput! ",
-            "required": true,
-            "responseStr": "input:$downloadIpAddressRangeContainerFileInput ",
-            "type": {
-                "definition": {
-                    "description": "Input for searching IPAddressRange typed container to download its content",
-                    "enumValues": null,
-                    "fields": null,
-                    "inputFields": {
-                        "by": {
-                            "defaultValue": null,
-                            "description": null,
-                            "id_str": "downloadFile___input___by",
-                            "name": "by",
-                            "path": "downloadFile.input.by",
-                            "requestStr": "$by:ObjectRefBy! ",
-                            "required": true,
-                            "responseStr": "by:$by ",
-                            "type": {
-                                "definition": {
-                                    "description": null,
-                                    "enumValues": [
-                                        {
-                                            "deprecationReason": null,
-                                            "description": null,
-                                            "isDeprecated": false,
-                                            "name": "ID"
-                                        },
-                                        {
-                                            "deprecationReason": null,
-                                            "description": null,
-                                            "isDeprecated": false,
-                                            "name": "NAME"
-                                        }
-                                    ],
-                                    "fields": null,
-                                    "inputFields": null,
-                                    "interfaces": null,
-                                    "kind": "ENUM",
-                                    "name": "ObjectRefBy",
-                                    "possibleTypes": null
-                                },
-                                "indexType": "enum",
-                                "kind": [
-                                    "NON_NULL",
-                                    "ENUM"
-                                ],
-                                "name": "ObjectRefBy",
-                                "non_null": false
-                            },
-                            "varName": "by"
-                        },
-                        "input": {
-                            "defaultValue": null,
-                            "description": null,
-                            "id_str": "downloadFile___input___input",
-                            "name": "input",
-                            "path": "downloadFile.input.input",
-                            "requestStr": "$input:String! ",
-                            "required": true,
-                            "responseStr": "input:$input ",
-                            "type": {
-                                "kind": [
-                                    "NON_NULL",
-                                    "SCALAR"
-                                ],
-                                "name": "String",
-                                "non_null": false
-                            },
-                            "varName": "input"
-                        }
-                    },
-                    "interfaces": null,
-                    "kind": "INPUT_OBJECT",
-                    "name": "DownloadIpAddressRangeContainerFileInput",
-                    "possibleTypes": null
-                },
-                "indexType": "input_object",
-                "kind": [
-                    "NON_NULL",
-                    "INPUT_OBJECT"
-                ],
-                "name": "DownloadIpAddressRangeContainerFileInput",
-                "non_null": false
-            },
-            "varName": "downloadIpAddressRangeContainerFileInput"
-        },
-        "fqdnContainerSearchFqdnInput": {
-            "defaultValue": null,
-            "description": null,
-            "id_str": "searchFqdn___input",
-            "name": "input",
-            "path": "searchFqdn.input",
-            "requestStr": "$fqdnContainerSearchFqdnInput:FqdnContainerSearchFqdnInput! ",
-            "required": true,
-            "responseStr": "input:$fqdnContainerSearchFqdnInput ",
-            "type": {
-                "definition": {
-                    "description": "Input for searching FQDN typed containers that contain a specific FQDN",
-                    "enumValues": null,
-                    "fields": null,
-                    "inputFields": {
-                        "fqdn": {
-                            "defaultValue": null,
-                            "description": null,
-                            "id_str": "searchFqdn___input___fqdn",
-                            "name": "fqdn",
-                            "path": "searchFqdn.input.fqdn",
-                            "requestStr": "$fqdn:Fqdn! ",
-                            "required": true,
-                            "responseStr": "fqdn:$fqdn ",
-                            "type": {
-                                "kind": [
-                                    "NON_NULL",
-                                    "SCALAR"
-                                ],
-                                "name": "Fqdn",
-                                "non_null": false
-                            },
-                            "varName": "fqdn"
-                        }
-                    },
-                    "interfaces": null,
-                    "kind": "INPUT_OBJECT",
-                    "name": "FqdnContainerSearchFqdnInput",
-                    "possibleTypes": null
-                },
-                "indexType": "input_object",
-                "kind": [
-                    "NON_NULL",
-                    "INPUT_OBJECT"
-                ],
-                "name": "FqdnContainerSearchFqdnInput",
-                "non_null": false
-            },
-            "varName": "fqdnContainerSearchFqdnInput"
-        },
-        "fqdnContainerSearchInput": {
-            "defaultValue": null,
-            "description": null,
-            "id_str": "search___input",
-            "name": "input",
-            "path": "search.input",
-            "requestStr": "$fqdnContainerSearchInput:FqdnContainerSearchInput! ",
-            "required": true,
-            "responseStr": "input:$fqdnContainerSearchInput ",
-            "type": {
-                "definition": {
-                    "description": "Input for searching FQDN typed container",
-                    "enumValues": null,
-                    "fields": null,
-                    "inputFields": {
-                        "ref": {
-                            "defaultValue": null,
-                            "description": "Reference to existing container by container ID or container name",
-                            "id_str": "search___input___ref",
-                            "name": "ref",
-                            "path": "search.input.ref",
-                            "requestStr": "$containerRefInput:ContainerRefInput! ",
-                            "required": true,
-                            "responseStr": "ref:$containerRefInput ",
-                            "type": {
-                                "definition": {
-                                    "description": "Add a container by ID or name",
-                                    "enumValues": null,
-                                    "fields": null,
-                                    "inputFields": {
-                                        "by": {
-                                            "defaultValue": "ID",
-                                            "description": "Defines the object identification method \u2013 by ID (default) or by name",
-                                            "id_str": "search___input___ref___by",
-                                            "name": "by",
-                                            "path": "search.input.ref.by",
-                                            "requestStr": "$by:ObjectRefBy! ",
-                                            "required": true,
-                                            "responseStr": "by:$by ",
-                                            "type": {
-                                                "definition": {
-                                                    "description": null,
-                                                    "enumValues": [
-                                                        {
-                                                            "deprecationReason": null,
-                                                            "description": null,
-                                                            "isDeprecated": false,
-                                                            "name": "ID"
-                                                        },
-                                                        {
-                                                            "deprecationReason": null,
-                                                            "description": null,
-                                                            "isDeprecated": false,
-                                                            "name": "NAME"
-                                                        }
-                                                    ],
-                                                    "fields": null,
-                                                    "inputFields": null,
-                                                    "interfaces": null,
-                                                    "kind": "ENUM",
-                                                    "name": "ObjectRefBy",
-                                                    "possibleTypes": null
-                                                },
-                                                "indexType": "enum",
-                                                "kind": [
-                                                    "NON_NULL",
-                                                    "ENUM"
-                                                ],
-                                                "name": "ObjectRefBy",
-                                                "non_null": false
-                                            },
-                                            "varName": "by"
-                                        },
-                                        "input": {
-                                            "defaultValue": null,
-                                            "description": "The object identification (ID or name) value",
-                                            "id_str": "search___input___ref___input",
-                                            "name": "input",
-                                            "path": "search.input.ref.input",
-                                            "requestStr": "$input:String! ",
-                                            "required": true,
-                                            "responseStr": "input:$input ",
-                                            "type": {
-                                                "kind": [
-                                                    "NON_NULL",
-                                                    "SCALAR"
-                                                ],
-                                                "name": "String",
-                                                "non_null": false
-                                            },
-                                            "varName": "input"
-                                        }
-                                    },
-                                    "interfaces": null,
-                                    "kind": "INPUT_OBJECT",
-                                    "name": "ContainerRefInput",
-                                    "possibleTypes": null
-                                },
-                                "indexType": "input_object",
-                                "kind": [
-                                    "NON_NULL",
-                                    "INPUT_OBJECT"
-                                ],
-                                "name": "ContainerRefInput",
-                                "non_null": false
-                            },
-                            "varName": "containerRefInput"
-                        }
-                    },
-                    "interfaces": null,
-                    "kind": "INPUT_OBJECT",
-                    "name": "FqdnContainerSearchInput",
-                    "possibleTypes": null
-                },
-                "indexType": "input_object",
-                "kind": [
-                    "NON_NULL",
-                    "INPUT_OBJECT"
-                ],
-                "name": "FqdnContainerSearchInput",
-                "non_null": false
-            },
-            "varName": "fqdnContainerSearchInput"
-        },
-        "ipAddressRangeContainerSearchInput": {
-            "defaultValue": null,
-            "description": null,
-            "id_str": "search___input",
-            "name": "input",
-            "path": "search.input",
-            "requestStr": "$ipAddressRangeContainerSearchInput:IpAddressRangeContainerSearchInput! ",
-            "required": true,
-            "responseStr": "input:$ipAddressRangeContainerSearchInput ",
-            "type": {
-                "definition": {
-                    "description": "Filtering input to IPAddressRange container search",
-                    "enumValues": null,
-                    "fields": null,
-                    "inputFields": {
-                        "ref": {
-                            "defaultValue": null,
-                            "description": "Reference to existing container by container ID or container name",
-                            "id_str": "search___input___ref",
-                            "name": "ref",
-                            "path": "search.input.ref",
-                            "requestStr": "$containerRefInput:ContainerRefInput! ",
-                            "required": true,
-                            "responseStr": "ref:$containerRefInput ",
-                            "type": {
-                                "definition": {
-                                    "description": "Add a container by ID or name",
-                                    "enumValues": null,
-                                    "fields": null,
-                                    "inputFields": {
-                                        "by": {
-                                            "defaultValue": "ID",
-                                            "description": "Defines the object identification method \u2013 by ID (default) or by name",
-                                            "id_str": "search___input___ref___by",
-                                            "name": "by",
-                                            "path": "search.input.ref.by",
-                                            "requestStr": "$by:ObjectRefBy! ",
-                                            "required": true,
-                                            "responseStr": "by:$by ",
-                                            "type": {
-                                                "definition": {
-                                                    "description": null,
-                                                    "enumValues": [
-                                                        {
-                                                            "deprecationReason": null,
-                                                            "description": null,
-                                                            "isDeprecated": false,
-                                                            "name": "ID"
-                                                        },
-                                                        {
-                                                            "deprecationReason": null,
-                                                            "description": null,
-                                                            "isDeprecated": false,
-                                                            "name": "NAME"
-                                                        }
-                                                    ],
-                                                    "fields": null,
-                                                    "inputFields": null,
-                                                    "interfaces": null,
-                                                    "kind": "ENUM",
-                                                    "name": "ObjectRefBy",
-                                                    "possibleTypes": null
-                                                },
-                                                "indexType": "enum",
-                                                "kind": [
-                                                    "NON_NULL",
-                                                    "ENUM"
-                                                ],
-                                                "name": "ObjectRefBy",
-                                                "non_null": false
-                                            },
-                                            "varName": "by"
-                                        },
-                                        "input": {
-                                            "defaultValue": null,
-                                            "description": "The object identification (ID or name) value",
-                                            "id_str": "search___input___ref___input",
-                                            "name": "input",
-                                            "path": "search.input.ref.input",
-                                            "requestStr": "$input:String! ",
-                                            "required": true,
-                                            "responseStr": "input:$input ",
-                                            "type": {
-                                                "kind": [
-                                                    "NON_NULL",
-                                                    "SCALAR"
-                                                ],
-                                                "name": "String",
-                                                "non_null": false
-                                            },
-                                            "varName": "input"
-                                        }
-                                    },
-                                    "interfaces": null,
-                                    "kind": "INPUT_OBJECT",
-                                    "name": "ContainerRefInput",
-                                    "possibleTypes": null
-                                },
-                                "indexType": "input_object",
-                                "kind": [
-                                    "NON_NULL",
-                                    "INPUT_OBJECT"
-                                ],
-                                "name": "ContainerRefInput",
-                                "non_null": false
-                            },
-                            "varName": "containerRefInput"
-                        }
-                    },
-                    "interfaces": null,
-                    "kind": "INPUT_OBJECT",
-                    "name": "IpAddressRangeContainerSearchInput",
-                    "possibleTypes": null
-                },
-                "indexType": "input_object",
-                "kind": [
-                    "NON_NULL",
-                    "INPUT_OBJECT"
-                ],
-                "name": "IpAddressRangeContainerSearchInput",
-                "non_null": false
-            },
-            "varName": "ipAddressRangeContainerSearchInput"
-        },
-        "ipAddressRangeContainerSearchIpAddressRangeInput": {
-            "defaultValue": null,
-            "description": null,
-            "id_str": "searchIpAddressRange___input",
-            "name": "input",
-            "path": "searchIpAddressRange.input",
-            "requestStr": "$ipAddressRangeContainerSearchIpAddressRangeInput:IpAddressRangeContainerSearchIpAddressRangeInput! ",
-            "required": true,
-            "responseStr": "input:$ipAddressRangeContainerSearchIpAddressRangeInput ",
-            "type": {
-                "definition": {
-                    "description": "Input for searching IPAddressRange typed containers that contain a specific IPAddressRange",
-                    "enumValues": null,
-                    "fields": null,
-                    "inputFields": {
-                        "ipAddressRange": {
-                            "defaultValue": null,
-                            "description": null,
-                            "id_str": "searchIpAddressRange___input___ipAddressRange",
-                            "name": "ipAddressRange",
-                            "path": "searchIpAddressRange.input.ipAddressRange",
-                            "requestStr": "$ipAddressRangeInput:IpAddressRangeInput! ",
-                            "required": true,
-                            "responseStr": "ipAddressRange:$ipAddressRangeInput ",
-                            "type": {
-                                "definition": {
-                                    "description": "Inclusive range of IPs",
-                                    "enumValues": null,
-                                    "fields": null,
-                                    "inputFields": {
-                                        "from": {
-                                            "defaultValue": null,
-                                            "description": null,
-                                            "id_str": "searchIpAddressRange___input___ipAddressRange___from",
-                                            "name": "from",
-                                            "path": "searchIpAddressRange.input.ipAddressRange.from",
-                                            "requestStr": "$from:IPAddress! ",
-                                            "required": true,
-                                            "responseStr": "from:$from ",
-                                            "type": {
-                                                "kind": [
-                                                    "NON_NULL",
-                                                    "SCALAR"
-                                                ],
-                                                "name": "IPAddress",
-                                                "non_null": false
-                                            },
-                                            "varName": "from"
-                                        },
-                                        "to": {
-                                            "defaultValue": null,
-                                            "description": null,
-                                            "id_str": "searchIpAddressRange___input___ipAddressRange___to",
-                                            "name": "to",
-                                            "path": "searchIpAddressRange.input.ipAddressRange.to",
-                                            "requestStr": "$to:IPAddress! ",
-                                            "required": true,
-                                            "responseStr": "to:$to ",
-                                            "type": {
-                                                "kind": [
-                                                    "NON_NULL",
-                                                    "SCALAR"
-                                                ],
-                                                "name": "IPAddress",
-                                                "non_null": false
-                                            },
-                                            "varName": "to"
-                                        }
-                                    },
-                                    "interfaces": null,
-                                    "kind": "INPUT_OBJECT",
-                                    "name": "IpAddressRangeInput",
-                                    "possibleTypes": null
-                                },
-                                "indexType": "input_object",
-                                "kind": [
-                                    "NON_NULL",
-                                    "INPUT_OBJECT"
-                                ],
-                                "name": "IpAddressRangeInput",
-                                "non_null": false
-                            },
-                            "varName": "ipAddressRangeInput"
-                        }
-                    },
-                    "interfaces": null,
-                    "kind": "INPUT_OBJECT",
-                    "name": "IpAddressRangeContainerSearchIpAddressRangeInput",
-                    "possibleTypes": null
-                },
-                "indexType": "input_object",
-                "kind": [
-                    "NON_NULL",
-                    "INPUT_OBJECT"
-                ],
-                "name": "IpAddressRangeContainerSearchIpAddressRangeInput",
-                "non_null": false
-            },
-            "varName": "ipAddressRangeContainerSearchIpAddressRangeInput"
         }
     },
     "path": "query.container",
@@ -1017,7 +244,7 @@
                                                 }
                                             },
                                             "inputFields": null,
-                                            "interfaces": {},
+                                            "interfaces": [],
                                             "kind": "OBJECT",
                                             "name": "DownloadFqdnContainerFilePayload",
                                             "possibleTypes": null
@@ -1294,7 +521,7 @@
                                                                                 }
                                                                             },
                                                                             "inputFields": null,
-                                                                            "interfaces": {},
+                                                                            "interfaces": [],
                                                                             "kind": "OBJECT",
                                                                             "name": "ContainerAudit",
                                                                             "possibleTypes": null
@@ -1394,7 +621,13 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [
+                                                                {
+                                                                    "kind": "INTERFACE",
+                                                                    "name": "Container",
+                                                                    "ofType": null
+                                                                }
+                                                            ],
                                                             "kind": "OBJECT",
                                                             "name": "FqdnContainer",
                                                             "possibleTypes": null
@@ -1411,7 +644,7 @@
                                                 }
                                             },
                                             "inputFields": null,
-                                            "interfaces": {},
+                                            "interfaces": [],
                                             "kind": "OBJECT",
                                             "name": "FqdnContainerSearchPayload",
                                             "possibleTypes": null
@@ -1614,7 +847,7 @@
                                                                                 }
                                                                             },
                                                                             "inputFields": null,
-                                                                            "interfaces": {},
+                                                                            "interfaces": [],
                                                                             "kind": "OBJECT",
                                                                             "name": "ContainerAudit",
                                                                             "possibleTypes": null
@@ -1714,7 +947,13 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [
+                                                                {
+                                                                    "kind": "INTERFACE",
+                                                                    "name": "Container",
+                                                                    "ofType": null
+                                                                }
+                                                            ],
                                                             "kind": "OBJECT",
                                                             "name": "FqdnContainer",
                                                             "possibleTypes": null
@@ -1733,7 +972,7 @@
                                                 }
                                             },
                                             "inputFields": null,
-                                            "interfaces": {},
+                                            "interfaces": [],
                                             "kind": "OBJECT",
                                             "name": "FqdnContainerSearchFqdnPayload",
                                             "possibleTypes": null
@@ -1750,7 +989,7 @@
                                 }
                             },
                             "inputFields": null,
-                            "interfaces": {},
+                            "interfaces": [],
                             "kind": "OBJECT",
                             "name": "FqdnContainerQueries",
                             "possibleTypes": null
@@ -1957,7 +1196,7 @@
                                                 }
                                             },
                                             "inputFields": null,
-                                            "interfaces": {},
+                                            "interfaces": [],
                                             "kind": "OBJECT",
                                             "name": "DownloadIpAddressRangeContainerFilePayload",
                                             "possibleTypes": null
@@ -2234,7 +1473,7 @@
                                                                                 }
                                                                             },
                                                                             "inputFields": null,
-                                                                            "interfaces": {},
+                                                                            "interfaces": [],
                                                                             "kind": "OBJECT",
                                                                             "name": "ContainerAudit",
                                                                             "possibleTypes": null
@@ -2334,7 +1573,13 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [
+                                                                {
+                                                                    "kind": "INTERFACE",
+                                                                    "name": "Container",
+                                                                    "ofType": null
+                                                                }
+                                                            ],
                                                             "kind": "OBJECT",
                                                             "name": "IpAddressRangeContainer",
                                                             "possibleTypes": null
@@ -2351,7 +1596,7 @@
                                                 }
                                             },
                                             "inputFields": null,
-                                            "interfaces": {},
+                                            "interfaces": [],
                                             "kind": "OBJECT",
                                             "name": "IpAddressRangeContainerSearchPayload",
                                             "possibleTypes": null
@@ -2604,7 +1849,7 @@
                                                                                 }
                                                                             },
                                                                             "inputFields": null,
-                                                                            "interfaces": {},
+                                                                            "interfaces": [],
                                                                             "kind": "OBJECT",
                                                                             "name": "ContainerAudit",
                                                                             "possibleTypes": null
@@ -2704,7 +1949,13 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [
+                                                                {
+                                                                    "kind": "INTERFACE",
+                                                                    "name": "Container",
+                                                                    "ofType": null
+                                                                }
+                                                            ],
                                                             "kind": "OBJECT",
                                                             "name": "IpAddressRangeContainer",
                                                             "possibleTypes": null
@@ -2723,7 +1974,7 @@
                                                 }
                                             },
                                             "inputFields": null,
-                                            "interfaces": {},
+                                            "interfaces": [],
                                             "kind": "OBJECT",
                                             "name": "IpAddressRangeContainerSearchIpAddressRangePayload",
                                             "possibleTypes": null
@@ -2740,7 +1991,7 @@
                                 }
                             },
                             "inputFields": null,
-                            "interfaces": {},
+                            "interfaces": [],
                             "kind": "OBJECT",
                             "name": "IpAddressRangeContainerQueries",
                             "possibleTypes": null
@@ -3063,7 +2314,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "ContainerAudit",
                                                             "possibleTypes": null
@@ -3168,14 +2419,442 @@
                                             "name": "Container",
                                             "possibleTypes": [
                                                 {
+                                                    "description": "A group with members of FQDN type",
+                                                    "enumValues": null,
+                                                    "fields": {
+                                                        "audit": {
+                                                            "alias": "auditFqdnContainer: audit",
+                                                            "args": {},
+                                                            "deprecationReason": null,
+                                                            "description": "Audit metadata about the container",
+                                                            "id_str": "list___containers___audit",
+                                                            "isDeprecated": false,
+                                                            "name": "audit",
+                                                            "path": "list.containers.audit",
+                                                            "requestStr": "$containerAudit:ContainerAudit! ",
+                                                            "required": true,
+                                                            "responseStr": "audit:$containerAudit ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": "Audit metadata about the container",
+                                                                    "enumValues": null,
+                                                                    "fields": {
+                                                                        "createdAt": {
+                                                                            "args": {},
+                                                                            "deprecationReason": null,
+                                                                            "description": "Indicates when the container was created",
+                                                                            "id_str": "list___containers___audit___createdAt",
+                                                                            "isDeprecated": false,
+                                                                            "name": "createdAt",
+                                                                            "path": "list.containers.audit.createdAt",
+                                                                            "requestStr": "$createdAt:DateTime! ",
+                                                                            "required": true,
+                                                                            "responseStr": "createdAt:$createdAt ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "DateTime",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "createdAt"
+                                                                        },
+                                                                        "createdBy": {
+                                                                            "args": {},
+                                                                            "deprecationReason": null,
+                                                                            "description": "Indicates who created the container",
+                                                                            "id_str": "list___containers___audit___createdBy",
+                                                                            "isDeprecated": false,
+                                                                            "name": "createdBy",
+                                                                            "path": "list.containers.audit.createdBy",
+                                                                            "requestStr": "$createdBy:String! ",
+                                                                            "required": true,
+                                                                            "responseStr": "createdBy:$createdBy ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "String",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "createdBy"
+                                                                        },
+                                                                        "lastModifiedAt": {
+                                                                            "args": {},
+                                                                            "deprecationReason": null,
+                                                                            "description": "Indicated when the container was last updated",
+                                                                            "id_str": "list___containers___audit___lastModifiedAt",
+                                                                            "isDeprecated": false,
+                                                                            "name": "lastModifiedAt",
+                                                                            "path": "list.containers.audit.lastModifiedAt",
+                                                                            "requestStr": "$lastModifiedAt:DateTime! ",
+                                                                            "required": true,
+                                                                            "responseStr": "lastModifiedAt:$lastModifiedAt ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "DateTime",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "lastModifiedAt"
+                                                                        },
+                                                                        "lastModifiedBy": {
+                                                                            "args": {},
+                                                                            "deprecationReason": null,
+                                                                            "description": "Indicates who was the last to update the container",
+                                                                            "id_str": "list___containers___audit___lastModifiedBy",
+                                                                            "isDeprecated": false,
+                                                                            "name": "lastModifiedBy",
+                                                                            "path": "list.containers.audit.lastModifiedBy",
+                                                                            "requestStr": "$lastModifiedBy:String! ",
+                                                                            "required": true,
+                                                                            "responseStr": "lastModifiedBy:$lastModifiedBy ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "String",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "lastModifiedBy"
+                                                                        }
+                                                                    },
+                                                                    "inputFields": null,
+                                                                    "interfaces": [],
+                                                                    "kind": "OBJECT",
+                                                                    "name": "ContainerAudit",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "object",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "OBJECT"
+                                                                ],
+                                                                "name": "ContainerAudit",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "containerAudit"
+                                                        },
+                                                        "description": {
+                                                            "args": {},
+                                                            "deprecationReason": null,
+                                                            "description": "Description for the container",
+                                                            "id_str": "list___containers___description",
+                                                            "isDeprecated": false,
+                                                            "name": "description",
+                                                            "path": "list.containers.description",
+                                                            "requestStr": "$description:String ",
+                                                            "required": false,
+                                                            "responseStr": "description:$description ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "description"
+                                                        },
+                                                        "id": {
+                                                            "args": {},
+                                                            "deprecationReason": null,
+                                                            "description": "Unique container ID",
+                                                            "id_str": "list___containers___id",
+                                                            "isDeprecated": false,
+                                                            "name": "id",
+                                                            "path": "list.containers.id",
+                                                            "requestStr": "$id:ID! ",
+                                                            "required": true,
+                                                            "responseStr": "id:$id ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "ID",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "id"
+                                                        },
+                                                        "name": {
+                                                            "args": {},
+                                                            "deprecationReason": null,
+                                                            "description": "Name for the container",
+                                                            "id_str": "list___containers___name",
+                                                            "isDeprecated": false,
+                                                            "name": "name",
+                                                            "path": "list.containers.name",
+                                                            "requestStr": "$name:String! ",
+                                                            "required": true,
+                                                            "responseStr": "name:$name ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "name"
+                                                        },
+                                                        "size": {
+                                                            "args": {},
+                                                            "deprecationReason": null,
+                                                            "description": "Number of items in the container",
+                                                            "id_str": "list___containers___size",
+                                                            "isDeprecated": false,
+                                                            "name": "size",
+                                                            "path": "list.containers.size",
+                                                            "requestStr": "$size:Int! ",
+                                                            "required": true,
+                                                            "responseStr": "size:$size ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "Int",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "size"
+                                                        }
+                                                    },
+                                                    "inputFields": null,
+                                                    "interfaces": [
+                                                        {
+                                                            "kind": "INTERFACE",
+                                                            "name": "Container",
+                                                            "ofType": null
+                                                        }
+                                                    ],
                                                     "kind": "OBJECT",
                                                     "name": "FqdnContainer",
-                                                    "ofType": null
+                                                    "ofType": null,
+                                                    "possibleTypes": null
                                                 },
                                                 {
+                                                    "description": "A group with members of IPAddressRange type",
+                                                    "enumValues": null,
+                                                    "fields": {
+                                                        "audit": {
+                                                            "alias": "auditIpAddressRangeContainer: audit",
+                                                            "args": {},
+                                                            "deprecationReason": null,
+                                                            "description": "Audit metadata about the container",
+                                                            "id_str": "list___containers___audit",
+                                                            "isDeprecated": false,
+                                                            "name": "audit",
+                                                            "path": "list.containers.audit",
+                                                            "requestStr": "$containerAudit:ContainerAudit! ",
+                                                            "required": true,
+                                                            "responseStr": "audit:$containerAudit ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": "Audit metadata about the container",
+                                                                    "enumValues": null,
+                                                                    "fields": {
+                                                                        "createdAt": {
+                                                                            "args": {},
+                                                                            "deprecationReason": null,
+                                                                            "description": "Indicates when the container was created",
+                                                                            "id_str": "list___containers___audit___createdAt",
+                                                                            "isDeprecated": false,
+                                                                            "name": "createdAt",
+                                                                            "path": "list.containers.audit.createdAt",
+                                                                            "requestStr": "$createdAt:DateTime! ",
+                                                                            "required": true,
+                                                                            "responseStr": "createdAt:$createdAt ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "DateTime",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "createdAt"
+                                                                        },
+                                                                        "createdBy": {
+                                                                            "args": {},
+                                                                            "deprecationReason": null,
+                                                                            "description": "Indicates who created the container",
+                                                                            "id_str": "list___containers___audit___createdBy",
+                                                                            "isDeprecated": false,
+                                                                            "name": "createdBy",
+                                                                            "path": "list.containers.audit.createdBy",
+                                                                            "requestStr": "$createdBy:String! ",
+                                                                            "required": true,
+                                                                            "responseStr": "createdBy:$createdBy ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "String",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "createdBy"
+                                                                        },
+                                                                        "lastModifiedAt": {
+                                                                            "args": {},
+                                                                            "deprecationReason": null,
+                                                                            "description": "Indicated when the container was last updated",
+                                                                            "id_str": "list___containers___audit___lastModifiedAt",
+                                                                            "isDeprecated": false,
+                                                                            "name": "lastModifiedAt",
+                                                                            "path": "list.containers.audit.lastModifiedAt",
+                                                                            "requestStr": "$lastModifiedAt:DateTime! ",
+                                                                            "required": true,
+                                                                            "responseStr": "lastModifiedAt:$lastModifiedAt ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "DateTime",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "lastModifiedAt"
+                                                                        },
+                                                                        "lastModifiedBy": {
+                                                                            "args": {},
+                                                                            "deprecationReason": null,
+                                                                            "description": "Indicates who was the last to update the container",
+                                                                            "id_str": "list___containers___audit___lastModifiedBy",
+                                                                            "isDeprecated": false,
+                                                                            "name": "lastModifiedBy",
+                                                                            "path": "list.containers.audit.lastModifiedBy",
+                                                                            "requestStr": "$lastModifiedBy:String! ",
+                                                                            "required": true,
+                                                                            "responseStr": "lastModifiedBy:$lastModifiedBy ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "String",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "lastModifiedBy"
+                                                                        }
+                                                                    },
+                                                                    "inputFields": null,
+                                                                    "interfaces": [],
+                                                                    "kind": "OBJECT",
+                                                                    "name": "ContainerAudit",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "object",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "OBJECT"
+                                                                ],
+                                                                "name": "ContainerAudit",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "containerAudit"
+                                                        },
+                                                        "description": {
+                                                            "args": {},
+                                                            "deprecationReason": null,
+                                                            "description": "Description for the container",
+                                                            "id_str": "list___containers___description",
+                                                            "isDeprecated": false,
+                                                            "name": "description",
+                                                            "path": "list.containers.description",
+                                                            "requestStr": "$description:String ",
+                                                            "required": false,
+                                                            "responseStr": "description:$description ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "description"
+                                                        },
+                                                        "id": {
+                                                            "args": {},
+                                                            "deprecationReason": null,
+                                                            "description": "Unique container ID",
+                                                            "id_str": "list___containers___id",
+                                                            "isDeprecated": false,
+                                                            "name": "id",
+                                                            "path": "list.containers.id",
+                                                            "requestStr": "$id:ID! ",
+                                                            "required": true,
+                                                            "responseStr": "id:$id ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "ID",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "id"
+                                                        },
+                                                        "name": {
+                                                            "args": {},
+                                                            "deprecationReason": null,
+                                                            "description": "Name for the container",
+                                                            "id_str": "list___containers___name",
+                                                            "isDeprecated": false,
+                                                            "name": "name",
+                                                            "path": "list.containers.name",
+                                                            "requestStr": "$name:String! ",
+                                                            "required": true,
+                                                            "responseStr": "name:$name ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "name"
+                                                        },
+                                                        "size": {
+                                                            "args": {},
+                                                            "deprecationReason": null,
+                                                            "description": "Number of items in the container",
+                                                            "id_str": "list___containers___size",
+                                                            "isDeprecated": false,
+                                                            "name": "size",
+                                                            "path": "list.containers.size",
+                                                            "requestStr": "$size:Int! ",
+                                                            "required": true,
+                                                            "responseStr": "size:$size ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "Int",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "size"
+                                                        }
+                                                    },
+                                                    "inputFields": null,
+                                                    "interfaces": [
+                                                        {
+                                                            "kind": "INTERFACE",
+                                                            "name": "Container",
+                                                            "ofType": null
+                                                        }
+                                                    ],
                                                     "kind": "OBJECT",
                                                     "name": "IpAddressRangeContainer",
-                                                    "ofType": null
+                                                    "ofType": null,
+                                                    "possibleTypes": null
                                                 }
                                             ]
                                         },
@@ -3193,7 +2872,7 @@
                                 }
                             },
                             "inputFields": null,
-                            "interfaces": {},
+                            "interfaces": [],
                             "kind": "OBJECT",
                             "name": "ContainerSearchPayload",
                             "possibleTypes": null
@@ -3223,41 +2902,7 @@
         "non_null": false
     },
     "variablesPayload": {
-        "containerSearchInput": {
-            "containerRefInput": {
-                "by": "ID",
-                "input": "string"
-            },
-            "types": "IP_RANGE"
-        },
-        "downloadFqdnContainerFileInput": {
-            "by": "ID",
-            "input": "string"
-        },
-        "downloadIpAddressRangeContainerFileInput": {
-            "by": "ID",
-            "input": "string"
-        },
-        "fqdnContainerSearchFqdnInput": {
-            "fqdn": "example_value"
-        },
-        "fqdnContainerSearchInput": {
-            "containerRefInput": {
-                "by": "ID",
-                "input": "string"
-            }
-        },
-        "ipAddressRangeContainerSearchInput": {
-            "containerRefInput": {
-                "by": "ID",
-                "input": "string"
-            }
-        },
-        "ipAddressRangeContainerSearchIpAddressRangeInput": {
-            "ipAddressRangeInput": {
-                "from": "example_value",
-                "to": "example_value"
-            }
-        }
+        "accountID": "example_account_id",
+        "accountId": "example_id"
     }
 }

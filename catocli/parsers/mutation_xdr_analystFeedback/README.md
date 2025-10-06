@@ -10,7 +10,7 @@
 
 `catocli mutation xdr analystFeedback "$(cat < mutation.xdr.analystFeedback.json)"`
 
-`catocli mutation xdr analystFeedback '{"analystFeedbackInput":{"additionalInfo":"string","severity":"High","status":"Open","storyId":"id","storyThreatType":{"details":"string","name":"string","recommendedAction":"string"},"threatClassification":"string","verdict":"Suspicious"}}'`
+`catocli mutation xdr analystFeedback '{"analystFeedbackInput":{"additionalInfo":"string","severity":"High","status":"Open","storyId":"id","storyThreatType":{"details":"string","name":"string","recommendedAction":"string"},"threatClassification":"string","verdict":"Suspicious"},"perSecond":true}'`
 
 `catocli mutation xdr analystFeedback -p '{
     "analystFeedbackInput": {
@@ -25,7 +25,8 @@
         },
         "threatClassification": "string",
         "verdict": "Suspicious"
-    }
+    },
+    "perSecond": true
 }'
 
 
@@ -33,3 +34,4 @@
 
 `accountId` [ID] - (required) N/A    
 `analystFeedbackInput` [AnalystFeedbackInput] - (required) N/A    
+`perSecond` [Boolean] - (required) whether to normalize the data into per second (i.e. divide by granularity)    

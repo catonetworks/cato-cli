@@ -1,6 +1,6 @@
 {
     "operationName": "groupsWhereUsed",
-    "query": "query groupsWhereUsed ( $groupRefInput:GroupRefInput! ) {\n\tgroups ( ) {\n\t\twhereUsed\n\t}\t\n}",
+    "query": "query groupsWhereUsed ( $groupRefInput:GroupRefInput! $accountId:ID! ) {\n\tgroups ( accountId:$accountId ) {\n\t\twhereUsed ( input:$groupRefInput  )  {\n\t\t\tused\n\t\t\tusageGroupWhereUsedPayload: usage {\n\t\t\t\ttype \n\t\t\t\tfield \n\t\t\t}\n\t\t\tinvalidMemberTypesGroupWhereUsedPayload: invalidMemberTypes {\n\t\t\t\ttype \n\t\t\t\tscope  {\n\t\t\t\t\ttype\n\t\t\t\t\tfield\n\t\t\t\t}\n\n\t\t\t}\n\t\t}\n\n\t}\t\n}",
     "variables": {
         "groupRefInput": {
             "by": "ID",

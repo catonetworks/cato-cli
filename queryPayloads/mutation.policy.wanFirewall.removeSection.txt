@@ -1,5 +1,27 @@
-mutation policyWanFirewallRemoveSection ( $policyRemoveSectionInput:PolicyRemoveSectionInput! $wanFirewallPolicyMutationInput:WanFirewallPolicyMutationInput ) {
-	policy ( ) {
-		wanFirewall
+mutation policyWanFirewallRemoveSection ( $policyRemoveSectionInput:PolicyRemoveSectionInput! $wanFirewallPolicyMutationInput:WanFirewallPolicyMutationInput $accountId:ID! ) {
+	policy ( accountId:$accountId ) {
+		wanFirewall ( input:$wanFirewallPolicyMutationInput  )  {
+			removeSectionWanFirewallPolicyMutations: removeSection ( input:$policyRemoveSectionInput   ) {
+				section  {
+					auditPolicySectionPayload: audit {
+						updatedTime 
+						updatedBy 
+					}
+					sectionPolicySectionPayload: section {
+						id 
+						name 
+					}
+					propertiesPolicySectionPayload: properties
+				}
+
+				status 
+				errors  {
+					errorMessage
+					errorCode
+				}
+
+			}
+		}
+
 	}	
 }

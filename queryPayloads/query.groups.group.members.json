@@ -1,6 +1,6 @@
 {
     "operationName": "groupsGroupMembers",
-    "query": "query groupsGroupMembers ( $groupMembersListInput:GroupMembersListInput! $groupRefInput:GroupRefInput! ) {\n\tgroups ( ) {\n\t\tgroup\n\t}\t\n}",
+    "query": "query groupsGroupMembers ( $groupMembersListInput:GroupMembersListInput! $groupRefInput:GroupRefInput! $accountId:ID! ) {\n\tgroups ( accountId:$accountId ) {\n\t\tgroup ( input:$groupRefInput  )  {\n\t\t\tmembersGroup: members ( input:$groupMembersListInput   ) {\n\t\t\t\titems  {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t\ttypeGroupMemberRefTyped: type\n\t\t\t\t}\n\n\t\t\t\tpaging  {\n\t\t\t\t\ttotal\n\t\t\t\t}\n\n\t\t\t}\n\t\t}\n\n\t}\t\n}",
     "variables": {
         "groupMembersListInput": {
             "groupMembersListFilterInput": {

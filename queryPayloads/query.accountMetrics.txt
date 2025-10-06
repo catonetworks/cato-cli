@@ -1,11 +1,498 @@
-query accountMetrics ( $toRate:Boolean $perSecond:Boolean $withMissingData:Boolean $useDefaultSizeBucket:Boolean $buckets:Int $labels:[TimeseriesMetricType!] $types:[String!] $siteIDs:[ID!] $userIDs:[ID!] $timeFrame:TimeFrame! $groupInterfaces:Boolean $groupDevices:Boolean ) {
-	accountMetrics ( timeFrame:$timeFrame groupInterfaces:$groupInterfaces groupDevices:$groupDevices ) {
-		id
-		from
-		to
-		granularity
-		sites
-		users
-		timeseries
+query accountMetrics ( $toRate:Boolean $perSecond:Boolean $withMissingData:Boolean $useDefaultSizeBucket:Boolean $buckets:Int $labels:[TimeseriesMetricType!] $types:[String!] $siteIDs:[ID!] $userIDs:[ID!] $accountID:ID $timeFrame:TimeFrame! $groupInterfaces:Boolean $groupDevices:Boolean ) {
+	accountMetrics ( accountID:$accountID timeFrame:$timeFrame groupInterfaces:$groupInterfaces groupDevices:$groupDevices ) {
+		id 
+		from 
+		to 
+		granularity 
+		sites ( siteIDs:$siteIDs  )  {
+			id
+			interfacesSiteMetrics: interfaces {
+				metrics ( toRate:$toRate  )  {
+					duration
+					granularity
+					bytesDownstream
+					bytesUpstream
+					bytesTotal
+					lostDownstream
+					lostDownstreamPcnt
+					lostUpstream
+					lostUpstreamPcnt
+					packetsDownstream
+					packetsUpstream
+					jitterUpstream
+					jitterDownstream
+					packetsDiscardedDownstream
+					packetsDiscardedUpstream
+					rtt
+					hostCount
+					hostLimit
+					flowCount
+				}
+
+				name 
+				timeseries ( buckets:$buckets  labels:$labels  )  {
+					data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket   )
+					label
+					dimensionsTimeseries: dimensions {
+						label 
+						value 
+					}
+					keyTimeseries: key {
+						measureFieldName 
+						dimensions  {
+							fieldName
+							value
+						}
+
+					}
+					sum
+					unitsTimeseries: units
+					info
+				}
+
+				annotations ( types:$types  )  {
+					time
+					label
+					shortLabel
+					typeTimeAnnotation: type
+				}
+
+				periods  {
+					duration
+					title
+					typeTimePeriod: type
+				}
+
+				remoteIPInfo  {
+					ip
+					countryCode
+					countryName
+					city
+					state
+					provider
+					latitude
+					longitude
+				}
+
+				remoteIP 
+				socketInfo  {
+					id
+					serial
+					isPrimary
+					platformSocketInfo: platform
+					version
+					versionUpdateTime
+				}
+
+				ipsecInfo  {
+					isPrimary
+					catoIP
+					remoteIP
+					ikeVersion
+					tunnelConfigIPSecInfo: tunnelConfig {
+						tunnelId 
+						tunnelRemoteIdentifier 
+						localId 
+					}
+				}
+
+				interfaceInfo  {
+					id
+					name
+					upstreamBandwidth
+					downstreamBandwidth
+					upstreamBandwidthMbpsPrecision
+					downstreamBandwidthMbpsPrecision
+					destType
+					wanRoleInterfaceInfo: wanRole
+				}
+
+			}
+			metricsSiteMetrics: metrics ( toRate:$toRate   ) {
+				duration 
+				granularity 
+				bytesDownstream 
+				bytesUpstream 
+				bytesTotal 
+				lostDownstream 
+				lostDownstreamPcnt 
+				lostUpstream 
+				lostUpstreamPcnt 
+				packetsDownstream 
+				packetsUpstream 
+				jitterUpstream 
+				jitterDownstream 
+				packetsDiscardedDownstream 
+				packetsDiscardedUpstream 
+				rtt 
+				hostCount 
+				hostLimit 
+				flowCount 
+			}
+			name
+			infoSiteMetrics: info {
+				name 
+				type 
+				description 
+				countryCode 
+				region 
+				countryName 
+				countryStateName 
+				cityName 
+				address 
+				isHA 
+				connType 
+				creationTime 
+				interfaces  {
+					id
+					name
+					upstreamBandwidth
+					downstreamBandwidth
+					upstreamBandwidthMbpsPrecision
+					downstreamBandwidthMbpsPrecision
+					destType
+					wanRoleInterfaceInfo: wanRole
+				}
+
+				sockets  {
+					id
+					serial
+					isPrimary
+					platformSocketInfo: platform
+					version
+					versionUpdateTime
+				}
+
+				ipsec  {
+					isPrimary
+					catoIP
+					remoteIP
+					ikeVersion
+					tunnelConfigIPSecInfo: tunnelConfig {
+						tunnelId 
+						tunnelRemoteIdentifier 
+						localId 
+					}
+				}
+
+			}
+			hostCountSiteMetrics: hostCount {
+				data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket  ) 
+				label 
+				dimensions  {
+					label
+					value
+				}
+
+				key  {
+					measureFieldName
+					dimensionsTimeseriesKey: dimensions {
+						fieldName 
+						value 
+					}
+				}
+
+				sum 
+				units 
+				info 
+			}
+			flowCountSiteMetrics: flowCount {
+				data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket  ) 
+				label 
+				dimensions  {
+					label
+					value
+				}
+
+				key  {
+					measureFieldName
+					dimensionsTimeseriesKey: dimensions {
+						fieldName 
+						value 
+					}
+				}
+
+				sum 
+				units 
+				info 
+			}
+			hostLimitSiteMetrics: hostLimit {
+				data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket  ) 
+				label 
+				dimensions  {
+					label
+					value
+				}
+
+				key  {
+					measureFieldName
+					dimensionsTimeseriesKey: dimensions {
+						fieldName 
+						value 
+					}
+				}
+
+				sum 
+				units 
+				info 
+			}
+			samples
+		}
+
+		users ( userIDs:$userIDs  )  {
+			id
+			interfacesSiteMetrics: interfaces {
+				metrics ( toRate:$toRate  )  {
+					duration
+					granularity
+					bytesDownstream
+					bytesUpstream
+					bytesTotal
+					lostDownstream
+					lostDownstreamPcnt
+					lostUpstream
+					lostUpstreamPcnt
+					packetsDownstream
+					packetsUpstream
+					jitterUpstream
+					jitterDownstream
+					packetsDiscardedDownstream
+					packetsDiscardedUpstream
+					rtt
+					hostCount
+					hostLimit
+					flowCount
+				}
+
+				name 
+				timeseries ( buckets:$buckets  labels:$labels  )  {
+					data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket   )
+					label
+					dimensionsTimeseries: dimensions {
+						label 
+						value 
+					}
+					keyTimeseries: key {
+						measureFieldName 
+						dimensions  {
+							fieldName
+							value
+						}
+
+					}
+					sum
+					unitsTimeseries: units
+					info
+				}
+
+				annotations ( types:$types  )  {
+					time
+					label
+					shortLabel
+					typeTimeAnnotation: type
+				}
+
+				periods  {
+					duration
+					title
+					typeTimePeriod: type
+				}
+
+				remoteIPInfo  {
+					ip
+					countryCode
+					countryName
+					city
+					state
+					provider
+					latitude
+					longitude
+				}
+
+				remoteIP 
+				socketInfo  {
+					id
+					serial
+					isPrimary
+					platformSocketInfo: platform
+					version
+					versionUpdateTime
+				}
+
+				ipsecInfo  {
+					isPrimary
+					catoIP
+					remoteIP
+					ikeVersion
+					tunnelConfigIPSecInfo: tunnelConfig {
+						tunnelId 
+						tunnelRemoteIdentifier 
+						localId 
+					}
+				}
+
+				interfaceInfo  {
+					id
+					name
+					upstreamBandwidth
+					downstreamBandwidth
+					upstreamBandwidthMbpsPrecision
+					downstreamBandwidthMbpsPrecision
+					destType
+					wanRoleInterfaceInfo: wanRole
+				}
+
+			}
+			metricsSiteMetrics: metrics ( toRate:$toRate   ) {
+				duration 
+				granularity 
+				bytesDownstream 
+				bytesUpstream 
+				bytesTotal 
+				lostDownstream 
+				lostDownstreamPcnt 
+				lostUpstream 
+				lostUpstreamPcnt 
+				packetsDownstream 
+				packetsUpstream 
+				jitterUpstream 
+				jitterDownstream 
+				packetsDiscardedDownstream 
+				packetsDiscardedUpstream 
+				rtt 
+				hostCount 
+				hostLimit 
+				flowCount 
+			}
+			name
+			infoSiteMetrics: info {
+				name 
+				type 
+				description 
+				countryCode 
+				region 
+				countryName 
+				countryStateName 
+				cityName 
+				address 
+				isHA 
+				connType 
+				creationTime 
+				interfaces  {
+					id
+					name
+					upstreamBandwidth
+					downstreamBandwidth
+					upstreamBandwidthMbpsPrecision
+					downstreamBandwidthMbpsPrecision
+					destType
+					wanRoleInterfaceInfo: wanRole
+				}
+
+				sockets  {
+					id
+					serial
+					isPrimary
+					platformSocketInfo: platform
+					version
+					versionUpdateTime
+				}
+
+				ipsec  {
+					isPrimary
+					catoIP
+					remoteIP
+					ikeVersion
+					tunnelConfigIPSecInfo: tunnelConfig {
+						tunnelId 
+						tunnelRemoteIdentifier 
+						localId 
+					}
+				}
+
+			}
+			hostCountSiteMetrics: hostCount {
+				data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket  ) 
+				label 
+				dimensions  {
+					label
+					value
+				}
+
+				key  {
+					measureFieldName
+					dimensionsTimeseriesKey: dimensions {
+						fieldName 
+						value 
+					}
+				}
+
+				sum 
+				units 
+				info 
+			}
+			flowCountSiteMetrics: flowCount {
+				data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket  ) 
+				label 
+				dimensions  {
+					label
+					value
+				}
+
+				key  {
+					measureFieldName
+					dimensionsTimeseriesKey: dimensions {
+						fieldName 
+						value 
+					}
+				}
+
+				sum 
+				units 
+				info 
+			}
+			hostLimitSiteMetrics: hostLimit {
+				data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket  ) 
+				label 
+				dimensions  {
+					label
+					value
+				}
+
+				key  {
+					measureFieldName
+					dimensionsTimeseriesKey: dimensions {
+						fieldName 
+						value 
+					}
+				}
+
+				sum 
+				units 
+				info 
+			}
+			samples
+		}
+
+		timeseries ( labels:$labels  buckets:$buckets  )  {
+			data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket   )
+			label
+			dimensionsTimeseries: dimensions {
+				label 
+				value 
+			}
+			keyTimeseries: key {
+				measureFieldName 
+				dimensions  {
+					fieldName
+					value
+				}
+
+			}
+			sum
+			unitsTimeseries: units
+			info
+		}
+
 	}	
 }

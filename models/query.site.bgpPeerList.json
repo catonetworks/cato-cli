@@ -161,25 +161,7 @@
     },
     "deprecationReason": null,
     "description": null,
-    "fieldTypes": {
-        "BfdSettings": true,
-        "BgpCommunity": true,
-        "BgpCommunityFilterPredicate": true,
-        "BgpCommunityFilterRule": true,
-        "BgpDefaultAction": true,
-        "BgpFilterRule": true,
-        "BgpPeer": true,
-        "BgpPeerListPayload": true,
-        "BgpRouteExactAndInclusiveFilterRule": true,
-        "BgpRouteExactFilterRule": true,
-        "BgpSummaryRoute": true,
-        "BgpTracking": true,
-        "GlobalIpRangeRef": true,
-        "ObjectRefBy": true,
-        "PolicyRuleTrackingFrequencyEnum": true,
-        "SiteRef": true,
-        "SiteRefInput": true
-    },
+    "fieldTypes": {},
     "isDeprecated": false,
     "name": "site",
     "operationArgs": {
@@ -201,130 +183,6 @@
                 "non_null": false
             },
             "varName": "accountId"
-        },
-        "bgpPeerListInput": {
-            "defaultValue": null,
-            "description": null,
-            "id_str": "bgpPeerList___input",
-            "name": "input",
-            "path": "bgpPeerList.input",
-            "requestStr": "$bgpPeerListInput:BgpPeerListInput! ",
-            "required": true,
-            "responseStr": "input:$bgpPeerListInput ",
-            "type": {
-                "definition": {
-                    "description": null,
-                    "enumValues": null,
-                    "fields": null,
-                    "inputFields": {
-                        "site": {
-                            "defaultValue": null,
-                            "description": "Identifies the site whose BGP peers are listed.",
-                            "id_str": "bgpPeerList___input___site",
-                            "name": "site",
-                            "path": "bgpPeerList.input.site",
-                            "requestStr": "$siteRefInput:SiteRefInput! ",
-                            "required": true,
-                            "responseStr": "site:$siteRefInput ",
-                            "type": {
-                                "definition": {
-                                    "description": null,
-                                    "enumValues": null,
-                                    "fields": null,
-                                    "inputFields": {
-                                        "by": {
-                                            "defaultValue": "ID",
-                                            "description": null,
-                                            "id_str": "bgpPeerList___input___site___by",
-                                            "name": "by",
-                                            "path": "bgpPeerList.input.site.by",
-                                            "requestStr": "$by:ObjectRefBy! ",
-                                            "required": true,
-                                            "responseStr": "by:$by ",
-                                            "type": {
-                                                "definition": {
-                                                    "description": null,
-                                                    "enumValues": [
-                                                        {
-                                                            "deprecationReason": null,
-                                                            "description": null,
-                                                            "isDeprecated": false,
-                                                            "name": "ID"
-                                                        },
-                                                        {
-                                                            "deprecationReason": null,
-                                                            "description": null,
-                                                            "isDeprecated": false,
-                                                            "name": "NAME"
-                                                        }
-                                                    ],
-                                                    "fields": null,
-                                                    "inputFields": null,
-                                                    "interfaces": null,
-                                                    "kind": "ENUM",
-                                                    "name": "ObjectRefBy",
-                                                    "possibleTypes": null
-                                                },
-                                                "indexType": "enum",
-                                                "kind": [
-                                                    "NON_NULL",
-                                                    "ENUM"
-                                                ],
-                                                "name": "ObjectRefBy",
-                                                "non_null": false
-                                            },
-                                            "varName": "by"
-                                        },
-                                        "input": {
-                                            "defaultValue": null,
-                                            "description": null,
-                                            "id_str": "bgpPeerList___input___site___input",
-                                            "name": "input",
-                                            "path": "bgpPeerList.input.site.input",
-                                            "requestStr": "$input:String! ",
-                                            "required": true,
-                                            "responseStr": "input:$input ",
-                                            "type": {
-                                                "kind": [
-                                                    "NON_NULL",
-                                                    "SCALAR"
-                                                ],
-                                                "name": "String",
-                                                "non_null": false
-                                            },
-                                            "varName": "input"
-                                        }
-                                    },
-                                    "interfaces": null,
-                                    "kind": "INPUT_OBJECT",
-                                    "name": "SiteRefInput",
-                                    "possibleTypes": null
-                                },
-                                "indexType": "input_object",
-                                "kind": [
-                                    "NON_NULL",
-                                    "INPUT_OBJECT"
-                                ],
-                                "name": "SiteRefInput",
-                                "non_null": false
-                            },
-                            "varName": "siteRefInput"
-                        }
-                    },
-                    "interfaces": null,
-                    "kind": "INPUT_OBJECT",
-                    "name": "BgpPeerListInput",
-                    "possibleTypes": null
-                },
-                "indexType": "input_object",
-                "kind": [
-                    "NON_NULL",
-                    "INPUT_OBJECT"
-                ],
-                "name": "BgpPeerListInput",
-                "non_null": false
-            },
-            "varName": "bgpPeerListInput"
         }
     },
     "path": "query.site.bgpPeerList",
@@ -656,7 +514,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "BfdSettings",
                                                             "possibleTypes": null
@@ -872,7 +730,13 @@
                                                                                                 }
                                                                                             },
                                                                                             "inputFields": null,
-                                                                                            "interfaces": {},
+                                                                                            "interfaces": [
+                                                                                                {
+                                                                                                    "kind": "INTERFACE",
+                                                                                                    "name": "ObjectRef",
+                                                                                                    "ofType": null
+                                                                                                }
+                                                                                            ],
                                                                                             "kind": "OBJECT",
                                                                                             "name": "GlobalIpRangeRef",
                                                                                             "possibleTypes": null
@@ -949,7 +813,13 @@
                                                                                                 }
                                                                                             },
                                                                                             "inputFields": null,
-                                                                                            "interfaces": {},
+                                                                                            "interfaces": [
+                                                                                                {
+                                                                                                    "kind": "INTERFACE",
+                                                                                                    "name": "ObjectRef",
+                                                                                                    "ofType": null
+                                                                                                }
+                                                                                            ],
                                                                                             "kind": "OBJECT",
                                                                                             "name": "GlobalIpRangeRef",
                                                                                             "possibleTypes": null
@@ -1055,7 +925,7 @@
                                                                                 }
                                                                             },
                                                                             "inputFields": null,
-                                                                            "interfaces": {},
+                                                                            "interfaces": [],
                                                                             "kind": "OBJECT",
                                                                             "name": "BgpRouteExactAndInclusiveFilterRule",
                                                                             "possibleTypes": null
@@ -1146,7 +1016,13 @@
                                                                                                 }
                                                                                             },
                                                                                             "inputFields": null,
-                                                                                            "interfaces": {},
+                                                                                            "interfaces": [
+                                                                                                {
+                                                                                                    "kind": "INTERFACE",
+                                                                                                    "name": "ObjectRef",
+                                                                                                    "ofType": null
+                                                                                                }
+                                                                                            ],
                                                                                             "kind": "OBJECT",
                                                                                             "name": "GlobalIpRangeRef",
                                                                                             "possibleTypes": null
@@ -1209,7 +1085,7 @@
                                                                                 }
                                                                             },
                                                                             "inputFields": null,
-                                                                            "interfaces": {},
+                                                                            "interfaces": [],
                                                                             "kind": "OBJECT",
                                                                             "name": "BgpRouteExactFilterRule",
                                                                             "possibleTypes": null
@@ -1300,7 +1176,7 @@
                                                                                                 }
                                                                                             },
                                                                                             "inputFields": null,
-                                                                                            "interfaces": {},
+                                                                                            "interfaces": [],
                                                                                             "kind": "OBJECT",
                                                                                             "name": "BgpCommunity",
                                                                                             "possibleTypes": null
@@ -1385,7 +1261,7 @@
                                                                                 }
                                                                             },
                                                                             "inputFields": null,
-                                                                            "interfaces": {},
+                                                                            "interfaces": [],
                                                                             "kind": "OBJECT",
                                                                             "name": "BgpCommunityFilterRule",
                                                                             "possibleTypes": null
@@ -1401,7 +1277,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "BgpFilterRule",
                                                             "possibleTypes": null
@@ -1667,7 +1543,13 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [
+                                                                {
+                                                                    "kind": "INTERFACE",
+                                                                    "name": "ObjectRef",
+                                                                    "ofType": null
+                                                                }
+                                                            ],
                                                             "kind": "OBJECT",
                                                             "name": "SiteRef",
                                                             "possibleTypes": null
@@ -1760,7 +1642,7 @@
                                                                                 }
                                                                             },
                                                                             "inputFields": null,
-                                                                            "interfaces": {},
+                                                                            "interfaces": [],
                                                                             "kind": "OBJECT",
                                                                             "name": "BgpCommunity",
                                                                             "possibleTypes": null
@@ -1821,7 +1703,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "BgpSummaryRoute",
                                                             "possibleTypes": null
@@ -1976,7 +1858,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": {},
+                                                            "interfaces": [],
                                                             "kind": "OBJECT",
                                                             "name": "BgpTracking",
                                                             "possibleTypes": null
@@ -1992,7 +1874,7 @@
                                                 }
                                             },
                                             "inputFields": null,
-                                            "interfaces": {},
+                                            "interfaces": [],
                                             "kind": "OBJECT",
                                             "name": "BgpPeer",
                                             "possibleTypes": null
@@ -2032,7 +1914,7 @@
                                 }
                             },
                             "inputFields": null,
-                            "interfaces": {},
+                            "interfaces": [],
                             "kind": "OBJECT",
                             "name": "BgpPeerListPayload",
                             "possibleTypes": null
@@ -2062,11 +1944,7 @@
         "non_null": false
     },
     "variablesPayload": {
-        "bgpPeerListInput": {
-            "siteRefInput": {
-                "by": "ID",
-                "input": "string"
-            }
-        }
+        "accountID": "example_account_id",
+        "accountId": "example_id"
     }
 }

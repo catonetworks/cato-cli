@@ -1,8 +1,355 @@
-query accountSnapshot ( $siteIDs:[ID!] $userIDs:[ID!] ) {
-	accountSnapshot ( ) {
-		id
-		sites
-		users
-		timestamp
+query accountSnapshot ( $siteIDs:[ID!] $userIDs:[ID!] $accountID:ID ) {
+	accountSnapshot ( accountID:$accountID ) {
+		id 
+		sites ( siteIDs:$siteIDs  )  {
+			id
+			protoId
+			connectivityStatusSiteSnapshot: connectivityStatus
+			haStatusSiteSnapshot: haStatus {
+				readiness 
+				wanConnectivity 
+				keepalive 
+				socketVersion 
+			}
+			operationalStatusSiteSnapshot: operationalStatus
+			lastConnected
+			connectedSince
+			popName
+			devicesSiteSnapshot: devices {
+				id 
+				name 
+				identifier 
+				connected 
+				haRole 
+				interfaces  {
+					connected
+					id
+					name
+					physicalPort
+					naturalOrder
+					popName
+					previousPopID
+					previousPopName
+					tunnelConnectionReason
+					tunnelUptime
+					tunnelRemoteIP
+					tunnelRemoteIPInfoInterfaceSnapshot: tunnelRemoteIPInfo {
+						ip 
+						countryCode 
+						countryName 
+						city 
+						state 
+						provider 
+						latitude 
+						longitude 
+					}
+					type
+					infoInterfaceSnapshot: info {
+						id 
+						name 
+						upstreamBandwidth 
+						downstreamBandwidth 
+						upstreamBandwidthMbpsPrecision 
+						downstreamBandwidthMbpsPrecision 
+						destType 
+						wanRole 
+					}
+					cellularInterfaceInfoInterfaceSnapshot: cellularInterfaceInfo {
+						networkType 
+						simSlotId 
+						modemStatus 
+						isModemConnected 
+						iccid 
+						imei 
+						operatorName 
+						isModemSuspended 
+						apn 
+						apnSelectionMethod 
+						signalStrength 
+						isRoamingAllowed 
+						simNumber 
+						disconnectionReason 
+						isSimSlot1Detected 
+						isSimSlot2Detected 
+					}
+				}
+
+				lastConnected 
+				lastDuration 
+				connectedSince 
+				lastPopID 
+				lastPopName 
+				recentConnections  {
+					duration
+					interfaceName
+					deviceName
+					lastConnected
+					popName
+					remoteIP
+					remoteIPInfoRecentConnection: remoteIPInfo {
+						ip 
+						countryCode 
+						countryName 
+						city 
+						state 
+						provider 
+						latitude 
+						longitude 
+					}
+				}
+
+				type 
+				deviceUptime 
+				socketInfo  {
+					id
+					serial
+					isPrimary
+					platformSocketInfo: platform
+					version
+					versionUpdateTime
+				}
+
+				interfacesLinkState  {
+					id
+					up
+					mediaIn
+					linkSpeed
+					duplex
+					hasAddress
+					hasInternet
+					hasTunnel
+				}
+
+				osType 
+				osVersion 
+				version 
+				versionNumber 
+				releaseGroup 
+				mfaExpirationTime 
+				mfaCreationTime 
+				internalIP 
+			}
+			infoSiteSnapshot: info {
+				name 
+				type 
+				description 
+				countryCode 
+				region 
+				countryName 
+				countryStateName 
+				cityName 
+				address 
+				isHA 
+				connType 
+				creationTime 
+				interfaces  {
+					id
+					name
+					upstreamBandwidth
+					downstreamBandwidth
+					upstreamBandwidthMbpsPrecision
+					downstreamBandwidthMbpsPrecision
+					destType
+					wanRoleInterfaceInfo: wanRole
+				}
+
+				sockets  {
+					id
+					serial
+					isPrimary
+					platformSocketInfo: platform
+					version
+					versionUpdateTime
+				}
+
+				ipsec  {
+					isPrimary
+					catoIP
+					remoteIP
+					ikeVersion
+					tunnelConfigIPSecInfo: tunnelConfig {
+						tunnelId 
+						tunnelRemoteIdentifier 
+						localId 
+					}
+				}
+
+			}
+			hostCount
+			altWanStatus
+		}
+
+		users ( userIDs:$userIDs  )  {
+			id
+			connectivityStatusUserSnapshot: connectivityStatus
+			operationalStatusUserSnapshot: operationalStatus
+			name
+			deviceName
+			uptime
+			lastConnected
+			version
+			versionNumber
+			popID
+			popName
+			remoteIP
+			remoteIPInfoUserSnapshot: remoteIPInfo {
+				ip 
+				countryCode 
+				countryName 
+				city 
+				state 
+				provider 
+				latitude 
+				longitude 
+			}
+			internalIP
+			osType
+			osVersion
+			devicesUserSnapshot: devices {
+				id 
+				name 
+				identifier 
+				connected 
+				haRole 
+				interfaces  {
+					connected
+					id
+					name
+					physicalPort
+					naturalOrder
+					popName
+					previousPopID
+					previousPopName
+					tunnelConnectionReason
+					tunnelUptime
+					tunnelRemoteIP
+					tunnelRemoteIPInfoInterfaceSnapshot: tunnelRemoteIPInfo {
+						ip 
+						countryCode 
+						countryName 
+						city 
+						state 
+						provider 
+						latitude 
+						longitude 
+					}
+					type
+					infoInterfaceSnapshot: info {
+						id 
+						name 
+						upstreamBandwidth 
+						downstreamBandwidth 
+						upstreamBandwidthMbpsPrecision 
+						downstreamBandwidthMbpsPrecision 
+						destType 
+						wanRole 
+					}
+					cellularInterfaceInfoInterfaceSnapshot: cellularInterfaceInfo {
+						networkType 
+						simSlotId 
+						modemStatus 
+						isModemConnected 
+						iccid 
+						imei 
+						operatorName 
+						isModemSuspended 
+						apn 
+						apnSelectionMethod 
+						signalStrength 
+						isRoamingAllowed 
+						simNumber 
+						disconnectionReason 
+						isSimSlot1Detected 
+						isSimSlot2Detected 
+					}
+				}
+
+				lastConnected 
+				lastDuration 
+				connectedSince 
+				lastPopID 
+				lastPopName 
+				recentConnections  {
+					duration
+					interfaceName
+					deviceName
+					lastConnected
+					popName
+					remoteIP
+					remoteIPInfoRecentConnection: remoteIPInfo {
+						ip 
+						countryCode 
+						countryName 
+						city 
+						state 
+						provider 
+						latitude 
+						longitude 
+					}
+				}
+
+				type 
+				deviceUptime 
+				socketInfo  {
+					id
+					serial
+					isPrimary
+					platformSocketInfo: platform
+					version
+					versionUpdateTime
+				}
+
+				interfacesLinkState  {
+					id
+					up
+					mediaIn
+					linkSpeed
+					duplex
+					hasAddress
+					hasInternet
+					hasTunnel
+				}
+
+				osType 
+				osVersion 
+				version 
+				versionNumber 
+				releaseGroup 
+				mfaExpirationTime 
+				mfaCreationTime 
+				internalIP 
+			}
+			connectedInOffice
+			infoUserSnapshot: info {
+				name 
+				status 
+				email 
+				creationTime 
+				phoneNumber 
+				origin 
+				authMethod 
+			}
+			recentConnectionsUserSnapshot: recentConnections {
+				duration 
+				interfaceName 
+				deviceName 
+				lastConnected 
+				popName 
+				remoteIP 
+				remoteIPInfo  {
+					ip
+					countryCode
+					countryName
+					city
+					state
+					provider
+					latitude
+					longitude
+				}
+
+			}
+		}
+
+		timestamp 
 	}	
 }

@@ -1,6 +1,6 @@
 {
     "operationName": "sitesRemoveSocketAddOnCard",
-    "query": "mutation sitesRemoveSocketAddOnCard ( $removeSocketAddOnCardInput:RemoveSocketAddOnCardInput! ) {\n\tsites ( ) {\n\t\tremoveSocketAddOnCard\n\t}\t\n}",
+    "query": "mutation sitesRemoveSocketAddOnCard ( $removeSocketAddOnCardInput:RemoveSocketAddOnCardInput! $accountId:ID! ) {\n\tsites ( accountId:$accountId ) {\n\t\tremoveSocketAddOnCard ( input:$removeSocketAddOnCardInput  )  {\n\t\t\taddOnsRemoveSocketAddOnCardPayload: addOns {\n\t\t\t\texpansionSlotNumber \n\t\t\t\ttype \n\t\t\t}\n\t\t}\n\n\t}\t\n}",
     "variables": {
         "removeSocketAddOnCardInput": {
             "expansionSlotNumbers": "SLOT_1",

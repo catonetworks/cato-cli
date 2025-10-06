@@ -1,5 +1,20 @@
-query groupsWhereUsed ( $groupRefInput:GroupRefInput! ) {
-	groups ( ) {
-		whereUsed
+query groupsWhereUsed ( $groupRefInput:GroupRefInput! $accountId:ID! ) {
+	groups ( accountId:$accountId ) {
+		whereUsed ( input:$groupRefInput  )  {
+			used
+			usageGroupWhereUsedPayload: usage {
+				type 
+				field 
+			}
+			invalidMemberTypesGroupWhereUsedPayload: invalidMemberTypes {
+				type 
+				scope  {
+					type
+					field
+				}
+
+			}
+		}
+
 	}	
 }

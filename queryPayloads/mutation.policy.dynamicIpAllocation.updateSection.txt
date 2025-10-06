@@ -1,5 +1,27 @@
-mutation policyDynamicIpAllocationUpdateSection ( $policyUpdateSectionInput:PolicyUpdateSectionInput! $dynamicIpAllocationPolicyMutationInput:DynamicIpAllocationPolicyMutationInput ) {
-	policy ( ) {
-		dynamicIpAllocation
+mutation policyDynamicIpAllocationUpdateSection ( $policyUpdateSectionInput:PolicyUpdateSectionInput! $dynamicIpAllocationPolicyMutationInput:DynamicIpAllocationPolicyMutationInput $accountId:ID! ) {
+	policy ( accountId:$accountId ) {
+		dynamicIpAllocation ( input:$dynamicIpAllocationPolicyMutationInput  )  {
+			updateSectionDynamicIpAllocationPolicyMutations: updateSection ( input:$policyUpdateSectionInput   ) {
+				section  {
+					auditPolicySectionPayload: audit {
+						updatedTime 
+						updatedBy 
+					}
+					sectionPolicySectionPayload: section {
+						id 
+						name 
+					}
+					propertiesPolicySectionPayload: properties
+				}
+
+				status 
+				errors  {
+					errorMessage
+					errorCode
+				}
+
+			}
+		}
+
 	}	
 }

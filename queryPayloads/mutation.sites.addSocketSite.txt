@@ -1,5 +1,8 @@
-mutation sitesAddSocketSite ( $addSocketSiteInput:AddSocketSiteInput! ) {
-	sites ( ) {
-		addSocketSite
+mutation sitesAddSocketSite ( $addSocketSiteInput:AddSocketSiteInput! $accountId:ID! ) {
+	sites ( accountId:$accountId ) {
+		addSocketSite ( input:$addSocketSiteInput  )  {
+			siteId
+		}
+
 	}	
 }

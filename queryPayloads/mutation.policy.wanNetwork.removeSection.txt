@@ -1,5 +1,27 @@
-mutation policyWanNetworkRemoveSection ( $policyRemoveSectionInput:PolicyRemoveSectionInput! $wanNetworkPolicyMutationInput:WanNetworkPolicyMutationInput ) {
-	policy ( ) {
-		wanNetwork
+mutation policyWanNetworkRemoveSection ( $policyRemoveSectionInput:PolicyRemoveSectionInput! $wanNetworkPolicyMutationInput:WanNetworkPolicyMutationInput $accountId:ID! ) {
+	policy ( accountId:$accountId ) {
+		wanNetwork ( input:$wanNetworkPolicyMutationInput  )  {
+			removeSectionWanNetworkPolicyMutations: removeSection ( input:$policyRemoveSectionInput   ) {
+				section  {
+					auditPolicySectionPayload: audit {
+						updatedTime 
+						updatedBy 
+					}
+					sectionPolicySectionPayload: section {
+						id 
+						name 
+					}
+					propertiesPolicySectionPayload: properties
+				}
+
+				status 
+				errors  {
+					errorMessage
+					errorCode
+				}
+
+			}
+		}
+
 	}	
 }

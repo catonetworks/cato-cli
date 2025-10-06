@@ -1,5 +1,45 @@
-mutation groupsCreateGroup ( $groupMembersListInput:GroupMembersListInput! $createGroupInput:CreateGroupInput! ) {
-	groups ( ) {
-		createGroup
+mutation groupsCreateGroup ( $groupMembersListInput:GroupMembersListInput! $createGroupInput:CreateGroupInput! $accountId:ID! ) {
+	groups ( accountId:$accountId ) {
+		createGroup ( input:$createGroupInput  )  {
+			groupCreateGroupPayload: group {
+				id 
+				name 
+				description 
+				audit  {
+					updatedTime
+					updatedByAuditingMetadata: updatedBy {
+						id 
+						name 
+						... on AdminRef {
+							id 
+							name 
+						}
+						... on ApiKeyRef {
+							id 
+							name 
+						}
+					}
+				}
+
+				members ( input:$groupMembersListInput  )  {
+					itemsGroupMembersListPayload: items {
+						id 
+						name 
+						type 
+					}
+					pagingGroupMembersListPayload: paging {
+						total 
+					}
+				}
+
+				membersCount 
+				membersCountPerType  {
+					typeGroupMemberTypeCount: type
+					membersCount
+				}
+
+			}
+		}
+
 	}	
 }

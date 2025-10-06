@@ -1,5 +1,8 @@
-query siteCloudInterconnectConnectionConnectivity ( $cloudInterconnectConnectionConnectivityInput:CloudInterconnectConnectionConnectivityInput! ) {
-	site ( ) {
-		cloudInterconnectConnectionConnectivity
+query siteCloudInterconnectConnectionConnectivity ( $cloudInterconnectConnectionConnectivityInput:CloudInterconnectConnectionConnectivityInput! $accountId:ID! ) {
+	site ( accountId:$accountId ) {
+		cloudInterconnectConnectionConnectivity ( input:$cloudInterconnectConnectionConnectivityInput  )  {
+			success
+		}
+
 	}	
 }

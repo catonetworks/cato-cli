@@ -1,5 +1,9 @@
-mutation sitesUpdateIpsecIkeV2SiteGeneralDetails ( $siteId:ID! $updateIpsecIkeV2SiteGeneralDetailsInput:UpdateIpsecIkeV2SiteGeneralDetailsInput! ) {
-	sites ( ) {
-		updateIpsecIkeV2SiteGeneralDetails
+mutation sitesUpdateIpsecIkeV2SiteGeneralDetails ( $siteId:ID! $updateIpsecIkeV2SiteGeneralDetailsInput:UpdateIpsecIkeV2SiteGeneralDetailsInput! $accountId:ID! ) {
+	sites ( accountId:$accountId ) {
+		updateIpsecIkeV2SiteGeneralDetails ( siteId:$siteId  input:$updateIpsecIkeV2SiteGeneralDetailsInput  )  {
+			siteId
+			localId
+		}
+
 	}	
 }

@@ -1,5 +1,16 @@
-mutation sitesStartSiteUpgrade ( $startSiteUpgradeInput:StartSiteUpgradeInput! ) {
-	sites ( ) {
-		startSiteUpgrade
+mutation sitesStartSiteUpgrade ( $startSiteUpgradeInput:StartSiteUpgradeInput! $accountId:ID! ) {
+	sites ( accountId:$accountId ) {
+		startSiteUpgrade ( input:$startSiteUpgradeInput  )  {
+			resultsStartSiteUpgradePayload: results {
+				site  {
+					id
+					name
+				}
+
+				targetVersion 
+				scheduledAt 
+			}
+		}
+
 	}	
 }

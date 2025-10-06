@@ -1,5 +1,27 @@
-mutation policyWanNetworkAddSection ( $policyAddSectionInput:PolicyAddSectionInput! $wanNetworkPolicyMutationInput:WanNetworkPolicyMutationInput ) {
-	policy ( ) {
-		wanNetwork
+mutation policyWanNetworkAddSection ( $policyAddSectionInput:PolicyAddSectionInput! $wanNetworkPolicyMutationInput:WanNetworkPolicyMutationInput $accountId:ID! ) {
+	policy ( accountId:$accountId ) {
+		wanNetwork ( input:$wanNetworkPolicyMutationInput  )  {
+			addSectionWanNetworkPolicyMutations: addSection ( input:$policyAddSectionInput   ) {
+				section  {
+					auditPolicySectionPayload: audit {
+						updatedTime 
+						updatedBy 
+					}
+					sectionPolicySectionPayload: section {
+						id 
+						name 
+					}
+					propertiesPolicySectionPayload: properties
+				}
+
+				status 
+				errors  {
+					errorMessage
+					errorCode
+				}
+
+			}
+		}
+
 	}	
 }

@@ -1,6 +1,6 @@
 {
     "operationName": "siteSiteGeneralDetails",
-    "query": "query siteSiteGeneralDetails ( $siteRefInput:SiteRefInput! ) {\n\tsite ( ) {\n\t\tsiteGeneralDetails\n\t}\t\n}",
+    "query": "query siteSiteGeneralDetails ( $siteRefInput:SiteRefInput! $accountId:ID! ) {\n\tsite ( accountId:$accountId ) {\n\t\tsiteGeneralDetails ( site:$siteRefInput  )  {\n\t\t\tsiteSiteGeneralDetailsPayload: site {\n\t\t\t\tid \n\t\t\t\tname \n\t\t\t}\n\t\t\tsiteTypeSiteGeneralDetailsPayload: siteType\n\t\t\tdescription\n\t\t\tsiteLocationSiteGeneralDetailsPayload: siteLocation {\n\t\t\t\tcountryCode \n\t\t\t\tstateCode \n\t\t\t\tcityName \n\t\t\t\ttimezone \n\t\t\t\taddress \n\t\t\t}\n\t\t\tpreferredPopLocationSiteGeneralDetailsPayload: preferredPopLocation {\n\t\t\t\tprimary  {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\n\t\t\t\tsecondary  {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\n\t\t\t\tpreferredOnly \n\t\t\t}\n\t\t}\n\n\t}\t\n}",
     "variables": {
         "siteRefInput": {
             "by": "ID",

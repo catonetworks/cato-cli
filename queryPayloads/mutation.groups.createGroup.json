@@ -1,6 +1,6 @@
 {
     "operationName": "groupsCreateGroup",
-    "query": "mutation groupsCreateGroup ( $groupMembersListInput:GroupMembersListInput! $createGroupInput:CreateGroupInput! ) {\n\tgroups ( ) {\n\t\tcreateGroup\n\t}\t\n}",
+    "query": "mutation groupsCreateGroup ( $groupMembersListInput:GroupMembersListInput! $createGroupInput:CreateGroupInput! $accountId:ID! ) {\n\tgroups ( accountId:$accountId ) {\n\t\tcreateGroup ( input:$createGroupInput  )  {\n\t\t\tgroupCreateGroupPayload: group {\n\t\t\t\tid \n\t\t\t\tname \n\t\t\t\tdescription \n\t\t\t\taudit  {\n\t\t\t\t\tupdatedTime\n\t\t\t\t\tupdatedByAuditingMetadata: updatedBy {\n\t\t\t\t\t\tid \n\t\t\t\t\t\tname \n\t\t\t\t\t\t... on AdminRef {\n\t\t\t\t\t\t\tid \n\t\t\t\t\t\t\tname \n\t\t\t\t\t\t}\n\t\t\t\t\t\t... on ApiKeyRef {\n\t\t\t\t\t\t\tid \n\t\t\t\t\t\t\tname \n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\n\t\t\t\tmembers ( input:$groupMembersListInput  )  {\n\t\t\t\t\titemsGroupMembersListPayload: items {\n\t\t\t\t\t\tid \n\t\t\t\t\t\tname \n\t\t\t\t\t\ttype \n\t\t\t\t\t}\n\t\t\t\t\tpagingGroupMembersListPayload: paging {\n\t\t\t\t\t\ttotal \n\t\t\t\t\t}\n\t\t\t\t}\n\n\t\t\t\tmembersCount \n\t\t\t\tmembersCountPerType  {\n\t\t\t\t\ttypeGroupMemberTypeCount: type\n\t\t\t\t\tmembersCount\n\t\t\t\t}\n\n\t\t\t}\n\t\t}\n\n\t}\t\n}",
     "variables": {
         "createGroupInput": {
             "description": "string",

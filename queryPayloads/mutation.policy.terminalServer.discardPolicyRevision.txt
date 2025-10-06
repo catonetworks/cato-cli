@@ -1,5 +1,72 @@
-mutation policyTerminalServerDiscardPolicyRevision ( $policyDiscardRevisionInput:PolicyDiscardRevisionInput $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput ) {
-	policy ( ) {
-		terminalServer
+mutation policyTerminalServerDiscardPolicyRevision ( $policyDiscardRevisionInput:PolicyDiscardRevisionInput $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput $accountId:ID! ) {
+	policy ( accountId:$accountId ) {
+		terminalServer ( input:$terminalServerPolicyMutationInput  )  {
+			discardPolicyRevisionTerminalServerPolicyMutations: discardPolicyRevision ( input:$policyDiscardRevisionInput   ) {
+				policy  {
+					enabled
+					rulesTerminalServerPolicy: rules {
+						audit  {
+							updatedTime
+							updatedBy
+						}
+
+						rule  {
+							id
+							name
+							description
+							index
+							sectionTerminalServerRule: section {
+								id 
+								name 
+							}
+							enabled
+							allowedHostIPTerminalServerRule: allowedHostIP {
+								id 
+								name 
+							}
+							excludeTrafficTerminalServerRule: excludeTraffic {
+								id 
+								name 
+							}
+						}
+
+						properties 
+					}
+					sectionsTerminalServerPolicy: sections {
+						audit  {
+							updatedTime
+							updatedBy
+						}
+
+						section  {
+							id
+							name
+						}
+
+						properties 
+					}
+					auditTerminalServerPolicy: audit {
+						publishedTime 
+						publishedBy 
+					}
+					revisionTerminalServerPolicy: revision {
+						id 
+						name 
+						description 
+						changes 
+						createdTime 
+						updatedTime 
+					}
+				}
+
+				status 
+				errors  {
+					errorMessage
+					errorCode
+				}
+
+			}
+		}
+
 	}	
 }

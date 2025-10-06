@@ -1,5 +1,8 @@
-mutation siteAddCloudInterconnectPhysicalConnection ( $addCloudInterconnectPhysicalConnectionInput:AddCloudInterconnectPhysicalConnectionInput! ) {
-	site ( ) {
-		addCloudInterconnectPhysicalConnection
+mutation siteAddCloudInterconnectPhysicalConnection ( $addCloudInterconnectPhysicalConnectionInput:AddCloudInterconnectPhysicalConnectionInput! $accountId:ID! ) {
+	site ( accountId:$accountId ) {
+		addCloudInterconnectPhysicalConnection ( input:$addCloudInterconnectPhysicalConnectionInput  )  {
+			id
+		}
+
 	}	
 }

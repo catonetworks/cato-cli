@@ -1,5 +1,476 @@
-mutation policyWanFirewallPublishPolicyRevision ( $policyPublishRevisionInput:PolicyPublishRevisionInput $wanFirewallPolicyMutationInput:WanFirewallPolicyMutationInput ) {
-	policy ( ) {
-		wanFirewall
+mutation policyWanFirewallPublishPolicyRevision ( $policyPublishRevisionInput:PolicyPublishRevisionInput $wanFirewallPolicyMutationInput:WanFirewallPolicyMutationInput $accountId:ID! ) {
+	policy ( accountId:$accountId ) {
+		wanFirewall ( input:$wanFirewallPolicyMutationInput  )  {
+			publishPolicyRevisionWanFirewallPolicyMutations: publishPolicyRevision ( input:$policyPublishRevisionInput   ) {
+				policy  {
+					enabled
+					rulesWanFirewallPolicy: rules {
+						audit  {
+							updatedTime
+							updatedBy
+						}
+
+						rule  {
+							id
+							name
+							description
+							index
+							sectionWanFirewallRule: section {
+								id 
+								name 
+							}
+							enabled
+							sourceWanFirewallRule: source {
+								host  {
+									id
+									name
+								}
+
+								site  {
+									id
+									name
+								}
+
+								subnet 
+								ip 
+								ipRange  {
+									from
+									to
+								}
+
+								globalIpRange  {
+									id
+									name
+								}
+
+								networkInterface  {
+									id
+									name
+								}
+
+								siteNetworkSubnet  {
+									id
+									name
+								}
+
+								floatingSubnet  {
+									id
+									name
+								}
+
+								user  {
+									id
+									name
+								}
+
+								usersGroup  {
+									id
+									name
+								}
+
+								group  {
+									id
+									name
+								}
+
+								systemGroup  {
+									id
+									name
+								}
+
+							}
+							connectionOriginWanFirewallRule: connectionOrigin
+							countryWanFirewallRule: country {
+								id 
+								name 
+							}
+							deviceWanFirewallRule: device {
+								id 
+								name 
+							}
+							deviceOSWanFirewallRule: deviceOS
+							deviceAttributesWanFirewallRule: deviceAttributes {
+								category 
+								type 
+								model 
+								manufacturer 
+								os 
+								osVersion 
+							}
+							destinationWanFirewallRule: destination {
+								host  {
+									id
+									name
+								}
+
+								site  {
+									id
+									name
+								}
+
+								subnet 
+								ip 
+								ipRange  {
+									from
+									to
+								}
+
+								globalIpRange  {
+									id
+									name
+								}
+
+								networkInterface  {
+									id
+									name
+								}
+
+								siteNetworkSubnet  {
+									id
+									name
+								}
+
+								floatingSubnet  {
+									id
+									name
+								}
+
+								user  {
+									id
+									name
+								}
+
+								usersGroup  {
+									id
+									name
+								}
+
+								group  {
+									id
+									name
+								}
+
+								systemGroup  {
+									id
+									name
+								}
+
+							}
+							applicationWanFirewallRule: application {
+								application  {
+									id
+									name
+								}
+
+								appCategory  {
+									id
+									name
+								}
+
+								customApp  {
+									id
+									name
+								}
+
+								customCategory  {
+									id
+									name
+								}
+
+								sanctionedAppsCategory  {
+									id
+									name
+								}
+
+								domain 
+								fqdn 
+								ip 
+								subnet 
+								ipRange  {
+									from
+									to
+								}
+
+								globalIpRange  {
+									id
+									name
+								}
+
+							}
+							serviceWanFirewallRule: service {
+								standard  {
+									id
+									name
+								}
+
+								custom  {
+									port
+									portRangeCustomService: portRange {
+										from 
+										to 
+									}
+									protocolCustomService: protocol
+								}
+
+							}
+							actionWanFirewallRule: action
+							trackingWanFirewallRule: tracking {
+								event  {
+									enabled
+								}
+
+								alert  {
+									enabled
+									frequencyPolicyRuleTrackingAlert: frequency
+									subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
+										id 
+										name 
+									}
+									webhookPolicyRuleTrackingAlert: webhook {
+										id 
+										name 
+									}
+									mailingListPolicyRuleTrackingAlert: mailingList {
+										id 
+										name 
+									}
+								}
+
+							}
+							scheduleWanFirewallRule: schedule {
+								activeOn 
+								customTimeframe  {
+									from
+									to
+								}
+
+								customRecurring  {
+									from
+									to
+									daysPolicyCustomRecurring: days
+								}
+
+							}
+							activePeriodWanFirewallRule: activePeriod {
+								useEffectiveFrom 
+								effectiveFrom 
+								useExpiresAt 
+								expiresAt 
+							}
+							directionWanFirewallRule: direction
+							exceptionsWanFirewallRule: exceptions {
+								name 
+								source  {
+									hostWanFirewallSource: host {
+										id 
+										name 
+									}
+									siteWanFirewallSource: site {
+										id 
+										name 
+									}
+									subnet
+									ip
+									ipRangeWanFirewallSource: ipRange {
+										from 
+										to 
+									}
+									globalIpRangeWanFirewallSource: globalIpRange {
+										id 
+										name 
+									}
+									networkInterfaceWanFirewallSource: networkInterface {
+										id 
+										name 
+									}
+									siteNetworkSubnetWanFirewallSource: siteNetworkSubnet {
+										id 
+										name 
+									}
+									floatingSubnetWanFirewallSource: floatingSubnet {
+										id 
+										name 
+									}
+									userWanFirewallSource: user {
+										id 
+										name 
+									}
+									usersGroupWanFirewallSource: usersGroup {
+										id 
+										name 
+									}
+									groupWanFirewallSource: group {
+										id 
+										name 
+									}
+									systemGroupWanFirewallSource: systemGroup {
+										id 
+										name 
+									}
+								}
+
+								deviceOS 
+								destination  {
+									hostWanFirewallDestination: host {
+										id 
+										name 
+									}
+									siteWanFirewallDestination: site {
+										id 
+										name 
+									}
+									subnet
+									ip
+									ipRangeWanFirewallDestination: ipRange {
+										from 
+										to 
+									}
+									globalIpRangeWanFirewallDestination: globalIpRange {
+										id 
+										name 
+									}
+									networkInterfaceWanFirewallDestination: networkInterface {
+										id 
+										name 
+									}
+									siteNetworkSubnetWanFirewallDestination: siteNetworkSubnet {
+										id 
+										name 
+									}
+									floatingSubnetWanFirewallDestination: floatingSubnet {
+										id 
+										name 
+									}
+									userWanFirewallDestination: user {
+										id 
+										name 
+									}
+									usersGroupWanFirewallDestination: usersGroup {
+										id 
+										name 
+									}
+									groupWanFirewallDestination: group {
+										id 
+										name 
+									}
+									systemGroupWanFirewallDestination: systemGroup {
+										id 
+										name 
+									}
+								}
+
+								country  {
+									id
+									name
+								}
+
+								device  {
+									id
+									name
+								}
+
+								deviceAttributes  {
+									category
+									type
+									model
+									manufacturer
+									os
+									osVersion
+								}
+
+								application  {
+									applicationWanFirewallApplication: application {
+										id 
+										name 
+									}
+									appCategoryWanFirewallApplication: appCategory {
+										id 
+										name 
+									}
+									customAppWanFirewallApplication: customApp {
+										id 
+										name 
+									}
+									customCategoryWanFirewallApplication: customCategory {
+										id 
+										name 
+									}
+									sanctionedAppsCategoryWanFirewallApplication: sanctionedAppsCategory {
+										id 
+										name 
+									}
+									domain
+									fqdn
+									ip
+									subnet
+									ipRangeWanFirewallApplication: ipRange {
+										from 
+										to 
+									}
+									globalIpRangeWanFirewallApplication: globalIpRange {
+										id 
+										name 
+									}
+								}
+
+								service  {
+									standardWanFirewallServiceType: standard {
+										id 
+										name 
+									}
+									customWanFirewallServiceType: custom {
+										port 
+										portRange  {
+											from
+											to
+										}
+
+										protocol 
+									}
+								}
+
+								connectionOrigin 
+								direction 
+							}
+						}
+
+						properties 
+					}
+					sectionsWanFirewallPolicy: sections {
+						audit  {
+							updatedTime
+							updatedBy
+						}
+
+						section  {
+							id
+							name
+						}
+
+						properties 
+					}
+					auditWanFirewallPolicy: audit {
+						publishedTime 
+						publishedBy 
+					}
+					revisionWanFirewallPolicy: revision {
+						id 
+						name 
+						description 
+						changes 
+						createdTime 
+						updatedTime 
+					}
+				}
+
+				status 
+				errors  {
+					errorMessage
+					errorCode
+				}
+
+			}
+		}
+
 	}	
 }

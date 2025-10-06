@@ -1,5 +1,8 @@
-mutation adminRemoveServicePrincipalAdmin ( $adminID:ID! ) {
-	admin ( ) {
-		removeServicePrincipalAdmin
+mutation adminRemoveServicePrincipalAdmin ( $adminID:ID! $accountId:ID! ) {
+	admin ( accountId:$accountId ) {
+		removeServicePrincipalAdmin ( adminID:$adminID  )  {
+			adminID
+		}
+
 	}	
 }

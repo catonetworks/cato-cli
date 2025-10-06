@@ -10,10 +10,11 @@
 
 `catocli query xdr story "$(cat < query.xdr.story.json)"`
 
-`catocli query xdr story '{"incidentId":"id","producer":"AnomalyStats","storyId":"id"}'`
+`catocli query xdr story '{"incidentId":"id","perSecond":true,"producer":"AnomalyStats","storyId":"id"}'`
 
 `catocli query xdr story -p '{
     "incidentId": "id",
+    "perSecond": true,
     "producer": "AnomalyStats",
     "storyId": "id"
 }'
@@ -23,5 +24,6 @@
 
 `accountID` [ID] - (required) N/A    
 `incidentId` [ID] - (required) N/A    
+`perSecond` [Boolean] - (required) whether to normalize the data into per second (i.e. divide by granularity)    
 `producer` [StoryProducerEnum] - (required) N/A Default Value: ['AnomalyStats', 'AnomalyEvents', 'AnomalyExperience', 'ThreatHunt', 'ThreatPrevention', 'NetworkMonitor', 'NetworkXDR', 'MicrosoftEndpointDefender', 'CatoEndpointAlert', 'EntraIdAlert']   
 `storyId` [ID] - (required) N/A    

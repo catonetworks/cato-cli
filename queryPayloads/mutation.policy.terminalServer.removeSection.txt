@@ -1,5 +1,27 @@
-mutation policyTerminalServerRemoveSection ( $policyRemoveSectionInput:PolicyRemoveSectionInput! $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput ) {
-	policy ( ) {
-		terminalServer
+mutation policyTerminalServerRemoveSection ( $policyRemoveSectionInput:PolicyRemoveSectionInput! $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput $accountId:ID! ) {
+	policy ( accountId:$accountId ) {
+		terminalServer ( input:$terminalServerPolicyMutationInput  )  {
+			removeSectionTerminalServerPolicyMutations: removeSection ( input:$policyRemoveSectionInput   ) {
+				section  {
+					auditPolicySectionPayload: audit {
+						updatedTime 
+						updatedBy 
+					}
+					sectionPolicySectionPayload: section {
+						id 
+						name 
+					}
+					propertiesPolicySectionPayload: properties
+				}
+
+				status 
+				errors  {
+					errorMessage
+					errorCode
+				}
+
+			}
+		}
+
 	}	
 }

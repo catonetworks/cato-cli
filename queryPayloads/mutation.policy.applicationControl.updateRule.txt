@@ -1,5 +1,643 @@
-mutation policyApplicationControlUpdateRule ( $applicationControlUpdateRuleInput:ApplicationControlUpdateRuleInput! $applicationControlPolicyMutationInput:ApplicationControlPolicyMutationInput ) {
-	policy ( ) {
-		applicationControl
+mutation policyApplicationControlUpdateRule ( $applicationControlUpdateRuleInput:ApplicationControlUpdateRuleInput! $applicationControlPolicyMutationInput:ApplicationControlPolicyMutationInput $accountId:ID! ) {
+	policy ( accountId:$accountId ) {
+		applicationControl ( input:$applicationControlPolicyMutationInput  )  {
+			updateRuleApplicationControlPolicyMutations: updateRule ( input:$applicationControlUpdateRuleInput   ) {
+				rule  {
+					auditApplicationControlRulePayload: audit {
+						updatedTime 
+						updatedBy 
+					}
+					ruleApplicationControlRulePayload: rule {
+						id 
+						name 
+						description 
+						index 
+						section  {
+							id
+							name
+						}
+
+						enabled 
+						ruleType 
+						applicationRule  {
+							applicationApplicationControlApplicationRule: application {
+								application  {
+									id
+									name
+								}
+
+								customApp  {
+									id
+									name
+								}
+
+								appCategory  {
+									id
+									name
+								}
+
+								customCategory  {
+									id
+									name
+								}
+
+								sanctionedAppsCategory  {
+									id
+									name
+								}
+
+								applicationType 
+							}
+							applicationActivitySatisfyApplicationControlApplicationRule: applicationActivitySatisfy
+							applicationActivityApplicationControlApplicationRule: applicationActivity {
+								activity  {
+									id
+									name
+								}
+
+								field  {
+									id
+									name
+								}
+
+								operator 
+								value 
+								valueSet  {
+									id
+									name
+								}
+
+							}
+							applicationContextApplicationControlApplicationRule: applicationContext {
+								applicationTenant  {
+									operatorApplicationControlTenant: operator
+									value
+									valueSetApplicationControlTenant: valueSet {
+										id 
+										name 
+									}
+								}
+
+							}
+							accessMethodApplicationControlApplicationRule: accessMethod {
+								accessMethod 
+								operator 
+								value 
+								valueSet  {
+									id
+									name
+								}
+
+							}
+							sourceApplicationControlApplicationRule: source {
+								country  {
+									id
+									name
+								}
+
+								host  {
+									id
+									name
+								}
+
+								site  {
+									id
+									name
+								}
+
+								subnet 
+								ip 
+								ipRange  {
+									from
+									to
+								}
+
+								globalIpRange  {
+									id
+									name
+								}
+
+								networkInterface  {
+									id
+									name
+								}
+
+								siteNetworkSubnet  {
+									id
+									name
+								}
+
+								floatingSubnet  {
+									id
+									name
+								}
+
+								user  {
+									id
+									name
+								}
+
+								usersGroup  {
+									id
+									name
+								}
+
+								group  {
+									id
+									name
+								}
+
+								systemGroup  {
+									id
+									name
+								}
+
+							}
+							deviceApplicationControlApplicationRule: device {
+								id 
+								name 
+							}
+							actionApplicationControlApplicationRule: action
+							trackingApplicationControlApplicationRule: tracking {
+								event  {
+									enabled
+								}
+
+								alert  {
+									enabled
+									frequencyPolicyRuleTrackingAlert: frequency
+									subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
+										id 
+										name 
+									}
+									webhookPolicyRuleTrackingAlert: webhook {
+										id 
+										name 
+									}
+									mailingListPolicyRuleTrackingAlert: mailingList {
+										id 
+										name 
+									}
+								}
+
+							}
+							scheduleApplicationControlApplicationRule: schedule {
+								activeOn 
+								customTimeframe  {
+									from
+									to
+								}
+
+								customRecurring  {
+									from
+									to
+									daysPolicyCustomRecurring: days
+								}
+
+							}
+							severityApplicationControlApplicationRule: severity
+							applicationCriteriaSatisfyApplicationControlApplicationRule: applicationCriteriaSatisfy
+							applicationCriteriaApplicationControlApplicationRule: applicationCriteria {
+								attributes  {
+									complianceAttributesApplicationControlAttributes: complianceAttributes {
+										iso27001 
+										sox 
+										hippa 
+										soc1 
+										soc2 
+										soc3 
+										isae3402 
+										pciDss 
+									}
+									securityAttributesApplicationControlAttributes: securityAttributes {
+										mfa 
+										encryptionAtRest 
+										auditTrail 
+										rbac 
+										rememberPassword 
+										sso 
+										trustedCertificate 
+										tlsEnforcement 
+										httpSecurityHeaders 
+									}
+								}
+
+								originCountry  {
+									id
+									name
+								}
+
+								risk  {
+									risk
+									riskOperatorApplicationControlRiskCriteria: riskOperator
+								}
+
+							}
+						}
+
+						dataRule  {
+							applicationApplicationControlDataRule: application {
+								application  {
+									id
+									name
+								}
+
+								customApp  {
+									id
+									name
+								}
+
+								appCategory  {
+									id
+									name
+								}
+
+								customCategory  {
+									id
+									name
+								}
+
+								sanctionedAppsCategory  {
+									id
+									name
+								}
+
+								applicationType 
+							}
+							applicationContextApplicationControlDataRule: applicationContext {
+								applicationTenant  {
+									operatorApplicationControlTenant: operator
+									value
+									valueSetApplicationControlTenant: valueSet {
+										id 
+										name 
+									}
+								}
+
+							}
+							applicationActivitySatisfyApplicationControlDataRule: applicationActivitySatisfy
+							applicationActivityApplicationControlDataRule: applicationActivity {
+								activity  {
+									id
+									name
+								}
+
+								field  {
+									id
+									name
+								}
+
+								operator 
+								value 
+								valueSet  {
+									id
+									name
+								}
+
+							}
+							accessMethodApplicationControlDataRule: accessMethod {
+								accessMethod 
+								operator 
+								value 
+								valueSet  {
+									id
+									name
+								}
+
+							}
+							sourceApplicationControlDataRule: source {
+								country  {
+									id
+									name
+								}
+
+								host  {
+									id
+									name
+								}
+
+								site  {
+									id
+									name
+								}
+
+								subnet 
+								ip 
+								ipRange  {
+									from
+									to
+								}
+
+								globalIpRange  {
+									id
+									name
+								}
+
+								networkInterface  {
+									id
+									name
+								}
+
+								siteNetworkSubnet  {
+									id
+									name
+								}
+
+								floatingSubnet  {
+									id
+									name
+								}
+
+								user  {
+									id
+									name
+								}
+
+								usersGroup  {
+									id
+									name
+								}
+
+								group  {
+									id
+									name
+								}
+
+								systemGroup  {
+									id
+									name
+								}
+
+							}
+							deviceApplicationControlDataRule: device {
+								id 
+								name 
+							}
+							actionApplicationControlDataRule: action
+							trackingApplicationControlDataRule: tracking {
+								event  {
+									enabled
+								}
+
+								alert  {
+									enabled
+									frequencyPolicyRuleTrackingAlert: frequency
+									subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
+										id 
+										name 
+									}
+									webhookPolicyRuleTrackingAlert: webhook {
+										id 
+										name 
+									}
+									mailingListPolicyRuleTrackingAlert: mailingList {
+										id 
+										name 
+									}
+								}
+
+							}
+							scheduleApplicationControlDataRule: schedule {
+								activeOn 
+								customTimeframe  {
+									from
+									to
+								}
+
+								customRecurring  {
+									from
+									to
+									daysPolicyCustomRecurring: days
+								}
+
+							}
+							severityApplicationControlDataRule: severity
+							fileAttributeSatisfyApplicationControlDataRule: fileAttributeSatisfy
+							fileAttributeApplicationControlDataRule: fileAttribute {
+								fileAttribute 
+								operator 
+								value 
+								contentTypeValues  {
+									id
+									name
+								}
+
+								contentTypeGroupValues  {
+									id
+									name
+								}
+
+							}
+							dlpProfileApplicationControlDataRule: dlpProfile {
+								contentProfile  {
+									id
+									name
+								}
+
+								edmProfile  {
+									id
+									name
+								}
+
+							}
+						}
+
+						fileRule  {
+							applicationApplicationControlFileRule: application {
+								application  {
+									id
+									name
+								}
+
+								customApp  {
+									id
+									name
+								}
+
+								appCategory  {
+									id
+									name
+								}
+
+								customCategory  {
+									id
+									name
+								}
+
+								sanctionedAppsCategory  {
+									id
+									name
+								}
+
+								applicationType 
+							}
+							applicationActivitySatisfyApplicationControlFileRule: applicationActivitySatisfy
+							applicationActivityApplicationControlFileRule: applicationActivity {
+								activity  {
+									id
+									name
+								}
+
+								field  {
+									id
+									name
+								}
+
+								operator 
+								value 
+								valueSet  {
+									id
+									name
+								}
+
+							}
+							accessMethodApplicationControlFileRule: accessMethod {
+								accessMethod 
+								operator 
+								value 
+								valueSet  {
+									id
+									name
+								}
+
+							}
+							sourceApplicationControlFileRule: source {
+								country  {
+									id
+									name
+								}
+
+								host  {
+									id
+									name
+								}
+
+								site  {
+									id
+									name
+								}
+
+								subnet 
+								ip 
+								ipRange  {
+									from
+									to
+								}
+
+								globalIpRange  {
+									id
+									name
+								}
+
+								networkInterface  {
+									id
+									name
+								}
+
+								siteNetworkSubnet  {
+									id
+									name
+								}
+
+								floatingSubnet  {
+									id
+									name
+								}
+
+								user  {
+									id
+									name
+								}
+
+								usersGroup  {
+									id
+									name
+								}
+
+								group  {
+									id
+									name
+								}
+
+								systemGroup  {
+									id
+									name
+								}
+
+							}
+							deviceApplicationControlFileRule: device {
+								id 
+								name 
+							}
+							actionApplicationControlFileRule: action
+							trackingApplicationControlFileRule: tracking {
+								event  {
+									enabled
+								}
+
+								alert  {
+									enabled
+									frequencyPolicyRuleTrackingAlert: frequency
+									subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
+										id 
+										name 
+									}
+									webhookPolicyRuleTrackingAlert: webhook {
+										id 
+										name 
+									}
+									mailingListPolicyRuleTrackingAlert: mailingList {
+										id 
+										name 
+									}
+								}
+
+							}
+							scheduleApplicationControlFileRule: schedule {
+								activeOn 
+								customTimeframe  {
+									from
+									to
+								}
+
+								customRecurring  {
+									from
+									to
+									daysPolicyCustomRecurring: days
+								}
+
+							}
+							severityApplicationControlFileRule: severity
+							fileAttributeSatisfyApplicationControlFileRule: fileAttributeSatisfy
+							fileAttributeApplicationControlFileRule: fileAttribute {
+								fileAttribute 
+								operator 
+								value 
+								contentTypeValues  {
+									id
+									name
+								}
+
+								contentTypeGroupValues  {
+									id
+									name
+								}
+
+							}
+						}
+
+					}
+					propertiesApplicationControlRulePayload: properties
+				}
+
+				status 
+				errors  {
+					errorMessage
+					errorCode
+				}
+
+			}
+		}
+
 	}	
 }

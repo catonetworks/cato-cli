@@ -1,5 +1,22 @@
-mutation accountManagementRemoveAccount ( ) {
-	accountManagement ( ) {
-		removeAccount
+mutation accountManagementRemoveAccount ( $accountId:ID! ) {
+	accountManagement ( accountId:$accountId ) {
+		removeAccount  {
+			accountInfoRemoveAccountPayload: accountInfo {
+				id 
+				name 
+				description 
+				timeZone 
+				type 
+				tenancy 
+				audit  {
+					createdBy
+					createdTime
+				}
+
+				plan 
+				status 
+			}
+		}
+
 	}	
 }

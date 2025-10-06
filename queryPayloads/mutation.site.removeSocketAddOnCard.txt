@@ -1,5 +1,11 @@
-mutation siteRemoveSocketAddOnCard ( $removeSocketAddOnCardInput:RemoveSocketAddOnCardInput! ) {
-	site ( ) {
-		removeSocketAddOnCard
+mutation siteRemoveSocketAddOnCard ( $removeSocketAddOnCardInput:RemoveSocketAddOnCardInput! $accountId:ID! ) {
+	site ( accountId:$accountId ) {
+		removeSocketAddOnCard ( input:$removeSocketAddOnCardInput  )  {
+			addOnsRemoveSocketAddOnCardPayload: addOns {
+				expansionSlotNumber 
+				type 
+			}
+		}
+
 	}	
 }

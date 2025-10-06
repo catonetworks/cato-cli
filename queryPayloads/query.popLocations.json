@@ -1,6 +1,6 @@
 {
     "operationName": "popLocations",
-    "query": "query popLocations ( $popLocationFilterInput:PopLocationFilterInput ) {\n\tpopLocations ( ) {\n\t\tpopLocationList\n\t}\t\n}",
+    "query": "query popLocations ( $popLocationFilterInput:PopLocationFilterInput $accountId:ID! ) {\n\tpopLocations ( accountId:$accountId ) {\n\t\tpopLocationList ( input:$popLocationFilterInput  )  {\n\t\t\titemsPopLocationPayload: items {\n\t\t\t\tid \n\t\t\t\tname \n\t\t\t\tdisplayName \n\t\t\t\tcountry  {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\n\t\t\t\tisPrivate \n\t\t\t\tcloudInterconnect  {\n\t\t\t\t\ttaggingMethodPopLocationCloudInterconnect: taggingMethod\n\t\t\t\t\tproviderName\n\t\t\t\t}\n\n\t\t\t}\n\t\t}\n\n\t}\t\n}",
     "variables": {
         "popLocationFilterInput": {
             "booleanFilterInput": {

@@ -1,9 +1,28 @@
-query socketPortMetricsTimeSeries ( $perSecond:Boolean $withMissingData:Boolean $useDefaultSizeBucket:Boolean $buckets:Int! $timeFrame:TimeFrame! $socketPortMetricsMeasure:[SocketPortMetricsMeasure] $socketPortMetricsDimension:[SocketPortMetricsDimension] $socketPortMetricsFilter:[SocketPortMetricsFilter!] ) {
-	socketPortMetricsTimeSeries ( timeFrame:$timeFrame measures:$socketPortMetricsMeasure dimensions:$socketPortMetricsDimension filters:$socketPortMetricsFilter ) {
-		id
-		from
-		to
-		granularity
-		timeseries
+query socketPortMetricsTimeSeries ( $perSecond:Boolean $withMissingData:Boolean $useDefaultSizeBucket:Boolean $buckets:Int! $accountID:ID! $timeFrame:TimeFrame! $socketPortMetricsMeasure:[SocketPortMetricsMeasure] $socketPortMetricsDimension:[SocketPortMetricsDimension] $socketPortMetricsFilter:[SocketPortMetricsFilter!] ) {
+	socketPortMetricsTimeSeries ( accountID:$accountID timeFrame:$timeFrame measures:$socketPortMetricsMeasure dimensions:$socketPortMetricsDimension filters:$socketPortMetricsFilter ) {
+		id 
+		from 
+		to 
+		granularity 
+		timeseries ( buckets:$buckets  )  {
+			data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket   )
+			label
+			dimensionsTimeseries: dimensions {
+				label 
+				value 
+			}
+			keyTimeseries: key {
+				measureFieldName 
+				dimensions  {
+					fieldName
+					value
+				}
+
+			}
+			sum
+			unitsTimeseries: units
+			info
+		}
+
 	}	
 }

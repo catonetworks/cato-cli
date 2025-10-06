@@ -1,5 +1,33 @@
-query siteSiteGeneralDetails ( $siteRefInput:SiteRefInput! ) {
-	site ( ) {
-		siteGeneralDetails
+query siteSiteGeneralDetails ( $siteRefInput:SiteRefInput! $accountId:ID! ) {
+	site ( accountId:$accountId ) {
+		siteGeneralDetails ( site:$siteRefInput  )  {
+			siteSiteGeneralDetailsPayload: site {
+				id 
+				name 
+			}
+			siteTypeSiteGeneralDetailsPayload: siteType
+			description
+			siteLocationSiteGeneralDetailsPayload: siteLocation {
+				countryCode 
+				stateCode 
+				cityName 
+				timezone 
+				address 
+			}
+			preferredPopLocationSiteGeneralDetailsPayload: preferredPopLocation {
+				primary  {
+					id
+					name
+				}
+
+				secondary  {
+					id
+					name
+				}
+
+				preferredOnly 
+			}
+		}
+
 	}	
 }

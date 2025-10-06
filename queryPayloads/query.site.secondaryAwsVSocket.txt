@@ -1,5 +1,15 @@
-query siteSecondaryAwsVSocket ( $socketId:ID! ) {
-	site ( ) {
-		secondaryAwsVSocket
+query siteSecondaryAwsVSocket ( $socketId:ID! $accountId:ID! ) {
+	site ( accountId:$accountId ) {
+		secondaryAwsVSocket ( socketId:$socketId  )  {
+			siteSecondaryAwsVSocket: site {
+				id 
+				name 
+			}
+			id
+			ipAddress
+			subnet
+			routeTableId
+		}
+
 	}	
 }

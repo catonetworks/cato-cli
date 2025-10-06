@@ -1,5 +1,27 @@
-mutation policyApplicationControlUpdateSection ( $policyUpdateSectionInput:PolicyUpdateSectionInput! $applicationControlPolicyMutationInput:ApplicationControlPolicyMutationInput ) {
-	policy ( ) {
-		applicationControl
+mutation policyApplicationControlUpdateSection ( $policyUpdateSectionInput:PolicyUpdateSectionInput! $applicationControlPolicyMutationInput:ApplicationControlPolicyMutationInput $accountId:ID! ) {
+	policy ( accountId:$accountId ) {
+		applicationControl ( input:$applicationControlPolicyMutationInput  )  {
+			updateSectionApplicationControlPolicyMutations: updateSection ( input:$policyUpdateSectionInput   ) {
+				section  {
+					auditPolicySectionPayload: audit {
+						updatedTime 
+						updatedBy 
+					}
+					sectionPolicySectionPayload: section {
+						id 
+						name 
+					}
+					propertiesPolicySectionPayload: properties
+				}
+
+				status 
+				errors  {
+					errorMessage
+					errorCode
+				}
+
+			}
+		}
+
 	}	
 }

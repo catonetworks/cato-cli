@@ -1,5 +1,24 @@
-mutation sitesRemoveIpsecIkeV2SiteTunnels ( $siteId:ID! $removeIpsecIkeV2SiteTunnelsInput:RemoveIpsecIkeV2SiteTunnelsInput! ) {
-	sites ( ) {
-		removeIpsecIkeV2SiteTunnels
+mutation sitesRemoveIpsecIkeV2SiteTunnels ( $siteId:ID! $removeIpsecIkeV2SiteTunnelsInput:RemoveIpsecIkeV2SiteTunnelsInput! $accountId:ID! ) {
+	sites ( accountId:$accountId ) {
+		removeIpsecIkeV2SiteTunnels ( siteId:$siteId  input:$removeIpsecIkeV2SiteTunnelsInput  )  {
+			siteId
+			primaryRemoveIpsecIkeV2SiteTunnelsPayload: primary {
+				fqdn 
+				tunnels  {
+					tunnelIdRemoveIpsecIkeV2SiteTunnelPayload: tunnelId
+					localId
+				}
+
+			}
+			secondaryRemoveIpsecIkeV2SiteTunnelsPayload: secondary {
+				fqdn 
+				tunnels  {
+					tunnelIdRemoveIpsecIkeV2SiteTunnelPayload: tunnelId
+					localId
+				}
+
+			}
+		}
+
 	}	
 }

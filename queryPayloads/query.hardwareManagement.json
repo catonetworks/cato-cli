@@ -1,6 +1,6 @@
 {
     "operationName": "hardwareManagement",
-    "query": "query hardwareManagement ( $socketInventoryInput:SocketInventoryInput ) {\n\thardwareManagement ( ) {\n\t\tsocketInventory\n\t}\t\n}",
+    "query": "query hardwareManagement ( $socketInventoryInput:SocketInventoryInput $accountId:ID! ) {\n\thardwareManagement ( accountId:$accountId ) {\n\t\tsocketInventory ( input:$socketInventoryInput  )  {\n\t\t\titemsSocketInventoryPayload: items {\n\t\t\t\tid \n\t\t\t\tstatus \n\t\t\t\tserialNumber \n\t\t\t\tsocketMac \n\t\t\t\tsocketVersion \n\t\t\t\tsite  {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\n\t\t\t\taccount  {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\n\t\t\t\tshippingDate \n\t\t\t\tsocketType \n\t\t\t\ttrackingUrl \n\t\t\t\ttrackingNumber \n\t\t\t\tshippingCompany \n\t\t\t\tdeliverySiteName \n\t\t\t\tdescription \n\t\t\t\tisPrimary \n\t\t\t\tregistrationStatus \n\t\t\t\tavailableUpgradeVersions \n\t\t\t\tupgradeStatus \n\t\t\t\tupgradesPaused \n\t\t\t}\n\t\t\tpageInfoSocketInventoryPayload: pageInfo {\n\t\t\t\ttotal \n\t\t\t}\n\t\t}\n\n\t}\t\n}",
     "variables": {
         "socketInventoryInput": {
             "pagingInput": {

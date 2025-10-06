@@ -1,5 +1,17 @@
-mutation siteUpdateSecondaryAzureVSocket ( $updateSecondaryAzureVSocketInput:UpdateSecondaryAzureVSocketInput! ) {
-	site ( ) {
-		updateSecondaryAzureVSocket
+mutation siteUpdateSecondaryAzureVSocket ( $updateSecondaryAzureVSocketInput:UpdateSecondaryAzureVSocketInput! $accountId:ID! ) {
+	site ( accountId:$accountId ) {
+		updateSecondaryAzureVSocket ( input:$updateSecondaryAzureVSocketInput  )  {
+			secondaryAzureVSocketUpdateSecondaryAzureVSocketPayload: secondaryAzureVSocket {
+				site  {
+					id
+					name
+				}
+
+				id 
+				interfaceIp 
+				floatingIp 
+			}
+		}
+
 	}	
 }

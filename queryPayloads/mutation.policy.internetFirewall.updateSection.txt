@@ -1,5 +1,27 @@
-mutation policyInternetFirewallUpdateSection ( $policyUpdateSectionInput:PolicyUpdateSectionInput! $internetFirewallPolicyMutationInput:InternetFirewallPolicyMutationInput ) {
-	policy ( ) {
-		internetFirewall
+mutation policyInternetFirewallUpdateSection ( $policyUpdateSectionInput:PolicyUpdateSectionInput! $internetFirewallPolicyMutationInput:InternetFirewallPolicyMutationInput $accountId:ID! ) {
+	policy ( accountId:$accountId ) {
+		internetFirewall ( input:$internetFirewallPolicyMutationInput  )  {
+			updateSectionInternetFirewallPolicyMutations: updateSection ( input:$policyUpdateSectionInput   ) {
+				section  {
+					auditPolicySectionPayload: audit {
+						updatedTime 
+						updatedBy 
+					}
+					sectionPolicySectionPayload: section {
+						id 
+						name 
+					}
+					propertiesPolicySectionPayload: properties
+				}
+
+				status 
+				errors  {
+					errorMessage
+					errorCode
+				}
+
+			}
+		}
+
 	}	
 }

@@ -1,5 +1,27 @@
-mutation policyAppTenantRestrictionUpdateSection ( $policyUpdateSectionInput:PolicyUpdateSectionInput! $appTenantRestrictionPolicyMutationInput:AppTenantRestrictionPolicyMutationInput ) {
-	policy ( ) {
-		appTenantRestriction
+mutation policyAppTenantRestrictionUpdateSection ( $policyUpdateSectionInput:PolicyUpdateSectionInput! $appTenantRestrictionPolicyMutationInput:AppTenantRestrictionPolicyMutationInput $accountId:ID! ) {
+	policy ( accountId:$accountId ) {
+		appTenantRestriction ( input:$appTenantRestrictionPolicyMutationInput  )  {
+			updateSectionAppTenantRestrictionPolicyMutations: updateSection ( input:$policyUpdateSectionInput   ) {
+				section  {
+					auditPolicySectionPayload: audit {
+						updatedTime 
+						updatedBy 
+					}
+					sectionPolicySectionPayload: section {
+						id 
+						name 
+					}
+					propertiesPolicySectionPayload: properties
+				}
+
+				status 
+				errors  {
+					errorMessage
+					errorCode
+				}
+
+			}
+		}
+
 	}	
 }

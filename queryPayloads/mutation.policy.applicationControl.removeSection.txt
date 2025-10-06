@@ -1,5 +1,27 @@
-mutation policyApplicationControlRemoveSection ( $policyRemoveSectionInput:PolicyRemoveSectionInput! $applicationControlPolicyMutationInput:ApplicationControlPolicyMutationInput ) {
-	policy ( ) {
-		applicationControl
+mutation policyApplicationControlRemoveSection ( $policyRemoveSectionInput:PolicyRemoveSectionInput! $applicationControlPolicyMutationInput:ApplicationControlPolicyMutationInput $accountId:ID! ) {
+	policy ( accountId:$accountId ) {
+		applicationControl ( input:$applicationControlPolicyMutationInput  )  {
+			removeSectionApplicationControlPolicyMutations: removeSection ( input:$policyRemoveSectionInput   ) {
+				section  {
+					auditPolicySectionPayload: audit {
+						updatedTime 
+						updatedBy 
+					}
+					sectionPolicySectionPayload: section {
+						id 
+						name 
+					}
+					propertiesPolicySectionPayload: properties
+				}
+
+				status 
+				errors  {
+					errorMessage
+					errorCode
+				}
+
+			}
+		}
+
 	}	
 }

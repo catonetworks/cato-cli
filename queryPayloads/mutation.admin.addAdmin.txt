@@ -1,5 +1,8 @@
-mutation adminAddAdmin ( $addAdminInput:AddAdminInput! ) {
-	admin ( ) {
-		addAdmin
+mutation adminAddAdmin ( $addAdminInput:AddAdminInput! $accountId:ID! ) {
+	admin ( accountId:$accountId ) {
+		addAdmin ( input:$addAdminInput  )  {
+			adminID
+		}
+
 	}	
 }

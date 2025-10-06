@@ -1,5 +1,27 @@
-mutation policySocketLanAddSection ( $policyAddSectionInput:PolicyAddSectionInput! $socketLanPolicyMutationInput:SocketLanPolicyMutationInput ) {
-	policy ( ) {
-		socketLan
+mutation policySocketLanAddSection ( $policyAddSectionInput:PolicyAddSectionInput! $socketLanPolicyMutationInput:SocketLanPolicyMutationInput $accountId:ID! ) {
+	policy ( accountId:$accountId ) {
+		socketLan ( input:$socketLanPolicyMutationInput  )  {
+			addSectionSocketLanPolicyMutations: addSection ( input:$policyAddSectionInput   ) {
+				section  {
+					auditPolicySectionPayload: audit {
+						updatedTime 
+						updatedBy 
+					}
+					sectionPolicySectionPayload: section {
+						id 
+						name 
+					}
+					propertiesPolicySectionPayload: properties
+				}
+
+				status 
+				errors  {
+					errorMessage
+					errorCode
+				}
+
+			}
+		}
+
 	}	
 }

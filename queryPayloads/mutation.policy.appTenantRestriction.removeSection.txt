@@ -1,5 +1,27 @@
-mutation policyAppTenantRestrictionRemoveSection ( $policyRemoveSectionInput:PolicyRemoveSectionInput! $appTenantRestrictionPolicyMutationInput:AppTenantRestrictionPolicyMutationInput ) {
-	policy ( ) {
-		appTenantRestriction
+mutation policyAppTenantRestrictionRemoveSection ( $policyRemoveSectionInput:PolicyRemoveSectionInput! $appTenantRestrictionPolicyMutationInput:AppTenantRestrictionPolicyMutationInput $accountId:ID! ) {
+	policy ( accountId:$accountId ) {
+		appTenantRestriction ( input:$appTenantRestrictionPolicyMutationInput  )  {
+			removeSectionAppTenantRestrictionPolicyMutations: removeSection ( input:$policyRemoveSectionInput   ) {
+				section  {
+					auditPolicySectionPayload: audit {
+						updatedTime 
+						updatedBy 
+					}
+					sectionPolicySectionPayload: section {
+						id 
+						name 
+					}
+					propertiesPolicySectionPayload: properties
+				}
+
+				status 
+				errors  {
+					errorMessage
+					errorCode
+				}
+
+			}
+		}
+
 	}	
 }

@@ -1,5 +1,45 @@
-mutation groupsUpdateGroup ( $groupMembersListInput:GroupMembersListInput! $updateGroupInput:UpdateGroupInput! ) {
-	groups ( ) {
-		updateGroup
+mutation groupsUpdateGroup ( $groupMembersListInput:GroupMembersListInput! $updateGroupInput:UpdateGroupInput! $accountId:ID! ) {
+	groups ( accountId:$accountId ) {
+		updateGroup ( input:$updateGroupInput  )  {
+			groupUpdateGroupPayload: group {
+				id 
+				name 
+				description 
+				audit  {
+					updatedTime
+					updatedByAuditingMetadata: updatedBy {
+						id 
+						name 
+						... on AdminRef {
+							id 
+							name 
+						}
+						... on ApiKeyRef {
+							id 
+							name 
+						}
+					}
+				}
+
+				members ( input:$groupMembersListInput  )  {
+					itemsGroupMembersListPayload: items {
+						id 
+						name 
+						type 
+					}
+					pagingGroupMembersListPayload: paging {
+						total 
+					}
+				}
+
+				membersCount 
+				membersCountPerType  {
+					typeGroupMemberTypeCount: type
+					membersCount
+				}
+
+			}
+		}
+
 	}	
 }

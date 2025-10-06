@@ -1,5 +1,59 @@
-mutation policyDynamicIpAllocationRemoveRule ( $dynamicIpAllocationRemoveRuleInput:DynamicIpAllocationRemoveRuleInput! $dynamicIpAllocationPolicyMutationInput:DynamicIpAllocationPolicyMutationInput ) {
-	policy ( ) {
-		dynamicIpAllocation
+mutation policyDynamicIpAllocationRemoveRule ( $dynamicIpAllocationRemoveRuleInput:DynamicIpAllocationRemoveRuleInput! $dynamicIpAllocationPolicyMutationInput:DynamicIpAllocationPolicyMutationInput $accountId:ID! ) {
+	policy ( accountId:$accountId ) {
+		dynamicIpAllocation ( input:$dynamicIpAllocationPolicyMutationInput  )  {
+			removeRuleDynamicIpAllocationPolicyMutations: removeRule ( input:$dynamicIpAllocationRemoveRuleInput   ) {
+				rule  {
+					auditDynamicIpAllocationRulePayload: audit {
+						updatedTime 
+						updatedBy 
+					}
+					ruleDynamicIpAllocationRulePayload: rule {
+						id 
+						name 
+						description 
+						index 
+						section  {
+							id
+							name
+						}
+
+						enabled 
+						source  {
+							userDynamicIpAllocationSource: user {
+								id 
+								name 
+							}
+							usersGroupDynamicIpAllocationSource: usersGroup {
+								id 
+								name 
+							}
+						}
+
+						platform 
+						country  {
+							id
+							name
+						}
+
+						range  {
+							globalIpRangeDynamicIpAllocationRange: globalIpRange {
+								id 
+								name 
+							}
+						}
+
+					}
+					propertiesDynamicIpAllocationRulePayload: properties
+				}
+
+				status 
+				errors  {
+					errorMessage
+					errorCode
+				}
+
+			}
+		}
+
 	}	
 }

@@ -1,5 +1,8 @@
-mutation adminAddServicePrincipalAdmin ( $addServicePrincipalAdminInput:AddServicePrincipalAdminInput! ) {
-	admin ( ) {
-		addServicePrincipalAdmin
+mutation adminAddServicePrincipalAdmin ( $addServicePrincipalAdminInput:AddServicePrincipalAdminInput! $accountId:ID! ) {
+	admin ( accountId:$accountId ) {
+		addServicePrincipalAdmin ( input:$addServicePrincipalAdminInput  )  {
+			adminID
+		}
+
 	}	
 }

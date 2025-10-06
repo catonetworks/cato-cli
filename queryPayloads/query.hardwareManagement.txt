@@ -1,5 +1,39 @@
-query hardwareManagement ( $socketInventoryInput:SocketInventoryInput ) {
-	hardwareManagement ( ) {
-		socketInventory
+query hardwareManagement ( $socketInventoryInput:SocketInventoryInput $accountId:ID! ) {
+	hardwareManagement ( accountId:$accountId ) {
+		socketInventory ( input:$socketInventoryInput  )  {
+			itemsSocketInventoryPayload: items {
+				id 
+				status 
+				serialNumber 
+				socketMac 
+				socketVersion 
+				site  {
+					id
+					name
+				}
+
+				account  {
+					id
+					name
+				}
+
+				shippingDate 
+				socketType 
+				trackingUrl 
+				trackingNumber 
+				shippingCompany 
+				deliverySiteName 
+				description 
+				isPrimary 
+				registrationStatus 
+				availableUpgradeVersions 
+				upgradeStatus 
+				upgradesPaused 
+			}
+			pageInfoSocketInventoryPayload: pageInfo {
+				total 
+			}
+		}
+
 	}	
 }

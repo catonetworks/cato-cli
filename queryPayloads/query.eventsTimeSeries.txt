@@ -1,9 +1,28 @@
-query eventsTimeSeries ( $perSecond:Boolean $withMissingData:Boolean $useDefaultSizeBucket:Boolean $buckets:Int! $timeFrame:TimeFrame! $eventsMeasure:[EventsMeasure] $eventsDimension:[EventsDimension] $eventsFilter:[EventsFilter!] ) {
-	eventsTimeSeries ( timeFrame:$timeFrame measures:$eventsMeasure dimensions:$eventsDimension filters:$eventsFilter ) {
-		id
-		from
-		to
-		granularity
-		timeseries
+query eventsTimeSeries ( $perSecond:Boolean $withMissingData:Boolean $useDefaultSizeBucket:Boolean $buckets:Int! $accountID:ID! $timeFrame:TimeFrame! $eventsMeasure:[EventsMeasure] $eventsDimension:[EventsDimension] $eventsFilter:[EventsFilter!] ) {
+	eventsTimeSeries ( accountID:$accountID timeFrame:$timeFrame measures:$eventsMeasure dimensions:$eventsDimension filters:$eventsFilter ) {
+		id 
+		from 
+		to 
+		granularity 
+		timeseries ( buckets:$buckets  )  {
+			data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket   )
+			label
+			dimensionsTimeseries: dimensions {
+				label 
+				value 
+			}
+			keyTimeseries: key {
+				measureFieldName 
+				dimensions  {
+					fieldName
+					value
+				}
+
+			}
+			sum
+			unitsTimeseries: units
+			info
+		}
+
 	}	
 }

@@ -1,6 +1,6 @@
 {
     "operationName": "sandboxUploadFile",
-    "query": "mutation sandboxUploadFile ( $uploadFileInput:UploadFileInput! ) {\n\tsandbox ( ) {\n\t\tuploadFile\n\t}\t\n}",
+    "query": "mutation sandboxUploadFile ( $uploadFileInput:UploadFileInput! $accountId:ID! ) {\n\tsandbox ( accountId:$accountId ) {\n\t\tuploadFile ( input:$uploadFileInput  )  {\n\t\t\tuploadUrl\n\t\t}\n\n\t}\t\n}",
     "variables": {
         "uploadFileInput": {
             "fileName": "string"

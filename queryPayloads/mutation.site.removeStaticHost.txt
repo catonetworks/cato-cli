@@ -1,5 +1,8 @@
-mutation siteRemoveStaticHost ( $hostId:ID! ) {
-	site ( ) {
-		removeStaticHost
+mutation siteRemoveStaticHost ( $hostId:ID! $accountId:ID! ) {
+	site ( accountId:$accountId ) {
+		removeStaticHost ( hostId:$hostId  )  {
+			hostId
+		}
+
 	}	
 }

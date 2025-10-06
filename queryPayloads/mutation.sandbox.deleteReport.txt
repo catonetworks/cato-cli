@@ -1,5 +1,8 @@
-mutation sandboxDeleteReport ( $deleteReportInput:DeleteReportInput! ) {
-	sandbox ( ) {
-		deleteReport
+mutation sandboxDeleteReport ( $deleteReportInput:DeleteReportInput! $accountId:ID! ) {
+	sandbox ( accountId:$accountId ) {
+		deleteReport ( input:$deleteReportInput  )  {
+			fileHash
+		}
+
 	}	
 }

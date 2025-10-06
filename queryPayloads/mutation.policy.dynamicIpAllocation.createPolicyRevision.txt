@@ -1,5 +1,88 @@
-mutation policyDynamicIpAllocationCreatePolicyRevision ( $policyCreateRevisionInput:PolicyCreateRevisionInput! $dynamicIpAllocationPolicyMutationInput:DynamicIpAllocationPolicyMutationInput ) {
-	policy ( ) {
-		dynamicIpAllocation
+mutation policyDynamicIpAllocationCreatePolicyRevision ( $policyCreateRevisionInput:PolicyCreateRevisionInput! $dynamicIpAllocationPolicyMutationInput:DynamicIpAllocationPolicyMutationInput $accountId:ID! ) {
+	policy ( accountId:$accountId ) {
+		dynamicIpAllocation ( input:$dynamicIpAllocationPolicyMutationInput  )  {
+			createPolicyRevisionDynamicIpAllocationPolicyMutations: createPolicyRevision ( input:$policyCreateRevisionInput   ) {
+				policy  {
+					enabled
+					rulesDynamicIpAllocationPolicy: rules {
+						audit  {
+							updatedTime
+							updatedBy
+						}
+
+						rule  {
+							id
+							name
+							description
+							index
+							sectionDynamicIpAllocationRule: section {
+								id 
+								name 
+							}
+							enabled
+							sourceDynamicIpAllocationRule: source {
+								user  {
+									id
+									name
+								}
+
+								usersGroup  {
+									id
+									name
+								}
+
+							}
+							platformDynamicIpAllocationRule: platform
+							countryDynamicIpAllocationRule: country {
+								id 
+								name 
+							}
+							rangeDynamicIpAllocationRule: range {
+								globalIpRange  {
+									id
+									name
+								}
+
+							}
+						}
+
+						properties 
+					}
+					sectionsDynamicIpAllocationPolicy: sections {
+						audit  {
+							updatedTime
+							updatedBy
+						}
+
+						section  {
+							id
+							name
+						}
+
+						properties 
+					}
+					auditDynamicIpAllocationPolicy: audit {
+						publishedTime 
+						publishedBy 
+					}
+					revisionDynamicIpAllocationPolicy: revision {
+						id 
+						name 
+						description 
+						changes 
+						createdTime 
+						updatedTime 
+					}
+				}
+
+				status 
+				errors  {
+					errorMessage
+					errorCode
+				}
+
+			}
+		}
+
 	}	
 }

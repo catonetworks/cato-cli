@@ -1,5 +1,113 @@
-mutation policyAppTenantRestrictionUpdateRule ( $appTenantRestrictionUpdateRuleInput:AppTenantRestrictionUpdateRuleInput! $appTenantRestrictionPolicyMutationInput:AppTenantRestrictionPolicyMutationInput ) {
-	policy ( ) {
-		appTenantRestriction
+mutation policyAppTenantRestrictionUpdateRule ( $appTenantRestrictionUpdateRuleInput:AppTenantRestrictionUpdateRuleInput! $appTenantRestrictionPolicyMutationInput:AppTenantRestrictionPolicyMutationInput $accountId:ID! ) {
+	policy ( accountId:$accountId ) {
+		appTenantRestriction ( input:$appTenantRestrictionPolicyMutationInput  )  {
+			updateRuleAppTenantRestrictionPolicyMutations: updateRule ( input:$appTenantRestrictionUpdateRuleInput   ) {
+				rule  {
+					auditAppTenantRestrictionRulePayload: audit {
+						updatedTime 
+						updatedBy 
+					}
+					ruleAppTenantRestrictionRulePayload: rule {
+						id 
+						name 
+						description 
+						index 
+						section  {
+							id
+							name
+						}
+
+						enabled 
+						application  {
+							id
+							name
+						}
+
+						headers  {
+							name
+							value
+						}
+
+						source  {
+							ip
+							hostAppTenantRestrictionSource: host {
+								id 
+								name 
+							}
+							siteAppTenantRestrictionSource: site {
+								id 
+								name 
+							}
+							subnet
+							ipRangeAppTenantRestrictionSource: ipRange {
+								from 
+								to 
+							}
+							globalIpRangeAppTenantRestrictionSource: globalIpRange {
+								id 
+								name 
+							}
+							networkInterfaceAppTenantRestrictionSource: networkInterface {
+								id 
+								name 
+							}
+							siteNetworkSubnetAppTenantRestrictionSource: siteNetworkSubnet {
+								id 
+								name 
+							}
+							floatingSubnetAppTenantRestrictionSource: floatingSubnet {
+								id 
+								name 
+							}
+							userAppTenantRestrictionSource: user {
+								id 
+								name 
+							}
+							usersGroupAppTenantRestrictionSource: usersGroup {
+								id 
+								name 
+							}
+							groupAppTenantRestrictionSource: group {
+								id 
+								name 
+							}
+							systemGroupAppTenantRestrictionSource: systemGroup {
+								id 
+								name 
+							}
+							countryAppTenantRestrictionSource: country {
+								id 
+								name 
+							}
+						}
+
+						schedule  {
+							activeOnPolicySchedule: activeOn
+							customTimeframePolicySchedule: customTimeframe {
+								from 
+								to 
+							}
+							customRecurringPolicySchedule: customRecurring {
+								from 
+								to 
+								days 
+							}
+						}
+
+						action 
+						severity 
+					}
+					propertiesAppTenantRestrictionRulePayload: properties
+				}
+
+				status 
+				errors  {
+					errorMessage
+					errorCode
+				}
+
+			}
+		}
+
 	}	
 }

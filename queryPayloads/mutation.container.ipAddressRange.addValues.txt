@@ -1,5 +1,22 @@
-mutation containerIpAddressRangeAddValues ( $ipAddressRangeContainerAddValuesInput:IpAddressRangeContainerAddValuesInput! ) {
-	container ( ) {
-		ipAddressRange
+mutation containerIpAddressRangeAddValues ( $ipAddressRangeContainerAddValuesInput:IpAddressRangeContainerAddValuesInput! $accountId:ID! ) {
+	container ( accountId:$accountId ) {
+		ipAddressRange  {
+			addValuesIpAddressRangeContainerMutations: addValues ( input:$ipAddressRangeContainerAddValuesInput   ) {
+				container  {
+					id
+					name
+					description
+					size
+					auditIpAddressRangeContainer: audit {
+						createdBy 
+						lastModifiedBy 
+						lastModifiedAt 
+						createdAt 
+					}
+				}
+
+			}
+		}
+
 	}	
 }

@@ -1,7 +1,160 @@
-query catalogs ( $applicationRefInput:ApplicationRefInput! $catalogApplicationListInput:CatalogApplicationListInput! $catalogApplicationContentTypeGroupListInput:CatalogApplicationContentTypeGroupListInput! ) {
-	catalogs ( ) {
-		catalogApplication
-		catalogApplicationList
-		contentTypeGroupList
+query catalogs ( $applicationRefInput:ApplicationRefInput! $catalogApplicationListInput:CatalogApplicationListInput! $catalogApplicationContentTypeGroupListInput:CatalogApplicationContentTypeGroupListInput! $accountId:ID! ) {
+	catalogs ( accountId:$accountId ) {
+		catalogApplication ( input:$applicationRefInput  )  {
+			id
+			name
+			descriptionSummary
+			description
+			categoryCatalogApplication: category {
+				id 
+				name 
+			}
+			complianceAttributesCatalogApplication: complianceAttributes {
+				iso27001 
+				sox 
+				hippa 
+				soc1 
+				soc2 
+				soc3 
+				isae3402 
+				pciDss 
+			}
+			securityAttributesCatalogApplication: securityAttributes {
+				mfa 
+				encryptionAtRest 
+				auditTrail 
+				rbac 
+				rememberPassword 
+				sso 
+				trustedCertificate 
+				tlsEnforcement 
+				httpSecurityHeaders 
+			}
+			ipoStatus
+			website
+			originCountryCatalogApplication: originCountry {
+				id 
+				name 
+			}
+			region
+			city
+			risk
+			numOfEmployeesCatalogApplication: numOfEmployees
+			capabilityCatalogApplication: capability
+			activityCatalogApplication: activity {
+				id 
+				name 
+				fields  {
+					id
+					name
+					possibleOperatorsCatalogApplicationActivityField: possibleOperators
+					possibleValues
+				}
+
+			}
+			typeCatalogApplication: type
+			sanctioned
+			recentlyAdded
+			standardPortsCatalogApplication: standardPorts {
+				port 
+				portRange  {
+					from
+					to
+				}
+
+				protocol 
+			}
+		}
+
+		catalogApplicationList ( input:$catalogApplicationListInput  )  {
+			applicationCatalogApplicationListPayload: application {
+				id 
+				name 
+				descriptionSummary 
+				description 
+				category  {
+					id
+					name
+				}
+
+				complianceAttributes  {
+					iso27001CatalogApplicationComplianceAttributes: iso27001
+					soxCatalogApplicationComplianceAttributes: sox
+					hippaCatalogApplicationComplianceAttributes: hippa
+					soc1CatalogApplicationComplianceAttributes: soc1
+					soc2CatalogApplicationComplianceAttributes: soc2
+					soc3CatalogApplicationComplianceAttributes: soc3
+					isae3402CatalogApplicationComplianceAttributes: isae3402
+					pciDssCatalogApplicationComplianceAttributes: pciDss
+				}
+
+				securityAttributes  {
+					mfaCatalogApplicationSecurityAttributes: mfa
+					encryptionAtRestCatalogApplicationSecurityAttributes: encryptionAtRest
+					auditTrailCatalogApplicationSecurityAttributes: auditTrail
+					rbacCatalogApplicationSecurityAttributes: rbac
+					rememberPasswordCatalogApplicationSecurityAttributes: rememberPassword
+					ssoCatalogApplicationSecurityAttributes: sso
+					trustedCertificateCatalogApplicationSecurityAttributes: trustedCertificate
+					tlsEnforcementCatalogApplicationSecurityAttributes: tlsEnforcement
+					httpSecurityHeadersCatalogApplicationSecurityAttributes: httpSecurityHeaders
+				}
+
+				ipoStatus 
+				website 
+				originCountry  {
+					id
+					name
+				}
+
+				region 
+				city 
+				risk 
+				numOfEmployees 
+				capability 
+				activity  {
+					id
+					name
+					fieldsCatalogApplicationActivity: fields {
+						id 
+						name 
+						possibleOperators 
+						possibleValues 
+					}
+				}
+
+				type 
+				sanctioned 
+				recentlyAdded 
+				standardPorts  {
+					port
+					portRangeCustomService: portRange {
+						from 
+						to 
+					}
+					protocolCustomService: protocol
+				}
+
+			}
+			pageInfoCatalogApplicationListPayload: pageInfo {
+				total 
+			}
+		}
+
+		contentTypeGroupList ( input:$catalogApplicationContentTypeGroupListInput  )  {
+			contentTypeGroupCatalogApplicationContentTypeGroupListPayload: contentTypeGroup {
+				id 
+				name 
+				contentType  {
+					id
+					name
+				}
+
+			}
+			pageInfoCatalogApplicationContentTypeGroupListPayload: pageInfo {
+				total 
+			}
+		}
+
 	}	
 }

@@ -1,5 +1,45 @@
-mutation policyTerminalServerMoveRule ( $policyMoveRuleInput:PolicyMoveRuleInput! $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput ) {
-	policy ( ) {
-		terminalServer
+mutation policyTerminalServerMoveRule ( $policyMoveRuleInput:PolicyMoveRuleInput! $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput $accountId:ID! ) {
+	policy ( accountId:$accountId ) {
+		terminalServer ( input:$terminalServerPolicyMutationInput  )  {
+			moveRuleTerminalServerPolicyMutations: moveRule ( input:$policyMoveRuleInput   ) {
+				rule  {
+					auditTerminalServerRulePayload: audit {
+						updatedTime 
+						updatedBy 
+					}
+					ruleTerminalServerRulePayload: rule {
+						id 
+						name 
+						description 
+						index 
+						section  {
+							id
+							name
+						}
+
+						enabled 
+						allowedHostIP  {
+							id
+							name
+						}
+
+						excludeTraffic  {
+							id
+							name
+						}
+
+					}
+					propertiesTerminalServerRulePayload: properties
+				}
+
+				status 
+				errors  {
+					errorMessage
+					errorCode
+				}
+
+			}
+		}
+
 	}	
 }

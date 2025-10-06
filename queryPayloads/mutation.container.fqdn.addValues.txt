@@ -1,5 +1,22 @@
-mutation containerFqdnAddValues ( $fqdnContainerAddValuesInput:FqdnContainerAddValuesInput! ) {
-	container ( ) {
-		fqdn
+mutation containerFqdnAddValues ( $fqdnContainerAddValuesInput:FqdnContainerAddValuesInput! $accountId:ID! ) {
+	container ( accountId:$accountId ) {
+		fqdn  {
+			addValuesFqdnContainerMutations: addValues ( input:$fqdnContainerAddValuesInput   ) {
+				container  {
+					id
+					name
+					description
+					size
+					auditFqdnContainer: audit {
+						createdBy 
+						lastModifiedBy 
+						lastModifiedAt 
+						createdAt 
+					}
+				}
+
+			}
+		}
+
 	}	
 }

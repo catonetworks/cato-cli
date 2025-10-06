@@ -1,5 +1,411 @@
-mutation policyWanNetworkDiscardPolicyRevision ( $policyDiscardRevisionInput:PolicyDiscardRevisionInput $wanNetworkPolicyMutationInput:WanNetworkPolicyMutationInput ) {
-	policy ( ) {
-		wanNetwork
+mutation policyWanNetworkDiscardPolicyRevision ( $policyDiscardRevisionInput:PolicyDiscardRevisionInput $wanNetworkPolicyMutationInput:WanNetworkPolicyMutationInput $accountId:ID! ) {
+	policy ( accountId:$accountId ) {
+		wanNetwork ( input:$wanNetworkPolicyMutationInput  )  {
+			discardPolicyRevisionWanNetworkPolicyMutations: discardPolicyRevision ( input:$policyDiscardRevisionInput   ) {
+				policy  {
+					enabled
+					rulesWanNetworkPolicy: rules {
+						audit  {
+							updatedTime
+							updatedBy
+						}
+
+						rule  {
+							id
+							name
+							description
+							index
+							sectionWanNetworkRule: section {
+								id 
+								name 
+							}
+							enabled
+							ruleTypeWanNetworkRule: ruleType
+							routeTypeWanNetworkRule: routeType
+							sourceWanNetworkRule: source {
+								user  {
+									id
+									name
+								}
+
+								floatingSubnet  {
+									id
+									name
+								}
+
+								globalIpRange  {
+									id
+									name
+								}
+
+								group  {
+									id
+									name
+								}
+
+								host  {
+									id
+									name
+								}
+
+								ip 
+								ipRange  {
+									from
+									to
+								}
+
+								networkInterface  {
+									id
+									name
+								}
+
+								subnet 
+								site  {
+									id
+									name
+								}
+
+								siteNetworkSubnet  {
+									id
+									name
+								}
+
+								systemGroup  {
+									id
+									name
+								}
+
+								usersGroup  {
+									id
+									name
+								}
+
+							}
+							destinationWanNetworkRule: destination {
+								user  {
+									id
+									name
+								}
+
+								floatingSubnet  {
+									id
+									name
+								}
+
+								globalIpRange  {
+									id
+									name
+								}
+
+								group  {
+									id
+									name
+								}
+
+								host  {
+									id
+									name
+								}
+
+								ip 
+								ipRange  {
+									from
+									to
+								}
+
+								networkInterface  {
+									id
+									name
+								}
+
+								subnet 
+								site  {
+									id
+									name
+								}
+
+								siteNetworkSubnet  {
+									id
+									name
+								}
+
+								systemGroup  {
+									id
+									name
+								}
+
+								usersGroup  {
+									id
+									name
+								}
+
+							}
+							applicationWanNetworkRule: application {
+								application  {
+									id
+									name
+								}
+
+								appCategory  {
+									id
+									name
+								}
+
+								customApp  {
+									id
+									name
+								}
+
+								customCategory  {
+									id
+									name
+								}
+
+								customServiceIp  {
+									name
+									ip
+									ipRangeCustomServiceIp: ipRange {
+										from 
+										to 
+									}
+								}
+
+								customService  {
+									port
+									portRangeCustomService: portRange {
+										from 
+										to 
+									}
+									protocolCustomService: protocol
+								}
+
+								domain 
+								fqdn 
+								service  {
+									id
+									name
+								}
+
+							}
+							configurationWanNetworkRule: configuration {
+								activeTcpAcceleration 
+								packetLossMitigation 
+								preserveSourcePort 
+								primaryTransport  {
+									transportTypeWanNetworkRuleTransport: transportType
+									primaryInterfaceRoleWanNetworkRuleTransport: primaryInterfaceRole
+									secondaryInterfaceRoleWanNetworkRuleTransport: secondaryInterfaceRole
+								}
+
+								secondaryTransport  {
+									transportTypeWanNetworkRuleTransport: transportType
+									primaryInterfaceRoleWanNetworkRuleTransport: primaryInterfaceRole
+									secondaryInterfaceRoleWanNetworkRuleTransport: secondaryInterfaceRole
+								}
+
+								allocationIp  {
+									id
+									name
+								}
+
+								popLocation  {
+									id
+									name
+								}
+
+								backhaulingSite  {
+									id
+									name
+								}
+
+							}
+							bandwidthPriorityWanNetworkRule: bandwidthPriority {
+								id 
+								name 
+							}
+							exceptionsWanNetworkRule: exceptions {
+								name 
+								source  {
+									userWanNetworkRuleSource: user {
+										id 
+										name 
+									}
+									floatingSubnetWanNetworkRuleSource: floatingSubnet {
+										id 
+										name 
+									}
+									globalIpRangeWanNetworkRuleSource: globalIpRange {
+										id 
+										name 
+									}
+									groupWanNetworkRuleSource: group {
+										id 
+										name 
+									}
+									hostWanNetworkRuleSource: host {
+										id 
+										name 
+									}
+									ip
+									ipRangeWanNetworkRuleSource: ipRange {
+										from 
+										to 
+									}
+									networkInterfaceWanNetworkRuleSource: networkInterface {
+										id 
+										name 
+									}
+									subnet
+									siteWanNetworkRuleSource: site {
+										id 
+										name 
+									}
+									siteNetworkSubnetWanNetworkRuleSource: siteNetworkSubnet {
+										id 
+										name 
+									}
+									systemGroupWanNetworkRuleSource: systemGroup {
+										id 
+										name 
+									}
+									usersGroupWanNetworkRuleSource: usersGroup {
+										id 
+										name 
+									}
+								}
+
+								destination  {
+									userWanNetworkRuleDestination: user {
+										id 
+										name 
+									}
+									floatingSubnetWanNetworkRuleDestination: floatingSubnet {
+										id 
+										name 
+									}
+									globalIpRangeWanNetworkRuleDestination: globalIpRange {
+										id 
+										name 
+									}
+									groupWanNetworkRuleDestination: group {
+										id 
+										name 
+									}
+									hostWanNetworkRuleDestination: host {
+										id 
+										name 
+									}
+									ip
+									ipRangeWanNetworkRuleDestination: ipRange {
+										from 
+										to 
+									}
+									networkInterfaceWanNetworkRuleDestination: networkInterface {
+										id 
+										name 
+									}
+									subnet
+									siteWanNetworkRuleDestination: site {
+										id 
+										name 
+									}
+									siteNetworkSubnetWanNetworkRuleDestination: siteNetworkSubnet {
+										id 
+										name 
+									}
+									systemGroupWanNetworkRuleDestination: systemGroup {
+										id 
+										name 
+									}
+									usersGroupWanNetworkRuleDestination: usersGroup {
+										id 
+										name 
+									}
+								}
+
+								application  {
+									applicationWanNetworkRuleApplication: application {
+										id 
+										name 
+									}
+									appCategoryWanNetworkRuleApplication: appCategory {
+										id 
+										name 
+									}
+									customAppWanNetworkRuleApplication: customApp {
+										id 
+										name 
+									}
+									customCategoryWanNetworkRuleApplication: customCategory {
+										id 
+										name 
+									}
+									customServiceIpWanNetworkRuleApplication: customServiceIp {
+										name 
+										ip 
+										ipRange  {
+											from
+											to
+										}
+
+									}
+									customServiceWanNetworkRuleApplication: customService {
+										port 
+										portRange  {
+											from
+											to
+										}
+
+										protocol 
+									}
+									domain
+									fqdn
+									serviceWanNetworkRuleApplication: service {
+										id 
+										name 
+									}
+								}
+
+							}
+						}
+
+						properties 
+					}
+					sectionsWanNetworkPolicy: sections {
+						audit  {
+							updatedTime
+							updatedBy
+						}
+
+						section  {
+							id
+							name
+						}
+
+						properties 
+					}
+					auditWanNetworkPolicy: audit {
+						publishedTime 
+						publishedBy 
+					}
+					revisionWanNetworkPolicy: revision {
+						id 
+						name 
+						description 
+						changes 
+						createdTime 
+						updatedTime 
+					}
+				}
+
+				status 
+				errors  {
+					errorMessage
+					errorCode
+				}
+
+			}
+		}
+
 	}	
 }

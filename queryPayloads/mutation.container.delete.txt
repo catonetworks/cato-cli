@@ -1,5 +1,46 @@
-mutation containerDelete ( $deleteContainerInput:DeleteContainerInput! ) {
-	container ( ) {
-		delete
+mutation containerDelete ( $deleteContainerInput:DeleteContainerInput! $accountId:ID! ) {
+	container ( accountId:$accountId ) {
+		delete ( input:$deleteContainerInput  )  {
+			containerDeleteContainerPayload: container {
+				id 
+				name 
+				description 
+				size 
+				audit  {
+					createdBy
+					lastModifiedBy
+					lastModifiedAt
+					createdAt
+				}
+
+				... on FqdnContainer {
+					id 
+					name 
+					description 
+					size 
+					audit  {
+						createdBy
+						lastModifiedBy
+						lastModifiedAt
+						createdAt
+					}
+
+				}
+				... on IpAddressRangeContainer {
+					id 
+					name 
+					description 
+					size 
+					audit  {
+						createdBy
+						lastModifiedBy
+						lastModifiedAt
+						createdAt
+					}
+
+				}
+			}
+		}
+
 	}	
 }

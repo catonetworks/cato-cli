@@ -33,7 +33,7 @@ class CatoSCIMClient:
     credential management system.
     """
 
-    def __init__(self, scim_url=None, scim_token=None, log_level='WARNING', verify_ssl=True):
+    def __init__(self, scim_url=None, scim_token=None, log_level='WARNING', verify_ssl=True, verbose=False):
         """
         Initialize a Cato SCIM client object.
 
@@ -42,6 +42,7 @@ class CatoSCIMClient:
             scim_token: The Bearer token for SCIM authentication (from profile or environment)
             log_level: Logging level as string
             verify_ssl: Controls SSL certificate verification
+            verbose: Whether to print detailed request/response information
         """
         
         # Get credentials from profile if not provided
@@ -70,6 +71,7 @@ class CatoSCIMClient:
             )
         
         self.verify_ssl = verify_ssl
+        self.verbose = verbose
         self.call_count = 0
         
         # Configure module logger
@@ -86,7 +88,6 @@ class CatoSCIMClient:
                 "SSL certificate verification is disabled. This is INSECURE and should "
                 "only be used in development environments. Never disable SSL verification "
                 "in production!",
-                SecurityWarning,
                 stacklevel=2
             )
             logger.warning("SSL certificate verification is disabled - this is insecure!")
@@ -107,6 +108,8 @@ class CatoSCIMClient:
             and the second element is the response data or error information.
         """
         logger.info(f'Sending {method} request to {path}')
+        
+        # Prepare request body
         body = None
         if request_data is not None:
             logger.debug(f'Request data: {request_data}')
@@ -117,6 +120,18 @@ class CatoSCIMClient:
             'Authorization': f'Bearer {self.token}',
             'Content-Type': 'application/json'
         }
+        
+        # Print verbose request information
+        if self.verbose:
+            print(f"\n SCIM API Request:", file=sys.stderr)
+            print(f"   Method: {method}", file=sys.stderr)
+            print(f"   URL: {self.baseurl + path}", file=sys.stderr)
+            print(f"   Headers: Authorization: Bearer *****, Content-Type: application/json", file=sys.stderr)
+            if request_data:
+                print(f"   Request Payload:", file=sys.stderr)
+                print(f"   {json.dumps(request_data, indent=2, ensure_ascii=False)}", file=sys.stderr)
+            else:
+                print(f"   Request Payload: (none)", file=sys.stderr)
 
         # Create and send the request
         try:
@@ -139,20 +154,53 @@ class CatoSCIMClient:
                 response = urllib.request.urlopen(request, context=context)
             
             result_data = response.read()
+            response_json = json.loads(result_data.decode('utf-8', 'replace')) if result_data != b'' else {}
+            
+            # Print verbose response information
+            if self.verbose:
+                print(f"\n SCIM API Response:", file=sys.stderr)
+                print(f"   Status: {response.status} {response.reason}", file=sys.stderr)
+                print(f"   Response Payload:", file=sys.stderr)
+                print(f"   {json.dumps(response_json, indent=2, ensure_ascii=False)}", file=sys.stderr)
+            
+            return True, response_json
+            
         except HTTPError as e:
-            body = e.read().decode('utf-8', 'replace')
-            return False, {"status": e.code, "error": body}
+            error_body = e.read().decode('utf-8', 'replace')
+            error_response = {"status": e.code, "error": error_body}
+            
+            # Print verbose error response information
+            if self.verbose:
+                print(f"\n SCIM API Error Response:", file=sys.stderr)
+                print(f"   Status: {e.code} {e.reason}", file=sys.stderr)
+                print(f"   Error Response:", file=sys.stderr)
+                try:
+                    error_json = json.loads(error_body)
+                    print(f"   {json.dumps(error_json, indent=2, ensure_ascii=False)}", file=sys.stderr)
+                except json.JSONDecodeError:
+                    print(f"   {error_body}", file=sys.stderr)
+            
+            return False, error_response
+            
         except URLError as e:
+            error_response = {"reason": e.reason, "error": str(e)}
+            
+            if self.verbose:
+                print(f"\n SCIM API Connection Error:", file=sys.stderr)
+                print(f"   Error: {str(e)}", file=sys.stderr)
+            
             logger.error(f'Error sending request: {e}')
-            return False, {"reason": e.reason, "error": str(e)}
+            return False, error_response
+            
         except Exception as e:
+            error_response = {"error": str(e)}
+            
+            if self.verbose:
+                print(f"\n SCIM API Unexpected Error:", file=sys.stderr)
+                print(f"   Error: {str(e)}", file=sys.stderr)
+            
             logger.error(f'Error sending request: {e}')
-            return False, {"error": str(e)}
-        
-        logger.debug(f'Response data: {result_data}')
-        if result_data == b'':  # DELETE returns an empty response
-            result_data = b'{}'
-        return True, json.loads(result_data.decode('utf-8', 'replace'))
+            return False, error_response
 
     def add_members(self, groupid, members):
         """
@@ -352,7 +400,7 @@ class CatoSCIMClient:
         Returns users matching the given field and value.
         
         Args:
-            field: Field to search (userName, email, givenName, familyName)
+            field: Field to search (userName, email, givenName, familyName, externalId)
             value: Value to search for
         
         Returns:
@@ -365,10 +413,14 @@ class CatoSCIMClient:
             # Send the query and bail if error
             iteration += 1
             filter_string = urllib.parse.quote(f'{field} eq "{value}"')
-            success, response = self.send("GET", f'/Users?filter={filter_string}&startIndex={len(users)}')
+            api_url = f'/Users?filter={filter_string}&startIndex={len(users)}'
+            logger.debug(f'SCIM API call: GET {api_url} (filter: {field} eq "{value}")')
+            success, response = self.send("GET", api_url)
             if not success:
                 logger.error(f'Error retrieving users: {response}')
                 return False, response
+            
+            logger.debug(f'SCIM API response: success={success}, totalResults={response.get("totalResults", "unknown")}, resourcesCount={len(response.get("Resources", []))}')
 
             logger.debug(f'User search iteration {iteration}: current={len(users)}, received={len(response["Resources"])}, total={response["totalResults"]}')
 
@@ -564,35 +616,179 @@ class CatoSCIMClient:
         success, result = self.send("PUT", f'/Users/{userid}', user_data)
         return success, result
 
+    def patch_user(self, user_id, account_id, source_id, patch_request):
+        """
+        Patch a SCIM user with partial updates (PATCH operation) using the full API schema.
+        
+        Args:
+            user_id: SCIM user ID to patch
+            account_id: SCIM account identifier
+            source_id: SCIM source identifier
+            patch_request: PatchRequestDTO containing Operations array
+        
+        Returns:
+            Tuple of (success_boolean, response_data)
+        """
+        logger.info(f'Patching user {user_id} in account {account_id}, source {source_id}')
 
-def get_scim_client(profile_name=None):
+        # The SCIM API expects the full path format: /scim/v2/{accountId}/{sourceId}/Users/{id}
+        # But our base URL already includes the /scim/v2/{accountId}/{sourceId} part,
+        # so we just need to append /Users/{user_id}
+        path = f'/Users/{user_id}'
+        success, result = self.send("PATCH", path, patch_request)
+        return success, result
+
+    def delete_user(self, user_id, account_id, source_id):
+        """
+        Delete a SCIM user (DELETE operation) using the full API schema.
+        
+        Args:
+            user_id: SCIM user ID to delete
+            account_id: SCIM account identifier  
+            source_id: SCIM source identifier
+        
+        Returns:
+            Tuple of (success_boolean, response_data)
+        """
+        logger.info(f'Deleting user {user_id} in account {account_id}, source {source_id}')
+
+        # The SCIM API expects the full path format: /scim/v2/{accountId}/{sourceId}/Users/{id}
+        # But our base URL already includes the /scim/v2/{accountId}/{sourceId} part,
+        # so we just need to append /Users/{user_id}
+        path = f'/Users/{user_id}'
+        success, result = self.send("DELETE", path)
+        return success, result
+
+    def patch_group(self, group_id, account_id, source_id, patch_request):
+        """
+        Patch a SCIM group with partial updates (PATCH operation) using the full API schema.
+        
+        Args:
+            group_id: SCIM group ID to patch
+            account_id: SCIM account identifier
+            source_id: SCIM source identifier
+            patch_request: PatchRequestDTO containing Operations array
+        
+        Returns:
+            Tuple of (success_boolean, response_data)
+        """
+        logger.info(f'Patching group {group_id} in account {account_id}, source {source_id}')
+
+        # The SCIM API expects the full path format: /scim/v2/{accountId}/{sourceId}/Groups/{id}
+        # But our base URL already includes the /scim/v2/{accountId}/{sourceId} part,
+        # so we just need to append /Groups/{group_id}
+        path = f'/Groups/{group_id}'
+        success, result = self.send("PATCH", path, patch_request)
+        return success, result
+
+    def delete_group(self, group_id, account_id, source_id):
+        """
+        Delete a SCIM group (DELETE operation) using the full API schema.
+        
+        Args:
+            group_id: SCIM group ID to delete
+            account_id: SCIM account identifier  
+            source_id: SCIM source identifier
+        
+        Returns:
+            Tuple of (success_boolean, response_data)
+        """
+        logger.info(f'Deleting group {group_id} in account {account_id}, source {source_id}')
+
+        # The SCIM API expects the full path format: /scim/v2/{accountId}/{sourceId}/Groups/{id}
+        # But our base URL already includes the /scim/v2/{accountId}/{sourceId} part,
+        # so we just need to append /Groups/{group_id}
+        path = f'/Groups/{group_id}'
+        success, result = self.send("DELETE", path)
+        return success, result
+
+    def find_users_by_external_ids(self, external_ids):
+        """
+        Find multiple users by their external IDs in bulk.
+        
+        Note: The Cato SCIM API does not support filtering by externalId field,
+        so we get all users and filter locally by externalId.
+        
+        Args:
+            external_ids: List of external IDs to search for
+        
+        Returns:
+            Tuple of (success_boolean, dict mapping external_id to user_id)
+        """
+        if not external_ids:
+            return True, {}
+        
+        logger.info(f'Finding users by external IDs: {external_ids}')
+        
+        # Since the SCIM API doesn't support externalId filtering,
+        # get all users and filter locally
+        try:
+            success, all_users = self.get_users()
+            if not success:
+                logger.error(f'Failed to get all users: {all_users}')
+                return False, all_users
+            
+            logger.debug(f'Retrieved {len(all_users)} total users for external ID matching')
+            
+            # Build mapping from external_id to user_id
+            user_map = {}
+            external_ids_set = set(external_ids)  # For faster lookup
+            
+            for user in all_users:
+                user_external_id = user.get('externalId')
+                if user_external_id and user_external_id in external_ids_set:
+                    user_id = user.get('id')
+                    if user_id:
+                        user_map[user_external_id] = user_id
+                        logger.debug(f'Mapped external_id "{user_external_id}" -> user_id "{user_id}"')
+            
+            # Log results for each requested external_id
+            for external_id in external_ids:
+                if external_id in user_map:
+                    logger.info(f'Found user {external_id} -> {user_map[external_id]}')
+                else:
+                    logger.warning(f'User with external_id "{external_id}" not found')
+            
+            logger.info(f'User lookup complete: found {len(user_map)}/{len(external_ids)} users')
+            return True, user_map
+            
+        except Exception as e:
+            logger.error(f'Error in bulk external_id lookup: {e}')
+            return False, str(e)
+
+
+def get_scim_client(profile_name=None, verbose=False):
     """
     Get a configured SCIM client using credentials from the specified profile.
     
     Args:
         profile_name: Profile to use (defaults to current active profile)
+        verbose: Whether to enable verbose request/response logging
     
     Returns:
-        CatoSCIMClient instance
-    
-    Raises:
-        ValueError: If SCIM credentials are missing from profile
+        CatoSCIMClient instance or None if configuration is missing/invalid
     """
-    pm = get_profile_manager()
-    credentials = pm.get_credentials(profile_name)
+    try:
+        pm = get_profile_manager()
+        credentials = pm.get_credentials(profile_name)
+        
+        if not credentials:
+            logger.error(f"Profile not found: {profile_name or pm.get_current_profile()}")
+            return None
+        
+        scim_url = credentials.get('scim_url')
+        scim_token = credentials.get('scim_token')
+        
+        if not scim_url or not scim_token:
+            current_profile = profile_name or pm.get_current_profile()
+            logger.error(
+                f"Profile '{current_profile}' is missing SCIM credentials. "
+                f"Run 'catocli configure set --profile {current_profile}' to add SCIM URL and Bearer token."
+            )
+            return None
+        
+        return CatoSCIMClient(scim_url=scim_url, scim_token=scim_token, verbose=verbose)
     
-    if not credentials:
-        raise ValueError(f"Profile not found: {profile_name or pm.get_current_profile()}")
-    
-    scim_url = credentials.get('scim_url')
-    scim_token = credentials.get('scim_token')
-    
-    if not scim_url or not scim_token:
-        current_profile = profile_name or pm.get_current_profile()
-        raise ValueError(
-            f"Profile '{current_profile}' is missing SCIM credentials.\n"
-            f"Run 'catocli configure set --profile {current_profile}' to add SCIM URL and Bearer token.\n"
-            f"For more information, see: https://support.catonetworks.com/hc/en-us/articles/29492743031581-Using-the-Cato-SCIM-API-for-Custom-SCIM-Apps"
-        )
-    
-    return CatoSCIMClient(scim_url=scim_url, scim_token=scim_token)
+    except Exception as e:
+        logger.error(f"Error initializing SCIM client: {e}")
+        return None

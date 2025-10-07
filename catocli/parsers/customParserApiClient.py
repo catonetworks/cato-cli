@@ -294,9 +294,18 @@ def querySiteLocation(args, configuration):
     params = vars(args)
     operation_name = params["operation_name"]
     
-    # Load the site location data (not the model definition)
+    # Load the site location data (not the model definition) with proper UTF-8 encoding
     try:
-        site_data = loadJSON(f"models/{operation_name}.json")
+        import os
+        import json
+        # Find the full path to the models directory
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        root_dir = os.path.dirname(os.path.dirname(current_dir))
+        models_file = os.path.join(root_dir, "models", f"{operation_name}.json")
+        
+        # Load with explicit UTF-8 encoding to fix Windows charmap issues
+        with open(models_file, 'r', encoding='utf-8') as f:
+            site_data = json.load(f)
     except Exception as e:
         print(f"ERROR: Failed to load site location data: {e}")
         return None
@@ -305,13 +314,31 @@ def querySiteLocation(args, configuration):
         variables_obj = json.loads(params["json"])
     except ValueError as e:
         print(f"ERROR: Invalid JSON syntax: {e}")
-        print("Example: '{\"filters\":[{\"search\": \"Your city here\",\"field\":\"city\",\"operation\":\"exact\"}]}'")
+        pretty_example = {
+            "filters": [
+                {
+                    "search": "Your city here",
+                    "field": "city",
+                    "operation": "exact"
+                }
+            ]
+        }
+        print(f"Example: catocli query siteLocation '{json.dumps(pretty_example, indent=2)}' -p")
         return None
         
     # Validate filters structure
     if not variables_obj.get("filters"):
         print("ERROR: Missing 'filters' array in request")
-        print("Example: '{\"filters\":[{\"search\": \"Your city here\",\"field\":\"city\",\"operation\":\"exact\"}]}'")
+        pretty_example = {
+            "filters": [
+                {
+                    "search": "Your city here",
+                    "field": "city",
+                    "operation": "exact"
+                }
+            ]
+        }
+        print(f"Example: catocli query siteLocation '{json.dumps(pretty_example, indent=2)}' -p")
         return None
         
     if not isinstance(variables_obj.get("filters"), list):
@@ -664,6 +691,7 @@ def get_help(path):
     Stop including catocli examples after "Advanced Usage" section
     Add dynamic GitHub link if advanced examples exist
     Handle multi-line JSON examples properly for -p flag
+    Support both markdown code blocks and inline examples
     """
     match_cmd = f"catocli {path.replace('_', ' ')}"
     pwd = os.path.dirname(__file__)
@@ -679,11 +707,13 @@ def get_help(path):
     has_advanced_examples = os.path.exists(example_file_path)
     
     try:
-        with open(abs_path, "r") as f:
+        with open(abs_path, "r", encoding='utf-8') as f:
             lines = f.readlines()
             
         # Flag to stop processing after Advanced Usage section
         stop_after_advanced = False
+        in_code_block = False
+        code_block_content = []
         i = 0
         
         while i < len(lines):
@@ -694,15 +724,41 @@ def get_help(path):
                 stop_after_advanced = True
                 i += 1
                 continue
+            
+            # Handle markdown code blocks
+            if line.strip().startswith("```"):
+                if not in_code_block:
+                    # Starting a code block
+                    in_code_block = True
+                    code_block_content = []
+                else:
+                    # Ending a code block
+                    in_code_block = False
+                    # Process the accumulated code block content
+                    if code_block_content:
+                        # Check if any line in the code block contains our command
+                        block_text = ''.join(code_block_content)
+                        if match_cmd in block_text and not stop_after_advanced:
+                            # Add the entire code block as examples
+                            new_line += ''.join(code_block_content) + "\n"
+                    code_block_content = []
+                i += 1
+                continue
+            
+            # If we're in a code block, accumulate lines
+            if in_code_block:
+                code_block_content.append(line)
+                i += 1
+                continue
                 
-            # Skip catocli examples after Advanced Usage
+            # Skip catocli examples after Advanced Usage (for non-code-block examples)
             if stop_after_advanced and match_cmd in line:
                 i += 1
                 continue
                 
-            # Include catocli examples before Advanced Usage
+            # Include catocli examples before Advanced Usage (legacy format)
             if match_cmd in line:
-                # Check if this is a -p example with multi-line JSON
+                # Check if this is a -p example with multi-line JSON (legacy format)
                 if "-p '" in line and line.rstrip().endswith("{"):
                     # This is the start of a multi-line JSON example
                     clean_line = line.replace("<br /><br />", "").replace("`", "")

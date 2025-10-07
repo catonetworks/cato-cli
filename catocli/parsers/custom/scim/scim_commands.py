@@ -16,6 +16,7 @@ from ...utils.export_utils import (
     write_csv_export,
     ensure_output_directory
 )
+from ....Utils.cliutils import get_package_resource
 
 
 def handle_scim_error(error_message, verbose=False):
@@ -67,14 +68,63 @@ def format_scim_response(success, data, operation, verbose=False, pretty=False):
     return [response]
 
 
+def get_json_input(args):
+    """
+    Get JSON input from arguments, with support for multi-line interactive input when -p flag is used.
+    
+    Args:
+        args: Command line arguments object
+        
+    Returns:
+        tuple: (json_data, error_message)
+               json_data is the parsed JSON object or None if error
+               error_message is the error string or None if successful
+    """
+    try:
+        # Handle interactive multi-line JSON input when -p flag is used
+        json_input = getattr(args, 'json_input', '{}')
+        
+        if hasattr(args, 'pretty') and args.pretty:
+            print("Enter JSON input (press Enter on a blank line to finish):")
+            lines = []
+            try:
+                while True:
+                    line = input()
+                    if line.strip() == "":
+                        break
+                    lines.append(line)
+                json_input = '\n'.join(lines)
+                if not json_input.strip():
+                    json_input = '{}'
+            except (KeyboardInterrupt, EOFError):
+                print("\nInput cancelled.")
+                return None, "Input cancelled by user"
+        
+        # Parse JSON input
+        try:
+            json_data = json.loads(json_input)
+            return json_data, None
+        except json.JSONDecodeError as e:
+            return None, f"Invalid JSON input: {e}"
+            
+    except Exception as e:
+        return None, f"Error processing JSON input: {e}"
+
+
 def scim_add_members(args, configuration=None):
     """Add members to an existing SCIM group"""
     try:
-        # Parse JSON input
+        # Parse JSON input directly from args (like standard catocli commands)
+        json_input = getattr(args, 'json_input', '{}')
+        
         try:
-            json_data = json.loads(args.json_input)
+            json_data = json.loads(json_input)
+            if not isinstance(json_data, dict):
+                return handle_scim_error("JSON input must be an object/dictionary", args.verbose)
         except json.JSONDecodeError as e:
-            return handle_scim_error(f"Invalid JSON input: {e}", args.verbose)
+            return handle_scim_error(f"Invalid JSON syntax: {e}", args.verbose)
+        except Exception as e:
+            return handle_scim_error(f"Error processing JSON input: {e}", args.verbose)
         
         # Validate required fields
         if not isinstance(json_data, dict):
@@ -97,7 +147,7 @@ def scim_add_members(args, configuration=None):
                 return handle_scim_error("Each member must be an object with a 'value' field", args.verbose)
         
         # Get SCIM client and execute operation
-        client = get_scim_client()
+        client = get_scim_client(verbose=hasattr(args, 'verbose') and args.verbose)
         success, result = client.add_members(group_id, members)
         
         return format_scim_response(
@@ -110,41 +160,36 @@ def scim_add_members(args, configuration=None):
 
 
 def scim_create_group(args, configuration=None):
-    """Create a new SCIM group with full GroupDTO schema support"""
+    """Create a new SCIM group"""
     try:
-        # Parse JSON input
+        # Parse JSON input directly from args (like standard catocli commands)
+        json_input = getattr(args, 'json_input', '{}')
+        
         try:
-            json_data = json.loads(args.json_input)
+            json_data = json.loads(json_input)
+            if not isinstance(json_data, dict):
+                return handle_scim_error("JSON input must be an object/dictionary", args.verbose)
         except json.JSONDecodeError as e:
-            return handle_scim_error(f"Invalid JSON input: {e}", args.verbose)
+            return handle_scim_error(f"Invalid JSON syntax: {e}", args.verbose)
+        except Exception as e:
+            return handle_scim_error(f"Error processing JSON input: {e}", args.verbose)
         
         # Validate required fields
         if not isinstance(json_data, dict):
             return handle_scim_error("Input must be a JSON object", args.verbose)
         
-        # Extract required path parameters
-        source_id = json_data.get('source_id')
+        # Extract group properties - support both displayName and display_name formats
+        display_name = json_data.get('displayName') or json_data.get('display_name')
+        external_id = json_data.get('externalId') or json_data.get('external_id')
         
-        # Extract group data (can be in 'group_data' field or directly in json_data)
-        group_data = json_data.get('group_data', json_data)
-        
-        # Get accountID from configuration
-        account_id = getattr(args, 'accountID', None) or getattr(configuration, 'accountID', None) if configuration else None
-        
-        if not account_id:
-            return handle_scim_error("Missing accountID. Please ensure your Cato configuration is set up correctly.", args.verbose)
-        if not source_id:
-            return handle_scim_error("Missing required field: source_id", args.verbose)
-        
-        # Build complete GroupDTO according to swagger schema
-        group_dto = {
-            "schemas": group_data.get('schemas', ["urn:ietf:params:scim:schemas:core:2.0:Group"]),
-            "displayName": group_data.get('displayName') or group_data.get('display_name'),
-            "externalId": group_data.get('externalId') or group_data.get('external_id')
-        }
+        # Validate required fields
+        if not display_name:
+            return handle_scim_error("Missing required field: displayName (or display_name)", args.verbose)
+        if not external_id:
+            return handle_scim_error("Missing required field: externalId (or external_id)", args.verbose)
         
         # Handle members array
-        members = group_data.get('members', [])
+        members = json_data.get('members', [])
         if members:
             if not isinstance(members, list):
                 return handle_scim_error("Members must be a JSON array", args.verbose)
@@ -162,18 +207,25 @@ def scim_create_group(args, configuration=None):
                 else:
                     return handle_scim_error(f"Member {i+1} must be a string ID or object with 'value' field", args.verbose)
             
-            group_dto["members"] = normalized_members
-        
-        # Validate required fields
-        if not group_dto.get('displayName'):
-            return handle_scim_error("Missing required field: displayName (or display_name)", args.verbose)
+            members = normalized_members
         
         # Get SCIM client and execute operation
-        client = get_scim_client()
-        success, result = client.create_group(account_id, source_id, group_dto)
+        client = get_scim_client(verbose=hasattr(args, 'verbose') and args.verbose)
+        
+        # Check if SCIM client is configured
+        if client is None:
+            return handle_scim_error(
+                "SCIM client is not configured. Please ensure your SCIM credentials are set up correctly.\n"
+                "Run 'catocli configure scim' to configure SCIM credentials, or\n"
+                "Check your ~/.cato/settings.json file for 'scim_url' and 'scim_token' settings.\n"
+                "For more information, see: https://support.catonetworks.com/hc/en-us/articles/29492743031581-Using-the-Cato-SCIM-API-for-Custom-SCIM-Apps",
+                args.verbose
+            )
+        
+        success, result = client.create_group(display_name, external_id, members)
         
         return format_scim_response(
-            success, result, f"Create group '{group_dto.get('displayName')}'",
+            success, result, f"Create group '{display_name}'",
             args.verbose, args.pretty
         )
         
@@ -184,11 +236,17 @@ def scim_create_group(args, configuration=None):
 def scim_create_user(args, configuration=None):
     """Create a new SCIM user with full UserDTO schema support"""
     try:
-        # Parse JSON input
+        # Parse JSON input directly from args (like standard catocli commands)
+        json_input = getattr(args, 'json_input', '{}')
+        
         try:
-            json_data = json.loads(args.json_input)
+            json_data = json.loads(json_input)
+            if not isinstance(json_data, dict):
+                return handle_scim_error("JSON input must be an object/dictionary", args.verbose)
         except json.JSONDecodeError as e:
-            return handle_scim_error(f"Invalid JSON input: {e}", args.verbose)
+            return handle_scim_error(f"Invalid JSON syntax: {e}", args.verbose)
+        except Exception as e:
+            return handle_scim_error(f"Error processing JSON input: {e}", args.verbose)
         
         # Validate required fields
         if not isinstance(json_data, dict):
@@ -254,8 +312,17 @@ def scim_create_user(args, configuration=None):
             return handle_scim_error("Missing required field: externalId (or external_id)", args.verbose)
         
         # Get SCIM client and execute operation
-        client = get_scim_client()
-        success, result = client.create_user(account_id, source_id, user_dto)
+        client = get_scim_client(verbose=hasattr(args, 'verbose') and args.verbose)
+        
+        # Extract parameters for the existing create_user method
+        email = user_dto.get('userName')
+        given_name = user_dto.get('name', {}).get('givenName') or user_data.get('given_name')
+        family_name = user_dto.get('name', {}).get('familyName') or user_data.get('family_name')
+        external_id = user_dto.get('externalId')
+        password = user_data.get('password')  # May be None
+        active = user_dto.get('active', True)
+        
+        success, result = client.create_user(email, given_name, family_name, external_id, password, active)
         
         return format_scim_response(
             success, result, f"Create user '{user_dto.get('userName')}'",
@@ -269,11 +336,17 @@ def scim_create_user(args, configuration=None):
 def scim_disable_group(args, configuration=None):
     """Disable a SCIM group"""
     try:
-        # Parse JSON input
+        # Parse JSON input directly from args (like standard catocli commands)
+        json_input = getattr(args, 'json_input', '{}')
+        
         try:
-            json_data = json.loads(args.json_input)
+            json_data = json.loads(json_input)
+            if not isinstance(json_data, dict):
+                return handle_scim_error("JSON input must be an object/dictionary", args.verbose)
         except json.JSONDecodeError as e:
-            return handle_scim_error(f"Invalid JSON input: {e}", args.verbose)
+            return handle_scim_error(f"Invalid JSON syntax: {e}", args.verbose)
+        except Exception as e:
+            return handle_scim_error(f"Error processing JSON input: {e}", args.verbose)
         
         # Validate required fields
         if not isinstance(json_data, dict):
@@ -285,7 +358,7 @@ def scim_disable_group(args, configuration=None):
             return handle_scim_error("Missing required field: group_id", args.verbose)
         
         # Get SCIM client and execute operation
-        client = get_scim_client()
+        client = get_scim_client(verbose=hasattr(args, 'verbose') and args.verbose)
         success, result = client.disable_group(group_id)
         
         return format_scim_response(
@@ -300,11 +373,17 @@ def scim_disable_group(args, configuration=None):
 def scim_disable_user(args, configuration=None):
     """Disable a SCIM user"""
     try:
-        # Parse JSON input
+        # Parse JSON input directly from args (like standard catocli commands)
+        json_input = getattr(args, 'json_input', '{}')
+        
         try:
-            json_data = json.loads(args.json_input)
+            json_data = json.loads(json_input)
+            if not isinstance(json_data, dict):
+                return handle_scim_error("JSON input must be an object/dictionary", args.verbose)
         except json.JSONDecodeError as e:
-            return handle_scim_error(f"Invalid JSON input: {e}", args.verbose)
+            return handle_scim_error(f"Invalid JSON syntax: {e}", args.verbose)
+        except Exception as e:
+            return handle_scim_error(f"Error processing JSON input: {e}", args.verbose)
         
         # Validate required fields
         if not isinstance(json_data, dict):
@@ -316,7 +395,7 @@ def scim_disable_user(args, configuration=None):
             return handle_scim_error("Missing required field: user_id", args.verbose)
         
         # Get SCIM client and execute operation
-        client = get_scim_client()
+        client = get_scim_client(verbose=hasattr(args, 'verbose') and args.verbose)
         success, result = client.disable_user(user_id)
         
         return format_scim_response(
@@ -331,11 +410,17 @@ def scim_disable_user(args, configuration=None):
 def scim_find_group(args, configuration=None):
     """Find SCIM groups by display name"""
     try:
-        # Parse JSON input
+        # Parse JSON input directly from args (like standard catocli commands)
+        json_input = getattr(args, 'json_input', '{}')
+        
         try:
-            json_data = json.loads(args.json_input)
+            json_data = json.loads(json_input)
+            if not isinstance(json_data, dict):
+                return handle_scim_error("JSON input must be an object/dictionary", args.verbose)
         except json.JSONDecodeError as e:
-            return handle_scim_error(f"Invalid JSON input: {e}", args.verbose)
+            return handle_scim_error(f"Invalid JSON syntax: {e}", args.verbose)
+        except Exception as e:
+            return handle_scim_error(f"Error processing JSON input: {e}", args.verbose)
         
         # Validate required fields
         if not isinstance(json_data, dict):
@@ -347,7 +432,7 @@ def scim_find_group(args, configuration=None):
             return handle_scim_error("Missing required field: display_name", args.verbose)
         
         # Get SCIM client and execute operation
-        client = get_scim_client()
+        client = get_scim_client(verbose=hasattr(args, 'verbose') and args.verbose)
         success, result = client.find_group(display_name)
         
         if success:
@@ -373,11 +458,17 @@ def scim_find_group(args, configuration=None):
 def scim_find_users(args, configuration=None):
     """Find SCIM users by field and value"""
     try:
-        # Parse JSON input
+        # Parse JSON input directly from args (like standard catocli commands)
+        json_input = getattr(args, 'json_input', '{}')
+        
         try:
-            json_data = json.loads(args.json_input)
+            json_data = json.loads(json_input)
+            if not isinstance(json_data, dict):
+                return handle_scim_error("JSON input must be an object/dictionary", args.verbose)
         except json.JSONDecodeError as e:
-            return handle_scim_error(f"Invalid JSON input: {e}", args.verbose)
+            return handle_scim_error(f"Invalid JSON syntax: {e}", args.verbose)
+        except Exception as e:
+            return handle_scim_error(f"Error processing JSON input: {e}", args.verbose)
         
         # Validate required fields
         if not isinstance(json_data, dict):
@@ -392,12 +483,12 @@ def scim_find_users(args, configuration=None):
             return handle_scim_error("Missing required field: value", args.verbose)
         
         # Validate field value
-        valid_fields = ['userName', 'email', 'givenName', 'familyName']
+        valid_fields = ['userName', 'email', 'givenName', 'familyName', 'externalId']
         if field not in valid_fields:
             return handle_scim_error(f"Invalid field. Must be one of: {', '.join(valid_fields)}", args.verbose)
         
         # Get SCIM client and execute operation
-        client = get_scim_client()
+        client = get_scim_client(verbose=hasattr(args, 'verbose') and args.verbose)
         success, result = client.find_users(field, value)
         
         if success:
@@ -425,11 +516,17 @@ def scim_find_users(args, configuration=None):
 def scim_get_group(args, configuration=None):
     """Get a specific SCIM group by ID"""
     try:
-        # Parse JSON input
+        # Parse JSON input directly from args (like standard catocli commands)
+        json_input = getattr(args, 'json_input', '{}')
+        
         try:
-            json_data = json.loads(args.json_input)
+            json_data = json.loads(json_input)
+            if not isinstance(json_data, dict):
+                return handle_scim_error("JSON input must be an object/dictionary", args.verbose)
         except json.JSONDecodeError as e:
-            return handle_scim_error(f"Invalid JSON input: {e}", args.verbose)
+            return handle_scim_error(f"Invalid JSON syntax: {e}", args.verbose)
+        except Exception as e:
+            return handle_scim_error(f"Error processing JSON input: {e}", args.verbose)
         
         # Validate required fields
         if not isinstance(json_data, dict):
@@ -441,7 +538,7 @@ def scim_get_group(args, configuration=None):
             return handle_scim_error("Missing required field: group_id", args.verbose)
         
         # Get SCIM client and execute operation
-        client = get_scim_client()
+        client = get_scim_client(verbose=hasattr(args, 'verbose') and args.verbose)
         success, result = client.get_group(group_id)
         
         return format_scim_response(
@@ -457,7 +554,7 @@ def scim_get_groups(args, configuration=None):
     """Get all SCIM groups"""
     try:
         # Get SCIM client and execute operation
-        client = get_scim_client()
+        client = get_scim_client(verbose=hasattr(args, 'verbose') and args.verbose)
         success, result = client.get_groups()
         
         if success:
@@ -483,11 +580,17 @@ def scim_get_groups(args, configuration=None):
 def scim_get_user(args, configuration=None):
     """Get a specific SCIM user by ID with full swagger parameter support"""
     try:
-        # Parse JSON input
+        # Parse JSON input directly from args (like standard catocli commands)
+        json_input = getattr(args, 'json_input', '{}')
+        
         try:
-            json_data = json.loads(args.json_input)
+            json_data = json.loads(json_input)
+            if not isinstance(json_data, dict):
+                return handle_scim_error("JSON input must be an object/dictionary", args.verbose)
         except json.JSONDecodeError as e:
-            return handle_scim_error(f"Invalid JSON input: {e}", args.verbose)
+            return handle_scim_error(f"Invalid JSON syntax: {e}", args.verbose)
+        except Exception as e:
+            return handle_scim_error(f"Error processing JSON input: {e}", args.verbose)
         
         # Validate required fields
         if not isinstance(json_data, dict):
@@ -511,7 +614,7 @@ def scim_get_user(args, configuration=None):
             return handle_scim_error("Missing required field: source_id", args.verbose)
         
         # Get SCIM client and execute operation
-        client = get_scim_client()
+        client = get_scim_client(verbose=hasattr(args, 'verbose') and args.verbose)
         success, result = client.get_user(user_id, account_id, source_id, excluded_attributes)
         
         return format_scim_response(
@@ -551,7 +654,7 @@ def scim_get_users(args, configuration=None):
             return handle_scim_error("Missing required field: source_id", args.verbose)
         
         # Get SCIM client and execute operation
-        client = get_scim_client()
+        client = get_scim_client(verbose=hasattr(args, 'verbose') and args.verbose)
         success, result = client.get_users(account_id, source_id, count, start_index, params)
         
         if success:
@@ -586,11 +689,17 @@ def scim_get_users(args, configuration=None):
 def scim_remove_members(args, configuration=None):
     """Remove members from a SCIM group"""
     try:
-        # Parse JSON input
+        # Parse JSON input directly from args (like standard catocli commands)
+        json_input = getattr(args, 'json_input', '{}')
+        
         try:
-            json_data = json.loads(args.json_input)
+            json_data = json.loads(json_input)
+            if not isinstance(json_data, dict):
+                return handle_scim_error("JSON input must be an object/dictionary", args.verbose)
         except json.JSONDecodeError as e:
-            return handle_scim_error(f"Invalid JSON input: {e}", args.verbose)
+            return handle_scim_error(f"Invalid JSON syntax: {e}", args.verbose)
+        except Exception as e:
+            return handle_scim_error(f"Error processing JSON input: {e}", args.verbose)
         
         # Validate required fields
         if not isinstance(json_data, dict):
@@ -613,7 +722,7 @@ def scim_remove_members(args, configuration=None):
                 return handle_scim_error("Each member must be an object with a 'value' field", args.verbose)
         
         # Get SCIM client and execute operation
-        client = get_scim_client()
+        client = get_scim_client(verbose=hasattr(args, 'verbose') and args.verbose)
         success, result = client.remove_members(group_id, members)
         
         return format_scim_response(
@@ -628,11 +737,17 @@ def scim_remove_members(args, configuration=None):
 def scim_rename_group(args, configuration=None):
     """Rename a SCIM group"""
     try:
-        # Parse JSON input
+        # Parse JSON input directly from args (like standard catocli commands)
+        json_input = getattr(args, 'json_input', '{}')
+        
         try:
-            json_data = json.loads(args.json_input)
+            json_data = json.loads(json_input)
+            if not isinstance(json_data, dict):
+                return handle_scim_error("JSON input must be an object/dictionary", args.verbose)
         except json.JSONDecodeError as e:
-            return handle_scim_error(f"Invalid JSON input: {e}", args.verbose)
+            return handle_scim_error(f"Invalid JSON syntax: {e}", args.verbose)
+        except Exception as e:
+            return handle_scim_error(f"Error processing JSON input: {e}", args.verbose)
         
         # Validate required fields
         if not isinstance(json_data, dict):
@@ -647,7 +762,7 @@ def scim_rename_group(args, configuration=None):
             return handle_scim_error("Missing required field: new_name", args.verbose)
         
         # Get SCIM client and execute operation
-        client = get_scim_client()
+        client = get_scim_client(verbose=hasattr(args, 'verbose') and args.verbose)
         success, result = client.rename_group(group_id, new_name)
         
         return format_scim_response(
@@ -662,11 +777,17 @@ def scim_rename_group(args, configuration=None):
 def scim_update_group(args, configuration=None):
     """Update a SCIM group with complete group data"""
     try:
-        # Parse JSON input
+        # Parse JSON input directly from args (like standard catocli commands)
+        json_input = getattr(args, 'json_input', '{}')
+        
         try:
-            json_data = json.loads(args.json_input)
+            json_data = json.loads(json_input)
+            if not isinstance(json_data, dict):
+                return handle_scim_error("JSON input must be an object/dictionary", args.verbose)
         except json.JSONDecodeError as e:
-            return handle_scim_error(f"Invalid JSON input: {e}", args.verbose)
+            return handle_scim_error(f"Invalid JSON syntax: {e}", args.verbose)
+        except Exception as e:
+            return handle_scim_error(f"Error processing JSON input: {e}", args.verbose)
         
         # Validate required fields
         if not isinstance(json_data, dict):
@@ -685,7 +806,7 @@ def scim_update_group(args, configuration=None):
             return handle_scim_error("Group data must be a JSON object", args.verbose)
         
         # Get SCIM client and execute operation
-        client = get_scim_client()
+        client = get_scim_client(verbose=hasattr(args, 'verbose') and args.verbose)
         success, result = client.update_group(group_id, group_data)
         
         return format_scim_response(
@@ -700,11 +821,17 @@ def scim_update_group(args, configuration=None):
 def scim_update_user(args, configuration=None):
     """Update a SCIM user with complete user data (PUT operation)"""
     try:
-        # Parse JSON input
+        # Parse JSON input directly from args (like standard catocli commands)
+        json_input = getattr(args, 'json_input', '{}')
+        
         try:
-            json_data = json.loads(args.json_input)
+            json_data = json.loads(json_input)
+            if not isinstance(json_data, dict):
+                return handle_scim_error("JSON input must be an object/dictionary", args.verbose)
         except json.JSONDecodeError as e:
-            return handle_scim_error(f"Invalid JSON input: {e}", args.verbose)
+            return handle_scim_error(f"Invalid JSON syntax: {e}", args.verbose)
+        except Exception as e:
+            return handle_scim_error(f"Error processing JSON input: {e}", args.verbose)
         
         # Validate required fields
         if not isinstance(json_data, dict):
@@ -730,7 +857,7 @@ def scim_update_user(args, configuration=None):
             return handle_scim_error("User data must be a JSON object", args.verbose)
         
         # Get SCIM client and execute operation
-        client = get_scim_client()
+        client = get_scim_client(verbose=hasattr(args, 'verbose') and args.verbose)
         success, result = client.update_user(user_id, account_id, source_id, user_data)
         
         return format_scim_response(
@@ -745,11 +872,17 @@ def scim_update_user(args, configuration=None):
 def scim_patch_user(args, configuration=None):
     """Patch a SCIM user with partial updates (PATCH operation)"""
     try:
-        # Parse JSON input
+        # Parse JSON input directly from args (like standard catocli commands)
+        json_input = getattr(args, 'json_input', '{}')
+        
         try:
-            json_data = json.loads(args.json_input)
+            json_data = json.loads(json_input)
+            if not isinstance(json_data, dict):
+                return handle_scim_error("JSON input must be an object/dictionary", args.verbose)
         except json.JSONDecodeError as e:
-            return handle_scim_error(f"Invalid JSON input: {e}", args.verbose)
+            return handle_scim_error(f"Invalid JSON syntax: {e}", args.verbose)
+        except Exception as e:
+            return handle_scim_error(f"Error processing JSON input: {e}", args.verbose)
         
         # Validate required fields
         if not isinstance(json_data, dict):
@@ -797,7 +930,7 @@ def scim_patch_user(args, configuration=None):
                 return handle_scim_error(f"Operation {i+1}: Invalid operation '{op['op']}'. Must be 'add', 'remove', or 'replace'", args.verbose)
         
         # Get SCIM client and execute operation
-        client = get_scim_client()
+        client = get_scim_client(verbose=hasattr(args, 'verbose') and args.verbose)
         success, result = client.patch_user(user_id, account_id, source_id, patch_request)
         
         return format_scim_response(
@@ -812,11 +945,17 @@ def scim_patch_user(args, configuration=None):
 def scim_delete_user(args, configuration=None):
     """Delete a SCIM user (DELETE operation)"""
     try:
-        # Parse JSON input
+        # Parse JSON input directly from args (like standard catocli commands)
+        json_input = getattr(args, 'json_input', '{}')
+        
         try:
-            json_data = json.loads(args.json_input)
+            json_data = json.loads(json_input)
+            if not isinstance(json_data, dict):
+                return handle_scim_error("JSON input must be an object/dictionary", args.verbose)
         except json.JSONDecodeError as e:
-            return handle_scim_error(f"Invalid JSON input: {e}", args.verbose)
+            return handle_scim_error(f"Invalid JSON syntax: {e}", args.verbose)
+        except Exception as e:
+            return handle_scim_error(f"Error processing JSON input: {e}", args.verbose)
         
         # Validate required fields
         if not isinstance(json_data, dict):
@@ -835,7 +974,7 @@ def scim_delete_user(args, configuration=None):
             return handle_scim_error("Missing required field: source_id", args.verbose)
         
         # Get SCIM client and execute operation
-        client = get_scim_client()
+        client = get_scim_client(verbose=hasattr(args, 'verbose') and args.verbose)
         success, result = client.delete_user(user_id, account_id, source_id)
         
         return format_scim_response(
@@ -850,11 +989,17 @@ def scim_delete_user(args, configuration=None):
 def scim_patch_group(args, configuration=None):
     """Patch a SCIM group with partial updates (PATCH operation)"""
     try:
-        # Parse JSON input
+        # Parse JSON input directly from args (like standard catocli commands)
+        json_input = getattr(args, 'json_input', '{}')
+        
         try:
-            json_data = json.loads(args.json_input)
+            json_data = json.loads(json_input)
+            if not isinstance(json_data, dict):
+                return handle_scim_error("JSON input must be an object/dictionary", args.verbose)
         except json.JSONDecodeError as e:
-            return handle_scim_error(f"Invalid JSON input: {e}", args.verbose)
+            return handle_scim_error(f"Invalid JSON syntax: {e}", args.verbose)
+        except Exception as e:
+            return handle_scim_error(f"Error processing JSON input: {e}", args.verbose)
         
         # Validate required fields
         if not isinstance(json_data, dict):
@@ -902,7 +1047,7 @@ def scim_patch_group(args, configuration=None):
                 return handle_scim_error(f"Operation {i+1}: Invalid operation '{op['op']}'. Must be 'add', 'remove', or 'replace'", args.verbose)
         
         # Get SCIM client and execute operation
-        client = get_scim_client()
+        client = get_scim_client(verbose=hasattr(args, 'verbose') and args.verbose)
         success, result = client.patch_group(group_id, account_id, source_id, patch_request)
         
         return format_scim_response(
@@ -917,11 +1062,17 @@ def scim_patch_group(args, configuration=None):
 def scim_delete_group(args, configuration=None):
     """Delete a SCIM group (DELETE operation)"""
     try:
-        # Parse JSON input
+        # Parse JSON input directly from args (like standard catocli commands)
+        json_input = getattr(args, 'json_input', '{}')
+        
         try:
-            json_data = json.loads(args.json_input)
+            json_data = json.loads(json_input)
+            if not isinstance(json_data, dict):
+                return handle_scim_error("JSON input must be an object/dictionary", args.verbose)
         except json.JSONDecodeError as e:
-            return handle_scim_error(f"Invalid JSON input: {e}", args.verbose)
+            return handle_scim_error(f"Invalid JSON syntax: {e}", args.verbose)
+        except Exception as e:
+            return handle_scim_error(f"Error processing JSON input: {e}", args.verbose)
         
         # Validate required fields
         if not isinstance(json_data, dict):
@@ -940,7 +1091,7 @@ def scim_delete_group(args, configuration=None):
             return handle_scim_error("Missing required field: source_id", args.verbose)
         
         # Get SCIM client and execute operation
-        client = get_scim_client()
+        client = get_scim_client(verbose=hasattr(args, 'verbose') and args.verbose)
         success, result = client.delete_group(group_id, account_id, source_id)
         
         return format_scim_response(
@@ -1117,7 +1268,7 @@ def _create_users_from_data(users_data, args):
     Supports both create and update operations based on presence of user_id
     """
     # Get SCIM client
-    client = get_scim_client()
+    client = get_scim_client(verbose=hasattr(args, 'verbose') and args.verbose)
     
     # Process users and collect results
     results = []
@@ -1369,6 +1520,122 @@ def _write_processed_json(users_data, original_file_path, results, args):
         return None
 
 
+def _write_processed_csv_groups(groups_data, original_file_path, results, args):
+    """
+    Write processed CSV file with updated group_ids from create/update operations
+    
+    Args:
+        groups_data: List of processed group data with updated group_ids
+        original_file_path: Path to the original CSV file
+        results: List of operation results
+        args: Command line arguments
+    
+    Returns:
+        Path to the processed CSV file
+    """
+    import datetime
+    
+    verbose = hasattr(args, 'verbose') and args.verbose
+    
+    # Generate processed filename with timestamp
+    timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+    base_path = os.path.splitext(original_file_path)[0]
+    processed_file_path = f"{base_path}_processed_{timestamp}.csv"
+    
+    if verbose:
+        print(f"Writing processed CSV file: {processed_file_path}", file=sys.stderr)
+    
+    try:
+        # Define fieldnames with group_id first
+        fieldnames = ['group_id', 'display_name', 'external_id', 'member_external_ids']
+        
+        with open(processed_file_path, 'w', newline='', encoding='utf-8') as csvfile:
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            writer.writeheader()
+            
+            # Write processed group data
+            for group_data in groups_data:
+                # Convert member_external_ids list back to pipe-separated string for CSV
+                member_external_ids = group_data.get('member_external_ids', [])
+                if isinstance(member_external_ids, list):
+                    member_external_ids_str = '|'.join(member_external_ids) if member_external_ids else ''
+                else:
+                    member_external_ids_str = str(member_external_ids) if member_external_ids else ''
+                
+                # Create row with all required fields
+                row = {
+                    'group_id': group_data.get('group_id', ''),
+                    'display_name': group_data.get('display_name', ''),
+                    'external_id': group_data.get('external_id', ''),
+                    'member_external_ids': member_external_ids_str
+                }
+                writer.writerow(row)
+        
+        if verbose:
+            print(f"Successfully wrote processed CSV: {processed_file_path}", file=sys.stderr)
+            
+        return processed_file_path
+        
+    except Exception as e:
+        if verbose:
+            print(f"Error writing processed CSV file: {e}", file=sys.stderr)
+        return None
+
+
+def _write_processed_json_groups(groups_data, original_file_path, results, args):
+    """
+    Write processed JSON file with updated group_ids from create/update operations
+    
+    Args:
+        groups_data: List of processed group data with updated group_ids
+        original_file_path: Path to the original JSON file
+        results: List of operation results
+        args: Command line arguments
+    
+    Returns:
+        Path to the processed JSON file
+    """
+    import datetime
+    
+    verbose = hasattr(args, 'verbose') and args.verbose
+    
+    # Generate processed filename with timestamp
+    timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+    base_path = os.path.splitext(original_file_path)[0]
+    processed_file_path = f"{base_path}_processed_{timestamp}.json"
+    
+    if verbose:
+        print(f"Writing processed JSON file: {processed_file_path}", file=sys.stderr)
+    
+    try:
+        # Prepare JSON data with updated group_ids
+        json_data = []
+        for group_data in groups_data:
+            # Clean up the group data for JSON output
+            clean_group_data = {
+                'group_id': group_data.get('group_id', ''),
+                'display_name': group_data.get('display_name', ''),
+                'external_id': group_data.get('external_id', ''),
+                'member_external_ids': group_data.get('member_external_ids', [])
+            }
+            # Remove empty values to keep JSON clean
+            clean_group_data = {k: v for k, v in clean_group_data.items() if v not in ('', [], None)}
+            json_data.append(clean_group_data)
+        
+        with open(processed_file_path, 'w', encoding='utf-8') as jsonfile:
+            json.dump(json_data, jsonfile, indent=2, sort_keys=True)
+        
+        if verbose:
+            print(f"Successfully wrote processed JSON: {processed_file_path}", file=sys.stderr)
+            
+        return processed_file_path
+        
+    except Exception as e:
+        if verbose:
+            print(f"Error writing processed JSON file: {e}", file=sys.stderr)
+        return None
+
+
 def scim_import_users(args):
     """
     Import users from CSV or JSON file
@@ -1447,7 +1714,7 @@ def scim_export_users(args):
         return _generate_user_template(format_type, args)
     
     # Get SCIM client and fetch users
-    client = get_scim_client()
+    client = get_scim_client(verbose=verbose)
     
     if verbose:
         print("Fetching users from SCIM API...", file=sys.stderr)
@@ -1552,7 +1819,7 @@ def scim_export_users(args):
 
 def _generate_user_template(format_type, args):
     """
-    Generate template files for user import
+    Generate template files for user import using embedded template files
     
     Args:
         format_type: 'csv' or 'json'
@@ -1577,36 +1844,27 @@ def _generate_user_template(format_type, args):
     except Exception as e:
         return handle_scim_error(str(e), verbose)
     
-    # Create sample template data with helpful examples
-    sample_users = [
-        {
-            'email': 'john.doe@example.com',
-            'given_name': 'John',
-            'family_name': 'Doe',
-            'external_id': 'john.doe',
-            'password': 'optional_password',
-            'active': True if format_type == 'json' else 'true',  # Active user with password
-            'user_id': '' if format_type == 'csv' else None  # Empty for templates, filled during export
-        },
-        {
-            'email': 'jane.smith@example.com',
-            'given_name': 'Jane', 
-            'family_name': 'Smith',
-            'external_id': 'jane.smith',
-            'password': None if format_type == 'json' else '',  # No password for inactive user
-            'active': False if format_type == 'json' else 'false',  # Will be created as active then disabled
-            'user_id': '' if format_type == 'csv' else None  # Empty for templates, filled during export
-        }
-    ]
-    
     try:
-        if format_type == 'csv':
-            fieldnames = ['user_id', 'email', 'given_name', 'family_name', 'external_id', 'password', 'active']
-            result = write_csv_export(sample_users, output_path, fieldnames, verbose)
-        elif format_type == 'json':
-            result = write_json_export(sample_users, output_path, verbose)
-        else:
-            return handle_scim_error(f"Unsupported format for template: {format_type}", verbose)
+        # Load template content from embedded template files
+        template_filename = f"scim_users.{format_type}"
+        
+        # Get template content from package resources
+        template_content = get_package_resource('catocli.templates', template_filename)
+        
+        # Write template content directly to output file
+        with open(output_path, 'w', encoding='utf-8') as f:
+            f.write(template_content)
+        
+        if verbose:
+            print(f"Successfully copied embedded template to: {output_path}", file=sys.stderr)
+        
+        # Create result similar to write_*_export functions
+        result = {
+            'success': True,
+            'output_file': output_path,
+            'format': format_type,
+            'record_count': 3  # Our templates have 3 example users
+        }
         
         # Update result to indicate template generation
         result['operation'] = f"Generate {format_type.upper()} template"
@@ -1711,18 +1969,11 @@ def scim_purge_users(args, configuration=None):
                     'cancelled': True
                 }]
         
-        # Extract required path parameters for SCIM operations
-        # accountID should come from configuration, source_id from command line
-        if not hasattr(args, 'source_id') or not args.source_id:
-            return handle_scim_error("Missing required argument: --source-id", args.verbose)
-        
-        # Get accountID from configuration (this would be handled by the CLI framework)
-        account_id = getattr(args, 'accountID', None) or getattr(configuration, 'accountID', None) if configuration else None
-        if not account_id:
-            return handle_scim_error("Missing accountID. Please ensure your Cato configuration is set up correctly.", args.verbose)
+        # Note: accountID and sourceID are embedded in the SCIM URL configured in the profile
+        # We no longer need to extract them separately as the SCIM client handles this automatically
         
         # Perform purge operations
-        return _purge_users_from_ids(user_ids, account_id, args.source_id, args)
+        return _purge_users_from_ids(user_ids, args)
         
     except Exception as e:
         return handle_scim_error(e, args.verbose)
@@ -1811,21 +2062,42 @@ def _parse_user_ids_for_purge(file_path, file_format, verbose=False):
     return user_ids
 
 
-def _purge_users_from_ids(user_ids, account_id, source_id, args):
+def _purge_users_from_ids(user_ids, args):
     """
     Purge users by first disabling them, then deleting them
     
     Args:
         user_ids: List of user ID dictionaries
-        account_id: SCIM account identifier
-        source_id: SCIM source identifier
         args: Command line arguments
     
     Returns:
         List of operation results
     """
-    client = get_scim_client()
     verbose = hasattr(args, 'verbose') and args.verbose
+    client = get_scim_client(verbose=verbose)
+    
+    # Extract accountId and sourceId from the SCIM URL
+    # URL format: https://scimservice.catonetworks.com:4443/scim/v2/{accountId}/{sourceId}
+    import urllib.parse
+    try:
+        parsed_url = urllib.parse.urlparse(client.baseurl)
+        path_parts = parsed_url.path.strip('/').split('/')
+        # Expected path: ['scim', 'v2', 'accountId', 'sourceId']
+        if len(path_parts) >= 4 and path_parts[0] == 'scim' and path_parts[1] == 'v2':
+            account_id = path_parts[2]
+            source_id = int(path_parts[3])  # sourceId is an integer
+        else:
+            if verbose:
+                print(f"Warning: Could not parse accountId/sourceId from SCIM URL: {client.baseurl}", file=sys.stderr)
+                print("Attempting to continue with placeholder values...", file=sys.stderr)
+            account_id = "unknown"
+            source_id = 0
+    except Exception as e:
+        if verbose:
+            print(f"Error parsing SCIM URL: {e}", file=sys.stderr)
+            print("Attempting to continue with placeholder values...", file=sys.stderr)
+        account_id = "unknown"
+        source_id = 0
     
     # Track results for both operations
     disable_results = []
@@ -1999,9 +2271,12 @@ def _purge_users_from_ids(user_ids, account_id, source_id, args):
     response = {
         'success': fully_successful == total_users,
         'operation': f"Purge {total_users} users (disable + delete)",
-        'summary': summary,
-        'results': overall_results
+        'summary': summary
     }
+    
+    # Only include detailed results if verbose mode is enabled
+    if verbose:
+        response['results'] = overall_results
     
     return [response]
 
@@ -2084,6 +2359,1023 @@ def scim_import_users(args, configuration=None):
         return handle_scim_error(e, args.verbose)
 
 
+# =============================================================================
+# GROUP OPERATIONS (Import, Export, Purge)
+# =============================================================================
+
+def _parse_csv_groups(file_path, verbose=False):
+    """
+    Parse groups from CSV file with support for group_id column to determine create vs update operations
+    
+    Returns:
+        List of group dictionaries or error response
+    """
+    groups_data = []
+    required_columns = ['display_name', 'external_id']
+    optional_columns = ['member_external_ids', 'group_id']
+    all_columns = required_columns + optional_columns
+    
+    try:
+        with open(file_path, 'r', encoding='utf-8') as csvfile:
+            reader = csv.DictReader(csvfile)
+            
+            # Validate CSV headers
+            if not reader.fieldnames:
+                return handle_scim_error("CSV file has no headers", verbose)
+            
+            # Check for required columns
+            missing_columns = [col for col in required_columns if col not in reader.fieldnames]
+            if missing_columns:
+                return handle_scim_error(f"Missing required CSV columns: {', '.join(missing_columns)}", verbose)
+            
+            # Check for unexpected columns
+            unexpected_columns = [col for col in reader.fieldnames if col not in all_columns]
+            if unexpected_columns and verbose:
+                print(f"Warning: Unexpected CSV columns will be ignored: {', '.join(unexpected_columns)}", file=sys.stderr)
+            
+            # Read and validate each row
+            for row_num, row in enumerate(reader, start=2):  # Start at 2 because row 1 is headers
+                # Validate required fields
+                missing_fields = []
+                for field in required_columns:
+                    if not row.get(field, '').strip():
+                        missing_fields.append(field)
+                
+                if missing_fields:
+                    return handle_scim_error(
+                        f"Row {row_num}: Missing required fields: {', '.join(missing_fields)}", 
+                        verbose
+                    )
+                
+                # Parse member external IDs if provided (pipe-delimited format)
+                member_external_ids_str = row.get('member_external_ids', '').strip()
+                member_external_ids = []
+                if member_external_ids_str:
+                    # Split by pipe delimiter and clean up
+                    member_external_ids = [ext_id.strip() for ext_id in member_external_ids_str.split('|') if ext_id.strip()]
+                
+                # Check if group_id is present to determine create vs update operation
+                group_id = row.get('group_id', '').strip()
+                operation_type = 'update' if group_id else 'create'
+                
+                group_data = {
+                    'display_name': row['display_name'].strip(),
+                    'external_id': row['external_id'].strip(),
+                    'member_external_ids': member_external_ids,
+                    'group_id': group_id if group_id else None,
+                    'operation_type': operation_type,
+                    'row_number': row_num
+                }
+                
+                groups_data.append(group_data)
+    
+    except csv.Error as e:
+        return handle_scim_error(f"Error reading CSV file: {e}", verbose)
+    except Exception as e:
+        return handle_scim_error(f"Error processing CSV file: {e}", verbose)
+    
+    return groups_data
+
+
+def _parse_json_groups(file_path, verbose=False):
+    """
+    Parse groups from JSON file
+    
+    Returns:
+        List of group dictionaries or error response
+    """
+    required_fields = ['display_name', 'external_id']
+    optional_fields = ['member_external_ids', 'group_id']
+    
+    try:
+        with open(file_path, 'r', encoding='utf-8') as jsonfile:
+            try:
+                data = json.load(jsonfile)
+            except json.JSONDecodeError as e:
+                return handle_scim_error(f"Invalid JSON file: {e}", verbose)
+            
+            # Handle both array of groups and single group object
+            if isinstance(data, dict):
+                data = [data]  # Convert single group to array
+            elif not isinstance(data, list):
+                return handle_scim_error("JSON file must contain an array of group objects or a single group object", verbose)
+            
+            groups_data = []
+            for idx, group in enumerate(data, start=1):
+                if not isinstance(group, dict):
+                    return handle_scim_error(f"Group {idx}: Must be a JSON object", verbose)
+                
+                # Check required fields
+                missing_fields = [field for field in required_fields if not group.get(field, '').strip()]
+                if missing_fields:
+                    return handle_scim_error(
+                        f"Group {idx}: Missing required fields: {', '.join(missing_fields)}", 
+                        verbose
+                    )
+                
+                # Validate member_external_ids format if provided
+                member_external_ids = group.get('member_external_ids', [])
+                if member_external_ids and not isinstance(member_external_ids, list):
+                    return handle_scim_error(f"Group {idx}: member_external_ids must be an array", verbose)
+                
+                # Check if group_id is present to determine create vs update operation
+                group_id = group.get('group_id', '').strip() if isinstance(group.get('group_id'), str) else group.get('group_id')
+                group_id = group_id if group_id else None
+                operation_type = 'update' if group_id else 'create'
+                
+                group_data = {
+                    'display_name': group['display_name'].strip(),
+                    'external_id': group['external_id'].strip(),
+                    'member_external_ids': member_external_ids,
+                    'group_id': group_id,
+                    'operation_type': operation_type,
+                    'row_number': idx
+                }
+                
+                groups_data.append(group_data)
+    
+    except Exception as e:
+        return handle_scim_error(f"Error processing JSON file: {e}", verbose)
+    
+    return groups_data
+
+
+def _create_groups_from_data(groups_data, args):
+    """
+    Create or update groups from parsed data using SCIM client
+    Supports both create and update operations based on presence of group_id
+    """
+    # Get SCIM client
+    client = get_scim_client(verbose=hasattr(args, 'verbose') and args.verbose)
+    
+    # Check if SCIM client is configured
+    if client is None:
+        return handle_scim_error(
+            "SCIM client is not configured. Please ensure your SCIM credentials are set up correctly.\n"
+            "Run 'catocli configure scim' to configure SCIM credentials, or\n"
+            "Check your ~/.cato/settings.json file for 'scim_url' and 'scim_token' settings.\n"
+            "For more information, see: https://support.catonetworks.com/hc/en-us/articles/29492743031581-Using-the-Cato-SCIM-API-for-Custom-SCIM-Apps",
+            hasattr(args, 'verbose') and args.verbose
+        )
+    
+    # Collect all unique external_ids that need to be looked up
+    all_external_ids = set()
+    for group_data in groups_data:
+        member_external_ids = group_data.get('member_external_ids', [])
+        all_external_ids.update(member_external_ids)
+    
+    # Bulk lookup user_ids by external_ids
+    user_id_map = {}
+    if all_external_ids:
+        if hasattr(args, 'verbose') and args.verbose:
+            print(f"Looking up user IDs for {len(all_external_ids)} external IDs: {list(all_external_ids)}", file=sys.stderr)
+        
+        success, user_id_map = client.find_users_by_external_ids(list(all_external_ids))
+        if not success:
+            return handle_scim_error("Failed to lookup user IDs by external IDs", hasattr(args, 'verbose') and args.verbose)
+        
+        if hasattr(args, 'verbose') and args.verbose:
+            found_count = len([k for k, v in user_id_map.items() if v])
+            print(f"Found user IDs for {found_count}/{len(all_external_ids)} external IDs", file=sys.stderr)
+            if user_id_map:
+                print(f"User ID mapping: {user_id_map}", file=sys.stderr)
+    
+    # Convert member_external_ids to members arrays for all groups
+    for group_data in groups_data:
+        member_external_ids = group_data.get('member_external_ids', [])
+        members = []
+        
+        if member_external_ids:
+            if hasattr(args, 'verbose') and args.verbose:
+                print(f"Processing {len(member_external_ids)} members for group {group_data['display_name']}", file=sys.stderr)
+            
+            # Convert external_ids to user_ids using the bulk lookup
+            for external_id in member_external_ids:
+                user_id = user_id_map.get(external_id)
+                if user_id:
+                    members.append({
+                        "value": user_id,
+                        "$ref": f"Users/{user_id}",
+                        "display": external_id  # Use external_id as display name for reference
+                    })
+                else:
+                    if hasattr(args, 'verbose') and args.verbose:
+                        print(f"Warning: User with external ID '{external_id}' not found for group {group_data['display_name']}", file=sys.stderr)
+            
+            if hasattr(args, 'verbose') and args.verbose:
+                print(f"Resolved {len(members)}/{len(member_external_ids)} members for group {group_data['display_name']}", file=sys.stderr)
+        
+        # Set group members in proper SCIM format
+        group_data['members'] = members
+        
+        # Keep member_external_ids for processed file output - will be handled later
+    
+    # Process groups and collect results
+    results = []
+    successful_groups = []
+    failed_groups = []
+    create_count = 0
+    update_count = 0
+    
+    for group_data in groups_data:
+        row_num = group_data.pop('row_number')  # Remove row_number before API call
+        operation_type = group_data.pop('operation_type', 'create')
+        group_id = group_data.get('group_id')
+        
+        if hasattr(args, 'verbose') and args.verbose:
+            operation_desc = "Updating" if operation_type == 'update' else "Creating"
+            print(f"{operation_desc} group: {group_data['display_name']}", file=sys.stderr)
+        
+        try:
+            if operation_type == 'update' and group_id:
+                # Update existing group
+                # Build group data for update in SCIM format
+                scim_group_data = {
+                    "schemas": ["urn:ietf:params:scim:schemas:core:2.0:Group"],
+                    "displayName": group_data['display_name'],
+                    "externalId": group_data['external_id']
+                }
+                
+                # Add members if provided
+                if group_data.get('members'):
+                    scim_group_data["members"] = group_data['members']
+                
+                success, result = client.update_group(group_id, scim_group_data)
+                update_count += 1
+            else:
+                # Create new group
+                success, result = client.create_group(
+                    group_data['display_name'],
+                    group_data['external_id'],
+                    group_data.get('members', [])
+                )
+                create_count += 1
+            
+            group_result = {
+                'row_number': row_num,
+                'display_name': group_data['display_name'],
+                'success': success,
+                'operation': operation_type,
+                'original_group_id': group_id  # Keep track of original group_id
+            }
+            
+            if success:
+                # Get group_id from result (for creates) or use existing (for updates)
+                result_group_id = result.get('id', group_id)
+                group_result['group_id'] = result_group_id
+                
+                # Update the original group_data with the group_id for processed files
+                group_data['group_id'] = result_group_id
+                
+                if operation_type == 'update':
+                    group_result['message'] = f"Group '{group_data['display_name']}' updated successfully"
+                else:
+                    group_result['message'] = f"Group '{group_data['display_name']}' created successfully"
+                    if result.get('warning'):
+                        group_result['warning'] = result['warning']
+                successful_groups.append(group_result)
+            else:
+                group_result['error'] = result.get('error', str(result))
+                operation_desc = "update" if operation_type == 'update' else "create"
+                group_result['message'] = f"Failed to {operation_desc} group '{group_data['display_name']}': {group_result['error']}"
+                failed_groups.append(group_result)
+            
+            results.append(group_result)
+            
+        except Exception as e:
+            group_result = {
+                'row_number': row_num,
+                'display_name': group_data['display_name'],
+                'success': False,
+                'error': str(e),
+                'message': f"Error creating group '{group_data['display_name']}': {str(e)}"
+            }
+            failed_groups.append(group_result)
+            results.append(group_result)
+    
+    # Collect member resolution statistics
+    total_members_requested = len(all_external_ids)
+    total_members_resolved = len(user_id_map)
+    unresolved_external_ids = [ext_id for ext_id in all_external_ids if ext_id not in user_id_map]
+    
+    # Format final response
+    summary = {
+        'total_groups': len(groups_data),
+        'created_groups': create_count,
+        'updated_groups': update_count,
+        'successful_groups': len(successful_groups),
+        'failed_groups': len(failed_groups),
+        'success_rate': f"{len(successful_groups)}/{len(groups_data)} ({len(successful_groups)/len(groups_data)*100:.1f}%)",
+        'members': {
+            'total_members_requested': total_members_requested,
+            'total_members_resolved': total_members_resolved,
+            'member_resolution_rate': f"{total_members_resolved}/{total_members_requested} ({total_members_resolved/total_members_requested*100:.1f}%)" if total_members_requested > 0 else "0/0 (N/A)",
+            'unresolved_external_ids': unresolved_external_ids
+        }
+    }
+    
+    # Write processed file if requested
+    processed_file_path = None
+    if hasattr(args, 'write_processed') and args.write_processed and hasattr(args, 'file_path'):
+        # Determine file format from original file
+        _, ext = os.path.splitext(args.file_path.lower())
+        if ext == '.csv':
+            processed_file_path = _write_processed_csv_groups(groups_data, args.file_path, results, args)
+        elif ext in ['.json', '.jsonl']:
+            processed_file_path = _write_processed_json_groups(groups_data, args.file_path, results, args)
+        else:
+            # Default to CSV if format can't be determined
+            processed_file_path = _write_processed_csv_groups(groups_data, args.file_path, results, args)
+    
+    # Provide verbose summary of member resolution
+    if hasattr(args, 'verbose') and args.verbose and total_members_requested > 0:
+        print(f"\nMember Resolution Summary:", file=sys.stderr)
+        print(f"  Total member external IDs requested: {total_members_requested}", file=sys.stderr)
+        print(f"  Member external IDs resolved: {total_members_resolved}", file=sys.stderr)
+        print(f"  Member resolution rate: {total_members_resolved/total_members_requested*100:.1f}%", file=sys.stderr)
+        
+        if unresolved_external_ids:
+            print(f"  Unresolved external IDs: {', '.join(unresolved_external_ids)}", file=sys.stderr)
+            print(f"  Note: Unresolved users may be inactive or have different external IDs", file=sys.stderr)
+    
+    response = {
+        'success': len(failed_groups) == 0,  # Overall success only if no failures
+        'operation': f"Import {len(groups_data)} groups ({create_count} created, {update_count} updated)",
+        'summary': summary
+    }
+    
+    if processed_file_path:
+        response['processed_file'] = processed_file_path
+    
+    return [response]
+
+
+def _generate_group_template(format_type, args):
+    """
+    Generate template files for group import using embedded template files
+    
+    Args:
+        format_type: 'csv' or 'json'
+        args: Command line arguments
+    
+    Returns:
+        List of operation results
+    """
+    verbose = hasattr(args, 'verbose') and args.verbose
+    
+    # Generate filename using shared utilities
+    filename = generate_export_filename(
+        args, "scim_groups_template", format_type
+    )
+    
+    # Resolve full path
+    output_path = resolve_export_path(args, filename)
+    
+    # Ensure output directory exists
+    try:
+        ensure_output_directory(output_path, verbose)
+    except Exception as e:
+        return handle_scim_error(str(e), verbose)
+    
+    try:
+        # Load template content from embedded template files
+        template_filename = f"scim_groups.{format_type}"
+        
+        # Get template content from package resources
+        template_content = get_package_resource('catocli.templates', template_filename)
+        
+        # Write template content directly to output file
+        with open(output_path, 'w', encoding='utf-8') as f:
+            f.write(template_content)
+        
+        if verbose:
+            print(f"Successfully copied embedded template to: {output_path}", file=sys.stderr)
+        
+        # Create result similar to write_*_export functions
+        result = {
+            'success': True,
+            'output_file': output_path,
+            'format': format_type,
+            'record_count': 2  # Our templates have 2 example groups
+        }
+        
+        # Update result to indicate template generation
+        result['operation'] = f"Generate {format_type.upper()} template"
+        result['message'] = f"Template file created: {output_path}"
+        
+        return [result]
+    
+    except Exception as e:
+        return handle_scim_error(f"Error generating template: {e}", verbose)
+
+
+def scim_export_groups(args, configuration=None):
+    """
+    Export SCIM groups to JSON or CSV format
+    """
+    try:
+        # Check if template generation is requested
+        if hasattr(args, 'generate_template') and args.generate_template:
+            format_type = getattr(args, 'format', 'json')
+            return _generate_group_template(format_type, args)
+        
+        # Get SCIM client and fetch groups
+        verbose = hasattr(args, 'verbose') and args.verbose
+        client = get_scim_client(verbose=verbose)
+        format_type = getattr(args, 'format', 'json')
+        
+        if verbose:
+            print("Fetching groups from SCIM API...", file=sys.stderr)
+        
+        try:
+            success, groups_data = client.get_groups()
+            if not success:
+                return handle_scim_error(f"Failed to fetch groups: {groups_data}", verbose)
+            
+            groups = groups_data if isinstance(groups_data, list) else groups_data.get('Resources', [])
+            
+            if not groups:
+                if verbose:
+                    print("No groups found", file=sys.stderr)
+                return [{
+                    'success': True,
+                    'operation': 'Export groups',
+                    'message': 'No groups found to export',
+                    'group_count': 0
+                }]
+            
+            if verbose:
+                print(f"Found {len(groups)} groups to export", file=sys.stderr)
+            
+        except Exception as e:
+            return handle_scim_error(f"Error fetching groups: {e}", verbose)
+        
+        # Generate filename using shared utilities
+        filename = generate_export_filename(
+            args, "scim_groups_export", format_type
+        )
+        
+        # Resolve full path
+        output_path = resolve_export_path(args, filename)
+        
+        # Ensure output directory exists
+        try:
+            ensure_output_directory(output_path, verbose)
+        except Exception as e:
+            return handle_scim_error(str(e), verbose)
+        
+        if verbose:
+            print(f"Exporting {len(groups)} groups to {format_type.upper()} file: {output_path}", file=sys.stderr)
+        
+        # First, get all users to build a user_id -> external_id mapping
+        if verbose:
+            print("Fetching users to resolve member external_ids...", file=sys.stderr)
+        
+        user_id_to_external_id = {}
+        try:
+            success, users_data = client.get_users()
+            if success:
+                users = users_data if isinstance(users_data, list) else users_data.get('Resources', [])
+                for user in users:
+                    user_id = user.get('id')
+                    external_id = user.get('externalId')
+                    if user_id and external_id:
+                        user_id_to_external_id[user_id] = external_id
+                        
+                if verbose:
+                    print(f"Built mapping for {len(user_id_to_external_id)} users", file=sys.stderr)
+            else:
+                if verbose:
+                    print(f"Warning: Could not fetch users for external_id mapping: {users_data}", file=sys.stderr)
+        except Exception as e:
+            if verbose:
+                print(f"Warning: Error fetching users for external_id mapping: {e}", file=sys.stderr)
+        
+        # Export groups based on format
+        try:
+            if format_type == 'csv':
+                # Transform groups to CSV format
+                csv_data = []
+                fieldnames = ['group_id', 'display_name', 'external_id', 'member_external_ids']
+                
+                for group in groups:
+                    # Format members as comma-delimited external_ids for CSV
+                    members = group.get('members', [])
+                    # Extract external_ids from member objects
+                    external_ids = []
+                    for member in members:
+                        # Members in SCIM groups have 'value' field containing user_id
+                        # Look up the external_id for each user_id
+                        user_id = member.get('value', '')
+                        if user_id:
+                            external_id = user_id_to_external_id.get(user_id)
+                            if external_id:
+                                external_ids.append(external_id)
+                            elif verbose:
+                                print(f"Warning: Could not find external_id for user_id {user_id} in group {group.get('displayName', 'unknown')}", file=sys.stderr)
+                    
+                    member_external_ids_str = '|'.join(external_ids)
+                    
+                    csv_data.append({
+                        'group_id': group.get('id', ''),
+                        'display_name': group.get('displayName', ''),
+                        'external_id': group.get('externalId', ''),
+                        'member_external_ids': member_external_ids_str
+                    })
+                
+                result = write_csv_export(csv_data, output_path, fieldnames, verbose)
+                return [result]
+                
+            elif format_type == 'json':
+                # Transform groups to simplified format
+                json_data = []
+                
+                for group in groups:
+                    # For JSON, also use external_ids format for consistency
+                    members = group.get('members', [])
+                    external_ids = []
+                    for member in members:
+                        # Look up the external_id for each user_id (same as CSV logic)
+                        user_id = member.get('value', '')
+                        if user_id:
+                            external_id = user_id_to_external_id.get(user_id)
+                            if external_id:
+                                external_ids.append(external_id)
+                            elif verbose:
+                                print(f"Warning: Could not find external_id for user_id {user_id} in group {group.get('displayName', 'unknown')}", file=sys.stderr)
+                    
+                    json_data.append({
+                        'display_name': group.get('displayName', ''),
+                        'external_id': group.get('externalId', ''),
+                        'member_external_ids': external_ids,  # Array format for JSON
+                        'group_id': group.get('id', '')
+                    })
+                
+                result = write_json_export(json_data, output_path, verbose)
+                return [result]
+                
+            else:
+                return handle_scim_error(f"Unsupported format: {format_type}. Supported formats: csv, json", verbose)
+                
+        except Exception as e:
+            return handle_scim_error(f"Error exporting groups: {e}", verbose)
+            
+    except Exception as e:
+        return handle_scim_error(e, verbose)
+
+
+def scim_import_groups(args, configuration=None):
+    """
+    Import multiple SCIM groups from JSON or CSV file
+    
+    Supports both formats:
+    CSV format: display_name,external_id,member_external_ids,group_id
+    JSON format: [{"display_name": "...", "external_id": "...", "member_external_ids": [...], ...}, ...]
+    """
+    try:
+        # Validate file path - resolve relative to current working directory
+        file_path = args.file_path
+        
+        # If it's not an absolute path, resolve it relative to current working directory
+        if not os.path.isabs(file_path):
+            file_path = os.path.join(os.getcwd(), file_path)
+        
+        # Normalize the path
+        file_path = os.path.normpath(file_path)
+        
+        if not os.path.exists(file_path):
+            # Provide helpful error message with current working directory
+            cwd = os.getcwd()
+            return handle_scim_error(
+                f"Import file not found: {file_path}\n" +
+                f"Current working directory: {cwd}\n" +
+                f"Looking for file: {args.file_path}", 
+                args.verbose
+            )
+        
+        if not os.path.isfile(file_path):
+            return handle_scim_error(f"Path is not a file: {file_path}", args.verbose)
+        
+        # Determine format from file extension or explicit format argument
+        file_format = getattr(args, 'format', None)
+        if not file_format:
+            # Auto-detect from extension
+            _, ext = os.path.splitext(file_path.lower())
+            if ext == '.csv':
+                file_format = 'csv'
+            elif ext in ['.json', '.jsonl']:
+                file_format = 'json'
+            else:
+                return handle_scim_error(
+                    f"Cannot determine file format from extension '{ext}'. " +
+                    "Use -f/--format to specify 'json' or 'csv'", 
+                    args.verbose
+                )
+        
+        if hasattr(args, 'verbose') and args.verbose:
+            print(f"Importing groups from {file_format.upper()} file: {file_path}", file=sys.stderr)
+        
+        # Parse the file based on format
+        if file_format == 'csv':
+            groups_data = _parse_csv_groups(file_path, args.verbose)
+        elif file_format == 'json':
+            groups_data = _parse_json_groups(file_path, args.verbose)
+        else:
+            return handle_scim_error(f"Unsupported format: {file_format}", args.verbose)
+        
+        if isinstance(groups_data, list) and len(groups_data) == 1 and 'error' in groups_data[0]:
+            return groups_data  # Return error from parsing
+        
+        if not groups_data:
+            return handle_scim_error("No valid group data found in file", args.verbose)
+        
+        if hasattr(args, 'verbose') and args.verbose:
+            print(f"Found {len(groups_data)} groups to import", file=sys.stderr)
+        
+        # Get SCIM client and import groups
+        return _create_groups_from_data(groups_data, args)
+        
+    except Exception as e:
+        return handle_scim_error(e, args.verbose)
+
+
+def _parse_group_ids_for_purge(file_path, file_format, verbose=False):
+    """
+    Parse group IDs from CSV or JSON file for purging operations
+    Only extracts group_ids, ignoring other fields
+    
+    Args:
+        file_path: Path to the file
+        file_format: 'csv' or 'json'
+        verbose: Whether to show verbose output
+    
+    Returns:
+        List of group IDs or error response
+    """
+    group_ids = []
+    
+    try:
+        if file_format == 'csv':
+            with open(file_path, 'r', encoding='utf-8') as csvfile:
+                reader = csv.DictReader(csvfile)
+                
+                # Validate CSV headers
+                if not reader.fieldnames:
+                    return handle_scim_error("CSV file has no headers", verbose)
+                
+                # Check if group_id column exists
+                if 'group_id' not in reader.fieldnames:
+                    return handle_scim_error("CSV file must contain a 'group_id' column for purge operations", verbose)
+                
+                # Extract group IDs
+                for row_num, row in enumerate(reader, start=2):  # Start at 2 because row 1 is headers
+                    group_id = row.get('group_id', '').strip()
+                    if group_id:
+                        # Support both displayName and display_name column names
+                        display_name = row.get('displayName', '').strip() or row.get('display_name', '').strip() or 'unknown'
+                        group_ids.append({
+                            'group_id': group_id,
+                            'row_number': row_num,
+                            'displayName': display_name
+                        })
+                    elif verbose:
+                        print(f"Warning: Row {row_num}: Empty group_id, skipping", file=sys.stderr)
+        
+        elif file_format == 'json':
+            with open(file_path, 'r', encoding='utf-8') as jsonfile:
+                try:
+                    data = json.load(jsonfile)
+                except json.JSONDecodeError as e:
+                    return handle_scim_error(f"Invalid JSON file: {e}", verbose)
+                
+                # Handle both array of groups and single group object
+                if isinstance(data, dict):
+                    data = [data]  # Convert single group to array
+                elif not isinstance(data, list):
+                    return handle_scim_error("JSON file must contain an array of group objects or a single group object", verbose)
+                
+                # Extract group IDs
+                for idx, group in enumerate(data, start=1):
+                    if not isinstance(group, dict):
+                        continue
+                    
+                    group_id = group.get('group_id')
+                    if isinstance(group_id, str):
+                        group_id = group_id.strip()
+                    
+                    if group_id:
+                        # Support both displayName and display_name field names
+                        display_name = group.get('displayName', '') or group.get('display_name', '') or 'unknown'
+                        group_ids.append({
+                            'group_id': group_id,
+                            'row_number': idx,
+                            'displayName': display_name
+                        })
+                    elif verbose:
+                        print(f"Warning: Group {idx}: Empty or missing group_id, skipping", file=sys.stderr)
+        
+        else:
+            return handle_scim_error(f"Unsupported format: {file_format}", verbose)
+    
+    except Exception as e:
+        return handle_scim_error(f"Error parsing file: {e}", verbose)
+    
+    if verbose:
+        print(f"Extracted {len(group_ids)} group IDs from {file_format.upper()} file", file=sys.stderr)
+    
+    return group_ids
+
+
+def _purge_groups_from_ids(group_ids, args):
+    """
+    Purge groups by first disabling them, then deleting them
+    
+    Args:
+        group_ids: List of group ID dictionaries
+        args: Command line arguments
+    
+    Returns:
+        List of operation results
+    """
+    verbose = hasattr(args, 'verbose') and args.verbose
+    client = get_scim_client(verbose=verbose)
+    
+    # Extract accountId and sourceId from the SCIM URL
+    # URL format: https://scimservice.catonetworks.com:4443/scim/v2/{accountId}/{sourceId}
+    import urllib.parse
+    try:
+        parsed_url = urllib.parse.urlparse(client.baseurl)
+        path_parts = parsed_url.path.strip('/').split('/')
+        # Expected path: ['scim', 'v2', 'accountId', 'sourceId']
+        if len(path_parts) >= 4 and path_parts[0] == 'scim' and path_parts[1] == 'v2':
+            account_id = path_parts[2]
+            source_id = int(path_parts[3])  # sourceId is an integer
+        else:
+            if verbose:
+                print(f"Warning: Could not parse accountId/sourceId from SCIM URL: {client.baseurl}", file=sys.stderr)
+                print("Attempting to continue with placeholder values...", file=sys.stderr)
+            account_id = "unknown"
+            source_id = 0
+    except Exception as e:
+        if verbose:
+            print(f"Error parsing SCIM URL: {e}", file=sys.stderr)
+            print("Attempting to continue with placeholder values...", file=sys.stderr)
+        account_id = "unknown"
+        source_id = 0
+    
+    # Track results for both operations
+    disable_results = []
+    delete_results = []
+    overall_results = []
+    
+    successful_disables = 0
+    failed_disables = 0
+    successful_deletes = 0
+    failed_deletes = 0
+    
+    if verbose:
+        print(f"\nPhase 1: Disabling {len(group_ids)} groups...", file=sys.stderr)
+    
+    # Phase 1: Disable all groups (using PATCH to set active=false equivalent or similar)
+    # Note: Groups don't have an 'active' field like users, so we'll skip to delete directly
+    # But for consistency with users, we'll show a "disable" phase that just marks them for deletion
+    for i, group_info in enumerate(group_ids, 1):
+        group_id = group_info['group_id']
+        display_name = group_info.get('displayName', 'unknown')
+        
+        if verbose:
+            print(f"  [{i}/{len(group_ids)}] Marking group for deletion: {display_name} ({group_id})", file=sys.stderr)
+        
+        # For groups, we don't have a disable operation, so we'll mark this as successful
+        disable_result = {
+            'group_id': group_id,
+            'displayName': display_name,
+            'operation': 'mark_for_deletion',
+            'success': True,
+            'message': f"Group '{display_name}' ({group_id}) marked for deletion",
+            'row_number': group_info.get('row_number')
+        }
+        
+        disable_results.append(disable_result)
+        successful_disables += 1
+    
+    if verbose:
+        print(f"Phase 1 complete: {successful_disables} marked for deletion, {failed_disables} failed", file=sys.stderr)
+        print(f"\nPhase 2: Deleting {len(group_ids)} groups...", file=sys.stderr)
+    
+    # Phase 2: Delete all groups
+    for i, group_info in enumerate(group_ids, 1):
+        group_id = group_info['group_id']
+        display_name = group_info.get('displayName', 'unknown')
+        
+        if verbose:
+            print(f"  [{i}/{len(group_ids)}] Deleting group: {display_name} ({group_id})", file=sys.stderr)
+        
+        try:
+            success, result = client.delete_group(group_id, account_id, source_id)
+            
+            delete_result = {
+                'group_id': group_id,
+                'displayName': display_name,
+                'operation': 'delete',
+                'success': success,
+                'row_number': group_info.get('row_number')
+            }
+            
+            if success:
+                delete_result['message'] = f"Group '{display_name}' ({group_id}) deleted successfully"
+                successful_deletes += 1
+            else:
+                delete_result['error'] = result.get('error', str(result))
+                delete_result['message'] = f"Failed to delete group '{display_name}' ({group_id}): {delete_result['error']}"
+                failed_deletes += 1
+            
+            delete_results.append(delete_result)
+            
+        except Exception as e:
+            delete_result = {
+                'group_id': group_id,
+                'displayName': display_name,
+                'operation': 'delete',
+                'success': False,
+                'error': str(e),
+                'message': f"Error deleting group '{display_name}' ({group_id}): {str(e)}",
+                'row_number': group_info.get('row_number')
+            }
+            delete_results.append(delete_result)
+            failed_deletes += 1
+    
+    if verbose:
+        print(f"Phase 2 complete: {successful_deletes} deleted, {failed_deletes} failed", file=sys.stderr)
+    
+    # Combine results for overall reporting
+    for i, group_info in enumerate(group_ids):
+        disable_result = disable_results[i] if i < len(disable_results) else {}
+        delete_result = delete_results[i] if i < len(delete_results) else {}
+        
+        overall_result = {
+            'group_id': group_info['group_id'],
+            'displayName': group_info.get('displayName', 'unknown'),
+            'row_number': group_info.get('row_number'),
+            'disable_success': disable_result.get('success', False),
+            'delete_success': delete_result.get('success', False),
+            'overall_success': delete_result.get('success', False),  # Overall success is based on delete success
+        }
+        
+        # Build combined message
+        disable_status = "✓" if disable_result.get('success') else "✗"
+        delete_status = "✓" if delete_result.get('success') else "✗"
+        overall_result['message'] = f"Mark: {disable_status}, Delete: {delete_status} - {overall_result['displayName']} ({overall_result['group_id']})"
+        
+        # Include errors if any
+        errors = []
+        if disable_result.get('error'):
+            errors.append(f"Mark: {disable_result['error']}")
+        if delete_result.get('error'):
+            errors.append(f"Delete: {delete_result['error']}")
+        if errors:
+            overall_result['errors'] = errors
+        
+        overall_results.append(overall_result)
+    
+    # Build final summary
+    total_groups = len(group_ids)
+    fully_successful = sum(1 for r in overall_results if r['overall_success'])
+    
+    summary = {
+        'total_groups': total_groups,
+        'mark_phase': {
+            'successful': successful_disables,
+            'failed': failed_disables,
+            'success_rate': f"{successful_disables}/{total_groups} ({successful_disables/total_groups*100:.1f}%)"
+        },
+        'delete_phase': {
+            'successful': successful_deletes,
+            'failed': failed_deletes,
+            'success_rate': f"{successful_deletes}/{total_groups} ({successful_deletes/total_groups*100:.1f}%)"
+        },
+        'overall': {
+            'fully_successful': fully_successful,
+            'partially_successful': total_groups - fully_successful,
+            'success_rate': f"{fully_successful}/{total_groups} ({fully_successful/total_groups*100:.1f}%)"
+        }
+    }
+    
+    response = {
+        'success': fully_successful == total_groups,
+        'operation': f"Purge {total_groups} groups (mark + delete)",
+        'summary': summary
+    }
+    
+    # Only include detailed results if verbose mode is enabled
+    if verbose:
+        response['results'] = overall_results
+    
+    return [response]
+
+
+def scim_purge_groups(args, configuration=None):
+    """
+    Purge SCIM groups from CSV or JSON file by deleting them
+    Requires group_id to be present in the source file
+    
+    Args:
+        args: Command line arguments with file_path, format, and other options
+        configuration: Optional configuration (unused)
+    
+    Returns:
+        List of operation results
+    """
+    try:
+        # Validate file path - resolve relative to current working directory
+        file_path = args.file_path
+        
+        # If it's not an absolute path, resolve it relative to current working directory
+        if not os.path.isabs(file_path):
+            file_path = os.path.join(os.getcwd(), file_path)
+        
+        # Normalize the path
+        file_path = os.path.normpath(file_path)
+        
+        if not os.path.exists(file_path):
+            # Provide helpful error message with current working directory
+            cwd = os.getcwd()
+            return handle_scim_error(
+                f"Purge file not found: {file_path}\n" +
+                f"Current working directory: {cwd}\n" +
+                f"Looking for file: {args.file_path}", 
+                args.verbose
+            )
+        
+        if not os.path.isfile(file_path):
+            return handle_scim_error(f"Path is not a file: {file_path}", args.verbose)
+        
+        # Determine format from file extension or explicit format argument
+        file_format = getattr(args, 'format', None)
+        if not file_format:
+            # Auto-detect from extension
+            _, ext = os.path.splitext(file_path.lower())
+            if ext == '.csv':
+                file_format = 'csv'
+            elif ext in ['.json', '.jsonl']:
+                file_format = 'json'
+            else:
+                return handle_scim_error(
+                    f"Cannot determine file format from extension '{ext}'. " +
+                    "Use -f/--format to specify 'json' or 'csv'", 
+                    args.verbose
+                )
+        
+        if hasattr(args, 'verbose') and args.verbose:
+            print(f"Purging groups from {file_format.upper()} file: {file_path}", file=sys.stderr)
+        
+        # Parse the file to extract group_ids
+        group_ids = _parse_group_ids_for_purge(file_path, file_format, args.verbose)
+        
+        if isinstance(group_ids, list) and len(group_ids) == 1 and 'error' in group_ids[0]:
+            return group_ids  # Return error from parsing
+        
+        if not group_ids:
+            return handle_scim_error("No valid group IDs found in file for purging", args.verbose)
+        
+        if hasattr(args, 'verbose') and args.verbose:
+            print(f"Found {len(group_ids)} group IDs to purge", file=sys.stderr)
+            print(f"WARNING: This will DELETE {len(group_ids)} groups!", file=sys.stderr)
+        
+        # Confirm purge operation if not forced
+        if not getattr(args, 'force', False):
+            print(f"\nWARNING: You are about to PURGE {len(group_ids)} groups!")
+            print("This will:")
+            print("1. DELETE all groups")
+            print("This operation CANNOT be undone!\n")
+            
+            try:
+                confirmation = input("Type 'PURGE' to confirm this destructive operation: ")
+                if confirmation != 'PURGE':
+                    return [{
+                        'success': False,
+                        'operation': 'Purge groups',
+                        'message': 'Operation cancelled by user',
+                        'cancelled': True
+                    }]
+            except (KeyboardInterrupt, EOFError):
+                return [{
+                    'success': False,
+                    'operation': 'Purge groups',
+                    'message': 'Operation cancelled by user (Ctrl+C)',
+                    'cancelled': True
+                }]
+        
+        # Note: accountID and sourceID are embedded in the SCIM URL configured in the profile
+        # We no longer need to extract them separately as the SCIM client handles this automatically
+        
+        # Perform purge operations
+        return _purge_groups_from_ids(group_ids, args)
+        
+    except Exception as e:
+        return handle_scim_error(e, args.verbose)
+
+
 def scim_export_users(args, configuration=None):
     """
     Export SCIM users to JSON or CSV format
@@ -2095,7 +3387,7 @@ def scim_export_users(args, configuration=None):
             return _generate_user_template(format_type, args)
         
         # Get SCIM client and fetch users
-        client = get_scim_client()
+        client = get_scim_client(verbose=hasattr(args, 'verbose') and args.verbose)
         
         verbose = hasattr(args, 'verbose') and args.verbose
         format_type = getattr(args, 'format', 'json')
@@ -2204,507 +3496,4 @@ def scim_export_users(args, configuration=None):
         return handle_scim_error(e, args.verbose)
 
 
-# ========================================================================
-# SCIM Groups Export/Import Functions
-# ========================================================================
 
-def scim_export_groups(args, configuration=None):
-    """
-    Export SCIM groups to JSON or CSV format
-    """
-    try:
-        # Check if template generation is requested
-        if hasattr(args, 'generate_template') and args.generate_template:
-            format_type = getattr(args, 'format', 'json')
-            return _generate_groups_template(format_type, args)
-        
-        # Get SCIM client and fetch groups
-        client = get_scim_client()
-        
-        verbose = hasattr(args, 'verbose') and args.verbose
-        format_type = getattr(args, 'format', 'json')
-        
-        if verbose:
-            print("Fetching groups from SCIM API...", file=sys.stderr)
-        
-        try:
-            success, groups_data = client.get_groups()
-            if not success:
-                return handle_scim_error(f"Failed to fetch groups: {groups_data}", verbose)
-            
-            groups = groups_data if isinstance(groups_data, list) else groups_data.get('Resources', [])
-            
-            if not groups:
-                if verbose:
-                    print("No groups found", file=sys.stderr)
-                return [{
-                    'success': True,
-                    'operation': 'Export groups',
-                    'message': 'No groups found to export',
-                    'group_count': 0
-                }]
-            
-            if verbose:
-                print(f"Found {len(groups)} groups to export", file=sys.stderr)
-            
-        except Exception as e:
-            return handle_scim_error(f"Error fetching groups: {e}", verbose)
-        
-        # Generate filename using shared utilities
-        filename = generate_export_filename(
-            args, "scim_groups_export", format_type
-        )
-        
-        # Resolve full path
-        output_path = resolve_export_path(args, filename)
-        
-        # Ensure output directory exists
-        try:
-            ensure_output_directory(output_path, verbose)
-        except Exception as e:
-            return handle_scim_error(str(e), verbose)
-        
-        if verbose:
-            print(f"Exporting {len(groups)} groups to {format_type.upper()} file: {output_path}", file=sys.stderr)
-        
-        # Export groups based on format
-        try:
-            if format_type == 'csv':
-                # Transform groups to CSV format
-                csv_data = []
-                fieldnames = ['id', 'displayName', 'description', 'externalId', 'members_json', 'member_count', 'schemas_json']
-                
-                for group in groups:
-                    # Serialize members and schemas as JSON strings for CSV storage
-                    members_json = json.dumps(group.get('members', []))
-                    schemas_json = json.dumps(group.get('schemas', []))
-                    
-                    csv_data.append({
-                        'id': group.get('id', ''),
-                        'displayName': group.get('displayName', ''),
-                        'description': group.get('description', ''),
-                        'externalId': group.get('externalId', ''),
-                        'members_json': members_json,
-                        'member_count': len(group.get('members', [])),
-                        'schemas_json': schemas_json
-                    })
-                
-                result = write_csv_export(csv_data, output_path, fieldnames, verbose)
-                return [result]
-                
-            elif format_type == 'json':
-                # Transform groups to simplified format
-                json_data = []
-                
-                for group in groups:
-                    json_data.append({
-                        'id': group.get('id', ''),
-                        'displayName': group.get('displayName', ''),
-                        'description': group.get('description', ''),
-                        'externalId': group.get('externalId', ''),
-                        'members': group.get('members', []),
-                        'schemas': group.get('schemas', []),
-                        'meta': group.get('meta', {})
-                    })
-                
-                result = write_json_export(json_data, output_path, verbose)
-                return [result]
-                
-            else:
-                return handle_scim_error(f"Unsupported format: {format_type}. Supported formats: csv, json", verbose)
-                
-        except Exception as e:
-            return handle_scim_error(f"Error exporting groups: {e}", verbose)
-            
-    except Exception as e:
-        return handle_scim_error(e, args.verbose)
-
-
-def scim_import_groups(args, configuration=None):
-    """
-    Import multiple SCIM groups from JSON or CSV file
-    
-    Supports both formats:
-    CSV format: displayName,description,externalId,members_json
-    JSON format: [{"displayName": "...", "description": "...", ...}, ...]
-    """
-    try:
-        # Validate file path - resolve relative to current working directory
-        file_path = args.file_path
-        
-        # If it's not an absolute path, resolve it relative to current working directory
-        if not os.path.isabs(file_path):
-            file_path = os.path.join(os.getcwd(), file_path)
-        
-        # Normalize the path
-        file_path = os.path.normpath(file_path)
-        
-        if not os.path.exists(file_path):
-            # Provide helpful error message with current working directory
-            cwd = os.getcwd()
-            return handle_scim_error(
-                f"Import file not found: {file_path}\n" +
-                f"Current working directory: {cwd}\n" +
-                f"Looking for file: {args.file_path}", 
-                args.verbose
-            )
-        
-        if not os.path.isfile(file_path):
-            return handle_scim_error(f"Path is not a file: {file_path}", args.verbose)
-        
-        # Determine format from file extension or explicit format argument
-        file_format = getattr(args, 'format', None)
-        if not file_format:
-            # Auto-detect from extension
-            _, ext = os.path.splitext(file_path.lower())
-            if ext == '.csv':
-                file_format = 'csv'
-            elif ext in ['.json', '.jsonl']:
-                file_format = 'json'
-            else:
-                return handle_scim_error(
-                    f"Cannot determine file format from extension '{ext}'. " +
-                    "Use -f/--format to specify 'json' or 'csv'", 
-                    args.verbose
-                )
-        
-        if hasattr(args, 'verbose') and args.verbose:
-            print(f"Importing groups from {file_format.upper()} file: {file_path}", file=sys.stderr)
-        
-        # Parse the file based on format
-        if file_format == 'csv':
-            groups_data = _parse_csv_groups(file_path, args.verbose)
-        elif file_format == 'json':
-            groups_data = _parse_json_groups(file_path, args.verbose)
-        else:
-            return handle_scim_error(f"Unsupported format: {file_format}", args.verbose)
-        
-        if isinstance(groups_data, list) and len(groups_data) == 1 and 'error' in groups_data[0]:
-            return groups_data  # Return error from parsing
-        
-        if not groups_data:
-            return handle_scim_error("No valid group data found in file", args.verbose)
-        
-        if hasattr(args, 'verbose') and args.verbose:
-            print(f"Found {len(groups_data)} groups to import", file=sys.stderr)
-        
-        # Get SCIM client and import groups
-        return _create_groups_from_data(groups_data, args)
-        
-    except Exception as e:
-        return handle_scim_error(e, args.verbose)
-
-
-def _generate_groups_template(format_type, args):
-    """
-    Generate template files for group import
-    
-    Args:
-        format_type: 'csv' or 'json'
-        args: Command line arguments
-    
-    Returns:
-        List of operation results
-    """
-    verbose = hasattr(args, 'verbose') and args.verbose
-    
-    # Generate filename using shared utilities
-    filename = generate_export_filename(
-        args, "scim_groups_template", format_type
-    )
-    
-    # Resolve full path
-    output_path = resolve_export_path(args, filename)
-    
-    # Ensure output directory exists
-    try:
-        ensure_output_directory(output_path, verbose)
-    except Exception as e:
-        return handle_scim_error(str(e), verbose)
-    
-    # Create sample template data with helpful examples
-    sample_groups = [
-        {
-            'displayName': 'Engineering Team',
-            'description': 'Software engineering team members',
-            'externalId': 'engineering-team',
-            'members': [
-                {
-                    'value': 'user123',
-                    'display': 'john.doe@example.com',
-                    'type': 'User'
-                },
-                {
-                    'value': 'user456', 
-                    'display': 'jane.smith@example.com',
-                    'type': 'User'
-                }
-            ],
-            'schemas': ['urn:ietf:params:scim:schemas:core:2.0:Group']
-        },
-        {
-            'displayName': 'Marketing Team',
-            'description': 'Marketing and communications team',
-            'externalId': 'marketing-team',
-            'members': [
-                {
-                    'value': 'user789',
-                    'display': 'alice.johnson@example.com',
-                    'type': 'User'
-                }
-            ],
-            'schemas': ['urn:ietf:params:scim:schemas:core:2.0:Group']
-        }
-    ]
-    
-    try:
-        if format_type == 'csv':
-            # For CSV, serialize complex fields as JSON strings
-            csv_data = []
-            for group in sample_groups:
-                csv_data.append({
-                    'displayName': group['displayName'],
-                    'description': group['description'],
-                    'externalId': group['externalId'],
-                    'members_json': json.dumps(group['members']),
-                    'schemas_json': json.dumps(group['schemas'])
-                })
-            
-            fieldnames = ['displayName', 'description', 'externalId', 'members_json', 'schemas_json']
-            result = write_csv_export(csv_data, output_path, fieldnames, verbose)
-        elif format_type == 'json':
-            result = write_json_export(sample_groups, output_path, verbose)
-        else:
-            return handle_scim_error(f"Unsupported format for template: {format_type}", verbose)
-        
-        # Update result to indicate template generation
-        result['operation'] = f"Generate {format_type.upper()} template"
-        result['message'] = f"Template file created: {output_path}"
-        
-        return [result]
-    
-    except Exception as e:
-        return handle_scim_error(f"Error generating template: {e}", verbose)
-
-
-def _parse_json_groups(file_path, verbose):
-    """
-    Parse groups from JSON file
-    """
-    try:
-        with open(file_path, 'r', encoding='utf-8') as f:
-            data = json.load(f)
-        
-        # Handle different JSON structures
-        if isinstance(data, list):
-            groups_data = data
-        elif isinstance(data, dict) and 'groups' in data:
-            groups_data = data['groups']
-        else:
-            return handle_scim_error("JSON file must contain an array of groups or an object with 'groups' property", verbose)
-        
-        # Validate each group
-        validated_groups = []
-        for i, group in enumerate(groups_data):
-            if not isinstance(group, dict):
-                return handle_scim_error(f"Group {i+1}: Must be an object", verbose)
-            
-            display_name = group.get('displayName')
-            if not display_name:
-                return handle_scim_error(f"Group {i+1}: Missing required field 'displayName'", verbose)
-            
-            # Set defaults and validate structure
-            validated_group = {
-                'displayName': display_name,
-                'description': group.get('description', ''),
-                'externalId': group.get('externalId', ''),
-                'members': group.get('members', []),
-                'schemas': group.get('schemas', ['urn:ietf:params:scim:schemas:core:2.0:Group'])
-            }
-            
-            # Validate members format if provided
-            if validated_group['members']:
-                if not isinstance(validated_group['members'], list):
-                    return handle_scim_error(f"Group {i+1}: 'members' must be an array", verbose)
-                
-                for j, member in enumerate(validated_group['members']):
-                    if not isinstance(member, dict) or 'value' not in member:
-                        return handle_scim_error(f"Group {i+1}, member {j+1}: Must be an object with 'value' field", verbose)
-            
-            validated_groups.append(validated_group)
-        
-        return validated_groups
-        
-    except json.JSONDecodeError as e:
-        return handle_scim_error(f"Invalid JSON file: {e}", verbose)
-    except Exception as e:
-        return handle_scim_error(f"Error reading JSON file: {e}", verbose)
-
-
-def _parse_csv_groups(file_path, verbose):
-    """
-    Parse groups from CSV file
-    """
-    try:
-        groups_data = []
-        required_columns = ['displayName']
-        optional_columns = ['description', 'externalId', 'members_json', 'schemas_json']
-        all_columns = required_columns + optional_columns
-        
-        with open(file_path, 'r', encoding='utf-8') as csvfile:
-            reader = csv.DictReader(csvfile)
-            
-            # Validate CSV headers
-            if not reader.fieldnames:
-                return handle_scim_error("CSV file has no headers", verbose)
-            
-            # Check for required columns
-            missing_columns = [col for col in required_columns if col not in reader.fieldnames]
-            if missing_columns:
-                return handle_scim_error(f"Missing required CSV columns: {', '.join(missing_columns)}", verbose)
-            
-            # Check for unexpected columns
-            unexpected_columns = [col for col in reader.fieldnames if col not in all_columns]
-            if unexpected_columns and verbose:
-                print(f"Warning: Unexpected CSV columns will be ignored: {', '.join(unexpected_columns)}", file=sys.stderr)
-            
-            # Read and validate each row
-            for row_num, row in enumerate(reader, start=2):  # Start at 2 because row 1 is headers
-                # Validate required fields
-                display_name = row.get('displayName', '').strip()
-                if not display_name:
-                    return handle_scim_error(f"Row {row_num}: Missing required field 'displayName'", verbose)
-                
-                group_data = {
-                    'displayName': display_name,
-                    'description': row.get('description', '').strip(),
-                    'externalId': row.get('externalId', '').strip(),
-                    'schemas': ['urn:ietf:params:scim:schemas:core:2.0:Group'],
-                    'members': []
-                }
-                
-                # Parse members from JSON string if provided
-                members_json = row.get('members_json', '').strip()
-                if members_json:
-                    try:
-                        members = json.loads(members_json)
-                        if isinstance(members, list):
-                            group_data['members'] = members
-                        else:
-                            if verbose:
-                                print(f"Warning: Row {row_num}: 'members_json' must be a JSON array, skipping members", file=sys.stderr)
-                    except json.JSONDecodeError:
-                        if verbose:
-                            print(f"Warning: Row {row_num}: Invalid JSON in 'members_json' field, skipping members", file=sys.stderr)
-                
-                # Parse schemas from JSON string if provided
-                schemas_json = row.get('schemas_json', '').strip()
-                if schemas_json:
-                    try:
-                        schemas = json.loads(schemas_json)
-                        if isinstance(schemas, list):
-                            group_data['schemas'] = schemas
-                        else:
-                            if verbose:
-                                print(f"Warning: Row {row_num}: 'schemas_json' must be a JSON array, using default", file=sys.stderr)
-                    except json.JSONDecodeError:
-                        if verbose:
-                            print(f"Warning: Row {row_num}: Invalid JSON in 'schemas_json' field, using default", file=sys.stderr)
-                
-                groups_data.append(group_data)
-        
-    except csv.Error as e:
-        return handle_scim_error(f"Error reading CSV file: {e}", verbose)
-    except Exception as e:
-        return handle_scim_error(f"Error processing CSV file: {e}", verbose)
-    
-    if not groups_data:
-        return handle_scim_error("No valid group data found in CSV file", verbose)
-    
-    if verbose:
-        print(f"Found {len(groups_data)} groups in CSV file", file=sys.stderr)
-    
-    return groups_data
-
-
-def _create_groups_from_data(groups_data, args):
-    """
-    Create groups from parsed data with batch processing
-    """
-    try:
-        # Get SCIM client
-        client = get_scim_client()
-        
-        # Create groups and collect results
-        results = []
-        successful_groups = []
-        failed_groups = []
-        
-        for i, group_data in enumerate(groups_data, 1):
-            display_name = group_data.get('displayName', f'Group_{i}')
-            
-            if hasattr(args, 'verbose') and args.verbose:
-                print(f"Creating group {i}/{len(groups_data)}: {display_name}", file=sys.stderr)
-            
-            try:
-                success, result = client.create_group(
-                    group_data['displayName'],
-                    group_data.get('externalId', ''),
-                    group_data.get('members', [])
-                )
-                
-                group_result = {
-                    'group_number': i,
-                    'displayName': display_name,
-                    'success': success,
-                }
-                
-                if success:
-                    group_result['group_id'] = result.get('id', 'unknown')
-                    group_result['message'] = f"Group '{display_name}' created successfully"
-                    successful_groups.append(group_result)
-                else:
-                    group_result['error'] = result.get('error', str(result))
-                    group_result['message'] = f"Failed to create group '{display_name}': {group_result['error']}"
-                    failed_groups.append(group_result)
-                
-                results.append(group_result)
-                
-            except Exception as e:
-                group_result = {
-                    'group_number': i,
-                    'displayName': display_name,
-                    'success': False,
-                    'error': str(e),
-                    'message': f"Error creating group '{display_name}': {str(e)}"
-                }
-                failed_groups.append(group_result)
-                results.append(group_result)
-        
-        # Format final response
-        summary = {
-            'total_groups': len(groups_data),
-            'successful_groups': len(successful_groups),
-            'failed_groups': len(failed_groups),
-            'success_rate': f"{len(successful_groups)}/{len(groups_data)} ({len(successful_groups)/len(groups_data)*100:.1f}%)"
-        }
-        
-        response = {
-            'success': len(failed_groups) == 0,  # Overall success only if no failures
-            'operation': f"Import {len(groups_data)} groups",
-            'summary': summary,
-            'results': results
-        }
-        
-        # Print summary to stderr for user visibility
-        if hasattr(args, 'verbose') and args.verbose:
-            print(f"\nSummary:", file=sys.stderr)
-            print(f"  Total groups: {summary['total_groups']}", file=sys.stderr)
-            print(f"  Successful: {summary['successful_groups']}", file=sys.stderr)
-            print(f"  Failed: {summary['failed_groups']}", file=sys.stderr)
-            print(f"  Success rate: {summary['success_rate']}", file=sys.stderr)
-        
-        return [response]
-        
-    except Exception as e:
-        return handle_scim_error(e, args.verbose)

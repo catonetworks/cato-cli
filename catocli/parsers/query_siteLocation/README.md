@@ -10,13 +10,63 @@
 
 `catocli query siteLocation "$(cat < siteLocation.json)"`
 
-`catocli query siteLocation '{"filters":[{"search": "Your city here","field":"city","operation":"exact"}]}'`
+```bash
+catocli query siteLocation '{
+  "filters": [
+    {
+      "search": "Your city here",
+      "field": "city",
+      "operation": "exact"
+    }
+  ]
+}' -p
+```
 
-`catocli query siteLocation '{"filters":[{"search": "Your Country here","field":"countryName","operation":"startsWith"}]}'`
+```bash
+catocli query siteLocation '{
+  "filters": [
+    {
+      "search": "Your Country here",
+      "field": "countryName",
+      "operation": "startsWith"
+    }
+  ]
+}' -p
+```
 
-`catocli query siteLocation '{"filters":[{"search": "Your stateName here","field":"stateName","operation":"endsWith"}]}'`
+```bash
+catocli query siteLocation '{
+  "filters": [
+    {
+      "search": "Your stateName here",
+      "field": "stateName",
+      "operation": "endsWith"
+    }
+  ]
+}' -p
+```
 
-`catocli query siteLocation '{"filters":[{"search": "Your City here","field":"city","operation":"startsWith"},{"search": "Your StateName here","field":"stateName","operation":"endsWith"},{"search": "Your Country here","field":"countryName","operation":"contains"}]}'`
+```bash
+catocli query siteLocation '{
+  "filters": [
+    {
+      "search": "Your City here",
+      "field": "city",
+      "operation": "startsWith"
+    },
+    {
+      "search": "Your StateName here",
+      "field": "stateName",
+      "operation": "endsWith"
+    },
+    {
+      "search": "Your Country here",
+      "field": "countryName",
+      "operation": "contains"
+    }
+  ]
+}' -p
+```
 
 #### Operation Arguments for query.siteLocation ####
 `accountID` [ID] - (required) Unique Identifier of Account. 

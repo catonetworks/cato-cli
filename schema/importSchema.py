@@ -41,17 +41,11 @@ def run():
     print("• README files generated")
         
     total_operations = len(catolib.catoApiSchema["query"]) + len(catolib.catoApiSchema["mutation"])
-    print(f"\n✅ Continuous build completed successfully!")
+    print(f"\n Continuous build completed successfully!")
     print(f"   - Total operations generated: {total_operations}")
     print(f"   - Query operations: {len(catolib.catoApiSchema['query'])}")
     print(f"   - Mutation operations: {len(catolib.catoApiSchema['mutation'])}")
     print(f"   - Total types processed: {len(catolib.catoApiIntrospection['objects']) + len(catolib.catoApiIntrospection['enums']) + len(catolib.catoApiIntrospection['scalars'])}")
-    
-    print(f"\n🚀 Enhanced Features:")
-    print(f"   ✅ Completely dynamic field expansion (no hardcoded field names)")
-    print(f"   ✅ JavaScript-like introspection-based discovery") 
-    print(f"   ✅ Automatic complex field detection and expansion")
-    print(f"   ✅ Fresh introspection data for enhanced CLI queries")
 
 if __name__ == '__main__':
     run()

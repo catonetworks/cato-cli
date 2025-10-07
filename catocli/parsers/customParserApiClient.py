@@ -687,11 +687,25 @@ def generateGraphqlPayload_local(variables_obj, operation, operation_name):
 
 def get_help(path):
     """
-    Enhanced help generation with better error handling
-    Stop including catocli examples after "Advanced Usage" section
-    Add dynamic GitHub link if advanced examples exist
-    Handle multi-line JSON examples properly for -p flag
-    Support both markdown code blocks and inline examples
+    Universal help generation using the new help formatter
+    Supports Windows cmd, PowerShell, and Unix shells
+    Dynamically formats JSON examples based on platform
+    """
+    try:
+        # Import the universal help formatter
+        from ..Utils.help_formatter import get_universal_help
+        
+        # Use auto mode for catolib-generated commands to enable schema-based examples
+        help_source = "auto" if ('query_' in path or 'mutation_' in path) else "readme"
+        return get_universal_help(path, help_source)
+    except ImportError:
+        # Fallback to original implementation if import fails
+        return get_help_fallback(path)
+
+
+def get_help_fallback(path):
+    """
+    Fallback help generation for compatibility
     """
     match_cmd = f"catocli {path.replace('_', ' ')}"
     pwd = os.path.dirname(__file__)
@@ -699,101 +713,18 @@ def get_help(path):
     abs_path = os.path.join(pwd, doc)
     new_line = "\nEXAMPLES:\n"
     
-    # Check if advanced examples exist by looking for example file in schema directory
-    # Convert path format (e.g., query_appStats -> query.appStats)
-    operation_name = path.replace('_', '.', 1)  # Only replace first underscore
-    schema_dir = os.path.dirname(os.path.dirname(pwd))  # Go up two levels to get to root
-    example_file_path = os.path.join(schema_dir, "schema", "examples", f"{operation_name}.md")
-    has_advanced_examples = os.path.exists(example_file_path)
-    
+    # Simple fallback - just read the README and extract basic examples
     try:
         with open(abs_path, "r", encoding='utf-8') as f:
             lines = f.readlines()
             
-        # Flag to stop processing after Advanced Usage section
-        stop_after_advanced = False
-        in_code_block = False
-        code_block_content = []
-        i = 0
-        
-        while i < len(lines):
-            line = lines[i]
-            
-            # Check if we've hit the Advanced Usage section
-            if "Advanced Usage" in line or "## Advanced" in line:
-                stop_after_advanced = True
-                i += 1
-                continue
-            
-            # Handle markdown code blocks
-            if line.strip().startswith("```"):
-                if not in_code_block:
-                    # Starting a code block
-                    in_code_block = True
-                    code_block_content = []
-                else:
-                    # Ending a code block
-                    in_code_block = False
-                    # Process the accumulated code block content
-                    if code_block_content:
-                        # Check if any line in the code block contains our command
-                        block_text = ''.join(code_block_content)
-                        if match_cmd in block_text and not stop_after_advanced:
-                            # Add the entire code block as examples
-                            new_line += ''.join(code_block_content) + "\n"
-                    code_block_content = []
-                i += 1
-                continue
-            
-            # If we're in a code block, accumulate lines
-            if in_code_block:
-                code_block_content.append(line)
-                i += 1
-                continue
-                
-            # Skip catocli examples after Advanced Usage (for non-code-block examples)
-            if stop_after_advanced and match_cmd in line:
-                i += 1
-                continue
-                
-            # Include catocli examples before Advanced Usage (legacy format)
+        for line in lines:
             if match_cmd in line:
-                # Check if this is a -p example with multi-line JSON (legacy format)
-                if "-p '" in line and line.rstrip().endswith("{"):
-                    # This is the start of a multi-line JSON example
-                    clean_line = line.replace("<br /><br />", "").replace("`", "")
-                    complete_example = clean_line
-                    
-                    # Continue reading lines until we find the closing quote and brace
-                    i += 1
-                    while i < len(lines):
-                        json_line = lines[i]
-                        complete_example += json_line
-                        
-                        # Check if this line ends the JSON (ends with }' and optional whitespace)
-                        if json_line.strip().endswith("}'"): 
-                            break
-                        i += 1
-                    
-                    new_line += complete_example
-                else:
-                    # Regular single-line example
-                    clean_line = line.replace("<br /><br />", "").replace("`", "")
-                    new_line += f"{clean_line}\n"
-            
-            i += 1
-        
-        # Add GitHub link if advanced examples exist
-        if has_advanced_examples:
-            new_line += f"\nPlease see advanced usage examples at the following:\n"
-            new_line += f"https://github.com/catonetworks/cato-cli/tree/main/catocli/parsers/{path}\n"
+                clean_line = line.replace("<br /><br />", "").replace("`", "")
+                new_line += f"{clean_line}\n"
                 
     except FileNotFoundError:
         new_line += f"No examples found for {match_cmd}\n"
-        # Still add GitHub link if advanced examples exist
-        if has_advanced_examples:
-            new_line += f"\nPlease see advanced usage examples at the following:\n"
-            new_line += f"https://github.com/catonetworks/cato-cli/tree/main/catocli/parsers/{path}\n"
     except Exception as e:
         new_line += f"Error loading help: {e}\n"
         

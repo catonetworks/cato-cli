@@ -1,28 +1,52 @@
-query socketPortMetricsTimeSeries ( $perSecond:Boolean $withMissingData:Boolean $useDefaultSizeBucket:Boolean $buckets:Int! $accountID:ID! $timeFrame:TimeFrame! $socketPortMetricsMeasure:[SocketPortMetricsMeasure] $socketPortMetricsDimension:[SocketPortMetricsDimension] $socketPortMetricsFilter:[SocketPortMetricsFilter!] ) {
-	socketPortMetricsTimeSeries ( accountID:$accountID timeFrame:$timeFrame measures:$socketPortMetricsMeasure dimensions:$socketPortMetricsDimension filters:$socketPortMetricsFilter ) {
-		id 
-		from 
-		to 
-		granularity 
-		timeseries ( buckets:$buckets  )  {
-			data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket   )
-			label
-			dimensionsTimeseries: dimensions {
-				label 
-				value 
-			}
-			keyTimeseries: key {
-				measureFieldName 
-				dimensions  {
-					fieldName
-					value
-				}
-
-			}
-			sum
-			unitsTimeseries: units
-			info
-		}
-
+query socketPortMetricsTimeSeries ( $timeFrame:TimeFrame! $socketPortMetricsMeasure:[SocketPortMetricsMeasure] $socketPortMetricsDimension:[SocketPortMetricsDimension] $socketPortMetricsFilter:[SocketPortMetricsFilter!]) {
+	socketPortMetricsTimeSeries ( timeFrame:$timeFrame measures:$socketPortMetricsMeasure dimensions:$socketPortMetricsDimension filters:$socketPortMetricsFilter ) {
+query.socketPortMetricsTimeSeriesid
+query.socketPortMetricsTimeSeriesfrom
+query.socketPortMetricsTimeSeriesto
+query.socketPortMetricsTimeSeriesgranularity
+query.socketPortMetricsTimeSeriestimeseries {
+query.socketPortMetricsTimeSeries	data
+query.socketPortMetricsTimeSeries	label
+query.socketPortMetricsTimeSeries	dimensions {
+query.socketPortMetricsTimeSeries		label
+query.socketPortMetricsTimeSeries		value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+query.socketPortMetricsTimeSeries	}
+query.socketPortMetricsTimeSeries	key {
+query.socketPortMetricsTimeSeries		measureFieldName
+query.socketPortMetricsTimeSeries		dimensions {
+query.socketPortMetricsTimeSeries			fieldName
+query.socketPortMetricsTimeSeries			value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+query.socketPortMetricsTimeSeries		}
+query.socketPortMetricsTimeSeries	}
+query.socketPortMetricsTimeSeries	sum
+query.socketPortMetricsTimeSeries	units
+query.socketPortMetricsTimeSeries	info
+query.socketPortMetricsTimeSeries}
 	}	
 }

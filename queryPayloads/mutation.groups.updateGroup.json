@@ -1,44 +1,7 @@
 {
     "operationName": "groupsUpdateGroup",
-    "query": "mutation groupsUpdateGroup ( $groupMembersListInput:GroupMembersListInput! $updateGroupInput:UpdateGroupInput! $accountId:ID! ) {\n\tgroups ( accountId:$accountId ) {\n\t\tupdateGroup ( input:$updateGroupInput  )  {\n\t\t\tgroupUpdateGroupPayload: group {\n\t\t\t\tid \n\t\t\t\tname \n\t\t\t\tdescription \n\t\t\t\taudit  {\n\t\t\t\t\tupdatedTime\n\t\t\t\t\tupdatedByAuditingMetadata: updatedBy {\n\t\t\t\t\t\tid \n\t\t\t\t\t\tname \n\t\t\t\t\t\t... on AdminRef {\n\t\t\t\t\t\t\tid \n\t\t\t\t\t\t\tname \n\t\t\t\t\t\t}\n\t\t\t\t\t\t... on ApiKeyRef {\n\t\t\t\t\t\t\tid \n\t\t\t\t\t\t\tname \n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\n\t\t\t\tmembers ( input:$groupMembersListInput  )  {\n\t\t\t\t\titemsGroupMembersListPayload: items {\n\t\t\t\t\t\tid \n\t\t\t\t\t\tname \n\t\t\t\t\t\ttype \n\t\t\t\t\t}\n\t\t\t\t\tpagingGroupMembersListPayload: paging {\n\t\t\t\t\t\ttotal \n\t\t\t\t\t}\n\t\t\t\t}\n\n\t\t\t\tmembersCount \n\t\t\t\tmembersCountPerType  {\n\t\t\t\t\ttypeGroupMemberTypeCount: type\n\t\t\t\t\tmembersCount\n\t\t\t\t}\n\n\t\t\t}\n\t\t}\n\n\t}\t\n}",
+    "query": "mutation groupsUpdateGroup ( $updateGroupInput:UpdateGroupInput!) {\n\tgroups ( ) {\nmutation.groups.updateGroupupdateGroup ( input:$updateGroupInput  )  {\nmutation.groups.updateGroup\tgroup {\nmutation.groups.updateGroup\t\tid\nmutation.groups.updateGroup\t\tname\nmutation.groups.updateGroup\t\tdescription\nmutation.groups.updateGroup\t\taudit {\nmutation.groups.updateGroup\t\t\tupdatedTime\nmutation.groups.updateGroup\t\t\tupdatedBy {\nmutation.groups.updateGroup\t\t\t\tid\nmutation.groups.updateGroup\t\t\t\tname\nmutation.groups.updateGroup\t\t\t\t... on AdminRef {\nmutation.groups.updateGroup\t\t\t\t\tid\nmutation.groups.updateGroup\t\t\t\t\tname\nmutation.groups.updateGroup\t\t\t\t}\nmutation.groups.updateGroup\t\t\t\t... on ApiKeyRef {\nmutation.groups.updateGroup\t\t\t\t\tid\nmutation.groups.updateGroup\t\t\t\t\tname\nmutation.groups.updateGroup\t\t\t\t}\nmutation.groups.updateGroup\t\t\t}\nmutation.groups.updateGroup\t\t}\nmutation.groups.updateGroup\t\tmembers {\nmutation.groups.updateGroup\t\t\titems {\nmutation.groups.updateGroup\t\t\t\tid\nmutation.groups.updateGroup\t\t\t\tname\nmutation.groups.updateGroup\t\t\t\ttype\nmutation.groups.updateGroup\t\t\t}\nmutation.groups.updateGroup\t\t\tpaging {\nmutation.groups.updateGroup\t\t\t\ttotal\nmutation.groups.updateGroup\t\t\t}\nmutation.groups.updateGroup\t\t}\nmutation.groups.updateGroup\t\tmembersCount\nmutation.groups.updateGroup\t\tmembersCountPerType {\nmutation.groups.updateGroup\t\t\ttype\nmutation.groups.updateGroup\t\t\tmembersCount\nmutation.groups.updateGroup\t\t}\nmutation.groups.updateGroup\t}\nmutation.groups.updateGroup}\n\t}\t\n}",
     "variables": {
-        "groupMembersListInput": {
-            "groupMembersListFilterInput": {
-                "name": {
-                    "eq": "string",
-                    "in": [
-                        "string1",
-                        "string2"
-                    ],
-                    "neq": "string",
-                    "nin": [
-                        "string1",
-                        "string2"
-                    ],
-                    "regex": "string"
-                },
-                "type": {
-                    "eq": "SITE",
-                    "in": "SITE",
-                    "neq": "SITE",
-                    "nin": "SITE"
-                }
-            },
-            "groupMembersListSortInput": {
-                "name": {
-                    "direction": "ASC",
-                    "priority": 1
-                },
-                "type": {
-                    "direction": "ASC",
-                    "priority": 1
-                }
-            },
-            "pagingInput": {
-                "from": 1,
-                "limit": 1
-            }
-        },
         "updateGroupInput": {
             "description": "string",
             "groupMemberRefTypedInput": {

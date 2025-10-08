@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.remotePortFwd.updatePolicy:
 
-`catocli mutation policy remotePortFwd updatePolicy -h`
+```bash
+catocli mutation policy remotePortFwd updatePolicy -h
 
-`catocli mutation policy remotePortFwd updatePolicy <json>`
+catocli mutation policy remotePortFwd updatePolicy <json>
 
-`catocli mutation policy remotePortFwd updatePolicy "$(cat < mutation.policy.remotePortFwd.updatePolicy.json)"`
+catocli mutation policy remotePortFwd updatePolicy "$(cat < mutation.policy.remotePortFwd.updatePolicy.json)"
 
-`catocli mutation policy remotePortFwd updatePolicy '{"remotePortFwdPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"remotePortFwdPolicyUpdateInput":{"state":"ENABLED"}}'`
+catocli mutation policy remotePortFwd updatePolicy '{"remotePortFwdPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"remotePortFwdPolicyUpdateInput":{"state":"ENABLED"}}'
 
-`catocli mutation policy remotePortFwd updatePolicy -p '{
+catocli mutation policy remotePortFwd updatePolicy -p '{
     "remotePortFwdPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"
@@ -22,7 +23,7 @@
         "state": "ENABLED"
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.remotePortFwd.updatePolicy ####
 

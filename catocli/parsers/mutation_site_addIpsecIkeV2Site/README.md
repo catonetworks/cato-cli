@@ -4,15 +4,16 @@
 
 ### Usage for mutation.site.addIpsecIkeV2Site:
 
-`catocli mutation site addIpsecIkeV2Site -h`
+```bash
+catocli mutation site addIpsecIkeV2Site -h
 
-`catocli mutation site addIpsecIkeV2Site <json>`
+catocli mutation site addIpsecIkeV2Site <json>
 
-`catocli mutation site addIpsecIkeV2Site "$(cat < mutation.site.addIpsecIkeV2Site.json)"`
+catocli mutation site addIpsecIkeV2Site "$(cat < mutation.site.addIpsecIkeV2Site.json)"
 
-`catocli mutation site addIpsecIkeV2Site '{"addIpsecIkeV2SiteInput":{"addSiteLocationInput":{"address":"string","city":"string","countryCode":"string","stateCode":"string","timezone":"string"},"description":"string","name":"string","nativeNetworkRange":"example_value","siteType":"BRANCH","vlan":"example_value"}}'`
+catocli mutation site addIpsecIkeV2Site '{"addIpsecIkeV2SiteInput":{"addSiteLocationInput":{"address":"string","city":"string","countryCode":"string","stateCode":"string","timezone":"string"},"description":"string","name":"string","nativeNetworkRange":"example_value","siteType":"BRANCH","vlan":"example_value"}}'
 
-`catocli mutation site addIpsecIkeV2Site -p '{
+catocli mutation site addIpsecIkeV2Site -p '{
     "addIpsecIkeV2SiteInput": {
         "addSiteLocationInput": {
             "address": "string",
@@ -28,7 +29,7 @@
         "vlan": "example_value"
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.site.addIpsecIkeV2Site ####
 

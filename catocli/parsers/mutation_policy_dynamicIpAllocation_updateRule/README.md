@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.dynamicIpAllocation.updateRule:
 
-`catocli mutation policy dynamicIpAllocation updateRule -h`
+```bash
+catocli mutation policy dynamicIpAllocation updateRule -h
 
-`catocli mutation policy dynamicIpAllocation updateRule <json>`
+catocli mutation policy dynamicIpAllocation updateRule <json>
 
-`catocli mutation policy dynamicIpAllocation updateRule "$(cat < mutation.policy.dynamicIpAllocation.updateRule.json)"`
+catocli mutation policy dynamicIpAllocation updateRule "$(cat < mutation.policy.dynamicIpAllocation.updateRule.json)"
 
-`catocli mutation policy dynamicIpAllocation updateRule '{"dynamicIpAllocationPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"dynamicIpAllocationUpdateRuleInput":{"dynamicIpAllocationUpdateRuleDataInput":{"country":{"by":"ID","input":"string"},"description":"string","enabled":true,"name":"string","platform":"WINDOWS","range":{"globalIpRange":{"by":"ID","input":"string"}},"source":{"user":{"by":"ID","input":"string"},"usersGroup":{"by":"ID","input":"string"}}},"id":"id"}}'`
+catocli mutation policy dynamicIpAllocation updateRule '{"dynamicIpAllocationPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"dynamicIpAllocationUpdateRuleInput":{"dynamicIpAllocationUpdateRuleDataInput":{"country":{"by":"ID","input":"string"},"description":"string","enabled":true,"name":"string","platform":"WINDOWS","range":{"globalIpRange":{"by":"ID","input":"string"}},"source":{"user":{"by":"ID","input":"string"},"usersGroup":{"by":"ID","input":"string"}}},"id":"id"}}'
 
-`catocli mutation policy dynamicIpAllocation updateRule -p '{
+catocli mutation policy dynamicIpAllocation updateRule -p '{
     "dynamicIpAllocationPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"
@@ -48,7 +49,7 @@
         "id": "id"
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.dynamicIpAllocation.updateRule ####
 

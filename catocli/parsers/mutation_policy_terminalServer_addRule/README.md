@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.terminalServer.addRule:
 
-`catocli mutation policy terminalServer addRule -h`
+```bash
+catocli mutation policy terminalServer addRule -h
 
-`catocli mutation policy terminalServer addRule <json>`
+catocli mutation policy terminalServer addRule <json>
 
-`catocli mutation policy terminalServer addRule "$(cat < mutation.policy.terminalServer.addRule.json)"`
+catocli mutation policy terminalServer addRule "$(cat < mutation.policy.terminalServer.addRule.json)"
 
-`catocli mutation policy terminalServer addRule '{"terminalServerAddRuleInput":{"policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"},"terminalServerAddRuleDataInput":{"allowedHostIP":{"by":"ID","input":"string"},"description":"string","enabled":true,"excludeTraffic":{"by":"ID","input":"string"},"name":"string"}},"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
+catocli mutation policy terminalServer addRule '{"terminalServerAddRuleInput":{"policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"},"terminalServerAddRuleDataInput":{"allowedHostIP":{"by":"ID","input":"string"},"description":"string","enabled":true,"excludeTraffic":{"by":"ID","input":"string"},"name":"string"}},"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-`catocli mutation policy terminalServer addRule -p '{
+catocli mutation policy terminalServer addRule -p '{
     "terminalServerAddRuleInput": {
         "policyRulePositionInput": {
             "position": "AFTER_RULE",
@@ -38,7 +39,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.terminalServer.addRule ####
 

@@ -4,15 +4,16 @@
 
 ### Usage for query.policy.applicationControl.policy:
 
-`catocli query policy applicationControl policy -h`
+```bash
+catocli query policy applicationControl policy -h
 
-`catocli query policy applicationControl policy <json>`
+catocli query policy applicationControl policy <json>
 
-`catocli query policy applicationControl policy "$(cat < query.policy.applicationControl.policy.json)"`
+catocli query policy applicationControl policy "$(cat < query.policy.applicationControl.policy.json)"
 
-`catocli query policy applicationControl policy '{"applicationControlPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'`
+catocli query policy applicationControl policy '{"applicationControlPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'
 
-`catocli query policy applicationControl policy -p '{
+catocli query policy applicationControl policy -p '{
     "applicationControlPolicyInput": {
         "policyRevisionInput": {
             "id": "id",
@@ -20,7 +21,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for query.policy.applicationControl.policy ####
 

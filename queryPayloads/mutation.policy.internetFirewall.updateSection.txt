@@ -1,27 +1,24 @@
-mutation policyInternetFirewallUpdateSection ( $policyUpdateSectionInput:PolicyUpdateSectionInput! $internetFirewallPolicyMutationInput:InternetFirewallPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		internetFirewall ( input:$internetFirewallPolicyMutationInput  )  {
-			updateSectionInternetFirewallPolicyMutations: updateSection ( input:$policyUpdateSectionInput   ) {
-				section  {
-					auditPolicySectionPayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					sectionPolicySectionPayload: section {
-						id 
-						name 
-					}
-					propertiesPolicySectionPayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyInternetFirewallUpdateSection ( $internetFirewallPolicyMutationInput:InternetFirewallPolicyMutationInput $policyUpdateSectionInput:PolicyUpdateSectionInput!) {
+	policy ( ) {
+mutation.policy.internetFirewall.updateSectioninternetFirewall ( input:$internetFirewallPolicyMutationInput  )  {
+mutation.policy.internetFirewall.updateSection	updateSection ( input:$policyUpdateSectionInput   ) {
+mutation.policy.internetFirewall.updateSection		section {
+mutation.policy.internetFirewall.updateSection			audit {
+mutation.policy.internetFirewall.updateSection				updatedTime
+mutation.policy.internetFirewall.updateSection				updatedBy
+mutation.policy.internetFirewall.updateSection			}
+mutation.policy.internetFirewall.updateSection			section {
+mutation.policy.internetFirewall.updateSection				id
+mutation.policy.internetFirewall.updateSection				name
+mutation.policy.internetFirewall.updateSection			}
+mutation.policy.internetFirewall.updateSection			properties
+mutation.policy.internetFirewall.updateSection		}
+mutation.policy.internetFirewall.updateSection		status
+mutation.policy.internetFirewall.updateSection		errors {
+mutation.policy.internetFirewall.updateSection			errorMessage
+mutation.policy.internetFirewall.updateSection			errorCode
+mutation.policy.internetFirewall.updateSection		}
+mutation.policy.internetFirewall.updateSection	}
+mutation.policy.internetFirewall.updateSection}
 	}	
 }

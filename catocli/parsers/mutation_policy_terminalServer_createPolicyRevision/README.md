@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.terminalServer.createPolicyRevision:
 
-`catocli mutation policy terminalServer createPolicyRevision -h`
+```bash
+catocli mutation policy terminalServer createPolicyRevision -h
 
-`catocli mutation policy terminalServer createPolicyRevision <json>`
+catocli mutation policy terminalServer createPolicyRevision <json>
 
-`catocli mutation policy terminalServer createPolicyRevision "$(cat < mutation.policy.terminalServer.createPolicyRevision.json)"`
+catocli mutation policy terminalServer createPolicyRevision "$(cat < mutation.policy.terminalServer.createPolicyRevision.json)"
 
-`catocli mutation policy terminalServer createPolicyRevision '{"policyCreateRevisionInput":{"description":"string","name":"string"},"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
+catocli mutation policy terminalServer createPolicyRevision '{"policyCreateRevisionInput":{"description":"string","name":"string"},"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-`catocli mutation policy terminalServer createPolicyRevision -p '{
+catocli mutation policy terminalServer createPolicyRevision -p '{
     "policyCreateRevisionInput": {
         "description": "string",
         "name": "string"
@@ -23,7 +24,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.terminalServer.createPolicyRevision ####
 

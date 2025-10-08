@@ -1,476 +1,426 @@
-mutation policyWanFirewallDiscardPolicyRevision ( $policyDiscardRevisionInput:PolicyDiscardRevisionInput $wanFirewallPolicyMutationInput:WanFirewallPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		wanFirewall ( input:$wanFirewallPolicyMutationInput  )  {
-			discardPolicyRevisionWanFirewallPolicyMutations: discardPolicyRevision ( input:$policyDiscardRevisionInput   ) {
-				policy  {
-					enabled
-					rulesWanFirewallPolicy: rules {
-						audit  {
-							updatedTime
-							updatedBy
-						}
-
-						rule  {
-							id
-							name
-							description
-							index
-							sectionWanFirewallRule: section {
-								id 
-								name 
-							}
-							enabled
-							sourceWanFirewallRule: source {
-								host  {
-									id
-									name
-								}
-
-								site  {
-									id
-									name
-								}
-
-								subnet 
-								ip 
-								ipRange  {
-									from
-									to
-								}
-
-								globalIpRange  {
-									id
-									name
-								}
-
-								networkInterface  {
-									id
-									name
-								}
-
-								siteNetworkSubnet  {
-									id
-									name
-								}
-
-								floatingSubnet  {
-									id
-									name
-								}
-
-								user  {
-									id
-									name
-								}
-
-								usersGroup  {
-									id
-									name
-								}
-
-								group  {
-									id
-									name
-								}
-
-								systemGroup  {
-									id
-									name
-								}
-
-							}
-							connectionOriginWanFirewallRule: connectionOrigin
-							countryWanFirewallRule: country {
-								id 
-								name 
-							}
-							deviceWanFirewallRule: device {
-								id 
-								name 
-							}
-							deviceOSWanFirewallRule: deviceOS
-							deviceAttributesWanFirewallRule: deviceAttributes {
-								category 
-								type 
-								model 
-								manufacturer 
-								os 
-								osVersion 
-							}
-							destinationWanFirewallRule: destination {
-								host  {
-									id
-									name
-								}
-
-								site  {
-									id
-									name
-								}
-
-								subnet 
-								ip 
-								ipRange  {
-									from
-									to
-								}
-
-								globalIpRange  {
-									id
-									name
-								}
-
-								networkInterface  {
-									id
-									name
-								}
-
-								siteNetworkSubnet  {
-									id
-									name
-								}
-
-								floatingSubnet  {
-									id
-									name
-								}
-
-								user  {
-									id
-									name
-								}
-
-								usersGroup  {
-									id
-									name
-								}
-
-								group  {
-									id
-									name
-								}
-
-								systemGroup  {
-									id
-									name
-								}
-
-							}
-							applicationWanFirewallRule: application {
-								application  {
-									id
-									name
-								}
-
-								appCategory  {
-									id
-									name
-								}
-
-								customApp  {
-									id
-									name
-								}
-
-								customCategory  {
-									id
-									name
-								}
-
-								sanctionedAppsCategory  {
-									id
-									name
-								}
-
-								domain 
-								fqdn 
-								ip 
-								subnet 
-								ipRange  {
-									from
-									to
-								}
-
-								globalIpRange  {
-									id
-									name
-								}
-
-							}
-							serviceWanFirewallRule: service {
-								standard  {
-									id
-									name
-								}
-
-								custom  {
-									port
-									portRangeCustomService: portRange {
-										from 
-										to 
-									}
-									protocolCustomService: protocol
-								}
-
-							}
-							actionWanFirewallRule: action
-							trackingWanFirewallRule: tracking {
-								event  {
-									enabled
-								}
-
-								alert  {
-									enabled
-									frequencyPolicyRuleTrackingAlert: frequency
-									subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
-										id 
-										name 
-									}
-									webhookPolicyRuleTrackingAlert: webhook {
-										id 
-										name 
-									}
-									mailingListPolicyRuleTrackingAlert: mailingList {
-										id 
-										name 
-									}
-								}
-
-							}
-							scheduleWanFirewallRule: schedule {
-								activeOn 
-								customTimeframe  {
-									from
-									to
-								}
-
-								customRecurring  {
-									from
-									to
-									daysPolicyCustomRecurring: days
-								}
-
-							}
-							activePeriodWanFirewallRule: activePeriod {
-								useEffectiveFrom 
-								effectiveFrom 
-								useExpiresAt 
-								expiresAt 
-							}
-							directionWanFirewallRule: direction
-							exceptionsWanFirewallRule: exceptions {
-								name 
-								source  {
-									hostWanFirewallSource: host {
-										id 
-										name 
-									}
-									siteWanFirewallSource: site {
-										id 
-										name 
-									}
-									subnet
-									ip
-									ipRangeWanFirewallSource: ipRange {
-										from 
-										to 
-									}
-									globalIpRangeWanFirewallSource: globalIpRange {
-										id 
-										name 
-									}
-									networkInterfaceWanFirewallSource: networkInterface {
-										id 
-										name 
-									}
-									siteNetworkSubnetWanFirewallSource: siteNetworkSubnet {
-										id 
-										name 
-									}
-									floatingSubnetWanFirewallSource: floatingSubnet {
-										id 
-										name 
-									}
-									userWanFirewallSource: user {
-										id 
-										name 
-									}
-									usersGroupWanFirewallSource: usersGroup {
-										id 
-										name 
-									}
-									groupWanFirewallSource: group {
-										id 
-										name 
-									}
-									systemGroupWanFirewallSource: systemGroup {
-										id 
-										name 
-									}
-								}
-
-								deviceOS 
-								destination  {
-									hostWanFirewallDestination: host {
-										id 
-										name 
-									}
-									siteWanFirewallDestination: site {
-										id 
-										name 
-									}
-									subnet
-									ip
-									ipRangeWanFirewallDestination: ipRange {
-										from 
-										to 
-									}
-									globalIpRangeWanFirewallDestination: globalIpRange {
-										id 
-										name 
-									}
-									networkInterfaceWanFirewallDestination: networkInterface {
-										id 
-										name 
-									}
-									siteNetworkSubnetWanFirewallDestination: siteNetworkSubnet {
-										id 
-										name 
-									}
-									floatingSubnetWanFirewallDestination: floatingSubnet {
-										id 
-										name 
-									}
-									userWanFirewallDestination: user {
-										id 
-										name 
-									}
-									usersGroupWanFirewallDestination: usersGroup {
-										id 
-										name 
-									}
-									groupWanFirewallDestination: group {
-										id 
-										name 
-									}
-									systemGroupWanFirewallDestination: systemGroup {
-										id 
-										name 
-									}
-								}
-
-								country  {
-									id
-									name
-								}
-
-								device  {
-									id
-									name
-								}
-
-								deviceAttributes  {
-									category
-									type
-									model
-									manufacturer
-									os
-									osVersion
-								}
-
-								application  {
-									applicationWanFirewallApplication: application {
-										id 
-										name 
-									}
-									appCategoryWanFirewallApplication: appCategory {
-										id 
-										name 
-									}
-									customAppWanFirewallApplication: customApp {
-										id 
-										name 
-									}
-									customCategoryWanFirewallApplication: customCategory {
-										id 
-										name 
-									}
-									sanctionedAppsCategoryWanFirewallApplication: sanctionedAppsCategory {
-										id 
-										name 
-									}
-									domain
-									fqdn
-									ip
-									subnet
-									ipRangeWanFirewallApplication: ipRange {
-										from 
-										to 
-									}
-									globalIpRangeWanFirewallApplication: globalIpRange {
-										id 
-										name 
-									}
-								}
-
-								service  {
-									standardWanFirewallServiceType: standard {
-										id 
-										name 
-									}
-									customWanFirewallServiceType: custom {
-										port 
-										portRange  {
-											from
-											to
-										}
-
-										protocol 
-									}
-								}
-
-								connectionOrigin 
-								direction 
-							}
-						}
-
-						properties 
-					}
-					sectionsWanFirewallPolicy: sections {
-						audit  {
-							updatedTime
-							updatedBy
-						}
-
-						section  {
-							id
-							name
-						}
-
-						properties 
-					}
-					auditWanFirewallPolicy: audit {
-						publishedTime 
-						publishedBy 
-					}
-					revisionWanFirewallPolicy: revision {
-						id 
-						name 
-						description 
-						changes 
-						createdTime 
-						updatedTime 
-					}
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyWanFirewallDiscardPolicyRevision ( $wanFirewallPolicyMutationInput:WanFirewallPolicyMutationInput $policyDiscardRevisionInput:PolicyDiscardRevisionInput) {
+	policy ( ) {
+mutation.policy.wanFirewall.discardPolicyRevisionwanFirewall ( input:$wanFirewallPolicyMutationInput  )  {
+mutation.policy.wanFirewall.discardPolicyRevision	discardPolicyRevision ( input:$policyDiscardRevisionInput   ) {
+mutation.policy.wanFirewall.discardPolicyRevision		policy {
+mutation.policy.wanFirewall.discardPolicyRevision			enabled
+mutation.policy.wanFirewall.discardPolicyRevision			rules {
+mutation.policy.wanFirewall.discardPolicyRevision				audit {
+mutation.policy.wanFirewall.discardPolicyRevision					updatedTime
+mutation.policy.wanFirewall.discardPolicyRevision					updatedBy
+mutation.policy.wanFirewall.discardPolicyRevision				}
+mutation.policy.wanFirewall.discardPolicyRevision				rule {
+mutation.policy.wanFirewall.discardPolicyRevision					id
+mutation.policy.wanFirewall.discardPolicyRevision					name
+mutation.policy.wanFirewall.discardPolicyRevision					description
+mutation.policy.wanFirewall.discardPolicyRevision					index
+mutation.policy.wanFirewall.discardPolicyRevision					section {
+mutation.policy.wanFirewall.discardPolicyRevision						id
+mutation.policy.wanFirewall.discardPolicyRevision						name
+mutation.policy.wanFirewall.discardPolicyRevision					}
+mutation.policy.wanFirewall.discardPolicyRevision					enabled
+mutation.policy.wanFirewall.discardPolicyRevision					source {
+mutation.policy.wanFirewall.discardPolicyRevision						host {
+mutation.policy.wanFirewall.discardPolicyRevision							id
+mutation.policy.wanFirewall.discardPolicyRevision							name
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision						site {
+mutation.policy.wanFirewall.discardPolicyRevision							id
+mutation.policy.wanFirewall.discardPolicyRevision							name
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision						subnet
+mutation.policy.wanFirewall.discardPolicyRevision						ip
+mutation.policy.wanFirewall.discardPolicyRevision						ipRange {
+mutation.policy.wanFirewall.discardPolicyRevision							from
+mutation.policy.wanFirewall.discardPolicyRevision							to
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision						globalIpRange {
+mutation.policy.wanFirewall.discardPolicyRevision							id
+mutation.policy.wanFirewall.discardPolicyRevision							name
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision						networkInterface {
+mutation.policy.wanFirewall.discardPolicyRevision							id
+mutation.policy.wanFirewall.discardPolicyRevision							name
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision						siteNetworkSubnet {
+mutation.policy.wanFirewall.discardPolicyRevision							id
+mutation.policy.wanFirewall.discardPolicyRevision							name
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision						floatingSubnet {
+mutation.policy.wanFirewall.discardPolicyRevision							id
+mutation.policy.wanFirewall.discardPolicyRevision							name
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision						user {
+mutation.policy.wanFirewall.discardPolicyRevision							id
+mutation.policy.wanFirewall.discardPolicyRevision							name
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision						usersGroup {
+mutation.policy.wanFirewall.discardPolicyRevision							id
+mutation.policy.wanFirewall.discardPolicyRevision							name
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision						group {
+mutation.policy.wanFirewall.discardPolicyRevision							id
+mutation.policy.wanFirewall.discardPolicyRevision							name
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision						systemGroup {
+mutation.policy.wanFirewall.discardPolicyRevision							id
+mutation.policy.wanFirewall.discardPolicyRevision							name
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision					}
+mutation.policy.wanFirewall.discardPolicyRevision					connectionOrigin
+mutation.policy.wanFirewall.discardPolicyRevision					country {
+mutation.policy.wanFirewall.discardPolicyRevision						id
+mutation.policy.wanFirewall.discardPolicyRevision						name
+mutation.policy.wanFirewall.discardPolicyRevision					}
+mutation.policy.wanFirewall.discardPolicyRevision					device {
+mutation.policy.wanFirewall.discardPolicyRevision						id
+mutation.policy.wanFirewall.discardPolicyRevision						name
+mutation.policy.wanFirewall.discardPolicyRevision					}
+mutation.policy.wanFirewall.discardPolicyRevision					deviceOS
+mutation.policy.wanFirewall.discardPolicyRevision					deviceAttributes {
+mutation.policy.wanFirewall.discardPolicyRevision						category
+mutation.policy.wanFirewall.discardPolicyRevision						type
+mutation.policy.wanFirewall.discardPolicyRevision						model
+mutation.policy.wanFirewall.discardPolicyRevision						manufacturer
+mutation.policy.wanFirewall.discardPolicyRevision						os
+mutation.policy.wanFirewall.discardPolicyRevision						osVersion
+mutation.policy.wanFirewall.discardPolicyRevision					}
+mutation.policy.wanFirewall.discardPolicyRevision					destination {
+mutation.policy.wanFirewall.discardPolicyRevision						host {
+mutation.policy.wanFirewall.discardPolicyRevision							id
+mutation.policy.wanFirewall.discardPolicyRevision							name
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision						site {
+mutation.policy.wanFirewall.discardPolicyRevision							id
+mutation.policy.wanFirewall.discardPolicyRevision							name
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision						subnet
+mutation.policy.wanFirewall.discardPolicyRevision						ip
+mutation.policy.wanFirewall.discardPolicyRevision						ipRange {
+mutation.policy.wanFirewall.discardPolicyRevision							from
+mutation.policy.wanFirewall.discardPolicyRevision							to
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision						globalIpRange {
+mutation.policy.wanFirewall.discardPolicyRevision							id
+mutation.policy.wanFirewall.discardPolicyRevision							name
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision						networkInterface {
+mutation.policy.wanFirewall.discardPolicyRevision							id
+mutation.policy.wanFirewall.discardPolicyRevision							name
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision						siteNetworkSubnet {
+mutation.policy.wanFirewall.discardPolicyRevision							id
+mutation.policy.wanFirewall.discardPolicyRevision							name
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision						floatingSubnet {
+mutation.policy.wanFirewall.discardPolicyRevision							id
+mutation.policy.wanFirewall.discardPolicyRevision							name
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision						user {
+mutation.policy.wanFirewall.discardPolicyRevision							id
+mutation.policy.wanFirewall.discardPolicyRevision							name
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision						usersGroup {
+mutation.policy.wanFirewall.discardPolicyRevision							id
+mutation.policy.wanFirewall.discardPolicyRevision							name
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision						group {
+mutation.policy.wanFirewall.discardPolicyRevision							id
+mutation.policy.wanFirewall.discardPolicyRevision							name
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision						systemGroup {
+mutation.policy.wanFirewall.discardPolicyRevision							id
+mutation.policy.wanFirewall.discardPolicyRevision							name
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision					}
+mutation.policy.wanFirewall.discardPolicyRevision					application {
+mutation.policy.wanFirewall.discardPolicyRevision						application {
+mutation.policy.wanFirewall.discardPolicyRevision							id
+mutation.policy.wanFirewall.discardPolicyRevision							name
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision						appCategory {
+mutation.policy.wanFirewall.discardPolicyRevision							id
+mutation.policy.wanFirewall.discardPolicyRevision							name
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision						customApp {
+mutation.policy.wanFirewall.discardPolicyRevision							id
+mutation.policy.wanFirewall.discardPolicyRevision							name
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision						customCategory {
+mutation.policy.wanFirewall.discardPolicyRevision							id
+mutation.policy.wanFirewall.discardPolicyRevision							name
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision						sanctionedAppsCategory {
+mutation.policy.wanFirewall.discardPolicyRevision							id
+mutation.policy.wanFirewall.discardPolicyRevision							name
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision						domain
+mutation.policy.wanFirewall.discardPolicyRevision						fqdn
+mutation.policy.wanFirewall.discardPolicyRevision						ip
+mutation.policy.wanFirewall.discardPolicyRevision						subnet
+mutation.policy.wanFirewall.discardPolicyRevision						ipRange {
+mutation.policy.wanFirewall.discardPolicyRevision							from
+mutation.policy.wanFirewall.discardPolicyRevision							to
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision						globalIpRange {
+mutation.policy.wanFirewall.discardPolicyRevision							id
+mutation.policy.wanFirewall.discardPolicyRevision							name
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision					}
+mutation.policy.wanFirewall.discardPolicyRevision					service {
+mutation.policy.wanFirewall.discardPolicyRevision						standard {
+mutation.policy.wanFirewall.discardPolicyRevision							id
+mutation.policy.wanFirewall.discardPolicyRevision							name
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision						custom {
+mutation.policy.wanFirewall.discardPolicyRevision							port
+mutation.policy.wanFirewall.discardPolicyRevision							portRange {
+mutation.policy.wanFirewall.discardPolicyRevision								from
+mutation.policy.wanFirewall.discardPolicyRevision								to
+mutation.policy.wanFirewall.discardPolicyRevision							}
+mutation.policy.wanFirewall.discardPolicyRevision							protocol
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision					}
+mutation.policy.wanFirewall.discardPolicyRevision					action
+mutation.policy.wanFirewall.discardPolicyRevision					tracking {
+mutation.policy.wanFirewall.discardPolicyRevision						event {
+mutation.policy.wanFirewall.discardPolicyRevision							enabled
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision						alert {
+mutation.policy.wanFirewall.discardPolicyRevision							enabled
+mutation.policy.wanFirewall.discardPolicyRevision							frequency
+mutation.policy.wanFirewall.discardPolicyRevision							subscriptionGroup {
+mutation.policy.wanFirewall.discardPolicyRevision								id
+mutation.policy.wanFirewall.discardPolicyRevision								name
+mutation.policy.wanFirewall.discardPolicyRevision							}
+mutation.policy.wanFirewall.discardPolicyRevision							webhook {
+mutation.policy.wanFirewall.discardPolicyRevision								id
+mutation.policy.wanFirewall.discardPolicyRevision								name
+mutation.policy.wanFirewall.discardPolicyRevision							}
+mutation.policy.wanFirewall.discardPolicyRevision							mailingList {
+mutation.policy.wanFirewall.discardPolicyRevision								id
+mutation.policy.wanFirewall.discardPolicyRevision								name
+mutation.policy.wanFirewall.discardPolicyRevision							}
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision					}
+mutation.policy.wanFirewall.discardPolicyRevision					schedule {
+mutation.policy.wanFirewall.discardPolicyRevision						activeOn
+mutation.policy.wanFirewall.discardPolicyRevision						customTimeframe {
+mutation.policy.wanFirewall.discardPolicyRevision							from
+mutation.policy.wanFirewall.discardPolicyRevision							to
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision						customRecurring {
+mutation.policy.wanFirewall.discardPolicyRevision							from
+mutation.policy.wanFirewall.discardPolicyRevision							to
+mutation.policy.wanFirewall.discardPolicyRevision							days
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision					}
+mutation.policy.wanFirewall.discardPolicyRevision					activePeriod {
+mutation.policy.wanFirewall.discardPolicyRevision						useEffectiveFrom
+mutation.policy.wanFirewall.discardPolicyRevision						effectiveFrom
+mutation.policy.wanFirewall.discardPolicyRevision						useExpiresAt
+mutation.policy.wanFirewall.discardPolicyRevision						expiresAt
+mutation.policy.wanFirewall.discardPolicyRevision					}
+mutation.policy.wanFirewall.discardPolicyRevision					direction
+mutation.policy.wanFirewall.discardPolicyRevision					exceptions {
+mutation.policy.wanFirewall.discardPolicyRevision						name
+mutation.policy.wanFirewall.discardPolicyRevision						source {
+mutation.policy.wanFirewall.discardPolicyRevision							host {
+mutation.policy.wanFirewall.discardPolicyRevision								id
+mutation.policy.wanFirewall.discardPolicyRevision								name
+mutation.policy.wanFirewall.discardPolicyRevision							}
+mutation.policy.wanFirewall.discardPolicyRevision							site {
+mutation.policy.wanFirewall.discardPolicyRevision								id
+mutation.policy.wanFirewall.discardPolicyRevision								name
+mutation.policy.wanFirewall.discardPolicyRevision							}
+mutation.policy.wanFirewall.discardPolicyRevision							subnet
+mutation.policy.wanFirewall.discardPolicyRevision							ip
+mutation.policy.wanFirewall.discardPolicyRevision							ipRange {
+mutation.policy.wanFirewall.discardPolicyRevision								from
+mutation.policy.wanFirewall.discardPolicyRevision								to
+mutation.policy.wanFirewall.discardPolicyRevision							}
+mutation.policy.wanFirewall.discardPolicyRevision							globalIpRange {
+mutation.policy.wanFirewall.discardPolicyRevision								id
+mutation.policy.wanFirewall.discardPolicyRevision								name
+mutation.policy.wanFirewall.discardPolicyRevision							}
+mutation.policy.wanFirewall.discardPolicyRevision							networkInterface {
+mutation.policy.wanFirewall.discardPolicyRevision								id
+mutation.policy.wanFirewall.discardPolicyRevision								name
+mutation.policy.wanFirewall.discardPolicyRevision							}
+mutation.policy.wanFirewall.discardPolicyRevision							siteNetworkSubnet {
+mutation.policy.wanFirewall.discardPolicyRevision								id
+mutation.policy.wanFirewall.discardPolicyRevision								name
+mutation.policy.wanFirewall.discardPolicyRevision							}
+mutation.policy.wanFirewall.discardPolicyRevision							floatingSubnet {
+mutation.policy.wanFirewall.discardPolicyRevision								id
+mutation.policy.wanFirewall.discardPolicyRevision								name
+mutation.policy.wanFirewall.discardPolicyRevision							}
+mutation.policy.wanFirewall.discardPolicyRevision							user {
+mutation.policy.wanFirewall.discardPolicyRevision								id
+mutation.policy.wanFirewall.discardPolicyRevision								name
+mutation.policy.wanFirewall.discardPolicyRevision							}
+mutation.policy.wanFirewall.discardPolicyRevision							usersGroup {
+mutation.policy.wanFirewall.discardPolicyRevision								id
+mutation.policy.wanFirewall.discardPolicyRevision								name
+mutation.policy.wanFirewall.discardPolicyRevision							}
+mutation.policy.wanFirewall.discardPolicyRevision							group {
+mutation.policy.wanFirewall.discardPolicyRevision								id
+mutation.policy.wanFirewall.discardPolicyRevision								name
+mutation.policy.wanFirewall.discardPolicyRevision							}
+mutation.policy.wanFirewall.discardPolicyRevision							systemGroup {
+mutation.policy.wanFirewall.discardPolicyRevision								id
+mutation.policy.wanFirewall.discardPolicyRevision								name
+mutation.policy.wanFirewall.discardPolicyRevision							}
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision						deviceOS
+mutation.policy.wanFirewall.discardPolicyRevision						destination {
+mutation.policy.wanFirewall.discardPolicyRevision							host {
+mutation.policy.wanFirewall.discardPolicyRevision								id
+mutation.policy.wanFirewall.discardPolicyRevision								name
+mutation.policy.wanFirewall.discardPolicyRevision							}
+mutation.policy.wanFirewall.discardPolicyRevision							site {
+mutation.policy.wanFirewall.discardPolicyRevision								id
+mutation.policy.wanFirewall.discardPolicyRevision								name
+mutation.policy.wanFirewall.discardPolicyRevision							}
+mutation.policy.wanFirewall.discardPolicyRevision							subnet
+mutation.policy.wanFirewall.discardPolicyRevision							ip
+mutation.policy.wanFirewall.discardPolicyRevision							ipRange {
+mutation.policy.wanFirewall.discardPolicyRevision								from
+mutation.policy.wanFirewall.discardPolicyRevision								to
+mutation.policy.wanFirewall.discardPolicyRevision							}
+mutation.policy.wanFirewall.discardPolicyRevision							globalIpRange {
+mutation.policy.wanFirewall.discardPolicyRevision								id
+mutation.policy.wanFirewall.discardPolicyRevision								name
+mutation.policy.wanFirewall.discardPolicyRevision							}
+mutation.policy.wanFirewall.discardPolicyRevision							networkInterface {
+mutation.policy.wanFirewall.discardPolicyRevision								id
+mutation.policy.wanFirewall.discardPolicyRevision								name
+mutation.policy.wanFirewall.discardPolicyRevision							}
+mutation.policy.wanFirewall.discardPolicyRevision							siteNetworkSubnet {
+mutation.policy.wanFirewall.discardPolicyRevision								id
+mutation.policy.wanFirewall.discardPolicyRevision								name
+mutation.policy.wanFirewall.discardPolicyRevision							}
+mutation.policy.wanFirewall.discardPolicyRevision							floatingSubnet {
+mutation.policy.wanFirewall.discardPolicyRevision								id
+mutation.policy.wanFirewall.discardPolicyRevision								name
+mutation.policy.wanFirewall.discardPolicyRevision							}
+mutation.policy.wanFirewall.discardPolicyRevision							user {
+mutation.policy.wanFirewall.discardPolicyRevision								id
+mutation.policy.wanFirewall.discardPolicyRevision								name
+mutation.policy.wanFirewall.discardPolicyRevision							}
+mutation.policy.wanFirewall.discardPolicyRevision							usersGroup {
+mutation.policy.wanFirewall.discardPolicyRevision								id
+mutation.policy.wanFirewall.discardPolicyRevision								name
+mutation.policy.wanFirewall.discardPolicyRevision							}
+mutation.policy.wanFirewall.discardPolicyRevision							group {
+mutation.policy.wanFirewall.discardPolicyRevision								id
+mutation.policy.wanFirewall.discardPolicyRevision								name
+mutation.policy.wanFirewall.discardPolicyRevision							}
+mutation.policy.wanFirewall.discardPolicyRevision							systemGroup {
+mutation.policy.wanFirewall.discardPolicyRevision								id
+mutation.policy.wanFirewall.discardPolicyRevision								name
+mutation.policy.wanFirewall.discardPolicyRevision							}
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision						country {
+mutation.policy.wanFirewall.discardPolicyRevision							id
+mutation.policy.wanFirewall.discardPolicyRevision							name
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision						device {
+mutation.policy.wanFirewall.discardPolicyRevision							id
+mutation.policy.wanFirewall.discardPolicyRevision							name
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision						deviceAttributes {
+mutation.policy.wanFirewall.discardPolicyRevision							category
+mutation.policy.wanFirewall.discardPolicyRevision							type
+mutation.policy.wanFirewall.discardPolicyRevision							model
+mutation.policy.wanFirewall.discardPolicyRevision							manufacturer
+mutation.policy.wanFirewall.discardPolicyRevision							os
+mutation.policy.wanFirewall.discardPolicyRevision							osVersion
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision						application {
+mutation.policy.wanFirewall.discardPolicyRevision							application {
+mutation.policy.wanFirewall.discardPolicyRevision								id
+mutation.policy.wanFirewall.discardPolicyRevision								name
+mutation.policy.wanFirewall.discardPolicyRevision							}
+mutation.policy.wanFirewall.discardPolicyRevision							appCategory {
+mutation.policy.wanFirewall.discardPolicyRevision								id
+mutation.policy.wanFirewall.discardPolicyRevision								name
+mutation.policy.wanFirewall.discardPolicyRevision							}
+mutation.policy.wanFirewall.discardPolicyRevision							customApp {
+mutation.policy.wanFirewall.discardPolicyRevision								id
+mutation.policy.wanFirewall.discardPolicyRevision								name
+mutation.policy.wanFirewall.discardPolicyRevision							}
+mutation.policy.wanFirewall.discardPolicyRevision							customCategory {
+mutation.policy.wanFirewall.discardPolicyRevision								id
+mutation.policy.wanFirewall.discardPolicyRevision								name
+mutation.policy.wanFirewall.discardPolicyRevision							}
+mutation.policy.wanFirewall.discardPolicyRevision							sanctionedAppsCategory {
+mutation.policy.wanFirewall.discardPolicyRevision								id
+mutation.policy.wanFirewall.discardPolicyRevision								name
+mutation.policy.wanFirewall.discardPolicyRevision							}
+mutation.policy.wanFirewall.discardPolicyRevision							domain
+mutation.policy.wanFirewall.discardPolicyRevision							fqdn
+mutation.policy.wanFirewall.discardPolicyRevision							ip
+mutation.policy.wanFirewall.discardPolicyRevision							subnet
+mutation.policy.wanFirewall.discardPolicyRevision							ipRange {
+mutation.policy.wanFirewall.discardPolicyRevision								from
+mutation.policy.wanFirewall.discardPolicyRevision								to
+mutation.policy.wanFirewall.discardPolicyRevision							}
+mutation.policy.wanFirewall.discardPolicyRevision							globalIpRange {
+mutation.policy.wanFirewall.discardPolicyRevision								id
+mutation.policy.wanFirewall.discardPolicyRevision								name
+mutation.policy.wanFirewall.discardPolicyRevision							}
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision						service {
+mutation.policy.wanFirewall.discardPolicyRevision							standard {
+mutation.policy.wanFirewall.discardPolicyRevision								id
+mutation.policy.wanFirewall.discardPolicyRevision								name
+mutation.policy.wanFirewall.discardPolicyRevision							}
+mutation.policy.wanFirewall.discardPolicyRevision							custom {
+mutation.policy.wanFirewall.discardPolicyRevision								port
+mutation.policy.wanFirewall.discardPolicyRevision								portRange {
+mutation.policy.wanFirewall.discardPolicyRevision									from
+mutation.policy.wanFirewall.discardPolicyRevision									to
+mutation.policy.wanFirewall.discardPolicyRevision								}
+mutation.policy.wanFirewall.discardPolicyRevision								protocol
+mutation.policy.wanFirewall.discardPolicyRevision							}
+mutation.policy.wanFirewall.discardPolicyRevision						}
+mutation.policy.wanFirewall.discardPolicyRevision						connectionOrigin
+mutation.policy.wanFirewall.discardPolicyRevision						direction
+mutation.policy.wanFirewall.discardPolicyRevision					}
+mutation.policy.wanFirewall.discardPolicyRevision				}
+mutation.policy.wanFirewall.discardPolicyRevision				properties
+mutation.policy.wanFirewall.discardPolicyRevision			}
+mutation.policy.wanFirewall.discardPolicyRevision			sections {
+mutation.policy.wanFirewall.discardPolicyRevision				audit {
+mutation.policy.wanFirewall.discardPolicyRevision					updatedTime
+mutation.policy.wanFirewall.discardPolicyRevision					updatedBy
+mutation.policy.wanFirewall.discardPolicyRevision				}
+mutation.policy.wanFirewall.discardPolicyRevision				section {
+mutation.policy.wanFirewall.discardPolicyRevision					id
+mutation.policy.wanFirewall.discardPolicyRevision					name
+mutation.policy.wanFirewall.discardPolicyRevision				}
+mutation.policy.wanFirewall.discardPolicyRevision				properties
+mutation.policy.wanFirewall.discardPolicyRevision			}
+mutation.policy.wanFirewall.discardPolicyRevision			audit {
+mutation.policy.wanFirewall.discardPolicyRevision				publishedTime
+mutation.policy.wanFirewall.discardPolicyRevision				publishedBy
+mutation.policy.wanFirewall.discardPolicyRevision			}
+mutation.policy.wanFirewall.discardPolicyRevision			revision {
+mutation.policy.wanFirewall.discardPolicyRevision				id
+mutation.policy.wanFirewall.discardPolicyRevision				name
+mutation.policy.wanFirewall.discardPolicyRevision				description
+mutation.policy.wanFirewall.discardPolicyRevision				changes
+mutation.policy.wanFirewall.discardPolicyRevision				createdTime
+mutation.policy.wanFirewall.discardPolicyRevision				updatedTime
+mutation.policy.wanFirewall.discardPolicyRevision			}
+mutation.policy.wanFirewall.discardPolicyRevision		}
+mutation.policy.wanFirewall.discardPolicyRevision		status
+mutation.policy.wanFirewall.discardPolicyRevision		errors {
+mutation.policy.wanFirewall.discardPolicyRevision			errorMessage
+mutation.policy.wanFirewall.discardPolicyRevision			errorCode
+mutation.policy.wanFirewall.discardPolicyRevision		}
+mutation.policy.wanFirewall.discardPolicyRevision	}
+mutation.policy.wanFirewall.discardPolicyRevision}
 	}	
 }

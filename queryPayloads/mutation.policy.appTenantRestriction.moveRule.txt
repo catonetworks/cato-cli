@@ -1,113 +1,118 @@
-mutation policyAppTenantRestrictionMoveRule ( $policyMoveRuleInput:PolicyMoveRuleInput! $appTenantRestrictionPolicyMutationInput:AppTenantRestrictionPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		appTenantRestriction ( input:$appTenantRestrictionPolicyMutationInput  )  {
-			moveRuleAppTenantRestrictionPolicyMutations: moveRule ( input:$policyMoveRuleInput   ) {
-				rule  {
-					auditAppTenantRestrictionRulePayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					ruleAppTenantRestrictionRulePayload: rule {
-						id 
-						name 
-						description 
-						index 
-						section  {
-							id
-							name
-						}
-
-						enabled 
-						application  {
-							id
-							name
-						}
-
-						headers  {
-							name
-							value
-						}
-
-						source  {
-							ip
-							hostAppTenantRestrictionSource: host {
-								id 
-								name 
-							}
-							siteAppTenantRestrictionSource: site {
-								id 
-								name 
-							}
-							subnet
-							ipRangeAppTenantRestrictionSource: ipRange {
-								from 
-								to 
-							}
-							globalIpRangeAppTenantRestrictionSource: globalIpRange {
-								id 
-								name 
-							}
-							networkInterfaceAppTenantRestrictionSource: networkInterface {
-								id 
-								name 
-							}
-							siteNetworkSubnetAppTenantRestrictionSource: siteNetworkSubnet {
-								id 
-								name 
-							}
-							floatingSubnetAppTenantRestrictionSource: floatingSubnet {
-								id 
-								name 
-							}
-							userAppTenantRestrictionSource: user {
-								id 
-								name 
-							}
-							usersGroupAppTenantRestrictionSource: usersGroup {
-								id 
-								name 
-							}
-							groupAppTenantRestrictionSource: group {
-								id 
-								name 
-							}
-							systemGroupAppTenantRestrictionSource: systemGroup {
-								id 
-								name 
-							}
-							countryAppTenantRestrictionSource: country {
-								id 
-								name 
-							}
-						}
-
-						schedule  {
-							activeOnPolicySchedule: activeOn
-							customTimeframePolicySchedule: customTimeframe {
-								from 
-								to 
-							}
-							customRecurringPolicySchedule: customRecurring {
-								from 
-								to 
-								days 
-							}
-						}
-
-						action 
-						severity 
-					}
-					propertiesAppTenantRestrictionRulePayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyAppTenantRestrictionMoveRule ( $appTenantRestrictionPolicyMutationInput:AppTenantRestrictionPolicyMutationInput $policyMoveRuleInput:PolicyMoveRuleInput!) {
+	policy ( ) {
+mutation.policy.appTenantRestriction.moveRuleappTenantRestriction ( input:$appTenantRestrictionPolicyMutationInput  )  {
+mutation.policy.appTenantRestriction.moveRule	moveRule ( input:$policyMoveRuleInput   ) {
+mutation.policy.appTenantRestriction.moveRule		rule {
+mutation.policy.appTenantRestriction.moveRule			audit {
+mutation.policy.appTenantRestriction.moveRule				updatedTime
+mutation.policy.appTenantRestriction.moveRule				updatedBy
+mutation.policy.appTenantRestriction.moveRule			}
+mutation.policy.appTenantRestriction.moveRule			rule {
+mutation.policy.appTenantRestriction.moveRule				id
+mutation.policy.appTenantRestriction.moveRule				name
+mutation.policy.appTenantRestriction.moveRule				description
+mutation.policy.appTenantRestriction.moveRule				index
+mutation.policy.appTenantRestriction.moveRule				section {
+mutation.policy.appTenantRestriction.moveRule					id
+mutation.policy.appTenantRestriction.moveRule					name
+mutation.policy.appTenantRestriction.moveRule				}
+mutation.policy.appTenantRestriction.moveRule				enabled
+mutation.policy.appTenantRestriction.moveRule				application {
+mutation.policy.appTenantRestriction.moveRule					id
+mutation.policy.appTenantRestriction.moveRule					name
+mutation.policy.appTenantRestriction.moveRule				}
+mutation.policy.appTenantRestriction.moveRule				headers {
+mutation.policy.appTenantRestriction.moveRule					name
+mutation.policy.appTenantRestriction.moveRule					value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.appTenantRestriction.moveRule				}
+mutation.policy.appTenantRestriction.moveRule				source {
+mutation.policy.appTenantRestriction.moveRule					ip
+mutation.policy.appTenantRestriction.moveRule					host {
+mutation.policy.appTenantRestriction.moveRule						id
+mutation.policy.appTenantRestriction.moveRule						name
+mutation.policy.appTenantRestriction.moveRule					}
+mutation.policy.appTenantRestriction.moveRule					site {
+mutation.policy.appTenantRestriction.moveRule						id
+mutation.policy.appTenantRestriction.moveRule						name
+mutation.policy.appTenantRestriction.moveRule					}
+mutation.policy.appTenantRestriction.moveRule					subnet
+mutation.policy.appTenantRestriction.moveRule					ipRange {
+mutation.policy.appTenantRestriction.moveRule						from
+mutation.policy.appTenantRestriction.moveRule						to
+mutation.policy.appTenantRestriction.moveRule					}
+mutation.policy.appTenantRestriction.moveRule					globalIpRange {
+mutation.policy.appTenantRestriction.moveRule						id
+mutation.policy.appTenantRestriction.moveRule						name
+mutation.policy.appTenantRestriction.moveRule					}
+mutation.policy.appTenantRestriction.moveRule					networkInterface {
+mutation.policy.appTenantRestriction.moveRule						id
+mutation.policy.appTenantRestriction.moveRule						name
+mutation.policy.appTenantRestriction.moveRule					}
+mutation.policy.appTenantRestriction.moveRule					siteNetworkSubnet {
+mutation.policy.appTenantRestriction.moveRule						id
+mutation.policy.appTenantRestriction.moveRule						name
+mutation.policy.appTenantRestriction.moveRule					}
+mutation.policy.appTenantRestriction.moveRule					floatingSubnet {
+mutation.policy.appTenantRestriction.moveRule						id
+mutation.policy.appTenantRestriction.moveRule						name
+mutation.policy.appTenantRestriction.moveRule					}
+mutation.policy.appTenantRestriction.moveRule					user {
+mutation.policy.appTenantRestriction.moveRule						id
+mutation.policy.appTenantRestriction.moveRule						name
+mutation.policy.appTenantRestriction.moveRule					}
+mutation.policy.appTenantRestriction.moveRule					usersGroup {
+mutation.policy.appTenantRestriction.moveRule						id
+mutation.policy.appTenantRestriction.moveRule						name
+mutation.policy.appTenantRestriction.moveRule					}
+mutation.policy.appTenantRestriction.moveRule					group {
+mutation.policy.appTenantRestriction.moveRule						id
+mutation.policy.appTenantRestriction.moveRule						name
+mutation.policy.appTenantRestriction.moveRule					}
+mutation.policy.appTenantRestriction.moveRule					systemGroup {
+mutation.policy.appTenantRestriction.moveRule						id
+mutation.policy.appTenantRestriction.moveRule						name
+mutation.policy.appTenantRestriction.moveRule					}
+mutation.policy.appTenantRestriction.moveRule					country {
+mutation.policy.appTenantRestriction.moveRule						id
+mutation.policy.appTenantRestriction.moveRule						name
+mutation.policy.appTenantRestriction.moveRule					}
+mutation.policy.appTenantRestriction.moveRule				}
+mutation.policy.appTenantRestriction.moveRule				schedule {
+mutation.policy.appTenantRestriction.moveRule					activeOn
+mutation.policy.appTenantRestriction.moveRule					customTimeframe {
+mutation.policy.appTenantRestriction.moveRule						from
+mutation.policy.appTenantRestriction.moveRule						to
+mutation.policy.appTenantRestriction.moveRule					}
+mutation.policy.appTenantRestriction.moveRule					customRecurring {
+mutation.policy.appTenantRestriction.moveRule						from
+mutation.policy.appTenantRestriction.moveRule						to
+mutation.policy.appTenantRestriction.moveRule						days
+mutation.policy.appTenantRestriction.moveRule					}
+mutation.policy.appTenantRestriction.moveRule				}
+mutation.policy.appTenantRestriction.moveRule				action
+mutation.policy.appTenantRestriction.moveRule				severity
+mutation.policy.appTenantRestriction.moveRule			}
+mutation.policy.appTenantRestriction.moveRule			properties
+mutation.policy.appTenantRestriction.moveRule		}
+mutation.policy.appTenantRestriction.moveRule		status
+mutation.policy.appTenantRestriction.moveRule		errors {
+mutation.policy.appTenantRestriction.moveRule			errorMessage
+mutation.policy.appTenantRestriction.moveRule			errorCode
+mutation.policy.appTenantRestriction.moveRule		}
+mutation.policy.appTenantRestriction.moveRule	}
+mutation.policy.appTenantRestriction.moveRule}
 	}	
 }

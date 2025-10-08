@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.remotePortFwd.discardPolicyRevision:
 
-`catocli mutation policy remotePortFwd discardPolicyRevision -h`
+```bash
+catocli mutation policy remotePortFwd discardPolicyRevision -h
 
-`catocli mutation policy remotePortFwd discardPolicyRevision <json>`
+catocli mutation policy remotePortFwd discardPolicyRevision <json>
 
-`catocli mutation policy remotePortFwd discardPolicyRevision "$(cat < mutation.policy.remotePortFwd.discardPolicyRevision.json)"`
+catocli mutation policy remotePortFwd discardPolicyRevision "$(cat < mutation.policy.remotePortFwd.discardPolicyRevision.json)"
 
-`catocli mutation policy remotePortFwd discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"remotePortFwdPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
+catocli mutation policy remotePortFwd discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"remotePortFwdPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-`catocli mutation policy remotePortFwd discardPolicyRevision -p '{
+catocli mutation policy remotePortFwd discardPolicyRevision -p '{
     "policyDiscardRevisionInput": {
         "id": "id"
     },
@@ -22,7 +23,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.remotePortFwd.discardPolicyRevision ####
 

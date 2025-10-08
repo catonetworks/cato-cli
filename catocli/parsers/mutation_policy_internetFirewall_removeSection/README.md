@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.internetFirewall.removeSection:
 
-`catocli mutation policy internetFirewall removeSection -h`
+```bash
+catocli mutation policy internetFirewall removeSection -h
 
-`catocli mutation policy internetFirewall removeSection <json>`
+catocli mutation policy internetFirewall removeSection <json>
 
-`catocli mutation policy internetFirewall removeSection "$(cat < mutation.policy.internetFirewall.removeSection.json)"`
+catocli mutation policy internetFirewall removeSection "$(cat < mutation.policy.internetFirewall.removeSection.json)"
 
-`catocli mutation policy internetFirewall removeSection '{"internetFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyRemoveSectionInput":{"id":"id"}}'`
+catocli mutation policy internetFirewall removeSection '{"internetFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyRemoveSectionInput":{"id":"id"}}'
 
-`catocli mutation policy internetFirewall removeSection -p '{
+catocli mutation policy internetFirewall removeSection -p '{
     "internetFirewallPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"
@@ -22,7 +23,7 @@
         "id": "id"
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.internetFirewall.removeSection ####
 

@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.applicationControl.createPolicyRevision:
 
-`catocli mutation policy applicationControl createPolicyRevision -h`
+```bash
+catocli mutation policy applicationControl createPolicyRevision -h
 
-`catocli mutation policy applicationControl createPolicyRevision <json>`
+catocli mutation policy applicationControl createPolicyRevision <json>
 
-`catocli mutation policy applicationControl createPolicyRevision "$(cat < mutation.policy.applicationControl.createPolicyRevision.json)"`
+catocli mutation policy applicationControl createPolicyRevision "$(cat < mutation.policy.applicationControl.createPolicyRevision.json)"
 
-`catocli mutation policy applicationControl createPolicyRevision '{"applicationControlPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyCreateRevisionInput":{"description":"string","name":"string"}}'`
+catocli mutation policy applicationControl createPolicyRevision '{"applicationControlPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyCreateRevisionInput":{"description":"string","name":"string"}}'
 
-`catocli mutation policy applicationControl createPolicyRevision -p '{
+catocli mutation policy applicationControl createPolicyRevision -p '{
     "applicationControlPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"
@@ -23,7 +24,7 @@
         "name": "string"
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.applicationControl.createPolicyRevision ####
 

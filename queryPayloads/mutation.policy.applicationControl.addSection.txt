@@ -1,27 +1,24 @@
-mutation policyApplicationControlAddSection ( $policyAddSectionInput:PolicyAddSectionInput! $applicationControlPolicyMutationInput:ApplicationControlPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		applicationControl ( input:$applicationControlPolicyMutationInput  )  {
-			addSectionApplicationControlPolicyMutations: addSection ( input:$policyAddSectionInput   ) {
-				section  {
-					auditPolicySectionPayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					sectionPolicySectionPayload: section {
-						id 
-						name 
-					}
-					propertiesPolicySectionPayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyApplicationControlAddSection ( $applicationControlPolicyMutationInput:ApplicationControlPolicyMutationInput $policyAddSectionInput:PolicyAddSectionInput!) {
+	policy ( ) {
+mutation.policy.applicationControl.addSectionapplicationControl ( input:$applicationControlPolicyMutationInput  )  {
+mutation.policy.applicationControl.addSection	addSection ( input:$policyAddSectionInput   ) {
+mutation.policy.applicationControl.addSection		section {
+mutation.policy.applicationControl.addSection			audit {
+mutation.policy.applicationControl.addSection				updatedTime
+mutation.policy.applicationControl.addSection				updatedBy
+mutation.policy.applicationControl.addSection			}
+mutation.policy.applicationControl.addSection			section {
+mutation.policy.applicationControl.addSection				id
+mutation.policy.applicationControl.addSection				name
+mutation.policy.applicationControl.addSection			}
+mutation.policy.applicationControl.addSection			properties
+mutation.policy.applicationControl.addSection		}
+mutation.policy.applicationControl.addSection		status
+mutation.policy.applicationControl.addSection		errors {
+mutation.policy.applicationControl.addSection			errorMessage
+mutation.policy.applicationControl.addSection			errorCode
+mutation.policy.applicationControl.addSection		}
+mutation.policy.applicationControl.addSection	}
+mutation.policy.applicationControl.addSection}
 	}	
 }

@@ -1,287 +1,382 @@
-mutation licensingUpdateCommercialLicense ( $updateCommercialLicenseInput:UpdateCommercialLicenseInput! $accountId:ID! ) {
-	licensing ( accountId:$accountId ) {
-		updateCommercialLicense ( input:$updateCommercialLicenseInput  )  {
-			licenseUpdateCommercialLicensePayload: license {
-				id 
-				description 
-				plan 
-				sku 
-				status 
-				startDate 
-				expirationDate 
-				lastUpdated 
-				... on DataLakeLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-					dpaVersion 
-					retentionPeriod 
-					total 
-				}
-				... on PublicIpsLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-					total 
-				}
-				... on SiteLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-					siteLicenseGroup 
-					regionality 
-					siteLicenseType 
-					total 
-					site  {
-						id
-						name
-					}
-
-				}
-				... on PooledBandwidthLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-					siteLicenseGroup 
-					siteLicenseType 
-					total 
-					allocatedBandwidth 
-					sites  {
-						sitePooledBandwidthLicenseSite: site {
-							id 
-							name 
-						}
-						allocatedBandwidth
-					}
-
-					accounts  {
-						accountPartnerPooledBandwidthLicenseAccount: account {
-							id 
-							name 
-						}
-						allocatedBandwidth
-					}
-
-				}
-				... on ZtnaUsersLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-					ztnaUsersLicenseGroup 
-					total 
-				}
-				... on EndpointProtectionLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-					total 
-				}
-				... on IlmmLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-					total 
-				}
-				... on IpsLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-				}
-				... on MalwareProtectionLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-				}
-				... on NextGenMalwareProtectionLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-				}
-				... on ThreatPreventionLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-				}
-				... on NOCaaSLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-				}
-				... on CasbLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-				}
-				... on DlpLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-				}
-				... on MdrLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-				}
-				... on ManagedXdrLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-				}
-				... on RbiLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-				}
-				... on SaasSecurityApiLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-					total 
-				}
-				... on XdrProLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-					total 
-				}
-				... on DemLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-					total 
-				}
-				... on IotOtLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-				}
-				... on AtpLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-				}
-				... on XOpsLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-				}
+mutation licensingUpdateCommercialLicense ( $updateCommercialLicenseInput:UpdateCommercialLicenseInput!) {
+	licensing ( ) {
+mutation.licensing.updateCommercialLicenseupdateCommercialLicense ( input:$updateCommercialLicenseInput  )  {
+mutation.licensing.updateCommercialLicense	license {
+mutation.licensing.updateCommercialLicense		id
+mutation.licensing.updateCommercialLicense		description
+mutation.licensing.updateCommercialLicense		plan
+mutation.licensing.updateCommercialLicense		sku
+mutation.licensing.updateCommercialLicense		status
+mutation.licensing.updateCommercialLicense		startDate
+mutation.licensing.updateCommercialLicense		expirationDate
+mutation.licensing.updateCommercialLicense		lastUpdated
+mutation.licensing.updateCommercialLicense		... on DataLakeLicense {
+mutation.licensing.updateCommercialLicense			id
+mutation.licensing.updateCommercialLicense			description
+mutation.licensing.updateCommercialLicense			plan
+mutation.licensing.updateCommercialLicense			sku
+mutation.licensing.updateCommercialLicense			status
+mutation.licensing.updateCommercialLicense			startDate
+mutation.licensing.updateCommercialLicense			expirationDate
+mutation.licensing.updateCommercialLicense			lastUpdated
+mutation.licensing.updateCommercialLicense			dpaVersion
+mutation.licensing.updateCommercialLicense			retentionPeriod
+mutation.licensing.updateCommercialLicense			total
+mutation.licensing.updateCommercialLicense		}
+mutation.licensing.updateCommercialLicense		... on PublicIpsLicense {
+mutation.licensing.updateCommercialLicense			id
+mutation.licensing.updateCommercialLicense			description
+mutation.licensing.updateCommercialLicense			plan
+mutation.licensing.updateCommercialLicense			sku
+mutation.licensing.updateCommercialLicense			status
+mutation.licensing.updateCommercialLicense			startDate
+mutation.licensing.updateCommercialLicense			expirationDate
+mutation.licensing.updateCommercialLicense			lastUpdated
+mutation.licensing.updateCommercialLicense			total
+mutation.licensing.updateCommercialLicense		}
+mutation.licensing.updateCommercialLicense		... on SiteLicense {
+mutation.licensing.updateCommercialLicense			id
+mutation.licensing.updateCommercialLicense			description
+mutation.licensing.updateCommercialLicense			plan
+mutation.licensing.updateCommercialLicense			sku
+mutation.licensing.updateCommercialLicense			status
+mutation.licensing.updateCommercialLicense			startDate
+mutation.licensing.updateCommercialLicense			expirationDate
+mutation.licensing.updateCommercialLicense			lastUpdated
+mutation.licensing.updateCommercialLicense			siteLicenseGroup {
+	id
+	name
+	description
+	membersCount
+	audit {
+		updatedTime
+		updatedBy {
+			__typename
+			... on AdminRef {
+				id
+				name
+			}
+			... on ApiKeyRef {
+				id
+				name
 			}
 		}
-
+	}
+	members {
+		items {
+			id
+			name
+			type
+		}
+		paging {
+			total
+		}
+	}
+	membersCountPerType {
+		type
+		membersCount
+	}
+}
+mutation.licensing.updateCommercialLicense			regionality
+mutation.licensing.updateCommercialLicense			siteLicenseType
+mutation.licensing.updateCommercialLicense			total
+mutation.licensing.updateCommercialLicense			site {
+mutation.licensing.updateCommercialLicense				id
+mutation.licensing.updateCommercialLicense				name
+mutation.licensing.updateCommercialLicense			}
+mutation.licensing.updateCommercialLicense		}
+mutation.licensing.updateCommercialLicense		... on PooledBandwidthLicense {
+mutation.licensing.updateCommercialLicense			id
+mutation.licensing.updateCommercialLicense			description
+mutation.licensing.updateCommercialLicense			plan
+mutation.licensing.updateCommercialLicense			sku
+mutation.licensing.updateCommercialLicense			status
+mutation.licensing.updateCommercialLicense			startDate
+mutation.licensing.updateCommercialLicense			expirationDate
+mutation.licensing.updateCommercialLicense			lastUpdated
+mutation.licensing.updateCommercialLicense			siteLicenseGroup {
+	id
+	name
+	description
+	membersCount
+	audit {
+		updatedTime
+		updatedBy {
+			__typename
+			... on AdminRef {
+				id
+				name
+			}
+			... on ApiKeyRef {
+				id
+				name
+			}
+		}
+	}
+	members {
+		items {
+			id
+			name
+			type
+		}
+		paging {
+			total
+		}
+	}
+	membersCountPerType {
+		type
+		membersCount
+	}
+}
+mutation.licensing.updateCommercialLicense			siteLicenseType
+mutation.licensing.updateCommercialLicense			total
+mutation.licensing.updateCommercialLicense			allocatedBandwidth
+mutation.licensing.updateCommercialLicense			sites {
+mutation.licensing.updateCommercialLicense				site {
+mutation.licensing.updateCommercialLicense					id
+mutation.licensing.updateCommercialLicense					name
+mutation.licensing.updateCommercialLicense				}
+mutation.licensing.updateCommercialLicense				allocatedBandwidth
+mutation.licensing.updateCommercialLicense			}
+mutation.licensing.updateCommercialLicense			accounts {
+mutation.licensing.updateCommercialLicense				account {
+mutation.licensing.updateCommercialLicense					id
+mutation.licensing.updateCommercialLicense					name
+mutation.licensing.updateCommercialLicense				}
+mutation.licensing.updateCommercialLicense				allocatedBandwidth
+mutation.licensing.updateCommercialLicense			}
+mutation.licensing.updateCommercialLicense		}
+mutation.licensing.updateCommercialLicense		... on ZtnaUsersLicense {
+mutation.licensing.updateCommercialLicense			id
+mutation.licensing.updateCommercialLicense			description
+mutation.licensing.updateCommercialLicense			plan
+mutation.licensing.updateCommercialLicense			sku
+mutation.licensing.updateCommercialLicense			status
+mutation.licensing.updateCommercialLicense			startDate
+mutation.licensing.updateCommercialLicense			expirationDate
+mutation.licensing.updateCommercialLicense			lastUpdated
+mutation.licensing.updateCommercialLicense			ztnaUsersLicenseGroup {
+	id
+	name
+	description
+	membersCount
+	audit {
+		updatedTime
+		updatedBy {
+			__typename
+			... on AdminRef {
+				id
+				name
+			}
+			... on ApiKeyRef {
+				id
+				name
+			}
+		}
+	}
+	members {
+		items {
+			id
+			name
+			type
+		}
+		paging {
+			total
+		}
+	}
+	membersCountPerType {
+		type
+		membersCount
+	}
+}
+mutation.licensing.updateCommercialLicense			total
+mutation.licensing.updateCommercialLicense		}
+mutation.licensing.updateCommercialLicense		... on EndpointProtectionLicense {
+mutation.licensing.updateCommercialLicense			id
+mutation.licensing.updateCommercialLicense			description
+mutation.licensing.updateCommercialLicense			plan
+mutation.licensing.updateCommercialLicense			sku
+mutation.licensing.updateCommercialLicense			status
+mutation.licensing.updateCommercialLicense			startDate
+mutation.licensing.updateCommercialLicense			expirationDate
+mutation.licensing.updateCommercialLicense			lastUpdated
+mutation.licensing.updateCommercialLicense			total
+mutation.licensing.updateCommercialLicense		}
+mutation.licensing.updateCommercialLicense		... on IlmmLicense {
+mutation.licensing.updateCommercialLicense			id
+mutation.licensing.updateCommercialLicense			description
+mutation.licensing.updateCommercialLicense			plan
+mutation.licensing.updateCommercialLicense			sku
+mutation.licensing.updateCommercialLicense			status
+mutation.licensing.updateCommercialLicense			startDate
+mutation.licensing.updateCommercialLicense			expirationDate
+mutation.licensing.updateCommercialLicense			lastUpdated
+mutation.licensing.updateCommercialLicense			total
+mutation.licensing.updateCommercialLicense		}
+mutation.licensing.updateCommercialLicense		... on IpsLicense {
+mutation.licensing.updateCommercialLicense			id
+mutation.licensing.updateCommercialLicense			description
+mutation.licensing.updateCommercialLicense			plan
+mutation.licensing.updateCommercialLicense			sku
+mutation.licensing.updateCommercialLicense			status
+mutation.licensing.updateCommercialLicense			startDate
+mutation.licensing.updateCommercialLicense			expirationDate
+mutation.licensing.updateCommercialLicense			lastUpdated
+mutation.licensing.updateCommercialLicense		}
+mutation.licensing.updateCommercialLicense		... on MalwareProtectionLicense {
+mutation.licensing.updateCommercialLicense			id
+mutation.licensing.updateCommercialLicense			description
+mutation.licensing.updateCommercialLicense			plan
+mutation.licensing.updateCommercialLicense			sku
+mutation.licensing.updateCommercialLicense			status
+mutation.licensing.updateCommercialLicense			startDate
+mutation.licensing.updateCommercialLicense			expirationDate
+mutation.licensing.updateCommercialLicense			lastUpdated
+mutation.licensing.updateCommercialLicense		}
+mutation.licensing.updateCommercialLicense		... on NextGenMalwareProtectionLicense {
+mutation.licensing.updateCommercialLicense			id
+mutation.licensing.updateCommercialLicense			description
+mutation.licensing.updateCommercialLicense			plan
+mutation.licensing.updateCommercialLicense			sku
+mutation.licensing.updateCommercialLicense			status
+mutation.licensing.updateCommercialLicense			startDate
+mutation.licensing.updateCommercialLicense			expirationDate
+mutation.licensing.updateCommercialLicense			lastUpdated
+mutation.licensing.updateCommercialLicense		}
+mutation.licensing.updateCommercialLicense		... on ThreatPreventionLicense {
+mutation.licensing.updateCommercialLicense			id
+mutation.licensing.updateCommercialLicense			description
+mutation.licensing.updateCommercialLicense			plan
+mutation.licensing.updateCommercialLicense			sku
+mutation.licensing.updateCommercialLicense			status
+mutation.licensing.updateCommercialLicense			startDate
+mutation.licensing.updateCommercialLicense			expirationDate
+mutation.licensing.updateCommercialLicense			lastUpdated
+mutation.licensing.updateCommercialLicense		}
+mutation.licensing.updateCommercialLicense		... on NOCaaSLicense {
+mutation.licensing.updateCommercialLicense			id
+mutation.licensing.updateCommercialLicense			description
+mutation.licensing.updateCommercialLicense			plan
+mutation.licensing.updateCommercialLicense			sku
+mutation.licensing.updateCommercialLicense			status
+mutation.licensing.updateCommercialLicense			startDate
+mutation.licensing.updateCommercialLicense			expirationDate
+mutation.licensing.updateCommercialLicense			lastUpdated
+mutation.licensing.updateCommercialLicense		}
+mutation.licensing.updateCommercialLicense		... on CasbLicense {
+mutation.licensing.updateCommercialLicense			id
+mutation.licensing.updateCommercialLicense			description
+mutation.licensing.updateCommercialLicense			plan
+mutation.licensing.updateCommercialLicense			sku
+mutation.licensing.updateCommercialLicense			status
+mutation.licensing.updateCommercialLicense			startDate
+mutation.licensing.updateCommercialLicense			expirationDate
+mutation.licensing.updateCommercialLicense			lastUpdated
+mutation.licensing.updateCommercialLicense		}
+mutation.licensing.updateCommercialLicense		... on DlpLicense {
+mutation.licensing.updateCommercialLicense			id
+mutation.licensing.updateCommercialLicense			description
+mutation.licensing.updateCommercialLicense			plan
+mutation.licensing.updateCommercialLicense			sku
+mutation.licensing.updateCommercialLicense			status
+mutation.licensing.updateCommercialLicense			startDate
+mutation.licensing.updateCommercialLicense			expirationDate
+mutation.licensing.updateCommercialLicense			lastUpdated
+mutation.licensing.updateCommercialLicense		}
+mutation.licensing.updateCommercialLicense		... on MdrLicense {
+mutation.licensing.updateCommercialLicense			id
+mutation.licensing.updateCommercialLicense			description
+mutation.licensing.updateCommercialLicense			plan
+mutation.licensing.updateCommercialLicense			sku
+mutation.licensing.updateCommercialLicense			status
+mutation.licensing.updateCommercialLicense			startDate
+mutation.licensing.updateCommercialLicense			expirationDate
+mutation.licensing.updateCommercialLicense			lastUpdated
+mutation.licensing.updateCommercialLicense		}
+mutation.licensing.updateCommercialLicense		... on ManagedXdrLicense {
+mutation.licensing.updateCommercialLicense			id
+mutation.licensing.updateCommercialLicense			description
+mutation.licensing.updateCommercialLicense			plan
+mutation.licensing.updateCommercialLicense			sku
+mutation.licensing.updateCommercialLicense			status
+mutation.licensing.updateCommercialLicense			startDate
+mutation.licensing.updateCommercialLicense			expirationDate
+mutation.licensing.updateCommercialLicense			lastUpdated
+mutation.licensing.updateCommercialLicense		}
+mutation.licensing.updateCommercialLicense		... on RbiLicense {
+mutation.licensing.updateCommercialLicense			id
+mutation.licensing.updateCommercialLicense			description
+mutation.licensing.updateCommercialLicense			plan
+mutation.licensing.updateCommercialLicense			sku
+mutation.licensing.updateCommercialLicense			status
+mutation.licensing.updateCommercialLicense			startDate
+mutation.licensing.updateCommercialLicense			expirationDate
+mutation.licensing.updateCommercialLicense			lastUpdated
+mutation.licensing.updateCommercialLicense		}
+mutation.licensing.updateCommercialLicense		... on SaasSecurityApiLicense {
+mutation.licensing.updateCommercialLicense			id
+mutation.licensing.updateCommercialLicense			description
+mutation.licensing.updateCommercialLicense			plan
+mutation.licensing.updateCommercialLicense			sku
+mutation.licensing.updateCommercialLicense			status
+mutation.licensing.updateCommercialLicense			startDate
+mutation.licensing.updateCommercialLicense			expirationDate
+mutation.licensing.updateCommercialLicense			lastUpdated
+mutation.licensing.updateCommercialLicense			total
+mutation.licensing.updateCommercialLicense		}
+mutation.licensing.updateCommercialLicense		... on XdrProLicense {
+mutation.licensing.updateCommercialLicense			id
+mutation.licensing.updateCommercialLicense			description
+mutation.licensing.updateCommercialLicense			plan
+mutation.licensing.updateCommercialLicense			sku
+mutation.licensing.updateCommercialLicense			status
+mutation.licensing.updateCommercialLicense			startDate
+mutation.licensing.updateCommercialLicense			expirationDate
+mutation.licensing.updateCommercialLicense			lastUpdated
+mutation.licensing.updateCommercialLicense			total
+mutation.licensing.updateCommercialLicense		}
+mutation.licensing.updateCommercialLicense		... on DemLicense {
+mutation.licensing.updateCommercialLicense			id
+mutation.licensing.updateCommercialLicense			description
+mutation.licensing.updateCommercialLicense			plan
+mutation.licensing.updateCommercialLicense			sku
+mutation.licensing.updateCommercialLicense			status
+mutation.licensing.updateCommercialLicense			startDate
+mutation.licensing.updateCommercialLicense			expirationDate
+mutation.licensing.updateCommercialLicense			lastUpdated
+mutation.licensing.updateCommercialLicense			total
+mutation.licensing.updateCommercialLicense		}
+mutation.licensing.updateCommercialLicense		... on IotOtLicense {
+mutation.licensing.updateCommercialLicense			id
+mutation.licensing.updateCommercialLicense			description
+mutation.licensing.updateCommercialLicense			plan
+mutation.licensing.updateCommercialLicense			sku
+mutation.licensing.updateCommercialLicense			status
+mutation.licensing.updateCommercialLicense			startDate
+mutation.licensing.updateCommercialLicense			expirationDate
+mutation.licensing.updateCommercialLicense			lastUpdated
+mutation.licensing.updateCommercialLicense		}
+mutation.licensing.updateCommercialLicense		... on AtpLicense {
+mutation.licensing.updateCommercialLicense			id
+mutation.licensing.updateCommercialLicense			description
+mutation.licensing.updateCommercialLicense			plan
+mutation.licensing.updateCommercialLicense			sku
+mutation.licensing.updateCommercialLicense			status
+mutation.licensing.updateCommercialLicense			startDate
+mutation.licensing.updateCommercialLicense			expirationDate
+mutation.licensing.updateCommercialLicense			lastUpdated
+mutation.licensing.updateCommercialLicense		}
+mutation.licensing.updateCommercialLicense		... on XOpsLicense {
+mutation.licensing.updateCommercialLicense			id
+mutation.licensing.updateCommercialLicense			description
+mutation.licensing.updateCommercialLicense			plan
+mutation.licensing.updateCommercialLicense			sku
+mutation.licensing.updateCommercialLicense			status
+mutation.licensing.updateCommercialLicense			startDate
+mutation.licensing.updateCommercialLicense			expirationDate
+mutation.licensing.updateCommercialLicense			lastUpdated
+mutation.licensing.updateCommercialLicense		}
+mutation.licensing.updateCommercialLicense	}
+mutation.licensing.updateCommercialLicense}
 	}	
 }

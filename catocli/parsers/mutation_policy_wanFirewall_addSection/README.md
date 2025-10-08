@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.wanFirewall.addSection:
 
-`catocli mutation policy wanFirewall addSection -h`
+```bash
+catocli mutation policy wanFirewall addSection -h
 
-`catocli mutation policy wanFirewall addSection <json>`
+catocli mutation policy wanFirewall addSection <json>
 
-`catocli mutation policy wanFirewall addSection "$(cat < mutation.policy.wanFirewall.addSection.json)"`
+catocli mutation policy wanFirewall addSection "$(cat < mutation.policy.wanFirewall.addSection.json)"
 
-`catocli mutation policy wanFirewall addSection '{"policyAddSectionInput":{"policyAddSectionInfoInput":{"name":"string"},"policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}},"wanFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
+catocli mutation policy wanFirewall addSection '{"policyAddSectionInput":{"policyAddSectionInfoInput":{"name":"string"},"policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}},"wanFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-`catocli mutation policy wanFirewall addSection -p '{
+catocli mutation policy wanFirewall addSection -p '{
     "policyAddSectionInput": {
         "policyAddSectionInfoInput": {
             "name": "string"
@@ -28,7 +29,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.wanFirewall.addSection ####
 

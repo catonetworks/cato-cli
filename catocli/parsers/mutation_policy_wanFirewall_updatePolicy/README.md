@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.wanFirewall.updatePolicy:
 
-`catocli mutation policy wanFirewall updatePolicy -h`
+```bash
+catocli mutation policy wanFirewall updatePolicy -h
 
-`catocli mutation policy wanFirewall updatePolicy <json>`
+catocli mutation policy wanFirewall updatePolicy <json>
 
-`catocli mutation policy wanFirewall updatePolicy "$(cat < mutation.policy.wanFirewall.updatePolicy.json)"`
+catocli mutation policy wanFirewall updatePolicy "$(cat < mutation.policy.wanFirewall.updatePolicy.json)"
 
-`catocli mutation policy wanFirewall updatePolicy '{"wanFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"wanFirewallPolicyUpdateInput":{"state":"ENABLED"}}'`
+catocli mutation policy wanFirewall updatePolicy '{"wanFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"wanFirewallPolicyUpdateInput":{"state":"ENABLED"}}'
 
-`catocli mutation policy wanFirewall updatePolicy -p '{
+catocli mutation policy wanFirewall updatePolicy -p '{
     "wanFirewallPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"
@@ -22,7 +23,7 @@
         "state": "ENABLED"
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.wanFirewall.updatePolicy ####
 

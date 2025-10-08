@@ -1,27 +1,24 @@
-mutation policyRemotePortFwdMoveSection ( $policyMoveSectionInput:PolicyMoveSectionInput! $remotePortFwdPolicyMutationInput:RemotePortFwdPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		remotePortFwd ( input:$remotePortFwdPolicyMutationInput  )  {
-			moveSectionRemotePortFwdPolicyMutations: moveSection ( input:$policyMoveSectionInput   ) {
-				section  {
-					auditPolicySectionPayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					sectionPolicySectionPayload: section {
-						id 
-						name 
-					}
-					propertiesPolicySectionPayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyRemotePortFwdMoveSection ( $remotePortFwdPolicyMutationInput:RemotePortFwdPolicyMutationInput $policyMoveSectionInput:PolicyMoveSectionInput!) {
+	policy ( ) {
+mutation.policy.remotePortFwd.moveSectionremotePortFwd ( input:$remotePortFwdPolicyMutationInput  )  {
+mutation.policy.remotePortFwd.moveSection	moveSection ( input:$policyMoveSectionInput   ) {
+mutation.policy.remotePortFwd.moveSection		section {
+mutation.policy.remotePortFwd.moveSection			audit {
+mutation.policy.remotePortFwd.moveSection				updatedTime
+mutation.policy.remotePortFwd.moveSection				updatedBy
+mutation.policy.remotePortFwd.moveSection			}
+mutation.policy.remotePortFwd.moveSection			section {
+mutation.policy.remotePortFwd.moveSection				id
+mutation.policy.remotePortFwd.moveSection				name
+mutation.policy.remotePortFwd.moveSection			}
+mutation.policy.remotePortFwd.moveSection			properties
+mutation.policy.remotePortFwd.moveSection		}
+mutation.policy.remotePortFwd.moveSection		status
+mutation.policy.remotePortFwd.moveSection		errors {
+mutation.policy.remotePortFwd.moveSection			errorMessage
+mutation.policy.remotePortFwd.moveSection			errorCode
+mutation.policy.remotePortFwd.moveSection		}
+mutation.policy.remotePortFwd.moveSection	}
+mutation.policy.remotePortFwd.moveSection}
 	}	
 }

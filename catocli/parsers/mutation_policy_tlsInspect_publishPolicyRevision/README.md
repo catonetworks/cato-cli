@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.tlsInspect.publishPolicyRevision:
 
-`catocli mutation policy tlsInspect publishPolicyRevision -h`
+```bash
+catocli mutation policy tlsInspect publishPolicyRevision -h
 
-`catocli mutation policy tlsInspect publishPolicyRevision <json>`
+catocli mutation policy tlsInspect publishPolicyRevision <json>
 
-`catocli mutation policy tlsInspect publishPolicyRevision "$(cat < mutation.policy.tlsInspect.publishPolicyRevision.json)"`
+catocli mutation policy tlsInspect publishPolicyRevision "$(cat < mutation.policy.tlsInspect.publishPolicyRevision.json)"
 
-`catocli mutation policy tlsInspect publishPolicyRevision '{"policyPublishRevisionInput":{"description":"string","name":"string"},"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
+catocli mutation policy tlsInspect publishPolicyRevision '{"policyPublishRevisionInput":{"description":"string","name":"string"},"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-`catocli mutation policy tlsInspect publishPolicyRevision -p '{
+catocli mutation policy tlsInspect publishPolicyRevision -p '{
     "policyPublishRevisionInput": {
         "description": "string",
         "name": "string"
@@ -23,7 +24,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.tlsInspect.publishPolicyRevision ####
 

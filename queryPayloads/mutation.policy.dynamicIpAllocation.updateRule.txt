@@ -1,59 +1,52 @@
-mutation policyDynamicIpAllocationUpdateRule ( $dynamicIpAllocationUpdateRuleInput:DynamicIpAllocationUpdateRuleInput! $dynamicIpAllocationPolicyMutationInput:DynamicIpAllocationPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		dynamicIpAllocation ( input:$dynamicIpAllocationPolicyMutationInput  )  {
-			updateRuleDynamicIpAllocationPolicyMutations: updateRule ( input:$dynamicIpAllocationUpdateRuleInput   ) {
-				rule  {
-					auditDynamicIpAllocationRulePayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					ruleDynamicIpAllocationRulePayload: rule {
-						id 
-						name 
-						description 
-						index 
-						section  {
-							id
-							name
-						}
-
-						enabled 
-						source  {
-							userDynamicIpAllocationSource: user {
-								id 
-								name 
-							}
-							usersGroupDynamicIpAllocationSource: usersGroup {
-								id 
-								name 
-							}
-						}
-
-						platform 
-						country  {
-							id
-							name
-						}
-
-						range  {
-							globalIpRangeDynamicIpAllocationRange: globalIpRange {
-								id 
-								name 
-							}
-						}
-
-					}
-					propertiesDynamicIpAllocationRulePayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyDynamicIpAllocationUpdateRule ( $dynamicIpAllocationPolicyMutationInput:DynamicIpAllocationPolicyMutationInput $dynamicIpAllocationUpdateRuleInput:DynamicIpAllocationUpdateRuleInput!) {
+	policy ( ) {
+mutation.policy.dynamicIpAllocation.updateRuledynamicIpAllocation ( input:$dynamicIpAllocationPolicyMutationInput  )  {
+mutation.policy.dynamicIpAllocation.updateRule	updateRule ( input:$dynamicIpAllocationUpdateRuleInput   ) {
+mutation.policy.dynamicIpAllocation.updateRule		rule {
+mutation.policy.dynamicIpAllocation.updateRule			audit {
+mutation.policy.dynamicIpAllocation.updateRule				updatedTime
+mutation.policy.dynamicIpAllocation.updateRule				updatedBy
+mutation.policy.dynamicIpAllocation.updateRule			}
+mutation.policy.dynamicIpAllocation.updateRule			rule {
+mutation.policy.dynamicIpAllocation.updateRule				id
+mutation.policy.dynamicIpAllocation.updateRule				name
+mutation.policy.dynamicIpAllocation.updateRule				description
+mutation.policy.dynamicIpAllocation.updateRule				index
+mutation.policy.dynamicIpAllocation.updateRule				section {
+mutation.policy.dynamicIpAllocation.updateRule					id
+mutation.policy.dynamicIpAllocation.updateRule					name
+mutation.policy.dynamicIpAllocation.updateRule				}
+mutation.policy.dynamicIpAllocation.updateRule				enabled
+mutation.policy.dynamicIpAllocation.updateRule				source {
+mutation.policy.dynamicIpAllocation.updateRule					user {
+mutation.policy.dynamicIpAllocation.updateRule						id
+mutation.policy.dynamicIpAllocation.updateRule						name
+mutation.policy.dynamicIpAllocation.updateRule					}
+mutation.policy.dynamicIpAllocation.updateRule					usersGroup {
+mutation.policy.dynamicIpAllocation.updateRule						id
+mutation.policy.dynamicIpAllocation.updateRule						name
+mutation.policy.dynamicIpAllocation.updateRule					}
+mutation.policy.dynamicIpAllocation.updateRule				}
+mutation.policy.dynamicIpAllocation.updateRule				platform
+mutation.policy.dynamicIpAllocation.updateRule				country {
+mutation.policy.dynamicIpAllocation.updateRule					id
+mutation.policy.dynamicIpAllocation.updateRule					name
+mutation.policy.dynamicIpAllocation.updateRule				}
+mutation.policy.dynamicIpAllocation.updateRule				range {
+mutation.policy.dynamicIpAllocation.updateRule					globalIpRange {
+mutation.policy.dynamicIpAllocation.updateRule						id
+mutation.policy.dynamicIpAllocation.updateRule						name
+mutation.policy.dynamicIpAllocation.updateRule					}
+mutation.policy.dynamicIpAllocation.updateRule				}
+mutation.policy.dynamicIpAllocation.updateRule			}
+mutation.policy.dynamicIpAllocation.updateRule			properties
+mutation.policy.dynamicIpAllocation.updateRule		}
+mutation.policy.dynamicIpAllocation.updateRule		status
+mutation.policy.dynamicIpAllocation.updateRule		errors {
+mutation.policy.dynamicIpAllocation.updateRule			errorMessage
+mutation.policy.dynamicIpAllocation.updateRule			errorCode
+mutation.policy.dynamicIpAllocation.updateRule		}
+mutation.policy.dynamicIpAllocation.updateRule	}
+mutation.policy.dynamicIpAllocation.updateRule}
 	}	
 }

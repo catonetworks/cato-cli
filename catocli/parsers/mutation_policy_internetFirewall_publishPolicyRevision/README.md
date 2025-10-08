@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.internetFirewall.publishPolicyRevision:
 
-`catocli mutation policy internetFirewall publishPolicyRevision -h`
+```bash
+catocli mutation policy internetFirewall publishPolicyRevision -h
 
-`catocli mutation policy internetFirewall publishPolicyRevision <json>`
+catocli mutation policy internetFirewall publishPolicyRevision <json>
 
-`catocli mutation policy internetFirewall publishPolicyRevision "$(cat < mutation.policy.internetFirewall.publishPolicyRevision.json)"`
+catocli mutation policy internetFirewall publishPolicyRevision "$(cat < mutation.policy.internetFirewall.publishPolicyRevision.json)"
 
-`catocli mutation policy internetFirewall publishPolicyRevision '{"internetFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyPublishRevisionInput":{"description":"string","name":"string"}}'`
+catocli mutation policy internetFirewall publishPolicyRevision '{"internetFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyPublishRevisionInput":{"description":"string","name":"string"}}'
 
-`catocli mutation policy internetFirewall publishPolicyRevision -p '{
+catocli mutation policy internetFirewall publishPolicyRevision -p '{
     "internetFirewallPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"
@@ -23,7 +24,7 @@
         "name": "string"
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.internetFirewall.publishPolicyRevision ####
 

@@ -1825,7 +1825,6 @@
                                     "varName": "data"
                                 },
                                 "dimensions": {
-                                    "alias": "dimensionsTimeseries: dimensions",
                                     "args": {},
                                     "deprecationReason": null,
                                     "description": "List of dimension values for this timeseries",
@@ -1923,7 +1922,6 @@
                                     "varName": "info"
                                 },
                                 "key": {
-                                    "alias": "keyTimeseries: key",
                                     "args": {},
                                     "deprecationReason": null,
                                     "description": "Timeseries key: measure and dimension values",
@@ -2093,7 +2091,6 @@
                                     "varName": "sum"
                                 },
                                 "units": {
-                                    "alias": "unitsTimeseries: units",
                                     "args": {},
                                     "deprecationReason": null,
                                     "description": "Identifies what unit of data this timeseries represents. Note that toRate is only available for particular types\nof data to make sense.",
@@ -2244,10 +2241,22 @@
         "non_null": false
     },
     "variablesPayload": {
-        "accountID": "example_id",
-        "socketPortMetricsDimension": {},
-        "socketPortMetricsFilter": {},
-        "socketPortMetricsMeasure": {},
+        "socketPortMetricsDimension": {
+            "fieldName": "account_id"
+        },
+        "socketPortMetricsFilter": {
+            "fieldName": "account_id",
+            "operator": "is",
+            "values": [
+                "string1",
+                "string2"
+            ]
+        },
+        "socketPortMetricsMeasure": {
+            "aggType": "sum",
+            "fieldName": "account_id",
+            "trend": true
+        },
         "timeFrame": "example_value"
     }
 }

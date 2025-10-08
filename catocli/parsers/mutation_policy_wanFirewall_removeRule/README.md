@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.wanFirewall.removeRule:
 
-`catocli mutation policy wanFirewall removeRule -h`
+```bash
+catocli mutation policy wanFirewall removeRule -h
 
-`catocli mutation policy wanFirewall removeRule <json>`
+catocli mutation policy wanFirewall removeRule <json>
 
-`catocli mutation policy wanFirewall removeRule "$(cat < mutation.policy.wanFirewall.removeRule.json)"`
+catocli mutation policy wanFirewall removeRule "$(cat < mutation.policy.wanFirewall.removeRule.json)"
 
-`catocli mutation policy wanFirewall removeRule '{"wanFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"wanFirewallRemoveRuleInput":{"id":"id"}}'`
+catocli mutation policy wanFirewall removeRule '{"wanFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"wanFirewallRemoveRuleInput":{"id":"id"}}'
 
-`catocli mutation policy wanFirewall removeRule -p '{
+catocli mutation policy wanFirewall removeRule -p '{
     "wanFirewallPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"
@@ -22,7 +23,7 @@
         "id": "id"
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.wanFirewall.removeRule ####
 

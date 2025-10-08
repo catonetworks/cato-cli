@@ -1,45 +1,39 @@
-mutation policyTerminalServerMoveRule ( $policyMoveRuleInput:PolicyMoveRuleInput! $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		terminalServer ( input:$terminalServerPolicyMutationInput  )  {
-			moveRuleTerminalServerPolicyMutations: moveRule ( input:$policyMoveRuleInput   ) {
-				rule  {
-					auditTerminalServerRulePayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					ruleTerminalServerRulePayload: rule {
-						id 
-						name 
-						description 
-						index 
-						section  {
-							id
-							name
-						}
-
-						enabled 
-						allowedHostIP  {
-							id
-							name
-						}
-
-						excludeTraffic  {
-							id
-							name
-						}
-
-					}
-					propertiesTerminalServerRulePayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyTerminalServerMoveRule ( $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput $policyMoveRuleInput:PolicyMoveRuleInput!) {
+	policy ( ) {
+mutation.policy.terminalServer.moveRuleterminalServer ( input:$terminalServerPolicyMutationInput  )  {
+mutation.policy.terminalServer.moveRule	moveRule ( input:$policyMoveRuleInput   ) {
+mutation.policy.terminalServer.moveRule		rule {
+mutation.policy.terminalServer.moveRule			audit {
+mutation.policy.terminalServer.moveRule				updatedTime
+mutation.policy.terminalServer.moveRule				updatedBy
+mutation.policy.terminalServer.moveRule			}
+mutation.policy.terminalServer.moveRule			rule {
+mutation.policy.terminalServer.moveRule				id
+mutation.policy.terminalServer.moveRule				name
+mutation.policy.terminalServer.moveRule				description
+mutation.policy.terminalServer.moveRule				index
+mutation.policy.terminalServer.moveRule				section {
+mutation.policy.terminalServer.moveRule					id
+mutation.policy.terminalServer.moveRule					name
+mutation.policy.terminalServer.moveRule				}
+mutation.policy.terminalServer.moveRule				enabled
+mutation.policy.terminalServer.moveRule				allowedHostIP {
+mutation.policy.terminalServer.moveRule					id
+mutation.policy.terminalServer.moveRule					name
+mutation.policy.terminalServer.moveRule				}
+mutation.policy.terminalServer.moveRule				excludeTraffic {
+mutation.policy.terminalServer.moveRule					id
+mutation.policy.terminalServer.moveRule					name
+mutation.policy.terminalServer.moveRule				}
+mutation.policy.terminalServer.moveRule			}
+mutation.policy.terminalServer.moveRule			properties
+mutation.policy.terminalServer.moveRule		}
+mutation.policy.terminalServer.moveRule		status
+mutation.policy.terminalServer.moveRule		errors {
+mutation.policy.terminalServer.moveRule			errorMessage
+mutation.policy.terminalServer.moveRule			errorCode
+mutation.policy.terminalServer.moveRule		}
+mutation.policy.terminalServer.moveRule	}
+mutation.policy.terminalServer.moveRule}
 	}	
 }

@@ -4,15 +4,16 @@
 
 ### Usage for query.policy.wanFirewall.policy:
 
-`catocli query policy wanFirewall policy -h`
+```bash
+catocli query policy wanFirewall policy -h
 
-`catocli query policy wanFirewall policy <json>`
+catocli query policy wanFirewall policy <json>
 
-`catocli query policy wanFirewall policy "$(cat < query.policy.wanFirewall.policy.json)"`
+catocli query policy wanFirewall policy "$(cat < query.policy.wanFirewall.policy.json)"
 
-`catocli query policy wanFirewall policy '{"wanFirewallPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'`
+catocli query policy wanFirewall policy '{"wanFirewallPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'
 
-`catocli query policy wanFirewall policy -p '{
+catocli query policy wanFirewall policy -p '{
     "wanFirewallPolicyInput": {
         "policyRevisionInput": {
             "id": "id",
@@ -20,7 +21,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for query.policy.wanFirewall.policy ####
 

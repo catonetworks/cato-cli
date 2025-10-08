@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.appTenantRestriction.createPolicyRevision:
 
-`catocli mutation policy appTenantRestriction createPolicyRevision -h`
+```bash
+catocli mutation policy appTenantRestriction createPolicyRevision -h
 
-`catocli mutation policy appTenantRestriction createPolicyRevision <json>`
+catocli mutation policy appTenantRestriction createPolicyRevision <json>
 
-`catocli mutation policy appTenantRestriction createPolicyRevision "$(cat < mutation.policy.appTenantRestriction.createPolicyRevision.json)"`
+catocli mutation policy appTenantRestriction createPolicyRevision "$(cat < mutation.policy.appTenantRestriction.createPolicyRevision.json)"
 
-`catocli mutation policy appTenantRestriction createPolicyRevision '{"appTenantRestrictionPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyCreateRevisionInput":{"description":"string","name":"string"}}'`
+catocli mutation policy appTenantRestriction createPolicyRevision '{"appTenantRestrictionPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyCreateRevisionInput":{"description":"string","name":"string"}}'
 
-`catocli mutation policy appTenantRestriction createPolicyRevision -p '{
+catocli mutation policy appTenantRestriction createPolicyRevision -p '{
     "appTenantRestrictionPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"
@@ -23,7 +24,7 @@
         "name": "string"
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.appTenantRestriction.createPolicyRevision ####
 

@@ -1,471 +1,419 @@
-query policyWanFirewallPolicy ( $wanFirewallPolicyInput:WanFirewallPolicyInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		wanFirewall  {
-			policyWanFirewallPolicyQueries: policy ( input:$wanFirewallPolicyInput   ) {
-				enabled 
-				rules  {
-					auditWanFirewallRulePayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					ruleWanFirewallRulePayload: rule {
-						id 
-						name 
-						description 
-						index 
-						section  {
-							id
-							name
-						}
-
-						enabled 
-						source  {
-							hostWanFirewallSource: host {
-								id 
-								name 
-							}
-							siteWanFirewallSource: site {
-								id 
-								name 
-							}
-							subnet
-							ip
-							ipRangeWanFirewallSource: ipRange {
-								from 
-								to 
-							}
-							globalIpRangeWanFirewallSource: globalIpRange {
-								id 
-								name 
-							}
-							networkInterfaceWanFirewallSource: networkInterface {
-								id 
-								name 
-							}
-							siteNetworkSubnetWanFirewallSource: siteNetworkSubnet {
-								id 
-								name 
-							}
-							floatingSubnetWanFirewallSource: floatingSubnet {
-								id 
-								name 
-							}
-							userWanFirewallSource: user {
-								id 
-								name 
-							}
-							usersGroupWanFirewallSource: usersGroup {
-								id 
-								name 
-							}
-							groupWanFirewallSource: group {
-								id 
-								name 
-							}
-							systemGroupWanFirewallSource: systemGroup {
-								id 
-								name 
-							}
-						}
-
-						connectionOrigin 
-						country  {
-							id
-							name
-						}
-
-						device  {
-							id
-							name
-						}
-
-						deviceOS 
-						deviceAttributes  {
-							category
-							type
-							model
-							manufacturer
-							os
-							osVersion
-						}
-
-						destination  {
-							hostWanFirewallDestination: host {
-								id 
-								name 
-							}
-							siteWanFirewallDestination: site {
-								id 
-								name 
-							}
-							subnet
-							ip
-							ipRangeWanFirewallDestination: ipRange {
-								from 
-								to 
-							}
-							globalIpRangeWanFirewallDestination: globalIpRange {
-								id 
-								name 
-							}
-							networkInterfaceWanFirewallDestination: networkInterface {
-								id 
-								name 
-							}
-							siteNetworkSubnetWanFirewallDestination: siteNetworkSubnet {
-								id 
-								name 
-							}
-							floatingSubnetWanFirewallDestination: floatingSubnet {
-								id 
-								name 
-							}
-							userWanFirewallDestination: user {
-								id 
-								name 
-							}
-							usersGroupWanFirewallDestination: usersGroup {
-								id 
-								name 
-							}
-							groupWanFirewallDestination: group {
-								id 
-								name 
-							}
-							systemGroupWanFirewallDestination: systemGroup {
-								id 
-								name 
-							}
-						}
-
-						application  {
-							applicationWanFirewallApplication: application {
-								id 
-								name 
-							}
-							appCategoryWanFirewallApplication: appCategory {
-								id 
-								name 
-							}
-							customAppWanFirewallApplication: customApp {
-								id 
-								name 
-							}
-							customCategoryWanFirewallApplication: customCategory {
-								id 
-								name 
-							}
-							sanctionedAppsCategoryWanFirewallApplication: sanctionedAppsCategory {
-								id 
-								name 
-							}
-							domain
-							fqdn
-							ip
-							subnet
-							ipRangeWanFirewallApplication: ipRange {
-								from 
-								to 
-							}
-							globalIpRangeWanFirewallApplication: globalIpRange {
-								id 
-								name 
-							}
-						}
-
-						service  {
-							standardWanFirewallServiceType: standard {
-								id 
-								name 
-							}
-							customWanFirewallServiceType: custom {
-								port 
-								portRange  {
-									from
-									to
-								}
-
-								protocol 
-							}
-						}
-
-						action 
-						tracking  {
-							eventPolicyTracking: event {
-								enabled 
-							}
-							alertPolicyTracking: alert {
-								enabled 
-								frequency 
-								subscriptionGroup  {
-									id
-									name
-								}
-
-								webhook  {
-									id
-									name
-								}
-
-								mailingList  {
-									id
-									name
-								}
-
-							}
-						}
-
-						schedule  {
-							activeOnPolicySchedule: activeOn
-							customTimeframePolicySchedule: customTimeframe {
-								from 
-								to 
-							}
-							customRecurringPolicySchedule: customRecurring {
-								from 
-								to 
-								days 
-							}
-						}
-
-						activePeriod  {
-							useEffectiveFrom
-							effectiveFrom
-							useExpiresAt
-							expiresAt
-						}
-
-						direction 
-						exceptions  {
-							name
-							sourceWanFirewallRuleException: source {
-								host  {
-									id
-									name
-								}
-
-								site  {
-									id
-									name
-								}
-
-								subnet 
-								ip 
-								ipRange  {
-									from
-									to
-								}
-
-								globalIpRange  {
-									id
-									name
-								}
-
-								networkInterface  {
-									id
-									name
-								}
-
-								siteNetworkSubnet  {
-									id
-									name
-								}
-
-								floatingSubnet  {
-									id
-									name
-								}
-
-								user  {
-									id
-									name
-								}
-
-								usersGroup  {
-									id
-									name
-								}
-
-								group  {
-									id
-									name
-								}
-
-								systemGroup  {
-									id
-									name
-								}
-
-							}
-							deviceOSWanFirewallRuleException: deviceOS
-							destinationWanFirewallRuleException: destination {
-								host  {
-									id
-									name
-								}
-
-								site  {
-									id
-									name
-								}
-
-								subnet 
-								ip 
-								ipRange  {
-									from
-									to
-								}
-
-								globalIpRange  {
-									id
-									name
-								}
-
-								networkInterface  {
-									id
-									name
-								}
-
-								siteNetworkSubnet  {
-									id
-									name
-								}
-
-								floatingSubnet  {
-									id
-									name
-								}
-
-								user  {
-									id
-									name
-								}
-
-								usersGroup  {
-									id
-									name
-								}
-
-								group  {
-									id
-									name
-								}
-
-								systemGroup  {
-									id
-									name
-								}
-
-							}
-							countryWanFirewallRuleException: country {
-								id 
-								name 
-							}
-							deviceWanFirewallRuleException: device {
-								id 
-								name 
-							}
-							deviceAttributesWanFirewallRuleException: deviceAttributes {
-								category 
-								type 
-								model 
-								manufacturer 
-								os 
-								osVersion 
-							}
-							applicationWanFirewallRuleException: application {
-								application  {
-									id
-									name
-								}
-
-								appCategory  {
-									id
-									name
-								}
-
-								customApp  {
-									id
-									name
-								}
-
-								customCategory  {
-									id
-									name
-								}
-
-								sanctionedAppsCategory  {
-									id
-									name
-								}
-
-								domain 
-								fqdn 
-								ip 
-								subnet 
-								ipRange  {
-									from
-									to
-								}
-
-								globalIpRange  {
-									id
-									name
-								}
-
-							}
-							serviceWanFirewallRuleException: service {
-								standard  {
-									id
-									name
-								}
-
-								custom  {
-									port
-									portRangeCustomService: portRange {
-										from 
-										to 
-									}
-									protocolCustomService: protocol
-								}
-
-							}
-							connectionOriginWanFirewallRuleException: connectionOrigin
-							directionWanFirewallRuleException: direction
-						}
-
-					}
-					propertiesWanFirewallRulePayload: properties
-				}
-
-				sections  {
-					auditPolicySectionPayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					sectionPolicySectionPayload: section {
-						id 
-						name 
-					}
-					propertiesPolicySectionPayload: properties
-				}
-
-				audit  {
-					publishedTime
-					publishedBy
-				}
-
-				revision  {
-					id
-					name
-					description
-					changes
-					createdTime
-					updatedTime
-				}
-
-			}
-		}
-
+query policyWanFirewallPolicy ( $wanFirewallPolicyInput:WanFirewallPolicyInput) {
+	policy ( ) {
+query.policy.wanFirewall.policywanFirewall {
+query.policy.wanFirewall.policy	policy ( input:$wanFirewallPolicyInput   ) {
+query.policy.wanFirewall.policy		enabled
+query.policy.wanFirewall.policy		rules {
+query.policy.wanFirewall.policy			audit {
+query.policy.wanFirewall.policy				updatedTime
+query.policy.wanFirewall.policy				updatedBy
+query.policy.wanFirewall.policy			}
+query.policy.wanFirewall.policy			rule {
+query.policy.wanFirewall.policy				id
+query.policy.wanFirewall.policy				name
+query.policy.wanFirewall.policy				description
+query.policy.wanFirewall.policy				index
+query.policy.wanFirewall.policy				section {
+query.policy.wanFirewall.policy					id
+query.policy.wanFirewall.policy					name
+query.policy.wanFirewall.policy				}
+query.policy.wanFirewall.policy				enabled
+query.policy.wanFirewall.policy				source {
+query.policy.wanFirewall.policy					host {
+query.policy.wanFirewall.policy						id
+query.policy.wanFirewall.policy						name
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy					site {
+query.policy.wanFirewall.policy						id
+query.policy.wanFirewall.policy						name
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy					subnet
+query.policy.wanFirewall.policy					ip
+query.policy.wanFirewall.policy					ipRange {
+query.policy.wanFirewall.policy						from
+query.policy.wanFirewall.policy						to
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy					globalIpRange {
+query.policy.wanFirewall.policy						id
+query.policy.wanFirewall.policy						name
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy					networkInterface {
+query.policy.wanFirewall.policy						id
+query.policy.wanFirewall.policy						name
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy					siteNetworkSubnet {
+query.policy.wanFirewall.policy						id
+query.policy.wanFirewall.policy						name
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy					floatingSubnet {
+query.policy.wanFirewall.policy						id
+query.policy.wanFirewall.policy						name
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy					user {
+query.policy.wanFirewall.policy						id
+query.policy.wanFirewall.policy						name
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy					usersGroup {
+query.policy.wanFirewall.policy						id
+query.policy.wanFirewall.policy						name
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy					group {
+query.policy.wanFirewall.policy						id
+query.policy.wanFirewall.policy						name
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy					systemGroup {
+query.policy.wanFirewall.policy						id
+query.policy.wanFirewall.policy						name
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy				}
+query.policy.wanFirewall.policy				connectionOrigin
+query.policy.wanFirewall.policy				country {
+query.policy.wanFirewall.policy					id
+query.policy.wanFirewall.policy					name
+query.policy.wanFirewall.policy				}
+query.policy.wanFirewall.policy				device {
+query.policy.wanFirewall.policy					id
+query.policy.wanFirewall.policy					name
+query.policy.wanFirewall.policy				}
+query.policy.wanFirewall.policy				deviceOS
+query.policy.wanFirewall.policy				deviceAttributes {
+query.policy.wanFirewall.policy					category
+query.policy.wanFirewall.policy					type
+query.policy.wanFirewall.policy					model
+query.policy.wanFirewall.policy					manufacturer
+query.policy.wanFirewall.policy					os
+query.policy.wanFirewall.policy					osVersion
+query.policy.wanFirewall.policy				}
+query.policy.wanFirewall.policy				destination {
+query.policy.wanFirewall.policy					host {
+query.policy.wanFirewall.policy						id
+query.policy.wanFirewall.policy						name
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy					site {
+query.policy.wanFirewall.policy						id
+query.policy.wanFirewall.policy						name
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy					subnet
+query.policy.wanFirewall.policy					ip
+query.policy.wanFirewall.policy					ipRange {
+query.policy.wanFirewall.policy						from
+query.policy.wanFirewall.policy						to
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy					globalIpRange {
+query.policy.wanFirewall.policy						id
+query.policy.wanFirewall.policy						name
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy					networkInterface {
+query.policy.wanFirewall.policy						id
+query.policy.wanFirewall.policy						name
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy					siteNetworkSubnet {
+query.policy.wanFirewall.policy						id
+query.policy.wanFirewall.policy						name
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy					floatingSubnet {
+query.policy.wanFirewall.policy						id
+query.policy.wanFirewall.policy						name
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy					user {
+query.policy.wanFirewall.policy						id
+query.policy.wanFirewall.policy						name
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy					usersGroup {
+query.policy.wanFirewall.policy						id
+query.policy.wanFirewall.policy						name
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy					group {
+query.policy.wanFirewall.policy						id
+query.policy.wanFirewall.policy						name
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy					systemGroup {
+query.policy.wanFirewall.policy						id
+query.policy.wanFirewall.policy						name
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy				}
+query.policy.wanFirewall.policy				application {
+query.policy.wanFirewall.policy					application {
+query.policy.wanFirewall.policy						id
+query.policy.wanFirewall.policy						name
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy					appCategory {
+query.policy.wanFirewall.policy						id
+query.policy.wanFirewall.policy						name
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy					customApp {
+query.policy.wanFirewall.policy						id
+query.policy.wanFirewall.policy						name
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy					customCategory {
+query.policy.wanFirewall.policy						id
+query.policy.wanFirewall.policy						name
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy					sanctionedAppsCategory {
+query.policy.wanFirewall.policy						id
+query.policy.wanFirewall.policy						name
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy					domain
+query.policy.wanFirewall.policy					fqdn
+query.policy.wanFirewall.policy					ip
+query.policy.wanFirewall.policy					subnet
+query.policy.wanFirewall.policy					ipRange {
+query.policy.wanFirewall.policy						from
+query.policy.wanFirewall.policy						to
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy					globalIpRange {
+query.policy.wanFirewall.policy						id
+query.policy.wanFirewall.policy						name
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy				}
+query.policy.wanFirewall.policy				service {
+query.policy.wanFirewall.policy					standard {
+query.policy.wanFirewall.policy						id
+query.policy.wanFirewall.policy						name
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy					custom {
+query.policy.wanFirewall.policy						port
+query.policy.wanFirewall.policy						portRange {
+query.policy.wanFirewall.policy							from
+query.policy.wanFirewall.policy							to
+query.policy.wanFirewall.policy						}
+query.policy.wanFirewall.policy						protocol
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy				}
+query.policy.wanFirewall.policy				action
+query.policy.wanFirewall.policy				tracking {
+query.policy.wanFirewall.policy					event {
+query.policy.wanFirewall.policy						enabled
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy					alert {
+query.policy.wanFirewall.policy						enabled
+query.policy.wanFirewall.policy						frequency
+query.policy.wanFirewall.policy						subscriptionGroup {
+query.policy.wanFirewall.policy							id
+query.policy.wanFirewall.policy							name
+query.policy.wanFirewall.policy						}
+query.policy.wanFirewall.policy						webhook {
+query.policy.wanFirewall.policy							id
+query.policy.wanFirewall.policy							name
+query.policy.wanFirewall.policy						}
+query.policy.wanFirewall.policy						mailingList {
+query.policy.wanFirewall.policy							id
+query.policy.wanFirewall.policy							name
+query.policy.wanFirewall.policy						}
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy				}
+query.policy.wanFirewall.policy				schedule {
+query.policy.wanFirewall.policy					activeOn
+query.policy.wanFirewall.policy					customTimeframe {
+query.policy.wanFirewall.policy						from
+query.policy.wanFirewall.policy						to
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy					customRecurring {
+query.policy.wanFirewall.policy						from
+query.policy.wanFirewall.policy						to
+query.policy.wanFirewall.policy						days
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy				}
+query.policy.wanFirewall.policy				activePeriod {
+query.policy.wanFirewall.policy					useEffectiveFrom
+query.policy.wanFirewall.policy					effectiveFrom
+query.policy.wanFirewall.policy					useExpiresAt
+query.policy.wanFirewall.policy					expiresAt
+query.policy.wanFirewall.policy				}
+query.policy.wanFirewall.policy				direction
+query.policy.wanFirewall.policy				exceptions {
+query.policy.wanFirewall.policy					name
+query.policy.wanFirewall.policy					source {
+query.policy.wanFirewall.policy						host {
+query.policy.wanFirewall.policy							id
+query.policy.wanFirewall.policy							name
+query.policy.wanFirewall.policy						}
+query.policy.wanFirewall.policy						site {
+query.policy.wanFirewall.policy							id
+query.policy.wanFirewall.policy							name
+query.policy.wanFirewall.policy						}
+query.policy.wanFirewall.policy						subnet
+query.policy.wanFirewall.policy						ip
+query.policy.wanFirewall.policy						ipRange {
+query.policy.wanFirewall.policy							from
+query.policy.wanFirewall.policy							to
+query.policy.wanFirewall.policy						}
+query.policy.wanFirewall.policy						globalIpRange {
+query.policy.wanFirewall.policy							id
+query.policy.wanFirewall.policy							name
+query.policy.wanFirewall.policy						}
+query.policy.wanFirewall.policy						networkInterface {
+query.policy.wanFirewall.policy							id
+query.policy.wanFirewall.policy							name
+query.policy.wanFirewall.policy						}
+query.policy.wanFirewall.policy						siteNetworkSubnet {
+query.policy.wanFirewall.policy							id
+query.policy.wanFirewall.policy							name
+query.policy.wanFirewall.policy						}
+query.policy.wanFirewall.policy						floatingSubnet {
+query.policy.wanFirewall.policy							id
+query.policy.wanFirewall.policy							name
+query.policy.wanFirewall.policy						}
+query.policy.wanFirewall.policy						user {
+query.policy.wanFirewall.policy							id
+query.policy.wanFirewall.policy							name
+query.policy.wanFirewall.policy						}
+query.policy.wanFirewall.policy						usersGroup {
+query.policy.wanFirewall.policy							id
+query.policy.wanFirewall.policy							name
+query.policy.wanFirewall.policy						}
+query.policy.wanFirewall.policy						group {
+query.policy.wanFirewall.policy							id
+query.policy.wanFirewall.policy							name
+query.policy.wanFirewall.policy						}
+query.policy.wanFirewall.policy						systemGroup {
+query.policy.wanFirewall.policy							id
+query.policy.wanFirewall.policy							name
+query.policy.wanFirewall.policy						}
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy					deviceOS
+query.policy.wanFirewall.policy					destination {
+query.policy.wanFirewall.policy						host {
+query.policy.wanFirewall.policy							id
+query.policy.wanFirewall.policy							name
+query.policy.wanFirewall.policy						}
+query.policy.wanFirewall.policy						site {
+query.policy.wanFirewall.policy							id
+query.policy.wanFirewall.policy							name
+query.policy.wanFirewall.policy						}
+query.policy.wanFirewall.policy						subnet
+query.policy.wanFirewall.policy						ip
+query.policy.wanFirewall.policy						ipRange {
+query.policy.wanFirewall.policy							from
+query.policy.wanFirewall.policy							to
+query.policy.wanFirewall.policy						}
+query.policy.wanFirewall.policy						globalIpRange {
+query.policy.wanFirewall.policy							id
+query.policy.wanFirewall.policy							name
+query.policy.wanFirewall.policy						}
+query.policy.wanFirewall.policy						networkInterface {
+query.policy.wanFirewall.policy							id
+query.policy.wanFirewall.policy							name
+query.policy.wanFirewall.policy						}
+query.policy.wanFirewall.policy						siteNetworkSubnet {
+query.policy.wanFirewall.policy							id
+query.policy.wanFirewall.policy							name
+query.policy.wanFirewall.policy						}
+query.policy.wanFirewall.policy						floatingSubnet {
+query.policy.wanFirewall.policy							id
+query.policy.wanFirewall.policy							name
+query.policy.wanFirewall.policy						}
+query.policy.wanFirewall.policy						user {
+query.policy.wanFirewall.policy							id
+query.policy.wanFirewall.policy							name
+query.policy.wanFirewall.policy						}
+query.policy.wanFirewall.policy						usersGroup {
+query.policy.wanFirewall.policy							id
+query.policy.wanFirewall.policy							name
+query.policy.wanFirewall.policy						}
+query.policy.wanFirewall.policy						group {
+query.policy.wanFirewall.policy							id
+query.policy.wanFirewall.policy							name
+query.policy.wanFirewall.policy						}
+query.policy.wanFirewall.policy						systemGroup {
+query.policy.wanFirewall.policy							id
+query.policy.wanFirewall.policy							name
+query.policy.wanFirewall.policy						}
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy					country {
+query.policy.wanFirewall.policy						id
+query.policy.wanFirewall.policy						name
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy					device {
+query.policy.wanFirewall.policy						id
+query.policy.wanFirewall.policy						name
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy					deviceAttributes {
+query.policy.wanFirewall.policy						category
+query.policy.wanFirewall.policy						type
+query.policy.wanFirewall.policy						model
+query.policy.wanFirewall.policy						manufacturer
+query.policy.wanFirewall.policy						os
+query.policy.wanFirewall.policy						osVersion
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy					application {
+query.policy.wanFirewall.policy						application {
+query.policy.wanFirewall.policy							id
+query.policy.wanFirewall.policy							name
+query.policy.wanFirewall.policy						}
+query.policy.wanFirewall.policy						appCategory {
+query.policy.wanFirewall.policy							id
+query.policy.wanFirewall.policy							name
+query.policy.wanFirewall.policy						}
+query.policy.wanFirewall.policy						customApp {
+query.policy.wanFirewall.policy							id
+query.policy.wanFirewall.policy							name
+query.policy.wanFirewall.policy						}
+query.policy.wanFirewall.policy						customCategory {
+query.policy.wanFirewall.policy							id
+query.policy.wanFirewall.policy							name
+query.policy.wanFirewall.policy						}
+query.policy.wanFirewall.policy						sanctionedAppsCategory {
+query.policy.wanFirewall.policy							id
+query.policy.wanFirewall.policy							name
+query.policy.wanFirewall.policy						}
+query.policy.wanFirewall.policy						domain
+query.policy.wanFirewall.policy						fqdn
+query.policy.wanFirewall.policy						ip
+query.policy.wanFirewall.policy						subnet
+query.policy.wanFirewall.policy						ipRange {
+query.policy.wanFirewall.policy							from
+query.policy.wanFirewall.policy							to
+query.policy.wanFirewall.policy						}
+query.policy.wanFirewall.policy						globalIpRange {
+query.policy.wanFirewall.policy							id
+query.policy.wanFirewall.policy							name
+query.policy.wanFirewall.policy						}
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy					service {
+query.policy.wanFirewall.policy						standard {
+query.policy.wanFirewall.policy							id
+query.policy.wanFirewall.policy							name
+query.policy.wanFirewall.policy						}
+query.policy.wanFirewall.policy						custom {
+query.policy.wanFirewall.policy							port
+query.policy.wanFirewall.policy							portRange {
+query.policy.wanFirewall.policy								from
+query.policy.wanFirewall.policy								to
+query.policy.wanFirewall.policy							}
+query.policy.wanFirewall.policy							protocol
+query.policy.wanFirewall.policy						}
+query.policy.wanFirewall.policy					}
+query.policy.wanFirewall.policy					connectionOrigin
+query.policy.wanFirewall.policy					direction
+query.policy.wanFirewall.policy				}
+query.policy.wanFirewall.policy			}
+query.policy.wanFirewall.policy			properties
+query.policy.wanFirewall.policy		}
+query.policy.wanFirewall.policy		sections {
+query.policy.wanFirewall.policy			audit {
+query.policy.wanFirewall.policy				updatedTime
+query.policy.wanFirewall.policy				updatedBy
+query.policy.wanFirewall.policy			}
+query.policy.wanFirewall.policy			section {
+query.policy.wanFirewall.policy				id
+query.policy.wanFirewall.policy				name
+query.policy.wanFirewall.policy			}
+query.policy.wanFirewall.policy			properties
+query.policy.wanFirewall.policy		}
+query.policy.wanFirewall.policy		audit {
+query.policy.wanFirewall.policy			publishedTime
+query.policy.wanFirewall.policy			publishedBy
+query.policy.wanFirewall.policy		}
+query.policy.wanFirewall.policy		revision {
+query.policy.wanFirewall.policy			id
+query.policy.wanFirewall.policy			name
+query.policy.wanFirewall.policy			description
+query.policy.wanFirewall.policy			changes
+query.policy.wanFirewall.policy			createdTime
+query.policy.wanFirewall.policy			updatedTime
+query.policy.wanFirewall.policy		}
+query.policy.wanFirewall.policy	}
+query.policy.wanFirewall.policy}
 	}	
 }

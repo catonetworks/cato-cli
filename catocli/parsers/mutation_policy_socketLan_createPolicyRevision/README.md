@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.socketLan.createPolicyRevision:
 
-`catocli mutation policy socketLan createPolicyRevision -h`
+```bash
+catocli mutation policy socketLan createPolicyRevision -h
 
-`catocli mutation policy socketLan createPolicyRevision <json>`
+catocli mutation policy socketLan createPolicyRevision <json>
 
-`catocli mutation policy socketLan createPolicyRevision "$(cat < mutation.policy.socketLan.createPolicyRevision.json)"`
+catocli mutation policy socketLan createPolicyRevision "$(cat < mutation.policy.socketLan.createPolicyRevision.json)"
 
-`catocli mutation policy socketLan createPolicyRevision '{"policyCreateRevisionInput":{"description":"string","name":"string"},"socketLanPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
+catocli mutation policy socketLan createPolicyRevision '{"policyCreateRevisionInput":{"description":"string","name":"string"},"socketLanPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-`catocli mutation policy socketLan createPolicyRevision -p '{
+catocli mutation policy socketLan createPolicyRevision -p '{
     "policyCreateRevisionInput": {
         "description": "string",
         "name": "string"
@@ -23,7 +24,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.socketLan.createPolicyRevision ####
 

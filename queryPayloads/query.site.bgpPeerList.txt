@@ -1,91 +1,84 @@
-query siteBgpPeerList ( $bgpPeerListInput:BgpPeerListInput! $accountId:ID! ) {
-	site ( accountId:$accountId ) {
-		bgpPeerList ( input:$bgpPeerListInput  )  {
-			bgpPeerBgpPeerListPayload: bgpPeer {
-				site  {
-					id
-					name
-				}
-
-				id 
-				name 
-				peerAsn 
-				catoAsn 
-				peerIp 
-				catoIp 
-				advertiseDefaultRoute 
-				advertiseAllRoutes 
-				advertiseSummaryRoutes 
-				summaryRoute  {
-					id
-					route
-					communityBgpSummaryRoute: community {
-						from 
-						to 
-					}
-				}
-
-				defaultAction 
-				defaultActionExclusion  {
-					bgpRouteExactFilterRuleBgpFilterRule: bgpRouteExactFilterRule {
-						id 
-						globalIpRange  {
-							id
-							name
-						}
-
-						networkSubnet 
-					}
-					bgpRouteExactAndInclusiveFilterRuleBgpFilterRule: bgpRouteExactAndInclusiveFilterRule {
-						id 
-						globalIpRange  {
-							id
-							name
-						}
-
-						globalIpRangeException  {
-							id
-							name
-						}
-
-						networkSubnet 
-						networkSubnetException 
-						le 
-						ge 
-					}
-					communityFilterRuleBgpFilterRule: communityFilterRule {
-						id 
-						predicate 
-						community  {
-							from
-							to
-						}
-
-					}
-				}
-
-				performNat 
-				md5AuthKey 
-				metric 
-				holdTime 
-				keepaliveInterval 
-				bfdEnabled 
-				bfdSettings  {
-					transmitInterval
-					receiveInterval
-					multiplier
-				}
-
-				tracking  {
-					id
-					enabled
-					alertFrequencyBgpTracking: alertFrequency
-					subscriptionId
-				}
-
-			}
-			total
-		}
-
+query siteBgpPeerList ( $bgpPeerListInput:BgpPeerListInput!) {
+	site ( ) {
+query.site.bgpPeerListbgpPeerList ( input:$bgpPeerListInput  )  {
+query.site.bgpPeerList	bgpPeer {
+query.site.bgpPeerList		site {
+query.site.bgpPeerList			id
+query.site.bgpPeerList			name
+query.site.bgpPeerList		}
+query.site.bgpPeerList		id
+query.site.bgpPeerList		name
+query.site.bgpPeerList		peerAsn
+query.site.bgpPeerList		catoAsn
+query.site.bgpPeerList		peerIp
+query.site.bgpPeerList		catoIp
+query.site.bgpPeerList		advertiseDefaultRoute
+query.site.bgpPeerList		advertiseAllRoutes
+query.site.bgpPeerList		advertiseSummaryRoutes
+query.site.bgpPeerList		summaryRoute {
+query.site.bgpPeerList			id
+query.site.bgpPeerList			route
+query.site.bgpPeerList			community {
+query.site.bgpPeerList				from
+query.site.bgpPeerList				to
+query.site.bgpPeerList			}
+query.site.bgpPeerList		}
+query.site.bgpPeerList		defaultAction
+query.site.bgpPeerList		defaultActionExclusion {
+query.site.bgpPeerList			bgpRouteExactFilterRule {
+query.site.bgpPeerList				id
+query.site.bgpPeerList				globalIpRange {
+query.site.bgpPeerList					id
+query.site.bgpPeerList					name
+query.site.bgpPeerList				}
+query.site.bgpPeerList				networkSubnet
+query.site.bgpPeerList			}
+query.site.bgpPeerList			bgpRouteExactAndInclusiveFilterRule {
+query.site.bgpPeerList				id
+query.site.bgpPeerList				globalIpRange {
+query.site.bgpPeerList					id
+query.site.bgpPeerList					name
+query.site.bgpPeerList				}
+query.site.bgpPeerList				globalIpRangeException {
+query.site.bgpPeerList					id
+query.site.bgpPeerList					name
+query.site.bgpPeerList				}
+query.site.bgpPeerList				networkSubnet
+query.site.bgpPeerList				networkSubnetException
+query.site.bgpPeerList				le
+query.site.bgpPeerList				ge
+query.site.bgpPeerList			}
+query.site.bgpPeerList			communityFilterRule {
+query.site.bgpPeerList				id
+query.site.bgpPeerList				predicate
+query.site.bgpPeerList				community {
+query.site.bgpPeerList					from
+query.site.bgpPeerList					to
+query.site.bgpPeerList				}
+query.site.bgpPeerList			}
+query.site.bgpPeerList		}
+query.site.bgpPeerList		performNat
+query.site.bgpPeerList		md5AuthKey
+query.site.bgpPeerList		metric {
+	name
+	value
+}
+query.site.bgpPeerList		holdTime
+query.site.bgpPeerList		keepaliveInterval
+query.site.bgpPeerList		bfdEnabled
+query.site.bgpPeerList		bfdSettings {
+query.site.bgpPeerList			transmitInterval
+query.site.bgpPeerList			receiveInterval
+query.site.bgpPeerList			multiplier
+query.site.bgpPeerList		}
+query.site.bgpPeerList		tracking {
+query.site.bgpPeerList			id
+query.site.bgpPeerList			enabled
+query.site.bgpPeerList			alertFrequency
+query.site.bgpPeerList			subscriptionId
+query.site.bgpPeerList		}
+query.site.bgpPeerList	}
+query.site.bgpPeerList	total
+query.site.bgpPeerList}
 	}	
 }

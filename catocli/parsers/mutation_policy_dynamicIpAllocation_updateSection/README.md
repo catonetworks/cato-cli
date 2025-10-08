@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.dynamicIpAllocation.updateSection:
 
-`catocli mutation policy dynamicIpAllocation updateSection -h`
+```bash
+catocli mutation policy dynamicIpAllocation updateSection -h
 
-`catocli mutation policy dynamicIpAllocation updateSection <json>`
+catocli mutation policy dynamicIpAllocation updateSection <json>
 
-`catocli mutation policy dynamicIpAllocation updateSection "$(cat < mutation.policy.dynamicIpAllocation.updateSection.json)"`
+catocli mutation policy dynamicIpAllocation updateSection "$(cat < mutation.policy.dynamicIpAllocation.updateSection.json)"
 
-`catocli mutation policy dynamicIpAllocation updateSection '{"dynamicIpAllocationPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyUpdateSectionInput":{"id":"id","policyUpdateSectionInfoInput":{"name":"string"}}}'`
+catocli mutation policy dynamicIpAllocation updateSection '{"dynamicIpAllocationPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyUpdateSectionInput":{"id":"id","policyUpdateSectionInfoInput":{"name":"string"}}}'
 
-`catocli mutation policy dynamicIpAllocation updateSection -p '{
+catocli mutation policy dynamicIpAllocation updateSection -p '{
     "dynamicIpAllocationPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"
@@ -25,7 +26,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.dynamicIpAllocation.updateSection ####
 

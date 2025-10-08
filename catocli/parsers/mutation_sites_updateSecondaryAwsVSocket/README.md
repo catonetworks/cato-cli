@@ -4,15 +4,16 @@
 
 ### Usage for mutation.sites.updateSecondaryAwsVSocket:
 
-`catocli mutation sites updateSecondaryAwsVSocket -h`
+```bash
+catocli mutation sites updateSecondaryAwsVSocket -h
 
-`catocli mutation sites updateSecondaryAwsVSocket <json>`
+catocli mutation sites updateSecondaryAwsVSocket <json>
 
-`catocli mutation sites updateSecondaryAwsVSocket "$(cat < mutation.sites.updateSecondaryAwsVSocket.json)"`
+catocli mutation sites updateSecondaryAwsVSocket "$(cat < mutation.sites.updateSecondaryAwsVSocket.json)"
 
-`catocli mutation sites updateSecondaryAwsVSocket '{"updateSecondaryAwsVSocketInput":{"id":"id","ipAddress":"example_value","routeTableId":"string","subnet":"example_value"}}'`
+catocli mutation sites updateSecondaryAwsVSocket '{"updateSecondaryAwsVSocketInput":{"id":"id","ipAddress":"example_value","routeTableId":"string","subnet":"example_value"}}'
 
-`catocli mutation sites updateSecondaryAwsVSocket -p '{
+catocli mutation sites updateSecondaryAwsVSocket -p '{
     "updateSecondaryAwsVSocketInput": {
         "id": "id",
         "ipAddress": "example_value",
@@ -20,7 +21,7 @@
         "subnet": "example_value"
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.sites.updateSecondaryAwsVSocket ####
 

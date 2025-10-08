@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.tlsInspect.updateSection:
 
-`catocli mutation policy tlsInspect updateSection -h`
+```bash
+catocli mutation policy tlsInspect updateSection -h
 
-`catocli mutation policy tlsInspect updateSection <json>`
+catocli mutation policy tlsInspect updateSection <json>
 
-`catocli mutation policy tlsInspect updateSection "$(cat < mutation.policy.tlsInspect.updateSection.json)"`
+catocli mutation policy tlsInspect updateSection "$(cat < mutation.policy.tlsInspect.updateSection.json)"
 
-`catocli mutation policy tlsInspect updateSection '{"policyUpdateSectionInput":{"id":"id","policyUpdateSectionInfoInput":{"name":"string"}},"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
+catocli mutation policy tlsInspect updateSection '{"policyUpdateSectionInput":{"id":"id","policyUpdateSectionInfoInput":{"name":"string"}},"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-`catocli mutation policy tlsInspect updateSection -p '{
+catocli mutation policy tlsInspect updateSection -p '{
     "policyUpdateSectionInput": {
         "id": "id",
         "policyUpdateSectionInfoInput": {
@@ -25,7 +26,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.tlsInspect.updateSection ####
 

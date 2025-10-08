@@ -1,28 +1,52 @@
-query eventsTimeSeries ( $perSecond:Boolean $withMissingData:Boolean $useDefaultSizeBucket:Boolean $buckets:Int! $accountID:ID! $timeFrame:TimeFrame! $eventsMeasure:[EventsMeasure] $eventsDimension:[EventsDimension] $eventsFilter:[EventsFilter!] ) {
-	eventsTimeSeries ( accountID:$accountID timeFrame:$timeFrame measures:$eventsMeasure dimensions:$eventsDimension filters:$eventsFilter ) {
-		id 
-		from 
-		to 
-		granularity 
-		timeseries ( buckets:$buckets  )  {
-			data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket   )
-			label
-			dimensionsTimeseries: dimensions {
-				label 
-				value 
-			}
-			keyTimeseries: key {
-				measureFieldName 
-				dimensions  {
-					fieldName
-					value
-				}
-
-			}
-			sum
-			unitsTimeseries: units
-			info
-		}
-
+query eventsTimeSeries ( $timeFrame:TimeFrame! $eventsMeasure:[EventsMeasure] $eventsDimension:[EventsDimension] $eventsFilter:[EventsFilter!]) {
+	eventsTimeSeries ( timeFrame:$timeFrame measures:$eventsMeasure dimensions:$eventsDimension filters:$eventsFilter ) {
+query.eventsTimeSeriesid
+query.eventsTimeSeriesfrom
+query.eventsTimeSeriesto
+query.eventsTimeSeriesgranularity
+query.eventsTimeSeriestimeseries {
+query.eventsTimeSeries	data
+query.eventsTimeSeries	label
+query.eventsTimeSeries	dimensions {
+query.eventsTimeSeries		label
+query.eventsTimeSeries		value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+query.eventsTimeSeries	}
+query.eventsTimeSeries	key {
+query.eventsTimeSeries		measureFieldName
+query.eventsTimeSeries		dimensions {
+query.eventsTimeSeries			fieldName
+query.eventsTimeSeries			value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+query.eventsTimeSeries		}
+query.eventsTimeSeries	}
+query.eventsTimeSeries	sum
+query.eventsTimeSeries	units
+query.eventsTimeSeries	info
+query.eventsTimeSeries}
 	}	
 }

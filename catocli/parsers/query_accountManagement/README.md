@@ -4,11 +4,12 @@
 
 ### Usage for query.accountManagement:
 
-`catocli query accountManagement -h`
+```bash
+catocli query accountManagement -h
 
-`catocli query accountManagement <json>`
+catocli query accountManagement <json>
 
-`catocli query accountManagement "$(cat < query.accountManagement.json)"`
+catocli query accountManagement "$(cat < query.accountManagement.json)"
 
 #### Operation Arguments for query.accountManagement ####
 

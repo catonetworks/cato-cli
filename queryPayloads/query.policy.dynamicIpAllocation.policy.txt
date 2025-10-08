@@ -1,80 +1,71 @@
-query policyDynamicIpAllocationPolicy ( $dynamicIpAllocationPolicyInput:DynamicIpAllocationPolicyInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		dynamicIpAllocation  {
-			policyDynamicIpAllocationPolicyQueries: policy ( input:$dynamicIpAllocationPolicyInput   ) {
-				enabled 
-				rules  {
-					auditDynamicIpAllocationRulePayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					ruleDynamicIpAllocationRulePayload: rule {
-						id 
-						name 
-						description 
-						index 
-						section  {
-							id
-							name
-						}
-
-						enabled 
-						source  {
-							userDynamicIpAllocationSource: user {
-								id 
-								name 
-							}
-							usersGroupDynamicIpAllocationSource: usersGroup {
-								id 
-								name 
-							}
-						}
-
-						platform 
-						country  {
-							id
-							name
-						}
-
-						range  {
-							globalIpRangeDynamicIpAllocationRange: globalIpRange {
-								id 
-								name 
-							}
-						}
-
-					}
-					propertiesDynamicIpAllocationRulePayload: properties
-				}
-
-				sections  {
-					auditPolicySectionPayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					sectionPolicySectionPayload: section {
-						id 
-						name 
-					}
-					propertiesPolicySectionPayload: properties
-				}
-
-				audit  {
-					publishedTime
-					publishedBy
-				}
-
-				revision  {
-					id
-					name
-					description
-					changes
-					createdTime
-					updatedTime
-				}
-
-			}
-		}
-
+query policyDynamicIpAllocationPolicy ( $dynamicIpAllocationPolicyInput:DynamicIpAllocationPolicyInput) {
+	policy ( ) {
+query.policy.dynamicIpAllocation.policydynamicIpAllocation {
+query.policy.dynamicIpAllocation.policy	policy ( input:$dynamicIpAllocationPolicyInput   ) {
+query.policy.dynamicIpAllocation.policy		enabled
+query.policy.dynamicIpAllocation.policy		rules {
+query.policy.dynamicIpAllocation.policy			audit {
+query.policy.dynamicIpAllocation.policy				updatedTime
+query.policy.dynamicIpAllocation.policy				updatedBy
+query.policy.dynamicIpAllocation.policy			}
+query.policy.dynamicIpAllocation.policy			rule {
+query.policy.dynamicIpAllocation.policy				id
+query.policy.dynamicIpAllocation.policy				name
+query.policy.dynamicIpAllocation.policy				description
+query.policy.dynamicIpAllocation.policy				index
+query.policy.dynamicIpAllocation.policy				section {
+query.policy.dynamicIpAllocation.policy					id
+query.policy.dynamicIpAllocation.policy					name
+query.policy.dynamicIpAllocation.policy				}
+query.policy.dynamicIpAllocation.policy				enabled
+query.policy.dynamicIpAllocation.policy				source {
+query.policy.dynamicIpAllocation.policy					user {
+query.policy.dynamicIpAllocation.policy						id
+query.policy.dynamicIpAllocation.policy						name
+query.policy.dynamicIpAllocation.policy					}
+query.policy.dynamicIpAllocation.policy					usersGroup {
+query.policy.dynamicIpAllocation.policy						id
+query.policy.dynamicIpAllocation.policy						name
+query.policy.dynamicIpAllocation.policy					}
+query.policy.dynamicIpAllocation.policy				}
+query.policy.dynamicIpAllocation.policy				platform
+query.policy.dynamicIpAllocation.policy				country {
+query.policy.dynamicIpAllocation.policy					id
+query.policy.dynamicIpAllocation.policy					name
+query.policy.dynamicIpAllocation.policy				}
+query.policy.dynamicIpAllocation.policy				range {
+query.policy.dynamicIpAllocation.policy					globalIpRange {
+query.policy.dynamicIpAllocation.policy						id
+query.policy.dynamicIpAllocation.policy						name
+query.policy.dynamicIpAllocation.policy					}
+query.policy.dynamicIpAllocation.policy				}
+query.policy.dynamicIpAllocation.policy			}
+query.policy.dynamicIpAllocation.policy			properties
+query.policy.dynamicIpAllocation.policy		}
+query.policy.dynamicIpAllocation.policy		sections {
+query.policy.dynamicIpAllocation.policy			audit {
+query.policy.dynamicIpAllocation.policy				updatedTime
+query.policy.dynamicIpAllocation.policy				updatedBy
+query.policy.dynamicIpAllocation.policy			}
+query.policy.dynamicIpAllocation.policy			section {
+query.policy.dynamicIpAllocation.policy				id
+query.policy.dynamicIpAllocation.policy				name
+query.policy.dynamicIpAllocation.policy			}
+query.policy.dynamicIpAllocation.policy			properties
+query.policy.dynamicIpAllocation.policy		}
+query.policy.dynamicIpAllocation.policy		audit {
+query.policy.dynamicIpAllocation.policy			publishedTime
+query.policy.dynamicIpAllocation.policy			publishedBy
+query.policy.dynamicIpAllocation.policy		}
+query.policy.dynamicIpAllocation.policy		revision {
+query.policy.dynamicIpAllocation.policy			id
+query.policy.dynamicIpAllocation.policy			name
+query.policy.dynamicIpAllocation.policy			description
+query.policy.dynamicIpAllocation.policy			changes
+query.policy.dynamicIpAllocation.policy			createdTime
+query.policy.dynamicIpAllocation.policy			updatedTime
+query.policy.dynamicIpAllocation.policy		}
+query.policy.dynamicIpAllocation.policy	}
+query.policy.dynamicIpAllocation.policy}
 	}	
 }

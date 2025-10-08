@@ -1,27 +1,24 @@
-mutation policyInternetFirewallMoveSection ( $policyMoveSectionInput:PolicyMoveSectionInput! $internetFirewallPolicyMutationInput:InternetFirewallPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		internetFirewall ( input:$internetFirewallPolicyMutationInput  )  {
-			moveSectionInternetFirewallPolicyMutations: moveSection ( input:$policyMoveSectionInput   ) {
-				section  {
-					auditPolicySectionPayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					sectionPolicySectionPayload: section {
-						id 
-						name 
-					}
-					propertiesPolicySectionPayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyInternetFirewallMoveSection ( $internetFirewallPolicyMutationInput:InternetFirewallPolicyMutationInput $policyMoveSectionInput:PolicyMoveSectionInput!) {
+	policy ( ) {
+mutation.policy.internetFirewall.moveSectioninternetFirewall ( input:$internetFirewallPolicyMutationInput  )  {
+mutation.policy.internetFirewall.moveSection	moveSection ( input:$policyMoveSectionInput   ) {
+mutation.policy.internetFirewall.moveSection		section {
+mutation.policy.internetFirewall.moveSection			audit {
+mutation.policy.internetFirewall.moveSection				updatedTime
+mutation.policy.internetFirewall.moveSection				updatedBy
+mutation.policy.internetFirewall.moveSection			}
+mutation.policy.internetFirewall.moveSection			section {
+mutation.policy.internetFirewall.moveSection				id
+mutation.policy.internetFirewall.moveSection				name
+mutation.policy.internetFirewall.moveSection			}
+mutation.policy.internetFirewall.moveSection			properties
+mutation.policy.internetFirewall.moveSection		}
+mutation.policy.internetFirewall.moveSection		status
+mutation.policy.internetFirewall.moveSection		errors {
+mutation.policy.internetFirewall.moveSection			errorMessage
+mutation.policy.internetFirewall.moveSection			errorCode
+mutation.policy.internetFirewall.moveSection		}
+mutation.policy.internetFirewall.moveSection	}
+mutation.policy.internetFirewall.moveSection}
 	}	
 }

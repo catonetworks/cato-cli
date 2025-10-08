@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.appTenantRestriction.updateSection:
 
-`catocli mutation policy appTenantRestriction updateSection -h`
+```bash
+catocli mutation policy appTenantRestriction updateSection -h
 
-`catocli mutation policy appTenantRestriction updateSection <json>`
+catocli mutation policy appTenantRestriction updateSection <json>
 
-`catocli mutation policy appTenantRestriction updateSection "$(cat < mutation.policy.appTenantRestriction.updateSection.json)"`
+catocli mutation policy appTenantRestriction updateSection "$(cat < mutation.policy.appTenantRestriction.updateSection.json)"
 
-`catocli mutation policy appTenantRestriction updateSection '{"appTenantRestrictionPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyUpdateSectionInput":{"id":"id","policyUpdateSectionInfoInput":{"name":"string"}}}'`
+catocli mutation policy appTenantRestriction updateSection '{"appTenantRestrictionPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyUpdateSectionInput":{"id":"id","policyUpdateSectionInfoInput":{"name":"string"}}}'
 
-`catocli mutation policy appTenantRestriction updateSection -p '{
+catocli mutation policy appTenantRestriction updateSection -p '{
     "appTenantRestrictionPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"
@@ -25,7 +26,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.appTenantRestriction.updateSection ####
 

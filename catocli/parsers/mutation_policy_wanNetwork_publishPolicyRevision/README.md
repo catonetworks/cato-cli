@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.wanNetwork.publishPolicyRevision:
 
-`catocli mutation policy wanNetwork publishPolicyRevision -h`
+```bash
+catocli mutation policy wanNetwork publishPolicyRevision -h
 
-`catocli mutation policy wanNetwork publishPolicyRevision <json>`
+catocli mutation policy wanNetwork publishPolicyRevision <json>
 
-`catocli mutation policy wanNetwork publishPolicyRevision "$(cat < mutation.policy.wanNetwork.publishPolicyRevision.json)"`
+catocli mutation policy wanNetwork publishPolicyRevision "$(cat < mutation.policy.wanNetwork.publishPolicyRevision.json)"
 
-`catocli mutation policy wanNetwork publishPolicyRevision '{"policyPublishRevisionInput":{"description":"string","name":"string"},"wanNetworkPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
+catocli mutation policy wanNetwork publishPolicyRevision '{"policyPublishRevisionInput":{"description":"string","name":"string"},"wanNetworkPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-`catocli mutation policy wanNetwork publishPolicyRevision -p '{
+catocli mutation policy wanNetwork publishPolicyRevision -p '{
     "policyPublishRevisionInput": {
         "description": "string",
         "name": "string"
@@ -23,7 +24,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.wanNetwork.publishPolicyRevision ####
 

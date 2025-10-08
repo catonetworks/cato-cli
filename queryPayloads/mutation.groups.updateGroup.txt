@@ -1,45 +1,41 @@
-mutation groupsUpdateGroup ( $groupMembersListInput:GroupMembersListInput! $updateGroupInput:UpdateGroupInput! $accountId:ID! ) {
-	groups ( accountId:$accountId ) {
-		updateGroup ( input:$updateGroupInput  )  {
-			groupUpdateGroupPayload: group {
-				id 
-				name 
-				description 
-				audit  {
-					updatedTime
-					updatedByAuditingMetadata: updatedBy {
-						id 
-						name 
-						... on AdminRef {
-							id 
-							name 
-						}
-						... on ApiKeyRef {
-							id 
-							name 
-						}
-					}
-				}
-
-				members ( input:$groupMembersListInput  )  {
-					itemsGroupMembersListPayload: items {
-						id 
-						name 
-						type 
-					}
-					pagingGroupMembersListPayload: paging {
-						total 
-					}
-				}
-
-				membersCount 
-				membersCountPerType  {
-					typeGroupMemberTypeCount: type
-					membersCount
-				}
-
-			}
-		}
-
+mutation groupsUpdateGroup ( $updateGroupInput:UpdateGroupInput!) {
+	groups ( ) {
+mutation.groups.updateGroupupdateGroup ( input:$updateGroupInput  )  {
+mutation.groups.updateGroup	group {
+mutation.groups.updateGroup		id
+mutation.groups.updateGroup		name
+mutation.groups.updateGroup		description
+mutation.groups.updateGroup		audit {
+mutation.groups.updateGroup			updatedTime
+mutation.groups.updateGroup			updatedBy {
+mutation.groups.updateGroup				id
+mutation.groups.updateGroup				name
+mutation.groups.updateGroup				... on AdminRef {
+mutation.groups.updateGroup					id
+mutation.groups.updateGroup					name
+mutation.groups.updateGroup				}
+mutation.groups.updateGroup				... on ApiKeyRef {
+mutation.groups.updateGroup					id
+mutation.groups.updateGroup					name
+mutation.groups.updateGroup				}
+mutation.groups.updateGroup			}
+mutation.groups.updateGroup		}
+mutation.groups.updateGroup		members {
+mutation.groups.updateGroup			items {
+mutation.groups.updateGroup				id
+mutation.groups.updateGroup				name
+mutation.groups.updateGroup				type
+mutation.groups.updateGroup			}
+mutation.groups.updateGroup			paging {
+mutation.groups.updateGroup				total
+mutation.groups.updateGroup			}
+mutation.groups.updateGroup		}
+mutation.groups.updateGroup		membersCount
+mutation.groups.updateGroup		membersCountPerType {
+mutation.groups.updateGroup			type
+mutation.groups.updateGroup			membersCount
+mutation.groups.updateGroup		}
+mutation.groups.updateGroup	}
+mutation.groups.updateGroup}
 	}	
 }

@@ -4,15 +4,16 @@
 
 ### Usage for query.site.cloudInterconnectPhysicalConnectionId:
 
-`catocli query site cloudInterconnectPhysicalConnectionId -h`
+```bash
+catocli query site cloudInterconnectPhysicalConnectionId -h
 
-`catocli query site cloudInterconnectPhysicalConnectionId <json>`
+catocli query site cloudInterconnectPhysicalConnectionId <json>
 
-`catocli query site cloudInterconnectPhysicalConnectionId "$(cat < query.site.cloudInterconnectPhysicalConnectionId.json)"`
+catocli query site cloudInterconnectPhysicalConnectionId "$(cat < query.site.cloudInterconnectPhysicalConnectionId.json)"
 
-`catocli query site cloudInterconnectPhysicalConnectionId '{"cloudInterconnectPhysicalConnectionIdInput":{"haRole":"PRIMARY","siteRefInput":{"by":"ID","input":"string"}}}'`
+catocli query site cloudInterconnectPhysicalConnectionId '{"cloudInterconnectPhysicalConnectionIdInput":{"haRole":"PRIMARY","siteRefInput":{"by":"ID","input":"string"}}}'
 
-`catocli query site cloudInterconnectPhysicalConnectionId -p '{
+catocli query site cloudInterconnectPhysicalConnectionId -p '{
     "cloudInterconnectPhysicalConnectionIdInput": {
         "haRole": "PRIMARY",
         "siteRefInput": {
@@ -21,7 +22,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for query.site.cloudInterconnectPhysicalConnectionId ####
 

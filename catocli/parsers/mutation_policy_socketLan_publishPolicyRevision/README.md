@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.socketLan.publishPolicyRevision:
 
-`catocli mutation policy socketLan publishPolicyRevision -h`
+```bash
+catocli mutation policy socketLan publishPolicyRevision -h
 
-`catocli mutation policy socketLan publishPolicyRevision <json>`
+catocli mutation policy socketLan publishPolicyRevision <json>
 
-`catocli mutation policy socketLan publishPolicyRevision "$(cat < mutation.policy.socketLan.publishPolicyRevision.json)"`
+catocli mutation policy socketLan publishPolicyRevision "$(cat < mutation.policy.socketLan.publishPolicyRevision.json)"
 
-`catocli mutation policy socketLan publishPolicyRevision '{"policyPublishRevisionInput":{"description":"string","name":"string"},"socketLanPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
+catocli mutation policy socketLan publishPolicyRevision '{"policyPublishRevisionInput":{"description":"string","name":"string"},"socketLanPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-`catocli mutation policy socketLan publishPolicyRevision -p '{
+catocli mutation policy socketLan publishPolicyRevision -p '{
     "policyPublishRevisionInput": {
         "description": "string",
         "name": "string"
@@ -23,7 +24,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.socketLan.publishPolicyRevision ####
 

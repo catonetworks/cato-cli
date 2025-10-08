@@ -1,27 +1,24 @@
-mutation policySocketLanUpdateSection ( $policyUpdateSectionInput:PolicyUpdateSectionInput! $socketLanPolicyMutationInput:SocketLanPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		socketLan ( input:$socketLanPolicyMutationInput  )  {
-			updateSectionSocketLanPolicyMutations: updateSection ( input:$policyUpdateSectionInput   ) {
-				section  {
-					auditPolicySectionPayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					sectionPolicySectionPayload: section {
-						id 
-						name 
-					}
-					propertiesPolicySectionPayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policySocketLanUpdateSection ( $socketLanPolicyMutationInput:SocketLanPolicyMutationInput $policyUpdateSectionInput:PolicyUpdateSectionInput!) {
+	policy ( ) {
+mutation.policy.socketLan.updateSectionsocketLan ( input:$socketLanPolicyMutationInput  )  {
+mutation.policy.socketLan.updateSection	updateSection ( input:$policyUpdateSectionInput   ) {
+mutation.policy.socketLan.updateSection		section {
+mutation.policy.socketLan.updateSection			audit {
+mutation.policy.socketLan.updateSection				updatedTime
+mutation.policy.socketLan.updateSection				updatedBy
+mutation.policy.socketLan.updateSection			}
+mutation.policy.socketLan.updateSection			section {
+mutation.policy.socketLan.updateSection				id
+mutation.policy.socketLan.updateSection				name
+mutation.policy.socketLan.updateSection			}
+mutation.policy.socketLan.updateSection			properties
+mutation.policy.socketLan.updateSection		}
+mutation.policy.socketLan.updateSection		status
+mutation.policy.socketLan.updateSection		errors {
+mutation.policy.socketLan.updateSection			errorMessage
+mutation.policy.socketLan.updateSection			errorCode
+mutation.policy.socketLan.updateSection		}
+mutation.policy.socketLan.updateSection	}
+mutation.policy.socketLan.updateSection}
 	}	
 }

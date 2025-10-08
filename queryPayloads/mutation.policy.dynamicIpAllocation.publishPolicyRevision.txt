@@ -1,88 +1,78 @@
-mutation policyDynamicIpAllocationPublishPolicyRevision ( $policyPublishRevisionInput:PolicyPublishRevisionInput $dynamicIpAllocationPolicyMutationInput:DynamicIpAllocationPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		dynamicIpAllocation ( input:$dynamicIpAllocationPolicyMutationInput  )  {
-			publishPolicyRevisionDynamicIpAllocationPolicyMutations: publishPolicyRevision ( input:$policyPublishRevisionInput   ) {
-				policy  {
-					enabled
-					rulesDynamicIpAllocationPolicy: rules {
-						audit  {
-							updatedTime
-							updatedBy
-						}
-
-						rule  {
-							id
-							name
-							description
-							index
-							sectionDynamicIpAllocationRule: section {
-								id 
-								name 
-							}
-							enabled
-							sourceDynamicIpAllocationRule: source {
-								user  {
-									id
-									name
-								}
-
-								usersGroup  {
-									id
-									name
-								}
-
-							}
-							platformDynamicIpAllocationRule: platform
-							countryDynamicIpAllocationRule: country {
-								id 
-								name 
-							}
-							rangeDynamicIpAllocationRule: range {
-								globalIpRange  {
-									id
-									name
-								}
-
-							}
-						}
-
-						properties 
-					}
-					sectionsDynamicIpAllocationPolicy: sections {
-						audit  {
-							updatedTime
-							updatedBy
-						}
-
-						section  {
-							id
-							name
-						}
-
-						properties 
-					}
-					auditDynamicIpAllocationPolicy: audit {
-						publishedTime 
-						publishedBy 
-					}
-					revisionDynamicIpAllocationPolicy: revision {
-						id 
-						name 
-						description 
-						changes 
-						createdTime 
-						updatedTime 
-					}
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyDynamicIpAllocationPublishPolicyRevision ( $dynamicIpAllocationPolicyMutationInput:DynamicIpAllocationPolicyMutationInput $policyPublishRevisionInput:PolicyPublishRevisionInput) {
+	policy ( ) {
+mutation.policy.dynamicIpAllocation.publishPolicyRevisiondynamicIpAllocation ( input:$dynamicIpAllocationPolicyMutationInput  )  {
+mutation.policy.dynamicIpAllocation.publishPolicyRevision	publishPolicyRevision ( input:$policyPublishRevisionInput   ) {
+mutation.policy.dynamicIpAllocation.publishPolicyRevision		policy {
+mutation.policy.dynamicIpAllocation.publishPolicyRevision			enabled
+mutation.policy.dynamicIpAllocation.publishPolicyRevision			rules {
+mutation.policy.dynamicIpAllocation.publishPolicyRevision				audit {
+mutation.policy.dynamicIpAllocation.publishPolicyRevision					updatedTime
+mutation.policy.dynamicIpAllocation.publishPolicyRevision					updatedBy
+mutation.policy.dynamicIpAllocation.publishPolicyRevision				}
+mutation.policy.dynamicIpAllocation.publishPolicyRevision				rule {
+mutation.policy.dynamicIpAllocation.publishPolicyRevision					id
+mutation.policy.dynamicIpAllocation.publishPolicyRevision					name
+mutation.policy.dynamicIpAllocation.publishPolicyRevision					description
+mutation.policy.dynamicIpAllocation.publishPolicyRevision					index
+mutation.policy.dynamicIpAllocation.publishPolicyRevision					section {
+mutation.policy.dynamicIpAllocation.publishPolicyRevision						id
+mutation.policy.dynamicIpAllocation.publishPolicyRevision						name
+mutation.policy.dynamicIpAllocation.publishPolicyRevision					}
+mutation.policy.dynamicIpAllocation.publishPolicyRevision					enabled
+mutation.policy.dynamicIpAllocation.publishPolicyRevision					source {
+mutation.policy.dynamicIpAllocation.publishPolicyRevision						user {
+mutation.policy.dynamicIpAllocation.publishPolicyRevision							id
+mutation.policy.dynamicIpAllocation.publishPolicyRevision							name
+mutation.policy.dynamicIpAllocation.publishPolicyRevision						}
+mutation.policy.dynamicIpAllocation.publishPolicyRevision						usersGroup {
+mutation.policy.dynamicIpAllocation.publishPolicyRevision							id
+mutation.policy.dynamicIpAllocation.publishPolicyRevision							name
+mutation.policy.dynamicIpAllocation.publishPolicyRevision						}
+mutation.policy.dynamicIpAllocation.publishPolicyRevision					}
+mutation.policy.dynamicIpAllocation.publishPolicyRevision					platform
+mutation.policy.dynamicIpAllocation.publishPolicyRevision					country {
+mutation.policy.dynamicIpAllocation.publishPolicyRevision						id
+mutation.policy.dynamicIpAllocation.publishPolicyRevision						name
+mutation.policy.dynamicIpAllocation.publishPolicyRevision					}
+mutation.policy.dynamicIpAllocation.publishPolicyRevision					range {
+mutation.policy.dynamicIpAllocation.publishPolicyRevision						globalIpRange {
+mutation.policy.dynamicIpAllocation.publishPolicyRevision							id
+mutation.policy.dynamicIpAllocation.publishPolicyRevision							name
+mutation.policy.dynamicIpAllocation.publishPolicyRevision						}
+mutation.policy.dynamicIpAllocation.publishPolicyRevision					}
+mutation.policy.dynamicIpAllocation.publishPolicyRevision				}
+mutation.policy.dynamicIpAllocation.publishPolicyRevision				properties
+mutation.policy.dynamicIpAllocation.publishPolicyRevision			}
+mutation.policy.dynamicIpAllocation.publishPolicyRevision			sections {
+mutation.policy.dynamicIpAllocation.publishPolicyRevision				audit {
+mutation.policy.dynamicIpAllocation.publishPolicyRevision					updatedTime
+mutation.policy.dynamicIpAllocation.publishPolicyRevision					updatedBy
+mutation.policy.dynamicIpAllocation.publishPolicyRevision				}
+mutation.policy.dynamicIpAllocation.publishPolicyRevision				section {
+mutation.policy.dynamicIpAllocation.publishPolicyRevision					id
+mutation.policy.dynamicIpAllocation.publishPolicyRevision					name
+mutation.policy.dynamicIpAllocation.publishPolicyRevision				}
+mutation.policy.dynamicIpAllocation.publishPolicyRevision				properties
+mutation.policy.dynamicIpAllocation.publishPolicyRevision			}
+mutation.policy.dynamicIpAllocation.publishPolicyRevision			audit {
+mutation.policy.dynamicIpAllocation.publishPolicyRevision				publishedTime
+mutation.policy.dynamicIpAllocation.publishPolicyRevision				publishedBy
+mutation.policy.dynamicIpAllocation.publishPolicyRevision			}
+mutation.policy.dynamicIpAllocation.publishPolicyRevision			revision {
+mutation.policy.dynamicIpAllocation.publishPolicyRevision				id
+mutation.policy.dynamicIpAllocation.publishPolicyRevision				name
+mutation.policy.dynamicIpAllocation.publishPolicyRevision				description
+mutation.policy.dynamicIpAllocation.publishPolicyRevision				changes
+mutation.policy.dynamicIpAllocation.publishPolicyRevision				createdTime
+mutation.policy.dynamicIpAllocation.publishPolicyRevision				updatedTime
+mutation.policy.dynamicIpAllocation.publishPolicyRevision			}
+mutation.policy.dynamicIpAllocation.publishPolicyRevision		}
+mutation.policy.dynamicIpAllocation.publishPolicyRevision		status
+mutation.policy.dynamicIpAllocation.publishPolicyRevision		errors {
+mutation.policy.dynamicIpAllocation.publishPolicyRevision			errorMessage
+mutation.policy.dynamicIpAllocation.publishPolicyRevision			errorCode
+mutation.policy.dynamicIpAllocation.publishPolicyRevision		}
+mutation.policy.dynamicIpAllocation.publishPolicyRevision	}
+mutation.policy.dynamicIpAllocation.publishPolicyRevision}
 	}	
 }

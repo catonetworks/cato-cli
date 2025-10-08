@@ -4,15 +4,16 @@
 
 ### Usage for query.policy.socketLan.policy:
 
-`catocli query policy socketLan policy -h`
+```bash
+catocli query policy socketLan policy -h
 
-`catocli query policy socketLan policy <json>`
+catocli query policy socketLan policy <json>
 
-`catocli query policy socketLan policy "$(cat < query.policy.socketLan.policy.json)"`
+catocli query policy socketLan policy "$(cat < query.policy.socketLan.policy.json)"
 
-`catocli query policy socketLan policy '{"socketLanPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'`
+catocli query policy socketLan policy '{"socketLanPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'
 
-`catocli query policy socketLan policy -p '{
+catocli query policy socketLan policy -p '{
     "socketLanPolicyInput": {
         "policyRevisionInput": {
             "id": "id",
@@ -20,7 +21,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for query.policy.socketLan.policy ####
 

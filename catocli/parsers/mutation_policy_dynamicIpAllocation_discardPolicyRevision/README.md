@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.dynamicIpAllocation.discardPolicyRevision:
 
-`catocli mutation policy dynamicIpAllocation discardPolicyRevision -h`
+```bash
+catocli mutation policy dynamicIpAllocation discardPolicyRevision -h
 
-`catocli mutation policy dynamicIpAllocation discardPolicyRevision <json>`
+catocli mutation policy dynamicIpAllocation discardPolicyRevision <json>
 
-`catocli mutation policy dynamicIpAllocation discardPolicyRevision "$(cat < mutation.policy.dynamicIpAllocation.discardPolicyRevision.json)"`
+catocli mutation policy dynamicIpAllocation discardPolicyRevision "$(cat < mutation.policy.dynamicIpAllocation.discardPolicyRevision.json)"
 
-`catocli mutation policy dynamicIpAllocation discardPolicyRevision '{"dynamicIpAllocationPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyDiscardRevisionInput":{"id":"id"}}'`
+catocli mutation policy dynamicIpAllocation discardPolicyRevision '{"dynamicIpAllocationPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyDiscardRevisionInput":{"id":"id"}}'
 
-`catocli mutation policy dynamicIpAllocation discardPolicyRevision -p '{
+catocli mutation policy dynamicIpAllocation discardPolicyRevision -p '{
     "dynamicIpAllocationPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"
@@ -22,7 +23,7 @@
         "id": "id"
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.dynamicIpAllocation.discardPolicyRevision ####
 

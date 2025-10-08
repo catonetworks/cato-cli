@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.tlsInspect.discardPolicyRevision:
 
-`catocli mutation policy tlsInspect discardPolicyRevision -h`
+```bash
+catocli mutation policy tlsInspect discardPolicyRevision -h
 
-`catocli mutation policy tlsInspect discardPolicyRevision <json>`
+catocli mutation policy tlsInspect discardPolicyRevision <json>
 
-`catocli mutation policy tlsInspect discardPolicyRevision "$(cat < mutation.policy.tlsInspect.discardPolicyRevision.json)"`
+catocli mutation policy tlsInspect discardPolicyRevision "$(cat < mutation.policy.tlsInspect.discardPolicyRevision.json)"
 
-`catocli mutation policy tlsInspect discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
+catocli mutation policy tlsInspect discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-`catocli mutation policy tlsInspect discardPolicyRevision -p '{
+catocli mutation policy tlsInspect discardPolicyRevision -p '{
     "policyDiscardRevisionInput": {
         "id": "id"
     },
@@ -22,7 +23,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.tlsInspect.discardPolicyRevision ####
 

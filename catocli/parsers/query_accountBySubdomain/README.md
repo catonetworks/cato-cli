@@ -4,21 +4,22 @@
 
 ### Usage for query.accountBySubdomain:
 
-`catocli query accountBySubdomain -h`
+```bash
+catocli query accountBySubdomain -h
 
-`catocli query accountBySubdomain <json>`
+catocli query accountBySubdomain <json>
 
-`catocli query accountBySubdomain "$(cat < query.accountBySubdomain.json)"`
+catocli query accountBySubdomain "$(cat < query.accountBySubdomain.json)"
 
-`catocli query accountBySubdomain '{"subdomains":["string1","string2"]}'`
+catocli query accountBySubdomain '{"subdomains":["string1","string2"]}'
 
-`catocli query accountBySubdomain -p '{
+catocli query accountBySubdomain -p '{
     "subdomains": [
         "string1",
         "string2"
     ]
 }'
-
+```
 
 #### Operation Arguments for query.accountBySubdomain ####
 

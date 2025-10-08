@@ -1,27 +1,24 @@
-mutation policyInternetFirewallRemoveSection ( $policyRemoveSectionInput:PolicyRemoveSectionInput! $internetFirewallPolicyMutationInput:InternetFirewallPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		internetFirewall ( input:$internetFirewallPolicyMutationInput  )  {
-			removeSectionInternetFirewallPolicyMutations: removeSection ( input:$policyRemoveSectionInput   ) {
-				section  {
-					auditPolicySectionPayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					sectionPolicySectionPayload: section {
-						id 
-						name 
-					}
-					propertiesPolicySectionPayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyInternetFirewallRemoveSection ( $internetFirewallPolicyMutationInput:InternetFirewallPolicyMutationInput $policyRemoveSectionInput:PolicyRemoveSectionInput!) {
+	policy ( ) {
+mutation.policy.internetFirewall.removeSectioninternetFirewall ( input:$internetFirewallPolicyMutationInput  )  {
+mutation.policy.internetFirewall.removeSection	removeSection ( input:$policyRemoveSectionInput   ) {
+mutation.policy.internetFirewall.removeSection		section {
+mutation.policy.internetFirewall.removeSection			audit {
+mutation.policy.internetFirewall.removeSection				updatedTime
+mutation.policy.internetFirewall.removeSection				updatedBy
+mutation.policy.internetFirewall.removeSection			}
+mutation.policy.internetFirewall.removeSection			section {
+mutation.policy.internetFirewall.removeSection				id
+mutation.policy.internetFirewall.removeSection				name
+mutation.policy.internetFirewall.removeSection			}
+mutation.policy.internetFirewall.removeSection			properties
+mutation.policy.internetFirewall.removeSection		}
+mutation.policy.internetFirewall.removeSection		status
+mutation.policy.internetFirewall.removeSection		errors {
+mutation.policy.internetFirewall.removeSection			errorMessage
+mutation.policy.internetFirewall.removeSection			errorCode
+mutation.policy.internetFirewall.removeSection		}
+mutation.policy.internetFirewall.removeSection	}
+mutation.policy.internetFirewall.removeSection}
 	}	
 }

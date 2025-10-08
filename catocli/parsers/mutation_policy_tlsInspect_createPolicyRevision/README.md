@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.tlsInspect.createPolicyRevision:
 
-`catocli mutation policy tlsInspect createPolicyRevision -h`
+```bash
+catocli mutation policy tlsInspect createPolicyRevision -h
 
-`catocli mutation policy tlsInspect createPolicyRevision <json>`
+catocli mutation policy tlsInspect createPolicyRevision <json>
 
-`catocli mutation policy tlsInspect createPolicyRevision "$(cat < mutation.policy.tlsInspect.createPolicyRevision.json)"`
+catocli mutation policy tlsInspect createPolicyRevision "$(cat < mutation.policy.tlsInspect.createPolicyRevision.json)"
 
-`catocli mutation policy tlsInspect createPolicyRevision '{"policyCreateRevisionInput":{"description":"string","name":"string"},"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
+catocli mutation policy tlsInspect createPolicyRevision '{"policyCreateRevisionInput":{"description":"string","name":"string"},"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-`catocli mutation policy tlsInspect createPolicyRevision -p '{
+catocli mutation policy tlsInspect createPolicyRevision -p '{
     "policyCreateRevisionInput": {
         "description": "string",
         "name": "string"
@@ -23,7 +24,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.tlsInspect.createPolicyRevision ####
 

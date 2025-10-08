@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.applicationControl.updateSection:
 
-`catocli mutation policy applicationControl updateSection -h`
+```bash
+catocli mutation policy applicationControl updateSection -h
 
-`catocli mutation policy applicationControl updateSection <json>`
+catocli mutation policy applicationControl updateSection <json>
 
-`catocli mutation policy applicationControl updateSection "$(cat < mutation.policy.applicationControl.updateSection.json)"`
+catocli mutation policy applicationControl updateSection "$(cat < mutation.policy.applicationControl.updateSection.json)"
 
-`catocli mutation policy applicationControl updateSection '{"applicationControlPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyUpdateSectionInput":{"id":"id","policyUpdateSectionInfoInput":{"name":"string"}}}'`
+catocli mutation policy applicationControl updateSection '{"applicationControlPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyUpdateSectionInput":{"id":"id","policyUpdateSectionInfoInput":{"name":"string"}}}'
 
-`catocli mutation policy applicationControl updateSection -p '{
+catocli mutation policy applicationControl updateSection -p '{
     "applicationControlPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"
@@ -25,7 +26,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.applicationControl.updateSection ####
 

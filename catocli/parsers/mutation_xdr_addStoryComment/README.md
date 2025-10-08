@@ -4,21 +4,22 @@
 
 ### Usage for mutation.xdr.addStoryComment:
 
-`catocli mutation xdr addStoryComment -h`
+```bash
+catocli mutation xdr addStoryComment -h
 
-`catocli mutation xdr addStoryComment <json>`
+catocli mutation xdr addStoryComment <json>
 
-`catocli mutation xdr addStoryComment "$(cat < mutation.xdr.addStoryComment.json)"`
+catocli mutation xdr addStoryComment "$(cat < mutation.xdr.addStoryComment.json)"
 
-`catocli mutation xdr addStoryComment '{"addStoryCommentInput":{"storyId":"id","text":"string"}}'`
+catocli mutation xdr addStoryComment '{"addStoryCommentInput":{"storyId":"id","text":"string"}}'
 
-`catocli mutation xdr addStoryComment -p '{
+catocli mutation xdr addStoryComment -p '{
     "addStoryCommentInput": {
         "storyId": "id",
         "text": "string"
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.xdr.addStoryComment ####
 

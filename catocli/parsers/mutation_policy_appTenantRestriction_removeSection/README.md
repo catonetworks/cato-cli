@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.appTenantRestriction.removeSection:
 
-`catocli mutation policy appTenantRestriction removeSection -h`
+```bash
+catocli mutation policy appTenantRestriction removeSection -h
 
-`catocli mutation policy appTenantRestriction removeSection <json>`
+catocli mutation policy appTenantRestriction removeSection <json>
 
-`catocli mutation policy appTenantRestriction removeSection "$(cat < mutation.policy.appTenantRestriction.removeSection.json)"`
+catocli mutation policy appTenantRestriction removeSection "$(cat < mutation.policy.appTenantRestriction.removeSection.json)"
 
-`catocli mutation policy appTenantRestriction removeSection '{"appTenantRestrictionPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyRemoveSectionInput":{"id":"id"}}'`
+catocli mutation policy appTenantRestriction removeSection '{"appTenantRestrictionPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyRemoveSectionInput":{"id":"id"}}'
 
-`catocli mutation policy appTenantRestriction removeSection -p '{
+catocli mutation policy appTenantRestriction removeSection -p '{
     "appTenantRestrictionPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"
@@ -22,7 +23,7 @@
         "id": "id"
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.appTenantRestriction.removeSection ####
 

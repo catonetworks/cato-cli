@@ -1,83 +1,81 @@
-query siteBgpPeer ( $bgpPeerRefInput:BgpPeerRefInput! $accountId:ID! ) {
-	site ( accountId:$accountId ) {
-		bgpPeer ( input:$bgpPeerRefInput  )  {
-			siteBgpPeer: site {
-				id 
-				name 
-			}
-			id
-			name
-			peerAsn
-			catoAsn
-			peerIp
-			catoIp
-			advertiseDefaultRoute
-			advertiseAllRoutes
-			advertiseSummaryRoutes
-			summaryRouteBgpPeer: summaryRoute {
-				id 
-				route 
-				community  {
-					from
-					to
-				}
-
-			}
-			defaultActionBgpPeer: defaultAction
-			defaultActionExclusionBgpPeer: defaultActionExclusion {
-				bgpRouteExactFilterRule  {
-					id
-					globalIpRangeBgpRouteExactFilterRule: globalIpRange {
-						id 
-						name 
-					}
-					networkSubnet
-				}
-
-				bgpRouteExactAndInclusiveFilterRule  {
-					id
-					globalIpRangeBgpRouteExactAndInclusiveFilterRule: globalIpRange {
-						id 
-						name 
-					}
-					globalIpRangeExceptionBgpRouteExactAndInclusiveFilterRule: globalIpRangeException {
-						id 
-						name 
-					}
-					networkSubnet
-					networkSubnetException
-					le
-					ge
-				}
-
-				communityFilterRule  {
-					id
-					predicateBgpCommunityFilterRule: predicate
-					communityBgpCommunityFilterRule: community {
-						from 
-						to 
-					}
-				}
-
-			}
-			performNat
-			md5AuthKey
-			metric
-			holdTime
-			keepaliveInterval
-			bfdEnabled
-			bfdSettingsBgpPeer: bfdSettings {
-				transmitInterval 
-				receiveInterval 
-				multiplier 
-			}
-			trackingBgpPeer: tracking {
-				id 
-				enabled 
-				alertFrequency 
-				subscriptionId 
-			}
-		}
-
+query siteBgpPeer ( $bgpPeerRefInput:BgpPeerRefInput!) {
+	site ( ) {
+query.site.bgpPeerbgpPeer ( input:$bgpPeerRefInput  )  {
+query.site.bgpPeer	site {
+query.site.bgpPeer		id
+query.site.bgpPeer		name
+query.site.bgpPeer	}
+query.site.bgpPeer	id
+query.site.bgpPeer	name
+query.site.bgpPeer	peerAsn
+query.site.bgpPeer	catoAsn
+query.site.bgpPeer	peerIp
+query.site.bgpPeer	catoIp
+query.site.bgpPeer	advertiseDefaultRoute
+query.site.bgpPeer	advertiseAllRoutes
+query.site.bgpPeer	advertiseSummaryRoutes
+query.site.bgpPeer	summaryRoute {
+query.site.bgpPeer		id
+query.site.bgpPeer		route
+query.site.bgpPeer		community {
+query.site.bgpPeer			from
+query.site.bgpPeer			to
+query.site.bgpPeer		}
+query.site.bgpPeer	}
+query.site.bgpPeer	defaultAction
+query.site.bgpPeer	defaultActionExclusion {
+query.site.bgpPeer		bgpRouteExactFilterRule {
+query.site.bgpPeer			id
+query.site.bgpPeer			globalIpRange {
+query.site.bgpPeer				id
+query.site.bgpPeer				name
+query.site.bgpPeer			}
+query.site.bgpPeer			networkSubnet
+query.site.bgpPeer		}
+query.site.bgpPeer		bgpRouteExactAndInclusiveFilterRule {
+query.site.bgpPeer			id
+query.site.bgpPeer			globalIpRange {
+query.site.bgpPeer				id
+query.site.bgpPeer				name
+query.site.bgpPeer			}
+query.site.bgpPeer			globalIpRangeException {
+query.site.bgpPeer				id
+query.site.bgpPeer				name
+query.site.bgpPeer			}
+query.site.bgpPeer			networkSubnet
+query.site.bgpPeer			networkSubnetException
+query.site.bgpPeer			le
+query.site.bgpPeer			ge
+query.site.bgpPeer		}
+query.site.bgpPeer		communityFilterRule {
+query.site.bgpPeer			id
+query.site.bgpPeer			predicate
+query.site.bgpPeer			community {
+query.site.bgpPeer				from
+query.site.bgpPeer				to
+query.site.bgpPeer			}
+query.site.bgpPeer		}
+query.site.bgpPeer	}
+query.site.bgpPeer	performNat
+query.site.bgpPeer	md5AuthKey
+query.site.bgpPeer	metric {
+	name
+	value
+}
+query.site.bgpPeer	holdTime
+query.site.bgpPeer	keepaliveInterval
+query.site.bgpPeer	bfdEnabled
+query.site.bgpPeer	bfdSettings {
+query.site.bgpPeer		transmitInterval
+query.site.bgpPeer		receiveInterval
+query.site.bgpPeer		multiplier
+query.site.bgpPeer	}
+query.site.bgpPeer	tracking {
+query.site.bgpPeer		id
+query.site.bgpPeer		enabled
+query.site.bgpPeer		alertFrequency
+query.site.bgpPeer		subscriptionId
+query.site.bgpPeer	}
+query.site.bgpPeer}
 	}	
 }

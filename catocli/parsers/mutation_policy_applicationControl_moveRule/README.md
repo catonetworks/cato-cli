@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.applicationControl.moveRule:
 
-`catocli mutation policy applicationControl moveRule -h`
+```bash
+catocli mutation policy applicationControl moveRule -h
 
-`catocli mutation policy applicationControl moveRule <json>`
+catocli mutation policy applicationControl moveRule <json>
 
-`catocli mutation policy applicationControl moveRule "$(cat < mutation.policy.applicationControl.moveRule.json)"`
+catocli mutation policy applicationControl moveRule "$(cat < mutation.policy.applicationControl.moveRule.json)"
 
-`catocli mutation policy applicationControl moveRule '{"applicationControlPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyMoveRuleInput":{"id":"id","policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"}}}'`
+catocli mutation policy applicationControl moveRule '{"applicationControlPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyMoveRuleInput":{"id":"id","policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"}}}'
 
-`catocli mutation policy applicationControl moveRule -p '{
+catocli mutation policy applicationControl moveRule -p '{
     "applicationControlPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"
@@ -26,7 +27,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.applicationControl.moveRule ####
 

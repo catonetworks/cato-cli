@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.wanFirewall.moveSection:
 
-`catocli mutation policy wanFirewall moveSection -h`
+```bash
+catocli mutation policy wanFirewall moveSection -h
 
-`catocli mutation policy wanFirewall moveSection <json>`
+catocli mutation policy wanFirewall moveSection <json>
 
-`catocli mutation policy wanFirewall moveSection "$(cat < mutation.policy.wanFirewall.moveSection.json)"`
+catocli mutation policy wanFirewall moveSection "$(cat < mutation.policy.wanFirewall.moveSection.json)"
 
-`catocli mutation policy wanFirewall moveSection '{"policyMoveSectionInput":{"id":"id","policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}},"wanFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
+catocli mutation policy wanFirewall moveSection '{"policyMoveSectionInput":{"id":"id","policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}},"wanFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-`catocli mutation policy wanFirewall moveSection -p '{
+catocli mutation policy wanFirewall moveSection -p '{
     "policyMoveSectionInput": {
         "id": "id",
         "policySectionPositionInput": {
@@ -26,7 +27,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.wanFirewall.moveSection ####
 

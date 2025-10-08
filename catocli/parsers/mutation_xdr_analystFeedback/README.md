@@ -4,15 +4,16 @@
 
 ### Usage for mutation.xdr.analystFeedback:
 
-`catocli mutation xdr analystFeedback -h`
+```bash
+catocli mutation xdr analystFeedback -h
 
-`catocli mutation xdr analystFeedback <json>`
+catocli mutation xdr analystFeedback <json>
 
-`catocli mutation xdr analystFeedback "$(cat < mutation.xdr.analystFeedback.json)"`
+catocli mutation xdr analystFeedback "$(cat < mutation.xdr.analystFeedback.json)"
 
-`catocli mutation xdr analystFeedback '{"analystFeedbackInput":{"additionalInfo":"string","severity":"High","status":"Open","storyId":"id","storyThreatType":{"details":"string","name":"string","recommendedAction":"string"},"threatClassification":"string","verdict":"Suspicious"},"perSecond":true}'`
+catocli mutation xdr analystFeedback '{"analystFeedbackInput":{"additionalInfo":"string","severity":"High","status":"Open","storyId":"id","storyThreatType":{"details":"string","name":"string","recommendedAction":"string"},"threatClassification":"string","verdict":"Suspicious"}}'
 
-`catocli mutation xdr analystFeedback -p '{
+catocli mutation xdr analystFeedback -p '{
     "analystFeedbackInput": {
         "additionalInfo": "string",
         "severity": "High",
@@ -25,13 +26,11 @@
         },
         "threatClassification": "string",
         "verdict": "Suspicious"
-    },
-    "perSecond": true
+    }
 }'
-
+```
 
 #### Operation Arguments for mutation.xdr.analystFeedback ####
 
 `accountId` [ID] - (required) N/A    
 `analystFeedbackInput` [AnalystFeedbackInput] - (required) N/A    
-`perSecond` [Boolean] - (required) whether to normalize the data into per second (i.e. divide by granularity)    

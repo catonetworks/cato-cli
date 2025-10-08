@@ -4,11 +4,12 @@
 
 ### Usage for mutation.accountManagement.disableAccount:
 
-`catocli mutation accountManagement disableAccount -h`
+```bash
+catocli mutation accountManagement disableAccount -h
 
-`catocli mutation accountManagement disableAccount <json>`
+catocli mutation accountManagement disableAccount <json>
 
-`catocli mutation accountManagement disableAccount "$(cat < mutation.accountManagement.disableAccount.json)"`
+catocli mutation accountManagement disableAccount "$(cat < mutation.accountManagement.disableAccount.json)"
 
 #### Operation Arguments for mutation.accountManagement.disableAccount ####
 

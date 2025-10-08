@@ -4,15 +4,16 @@
 
 ### Usage for query.policy.tlsInspect.policy:
 
-`catocli query policy tlsInspect policy -h`
+```bash
+catocli query policy tlsInspect policy -h
 
-`catocli query policy tlsInspect policy <json>`
+catocli query policy tlsInspect policy <json>
 
-`catocli query policy tlsInspect policy "$(cat < query.policy.tlsInspect.policy.json)"`
+catocli query policy tlsInspect policy "$(cat < query.policy.tlsInspect.policy.json)"
 
-`catocli query policy tlsInspect policy '{"tlsInspectPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'`
+catocli query policy tlsInspect policy '{"tlsInspectPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'
 
-`catocli query policy tlsInspect policy -p '{
+catocli query policy tlsInspect policy -p '{
     "tlsInspectPolicyInput": {
         "policyRevisionInput": {
             "id": "id",
@@ -20,7 +21,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for query.policy.tlsInspect.policy ####
 

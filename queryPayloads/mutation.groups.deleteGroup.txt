@@ -1,45 +1,41 @@
-mutation groupsDeleteGroup ( $groupMembersListInput:GroupMembersListInput! $groupRefInput:GroupRefInput! $accountId:ID! ) {
-	groups ( accountId:$accountId ) {
-		deleteGroup ( input:$groupRefInput  )  {
-			groupDeleteGroupPayload: group {
-				id 
-				name 
-				description 
-				audit  {
-					updatedTime
-					updatedByAuditingMetadata: updatedBy {
-						id 
-						name 
-						... on AdminRef {
-							id 
-							name 
-						}
-						... on ApiKeyRef {
-							id 
-							name 
-						}
-					}
-				}
-
-				members ( input:$groupMembersListInput  )  {
-					itemsGroupMembersListPayload: items {
-						id 
-						name 
-						type 
-					}
-					pagingGroupMembersListPayload: paging {
-						total 
-					}
-				}
-
-				membersCount 
-				membersCountPerType  {
-					typeGroupMemberTypeCount: type
-					membersCount
-				}
-
-			}
-		}
-
+mutation groupsDeleteGroup ( $groupRefInput:GroupRefInput!) {
+	groups ( ) {
+mutation.groups.deleteGroupdeleteGroup ( input:$groupRefInput  )  {
+mutation.groups.deleteGroup	group {
+mutation.groups.deleteGroup		id
+mutation.groups.deleteGroup		name
+mutation.groups.deleteGroup		description
+mutation.groups.deleteGroup		audit {
+mutation.groups.deleteGroup			updatedTime
+mutation.groups.deleteGroup			updatedBy {
+mutation.groups.deleteGroup				id
+mutation.groups.deleteGroup				name
+mutation.groups.deleteGroup				... on AdminRef {
+mutation.groups.deleteGroup					id
+mutation.groups.deleteGroup					name
+mutation.groups.deleteGroup				}
+mutation.groups.deleteGroup				... on ApiKeyRef {
+mutation.groups.deleteGroup					id
+mutation.groups.deleteGroup					name
+mutation.groups.deleteGroup				}
+mutation.groups.deleteGroup			}
+mutation.groups.deleteGroup		}
+mutation.groups.deleteGroup		members {
+mutation.groups.deleteGroup			items {
+mutation.groups.deleteGroup				id
+mutation.groups.deleteGroup				name
+mutation.groups.deleteGroup				type
+mutation.groups.deleteGroup			}
+mutation.groups.deleteGroup			paging {
+mutation.groups.deleteGroup				total
+mutation.groups.deleteGroup			}
+mutation.groups.deleteGroup		}
+mutation.groups.deleteGroup		membersCount
+mutation.groups.deleteGroup		membersCountPerType {
+mutation.groups.deleteGroup			type
+mutation.groups.deleteGroup			membersCount
+mutation.groups.deleteGroup		}
+mutation.groups.deleteGroup	}
+mutation.groups.deleteGroup}
 	}	
 }

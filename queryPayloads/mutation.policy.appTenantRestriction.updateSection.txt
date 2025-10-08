@@ -1,27 +1,24 @@
-mutation policyAppTenantRestrictionUpdateSection ( $policyUpdateSectionInput:PolicyUpdateSectionInput! $appTenantRestrictionPolicyMutationInput:AppTenantRestrictionPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		appTenantRestriction ( input:$appTenantRestrictionPolicyMutationInput  )  {
-			updateSectionAppTenantRestrictionPolicyMutations: updateSection ( input:$policyUpdateSectionInput   ) {
-				section  {
-					auditPolicySectionPayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					sectionPolicySectionPayload: section {
-						id 
-						name 
-					}
-					propertiesPolicySectionPayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyAppTenantRestrictionUpdateSection ( $appTenantRestrictionPolicyMutationInput:AppTenantRestrictionPolicyMutationInput $policyUpdateSectionInput:PolicyUpdateSectionInput!) {
+	policy ( ) {
+mutation.policy.appTenantRestriction.updateSectionappTenantRestriction ( input:$appTenantRestrictionPolicyMutationInput  )  {
+mutation.policy.appTenantRestriction.updateSection	updateSection ( input:$policyUpdateSectionInput   ) {
+mutation.policy.appTenantRestriction.updateSection		section {
+mutation.policy.appTenantRestriction.updateSection			audit {
+mutation.policy.appTenantRestriction.updateSection				updatedTime
+mutation.policy.appTenantRestriction.updateSection				updatedBy
+mutation.policy.appTenantRestriction.updateSection			}
+mutation.policy.appTenantRestriction.updateSection			section {
+mutation.policy.appTenantRestriction.updateSection				id
+mutation.policy.appTenantRestriction.updateSection				name
+mutation.policy.appTenantRestriction.updateSection			}
+mutation.policy.appTenantRestriction.updateSection			properties
+mutation.policy.appTenantRestriction.updateSection		}
+mutation.policy.appTenantRestriction.updateSection		status
+mutation.policy.appTenantRestriction.updateSection		errors {
+mutation.policy.appTenantRestriction.updateSection			errorMessage
+mutation.policy.appTenantRestriction.updateSection			errorCode
+mutation.policy.appTenantRestriction.updateSection		}
+mutation.policy.appTenantRestriction.updateSection	}
+mutation.policy.appTenantRestriction.updateSection}
 	}	
 }

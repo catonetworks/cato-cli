@@ -99,11 +99,10 @@ class JSONExample:
         escaped_json = self.json_data.replace('"', '\"')
         
         examples = [
-            "# PowerShell (Here-string):",
-            "$json = @'",
+            "# PowerShell:",
+            "catocli {command_name} @'",
             escaped_json,
-            "'@",
-            f"catocli {command_name} $json -p"
+            "'@"
         ]
         
         return examples
@@ -204,7 +203,7 @@ class UniversalHelpFormatter:
     
     def __init__(self):
         self.platform_info = PlatformInfo()
-    
+
     def format_help(self, command_path: str, help_source: str = "readme") -> str:
         """
         Generate help text for a command
@@ -219,9 +218,7 @@ class UniversalHelpFormatter:
         command_name = command_path.replace('_', ' ')
         
         # Start building help output
-        help_lines = [
-            "\nEXAMPLES:"
-        ]
+        help_lines = ["\n"]
         
         # Extract examples based on source type
         readme_examples = []
@@ -229,7 +226,16 @@ class UniversalHelpFormatter:
             readme_examples = self._extract_from_readme(command_path)
             if readme_examples:
                 for example in readme_examples:
-                    help_lines.extend(example.format_for_platform(self.platform_info, command_name))
+                    # Check if this is a multi-line formatted example (contains newlines and proper indentation)
+                    if '\n' in example and ('    "' in example or '\t"' in example):
+                        # This is already properly formatted multi-line - preserve it exactly
+                        help_lines.append(example)
+                    elif not ('{' in example and '}' in example):
+                        # Simple command examples without JSON
+                        help_lines.append(example)
+                    else:
+                        # Single-line JSON examples - could format them, but preserve as-is for consistency
+                        help_lines.append(example)
                     help_lines.append("")  # Add spacing between examples
         
         description_examples = []
@@ -237,24 +243,29 @@ class UniversalHelpFormatter:
             description_examples = self._extract_from_description(command_path)
             if description_examples:
                 for example in description_examples:
-                    help_lines.extend(example.format_for_platform(self.platform_info, command_name))
+                    if hasattr(example, 'format_for_platform'):
+                        # This is a JSONExample object
+                        help_lines.extend(example.format_for_platform(self.platform_info, command_name))
+                    else:
+                        # This is a string
+                        help_lines.append(example)
                     help_lines.append("")
         
-        # If no examples found and this looks like a catolib command, generate schema-based examples
-        if not readme_examples and not description_examples and ('query_' in command_path or 'mutation_' in command_path):
-            schema_examples = self._generate_schema_based_examples(command_path)
-            if schema_examples:
-                for example in schema_examples:
-                    help_lines.extend(example.format_for_platform(self.platform_info, command_name))
-                    help_lines.append("")
+        # # If no examples found and this looks like a catolib command, generate schema-based examples
+        # if not readme_examples and not description_examples and ('query_' in command_path or 'mutation_' in command_path):
+        #     schema_examples = self._generate_schema_based_examples(command_path)
+        #     if schema_examples:
+        #         for example in schema_examples:
+        #             help_lines.extend(example.format_for_platform(self.platform_info, command_name))
+        #             help_lines.append("")
         
         # Add platform-specific hints
         help_lines.extend(self._get_platform_hints())
         
         return "\n".join(help_lines)
-    
-    def _extract_from_readme(self, command_path: str) -> List[JSONExample]:
-        """Extract JSON examples from README.md files"""
+
+    def _extract_from_readme(self, command_path: str) -> List[str]:
+        """Extract all catocli examples from README.md files"""
         examples = []
         
         # Find README.md file
@@ -268,85 +279,79 @@ class UniversalHelpFormatter:
             with open(readme_path, "r", encoding='utf-8') as f:
                 content = f.read()
             
-            # Extract JSON from markdown code blocks
+            command_name = command_path.replace('_', ' ')
+            
+            # Extract ALL catocli commands from markdown code blocks
             code_block_pattern = r'```(?:bash|shell|json)?\n(.*?)```'
             matches = re.findall(code_block_pattern, content, re.DOTALL)
             
             for match in matches:
-                if 'catocli' in match and command_path.replace('_', ' ') in match:
-                    # Extract JSON from the command - handle multi-line JSON
-                    json_match = re.search(r"'({.*?})'\s*-p", match, re.DOTALL)
-                    if json_match:
-                        json_content = json_match.group(1)
-                        examples.append(JSONExample(json_content))
+                # Split the match into individual lines and extract catocli commands
+                lines = match.split('\n')
+                current_command = None
+                in_multiline_json = False
+                
+                for i, line in enumerate(lines):
+                    stripped_line = line.strip()
+                    
+                    if stripped_line.startswith('catocli') and command_name in stripped_line:
+                        if current_command:
+                            # Save previous multi-line command
+                            examples.append(current_command)
+                        current_command = stripped_line
+                        # Check if this starts a multi-line JSON command (ends with -p '{')
+                        if stripped_line.endswith("-p '{"):
+                            in_multiline_json = True
+                            # Keep the full command line including the opening bracket
+                    elif in_multiline_json and current_command:
+                        # We're in a multi-line JSON block - preserve exact formatting
+                        if stripped_line == "}'":
+                            # End of multi-line JSON
+                            current_command += '\n' + line
+                            in_multiline_json = False
+                        else:
+                            # Continue multi-line JSON with exact indentation
+                            current_command += '\n' + line
+                    elif current_command and not in_multiline_json and stripped_line and not stripped_line.startswith('catocli'):
+                        # This could be continuation of a single-line command
+                        current_command += ' ' + stripped_line
+                    elif current_command and (stripped_line.startswith('catocli') or stripped_line == '' or i == len(lines) - 1):
+                        # End of current command, start new one or end of block
+                        if not in_multiline_json:
+                            examples.append(current_command)
+                            current_command = stripped_line if stripped_line.startswith('catocli') and command_name in stripped_line else None
+                
+                # Don't forget the last command
+                if current_command and not in_multiline_json:
+                    examples.append(current_command)
             
-            # Also look for inline examples
-            inline_pattern = r'catocli.*?\'({[^}]*})\'.*?-p'
-            inline_matches = re.findall(inline_pattern, content, re.DOTALL)
+            # Also look for inline catocli commands (in backticks)
+            inline_pattern = r'`(catocli[^`]+)`'
+            inline_matches = re.findall(inline_pattern, content)
             
-            for json_content in inline_matches:
-                if json_content not in [ex.json_data for ex in examples]:  # Avoid duplicates
-                    examples.append(JSONExample(json_content))
+            for cmd in inline_matches:
+                if command_name in cmd and cmd not in examples:
+                    examples.append(cmd)
                     
         except Exception as e:
             print(f"Warning: Could not parse README for {command_path}: {e}")
         
-        return examples
+        # Remove duplicates while preserving order
+        seen = set()
+        unique_examples = []
+        for example in examples:
+            if example not in seen:
+                seen.add(example)
+                unique_examples.append(example)
+        
+        return unique_examples
     
-    def _extract_from_description(self, command_path: str) -> List[JSONExample]:
-        """Extract JSON examples from argparse description text (like SCIM)"""
+    def _extract_from_description(self, command_path: str) -> List[str]:
+        """Extract command examples from argparse description text (like SCIM)"""
         examples = []
         
         # This would need to be integrated with the parser definitions
         # For now, return empty list - this can be expanded later
-        return examples
-    
-    def _generate_schema_based_examples(self, command_path: str) -> List[JSONExample]:
-        """Generate examples for catolib.py generated commands based on GraphQL schema"""
-        examples = []
-        
-        # Parse command path to get operation type and name
-        parts = command_path.split('_')
-        if len(parts) < 2:
-            return examples
-            
-        operation_type = parts[0]  # 'query' or 'mutation'
-        operation_name = '_'.join(parts[1:])  # e.g., 'xdr_stories'
-        
-        # Generate a basic example based on common patterns
-        if operation_type == 'query':
-            # Most queries need at least accountID
-            basic_example = {
-                "accountID": "<your_account_id>"
-            }
-            
-            # Add common parameters based on operation name
-            if 'events' in operation_name or 'stories' in operation_name:
-                basic_example.update({
-                    "timeFrame": "LAST_24_HOURS",
-                    "first": 100
-                })
-            elif 'sites' in operation_name:
-                basic_example.update({
-                    "siteType": "BRANCH"
-                })
-            elif 'accounts' in operation_name:
-                basic_example.update({
-                    "first": 50
-                })
-        else:
-            # Mutation example
-            basic_example = {
-                "accountID": "<your_account_id>",
-                "input": {
-                    "# Add required fields here": "<value>"
-                }
-            }
-        
-        # Create formatted JSON string
-        json_str = json.dumps(basic_example, indent=2)
-        examples.append(JSONExample(json_str))
-        
         return examples
     
     def _get_platform_hints(self) -> List[str]:

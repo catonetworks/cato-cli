@@ -1,643 +1,680 @@
-mutation policyApplicationControlUpdateRule ( $applicationControlUpdateRuleInput:ApplicationControlUpdateRuleInput! $applicationControlPolicyMutationInput:ApplicationControlPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		applicationControl ( input:$applicationControlPolicyMutationInput  )  {
-			updateRuleApplicationControlPolicyMutations: updateRule ( input:$applicationControlUpdateRuleInput   ) {
-				rule  {
-					auditApplicationControlRulePayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					ruleApplicationControlRulePayload: rule {
-						id 
-						name 
-						description 
-						index 
-						section  {
-							id
-							name
-						}
-
-						enabled 
-						ruleType 
-						applicationRule  {
-							applicationApplicationControlApplicationRule: application {
-								application  {
-									id
-									name
-								}
-
-								customApp  {
-									id
-									name
-								}
-
-								appCategory  {
-									id
-									name
-								}
-
-								customCategory  {
-									id
-									name
-								}
-
-								sanctionedAppsCategory  {
-									id
-									name
-								}
-
-								applicationType 
-							}
-							applicationActivitySatisfyApplicationControlApplicationRule: applicationActivitySatisfy
-							applicationActivityApplicationControlApplicationRule: applicationActivity {
-								activity  {
-									id
-									name
-								}
-
-								field  {
-									id
-									name
-								}
-
-								operator 
-								value 
-								valueSet  {
-									id
-									name
-								}
-
-							}
-							applicationContextApplicationControlApplicationRule: applicationContext {
-								applicationTenant  {
-									operatorApplicationControlTenant: operator
-									value
-									valueSetApplicationControlTenant: valueSet {
-										id 
-										name 
-									}
-								}
-
-							}
-							accessMethodApplicationControlApplicationRule: accessMethod {
-								accessMethod 
-								operator 
-								value 
-								valueSet  {
-									id
-									name
-								}
-
-							}
-							sourceApplicationControlApplicationRule: source {
-								country  {
-									id
-									name
-								}
-
-								host  {
-									id
-									name
-								}
-
-								site  {
-									id
-									name
-								}
-
-								subnet 
-								ip 
-								ipRange  {
-									from
-									to
-								}
-
-								globalIpRange  {
-									id
-									name
-								}
-
-								networkInterface  {
-									id
-									name
-								}
-
-								siteNetworkSubnet  {
-									id
-									name
-								}
-
-								floatingSubnet  {
-									id
-									name
-								}
-
-								user  {
-									id
-									name
-								}
-
-								usersGroup  {
-									id
-									name
-								}
-
-								group  {
-									id
-									name
-								}
-
-								systemGroup  {
-									id
-									name
-								}
-
-							}
-							deviceApplicationControlApplicationRule: device {
-								id 
-								name 
-							}
-							actionApplicationControlApplicationRule: action
-							trackingApplicationControlApplicationRule: tracking {
-								event  {
-									enabled
-								}
-
-								alert  {
-									enabled
-									frequencyPolicyRuleTrackingAlert: frequency
-									subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
-										id 
-										name 
-									}
-									webhookPolicyRuleTrackingAlert: webhook {
-										id 
-										name 
-									}
-									mailingListPolicyRuleTrackingAlert: mailingList {
-										id 
-										name 
-									}
-								}
-
-							}
-							scheduleApplicationControlApplicationRule: schedule {
-								activeOn 
-								customTimeframe  {
-									from
-									to
-								}
-
-								customRecurring  {
-									from
-									to
-									daysPolicyCustomRecurring: days
-								}
-
-							}
-							severityApplicationControlApplicationRule: severity
-							applicationCriteriaSatisfyApplicationControlApplicationRule: applicationCriteriaSatisfy
-							applicationCriteriaApplicationControlApplicationRule: applicationCriteria {
-								attributes  {
-									complianceAttributesApplicationControlAttributes: complianceAttributes {
-										iso27001 
-										sox 
-										hippa 
-										soc1 
-										soc2 
-										soc3 
-										isae3402 
-										pciDss 
-									}
-									securityAttributesApplicationControlAttributes: securityAttributes {
-										mfa 
-										encryptionAtRest 
-										auditTrail 
-										rbac 
-										rememberPassword 
-										sso 
-										trustedCertificate 
-										tlsEnforcement 
-										httpSecurityHeaders 
-									}
-								}
-
-								originCountry  {
-									id
-									name
-								}
-
-								risk  {
-									risk
-									riskOperatorApplicationControlRiskCriteria: riskOperator
-								}
-
-							}
-						}
-
-						dataRule  {
-							applicationApplicationControlDataRule: application {
-								application  {
-									id
-									name
-								}
-
-								customApp  {
-									id
-									name
-								}
-
-								appCategory  {
-									id
-									name
-								}
-
-								customCategory  {
-									id
-									name
-								}
-
-								sanctionedAppsCategory  {
-									id
-									name
-								}
-
-								applicationType 
-							}
-							applicationContextApplicationControlDataRule: applicationContext {
-								applicationTenant  {
-									operatorApplicationControlTenant: operator
-									value
-									valueSetApplicationControlTenant: valueSet {
-										id 
-										name 
-									}
-								}
-
-							}
-							applicationActivitySatisfyApplicationControlDataRule: applicationActivitySatisfy
-							applicationActivityApplicationControlDataRule: applicationActivity {
-								activity  {
-									id
-									name
-								}
-
-								field  {
-									id
-									name
-								}
-
-								operator 
-								value 
-								valueSet  {
-									id
-									name
-								}
-
-							}
-							accessMethodApplicationControlDataRule: accessMethod {
-								accessMethod 
-								operator 
-								value 
-								valueSet  {
-									id
-									name
-								}
-
-							}
-							sourceApplicationControlDataRule: source {
-								country  {
-									id
-									name
-								}
-
-								host  {
-									id
-									name
-								}
-
-								site  {
-									id
-									name
-								}
-
-								subnet 
-								ip 
-								ipRange  {
-									from
-									to
-								}
-
-								globalIpRange  {
-									id
-									name
-								}
-
-								networkInterface  {
-									id
-									name
-								}
-
-								siteNetworkSubnet  {
-									id
-									name
-								}
-
-								floatingSubnet  {
-									id
-									name
-								}
-
-								user  {
-									id
-									name
-								}
-
-								usersGroup  {
-									id
-									name
-								}
-
-								group  {
-									id
-									name
-								}
-
-								systemGroup  {
-									id
-									name
-								}
-
-							}
-							deviceApplicationControlDataRule: device {
-								id 
-								name 
-							}
-							actionApplicationControlDataRule: action
-							trackingApplicationControlDataRule: tracking {
-								event  {
-									enabled
-								}
-
-								alert  {
-									enabled
-									frequencyPolicyRuleTrackingAlert: frequency
-									subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
-										id 
-										name 
-									}
-									webhookPolicyRuleTrackingAlert: webhook {
-										id 
-										name 
-									}
-									mailingListPolicyRuleTrackingAlert: mailingList {
-										id 
-										name 
-									}
-								}
-
-							}
-							scheduleApplicationControlDataRule: schedule {
-								activeOn 
-								customTimeframe  {
-									from
-									to
-								}
-
-								customRecurring  {
-									from
-									to
-									daysPolicyCustomRecurring: days
-								}
-
-							}
-							severityApplicationControlDataRule: severity
-							fileAttributeSatisfyApplicationControlDataRule: fileAttributeSatisfy
-							fileAttributeApplicationControlDataRule: fileAttribute {
-								fileAttribute 
-								operator 
-								value 
-								contentTypeValues  {
-									id
-									name
-								}
-
-								contentTypeGroupValues  {
-									id
-									name
-								}
-
-							}
-							dlpProfileApplicationControlDataRule: dlpProfile {
-								contentProfile  {
-									id
-									name
-								}
-
-								edmProfile  {
-									id
-									name
-								}
-
-							}
-						}
-
-						fileRule  {
-							applicationApplicationControlFileRule: application {
-								application  {
-									id
-									name
-								}
-
-								customApp  {
-									id
-									name
-								}
-
-								appCategory  {
-									id
-									name
-								}
-
-								customCategory  {
-									id
-									name
-								}
-
-								sanctionedAppsCategory  {
-									id
-									name
-								}
-
-								applicationType 
-							}
-							applicationActivitySatisfyApplicationControlFileRule: applicationActivitySatisfy
-							applicationActivityApplicationControlFileRule: applicationActivity {
-								activity  {
-									id
-									name
-								}
-
-								field  {
-									id
-									name
-								}
-
-								operator 
-								value 
-								valueSet  {
-									id
-									name
-								}
-
-							}
-							accessMethodApplicationControlFileRule: accessMethod {
-								accessMethod 
-								operator 
-								value 
-								valueSet  {
-									id
-									name
-								}
-
-							}
-							sourceApplicationControlFileRule: source {
-								country  {
-									id
-									name
-								}
-
-								host  {
-									id
-									name
-								}
-
-								site  {
-									id
-									name
-								}
-
-								subnet 
-								ip 
-								ipRange  {
-									from
-									to
-								}
-
-								globalIpRange  {
-									id
-									name
-								}
-
-								networkInterface  {
-									id
-									name
-								}
-
-								siteNetworkSubnet  {
-									id
-									name
-								}
-
-								floatingSubnet  {
-									id
-									name
-								}
-
-								user  {
-									id
-									name
-								}
-
-								usersGroup  {
-									id
-									name
-								}
-
-								group  {
-									id
-									name
-								}
-
-								systemGroup  {
-									id
-									name
-								}
-
-							}
-							deviceApplicationControlFileRule: device {
-								id 
-								name 
-							}
-							actionApplicationControlFileRule: action
-							trackingApplicationControlFileRule: tracking {
-								event  {
-									enabled
-								}
-
-								alert  {
-									enabled
-									frequencyPolicyRuleTrackingAlert: frequency
-									subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
-										id 
-										name 
-									}
-									webhookPolicyRuleTrackingAlert: webhook {
-										id 
-										name 
-									}
-									mailingListPolicyRuleTrackingAlert: mailingList {
-										id 
-										name 
-									}
-								}
-
-							}
-							scheduleApplicationControlFileRule: schedule {
-								activeOn 
-								customTimeframe  {
-									from
-									to
-								}
-
-								customRecurring  {
-									from
-									to
-									daysPolicyCustomRecurring: days
-								}
-
-							}
-							severityApplicationControlFileRule: severity
-							fileAttributeSatisfyApplicationControlFileRule: fileAttributeSatisfy
-							fileAttributeApplicationControlFileRule: fileAttribute {
-								fileAttribute 
-								operator 
-								value 
-								contentTypeValues  {
-									id
-									name
-								}
-
-								contentTypeGroupValues  {
-									id
-									name
-								}
-
-							}
-						}
-
-					}
-					propertiesApplicationControlRulePayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyApplicationControlUpdateRule ( $applicationControlPolicyMutationInput:ApplicationControlPolicyMutationInput $applicationControlUpdateRuleInput:ApplicationControlUpdateRuleInput!) {
+	policy ( ) {
+mutation.policy.applicationControl.updateRuleapplicationControl ( input:$applicationControlPolicyMutationInput  )  {
+mutation.policy.applicationControl.updateRule	updateRule ( input:$applicationControlUpdateRuleInput   ) {
+mutation.policy.applicationControl.updateRule		rule {
+mutation.policy.applicationControl.updateRule			audit {
+mutation.policy.applicationControl.updateRule				updatedTime
+mutation.policy.applicationControl.updateRule				updatedBy
+mutation.policy.applicationControl.updateRule			}
+mutation.policy.applicationControl.updateRule			rule {
+mutation.policy.applicationControl.updateRule				id
+mutation.policy.applicationControl.updateRule				name
+mutation.policy.applicationControl.updateRule				description
+mutation.policy.applicationControl.updateRule				index
+mutation.policy.applicationControl.updateRule				section {
+mutation.policy.applicationControl.updateRule					id
+mutation.policy.applicationControl.updateRule					name
+mutation.policy.applicationControl.updateRule				}
+mutation.policy.applicationControl.updateRule				enabled
+mutation.policy.applicationControl.updateRule				ruleType
+mutation.policy.applicationControl.updateRule				applicationRule {
+mutation.policy.applicationControl.updateRule					application {
+mutation.policy.applicationControl.updateRule						application {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						customApp {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						appCategory {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						customCategory {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						sanctionedAppsCategory {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						applicationType
+mutation.policy.applicationControl.updateRule					}
+mutation.policy.applicationControl.updateRule					applicationActivitySatisfy
+mutation.policy.applicationControl.updateRule					applicationActivity {
+mutation.policy.applicationControl.updateRule						activity {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						field {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						operator
+mutation.policy.applicationControl.updateRule						value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.updateRule						valueSet {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule					}
+mutation.policy.applicationControl.updateRule					applicationContext {
+mutation.policy.applicationControl.updateRule						applicationTenant {
+mutation.policy.applicationControl.updateRule							operator
+mutation.policy.applicationControl.updateRule							value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.updateRule							valueSet {
+mutation.policy.applicationControl.updateRule								id
+mutation.policy.applicationControl.updateRule								name
+mutation.policy.applicationControl.updateRule							}
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule					}
+mutation.policy.applicationControl.updateRule					accessMethod {
+mutation.policy.applicationControl.updateRule						accessMethod
+mutation.policy.applicationControl.updateRule						operator
+mutation.policy.applicationControl.updateRule						value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.updateRule						valueSet {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule					}
+mutation.policy.applicationControl.updateRule					source {
+mutation.policy.applicationControl.updateRule						country {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						host {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						site {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						subnet
+mutation.policy.applicationControl.updateRule						ip
+mutation.policy.applicationControl.updateRule						ipRange {
+mutation.policy.applicationControl.updateRule							from
+mutation.policy.applicationControl.updateRule							to
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						globalIpRange {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						networkInterface {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						siteNetworkSubnet {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						floatingSubnet {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						user {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						usersGroup {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						group {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						systemGroup {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule					}
+mutation.policy.applicationControl.updateRule					device {
+mutation.policy.applicationControl.updateRule						id
+mutation.policy.applicationControl.updateRule						name
+mutation.policy.applicationControl.updateRule					}
+mutation.policy.applicationControl.updateRule					action
+mutation.policy.applicationControl.updateRule					tracking {
+mutation.policy.applicationControl.updateRule						event {
+mutation.policy.applicationControl.updateRule							enabled
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						alert {
+mutation.policy.applicationControl.updateRule							enabled
+mutation.policy.applicationControl.updateRule							frequency
+mutation.policy.applicationControl.updateRule							subscriptionGroup {
+mutation.policy.applicationControl.updateRule								id
+mutation.policy.applicationControl.updateRule								name
+mutation.policy.applicationControl.updateRule							}
+mutation.policy.applicationControl.updateRule							webhook {
+mutation.policy.applicationControl.updateRule								id
+mutation.policy.applicationControl.updateRule								name
+mutation.policy.applicationControl.updateRule							}
+mutation.policy.applicationControl.updateRule							mailingList {
+mutation.policy.applicationControl.updateRule								id
+mutation.policy.applicationControl.updateRule								name
+mutation.policy.applicationControl.updateRule							}
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule					}
+mutation.policy.applicationControl.updateRule					schedule {
+mutation.policy.applicationControl.updateRule						activeOn
+mutation.policy.applicationControl.updateRule						customTimeframe {
+mutation.policy.applicationControl.updateRule							from
+mutation.policy.applicationControl.updateRule							to
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						customRecurring {
+mutation.policy.applicationControl.updateRule							from
+mutation.policy.applicationControl.updateRule							to
+mutation.policy.applicationControl.updateRule							days
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule					}
+mutation.policy.applicationControl.updateRule					severity
+mutation.policy.applicationControl.updateRule					applicationCriteriaSatisfy
+mutation.policy.applicationControl.updateRule					applicationCriteria {
+mutation.policy.applicationControl.updateRule						attributes {
+mutation.policy.applicationControl.updateRule							complianceAttributes {
+mutation.policy.applicationControl.updateRule								iso27001
+mutation.policy.applicationControl.updateRule								sox
+mutation.policy.applicationControl.updateRule								hippa
+mutation.policy.applicationControl.updateRule								soc1
+mutation.policy.applicationControl.updateRule								soc2
+mutation.policy.applicationControl.updateRule								soc3
+mutation.policy.applicationControl.updateRule								isae3402
+mutation.policy.applicationControl.updateRule								pciDss
+mutation.policy.applicationControl.updateRule							}
+mutation.policy.applicationControl.updateRule							securityAttributes {
+mutation.policy.applicationControl.updateRule								mfa
+mutation.policy.applicationControl.updateRule								encryptionAtRest
+mutation.policy.applicationControl.updateRule								auditTrail
+mutation.policy.applicationControl.updateRule								rbac
+mutation.policy.applicationControl.updateRule								rememberPassword
+mutation.policy.applicationControl.updateRule								sso
+mutation.policy.applicationControl.updateRule								trustedCertificate
+mutation.policy.applicationControl.updateRule								tlsEnforcement
+mutation.policy.applicationControl.updateRule								httpSecurityHeaders
+mutation.policy.applicationControl.updateRule							}
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						originCountry {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						risk {
+mutation.policy.applicationControl.updateRule							risk
+mutation.policy.applicationControl.updateRule							riskOperator
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule					}
+mutation.policy.applicationControl.updateRule				}
+mutation.policy.applicationControl.updateRule				dataRule {
+mutation.policy.applicationControl.updateRule					application {
+mutation.policy.applicationControl.updateRule						application {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						customApp {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						appCategory {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						customCategory {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						sanctionedAppsCategory {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						applicationType
+mutation.policy.applicationControl.updateRule					}
+mutation.policy.applicationControl.updateRule					applicationContext {
+mutation.policy.applicationControl.updateRule						applicationTenant {
+mutation.policy.applicationControl.updateRule							operator
+mutation.policy.applicationControl.updateRule							value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.updateRule							valueSet {
+mutation.policy.applicationControl.updateRule								id
+mutation.policy.applicationControl.updateRule								name
+mutation.policy.applicationControl.updateRule							}
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule					}
+mutation.policy.applicationControl.updateRule					applicationActivitySatisfy
+mutation.policy.applicationControl.updateRule					applicationActivity {
+mutation.policy.applicationControl.updateRule						activity {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						field {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						operator
+mutation.policy.applicationControl.updateRule						value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.updateRule						valueSet {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule					}
+mutation.policy.applicationControl.updateRule					accessMethod {
+mutation.policy.applicationControl.updateRule						accessMethod
+mutation.policy.applicationControl.updateRule						operator
+mutation.policy.applicationControl.updateRule						value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.updateRule						valueSet {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule					}
+mutation.policy.applicationControl.updateRule					source {
+mutation.policy.applicationControl.updateRule						country {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						host {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						site {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						subnet
+mutation.policy.applicationControl.updateRule						ip
+mutation.policy.applicationControl.updateRule						ipRange {
+mutation.policy.applicationControl.updateRule							from
+mutation.policy.applicationControl.updateRule							to
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						globalIpRange {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						networkInterface {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						siteNetworkSubnet {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						floatingSubnet {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						user {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						usersGroup {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						group {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						systemGroup {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule					}
+mutation.policy.applicationControl.updateRule					device {
+mutation.policy.applicationControl.updateRule						id
+mutation.policy.applicationControl.updateRule						name
+mutation.policy.applicationControl.updateRule					}
+mutation.policy.applicationControl.updateRule					action
+mutation.policy.applicationControl.updateRule					tracking {
+mutation.policy.applicationControl.updateRule						event {
+mutation.policy.applicationControl.updateRule							enabled
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						alert {
+mutation.policy.applicationControl.updateRule							enabled
+mutation.policy.applicationControl.updateRule							frequency
+mutation.policy.applicationControl.updateRule							subscriptionGroup {
+mutation.policy.applicationControl.updateRule								id
+mutation.policy.applicationControl.updateRule								name
+mutation.policy.applicationControl.updateRule							}
+mutation.policy.applicationControl.updateRule							webhook {
+mutation.policy.applicationControl.updateRule								id
+mutation.policy.applicationControl.updateRule								name
+mutation.policy.applicationControl.updateRule							}
+mutation.policy.applicationControl.updateRule							mailingList {
+mutation.policy.applicationControl.updateRule								id
+mutation.policy.applicationControl.updateRule								name
+mutation.policy.applicationControl.updateRule							}
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule					}
+mutation.policy.applicationControl.updateRule					schedule {
+mutation.policy.applicationControl.updateRule						activeOn
+mutation.policy.applicationControl.updateRule						customTimeframe {
+mutation.policy.applicationControl.updateRule							from
+mutation.policy.applicationControl.updateRule							to
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						customRecurring {
+mutation.policy.applicationControl.updateRule							from
+mutation.policy.applicationControl.updateRule							to
+mutation.policy.applicationControl.updateRule							days
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule					}
+mutation.policy.applicationControl.updateRule					severity
+mutation.policy.applicationControl.updateRule					fileAttributeSatisfy
+mutation.policy.applicationControl.updateRule					fileAttribute {
+mutation.policy.applicationControl.updateRule						fileAttribute
+mutation.policy.applicationControl.updateRule						operator
+mutation.policy.applicationControl.updateRule						value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.updateRule						contentTypeValues {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						contentTypeGroupValues {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule					}
+mutation.policy.applicationControl.updateRule					dlpProfile {
+mutation.policy.applicationControl.updateRule						contentProfile {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						edmProfile {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule					}
+mutation.policy.applicationControl.updateRule				}
+mutation.policy.applicationControl.updateRule				fileRule {
+mutation.policy.applicationControl.updateRule					application {
+mutation.policy.applicationControl.updateRule						application {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						customApp {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						appCategory {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						customCategory {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						sanctionedAppsCategory {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						applicationType
+mutation.policy.applicationControl.updateRule					}
+mutation.policy.applicationControl.updateRule					applicationActivitySatisfy
+mutation.policy.applicationControl.updateRule					applicationActivity {
+mutation.policy.applicationControl.updateRule						activity {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						field {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						operator
+mutation.policy.applicationControl.updateRule						value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.updateRule						valueSet {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule					}
+mutation.policy.applicationControl.updateRule					accessMethod {
+mutation.policy.applicationControl.updateRule						accessMethod
+mutation.policy.applicationControl.updateRule						operator
+mutation.policy.applicationControl.updateRule						value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.updateRule						valueSet {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule					}
+mutation.policy.applicationControl.updateRule					source {
+mutation.policy.applicationControl.updateRule						country {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						host {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						site {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						subnet
+mutation.policy.applicationControl.updateRule						ip
+mutation.policy.applicationControl.updateRule						ipRange {
+mutation.policy.applicationControl.updateRule							from
+mutation.policy.applicationControl.updateRule							to
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						globalIpRange {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						networkInterface {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						siteNetworkSubnet {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						floatingSubnet {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						user {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						usersGroup {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						group {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						systemGroup {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule					}
+mutation.policy.applicationControl.updateRule					device {
+mutation.policy.applicationControl.updateRule						id
+mutation.policy.applicationControl.updateRule						name
+mutation.policy.applicationControl.updateRule					}
+mutation.policy.applicationControl.updateRule					action
+mutation.policy.applicationControl.updateRule					tracking {
+mutation.policy.applicationControl.updateRule						event {
+mutation.policy.applicationControl.updateRule							enabled
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						alert {
+mutation.policy.applicationControl.updateRule							enabled
+mutation.policy.applicationControl.updateRule							frequency
+mutation.policy.applicationControl.updateRule							subscriptionGroup {
+mutation.policy.applicationControl.updateRule								id
+mutation.policy.applicationControl.updateRule								name
+mutation.policy.applicationControl.updateRule							}
+mutation.policy.applicationControl.updateRule							webhook {
+mutation.policy.applicationControl.updateRule								id
+mutation.policy.applicationControl.updateRule								name
+mutation.policy.applicationControl.updateRule							}
+mutation.policy.applicationControl.updateRule							mailingList {
+mutation.policy.applicationControl.updateRule								id
+mutation.policy.applicationControl.updateRule								name
+mutation.policy.applicationControl.updateRule							}
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule					}
+mutation.policy.applicationControl.updateRule					schedule {
+mutation.policy.applicationControl.updateRule						activeOn
+mutation.policy.applicationControl.updateRule						customTimeframe {
+mutation.policy.applicationControl.updateRule							from
+mutation.policy.applicationControl.updateRule							to
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						customRecurring {
+mutation.policy.applicationControl.updateRule							from
+mutation.policy.applicationControl.updateRule							to
+mutation.policy.applicationControl.updateRule							days
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule					}
+mutation.policy.applicationControl.updateRule					severity
+mutation.policy.applicationControl.updateRule					fileAttributeSatisfy
+mutation.policy.applicationControl.updateRule					fileAttribute {
+mutation.policy.applicationControl.updateRule						fileAttribute
+mutation.policy.applicationControl.updateRule						operator
+mutation.policy.applicationControl.updateRule						value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.updateRule						contentTypeValues {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule						contentTypeGroupValues {
+mutation.policy.applicationControl.updateRule							id
+mutation.policy.applicationControl.updateRule							name
+mutation.policy.applicationControl.updateRule						}
+mutation.policy.applicationControl.updateRule					}
+mutation.policy.applicationControl.updateRule				}
+mutation.policy.applicationControl.updateRule			}
+mutation.policy.applicationControl.updateRule			properties
+mutation.policy.applicationControl.updateRule		}
+mutation.policy.applicationControl.updateRule		status
+mutation.policy.applicationControl.updateRule		errors {
+mutation.policy.applicationControl.updateRule			errorMessage
+mutation.policy.applicationControl.updateRule			errorCode
+mutation.policy.applicationControl.updateRule		}
+mutation.policy.applicationControl.updateRule	}
+mutation.policy.applicationControl.updateRule}
 	}	
 }

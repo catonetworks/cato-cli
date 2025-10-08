@@ -4,18 +4,19 @@
 
 ### Usage for mutation.admin.removeServicePrincipalAdmin:
 
-`catocli mutation admin removeServicePrincipalAdmin -h`
+```bash
+catocli mutation admin removeServicePrincipalAdmin -h
 
-`catocli mutation admin removeServicePrincipalAdmin <json>`
+catocli mutation admin removeServicePrincipalAdmin <json>
 
-`catocli mutation admin removeServicePrincipalAdmin "$(cat < mutation.admin.removeServicePrincipalAdmin.json)"`
+catocli mutation admin removeServicePrincipalAdmin "$(cat < mutation.admin.removeServicePrincipalAdmin.json)"
 
-`catocli mutation admin removeServicePrincipalAdmin '{"adminID":"id"}'`
+catocli mutation admin removeServicePrincipalAdmin '{"adminID":"id"}'
 
-`catocli mutation admin removeServicePrincipalAdmin -p '{
+catocli mutation admin removeServicePrincipalAdmin -p '{
     "adminID": "id"
 }'
-
+```
 
 #### Operation Arguments for mutation.admin.removeServicePrincipalAdmin ####
 

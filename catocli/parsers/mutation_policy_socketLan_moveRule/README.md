@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.socketLan.moveRule:
 
-`catocli mutation policy socketLan moveRule -h`
+```bash
+catocli mutation policy socketLan moveRule -h
 
-`catocli mutation policy socketLan moveRule <json>`
+catocli mutation policy socketLan moveRule <json>
 
-`catocli mutation policy socketLan moveRule "$(cat < mutation.policy.socketLan.moveRule.json)"`
+catocli mutation policy socketLan moveRule "$(cat < mutation.policy.socketLan.moveRule.json)"
 
-`catocli mutation policy socketLan moveRule '{"policyMoveRuleInput":{"id":"id","policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"}},"socketLanPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
+catocli mutation policy socketLan moveRule '{"policyMoveRuleInput":{"id":"id","policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"}},"socketLanPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-`catocli mutation policy socketLan moveRule -p '{
+catocli mutation policy socketLan moveRule -p '{
     "policyMoveRuleInput": {
         "id": "id",
         "policyRulePositionInput": {
@@ -26,7 +27,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.socketLan.moveRule ####
 

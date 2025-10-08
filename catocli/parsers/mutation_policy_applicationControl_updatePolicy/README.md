@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.applicationControl.updatePolicy:
 
-`catocli mutation policy applicationControl updatePolicy -h`
+```bash
+catocli mutation policy applicationControl updatePolicy -h
 
-`catocli mutation policy applicationControl updatePolicy <json>`
+catocli mutation policy applicationControl updatePolicy <json>
 
-`catocli mutation policy applicationControl updatePolicy "$(cat < mutation.policy.applicationControl.updatePolicy.json)"`
+catocli mutation policy applicationControl updatePolicy "$(cat < mutation.policy.applicationControl.updatePolicy.json)"
 
-`catocli mutation policy applicationControl updatePolicy '{"applicationControlPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"applicationControlPolicyUpdateInput":{"applicationControlConfigInput":{"dataControlEnabled":"ENABLED"},"state":"ENABLED"}}'`
+catocli mutation policy applicationControl updatePolicy '{"applicationControlPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"applicationControlPolicyUpdateInput":{"applicationControlConfigInput":{"dataControlEnabled":"ENABLED"},"state":"ENABLED"}}'
 
-`catocli mutation policy applicationControl updatePolicy -p '{
+catocli mutation policy applicationControl updatePolicy -p '{
     "applicationControlPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"
@@ -25,7 +26,7 @@
         "state": "ENABLED"
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.applicationControl.updatePolicy ####
 

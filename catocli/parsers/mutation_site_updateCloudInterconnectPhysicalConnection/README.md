@@ -4,15 +4,16 @@
 
 ### Usage for mutation.site.updateCloudInterconnectPhysicalConnection:
 
-`catocli mutation site updateCloudInterconnectPhysicalConnection -h`
+```bash
+catocli mutation site updateCloudInterconnectPhysicalConnection -h
 
-`catocli mutation site updateCloudInterconnectPhysicalConnection <json>`
+catocli mutation site updateCloudInterconnectPhysicalConnection <json>
 
-`catocli mutation site updateCloudInterconnectPhysicalConnection "$(cat < mutation.site.updateCloudInterconnectPhysicalConnection.json)"`
+catocli mutation site updateCloudInterconnectPhysicalConnection "$(cat < mutation.site.updateCloudInterconnectPhysicalConnection.json)"
 
-`catocli mutation site updateCloudInterconnectPhysicalConnection '{"updateCloudInterconnectPhysicalConnectionInput":{"downstreamBwLimit":"example_value","encapsulationMethod":"DOT1Q","id":"id","popLocationRefInput":{"by":"ID","input":"string"},"privateCatoIp":"example_value","privateSiteIp":"example_value","serviceProviderName":"string","subnet":"example_value","upstreamBwLimit":"example_value"}}'`
+catocli mutation site updateCloudInterconnectPhysicalConnection '{"updateCloudInterconnectPhysicalConnectionInput":{"downstreamBwLimit":"example_value","encapsulationMethod":"DOT1Q","id":"id","popLocationRefInput":{"by":"ID","input":"string"},"privateCatoIp":"example_value","privateSiteIp":"example_value","serviceProviderName":"string","subnet":"example_value","upstreamBwLimit":"example_value"}}'
 
-`catocli mutation site updateCloudInterconnectPhysicalConnection -p '{
+catocli mutation site updateCloudInterconnectPhysicalConnection -p '{
     "updateCloudInterconnectPhysicalConnectionInput": {
         "downstreamBwLimit": "example_value",
         "encapsulationMethod": "DOT1Q",
@@ -28,7 +29,7 @@
         "upstreamBwLimit": "example_value"
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.site.updateCloudInterconnectPhysicalConnection ####
 

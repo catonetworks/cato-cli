@@ -1,339 +1,316 @@
-query policySocketLanPolicy ( $socketLanPolicyInput:SocketLanPolicyInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		socketLan  {
-			policySocketLanPolicyQueries: policy ( input:$socketLanPolicyInput   ) {
-				enabled 
-				rules  {
-					auditSocketLanRulePayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					ruleSocketLanRulePayload: rule {
-						id 
-						name 
-						description 
-						index 
-						section  {
-							id
-							name
-						}
-
-						enabled 
-						firewall  {
-							auditSocketLanFirewallRulePayload: audit {
-								updatedTime 
-								updatedBy 
-							}
-							ruleSocketLanFirewallRulePayload: rule {
-								id 
-								name 
-								description 
-								index 
-								section  {
-									id
-									name
-								}
-
-								enabled 
-								source  {
-									vlan
-									mac
-									ipRangeSocketLanFirewallSource: ipRange {
-										from 
-										to 
-									}
-									groupSocketLanFirewallSource: group {
-										id 
-										name 
-									}
-									subnet
-									siteSocketLanFirewallSource: site {
-										id 
-										name 
-									}
-									networkInterfaceSocketLanFirewallSource: networkInterface {
-										id 
-										name 
-									}
-									systemGroupSocketLanFirewallSource: systemGroup {
-										id 
-										name 
-									}
-									hostSocketLanFirewallSource: host {
-										id 
-										name 
-									}
-									ip
-									globalIpRangeSocketLanFirewallSource: globalIpRange {
-										id 
-										name 
-									}
-									floatingSubnetSocketLanFirewallSource: floatingSubnet {
-										id 
-										name 
-									}
-									siteNetworkSubnetSocketLanFirewallSource: siteNetworkSubnet {
-										id 
-										name 
-									}
-								}
-
-								destination  {
-									vlan
-									ipRangeSocketLanFirewallDestination: ipRange {
-										from 
-										to 
-									}
-									subnet
-									siteSocketLanFirewallDestination: site {
-										id 
-										name 
-									}
-									networkInterfaceSocketLanFirewallDestination: networkInterface {
-										id 
-										name 
-									}
-									systemGroupSocketLanFirewallDestination: systemGroup {
-										id 
-										name 
-									}
-									hostSocketLanFirewallDestination: host {
-										id 
-										name 
-									}
-									ip
-									globalIpRangeSocketLanFirewallDestination: globalIpRange {
-										id 
-										name 
-									}
-									groupSocketLanFirewallDestination: group {
-										id 
-										name 
-									}
-									floatingSubnetSocketLanFirewallDestination: floatingSubnet {
-										id 
-										name 
-									}
-									siteNetworkSubnetSocketLanFirewallDestination: siteNetworkSubnet {
-										id 
-										name 
-									}
-								}
-
-								direction 
-								application  {
-									applicationSocketLanFirewallApplication: application {
-										id 
-										name 
-									}
-									customAppSocketLanFirewallApplication: customApp {
-										id 
-										name 
-									}
-									domain
-									fqdn
-									ip
-									subnet
-									ipRangeSocketLanFirewallApplication: ipRange {
-										from 
-										to 
-									}
-									globalIpRangeSocketLanFirewallApplication: globalIpRange {
-										id 
-										name 
-									}
-								}
-
-								service  {
-									simpleSocketLanFirewallServiceType: simple {
-										name 
-									}
-									standardSocketLanFirewallServiceType: standard {
-										id 
-										name 
-									}
-									customSocketLanFirewallServiceType: custom {
-										port 
-										portRange  {
-											from
-											to
-										}
-
-										protocol 
-									}
-								}
-
-								action 
-								tracking  {
-									eventPolicyTracking: event {
-										enabled 
-									}
-									alertPolicyTracking: alert {
-										enabled 
-										frequency 
-										subscriptionGroup  {
-											id
-											name
-										}
-
-										webhook  {
-											id
-											name
-										}
-
-										mailingList  {
-											id
-											name
-										}
-
-									}
-								}
-
-							}
-							propertiesSocketLanFirewallRulePayload: properties
-						}
-
-						site  {
-							siteSocketLanSite: site {
-								id 
-								name 
-							}
-							groupSocketLanSite: group {
-								id 
-								name 
-							}
-						}
-
-						source  {
-							vlan
-							ipRangeSocketLanSource: ipRange {
-								from 
-								to 
-							}
-							groupSocketLanSource: group {
-								id 
-								name 
-							}
-							subnet
-							networkInterfaceSocketLanSource: networkInterface {
-								id 
-								name 
-							}
-							systemGroupSocketLanSource: systemGroup {
-								id 
-								name 
-							}
-							hostSocketLanSource: host {
-								id 
-								name 
-							}
-							ip
-							globalIpRangeSocketLanSource: globalIpRange {
-								id 
-								name 
-							}
-							floatingSubnetSocketLanSource: floatingSubnet {
-								id 
-								name 
-							}
-							siteNetworkSubnetSocketLanSource: siteNetworkSubnet {
-								id 
-								name 
-							}
-						}
-
-						destination  {
-							vlan
-							ipRangeSocketLanDestination: ipRange {
-								from 
-								to 
-							}
-							subnet
-							networkInterfaceSocketLanDestination: networkInterface {
-								id 
-								name 
-							}
-							systemGroupSocketLanDestination: systemGroup {
-								id 
-								name 
-							}
-							hostSocketLanDestination: host {
-								id 
-								name 
-							}
-							ip
-							globalIpRangeSocketLanDestination: globalIpRange {
-								id 
-								name 
-							}
-							groupSocketLanDestination: group {
-								id 
-								name 
-							}
-							floatingSubnetSocketLanDestination: floatingSubnet {
-								id 
-								name 
-							}
-							siteNetworkSubnetSocketLanDestination: siteNetworkSubnet {
-								id 
-								name 
-							}
-						}
-
-						direction 
-						service  {
-							simpleSocketLanService: simple {
-								name 
-							}
-							customSocketLanService: custom {
-								port 
-								portRange  {
-									from
-									to
-								}
-
-								protocol 
-							}
-						}
-
-						nat  {
-							enabled
-							natTypeSocketLanNatSettings: natType
-						}
-
-						transport 
-					}
-					propertiesSocketLanRulePayload: properties
-				}
-
-				sections  {
-					auditPolicySectionPayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					sectionPolicySectionPayload: section {
-						id 
-						name 
-					}
-					propertiesPolicySectionPayload: properties
-				}
-
-				audit  {
-					publishedTime
-					publishedBy
-				}
-
-				revision  {
-					id
-					name
-					description
-					changes
-					createdTime
-					updatedTime
-				}
-
-			}
-		}
-
+query policySocketLanPolicy ( $socketLanPolicyInput:SocketLanPolicyInput) {
+	policy ( ) {
+query.policy.socketLan.policysocketLan {
+query.policy.socketLan.policy	policy ( input:$socketLanPolicyInput   ) {
+query.policy.socketLan.policy		enabled
+query.policy.socketLan.policy		rules {
+query.policy.socketLan.policy			audit {
+query.policy.socketLan.policy				updatedTime
+query.policy.socketLan.policy				updatedBy
+query.policy.socketLan.policy			}
+query.policy.socketLan.policy			rule {
+query.policy.socketLan.policy				id
+query.policy.socketLan.policy				name
+query.policy.socketLan.policy				description
+query.policy.socketLan.policy				index
+query.policy.socketLan.policy				section {
+query.policy.socketLan.policy					id
+query.policy.socketLan.policy					name
+query.policy.socketLan.policy				}
+query.policy.socketLan.policy				enabled
+query.policy.socketLan.policy				firewall {
+query.policy.socketLan.policy					audit {
+query.policy.socketLan.policy						updatedTime
+query.policy.socketLan.policy						updatedBy
+query.policy.socketLan.policy					}
+query.policy.socketLan.policy					rule {
+query.policy.socketLan.policy						id
+query.policy.socketLan.policy						name
+query.policy.socketLan.policy						description
+query.policy.socketLan.policy						index
+query.policy.socketLan.policy						section {
+query.policy.socketLan.policy							id
+query.policy.socketLan.policy							name
+query.policy.socketLan.policy						}
+query.policy.socketLan.policy						enabled
+query.policy.socketLan.policy						source {
+query.policy.socketLan.policy							vlan
+query.policy.socketLan.policy							mac
+query.policy.socketLan.policy							ipRange {
+query.policy.socketLan.policy								from
+query.policy.socketLan.policy								to
+query.policy.socketLan.policy							}
+query.policy.socketLan.policy							group {
+query.policy.socketLan.policy								id
+query.policy.socketLan.policy								name
+query.policy.socketLan.policy							}
+query.policy.socketLan.policy							subnet
+query.policy.socketLan.policy							site {
+query.policy.socketLan.policy								id
+query.policy.socketLan.policy								name
+query.policy.socketLan.policy							}
+query.policy.socketLan.policy							networkInterface {
+query.policy.socketLan.policy								id
+query.policy.socketLan.policy								name
+query.policy.socketLan.policy							}
+query.policy.socketLan.policy							systemGroup {
+query.policy.socketLan.policy								id
+query.policy.socketLan.policy								name
+query.policy.socketLan.policy							}
+query.policy.socketLan.policy							host {
+query.policy.socketLan.policy								id
+query.policy.socketLan.policy								name
+query.policy.socketLan.policy							}
+query.policy.socketLan.policy							ip
+query.policy.socketLan.policy							globalIpRange {
+query.policy.socketLan.policy								id
+query.policy.socketLan.policy								name
+query.policy.socketLan.policy							}
+query.policy.socketLan.policy							floatingSubnet {
+query.policy.socketLan.policy								id
+query.policy.socketLan.policy								name
+query.policy.socketLan.policy							}
+query.policy.socketLan.policy							siteNetworkSubnet {
+query.policy.socketLan.policy								id
+query.policy.socketLan.policy								name
+query.policy.socketLan.policy							}
+query.policy.socketLan.policy						}
+query.policy.socketLan.policy						destination {
+query.policy.socketLan.policy							vlan
+query.policy.socketLan.policy							ipRange {
+query.policy.socketLan.policy								from
+query.policy.socketLan.policy								to
+query.policy.socketLan.policy							}
+query.policy.socketLan.policy							subnet
+query.policy.socketLan.policy							site {
+query.policy.socketLan.policy								id
+query.policy.socketLan.policy								name
+query.policy.socketLan.policy							}
+query.policy.socketLan.policy							networkInterface {
+query.policy.socketLan.policy								id
+query.policy.socketLan.policy								name
+query.policy.socketLan.policy							}
+query.policy.socketLan.policy							systemGroup {
+query.policy.socketLan.policy								id
+query.policy.socketLan.policy								name
+query.policy.socketLan.policy							}
+query.policy.socketLan.policy							host {
+query.policy.socketLan.policy								id
+query.policy.socketLan.policy								name
+query.policy.socketLan.policy							}
+query.policy.socketLan.policy							ip
+query.policy.socketLan.policy							globalIpRange {
+query.policy.socketLan.policy								id
+query.policy.socketLan.policy								name
+query.policy.socketLan.policy							}
+query.policy.socketLan.policy							group {
+query.policy.socketLan.policy								id
+query.policy.socketLan.policy								name
+query.policy.socketLan.policy							}
+query.policy.socketLan.policy							floatingSubnet {
+query.policy.socketLan.policy								id
+query.policy.socketLan.policy								name
+query.policy.socketLan.policy							}
+query.policy.socketLan.policy							siteNetworkSubnet {
+query.policy.socketLan.policy								id
+query.policy.socketLan.policy								name
+query.policy.socketLan.policy							}
+query.policy.socketLan.policy						}
+query.policy.socketLan.policy						direction
+query.policy.socketLan.policy						application {
+query.policy.socketLan.policy							application {
+query.policy.socketLan.policy								id
+query.policy.socketLan.policy								name
+query.policy.socketLan.policy							}
+query.policy.socketLan.policy							customApp {
+query.policy.socketLan.policy								id
+query.policy.socketLan.policy								name
+query.policy.socketLan.policy							}
+query.policy.socketLan.policy							domain
+query.policy.socketLan.policy							fqdn
+query.policy.socketLan.policy							ip
+query.policy.socketLan.policy							subnet
+query.policy.socketLan.policy							ipRange {
+query.policy.socketLan.policy								from
+query.policy.socketLan.policy								to
+query.policy.socketLan.policy							}
+query.policy.socketLan.policy							globalIpRange {
+query.policy.socketLan.policy								id
+query.policy.socketLan.policy								name
+query.policy.socketLan.policy							}
+query.policy.socketLan.policy						}
+query.policy.socketLan.policy						service {
+query.policy.socketLan.policy							simple {
+query.policy.socketLan.policy								name
+query.policy.socketLan.policy							}
+query.policy.socketLan.policy							standard {
+query.policy.socketLan.policy								id
+query.policy.socketLan.policy								name
+query.policy.socketLan.policy							}
+query.policy.socketLan.policy							custom {
+query.policy.socketLan.policy								port
+query.policy.socketLan.policy								portRange {
+query.policy.socketLan.policy									from
+query.policy.socketLan.policy									to
+query.policy.socketLan.policy								}
+query.policy.socketLan.policy								protocol
+query.policy.socketLan.policy							}
+query.policy.socketLan.policy						}
+query.policy.socketLan.policy						action
+query.policy.socketLan.policy						tracking {
+query.policy.socketLan.policy							event {
+query.policy.socketLan.policy								enabled
+query.policy.socketLan.policy							}
+query.policy.socketLan.policy							alert {
+query.policy.socketLan.policy								enabled
+query.policy.socketLan.policy								frequency
+query.policy.socketLan.policy								subscriptionGroup {
+query.policy.socketLan.policy									id
+query.policy.socketLan.policy									name
+query.policy.socketLan.policy								}
+query.policy.socketLan.policy								webhook {
+query.policy.socketLan.policy									id
+query.policy.socketLan.policy									name
+query.policy.socketLan.policy								}
+query.policy.socketLan.policy								mailingList {
+query.policy.socketLan.policy									id
+query.policy.socketLan.policy									name
+query.policy.socketLan.policy								}
+query.policy.socketLan.policy							}
+query.policy.socketLan.policy						}
+query.policy.socketLan.policy					}
+query.policy.socketLan.policy					properties
+query.policy.socketLan.policy				}
+query.policy.socketLan.policy				site {
+query.policy.socketLan.policy					site {
+query.policy.socketLan.policy						id
+query.policy.socketLan.policy						name
+query.policy.socketLan.policy					}
+query.policy.socketLan.policy					group {
+query.policy.socketLan.policy						id
+query.policy.socketLan.policy						name
+query.policy.socketLan.policy					}
+query.policy.socketLan.policy				}
+query.policy.socketLan.policy				source {
+query.policy.socketLan.policy					vlan
+query.policy.socketLan.policy					ipRange {
+query.policy.socketLan.policy						from
+query.policy.socketLan.policy						to
+query.policy.socketLan.policy					}
+query.policy.socketLan.policy					group {
+query.policy.socketLan.policy						id
+query.policy.socketLan.policy						name
+query.policy.socketLan.policy					}
+query.policy.socketLan.policy					subnet
+query.policy.socketLan.policy					networkInterface {
+query.policy.socketLan.policy						id
+query.policy.socketLan.policy						name
+query.policy.socketLan.policy					}
+query.policy.socketLan.policy					systemGroup {
+query.policy.socketLan.policy						id
+query.policy.socketLan.policy						name
+query.policy.socketLan.policy					}
+query.policy.socketLan.policy					host {
+query.policy.socketLan.policy						id
+query.policy.socketLan.policy						name
+query.policy.socketLan.policy					}
+query.policy.socketLan.policy					ip
+query.policy.socketLan.policy					globalIpRange {
+query.policy.socketLan.policy						id
+query.policy.socketLan.policy						name
+query.policy.socketLan.policy					}
+query.policy.socketLan.policy					floatingSubnet {
+query.policy.socketLan.policy						id
+query.policy.socketLan.policy						name
+query.policy.socketLan.policy					}
+query.policy.socketLan.policy					siteNetworkSubnet {
+query.policy.socketLan.policy						id
+query.policy.socketLan.policy						name
+query.policy.socketLan.policy					}
+query.policy.socketLan.policy				}
+query.policy.socketLan.policy				destination {
+query.policy.socketLan.policy					vlan
+query.policy.socketLan.policy					ipRange {
+query.policy.socketLan.policy						from
+query.policy.socketLan.policy						to
+query.policy.socketLan.policy					}
+query.policy.socketLan.policy					subnet
+query.policy.socketLan.policy					networkInterface {
+query.policy.socketLan.policy						id
+query.policy.socketLan.policy						name
+query.policy.socketLan.policy					}
+query.policy.socketLan.policy					systemGroup {
+query.policy.socketLan.policy						id
+query.policy.socketLan.policy						name
+query.policy.socketLan.policy					}
+query.policy.socketLan.policy					host {
+query.policy.socketLan.policy						id
+query.policy.socketLan.policy						name
+query.policy.socketLan.policy					}
+query.policy.socketLan.policy					ip
+query.policy.socketLan.policy					globalIpRange {
+query.policy.socketLan.policy						id
+query.policy.socketLan.policy						name
+query.policy.socketLan.policy					}
+query.policy.socketLan.policy					group {
+query.policy.socketLan.policy						id
+query.policy.socketLan.policy						name
+query.policy.socketLan.policy					}
+query.policy.socketLan.policy					floatingSubnet {
+query.policy.socketLan.policy						id
+query.policy.socketLan.policy						name
+query.policy.socketLan.policy					}
+query.policy.socketLan.policy					siteNetworkSubnet {
+query.policy.socketLan.policy						id
+query.policy.socketLan.policy						name
+query.policy.socketLan.policy					}
+query.policy.socketLan.policy				}
+query.policy.socketLan.policy				direction
+query.policy.socketLan.policy				service {
+query.policy.socketLan.policy					simple {
+query.policy.socketLan.policy						name
+query.policy.socketLan.policy					}
+query.policy.socketLan.policy					custom {
+query.policy.socketLan.policy						port
+query.policy.socketLan.policy						portRange {
+query.policy.socketLan.policy							from
+query.policy.socketLan.policy							to
+query.policy.socketLan.policy						}
+query.policy.socketLan.policy						protocol
+query.policy.socketLan.policy					}
+query.policy.socketLan.policy				}
+query.policy.socketLan.policy				nat {
+query.policy.socketLan.policy					enabled
+query.policy.socketLan.policy					natType
+query.policy.socketLan.policy				}
+query.policy.socketLan.policy				transport
+query.policy.socketLan.policy			}
+query.policy.socketLan.policy			properties
+query.policy.socketLan.policy		}
+query.policy.socketLan.policy		sections {
+query.policy.socketLan.policy			audit {
+query.policy.socketLan.policy				updatedTime
+query.policy.socketLan.policy				updatedBy
+query.policy.socketLan.policy			}
+query.policy.socketLan.policy			section {
+query.policy.socketLan.policy				id
+query.policy.socketLan.policy				name
+query.policy.socketLan.policy			}
+query.policy.socketLan.policy			properties
+query.policy.socketLan.policy		}
+query.policy.socketLan.policy		audit {
+query.policy.socketLan.policy			publishedTime
+query.policy.socketLan.policy			publishedBy
+query.policy.socketLan.policy		}
+query.policy.socketLan.policy		revision {
+query.policy.socketLan.policy			id
+query.policy.socketLan.policy			name
+query.policy.socketLan.policy			description
+query.policy.socketLan.policy			changes
+query.policy.socketLan.policy			createdTime
+query.policy.socketLan.policy			updatedTime
+query.policy.socketLan.policy		}
+query.policy.socketLan.policy	}
+query.policy.socketLan.policy}
 	}	
 }

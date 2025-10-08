@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.internetFirewall.updateSection:
 
-`catocli mutation policy internetFirewall updateSection -h`
+```bash
+catocli mutation policy internetFirewall updateSection -h
 
-`catocli mutation policy internetFirewall updateSection <json>`
+catocli mutation policy internetFirewall updateSection <json>
 
-`catocli mutation policy internetFirewall updateSection "$(cat < mutation.policy.internetFirewall.updateSection.json)"`
+catocli mutation policy internetFirewall updateSection "$(cat < mutation.policy.internetFirewall.updateSection.json)"
 
-`catocli mutation policy internetFirewall updateSection '{"internetFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyUpdateSectionInput":{"id":"id","policyUpdateSectionInfoInput":{"name":"string"}}}'`
+catocli mutation policy internetFirewall updateSection '{"internetFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyUpdateSectionInput":{"id":"id","policyUpdateSectionInfoInput":{"name":"string"}}}'
 
-`catocli mutation policy internetFirewall updateSection -p '{
+catocli mutation policy internetFirewall updateSection -p '{
     "internetFirewallPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"
@@ -25,7 +26,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.internetFirewall.updateSection ####
 

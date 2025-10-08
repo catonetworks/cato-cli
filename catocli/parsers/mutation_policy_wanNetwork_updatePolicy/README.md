@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.wanNetwork.updatePolicy:
 
-`catocli mutation policy wanNetwork updatePolicy -h`
+```bash
+catocli mutation policy wanNetwork updatePolicy -h
 
-`catocli mutation policy wanNetwork updatePolicy <json>`
+catocli mutation policy wanNetwork updatePolicy <json>
 
-`catocli mutation policy wanNetwork updatePolicy "$(cat < mutation.policy.wanNetwork.updatePolicy.json)"`
+catocli mutation policy wanNetwork updatePolicy "$(cat < mutation.policy.wanNetwork.updatePolicy.json)"
 
-`catocli mutation policy wanNetwork updatePolicy '{"wanNetworkPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"wanNetworkPolicyUpdateInput":{"state":"ENABLED"}}'`
+catocli mutation policy wanNetwork updatePolicy '{"wanNetworkPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"wanNetworkPolicyUpdateInput":{"state":"ENABLED"}}'
 
-`catocli mutation policy wanNetwork updatePolicy -p '{
+catocli mutation policy wanNetwork updatePolicy -p '{
     "wanNetworkPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"
@@ -22,7 +23,7 @@
         "state": "ENABLED"
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.wanNetwork.updatePolicy ####
 

@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.terminalServer.addSection:
 
-`catocli mutation policy terminalServer addSection -h`
+```bash
+catocli mutation policy terminalServer addSection -h
 
-`catocli mutation policy terminalServer addSection <json>`
+catocli mutation policy terminalServer addSection <json>
 
-`catocli mutation policy terminalServer addSection "$(cat < mutation.policy.terminalServer.addSection.json)"`
+catocli mutation policy terminalServer addSection "$(cat < mutation.policy.terminalServer.addSection.json)"
 
-`catocli mutation policy terminalServer addSection '{"policyAddSectionInput":{"policyAddSectionInfoInput":{"name":"string"},"policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}},"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
+catocli mutation policy terminalServer addSection '{"policyAddSectionInput":{"policyAddSectionInfoInput":{"name":"string"},"policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}},"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-`catocli mutation policy terminalServer addSection -p '{
+catocli mutation policy terminalServer addSection -p '{
     "policyAddSectionInput": {
         "policyAddSectionInfoInput": {
             "name": "string"
@@ -28,7 +29,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.terminalServer.addSection ####
 

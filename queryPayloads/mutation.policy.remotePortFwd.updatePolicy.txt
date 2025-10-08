@@ -1,112 +1,100 @@
-mutation policyRemotePortFwdUpdatePolicy ( $remotePortFwdPolicyUpdateInput:RemotePortFwdPolicyUpdateInput! $remotePortFwdPolicyMutationInput:RemotePortFwdPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		remotePortFwd ( input:$remotePortFwdPolicyMutationInput  )  {
-			updatePolicyRemotePortFwdPolicyMutations: updatePolicy ( input:$remotePortFwdPolicyUpdateInput   ) {
-				policy  {
-					enabled
-					rulesRemotePortFwdPolicy: rules {
-						audit  {
-							updatedTime
-							updatedBy
-						}
-
-						rule  {
-							id
-							name
-							description
-							index
-							sectionRemotePortFwdRule: section {
-								id 
-								name 
-							}
-							enabled
-							forwardIcmp
-							externalIpRemotePortFwdRule: externalIp {
-								id 
-								name 
-							}
-							externalPortRangeRemotePortFwdRule: externalPortRange {
-								from 
-								to 
-							}
-							internalIp
-							internalPortRangeRemotePortFwdRule: internalPortRange {
-								from 
-								to 
-							}
-							remoteIPsRemotePortFwdRule: remoteIPs {
-								ip 
-								ipRange  {
-									from
-									to
-								}
-
-								subnet 
-								globalIpRange  {
-									id
-									name
-								}
-
-							}
-							restrictionTypeRemotePortFwdRule: restrictionType
-							trackingRemotePortFwdRule: tracking {
-								enabled 
-								frequency 
-								subscriptionGroup  {
-									id
-									name
-								}
-
-								webhook  {
-									id
-									name
-								}
-
-								mailingList  {
-									id
-									name
-								}
-
-							}
-						}
-
-						properties 
-					}
-					sectionsRemotePortFwdPolicy: sections {
-						audit  {
-							updatedTime
-							updatedBy
-						}
-
-						section  {
-							id
-							name
-						}
-
-						properties 
-					}
-					auditRemotePortFwdPolicy: audit {
-						publishedTime 
-						publishedBy 
-					}
-					revisionRemotePortFwdPolicy: revision {
-						id 
-						name 
-						description 
-						changes 
-						createdTime 
-						updatedTime 
-					}
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyRemotePortFwdUpdatePolicy ( $remotePortFwdPolicyMutationInput:RemotePortFwdPolicyMutationInput $remotePortFwdPolicyUpdateInput:RemotePortFwdPolicyUpdateInput!) {
+	policy ( ) {
+mutation.policy.remotePortFwd.updatePolicyremotePortFwd ( input:$remotePortFwdPolicyMutationInput  )  {
+mutation.policy.remotePortFwd.updatePolicy	updatePolicy ( input:$remotePortFwdPolicyUpdateInput   ) {
+mutation.policy.remotePortFwd.updatePolicy		policy {
+mutation.policy.remotePortFwd.updatePolicy			enabled
+mutation.policy.remotePortFwd.updatePolicy			rules {
+mutation.policy.remotePortFwd.updatePolicy				audit {
+mutation.policy.remotePortFwd.updatePolicy					updatedTime
+mutation.policy.remotePortFwd.updatePolicy					updatedBy
+mutation.policy.remotePortFwd.updatePolicy				}
+mutation.policy.remotePortFwd.updatePolicy				rule {
+mutation.policy.remotePortFwd.updatePolicy					id
+mutation.policy.remotePortFwd.updatePolicy					name
+mutation.policy.remotePortFwd.updatePolicy					description
+mutation.policy.remotePortFwd.updatePolicy					index
+mutation.policy.remotePortFwd.updatePolicy					section {
+mutation.policy.remotePortFwd.updatePolicy						id
+mutation.policy.remotePortFwd.updatePolicy						name
+mutation.policy.remotePortFwd.updatePolicy					}
+mutation.policy.remotePortFwd.updatePolicy					enabled
+mutation.policy.remotePortFwd.updatePolicy					forwardIcmp
+mutation.policy.remotePortFwd.updatePolicy					externalIp {
+mutation.policy.remotePortFwd.updatePolicy						id
+mutation.policy.remotePortFwd.updatePolicy						name
+mutation.policy.remotePortFwd.updatePolicy					}
+mutation.policy.remotePortFwd.updatePolicy					externalPortRange {
+mutation.policy.remotePortFwd.updatePolicy						from
+mutation.policy.remotePortFwd.updatePolicy						to
+mutation.policy.remotePortFwd.updatePolicy					}
+mutation.policy.remotePortFwd.updatePolicy					internalIp
+mutation.policy.remotePortFwd.updatePolicy					internalPortRange {
+mutation.policy.remotePortFwd.updatePolicy						from
+mutation.policy.remotePortFwd.updatePolicy						to
+mutation.policy.remotePortFwd.updatePolicy					}
+mutation.policy.remotePortFwd.updatePolicy					remoteIPs {
+mutation.policy.remotePortFwd.updatePolicy						ip
+mutation.policy.remotePortFwd.updatePolicy						ipRange {
+mutation.policy.remotePortFwd.updatePolicy							from
+mutation.policy.remotePortFwd.updatePolicy							to
+mutation.policy.remotePortFwd.updatePolicy						}
+mutation.policy.remotePortFwd.updatePolicy						subnet
+mutation.policy.remotePortFwd.updatePolicy						globalIpRange {
+mutation.policy.remotePortFwd.updatePolicy							id
+mutation.policy.remotePortFwd.updatePolicy							name
+mutation.policy.remotePortFwd.updatePolicy						}
+mutation.policy.remotePortFwd.updatePolicy					}
+mutation.policy.remotePortFwd.updatePolicy					restrictionType
+mutation.policy.remotePortFwd.updatePolicy					tracking {
+mutation.policy.remotePortFwd.updatePolicy						enabled
+mutation.policy.remotePortFwd.updatePolicy						frequency
+mutation.policy.remotePortFwd.updatePolicy						subscriptionGroup {
+mutation.policy.remotePortFwd.updatePolicy							id
+mutation.policy.remotePortFwd.updatePolicy							name
+mutation.policy.remotePortFwd.updatePolicy						}
+mutation.policy.remotePortFwd.updatePolicy						webhook {
+mutation.policy.remotePortFwd.updatePolicy							id
+mutation.policy.remotePortFwd.updatePolicy							name
+mutation.policy.remotePortFwd.updatePolicy						}
+mutation.policy.remotePortFwd.updatePolicy						mailingList {
+mutation.policy.remotePortFwd.updatePolicy							id
+mutation.policy.remotePortFwd.updatePolicy							name
+mutation.policy.remotePortFwd.updatePolicy						}
+mutation.policy.remotePortFwd.updatePolicy					}
+mutation.policy.remotePortFwd.updatePolicy				}
+mutation.policy.remotePortFwd.updatePolicy				properties
+mutation.policy.remotePortFwd.updatePolicy			}
+mutation.policy.remotePortFwd.updatePolicy			sections {
+mutation.policy.remotePortFwd.updatePolicy				audit {
+mutation.policy.remotePortFwd.updatePolicy					updatedTime
+mutation.policy.remotePortFwd.updatePolicy					updatedBy
+mutation.policy.remotePortFwd.updatePolicy				}
+mutation.policy.remotePortFwd.updatePolicy				section {
+mutation.policy.remotePortFwd.updatePolicy					id
+mutation.policy.remotePortFwd.updatePolicy					name
+mutation.policy.remotePortFwd.updatePolicy				}
+mutation.policy.remotePortFwd.updatePolicy				properties
+mutation.policy.remotePortFwd.updatePolicy			}
+mutation.policy.remotePortFwd.updatePolicy			audit {
+mutation.policy.remotePortFwd.updatePolicy				publishedTime
+mutation.policy.remotePortFwd.updatePolicy				publishedBy
+mutation.policy.remotePortFwd.updatePolicy			}
+mutation.policy.remotePortFwd.updatePolicy			revision {
+mutation.policy.remotePortFwd.updatePolicy				id
+mutation.policy.remotePortFwd.updatePolicy				name
+mutation.policy.remotePortFwd.updatePolicy				description
+mutation.policy.remotePortFwd.updatePolicy				changes
+mutation.policy.remotePortFwd.updatePolicy				createdTime
+mutation.policy.remotePortFwd.updatePolicy				updatedTime
+mutation.policy.remotePortFwd.updatePolicy			}
+mutation.policy.remotePortFwd.updatePolicy		}
+mutation.policy.remotePortFwd.updatePolicy		status
+mutation.policy.remotePortFwd.updatePolicy		errors {
+mutation.policy.remotePortFwd.updatePolicy			errorMessage
+mutation.policy.remotePortFwd.updatePolicy			errorCode
+mutation.policy.remotePortFwd.updatePolicy		}
+mutation.policy.remotePortFwd.updatePolicy	}
+mutation.policy.remotePortFwd.updatePolicy}
 	}	
 }

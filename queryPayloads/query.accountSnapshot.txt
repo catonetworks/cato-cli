@@ -1,355 +1,407 @@
-query accountSnapshot ( $siteIDs:[ID!] $userIDs:[ID!] $accountID:ID ) {
-	accountSnapshot ( accountID:$accountID ) {
-		id 
-		sites ( siteIDs:$siteIDs  )  {
-			id
-			protoId
-			connectivityStatusSiteSnapshot: connectivityStatus
-			haStatusSiteSnapshot: haStatus {
-				readiness 
-				wanConnectivity 
-				keepalive 
-				socketVersion 
+query accountSnapshot ( ) {
+	accountSnapshot ( ) {
+query.accountSnapshotid
+query.accountSnapshotsites {
+query.accountSnapshot	id
+query.accountSnapshot	protoId
+query.accountSnapshot	connectivityStatus
+query.accountSnapshot	haStatus {
+query.accountSnapshot		readiness
+query.accountSnapshot		wanConnectivity
+query.accountSnapshot		keepalive
+query.accountSnapshot		socketVersion
+query.accountSnapshot	}
+query.accountSnapshot	operationalStatus
+query.accountSnapshot	lastConnected
+query.accountSnapshot	connectedSince
+query.accountSnapshot	popName
+query.accountSnapshot	devices {
+query.accountSnapshot		id
+query.accountSnapshot		name
+query.accountSnapshot		identifier
+query.accountSnapshot		connected
+query.accountSnapshot		haRole
+query.accountSnapshot		interfaces {
+query.accountSnapshot			connected
+query.accountSnapshot			id
+query.accountSnapshot			name
+query.accountSnapshot			physicalPort
+query.accountSnapshot			naturalOrder
+query.accountSnapshot			popName
+query.accountSnapshot			previousPopID
+query.accountSnapshot			previousPopName
+query.accountSnapshot			tunnelConnectionReason
+query.accountSnapshot			tunnelUptime
+query.accountSnapshot			tunnelRemoteIP
+query.accountSnapshot			tunnelRemoteIPInfo {
+query.accountSnapshot				ip
+query.accountSnapshot				countryCode
+query.accountSnapshot				countryName
+query.accountSnapshot				city
+query.accountSnapshot				state
+query.accountSnapshot				provider
+query.accountSnapshot				latitude
+query.accountSnapshot				longitude
+query.accountSnapshot			}
+query.accountSnapshot			type
+query.accountSnapshot			info {
+query.accountSnapshot				id
+query.accountSnapshot				name
+query.accountSnapshot				upstreamBandwidth
+query.accountSnapshot				downstreamBandwidth
+query.accountSnapshot				upstreamBandwidthMbpsPrecision
+query.accountSnapshot				downstreamBandwidthMbpsPrecision
+query.accountSnapshot				destType
+query.accountSnapshot				wanRole
+query.accountSnapshot			}
+query.accountSnapshot			cellularInterfaceInfo {
+query.accountSnapshot				networkType
+query.accountSnapshot				simSlotId
+query.accountSnapshot				modemStatus
+query.accountSnapshot				isModemConnected
+query.accountSnapshot				iccid
+query.accountSnapshot				imei
+query.accountSnapshot				operatorName
+query.accountSnapshot				isModemSuspended
+query.accountSnapshot				apn
+query.accountSnapshot				apnSelectionMethod
+query.accountSnapshot				signalStrength
+query.accountSnapshot				isRoamingAllowed
+query.accountSnapshot				simNumber
+query.accountSnapshot				disconnectionReason
+query.accountSnapshot				isSimSlot1Detected
+query.accountSnapshot				isSimSlot2Detected
+query.accountSnapshot			}
+query.accountSnapshot		}
+query.accountSnapshot		lastConnected
+query.accountSnapshot		lastDuration
+query.accountSnapshot		connectedSince
+query.accountSnapshot		lastPopID
+query.accountSnapshot		lastPopName
+query.accountSnapshot		recentConnections {
+query.accountSnapshot			duration
+query.accountSnapshot			interfaceName
+query.accountSnapshot			deviceName
+query.accountSnapshot			lastConnected
+query.accountSnapshot			popName
+query.accountSnapshot			remoteIP
+query.accountSnapshot			remoteIPInfo {
+query.accountSnapshot				ip
+query.accountSnapshot				countryCode
+query.accountSnapshot				countryName
+query.accountSnapshot				city
+query.accountSnapshot				state
+query.accountSnapshot				provider
+query.accountSnapshot				latitude
+query.accountSnapshot				longitude
+query.accountSnapshot			}
+query.accountSnapshot		}
+query.accountSnapshot		type
+query.accountSnapshot		deviceUptime
+query.accountSnapshot		socketInfo {
+query.accountSnapshot			id
+query.accountSnapshot			serial
+query.accountSnapshot			isPrimary
+query.accountSnapshot			platform
+query.accountSnapshot			version
+query.accountSnapshot			versionUpdateTime
+query.accountSnapshot		}
+query.accountSnapshot		interfacesLinkState {
+query.accountSnapshot			id
+query.accountSnapshot			up
+query.accountSnapshot			mediaIn
+query.accountSnapshot			linkSpeed
+query.accountSnapshot			duplex
+query.accountSnapshot			hasAddress
+query.accountSnapshot			hasInternet
+query.accountSnapshot			hasTunnel
+query.accountSnapshot		}
+query.accountSnapshot		osType
+query.accountSnapshot		osVersion
+query.accountSnapshot		version
+query.accountSnapshot		versionNumber
+query.accountSnapshot		releaseGroup {
+	id
+	name
+	description
+	membersCount
+	audit {
+		updatedTime
+		updatedBy {
+			__typename
+			... on AdminRef {
+				id
+				name
 			}
-			operationalStatusSiteSnapshot: operationalStatus
-			lastConnected
-			connectedSince
-			popName
-			devicesSiteSnapshot: devices {
-				id 
-				name 
-				identifier 
-				connected 
-				haRole 
-				interfaces  {
-					connected
-					id
-					name
-					physicalPort
-					naturalOrder
-					popName
-					previousPopID
-					previousPopName
-					tunnelConnectionReason
-					tunnelUptime
-					tunnelRemoteIP
-					tunnelRemoteIPInfoInterfaceSnapshot: tunnelRemoteIPInfo {
-						ip 
-						countryCode 
-						countryName 
-						city 
-						state 
-						provider 
-						latitude 
-						longitude 
-					}
-					type
-					infoInterfaceSnapshot: info {
-						id 
-						name 
-						upstreamBandwidth 
-						downstreamBandwidth 
-						upstreamBandwidthMbpsPrecision 
-						downstreamBandwidthMbpsPrecision 
-						destType 
-						wanRole 
-					}
-					cellularInterfaceInfoInterfaceSnapshot: cellularInterfaceInfo {
-						networkType 
-						simSlotId 
-						modemStatus 
-						isModemConnected 
-						iccid 
-						imei 
-						operatorName 
-						isModemSuspended 
-						apn 
-						apnSelectionMethod 
-						signalStrength 
-						isRoamingAllowed 
-						simNumber 
-						disconnectionReason 
-						isSimSlot1Detected 
-						isSimSlot2Detected 
-					}
-				}
-
-				lastConnected 
-				lastDuration 
-				connectedSince 
-				lastPopID 
-				lastPopName 
-				recentConnections  {
-					duration
-					interfaceName
-					deviceName
-					lastConnected
-					popName
-					remoteIP
-					remoteIPInfoRecentConnection: remoteIPInfo {
-						ip 
-						countryCode 
-						countryName 
-						city 
-						state 
-						provider 
-						latitude 
-						longitude 
-					}
-				}
-
-				type 
-				deviceUptime 
-				socketInfo  {
-					id
-					serial
-					isPrimary
-					platformSocketInfo: platform
-					version
-					versionUpdateTime
-				}
-
-				interfacesLinkState  {
-					id
-					up
-					mediaIn
-					linkSpeed
-					duplex
-					hasAddress
-					hasInternet
-					hasTunnel
-				}
-
-				osType 
-				osVersion 
-				version 
-				versionNumber 
-				releaseGroup 
-				mfaExpirationTime 
-				mfaCreationTime 
-				internalIP 
+			... on ApiKeyRef {
+				id
+				name
 			}
-			infoSiteSnapshot: info {
-				name 
-				type 
-				description 
-				countryCode 
-				region 
-				countryName 
-				countryStateName 
-				cityName 
-				address 
-				isHA 
-				connType 
-				creationTime 
-				interfaces  {
-					id
-					name
-					upstreamBandwidth
-					downstreamBandwidth
-					upstreamBandwidthMbpsPrecision
-					downstreamBandwidthMbpsPrecision
-					destType
-					wanRoleInterfaceInfo: wanRole
-				}
-
-				sockets  {
-					id
-					serial
-					isPrimary
-					platformSocketInfo: platform
-					version
-					versionUpdateTime
-				}
-
-				ipsec  {
-					isPrimary
-					catoIP
-					remoteIP
-					ikeVersion
-					tunnelConfigIPSecInfo: tunnelConfig {
-						tunnelId 
-						tunnelRemoteIdentifier 
-						localId 
-					}
-				}
-
-			}
-			hostCount
-			altWanStatus
 		}
-
-		users ( userIDs:$userIDs  )  {
+	}
+	members {
+		items {
 			id
-			connectivityStatusUserSnapshot: connectivityStatus
-			operationalStatusUserSnapshot: operationalStatus
 			name
-			deviceName
-			uptime
-			lastConnected
-			version
-			versionNumber
-			popID
-			popName
-			remoteIP
-			remoteIPInfoUserSnapshot: remoteIPInfo {
-				ip 
-				countryCode 
-				countryName 
-				city 
-				state 
-				provider 
-				latitude 
-				longitude 
+			type
+		}
+		paging {
+			total
+		}
+	}
+	membersCountPerType {
+		type
+		membersCount
+	}
+}
+query.accountSnapshot		mfaExpirationTime
+query.accountSnapshot		mfaCreationTime
+query.accountSnapshot		internalIP
+query.accountSnapshot	}
+query.accountSnapshot	info {
+query.accountSnapshot		name
+query.accountSnapshot		type
+query.accountSnapshot		description
+query.accountSnapshot		countryCode
+query.accountSnapshot		region
+query.accountSnapshot		countryName
+query.accountSnapshot		countryStateName
+query.accountSnapshot		cityName
+query.accountSnapshot		address
+query.accountSnapshot		isHA
+query.accountSnapshot		connType
+query.accountSnapshot		creationTime
+query.accountSnapshot		interfaces {
+query.accountSnapshot			id
+query.accountSnapshot			name
+query.accountSnapshot			upstreamBandwidth
+query.accountSnapshot			downstreamBandwidth
+query.accountSnapshot			upstreamBandwidthMbpsPrecision
+query.accountSnapshot			downstreamBandwidthMbpsPrecision
+query.accountSnapshot			destType
+query.accountSnapshot			wanRole
+query.accountSnapshot		}
+query.accountSnapshot		sockets {
+query.accountSnapshot			id
+query.accountSnapshot			serial
+query.accountSnapshot			isPrimary
+query.accountSnapshot			platform
+query.accountSnapshot			version
+query.accountSnapshot			versionUpdateTime
+query.accountSnapshot		}
+query.accountSnapshot		ipsec {
+query.accountSnapshot			isPrimary
+query.accountSnapshot			catoIP
+query.accountSnapshot			remoteIP
+query.accountSnapshot			ikeVersion
+query.accountSnapshot			tunnelConfig {
+query.accountSnapshot				tunnelId
+query.accountSnapshot				tunnelRemoteIdentifier
+query.accountSnapshot				localId
+query.accountSnapshot			}
+query.accountSnapshot		}
+query.accountSnapshot	}
+query.accountSnapshot	hostCount
+query.accountSnapshot	altWanStatus
+query.accountSnapshot}
+query.accountSnapshotusers {
+query.accountSnapshot	id
+query.accountSnapshot	connectivityStatus
+query.accountSnapshot	operationalStatus
+query.accountSnapshot	name
+query.accountSnapshot	deviceName
+query.accountSnapshot	uptime
+query.accountSnapshot	lastConnected
+query.accountSnapshot	version
+query.accountSnapshot	versionNumber
+query.accountSnapshot	popID
+query.accountSnapshot	popName
+query.accountSnapshot	remoteIP
+query.accountSnapshot	remoteIPInfo {
+query.accountSnapshot		ip
+query.accountSnapshot		countryCode
+query.accountSnapshot		countryName
+query.accountSnapshot		city
+query.accountSnapshot		state
+query.accountSnapshot		provider
+query.accountSnapshot		latitude
+query.accountSnapshot		longitude
+query.accountSnapshot	}
+query.accountSnapshot	internalIP
+query.accountSnapshot	osType
+query.accountSnapshot	osVersion
+query.accountSnapshot	devices {
+query.accountSnapshot		id
+query.accountSnapshot		name
+query.accountSnapshot		identifier
+query.accountSnapshot		connected
+query.accountSnapshot		haRole
+query.accountSnapshot		interfaces {
+query.accountSnapshot			connected
+query.accountSnapshot			id
+query.accountSnapshot			name
+query.accountSnapshot			physicalPort
+query.accountSnapshot			naturalOrder
+query.accountSnapshot			popName
+query.accountSnapshot			previousPopID
+query.accountSnapshot			previousPopName
+query.accountSnapshot			tunnelConnectionReason
+query.accountSnapshot			tunnelUptime
+query.accountSnapshot			tunnelRemoteIP
+query.accountSnapshot			tunnelRemoteIPInfo {
+query.accountSnapshot				ip
+query.accountSnapshot				countryCode
+query.accountSnapshot				countryName
+query.accountSnapshot				city
+query.accountSnapshot				state
+query.accountSnapshot				provider
+query.accountSnapshot				latitude
+query.accountSnapshot				longitude
+query.accountSnapshot			}
+query.accountSnapshot			type
+query.accountSnapshot			info {
+query.accountSnapshot				id
+query.accountSnapshot				name
+query.accountSnapshot				upstreamBandwidth
+query.accountSnapshot				downstreamBandwidth
+query.accountSnapshot				upstreamBandwidthMbpsPrecision
+query.accountSnapshot				downstreamBandwidthMbpsPrecision
+query.accountSnapshot				destType
+query.accountSnapshot				wanRole
+query.accountSnapshot			}
+query.accountSnapshot			cellularInterfaceInfo {
+query.accountSnapshot				networkType
+query.accountSnapshot				simSlotId
+query.accountSnapshot				modemStatus
+query.accountSnapshot				isModemConnected
+query.accountSnapshot				iccid
+query.accountSnapshot				imei
+query.accountSnapshot				operatorName
+query.accountSnapshot				isModemSuspended
+query.accountSnapshot				apn
+query.accountSnapshot				apnSelectionMethod
+query.accountSnapshot				signalStrength
+query.accountSnapshot				isRoamingAllowed
+query.accountSnapshot				simNumber
+query.accountSnapshot				disconnectionReason
+query.accountSnapshot				isSimSlot1Detected
+query.accountSnapshot				isSimSlot2Detected
+query.accountSnapshot			}
+query.accountSnapshot		}
+query.accountSnapshot		lastConnected
+query.accountSnapshot		lastDuration
+query.accountSnapshot		connectedSince
+query.accountSnapshot		lastPopID
+query.accountSnapshot		lastPopName
+query.accountSnapshot		recentConnections {
+query.accountSnapshot			duration
+query.accountSnapshot			interfaceName
+query.accountSnapshot			deviceName
+query.accountSnapshot			lastConnected
+query.accountSnapshot			popName
+query.accountSnapshot			remoteIP
+query.accountSnapshot			remoteIPInfo {
+query.accountSnapshot				ip
+query.accountSnapshot				countryCode
+query.accountSnapshot				countryName
+query.accountSnapshot				city
+query.accountSnapshot				state
+query.accountSnapshot				provider
+query.accountSnapshot				latitude
+query.accountSnapshot				longitude
+query.accountSnapshot			}
+query.accountSnapshot		}
+query.accountSnapshot		type
+query.accountSnapshot		deviceUptime
+query.accountSnapshot		socketInfo {
+query.accountSnapshot			id
+query.accountSnapshot			serial
+query.accountSnapshot			isPrimary
+query.accountSnapshot			platform
+query.accountSnapshot			version
+query.accountSnapshot			versionUpdateTime
+query.accountSnapshot		}
+query.accountSnapshot		interfacesLinkState {
+query.accountSnapshot			id
+query.accountSnapshot			up
+query.accountSnapshot			mediaIn
+query.accountSnapshot			linkSpeed
+query.accountSnapshot			duplex
+query.accountSnapshot			hasAddress
+query.accountSnapshot			hasInternet
+query.accountSnapshot			hasTunnel
+query.accountSnapshot		}
+query.accountSnapshot		osType
+query.accountSnapshot		osVersion
+query.accountSnapshot		version
+query.accountSnapshot		versionNumber
+query.accountSnapshot		releaseGroup {
+	id
+	name
+	description
+	membersCount
+	audit {
+		updatedTime
+		updatedBy {
+			__typename
+			... on AdminRef {
+				id
+				name
 			}
-			internalIP
-			osType
-			osVersion
-			devicesUserSnapshot: devices {
-				id 
-				name 
-				identifier 
-				connected 
-				haRole 
-				interfaces  {
-					connected
-					id
-					name
-					physicalPort
-					naturalOrder
-					popName
-					previousPopID
-					previousPopName
-					tunnelConnectionReason
-					tunnelUptime
-					tunnelRemoteIP
-					tunnelRemoteIPInfoInterfaceSnapshot: tunnelRemoteIPInfo {
-						ip 
-						countryCode 
-						countryName 
-						city 
-						state 
-						provider 
-						latitude 
-						longitude 
-					}
-					type
-					infoInterfaceSnapshot: info {
-						id 
-						name 
-						upstreamBandwidth 
-						downstreamBandwidth 
-						upstreamBandwidthMbpsPrecision 
-						downstreamBandwidthMbpsPrecision 
-						destType 
-						wanRole 
-					}
-					cellularInterfaceInfoInterfaceSnapshot: cellularInterfaceInfo {
-						networkType 
-						simSlotId 
-						modemStatus 
-						isModemConnected 
-						iccid 
-						imei 
-						operatorName 
-						isModemSuspended 
-						apn 
-						apnSelectionMethod 
-						signalStrength 
-						isRoamingAllowed 
-						simNumber 
-						disconnectionReason 
-						isSimSlot1Detected 
-						isSimSlot2Detected 
-					}
-				}
-
-				lastConnected 
-				lastDuration 
-				connectedSince 
-				lastPopID 
-				lastPopName 
-				recentConnections  {
-					duration
-					interfaceName
-					deviceName
-					lastConnected
-					popName
-					remoteIP
-					remoteIPInfoRecentConnection: remoteIPInfo {
-						ip 
-						countryCode 
-						countryName 
-						city 
-						state 
-						provider 
-						latitude 
-						longitude 
-					}
-				}
-
-				type 
-				deviceUptime 
-				socketInfo  {
-					id
-					serial
-					isPrimary
-					platformSocketInfo: platform
-					version
-					versionUpdateTime
-				}
-
-				interfacesLinkState  {
-					id
-					up
-					mediaIn
-					linkSpeed
-					duplex
-					hasAddress
-					hasInternet
-					hasTunnel
-				}
-
-				osType 
-				osVersion 
-				version 
-				versionNumber 
-				releaseGroup 
-				mfaExpirationTime 
-				mfaCreationTime 
-				internalIP 
-			}
-			connectedInOffice
-			infoUserSnapshot: info {
-				name 
-				status 
-				email 
-				creationTime 
-				phoneNumber 
-				origin 
-				authMethod 
-			}
-			recentConnectionsUserSnapshot: recentConnections {
-				duration 
-				interfaceName 
-				deviceName 
-				lastConnected 
-				popName 
-				remoteIP 
-				remoteIPInfo  {
-					ip
-					countryCode
-					countryName
-					city
-					state
-					provider
-					latitude
-					longitude
-				}
-
+			... on ApiKeyRef {
+				id
+				name
 			}
 		}
-
-		timestamp 
+	}
+	members {
+		items {
+			id
+			name
+			type
+		}
+		paging {
+			total
+		}
+	}
+	membersCountPerType {
+		type
+		membersCount
+	}
+}
+query.accountSnapshot		mfaExpirationTime
+query.accountSnapshot		mfaCreationTime
+query.accountSnapshot		internalIP
+query.accountSnapshot	}
+query.accountSnapshot	connectedInOffice
+query.accountSnapshot	info {
+query.accountSnapshot		name
+query.accountSnapshot		status
+query.accountSnapshot		email
+query.accountSnapshot		creationTime
+query.accountSnapshot		phoneNumber
+query.accountSnapshot		origin
+query.accountSnapshot		authMethod
+query.accountSnapshot	}
+query.accountSnapshot	recentConnections {
+query.accountSnapshot		duration
+query.accountSnapshot		interfaceName
+query.accountSnapshot		deviceName
+query.accountSnapshot		lastConnected
+query.accountSnapshot		popName
+query.accountSnapshot		remoteIP
+query.accountSnapshot		remoteIPInfo {
+query.accountSnapshot			ip
+query.accountSnapshot			countryCode
+query.accountSnapshot			countryName
+query.accountSnapshot			city
+query.accountSnapshot			state
+query.accountSnapshot			provider
+query.accountSnapshot			latitude
+query.accountSnapshot			longitude
+query.accountSnapshot		}
+query.accountSnapshot	}
+query.accountSnapshot}
+query.accountSnapshottimestamp
 	}	
 }

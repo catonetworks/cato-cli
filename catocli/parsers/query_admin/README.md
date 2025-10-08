@@ -4,18 +4,19 @@
 
 ### Usage for query.admin:
 
-`catocli query admin -h`
+```bash
+catocli query admin -h
 
-`catocli query admin <json>`
+catocli query admin <json>
 
-`catocli query admin "$(cat < query.admin.json)"`
+catocli query admin "$(cat < query.admin.json)"
 
-`catocli query admin '{"adminID":"id"}'`
+catocli query admin '{"adminID":"id"}'
 
-`catocli query admin -p '{
+catocli query admin -p '{
     "adminID": "id"
 }'
-
+```
 
 #### Operation Arguments for query.admin ####
 

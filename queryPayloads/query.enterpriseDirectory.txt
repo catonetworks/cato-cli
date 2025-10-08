@@ -1,62 +1,103 @@
-query enterpriseDirectory ( $enterpriseDirectoryLocationListInput:EnterpriseDirectoryLocationListInput $accountId:ID! ) {
-	enterpriseDirectory ( accountId:$accountId ) {
-		locationList ( input:$enterpriseDirectoryLocationListInput  )  {
-			itemsEnterpriseDirectoryLocationListPayload: items {
-				id 
-				account  {
-					id
-					name
-				}
-
-				type 
-				name 
-				businessUnit 
-				description 
-				details  {
-					companyName
-					postalAddressLocationDetails: postalAddress {
-						street 
-						cityName 
-						country  {
-							id
-							name
-						}
-
-						stateName 
-						zipCode 
-						addressValidated 
-					}
-					vatId
-					contactLocationDetails: contact {
-						name 
-						phone 
-						email 
-					}
-					shippingLocation
-				}
-
-				archived 
-				audit  {
-					updatedTime
-					updatedByAuditingMetadata: updatedBy {
-						id 
-						name 
-						... on AdminRef {
-							id 
-							name 
-						}
-						... on ApiKeyRef {
-							id 
-							name 
-						}
-					}
-				}
-
-			}
-			pageInfoEnterpriseDirectoryLocationListPayload: pageInfo {
-				total 
+query enterpriseDirectory ( ) {
+	enterpriseDirectory ( ) {
+query.enterpriseDirectorylocationList {
+query.enterpriseDirectory	items {
+query.enterpriseDirectory		id
+query.enterpriseDirectory		account {
+query.enterpriseDirectory			id
+query.enterpriseDirectory			name
+query.enterpriseDirectory		}
+query.enterpriseDirectory		type
+query.enterpriseDirectory		name
+query.enterpriseDirectory		businessUnit
+query.enterpriseDirectory		description
+query.enterpriseDirectory		details {
+query.enterpriseDirectory			companyName
+query.enterpriseDirectory			postalAddress {
+query.enterpriseDirectory				street
+query.enterpriseDirectory				cityName
+query.enterpriseDirectory				country {
+query.enterpriseDirectory					id
+query.enterpriseDirectory					name
+query.enterpriseDirectory				}
+query.enterpriseDirectory				stateName
+query.enterpriseDirectory				zipCode
+query.enterpriseDirectory				addressValidated
+query.enterpriseDirectory			}
+query.enterpriseDirectory			vatId
+query.enterpriseDirectory			contact {
+query.enterpriseDirectory				name
+query.enterpriseDirectory				phone
+query.enterpriseDirectory				email
+query.enterpriseDirectory			}
+query.enterpriseDirectory			shippingLocation {
+	id
+	type
+	name
+	description
+	businessUnit
+	archived
+	account {
+		id
+		name
+	}
+	details {
+		companyName
+		vatId
+		shippingLocation
+		postalAddress {
+			street
+			cityName
+			stateName
+			zipCode
+			addressValidated
+			country {
+				id
+				name
 			}
 		}
-
+		contact {
+			name
+			phone
+			email
+		}
+	}
+	audit {
+		updatedTime
+		updatedBy {
+			__typename
+			... on AdminRef {
+				id
+				name
+			}
+			... on ApiKeyRef {
+				id
+				name
+			}
+		}
+	}
+}
+query.enterpriseDirectory		}
+query.enterpriseDirectory		archived
+query.enterpriseDirectory		audit {
+query.enterpriseDirectory			updatedTime
+query.enterpriseDirectory			updatedBy {
+query.enterpriseDirectory				id
+query.enterpriseDirectory				name
+query.enterpriseDirectory				... on AdminRef {
+query.enterpriseDirectory					id
+query.enterpriseDirectory					name
+query.enterpriseDirectory				}
+query.enterpriseDirectory				... on ApiKeyRef {
+query.enterpriseDirectory					id
+query.enterpriseDirectory					name
+query.enterpriseDirectory				}
+query.enterpriseDirectory			}
+query.enterpriseDirectory		}
+query.enterpriseDirectory	}
+query.enterpriseDirectory	pageInfo {
+query.enterpriseDirectory		total
+query.enterpriseDirectory	}
+query.enterpriseDirectory}
 	}	
 }

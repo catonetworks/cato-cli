@@ -4,20 +4,21 @@
 
 ### Usage for query.site.cloudInterconnectConnectionConnectivity:
 
-`catocli query site cloudInterconnectConnectionConnectivity -h`
+```bash
+catocli query site cloudInterconnectConnectionConnectivity -h
 
-`catocli query site cloudInterconnectConnectionConnectivity <json>`
+catocli query site cloudInterconnectConnectionConnectivity <json>
 
-`catocli query site cloudInterconnectConnectionConnectivity "$(cat < query.site.cloudInterconnectConnectionConnectivity.json)"`
+catocli query site cloudInterconnectConnectionConnectivity "$(cat < query.site.cloudInterconnectConnectionConnectivity.json)"
 
-`catocli query site cloudInterconnectConnectionConnectivity '{"cloudInterconnectConnectionConnectivityInput":{"id":"id"}}'`
+catocli query site cloudInterconnectConnectionConnectivity '{"cloudInterconnectConnectionConnectivityInput":{"id":"id"}}'
 
-`catocli query site cloudInterconnectConnectionConnectivity -p '{
+catocli query site cloudInterconnectConnectionConnectivity -p '{
     "cloudInterconnectConnectionConnectivityInput": {
         "id": "id"
     }
 }'
-
+```
 
 #### Operation Arguments for query.site.cloudInterconnectConnectionConnectivity ####
 

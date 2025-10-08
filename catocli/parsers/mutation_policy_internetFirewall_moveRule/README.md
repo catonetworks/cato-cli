@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.internetFirewall.moveRule:
 
-`catocli mutation policy internetFirewall moveRule -h`
+```bash
+catocli mutation policy internetFirewall moveRule -h
 
-`catocli mutation policy internetFirewall moveRule <json>`
+catocli mutation policy internetFirewall moveRule <json>
 
-`catocli mutation policy internetFirewall moveRule "$(cat < mutation.policy.internetFirewall.moveRule.json)"`
+catocli mutation policy internetFirewall moveRule "$(cat < mutation.policy.internetFirewall.moveRule.json)"
 
-`catocli mutation policy internetFirewall moveRule '{"internetFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyMoveRuleInput":{"id":"id","policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"}}}'`
+catocli mutation policy internetFirewall moveRule '{"internetFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyMoveRuleInput":{"id":"id","policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"}}}'
 
-`catocli mutation policy internetFirewall moveRule -p '{
+catocli mutation policy internetFirewall moveRule -p '{
     "internetFirewallPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"
@@ -26,7 +27,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.internetFirewall.moveRule ####
 

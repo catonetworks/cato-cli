@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.internetFirewall.discardPolicyRevision:
 
-`catocli mutation policy internetFirewall discardPolicyRevision -h`
+```bash
+catocli mutation policy internetFirewall discardPolicyRevision -h
 
-`catocli mutation policy internetFirewall discardPolicyRevision <json>`
+catocli mutation policy internetFirewall discardPolicyRevision <json>
 
-`catocli mutation policy internetFirewall discardPolicyRevision "$(cat < mutation.policy.internetFirewall.discardPolicyRevision.json)"`
+catocli mutation policy internetFirewall discardPolicyRevision "$(cat < mutation.policy.internetFirewall.discardPolicyRevision.json)"
 
-`catocli mutation policy internetFirewall discardPolicyRevision '{"internetFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyDiscardRevisionInput":{"id":"id"}}'`
+catocli mutation policy internetFirewall discardPolicyRevision '{"internetFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyDiscardRevisionInput":{"id":"id"}}'
 
-`catocli mutation policy internetFirewall discardPolicyRevision -p '{
+catocli mutation policy internetFirewall discardPolicyRevision -p '{
     "internetFirewallPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"
@@ -22,7 +23,7 @@
         "id": "id"
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.internetFirewall.discardPolicyRevision ####
 

@@ -4,21 +4,22 @@
 
 ### Usage for query.groups.whereUsed:
 
-`catocli query groups whereUsed -h`
+```bash
+catocli query groups whereUsed -h
 
-`catocli query groups whereUsed <json>`
+catocli query groups whereUsed <json>
 
-`catocli query groups whereUsed "$(cat < query.groups.whereUsed.json)"`
+catocli query groups whereUsed "$(cat < query.groups.whereUsed.json)"
 
-`catocli query groups whereUsed '{"groupRefInput":{"by":"ID","input":"string"}}'`
+catocli query groups whereUsed '{"groupRefInput":{"by":"ID","input":"string"}}'
 
-`catocli query groups whereUsed -p '{
+catocli query groups whereUsed -p '{
     "groupRefInput": {
         "by": "ID",
         "input": "string"
     }
 }'
-
+```
 
 #### Operation Arguments for query.groups.whereUsed ####
 

@@ -2833,7 +2833,6 @@
                                     "varName": "data"
                                 },
                                 "dimensions": {
-                                    "alias": "dimensionsTimeseries: dimensions",
                                     "args": {},
                                     "deprecationReason": null,
                                     "description": "List of dimension values for this timeseries",
@@ -2931,7 +2930,6 @@
                                     "varName": "info"
                                 },
                                 "key": {
-                                    "alias": "keyTimeseries: key",
                                     "args": {},
                                     "deprecationReason": null,
                                     "description": "Timeseries key: measure and dimension values",
@@ -3101,7 +3099,6 @@
                                     "varName": "sum"
                                 },
                                 "units": {
-                                    "alias": "unitsTimeseries: units",
                                     "args": {},
                                     "deprecationReason": null,
                                     "description": "Identifies what unit of data this timeseries represents. Note that toRate is only available for particular types\nof data to make sense.",
@@ -3252,10 +3249,22 @@
         "non_null": false
     },
     "variablesPayload": {
-        "accountID": "example_id",
-        "appStatsFilter": {},
-        "dimension": {},
-        "measure": {},
+        "appStatsFilter": {
+            "fieldName": "ad_name",
+            "operator": "is",
+            "values": [
+                "string1",
+                "string2"
+            ]
+        },
+        "dimension": {
+            "fieldName": "ad_name"
+        },
+        "measure": {
+            "aggType": "sum",
+            "fieldName": "ad_name",
+            "trend": true
+        },
         "timeFrame": "example_value"
     }
 }

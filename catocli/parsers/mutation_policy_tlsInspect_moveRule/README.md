@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.tlsInspect.moveRule:
 
-`catocli mutation policy tlsInspect moveRule -h`
+```bash
+catocli mutation policy tlsInspect moveRule -h
 
-`catocli mutation policy tlsInspect moveRule <json>`
+catocli mutation policy tlsInspect moveRule <json>
 
-`catocli mutation policy tlsInspect moveRule "$(cat < mutation.policy.tlsInspect.moveRule.json)"`
+catocli mutation policy tlsInspect moveRule "$(cat < mutation.policy.tlsInspect.moveRule.json)"
 
-`catocli mutation policy tlsInspect moveRule '{"policyMoveRuleInput":{"id":"id","policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"}},"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
+catocli mutation policy tlsInspect moveRule '{"policyMoveRuleInput":{"id":"id","policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"}},"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-`catocli mutation policy tlsInspect moveRule -p '{
+catocli mutation policy tlsInspect moveRule -p '{
     "policyMoveRuleInput": {
         "id": "id",
         "policyRulePositionInput": {
@@ -26,7 +27,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.tlsInspect.moveRule ####
 

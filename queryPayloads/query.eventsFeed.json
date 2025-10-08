@@ -1,6 +1,6 @@
 {
     "operationName": "eventsFeed",
-    "query": "query eventsFeed ( $fieldNames:[EventFieldName!] $accountIDs:[ID!] $eventFeedFieldFilterInput:[EventFeedFieldFilterInput!] $marker:String ) {\n\teventsFeed ( accountIDs:$accountIDs filters:$eventFeedFieldFilterInput marker:$marker ) {\n\t\tmarker \n\t\tfetchedCount \n\t\taccounts  {\n\t\t\tid\n\t\t\terrorString\n\t\t\trecordsEventsFeedAccountRecords: records ( fieldNames:$fieldNames   ) {\n\t\t\t\ttime \n\t\t\t\tfieldsMap \n\t\t\t\tflatFields \n\t\t\t}\n\t\t}\n\n\t}\t\n}",
+    "query": "query eventsFeed ( $accountIDs:[ID!] $eventFeedFieldFilterInput:[EventFeedFieldFilterInput!] $marker:String) {\n\teventsFeed ( accountIDs:$accountIDs filters:$eventFeedFieldFilterInput marker:$marker ) {\nquery.eventsFeedmarker\nquery.eventsFeedfetchedCount\nquery.eventsFeedaccounts {\nquery.eventsFeed\tid\nquery.eventsFeed\terrorString\nquery.eventsFeed\trecords {\nquery.eventsFeed\t\ttime\nquery.eventsFeed\t\tfieldsMap\nquery.eventsFeed\t\tflatFields\nquery.eventsFeed\t}\nquery.eventsFeed}\n\t}\t\n}",
     "variables": {
         "accountIDs": [
             "id1",
@@ -14,7 +14,6 @@
                 "string2"
             ]
         },
-        "fieldNames": "access_method",
         "marker": "string"
     }
 }

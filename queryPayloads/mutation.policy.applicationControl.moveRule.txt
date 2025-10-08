@@ -1,643 +1,680 @@
-mutation policyApplicationControlMoveRule ( $policyMoveRuleInput:PolicyMoveRuleInput! $applicationControlPolicyMutationInput:ApplicationControlPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		applicationControl ( input:$applicationControlPolicyMutationInput  )  {
-			moveRuleApplicationControlPolicyMutations: moveRule ( input:$policyMoveRuleInput   ) {
-				rule  {
-					auditApplicationControlRulePayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					ruleApplicationControlRulePayload: rule {
-						id 
-						name 
-						description 
-						index 
-						section  {
-							id
-							name
-						}
-
-						enabled 
-						ruleType 
-						applicationRule  {
-							applicationApplicationControlApplicationRule: application {
-								application  {
-									id
-									name
-								}
-
-								customApp  {
-									id
-									name
-								}
-
-								appCategory  {
-									id
-									name
-								}
-
-								customCategory  {
-									id
-									name
-								}
-
-								sanctionedAppsCategory  {
-									id
-									name
-								}
-
-								applicationType 
-							}
-							applicationActivitySatisfyApplicationControlApplicationRule: applicationActivitySatisfy
-							applicationActivityApplicationControlApplicationRule: applicationActivity {
-								activity  {
-									id
-									name
-								}
-
-								field  {
-									id
-									name
-								}
-
-								operator 
-								value 
-								valueSet  {
-									id
-									name
-								}
-
-							}
-							applicationContextApplicationControlApplicationRule: applicationContext {
-								applicationTenant  {
-									operatorApplicationControlTenant: operator
-									value
-									valueSetApplicationControlTenant: valueSet {
-										id 
-										name 
-									}
-								}
-
-							}
-							accessMethodApplicationControlApplicationRule: accessMethod {
-								accessMethod 
-								operator 
-								value 
-								valueSet  {
-									id
-									name
-								}
-
-							}
-							sourceApplicationControlApplicationRule: source {
-								country  {
-									id
-									name
-								}
-
-								host  {
-									id
-									name
-								}
-
-								site  {
-									id
-									name
-								}
-
-								subnet 
-								ip 
-								ipRange  {
-									from
-									to
-								}
-
-								globalIpRange  {
-									id
-									name
-								}
-
-								networkInterface  {
-									id
-									name
-								}
-
-								siteNetworkSubnet  {
-									id
-									name
-								}
-
-								floatingSubnet  {
-									id
-									name
-								}
-
-								user  {
-									id
-									name
-								}
-
-								usersGroup  {
-									id
-									name
-								}
-
-								group  {
-									id
-									name
-								}
-
-								systemGroup  {
-									id
-									name
-								}
-
-							}
-							deviceApplicationControlApplicationRule: device {
-								id 
-								name 
-							}
-							actionApplicationControlApplicationRule: action
-							trackingApplicationControlApplicationRule: tracking {
-								event  {
-									enabled
-								}
-
-								alert  {
-									enabled
-									frequencyPolicyRuleTrackingAlert: frequency
-									subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
-										id 
-										name 
-									}
-									webhookPolicyRuleTrackingAlert: webhook {
-										id 
-										name 
-									}
-									mailingListPolicyRuleTrackingAlert: mailingList {
-										id 
-										name 
-									}
-								}
-
-							}
-							scheduleApplicationControlApplicationRule: schedule {
-								activeOn 
-								customTimeframe  {
-									from
-									to
-								}
-
-								customRecurring  {
-									from
-									to
-									daysPolicyCustomRecurring: days
-								}
-
-							}
-							severityApplicationControlApplicationRule: severity
-							applicationCriteriaSatisfyApplicationControlApplicationRule: applicationCriteriaSatisfy
-							applicationCriteriaApplicationControlApplicationRule: applicationCriteria {
-								attributes  {
-									complianceAttributesApplicationControlAttributes: complianceAttributes {
-										iso27001 
-										sox 
-										hippa 
-										soc1 
-										soc2 
-										soc3 
-										isae3402 
-										pciDss 
-									}
-									securityAttributesApplicationControlAttributes: securityAttributes {
-										mfa 
-										encryptionAtRest 
-										auditTrail 
-										rbac 
-										rememberPassword 
-										sso 
-										trustedCertificate 
-										tlsEnforcement 
-										httpSecurityHeaders 
-									}
-								}
-
-								originCountry  {
-									id
-									name
-								}
-
-								risk  {
-									risk
-									riskOperatorApplicationControlRiskCriteria: riskOperator
-								}
-
-							}
-						}
-
-						dataRule  {
-							applicationApplicationControlDataRule: application {
-								application  {
-									id
-									name
-								}
-
-								customApp  {
-									id
-									name
-								}
-
-								appCategory  {
-									id
-									name
-								}
-
-								customCategory  {
-									id
-									name
-								}
-
-								sanctionedAppsCategory  {
-									id
-									name
-								}
-
-								applicationType 
-							}
-							applicationContextApplicationControlDataRule: applicationContext {
-								applicationTenant  {
-									operatorApplicationControlTenant: operator
-									value
-									valueSetApplicationControlTenant: valueSet {
-										id 
-										name 
-									}
-								}
-
-							}
-							applicationActivitySatisfyApplicationControlDataRule: applicationActivitySatisfy
-							applicationActivityApplicationControlDataRule: applicationActivity {
-								activity  {
-									id
-									name
-								}
-
-								field  {
-									id
-									name
-								}
-
-								operator 
-								value 
-								valueSet  {
-									id
-									name
-								}
-
-							}
-							accessMethodApplicationControlDataRule: accessMethod {
-								accessMethod 
-								operator 
-								value 
-								valueSet  {
-									id
-									name
-								}
-
-							}
-							sourceApplicationControlDataRule: source {
-								country  {
-									id
-									name
-								}
-
-								host  {
-									id
-									name
-								}
-
-								site  {
-									id
-									name
-								}
-
-								subnet 
-								ip 
-								ipRange  {
-									from
-									to
-								}
-
-								globalIpRange  {
-									id
-									name
-								}
-
-								networkInterface  {
-									id
-									name
-								}
-
-								siteNetworkSubnet  {
-									id
-									name
-								}
-
-								floatingSubnet  {
-									id
-									name
-								}
-
-								user  {
-									id
-									name
-								}
-
-								usersGroup  {
-									id
-									name
-								}
-
-								group  {
-									id
-									name
-								}
-
-								systemGroup  {
-									id
-									name
-								}
-
-							}
-							deviceApplicationControlDataRule: device {
-								id 
-								name 
-							}
-							actionApplicationControlDataRule: action
-							trackingApplicationControlDataRule: tracking {
-								event  {
-									enabled
-								}
-
-								alert  {
-									enabled
-									frequencyPolicyRuleTrackingAlert: frequency
-									subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
-										id 
-										name 
-									}
-									webhookPolicyRuleTrackingAlert: webhook {
-										id 
-										name 
-									}
-									mailingListPolicyRuleTrackingAlert: mailingList {
-										id 
-										name 
-									}
-								}
-
-							}
-							scheduleApplicationControlDataRule: schedule {
-								activeOn 
-								customTimeframe  {
-									from
-									to
-								}
-
-								customRecurring  {
-									from
-									to
-									daysPolicyCustomRecurring: days
-								}
-
-							}
-							severityApplicationControlDataRule: severity
-							fileAttributeSatisfyApplicationControlDataRule: fileAttributeSatisfy
-							fileAttributeApplicationControlDataRule: fileAttribute {
-								fileAttribute 
-								operator 
-								value 
-								contentTypeValues  {
-									id
-									name
-								}
-
-								contentTypeGroupValues  {
-									id
-									name
-								}
-
-							}
-							dlpProfileApplicationControlDataRule: dlpProfile {
-								contentProfile  {
-									id
-									name
-								}
-
-								edmProfile  {
-									id
-									name
-								}
-
-							}
-						}
-
-						fileRule  {
-							applicationApplicationControlFileRule: application {
-								application  {
-									id
-									name
-								}
-
-								customApp  {
-									id
-									name
-								}
-
-								appCategory  {
-									id
-									name
-								}
-
-								customCategory  {
-									id
-									name
-								}
-
-								sanctionedAppsCategory  {
-									id
-									name
-								}
-
-								applicationType 
-							}
-							applicationActivitySatisfyApplicationControlFileRule: applicationActivitySatisfy
-							applicationActivityApplicationControlFileRule: applicationActivity {
-								activity  {
-									id
-									name
-								}
-
-								field  {
-									id
-									name
-								}
-
-								operator 
-								value 
-								valueSet  {
-									id
-									name
-								}
-
-							}
-							accessMethodApplicationControlFileRule: accessMethod {
-								accessMethod 
-								operator 
-								value 
-								valueSet  {
-									id
-									name
-								}
-
-							}
-							sourceApplicationControlFileRule: source {
-								country  {
-									id
-									name
-								}
-
-								host  {
-									id
-									name
-								}
-
-								site  {
-									id
-									name
-								}
-
-								subnet 
-								ip 
-								ipRange  {
-									from
-									to
-								}
-
-								globalIpRange  {
-									id
-									name
-								}
-
-								networkInterface  {
-									id
-									name
-								}
-
-								siteNetworkSubnet  {
-									id
-									name
-								}
-
-								floatingSubnet  {
-									id
-									name
-								}
-
-								user  {
-									id
-									name
-								}
-
-								usersGroup  {
-									id
-									name
-								}
-
-								group  {
-									id
-									name
-								}
-
-								systemGroup  {
-									id
-									name
-								}
-
-							}
-							deviceApplicationControlFileRule: device {
-								id 
-								name 
-							}
-							actionApplicationControlFileRule: action
-							trackingApplicationControlFileRule: tracking {
-								event  {
-									enabled
-								}
-
-								alert  {
-									enabled
-									frequencyPolicyRuleTrackingAlert: frequency
-									subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
-										id 
-										name 
-									}
-									webhookPolicyRuleTrackingAlert: webhook {
-										id 
-										name 
-									}
-									mailingListPolicyRuleTrackingAlert: mailingList {
-										id 
-										name 
-									}
-								}
-
-							}
-							scheduleApplicationControlFileRule: schedule {
-								activeOn 
-								customTimeframe  {
-									from
-									to
-								}
-
-								customRecurring  {
-									from
-									to
-									daysPolicyCustomRecurring: days
-								}
-
-							}
-							severityApplicationControlFileRule: severity
-							fileAttributeSatisfyApplicationControlFileRule: fileAttributeSatisfy
-							fileAttributeApplicationControlFileRule: fileAttribute {
-								fileAttribute 
-								operator 
-								value 
-								contentTypeValues  {
-									id
-									name
-								}
-
-								contentTypeGroupValues  {
-									id
-									name
-								}
-
-							}
-						}
-
-					}
-					propertiesApplicationControlRulePayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyApplicationControlMoveRule ( $applicationControlPolicyMutationInput:ApplicationControlPolicyMutationInput $policyMoveRuleInput:PolicyMoveRuleInput!) {
+	policy ( ) {
+mutation.policy.applicationControl.moveRuleapplicationControl ( input:$applicationControlPolicyMutationInput  )  {
+mutation.policy.applicationControl.moveRule	moveRule ( input:$policyMoveRuleInput   ) {
+mutation.policy.applicationControl.moveRule		rule {
+mutation.policy.applicationControl.moveRule			audit {
+mutation.policy.applicationControl.moveRule				updatedTime
+mutation.policy.applicationControl.moveRule				updatedBy
+mutation.policy.applicationControl.moveRule			}
+mutation.policy.applicationControl.moveRule			rule {
+mutation.policy.applicationControl.moveRule				id
+mutation.policy.applicationControl.moveRule				name
+mutation.policy.applicationControl.moveRule				description
+mutation.policy.applicationControl.moveRule				index
+mutation.policy.applicationControl.moveRule				section {
+mutation.policy.applicationControl.moveRule					id
+mutation.policy.applicationControl.moveRule					name
+mutation.policy.applicationControl.moveRule				}
+mutation.policy.applicationControl.moveRule				enabled
+mutation.policy.applicationControl.moveRule				ruleType
+mutation.policy.applicationControl.moveRule				applicationRule {
+mutation.policy.applicationControl.moveRule					application {
+mutation.policy.applicationControl.moveRule						application {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						customApp {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						appCategory {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						customCategory {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						sanctionedAppsCategory {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						applicationType
+mutation.policy.applicationControl.moveRule					}
+mutation.policy.applicationControl.moveRule					applicationActivitySatisfy
+mutation.policy.applicationControl.moveRule					applicationActivity {
+mutation.policy.applicationControl.moveRule						activity {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						field {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						operator
+mutation.policy.applicationControl.moveRule						value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.moveRule						valueSet {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule					}
+mutation.policy.applicationControl.moveRule					applicationContext {
+mutation.policy.applicationControl.moveRule						applicationTenant {
+mutation.policy.applicationControl.moveRule							operator
+mutation.policy.applicationControl.moveRule							value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.moveRule							valueSet {
+mutation.policy.applicationControl.moveRule								id
+mutation.policy.applicationControl.moveRule								name
+mutation.policy.applicationControl.moveRule							}
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule					}
+mutation.policy.applicationControl.moveRule					accessMethod {
+mutation.policy.applicationControl.moveRule						accessMethod
+mutation.policy.applicationControl.moveRule						operator
+mutation.policy.applicationControl.moveRule						value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.moveRule						valueSet {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule					}
+mutation.policy.applicationControl.moveRule					source {
+mutation.policy.applicationControl.moveRule						country {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						host {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						site {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						subnet
+mutation.policy.applicationControl.moveRule						ip
+mutation.policy.applicationControl.moveRule						ipRange {
+mutation.policy.applicationControl.moveRule							from
+mutation.policy.applicationControl.moveRule							to
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						globalIpRange {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						networkInterface {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						siteNetworkSubnet {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						floatingSubnet {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						user {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						usersGroup {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						group {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						systemGroup {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule					}
+mutation.policy.applicationControl.moveRule					device {
+mutation.policy.applicationControl.moveRule						id
+mutation.policy.applicationControl.moveRule						name
+mutation.policy.applicationControl.moveRule					}
+mutation.policy.applicationControl.moveRule					action
+mutation.policy.applicationControl.moveRule					tracking {
+mutation.policy.applicationControl.moveRule						event {
+mutation.policy.applicationControl.moveRule							enabled
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						alert {
+mutation.policy.applicationControl.moveRule							enabled
+mutation.policy.applicationControl.moveRule							frequency
+mutation.policy.applicationControl.moveRule							subscriptionGroup {
+mutation.policy.applicationControl.moveRule								id
+mutation.policy.applicationControl.moveRule								name
+mutation.policy.applicationControl.moveRule							}
+mutation.policy.applicationControl.moveRule							webhook {
+mutation.policy.applicationControl.moveRule								id
+mutation.policy.applicationControl.moveRule								name
+mutation.policy.applicationControl.moveRule							}
+mutation.policy.applicationControl.moveRule							mailingList {
+mutation.policy.applicationControl.moveRule								id
+mutation.policy.applicationControl.moveRule								name
+mutation.policy.applicationControl.moveRule							}
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule					}
+mutation.policy.applicationControl.moveRule					schedule {
+mutation.policy.applicationControl.moveRule						activeOn
+mutation.policy.applicationControl.moveRule						customTimeframe {
+mutation.policy.applicationControl.moveRule							from
+mutation.policy.applicationControl.moveRule							to
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						customRecurring {
+mutation.policy.applicationControl.moveRule							from
+mutation.policy.applicationControl.moveRule							to
+mutation.policy.applicationControl.moveRule							days
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule					}
+mutation.policy.applicationControl.moveRule					severity
+mutation.policy.applicationControl.moveRule					applicationCriteriaSatisfy
+mutation.policy.applicationControl.moveRule					applicationCriteria {
+mutation.policy.applicationControl.moveRule						attributes {
+mutation.policy.applicationControl.moveRule							complianceAttributes {
+mutation.policy.applicationControl.moveRule								iso27001
+mutation.policy.applicationControl.moveRule								sox
+mutation.policy.applicationControl.moveRule								hippa
+mutation.policy.applicationControl.moveRule								soc1
+mutation.policy.applicationControl.moveRule								soc2
+mutation.policy.applicationControl.moveRule								soc3
+mutation.policy.applicationControl.moveRule								isae3402
+mutation.policy.applicationControl.moveRule								pciDss
+mutation.policy.applicationControl.moveRule							}
+mutation.policy.applicationControl.moveRule							securityAttributes {
+mutation.policy.applicationControl.moveRule								mfa
+mutation.policy.applicationControl.moveRule								encryptionAtRest
+mutation.policy.applicationControl.moveRule								auditTrail
+mutation.policy.applicationControl.moveRule								rbac
+mutation.policy.applicationControl.moveRule								rememberPassword
+mutation.policy.applicationControl.moveRule								sso
+mutation.policy.applicationControl.moveRule								trustedCertificate
+mutation.policy.applicationControl.moveRule								tlsEnforcement
+mutation.policy.applicationControl.moveRule								httpSecurityHeaders
+mutation.policy.applicationControl.moveRule							}
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						originCountry {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						risk {
+mutation.policy.applicationControl.moveRule							risk
+mutation.policy.applicationControl.moveRule							riskOperator
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule					}
+mutation.policy.applicationControl.moveRule				}
+mutation.policy.applicationControl.moveRule				dataRule {
+mutation.policy.applicationControl.moveRule					application {
+mutation.policy.applicationControl.moveRule						application {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						customApp {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						appCategory {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						customCategory {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						sanctionedAppsCategory {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						applicationType
+mutation.policy.applicationControl.moveRule					}
+mutation.policy.applicationControl.moveRule					applicationContext {
+mutation.policy.applicationControl.moveRule						applicationTenant {
+mutation.policy.applicationControl.moveRule							operator
+mutation.policy.applicationControl.moveRule							value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.moveRule							valueSet {
+mutation.policy.applicationControl.moveRule								id
+mutation.policy.applicationControl.moveRule								name
+mutation.policy.applicationControl.moveRule							}
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule					}
+mutation.policy.applicationControl.moveRule					applicationActivitySatisfy
+mutation.policy.applicationControl.moveRule					applicationActivity {
+mutation.policy.applicationControl.moveRule						activity {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						field {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						operator
+mutation.policy.applicationControl.moveRule						value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.moveRule						valueSet {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule					}
+mutation.policy.applicationControl.moveRule					accessMethod {
+mutation.policy.applicationControl.moveRule						accessMethod
+mutation.policy.applicationControl.moveRule						operator
+mutation.policy.applicationControl.moveRule						value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.moveRule						valueSet {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule					}
+mutation.policy.applicationControl.moveRule					source {
+mutation.policy.applicationControl.moveRule						country {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						host {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						site {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						subnet
+mutation.policy.applicationControl.moveRule						ip
+mutation.policy.applicationControl.moveRule						ipRange {
+mutation.policy.applicationControl.moveRule							from
+mutation.policy.applicationControl.moveRule							to
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						globalIpRange {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						networkInterface {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						siteNetworkSubnet {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						floatingSubnet {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						user {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						usersGroup {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						group {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						systemGroup {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule					}
+mutation.policy.applicationControl.moveRule					device {
+mutation.policy.applicationControl.moveRule						id
+mutation.policy.applicationControl.moveRule						name
+mutation.policy.applicationControl.moveRule					}
+mutation.policy.applicationControl.moveRule					action
+mutation.policy.applicationControl.moveRule					tracking {
+mutation.policy.applicationControl.moveRule						event {
+mutation.policy.applicationControl.moveRule							enabled
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						alert {
+mutation.policy.applicationControl.moveRule							enabled
+mutation.policy.applicationControl.moveRule							frequency
+mutation.policy.applicationControl.moveRule							subscriptionGroup {
+mutation.policy.applicationControl.moveRule								id
+mutation.policy.applicationControl.moveRule								name
+mutation.policy.applicationControl.moveRule							}
+mutation.policy.applicationControl.moveRule							webhook {
+mutation.policy.applicationControl.moveRule								id
+mutation.policy.applicationControl.moveRule								name
+mutation.policy.applicationControl.moveRule							}
+mutation.policy.applicationControl.moveRule							mailingList {
+mutation.policy.applicationControl.moveRule								id
+mutation.policy.applicationControl.moveRule								name
+mutation.policy.applicationControl.moveRule							}
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule					}
+mutation.policy.applicationControl.moveRule					schedule {
+mutation.policy.applicationControl.moveRule						activeOn
+mutation.policy.applicationControl.moveRule						customTimeframe {
+mutation.policy.applicationControl.moveRule							from
+mutation.policy.applicationControl.moveRule							to
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						customRecurring {
+mutation.policy.applicationControl.moveRule							from
+mutation.policy.applicationControl.moveRule							to
+mutation.policy.applicationControl.moveRule							days
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule					}
+mutation.policy.applicationControl.moveRule					severity
+mutation.policy.applicationControl.moveRule					fileAttributeSatisfy
+mutation.policy.applicationControl.moveRule					fileAttribute {
+mutation.policy.applicationControl.moveRule						fileAttribute
+mutation.policy.applicationControl.moveRule						operator
+mutation.policy.applicationControl.moveRule						value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.moveRule						contentTypeValues {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						contentTypeGroupValues {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule					}
+mutation.policy.applicationControl.moveRule					dlpProfile {
+mutation.policy.applicationControl.moveRule						contentProfile {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						edmProfile {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule					}
+mutation.policy.applicationControl.moveRule				}
+mutation.policy.applicationControl.moveRule				fileRule {
+mutation.policy.applicationControl.moveRule					application {
+mutation.policy.applicationControl.moveRule						application {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						customApp {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						appCategory {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						customCategory {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						sanctionedAppsCategory {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						applicationType
+mutation.policy.applicationControl.moveRule					}
+mutation.policy.applicationControl.moveRule					applicationActivitySatisfy
+mutation.policy.applicationControl.moveRule					applicationActivity {
+mutation.policy.applicationControl.moveRule						activity {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						field {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						operator
+mutation.policy.applicationControl.moveRule						value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.moveRule						valueSet {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule					}
+mutation.policy.applicationControl.moveRule					accessMethod {
+mutation.policy.applicationControl.moveRule						accessMethod
+mutation.policy.applicationControl.moveRule						operator
+mutation.policy.applicationControl.moveRule						value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.moveRule						valueSet {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule					}
+mutation.policy.applicationControl.moveRule					source {
+mutation.policy.applicationControl.moveRule						country {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						host {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						site {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						subnet
+mutation.policy.applicationControl.moveRule						ip
+mutation.policy.applicationControl.moveRule						ipRange {
+mutation.policy.applicationControl.moveRule							from
+mutation.policy.applicationControl.moveRule							to
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						globalIpRange {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						networkInterface {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						siteNetworkSubnet {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						floatingSubnet {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						user {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						usersGroup {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						group {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						systemGroup {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule					}
+mutation.policy.applicationControl.moveRule					device {
+mutation.policy.applicationControl.moveRule						id
+mutation.policy.applicationControl.moveRule						name
+mutation.policy.applicationControl.moveRule					}
+mutation.policy.applicationControl.moveRule					action
+mutation.policy.applicationControl.moveRule					tracking {
+mutation.policy.applicationControl.moveRule						event {
+mutation.policy.applicationControl.moveRule							enabled
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						alert {
+mutation.policy.applicationControl.moveRule							enabled
+mutation.policy.applicationControl.moveRule							frequency
+mutation.policy.applicationControl.moveRule							subscriptionGroup {
+mutation.policy.applicationControl.moveRule								id
+mutation.policy.applicationControl.moveRule								name
+mutation.policy.applicationControl.moveRule							}
+mutation.policy.applicationControl.moveRule							webhook {
+mutation.policy.applicationControl.moveRule								id
+mutation.policy.applicationControl.moveRule								name
+mutation.policy.applicationControl.moveRule							}
+mutation.policy.applicationControl.moveRule							mailingList {
+mutation.policy.applicationControl.moveRule								id
+mutation.policy.applicationControl.moveRule								name
+mutation.policy.applicationControl.moveRule							}
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule					}
+mutation.policy.applicationControl.moveRule					schedule {
+mutation.policy.applicationControl.moveRule						activeOn
+mutation.policy.applicationControl.moveRule						customTimeframe {
+mutation.policy.applicationControl.moveRule							from
+mutation.policy.applicationControl.moveRule							to
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						customRecurring {
+mutation.policy.applicationControl.moveRule							from
+mutation.policy.applicationControl.moveRule							to
+mutation.policy.applicationControl.moveRule							days
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule					}
+mutation.policy.applicationControl.moveRule					severity
+mutation.policy.applicationControl.moveRule					fileAttributeSatisfy
+mutation.policy.applicationControl.moveRule					fileAttribute {
+mutation.policy.applicationControl.moveRule						fileAttribute
+mutation.policy.applicationControl.moveRule						operator
+mutation.policy.applicationControl.moveRule						value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.moveRule						contentTypeValues {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule						contentTypeGroupValues {
+mutation.policy.applicationControl.moveRule							id
+mutation.policy.applicationControl.moveRule							name
+mutation.policy.applicationControl.moveRule						}
+mutation.policy.applicationControl.moveRule					}
+mutation.policy.applicationControl.moveRule				}
+mutation.policy.applicationControl.moveRule			}
+mutation.policy.applicationControl.moveRule			properties
+mutation.policy.applicationControl.moveRule		}
+mutation.policy.applicationControl.moveRule		status
+mutation.policy.applicationControl.moveRule		errors {
+mutation.policy.applicationControl.moveRule			errorMessage
+mutation.policy.applicationControl.moveRule			errorCode
+mutation.policy.applicationControl.moveRule		}
+mutation.policy.applicationControl.moveRule	}
+mutation.policy.applicationControl.moveRule}
 	}	
 }

@@ -1,90 +1,83 @@
-mutation sitesRemoveBgpPeer ( $removeBgpPeerInput:RemoveBgpPeerInput! $accountId:ID! ) {
-	sites ( accountId:$accountId ) {
-		removeBgpPeer ( input:$removeBgpPeerInput  )  {
-			bgpPeerRemoveBgpPeerPayload: bgpPeer {
-				site  {
-					id
-					name
-				}
-
-				id 
-				name 
-				peerAsn 
-				catoAsn 
-				peerIp 
-				catoIp 
-				advertiseDefaultRoute 
-				advertiseAllRoutes 
-				advertiseSummaryRoutes 
-				summaryRoute  {
-					id
-					route
-					communityBgpSummaryRoute: community {
-						from 
-						to 
-					}
-				}
-
-				defaultAction 
-				defaultActionExclusion  {
-					bgpRouteExactFilterRuleBgpFilterRule: bgpRouteExactFilterRule {
-						id 
-						globalIpRange  {
-							id
-							name
-						}
-
-						networkSubnet 
-					}
-					bgpRouteExactAndInclusiveFilterRuleBgpFilterRule: bgpRouteExactAndInclusiveFilterRule {
-						id 
-						globalIpRange  {
-							id
-							name
-						}
-
-						globalIpRangeException  {
-							id
-							name
-						}
-
-						networkSubnet 
-						networkSubnetException 
-						le 
-						ge 
-					}
-					communityFilterRuleBgpFilterRule: communityFilterRule {
-						id 
-						predicate 
-						community  {
-							from
-							to
-						}
-
-					}
-				}
-
-				performNat 
-				md5AuthKey 
-				metric 
-				holdTime 
-				keepaliveInterval 
-				bfdEnabled 
-				bfdSettings  {
-					transmitInterval
-					receiveInterval
-					multiplier
-				}
-
-				tracking  {
-					id
-					enabled
-					alertFrequencyBgpTracking: alertFrequency
-					subscriptionId
-				}
-
-			}
-		}
-
+mutation sitesRemoveBgpPeer ( $removeBgpPeerInput:RemoveBgpPeerInput!) {
+	sites ( ) {
+mutation.sites.removeBgpPeerremoveBgpPeer ( input:$removeBgpPeerInput  )  {
+mutation.sites.removeBgpPeer	bgpPeer {
+mutation.sites.removeBgpPeer		site {
+mutation.sites.removeBgpPeer			id
+mutation.sites.removeBgpPeer			name
+mutation.sites.removeBgpPeer		}
+mutation.sites.removeBgpPeer		id
+mutation.sites.removeBgpPeer		name
+mutation.sites.removeBgpPeer		peerAsn
+mutation.sites.removeBgpPeer		catoAsn
+mutation.sites.removeBgpPeer		peerIp
+mutation.sites.removeBgpPeer		catoIp
+mutation.sites.removeBgpPeer		advertiseDefaultRoute
+mutation.sites.removeBgpPeer		advertiseAllRoutes
+mutation.sites.removeBgpPeer		advertiseSummaryRoutes
+mutation.sites.removeBgpPeer		summaryRoute {
+mutation.sites.removeBgpPeer			id
+mutation.sites.removeBgpPeer			route
+mutation.sites.removeBgpPeer			community {
+mutation.sites.removeBgpPeer				from
+mutation.sites.removeBgpPeer				to
+mutation.sites.removeBgpPeer			}
+mutation.sites.removeBgpPeer		}
+mutation.sites.removeBgpPeer		defaultAction
+mutation.sites.removeBgpPeer		defaultActionExclusion {
+mutation.sites.removeBgpPeer			bgpRouteExactFilterRule {
+mutation.sites.removeBgpPeer				id
+mutation.sites.removeBgpPeer				globalIpRange {
+mutation.sites.removeBgpPeer					id
+mutation.sites.removeBgpPeer					name
+mutation.sites.removeBgpPeer				}
+mutation.sites.removeBgpPeer				networkSubnet
+mutation.sites.removeBgpPeer			}
+mutation.sites.removeBgpPeer			bgpRouteExactAndInclusiveFilterRule {
+mutation.sites.removeBgpPeer				id
+mutation.sites.removeBgpPeer				globalIpRange {
+mutation.sites.removeBgpPeer					id
+mutation.sites.removeBgpPeer					name
+mutation.sites.removeBgpPeer				}
+mutation.sites.removeBgpPeer				globalIpRangeException {
+mutation.sites.removeBgpPeer					id
+mutation.sites.removeBgpPeer					name
+mutation.sites.removeBgpPeer				}
+mutation.sites.removeBgpPeer				networkSubnet
+mutation.sites.removeBgpPeer				networkSubnetException
+mutation.sites.removeBgpPeer				le
+mutation.sites.removeBgpPeer				ge
+mutation.sites.removeBgpPeer			}
+mutation.sites.removeBgpPeer			communityFilterRule {
+mutation.sites.removeBgpPeer				id
+mutation.sites.removeBgpPeer				predicate
+mutation.sites.removeBgpPeer				community {
+mutation.sites.removeBgpPeer					from
+mutation.sites.removeBgpPeer					to
+mutation.sites.removeBgpPeer				}
+mutation.sites.removeBgpPeer			}
+mutation.sites.removeBgpPeer		}
+mutation.sites.removeBgpPeer		performNat
+mutation.sites.removeBgpPeer		md5AuthKey
+mutation.sites.removeBgpPeer		metric {
+	name
+	value
+}
+mutation.sites.removeBgpPeer		holdTime
+mutation.sites.removeBgpPeer		keepaliveInterval
+mutation.sites.removeBgpPeer		bfdEnabled
+mutation.sites.removeBgpPeer		bfdSettings {
+mutation.sites.removeBgpPeer			transmitInterval
+mutation.sites.removeBgpPeer			receiveInterval
+mutation.sites.removeBgpPeer			multiplier
+mutation.sites.removeBgpPeer		}
+mutation.sites.removeBgpPeer		tracking {
+mutation.sites.removeBgpPeer			id
+mutation.sites.removeBgpPeer			enabled
+mutation.sites.removeBgpPeer			alertFrequency
+mutation.sites.removeBgpPeer			subscriptionId
+mutation.sites.removeBgpPeer		}
+mutation.sites.removeBgpPeer	}
+mutation.sites.removeBgpPeer}
 	}	
 }

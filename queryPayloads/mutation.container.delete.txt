@@ -1,46 +1,42 @@
-mutation containerDelete ( $deleteContainerInput:DeleteContainerInput! $accountId:ID! ) {
-	container ( accountId:$accountId ) {
-		delete ( input:$deleteContainerInput  )  {
-			containerDeleteContainerPayload: container {
-				id 
-				name 
-				description 
-				size 
-				audit  {
-					createdBy
-					lastModifiedBy
-					lastModifiedAt
-					createdAt
-				}
-
-				... on FqdnContainer {
-					id 
-					name 
-					description 
-					size 
-					audit  {
-						createdBy
-						lastModifiedBy
-						lastModifiedAt
-						createdAt
-					}
-
-				}
-				... on IpAddressRangeContainer {
-					id 
-					name 
-					description 
-					size 
-					audit  {
-						createdBy
-						lastModifiedBy
-						lastModifiedAt
-						createdAt
-					}
-
-				}
-			}
-		}
-
+mutation containerDelete ( $deleteContainerInput:DeleteContainerInput!) {
+	container ( ) {
+mutation.container.deletedelete ( input:$deleteContainerInput  )  {
+mutation.container.delete	container {
+mutation.container.delete		id
+mutation.container.delete		name
+mutation.container.delete		description
+mutation.container.delete		size
+mutation.container.delete		audit {
+mutation.container.delete			createdBy
+mutation.container.delete			lastModifiedBy
+mutation.container.delete			lastModifiedAt
+mutation.container.delete			createdAt
+mutation.container.delete		}
+mutation.container.delete		... on FqdnContainer {
+mutation.container.delete			id
+mutation.container.delete			name
+mutation.container.delete			description
+mutation.container.delete			size
+mutation.container.delete			audit {
+mutation.container.delete				createdBy
+mutation.container.delete				lastModifiedBy
+mutation.container.delete				lastModifiedAt
+mutation.container.delete				createdAt
+mutation.container.delete			}
+mutation.container.delete		}
+mutation.container.delete		... on IpAddressRangeContainer {
+mutation.container.delete			id
+mutation.container.delete			name
+mutation.container.delete			description
+mutation.container.delete			size
+mutation.container.delete			audit {
+mutation.container.delete				createdBy
+mutation.container.delete				lastModifiedBy
+mutation.container.delete				lastModifiedAt
+mutation.container.delete				createdAt
+mutation.container.delete			}
+mutation.container.delete		}
+mutation.container.delete	}
+mutation.container.delete}
 	}	
 }

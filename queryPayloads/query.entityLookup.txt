@@ -1,15 +1,14 @@
-query entityLookup ( $accountID:ID! $type:EntityType! $limit:Int $from:Int $entityInput:EntityInput $search:String $entityIDs:[ID!] $sortInput:[SortInput] $lookupFilterInput:[LookupFilterInput] $helperFields:[String!] ) {
-	entityLookup ( accountID:$accountID type:$type limit:$limit from:$from parent:$entityInput search:$search entityIDs:$entityIDs sort:$sortInput filters:$lookupFilterInput helperFields:$helperFields ) {
-		items  {
-			entityEntityInfo: entity {
-				id 
-				name 
-				type 
-			}
-			description
-			helperFields
-		}
-
-		total 
+query entityLookup ( $type:EntityType! $limit:Int $from:Int $entityInput:EntityInput $search:String $entityIDs:[ID!] $sortInput:[SortInput] $lookupFilterInput:[LookupFilterInput] $helperFields:[String!]) {
+	entityLookup ( type:$type limit:$limit from:$from parent:$entityInput search:$search entityIDs:$entityIDs sort:$sortInput filters:$lookupFilterInput helperFields:$helperFields ) {
+query.entityLookupitems {
+query.entityLookup	entity {
+query.entityLookup		id
+query.entityLookup		name
+query.entityLookup		type
+query.entityLookup	}
+query.entityLookup	description
+query.entityLookup	helperFields
+query.entityLookup}
+query.entityLookuptotal
 	}	
 }

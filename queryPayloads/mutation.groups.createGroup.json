@@ -1,6 +1,6 @@
 {
     "operationName": "groupsCreateGroup",
-    "query": "mutation groupsCreateGroup ( $groupMembersListInput:GroupMembersListInput! $createGroupInput:CreateGroupInput! $accountId:ID! ) {\n\tgroups ( accountId:$accountId ) {\n\t\tcreateGroup ( input:$createGroupInput  )  {\n\t\t\tgroupCreateGroupPayload: group {\n\t\t\t\tid \n\t\t\t\tname \n\t\t\t\tdescription \n\t\t\t\taudit  {\n\t\t\t\t\tupdatedTime\n\t\t\t\t\tupdatedByAuditingMetadata: updatedBy {\n\t\t\t\t\t\tid \n\t\t\t\t\t\tname \n\t\t\t\t\t\t... on AdminRef {\n\t\t\t\t\t\t\tid \n\t\t\t\t\t\t\tname \n\t\t\t\t\t\t}\n\t\t\t\t\t\t... on ApiKeyRef {\n\t\t\t\t\t\t\tid \n\t\t\t\t\t\t\tname \n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\n\t\t\t\tmembers ( input:$groupMembersListInput  )  {\n\t\t\t\t\titemsGroupMembersListPayload: items {\n\t\t\t\t\t\tid \n\t\t\t\t\t\tname \n\t\t\t\t\t\ttype \n\t\t\t\t\t}\n\t\t\t\t\tpagingGroupMembersListPayload: paging {\n\t\t\t\t\t\ttotal \n\t\t\t\t\t}\n\t\t\t\t}\n\n\t\t\t\tmembersCount \n\t\t\t\tmembersCountPerType  {\n\t\t\t\t\ttypeGroupMemberTypeCount: type\n\t\t\t\t\tmembersCount\n\t\t\t\t}\n\n\t\t\t}\n\t\t}\n\n\t}\t\n}",
+    "query": "mutation groupsCreateGroup ( $createGroupInput:CreateGroupInput!) {\n\tgroups ( ) {\nmutation.groups.createGroupcreateGroup ( input:$createGroupInput  )  {\nmutation.groups.createGroup\tgroup {\nmutation.groups.createGroup\t\tid\nmutation.groups.createGroup\t\tname\nmutation.groups.createGroup\t\tdescription\nmutation.groups.createGroup\t\taudit {\nmutation.groups.createGroup\t\t\tupdatedTime\nmutation.groups.createGroup\t\t\tupdatedBy {\nmutation.groups.createGroup\t\t\t\tid\nmutation.groups.createGroup\t\t\t\tname\nmutation.groups.createGroup\t\t\t\t... on AdminRef {\nmutation.groups.createGroup\t\t\t\t\tid\nmutation.groups.createGroup\t\t\t\t\tname\nmutation.groups.createGroup\t\t\t\t}\nmutation.groups.createGroup\t\t\t\t... on ApiKeyRef {\nmutation.groups.createGroup\t\t\t\t\tid\nmutation.groups.createGroup\t\t\t\t\tname\nmutation.groups.createGroup\t\t\t\t}\nmutation.groups.createGroup\t\t\t}\nmutation.groups.createGroup\t\t}\nmutation.groups.createGroup\t\tmembers {\nmutation.groups.createGroup\t\t\titems {\nmutation.groups.createGroup\t\t\t\tid\nmutation.groups.createGroup\t\t\t\tname\nmutation.groups.createGroup\t\t\t\ttype\nmutation.groups.createGroup\t\t\t}\nmutation.groups.createGroup\t\t\tpaging {\nmutation.groups.createGroup\t\t\t\ttotal\nmutation.groups.createGroup\t\t\t}\nmutation.groups.createGroup\t\t}\nmutation.groups.createGroup\t\tmembersCount\nmutation.groups.createGroup\t\tmembersCountPerType {\nmutation.groups.createGroup\t\t\ttype\nmutation.groups.createGroup\t\t\tmembersCount\nmutation.groups.createGroup\t\t}\nmutation.groups.createGroup\t}\nmutation.groups.createGroup}\n\t}\t\n}",
     "variables": {
         "createGroupInput": {
             "description": "string",
@@ -10,43 +10,6 @@
                 "type": "SITE"
             },
             "name": "string"
-        },
-        "groupMembersListInput": {
-            "groupMembersListFilterInput": {
-                "name": {
-                    "eq": "string",
-                    "in": [
-                        "string1",
-                        "string2"
-                    ],
-                    "neq": "string",
-                    "nin": [
-                        "string1",
-                        "string2"
-                    ],
-                    "regex": "string"
-                },
-                "type": {
-                    "eq": "SITE",
-                    "in": "SITE",
-                    "neq": "SITE",
-                    "nin": "SITE"
-                }
-            },
-            "groupMembersListSortInput": {
-                "name": {
-                    "direction": "ASC",
-                    "priority": 1
-                },
-                "type": {
-                    "direction": "ASC",
-                    "priority": 1
-                }
-            },
-            "pagingInput": {
-                "from": 1,
-                "limit": 1
-            }
         }
     }
 }

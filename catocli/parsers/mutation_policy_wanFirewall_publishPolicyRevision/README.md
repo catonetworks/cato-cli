@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.wanFirewall.publishPolicyRevision:
 
-`catocli mutation policy wanFirewall publishPolicyRevision -h`
+```bash
+catocli mutation policy wanFirewall publishPolicyRevision -h
 
-`catocli mutation policy wanFirewall publishPolicyRevision <json>`
+catocli mutation policy wanFirewall publishPolicyRevision <json>
 
-`catocli mutation policy wanFirewall publishPolicyRevision "$(cat < mutation.policy.wanFirewall.publishPolicyRevision.json)"`
+catocli mutation policy wanFirewall publishPolicyRevision "$(cat < mutation.policy.wanFirewall.publishPolicyRevision.json)"
 
-`catocli mutation policy wanFirewall publishPolicyRevision '{"policyPublishRevisionInput":{"description":"string","name":"string"},"wanFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
+catocli mutation policy wanFirewall publishPolicyRevision '{"policyPublishRevisionInput":{"description":"string","name":"string"},"wanFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-`catocli mutation policy wanFirewall publishPolicyRevision -p '{
+catocli mutation policy wanFirewall publishPolicyRevision -p '{
     "policyPublishRevisionInput": {
         "description": "string",
         "name": "string"
@@ -23,7 +24,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.wanFirewall.publishPolicyRevision ####
 

@@ -4,15 +4,16 @@
 
 ### Usage for mutation.site.removeSocketAddOnCard:
 
-`catocli mutation site removeSocketAddOnCard -h`
+```bash
+catocli mutation site removeSocketAddOnCard -h
 
-`catocli mutation site removeSocketAddOnCard <json>`
+catocli mutation site removeSocketAddOnCard <json>
 
-`catocli mutation site removeSocketAddOnCard "$(cat < mutation.site.removeSocketAddOnCard.json)"`
+catocli mutation site removeSocketAddOnCard "$(cat < mutation.site.removeSocketAddOnCard.json)"
 
-`catocli mutation site removeSocketAddOnCard '{"removeSocketAddOnCardInput":{"expansionSlotNumbers":"SLOT_1","siteRefInput":{"by":"ID","input":"string"}}}'`
+catocli mutation site removeSocketAddOnCard '{"removeSocketAddOnCardInput":{"expansionSlotNumbers":"SLOT_1","siteRefInput":{"by":"ID","input":"string"}}}'
 
-`catocli mutation site removeSocketAddOnCard -p '{
+catocli mutation site removeSocketAddOnCard -p '{
     "removeSocketAddOnCardInput": {
         "expansionSlotNumbers": "SLOT_1",
         "siteRefInput": {
@@ -21,7 +22,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.site.removeSocketAddOnCard ####
 

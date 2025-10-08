@@ -4,21 +4,22 @@
 
 ### Usage for mutation.xdr.deleteStoryComment:
 
-`catocli mutation xdr deleteStoryComment -h`
+```bash
+catocli mutation xdr deleteStoryComment -h
 
-`catocli mutation xdr deleteStoryComment <json>`
+catocli mutation xdr deleteStoryComment <json>
 
-`catocli mutation xdr deleteStoryComment "$(cat < mutation.xdr.deleteStoryComment.json)"`
+catocli mutation xdr deleteStoryComment "$(cat < mutation.xdr.deleteStoryComment.json)"
 
-`catocli mutation xdr deleteStoryComment '{"deleteStoryCommentInput":{"commentId":"id","storyId":"id"}}'`
+catocli mutation xdr deleteStoryComment '{"deleteStoryCommentInput":{"commentId":"id","storyId":"id"}}'
 
-`catocli mutation xdr deleteStoryComment -p '{
+catocli mutation xdr deleteStoryComment -p '{
     "deleteStoryCommentInput": {
         "commentId": "id",
         "storyId": "id"
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.xdr.deleteStoryComment ####
 

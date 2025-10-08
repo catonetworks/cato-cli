@@ -1,6 +1,6 @@
 {
     "operationName": "events",
-    "query": "query events ( $limit:Int $from:Int $accountID:ID! $timeFrame:TimeFrame! $eventsMeasure:[EventsMeasure] $eventsDimension:[EventsDimension] $eventsFilter:[EventsFilter!] $eventsSort:[EventsSort!] ) {\n\tevents ( accountID:$accountID timeFrame:$timeFrame measures:$eventsMeasure dimensions:$eventsDimension filters:$eventsFilter sort:$eventsSort ) {\n\t\tid \n\t\tfrom \n\t\tto \n\t\ttotal \n\t\ttotals \n\t\trecords ( limit:$limit  from:$from  )  {\n\t\t\tfieldsEventsRecord: fields {\n\t\t\t\tname \n\t\t\t\tvalue \n\t\t\t}\n\t\t\tfieldsUnitTypesEventsRecord: fieldsUnitTypes\n\t\t\tfieldsMap\n\t\t\ttrends\n\t\t\tprevTimeFrame\n\t\t\tflatFields\n\t\t}\n\n\t}\t\n}",
+    "query": "query events ( $timeFrame:TimeFrame! $eventsMeasure:[EventsMeasure] $eventsDimension:[EventsDimension] $eventsFilter:[EventsFilter!] $eventsSort:[EventsSort!]) {\n\tevents ( timeFrame:$timeFrame measures:$eventsMeasure dimensions:$eventsDimension filters:$eventsFilter sort:$eventsSort ) {\nquery.eventsid\nquery.eventsfrom\nquery.eventsto\nquery.eventstotal\nquery.eventstotals\nquery.eventsrecords {\nquery.events\tfields {\nquery.events\t\tname\nquery.events\t\tvalue {\nquery.events\t\t\t__typename\nquery.events\t\t\t... on StringValue {\nquery.events\t\t\t\tstring\nquery.events\t\t\t}\nquery.events\t\t\t... on DateValue {\nquery.events\t\t\t\tdate\nquery.events\t\t\t}\nquery.events\t\t\t... on Entity {\nquery.events\t\t\t\tid\nquery.events\t\t\t\tname\nquery.events\t\t\t\ttype\nquery.events\t\t\t}\nquery.events\t\t}\nquery.events\t}\nquery.events\tfieldsUnitTypes\nquery.events\tfieldsMap\nquery.events\ttrends\nquery.events\tprevTimeFrame\nquery.events\tflatFields\nquery.events}\n\t}\t\n}",
     "variables": {
         "eventsDimension": {
             "fieldName": "access_method"
@@ -22,8 +22,6 @@
             "fieldName": "access_method",
             "order": "asc"
         },
-        "from": 1,
-        "limit": 1,
         "timeFrame": "example_value"
     }
 }

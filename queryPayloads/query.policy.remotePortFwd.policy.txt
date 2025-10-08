@@ -1,104 +1,93 @@
-query policyRemotePortFwdPolicy ( $remotePortFwdPolicyInput:RemotePortFwdPolicyInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		remotePortFwd  {
-			policyRemotePortFwdPolicyQueries: policy ( input:$remotePortFwdPolicyInput   ) {
-				enabled 
-				rules  {
-					auditRemotePortFwdRulePayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					ruleRemotePortFwdRulePayload: rule {
-						id 
-						name 
-						description 
-						index 
-						section  {
-							id
-							name
-						}
-
-						enabled 
-						forwardIcmp 
-						externalIp  {
-							id
-							name
-						}
-
-						externalPortRange  {
-							from
-							to
-						}
-
-						internalIp 
-						internalPortRange  {
-							from
-							to
-						}
-
-						remoteIPs  {
-							ip
-							ipRangeRemotePortFwdRemoteIps: ipRange {
-								from 
-								to 
-							}
-							subnet
-							globalIpRangeRemotePortFwdRemoteIps: globalIpRange {
-								id 
-								name 
-							}
-						}
-
-						restrictionType 
-						tracking  {
-							enabled
-							frequencyPolicyRuleTrackingAlert: frequency
-							subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
-								id 
-								name 
-							}
-							webhookPolicyRuleTrackingAlert: webhook {
-								id 
-								name 
-							}
-							mailingListPolicyRuleTrackingAlert: mailingList {
-								id 
-								name 
-							}
-						}
-
-					}
-					propertiesRemotePortFwdRulePayload: properties
-				}
-
-				sections  {
-					auditPolicySectionPayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					sectionPolicySectionPayload: section {
-						id 
-						name 
-					}
-					propertiesPolicySectionPayload: properties
-				}
-
-				audit  {
-					publishedTime
-					publishedBy
-				}
-
-				revision  {
-					id
-					name
-					description
-					changes
-					createdTime
-					updatedTime
-				}
-
-			}
-		}
-
+query policyRemotePortFwdPolicy ( $remotePortFwdPolicyInput:RemotePortFwdPolicyInput) {
+	policy ( ) {
+query.policy.remotePortFwd.policyremotePortFwd {
+query.policy.remotePortFwd.policy	policy ( input:$remotePortFwdPolicyInput   ) {
+query.policy.remotePortFwd.policy		enabled
+query.policy.remotePortFwd.policy		rules {
+query.policy.remotePortFwd.policy			audit {
+query.policy.remotePortFwd.policy				updatedTime
+query.policy.remotePortFwd.policy				updatedBy
+query.policy.remotePortFwd.policy			}
+query.policy.remotePortFwd.policy			rule {
+query.policy.remotePortFwd.policy				id
+query.policy.remotePortFwd.policy				name
+query.policy.remotePortFwd.policy				description
+query.policy.remotePortFwd.policy				index
+query.policy.remotePortFwd.policy				section {
+query.policy.remotePortFwd.policy					id
+query.policy.remotePortFwd.policy					name
+query.policy.remotePortFwd.policy				}
+query.policy.remotePortFwd.policy				enabled
+query.policy.remotePortFwd.policy				forwardIcmp
+query.policy.remotePortFwd.policy				externalIp {
+query.policy.remotePortFwd.policy					id
+query.policy.remotePortFwd.policy					name
+query.policy.remotePortFwd.policy				}
+query.policy.remotePortFwd.policy				externalPortRange {
+query.policy.remotePortFwd.policy					from
+query.policy.remotePortFwd.policy					to
+query.policy.remotePortFwd.policy				}
+query.policy.remotePortFwd.policy				internalIp
+query.policy.remotePortFwd.policy				internalPortRange {
+query.policy.remotePortFwd.policy					from
+query.policy.remotePortFwd.policy					to
+query.policy.remotePortFwd.policy				}
+query.policy.remotePortFwd.policy				remoteIPs {
+query.policy.remotePortFwd.policy					ip
+query.policy.remotePortFwd.policy					ipRange {
+query.policy.remotePortFwd.policy						from
+query.policy.remotePortFwd.policy						to
+query.policy.remotePortFwd.policy					}
+query.policy.remotePortFwd.policy					subnet
+query.policy.remotePortFwd.policy					globalIpRange {
+query.policy.remotePortFwd.policy						id
+query.policy.remotePortFwd.policy						name
+query.policy.remotePortFwd.policy					}
+query.policy.remotePortFwd.policy				}
+query.policy.remotePortFwd.policy				restrictionType
+query.policy.remotePortFwd.policy				tracking {
+query.policy.remotePortFwd.policy					enabled
+query.policy.remotePortFwd.policy					frequency
+query.policy.remotePortFwd.policy					subscriptionGroup {
+query.policy.remotePortFwd.policy						id
+query.policy.remotePortFwd.policy						name
+query.policy.remotePortFwd.policy					}
+query.policy.remotePortFwd.policy					webhook {
+query.policy.remotePortFwd.policy						id
+query.policy.remotePortFwd.policy						name
+query.policy.remotePortFwd.policy					}
+query.policy.remotePortFwd.policy					mailingList {
+query.policy.remotePortFwd.policy						id
+query.policy.remotePortFwd.policy						name
+query.policy.remotePortFwd.policy					}
+query.policy.remotePortFwd.policy				}
+query.policy.remotePortFwd.policy			}
+query.policy.remotePortFwd.policy			properties
+query.policy.remotePortFwd.policy		}
+query.policy.remotePortFwd.policy		sections {
+query.policy.remotePortFwd.policy			audit {
+query.policy.remotePortFwd.policy				updatedTime
+query.policy.remotePortFwd.policy				updatedBy
+query.policy.remotePortFwd.policy			}
+query.policy.remotePortFwd.policy			section {
+query.policy.remotePortFwd.policy				id
+query.policy.remotePortFwd.policy				name
+query.policy.remotePortFwd.policy			}
+query.policy.remotePortFwd.policy			properties
+query.policy.remotePortFwd.policy		}
+query.policy.remotePortFwd.policy		audit {
+query.policy.remotePortFwd.policy			publishedTime
+query.policy.remotePortFwd.policy			publishedBy
+query.policy.remotePortFwd.policy		}
+query.policy.remotePortFwd.policy		revision {
+query.policy.remotePortFwd.policy			id
+query.policy.remotePortFwd.policy			name
+query.policy.remotePortFwd.policy			description
+query.policy.remotePortFwd.policy			changes
+query.policy.remotePortFwd.policy			createdTime
+query.policy.remotePortFwd.policy			updatedTime
+query.policy.remotePortFwd.policy		}
+query.policy.remotePortFwd.policy	}
+query.policy.remotePortFwd.policy}
 	}	
 }

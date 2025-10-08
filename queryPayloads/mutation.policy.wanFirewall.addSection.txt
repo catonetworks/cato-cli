@@ -1,27 +1,24 @@
-mutation policyWanFirewallAddSection ( $policyAddSectionInput:PolicyAddSectionInput! $wanFirewallPolicyMutationInput:WanFirewallPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		wanFirewall ( input:$wanFirewallPolicyMutationInput  )  {
-			addSectionWanFirewallPolicyMutations: addSection ( input:$policyAddSectionInput   ) {
-				section  {
-					auditPolicySectionPayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					sectionPolicySectionPayload: section {
-						id 
-						name 
-					}
-					propertiesPolicySectionPayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyWanFirewallAddSection ( $wanFirewallPolicyMutationInput:WanFirewallPolicyMutationInput $policyAddSectionInput:PolicyAddSectionInput!) {
+	policy ( ) {
+mutation.policy.wanFirewall.addSectionwanFirewall ( input:$wanFirewallPolicyMutationInput  )  {
+mutation.policy.wanFirewall.addSection	addSection ( input:$policyAddSectionInput   ) {
+mutation.policy.wanFirewall.addSection		section {
+mutation.policy.wanFirewall.addSection			audit {
+mutation.policy.wanFirewall.addSection				updatedTime
+mutation.policy.wanFirewall.addSection				updatedBy
+mutation.policy.wanFirewall.addSection			}
+mutation.policy.wanFirewall.addSection			section {
+mutation.policy.wanFirewall.addSection				id
+mutation.policy.wanFirewall.addSection				name
+mutation.policy.wanFirewall.addSection			}
+mutation.policy.wanFirewall.addSection			properties
+mutation.policy.wanFirewall.addSection		}
+mutation.policy.wanFirewall.addSection		status
+mutation.policy.wanFirewall.addSection		errors {
+mutation.policy.wanFirewall.addSection			errorMessage
+mutation.policy.wanFirewall.addSection			errorCode
+mutation.policy.wanFirewall.addSection		}
+mutation.policy.wanFirewall.addSection	}
+mutation.policy.wanFirewall.addSection}
 	}	
 }

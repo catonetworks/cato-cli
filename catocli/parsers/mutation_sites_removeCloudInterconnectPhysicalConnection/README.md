@@ -4,20 +4,21 @@
 
 ### Usage for mutation.sites.removeCloudInterconnectPhysicalConnection:
 
-`catocli mutation sites removeCloudInterconnectPhysicalConnection -h`
+```bash
+catocli mutation sites removeCloudInterconnectPhysicalConnection -h
 
-`catocli mutation sites removeCloudInterconnectPhysicalConnection <json>`
+catocli mutation sites removeCloudInterconnectPhysicalConnection <json>
 
-`catocli mutation sites removeCloudInterconnectPhysicalConnection "$(cat < mutation.sites.removeCloudInterconnectPhysicalConnection.json)"`
+catocli mutation sites removeCloudInterconnectPhysicalConnection "$(cat < mutation.sites.removeCloudInterconnectPhysicalConnection.json)"
 
-`catocli mutation sites removeCloudInterconnectPhysicalConnection '{"removeCloudInterconnectPhysicalConnectionInput":{"id":"id"}}'`
+catocli mutation sites removeCloudInterconnectPhysicalConnection '{"removeCloudInterconnectPhysicalConnectionInput":{"id":"id"}}'
 
-`catocli mutation sites removeCloudInterconnectPhysicalConnection -p '{
+catocli mutation sites removeCloudInterconnectPhysicalConnection -p '{
     "removeCloudInterconnectPhysicalConnectionInput": {
         "id": "id"
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.sites.removeCloudInterconnectPhysicalConnection ####
 

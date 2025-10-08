@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.wanFirewall.removeSection:
 
-`catocli mutation policy wanFirewall removeSection -h`
+```bash
+catocli mutation policy wanFirewall removeSection -h
 
-`catocli mutation policy wanFirewall removeSection <json>`
+catocli mutation policy wanFirewall removeSection <json>
 
-`catocli mutation policy wanFirewall removeSection "$(cat < mutation.policy.wanFirewall.removeSection.json)"`
+catocli mutation policy wanFirewall removeSection "$(cat < mutation.policy.wanFirewall.removeSection.json)"
 
-`catocli mutation policy wanFirewall removeSection '{"policyRemoveSectionInput":{"id":"id"},"wanFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
+catocli mutation policy wanFirewall removeSection '{"policyRemoveSectionInput":{"id":"id"},"wanFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-`catocli mutation policy wanFirewall removeSection -p '{
+catocli mutation policy wanFirewall removeSection -p '{
     "policyRemoveSectionInput": {
         "id": "id"
     },
@@ -22,7 +23,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.wanFirewall.removeSection ####
 

@@ -1,27 +1,24 @@
-mutation policyTerminalServerMoveSection ( $policyMoveSectionInput:PolicyMoveSectionInput! $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		terminalServer ( input:$terminalServerPolicyMutationInput  )  {
-			moveSectionTerminalServerPolicyMutations: moveSection ( input:$policyMoveSectionInput   ) {
-				section  {
-					auditPolicySectionPayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					sectionPolicySectionPayload: section {
-						id 
-						name 
-					}
-					propertiesPolicySectionPayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyTerminalServerMoveSection ( $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput $policyMoveSectionInput:PolicyMoveSectionInput!) {
+	policy ( ) {
+mutation.policy.terminalServer.moveSectionterminalServer ( input:$terminalServerPolicyMutationInput  )  {
+mutation.policy.terminalServer.moveSection	moveSection ( input:$policyMoveSectionInput   ) {
+mutation.policy.terminalServer.moveSection		section {
+mutation.policy.terminalServer.moveSection			audit {
+mutation.policy.terminalServer.moveSection				updatedTime
+mutation.policy.terminalServer.moveSection				updatedBy
+mutation.policy.terminalServer.moveSection			}
+mutation.policy.terminalServer.moveSection			section {
+mutation.policy.terminalServer.moveSection				id
+mutation.policy.terminalServer.moveSection				name
+mutation.policy.terminalServer.moveSection			}
+mutation.policy.terminalServer.moveSection			properties
+mutation.policy.terminalServer.moveSection		}
+mutation.policy.terminalServer.moveSection		status
+mutation.policy.terminalServer.moveSection		errors {
+mutation.policy.terminalServer.moveSection			errorMessage
+mutation.policy.terminalServer.moveSection			errorCode
+mutation.policy.terminalServer.moveSection		}
+mutation.policy.terminalServer.moveSection	}
+mutation.policy.terminalServer.moveSection}
 	}	
 }

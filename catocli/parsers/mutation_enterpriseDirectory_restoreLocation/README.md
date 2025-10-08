@@ -4,18 +4,19 @@
 
 ### Usage for mutation.enterpriseDirectory.restoreLocation:
 
-`catocli mutation enterpriseDirectory restoreLocation -h`
+```bash
+catocli mutation enterpriseDirectory restoreLocation -h
 
-`catocli mutation enterpriseDirectory restoreLocation <json>`
+catocli mutation enterpriseDirectory restoreLocation <json>
 
-`catocli mutation enterpriseDirectory restoreLocation "$(cat < mutation.enterpriseDirectory.restoreLocation.json)"`
+catocli mutation enterpriseDirectory restoreLocation "$(cat < mutation.enterpriseDirectory.restoreLocation.json)"
 
-`catocli mutation enterpriseDirectory restoreLocation '{"locationId":"id"}'`
+catocli mutation enterpriseDirectory restoreLocation '{"locationId":"id"}'
 
-`catocli mutation enterpriseDirectory restoreLocation -p '{
+catocli mutation enterpriseDirectory restoreLocation -p '{
     "locationId": "id"
 }'
-
+```
 
 #### Operation Arguments for mutation.enterpriseDirectory.restoreLocation ####
 

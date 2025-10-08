@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.socketLan.updateSection:
 
-`catocli mutation policy socketLan updateSection -h`
+```bash
+catocli mutation policy socketLan updateSection -h
 
-`catocli mutation policy socketLan updateSection <json>`
+catocli mutation policy socketLan updateSection <json>
 
-`catocli mutation policy socketLan updateSection "$(cat < mutation.policy.socketLan.updateSection.json)"`
+catocli mutation policy socketLan updateSection "$(cat < mutation.policy.socketLan.updateSection.json)"
 
-`catocli mutation policy socketLan updateSection '{"policyUpdateSectionInput":{"id":"id","policyUpdateSectionInfoInput":{"name":"string"}},"socketLanPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
+catocli mutation policy socketLan updateSection '{"policyUpdateSectionInput":{"id":"id","policyUpdateSectionInfoInput":{"name":"string"}},"socketLanPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-`catocli mutation policy socketLan updateSection -p '{
+catocli mutation policy socketLan updateSection -p '{
     "policyUpdateSectionInput": {
         "id": "id",
         "policyUpdateSectionInfoInput": {
@@ -25,7 +26,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.socketLan.updateSection ####
 

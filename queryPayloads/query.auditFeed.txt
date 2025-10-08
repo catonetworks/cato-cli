@@ -1,65 +1,72 @@
-query auditFeed ( $fieldNames:[AuditFieldName!] $accountIDs:[ID!] $timeFrame:TimeFrame! $auditFieldFilterInput:[AuditFieldFilterInput!] $marker:String ) {
+query auditFeed ( $accountIDs:[ID!] $timeFrame:TimeFrame! $auditFieldFilterInput:[AuditFieldFilterInput!] $marker:String) {
 	auditFeed ( accountIDs:$accountIDs timeFrame:$timeFrame filters:$auditFieldFilterInput marker:$marker ) {
-		from 
-		to 
-		marker 
-		fetchedCount 
-		hasMore 
-		accounts  {
-			id
-			recordsAuditFeedAccountRecords: records ( fieldNames:$fieldNames   ) {
-				admin  {
-					id
-					name
-					typeEntity: type
-				}
-
-				apiKey  {
-					id
-					name
-					typeEntity: type
-				}
-
-				object  {
-					id
-					name
-					typeEntity: type
-				}
-
-				account  {
-					entityEntityInfo: entity {
-						id 
-						name 
-						type 
-					}
-					description
-					helperFields
-				}
-
-				time 
-				fields  {
-					name
-					valueAuditField: value {
-						__typename
-						... on StringValue {
-							string 
-						}
-						... on DateValue {
-							date 
-						}
-						... on Entity {
-							id 
-							name 
-							type 
-						}
-					}
-
-				}
-
-				fieldsMap 
-				flatFields 
-			}
-		}
-
+query.auditFeedfrom
+query.auditFeedto
+query.auditFeedmarker
+query.auditFeedfetchedCount
+query.auditFeedhasMore
+query.auditFeedaccounts {
+query.auditFeed	id
+query.auditFeed	records {
+query.auditFeed		admin {
+query.auditFeed			id
+query.auditFeed			name
+query.auditFeed			type
+query.auditFeed		}
+query.auditFeed		apiKey {
+query.auditFeed			id
+query.auditFeed			name
+query.auditFeed			type
+query.auditFeed		}
+query.auditFeed		object {
+query.auditFeed			id
+query.auditFeed			name
+query.auditFeed			type
+query.auditFeed		}
+query.auditFeed		account {
+query.auditFeed			entity {
+query.auditFeed				id
+query.auditFeed				name
+query.auditFeed				type
+query.auditFeed			}
+query.auditFeed			description
+query.auditFeed			helperFields
+query.auditFeed		}
+query.auditFeed		time
+query.auditFeed		fields {
+query.auditFeed			name
+query.auditFeed			value {
+query.auditFeed				__typename
+query.auditFeed				... on StringValue {
+query.auditFeed					string
+query.auditFeed				}
+query.auditFeed				... on DateValue {
+query.auditFeed					date
+query.auditFeed				}
+query.auditFeed				... on Entity {
+query.auditFeed					id
+query.auditFeed					name
+query.auditFeed					type
+query.auditFeed				}
+query.auditFeed			}
+ {
+query.auditFeed				__typename
+query.auditFeed				... on StringValue {
+query.auditFeed					string
+query.auditFeed				}
+query.auditFeed				... on DateValue {
+query.auditFeed					date
+query.auditFeed				}
+query.auditFeed				... on Entity {
+query.auditFeed					id
+query.auditFeed					name
+query.auditFeed					type
+query.auditFeed				}
+query.auditFeed			}
+query.auditFeed		}
+query.auditFeed		fieldsMap
+query.auditFeed		flatFields
+query.auditFeed	}
+query.auditFeed}
 	}	
 }

@@ -4,15 +4,16 @@
 
 ### Usage for query.admins:
 
-`catocli query admins -h`
+```bash
+catocli query admins -h
 
-`catocli query admins <json>`
+catocli query admins <json>
 
-`catocli query admins "$(cat < query.admins.json)"`
+catocli query admins "$(cat < query.admins.json)"
 
-`catocli query admins '{"adminIDs":["id1","id2"],"from":1,"limit":1,"search":"string","sortInput":{"field":"string","order":"asc"}}'`
+catocli query admins '{"adminIDs":["id1","id2"],"from":1,"limit":1,"search":"string","sortInput":{"field":"string","order":"asc"}}'
 
-`catocli query admins -p '{
+catocli query admins -p '{
     "adminIDs": [
         "id1",
         "id2"
@@ -25,7 +26,7 @@
         "order": "asc"
     }
 }'
-
+```
 
 #### Operation Arguments for query.admins ####
 

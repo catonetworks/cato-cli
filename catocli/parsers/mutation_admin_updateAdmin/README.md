@@ -4,15 +4,16 @@
 
 ### Usage for mutation.admin.updateAdmin:
 
-`catocli mutation admin updateAdmin -h`
+```bash
+catocli mutation admin updateAdmin -h
 
-`catocli mutation admin updateAdmin <json>`
+catocli mutation admin updateAdmin <json>
 
-`catocli mutation admin updateAdmin "$(cat < mutation.admin.updateAdmin.json)"`
+catocli mutation admin updateAdmin "$(cat < mutation.admin.updateAdmin.json)"
 
-`catocli mutation admin updateAdmin '{"adminID":"id","updateAdminInput":{"firstName":"string","lastName":"string","passwordNeverExpires":true,"updateAdminRoleInput":{"allowedAccounts":["id1","id2"],"allowedEntities":{"id":"id","name":"string","type":"account"},"role":{"id":"id","name":"string"}}}}'`
+catocli mutation admin updateAdmin '{"adminID":"id","updateAdminInput":{"firstName":"string","lastName":"string","passwordNeverExpires":true,"updateAdminRoleInput":{"allowedAccounts":["id1","id2"],"allowedEntities":{"id":"id","name":"string","type":"account"},"role":{"id":"id","name":"string"}}}}'
 
-`catocli mutation admin updateAdmin -p '{
+catocli mutation admin updateAdmin -p '{
     "adminID": "id",
     "updateAdminInput": {
         "firstName": "string",
@@ -35,7 +36,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.admin.updateAdmin ####
 

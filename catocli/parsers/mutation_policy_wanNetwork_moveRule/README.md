@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.wanNetwork.moveRule:
 
-`catocli mutation policy wanNetwork moveRule -h`
+```bash
+catocli mutation policy wanNetwork moveRule -h
 
-`catocli mutation policy wanNetwork moveRule <json>`
+catocli mutation policy wanNetwork moveRule <json>
 
-`catocli mutation policy wanNetwork moveRule "$(cat < mutation.policy.wanNetwork.moveRule.json)"`
+catocli mutation policy wanNetwork moveRule "$(cat < mutation.policy.wanNetwork.moveRule.json)"
 
-`catocli mutation policy wanNetwork moveRule '{"policyMoveRuleInput":{"id":"id","policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"}},"wanNetworkPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
+catocli mutation policy wanNetwork moveRule '{"policyMoveRuleInput":{"id":"id","policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"}},"wanNetworkPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-`catocli mutation policy wanNetwork moveRule -p '{
+catocli mutation policy wanNetwork moveRule -p '{
     "policyMoveRuleInput": {
         "id": "id",
         "policyRulePositionInput": {
@@ -26,7 +27,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.wanNetwork.moveRule ####
 

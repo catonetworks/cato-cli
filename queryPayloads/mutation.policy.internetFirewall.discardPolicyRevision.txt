@@ -1,400 +1,358 @@
-mutation policyInternetFirewallDiscardPolicyRevision ( $policyDiscardRevisionInput:PolicyDiscardRevisionInput $internetFirewallPolicyMutationInput:InternetFirewallPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		internetFirewall ( input:$internetFirewallPolicyMutationInput  )  {
-			discardPolicyRevisionInternetFirewallPolicyMutations: discardPolicyRevision ( input:$policyDiscardRevisionInput   ) {
-				policy  {
-					enabled
-					rulesInternetFirewallPolicy: rules {
-						audit  {
-							updatedTime
-							updatedBy
-						}
-
-						rule  {
-							id
-							name
-							description
-							index
-							sectionInternetFirewallRule: section {
-								id 
-								name 
-							}
-							enabled
-							sourceInternetFirewallRule: source {
-								ip 
-								host  {
-									id
-									name
-								}
-
-								site  {
-									id
-									name
-								}
-
-								subnet 
-								ipRange  {
-									from
-									to
-								}
-
-								globalIpRange  {
-									id
-									name
-								}
-
-								networkInterface  {
-									id
-									name
-								}
-
-								siteNetworkSubnet  {
-									id
-									name
-								}
-
-								floatingSubnet  {
-									id
-									name
-								}
-
-								user  {
-									id
-									name
-								}
-
-								usersGroup  {
-									id
-									name
-								}
-
-								group  {
-									id
-									name
-								}
-
-								systemGroup  {
-									id
-									name
-								}
-
-							}
-							connectionOriginInternetFirewallRule: connectionOrigin
-							countryInternetFirewallRule: country {
-								id 
-								name 
-							}
-							deviceInternetFirewallRule: device {
-								id 
-								name 
-							}
-							deviceOSInternetFirewallRule: deviceOS
-							deviceAttributesInternetFirewallRule: deviceAttributes {
-								category 
-								type 
-								model 
-								manufacturer 
-								os 
-								osVersion 
-							}
-							destinationInternetFirewallRule: destination {
-								application  {
-									id
-									name
-								}
-
-								customApp  {
-									id
-									name
-								}
-
-								appCategory  {
-									id
-									name
-								}
-
-								customCategory  {
-									id
-									name
-								}
-
-								sanctionedAppsCategory  {
-									id
-									name
-								}
-
-								country  {
-									id
-									name
-								}
-
-								domain 
-								fqdn 
-								ip 
-								subnet 
-								ipRange  {
-									from
-									to
-								}
-
-								globalIpRange  {
-									id
-									name
-								}
-
-								remoteAsn 
-								containers  {
-									fqdnContainerInternetFirewallContainer: fqdnContainer {
-										id 
-										name 
-									}
-									ipAddressRangeContainerInternetFirewallContainer: ipAddressRangeContainer {
-										id 
-										name 
-									}
-								}
-
-							}
-							serviceInternetFirewallRule: service {
-								standard  {
-									id
-									name
-								}
-
-								custom  {
-									port
-									portRangeCustomService: portRange {
-										from 
-										to 
-									}
-									protocolCustomService: protocol
-								}
-
-							}
-							actionInternetFirewallRule: action
-							trackingInternetFirewallRule: tracking {
-								event  {
-									enabled
-								}
-
-								alert  {
-									enabled
-									frequencyPolicyRuleTrackingAlert: frequency
-									subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
-										id 
-										name 
-									}
-									webhookPolicyRuleTrackingAlert: webhook {
-										id 
-										name 
-									}
-									mailingListPolicyRuleTrackingAlert: mailingList {
-										id 
-										name 
-									}
-								}
-
-							}
-							scheduleInternetFirewallRule: schedule {
-								activeOn 
-								customTimeframe  {
-									from
-									to
-								}
-
-								customRecurring  {
-									from
-									to
-									daysPolicyCustomRecurring: days
-								}
-
-							}
-							activePeriodInternetFirewallRule: activePeriod {
-								useEffectiveFrom 
-								effectiveFrom 
-								useExpiresAt 
-								expiresAt 
-							}
-							exceptionsInternetFirewallRule: exceptions {
-								name 
-								source  {
-									ip
-									hostInternetFirewallSource: host {
-										id 
-										name 
-									}
-									siteInternetFirewallSource: site {
-										id 
-										name 
-									}
-									subnet
-									ipRangeInternetFirewallSource: ipRange {
-										from 
-										to 
-									}
-									globalIpRangeInternetFirewallSource: globalIpRange {
-										id 
-										name 
-									}
-									networkInterfaceInternetFirewallSource: networkInterface {
-										id 
-										name 
-									}
-									siteNetworkSubnetInternetFirewallSource: siteNetworkSubnet {
-										id 
-										name 
-									}
-									floatingSubnetInternetFirewallSource: floatingSubnet {
-										id 
-										name 
-									}
-									userInternetFirewallSource: user {
-										id 
-										name 
-									}
-									usersGroupInternetFirewallSource: usersGroup {
-										id 
-										name 
-									}
-									groupInternetFirewallSource: group {
-										id 
-										name 
-									}
-									systemGroupInternetFirewallSource: systemGroup {
-										id 
-										name 
-									}
-								}
-
-								deviceOS 
-								country  {
-									id
-									name
-								}
-
-								device  {
-									id
-									name
-								}
-
-								deviceAttributes  {
-									category
-									type
-									model
-									manufacturer
-									os
-									osVersion
-								}
-
-								destination  {
-									applicationInternetFirewallDestination: application {
-										id 
-										name 
-									}
-									customAppInternetFirewallDestination: customApp {
-										id 
-										name 
-									}
-									appCategoryInternetFirewallDestination: appCategory {
-										id 
-										name 
-									}
-									customCategoryInternetFirewallDestination: customCategory {
-										id 
-										name 
-									}
-									sanctionedAppsCategoryInternetFirewallDestination: sanctionedAppsCategory {
-										id 
-										name 
-									}
-									countryInternetFirewallDestination: country {
-										id 
-										name 
-									}
-									domain
-									fqdn
-									ip
-									subnet
-									ipRangeInternetFirewallDestination: ipRange {
-										from 
-										to 
-									}
-									globalIpRangeInternetFirewallDestination: globalIpRange {
-										id 
-										name 
-									}
-									remoteAsn
-									containersInternetFirewallDestination: containers {
-										fqdnContainer  {
-											id
-											name
-										}
-
-										ipAddressRangeContainer  {
-											id
-											name
-										}
-
-									}
-								}
-
-								service  {
-									standardInternetFirewallServiceType: standard {
-										id 
-										name 
-									}
-									customInternetFirewallServiceType: custom {
-										port 
-										portRange  {
-											from
-											to
-										}
-
-										protocol 
-									}
-								}
-
-								connectionOrigin 
-							}
-						}
-
-						properties 
-					}
-					sectionsInternetFirewallPolicy: sections {
-						audit  {
-							updatedTime
-							updatedBy
-						}
-
-						section  {
-							id
-							name
-						}
-
-						properties 
-					}
-					auditInternetFirewallPolicy: audit {
-						publishedTime 
-						publishedBy 
-					}
-					revisionInternetFirewallPolicy: revision {
-						id 
-						name 
-						description 
-						changes 
-						createdTime 
-						updatedTime 
-					}
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyInternetFirewallDiscardPolicyRevision ( $internetFirewallPolicyMutationInput:InternetFirewallPolicyMutationInput $policyDiscardRevisionInput:PolicyDiscardRevisionInput) {
+	policy ( ) {
+mutation.policy.internetFirewall.discardPolicyRevisioninternetFirewall ( input:$internetFirewallPolicyMutationInput  )  {
+mutation.policy.internetFirewall.discardPolicyRevision	discardPolicyRevision ( input:$policyDiscardRevisionInput   ) {
+mutation.policy.internetFirewall.discardPolicyRevision		policy {
+mutation.policy.internetFirewall.discardPolicyRevision			enabled
+mutation.policy.internetFirewall.discardPolicyRevision			rules {
+mutation.policy.internetFirewall.discardPolicyRevision				audit {
+mutation.policy.internetFirewall.discardPolicyRevision					updatedTime
+mutation.policy.internetFirewall.discardPolicyRevision					updatedBy
+mutation.policy.internetFirewall.discardPolicyRevision				}
+mutation.policy.internetFirewall.discardPolicyRevision				rule {
+mutation.policy.internetFirewall.discardPolicyRevision					id
+mutation.policy.internetFirewall.discardPolicyRevision					name
+mutation.policy.internetFirewall.discardPolicyRevision					description
+mutation.policy.internetFirewall.discardPolicyRevision					index
+mutation.policy.internetFirewall.discardPolicyRevision					section {
+mutation.policy.internetFirewall.discardPolicyRevision						id
+mutation.policy.internetFirewall.discardPolicyRevision						name
+mutation.policy.internetFirewall.discardPolicyRevision					}
+mutation.policy.internetFirewall.discardPolicyRevision					enabled
+mutation.policy.internetFirewall.discardPolicyRevision					source {
+mutation.policy.internetFirewall.discardPolicyRevision						ip
+mutation.policy.internetFirewall.discardPolicyRevision						host {
+mutation.policy.internetFirewall.discardPolicyRevision							id
+mutation.policy.internetFirewall.discardPolicyRevision							name
+mutation.policy.internetFirewall.discardPolicyRevision						}
+mutation.policy.internetFirewall.discardPolicyRevision						site {
+mutation.policy.internetFirewall.discardPolicyRevision							id
+mutation.policy.internetFirewall.discardPolicyRevision							name
+mutation.policy.internetFirewall.discardPolicyRevision						}
+mutation.policy.internetFirewall.discardPolicyRevision						subnet
+mutation.policy.internetFirewall.discardPolicyRevision						ipRange {
+mutation.policy.internetFirewall.discardPolicyRevision							from
+mutation.policy.internetFirewall.discardPolicyRevision							to
+mutation.policy.internetFirewall.discardPolicyRevision						}
+mutation.policy.internetFirewall.discardPolicyRevision						globalIpRange {
+mutation.policy.internetFirewall.discardPolicyRevision							id
+mutation.policy.internetFirewall.discardPolicyRevision							name
+mutation.policy.internetFirewall.discardPolicyRevision						}
+mutation.policy.internetFirewall.discardPolicyRevision						networkInterface {
+mutation.policy.internetFirewall.discardPolicyRevision							id
+mutation.policy.internetFirewall.discardPolicyRevision							name
+mutation.policy.internetFirewall.discardPolicyRevision						}
+mutation.policy.internetFirewall.discardPolicyRevision						siteNetworkSubnet {
+mutation.policy.internetFirewall.discardPolicyRevision							id
+mutation.policy.internetFirewall.discardPolicyRevision							name
+mutation.policy.internetFirewall.discardPolicyRevision						}
+mutation.policy.internetFirewall.discardPolicyRevision						floatingSubnet {
+mutation.policy.internetFirewall.discardPolicyRevision							id
+mutation.policy.internetFirewall.discardPolicyRevision							name
+mutation.policy.internetFirewall.discardPolicyRevision						}
+mutation.policy.internetFirewall.discardPolicyRevision						user {
+mutation.policy.internetFirewall.discardPolicyRevision							id
+mutation.policy.internetFirewall.discardPolicyRevision							name
+mutation.policy.internetFirewall.discardPolicyRevision						}
+mutation.policy.internetFirewall.discardPolicyRevision						usersGroup {
+mutation.policy.internetFirewall.discardPolicyRevision							id
+mutation.policy.internetFirewall.discardPolicyRevision							name
+mutation.policy.internetFirewall.discardPolicyRevision						}
+mutation.policy.internetFirewall.discardPolicyRevision						group {
+mutation.policy.internetFirewall.discardPolicyRevision							id
+mutation.policy.internetFirewall.discardPolicyRevision							name
+mutation.policy.internetFirewall.discardPolicyRevision						}
+mutation.policy.internetFirewall.discardPolicyRevision						systemGroup {
+mutation.policy.internetFirewall.discardPolicyRevision							id
+mutation.policy.internetFirewall.discardPolicyRevision							name
+mutation.policy.internetFirewall.discardPolicyRevision						}
+mutation.policy.internetFirewall.discardPolicyRevision					}
+mutation.policy.internetFirewall.discardPolicyRevision					connectionOrigin
+mutation.policy.internetFirewall.discardPolicyRevision					country {
+mutation.policy.internetFirewall.discardPolicyRevision						id
+mutation.policy.internetFirewall.discardPolicyRevision						name
+mutation.policy.internetFirewall.discardPolicyRevision					}
+mutation.policy.internetFirewall.discardPolicyRevision					device {
+mutation.policy.internetFirewall.discardPolicyRevision						id
+mutation.policy.internetFirewall.discardPolicyRevision						name
+mutation.policy.internetFirewall.discardPolicyRevision					}
+mutation.policy.internetFirewall.discardPolicyRevision					deviceOS
+mutation.policy.internetFirewall.discardPolicyRevision					deviceAttributes {
+mutation.policy.internetFirewall.discardPolicyRevision						category
+mutation.policy.internetFirewall.discardPolicyRevision						type
+mutation.policy.internetFirewall.discardPolicyRevision						model
+mutation.policy.internetFirewall.discardPolicyRevision						manufacturer
+mutation.policy.internetFirewall.discardPolicyRevision						os
+mutation.policy.internetFirewall.discardPolicyRevision						osVersion
+mutation.policy.internetFirewall.discardPolicyRevision					}
+mutation.policy.internetFirewall.discardPolicyRevision					destination {
+mutation.policy.internetFirewall.discardPolicyRevision						application {
+mutation.policy.internetFirewall.discardPolicyRevision							id
+mutation.policy.internetFirewall.discardPolicyRevision							name
+mutation.policy.internetFirewall.discardPolicyRevision						}
+mutation.policy.internetFirewall.discardPolicyRevision						customApp {
+mutation.policy.internetFirewall.discardPolicyRevision							id
+mutation.policy.internetFirewall.discardPolicyRevision							name
+mutation.policy.internetFirewall.discardPolicyRevision						}
+mutation.policy.internetFirewall.discardPolicyRevision						appCategory {
+mutation.policy.internetFirewall.discardPolicyRevision							id
+mutation.policy.internetFirewall.discardPolicyRevision							name
+mutation.policy.internetFirewall.discardPolicyRevision						}
+mutation.policy.internetFirewall.discardPolicyRevision						customCategory {
+mutation.policy.internetFirewall.discardPolicyRevision							id
+mutation.policy.internetFirewall.discardPolicyRevision							name
+mutation.policy.internetFirewall.discardPolicyRevision						}
+mutation.policy.internetFirewall.discardPolicyRevision						sanctionedAppsCategory {
+mutation.policy.internetFirewall.discardPolicyRevision							id
+mutation.policy.internetFirewall.discardPolicyRevision							name
+mutation.policy.internetFirewall.discardPolicyRevision						}
+mutation.policy.internetFirewall.discardPolicyRevision						country {
+mutation.policy.internetFirewall.discardPolicyRevision							id
+mutation.policy.internetFirewall.discardPolicyRevision							name
+mutation.policy.internetFirewall.discardPolicyRevision						}
+mutation.policy.internetFirewall.discardPolicyRevision						domain
+mutation.policy.internetFirewall.discardPolicyRevision						fqdn
+mutation.policy.internetFirewall.discardPolicyRevision						ip
+mutation.policy.internetFirewall.discardPolicyRevision						subnet
+mutation.policy.internetFirewall.discardPolicyRevision						ipRange {
+mutation.policy.internetFirewall.discardPolicyRevision							from
+mutation.policy.internetFirewall.discardPolicyRevision							to
+mutation.policy.internetFirewall.discardPolicyRevision						}
+mutation.policy.internetFirewall.discardPolicyRevision						globalIpRange {
+mutation.policy.internetFirewall.discardPolicyRevision							id
+mutation.policy.internetFirewall.discardPolicyRevision							name
+mutation.policy.internetFirewall.discardPolicyRevision						}
+mutation.policy.internetFirewall.discardPolicyRevision						remoteAsn
+mutation.policy.internetFirewall.discardPolicyRevision						containers {
+mutation.policy.internetFirewall.discardPolicyRevision							fqdnContainer {
+mutation.policy.internetFirewall.discardPolicyRevision								id
+mutation.policy.internetFirewall.discardPolicyRevision								name
+mutation.policy.internetFirewall.discardPolicyRevision							}
+mutation.policy.internetFirewall.discardPolicyRevision							ipAddressRangeContainer {
+mutation.policy.internetFirewall.discardPolicyRevision								id
+mutation.policy.internetFirewall.discardPolicyRevision								name
+mutation.policy.internetFirewall.discardPolicyRevision							}
+mutation.policy.internetFirewall.discardPolicyRevision						}
+mutation.policy.internetFirewall.discardPolicyRevision					}
+mutation.policy.internetFirewall.discardPolicyRevision					service {
+mutation.policy.internetFirewall.discardPolicyRevision						standard {
+mutation.policy.internetFirewall.discardPolicyRevision							id
+mutation.policy.internetFirewall.discardPolicyRevision							name
+mutation.policy.internetFirewall.discardPolicyRevision						}
+mutation.policy.internetFirewall.discardPolicyRevision						custom {
+mutation.policy.internetFirewall.discardPolicyRevision							port
+mutation.policy.internetFirewall.discardPolicyRevision							portRange {
+mutation.policy.internetFirewall.discardPolicyRevision								from
+mutation.policy.internetFirewall.discardPolicyRevision								to
+mutation.policy.internetFirewall.discardPolicyRevision							}
+mutation.policy.internetFirewall.discardPolicyRevision							protocol
+mutation.policy.internetFirewall.discardPolicyRevision						}
+mutation.policy.internetFirewall.discardPolicyRevision					}
+mutation.policy.internetFirewall.discardPolicyRevision					action
+mutation.policy.internetFirewall.discardPolicyRevision					tracking {
+mutation.policy.internetFirewall.discardPolicyRevision						event {
+mutation.policy.internetFirewall.discardPolicyRevision							enabled
+mutation.policy.internetFirewall.discardPolicyRevision						}
+mutation.policy.internetFirewall.discardPolicyRevision						alert {
+mutation.policy.internetFirewall.discardPolicyRevision							enabled
+mutation.policy.internetFirewall.discardPolicyRevision							frequency
+mutation.policy.internetFirewall.discardPolicyRevision							subscriptionGroup {
+mutation.policy.internetFirewall.discardPolicyRevision								id
+mutation.policy.internetFirewall.discardPolicyRevision								name
+mutation.policy.internetFirewall.discardPolicyRevision							}
+mutation.policy.internetFirewall.discardPolicyRevision							webhook {
+mutation.policy.internetFirewall.discardPolicyRevision								id
+mutation.policy.internetFirewall.discardPolicyRevision								name
+mutation.policy.internetFirewall.discardPolicyRevision							}
+mutation.policy.internetFirewall.discardPolicyRevision							mailingList {
+mutation.policy.internetFirewall.discardPolicyRevision								id
+mutation.policy.internetFirewall.discardPolicyRevision								name
+mutation.policy.internetFirewall.discardPolicyRevision							}
+mutation.policy.internetFirewall.discardPolicyRevision						}
+mutation.policy.internetFirewall.discardPolicyRevision					}
+mutation.policy.internetFirewall.discardPolicyRevision					schedule {
+mutation.policy.internetFirewall.discardPolicyRevision						activeOn
+mutation.policy.internetFirewall.discardPolicyRevision						customTimeframe {
+mutation.policy.internetFirewall.discardPolicyRevision							from
+mutation.policy.internetFirewall.discardPolicyRevision							to
+mutation.policy.internetFirewall.discardPolicyRevision						}
+mutation.policy.internetFirewall.discardPolicyRevision						customRecurring {
+mutation.policy.internetFirewall.discardPolicyRevision							from
+mutation.policy.internetFirewall.discardPolicyRevision							to
+mutation.policy.internetFirewall.discardPolicyRevision							days
+mutation.policy.internetFirewall.discardPolicyRevision						}
+mutation.policy.internetFirewall.discardPolicyRevision					}
+mutation.policy.internetFirewall.discardPolicyRevision					activePeriod {
+mutation.policy.internetFirewall.discardPolicyRevision						useEffectiveFrom
+mutation.policy.internetFirewall.discardPolicyRevision						effectiveFrom
+mutation.policy.internetFirewall.discardPolicyRevision						useExpiresAt
+mutation.policy.internetFirewall.discardPolicyRevision						expiresAt
+mutation.policy.internetFirewall.discardPolicyRevision					}
+mutation.policy.internetFirewall.discardPolicyRevision					exceptions {
+mutation.policy.internetFirewall.discardPolicyRevision						name
+mutation.policy.internetFirewall.discardPolicyRevision						source {
+mutation.policy.internetFirewall.discardPolicyRevision							ip
+mutation.policy.internetFirewall.discardPolicyRevision							host {
+mutation.policy.internetFirewall.discardPolicyRevision								id
+mutation.policy.internetFirewall.discardPolicyRevision								name
+mutation.policy.internetFirewall.discardPolicyRevision							}
+mutation.policy.internetFirewall.discardPolicyRevision							site {
+mutation.policy.internetFirewall.discardPolicyRevision								id
+mutation.policy.internetFirewall.discardPolicyRevision								name
+mutation.policy.internetFirewall.discardPolicyRevision							}
+mutation.policy.internetFirewall.discardPolicyRevision							subnet
+mutation.policy.internetFirewall.discardPolicyRevision							ipRange {
+mutation.policy.internetFirewall.discardPolicyRevision								from
+mutation.policy.internetFirewall.discardPolicyRevision								to
+mutation.policy.internetFirewall.discardPolicyRevision							}
+mutation.policy.internetFirewall.discardPolicyRevision							globalIpRange {
+mutation.policy.internetFirewall.discardPolicyRevision								id
+mutation.policy.internetFirewall.discardPolicyRevision								name
+mutation.policy.internetFirewall.discardPolicyRevision							}
+mutation.policy.internetFirewall.discardPolicyRevision							networkInterface {
+mutation.policy.internetFirewall.discardPolicyRevision								id
+mutation.policy.internetFirewall.discardPolicyRevision								name
+mutation.policy.internetFirewall.discardPolicyRevision							}
+mutation.policy.internetFirewall.discardPolicyRevision							siteNetworkSubnet {
+mutation.policy.internetFirewall.discardPolicyRevision								id
+mutation.policy.internetFirewall.discardPolicyRevision								name
+mutation.policy.internetFirewall.discardPolicyRevision							}
+mutation.policy.internetFirewall.discardPolicyRevision							floatingSubnet {
+mutation.policy.internetFirewall.discardPolicyRevision								id
+mutation.policy.internetFirewall.discardPolicyRevision								name
+mutation.policy.internetFirewall.discardPolicyRevision							}
+mutation.policy.internetFirewall.discardPolicyRevision							user {
+mutation.policy.internetFirewall.discardPolicyRevision								id
+mutation.policy.internetFirewall.discardPolicyRevision								name
+mutation.policy.internetFirewall.discardPolicyRevision							}
+mutation.policy.internetFirewall.discardPolicyRevision							usersGroup {
+mutation.policy.internetFirewall.discardPolicyRevision								id
+mutation.policy.internetFirewall.discardPolicyRevision								name
+mutation.policy.internetFirewall.discardPolicyRevision							}
+mutation.policy.internetFirewall.discardPolicyRevision							group {
+mutation.policy.internetFirewall.discardPolicyRevision								id
+mutation.policy.internetFirewall.discardPolicyRevision								name
+mutation.policy.internetFirewall.discardPolicyRevision							}
+mutation.policy.internetFirewall.discardPolicyRevision							systemGroup {
+mutation.policy.internetFirewall.discardPolicyRevision								id
+mutation.policy.internetFirewall.discardPolicyRevision								name
+mutation.policy.internetFirewall.discardPolicyRevision							}
+mutation.policy.internetFirewall.discardPolicyRevision						}
+mutation.policy.internetFirewall.discardPolicyRevision						deviceOS
+mutation.policy.internetFirewall.discardPolicyRevision						country {
+mutation.policy.internetFirewall.discardPolicyRevision							id
+mutation.policy.internetFirewall.discardPolicyRevision							name
+mutation.policy.internetFirewall.discardPolicyRevision						}
+mutation.policy.internetFirewall.discardPolicyRevision						device {
+mutation.policy.internetFirewall.discardPolicyRevision							id
+mutation.policy.internetFirewall.discardPolicyRevision							name
+mutation.policy.internetFirewall.discardPolicyRevision						}
+mutation.policy.internetFirewall.discardPolicyRevision						deviceAttributes {
+mutation.policy.internetFirewall.discardPolicyRevision							category
+mutation.policy.internetFirewall.discardPolicyRevision							type
+mutation.policy.internetFirewall.discardPolicyRevision							model
+mutation.policy.internetFirewall.discardPolicyRevision							manufacturer
+mutation.policy.internetFirewall.discardPolicyRevision							os
+mutation.policy.internetFirewall.discardPolicyRevision							osVersion
+mutation.policy.internetFirewall.discardPolicyRevision						}
+mutation.policy.internetFirewall.discardPolicyRevision						destination {
+mutation.policy.internetFirewall.discardPolicyRevision							application {
+mutation.policy.internetFirewall.discardPolicyRevision								id
+mutation.policy.internetFirewall.discardPolicyRevision								name
+mutation.policy.internetFirewall.discardPolicyRevision							}
+mutation.policy.internetFirewall.discardPolicyRevision							customApp {
+mutation.policy.internetFirewall.discardPolicyRevision								id
+mutation.policy.internetFirewall.discardPolicyRevision								name
+mutation.policy.internetFirewall.discardPolicyRevision							}
+mutation.policy.internetFirewall.discardPolicyRevision							appCategory {
+mutation.policy.internetFirewall.discardPolicyRevision								id
+mutation.policy.internetFirewall.discardPolicyRevision								name
+mutation.policy.internetFirewall.discardPolicyRevision							}
+mutation.policy.internetFirewall.discardPolicyRevision							customCategory {
+mutation.policy.internetFirewall.discardPolicyRevision								id
+mutation.policy.internetFirewall.discardPolicyRevision								name
+mutation.policy.internetFirewall.discardPolicyRevision							}
+mutation.policy.internetFirewall.discardPolicyRevision							sanctionedAppsCategory {
+mutation.policy.internetFirewall.discardPolicyRevision								id
+mutation.policy.internetFirewall.discardPolicyRevision								name
+mutation.policy.internetFirewall.discardPolicyRevision							}
+mutation.policy.internetFirewall.discardPolicyRevision							country {
+mutation.policy.internetFirewall.discardPolicyRevision								id
+mutation.policy.internetFirewall.discardPolicyRevision								name
+mutation.policy.internetFirewall.discardPolicyRevision							}
+mutation.policy.internetFirewall.discardPolicyRevision							domain
+mutation.policy.internetFirewall.discardPolicyRevision							fqdn
+mutation.policy.internetFirewall.discardPolicyRevision							ip
+mutation.policy.internetFirewall.discardPolicyRevision							subnet
+mutation.policy.internetFirewall.discardPolicyRevision							ipRange {
+mutation.policy.internetFirewall.discardPolicyRevision								from
+mutation.policy.internetFirewall.discardPolicyRevision								to
+mutation.policy.internetFirewall.discardPolicyRevision							}
+mutation.policy.internetFirewall.discardPolicyRevision							globalIpRange {
+mutation.policy.internetFirewall.discardPolicyRevision								id
+mutation.policy.internetFirewall.discardPolicyRevision								name
+mutation.policy.internetFirewall.discardPolicyRevision							}
+mutation.policy.internetFirewall.discardPolicyRevision							remoteAsn
+mutation.policy.internetFirewall.discardPolicyRevision							containers {
+mutation.policy.internetFirewall.discardPolicyRevision								fqdnContainer {
+mutation.policy.internetFirewall.discardPolicyRevision									id
+mutation.policy.internetFirewall.discardPolicyRevision									name
+mutation.policy.internetFirewall.discardPolicyRevision								}
+mutation.policy.internetFirewall.discardPolicyRevision								ipAddressRangeContainer {
+mutation.policy.internetFirewall.discardPolicyRevision									id
+mutation.policy.internetFirewall.discardPolicyRevision									name
+mutation.policy.internetFirewall.discardPolicyRevision								}
+mutation.policy.internetFirewall.discardPolicyRevision							}
+mutation.policy.internetFirewall.discardPolicyRevision						}
+mutation.policy.internetFirewall.discardPolicyRevision						service {
+mutation.policy.internetFirewall.discardPolicyRevision							standard {
+mutation.policy.internetFirewall.discardPolicyRevision								id
+mutation.policy.internetFirewall.discardPolicyRevision								name
+mutation.policy.internetFirewall.discardPolicyRevision							}
+mutation.policy.internetFirewall.discardPolicyRevision							custom {
+mutation.policy.internetFirewall.discardPolicyRevision								port
+mutation.policy.internetFirewall.discardPolicyRevision								portRange {
+mutation.policy.internetFirewall.discardPolicyRevision									from
+mutation.policy.internetFirewall.discardPolicyRevision									to
+mutation.policy.internetFirewall.discardPolicyRevision								}
+mutation.policy.internetFirewall.discardPolicyRevision								protocol
+mutation.policy.internetFirewall.discardPolicyRevision							}
+mutation.policy.internetFirewall.discardPolicyRevision						}
+mutation.policy.internetFirewall.discardPolicyRevision						connectionOrigin
+mutation.policy.internetFirewall.discardPolicyRevision					}
+mutation.policy.internetFirewall.discardPolicyRevision				}
+mutation.policy.internetFirewall.discardPolicyRevision				properties
+mutation.policy.internetFirewall.discardPolicyRevision			}
+mutation.policy.internetFirewall.discardPolicyRevision			sections {
+mutation.policy.internetFirewall.discardPolicyRevision				audit {
+mutation.policy.internetFirewall.discardPolicyRevision					updatedTime
+mutation.policy.internetFirewall.discardPolicyRevision					updatedBy
+mutation.policy.internetFirewall.discardPolicyRevision				}
+mutation.policy.internetFirewall.discardPolicyRevision				section {
+mutation.policy.internetFirewall.discardPolicyRevision					id
+mutation.policy.internetFirewall.discardPolicyRevision					name
+mutation.policy.internetFirewall.discardPolicyRevision				}
+mutation.policy.internetFirewall.discardPolicyRevision				properties
+mutation.policy.internetFirewall.discardPolicyRevision			}
+mutation.policy.internetFirewall.discardPolicyRevision			audit {
+mutation.policy.internetFirewall.discardPolicyRevision				publishedTime
+mutation.policy.internetFirewall.discardPolicyRevision				publishedBy
+mutation.policy.internetFirewall.discardPolicyRevision			}
+mutation.policy.internetFirewall.discardPolicyRevision			revision {
+mutation.policy.internetFirewall.discardPolicyRevision				id
+mutation.policy.internetFirewall.discardPolicyRevision				name
+mutation.policy.internetFirewall.discardPolicyRevision				description
+mutation.policy.internetFirewall.discardPolicyRevision				changes
+mutation.policy.internetFirewall.discardPolicyRevision				createdTime
+mutation.policy.internetFirewall.discardPolicyRevision				updatedTime
+mutation.policy.internetFirewall.discardPolicyRevision			}
+mutation.policy.internetFirewall.discardPolicyRevision		}
+mutation.policy.internetFirewall.discardPolicyRevision		status
+mutation.policy.internetFirewall.discardPolicyRevision		errors {
+mutation.policy.internetFirewall.discardPolicyRevision			errorMessage
+mutation.policy.internetFirewall.discardPolicyRevision			errorCode
+mutation.policy.internetFirewall.discardPolicyRevision		}
+mutation.policy.internetFirewall.discardPolicyRevision	}
+mutation.policy.internetFirewall.discardPolicyRevision}
 	}	
 }

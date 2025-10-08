@@ -1,45 +1,39 @@
-mutation policyTerminalServerRemoveRule ( $terminalServerRemoveRuleInput:TerminalServerRemoveRuleInput! $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		terminalServer ( input:$terminalServerPolicyMutationInput  )  {
-			removeRuleTerminalServerPolicyMutations: removeRule ( input:$terminalServerRemoveRuleInput   ) {
-				rule  {
-					auditTerminalServerRulePayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					ruleTerminalServerRulePayload: rule {
-						id 
-						name 
-						description 
-						index 
-						section  {
-							id
-							name
-						}
-
-						enabled 
-						allowedHostIP  {
-							id
-							name
-						}
-
-						excludeTraffic  {
-							id
-							name
-						}
-
-					}
-					propertiesTerminalServerRulePayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyTerminalServerRemoveRule ( $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput $terminalServerRemoveRuleInput:TerminalServerRemoveRuleInput!) {
+	policy ( ) {
+mutation.policy.terminalServer.removeRuleterminalServer ( input:$terminalServerPolicyMutationInput  )  {
+mutation.policy.terminalServer.removeRule	removeRule ( input:$terminalServerRemoveRuleInput   ) {
+mutation.policy.terminalServer.removeRule		rule {
+mutation.policy.terminalServer.removeRule			audit {
+mutation.policy.terminalServer.removeRule				updatedTime
+mutation.policy.terminalServer.removeRule				updatedBy
+mutation.policy.terminalServer.removeRule			}
+mutation.policy.terminalServer.removeRule			rule {
+mutation.policy.terminalServer.removeRule				id
+mutation.policy.terminalServer.removeRule				name
+mutation.policy.terminalServer.removeRule				description
+mutation.policy.terminalServer.removeRule				index
+mutation.policy.terminalServer.removeRule				section {
+mutation.policy.terminalServer.removeRule					id
+mutation.policy.terminalServer.removeRule					name
+mutation.policy.terminalServer.removeRule				}
+mutation.policy.terminalServer.removeRule				enabled
+mutation.policy.terminalServer.removeRule				allowedHostIP {
+mutation.policy.terminalServer.removeRule					id
+mutation.policy.terminalServer.removeRule					name
+mutation.policy.terminalServer.removeRule				}
+mutation.policy.terminalServer.removeRule				excludeTraffic {
+mutation.policy.terminalServer.removeRule					id
+mutation.policy.terminalServer.removeRule					name
+mutation.policy.terminalServer.removeRule				}
+mutation.policy.terminalServer.removeRule			}
+mutation.policy.terminalServer.removeRule			properties
+mutation.policy.terminalServer.removeRule		}
+mutation.policy.terminalServer.removeRule		status
+mutation.policy.terminalServer.removeRule		errors {
+mutation.policy.terminalServer.removeRule			errorMessage
+mutation.policy.terminalServer.removeRule			errorCode
+mutation.policy.terminalServer.removeRule		}
+mutation.policy.terminalServer.removeRule	}
+mutation.policy.terminalServer.removeRule}
 	}	
 }

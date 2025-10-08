@@ -1,27 +1,24 @@
-mutation policyDynamicIpAllocationUpdateSection ( $policyUpdateSectionInput:PolicyUpdateSectionInput! $dynamicIpAllocationPolicyMutationInput:DynamicIpAllocationPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		dynamicIpAllocation ( input:$dynamicIpAllocationPolicyMutationInput  )  {
-			updateSectionDynamicIpAllocationPolicyMutations: updateSection ( input:$policyUpdateSectionInput   ) {
-				section  {
-					auditPolicySectionPayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					sectionPolicySectionPayload: section {
-						id 
-						name 
-					}
-					propertiesPolicySectionPayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyDynamicIpAllocationUpdateSection ( $dynamicIpAllocationPolicyMutationInput:DynamicIpAllocationPolicyMutationInput $policyUpdateSectionInput:PolicyUpdateSectionInput!) {
+	policy ( ) {
+mutation.policy.dynamicIpAllocation.updateSectiondynamicIpAllocation ( input:$dynamicIpAllocationPolicyMutationInput  )  {
+mutation.policy.dynamicIpAllocation.updateSection	updateSection ( input:$policyUpdateSectionInput   ) {
+mutation.policy.dynamicIpAllocation.updateSection		section {
+mutation.policy.dynamicIpAllocation.updateSection			audit {
+mutation.policy.dynamicIpAllocation.updateSection				updatedTime
+mutation.policy.dynamicIpAllocation.updateSection				updatedBy
+mutation.policy.dynamicIpAllocation.updateSection			}
+mutation.policy.dynamicIpAllocation.updateSection			section {
+mutation.policy.dynamicIpAllocation.updateSection				id
+mutation.policy.dynamicIpAllocation.updateSection				name
+mutation.policy.dynamicIpAllocation.updateSection			}
+mutation.policy.dynamicIpAllocation.updateSection			properties
+mutation.policy.dynamicIpAllocation.updateSection		}
+mutation.policy.dynamicIpAllocation.updateSection		status
+mutation.policy.dynamicIpAllocation.updateSection		errors {
+mutation.policy.dynamicIpAllocation.updateSection			errorMessage
+mutation.policy.dynamicIpAllocation.updateSection			errorCode
+mutation.policy.dynamicIpAllocation.updateSection		}
+mutation.policy.dynamicIpAllocation.updateSection	}
+mutation.policy.dynamicIpAllocation.updateSection}
 	}	
 }

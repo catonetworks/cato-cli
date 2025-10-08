@@ -1,411 +1,365 @@
-mutation policyWanNetworkCreatePolicyRevision ( $policyCreateRevisionInput:PolicyCreateRevisionInput! $wanNetworkPolicyMutationInput:WanNetworkPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		wanNetwork ( input:$wanNetworkPolicyMutationInput  )  {
-			createPolicyRevisionWanNetworkPolicyMutations: createPolicyRevision ( input:$policyCreateRevisionInput   ) {
-				policy  {
-					enabled
-					rulesWanNetworkPolicy: rules {
-						audit  {
-							updatedTime
-							updatedBy
-						}
-
-						rule  {
-							id
-							name
-							description
-							index
-							sectionWanNetworkRule: section {
-								id 
-								name 
-							}
-							enabled
-							ruleTypeWanNetworkRule: ruleType
-							routeTypeWanNetworkRule: routeType
-							sourceWanNetworkRule: source {
-								user  {
-									id
-									name
-								}
-
-								floatingSubnet  {
-									id
-									name
-								}
-
-								globalIpRange  {
-									id
-									name
-								}
-
-								group  {
-									id
-									name
-								}
-
-								host  {
-									id
-									name
-								}
-
-								ip 
-								ipRange  {
-									from
-									to
-								}
-
-								networkInterface  {
-									id
-									name
-								}
-
-								subnet 
-								site  {
-									id
-									name
-								}
-
-								siteNetworkSubnet  {
-									id
-									name
-								}
-
-								systemGroup  {
-									id
-									name
-								}
-
-								usersGroup  {
-									id
-									name
-								}
-
-							}
-							destinationWanNetworkRule: destination {
-								user  {
-									id
-									name
-								}
-
-								floatingSubnet  {
-									id
-									name
-								}
-
-								globalIpRange  {
-									id
-									name
-								}
-
-								group  {
-									id
-									name
-								}
-
-								host  {
-									id
-									name
-								}
-
-								ip 
-								ipRange  {
-									from
-									to
-								}
-
-								networkInterface  {
-									id
-									name
-								}
-
-								subnet 
-								site  {
-									id
-									name
-								}
-
-								siteNetworkSubnet  {
-									id
-									name
-								}
-
-								systemGroup  {
-									id
-									name
-								}
-
-								usersGroup  {
-									id
-									name
-								}
-
-							}
-							applicationWanNetworkRule: application {
-								application  {
-									id
-									name
-								}
-
-								appCategory  {
-									id
-									name
-								}
-
-								customApp  {
-									id
-									name
-								}
-
-								customCategory  {
-									id
-									name
-								}
-
-								customServiceIp  {
-									name
-									ip
-									ipRangeCustomServiceIp: ipRange {
-										from 
-										to 
-									}
-								}
-
-								customService  {
-									port
-									portRangeCustomService: portRange {
-										from 
-										to 
-									}
-									protocolCustomService: protocol
-								}
-
-								domain 
-								fqdn 
-								service  {
-									id
-									name
-								}
-
-							}
-							configurationWanNetworkRule: configuration {
-								activeTcpAcceleration 
-								packetLossMitigation 
-								preserveSourcePort 
-								primaryTransport  {
-									transportTypeWanNetworkRuleTransport: transportType
-									primaryInterfaceRoleWanNetworkRuleTransport: primaryInterfaceRole
-									secondaryInterfaceRoleWanNetworkRuleTransport: secondaryInterfaceRole
-								}
-
-								secondaryTransport  {
-									transportTypeWanNetworkRuleTransport: transportType
-									primaryInterfaceRoleWanNetworkRuleTransport: primaryInterfaceRole
-									secondaryInterfaceRoleWanNetworkRuleTransport: secondaryInterfaceRole
-								}
-
-								allocationIp  {
-									id
-									name
-								}
-
-								popLocation  {
-									id
-									name
-								}
-
-								backhaulingSite  {
-									id
-									name
-								}
-
-							}
-							bandwidthPriorityWanNetworkRule: bandwidthPriority {
-								id 
-								name 
-							}
-							exceptionsWanNetworkRule: exceptions {
-								name 
-								source  {
-									userWanNetworkRuleSource: user {
-										id 
-										name 
-									}
-									floatingSubnetWanNetworkRuleSource: floatingSubnet {
-										id 
-										name 
-									}
-									globalIpRangeWanNetworkRuleSource: globalIpRange {
-										id 
-										name 
-									}
-									groupWanNetworkRuleSource: group {
-										id 
-										name 
-									}
-									hostWanNetworkRuleSource: host {
-										id 
-										name 
-									}
-									ip
-									ipRangeWanNetworkRuleSource: ipRange {
-										from 
-										to 
-									}
-									networkInterfaceWanNetworkRuleSource: networkInterface {
-										id 
-										name 
-									}
-									subnet
-									siteWanNetworkRuleSource: site {
-										id 
-										name 
-									}
-									siteNetworkSubnetWanNetworkRuleSource: siteNetworkSubnet {
-										id 
-										name 
-									}
-									systemGroupWanNetworkRuleSource: systemGroup {
-										id 
-										name 
-									}
-									usersGroupWanNetworkRuleSource: usersGroup {
-										id 
-										name 
-									}
-								}
-
-								destination  {
-									userWanNetworkRuleDestination: user {
-										id 
-										name 
-									}
-									floatingSubnetWanNetworkRuleDestination: floatingSubnet {
-										id 
-										name 
-									}
-									globalIpRangeWanNetworkRuleDestination: globalIpRange {
-										id 
-										name 
-									}
-									groupWanNetworkRuleDestination: group {
-										id 
-										name 
-									}
-									hostWanNetworkRuleDestination: host {
-										id 
-										name 
-									}
-									ip
-									ipRangeWanNetworkRuleDestination: ipRange {
-										from 
-										to 
-									}
-									networkInterfaceWanNetworkRuleDestination: networkInterface {
-										id 
-										name 
-									}
-									subnet
-									siteWanNetworkRuleDestination: site {
-										id 
-										name 
-									}
-									siteNetworkSubnetWanNetworkRuleDestination: siteNetworkSubnet {
-										id 
-										name 
-									}
-									systemGroupWanNetworkRuleDestination: systemGroup {
-										id 
-										name 
-									}
-									usersGroupWanNetworkRuleDestination: usersGroup {
-										id 
-										name 
-									}
-								}
-
-								application  {
-									applicationWanNetworkRuleApplication: application {
-										id 
-										name 
-									}
-									appCategoryWanNetworkRuleApplication: appCategory {
-										id 
-										name 
-									}
-									customAppWanNetworkRuleApplication: customApp {
-										id 
-										name 
-									}
-									customCategoryWanNetworkRuleApplication: customCategory {
-										id 
-										name 
-									}
-									customServiceIpWanNetworkRuleApplication: customServiceIp {
-										name 
-										ip 
-										ipRange  {
-											from
-											to
-										}
-
-									}
-									customServiceWanNetworkRuleApplication: customService {
-										port 
-										portRange  {
-											from
-											to
-										}
-
-										protocol 
-									}
-									domain
-									fqdn
-									serviceWanNetworkRuleApplication: service {
-										id 
-										name 
-									}
-								}
-
-							}
-						}
-
-						properties 
-					}
-					sectionsWanNetworkPolicy: sections {
-						audit  {
-							updatedTime
-							updatedBy
-						}
-
-						section  {
-							id
-							name
-						}
-
-						properties 
-					}
-					auditWanNetworkPolicy: audit {
-						publishedTime 
-						publishedBy 
-					}
-					revisionWanNetworkPolicy: revision {
-						id 
-						name 
-						description 
-						changes 
-						createdTime 
-						updatedTime 
-					}
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyWanNetworkCreatePolicyRevision ( $wanNetworkPolicyMutationInput:WanNetworkPolicyMutationInput $policyCreateRevisionInput:PolicyCreateRevisionInput!) {
+	policy ( ) {
+mutation.policy.wanNetwork.createPolicyRevisionwanNetwork ( input:$wanNetworkPolicyMutationInput  )  {
+mutation.policy.wanNetwork.createPolicyRevision	createPolicyRevision ( input:$policyCreateRevisionInput   ) {
+mutation.policy.wanNetwork.createPolicyRevision		policy {
+mutation.policy.wanNetwork.createPolicyRevision			enabled
+mutation.policy.wanNetwork.createPolicyRevision			rules {
+mutation.policy.wanNetwork.createPolicyRevision				audit {
+mutation.policy.wanNetwork.createPolicyRevision					updatedTime
+mutation.policy.wanNetwork.createPolicyRevision					updatedBy
+mutation.policy.wanNetwork.createPolicyRevision				}
+mutation.policy.wanNetwork.createPolicyRevision				rule {
+mutation.policy.wanNetwork.createPolicyRevision					id
+mutation.policy.wanNetwork.createPolicyRevision					name
+mutation.policy.wanNetwork.createPolicyRevision					description
+mutation.policy.wanNetwork.createPolicyRevision					index
+mutation.policy.wanNetwork.createPolicyRevision					section {
+mutation.policy.wanNetwork.createPolicyRevision						id
+mutation.policy.wanNetwork.createPolicyRevision						name
+mutation.policy.wanNetwork.createPolicyRevision					}
+mutation.policy.wanNetwork.createPolicyRevision					enabled
+mutation.policy.wanNetwork.createPolicyRevision					ruleType
+mutation.policy.wanNetwork.createPolicyRevision					routeType
+mutation.policy.wanNetwork.createPolicyRevision					source {
+mutation.policy.wanNetwork.createPolicyRevision						user {
+mutation.policy.wanNetwork.createPolicyRevision							id
+mutation.policy.wanNetwork.createPolicyRevision							name
+mutation.policy.wanNetwork.createPolicyRevision						}
+mutation.policy.wanNetwork.createPolicyRevision						floatingSubnet {
+mutation.policy.wanNetwork.createPolicyRevision							id
+mutation.policy.wanNetwork.createPolicyRevision							name
+mutation.policy.wanNetwork.createPolicyRevision						}
+mutation.policy.wanNetwork.createPolicyRevision						globalIpRange {
+mutation.policy.wanNetwork.createPolicyRevision							id
+mutation.policy.wanNetwork.createPolicyRevision							name
+mutation.policy.wanNetwork.createPolicyRevision						}
+mutation.policy.wanNetwork.createPolicyRevision						group {
+mutation.policy.wanNetwork.createPolicyRevision							id
+mutation.policy.wanNetwork.createPolicyRevision							name
+mutation.policy.wanNetwork.createPolicyRevision						}
+mutation.policy.wanNetwork.createPolicyRevision						host {
+mutation.policy.wanNetwork.createPolicyRevision							id
+mutation.policy.wanNetwork.createPolicyRevision							name
+mutation.policy.wanNetwork.createPolicyRevision						}
+mutation.policy.wanNetwork.createPolicyRevision						ip
+mutation.policy.wanNetwork.createPolicyRevision						ipRange {
+mutation.policy.wanNetwork.createPolicyRevision							from
+mutation.policy.wanNetwork.createPolicyRevision							to
+mutation.policy.wanNetwork.createPolicyRevision						}
+mutation.policy.wanNetwork.createPolicyRevision						networkInterface {
+mutation.policy.wanNetwork.createPolicyRevision							id
+mutation.policy.wanNetwork.createPolicyRevision							name
+mutation.policy.wanNetwork.createPolicyRevision						}
+mutation.policy.wanNetwork.createPolicyRevision						subnet
+mutation.policy.wanNetwork.createPolicyRevision						site {
+mutation.policy.wanNetwork.createPolicyRevision							id
+mutation.policy.wanNetwork.createPolicyRevision							name
+mutation.policy.wanNetwork.createPolicyRevision						}
+mutation.policy.wanNetwork.createPolicyRevision						siteNetworkSubnet {
+mutation.policy.wanNetwork.createPolicyRevision							id
+mutation.policy.wanNetwork.createPolicyRevision							name
+mutation.policy.wanNetwork.createPolicyRevision						}
+mutation.policy.wanNetwork.createPolicyRevision						systemGroup {
+mutation.policy.wanNetwork.createPolicyRevision							id
+mutation.policy.wanNetwork.createPolicyRevision							name
+mutation.policy.wanNetwork.createPolicyRevision						}
+mutation.policy.wanNetwork.createPolicyRevision						usersGroup {
+mutation.policy.wanNetwork.createPolicyRevision							id
+mutation.policy.wanNetwork.createPolicyRevision							name
+mutation.policy.wanNetwork.createPolicyRevision						}
+mutation.policy.wanNetwork.createPolicyRevision					}
+mutation.policy.wanNetwork.createPolicyRevision					destination {
+mutation.policy.wanNetwork.createPolicyRevision						user {
+mutation.policy.wanNetwork.createPolicyRevision							id
+mutation.policy.wanNetwork.createPolicyRevision							name
+mutation.policy.wanNetwork.createPolicyRevision						}
+mutation.policy.wanNetwork.createPolicyRevision						floatingSubnet {
+mutation.policy.wanNetwork.createPolicyRevision							id
+mutation.policy.wanNetwork.createPolicyRevision							name
+mutation.policy.wanNetwork.createPolicyRevision						}
+mutation.policy.wanNetwork.createPolicyRevision						globalIpRange {
+mutation.policy.wanNetwork.createPolicyRevision							id
+mutation.policy.wanNetwork.createPolicyRevision							name
+mutation.policy.wanNetwork.createPolicyRevision						}
+mutation.policy.wanNetwork.createPolicyRevision						group {
+mutation.policy.wanNetwork.createPolicyRevision							id
+mutation.policy.wanNetwork.createPolicyRevision							name
+mutation.policy.wanNetwork.createPolicyRevision						}
+mutation.policy.wanNetwork.createPolicyRevision						host {
+mutation.policy.wanNetwork.createPolicyRevision							id
+mutation.policy.wanNetwork.createPolicyRevision							name
+mutation.policy.wanNetwork.createPolicyRevision						}
+mutation.policy.wanNetwork.createPolicyRevision						ip
+mutation.policy.wanNetwork.createPolicyRevision						ipRange {
+mutation.policy.wanNetwork.createPolicyRevision							from
+mutation.policy.wanNetwork.createPolicyRevision							to
+mutation.policy.wanNetwork.createPolicyRevision						}
+mutation.policy.wanNetwork.createPolicyRevision						networkInterface {
+mutation.policy.wanNetwork.createPolicyRevision							id
+mutation.policy.wanNetwork.createPolicyRevision							name
+mutation.policy.wanNetwork.createPolicyRevision						}
+mutation.policy.wanNetwork.createPolicyRevision						subnet
+mutation.policy.wanNetwork.createPolicyRevision						site {
+mutation.policy.wanNetwork.createPolicyRevision							id
+mutation.policy.wanNetwork.createPolicyRevision							name
+mutation.policy.wanNetwork.createPolicyRevision						}
+mutation.policy.wanNetwork.createPolicyRevision						siteNetworkSubnet {
+mutation.policy.wanNetwork.createPolicyRevision							id
+mutation.policy.wanNetwork.createPolicyRevision							name
+mutation.policy.wanNetwork.createPolicyRevision						}
+mutation.policy.wanNetwork.createPolicyRevision						systemGroup {
+mutation.policy.wanNetwork.createPolicyRevision							id
+mutation.policy.wanNetwork.createPolicyRevision							name
+mutation.policy.wanNetwork.createPolicyRevision						}
+mutation.policy.wanNetwork.createPolicyRevision						usersGroup {
+mutation.policy.wanNetwork.createPolicyRevision							id
+mutation.policy.wanNetwork.createPolicyRevision							name
+mutation.policy.wanNetwork.createPolicyRevision						}
+mutation.policy.wanNetwork.createPolicyRevision					}
+mutation.policy.wanNetwork.createPolicyRevision					application {
+mutation.policy.wanNetwork.createPolicyRevision						application {
+mutation.policy.wanNetwork.createPolicyRevision							id
+mutation.policy.wanNetwork.createPolicyRevision							name
+mutation.policy.wanNetwork.createPolicyRevision						}
+mutation.policy.wanNetwork.createPolicyRevision						appCategory {
+mutation.policy.wanNetwork.createPolicyRevision							id
+mutation.policy.wanNetwork.createPolicyRevision							name
+mutation.policy.wanNetwork.createPolicyRevision						}
+mutation.policy.wanNetwork.createPolicyRevision						customApp {
+mutation.policy.wanNetwork.createPolicyRevision							id
+mutation.policy.wanNetwork.createPolicyRevision							name
+mutation.policy.wanNetwork.createPolicyRevision						}
+mutation.policy.wanNetwork.createPolicyRevision						customCategory {
+mutation.policy.wanNetwork.createPolicyRevision							id
+mutation.policy.wanNetwork.createPolicyRevision							name
+mutation.policy.wanNetwork.createPolicyRevision						}
+mutation.policy.wanNetwork.createPolicyRevision						customServiceIp {
+mutation.policy.wanNetwork.createPolicyRevision							name
+mutation.policy.wanNetwork.createPolicyRevision							ip
+mutation.policy.wanNetwork.createPolicyRevision							ipRange {
+mutation.policy.wanNetwork.createPolicyRevision								from
+mutation.policy.wanNetwork.createPolicyRevision								to
+mutation.policy.wanNetwork.createPolicyRevision							}
+mutation.policy.wanNetwork.createPolicyRevision						}
+mutation.policy.wanNetwork.createPolicyRevision						customService {
+mutation.policy.wanNetwork.createPolicyRevision							port
+mutation.policy.wanNetwork.createPolicyRevision							portRange {
+mutation.policy.wanNetwork.createPolicyRevision								from
+mutation.policy.wanNetwork.createPolicyRevision								to
+mutation.policy.wanNetwork.createPolicyRevision							}
+mutation.policy.wanNetwork.createPolicyRevision							protocol
+mutation.policy.wanNetwork.createPolicyRevision						}
+mutation.policy.wanNetwork.createPolicyRevision						domain
+mutation.policy.wanNetwork.createPolicyRevision						fqdn
+mutation.policy.wanNetwork.createPolicyRevision						service {
+mutation.policy.wanNetwork.createPolicyRevision							id
+mutation.policy.wanNetwork.createPolicyRevision							name
+mutation.policy.wanNetwork.createPolicyRevision						}
+mutation.policy.wanNetwork.createPolicyRevision					}
+mutation.policy.wanNetwork.createPolicyRevision					configuration {
+mutation.policy.wanNetwork.createPolicyRevision						activeTcpAcceleration
+mutation.policy.wanNetwork.createPolicyRevision						packetLossMitigation
+mutation.policy.wanNetwork.createPolicyRevision						preserveSourcePort
+mutation.policy.wanNetwork.createPolicyRevision						primaryTransport {
+mutation.policy.wanNetwork.createPolicyRevision							transportType
+mutation.policy.wanNetwork.createPolicyRevision							primaryInterfaceRole
+mutation.policy.wanNetwork.createPolicyRevision							secondaryInterfaceRole
+mutation.policy.wanNetwork.createPolicyRevision						}
+mutation.policy.wanNetwork.createPolicyRevision						secondaryTransport {
+mutation.policy.wanNetwork.createPolicyRevision							transportType
+mutation.policy.wanNetwork.createPolicyRevision							primaryInterfaceRole
+mutation.policy.wanNetwork.createPolicyRevision							secondaryInterfaceRole
+mutation.policy.wanNetwork.createPolicyRevision						}
+mutation.policy.wanNetwork.createPolicyRevision						allocationIp {
+mutation.policy.wanNetwork.createPolicyRevision							id
+mutation.policy.wanNetwork.createPolicyRevision							name
+mutation.policy.wanNetwork.createPolicyRevision						}
+mutation.policy.wanNetwork.createPolicyRevision						popLocation {
+mutation.policy.wanNetwork.createPolicyRevision							id
+mutation.policy.wanNetwork.createPolicyRevision							name
+mutation.policy.wanNetwork.createPolicyRevision						}
+mutation.policy.wanNetwork.createPolicyRevision						backhaulingSite {
+mutation.policy.wanNetwork.createPolicyRevision							id
+mutation.policy.wanNetwork.createPolicyRevision							name
+mutation.policy.wanNetwork.createPolicyRevision						}
+mutation.policy.wanNetwork.createPolicyRevision					}
+mutation.policy.wanNetwork.createPolicyRevision					bandwidthPriority {
+mutation.policy.wanNetwork.createPolicyRevision						id
+mutation.policy.wanNetwork.createPolicyRevision						name
+mutation.policy.wanNetwork.createPolicyRevision					}
+mutation.policy.wanNetwork.createPolicyRevision					exceptions {
+mutation.policy.wanNetwork.createPolicyRevision						name
+mutation.policy.wanNetwork.createPolicyRevision						source {
+mutation.policy.wanNetwork.createPolicyRevision							user {
+mutation.policy.wanNetwork.createPolicyRevision								id
+mutation.policy.wanNetwork.createPolicyRevision								name
+mutation.policy.wanNetwork.createPolicyRevision							}
+mutation.policy.wanNetwork.createPolicyRevision							floatingSubnet {
+mutation.policy.wanNetwork.createPolicyRevision								id
+mutation.policy.wanNetwork.createPolicyRevision								name
+mutation.policy.wanNetwork.createPolicyRevision							}
+mutation.policy.wanNetwork.createPolicyRevision							globalIpRange {
+mutation.policy.wanNetwork.createPolicyRevision								id
+mutation.policy.wanNetwork.createPolicyRevision								name
+mutation.policy.wanNetwork.createPolicyRevision							}
+mutation.policy.wanNetwork.createPolicyRevision							group {
+mutation.policy.wanNetwork.createPolicyRevision								id
+mutation.policy.wanNetwork.createPolicyRevision								name
+mutation.policy.wanNetwork.createPolicyRevision							}
+mutation.policy.wanNetwork.createPolicyRevision							host {
+mutation.policy.wanNetwork.createPolicyRevision								id
+mutation.policy.wanNetwork.createPolicyRevision								name
+mutation.policy.wanNetwork.createPolicyRevision							}
+mutation.policy.wanNetwork.createPolicyRevision							ip
+mutation.policy.wanNetwork.createPolicyRevision							ipRange {
+mutation.policy.wanNetwork.createPolicyRevision								from
+mutation.policy.wanNetwork.createPolicyRevision								to
+mutation.policy.wanNetwork.createPolicyRevision							}
+mutation.policy.wanNetwork.createPolicyRevision							networkInterface {
+mutation.policy.wanNetwork.createPolicyRevision								id
+mutation.policy.wanNetwork.createPolicyRevision								name
+mutation.policy.wanNetwork.createPolicyRevision							}
+mutation.policy.wanNetwork.createPolicyRevision							subnet
+mutation.policy.wanNetwork.createPolicyRevision							site {
+mutation.policy.wanNetwork.createPolicyRevision								id
+mutation.policy.wanNetwork.createPolicyRevision								name
+mutation.policy.wanNetwork.createPolicyRevision							}
+mutation.policy.wanNetwork.createPolicyRevision							siteNetworkSubnet {
+mutation.policy.wanNetwork.createPolicyRevision								id
+mutation.policy.wanNetwork.createPolicyRevision								name
+mutation.policy.wanNetwork.createPolicyRevision							}
+mutation.policy.wanNetwork.createPolicyRevision							systemGroup {
+mutation.policy.wanNetwork.createPolicyRevision								id
+mutation.policy.wanNetwork.createPolicyRevision								name
+mutation.policy.wanNetwork.createPolicyRevision							}
+mutation.policy.wanNetwork.createPolicyRevision							usersGroup {
+mutation.policy.wanNetwork.createPolicyRevision								id
+mutation.policy.wanNetwork.createPolicyRevision								name
+mutation.policy.wanNetwork.createPolicyRevision							}
+mutation.policy.wanNetwork.createPolicyRevision						}
+mutation.policy.wanNetwork.createPolicyRevision						destination {
+mutation.policy.wanNetwork.createPolicyRevision							user {
+mutation.policy.wanNetwork.createPolicyRevision								id
+mutation.policy.wanNetwork.createPolicyRevision								name
+mutation.policy.wanNetwork.createPolicyRevision							}
+mutation.policy.wanNetwork.createPolicyRevision							floatingSubnet {
+mutation.policy.wanNetwork.createPolicyRevision								id
+mutation.policy.wanNetwork.createPolicyRevision								name
+mutation.policy.wanNetwork.createPolicyRevision							}
+mutation.policy.wanNetwork.createPolicyRevision							globalIpRange {
+mutation.policy.wanNetwork.createPolicyRevision								id
+mutation.policy.wanNetwork.createPolicyRevision								name
+mutation.policy.wanNetwork.createPolicyRevision							}
+mutation.policy.wanNetwork.createPolicyRevision							group {
+mutation.policy.wanNetwork.createPolicyRevision								id
+mutation.policy.wanNetwork.createPolicyRevision								name
+mutation.policy.wanNetwork.createPolicyRevision							}
+mutation.policy.wanNetwork.createPolicyRevision							host {
+mutation.policy.wanNetwork.createPolicyRevision								id
+mutation.policy.wanNetwork.createPolicyRevision								name
+mutation.policy.wanNetwork.createPolicyRevision							}
+mutation.policy.wanNetwork.createPolicyRevision							ip
+mutation.policy.wanNetwork.createPolicyRevision							ipRange {
+mutation.policy.wanNetwork.createPolicyRevision								from
+mutation.policy.wanNetwork.createPolicyRevision								to
+mutation.policy.wanNetwork.createPolicyRevision							}
+mutation.policy.wanNetwork.createPolicyRevision							networkInterface {
+mutation.policy.wanNetwork.createPolicyRevision								id
+mutation.policy.wanNetwork.createPolicyRevision								name
+mutation.policy.wanNetwork.createPolicyRevision							}
+mutation.policy.wanNetwork.createPolicyRevision							subnet
+mutation.policy.wanNetwork.createPolicyRevision							site {
+mutation.policy.wanNetwork.createPolicyRevision								id
+mutation.policy.wanNetwork.createPolicyRevision								name
+mutation.policy.wanNetwork.createPolicyRevision							}
+mutation.policy.wanNetwork.createPolicyRevision							siteNetworkSubnet {
+mutation.policy.wanNetwork.createPolicyRevision								id
+mutation.policy.wanNetwork.createPolicyRevision								name
+mutation.policy.wanNetwork.createPolicyRevision							}
+mutation.policy.wanNetwork.createPolicyRevision							systemGroup {
+mutation.policy.wanNetwork.createPolicyRevision								id
+mutation.policy.wanNetwork.createPolicyRevision								name
+mutation.policy.wanNetwork.createPolicyRevision							}
+mutation.policy.wanNetwork.createPolicyRevision							usersGroup {
+mutation.policy.wanNetwork.createPolicyRevision								id
+mutation.policy.wanNetwork.createPolicyRevision								name
+mutation.policy.wanNetwork.createPolicyRevision							}
+mutation.policy.wanNetwork.createPolicyRevision						}
+mutation.policy.wanNetwork.createPolicyRevision						application {
+mutation.policy.wanNetwork.createPolicyRevision							application {
+mutation.policy.wanNetwork.createPolicyRevision								id
+mutation.policy.wanNetwork.createPolicyRevision								name
+mutation.policy.wanNetwork.createPolicyRevision							}
+mutation.policy.wanNetwork.createPolicyRevision							appCategory {
+mutation.policy.wanNetwork.createPolicyRevision								id
+mutation.policy.wanNetwork.createPolicyRevision								name
+mutation.policy.wanNetwork.createPolicyRevision							}
+mutation.policy.wanNetwork.createPolicyRevision							customApp {
+mutation.policy.wanNetwork.createPolicyRevision								id
+mutation.policy.wanNetwork.createPolicyRevision								name
+mutation.policy.wanNetwork.createPolicyRevision							}
+mutation.policy.wanNetwork.createPolicyRevision							customCategory {
+mutation.policy.wanNetwork.createPolicyRevision								id
+mutation.policy.wanNetwork.createPolicyRevision								name
+mutation.policy.wanNetwork.createPolicyRevision							}
+mutation.policy.wanNetwork.createPolicyRevision							customServiceIp {
+mutation.policy.wanNetwork.createPolicyRevision								name
+mutation.policy.wanNetwork.createPolicyRevision								ip
+mutation.policy.wanNetwork.createPolicyRevision								ipRange {
+mutation.policy.wanNetwork.createPolicyRevision									from
+mutation.policy.wanNetwork.createPolicyRevision									to
+mutation.policy.wanNetwork.createPolicyRevision								}
+mutation.policy.wanNetwork.createPolicyRevision							}
+mutation.policy.wanNetwork.createPolicyRevision							customService {
+mutation.policy.wanNetwork.createPolicyRevision								port
+mutation.policy.wanNetwork.createPolicyRevision								portRange {
+mutation.policy.wanNetwork.createPolicyRevision									from
+mutation.policy.wanNetwork.createPolicyRevision									to
+mutation.policy.wanNetwork.createPolicyRevision								}
+mutation.policy.wanNetwork.createPolicyRevision								protocol
+mutation.policy.wanNetwork.createPolicyRevision							}
+mutation.policy.wanNetwork.createPolicyRevision							domain
+mutation.policy.wanNetwork.createPolicyRevision							fqdn
+mutation.policy.wanNetwork.createPolicyRevision							service {
+mutation.policy.wanNetwork.createPolicyRevision								id
+mutation.policy.wanNetwork.createPolicyRevision								name
+mutation.policy.wanNetwork.createPolicyRevision							}
+mutation.policy.wanNetwork.createPolicyRevision						}
+mutation.policy.wanNetwork.createPolicyRevision					}
+mutation.policy.wanNetwork.createPolicyRevision				}
+mutation.policy.wanNetwork.createPolicyRevision				properties
+mutation.policy.wanNetwork.createPolicyRevision			}
+mutation.policy.wanNetwork.createPolicyRevision			sections {
+mutation.policy.wanNetwork.createPolicyRevision				audit {
+mutation.policy.wanNetwork.createPolicyRevision					updatedTime
+mutation.policy.wanNetwork.createPolicyRevision					updatedBy
+mutation.policy.wanNetwork.createPolicyRevision				}
+mutation.policy.wanNetwork.createPolicyRevision				section {
+mutation.policy.wanNetwork.createPolicyRevision					id
+mutation.policy.wanNetwork.createPolicyRevision					name
+mutation.policy.wanNetwork.createPolicyRevision				}
+mutation.policy.wanNetwork.createPolicyRevision				properties
+mutation.policy.wanNetwork.createPolicyRevision			}
+mutation.policy.wanNetwork.createPolicyRevision			audit {
+mutation.policy.wanNetwork.createPolicyRevision				publishedTime
+mutation.policy.wanNetwork.createPolicyRevision				publishedBy
+mutation.policy.wanNetwork.createPolicyRevision			}
+mutation.policy.wanNetwork.createPolicyRevision			revision {
+mutation.policy.wanNetwork.createPolicyRevision				id
+mutation.policy.wanNetwork.createPolicyRevision				name
+mutation.policy.wanNetwork.createPolicyRevision				description
+mutation.policy.wanNetwork.createPolicyRevision				changes
+mutation.policy.wanNetwork.createPolicyRevision				createdTime
+mutation.policy.wanNetwork.createPolicyRevision				updatedTime
+mutation.policy.wanNetwork.createPolicyRevision			}
+mutation.policy.wanNetwork.createPolicyRevision		}
+mutation.policy.wanNetwork.createPolicyRevision		status
+mutation.policy.wanNetwork.createPolicyRevision		errors {
+mutation.policy.wanNetwork.createPolicyRevision			errorMessage
+mutation.policy.wanNetwork.createPolicyRevision			errorCode
+mutation.policy.wanNetwork.createPolicyRevision		}
+mutation.policy.wanNetwork.createPolicyRevision	}
+mutation.policy.wanNetwork.createPolicyRevision}
 	}	
 }

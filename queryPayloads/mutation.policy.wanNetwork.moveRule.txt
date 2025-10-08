@@ -1,380 +1,339 @@
-mutation policyWanNetworkMoveRule ( $policyMoveRuleInput:PolicyMoveRuleInput! $wanNetworkPolicyMutationInput:WanNetworkPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		wanNetwork ( input:$wanNetworkPolicyMutationInput  )  {
-			moveRuleWanNetworkPolicyMutations: moveRule ( input:$policyMoveRuleInput   ) {
-				rule  {
-					auditWanNetworkRulePayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					ruleWanNetworkRulePayload: rule {
-						id 
-						name 
-						description 
-						index 
-						section  {
-							id
-							name
-						}
-
-						enabled 
-						ruleType 
-						routeType 
-						source  {
-							userWanNetworkRuleSource: user {
-								id 
-								name 
-							}
-							floatingSubnetWanNetworkRuleSource: floatingSubnet {
-								id 
-								name 
-							}
-							globalIpRangeWanNetworkRuleSource: globalIpRange {
-								id 
-								name 
-							}
-							groupWanNetworkRuleSource: group {
-								id 
-								name 
-							}
-							hostWanNetworkRuleSource: host {
-								id 
-								name 
-							}
-							ip
-							ipRangeWanNetworkRuleSource: ipRange {
-								from 
-								to 
-							}
-							networkInterfaceWanNetworkRuleSource: networkInterface {
-								id 
-								name 
-							}
-							subnet
-							siteWanNetworkRuleSource: site {
-								id 
-								name 
-							}
-							siteNetworkSubnetWanNetworkRuleSource: siteNetworkSubnet {
-								id 
-								name 
-							}
-							systemGroupWanNetworkRuleSource: systemGroup {
-								id 
-								name 
-							}
-							usersGroupWanNetworkRuleSource: usersGroup {
-								id 
-								name 
-							}
-						}
-
-						destination  {
-							userWanNetworkRuleDestination: user {
-								id 
-								name 
-							}
-							floatingSubnetWanNetworkRuleDestination: floatingSubnet {
-								id 
-								name 
-							}
-							globalIpRangeWanNetworkRuleDestination: globalIpRange {
-								id 
-								name 
-							}
-							groupWanNetworkRuleDestination: group {
-								id 
-								name 
-							}
-							hostWanNetworkRuleDestination: host {
-								id 
-								name 
-							}
-							ip
-							ipRangeWanNetworkRuleDestination: ipRange {
-								from 
-								to 
-							}
-							networkInterfaceWanNetworkRuleDestination: networkInterface {
-								id 
-								name 
-							}
-							subnet
-							siteWanNetworkRuleDestination: site {
-								id 
-								name 
-							}
-							siteNetworkSubnetWanNetworkRuleDestination: siteNetworkSubnet {
-								id 
-								name 
-							}
-							systemGroupWanNetworkRuleDestination: systemGroup {
-								id 
-								name 
-							}
-							usersGroupWanNetworkRuleDestination: usersGroup {
-								id 
-								name 
-							}
-						}
-
-						application  {
-							applicationWanNetworkRuleApplication: application {
-								id 
-								name 
-							}
-							appCategoryWanNetworkRuleApplication: appCategory {
-								id 
-								name 
-							}
-							customAppWanNetworkRuleApplication: customApp {
-								id 
-								name 
-							}
-							customCategoryWanNetworkRuleApplication: customCategory {
-								id 
-								name 
-							}
-							customServiceIpWanNetworkRuleApplication: customServiceIp {
-								name 
-								ip 
-								ipRange  {
-									from
-									to
-								}
-
-							}
-							customServiceWanNetworkRuleApplication: customService {
-								port 
-								portRange  {
-									from
-									to
-								}
-
-								protocol 
-							}
-							domain
-							fqdn
-							serviceWanNetworkRuleApplication: service {
-								id 
-								name 
-							}
-						}
-
-						configuration  {
-							activeTcpAcceleration
-							packetLossMitigation
-							preserveSourcePort
-							primaryTransportWanNetworkRuleConfiguration: primaryTransport {
-								transportType 
-								primaryInterfaceRole 
-								secondaryInterfaceRole 
-							}
-							secondaryTransportWanNetworkRuleConfiguration: secondaryTransport {
-								transportType 
-								primaryInterfaceRole 
-								secondaryInterfaceRole 
-							}
-							allocationIpWanNetworkRuleConfiguration: allocationIp {
-								id 
-								name 
-							}
-							popLocationWanNetworkRuleConfiguration: popLocation {
-								id 
-								name 
-							}
-							backhaulingSiteWanNetworkRuleConfiguration: backhaulingSite {
-								id 
-								name 
-							}
-						}
-
-						bandwidthPriority  {
-							id
-							name
-						}
-
-						exceptions  {
-							name
-							sourceWanNetworkRuleException: source {
-								user  {
-									id
-									name
-								}
-
-								floatingSubnet  {
-									id
-									name
-								}
-
-								globalIpRange  {
-									id
-									name
-								}
-
-								group  {
-									id
-									name
-								}
-
-								host  {
-									id
-									name
-								}
-
-								ip 
-								ipRange  {
-									from
-									to
-								}
-
-								networkInterface  {
-									id
-									name
-								}
-
-								subnet 
-								site  {
-									id
-									name
-								}
-
-								siteNetworkSubnet  {
-									id
-									name
-								}
-
-								systemGroup  {
-									id
-									name
-								}
-
-								usersGroup  {
-									id
-									name
-								}
-
-							}
-							destinationWanNetworkRuleException: destination {
-								user  {
-									id
-									name
-								}
-
-								floatingSubnet  {
-									id
-									name
-								}
-
-								globalIpRange  {
-									id
-									name
-								}
-
-								group  {
-									id
-									name
-								}
-
-								host  {
-									id
-									name
-								}
-
-								ip 
-								ipRange  {
-									from
-									to
-								}
-
-								networkInterface  {
-									id
-									name
-								}
-
-								subnet 
-								site  {
-									id
-									name
-								}
-
-								siteNetworkSubnet  {
-									id
-									name
-								}
-
-								systemGroup  {
-									id
-									name
-								}
-
-								usersGroup  {
-									id
-									name
-								}
-
-							}
-							applicationWanNetworkRuleException: application {
-								application  {
-									id
-									name
-								}
-
-								appCategory  {
-									id
-									name
-								}
-
-								customApp  {
-									id
-									name
-								}
-
-								customCategory  {
-									id
-									name
-								}
-
-								customServiceIp  {
-									name
-									ip
-									ipRangeCustomServiceIp: ipRange {
-										from 
-										to 
-									}
-								}
-
-								customService  {
-									port
-									portRangeCustomService: portRange {
-										from 
-										to 
-									}
-									protocolCustomService: protocol
-								}
-
-								domain 
-								fqdn 
-								service  {
-									id
-									name
-								}
-
-							}
-						}
-
-					}
-					propertiesWanNetworkRulePayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyWanNetworkMoveRule ( $wanNetworkPolicyMutationInput:WanNetworkPolicyMutationInput $policyMoveRuleInput:PolicyMoveRuleInput!) {
+	policy ( ) {
+mutation.policy.wanNetwork.moveRulewanNetwork ( input:$wanNetworkPolicyMutationInput  )  {
+mutation.policy.wanNetwork.moveRule	moveRule ( input:$policyMoveRuleInput   ) {
+mutation.policy.wanNetwork.moveRule		rule {
+mutation.policy.wanNetwork.moveRule			audit {
+mutation.policy.wanNetwork.moveRule				updatedTime
+mutation.policy.wanNetwork.moveRule				updatedBy
+mutation.policy.wanNetwork.moveRule			}
+mutation.policy.wanNetwork.moveRule			rule {
+mutation.policy.wanNetwork.moveRule				id
+mutation.policy.wanNetwork.moveRule				name
+mutation.policy.wanNetwork.moveRule				description
+mutation.policy.wanNetwork.moveRule				index
+mutation.policy.wanNetwork.moveRule				section {
+mutation.policy.wanNetwork.moveRule					id
+mutation.policy.wanNetwork.moveRule					name
+mutation.policy.wanNetwork.moveRule				}
+mutation.policy.wanNetwork.moveRule				enabled
+mutation.policy.wanNetwork.moveRule				ruleType
+mutation.policy.wanNetwork.moveRule				routeType
+mutation.policy.wanNetwork.moveRule				source {
+mutation.policy.wanNetwork.moveRule					user {
+mutation.policy.wanNetwork.moveRule						id
+mutation.policy.wanNetwork.moveRule						name
+mutation.policy.wanNetwork.moveRule					}
+mutation.policy.wanNetwork.moveRule					floatingSubnet {
+mutation.policy.wanNetwork.moveRule						id
+mutation.policy.wanNetwork.moveRule						name
+mutation.policy.wanNetwork.moveRule					}
+mutation.policy.wanNetwork.moveRule					globalIpRange {
+mutation.policy.wanNetwork.moveRule						id
+mutation.policy.wanNetwork.moveRule						name
+mutation.policy.wanNetwork.moveRule					}
+mutation.policy.wanNetwork.moveRule					group {
+mutation.policy.wanNetwork.moveRule						id
+mutation.policy.wanNetwork.moveRule						name
+mutation.policy.wanNetwork.moveRule					}
+mutation.policy.wanNetwork.moveRule					host {
+mutation.policy.wanNetwork.moveRule						id
+mutation.policy.wanNetwork.moveRule						name
+mutation.policy.wanNetwork.moveRule					}
+mutation.policy.wanNetwork.moveRule					ip
+mutation.policy.wanNetwork.moveRule					ipRange {
+mutation.policy.wanNetwork.moveRule						from
+mutation.policy.wanNetwork.moveRule						to
+mutation.policy.wanNetwork.moveRule					}
+mutation.policy.wanNetwork.moveRule					networkInterface {
+mutation.policy.wanNetwork.moveRule						id
+mutation.policy.wanNetwork.moveRule						name
+mutation.policy.wanNetwork.moveRule					}
+mutation.policy.wanNetwork.moveRule					subnet
+mutation.policy.wanNetwork.moveRule					site {
+mutation.policy.wanNetwork.moveRule						id
+mutation.policy.wanNetwork.moveRule						name
+mutation.policy.wanNetwork.moveRule					}
+mutation.policy.wanNetwork.moveRule					siteNetworkSubnet {
+mutation.policy.wanNetwork.moveRule						id
+mutation.policy.wanNetwork.moveRule						name
+mutation.policy.wanNetwork.moveRule					}
+mutation.policy.wanNetwork.moveRule					systemGroup {
+mutation.policy.wanNetwork.moveRule						id
+mutation.policy.wanNetwork.moveRule						name
+mutation.policy.wanNetwork.moveRule					}
+mutation.policy.wanNetwork.moveRule					usersGroup {
+mutation.policy.wanNetwork.moveRule						id
+mutation.policy.wanNetwork.moveRule						name
+mutation.policy.wanNetwork.moveRule					}
+mutation.policy.wanNetwork.moveRule				}
+mutation.policy.wanNetwork.moveRule				destination {
+mutation.policy.wanNetwork.moveRule					user {
+mutation.policy.wanNetwork.moveRule						id
+mutation.policy.wanNetwork.moveRule						name
+mutation.policy.wanNetwork.moveRule					}
+mutation.policy.wanNetwork.moveRule					floatingSubnet {
+mutation.policy.wanNetwork.moveRule						id
+mutation.policy.wanNetwork.moveRule						name
+mutation.policy.wanNetwork.moveRule					}
+mutation.policy.wanNetwork.moveRule					globalIpRange {
+mutation.policy.wanNetwork.moveRule						id
+mutation.policy.wanNetwork.moveRule						name
+mutation.policy.wanNetwork.moveRule					}
+mutation.policy.wanNetwork.moveRule					group {
+mutation.policy.wanNetwork.moveRule						id
+mutation.policy.wanNetwork.moveRule						name
+mutation.policy.wanNetwork.moveRule					}
+mutation.policy.wanNetwork.moveRule					host {
+mutation.policy.wanNetwork.moveRule						id
+mutation.policy.wanNetwork.moveRule						name
+mutation.policy.wanNetwork.moveRule					}
+mutation.policy.wanNetwork.moveRule					ip
+mutation.policy.wanNetwork.moveRule					ipRange {
+mutation.policy.wanNetwork.moveRule						from
+mutation.policy.wanNetwork.moveRule						to
+mutation.policy.wanNetwork.moveRule					}
+mutation.policy.wanNetwork.moveRule					networkInterface {
+mutation.policy.wanNetwork.moveRule						id
+mutation.policy.wanNetwork.moveRule						name
+mutation.policy.wanNetwork.moveRule					}
+mutation.policy.wanNetwork.moveRule					subnet
+mutation.policy.wanNetwork.moveRule					site {
+mutation.policy.wanNetwork.moveRule						id
+mutation.policy.wanNetwork.moveRule						name
+mutation.policy.wanNetwork.moveRule					}
+mutation.policy.wanNetwork.moveRule					siteNetworkSubnet {
+mutation.policy.wanNetwork.moveRule						id
+mutation.policy.wanNetwork.moveRule						name
+mutation.policy.wanNetwork.moveRule					}
+mutation.policy.wanNetwork.moveRule					systemGroup {
+mutation.policy.wanNetwork.moveRule						id
+mutation.policy.wanNetwork.moveRule						name
+mutation.policy.wanNetwork.moveRule					}
+mutation.policy.wanNetwork.moveRule					usersGroup {
+mutation.policy.wanNetwork.moveRule						id
+mutation.policy.wanNetwork.moveRule						name
+mutation.policy.wanNetwork.moveRule					}
+mutation.policy.wanNetwork.moveRule				}
+mutation.policy.wanNetwork.moveRule				application {
+mutation.policy.wanNetwork.moveRule					application {
+mutation.policy.wanNetwork.moveRule						id
+mutation.policy.wanNetwork.moveRule						name
+mutation.policy.wanNetwork.moveRule					}
+mutation.policy.wanNetwork.moveRule					appCategory {
+mutation.policy.wanNetwork.moveRule						id
+mutation.policy.wanNetwork.moveRule						name
+mutation.policy.wanNetwork.moveRule					}
+mutation.policy.wanNetwork.moveRule					customApp {
+mutation.policy.wanNetwork.moveRule						id
+mutation.policy.wanNetwork.moveRule						name
+mutation.policy.wanNetwork.moveRule					}
+mutation.policy.wanNetwork.moveRule					customCategory {
+mutation.policy.wanNetwork.moveRule						id
+mutation.policy.wanNetwork.moveRule						name
+mutation.policy.wanNetwork.moveRule					}
+mutation.policy.wanNetwork.moveRule					customServiceIp {
+mutation.policy.wanNetwork.moveRule						name
+mutation.policy.wanNetwork.moveRule						ip
+mutation.policy.wanNetwork.moveRule						ipRange {
+mutation.policy.wanNetwork.moveRule							from
+mutation.policy.wanNetwork.moveRule							to
+mutation.policy.wanNetwork.moveRule						}
+mutation.policy.wanNetwork.moveRule					}
+mutation.policy.wanNetwork.moveRule					customService {
+mutation.policy.wanNetwork.moveRule						port
+mutation.policy.wanNetwork.moveRule						portRange {
+mutation.policy.wanNetwork.moveRule							from
+mutation.policy.wanNetwork.moveRule							to
+mutation.policy.wanNetwork.moveRule						}
+mutation.policy.wanNetwork.moveRule						protocol
+mutation.policy.wanNetwork.moveRule					}
+mutation.policy.wanNetwork.moveRule					domain
+mutation.policy.wanNetwork.moveRule					fqdn
+mutation.policy.wanNetwork.moveRule					service {
+mutation.policy.wanNetwork.moveRule						id
+mutation.policy.wanNetwork.moveRule						name
+mutation.policy.wanNetwork.moveRule					}
+mutation.policy.wanNetwork.moveRule				}
+mutation.policy.wanNetwork.moveRule				configuration {
+mutation.policy.wanNetwork.moveRule					activeTcpAcceleration
+mutation.policy.wanNetwork.moveRule					packetLossMitigation
+mutation.policy.wanNetwork.moveRule					preserveSourcePort
+mutation.policy.wanNetwork.moveRule					primaryTransport {
+mutation.policy.wanNetwork.moveRule						transportType
+mutation.policy.wanNetwork.moveRule						primaryInterfaceRole
+mutation.policy.wanNetwork.moveRule						secondaryInterfaceRole
+mutation.policy.wanNetwork.moveRule					}
+mutation.policy.wanNetwork.moveRule					secondaryTransport {
+mutation.policy.wanNetwork.moveRule						transportType
+mutation.policy.wanNetwork.moveRule						primaryInterfaceRole
+mutation.policy.wanNetwork.moveRule						secondaryInterfaceRole
+mutation.policy.wanNetwork.moveRule					}
+mutation.policy.wanNetwork.moveRule					allocationIp {
+mutation.policy.wanNetwork.moveRule						id
+mutation.policy.wanNetwork.moveRule						name
+mutation.policy.wanNetwork.moveRule					}
+mutation.policy.wanNetwork.moveRule					popLocation {
+mutation.policy.wanNetwork.moveRule						id
+mutation.policy.wanNetwork.moveRule						name
+mutation.policy.wanNetwork.moveRule					}
+mutation.policy.wanNetwork.moveRule					backhaulingSite {
+mutation.policy.wanNetwork.moveRule						id
+mutation.policy.wanNetwork.moveRule						name
+mutation.policy.wanNetwork.moveRule					}
+mutation.policy.wanNetwork.moveRule				}
+mutation.policy.wanNetwork.moveRule				bandwidthPriority {
+mutation.policy.wanNetwork.moveRule					id
+mutation.policy.wanNetwork.moveRule					name
+mutation.policy.wanNetwork.moveRule				}
+mutation.policy.wanNetwork.moveRule				exceptions {
+mutation.policy.wanNetwork.moveRule					name
+mutation.policy.wanNetwork.moveRule					source {
+mutation.policy.wanNetwork.moveRule						user {
+mutation.policy.wanNetwork.moveRule							id
+mutation.policy.wanNetwork.moveRule							name
+mutation.policy.wanNetwork.moveRule						}
+mutation.policy.wanNetwork.moveRule						floatingSubnet {
+mutation.policy.wanNetwork.moveRule							id
+mutation.policy.wanNetwork.moveRule							name
+mutation.policy.wanNetwork.moveRule						}
+mutation.policy.wanNetwork.moveRule						globalIpRange {
+mutation.policy.wanNetwork.moveRule							id
+mutation.policy.wanNetwork.moveRule							name
+mutation.policy.wanNetwork.moveRule						}
+mutation.policy.wanNetwork.moveRule						group {
+mutation.policy.wanNetwork.moveRule							id
+mutation.policy.wanNetwork.moveRule							name
+mutation.policy.wanNetwork.moveRule						}
+mutation.policy.wanNetwork.moveRule						host {
+mutation.policy.wanNetwork.moveRule							id
+mutation.policy.wanNetwork.moveRule							name
+mutation.policy.wanNetwork.moveRule						}
+mutation.policy.wanNetwork.moveRule						ip
+mutation.policy.wanNetwork.moveRule						ipRange {
+mutation.policy.wanNetwork.moveRule							from
+mutation.policy.wanNetwork.moveRule							to
+mutation.policy.wanNetwork.moveRule						}
+mutation.policy.wanNetwork.moveRule						networkInterface {
+mutation.policy.wanNetwork.moveRule							id
+mutation.policy.wanNetwork.moveRule							name
+mutation.policy.wanNetwork.moveRule						}
+mutation.policy.wanNetwork.moveRule						subnet
+mutation.policy.wanNetwork.moveRule						site {
+mutation.policy.wanNetwork.moveRule							id
+mutation.policy.wanNetwork.moveRule							name
+mutation.policy.wanNetwork.moveRule						}
+mutation.policy.wanNetwork.moveRule						siteNetworkSubnet {
+mutation.policy.wanNetwork.moveRule							id
+mutation.policy.wanNetwork.moveRule							name
+mutation.policy.wanNetwork.moveRule						}
+mutation.policy.wanNetwork.moveRule						systemGroup {
+mutation.policy.wanNetwork.moveRule							id
+mutation.policy.wanNetwork.moveRule							name
+mutation.policy.wanNetwork.moveRule						}
+mutation.policy.wanNetwork.moveRule						usersGroup {
+mutation.policy.wanNetwork.moveRule							id
+mutation.policy.wanNetwork.moveRule							name
+mutation.policy.wanNetwork.moveRule						}
+mutation.policy.wanNetwork.moveRule					}
+mutation.policy.wanNetwork.moveRule					destination {
+mutation.policy.wanNetwork.moveRule						user {
+mutation.policy.wanNetwork.moveRule							id
+mutation.policy.wanNetwork.moveRule							name
+mutation.policy.wanNetwork.moveRule						}
+mutation.policy.wanNetwork.moveRule						floatingSubnet {
+mutation.policy.wanNetwork.moveRule							id
+mutation.policy.wanNetwork.moveRule							name
+mutation.policy.wanNetwork.moveRule						}
+mutation.policy.wanNetwork.moveRule						globalIpRange {
+mutation.policy.wanNetwork.moveRule							id
+mutation.policy.wanNetwork.moveRule							name
+mutation.policy.wanNetwork.moveRule						}
+mutation.policy.wanNetwork.moveRule						group {
+mutation.policy.wanNetwork.moveRule							id
+mutation.policy.wanNetwork.moveRule							name
+mutation.policy.wanNetwork.moveRule						}
+mutation.policy.wanNetwork.moveRule						host {
+mutation.policy.wanNetwork.moveRule							id
+mutation.policy.wanNetwork.moveRule							name
+mutation.policy.wanNetwork.moveRule						}
+mutation.policy.wanNetwork.moveRule						ip
+mutation.policy.wanNetwork.moveRule						ipRange {
+mutation.policy.wanNetwork.moveRule							from
+mutation.policy.wanNetwork.moveRule							to
+mutation.policy.wanNetwork.moveRule						}
+mutation.policy.wanNetwork.moveRule						networkInterface {
+mutation.policy.wanNetwork.moveRule							id
+mutation.policy.wanNetwork.moveRule							name
+mutation.policy.wanNetwork.moveRule						}
+mutation.policy.wanNetwork.moveRule						subnet
+mutation.policy.wanNetwork.moveRule						site {
+mutation.policy.wanNetwork.moveRule							id
+mutation.policy.wanNetwork.moveRule							name
+mutation.policy.wanNetwork.moveRule						}
+mutation.policy.wanNetwork.moveRule						siteNetworkSubnet {
+mutation.policy.wanNetwork.moveRule							id
+mutation.policy.wanNetwork.moveRule							name
+mutation.policy.wanNetwork.moveRule						}
+mutation.policy.wanNetwork.moveRule						systemGroup {
+mutation.policy.wanNetwork.moveRule							id
+mutation.policy.wanNetwork.moveRule							name
+mutation.policy.wanNetwork.moveRule						}
+mutation.policy.wanNetwork.moveRule						usersGroup {
+mutation.policy.wanNetwork.moveRule							id
+mutation.policy.wanNetwork.moveRule							name
+mutation.policy.wanNetwork.moveRule						}
+mutation.policy.wanNetwork.moveRule					}
+mutation.policy.wanNetwork.moveRule					application {
+mutation.policy.wanNetwork.moveRule						application {
+mutation.policy.wanNetwork.moveRule							id
+mutation.policy.wanNetwork.moveRule							name
+mutation.policy.wanNetwork.moveRule						}
+mutation.policy.wanNetwork.moveRule						appCategory {
+mutation.policy.wanNetwork.moveRule							id
+mutation.policy.wanNetwork.moveRule							name
+mutation.policy.wanNetwork.moveRule						}
+mutation.policy.wanNetwork.moveRule						customApp {
+mutation.policy.wanNetwork.moveRule							id
+mutation.policy.wanNetwork.moveRule							name
+mutation.policy.wanNetwork.moveRule						}
+mutation.policy.wanNetwork.moveRule						customCategory {
+mutation.policy.wanNetwork.moveRule							id
+mutation.policy.wanNetwork.moveRule							name
+mutation.policy.wanNetwork.moveRule						}
+mutation.policy.wanNetwork.moveRule						customServiceIp {
+mutation.policy.wanNetwork.moveRule							name
+mutation.policy.wanNetwork.moveRule							ip
+mutation.policy.wanNetwork.moveRule							ipRange {
+mutation.policy.wanNetwork.moveRule								from
+mutation.policy.wanNetwork.moveRule								to
+mutation.policy.wanNetwork.moveRule							}
+mutation.policy.wanNetwork.moveRule						}
+mutation.policy.wanNetwork.moveRule						customService {
+mutation.policy.wanNetwork.moveRule							port
+mutation.policy.wanNetwork.moveRule							portRange {
+mutation.policy.wanNetwork.moveRule								from
+mutation.policy.wanNetwork.moveRule								to
+mutation.policy.wanNetwork.moveRule							}
+mutation.policy.wanNetwork.moveRule							protocol
+mutation.policy.wanNetwork.moveRule						}
+mutation.policy.wanNetwork.moveRule						domain
+mutation.policy.wanNetwork.moveRule						fqdn
+mutation.policy.wanNetwork.moveRule						service {
+mutation.policy.wanNetwork.moveRule							id
+mutation.policy.wanNetwork.moveRule							name
+mutation.policy.wanNetwork.moveRule						}
+mutation.policy.wanNetwork.moveRule					}
+mutation.policy.wanNetwork.moveRule				}
+mutation.policy.wanNetwork.moveRule			}
+mutation.policy.wanNetwork.moveRule			properties
+mutation.policy.wanNetwork.moveRule		}
+mutation.policy.wanNetwork.moveRule		status
+mutation.policy.wanNetwork.moveRule		errors {
+mutation.policy.wanNetwork.moveRule			errorMessage
+mutation.policy.wanNetwork.moveRule			errorCode
+mutation.policy.wanNetwork.moveRule		}
+mutation.policy.wanNetwork.moveRule	}
+mutation.policy.wanNetwork.moveRule}
 	}	
 }

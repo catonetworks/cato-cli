@@ -4,15 +4,16 @@
 
 ### Usage for mutation.site.addSecondaryAzureVSocket:
 
-`catocli mutation site addSecondaryAzureVSocket -h`
+```bash
+catocli mutation site addSecondaryAzureVSocket -h
 
-`catocli mutation site addSecondaryAzureVSocket <json>`
+catocli mutation site addSecondaryAzureVSocket <json>
 
-`catocli mutation site addSecondaryAzureVSocket "$(cat < mutation.site.addSecondaryAzureVSocket.json)"`
+catocli mutation site addSecondaryAzureVSocket "$(cat < mutation.site.addSecondaryAzureVSocket.json)"
 
-`catocli mutation site addSecondaryAzureVSocket '{"addSecondaryAzureVSocketInput":{"floatingIp":"example_value","interfaceIp":"example_value","siteRefInput":{"by":"ID","input":"string"}}}'`
+catocli mutation site addSecondaryAzureVSocket '{"addSecondaryAzureVSocketInput":{"floatingIp":"example_value","interfaceIp":"example_value","siteRefInput":{"by":"ID","input":"string"}}}'
 
-`catocli mutation site addSecondaryAzureVSocket -p '{
+catocli mutation site addSecondaryAzureVSocket -p '{
     "addSecondaryAzureVSocketInput": {
         "floatingIp": "example_value",
         "interfaceIp": "example_value",
@@ -22,7 +23,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.site.addSecondaryAzureVSocket ####
 

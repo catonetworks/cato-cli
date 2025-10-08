@@ -1,134 +1,137 @@
-query policyAppTenantRestrictionPolicy ( $appTenantRestrictionPolicyInput:AppTenantRestrictionPolicyInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		appTenantRestriction  {
-			policyAppTenantRestrictionPolicyQueries: policy ( input:$appTenantRestrictionPolicyInput   ) {
-				enabled 
-				rules  {
-					auditAppTenantRestrictionRulePayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					ruleAppTenantRestrictionRulePayload: rule {
-						id 
-						name 
-						description 
-						index 
-						section  {
-							id
-							name
-						}
-
-						enabled 
-						application  {
-							id
-							name
-						}
-
-						headers  {
-							name
-							value
-						}
-
-						source  {
-							ip
-							hostAppTenantRestrictionSource: host {
-								id 
-								name 
-							}
-							siteAppTenantRestrictionSource: site {
-								id 
-								name 
-							}
-							subnet
-							ipRangeAppTenantRestrictionSource: ipRange {
-								from 
-								to 
-							}
-							globalIpRangeAppTenantRestrictionSource: globalIpRange {
-								id 
-								name 
-							}
-							networkInterfaceAppTenantRestrictionSource: networkInterface {
-								id 
-								name 
-							}
-							siteNetworkSubnetAppTenantRestrictionSource: siteNetworkSubnet {
-								id 
-								name 
-							}
-							floatingSubnetAppTenantRestrictionSource: floatingSubnet {
-								id 
-								name 
-							}
-							userAppTenantRestrictionSource: user {
-								id 
-								name 
-							}
-							usersGroupAppTenantRestrictionSource: usersGroup {
-								id 
-								name 
-							}
-							groupAppTenantRestrictionSource: group {
-								id 
-								name 
-							}
-							systemGroupAppTenantRestrictionSource: systemGroup {
-								id 
-								name 
-							}
-							countryAppTenantRestrictionSource: country {
-								id 
-								name 
-							}
-						}
-
-						schedule  {
-							activeOnPolicySchedule: activeOn
-							customTimeframePolicySchedule: customTimeframe {
-								from 
-								to 
-							}
-							customRecurringPolicySchedule: customRecurring {
-								from 
-								to 
-								days 
-							}
-						}
-
-						action 
-						severity 
-					}
-					propertiesAppTenantRestrictionRulePayload: properties
-				}
-
-				sections  {
-					auditPolicySectionPayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					sectionPolicySectionPayload: section {
-						id 
-						name 
-					}
-					propertiesPolicySectionPayload: properties
-				}
-
-				audit  {
-					publishedTime
-					publishedBy
-				}
-
-				revision  {
-					id
-					name
-					description
-					changes
-					createdTime
-					updatedTime
-				}
-
-			}
-		}
-
+query policyAppTenantRestrictionPolicy ( $appTenantRestrictionPolicyInput:AppTenantRestrictionPolicyInput) {
+	policy ( ) {
+query.policy.appTenantRestriction.policyappTenantRestriction {
+query.policy.appTenantRestriction.policy	policy ( input:$appTenantRestrictionPolicyInput   ) {
+query.policy.appTenantRestriction.policy		enabled
+query.policy.appTenantRestriction.policy		rules {
+query.policy.appTenantRestriction.policy			audit {
+query.policy.appTenantRestriction.policy				updatedTime
+query.policy.appTenantRestriction.policy				updatedBy
+query.policy.appTenantRestriction.policy			}
+query.policy.appTenantRestriction.policy			rule {
+query.policy.appTenantRestriction.policy				id
+query.policy.appTenantRestriction.policy				name
+query.policy.appTenantRestriction.policy				description
+query.policy.appTenantRestriction.policy				index
+query.policy.appTenantRestriction.policy				section {
+query.policy.appTenantRestriction.policy					id
+query.policy.appTenantRestriction.policy					name
+query.policy.appTenantRestriction.policy				}
+query.policy.appTenantRestriction.policy				enabled
+query.policy.appTenantRestriction.policy				application {
+query.policy.appTenantRestriction.policy					id
+query.policy.appTenantRestriction.policy					name
+query.policy.appTenantRestriction.policy				}
+query.policy.appTenantRestriction.policy				headers {
+query.policy.appTenantRestriction.policy					name
+query.policy.appTenantRestriction.policy					value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+query.policy.appTenantRestriction.policy				}
+query.policy.appTenantRestriction.policy				source {
+query.policy.appTenantRestriction.policy					ip
+query.policy.appTenantRestriction.policy					host {
+query.policy.appTenantRestriction.policy						id
+query.policy.appTenantRestriction.policy						name
+query.policy.appTenantRestriction.policy					}
+query.policy.appTenantRestriction.policy					site {
+query.policy.appTenantRestriction.policy						id
+query.policy.appTenantRestriction.policy						name
+query.policy.appTenantRestriction.policy					}
+query.policy.appTenantRestriction.policy					subnet
+query.policy.appTenantRestriction.policy					ipRange {
+query.policy.appTenantRestriction.policy						from
+query.policy.appTenantRestriction.policy						to
+query.policy.appTenantRestriction.policy					}
+query.policy.appTenantRestriction.policy					globalIpRange {
+query.policy.appTenantRestriction.policy						id
+query.policy.appTenantRestriction.policy						name
+query.policy.appTenantRestriction.policy					}
+query.policy.appTenantRestriction.policy					networkInterface {
+query.policy.appTenantRestriction.policy						id
+query.policy.appTenantRestriction.policy						name
+query.policy.appTenantRestriction.policy					}
+query.policy.appTenantRestriction.policy					siteNetworkSubnet {
+query.policy.appTenantRestriction.policy						id
+query.policy.appTenantRestriction.policy						name
+query.policy.appTenantRestriction.policy					}
+query.policy.appTenantRestriction.policy					floatingSubnet {
+query.policy.appTenantRestriction.policy						id
+query.policy.appTenantRestriction.policy						name
+query.policy.appTenantRestriction.policy					}
+query.policy.appTenantRestriction.policy					user {
+query.policy.appTenantRestriction.policy						id
+query.policy.appTenantRestriction.policy						name
+query.policy.appTenantRestriction.policy					}
+query.policy.appTenantRestriction.policy					usersGroup {
+query.policy.appTenantRestriction.policy						id
+query.policy.appTenantRestriction.policy						name
+query.policy.appTenantRestriction.policy					}
+query.policy.appTenantRestriction.policy					group {
+query.policy.appTenantRestriction.policy						id
+query.policy.appTenantRestriction.policy						name
+query.policy.appTenantRestriction.policy					}
+query.policy.appTenantRestriction.policy					systemGroup {
+query.policy.appTenantRestriction.policy						id
+query.policy.appTenantRestriction.policy						name
+query.policy.appTenantRestriction.policy					}
+query.policy.appTenantRestriction.policy					country {
+query.policy.appTenantRestriction.policy						id
+query.policy.appTenantRestriction.policy						name
+query.policy.appTenantRestriction.policy					}
+query.policy.appTenantRestriction.policy				}
+query.policy.appTenantRestriction.policy				schedule {
+query.policy.appTenantRestriction.policy					activeOn
+query.policy.appTenantRestriction.policy					customTimeframe {
+query.policy.appTenantRestriction.policy						from
+query.policy.appTenantRestriction.policy						to
+query.policy.appTenantRestriction.policy					}
+query.policy.appTenantRestriction.policy					customRecurring {
+query.policy.appTenantRestriction.policy						from
+query.policy.appTenantRestriction.policy						to
+query.policy.appTenantRestriction.policy						days
+query.policy.appTenantRestriction.policy					}
+query.policy.appTenantRestriction.policy				}
+query.policy.appTenantRestriction.policy				action
+query.policy.appTenantRestriction.policy				severity
+query.policy.appTenantRestriction.policy			}
+query.policy.appTenantRestriction.policy			properties
+query.policy.appTenantRestriction.policy		}
+query.policy.appTenantRestriction.policy		sections {
+query.policy.appTenantRestriction.policy			audit {
+query.policy.appTenantRestriction.policy				updatedTime
+query.policy.appTenantRestriction.policy				updatedBy
+query.policy.appTenantRestriction.policy			}
+query.policy.appTenantRestriction.policy			section {
+query.policy.appTenantRestriction.policy				id
+query.policy.appTenantRestriction.policy				name
+query.policy.appTenantRestriction.policy			}
+query.policy.appTenantRestriction.policy			properties
+query.policy.appTenantRestriction.policy		}
+query.policy.appTenantRestriction.policy		audit {
+query.policy.appTenantRestriction.policy			publishedTime
+query.policy.appTenantRestriction.policy			publishedBy
+query.policy.appTenantRestriction.policy		}
+query.policy.appTenantRestriction.policy		revision {
+query.policy.appTenantRestriction.policy			id
+query.policy.appTenantRestriction.policy			name
+query.policy.appTenantRestriction.policy			description
+query.policy.appTenantRestriction.policy			changes
+query.policy.appTenantRestriction.policy			createdTime
+query.policy.appTenantRestriction.policy			updatedTime
+query.policy.appTenantRestriction.policy		}
+query.policy.appTenantRestriction.policy	}
+query.policy.appTenantRestriction.policy}
 	}	
 }

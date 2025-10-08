@@ -1,27 +1,24 @@
-mutation policyWanFirewallRemoveSection ( $policyRemoveSectionInput:PolicyRemoveSectionInput! $wanFirewallPolicyMutationInput:WanFirewallPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		wanFirewall ( input:$wanFirewallPolicyMutationInput  )  {
-			removeSectionWanFirewallPolicyMutations: removeSection ( input:$policyRemoveSectionInput   ) {
-				section  {
-					auditPolicySectionPayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					sectionPolicySectionPayload: section {
-						id 
-						name 
-					}
-					propertiesPolicySectionPayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyWanFirewallRemoveSection ( $wanFirewallPolicyMutationInput:WanFirewallPolicyMutationInput $policyRemoveSectionInput:PolicyRemoveSectionInput!) {
+	policy ( ) {
+mutation.policy.wanFirewall.removeSectionwanFirewall ( input:$wanFirewallPolicyMutationInput  )  {
+mutation.policy.wanFirewall.removeSection	removeSection ( input:$policyRemoveSectionInput   ) {
+mutation.policy.wanFirewall.removeSection		section {
+mutation.policy.wanFirewall.removeSection			audit {
+mutation.policy.wanFirewall.removeSection				updatedTime
+mutation.policy.wanFirewall.removeSection				updatedBy
+mutation.policy.wanFirewall.removeSection			}
+mutation.policy.wanFirewall.removeSection			section {
+mutation.policy.wanFirewall.removeSection				id
+mutation.policy.wanFirewall.removeSection				name
+mutation.policy.wanFirewall.removeSection			}
+mutation.policy.wanFirewall.removeSection			properties
+mutation.policy.wanFirewall.removeSection		}
+mutation.policy.wanFirewall.removeSection		status
+mutation.policy.wanFirewall.removeSection		errors {
+mutation.policy.wanFirewall.removeSection			errorMessage
+mutation.policy.wanFirewall.removeSection			errorCode
+mutation.policy.wanFirewall.removeSection		}
+mutation.policy.wanFirewall.removeSection	}
+mutation.policy.wanFirewall.removeSection}
 	}	
 }

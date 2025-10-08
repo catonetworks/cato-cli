@@ -4,20 +4,21 @@
 
 ### Usage for mutation.accountManagement.updateAccount:
 
-`catocli mutation accountManagement updateAccount -h`
+```bash
+catocli mutation accountManagement updateAccount -h
 
-`catocli mutation accountManagement updateAccount <json>`
+catocli mutation accountManagement updateAccount <json>
 
-`catocli mutation accountManagement updateAccount "$(cat < mutation.accountManagement.updateAccount.json)"`
+catocli mutation accountManagement updateAccount "$(cat < mutation.accountManagement.updateAccount.json)"
 
-`catocli mutation accountManagement updateAccount '{"updateAccountInput":{"description":"string"}}'`
+catocli mutation accountManagement updateAccount '{"updateAccountInput":{"description":"string"}}'
 
-`catocli mutation accountManagement updateAccount -p '{
+catocli mutation accountManagement updateAccount -p '{
     "updateAccountInput": {
         "description": "string"
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.accountManagement.updateAccount ####
 

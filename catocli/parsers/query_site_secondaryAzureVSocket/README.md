@@ -4,18 +4,19 @@
 
 ### Usage for query.site.secondaryAzureVSocket:
 
-`catocli query site secondaryAzureVSocket -h`
+```bash
+catocli query site secondaryAzureVSocket -h
 
-`catocli query site secondaryAzureVSocket <json>`
+catocli query site secondaryAzureVSocket <json>
 
-`catocli query site secondaryAzureVSocket "$(cat < query.site.secondaryAzureVSocket.json)"`
+catocli query site secondaryAzureVSocket "$(cat < query.site.secondaryAzureVSocket.json)"
 
-`catocli query site secondaryAzureVSocket '{"socketId":"id"}'`
+catocli query site secondaryAzureVSocket '{"socketId":"id"}'
 
-`catocli query site secondaryAzureVSocket -p '{
+catocli query site secondaryAzureVSocket -p '{
     "socketId": "id"
 }'
-
+```
 
 #### Operation Arguments for query.site.secondaryAzureVSocket ####
 

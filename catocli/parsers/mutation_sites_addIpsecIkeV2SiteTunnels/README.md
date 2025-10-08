@@ -4,15 +4,16 @@
 
 ### Usage for mutation.sites.addIpsecIkeV2SiteTunnels:
 
-`catocli mutation sites addIpsecIkeV2SiteTunnels -h`
+```bash
+catocli mutation sites addIpsecIkeV2SiteTunnels -h
 
-`catocli mutation sites addIpsecIkeV2SiteTunnels <json>`
+catocli mutation sites addIpsecIkeV2SiteTunnels <json>
 
-`catocli mutation sites addIpsecIkeV2SiteTunnels "$(cat < mutation.sites.addIpsecIkeV2SiteTunnels.json)"`
+catocli mutation sites addIpsecIkeV2SiteTunnels "$(cat < mutation.sites.addIpsecIkeV2SiteTunnels.json)"
 
-`catocli mutation sites addIpsecIkeV2SiteTunnels '{"addIpsecIkeV2SiteTunnelsInput":{"addIpsecIkeV2TunnelsInput":{"destinationType":"IPv4","popLocationId":"id","publicCatoIpId":"id","tunnels":{"lastMileBw":{"downstream":1,"downstreamMbpsPrecision":1.5,"upstream":1,"upstreamMbpsPrecision":1.5},"name":"string","privateCatoIp":"example_value","privateSiteIp":"example_value","psk":"string","publicSiteIp":"example_value","role":"WAN1"}}},"siteId":"id"}'`
+catocli mutation sites addIpsecIkeV2SiteTunnels '{"addIpsecIkeV2SiteTunnelsInput":{"addIpsecIkeV2TunnelsInput":{"destinationType":"IPv4","popLocationId":"id","publicCatoIpId":"id","tunnels":{"lastMileBw":{"downstream":1,"downstreamMbpsPrecision":1.5,"upstream":1,"upstreamMbpsPrecision":1.5},"name":"string","privateCatoIp":"example_value","privateSiteIp":"example_value","psk":"string","publicSiteIp":"example_value","role":"WAN1"}}},"siteId":"id"}'
 
-`catocli mutation sites addIpsecIkeV2SiteTunnels -p '{
+catocli mutation sites addIpsecIkeV2SiteTunnels -p '{
     "addIpsecIkeV2SiteTunnelsInput": {
         "addIpsecIkeV2TunnelsInput": {
             "destinationType": "IPv4",
@@ -36,7 +37,7 @@
     },
     "siteId": "id"
 }'
-
+```
 
 #### Operation Arguments for mutation.sites.addIpsecIkeV2SiteTunnels ####
 

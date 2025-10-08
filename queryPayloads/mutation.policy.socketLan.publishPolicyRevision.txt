@@ -1,379 +1,323 @@
-mutation policySocketLanPublishPolicyRevision ( $policyPublishRevisionInput:PolicyPublishRevisionInput $socketLanPolicyMutationInput:SocketLanPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		socketLan ( input:$socketLanPolicyMutationInput  )  {
-			publishPolicyRevisionSocketLanPolicyMutations: publishPolicyRevision ( input:$policyPublishRevisionInput   ) {
-				policy  {
-					enabled
-					rulesSocketLanPolicy: rules {
-						audit  {
-							updatedTime
-							updatedBy
-						}
-
-						rule  {
-							id
-							name
-							description
-							index
-							sectionSocketLanRule: section {
-								id 
-								name 
-							}
-							enabled
-							firewallSocketLanRule: firewall {
-								audit  {
-									updatedTime
-									updatedBy
-								}
-
-								rule  {
-									id
-									name
-									description
-									index
-									sectionSocketLanFirewallRule: section {
-										id 
-										name 
-									}
-									enabled
-									sourceSocketLanFirewallRule: source {
-										vlan 
-										mac 
-										ipRange  {
-											from
-											to
-										}
-
-										group  {
-											id
-											name
-										}
-
-										subnet 
-										site  {
-											id
-											name
-										}
-
-										networkInterface  {
-											id
-											name
-										}
-
-										systemGroup  {
-											id
-											name
-										}
-
-										host  {
-											id
-											name
-										}
-
-										ip 
-										globalIpRange  {
-											id
-											name
-										}
-
-										floatingSubnet  {
-											id
-											name
-										}
-
-										siteNetworkSubnet  {
-											id
-											name
-										}
-
-									}
-									destinationSocketLanFirewallRule: destination {
-										vlan 
-										ipRange  {
-											from
-											to
-										}
-
-										subnet 
-										site  {
-											id
-											name
-										}
-
-										networkInterface  {
-											id
-											name
-										}
-
-										systemGroup  {
-											id
-											name
-										}
-
-										host  {
-											id
-											name
-										}
-
-										ip 
-										globalIpRange  {
-											id
-											name
-										}
-
-										group  {
-											id
-											name
-										}
-
-										floatingSubnet  {
-											id
-											name
-										}
-
-										siteNetworkSubnet  {
-											id
-											name
-										}
-
-									}
-									directionSocketLanFirewallRule: direction
-									applicationSocketLanFirewallRule: application {
-										application  {
-											id
-											name
-										}
-
-										customApp  {
-											id
-											name
-										}
-
-										domain 
-										fqdn 
-										ip 
-										subnet 
-										ipRange  {
-											from
-											to
-										}
-
-										globalIpRange  {
-											id
-											name
-										}
-
-									}
-									serviceSocketLanFirewallRule: service {
-										simple  {
-											nameSimpleService: name
-										}
-
-										standard  {
-											id
-											name
-										}
-
-										custom  {
-											port
-											portRangeCustomService: portRange {
-												from 
-												to 
-											}
-											protocolCustomService: protocol
-										}
-
-									}
-									actionSocketLanFirewallRule: action
-									trackingSocketLanFirewallRule: tracking {
-										event  {
-											enabled
-										}
-
-										alert  {
-											enabled
-											frequencyPolicyRuleTrackingAlert: frequency
-											subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
-												id 
-												name 
-											}
-											webhookPolicyRuleTrackingAlert: webhook {
-												id 
-												name 
-											}
-											mailingListPolicyRuleTrackingAlert: mailingList {
-												id 
-												name 
-											}
-										}
-
-									}
-								}
-
-								properties 
-							}
-							siteSocketLanRule: site {
-								site  {
-									id
-									name
-								}
-
-								group  {
-									id
-									name
-								}
-
-							}
-							sourceSocketLanRule: source {
-								vlan 
-								ipRange  {
-									from
-									to
-								}
-
-								group  {
-									id
-									name
-								}
-
-								subnet 
-								networkInterface  {
-									id
-									name
-								}
-
-								systemGroup  {
-									id
-									name
-								}
-
-								host  {
-									id
-									name
-								}
-
-								ip 
-								globalIpRange  {
-									id
-									name
-								}
-
-								floatingSubnet  {
-									id
-									name
-								}
-
-								siteNetworkSubnet  {
-									id
-									name
-								}
-
-							}
-							destinationSocketLanRule: destination {
-								vlan 
-								ipRange  {
-									from
-									to
-								}
-
-								subnet 
-								networkInterface  {
-									id
-									name
-								}
-
-								systemGroup  {
-									id
-									name
-								}
-
-								host  {
-									id
-									name
-								}
-
-								ip 
-								globalIpRange  {
-									id
-									name
-								}
-
-								group  {
-									id
-									name
-								}
-
-								floatingSubnet  {
-									id
-									name
-								}
-
-								siteNetworkSubnet  {
-									id
-									name
-								}
-
-							}
-							directionSocketLanRule: direction
-							serviceSocketLanRule: service {
-								simple  {
-									nameSimpleService: name
-								}
-
-								custom  {
-									port
-									portRangeCustomService: portRange {
-										from 
-										to 
-									}
-									protocolCustomService: protocol
-								}
-
-							}
-							natSocketLanRule: nat {
-								enabled 
-								natType 
-							}
-							transportSocketLanRule: transport
-						}
-
-						properties 
-					}
-					sectionsSocketLanPolicy: sections {
-						audit  {
-							updatedTime
-							updatedBy
-						}
-
-						section  {
-							id
-							name
-						}
-
-						properties 
-					}
-					auditSocketLanPolicy: audit {
-						publishedTime 
-						publishedBy 
-					}
-					revisionSocketLanPolicy: revision {
-						id 
-						name 
-						description 
-						changes 
-						createdTime 
-						updatedTime 
-					}
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policySocketLanPublishPolicyRevision ( $socketLanPolicyMutationInput:SocketLanPolicyMutationInput $policyPublishRevisionInput:PolicyPublishRevisionInput) {
+	policy ( ) {
+mutation.policy.socketLan.publishPolicyRevisionsocketLan ( input:$socketLanPolicyMutationInput  )  {
+mutation.policy.socketLan.publishPolicyRevision	publishPolicyRevision ( input:$policyPublishRevisionInput   ) {
+mutation.policy.socketLan.publishPolicyRevision		policy {
+mutation.policy.socketLan.publishPolicyRevision			enabled
+mutation.policy.socketLan.publishPolicyRevision			rules {
+mutation.policy.socketLan.publishPolicyRevision				audit {
+mutation.policy.socketLan.publishPolicyRevision					updatedTime
+mutation.policy.socketLan.publishPolicyRevision					updatedBy
+mutation.policy.socketLan.publishPolicyRevision				}
+mutation.policy.socketLan.publishPolicyRevision				rule {
+mutation.policy.socketLan.publishPolicyRevision					id
+mutation.policy.socketLan.publishPolicyRevision					name
+mutation.policy.socketLan.publishPolicyRevision					description
+mutation.policy.socketLan.publishPolicyRevision					index
+mutation.policy.socketLan.publishPolicyRevision					section {
+mutation.policy.socketLan.publishPolicyRevision						id
+mutation.policy.socketLan.publishPolicyRevision						name
+mutation.policy.socketLan.publishPolicyRevision					}
+mutation.policy.socketLan.publishPolicyRevision					enabled
+mutation.policy.socketLan.publishPolicyRevision					firewall {
+mutation.policy.socketLan.publishPolicyRevision						audit {
+mutation.policy.socketLan.publishPolicyRevision							updatedTime
+mutation.policy.socketLan.publishPolicyRevision							updatedBy
+mutation.policy.socketLan.publishPolicyRevision						}
+mutation.policy.socketLan.publishPolicyRevision						rule {
+mutation.policy.socketLan.publishPolicyRevision							id
+mutation.policy.socketLan.publishPolicyRevision							name
+mutation.policy.socketLan.publishPolicyRevision							description
+mutation.policy.socketLan.publishPolicyRevision							index
+mutation.policy.socketLan.publishPolicyRevision							section {
+mutation.policy.socketLan.publishPolicyRevision								id
+mutation.policy.socketLan.publishPolicyRevision								name
+mutation.policy.socketLan.publishPolicyRevision							}
+mutation.policy.socketLan.publishPolicyRevision							enabled
+mutation.policy.socketLan.publishPolicyRevision							source {
+mutation.policy.socketLan.publishPolicyRevision								vlan
+mutation.policy.socketLan.publishPolicyRevision								mac
+mutation.policy.socketLan.publishPolicyRevision								ipRange {
+mutation.policy.socketLan.publishPolicyRevision									from
+mutation.policy.socketLan.publishPolicyRevision									to
+mutation.policy.socketLan.publishPolicyRevision								}
+mutation.policy.socketLan.publishPolicyRevision								group {
+mutation.policy.socketLan.publishPolicyRevision									id
+mutation.policy.socketLan.publishPolicyRevision									name
+mutation.policy.socketLan.publishPolicyRevision								}
+mutation.policy.socketLan.publishPolicyRevision								subnet
+mutation.policy.socketLan.publishPolicyRevision								site {
+mutation.policy.socketLan.publishPolicyRevision									id
+mutation.policy.socketLan.publishPolicyRevision									name
+mutation.policy.socketLan.publishPolicyRevision								}
+mutation.policy.socketLan.publishPolicyRevision								networkInterface {
+mutation.policy.socketLan.publishPolicyRevision									id
+mutation.policy.socketLan.publishPolicyRevision									name
+mutation.policy.socketLan.publishPolicyRevision								}
+mutation.policy.socketLan.publishPolicyRevision								systemGroup {
+mutation.policy.socketLan.publishPolicyRevision									id
+mutation.policy.socketLan.publishPolicyRevision									name
+mutation.policy.socketLan.publishPolicyRevision								}
+mutation.policy.socketLan.publishPolicyRevision								host {
+mutation.policy.socketLan.publishPolicyRevision									id
+mutation.policy.socketLan.publishPolicyRevision									name
+mutation.policy.socketLan.publishPolicyRevision								}
+mutation.policy.socketLan.publishPolicyRevision								ip
+mutation.policy.socketLan.publishPolicyRevision								globalIpRange {
+mutation.policy.socketLan.publishPolicyRevision									id
+mutation.policy.socketLan.publishPolicyRevision									name
+mutation.policy.socketLan.publishPolicyRevision								}
+mutation.policy.socketLan.publishPolicyRevision								floatingSubnet {
+mutation.policy.socketLan.publishPolicyRevision									id
+mutation.policy.socketLan.publishPolicyRevision									name
+mutation.policy.socketLan.publishPolicyRevision								}
+mutation.policy.socketLan.publishPolicyRevision								siteNetworkSubnet {
+mutation.policy.socketLan.publishPolicyRevision									id
+mutation.policy.socketLan.publishPolicyRevision									name
+mutation.policy.socketLan.publishPolicyRevision								}
+mutation.policy.socketLan.publishPolicyRevision							}
+mutation.policy.socketLan.publishPolicyRevision							destination {
+mutation.policy.socketLan.publishPolicyRevision								vlan
+mutation.policy.socketLan.publishPolicyRevision								ipRange {
+mutation.policy.socketLan.publishPolicyRevision									from
+mutation.policy.socketLan.publishPolicyRevision									to
+mutation.policy.socketLan.publishPolicyRevision								}
+mutation.policy.socketLan.publishPolicyRevision								subnet
+mutation.policy.socketLan.publishPolicyRevision								site {
+mutation.policy.socketLan.publishPolicyRevision									id
+mutation.policy.socketLan.publishPolicyRevision									name
+mutation.policy.socketLan.publishPolicyRevision								}
+mutation.policy.socketLan.publishPolicyRevision								networkInterface {
+mutation.policy.socketLan.publishPolicyRevision									id
+mutation.policy.socketLan.publishPolicyRevision									name
+mutation.policy.socketLan.publishPolicyRevision								}
+mutation.policy.socketLan.publishPolicyRevision								systemGroup {
+mutation.policy.socketLan.publishPolicyRevision									id
+mutation.policy.socketLan.publishPolicyRevision									name
+mutation.policy.socketLan.publishPolicyRevision								}
+mutation.policy.socketLan.publishPolicyRevision								host {
+mutation.policy.socketLan.publishPolicyRevision									id
+mutation.policy.socketLan.publishPolicyRevision									name
+mutation.policy.socketLan.publishPolicyRevision								}
+mutation.policy.socketLan.publishPolicyRevision								ip
+mutation.policy.socketLan.publishPolicyRevision								globalIpRange {
+mutation.policy.socketLan.publishPolicyRevision									id
+mutation.policy.socketLan.publishPolicyRevision									name
+mutation.policy.socketLan.publishPolicyRevision								}
+mutation.policy.socketLan.publishPolicyRevision								group {
+mutation.policy.socketLan.publishPolicyRevision									id
+mutation.policy.socketLan.publishPolicyRevision									name
+mutation.policy.socketLan.publishPolicyRevision								}
+mutation.policy.socketLan.publishPolicyRevision								floatingSubnet {
+mutation.policy.socketLan.publishPolicyRevision									id
+mutation.policy.socketLan.publishPolicyRevision									name
+mutation.policy.socketLan.publishPolicyRevision								}
+mutation.policy.socketLan.publishPolicyRevision								siteNetworkSubnet {
+mutation.policy.socketLan.publishPolicyRevision									id
+mutation.policy.socketLan.publishPolicyRevision									name
+mutation.policy.socketLan.publishPolicyRevision								}
+mutation.policy.socketLan.publishPolicyRevision							}
+mutation.policy.socketLan.publishPolicyRevision							direction
+mutation.policy.socketLan.publishPolicyRevision							application {
+mutation.policy.socketLan.publishPolicyRevision								application {
+mutation.policy.socketLan.publishPolicyRevision									id
+mutation.policy.socketLan.publishPolicyRevision									name
+mutation.policy.socketLan.publishPolicyRevision								}
+mutation.policy.socketLan.publishPolicyRevision								customApp {
+mutation.policy.socketLan.publishPolicyRevision									id
+mutation.policy.socketLan.publishPolicyRevision									name
+mutation.policy.socketLan.publishPolicyRevision								}
+mutation.policy.socketLan.publishPolicyRevision								domain
+mutation.policy.socketLan.publishPolicyRevision								fqdn
+mutation.policy.socketLan.publishPolicyRevision								ip
+mutation.policy.socketLan.publishPolicyRevision								subnet
+mutation.policy.socketLan.publishPolicyRevision								ipRange {
+mutation.policy.socketLan.publishPolicyRevision									from
+mutation.policy.socketLan.publishPolicyRevision									to
+mutation.policy.socketLan.publishPolicyRevision								}
+mutation.policy.socketLan.publishPolicyRevision								globalIpRange {
+mutation.policy.socketLan.publishPolicyRevision									id
+mutation.policy.socketLan.publishPolicyRevision									name
+mutation.policy.socketLan.publishPolicyRevision								}
+mutation.policy.socketLan.publishPolicyRevision							}
+mutation.policy.socketLan.publishPolicyRevision							service {
+mutation.policy.socketLan.publishPolicyRevision								simple {
+mutation.policy.socketLan.publishPolicyRevision									name
+mutation.policy.socketLan.publishPolicyRevision								}
+mutation.policy.socketLan.publishPolicyRevision								standard {
+mutation.policy.socketLan.publishPolicyRevision									id
+mutation.policy.socketLan.publishPolicyRevision									name
+mutation.policy.socketLan.publishPolicyRevision								}
+mutation.policy.socketLan.publishPolicyRevision								custom {
+mutation.policy.socketLan.publishPolicyRevision									port
+mutation.policy.socketLan.publishPolicyRevision									portRange {
+mutation.policy.socketLan.publishPolicyRevision										from
+mutation.policy.socketLan.publishPolicyRevision										to
+mutation.policy.socketLan.publishPolicyRevision									}
+mutation.policy.socketLan.publishPolicyRevision									protocol
+mutation.policy.socketLan.publishPolicyRevision								}
+mutation.policy.socketLan.publishPolicyRevision							}
+mutation.policy.socketLan.publishPolicyRevision							action
+mutation.policy.socketLan.publishPolicyRevision							tracking {
+mutation.policy.socketLan.publishPolicyRevision								event {
+mutation.policy.socketLan.publishPolicyRevision									enabled
+mutation.policy.socketLan.publishPolicyRevision								}
+mutation.policy.socketLan.publishPolicyRevision								alert {
+mutation.policy.socketLan.publishPolicyRevision									enabled
+mutation.policy.socketLan.publishPolicyRevision									frequency
+mutation.policy.socketLan.publishPolicyRevision									subscriptionGroup {
+mutation.policy.socketLan.publishPolicyRevision										id
+mutation.policy.socketLan.publishPolicyRevision										name
+mutation.policy.socketLan.publishPolicyRevision									}
+mutation.policy.socketLan.publishPolicyRevision									webhook {
+mutation.policy.socketLan.publishPolicyRevision										id
+mutation.policy.socketLan.publishPolicyRevision										name
+mutation.policy.socketLan.publishPolicyRevision									}
+mutation.policy.socketLan.publishPolicyRevision									mailingList {
+mutation.policy.socketLan.publishPolicyRevision										id
+mutation.policy.socketLan.publishPolicyRevision										name
+mutation.policy.socketLan.publishPolicyRevision									}
+mutation.policy.socketLan.publishPolicyRevision								}
+mutation.policy.socketLan.publishPolicyRevision							}
+mutation.policy.socketLan.publishPolicyRevision						}
+mutation.policy.socketLan.publishPolicyRevision						properties
+mutation.policy.socketLan.publishPolicyRevision					}
+mutation.policy.socketLan.publishPolicyRevision					site {
+mutation.policy.socketLan.publishPolicyRevision						site {
+mutation.policy.socketLan.publishPolicyRevision							id
+mutation.policy.socketLan.publishPolicyRevision							name
+mutation.policy.socketLan.publishPolicyRevision						}
+mutation.policy.socketLan.publishPolicyRevision						group {
+mutation.policy.socketLan.publishPolicyRevision							id
+mutation.policy.socketLan.publishPolicyRevision							name
+mutation.policy.socketLan.publishPolicyRevision						}
+mutation.policy.socketLan.publishPolicyRevision					}
+mutation.policy.socketLan.publishPolicyRevision					source {
+mutation.policy.socketLan.publishPolicyRevision						vlan
+mutation.policy.socketLan.publishPolicyRevision						ipRange {
+mutation.policy.socketLan.publishPolicyRevision							from
+mutation.policy.socketLan.publishPolicyRevision							to
+mutation.policy.socketLan.publishPolicyRevision						}
+mutation.policy.socketLan.publishPolicyRevision						group {
+mutation.policy.socketLan.publishPolicyRevision							id
+mutation.policy.socketLan.publishPolicyRevision							name
+mutation.policy.socketLan.publishPolicyRevision						}
+mutation.policy.socketLan.publishPolicyRevision						subnet
+mutation.policy.socketLan.publishPolicyRevision						networkInterface {
+mutation.policy.socketLan.publishPolicyRevision							id
+mutation.policy.socketLan.publishPolicyRevision							name
+mutation.policy.socketLan.publishPolicyRevision						}
+mutation.policy.socketLan.publishPolicyRevision						systemGroup {
+mutation.policy.socketLan.publishPolicyRevision							id
+mutation.policy.socketLan.publishPolicyRevision							name
+mutation.policy.socketLan.publishPolicyRevision						}
+mutation.policy.socketLan.publishPolicyRevision						host {
+mutation.policy.socketLan.publishPolicyRevision							id
+mutation.policy.socketLan.publishPolicyRevision							name
+mutation.policy.socketLan.publishPolicyRevision						}
+mutation.policy.socketLan.publishPolicyRevision						ip
+mutation.policy.socketLan.publishPolicyRevision						globalIpRange {
+mutation.policy.socketLan.publishPolicyRevision							id
+mutation.policy.socketLan.publishPolicyRevision							name
+mutation.policy.socketLan.publishPolicyRevision						}
+mutation.policy.socketLan.publishPolicyRevision						floatingSubnet {
+mutation.policy.socketLan.publishPolicyRevision							id
+mutation.policy.socketLan.publishPolicyRevision							name
+mutation.policy.socketLan.publishPolicyRevision						}
+mutation.policy.socketLan.publishPolicyRevision						siteNetworkSubnet {
+mutation.policy.socketLan.publishPolicyRevision							id
+mutation.policy.socketLan.publishPolicyRevision							name
+mutation.policy.socketLan.publishPolicyRevision						}
+mutation.policy.socketLan.publishPolicyRevision					}
+mutation.policy.socketLan.publishPolicyRevision					destination {
+mutation.policy.socketLan.publishPolicyRevision						vlan
+mutation.policy.socketLan.publishPolicyRevision						ipRange {
+mutation.policy.socketLan.publishPolicyRevision							from
+mutation.policy.socketLan.publishPolicyRevision							to
+mutation.policy.socketLan.publishPolicyRevision						}
+mutation.policy.socketLan.publishPolicyRevision						subnet
+mutation.policy.socketLan.publishPolicyRevision						networkInterface {
+mutation.policy.socketLan.publishPolicyRevision							id
+mutation.policy.socketLan.publishPolicyRevision							name
+mutation.policy.socketLan.publishPolicyRevision						}
+mutation.policy.socketLan.publishPolicyRevision						systemGroup {
+mutation.policy.socketLan.publishPolicyRevision							id
+mutation.policy.socketLan.publishPolicyRevision							name
+mutation.policy.socketLan.publishPolicyRevision						}
+mutation.policy.socketLan.publishPolicyRevision						host {
+mutation.policy.socketLan.publishPolicyRevision							id
+mutation.policy.socketLan.publishPolicyRevision							name
+mutation.policy.socketLan.publishPolicyRevision						}
+mutation.policy.socketLan.publishPolicyRevision						ip
+mutation.policy.socketLan.publishPolicyRevision						globalIpRange {
+mutation.policy.socketLan.publishPolicyRevision							id
+mutation.policy.socketLan.publishPolicyRevision							name
+mutation.policy.socketLan.publishPolicyRevision						}
+mutation.policy.socketLan.publishPolicyRevision						group {
+mutation.policy.socketLan.publishPolicyRevision							id
+mutation.policy.socketLan.publishPolicyRevision							name
+mutation.policy.socketLan.publishPolicyRevision						}
+mutation.policy.socketLan.publishPolicyRevision						floatingSubnet {
+mutation.policy.socketLan.publishPolicyRevision							id
+mutation.policy.socketLan.publishPolicyRevision							name
+mutation.policy.socketLan.publishPolicyRevision						}
+mutation.policy.socketLan.publishPolicyRevision						siteNetworkSubnet {
+mutation.policy.socketLan.publishPolicyRevision							id
+mutation.policy.socketLan.publishPolicyRevision							name
+mutation.policy.socketLan.publishPolicyRevision						}
+mutation.policy.socketLan.publishPolicyRevision					}
+mutation.policy.socketLan.publishPolicyRevision					direction
+mutation.policy.socketLan.publishPolicyRevision					service {
+mutation.policy.socketLan.publishPolicyRevision						simple {
+mutation.policy.socketLan.publishPolicyRevision							name
+mutation.policy.socketLan.publishPolicyRevision						}
+mutation.policy.socketLan.publishPolicyRevision						custom {
+mutation.policy.socketLan.publishPolicyRevision							port
+mutation.policy.socketLan.publishPolicyRevision							portRange {
+mutation.policy.socketLan.publishPolicyRevision								from
+mutation.policy.socketLan.publishPolicyRevision								to
+mutation.policy.socketLan.publishPolicyRevision							}
+mutation.policy.socketLan.publishPolicyRevision							protocol
+mutation.policy.socketLan.publishPolicyRevision						}
+mutation.policy.socketLan.publishPolicyRevision					}
+mutation.policy.socketLan.publishPolicyRevision					nat {
+mutation.policy.socketLan.publishPolicyRevision						enabled
+mutation.policy.socketLan.publishPolicyRevision						natType
+mutation.policy.socketLan.publishPolicyRevision					}
+mutation.policy.socketLan.publishPolicyRevision					transport
+mutation.policy.socketLan.publishPolicyRevision				}
+mutation.policy.socketLan.publishPolicyRevision				properties
+mutation.policy.socketLan.publishPolicyRevision			}
+mutation.policy.socketLan.publishPolicyRevision			sections {
+mutation.policy.socketLan.publishPolicyRevision				audit {
+mutation.policy.socketLan.publishPolicyRevision					updatedTime
+mutation.policy.socketLan.publishPolicyRevision					updatedBy
+mutation.policy.socketLan.publishPolicyRevision				}
+mutation.policy.socketLan.publishPolicyRevision				section {
+mutation.policy.socketLan.publishPolicyRevision					id
+mutation.policy.socketLan.publishPolicyRevision					name
+mutation.policy.socketLan.publishPolicyRevision				}
+mutation.policy.socketLan.publishPolicyRevision				properties
+mutation.policy.socketLan.publishPolicyRevision			}
+mutation.policy.socketLan.publishPolicyRevision			audit {
+mutation.policy.socketLan.publishPolicyRevision				publishedTime
+mutation.policy.socketLan.publishPolicyRevision				publishedBy
+mutation.policy.socketLan.publishPolicyRevision			}
+mutation.policy.socketLan.publishPolicyRevision			revision {
+mutation.policy.socketLan.publishPolicyRevision				id
+mutation.policy.socketLan.publishPolicyRevision				name
+mutation.policy.socketLan.publishPolicyRevision				description
+mutation.policy.socketLan.publishPolicyRevision				changes
+mutation.policy.socketLan.publishPolicyRevision				createdTime
+mutation.policy.socketLan.publishPolicyRevision				updatedTime
+mutation.policy.socketLan.publishPolicyRevision			}
+mutation.policy.socketLan.publishPolicyRevision		}
+mutation.policy.socketLan.publishPolicyRevision		status
+mutation.policy.socketLan.publishPolicyRevision		errors {
+mutation.policy.socketLan.publishPolicyRevision			errorMessage
+mutation.policy.socketLan.publishPolicyRevision			errorCode
+mutation.policy.socketLan.publishPolicyRevision		}
+mutation.policy.socketLan.publishPolicyRevision	}
+mutation.policy.socketLan.publishPolicyRevision}
 	}	
 }

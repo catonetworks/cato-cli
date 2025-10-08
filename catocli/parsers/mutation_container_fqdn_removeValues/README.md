@@ -4,15 +4,16 @@
 
 ### Usage for mutation.container.fqdn.removeValues:
 
-`catocli mutation container fqdn removeValues -h`
+```bash
+catocli mutation container fqdn removeValues -h
 
-`catocli mutation container fqdn removeValues <json>`
+catocli mutation container fqdn removeValues <json>
 
-`catocli mutation container fqdn removeValues "$(cat < mutation.container.fqdn.removeValues.json)"`
+catocli mutation container fqdn removeValues "$(cat < mutation.container.fqdn.removeValues.json)"
 
-`catocli mutation container fqdn removeValues '{"fqdnContainerRemoveValuesInput":{"containerRefInput":{"by":"ID","input":"string"},"values":["example1","example2"]}}'`
+catocli mutation container fqdn removeValues '{"fqdnContainerRemoveValuesInput":{"containerRefInput":{"by":"ID","input":"string"},"values":["example1","example2"]}}'
 
-`catocli mutation container fqdn removeValues -p '{
+catocli mutation container fqdn removeValues -p '{
     "fqdnContainerRemoveValuesInput": {
         "containerRefInput": {
             "by": "ID",
@@ -24,7 +25,7 @@
         ]
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.container.fqdn.removeValues ####
 

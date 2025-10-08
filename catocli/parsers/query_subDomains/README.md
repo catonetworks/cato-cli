@@ -4,18 +4,19 @@
 
 ### Usage for query.subDomains:
 
-`catocli query subDomains -h`
+```bash
+catocli query subDomains -h
 
-`catocli query subDomains <json>`
+catocli query subDomains <json>
 
-`catocli query subDomains "$(cat < query.subDomains.json)"`
+catocli query subDomains "$(cat < query.subDomains.json)"
 
-`catocli query subDomains '{"managedAccount":true}'`
+catocli query subDomains '{"managedAccount":true}'
 
-`catocli query subDomains -p '{
+catocli query subDomains -p '{
     "managedAccount": true
 }'
-
+```
 
 #### Operation Arguments for query.subDomains ####
 

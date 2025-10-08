@@ -4,15 +4,16 @@
 
 ### Usage for mutation.sites.addStaticHost:
 
-`catocli mutation sites addStaticHost -h`
+```bash
+catocli mutation sites addStaticHost -h
 
-`catocli mutation sites addStaticHost <json>`
+catocli mutation sites addStaticHost <json>
 
-`catocli mutation sites addStaticHost "$(cat < mutation.sites.addStaticHost.json)"`
+catocli mutation sites addStaticHost "$(cat < mutation.sites.addStaticHost.json)"
 
-`catocli mutation sites addStaticHost '{"addStaticHostInput":{"ip":"example_value","macAddress":"string","name":"string"},"siteId":"id"}'`
+catocli mutation sites addStaticHost '{"addStaticHostInput":{"ip":"example_value","macAddress":"string","name":"string"},"siteId":"id"}'
 
-`catocli mutation sites addStaticHost -p '{
+catocli mutation sites addStaticHost -p '{
     "addStaticHostInput": {
         "ip": "example_value",
         "macAddress": "string",
@@ -20,7 +21,7 @@
     },
     "siteId": "id"
 }'
-
+```
 
 #### Operation Arguments for mutation.sites.addStaticHost ####
 

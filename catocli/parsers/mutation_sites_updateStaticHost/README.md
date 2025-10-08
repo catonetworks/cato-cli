@@ -4,15 +4,16 @@
 
 ### Usage for mutation.sites.updateStaticHost:
 
-`catocli mutation sites updateStaticHost -h`
+```bash
+catocli mutation sites updateStaticHost -h
 
-`catocli mutation sites updateStaticHost <json>`
+catocli mutation sites updateStaticHost <json>
 
-`catocli mutation sites updateStaticHost "$(cat < mutation.sites.updateStaticHost.json)"`
+catocli mutation sites updateStaticHost "$(cat < mutation.sites.updateStaticHost.json)"
 
-`catocli mutation sites updateStaticHost '{"hostId":"id","updateStaticHostInput":{"ip":"example_value","macAddress":"string","name":"string"}}'`
+catocli mutation sites updateStaticHost '{"hostId":"id","updateStaticHostInput":{"ip":"example_value","macAddress":"string","name":"string"}}'
 
-`catocli mutation sites updateStaticHost -p '{
+catocli mutation sites updateStaticHost -p '{
     "hostId": "id",
     "updateStaticHostInput": {
         "ip": "example_value",
@@ -20,7 +21,7 @@
         "name": "string"
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.sites.updateStaticHost ####
 

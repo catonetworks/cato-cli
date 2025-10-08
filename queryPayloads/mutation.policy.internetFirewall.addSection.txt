@@ -1,27 +1,24 @@
-mutation policyInternetFirewallAddSection ( $policyAddSectionInput:PolicyAddSectionInput! $internetFirewallPolicyMutationInput:InternetFirewallPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		internetFirewall ( input:$internetFirewallPolicyMutationInput  )  {
-			addSectionInternetFirewallPolicyMutations: addSection ( input:$policyAddSectionInput   ) {
-				section  {
-					auditPolicySectionPayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					sectionPolicySectionPayload: section {
-						id 
-						name 
-					}
-					propertiesPolicySectionPayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyInternetFirewallAddSection ( $internetFirewallPolicyMutationInput:InternetFirewallPolicyMutationInput $policyAddSectionInput:PolicyAddSectionInput!) {
+	policy ( ) {
+mutation.policy.internetFirewall.addSectioninternetFirewall ( input:$internetFirewallPolicyMutationInput  )  {
+mutation.policy.internetFirewall.addSection	addSection ( input:$policyAddSectionInput   ) {
+mutation.policy.internetFirewall.addSection		section {
+mutation.policy.internetFirewall.addSection			audit {
+mutation.policy.internetFirewall.addSection				updatedTime
+mutation.policy.internetFirewall.addSection				updatedBy
+mutation.policy.internetFirewall.addSection			}
+mutation.policy.internetFirewall.addSection			section {
+mutation.policy.internetFirewall.addSection				id
+mutation.policy.internetFirewall.addSection				name
+mutation.policy.internetFirewall.addSection			}
+mutation.policy.internetFirewall.addSection			properties
+mutation.policy.internetFirewall.addSection		}
+mutation.policy.internetFirewall.addSection		status
+mutation.policy.internetFirewall.addSection		errors {
+mutation.policy.internetFirewall.addSection			errorMessage
+mutation.policy.internetFirewall.addSection			errorCode
+mutation.policy.internetFirewall.addSection		}
+mutation.policy.internetFirewall.addSection	}
+mutation.policy.internetFirewall.addSection}
 	}	
 }

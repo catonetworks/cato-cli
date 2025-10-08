@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.wanFirewall.discardPolicyRevision:
 
-`catocli mutation policy wanFirewall discardPolicyRevision -h`
+```bash
+catocli mutation policy wanFirewall discardPolicyRevision -h
 
-`catocli mutation policy wanFirewall discardPolicyRevision <json>`
+catocli mutation policy wanFirewall discardPolicyRevision <json>
 
-`catocli mutation policy wanFirewall discardPolicyRevision "$(cat < mutation.policy.wanFirewall.discardPolicyRevision.json)"`
+catocli mutation policy wanFirewall discardPolicyRevision "$(cat < mutation.policy.wanFirewall.discardPolicyRevision.json)"
 
-`catocli mutation policy wanFirewall discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"wanFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
+catocli mutation policy wanFirewall discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"wanFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-`catocli mutation policy wanFirewall discardPolicyRevision -p '{
+catocli mutation policy wanFirewall discardPolicyRevision -p '{
     "policyDiscardRevisionInput": {
         "id": "id"
     },
@@ -22,7 +23,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.wanFirewall.discardPolicyRevision ####
 

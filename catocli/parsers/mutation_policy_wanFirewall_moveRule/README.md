@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.wanFirewall.moveRule:
 
-`catocli mutation policy wanFirewall moveRule -h`
+```bash
+catocli mutation policy wanFirewall moveRule -h
 
-`catocli mutation policy wanFirewall moveRule <json>`
+catocli mutation policy wanFirewall moveRule <json>
 
-`catocli mutation policy wanFirewall moveRule "$(cat < mutation.policy.wanFirewall.moveRule.json)"`
+catocli mutation policy wanFirewall moveRule "$(cat < mutation.policy.wanFirewall.moveRule.json)"
 
-`catocli mutation policy wanFirewall moveRule '{"policyMoveRuleInput":{"id":"id","policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"}},"wanFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
+catocli mutation policy wanFirewall moveRule '{"policyMoveRuleInput":{"id":"id","policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"}},"wanFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-`catocli mutation policy wanFirewall moveRule -p '{
+catocli mutation policy wanFirewall moveRule -p '{
     "policyMoveRuleInput": {
         "id": "id",
         "policyRulePositionInput": {
@@ -26,7 +27,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.wanFirewall.moveRule ####
 

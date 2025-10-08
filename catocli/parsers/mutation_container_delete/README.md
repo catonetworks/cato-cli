@@ -4,15 +4,16 @@
 
 ### Usage for mutation.container.delete:
 
-`catocli mutation container delete -h`
+```bash
+catocli mutation container delete -h
 
-`catocli mutation container delete <json>`
+catocli mutation container delete <json>
 
-`catocli mutation container delete "$(cat < mutation.container.delete.json)"`
+catocli mutation container delete "$(cat < mutation.container.delete.json)"
 
-`catocli mutation container delete '{"deleteContainerInput":{"containerRefInput":{"by":"ID","input":"string"}}}'`
+catocli mutation container delete '{"deleteContainerInput":{"containerRefInput":{"by":"ID","input":"string"}}}'
 
-`catocli mutation container delete -p '{
+catocli mutation container delete -p '{
     "deleteContainerInput": {
         "containerRefInput": {
             "by": "ID",
@@ -20,7 +21,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.container.delete ####
 

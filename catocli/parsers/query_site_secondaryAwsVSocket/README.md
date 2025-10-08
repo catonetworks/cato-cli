@@ -4,18 +4,19 @@
 
 ### Usage for query.site.secondaryAwsVSocket:
 
-`catocli query site secondaryAwsVSocket -h`
+```bash
+catocli query site secondaryAwsVSocket -h
 
-`catocli query site secondaryAwsVSocket <json>`
+catocli query site secondaryAwsVSocket <json>
 
-`catocli query site secondaryAwsVSocket "$(cat < query.site.secondaryAwsVSocket.json)"`
+catocli query site secondaryAwsVSocket "$(cat < query.site.secondaryAwsVSocket.json)"
 
-`catocli query site secondaryAwsVSocket '{"socketId":"id"}'`
+catocli query site secondaryAwsVSocket '{"socketId":"id"}'
 
-`catocli query site secondaryAwsVSocket -p '{
+catocli query site secondaryAwsVSocket -p '{
     "socketId": "id"
 }'
-
+```
 
 #### Operation Arguments for query.site.secondaryAwsVSocket ####
 

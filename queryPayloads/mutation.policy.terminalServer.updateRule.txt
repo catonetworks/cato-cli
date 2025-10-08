@@ -1,45 +1,39 @@
-mutation policyTerminalServerUpdateRule ( $terminalServerUpdateRuleInput:TerminalServerUpdateRuleInput! $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		terminalServer ( input:$terminalServerPolicyMutationInput  )  {
-			updateRuleTerminalServerPolicyMutations: updateRule ( input:$terminalServerUpdateRuleInput   ) {
-				rule  {
-					auditTerminalServerRulePayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					ruleTerminalServerRulePayload: rule {
-						id 
-						name 
-						description 
-						index 
-						section  {
-							id
-							name
-						}
-
-						enabled 
-						allowedHostIP  {
-							id
-							name
-						}
-
-						excludeTraffic  {
-							id
-							name
-						}
-
-					}
-					propertiesTerminalServerRulePayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyTerminalServerUpdateRule ( $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput $terminalServerUpdateRuleInput:TerminalServerUpdateRuleInput!) {
+	policy ( ) {
+mutation.policy.terminalServer.updateRuleterminalServer ( input:$terminalServerPolicyMutationInput  )  {
+mutation.policy.terminalServer.updateRule	updateRule ( input:$terminalServerUpdateRuleInput   ) {
+mutation.policy.terminalServer.updateRule		rule {
+mutation.policy.terminalServer.updateRule			audit {
+mutation.policy.terminalServer.updateRule				updatedTime
+mutation.policy.terminalServer.updateRule				updatedBy
+mutation.policy.terminalServer.updateRule			}
+mutation.policy.terminalServer.updateRule			rule {
+mutation.policy.terminalServer.updateRule				id
+mutation.policy.terminalServer.updateRule				name
+mutation.policy.terminalServer.updateRule				description
+mutation.policy.terminalServer.updateRule				index
+mutation.policy.terminalServer.updateRule				section {
+mutation.policy.terminalServer.updateRule					id
+mutation.policy.terminalServer.updateRule					name
+mutation.policy.terminalServer.updateRule				}
+mutation.policy.terminalServer.updateRule				enabled
+mutation.policy.terminalServer.updateRule				allowedHostIP {
+mutation.policy.terminalServer.updateRule					id
+mutation.policy.terminalServer.updateRule					name
+mutation.policy.terminalServer.updateRule				}
+mutation.policy.terminalServer.updateRule				excludeTraffic {
+mutation.policy.terminalServer.updateRule					id
+mutation.policy.terminalServer.updateRule					name
+mutation.policy.terminalServer.updateRule				}
+mutation.policy.terminalServer.updateRule			}
+mutation.policy.terminalServer.updateRule			properties
+mutation.policy.terminalServer.updateRule		}
+mutation.policy.terminalServer.updateRule		status
+mutation.policy.terminalServer.updateRule		errors {
+mutation.policy.terminalServer.updateRule			errorMessage
+mutation.policy.terminalServer.updateRule			errorCode
+mutation.policy.terminalServer.updateRule		}
+mutation.policy.terminalServer.updateRule	}
+mutation.policy.terminalServer.updateRule}
 	}	
 }

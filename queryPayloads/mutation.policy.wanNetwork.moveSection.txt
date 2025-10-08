@@ -1,27 +1,24 @@
-mutation policyWanNetworkMoveSection ( $policyMoveSectionInput:PolicyMoveSectionInput! $wanNetworkPolicyMutationInput:WanNetworkPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		wanNetwork ( input:$wanNetworkPolicyMutationInput  )  {
-			moveSectionWanNetworkPolicyMutations: moveSection ( input:$policyMoveSectionInput   ) {
-				section  {
-					auditPolicySectionPayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					sectionPolicySectionPayload: section {
-						id 
-						name 
-					}
-					propertiesPolicySectionPayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyWanNetworkMoveSection ( $wanNetworkPolicyMutationInput:WanNetworkPolicyMutationInput $policyMoveSectionInput:PolicyMoveSectionInput!) {
+	policy ( ) {
+mutation.policy.wanNetwork.moveSectionwanNetwork ( input:$wanNetworkPolicyMutationInput  )  {
+mutation.policy.wanNetwork.moveSection	moveSection ( input:$policyMoveSectionInput   ) {
+mutation.policy.wanNetwork.moveSection		section {
+mutation.policy.wanNetwork.moveSection			audit {
+mutation.policy.wanNetwork.moveSection				updatedTime
+mutation.policy.wanNetwork.moveSection				updatedBy
+mutation.policy.wanNetwork.moveSection			}
+mutation.policy.wanNetwork.moveSection			section {
+mutation.policy.wanNetwork.moveSection				id
+mutation.policy.wanNetwork.moveSection				name
+mutation.policy.wanNetwork.moveSection			}
+mutation.policy.wanNetwork.moveSection			properties
+mutation.policy.wanNetwork.moveSection		}
+mutation.policy.wanNetwork.moveSection		status
+mutation.policy.wanNetwork.moveSection		errors {
+mutation.policy.wanNetwork.moveSection			errorMessage
+mutation.policy.wanNetwork.moveSection			errorCode
+mutation.policy.wanNetwork.moveSection		}
+mutation.policy.wanNetwork.moveSection	}
+mutation.policy.wanNetwork.moveSection}
 	}	
 }

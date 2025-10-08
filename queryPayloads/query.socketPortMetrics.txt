@@ -1,20 +1,32 @@
-query socketPortMetrics ( $limit:Int $from:Int $accountID:ID! $timeFrame:TimeFrame! $socketPortMetricsMeasure:[SocketPortMetricsMeasure] $socketPortMetricsDimension:[SocketPortMetricsDimension] $socketPortMetricsFilter:[SocketPortMetricsFilter!] $socketPortMetricsSort:[SocketPortMetricsSort!] ) {
-	socketPortMetrics ( accountID:$accountID timeFrame:$timeFrame measures:$socketPortMetricsMeasure dimensions:$socketPortMetricsDimension filters:$socketPortMetricsFilter sort:$socketPortMetricsSort ) {
-		id 
-		from 
-		to 
-		total 
-		totals 
-		records ( limit:$limit  from:$from  )  {
-			fieldsSocketPortMetricsRecord: fields {
-				name 
-				value 
-			}
-			fieldsUnitTypesSocketPortMetricsRecord: fieldsUnitTypes
-			fieldsMap
-			trends
-			prevTimeFrame
-		}
-
+query socketPortMetrics ( $timeFrame:TimeFrame! $socketPortMetricsMeasure:[SocketPortMetricsMeasure] $socketPortMetricsDimension:[SocketPortMetricsDimension] $socketPortMetricsFilter:[SocketPortMetricsFilter!] $socketPortMetricsSort:[SocketPortMetricsSort!]) {
+	socketPortMetrics ( timeFrame:$timeFrame measures:$socketPortMetricsMeasure dimensions:$socketPortMetricsDimension filters:$socketPortMetricsFilter sort:$socketPortMetricsSort ) {
+query.socketPortMetricsid
+query.socketPortMetricsfrom
+query.socketPortMetricsto
+query.socketPortMetricstotal
+query.socketPortMetricstotals
+query.socketPortMetricsrecords {
+query.socketPortMetrics	fields {
+query.socketPortMetrics		name
+query.socketPortMetrics		value {
+query.socketPortMetrics			__typename
+query.socketPortMetrics			... on StringValue {
+query.socketPortMetrics				string
+query.socketPortMetrics			}
+query.socketPortMetrics			... on DateValue {
+query.socketPortMetrics				date
+query.socketPortMetrics			}
+query.socketPortMetrics			... on Entity {
+query.socketPortMetrics				id
+query.socketPortMetrics				name
+query.socketPortMetrics				type
+query.socketPortMetrics			}
+query.socketPortMetrics		}
+query.socketPortMetrics	}
+query.socketPortMetrics	fieldsUnitTypes
+query.socketPortMetrics	fieldsMap
+query.socketPortMetrics	trends
+query.socketPortMetrics	prevTimeFrame
+query.socketPortMetrics}
 	}	
 }

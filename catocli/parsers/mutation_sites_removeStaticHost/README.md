@@ -4,18 +4,19 @@
 
 ### Usage for mutation.sites.removeStaticHost:
 
-`catocli mutation sites removeStaticHost -h`
+```bash
+catocli mutation sites removeStaticHost -h
 
-`catocli mutation sites removeStaticHost <json>`
+catocli mutation sites removeStaticHost <json>
 
-`catocli mutation sites removeStaticHost "$(cat < mutation.sites.removeStaticHost.json)"`
+catocli mutation sites removeStaticHost "$(cat < mutation.sites.removeStaticHost.json)"
 
-`catocli mutation sites removeStaticHost '{"hostId":"id"}'`
+catocli mutation sites removeStaticHost '{"hostId":"id"}'
 
-`catocli mutation sites removeStaticHost -p '{
+catocli mutation sites removeStaticHost -p '{
     "hostId": "id"
 }'
-
+```
 
 #### Operation Arguments for mutation.sites.removeStaticHost ####
 

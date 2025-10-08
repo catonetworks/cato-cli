@@ -1,183 +1,170 @@
-query policyTlsInspectPolicy ( $tlsInspectPolicyInput:TlsInspectPolicyInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		tlsInspect  {
-			policyTlsInspectPolicyQueries: policy ( input:$tlsInspectPolicyInput   ) {
-				enabled 
-				rules  {
-					auditTlsInspectRulePayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					ruleTlsInspectRulePayload: rule {
-						id 
-						name 
-						description 
-						index 
-						section  {
-							id
-							name
-						}
-
-						enabled 
-						source  {
-							userTlsInspectSource: user {
-								id 
-								name 
-							}
-							floatingSubnetTlsInspectSource: floatingSubnet {
-								id 
-								name 
-							}
-							globalIpRangeTlsInspectSource: globalIpRange {
-								id 
-								name 
-							}
-							groupTlsInspectSource: group {
-								id 
-								name 
-							}
-							hostTlsInspectSource: host {
-								id 
-								name 
-							}
-							subnet
-							ipRangeTlsInspectSource: ipRange {
-								from 
-								to 
-							}
-							networkInterfaceTlsInspectSource: networkInterface {
-								id 
-								name 
-							}
-							siteTlsInspectSource: site {
-								id 
-								name 
-							}
-							systemGroupTlsInspectSource: systemGroup {
-								id 
-								name 
-							}
-							usersGroupTlsInspectSource: usersGroup {
-								id 
-								name 
-							}
-							ip
-							siteNetworkSubnetTlsInspectSource: siteNetworkSubnet {
-								id 
-								name 
-							}
-						}
-
-						platform 
-						country  {
-							id
-							name
-						}
-
-						devicePostureProfile  {
-							id
-							name
-						}
-
-						connectionOrigin 
-						application  {
-							applicationTlsInspectApplication: application {
-								id 
-								name 
-							}
-							appCategoryTlsInspectApplication: appCategory {
-								id 
-								name 
-							}
-							countryTlsInspectApplication: country {
-								id 
-								name 
-							}
-							customAppTlsInspectApplication: customApp {
-								id 
-								name 
-							}
-							customCategoryTlsInspectApplication: customCategory {
-								id 
-								name 
-							}
-							customServiceIpTlsInspectApplication: customServiceIp {
-								name 
-								ip 
-								ipRange  {
-									from
-									to
-								}
-
-							}
-							domain
-							fqdn
-							subnet
-							ip
-							ipRangeTlsInspectApplication: ipRange {
-								from 
-								to 
-							}
-							globalIpRangeTlsInspectApplication: globalIpRange {
-								id 
-								name 
-							}
-							customServiceTlsInspectApplication: customService {
-								port 
-								portRange  {
-									from
-									to
-								}
-
-								protocol 
-							}
-							remoteAsn
-							serviceTlsInspectApplication: service {
-								id 
-								name 
-							}
-							tlsInspectCategoryTlsInspectApplication: tlsInspectCategory
-						}
-
-						action 
-						untrustedCertificateAction 
-					}
-					propertiesTlsInspectRulePayload: properties
-				}
-
-				sections  {
-					auditPolicySectionPayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					sectionPolicySectionPayload: section {
-						id 
-						name 
-					}
-					propertiesPolicySectionPayload: properties
-				}
-
-				audit  {
-					publishedTime
-					publishedBy
-				}
-
-				revision  {
-					id
-					name
-					description
-					changes
-					createdTime
-					updatedTime
-				}
-
-				additionalAttributes  {
-					defaultRuleActionTlsInspectConfig: defaultRuleAction
-					defaultRuleUntrustedCertificateActionTlsInspectConfig: defaultRuleUntrustedCertificateAction
-				}
-
-			}
-		}
-
+query policyTlsInspectPolicy ( $tlsInspectPolicyInput:TlsInspectPolicyInput) {
+	policy ( ) {
+query.policy.tlsInspect.policytlsInspect {
+query.policy.tlsInspect.policy	policy ( input:$tlsInspectPolicyInput   ) {
+query.policy.tlsInspect.policy		enabled
+query.policy.tlsInspect.policy		rules {
+query.policy.tlsInspect.policy			audit {
+query.policy.tlsInspect.policy				updatedTime
+query.policy.tlsInspect.policy				updatedBy
+query.policy.tlsInspect.policy			}
+query.policy.tlsInspect.policy			rule {
+query.policy.tlsInspect.policy				id
+query.policy.tlsInspect.policy				name
+query.policy.tlsInspect.policy				description
+query.policy.tlsInspect.policy				index
+query.policy.tlsInspect.policy				section {
+query.policy.tlsInspect.policy					id
+query.policy.tlsInspect.policy					name
+query.policy.tlsInspect.policy				}
+query.policy.tlsInspect.policy				enabled
+query.policy.tlsInspect.policy				source {
+query.policy.tlsInspect.policy					user {
+query.policy.tlsInspect.policy						id
+query.policy.tlsInspect.policy						name
+query.policy.tlsInspect.policy					}
+query.policy.tlsInspect.policy					floatingSubnet {
+query.policy.tlsInspect.policy						id
+query.policy.tlsInspect.policy						name
+query.policy.tlsInspect.policy					}
+query.policy.tlsInspect.policy					globalIpRange {
+query.policy.tlsInspect.policy						id
+query.policy.tlsInspect.policy						name
+query.policy.tlsInspect.policy					}
+query.policy.tlsInspect.policy					group {
+query.policy.tlsInspect.policy						id
+query.policy.tlsInspect.policy						name
+query.policy.tlsInspect.policy					}
+query.policy.tlsInspect.policy					host {
+query.policy.tlsInspect.policy						id
+query.policy.tlsInspect.policy						name
+query.policy.tlsInspect.policy					}
+query.policy.tlsInspect.policy					subnet
+query.policy.tlsInspect.policy					ipRange {
+query.policy.tlsInspect.policy						from
+query.policy.tlsInspect.policy						to
+query.policy.tlsInspect.policy					}
+query.policy.tlsInspect.policy					networkInterface {
+query.policy.tlsInspect.policy						id
+query.policy.tlsInspect.policy						name
+query.policy.tlsInspect.policy					}
+query.policy.tlsInspect.policy					site {
+query.policy.tlsInspect.policy						id
+query.policy.tlsInspect.policy						name
+query.policy.tlsInspect.policy					}
+query.policy.tlsInspect.policy					systemGroup {
+query.policy.tlsInspect.policy						id
+query.policy.tlsInspect.policy						name
+query.policy.tlsInspect.policy					}
+query.policy.tlsInspect.policy					usersGroup {
+query.policy.tlsInspect.policy						id
+query.policy.tlsInspect.policy						name
+query.policy.tlsInspect.policy					}
+query.policy.tlsInspect.policy					ip
+query.policy.tlsInspect.policy					siteNetworkSubnet {
+query.policy.tlsInspect.policy						id
+query.policy.tlsInspect.policy						name
+query.policy.tlsInspect.policy					}
+query.policy.tlsInspect.policy				}
+query.policy.tlsInspect.policy				platform
+query.policy.tlsInspect.policy				country {
+query.policy.tlsInspect.policy					id
+query.policy.tlsInspect.policy					name
+query.policy.tlsInspect.policy				}
+query.policy.tlsInspect.policy				devicePostureProfile {
+query.policy.tlsInspect.policy					id
+query.policy.tlsInspect.policy					name
+query.policy.tlsInspect.policy				}
+query.policy.tlsInspect.policy				connectionOrigin
+query.policy.tlsInspect.policy				application {
+query.policy.tlsInspect.policy					application {
+query.policy.tlsInspect.policy						id
+query.policy.tlsInspect.policy						name
+query.policy.tlsInspect.policy					}
+query.policy.tlsInspect.policy					appCategory {
+query.policy.tlsInspect.policy						id
+query.policy.tlsInspect.policy						name
+query.policy.tlsInspect.policy					}
+query.policy.tlsInspect.policy					country {
+query.policy.tlsInspect.policy						id
+query.policy.tlsInspect.policy						name
+query.policy.tlsInspect.policy					}
+query.policy.tlsInspect.policy					customApp {
+query.policy.tlsInspect.policy						id
+query.policy.tlsInspect.policy						name
+query.policy.tlsInspect.policy					}
+query.policy.tlsInspect.policy					customCategory {
+query.policy.tlsInspect.policy						id
+query.policy.tlsInspect.policy						name
+query.policy.tlsInspect.policy					}
+query.policy.tlsInspect.policy					customServiceIp {
+query.policy.tlsInspect.policy						name
+query.policy.tlsInspect.policy						ip
+query.policy.tlsInspect.policy						ipRange {
+query.policy.tlsInspect.policy							from
+query.policy.tlsInspect.policy							to
+query.policy.tlsInspect.policy						}
+query.policy.tlsInspect.policy					}
+query.policy.tlsInspect.policy					domain
+query.policy.tlsInspect.policy					fqdn
+query.policy.tlsInspect.policy					subnet
+query.policy.tlsInspect.policy					ip
+query.policy.tlsInspect.policy					ipRange {
+query.policy.tlsInspect.policy						from
+query.policy.tlsInspect.policy						to
+query.policy.tlsInspect.policy					}
+query.policy.tlsInspect.policy					globalIpRange {
+query.policy.tlsInspect.policy						id
+query.policy.tlsInspect.policy						name
+query.policy.tlsInspect.policy					}
+query.policy.tlsInspect.policy					customService {
+query.policy.tlsInspect.policy						port
+query.policy.tlsInspect.policy						portRange {
+query.policy.tlsInspect.policy							from
+query.policy.tlsInspect.policy							to
+query.policy.tlsInspect.policy						}
+query.policy.tlsInspect.policy						protocol
+query.policy.tlsInspect.policy					}
+query.policy.tlsInspect.policy					remoteAsn
+query.policy.tlsInspect.policy					service {
+query.policy.tlsInspect.policy						id
+query.policy.tlsInspect.policy						name
+query.policy.tlsInspect.policy					}
+query.policy.tlsInspect.policy					tlsInspectCategory
+query.policy.tlsInspect.policy				}
+query.policy.tlsInspect.policy				action
+query.policy.tlsInspect.policy				untrustedCertificateAction
+query.policy.tlsInspect.policy			}
+query.policy.tlsInspect.policy			properties
+query.policy.tlsInspect.policy		}
+query.policy.tlsInspect.policy		sections {
+query.policy.tlsInspect.policy			audit {
+query.policy.tlsInspect.policy				updatedTime
+query.policy.tlsInspect.policy				updatedBy
+query.policy.tlsInspect.policy			}
+query.policy.tlsInspect.policy			section {
+query.policy.tlsInspect.policy				id
+query.policy.tlsInspect.policy				name
+query.policy.tlsInspect.policy			}
+query.policy.tlsInspect.policy			properties
+query.policy.tlsInspect.policy		}
+query.policy.tlsInspect.policy		audit {
+query.policy.tlsInspect.policy			publishedTime
+query.policy.tlsInspect.policy			publishedBy
+query.policy.tlsInspect.policy		}
+query.policy.tlsInspect.policy		revision {
+query.policy.tlsInspect.policy			id
+query.policy.tlsInspect.policy			name
+query.policy.tlsInspect.policy			description
+query.policy.tlsInspect.policy			changes
+query.policy.tlsInspect.policy			createdTime
+query.policy.tlsInspect.policy			updatedTime
+query.policy.tlsInspect.policy		}
+query.policy.tlsInspect.policy		additionalAttributes {
+query.policy.tlsInspect.policy			defaultRuleAction
+query.policy.tlsInspect.policy			defaultRuleUntrustedCertificateAction
+query.policy.tlsInspect.policy		}
+query.policy.tlsInspect.policy	}
+query.policy.tlsInspect.policy}
 	}	
 }

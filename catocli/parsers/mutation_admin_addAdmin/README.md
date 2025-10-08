@@ -4,15 +4,16 @@
 
 ### Usage for mutation.admin.addAdmin:
 
-`catocli mutation admin addAdmin -h`
+```bash
+catocli mutation admin addAdmin -h
 
-`catocli mutation admin addAdmin <json>`
+catocli mutation admin addAdmin <json>
 
-`catocli mutation admin addAdmin "$(cat < mutation.admin.addAdmin.json)"`
+catocli mutation admin addAdmin "$(cat < mutation.admin.addAdmin.json)"
 
-`catocli mutation admin addAdmin '{"addAdminInput":{"adminType":"LOGIN","email":"string","firstName":"string","lastName":"string","passwordNeverExpires":true,"updateAdminRoleInput":{"allowedAccounts":["id1","id2"],"allowedEntities":{"id":"id","name":"string","type":"account"},"role":{"id":"id","name":"string"}}}}'`
+catocli mutation admin addAdmin '{"addAdminInput":{"adminType":"LOGIN","email":"string","firstName":"string","lastName":"string","passwordNeverExpires":true,"updateAdminRoleInput":{"allowedAccounts":["id1","id2"],"allowedEntities":{"id":"id","name":"string","type":"account"},"role":{"id":"id","name":"string"}}}}'
 
-`catocli mutation admin addAdmin -p '{
+catocli mutation admin addAdmin -p '{
     "addAdminInput": {
         "adminType": "LOGIN",
         "email": "string",
@@ -36,7 +37,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.admin.addAdmin ####
 

@@ -4,21 +4,22 @@
 
 ### Usage for mutation.licensing.updateCommercialLicense:
 
-`catocli mutation licensing updateCommercialLicense -h`
+```bash
+catocli mutation licensing updateCommercialLicense -h
 
-`catocli mutation licensing updateCommercialLicense <json>`
+catocli mutation licensing updateCommercialLicense <json>
 
-`catocli mutation licensing updateCommercialLicense "$(cat < mutation.licensing.updateCommercialLicense.json)"`
+catocli mutation licensing updateCommercialLicense "$(cat < mutation.licensing.updateCommercialLicense.json)"
 
-`catocli mutation licensing updateCommercialLicense '{"updateCommercialLicenseInput":{"licenseId":"id","startDate":"example_value"}}'`
+catocli mutation licensing updateCommercialLicense '{"updateCommercialLicenseInput":{"licenseId":"id","startDate":"example_value"}}'
 
-`catocli mutation licensing updateCommercialLicense -p '{
+catocli mutation licensing updateCommercialLicense -p '{
     "updateCommercialLicenseInput": {
         "licenseId": "id",
         "startDate": "example_value"
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.licensing.updateCommercialLicense ####
 

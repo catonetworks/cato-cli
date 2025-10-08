@@ -1,122 +1,112 @@
-query container ( $containerSearchInput:ContainerSearchInput! $ipAddressRangeContainerSearchInput:IpAddressRangeContainerSearchInput! $ipAddressRangeContainerSearchIpAddressRangeInput:IpAddressRangeContainerSearchIpAddressRangeInput! $downloadIpAddressRangeContainerFileInput:DownloadIpAddressRangeContainerFileInput! $fqdnContainerSearchInput:FqdnContainerSearchInput! $fqdnContainerSearchFqdnInput:FqdnContainerSearchFqdnInput! $downloadFqdnContainerFileInput:DownloadFqdnContainerFileInput! $accountId:ID! ) {
-	container ( accountId:$accountId ) {
-		list ( input:$containerSearchInput  )  {
-			containersContainerSearchPayload: containers {
-				id 
-				name 
-				description 
-				size 
-				audit  {
-					createdBy
-					lastModifiedBy
-					lastModifiedAt
-					createdAt
-				}
-
-				... on FqdnContainer {
-					id 
-					name 
-					description 
-					size 
-					audit  {
-						createdBy
-						lastModifiedBy
-						lastModifiedAt
-						createdAt
-					}
-
-				}
-				... on IpAddressRangeContainer {
-					id 
-					name 
-					description 
-					size 
-					audit  {
-						createdBy
-						lastModifiedBy
-						lastModifiedAt
-						createdAt
-					}
-
-				}
-			}
-		}
-
-		ipAddressRange  {
-			searchIpAddressRangeContainerQueries: search ( input:$ipAddressRangeContainerSearchInput   ) {
-				container  {
-					id
-					name
-					description
-					size
-					auditIpAddressRangeContainer: audit {
-						createdBy 
-						lastModifiedBy 
-						lastModifiedAt 
-						createdAt 
-					}
-				}
-
-			}
-			searchIpAddressRangeIpAddressRangeContainerQueries: searchIpAddressRange ( input:$ipAddressRangeContainerSearchIpAddressRangeInput   ) {
-				containers  {
-					id
-					name
-					description
-					size
-					auditIpAddressRangeContainer: audit {
-						createdBy 
-						lastModifiedBy 
-						lastModifiedAt 
-						createdAt 
-					}
-				}
-
-			}
-			downloadFileIpAddressRangeContainerQueries: downloadFile ( input:$downloadIpAddressRangeContainerFileInput   ) {
-				id 
-				name 
-				encodedFile 
-			}
-		}
-
-		fqdn  {
-			searchFqdnContainerQueries: search ( input:$fqdnContainerSearchInput   ) {
-				container  {
-					id
-					name
-					description
-					size
-					auditFqdnContainer: audit {
-						createdBy 
-						lastModifiedBy 
-						lastModifiedAt 
-						createdAt 
-					}
-				}
-
-			}
-			searchFqdnFqdnContainerQueries: searchFqdn ( input:$fqdnContainerSearchFqdnInput   ) {
-				containers  {
-					id
-					name
-					description
-					size
-					auditFqdnContainer: audit {
-						createdBy 
-						lastModifiedBy 
-						lastModifiedAt 
-						createdAt 
-					}
-				}
-
-			}
-			downloadFileFqdnContainerQueries: downloadFile ( input:$downloadFqdnContainerFileInput   ) {
-				id 
-				name 
-				encodedFile 
-			}
-		}
-
+query container ( ) {
+	container ( ) {
+query.containerlist {
+query.container	containers {
+query.container		id
+query.container		name
+query.container		description
+query.container		size
+query.container		audit {
+query.container			createdBy
+query.container			lastModifiedBy
+query.container			lastModifiedAt
+query.container			createdAt
+query.container		}
+query.container		... on FqdnContainer {
+query.container			id
+query.container			name
+query.container			description
+query.container			size
+query.container			audit {
+query.container				createdBy
+query.container				lastModifiedBy
+query.container				lastModifiedAt
+query.container				createdAt
+query.container			}
+query.container		}
+query.container		... on IpAddressRangeContainer {
+query.container			id
+query.container			name
+query.container			description
+query.container			size
+query.container			audit {
+query.container				createdBy
+query.container				lastModifiedBy
+query.container				lastModifiedAt
+query.container				createdAt
+query.container			}
+query.container		}
+query.container	}
+query.container}
+query.containeripAddressRange {
+query.container	search {
+query.container		container {
+query.container			id
+query.container			name
+query.container			description
+query.container			size
+query.container			audit {
+query.container				createdBy
+query.container				lastModifiedBy
+query.container				lastModifiedAt
+query.container				createdAt
+query.container			}
+query.container		}
+query.container	}
+query.container	searchIpAddressRange {
+query.container		containers {
+query.container			id
+query.container			name
+query.container			description
+query.container			size
+query.container			audit {
+query.container				createdBy
+query.container				lastModifiedBy
+query.container				lastModifiedAt
+query.container				createdAt
+query.container			}
+query.container		}
+query.container	}
+query.container	downloadFile {
+query.container		id
+query.container		name
+query.container		encodedFile
+query.container	}
+query.container}
+query.containerfqdn {
+query.container	search {
+query.container		container {
+query.container			id
+query.container			name
+query.container			description
+query.container			size
+query.container			audit {
+query.container				createdBy
+query.container				lastModifiedBy
+query.container				lastModifiedAt
+query.container				createdAt
+query.container			}
+query.container		}
+query.container	}
+query.container	searchFqdn {
+query.container		containers {
+query.container			id
+query.container			name
+query.container			description
+query.container			size
+query.container			audit {
+query.container				createdBy
+query.container				lastModifiedBy
+query.container				lastModifiedAt
+query.container				createdAt
+query.container			}
+query.container		}
+query.container	}
+query.container	downloadFile {
+query.container		id
+query.container		name
+query.container		encodedFile
+query.container	}
+query.container}
 	}	
 }

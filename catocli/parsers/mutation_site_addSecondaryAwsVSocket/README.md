@@ -4,15 +4,16 @@
 
 ### Usage for mutation.site.addSecondaryAwsVSocket:
 
-`catocli mutation site addSecondaryAwsVSocket -h`
+```bash
+catocli mutation site addSecondaryAwsVSocket -h
 
-`catocli mutation site addSecondaryAwsVSocket <json>`
+catocli mutation site addSecondaryAwsVSocket <json>
 
-`catocli mutation site addSecondaryAwsVSocket "$(cat < mutation.site.addSecondaryAwsVSocket.json)"`
+catocli mutation site addSecondaryAwsVSocket "$(cat < mutation.site.addSecondaryAwsVSocket.json)"
 
-`catocli mutation site addSecondaryAwsVSocket '{"addSecondaryAwsVSocketInput":{"eniIpAddress":"example_value","eniIpSubnet":"example_value","routeTableId":"string","siteRefInput":{"by":"ID","input":"string"}}}'`
+catocli mutation site addSecondaryAwsVSocket '{"addSecondaryAwsVSocketInput":{"eniIpAddress":"example_value","eniIpSubnet":"example_value","routeTableId":"string","siteRefInput":{"by":"ID","input":"string"}}}'
 
-`catocli mutation site addSecondaryAwsVSocket -p '{
+catocli mutation site addSecondaryAwsVSocket -p '{
     "addSecondaryAwsVSocketInput": {
         "eniIpAddress": "example_value",
         "eniIpSubnet": "example_value",
@@ -23,7 +24,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.site.addSecondaryAwsVSocket ####
 

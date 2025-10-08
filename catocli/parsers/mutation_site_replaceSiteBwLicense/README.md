@@ -4,15 +4,16 @@
 
 ### Usage for mutation.site.replaceSiteBwLicense:
 
-`catocli mutation site replaceSiteBwLicense -h`
+```bash
+catocli mutation site replaceSiteBwLicense -h
 
-`catocli mutation site replaceSiteBwLicense <json>`
+catocli mutation site replaceSiteBwLicense <json>
 
-`catocli mutation site replaceSiteBwLicense "$(cat < mutation.site.replaceSiteBwLicense.json)"`
+catocli mutation site replaceSiteBwLicense "$(cat < mutation.site.replaceSiteBwLicense.json)"
 
-`catocli mutation site replaceSiteBwLicense '{"replaceSiteBwLicenseInput":{"bw":1,"licenseIdToAdd":"id","licenseIdToRemove":"id","siteRefInput":{"by":"ID","input":"string"}}}'`
+catocli mutation site replaceSiteBwLicense '{"replaceSiteBwLicenseInput":{"bw":1,"licenseIdToAdd":"id","licenseIdToRemove":"id","siteRefInput":{"by":"ID","input":"string"}}}'
 
-`catocli mutation site replaceSiteBwLicense -p '{
+catocli mutation site replaceSiteBwLicense -p '{
     "replaceSiteBwLicenseInput": {
         "bw": 1,
         "licenseIdToAdd": "id",
@@ -23,7 +24,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.site.replaceSiteBwLicense ####
 

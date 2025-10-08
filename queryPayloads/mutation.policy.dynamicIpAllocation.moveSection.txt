@@ -1,27 +1,24 @@
-mutation policyDynamicIpAllocationMoveSection ( $policyMoveSectionInput:PolicyMoveSectionInput! $dynamicIpAllocationPolicyMutationInput:DynamicIpAllocationPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		dynamicIpAllocation ( input:$dynamicIpAllocationPolicyMutationInput  )  {
-			moveSectionDynamicIpAllocationPolicyMutations: moveSection ( input:$policyMoveSectionInput   ) {
-				section  {
-					auditPolicySectionPayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					sectionPolicySectionPayload: section {
-						id 
-						name 
-					}
-					propertiesPolicySectionPayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyDynamicIpAllocationMoveSection ( $dynamicIpAllocationPolicyMutationInput:DynamicIpAllocationPolicyMutationInput $policyMoveSectionInput:PolicyMoveSectionInput!) {
+	policy ( ) {
+mutation.policy.dynamicIpAllocation.moveSectiondynamicIpAllocation ( input:$dynamicIpAllocationPolicyMutationInput  )  {
+mutation.policy.dynamicIpAllocation.moveSection	moveSection ( input:$policyMoveSectionInput   ) {
+mutation.policy.dynamicIpAllocation.moveSection		section {
+mutation.policy.dynamicIpAllocation.moveSection			audit {
+mutation.policy.dynamicIpAllocation.moveSection				updatedTime
+mutation.policy.dynamicIpAllocation.moveSection				updatedBy
+mutation.policy.dynamicIpAllocation.moveSection			}
+mutation.policy.dynamicIpAllocation.moveSection			section {
+mutation.policy.dynamicIpAllocation.moveSection				id
+mutation.policy.dynamicIpAllocation.moveSection				name
+mutation.policy.dynamicIpAllocation.moveSection			}
+mutation.policy.dynamicIpAllocation.moveSection			properties
+mutation.policy.dynamicIpAllocation.moveSection		}
+mutation.policy.dynamicIpAllocation.moveSection		status
+mutation.policy.dynamicIpAllocation.moveSection		errors {
+mutation.policy.dynamicIpAllocation.moveSection			errorMessage
+mutation.policy.dynamicIpAllocation.moveSection			errorCode
+mutation.policy.dynamicIpAllocation.moveSection		}
+mutation.policy.dynamicIpAllocation.moveSection	}
+mutation.policy.dynamicIpAllocation.moveSection}
 	}	
 }

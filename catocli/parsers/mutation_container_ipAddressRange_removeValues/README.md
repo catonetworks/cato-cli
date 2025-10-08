@@ -4,15 +4,16 @@
 
 ### Usage for mutation.container.ipAddressRange.removeValues:
 
-`catocli mutation container ipAddressRange removeValues -h`
+```bash
+catocli mutation container ipAddressRange removeValues -h
 
-`catocli mutation container ipAddressRange removeValues <json>`
+catocli mutation container ipAddressRange removeValues <json>
 
-`catocli mutation container ipAddressRange removeValues "$(cat < mutation.container.ipAddressRange.removeValues.json)"`
+catocli mutation container ipAddressRange removeValues "$(cat < mutation.container.ipAddressRange.removeValues.json)"
 
-`catocli mutation container ipAddressRange removeValues '{"ipAddressRangeContainerRemoveValuesInput":{"containerRefInput":{"by":"ID","input":"string"},"ipAddressRangeInput":{"from":"example_value","to":"example_value"}}}'`
+catocli mutation container ipAddressRange removeValues '{"ipAddressRangeContainerRemoveValuesInput":{"containerRefInput":{"by":"ID","input":"string"},"ipAddressRangeInput":{"from":"example_value","to":"example_value"}}}'
 
-`catocli mutation container ipAddressRange removeValues -p '{
+catocli mutation container ipAddressRange removeValues -p '{
     "ipAddressRangeContainerRemoveValuesInput": {
         "containerRefInput": {
             "by": "ID",
@@ -24,7 +25,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.container.ipAddressRange.removeValues ####
 

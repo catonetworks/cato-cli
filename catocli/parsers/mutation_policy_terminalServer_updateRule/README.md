@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.terminalServer.updateRule:
 
-`catocli mutation policy terminalServer updateRule -h`
+```bash
+catocli mutation policy terminalServer updateRule -h
 
-`catocli mutation policy terminalServer updateRule <json>`
+catocli mutation policy terminalServer updateRule <json>
 
-`catocli mutation policy terminalServer updateRule "$(cat < mutation.policy.terminalServer.updateRule.json)"`
+catocli mutation policy terminalServer updateRule "$(cat < mutation.policy.terminalServer.updateRule.json)"
 
-`catocli mutation policy terminalServer updateRule '{"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"terminalServerUpdateRuleInput":{"id":"id","terminalServerUpdateRuleDataInput":{"allowedHostIP":{"by":"ID","input":"string"},"description":"string","enabled":true,"excludeTraffic":{"by":"ID","input":"string"},"name":"string"}}}'`
+catocli mutation policy terminalServer updateRule '{"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"terminalServerUpdateRuleInput":{"id":"id","terminalServerUpdateRuleDataInput":{"allowedHostIP":{"by":"ID","input":"string"},"description":"string","enabled":true,"excludeTraffic":{"by":"ID","input":"string"},"name":"string"}}}'
 
-`catocli mutation policy terminalServer updateRule -p '{
+catocli mutation policy terminalServer updateRule -p '{
     "terminalServerPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"
@@ -35,7 +36,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.terminalServer.updateRule ####
 

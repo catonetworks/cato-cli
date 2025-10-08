@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.wanNetwork.updateSection:
 
-`catocli mutation policy wanNetwork updateSection -h`
+```bash
+catocli mutation policy wanNetwork updateSection -h
 
-`catocli mutation policy wanNetwork updateSection <json>`
+catocli mutation policy wanNetwork updateSection <json>
 
-`catocli mutation policy wanNetwork updateSection "$(cat < mutation.policy.wanNetwork.updateSection.json)"`
+catocli mutation policy wanNetwork updateSection "$(cat < mutation.policy.wanNetwork.updateSection.json)"
 
-`catocli mutation policy wanNetwork updateSection '{"policyUpdateSectionInput":{"id":"id","policyUpdateSectionInfoInput":{"name":"string"}},"wanNetworkPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
+catocli mutation policy wanNetwork updateSection '{"policyUpdateSectionInput":{"id":"id","policyUpdateSectionInfoInput":{"name":"string"}},"wanNetworkPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-`catocli mutation policy wanNetwork updateSection -p '{
+catocli mutation policy wanNetwork updateSection -p '{
     "policyUpdateSectionInput": {
         "id": "id",
         "policyUpdateSectionInfoInput": {
@@ -25,7 +26,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.wanNetwork.updateSection ####
 

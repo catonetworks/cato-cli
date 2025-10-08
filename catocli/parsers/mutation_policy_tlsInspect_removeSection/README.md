@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.tlsInspect.removeSection:
 
-`catocli mutation policy tlsInspect removeSection -h`
+```bash
+catocli mutation policy tlsInspect removeSection -h
 
-`catocli mutation policy tlsInspect removeSection <json>`
+catocli mutation policy tlsInspect removeSection <json>
 
-`catocli mutation policy tlsInspect removeSection "$(cat < mutation.policy.tlsInspect.removeSection.json)"`
+catocli mutation policy tlsInspect removeSection "$(cat < mutation.policy.tlsInspect.removeSection.json)"
 
-`catocli mutation policy tlsInspect removeSection '{"policyRemoveSectionInput":{"id":"id"},"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
+catocli mutation policy tlsInspect removeSection '{"policyRemoveSectionInput":{"id":"id"},"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-`catocli mutation policy tlsInspect removeSection -p '{
+catocli mutation policy tlsInspect removeSection -p '{
     "policyRemoveSectionInput": {
         "id": "id"
     },
@@ -22,7 +23,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.tlsInspect.removeSection ####
 

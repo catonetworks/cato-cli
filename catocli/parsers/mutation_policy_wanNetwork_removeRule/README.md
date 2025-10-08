@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.wanNetwork.removeRule:
 
-`catocli mutation policy wanNetwork removeRule -h`
+```bash
+catocli mutation policy wanNetwork removeRule -h
 
-`catocli mutation policy wanNetwork removeRule <json>`
+catocli mutation policy wanNetwork removeRule <json>
 
-`catocli mutation policy wanNetwork removeRule "$(cat < mutation.policy.wanNetwork.removeRule.json)"`
+catocli mutation policy wanNetwork removeRule "$(cat < mutation.policy.wanNetwork.removeRule.json)"
 
-`catocli mutation policy wanNetwork removeRule '{"wanNetworkPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"wanNetworkRemoveRuleInput":{"id":"id"}}'`
+catocli mutation policy wanNetwork removeRule '{"wanNetworkPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"wanNetworkRemoveRuleInput":{"id":"id"}}'
 
-`catocli mutation policy wanNetwork removeRule -p '{
+catocli mutation policy wanNetwork removeRule -p '{
     "wanNetworkPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"
@@ -22,7 +23,7 @@
         "id": "id"
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.wanNetwork.removeRule ####
 

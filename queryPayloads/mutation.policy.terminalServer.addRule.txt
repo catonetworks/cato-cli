@@ -1,45 +1,39 @@
-mutation policyTerminalServerAddRule ( $terminalServerAddRuleInput:TerminalServerAddRuleInput! $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		terminalServer ( input:$terminalServerPolicyMutationInput  )  {
-			addRuleTerminalServerPolicyMutations: addRule ( input:$terminalServerAddRuleInput   ) {
-				rule  {
-					auditTerminalServerRulePayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					ruleTerminalServerRulePayload: rule {
-						id 
-						name 
-						description 
-						index 
-						section  {
-							id
-							name
-						}
-
-						enabled 
-						allowedHostIP  {
-							id
-							name
-						}
-
-						excludeTraffic  {
-							id
-							name
-						}
-
-					}
-					propertiesTerminalServerRulePayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyTerminalServerAddRule ( $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput $terminalServerAddRuleInput:TerminalServerAddRuleInput!) {
+	policy ( ) {
+mutation.policy.terminalServer.addRuleterminalServer ( input:$terminalServerPolicyMutationInput  )  {
+mutation.policy.terminalServer.addRule	addRule ( input:$terminalServerAddRuleInput   ) {
+mutation.policy.terminalServer.addRule		rule {
+mutation.policy.terminalServer.addRule			audit {
+mutation.policy.terminalServer.addRule				updatedTime
+mutation.policy.terminalServer.addRule				updatedBy
+mutation.policy.terminalServer.addRule			}
+mutation.policy.terminalServer.addRule			rule {
+mutation.policy.terminalServer.addRule				id
+mutation.policy.terminalServer.addRule				name
+mutation.policy.terminalServer.addRule				description
+mutation.policy.terminalServer.addRule				index
+mutation.policy.terminalServer.addRule				section {
+mutation.policy.terminalServer.addRule					id
+mutation.policy.terminalServer.addRule					name
+mutation.policy.terminalServer.addRule				}
+mutation.policy.terminalServer.addRule				enabled
+mutation.policy.terminalServer.addRule				allowedHostIP {
+mutation.policy.terminalServer.addRule					id
+mutation.policy.terminalServer.addRule					name
+mutation.policy.terminalServer.addRule				}
+mutation.policy.terminalServer.addRule				excludeTraffic {
+mutation.policy.terminalServer.addRule					id
+mutation.policy.terminalServer.addRule					name
+mutation.policy.terminalServer.addRule				}
+mutation.policy.terminalServer.addRule			}
+mutation.policy.terminalServer.addRule			properties
+mutation.policy.terminalServer.addRule		}
+mutation.policy.terminalServer.addRule		status
+mutation.policy.terminalServer.addRule		errors {
+mutation.policy.terminalServer.addRule			errorMessage
+mutation.policy.terminalServer.addRule			errorCode
+mutation.policy.terminalServer.addRule		}
+mutation.policy.terminalServer.addRule	}
+mutation.policy.terminalServer.addRule}
 	}	
 }

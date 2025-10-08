@@ -1,27 +1,24 @@
-mutation policyTerminalServerUpdateSection ( $policyUpdateSectionInput:PolicyUpdateSectionInput! $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		terminalServer ( input:$terminalServerPolicyMutationInput  )  {
-			updateSectionTerminalServerPolicyMutations: updateSection ( input:$policyUpdateSectionInput   ) {
-				section  {
-					auditPolicySectionPayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					sectionPolicySectionPayload: section {
-						id 
-						name 
-					}
-					propertiesPolicySectionPayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyTerminalServerUpdateSection ( $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput $policyUpdateSectionInput:PolicyUpdateSectionInput!) {
+	policy ( ) {
+mutation.policy.terminalServer.updateSectionterminalServer ( input:$terminalServerPolicyMutationInput  )  {
+mutation.policy.terminalServer.updateSection	updateSection ( input:$policyUpdateSectionInput   ) {
+mutation.policy.terminalServer.updateSection		section {
+mutation.policy.terminalServer.updateSection			audit {
+mutation.policy.terminalServer.updateSection				updatedTime
+mutation.policy.terminalServer.updateSection				updatedBy
+mutation.policy.terminalServer.updateSection			}
+mutation.policy.terminalServer.updateSection			section {
+mutation.policy.terminalServer.updateSection				id
+mutation.policy.terminalServer.updateSection				name
+mutation.policy.terminalServer.updateSection			}
+mutation.policy.terminalServer.updateSection			properties
+mutation.policy.terminalServer.updateSection		}
+mutation.policy.terminalServer.updateSection		status
+mutation.policy.terminalServer.updateSection		errors {
+mutation.policy.terminalServer.updateSection			errorMessage
+mutation.policy.terminalServer.updateSection			errorCode
+mutation.policy.terminalServer.updateSection		}
+mutation.policy.terminalServer.updateSection	}
+mutation.policy.terminalServer.updateSection}
 	}	
 }

@@ -1,27 +1,24 @@
-mutation policyApplicationControlMoveSection ( $policyMoveSectionInput:PolicyMoveSectionInput! $applicationControlPolicyMutationInput:ApplicationControlPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		applicationControl ( input:$applicationControlPolicyMutationInput  )  {
-			moveSectionApplicationControlPolicyMutations: moveSection ( input:$policyMoveSectionInput   ) {
-				section  {
-					auditPolicySectionPayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					sectionPolicySectionPayload: section {
-						id 
-						name 
-					}
-					propertiesPolicySectionPayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyApplicationControlMoveSection ( $applicationControlPolicyMutationInput:ApplicationControlPolicyMutationInput $policyMoveSectionInput:PolicyMoveSectionInput!) {
+	policy ( ) {
+mutation.policy.applicationControl.moveSectionapplicationControl ( input:$applicationControlPolicyMutationInput  )  {
+mutation.policy.applicationControl.moveSection	moveSection ( input:$policyMoveSectionInput   ) {
+mutation.policy.applicationControl.moveSection		section {
+mutation.policy.applicationControl.moveSection			audit {
+mutation.policy.applicationControl.moveSection				updatedTime
+mutation.policy.applicationControl.moveSection				updatedBy
+mutation.policy.applicationControl.moveSection			}
+mutation.policy.applicationControl.moveSection			section {
+mutation.policy.applicationControl.moveSection				id
+mutation.policy.applicationControl.moveSection				name
+mutation.policy.applicationControl.moveSection			}
+mutation.policy.applicationControl.moveSection			properties
+mutation.policy.applicationControl.moveSection		}
+mutation.policy.applicationControl.moveSection		status
+mutation.policy.applicationControl.moveSection		errors {
+mutation.policy.applicationControl.moveSection			errorMessage
+mutation.policy.applicationControl.moveSection			errorCode
+mutation.policy.applicationControl.moveSection		}
+mutation.policy.applicationControl.moveSection	}
+mutation.policy.applicationControl.moveSection}
 	}	
 }

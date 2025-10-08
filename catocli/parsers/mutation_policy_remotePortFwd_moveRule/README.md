@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.remotePortFwd.moveRule:
 
-`catocli mutation policy remotePortFwd moveRule -h`
+```bash
+catocli mutation policy remotePortFwd moveRule -h
 
-`catocli mutation policy remotePortFwd moveRule <json>`
+catocli mutation policy remotePortFwd moveRule <json>
 
-`catocli mutation policy remotePortFwd moveRule "$(cat < mutation.policy.remotePortFwd.moveRule.json)"`
+catocli mutation policy remotePortFwd moveRule "$(cat < mutation.policy.remotePortFwd.moveRule.json)"
 
-`catocli mutation policy remotePortFwd moveRule '{"policyMoveRuleInput":{"id":"id","policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"}},"remotePortFwdPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
+catocli mutation policy remotePortFwd moveRule '{"policyMoveRuleInput":{"id":"id","policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"}},"remotePortFwdPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-`catocli mutation policy remotePortFwd moveRule -p '{
+catocli mutation policy remotePortFwd moveRule -p '{
     "policyMoveRuleInput": {
         "id": "id",
         "policyRulePositionInput": {
@@ -26,7 +27,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.remotePortFwd.moveRule ####
 

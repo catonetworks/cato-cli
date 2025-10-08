@@ -1,160 +1,174 @@
-query catalogs ( $applicationRefInput:ApplicationRefInput! $catalogApplicationListInput:CatalogApplicationListInput! $catalogApplicationContentTypeGroupListInput:CatalogApplicationContentTypeGroupListInput! $accountId:ID! ) {
-	catalogs ( accountId:$accountId ) {
-		catalogApplication ( input:$applicationRefInput  )  {
-			id
-			name
-			descriptionSummary
-			description
-			categoryCatalogApplication: category {
-				id 
-				name 
-			}
-			complianceAttributesCatalogApplication: complianceAttributes {
-				iso27001 
-				sox 
-				hippa 
-				soc1 
-				soc2 
-				soc3 
-				isae3402 
-				pciDss 
-			}
-			securityAttributesCatalogApplication: securityAttributes {
-				mfa 
-				encryptionAtRest 
-				auditTrail 
-				rbac 
-				rememberPassword 
-				sso 
-				trustedCertificate 
-				tlsEnforcement 
-				httpSecurityHeaders 
-			}
-			ipoStatus
-			website
-			originCountryCatalogApplication: originCountry {
-				id 
-				name 
-			}
-			region
-			city
-			risk
-			numOfEmployeesCatalogApplication: numOfEmployees
-			capabilityCatalogApplication: capability
-			activityCatalogApplication: activity {
-				id 
-				name 
-				fields  {
-					id
-					name
-					possibleOperatorsCatalogApplicationActivityField: possibleOperators
-					possibleValues
-				}
-
-			}
-			typeCatalogApplication: type
-			sanctioned
-			recentlyAdded
-			standardPortsCatalogApplication: standardPorts {
-				port 
-				portRange  {
-					from
-					to
-				}
-
-				protocol 
-			}
-		}
-
-		catalogApplicationList ( input:$catalogApplicationListInput  )  {
-			applicationCatalogApplicationListPayload: application {
-				id 
-				name 
-				descriptionSummary 
-				description 
-				category  {
-					id
-					name
-				}
-
-				complianceAttributes  {
-					iso27001CatalogApplicationComplianceAttributes: iso27001
-					soxCatalogApplicationComplianceAttributes: sox
-					hippaCatalogApplicationComplianceAttributes: hippa
-					soc1CatalogApplicationComplianceAttributes: soc1
-					soc2CatalogApplicationComplianceAttributes: soc2
-					soc3CatalogApplicationComplianceAttributes: soc3
-					isae3402CatalogApplicationComplianceAttributes: isae3402
-					pciDssCatalogApplicationComplianceAttributes: pciDss
-				}
-
-				securityAttributes  {
-					mfaCatalogApplicationSecurityAttributes: mfa
-					encryptionAtRestCatalogApplicationSecurityAttributes: encryptionAtRest
-					auditTrailCatalogApplicationSecurityAttributes: auditTrail
-					rbacCatalogApplicationSecurityAttributes: rbac
-					rememberPasswordCatalogApplicationSecurityAttributes: rememberPassword
-					ssoCatalogApplicationSecurityAttributes: sso
-					trustedCertificateCatalogApplicationSecurityAttributes: trustedCertificate
-					tlsEnforcementCatalogApplicationSecurityAttributes: tlsEnforcement
-					httpSecurityHeadersCatalogApplicationSecurityAttributes: httpSecurityHeaders
-				}
-
-				ipoStatus 
-				website 
-				originCountry  {
-					id
-					name
-				}
-
-				region 
-				city 
-				risk 
-				numOfEmployees 
-				capability 
-				activity  {
-					id
-					name
-					fieldsCatalogApplicationActivity: fields {
-						id 
-						name 
-						possibleOperators 
-						possibleValues 
-					}
-				}
-
-				type 
-				sanctioned 
-				recentlyAdded 
-				standardPorts  {
-					port
-					portRangeCustomService: portRange {
-						from 
-						to 
-					}
-					protocolCustomService: protocol
-				}
-
-			}
-			pageInfoCatalogApplicationListPayload: pageInfo {
-				total 
-			}
-		}
-
-		contentTypeGroupList ( input:$catalogApplicationContentTypeGroupListInput  )  {
-			contentTypeGroupCatalogApplicationContentTypeGroupListPayload: contentTypeGroup {
-				id 
-				name 
-				contentType  {
-					id
-					name
-				}
-
-			}
-			pageInfoCatalogApplicationContentTypeGroupListPayload: pageInfo {
-				total 
-			}
-		}
-
+query catalogs ( ) {
+	catalogs ( ) {
+query.catalogscatalogApplication {
+query.catalogs	id
+query.catalogs	name
+query.catalogs	descriptionSummary
+query.catalogs	description
+query.catalogs	category {
+query.catalogs		id
+query.catalogs		name
+query.catalogs	}
+query.catalogs	complianceAttributes {
+query.catalogs		iso27001
+query.catalogs		sox
+query.catalogs		hippa
+query.catalogs		soc1
+query.catalogs		soc2
+query.catalogs		soc3
+query.catalogs		isae3402
+query.catalogs		pciDss
+query.catalogs	}
+query.catalogs	securityAttributes {
+query.catalogs		mfa
+query.catalogs		encryptionAtRest
+query.catalogs		auditTrail
+query.catalogs		rbac
+query.catalogs		rememberPassword
+query.catalogs		sso
+query.catalogs		trustedCertificate
+query.catalogs		tlsEnforcement
+query.catalogs		httpSecurityHeaders
+query.catalogs	}
+query.catalogs	ipoStatus
+query.catalogs	website
+query.catalogs	originCountry {
+query.catalogs		id
+query.catalogs		name
+query.catalogs	}
+query.catalogs	region
+query.catalogs	city
+query.catalogs	risk
+query.catalogs	numOfEmployees
+query.catalogs	capability
+query.catalogs	activity {
+query.catalogs		id
+query.catalogs		name
+query.catalogs		fields {
+query.catalogs			id
+query.catalogs			name
+query.catalogs			possibleOperators
+query.catalogs			possibleValues {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+query.catalogs		}
+query.catalogs	}
+query.catalogs	type
+query.catalogs	sanctioned
+query.catalogs	recentlyAdded
+query.catalogs	standardPorts {
+query.catalogs		port
+query.catalogs		portRange {
+query.catalogs			from
+query.catalogs			to
+query.catalogs		}
+query.catalogs		protocol
+query.catalogs	}
+query.catalogs}
+query.catalogscatalogApplicationList {
+query.catalogs	application {
+query.catalogs		id
+query.catalogs		name
+query.catalogs		descriptionSummary
+query.catalogs		description
+query.catalogs		category {
+query.catalogs			id
+query.catalogs			name
+query.catalogs		}
+query.catalogs		complianceAttributes {
+query.catalogs			iso27001
+query.catalogs			sox
+query.catalogs			hippa
+query.catalogs			soc1
+query.catalogs			soc2
+query.catalogs			soc3
+query.catalogs			isae3402
+query.catalogs			pciDss
+query.catalogs		}
+query.catalogs		securityAttributes {
+query.catalogs			mfa
+query.catalogs			encryptionAtRest
+query.catalogs			auditTrail
+query.catalogs			rbac
+query.catalogs			rememberPassword
+query.catalogs			sso
+query.catalogs			trustedCertificate
+query.catalogs			tlsEnforcement
+query.catalogs			httpSecurityHeaders
+query.catalogs		}
+query.catalogs		ipoStatus
+query.catalogs		website
+query.catalogs		originCountry {
+query.catalogs			id
+query.catalogs			name
+query.catalogs		}
+query.catalogs		region
+query.catalogs		city
+query.catalogs		risk
+query.catalogs		numOfEmployees
+query.catalogs		capability
+query.catalogs		activity {
+query.catalogs			id
+query.catalogs			name
+query.catalogs			fields {
+query.catalogs				id
+query.catalogs				name
+query.catalogs				possibleOperators
+query.catalogs				possibleValues {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+query.catalogs			}
+query.catalogs		}
+query.catalogs		type
+query.catalogs		sanctioned
+query.catalogs		recentlyAdded
+query.catalogs		standardPorts {
+query.catalogs			port
+query.catalogs			portRange {
+query.catalogs				from
+query.catalogs				to
+query.catalogs			}
+query.catalogs			protocol
+query.catalogs		}
+query.catalogs	}
+query.catalogs	pageInfo {
+query.catalogs		total
+query.catalogs	}
+query.catalogs}
+query.catalogscontentTypeGroupList {
+query.catalogs	contentTypeGroup {
+query.catalogs		id
+query.catalogs		name
+query.catalogs		contentType {
+query.catalogs			id
+query.catalogs			name
+query.catalogs		}
+query.catalogs	}
+query.catalogs	pageInfo {
+query.catalogs		total
+query.catalogs	}
+query.catalogs}
 	}	
 }

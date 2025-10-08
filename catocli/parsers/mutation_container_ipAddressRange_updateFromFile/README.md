@@ -4,15 +4,16 @@
 
 ### Usage for mutation.container.ipAddressRange.updateFromFile:
 
-`catocli mutation container ipAddressRange updateFromFile -h`
+```bash
+catocli mutation container ipAddressRange updateFromFile -h
 
-`catocli mutation container ipAddressRange updateFromFile <json>`
+catocli mutation container ipAddressRange updateFromFile <json>
 
-`catocli mutation container ipAddressRange updateFromFile "$(cat < mutation.container.ipAddressRange.updateFromFile.json)"`
+catocli mutation container ipAddressRange updateFromFile "$(cat < mutation.container.ipAddressRange.updateFromFile.json)"
 
-`catocli mutation container ipAddressRange updateFromFile '{"updateIpAddressRangeContainerFromFileInput":{"containerRefInput":{"by":"ID","input":"string"},"description":"string","fileType":"STIX","uploadFile":"example_value"}}'`
+catocli mutation container ipAddressRange updateFromFile '{"updateIpAddressRangeContainerFromFileInput":{"containerRefInput":{"by":"ID","input":"string"},"description":"string","fileType":"STIX","uploadFile":"example_value"}}'
 
-`catocli mutation container ipAddressRange updateFromFile -p '{
+catocli mutation container ipAddressRange updateFromFile -p '{
     "updateIpAddressRangeContainerFromFileInput": {
         "containerRefInput": {
             "by": "ID",
@@ -23,7 +24,7 @@
         "uploadFile": "example_value"
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.container.ipAddressRange.updateFromFile ####
 

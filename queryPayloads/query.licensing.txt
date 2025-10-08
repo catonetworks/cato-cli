@@ -1,571 +1,760 @@
-query licensing ( $accountId:ID! ) {
-	licensing ( accountId:$accountId ) {
-		licensingInfo  {
-			licensesLicensingInfo: licenses {
-				id 
-				description 
-				plan 
-				sku 
-				status 
-				startDate 
-				expirationDate 
-				lastUpdated 
-				... on DataLakeLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-					dpaVersion 
-					retentionPeriod 
-					total 
-				}
-				... on PublicIpsLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-					total 
-				}
-				... on SiteLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-					siteLicenseGroup 
-					regionality 
-					siteLicenseType 
-					total 
-					site  {
-						id
-						name
-					}
-
-				}
-				... on PooledBandwidthLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-					siteLicenseGroup 
-					siteLicenseType 
-					total 
-					allocatedBandwidth 
-					sites  {
-						sitePooledBandwidthLicenseSite: site {
-							id 
-							name 
-						}
-						allocatedBandwidth
-					}
-
-					accounts  {
-						accountPartnerPooledBandwidthLicenseAccount: account {
-							id 
-							name 
-						}
-						allocatedBandwidth
-					}
-
-				}
-				... on ZtnaUsersLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-					ztnaUsersLicenseGroup 
-					total 
-				}
-				... on EndpointProtectionLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-					total 
-				}
-				... on IlmmLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-					total 
-				}
-				... on IpsLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-				}
-				... on MalwareProtectionLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-				}
-				... on NextGenMalwareProtectionLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-				}
-				... on ThreatPreventionLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-				}
-				... on NOCaaSLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-				}
-				... on CasbLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-				}
-				... on DlpLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-				}
-				... on MdrLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-				}
-				... on ManagedXdrLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-				}
-				... on RbiLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-				}
-				... on SaasSecurityApiLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-					total 
-				}
-				... on XdrProLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-					total 
-				}
-				... on DemLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-					total 
-				}
-				... on IotOtLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-				}
-				... on AtpLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-				}
-				... on XOpsLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-				}
+query licensing ( ) {
+	licensing ( ) {
+query.licensinglicensingInfo {
+query.licensing	licenses {
+query.licensing		id
+query.licensing		description
+query.licensing		plan
+query.licensing		sku
+query.licensing		status
+query.licensing		startDate
+query.licensing		expirationDate
+query.licensing		lastUpdated
+query.licensing		... on DataLakeLicense {
+query.licensing			id
+query.licensing			description
+query.licensing			plan
+query.licensing			sku
+query.licensing			status
+query.licensing			startDate
+query.licensing			expirationDate
+query.licensing			lastUpdated
+query.licensing			dpaVersion
+query.licensing			retentionPeriod
+query.licensing			total
+query.licensing		}
+query.licensing		... on PublicIpsLicense {
+query.licensing			id
+query.licensing			description
+query.licensing			plan
+query.licensing			sku
+query.licensing			status
+query.licensing			startDate
+query.licensing			expirationDate
+query.licensing			lastUpdated
+query.licensing			total
+query.licensing		}
+query.licensing		... on SiteLicense {
+query.licensing			id
+query.licensing			description
+query.licensing			plan
+query.licensing			sku
+query.licensing			status
+query.licensing			startDate
+query.licensing			expirationDate
+query.licensing			lastUpdated
+query.licensing			siteLicenseGroup {
+	id
+	name
+	description
+	membersCount
+	audit {
+		updatedTime
+		updatedBy {
+			__typename
+			... on AdminRef {
+				id
+				name
 			}
-			dataLakeLicensingInfo: dataLake {
-				id 
-				description 
-				plan 
-				sku 
-				status 
-				startDate 
-				expirationDate 
-				lastUpdated 
-				dpaVersion 
-				retentionPeriod 
-				total 
-			}
-			publicIpsLicensingInfo: publicIps {
-				id 
-				description 
-				plan 
-				sku 
-				status 
-				startDate 
-				expirationDate 
-				lastUpdated 
-				total 
-			}
-			siteLicensingInfo: site {
-				id 
-				description 
-				plan 
-				sku 
-				status 
-				startDate 
-				expirationDate 
-				lastUpdated 
-				siteLicenseGroup 
-				regionality 
-				siteLicenseType 
-				total 
-				site  {
-					id
-					name
-				}
-
-			}
-			pooledBandwidthLicensingInfo: pooledBandwidth {
-				id 
-				description 
-				plan 
-				sku 
-				status 
-				startDate 
-				expirationDate 
-				lastUpdated 
-				siteLicenseGroup 
-				siteLicenseType 
-				total 
-				allocatedBandwidth 
-				sites  {
-					sitePooledBandwidthLicenseSite: site {
-						id 
-						name 
-					}
-					allocatedBandwidth
-				}
-
-				accounts  {
-					accountPartnerPooledBandwidthLicenseAccount: account {
-						id 
-						name 
-					}
-					allocatedBandwidth
-				}
-
-			}
-			ztnaUsersLicensingInfo: ztnaUsers {
-				id 
-				description 
-				plan 
-				sku 
-				status 
-				startDate 
-				expirationDate 
-				lastUpdated 
-				ztnaUsersLicenseGroup 
-				total 
-			}
-			endpointProtectionLicensingInfo: endpointProtection {
-				id 
-				description 
-				plan 
-				sku 
-				status 
-				startDate 
-				expirationDate 
-				lastUpdated 
-				total 
-			}
-			ilmmLicensingInfo: ilmm {
-				id 
-				description 
-				plan 
-				sku 
-				status 
-				startDate 
-				expirationDate 
-				lastUpdated 
-				total 
-			}
-			ipsLicensingInfo: ips {
-				id 
-				description 
-				plan 
-				sku 
-				status 
-				startDate 
-				expirationDate 
-				lastUpdated 
-			}
-			malwareProtectionLicensingInfo: malwareProtection {
-				id 
-				description 
-				plan 
-				sku 
-				status 
-				startDate 
-				expirationDate 
-				lastUpdated 
-			}
-			nextGenMalwareProtectionLicensingInfo: nextGenMalwareProtection {
-				id 
-				description 
-				plan 
-				sku 
-				status 
-				startDate 
-				expirationDate 
-				lastUpdated 
-			}
-			threatPreventionLicensingInfo: threatPrevention {
-				id 
-				description 
-				plan 
-				sku 
-				status 
-				startDate 
-				expirationDate 
-				lastUpdated 
-			}
-			nocaasLicensingInfo: nocaas {
-				id 
-				description 
-				plan 
-				sku 
-				status 
-				startDate 
-				expirationDate 
-				lastUpdated 
-			}
-			casbLicensingInfo: casb {
-				id 
-				description 
-				plan 
-				sku 
-				status 
-				startDate 
-				expirationDate 
-				lastUpdated 
-			}
-			dlpLicensingInfo: dlp {
-				id 
-				description 
-				plan 
-				sku 
-				status 
-				startDate 
-				expirationDate 
-				lastUpdated 
-			}
-			mdrLicensingInfo: mdr {
-				id 
-				description 
-				plan 
-				sku 
-				status 
-				startDate 
-				expirationDate 
-				lastUpdated 
-			}
-			managedXdrLicensingInfo: managedXdr {
-				id 
-				description 
-				plan 
-				sku 
-				status 
-				startDate 
-				expirationDate 
-				lastUpdated 
-			}
-			rbiLicensingInfo: rbi {
-				id 
-				description 
-				plan 
-				sku 
-				status 
-				startDate 
-				expirationDate 
-				lastUpdated 
-			}
-			saasSecurityApiLicensingInfo: saasSecurityApi {
-				id 
-				description 
-				plan 
-				sku 
-				status 
-				startDate 
-				expirationDate 
-				lastUpdated 
-				total 
-			}
-			xdrProLicensingInfo: xdrPro {
-				id 
-				description 
-				plan 
-				sku 
-				status 
-				startDate 
-				expirationDate 
-				lastUpdated 
-				total 
-			}
-			demLicensingInfo: dem {
-				id 
-				description 
-				plan 
-				sku 
-				status 
-				startDate 
-				expirationDate 
-				lastUpdated 
-				total 
-			}
-			iotOtLicensingInfo: iotOt {
-				id 
-				description 
-				plan 
-				sku 
-				status 
-				startDate 
-				expirationDate 
-				lastUpdated 
-			}
-			atpLicensingInfo: atp {
-				id 
-				description 
-				plan 
-				sku 
-				status 
-				startDate 
-				expirationDate 
-				lastUpdated 
-			}
-			xOpsLicensingInfo: xOps {
-				id 
-				description 
-				plan 
-				sku 
-				status 
-				startDate 
-				expirationDate 
-				lastUpdated 
-			}
-			globalLicenseAllocationsLicensingInfo: globalLicenseAllocations {
-				publicIps  {
-					total
-					allocated
-					available
-				}
-
-				ztnaUsers  {
-					total
-					allocated
-					available
-				}
-
+			... on ApiKeyRef {
+				id
+				name
 			}
 		}
-
+	}
+	members {
+		items {
+			id
+			name
+			type
+		}
+		paging {
+			total
+		}
+	}
+	membersCountPerType {
+		type
+		membersCount
+	}
+}
+query.licensing			regionality
+query.licensing			siteLicenseType
+query.licensing			total
+query.licensing			site {
+query.licensing				id
+query.licensing				name
+query.licensing			}
+query.licensing		}
+query.licensing		... on PooledBandwidthLicense {
+query.licensing			id
+query.licensing			description
+query.licensing			plan
+query.licensing			sku
+query.licensing			status
+query.licensing			startDate
+query.licensing			expirationDate
+query.licensing			lastUpdated
+query.licensing			siteLicenseGroup {
+	id
+	name
+	description
+	membersCount
+	audit {
+		updatedTime
+		updatedBy {
+			__typename
+			... on AdminRef {
+				id
+				name
+			}
+			... on ApiKeyRef {
+				id
+				name
+			}
+		}
+	}
+	members {
+		items {
+			id
+			name
+			type
+		}
+		paging {
+			total
+		}
+	}
+	membersCountPerType {
+		type
+		membersCount
+	}
+}
+query.licensing			siteLicenseType
+query.licensing			total
+query.licensing			allocatedBandwidth
+query.licensing			sites {
+query.licensing				site {
+query.licensing					id
+query.licensing					name
+query.licensing				}
+query.licensing				allocatedBandwidth
+query.licensing			}
+query.licensing			accounts {
+query.licensing				account {
+query.licensing					id
+query.licensing					name
+query.licensing				}
+query.licensing				allocatedBandwidth
+query.licensing			}
+query.licensing		}
+query.licensing		... on ZtnaUsersLicense {
+query.licensing			id
+query.licensing			description
+query.licensing			plan
+query.licensing			sku
+query.licensing			status
+query.licensing			startDate
+query.licensing			expirationDate
+query.licensing			lastUpdated
+query.licensing			ztnaUsersLicenseGroup {
+	id
+	name
+	description
+	membersCount
+	audit {
+		updatedTime
+		updatedBy {
+			__typename
+			... on AdminRef {
+				id
+				name
+			}
+			... on ApiKeyRef {
+				id
+				name
+			}
+		}
+	}
+	members {
+		items {
+			id
+			name
+			type
+		}
+		paging {
+			total
+		}
+	}
+	membersCountPerType {
+		type
+		membersCount
+	}
+}
+query.licensing			total
+query.licensing		}
+query.licensing		... on EndpointProtectionLicense {
+query.licensing			id
+query.licensing			description
+query.licensing			plan
+query.licensing			sku
+query.licensing			status
+query.licensing			startDate
+query.licensing			expirationDate
+query.licensing			lastUpdated
+query.licensing			total
+query.licensing		}
+query.licensing		... on IlmmLicense {
+query.licensing			id
+query.licensing			description
+query.licensing			plan
+query.licensing			sku
+query.licensing			status
+query.licensing			startDate
+query.licensing			expirationDate
+query.licensing			lastUpdated
+query.licensing			total
+query.licensing		}
+query.licensing		... on IpsLicense {
+query.licensing			id
+query.licensing			description
+query.licensing			plan
+query.licensing			sku
+query.licensing			status
+query.licensing			startDate
+query.licensing			expirationDate
+query.licensing			lastUpdated
+query.licensing		}
+query.licensing		... on MalwareProtectionLicense {
+query.licensing			id
+query.licensing			description
+query.licensing			plan
+query.licensing			sku
+query.licensing			status
+query.licensing			startDate
+query.licensing			expirationDate
+query.licensing			lastUpdated
+query.licensing		}
+query.licensing		... on NextGenMalwareProtectionLicense {
+query.licensing			id
+query.licensing			description
+query.licensing			plan
+query.licensing			sku
+query.licensing			status
+query.licensing			startDate
+query.licensing			expirationDate
+query.licensing			lastUpdated
+query.licensing		}
+query.licensing		... on ThreatPreventionLicense {
+query.licensing			id
+query.licensing			description
+query.licensing			plan
+query.licensing			sku
+query.licensing			status
+query.licensing			startDate
+query.licensing			expirationDate
+query.licensing			lastUpdated
+query.licensing		}
+query.licensing		... on NOCaaSLicense {
+query.licensing			id
+query.licensing			description
+query.licensing			plan
+query.licensing			sku
+query.licensing			status
+query.licensing			startDate
+query.licensing			expirationDate
+query.licensing			lastUpdated
+query.licensing		}
+query.licensing		... on CasbLicense {
+query.licensing			id
+query.licensing			description
+query.licensing			plan
+query.licensing			sku
+query.licensing			status
+query.licensing			startDate
+query.licensing			expirationDate
+query.licensing			lastUpdated
+query.licensing		}
+query.licensing		... on DlpLicense {
+query.licensing			id
+query.licensing			description
+query.licensing			plan
+query.licensing			sku
+query.licensing			status
+query.licensing			startDate
+query.licensing			expirationDate
+query.licensing			lastUpdated
+query.licensing		}
+query.licensing		... on MdrLicense {
+query.licensing			id
+query.licensing			description
+query.licensing			plan
+query.licensing			sku
+query.licensing			status
+query.licensing			startDate
+query.licensing			expirationDate
+query.licensing			lastUpdated
+query.licensing		}
+query.licensing		... on ManagedXdrLicense {
+query.licensing			id
+query.licensing			description
+query.licensing			plan
+query.licensing			sku
+query.licensing			status
+query.licensing			startDate
+query.licensing			expirationDate
+query.licensing			lastUpdated
+query.licensing		}
+query.licensing		... on RbiLicense {
+query.licensing			id
+query.licensing			description
+query.licensing			plan
+query.licensing			sku
+query.licensing			status
+query.licensing			startDate
+query.licensing			expirationDate
+query.licensing			lastUpdated
+query.licensing		}
+query.licensing		... on SaasSecurityApiLicense {
+query.licensing			id
+query.licensing			description
+query.licensing			plan
+query.licensing			sku
+query.licensing			status
+query.licensing			startDate
+query.licensing			expirationDate
+query.licensing			lastUpdated
+query.licensing			total
+query.licensing		}
+query.licensing		... on XdrProLicense {
+query.licensing			id
+query.licensing			description
+query.licensing			plan
+query.licensing			sku
+query.licensing			status
+query.licensing			startDate
+query.licensing			expirationDate
+query.licensing			lastUpdated
+query.licensing			total
+query.licensing		}
+query.licensing		... on DemLicense {
+query.licensing			id
+query.licensing			description
+query.licensing			plan
+query.licensing			sku
+query.licensing			status
+query.licensing			startDate
+query.licensing			expirationDate
+query.licensing			lastUpdated
+query.licensing			total
+query.licensing		}
+query.licensing		... on IotOtLicense {
+query.licensing			id
+query.licensing			description
+query.licensing			plan
+query.licensing			sku
+query.licensing			status
+query.licensing			startDate
+query.licensing			expirationDate
+query.licensing			lastUpdated
+query.licensing		}
+query.licensing		... on AtpLicense {
+query.licensing			id
+query.licensing			description
+query.licensing			plan
+query.licensing			sku
+query.licensing			status
+query.licensing			startDate
+query.licensing			expirationDate
+query.licensing			lastUpdated
+query.licensing		}
+query.licensing		... on XOpsLicense {
+query.licensing			id
+query.licensing			description
+query.licensing			plan
+query.licensing			sku
+query.licensing			status
+query.licensing			startDate
+query.licensing			expirationDate
+query.licensing			lastUpdated
+query.licensing		}
+query.licensing	}
+query.licensing	dataLake {
+query.licensing		id
+query.licensing		description
+query.licensing		plan
+query.licensing		sku
+query.licensing		status
+query.licensing		startDate
+query.licensing		expirationDate
+query.licensing		lastUpdated
+query.licensing		dpaVersion
+query.licensing		retentionPeriod
+query.licensing		total
+query.licensing	}
+query.licensing	publicIps {
+query.licensing		id
+query.licensing		description
+query.licensing		plan
+query.licensing		sku
+query.licensing		status
+query.licensing		startDate
+query.licensing		expirationDate
+query.licensing		lastUpdated
+query.licensing		total
+query.licensing	}
+query.licensing	site {
+query.licensing		id
+query.licensing		description
+query.licensing		plan
+query.licensing		sku
+query.licensing		status
+query.licensing		startDate
+query.licensing		expirationDate
+query.licensing		lastUpdated
+query.licensing		siteLicenseGroup {
+	id
+	name
+	description
+	membersCount
+	audit {
+		updatedTime
+		updatedBy {
+			__typename
+			... on AdminRef {
+				id
+				name
+			}
+			... on ApiKeyRef {
+				id
+				name
+			}
+		}
+	}
+	members {
+		items {
+			id
+			name
+			type
+		}
+		paging {
+			total
+		}
+	}
+	membersCountPerType {
+		type
+		membersCount
+	}
+}
+query.licensing		regionality
+query.licensing		siteLicenseType
+query.licensing		total
+query.licensing		site {
+query.licensing			id
+query.licensing			name
+query.licensing		}
+query.licensing	}
+query.licensing	pooledBandwidth {
+query.licensing		id
+query.licensing		description
+query.licensing		plan
+query.licensing		sku
+query.licensing		status
+query.licensing		startDate
+query.licensing		expirationDate
+query.licensing		lastUpdated
+query.licensing		siteLicenseGroup {
+	id
+	name
+	description
+	membersCount
+	audit {
+		updatedTime
+		updatedBy {
+			__typename
+			... on AdminRef {
+				id
+				name
+			}
+			... on ApiKeyRef {
+				id
+				name
+			}
+		}
+	}
+	members {
+		items {
+			id
+			name
+			type
+		}
+		paging {
+			total
+		}
+	}
+	membersCountPerType {
+		type
+		membersCount
+	}
+}
+query.licensing		siteLicenseType
+query.licensing		total
+query.licensing		allocatedBandwidth
+query.licensing		sites {
+query.licensing			site {
+query.licensing				id
+query.licensing				name
+query.licensing			}
+query.licensing			allocatedBandwidth
+query.licensing		}
+query.licensing		accounts {
+query.licensing			account {
+query.licensing				id
+query.licensing				name
+query.licensing			}
+query.licensing			allocatedBandwidth
+query.licensing		}
+query.licensing	}
+query.licensing	ztnaUsers {
+query.licensing		id
+query.licensing		description
+query.licensing		plan
+query.licensing		sku
+query.licensing		status
+query.licensing		startDate
+query.licensing		expirationDate
+query.licensing		lastUpdated
+query.licensing		ztnaUsersLicenseGroup {
+	id
+	name
+	description
+	membersCount
+	audit {
+		updatedTime
+		updatedBy {
+			__typename
+			... on AdminRef {
+				id
+				name
+			}
+			... on ApiKeyRef {
+				id
+				name
+			}
+		}
+	}
+	members {
+		items {
+			id
+			name
+			type
+		}
+		paging {
+			total
+		}
+	}
+	membersCountPerType {
+		type
+		membersCount
+	}
+}
+query.licensing		total
+query.licensing	}
+query.licensing	endpointProtection {
+query.licensing		id
+query.licensing		description
+query.licensing		plan
+query.licensing		sku
+query.licensing		status
+query.licensing		startDate
+query.licensing		expirationDate
+query.licensing		lastUpdated
+query.licensing		total
+query.licensing	}
+query.licensing	ilmm {
+query.licensing		id
+query.licensing		description
+query.licensing		plan
+query.licensing		sku
+query.licensing		status
+query.licensing		startDate
+query.licensing		expirationDate
+query.licensing		lastUpdated
+query.licensing		total
+query.licensing	}
+query.licensing	ips {
+query.licensing		id
+query.licensing		description
+query.licensing		plan
+query.licensing		sku
+query.licensing		status
+query.licensing		startDate
+query.licensing		expirationDate
+query.licensing		lastUpdated
+query.licensing	}
+query.licensing	malwareProtection {
+query.licensing		id
+query.licensing		description
+query.licensing		plan
+query.licensing		sku
+query.licensing		status
+query.licensing		startDate
+query.licensing		expirationDate
+query.licensing		lastUpdated
+query.licensing	}
+query.licensing	nextGenMalwareProtection {
+query.licensing		id
+query.licensing		description
+query.licensing		plan
+query.licensing		sku
+query.licensing		status
+query.licensing		startDate
+query.licensing		expirationDate
+query.licensing		lastUpdated
+query.licensing	}
+query.licensing	threatPrevention {
+query.licensing		id
+query.licensing		description
+query.licensing		plan
+query.licensing		sku
+query.licensing		status
+query.licensing		startDate
+query.licensing		expirationDate
+query.licensing		lastUpdated
+query.licensing	}
+query.licensing	nocaas {
+query.licensing		id
+query.licensing		description
+query.licensing		plan
+query.licensing		sku
+query.licensing		status
+query.licensing		startDate
+query.licensing		expirationDate
+query.licensing		lastUpdated
+query.licensing	}
+query.licensing	casb {
+query.licensing		id
+query.licensing		description
+query.licensing		plan
+query.licensing		sku
+query.licensing		status
+query.licensing		startDate
+query.licensing		expirationDate
+query.licensing		lastUpdated
+query.licensing	}
+query.licensing	dlp {
+query.licensing		id
+query.licensing		description
+query.licensing		plan
+query.licensing		sku
+query.licensing		status
+query.licensing		startDate
+query.licensing		expirationDate
+query.licensing		lastUpdated
+query.licensing	}
+query.licensing	mdr {
+query.licensing		id
+query.licensing		description
+query.licensing		plan
+query.licensing		sku
+query.licensing		status
+query.licensing		startDate
+query.licensing		expirationDate
+query.licensing		lastUpdated
+query.licensing	}
+query.licensing	managedXdr {
+query.licensing		id
+query.licensing		description
+query.licensing		plan
+query.licensing		sku
+query.licensing		status
+query.licensing		startDate
+query.licensing		expirationDate
+query.licensing		lastUpdated
+query.licensing	}
+query.licensing	rbi {
+query.licensing		id
+query.licensing		description
+query.licensing		plan
+query.licensing		sku
+query.licensing		status
+query.licensing		startDate
+query.licensing		expirationDate
+query.licensing		lastUpdated
+query.licensing	}
+query.licensing	saasSecurityApi {
+query.licensing		id
+query.licensing		description
+query.licensing		plan
+query.licensing		sku
+query.licensing		status
+query.licensing		startDate
+query.licensing		expirationDate
+query.licensing		lastUpdated
+query.licensing		total
+query.licensing	}
+query.licensing	xdrPro {
+query.licensing		id
+query.licensing		description
+query.licensing		plan
+query.licensing		sku
+query.licensing		status
+query.licensing		startDate
+query.licensing		expirationDate
+query.licensing		lastUpdated
+query.licensing		total
+query.licensing	}
+query.licensing	dem {
+query.licensing		id
+query.licensing		description
+query.licensing		plan
+query.licensing		sku
+query.licensing		status
+query.licensing		startDate
+query.licensing		expirationDate
+query.licensing		lastUpdated
+query.licensing		total
+query.licensing	}
+query.licensing	iotOt {
+query.licensing		id
+query.licensing		description
+query.licensing		plan
+query.licensing		sku
+query.licensing		status
+query.licensing		startDate
+query.licensing		expirationDate
+query.licensing		lastUpdated
+query.licensing	}
+query.licensing	atp {
+query.licensing		id
+query.licensing		description
+query.licensing		plan
+query.licensing		sku
+query.licensing		status
+query.licensing		startDate
+query.licensing		expirationDate
+query.licensing		lastUpdated
+query.licensing	}
+query.licensing	xOps {
+query.licensing		id
+query.licensing		description
+query.licensing		plan
+query.licensing		sku
+query.licensing		status
+query.licensing		startDate
+query.licensing		expirationDate
+query.licensing		lastUpdated
+query.licensing	}
+query.licensing	globalLicenseAllocations {
+query.licensing		publicIps {
+query.licensing			total
+query.licensing			allocated
+query.licensing			available
+query.licensing		}
+query.licensing		ztnaUsers {
+query.licensing			total
+query.licensing			allocated
+query.licensing			available
+query.licensing		}
+query.licensing	}
+query.licensing}
 	}	
 }

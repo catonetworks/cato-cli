@@ -4,15 +4,16 @@
 
 ### Usage for mutation.sites.addSocketAddOnCard:
 
-`catocli mutation sites addSocketAddOnCard -h`
+```bash
+catocli mutation sites addSocketAddOnCard -h
 
-`catocli mutation sites addSocketAddOnCard <json>`
+catocli mutation sites addSocketAddOnCard <json>
 
-`catocli mutation sites addSocketAddOnCard "$(cat < mutation.sites.addSocketAddOnCard.json)"`
+catocli mutation sites addSocketAddOnCard "$(cat < mutation.sites.addSocketAddOnCard.json)"
 
-`catocli mutation sites addSocketAddOnCard '{"addSocketAddOnCardInput":{"siteRefInput":{"by":"ID","input":"string"},"socketAddOnCardInput":{"expansionSlotNumber":"SLOT_1","type":"FOUR_1G_COPPER"}}}'`
+catocli mutation sites addSocketAddOnCard '{"addSocketAddOnCardInput":{"siteRefInput":{"by":"ID","input":"string"},"socketAddOnCardInput":{"expansionSlotNumber":"SLOT_1","type":"FOUR_1G_COPPER"}}}'
 
-`catocli mutation sites addSocketAddOnCard -p '{
+catocli mutation sites addSocketAddOnCard -p '{
     "addSocketAddOnCardInput": {
         "siteRefInput": {
             "by": "ID",
@@ -24,7 +25,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.sites.addSocketAddOnCard ####
 

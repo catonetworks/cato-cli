@@ -1,59 +1,67 @@
-query admins ( $accountID:ID! $limit:Int $from:Int $search:String $sortInput:[SortInput] $adminIDs:[ID!] ) {
-	admins ( accountID:$accountID limit:$limit from:$from search:$search sort:$sortInput adminIDs:$adminIDs ) {
-		items  {
-			id
-			version
-			roleAdmin: role
-			firstName
-			lastName
-			email
-			creationDate
-			modifyDate
-			statusAdmin: status
-			passwordNeverExpires
-			mfaEnabled
-			nativeAccountID
-			allowedItemsAdmin: allowedItems {
-				id 
-				name 
-				type 
-			}
-			presentUsageAndEvents
-			managedRolesAdmin: managedRoles {
-				role  {
-					id
-					name
-					description
-					isPredefined
-				}
-
-				allowedEntities  {
-					id
-					name
-					typeEntity: type
-				}
-
-				allowedAccounts 
-			}
-			resellerRolesAdmin: resellerRoles {
-				role  {
-					id
-					name
-					description
-					isPredefined
-				}
-
-				allowedEntities  {
-					id
-					name
-					typeEntity: type
-				}
-
-				allowedAccounts 
-			}
-			adminTypeAdmin: adminType
-		}
-
-		total 
+query admins ( $limit:Int $from:Int $search:String $sortInput:[SortInput] $adminIDs:[ID!]) {
+	admins ( limit:$limit from:$from search:$search sort:$sortInput adminIDs:$adminIDs ) {
+query.adminsitems {
+query.admins	id
+query.admins	version
+query.admins	role
+query.admins	firstName
+query.admins	lastName
+query.admins	email
+query.admins	creationDate
+query.admins	modifyDate
+query.admins	status
+query.admins	passwordNeverExpires
+query.admins	mfaEnabled
+query.admins	nativeAccountID
+query.admins	allowedItems {
+query.admins		id
+query.admins		name
+query.admins		type
+query.admins	}
+query.admins	presentUsageAndEvents {
+	signatureId
+	eventType
+	threatType
+	threatName
+	severity
+	action
+	ruleId
+	virusName
+	scanResult
+	appId
+	appName
+	dnsProtectionCategory
+}
+query.admins	managedRoles {
+query.admins		role {
+query.admins			id
+query.admins			name
+query.admins			description
+query.admins			isPredefined
+query.admins		}
+query.admins		allowedEntities {
+query.admins			id
+query.admins			name
+query.admins			type
+query.admins		}
+query.admins		allowedAccounts
+query.admins	}
+query.admins	resellerRoles {
+query.admins		role {
+query.admins			id
+query.admins			name
+query.admins			description
+query.admins			isPredefined
+query.admins		}
+query.admins		allowedEntities {
+query.admins			id
+query.admins			name
+query.admins			type
+query.admins		}
+query.admins		allowedAccounts
+query.admins	}
+query.admins	adminType
+query.admins}
+query.adminstotal
 	}	
 }

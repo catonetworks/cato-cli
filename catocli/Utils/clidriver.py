@@ -50,20 +50,20 @@ from ..parsers.query_accountSnapshot import query_accountSnapshot_parse
 from ..parsers.query_catalogs import query_catalogs_parse
 from ..parsers.query_site import query_site_parse
 from ..parsers.query_xdr import query_xdr_parse
-from ..parsers.query_groups import query_groups_parse
 from ..parsers.query_policy import query_policy_parse
+from ..parsers.query_groups import query_groups_parse
 from ..parsers.mutation_xdr import mutation_xdr_parse
-from ..parsers.mutation_policy import mutation_policy_parse
 from ..parsers.mutation_site import mutation_site_parse
-from ..parsers.mutation_sites import mutation_sites_parse
+from ..parsers.mutation_policy import mutation_policy_parse
 from ..parsers.mutation_container import mutation_container_parse
+from ..parsers.mutation_sites import mutation_sites_parse
 from ..parsers.mutation_admin import mutation_admin_parse
 from ..parsers.mutation_accountManagement import mutation_accountManagement_parse
 from ..parsers.mutation_sandbox import mutation_sandbox_parse
 from ..parsers.mutation_licensing import mutation_licensing_parse
-from ..parsers.mutation_groups import mutation_groups_parse
 from ..parsers.mutation_hardware import mutation_hardware_parse
 from ..parsers.mutation_enterpriseDirectory import mutation_enterpriseDirectory_parse
+from ..parsers.mutation_groups import mutation_groups_parse
 
 def show_version_info(args, configuration=None):
     print(f"catocli version {catocli.__version__}")
@@ -122,8 +122,8 @@ def get_configuration(skip_api_key=False):
     return configuration
 
 defaultReadmeStr = """
-The Cato CLI is a command-line interface tool designed to simplify the management and automation of Cato Networks’ configurations and operations. 
-It enables users to interact with Cato’s API for tasks such as managing Cato Management Application (CMA) site and account configurations, security policies, retrieving events, etc.
+The Cato CLI is a command-line interface tool designed to simplify the management and automation of Cato Networks' configurations and operations. 
+It enables users to interact with Cato's API for tasks such as managing Cato Management Application (CMA) site and account configurations, security policies, retrieving events, etc.
 
 
 For assistance in generating syntax for the cli to perform various operations, please refer to the Cato API Explorer application.
@@ -185,20 +185,20 @@ query_accountSnapshot_parser = query_accountSnapshot_parse(query_subparsers)
 query_catalogs_parser = query_catalogs_parse(query_subparsers)
 query_site_parser = query_site_parse(query_subparsers)
 query_xdr_parser = query_xdr_parse(query_subparsers)
-query_groups_parser = query_groups_parse(query_subparsers)
 query_policy_parser = query_policy_parse(query_subparsers)
+query_groups_parser = query_groups_parse(query_subparsers)
 mutation_xdr_parser = mutation_xdr_parse(mutation_subparsers)
-mutation_policy_parser = mutation_policy_parse(mutation_subparsers)
 mutation_site_parser = mutation_site_parse(mutation_subparsers)
-mutation_sites_parser = mutation_sites_parse(mutation_subparsers)
+mutation_policy_parser = mutation_policy_parse(mutation_subparsers)
 mutation_container_parser = mutation_container_parse(mutation_subparsers)
+mutation_sites_parser = mutation_sites_parse(mutation_subparsers)
 mutation_admin_parser = mutation_admin_parse(mutation_subparsers)
 mutation_accountManagement_parser = mutation_accountManagement_parse(mutation_subparsers)
 mutation_sandbox_parser = mutation_sandbox_parse(mutation_subparsers)
 mutation_licensing_parser = mutation_licensing_parse(mutation_subparsers)
-mutation_groups_parser = mutation_groups_parse(mutation_subparsers)
 mutation_hardware_parser = mutation_hardware_parse(mutation_subparsers)
 mutation_enterpriseDirectory_parser = mutation_enterpriseDirectory_parse(mutation_subparsers)
+mutation_groups_parser = mutation_groups_parse(mutation_subparsers)
 
 
 def parse_headers(header_strings):
@@ -249,13 +249,8 @@ def main(args=None):
 
     args = parser.parse_args(args=args)
     try:
-        # Check if a function was set (i.e., a valid subcommand was provided)
-        if not hasattr(args, 'func'):
-            print('Missing arguments. Usage: catocli <operation> -h')
-            exit(1)
-        
         # Skip authentication for configure commands
-        if hasattr(args.func, '__module__') and 'configure' in str(args.func.__module__):
+        if hasattr(args, 'func') and hasattr(args.func, '__module__') and 'configure' in str(args.func.__module__):
             response = args.func(args, None)
         else:
             # Check if using headers file to determine if we should skip API key
@@ -274,7 +269,7 @@ def main(args=None):
             if custom_headers:
                 configuration.custom_headers.update(custom_headers)
             # Handle account ID override (applies to all commands except raw)
-            if hasattr(args, 'func') and args.func.__name__ not in ["createRawRequest"]:
+            if args.func.__name__ not in ["createRawRequest"]:
                 if hasattr(args, 'accountID') and args.accountID is not None:
                     # Command line override takes precedence
                     configuration.accountID = args.accountID
@@ -300,7 +295,7 @@ def main(args=None):
     except Exception as e:
         if isinstance(e, AttributeError):
             print('Missing arguments. Usage: catocli <operation> -h')
-            if hasattr(args, 'v') and args.v == True:
+            if args.v==True:
                 print('ERROR: ',e)
                 traceback.print_exc()
         else:

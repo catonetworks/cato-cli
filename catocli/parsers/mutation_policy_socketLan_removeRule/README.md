@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.socketLan.removeRule:
 
-`catocli mutation policy socketLan removeRule -h`
+```bash
+catocli mutation policy socketLan removeRule -h
 
-`catocli mutation policy socketLan removeRule <json>`
+catocli mutation policy socketLan removeRule <json>
 
-`catocli mutation policy socketLan removeRule "$(cat < mutation.policy.socketLan.removeRule.json)"`
+catocli mutation policy socketLan removeRule "$(cat < mutation.policy.socketLan.removeRule.json)"
 
-`catocli mutation policy socketLan removeRule '{"socketLanPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"socketLanRemoveRuleInput":{"id":"id"}}'`
+catocli mutation policy socketLan removeRule '{"socketLanPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"socketLanRemoveRuleInput":{"id":"id"}}'
 
-`catocli mutation policy socketLan removeRule -p '{
+catocli mutation policy socketLan removeRule -p '{
     "socketLanPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"
@@ -22,7 +23,7 @@
         "id": "id"
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.socketLan.removeRule ####
 

@@ -4,20 +4,21 @@
 
 ### Usage for mutation.sandbox.uploadFile:
 
-`catocli mutation sandbox uploadFile -h`
+```bash
+catocli mutation sandbox uploadFile -h
 
-`catocli mutation sandbox uploadFile <json>`
+catocli mutation sandbox uploadFile <json>
 
-`catocli mutation sandbox uploadFile "$(cat < mutation.sandbox.uploadFile.json)"`
+catocli mutation sandbox uploadFile "$(cat < mutation.sandbox.uploadFile.json)"
 
-`catocli mutation sandbox uploadFile '{"uploadFileInput":{"fileName":"string"}}'`
+catocli mutation sandbox uploadFile '{"uploadFileInput":{"fileName":"string"}}'
 
-`catocli mutation sandbox uploadFile -p '{
+catocli mutation sandbox uploadFile -p '{
     "uploadFileInput": {
         "fileName": "string"
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.sandbox.uploadFile ####
 

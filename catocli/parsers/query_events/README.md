@@ -4,15 +4,16 @@
 
 ### Usage for query.events:
 
-`catocli query events -h`
+```bash
+catocli query events -h
 
-`catocli query events <json>`
+catocli query events <json>
 
-`catocli query events "$(cat < query.events.json)"`
+catocli query events "$(cat < query.events.json)"
 
-`catocli query events '{"eventsDimension":{"fieldName":"access_method"},"eventsFilter":{"fieldName":"access_method","operator":"is","values":["string1","string2"]},"eventsMeasure":{"aggType":"sum","fieldName":"access_method","trend":true},"eventsSort":{"fieldName":"access_method","order":"asc"},"from":1,"limit":1,"timeFrame":"example_value"}'`
+catocli query events '{"eventsDimension":{"fieldName":"access_method"},"eventsFilter":{"fieldName":"access_method","operator":"is","values":["string1","string2"]},"eventsMeasure":{"aggType":"sum","fieldName":"access_method","trend":true},"eventsSort":{"fieldName":"access_method","order":"asc"},"timeFrame":"example_value"}'
 
-`catocli query events -p '{
+catocli query events -p '{
     "eventsDimension": {
         "fieldName": "access_method"
     },
@@ -33,11 +34,9 @@
         "fieldName": "access_method",
         "order": "asc"
     },
-    "from": 1,
-    "limit": 1,
     "timeFrame": "example_value"
 }'
-
+```
 
 #### Operation Arguments for query.events ####
 
@@ -46,6 +45,4 @@
 `eventsFilter` [EventsFilter[]] - (required) N/A    
 `eventsMeasure` [EventsMeasure[]] - (required) N/A    
 `eventsSort` [EventsSort[]] - (required) N/A    
-`from` [Int] - (required) N/A    
-`limit` [Int] - (required) N/A    
 `timeFrame` [TimeFrame] - (required) N/A    

@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.terminalServer.updateSection:
 
-`catocli mutation policy terminalServer updateSection -h`
+```bash
+catocli mutation policy terminalServer updateSection -h
 
-`catocli mutation policy terminalServer updateSection <json>`
+catocli mutation policy terminalServer updateSection <json>
 
-`catocli mutation policy terminalServer updateSection "$(cat < mutation.policy.terminalServer.updateSection.json)"`
+catocli mutation policy terminalServer updateSection "$(cat < mutation.policy.terminalServer.updateSection.json)"
 
-`catocli mutation policy terminalServer updateSection '{"policyUpdateSectionInput":{"id":"id","policyUpdateSectionInfoInput":{"name":"string"}},"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
+catocli mutation policy terminalServer updateSection '{"policyUpdateSectionInput":{"id":"id","policyUpdateSectionInfoInput":{"name":"string"}},"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-`catocli mutation policy terminalServer updateSection -p '{
+catocli mutation policy terminalServer updateSection -p '{
     "policyUpdateSectionInput": {
         "id": "id",
         "policyUpdateSectionInfoInput": {
@@ -25,7 +26,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.terminalServer.updateSection ####
 

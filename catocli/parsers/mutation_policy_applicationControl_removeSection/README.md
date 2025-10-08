@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.applicationControl.removeSection:
 
-`catocli mutation policy applicationControl removeSection -h`
+```bash
+catocli mutation policy applicationControl removeSection -h
 
-`catocli mutation policy applicationControl removeSection <json>`
+catocli mutation policy applicationControl removeSection <json>
 
-`catocli mutation policy applicationControl removeSection "$(cat < mutation.policy.applicationControl.removeSection.json)"`
+catocli mutation policy applicationControl removeSection "$(cat < mutation.policy.applicationControl.removeSection.json)"
 
-`catocli mutation policy applicationControl removeSection '{"applicationControlPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyRemoveSectionInput":{"id":"id"}}'`
+catocli mutation policy applicationControl removeSection '{"applicationControlPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyRemoveSectionInput":{"id":"id"}}'
 
-`catocli mutation policy applicationControl removeSection -p '{
+catocli mutation policy applicationControl removeSection -p '{
     "applicationControlPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"
@@ -22,7 +23,7 @@
         "id": "id"
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.applicationControl.removeSection ####
 

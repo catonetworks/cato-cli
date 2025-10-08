@@ -1,45 +1,41 @@
-mutation groupsCreateGroup ( $groupMembersListInput:GroupMembersListInput! $createGroupInput:CreateGroupInput! $accountId:ID! ) {
-	groups ( accountId:$accountId ) {
-		createGroup ( input:$createGroupInput  )  {
-			groupCreateGroupPayload: group {
-				id 
-				name 
-				description 
-				audit  {
-					updatedTime
-					updatedByAuditingMetadata: updatedBy {
-						id 
-						name 
-						... on AdminRef {
-							id 
-							name 
-						}
-						... on ApiKeyRef {
-							id 
-							name 
-						}
-					}
-				}
-
-				members ( input:$groupMembersListInput  )  {
-					itemsGroupMembersListPayload: items {
-						id 
-						name 
-						type 
-					}
-					pagingGroupMembersListPayload: paging {
-						total 
-					}
-				}
-
-				membersCount 
-				membersCountPerType  {
-					typeGroupMemberTypeCount: type
-					membersCount
-				}
-
-			}
-		}
-
+mutation groupsCreateGroup ( $createGroupInput:CreateGroupInput!) {
+	groups ( ) {
+mutation.groups.createGroupcreateGroup ( input:$createGroupInput  )  {
+mutation.groups.createGroup	group {
+mutation.groups.createGroup		id
+mutation.groups.createGroup		name
+mutation.groups.createGroup		description
+mutation.groups.createGroup		audit {
+mutation.groups.createGroup			updatedTime
+mutation.groups.createGroup			updatedBy {
+mutation.groups.createGroup				id
+mutation.groups.createGroup				name
+mutation.groups.createGroup				... on AdminRef {
+mutation.groups.createGroup					id
+mutation.groups.createGroup					name
+mutation.groups.createGroup				}
+mutation.groups.createGroup				... on ApiKeyRef {
+mutation.groups.createGroup					id
+mutation.groups.createGroup					name
+mutation.groups.createGroup				}
+mutation.groups.createGroup			}
+mutation.groups.createGroup		}
+mutation.groups.createGroup		members {
+mutation.groups.createGroup			items {
+mutation.groups.createGroup				id
+mutation.groups.createGroup				name
+mutation.groups.createGroup				type
+mutation.groups.createGroup			}
+mutation.groups.createGroup			paging {
+mutation.groups.createGroup				total
+mutation.groups.createGroup			}
+mutation.groups.createGroup		}
+mutation.groups.createGroup		membersCount
+mutation.groups.createGroup		membersCountPerType {
+mutation.groups.createGroup			type
+mutation.groups.createGroup			membersCount
+mutation.groups.createGroup		}
+mutation.groups.createGroup	}
+mutation.groups.createGroup}
 	}	
 }

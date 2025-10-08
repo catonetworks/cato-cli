@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.appTenantRestriction.discardPolicyRevision:
 
-`catocli mutation policy appTenantRestriction discardPolicyRevision -h`
+```bash
+catocli mutation policy appTenantRestriction discardPolicyRevision -h
 
-`catocli mutation policy appTenantRestriction discardPolicyRevision <json>`
+catocli mutation policy appTenantRestriction discardPolicyRevision <json>
 
-`catocli mutation policy appTenantRestriction discardPolicyRevision "$(cat < mutation.policy.appTenantRestriction.discardPolicyRevision.json)"`
+catocli mutation policy appTenantRestriction discardPolicyRevision "$(cat < mutation.policy.appTenantRestriction.discardPolicyRevision.json)"
 
-`catocli mutation policy appTenantRestriction discardPolicyRevision '{"appTenantRestrictionPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyDiscardRevisionInput":{"id":"id"}}'`
+catocli mutation policy appTenantRestriction discardPolicyRevision '{"appTenantRestrictionPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyDiscardRevisionInput":{"id":"id"}}'
 
-`catocli mutation policy appTenantRestriction discardPolicyRevision -p '{
+catocli mutation policy appTenantRestriction discardPolicyRevision -p '{
     "appTenantRestrictionPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"
@@ -22,7 +23,7 @@
         "id": "id"
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.appTenantRestriction.discardPolicyRevision ####
 

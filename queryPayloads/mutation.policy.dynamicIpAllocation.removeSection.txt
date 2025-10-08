@@ -1,27 +1,24 @@
-mutation policyDynamicIpAllocationRemoveSection ( $policyRemoveSectionInput:PolicyRemoveSectionInput! $dynamicIpAllocationPolicyMutationInput:DynamicIpAllocationPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		dynamicIpAllocation ( input:$dynamicIpAllocationPolicyMutationInput  )  {
-			removeSectionDynamicIpAllocationPolicyMutations: removeSection ( input:$policyRemoveSectionInput   ) {
-				section  {
-					auditPolicySectionPayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					sectionPolicySectionPayload: section {
-						id 
-						name 
-					}
-					propertiesPolicySectionPayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyDynamicIpAllocationRemoveSection ( $dynamicIpAllocationPolicyMutationInput:DynamicIpAllocationPolicyMutationInput $policyRemoveSectionInput:PolicyRemoveSectionInput!) {
+	policy ( ) {
+mutation.policy.dynamicIpAllocation.removeSectiondynamicIpAllocation ( input:$dynamicIpAllocationPolicyMutationInput  )  {
+mutation.policy.dynamicIpAllocation.removeSection	removeSection ( input:$policyRemoveSectionInput   ) {
+mutation.policy.dynamicIpAllocation.removeSection		section {
+mutation.policy.dynamicIpAllocation.removeSection			audit {
+mutation.policy.dynamicIpAllocation.removeSection				updatedTime
+mutation.policy.dynamicIpAllocation.removeSection				updatedBy
+mutation.policy.dynamicIpAllocation.removeSection			}
+mutation.policy.dynamicIpAllocation.removeSection			section {
+mutation.policy.dynamicIpAllocation.removeSection				id
+mutation.policy.dynamicIpAllocation.removeSection				name
+mutation.policy.dynamicIpAllocation.removeSection			}
+mutation.policy.dynamicIpAllocation.removeSection			properties
+mutation.policy.dynamicIpAllocation.removeSection		}
+mutation.policy.dynamicIpAllocation.removeSection		status
+mutation.policy.dynamicIpAllocation.removeSection		errors {
+mutation.policy.dynamicIpAllocation.removeSection			errorMessage
+mutation.policy.dynamicIpAllocation.removeSection			errorCode
+mutation.policy.dynamicIpAllocation.removeSection		}
+mutation.policy.dynamicIpAllocation.removeSection	}
+mutation.policy.dynamicIpAllocation.removeSection}
 	}	
 }

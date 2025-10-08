@@ -4,20 +4,21 @@
 
 ### Usage for mutation.sandbox.deleteReport:
 
-`catocli mutation sandbox deleteReport -h`
+```bash
+catocli mutation sandbox deleteReport -h
 
-`catocli mutation sandbox deleteReport <json>`
+catocli mutation sandbox deleteReport <json>
 
-`catocli mutation sandbox deleteReport "$(cat < mutation.sandbox.deleteReport.json)"`
+catocli mutation sandbox deleteReport "$(cat < mutation.sandbox.deleteReport.json)"
 
-`catocli mutation sandbox deleteReport '{"deleteReportInput":{"fileHash":"string"}}'`
+catocli mutation sandbox deleteReport '{"deleteReportInput":{"fileHash":"string"}}'
 
-`catocli mutation sandbox deleteReport -p '{
+catocli mutation sandbox deleteReport -p '{
     "deleteReportInput": {
         "fileHash": "string"
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.sandbox.deleteReport ####
 

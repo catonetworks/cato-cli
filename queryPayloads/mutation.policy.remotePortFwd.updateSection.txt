@@ -1,27 +1,24 @@
-mutation policyRemotePortFwdUpdateSection ( $policyUpdateSectionInput:PolicyUpdateSectionInput! $remotePortFwdPolicyMutationInput:RemotePortFwdPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		remotePortFwd ( input:$remotePortFwdPolicyMutationInput  )  {
-			updateSectionRemotePortFwdPolicyMutations: updateSection ( input:$policyUpdateSectionInput   ) {
-				section  {
-					auditPolicySectionPayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					sectionPolicySectionPayload: section {
-						id 
-						name 
-					}
-					propertiesPolicySectionPayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyRemotePortFwdUpdateSection ( $remotePortFwdPolicyMutationInput:RemotePortFwdPolicyMutationInput $policyUpdateSectionInput:PolicyUpdateSectionInput!) {
+	policy ( ) {
+mutation.policy.remotePortFwd.updateSectionremotePortFwd ( input:$remotePortFwdPolicyMutationInput  )  {
+mutation.policy.remotePortFwd.updateSection	updateSection ( input:$policyUpdateSectionInput   ) {
+mutation.policy.remotePortFwd.updateSection		section {
+mutation.policy.remotePortFwd.updateSection			audit {
+mutation.policy.remotePortFwd.updateSection				updatedTime
+mutation.policy.remotePortFwd.updateSection				updatedBy
+mutation.policy.remotePortFwd.updateSection			}
+mutation.policy.remotePortFwd.updateSection			section {
+mutation.policy.remotePortFwd.updateSection				id
+mutation.policy.remotePortFwd.updateSection				name
+mutation.policy.remotePortFwd.updateSection			}
+mutation.policy.remotePortFwd.updateSection			properties
+mutation.policy.remotePortFwd.updateSection		}
+mutation.policy.remotePortFwd.updateSection		status
+mutation.policy.remotePortFwd.updateSection		errors {
+mutation.policy.remotePortFwd.updateSection			errorMessage
+mutation.policy.remotePortFwd.updateSection			errorCode
+mutation.policy.remotePortFwd.updateSection		}
+mutation.policy.remotePortFwd.updateSection	}
+mutation.policy.remotePortFwd.updateSection}
 	}	
 }

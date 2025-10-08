@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.appTenantRestriction.moveRule:
 
-`catocli mutation policy appTenantRestriction moveRule -h`
+```bash
+catocli mutation policy appTenantRestriction moveRule -h
 
-`catocli mutation policy appTenantRestriction moveRule <json>`
+catocli mutation policy appTenantRestriction moveRule <json>
 
-`catocli mutation policy appTenantRestriction moveRule "$(cat < mutation.policy.appTenantRestriction.moveRule.json)"`
+catocli mutation policy appTenantRestriction moveRule "$(cat < mutation.policy.appTenantRestriction.moveRule.json)"
 
-`catocli mutation policy appTenantRestriction moveRule '{"appTenantRestrictionPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyMoveRuleInput":{"id":"id","policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"}}}'`
+catocli mutation policy appTenantRestriction moveRule '{"appTenantRestrictionPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyMoveRuleInput":{"id":"id","policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"}}}'
 
-`catocli mutation policy appTenantRestriction moveRule -p '{
+catocli mutation policy appTenantRestriction moveRule -p '{
     "appTenantRestrictionPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"
@@ -26,7 +27,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.appTenantRestriction.moveRule ####
 

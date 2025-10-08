@@ -1,498 +1,692 @@
-query accountMetrics ( $toRate:Boolean $perSecond:Boolean $withMissingData:Boolean $useDefaultSizeBucket:Boolean $buckets:Int $labels:[TimeseriesMetricType!] $types:[String!] $siteIDs:[ID!] $userIDs:[ID!] $accountID:ID $timeFrame:TimeFrame! $groupInterfaces:Boolean $groupDevices:Boolean ) {
-	accountMetrics ( accountID:$accountID timeFrame:$timeFrame groupInterfaces:$groupInterfaces groupDevices:$groupDevices ) {
-		id 
-		from 
-		to 
-		granularity 
-		sites ( siteIDs:$siteIDs  )  {
-			id
-			interfacesSiteMetrics: interfaces {
-				metrics ( toRate:$toRate  )  {
-					duration
-					granularity
-					bytesDownstream
-					bytesUpstream
-					bytesTotal
-					lostDownstream
-					lostDownstreamPcnt
-					lostUpstream
-					lostUpstreamPcnt
-					packetsDownstream
-					packetsUpstream
-					jitterUpstream
-					jitterDownstream
-					packetsDiscardedDownstream
-					packetsDiscardedUpstream
-					rtt
-					hostCount
-					hostLimit
-					flowCount
-				}
-
-				name 
-				timeseries ( buckets:$buckets  labels:$labels  )  {
-					data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket   )
-					label
-					dimensionsTimeseries: dimensions {
-						label 
-						value 
-					}
-					keyTimeseries: key {
-						measureFieldName 
-						dimensions  {
-							fieldName
-							value
-						}
-
-					}
-					sum
-					unitsTimeseries: units
-					info
-				}
-
-				annotations ( types:$types  )  {
-					time
-					label
-					shortLabel
-					typeTimeAnnotation: type
-				}
-
-				periods  {
-					duration
-					title
-					typeTimePeriod: type
-				}
-
-				remoteIPInfo  {
-					ip
-					countryCode
-					countryName
-					city
-					state
-					provider
-					latitude
-					longitude
-				}
-
-				remoteIP 
-				socketInfo  {
-					id
-					serial
-					isPrimary
-					platformSocketInfo: platform
-					version
-					versionUpdateTime
-				}
-
-				ipsecInfo  {
-					isPrimary
-					catoIP
-					remoteIP
-					ikeVersion
-					tunnelConfigIPSecInfo: tunnelConfig {
-						tunnelId 
-						tunnelRemoteIdentifier 
-						localId 
-					}
-				}
-
-				interfaceInfo  {
-					id
-					name
-					upstreamBandwidth
-					downstreamBandwidth
-					upstreamBandwidthMbpsPrecision
-					downstreamBandwidthMbpsPrecision
-					destType
-					wanRoleInterfaceInfo: wanRole
-				}
-
-			}
-			metricsSiteMetrics: metrics ( toRate:$toRate   ) {
-				duration 
-				granularity 
-				bytesDownstream 
-				bytesUpstream 
-				bytesTotal 
-				lostDownstream 
-				lostDownstreamPcnt 
-				lostUpstream 
-				lostUpstreamPcnt 
-				packetsDownstream 
-				packetsUpstream 
-				jitterUpstream 
-				jitterDownstream 
-				packetsDiscardedDownstream 
-				packetsDiscardedUpstream 
-				rtt 
-				hostCount 
-				hostLimit 
-				flowCount 
-			}
-			name
-			infoSiteMetrics: info {
-				name 
-				type 
-				description 
-				countryCode 
-				region 
-				countryName 
-				countryStateName 
-				cityName 
-				address 
-				isHA 
-				connType 
-				creationTime 
-				interfaces  {
-					id
-					name
-					upstreamBandwidth
-					downstreamBandwidth
-					upstreamBandwidthMbpsPrecision
-					downstreamBandwidthMbpsPrecision
-					destType
-					wanRoleInterfaceInfo: wanRole
-				}
-
-				sockets  {
-					id
-					serial
-					isPrimary
-					platformSocketInfo: platform
-					version
-					versionUpdateTime
-				}
-
-				ipsec  {
-					isPrimary
-					catoIP
-					remoteIP
-					ikeVersion
-					tunnelConfigIPSecInfo: tunnelConfig {
-						tunnelId 
-						tunnelRemoteIdentifier 
-						localId 
-					}
-				}
-
-			}
-			hostCountSiteMetrics: hostCount {
-				data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket  ) 
-				label 
-				dimensions  {
-					label
-					value
-				}
-
-				key  {
-					measureFieldName
-					dimensionsTimeseriesKey: dimensions {
-						fieldName 
-						value 
-					}
-				}
-
-				sum 
-				units 
-				info 
-			}
-			flowCountSiteMetrics: flowCount {
-				data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket  ) 
-				label 
-				dimensions  {
-					label
-					value
-				}
-
-				key  {
-					measureFieldName
-					dimensionsTimeseriesKey: dimensions {
-						fieldName 
-						value 
-					}
-				}
-
-				sum 
-				units 
-				info 
-			}
-			hostLimitSiteMetrics: hostLimit {
-				data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket  ) 
-				label 
-				dimensions  {
-					label
-					value
-				}
-
-				key  {
-					measureFieldName
-					dimensionsTimeseriesKey: dimensions {
-						fieldName 
-						value 
-					}
-				}
-
-				sum 
-				units 
-				info 
-			}
-			samples
-		}
-
-		users ( userIDs:$userIDs  )  {
-			id
-			interfacesSiteMetrics: interfaces {
-				metrics ( toRate:$toRate  )  {
-					duration
-					granularity
-					bytesDownstream
-					bytesUpstream
-					bytesTotal
-					lostDownstream
-					lostDownstreamPcnt
-					lostUpstream
-					lostUpstreamPcnt
-					packetsDownstream
-					packetsUpstream
-					jitterUpstream
-					jitterDownstream
-					packetsDiscardedDownstream
-					packetsDiscardedUpstream
-					rtt
-					hostCount
-					hostLimit
-					flowCount
-				}
-
-				name 
-				timeseries ( buckets:$buckets  labels:$labels  )  {
-					data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket   )
-					label
-					dimensionsTimeseries: dimensions {
-						label 
-						value 
-					}
-					keyTimeseries: key {
-						measureFieldName 
-						dimensions  {
-							fieldName
-							value
-						}
-
-					}
-					sum
-					unitsTimeseries: units
-					info
-				}
-
-				annotations ( types:$types  )  {
-					time
-					label
-					shortLabel
-					typeTimeAnnotation: type
-				}
-
-				periods  {
-					duration
-					title
-					typeTimePeriod: type
-				}
-
-				remoteIPInfo  {
-					ip
-					countryCode
-					countryName
-					city
-					state
-					provider
-					latitude
-					longitude
-				}
-
-				remoteIP 
-				socketInfo  {
-					id
-					serial
-					isPrimary
-					platformSocketInfo: platform
-					version
-					versionUpdateTime
-				}
-
-				ipsecInfo  {
-					isPrimary
-					catoIP
-					remoteIP
-					ikeVersion
-					tunnelConfigIPSecInfo: tunnelConfig {
-						tunnelId 
-						tunnelRemoteIdentifier 
-						localId 
-					}
-				}
-
-				interfaceInfo  {
-					id
-					name
-					upstreamBandwidth
-					downstreamBandwidth
-					upstreamBandwidthMbpsPrecision
-					downstreamBandwidthMbpsPrecision
-					destType
-					wanRoleInterfaceInfo: wanRole
-				}
-
-			}
-			metricsSiteMetrics: metrics ( toRate:$toRate   ) {
-				duration 
-				granularity 
-				bytesDownstream 
-				bytesUpstream 
-				bytesTotal 
-				lostDownstream 
-				lostDownstreamPcnt 
-				lostUpstream 
-				lostUpstreamPcnt 
-				packetsDownstream 
-				packetsUpstream 
-				jitterUpstream 
-				jitterDownstream 
-				packetsDiscardedDownstream 
-				packetsDiscardedUpstream 
-				rtt 
-				hostCount 
-				hostLimit 
-				flowCount 
-			}
-			name
-			infoSiteMetrics: info {
-				name 
-				type 
-				description 
-				countryCode 
-				region 
-				countryName 
-				countryStateName 
-				cityName 
-				address 
-				isHA 
-				connType 
-				creationTime 
-				interfaces  {
-					id
-					name
-					upstreamBandwidth
-					downstreamBandwidth
-					upstreamBandwidthMbpsPrecision
-					downstreamBandwidthMbpsPrecision
-					destType
-					wanRoleInterfaceInfo: wanRole
-				}
-
-				sockets  {
-					id
-					serial
-					isPrimary
-					platformSocketInfo: platform
-					version
-					versionUpdateTime
-				}
-
-				ipsec  {
-					isPrimary
-					catoIP
-					remoteIP
-					ikeVersion
-					tunnelConfigIPSecInfo: tunnelConfig {
-						tunnelId 
-						tunnelRemoteIdentifier 
-						localId 
-					}
-				}
-
-			}
-			hostCountSiteMetrics: hostCount {
-				data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket  ) 
-				label 
-				dimensions  {
-					label
-					value
-				}
-
-				key  {
-					measureFieldName
-					dimensionsTimeseriesKey: dimensions {
-						fieldName 
-						value 
-					}
-				}
-
-				sum 
-				units 
-				info 
-			}
-			flowCountSiteMetrics: flowCount {
-				data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket  ) 
-				label 
-				dimensions  {
-					label
-					value
-				}
-
-				key  {
-					measureFieldName
-					dimensionsTimeseriesKey: dimensions {
-						fieldName 
-						value 
-					}
-				}
-
-				sum 
-				units 
-				info 
-			}
-			hostLimitSiteMetrics: hostLimit {
-				data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket  ) 
-				label 
-				dimensions  {
-					label
-					value
-				}
-
-				key  {
-					measureFieldName
-					dimensionsTimeseriesKey: dimensions {
-						fieldName 
-						value 
-					}
-				}
-
-				sum 
-				units 
-				info 
-			}
-			samples
-		}
-
-		timeseries ( labels:$labels  buckets:$buckets  )  {
-			data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket   )
-			label
-			dimensionsTimeseries: dimensions {
-				label 
-				value 
-			}
-			keyTimeseries: key {
-				measureFieldName 
-				dimensions  {
-					fieldName
-					value
-				}
-
-			}
-			sum
-			unitsTimeseries: units
-			info
-		}
-
+query accountMetrics ( $timeFrame:TimeFrame! $groupInterfaces:Boolean $groupDevices:Boolean) {
+	accountMetrics ( timeFrame:$timeFrame groupInterfaces:$groupInterfaces groupDevices:$groupDevices ) {
+query.accountMetricsid
+query.accountMetricsfrom
+query.accountMetricsto
+query.accountMetricsgranularity
+query.accountMetricssites {
+query.accountMetrics	id
+query.accountMetrics	interfaces {
+query.accountMetrics		metrics {
+query.accountMetrics			duration
+query.accountMetrics			granularity
+query.accountMetrics			bytesDownstream
+query.accountMetrics			bytesUpstream
+query.accountMetrics			bytesTotal
+query.accountMetrics			lostDownstream
+query.accountMetrics			lostDownstreamPcnt
+query.accountMetrics			lostUpstream
+query.accountMetrics			lostUpstreamPcnt
+query.accountMetrics			packetsDownstream
+query.accountMetrics			packetsUpstream
+query.accountMetrics			jitterUpstream
+query.accountMetrics			jitterDownstream
+query.accountMetrics			packetsDiscardedDownstream
+query.accountMetrics			packetsDiscardedUpstream
+query.accountMetrics			rtt
+query.accountMetrics			hostCount
+query.accountMetrics			hostLimit
+query.accountMetrics			flowCount
+query.accountMetrics		}
+query.accountMetrics		name
+query.accountMetrics		timeseries {
+query.accountMetrics			data
+query.accountMetrics			label
+query.accountMetrics			dimensions {
+query.accountMetrics				label
+query.accountMetrics				value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+query.accountMetrics			}
+query.accountMetrics			key {
+query.accountMetrics				measureFieldName
+query.accountMetrics				dimensions {
+query.accountMetrics					fieldName
+query.accountMetrics					value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+query.accountMetrics				}
+query.accountMetrics			}
+query.accountMetrics			sum
+query.accountMetrics			units
+query.accountMetrics			info
+query.accountMetrics		}
+query.accountMetrics		annotations {
+query.accountMetrics			time
+query.accountMetrics			label
+query.accountMetrics			shortLabel
+query.accountMetrics			type
+query.accountMetrics		}
+query.accountMetrics		periods {
+query.accountMetrics			duration
+query.accountMetrics			title
+query.accountMetrics			type
+query.accountMetrics		}
+query.accountMetrics		remoteIPInfo {
+query.accountMetrics			ip
+query.accountMetrics			countryCode
+query.accountMetrics			countryName
+query.accountMetrics			city
+query.accountMetrics			state
+query.accountMetrics			provider
+query.accountMetrics			latitude
+query.accountMetrics			longitude
+query.accountMetrics		}
+query.accountMetrics		remoteIP
+query.accountMetrics		socketInfo {
+query.accountMetrics			id
+query.accountMetrics			serial
+query.accountMetrics			isPrimary
+query.accountMetrics			platform
+query.accountMetrics			version
+query.accountMetrics			versionUpdateTime
+query.accountMetrics		}
+query.accountMetrics		ipsecInfo {
+query.accountMetrics			isPrimary
+query.accountMetrics			catoIP
+query.accountMetrics			remoteIP
+query.accountMetrics			ikeVersion
+query.accountMetrics			tunnelConfig {
+query.accountMetrics				tunnelId
+query.accountMetrics				tunnelRemoteIdentifier
+query.accountMetrics				localId
+query.accountMetrics			}
+query.accountMetrics		}
+query.accountMetrics		interfaceInfo {
+query.accountMetrics			id
+query.accountMetrics			name
+query.accountMetrics			upstreamBandwidth
+query.accountMetrics			downstreamBandwidth
+query.accountMetrics			upstreamBandwidthMbpsPrecision
+query.accountMetrics			downstreamBandwidthMbpsPrecision
+query.accountMetrics			destType
+query.accountMetrics			wanRole
+query.accountMetrics		}
+query.accountMetrics	}
+query.accountMetrics	metrics {
+query.accountMetrics		duration
+query.accountMetrics		granularity
+query.accountMetrics		bytesDownstream
+query.accountMetrics		bytesUpstream
+query.accountMetrics		bytesTotal
+query.accountMetrics		lostDownstream
+query.accountMetrics		lostDownstreamPcnt
+query.accountMetrics		lostUpstream
+query.accountMetrics		lostUpstreamPcnt
+query.accountMetrics		packetsDownstream
+query.accountMetrics		packetsUpstream
+query.accountMetrics		jitterUpstream
+query.accountMetrics		jitterDownstream
+query.accountMetrics		packetsDiscardedDownstream
+query.accountMetrics		packetsDiscardedUpstream
+query.accountMetrics		rtt
+query.accountMetrics		hostCount
+query.accountMetrics		hostLimit
+query.accountMetrics		flowCount
+query.accountMetrics	}
+query.accountMetrics	name
+query.accountMetrics	info {
+query.accountMetrics		name
+query.accountMetrics		type
+query.accountMetrics		description
+query.accountMetrics		countryCode
+query.accountMetrics		region
+query.accountMetrics		countryName
+query.accountMetrics		countryStateName
+query.accountMetrics		cityName
+query.accountMetrics		address
+query.accountMetrics		isHA
+query.accountMetrics		connType
+query.accountMetrics		creationTime
+query.accountMetrics		interfaces {
+query.accountMetrics			id
+query.accountMetrics			name
+query.accountMetrics			upstreamBandwidth
+query.accountMetrics			downstreamBandwidth
+query.accountMetrics			upstreamBandwidthMbpsPrecision
+query.accountMetrics			downstreamBandwidthMbpsPrecision
+query.accountMetrics			destType
+query.accountMetrics			wanRole
+query.accountMetrics		}
+query.accountMetrics		sockets {
+query.accountMetrics			id
+query.accountMetrics			serial
+query.accountMetrics			isPrimary
+query.accountMetrics			platform
+query.accountMetrics			version
+query.accountMetrics			versionUpdateTime
+query.accountMetrics		}
+query.accountMetrics		ipsec {
+query.accountMetrics			isPrimary
+query.accountMetrics			catoIP
+query.accountMetrics			remoteIP
+query.accountMetrics			ikeVersion
+query.accountMetrics			tunnelConfig {
+query.accountMetrics				tunnelId
+query.accountMetrics				tunnelRemoteIdentifier
+query.accountMetrics				localId
+query.accountMetrics			}
+query.accountMetrics		}
+query.accountMetrics	}
+query.accountMetrics	hostCount {
+query.accountMetrics		data
+query.accountMetrics		label
+query.accountMetrics		dimensions {
+query.accountMetrics			label
+query.accountMetrics			value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+query.accountMetrics		}
+query.accountMetrics		key {
+query.accountMetrics			measureFieldName
+query.accountMetrics			dimensions {
+query.accountMetrics				fieldName
+query.accountMetrics				value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+query.accountMetrics			}
+query.accountMetrics		}
+query.accountMetrics		sum
+query.accountMetrics		units
+query.accountMetrics		info
+query.accountMetrics	}
+query.accountMetrics	flowCount {
+query.accountMetrics		data
+query.accountMetrics		label
+query.accountMetrics		dimensions {
+query.accountMetrics			label
+query.accountMetrics			value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+query.accountMetrics		}
+query.accountMetrics		key {
+query.accountMetrics			measureFieldName
+query.accountMetrics			dimensions {
+query.accountMetrics				fieldName
+query.accountMetrics				value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+query.accountMetrics			}
+query.accountMetrics		}
+query.accountMetrics		sum
+query.accountMetrics		units
+query.accountMetrics		info
+query.accountMetrics	}
+query.accountMetrics	hostLimit {
+query.accountMetrics		data
+query.accountMetrics		label
+query.accountMetrics		dimensions {
+query.accountMetrics			label
+query.accountMetrics			value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+query.accountMetrics		}
+query.accountMetrics		key {
+query.accountMetrics			measureFieldName
+query.accountMetrics			dimensions {
+query.accountMetrics				fieldName
+query.accountMetrics				value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+query.accountMetrics			}
+query.accountMetrics		}
+query.accountMetrics		sum
+query.accountMetrics		units
+query.accountMetrics		info
+query.accountMetrics	}
+query.accountMetrics	samples
+query.accountMetrics}
+query.accountMetricsusers {
+query.accountMetrics	id
+query.accountMetrics	interfaces {
+query.accountMetrics		metrics {
+query.accountMetrics			duration
+query.accountMetrics			granularity
+query.accountMetrics			bytesDownstream
+query.accountMetrics			bytesUpstream
+query.accountMetrics			bytesTotal
+query.accountMetrics			lostDownstream
+query.accountMetrics			lostDownstreamPcnt
+query.accountMetrics			lostUpstream
+query.accountMetrics			lostUpstreamPcnt
+query.accountMetrics			packetsDownstream
+query.accountMetrics			packetsUpstream
+query.accountMetrics			jitterUpstream
+query.accountMetrics			jitterDownstream
+query.accountMetrics			packetsDiscardedDownstream
+query.accountMetrics			packetsDiscardedUpstream
+query.accountMetrics			rtt
+query.accountMetrics			hostCount
+query.accountMetrics			hostLimit
+query.accountMetrics			flowCount
+query.accountMetrics		}
+query.accountMetrics		name
+query.accountMetrics		timeseries {
+query.accountMetrics			data
+query.accountMetrics			label
+query.accountMetrics			dimensions {
+query.accountMetrics				label
+query.accountMetrics				value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+query.accountMetrics			}
+query.accountMetrics			key {
+query.accountMetrics				measureFieldName
+query.accountMetrics				dimensions {
+query.accountMetrics					fieldName
+query.accountMetrics					value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+query.accountMetrics				}
+query.accountMetrics			}
+query.accountMetrics			sum
+query.accountMetrics			units
+query.accountMetrics			info
+query.accountMetrics		}
+query.accountMetrics		annotations {
+query.accountMetrics			time
+query.accountMetrics			label
+query.accountMetrics			shortLabel
+query.accountMetrics			type
+query.accountMetrics		}
+query.accountMetrics		periods {
+query.accountMetrics			duration
+query.accountMetrics			title
+query.accountMetrics			type
+query.accountMetrics		}
+query.accountMetrics		remoteIPInfo {
+query.accountMetrics			ip
+query.accountMetrics			countryCode
+query.accountMetrics			countryName
+query.accountMetrics			city
+query.accountMetrics			state
+query.accountMetrics			provider
+query.accountMetrics			latitude
+query.accountMetrics			longitude
+query.accountMetrics		}
+query.accountMetrics		remoteIP
+query.accountMetrics		socketInfo {
+query.accountMetrics			id
+query.accountMetrics			serial
+query.accountMetrics			isPrimary
+query.accountMetrics			platform
+query.accountMetrics			version
+query.accountMetrics			versionUpdateTime
+query.accountMetrics		}
+query.accountMetrics		ipsecInfo {
+query.accountMetrics			isPrimary
+query.accountMetrics			catoIP
+query.accountMetrics			remoteIP
+query.accountMetrics			ikeVersion
+query.accountMetrics			tunnelConfig {
+query.accountMetrics				tunnelId
+query.accountMetrics				tunnelRemoteIdentifier
+query.accountMetrics				localId
+query.accountMetrics			}
+query.accountMetrics		}
+query.accountMetrics		interfaceInfo {
+query.accountMetrics			id
+query.accountMetrics			name
+query.accountMetrics			upstreamBandwidth
+query.accountMetrics			downstreamBandwidth
+query.accountMetrics			upstreamBandwidthMbpsPrecision
+query.accountMetrics			downstreamBandwidthMbpsPrecision
+query.accountMetrics			destType
+query.accountMetrics			wanRole
+query.accountMetrics		}
+query.accountMetrics	}
+query.accountMetrics	metrics {
+query.accountMetrics		duration
+query.accountMetrics		granularity
+query.accountMetrics		bytesDownstream
+query.accountMetrics		bytesUpstream
+query.accountMetrics		bytesTotal
+query.accountMetrics		lostDownstream
+query.accountMetrics		lostDownstreamPcnt
+query.accountMetrics		lostUpstream
+query.accountMetrics		lostUpstreamPcnt
+query.accountMetrics		packetsDownstream
+query.accountMetrics		packetsUpstream
+query.accountMetrics		jitterUpstream
+query.accountMetrics		jitterDownstream
+query.accountMetrics		packetsDiscardedDownstream
+query.accountMetrics		packetsDiscardedUpstream
+query.accountMetrics		rtt
+query.accountMetrics		hostCount
+query.accountMetrics		hostLimit
+query.accountMetrics		flowCount
+query.accountMetrics	}
+query.accountMetrics	name
+query.accountMetrics	info {
+query.accountMetrics		name
+query.accountMetrics		type
+query.accountMetrics		description
+query.accountMetrics		countryCode
+query.accountMetrics		region
+query.accountMetrics		countryName
+query.accountMetrics		countryStateName
+query.accountMetrics		cityName
+query.accountMetrics		address
+query.accountMetrics		isHA
+query.accountMetrics		connType
+query.accountMetrics		creationTime
+query.accountMetrics		interfaces {
+query.accountMetrics			id
+query.accountMetrics			name
+query.accountMetrics			upstreamBandwidth
+query.accountMetrics			downstreamBandwidth
+query.accountMetrics			upstreamBandwidthMbpsPrecision
+query.accountMetrics			downstreamBandwidthMbpsPrecision
+query.accountMetrics			destType
+query.accountMetrics			wanRole
+query.accountMetrics		}
+query.accountMetrics		sockets {
+query.accountMetrics			id
+query.accountMetrics			serial
+query.accountMetrics			isPrimary
+query.accountMetrics			platform
+query.accountMetrics			version
+query.accountMetrics			versionUpdateTime
+query.accountMetrics		}
+query.accountMetrics		ipsec {
+query.accountMetrics			isPrimary
+query.accountMetrics			catoIP
+query.accountMetrics			remoteIP
+query.accountMetrics			ikeVersion
+query.accountMetrics			tunnelConfig {
+query.accountMetrics				tunnelId
+query.accountMetrics				tunnelRemoteIdentifier
+query.accountMetrics				localId
+query.accountMetrics			}
+query.accountMetrics		}
+query.accountMetrics	}
+query.accountMetrics	hostCount {
+query.accountMetrics		data
+query.accountMetrics		label
+query.accountMetrics		dimensions {
+query.accountMetrics			label
+query.accountMetrics			value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+query.accountMetrics		}
+query.accountMetrics		key {
+query.accountMetrics			measureFieldName
+query.accountMetrics			dimensions {
+query.accountMetrics				fieldName
+query.accountMetrics				value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+query.accountMetrics			}
+query.accountMetrics		}
+query.accountMetrics		sum
+query.accountMetrics		units
+query.accountMetrics		info
+query.accountMetrics	}
+query.accountMetrics	flowCount {
+query.accountMetrics		data
+query.accountMetrics		label
+query.accountMetrics		dimensions {
+query.accountMetrics			label
+query.accountMetrics			value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+query.accountMetrics		}
+query.accountMetrics		key {
+query.accountMetrics			measureFieldName
+query.accountMetrics			dimensions {
+query.accountMetrics				fieldName
+query.accountMetrics				value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+query.accountMetrics			}
+query.accountMetrics		}
+query.accountMetrics		sum
+query.accountMetrics		units
+query.accountMetrics		info
+query.accountMetrics	}
+query.accountMetrics	hostLimit {
+query.accountMetrics		data
+query.accountMetrics		label
+query.accountMetrics		dimensions {
+query.accountMetrics			label
+query.accountMetrics			value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+query.accountMetrics		}
+query.accountMetrics		key {
+query.accountMetrics			measureFieldName
+query.accountMetrics			dimensions {
+query.accountMetrics				fieldName
+query.accountMetrics				value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+query.accountMetrics			}
+query.accountMetrics		}
+query.accountMetrics		sum
+query.accountMetrics		units
+query.accountMetrics		info
+query.accountMetrics	}
+query.accountMetrics	samples
+query.accountMetrics}
+query.accountMetricstimeseries {
+query.accountMetrics	data
+query.accountMetrics	label
+query.accountMetrics	dimensions {
+query.accountMetrics		label
+query.accountMetrics		value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+query.accountMetrics	}
+query.accountMetrics	key {
+query.accountMetrics		measureFieldName
+query.accountMetrics		dimensions {
+query.accountMetrics			fieldName
+query.accountMetrics			value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+query.accountMetrics		}
+query.accountMetrics	}
+query.accountMetrics	sum
+query.accountMetrics	units
+query.accountMetrics	info
+query.accountMetrics}
 	}	
 }

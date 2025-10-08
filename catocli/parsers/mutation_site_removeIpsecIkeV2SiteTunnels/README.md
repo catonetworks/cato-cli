@@ -4,21 +4,22 @@
 
 ### Usage for mutation.site.removeIpsecIkeV2SiteTunnels:
 
-`catocli mutation site removeIpsecIkeV2SiteTunnels -h`
+```bash
+catocli mutation site removeIpsecIkeV2SiteTunnels -h
 
-`catocli mutation site removeIpsecIkeV2SiteTunnels <json>`
+catocli mutation site removeIpsecIkeV2SiteTunnels <json>
 
-`catocli mutation site removeIpsecIkeV2SiteTunnels "$(cat < mutation.site.removeIpsecIkeV2SiteTunnels.json)"`
+catocli mutation site removeIpsecIkeV2SiteTunnels "$(cat < mutation.site.removeIpsecIkeV2SiteTunnels.json)"
 
-`catocli mutation site removeIpsecIkeV2SiteTunnels '{"removeIpsecIkeV2SiteTunnelsInput":{"tunnelId":"PRIMARY1"},"siteId":"id"}'`
+catocli mutation site removeIpsecIkeV2SiteTunnels '{"removeIpsecIkeV2SiteTunnelsInput":{"tunnelId":"PRIMARY1"},"siteId":"id"}'
 
-`catocli mutation site removeIpsecIkeV2SiteTunnels -p '{
+catocli mutation site removeIpsecIkeV2SiteTunnels -p '{
     "removeIpsecIkeV2SiteTunnelsInput": {
         "tunnelId": "PRIMARY1"
     },
     "siteId": "id"
 }'
-
+```
 
 #### Operation Arguments for mutation.site.removeIpsecIkeV2SiteTunnels ####
 

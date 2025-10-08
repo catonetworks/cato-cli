@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.internetFirewall.moveSection:
 
-`catocli mutation policy internetFirewall moveSection -h`
+```bash
+catocli mutation policy internetFirewall moveSection -h
 
-`catocli mutation policy internetFirewall moveSection <json>`
+catocli mutation policy internetFirewall moveSection <json>
 
-`catocli mutation policy internetFirewall moveSection "$(cat < mutation.policy.internetFirewall.moveSection.json)"`
+catocli mutation policy internetFirewall moveSection "$(cat < mutation.policy.internetFirewall.moveSection.json)"
 
-`catocli mutation policy internetFirewall moveSection '{"internetFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyMoveSectionInput":{"id":"id","policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}}}'`
+catocli mutation policy internetFirewall moveSection '{"internetFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyMoveSectionInput":{"id":"id","policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}}}'
 
-`catocli mutation policy internetFirewall moveSection -p '{
+catocli mutation policy internetFirewall moveSection -p '{
     "internetFirewallPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"
@@ -26,7 +27,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.internetFirewall.moveSection ####
 

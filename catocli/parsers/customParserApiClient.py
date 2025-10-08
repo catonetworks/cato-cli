@@ -728,12 +728,10 @@ def generateGraphqlPayload_local(variables_obj, operation, operation_name):
         renderArgsAndFields_func=local_renderArgsAndFields
     )
 
-
 def get_help(path):
     """
-    Universal help generation using the new help formatter
-    Supports Windows cmd, PowerShell, and Unix shells
-    Dynamically formats JSON examples based on platform
+    Enhanced help generation with comprehensive README parsing
+    Supports extracting multi-line JSON examples including -p formatted ones
     """
     try:
         # Import the universal help formatter
@@ -743,36 +741,68 @@ def get_help(path):
         help_source = "auto" if ('query_' in path or 'mutation_' in path) else "readme"
         return get_universal_help(path, help_source)
     except ImportError:
-        # Fallback to original implementation if import fails
-        return get_help_fallback(path)
+        # Fallback to enhanced local implementation if import fails
+        return get_help_enhanced(path)
 
-
-def get_help_fallback(path):
+def get_help_enhanced(path):
     """
-    Fallback help generation for compatibility
+    Enhanced local help generation with better README parsing
+    Specifically extracts comprehensive JSON examples from README files
     """
     match_cmd = f"catocli {path.replace('_', ' ')}"
     pwd = os.path.dirname(__file__)
     doc = f"{path}/README.md"
     abs_path = os.path.join(pwd, doc)
-    new_line = "\nEXAMPLES:\n"
     
-    # Simple fallback - just read the README and extract basic examples
     try:
         with open(abs_path, "r", encoding='utf-8') as f:
-            lines = f.readlines()
-            
-        for line in lines:
-            if match_cmd in line:
-                clean_line = line.replace("<br /><br />", "").replace("`", "")
-                new_line += f"{clean_line}\n"
-                
-    except FileNotFoundError:
-        new_line += f"No examples found for {match_cmd}\n"
-    except Exception as e:
-        new_line += f"Error loading help: {e}\n"
+            content = f.read()
         
-    return new_line
+        examples = []
+        
+        # Extract ALL commands in backticks that match our command
+        import re
+        # Look for commands in backticks - use non-greedy matching
+        backtick_pattern = r'`(catocli[^`]+)`'
+        backtick_matches = re.findall(backtick_pattern, content)
+        
+        for cmd in backtick_matches:
+            if match_cmd in cmd and '{' in cmd:
+                # This is a command with JSON - add it to examples
+                examples.append(cmd.strip())
+        
+        # If we found comprehensive examples, format them nicely
+        if examples:
+            result = "\n"
+            for i, example in enumerate(examples):
+                if i > 0:  # Add spacing between examples
+                    result += "\n"
+                result += f"{example}\n"
+            
+            # Add platform-specific hints for macOS/Unix
+            result += "\nTIP: Multi-line JSON is fully supported in Unix shells.\n"
+            return result
+        else:
+            # No JSON examples found, look for any examples with our command
+            simple_examples = []
+            for cmd in backtick_matches:
+                if match_cmd in cmd:
+                    simple_examples.append(cmd.strip())
+            
+            if simple_examples:
+                result = "\n"
+                for example in simple_examples:
+                    result += f"{example}\n"
+                result += "\nTIP: Multi-line JSON is fully supported in Unix shells.\n"
+                return result
+            else:
+                # No examples found at all
+                return f"\nUsage: {match_cmd} <json> [options]\nUse {match_cmd} -h for detailed help.\n"
+            
+    except FileNotFoundError:
+        return f"\nUsage: {match_cmd} <json> [options]\nUse {match_cmd} -h for detailed help.\n"
+    except Exception as e:
+        return f"\nError loading help: {e}\nUsage: {match_cmd} <json> [options]\n"
 
 def expandUnionFragment(union_type_name, introspection_types, indent):
     """Expand a union type into its full field structure"""

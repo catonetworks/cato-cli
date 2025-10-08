@@ -4,15 +4,16 @@
 
 ### Usage for query.policy.internetFirewall.policy:
 
-`catocli query policy internetFirewall policy -h`
+```bash
+catocli query policy internetFirewall policy -h
 
-`catocli query policy internetFirewall policy <json>`
+catocli query policy internetFirewall policy <json>
 
-`catocli query policy internetFirewall policy "$(cat < query.policy.internetFirewall.policy.json)"`
+catocli query policy internetFirewall policy "$(cat < query.policy.internetFirewall.policy.json)"
 
-`catocli query policy internetFirewall policy '{"internetFirewallPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'`
+catocli query policy internetFirewall policy '{"internetFirewallPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'
 
-`catocli query policy internetFirewall policy -p '{
+catocli query policy internetFirewall policy -p '{
     "internetFirewallPolicyInput": {
         "policyRevisionInput": {
             "id": "id",
@@ -20,7 +21,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for query.policy.internetFirewall.policy ####
 

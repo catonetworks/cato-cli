@@ -1,48 +1,44 @@
-query groupsGroupList ( $groupMembersListInput:GroupMembersListInput! $groupListInput:GroupListInput $accountId:ID! ) {
-	groups ( accountId:$accountId ) {
-		groupList ( input:$groupListInput  )  {
-			itemsGroupListPayload: items {
-				id 
-				name 
-				description 
-				audit  {
-					updatedTime
-					updatedByAuditingMetadata: updatedBy {
-						id 
-						name 
-						... on AdminRef {
-							id 
-							name 
-						}
-						... on ApiKeyRef {
-							id 
-							name 
-						}
-					}
-				}
-
-				members ( input:$groupMembersListInput  )  {
-					itemsGroupMembersListPayload: items {
-						id 
-						name 
-						type 
-					}
-					pagingGroupMembersListPayload: paging {
-						total 
-					}
-				}
-
-				membersCount 
-				membersCountPerType  {
-					typeGroupMemberTypeCount: type
-					membersCount
-				}
-
-			}
-			pagingGroupListPayload: paging {
-				total 
-			}
-		}
-
+query groupsGroupList ( $groupListInput:GroupListInput) {
+	groups ( ) {
+query.groups.groupListgroupList ( input:$groupListInput  )  {
+query.groups.groupList	items {
+query.groups.groupList		id
+query.groups.groupList		name
+query.groups.groupList		description
+query.groups.groupList		audit {
+query.groups.groupList			updatedTime
+query.groups.groupList			updatedBy {
+query.groups.groupList				id
+query.groups.groupList				name
+query.groups.groupList				... on AdminRef {
+query.groups.groupList					id
+query.groups.groupList					name
+query.groups.groupList				}
+query.groups.groupList				... on ApiKeyRef {
+query.groups.groupList					id
+query.groups.groupList					name
+query.groups.groupList				}
+query.groups.groupList			}
+query.groups.groupList		}
+query.groups.groupList		members {
+query.groups.groupList			items {
+query.groups.groupList				id
+query.groups.groupList				name
+query.groups.groupList				type
+query.groups.groupList			}
+query.groups.groupList			paging {
+query.groups.groupList				total
+query.groups.groupList			}
+query.groups.groupList		}
+query.groups.groupList		membersCount
+query.groups.groupList		membersCountPerType {
+query.groups.groupList			type
+query.groups.groupList			membersCount
+query.groups.groupList		}
+query.groups.groupList	}
+query.groups.groupList	paging {
+query.groups.groupList		total
+query.groups.groupList	}
+query.groups.groupList}
 	}	
 }

@@ -4,15 +4,16 @@
 
 ### Usage for query.policy.appTenantRestriction.policy:
 
-`catocli query policy appTenantRestriction policy -h`
+```bash
+catocli query policy appTenantRestriction policy -h
 
-`catocli query policy appTenantRestriction policy <json>`
+catocli query policy appTenantRestriction policy <json>
 
-`catocli query policy appTenantRestriction policy "$(cat < query.policy.appTenantRestriction.policy.json)"`
+catocli query policy appTenantRestriction policy "$(cat < query.policy.appTenantRestriction.policy.json)"
 
-`catocli query policy appTenantRestriction policy '{"appTenantRestrictionPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'`
+catocli query policy appTenantRestriction policy '{"appTenantRestrictionPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'
 
-`catocli query policy appTenantRestriction policy -p '{
+catocli query policy appTenantRestriction policy -p '{
     "appTenantRestrictionPolicyInput": {
         "policyRevisionInput": {
             "id": "id",
@@ -20,7 +21,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for query.policy.appTenantRestriction.policy ####
 

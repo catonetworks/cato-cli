@@ -1,83 +1,74 @@
-mutation policyRemotePortFwdRemoveRule ( $remotePortFwdRemoveRuleInput:RemotePortFwdRemoveRuleInput! $remotePortFwdPolicyMutationInput:RemotePortFwdPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		remotePortFwd ( input:$remotePortFwdPolicyMutationInput  )  {
-			removeRuleRemotePortFwdPolicyMutations: removeRule ( input:$remotePortFwdRemoveRuleInput   ) {
-				rule  {
-					auditRemotePortFwdRulePayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					ruleRemotePortFwdRulePayload: rule {
-						id 
-						name 
-						description 
-						index 
-						section  {
-							id
-							name
-						}
-
-						enabled 
-						forwardIcmp 
-						externalIp  {
-							id
-							name
-						}
-
-						externalPortRange  {
-							from
-							to
-						}
-
-						internalIp 
-						internalPortRange  {
-							from
-							to
-						}
-
-						remoteIPs  {
-							ip
-							ipRangeRemotePortFwdRemoteIps: ipRange {
-								from 
-								to 
-							}
-							subnet
-							globalIpRangeRemotePortFwdRemoteIps: globalIpRange {
-								id 
-								name 
-							}
-						}
-
-						restrictionType 
-						tracking  {
-							enabled
-							frequencyPolicyRuleTrackingAlert: frequency
-							subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
-								id 
-								name 
-							}
-							webhookPolicyRuleTrackingAlert: webhook {
-								id 
-								name 
-							}
-							mailingListPolicyRuleTrackingAlert: mailingList {
-								id 
-								name 
-							}
-						}
-
-					}
-					propertiesRemotePortFwdRulePayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyRemotePortFwdRemoveRule ( $remotePortFwdPolicyMutationInput:RemotePortFwdPolicyMutationInput $remotePortFwdRemoveRuleInput:RemotePortFwdRemoveRuleInput!) {
+	policy ( ) {
+mutation.policy.remotePortFwd.removeRuleremotePortFwd ( input:$remotePortFwdPolicyMutationInput  )  {
+mutation.policy.remotePortFwd.removeRule	removeRule ( input:$remotePortFwdRemoveRuleInput   ) {
+mutation.policy.remotePortFwd.removeRule		rule {
+mutation.policy.remotePortFwd.removeRule			audit {
+mutation.policy.remotePortFwd.removeRule				updatedTime
+mutation.policy.remotePortFwd.removeRule				updatedBy
+mutation.policy.remotePortFwd.removeRule			}
+mutation.policy.remotePortFwd.removeRule			rule {
+mutation.policy.remotePortFwd.removeRule				id
+mutation.policy.remotePortFwd.removeRule				name
+mutation.policy.remotePortFwd.removeRule				description
+mutation.policy.remotePortFwd.removeRule				index
+mutation.policy.remotePortFwd.removeRule				section {
+mutation.policy.remotePortFwd.removeRule					id
+mutation.policy.remotePortFwd.removeRule					name
+mutation.policy.remotePortFwd.removeRule				}
+mutation.policy.remotePortFwd.removeRule				enabled
+mutation.policy.remotePortFwd.removeRule				forwardIcmp
+mutation.policy.remotePortFwd.removeRule				externalIp {
+mutation.policy.remotePortFwd.removeRule					id
+mutation.policy.remotePortFwd.removeRule					name
+mutation.policy.remotePortFwd.removeRule				}
+mutation.policy.remotePortFwd.removeRule				externalPortRange {
+mutation.policy.remotePortFwd.removeRule					from
+mutation.policy.remotePortFwd.removeRule					to
+mutation.policy.remotePortFwd.removeRule				}
+mutation.policy.remotePortFwd.removeRule				internalIp
+mutation.policy.remotePortFwd.removeRule				internalPortRange {
+mutation.policy.remotePortFwd.removeRule					from
+mutation.policy.remotePortFwd.removeRule					to
+mutation.policy.remotePortFwd.removeRule				}
+mutation.policy.remotePortFwd.removeRule				remoteIPs {
+mutation.policy.remotePortFwd.removeRule					ip
+mutation.policy.remotePortFwd.removeRule					ipRange {
+mutation.policy.remotePortFwd.removeRule						from
+mutation.policy.remotePortFwd.removeRule						to
+mutation.policy.remotePortFwd.removeRule					}
+mutation.policy.remotePortFwd.removeRule					subnet
+mutation.policy.remotePortFwd.removeRule					globalIpRange {
+mutation.policy.remotePortFwd.removeRule						id
+mutation.policy.remotePortFwd.removeRule						name
+mutation.policy.remotePortFwd.removeRule					}
+mutation.policy.remotePortFwd.removeRule				}
+mutation.policy.remotePortFwd.removeRule				restrictionType
+mutation.policy.remotePortFwd.removeRule				tracking {
+mutation.policy.remotePortFwd.removeRule					enabled
+mutation.policy.remotePortFwd.removeRule					frequency
+mutation.policy.remotePortFwd.removeRule					subscriptionGroup {
+mutation.policy.remotePortFwd.removeRule						id
+mutation.policy.remotePortFwd.removeRule						name
+mutation.policy.remotePortFwd.removeRule					}
+mutation.policy.remotePortFwd.removeRule					webhook {
+mutation.policy.remotePortFwd.removeRule						id
+mutation.policy.remotePortFwd.removeRule						name
+mutation.policy.remotePortFwd.removeRule					}
+mutation.policy.remotePortFwd.removeRule					mailingList {
+mutation.policy.remotePortFwd.removeRule						id
+mutation.policy.remotePortFwd.removeRule						name
+mutation.policy.remotePortFwd.removeRule					}
+mutation.policy.remotePortFwd.removeRule				}
+mutation.policy.remotePortFwd.removeRule			}
+mutation.policy.remotePortFwd.removeRule			properties
+mutation.policy.remotePortFwd.removeRule		}
+mutation.policy.remotePortFwd.removeRule		status
+mutation.policy.remotePortFwd.removeRule		errors {
+mutation.policy.remotePortFwd.removeRule			errorMessage
+mutation.policy.remotePortFwd.removeRule			errorCode
+mutation.policy.remotePortFwd.removeRule		}
+mutation.policy.remotePortFwd.removeRule	}
+mutation.policy.remotePortFwd.removeRule}
 	}	
 }

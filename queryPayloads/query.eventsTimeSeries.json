@@ -1,8 +1,7 @@
 {
     "operationName": "eventsTimeSeries",
-    "query": "query eventsTimeSeries ( $perSecond:Boolean $withMissingData:Boolean $useDefaultSizeBucket:Boolean $buckets:Int! $accountID:ID! $timeFrame:TimeFrame! $eventsMeasure:[EventsMeasure] $eventsDimension:[EventsDimension] $eventsFilter:[EventsFilter!] ) {\n\teventsTimeSeries ( accountID:$accountID timeFrame:$timeFrame measures:$eventsMeasure dimensions:$eventsDimension filters:$eventsFilter ) {\n\t\tid \n\t\tfrom \n\t\tto \n\t\tgranularity \n\t\ttimeseries ( buckets:$buckets  )  {\n\t\t\tdata ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket   )\n\t\t\tlabel\n\t\t\tdimensionsTimeseries: dimensions {\n\t\t\t\tlabel \n\t\t\t\tvalue \n\t\t\t}\n\t\t\tkeyTimeseries: key {\n\t\t\t\tmeasureFieldName \n\t\t\t\tdimensions  {\n\t\t\t\t\tfieldName\n\t\t\t\t\tvalue\n\t\t\t\t}\n\n\t\t\t}\n\t\t\tsum\n\t\t\tunitsTimeseries: units\n\t\t\tinfo\n\t\t}\n\n\t}\t\n}",
+    "query": "query eventsTimeSeries ( $timeFrame:TimeFrame! $eventsMeasure:[EventsMeasure] $eventsDimension:[EventsDimension] $eventsFilter:[EventsFilter!]) {\n\teventsTimeSeries ( timeFrame:$timeFrame measures:$eventsMeasure dimensions:$eventsDimension filters:$eventsFilter ) {\nquery.eventsTimeSeriesid\nquery.eventsTimeSeriesfrom\nquery.eventsTimeSeriesto\nquery.eventsTimeSeriesgranularity\nquery.eventsTimeSeriestimeseries {\nquery.eventsTimeSeries\tdata\nquery.eventsTimeSeries\tlabel\nquery.eventsTimeSeries\tdimensions {\nquery.eventsTimeSeries\t\tlabel\nquery.eventsTimeSeries\t\tvalue {\n\t__typename\n\t... on StringValue {\n\t\tstring\n\t}\n\t... on DateValue {\n\t\tdate\n\t}\n\t... on Entity {\n\t\tid\n\t\tname\n\t\ttype\n\t}\n}\nquery.eventsTimeSeries\t}\nquery.eventsTimeSeries\tkey {\nquery.eventsTimeSeries\t\tmeasureFieldName\nquery.eventsTimeSeries\t\tdimensions {\nquery.eventsTimeSeries\t\t\tfieldName\nquery.eventsTimeSeries\t\t\tvalue {\n\t__typename\n\t... on StringValue {\n\t\tstring\n\t}\n\t... on DateValue {\n\t\tdate\n\t}\n\t... on Entity {\n\t\tid\n\t\tname\n\t\ttype\n\t}\n}\nquery.eventsTimeSeries\t\t}\nquery.eventsTimeSeries\t}\nquery.eventsTimeSeries\tsum\nquery.eventsTimeSeries\tunits\nquery.eventsTimeSeries\tinfo\nquery.eventsTimeSeries}\n\t}\t\n}",
     "variables": {
-        "buckets": 1,
         "eventsDimension": {
             "fieldName": "access_method"
         },
@@ -19,9 +18,6 @@
             "fieldName": "access_method",
             "trend": true
         },
-        "perSecond": true,
-        "timeFrame": "example_value",
-        "useDefaultSizeBucket": true,
-        "withMissingData": true
+        "timeFrame": "example_value"
     }
 }

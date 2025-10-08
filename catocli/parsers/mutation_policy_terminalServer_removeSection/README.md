@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.terminalServer.removeSection:
 
-`catocli mutation policy terminalServer removeSection -h`
+```bash
+catocli mutation policy terminalServer removeSection -h
 
-`catocli mutation policy terminalServer removeSection <json>`
+catocli mutation policy terminalServer removeSection <json>
 
-`catocli mutation policy terminalServer removeSection "$(cat < mutation.policy.terminalServer.removeSection.json)"`
+catocli mutation policy terminalServer removeSection "$(cat < mutation.policy.terminalServer.removeSection.json)"
 
-`catocli mutation policy terminalServer removeSection '{"policyRemoveSectionInput":{"id":"id"},"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
+catocli mutation policy terminalServer removeSection '{"policyRemoveSectionInput":{"id":"id"},"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-`catocli mutation policy terminalServer removeSection -p '{
+catocli mutation policy terminalServer removeSection -p '{
     "policyRemoveSectionInput": {
         "id": "id"
     },
@@ -22,7 +23,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.terminalServer.removeSection ####
 

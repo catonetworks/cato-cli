@@ -4,15 +4,16 @@
 
 ### Usage for mutation.sites.assignSiteBwLicense:
 
-`catocli mutation sites assignSiteBwLicense -h`
+```bash
+catocli mutation sites assignSiteBwLicense -h
 
-`catocli mutation sites assignSiteBwLicense <json>`
+catocli mutation sites assignSiteBwLicense <json>
 
-`catocli mutation sites assignSiteBwLicense "$(cat < mutation.sites.assignSiteBwLicense.json)"`
+catocli mutation sites assignSiteBwLicense "$(cat < mutation.sites.assignSiteBwLicense.json)"
 
-`catocli mutation sites assignSiteBwLicense '{"assignSiteBwLicenseInput":{"bw":1,"licenseId":"id","siteRefInput":{"by":"ID","input":"string"}}}'`
+catocli mutation sites assignSiteBwLicense '{"assignSiteBwLicenseInput":{"bw":1,"licenseId":"id","siteRefInput":{"by":"ID","input":"string"}}}'
 
-`catocli mutation sites assignSiteBwLicense -p '{
+catocli mutation sites assignSiteBwLicense -p '{
     "assignSiteBwLicenseInput": {
         "bw": 1,
         "licenseId": "id",
@@ -22,7 +23,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.sites.assignSiteBwLicense ####
 

@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.terminalServer.discardPolicyRevision:
 
-`catocli mutation policy terminalServer discardPolicyRevision -h`
+```bash
+catocli mutation policy terminalServer discardPolicyRevision -h
 
-`catocli mutation policy terminalServer discardPolicyRevision <json>`
+catocli mutation policy terminalServer discardPolicyRevision <json>
 
-`catocli mutation policy terminalServer discardPolicyRevision "$(cat < mutation.policy.terminalServer.discardPolicyRevision.json)"`
+catocli mutation policy terminalServer discardPolicyRevision "$(cat < mutation.policy.terminalServer.discardPolicyRevision.json)"
 
-`catocli mutation policy terminalServer discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
+catocli mutation policy terminalServer discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-`catocli mutation policy terminalServer discardPolicyRevision -p '{
+catocli mutation policy terminalServer discardPolicyRevision -p '{
     "policyDiscardRevisionInput": {
         "id": "id"
     },
@@ -22,7 +23,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.terminalServer.discardPolicyRevision ####
 

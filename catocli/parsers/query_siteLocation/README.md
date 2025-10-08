@@ -4,68 +4,54 @@
 
 ### Usage for query.siteLocation:
 
-`catocli query siteLocation -h`
-
-`catocli query siteLocation <json>`
-
-`catocli query siteLocation "$(cat < siteLocation.json)"`
-
 ```bash
-catocli query siteLocation '{
-  "filters": [
-    {
-      "search": "Your city here",
-      "field": "city",
-      "operation": "exact"
-    }
-  ]
-}' -p
-```
+catocli query siteLocation -h
 
-```bash
-catocli query siteLocation '{
-  "filters": [
-    {
-      "search": "Your Country here",
-      "field": "countryName",
-      "operation": "startsWith"
-    }
-  ]
-}' -p
-```
+catocli query siteLocation <json>`
 
-```bash
-catocli query siteLocation '{
-  "filters": [
-    {
-      "search": "Your stateName here",
-      "field": "stateName",
-      "operation": "endsWith"
-    }
-  ]
-}' -p
-```
+catocli query siteLocation "$(cat < siteLocation.json)"`
 
-```bash
-catocli query siteLocation '{
-  "filters": [
-    {
-      "search": "Your City here",
-      "field": "city",
-      "operation": "startsWith"
-    },
-    {
-      "search": "Your StateName here",
-      "field": "stateName",
-      "operation": "endsWith"
-    },
-    {
-      "search": "Your Country here",
-      "field": "countryName",
-      "operation": "contains"
-    }
-  ]
-}' -p
+catocli query siteLocation '{"filters":[{"search": "Your city here","field":"city","operation":"exact"}]}'
+
+catocli query siteLocation -p '{
+    "filters": [
+        {
+            "search": "Your Country here",
+            "field": "countryName",
+            "operation": "startsWith"
+        }
+    ]
+}'
+
+catocli query siteLocation -p '{
+    "filters": [
+        {
+            "search": "Your stateName here",
+            "field": "stateName",
+            "operation": "endsWith"
+        }
+    ]
+}'
+
+catocli query siteLocation -p '{
+    "filters": [
+        {
+            "search": "Your City here",
+            "field": "city",
+            "operation": "startsWith"
+        },
+        {
+            "search": "Your StateName here",
+            "field": "stateName",
+            "operation": "endsWith"
+        },
+        {
+            "search": "Your Country here",
+            "field": "countryName",
+            "operation": "contains"
+        }
+    ]
+}'
 ```
 
 #### Operation Arguments for query.siteLocation ####

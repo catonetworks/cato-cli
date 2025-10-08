@@ -1,401 +1,358 @@
-query policyWanNetworkPolicy ( $wanNetworkPolicyInput:WanNetworkPolicyInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		wanNetwork  {
-			policyWanNetworkPolicyQueries: policy ( input:$wanNetworkPolicyInput   ) {
-				enabled 
-				rules  {
-					auditWanNetworkRulePayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					ruleWanNetworkRulePayload: rule {
-						id 
-						name 
-						description 
-						index 
-						section  {
-							id
-							name
-						}
-
-						enabled 
-						ruleType 
-						routeType 
-						source  {
-							userWanNetworkRuleSource: user {
-								id 
-								name 
-							}
-							floatingSubnetWanNetworkRuleSource: floatingSubnet {
-								id 
-								name 
-							}
-							globalIpRangeWanNetworkRuleSource: globalIpRange {
-								id 
-								name 
-							}
-							groupWanNetworkRuleSource: group {
-								id 
-								name 
-							}
-							hostWanNetworkRuleSource: host {
-								id 
-								name 
-							}
-							ip
-							ipRangeWanNetworkRuleSource: ipRange {
-								from 
-								to 
-							}
-							networkInterfaceWanNetworkRuleSource: networkInterface {
-								id 
-								name 
-							}
-							subnet
-							siteWanNetworkRuleSource: site {
-								id 
-								name 
-							}
-							siteNetworkSubnetWanNetworkRuleSource: siteNetworkSubnet {
-								id 
-								name 
-							}
-							systemGroupWanNetworkRuleSource: systemGroup {
-								id 
-								name 
-							}
-							usersGroupWanNetworkRuleSource: usersGroup {
-								id 
-								name 
-							}
-						}
-
-						destination  {
-							userWanNetworkRuleDestination: user {
-								id 
-								name 
-							}
-							floatingSubnetWanNetworkRuleDestination: floatingSubnet {
-								id 
-								name 
-							}
-							globalIpRangeWanNetworkRuleDestination: globalIpRange {
-								id 
-								name 
-							}
-							groupWanNetworkRuleDestination: group {
-								id 
-								name 
-							}
-							hostWanNetworkRuleDestination: host {
-								id 
-								name 
-							}
-							ip
-							ipRangeWanNetworkRuleDestination: ipRange {
-								from 
-								to 
-							}
-							networkInterfaceWanNetworkRuleDestination: networkInterface {
-								id 
-								name 
-							}
-							subnet
-							siteWanNetworkRuleDestination: site {
-								id 
-								name 
-							}
-							siteNetworkSubnetWanNetworkRuleDestination: siteNetworkSubnet {
-								id 
-								name 
-							}
-							systemGroupWanNetworkRuleDestination: systemGroup {
-								id 
-								name 
-							}
-							usersGroupWanNetworkRuleDestination: usersGroup {
-								id 
-								name 
-							}
-						}
-
-						application  {
-							applicationWanNetworkRuleApplication: application {
-								id 
-								name 
-							}
-							appCategoryWanNetworkRuleApplication: appCategory {
-								id 
-								name 
-							}
-							customAppWanNetworkRuleApplication: customApp {
-								id 
-								name 
-							}
-							customCategoryWanNetworkRuleApplication: customCategory {
-								id 
-								name 
-							}
-							customServiceIpWanNetworkRuleApplication: customServiceIp {
-								name 
-								ip 
-								ipRange  {
-									from
-									to
-								}
-
-							}
-							customServiceWanNetworkRuleApplication: customService {
-								port 
-								portRange  {
-									from
-									to
-								}
-
-								protocol 
-							}
-							domain
-							fqdn
-							serviceWanNetworkRuleApplication: service {
-								id 
-								name 
-							}
-						}
-
-						configuration  {
-							activeTcpAcceleration
-							packetLossMitigation
-							preserveSourcePort
-							primaryTransportWanNetworkRuleConfiguration: primaryTransport {
-								transportType 
-								primaryInterfaceRole 
-								secondaryInterfaceRole 
-							}
-							secondaryTransportWanNetworkRuleConfiguration: secondaryTransport {
-								transportType 
-								primaryInterfaceRole 
-								secondaryInterfaceRole 
-							}
-							allocationIpWanNetworkRuleConfiguration: allocationIp {
-								id 
-								name 
-							}
-							popLocationWanNetworkRuleConfiguration: popLocation {
-								id 
-								name 
-							}
-							backhaulingSiteWanNetworkRuleConfiguration: backhaulingSite {
-								id 
-								name 
-							}
-						}
-
-						bandwidthPriority  {
-							id
-							name
-						}
-
-						exceptions  {
-							name
-							sourceWanNetworkRuleException: source {
-								user  {
-									id
-									name
-								}
-
-								floatingSubnet  {
-									id
-									name
-								}
-
-								globalIpRange  {
-									id
-									name
-								}
-
-								group  {
-									id
-									name
-								}
-
-								host  {
-									id
-									name
-								}
-
-								ip 
-								ipRange  {
-									from
-									to
-								}
-
-								networkInterface  {
-									id
-									name
-								}
-
-								subnet 
-								site  {
-									id
-									name
-								}
-
-								siteNetworkSubnet  {
-									id
-									name
-								}
-
-								systemGroup  {
-									id
-									name
-								}
-
-								usersGroup  {
-									id
-									name
-								}
-
-							}
-							destinationWanNetworkRuleException: destination {
-								user  {
-									id
-									name
-								}
-
-								floatingSubnet  {
-									id
-									name
-								}
-
-								globalIpRange  {
-									id
-									name
-								}
-
-								group  {
-									id
-									name
-								}
-
-								host  {
-									id
-									name
-								}
-
-								ip 
-								ipRange  {
-									from
-									to
-								}
-
-								networkInterface  {
-									id
-									name
-								}
-
-								subnet 
-								site  {
-									id
-									name
-								}
-
-								siteNetworkSubnet  {
-									id
-									name
-								}
-
-								systemGroup  {
-									id
-									name
-								}
-
-								usersGroup  {
-									id
-									name
-								}
-
-							}
-							applicationWanNetworkRuleException: application {
-								application  {
-									id
-									name
-								}
-
-								appCategory  {
-									id
-									name
-								}
-
-								customApp  {
-									id
-									name
-								}
-
-								customCategory  {
-									id
-									name
-								}
-
-								customServiceIp  {
-									name
-									ip
-									ipRangeCustomServiceIp: ipRange {
-										from 
-										to 
-									}
-								}
-
-								customService  {
-									port
-									portRangeCustomService: portRange {
-										from 
-										to 
-									}
-									protocolCustomService: protocol
-								}
-
-								domain 
-								fqdn 
-								service  {
-									id
-									name
-								}
-
-							}
-						}
-
-					}
-					propertiesWanNetworkRulePayload: properties
-				}
-
-				sections  {
-					auditPolicySectionPayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					sectionPolicySectionPayload: section {
-						id 
-						name 
-					}
-					propertiesPolicySectionPayload: properties
-				}
-
-				audit  {
-					publishedTime
-					publishedBy
-				}
-
-				revision  {
-					id
-					name
-					description
-					changes
-					createdTime
-					updatedTime
-				}
-
-			}
-		}
-
+query policyWanNetworkPolicy ( $wanNetworkPolicyInput:WanNetworkPolicyInput) {
+	policy ( ) {
+query.policy.wanNetwork.policywanNetwork {
+query.policy.wanNetwork.policy	policy ( input:$wanNetworkPolicyInput   ) {
+query.policy.wanNetwork.policy		enabled
+query.policy.wanNetwork.policy		rules {
+query.policy.wanNetwork.policy			audit {
+query.policy.wanNetwork.policy				updatedTime
+query.policy.wanNetwork.policy				updatedBy
+query.policy.wanNetwork.policy			}
+query.policy.wanNetwork.policy			rule {
+query.policy.wanNetwork.policy				id
+query.policy.wanNetwork.policy				name
+query.policy.wanNetwork.policy				description
+query.policy.wanNetwork.policy				index
+query.policy.wanNetwork.policy				section {
+query.policy.wanNetwork.policy					id
+query.policy.wanNetwork.policy					name
+query.policy.wanNetwork.policy				}
+query.policy.wanNetwork.policy				enabled
+query.policy.wanNetwork.policy				ruleType
+query.policy.wanNetwork.policy				routeType
+query.policy.wanNetwork.policy				source {
+query.policy.wanNetwork.policy					user {
+query.policy.wanNetwork.policy						id
+query.policy.wanNetwork.policy						name
+query.policy.wanNetwork.policy					}
+query.policy.wanNetwork.policy					floatingSubnet {
+query.policy.wanNetwork.policy						id
+query.policy.wanNetwork.policy						name
+query.policy.wanNetwork.policy					}
+query.policy.wanNetwork.policy					globalIpRange {
+query.policy.wanNetwork.policy						id
+query.policy.wanNetwork.policy						name
+query.policy.wanNetwork.policy					}
+query.policy.wanNetwork.policy					group {
+query.policy.wanNetwork.policy						id
+query.policy.wanNetwork.policy						name
+query.policy.wanNetwork.policy					}
+query.policy.wanNetwork.policy					host {
+query.policy.wanNetwork.policy						id
+query.policy.wanNetwork.policy						name
+query.policy.wanNetwork.policy					}
+query.policy.wanNetwork.policy					ip
+query.policy.wanNetwork.policy					ipRange {
+query.policy.wanNetwork.policy						from
+query.policy.wanNetwork.policy						to
+query.policy.wanNetwork.policy					}
+query.policy.wanNetwork.policy					networkInterface {
+query.policy.wanNetwork.policy						id
+query.policy.wanNetwork.policy						name
+query.policy.wanNetwork.policy					}
+query.policy.wanNetwork.policy					subnet
+query.policy.wanNetwork.policy					site {
+query.policy.wanNetwork.policy						id
+query.policy.wanNetwork.policy						name
+query.policy.wanNetwork.policy					}
+query.policy.wanNetwork.policy					siteNetworkSubnet {
+query.policy.wanNetwork.policy						id
+query.policy.wanNetwork.policy						name
+query.policy.wanNetwork.policy					}
+query.policy.wanNetwork.policy					systemGroup {
+query.policy.wanNetwork.policy						id
+query.policy.wanNetwork.policy						name
+query.policy.wanNetwork.policy					}
+query.policy.wanNetwork.policy					usersGroup {
+query.policy.wanNetwork.policy						id
+query.policy.wanNetwork.policy						name
+query.policy.wanNetwork.policy					}
+query.policy.wanNetwork.policy				}
+query.policy.wanNetwork.policy				destination {
+query.policy.wanNetwork.policy					user {
+query.policy.wanNetwork.policy						id
+query.policy.wanNetwork.policy						name
+query.policy.wanNetwork.policy					}
+query.policy.wanNetwork.policy					floatingSubnet {
+query.policy.wanNetwork.policy						id
+query.policy.wanNetwork.policy						name
+query.policy.wanNetwork.policy					}
+query.policy.wanNetwork.policy					globalIpRange {
+query.policy.wanNetwork.policy						id
+query.policy.wanNetwork.policy						name
+query.policy.wanNetwork.policy					}
+query.policy.wanNetwork.policy					group {
+query.policy.wanNetwork.policy						id
+query.policy.wanNetwork.policy						name
+query.policy.wanNetwork.policy					}
+query.policy.wanNetwork.policy					host {
+query.policy.wanNetwork.policy						id
+query.policy.wanNetwork.policy						name
+query.policy.wanNetwork.policy					}
+query.policy.wanNetwork.policy					ip
+query.policy.wanNetwork.policy					ipRange {
+query.policy.wanNetwork.policy						from
+query.policy.wanNetwork.policy						to
+query.policy.wanNetwork.policy					}
+query.policy.wanNetwork.policy					networkInterface {
+query.policy.wanNetwork.policy						id
+query.policy.wanNetwork.policy						name
+query.policy.wanNetwork.policy					}
+query.policy.wanNetwork.policy					subnet
+query.policy.wanNetwork.policy					site {
+query.policy.wanNetwork.policy						id
+query.policy.wanNetwork.policy						name
+query.policy.wanNetwork.policy					}
+query.policy.wanNetwork.policy					siteNetworkSubnet {
+query.policy.wanNetwork.policy						id
+query.policy.wanNetwork.policy						name
+query.policy.wanNetwork.policy					}
+query.policy.wanNetwork.policy					systemGroup {
+query.policy.wanNetwork.policy						id
+query.policy.wanNetwork.policy						name
+query.policy.wanNetwork.policy					}
+query.policy.wanNetwork.policy					usersGroup {
+query.policy.wanNetwork.policy						id
+query.policy.wanNetwork.policy						name
+query.policy.wanNetwork.policy					}
+query.policy.wanNetwork.policy				}
+query.policy.wanNetwork.policy				application {
+query.policy.wanNetwork.policy					application {
+query.policy.wanNetwork.policy						id
+query.policy.wanNetwork.policy						name
+query.policy.wanNetwork.policy					}
+query.policy.wanNetwork.policy					appCategory {
+query.policy.wanNetwork.policy						id
+query.policy.wanNetwork.policy						name
+query.policy.wanNetwork.policy					}
+query.policy.wanNetwork.policy					customApp {
+query.policy.wanNetwork.policy						id
+query.policy.wanNetwork.policy						name
+query.policy.wanNetwork.policy					}
+query.policy.wanNetwork.policy					customCategory {
+query.policy.wanNetwork.policy						id
+query.policy.wanNetwork.policy						name
+query.policy.wanNetwork.policy					}
+query.policy.wanNetwork.policy					customServiceIp {
+query.policy.wanNetwork.policy						name
+query.policy.wanNetwork.policy						ip
+query.policy.wanNetwork.policy						ipRange {
+query.policy.wanNetwork.policy							from
+query.policy.wanNetwork.policy							to
+query.policy.wanNetwork.policy						}
+query.policy.wanNetwork.policy					}
+query.policy.wanNetwork.policy					customService {
+query.policy.wanNetwork.policy						port
+query.policy.wanNetwork.policy						portRange {
+query.policy.wanNetwork.policy							from
+query.policy.wanNetwork.policy							to
+query.policy.wanNetwork.policy						}
+query.policy.wanNetwork.policy						protocol
+query.policy.wanNetwork.policy					}
+query.policy.wanNetwork.policy					domain
+query.policy.wanNetwork.policy					fqdn
+query.policy.wanNetwork.policy					service {
+query.policy.wanNetwork.policy						id
+query.policy.wanNetwork.policy						name
+query.policy.wanNetwork.policy					}
+query.policy.wanNetwork.policy				}
+query.policy.wanNetwork.policy				configuration {
+query.policy.wanNetwork.policy					activeTcpAcceleration
+query.policy.wanNetwork.policy					packetLossMitigation
+query.policy.wanNetwork.policy					preserveSourcePort
+query.policy.wanNetwork.policy					primaryTransport {
+query.policy.wanNetwork.policy						transportType
+query.policy.wanNetwork.policy						primaryInterfaceRole
+query.policy.wanNetwork.policy						secondaryInterfaceRole
+query.policy.wanNetwork.policy					}
+query.policy.wanNetwork.policy					secondaryTransport {
+query.policy.wanNetwork.policy						transportType
+query.policy.wanNetwork.policy						primaryInterfaceRole
+query.policy.wanNetwork.policy						secondaryInterfaceRole
+query.policy.wanNetwork.policy					}
+query.policy.wanNetwork.policy					allocationIp {
+query.policy.wanNetwork.policy						id
+query.policy.wanNetwork.policy						name
+query.policy.wanNetwork.policy					}
+query.policy.wanNetwork.policy					popLocation {
+query.policy.wanNetwork.policy						id
+query.policy.wanNetwork.policy						name
+query.policy.wanNetwork.policy					}
+query.policy.wanNetwork.policy					backhaulingSite {
+query.policy.wanNetwork.policy						id
+query.policy.wanNetwork.policy						name
+query.policy.wanNetwork.policy					}
+query.policy.wanNetwork.policy				}
+query.policy.wanNetwork.policy				bandwidthPriority {
+query.policy.wanNetwork.policy					id
+query.policy.wanNetwork.policy					name
+query.policy.wanNetwork.policy				}
+query.policy.wanNetwork.policy				exceptions {
+query.policy.wanNetwork.policy					name
+query.policy.wanNetwork.policy					source {
+query.policy.wanNetwork.policy						user {
+query.policy.wanNetwork.policy							id
+query.policy.wanNetwork.policy							name
+query.policy.wanNetwork.policy						}
+query.policy.wanNetwork.policy						floatingSubnet {
+query.policy.wanNetwork.policy							id
+query.policy.wanNetwork.policy							name
+query.policy.wanNetwork.policy						}
+query.policy.wanNetwork.policy						globalIpRange {
+query.policy.wanNetwork.policy							id
+query.policy.wanNetwork.policy							name
+query.policy.wanNetwork.policy						}
+query.policy.wanNetwork.policy						group {
+query.policy.wanNetwork.policy							id
+query.policy.wanNetwork.policy							name
+query.policy.wanNetwork.policy						}
+query.policy.wanNetwork.policy						host {
+query.policy.wanNetwork.policy							id
+query.policy.wanNetwork.policy							name
+query.policy.wanNetwork.policy						}
+query.policy.wanNetwork.policy						ip
+query.policy.wanNetwork.policy						ipRange {
+query.policy.wanNetwork.policy							from
+query.policy.wanNetwork.policy							to
+query.policy.wanNetwork.policy						}
+query.policy.wanNetwork.policy						networkInterface {
+query.policy.wanNetwork.policy							id
+query.policy.wanNetwork.policy							name
+query.policy.wanNetwork.policy						}
+query.policy.wanNetwork.policy						subnet
+query.policy.wanNetwork.policy						site {
+query.policy.wanNetwork.policy							id
+query.policy.wanNetwork.policy							name
+query.policy.wanNetwork.policy						}
+query.policy.wanNetwork.policy						siteNetworkSubnet {
+query.policy.wanNetwork.policy							id
+query.policy.wanNetwork.policy							name
+query.policy.wanNetwork.policy						}
+query.policy.wanNetwork.policy						systemGroup {
+query.policy.wanNetwork.policy							id
+query.policy.wanNetwork.policy							name
+query.policy.wanNetwork.policy						}
+query.policy.wanNetwork.policy						usersGroup {
+query.policy.wanNetwork.policy							id
+query.policy.wanNetwork.policy							name
+query.policy.wanNetwork.policy						}
+query.policy.wanNetwork.policy					}
+query.policy.wanNetwork.policy					destination {
+query.policy.wanNetwork.policy						user {
+query.policy.wanNetwork.policy							id
+query.policy.wanNetwork.policy							name
+query.policy.wanNetwork.policy						}
+query.policy.wanNetwork.policy						floatingSubnet {
+query.policy.wanNetwork.policy							id
+query.policy.wanNetwork.policy							name
+query.policy.wanNetwork.policy						}
+query.policy.wanNetwork.policy						globalIpRange {
+query.policy.wanNetwork.policy							id
+query.policy.wanNetwork.policy							name
+query.policy.wanNetwork.policy						}
+query.policy.wanNetwork.policy						group {
+query.policy.wanNetwork.policy							id
+query.policy.wanNetwork.policy							name
+query.policy.wanNetwork.policy						}
+query.policy.wanNetwork.policy						host {
+query.policy.wanNetwork.policy							id
+query.policy.wanNetwork.policy							name
+query.policy.wanNetwork.policy						}
+query.policy.wanNetwork.policy						ip
+query.policy.wanNetwork.policy						ipRange {
+query.policy.wanNetwork.policy							from
+query.policy.wanNetwork.policy							to
+query.policy.wanNetwork.policy						}
+query.policy.wanNetwork.policy						networkInterface {
+query.policy.wanNetwork.policy							id
+query.policy.wanNetwork.policy							name
+query.policy.wanNetwork.policy						}
+query.policy.wanNetwork.policy						subnet
+query.policy.wanNetwork.policy						site {
+query.policy.wanNetwork.policy							id
+query.policy.wanNetwork.policy							name
+query.policy.wanNetwork.policy						}
+query.policy.wanNetwork.policy						siteNetworkSubnet {
+query.policy.wanNetwork.policy							id
+query.policy.wanNetwork.policy							name
+query.policy.wanNetwork.policy						}
+query.policy.wanNetwork.policy						systemGroup {
+query.policy.wanNetwork.policy							id
+query.policy.wanNetwork.policy							name
+query.policy.wanNetwork.policy						}
+query.policy.wanNetwork.policy						usersGroup {
+query.policy.wanNetwork.policy							id
+query.policy.wanNetwork.policy							name
+query.policy.wanNetwork.policy						}
+query.policy.wanNetwork.policy					}
+query.policy.wanNetwork.policy					application {
+query.policy.wanNetwork.policy						application {
+query.policy.wanNetwork.policy							id
+query.policy.wanNetwork.policy							name
+query.policy.wanNetwork.policy						}
+query.policy.wanNetwork.policy						appCategory {
+query.policy.wanNetwork.policy							id
+query.policy.wanNetwork.policy							name
+query.policy.wanNetwork.policy						}
+query.policy.wanNetwork.policy						customApp {
+query.policy.wanNetwork.policy							id
+query.policy.wanNetwork.policy							name
+query.policy.wanNetwork.policy						}
+query.policy.wanNetwork.policy						customCategory {
+query.policy.wanNetwork.policy							id
+query.policy.wanNetwork.policy							name
+query.policy.wanNetwork.policy						}
+query.policy.wanNetwork.policy						customServiceIp {
+query.policy.wanNetwork.policy							name
+query.policy.wanNetwork.policy							ip
+query.policy.wanNetwork.policy							ipRange {
+query.policy.wanNetwork.policy								from
+query.policy.wanNetwork.policy								to
+query.policy.wanNetwork.policy							}
+query.policy.wanNetwork.policy						}
+query.policy.wanNetwork.policy						customService {
+query.policy.wanNetwork.policy							port
+query.policy.wanNetwork.policy							portRange {
+query.policy.wanNetwork.policy								from
+query.policy.wanNetwork.policy								to
+query.policy.wanNetwork.policy							}
+query.policy.wanNetwork.policy							protocol
+query.policy.wanNetwork.policy						}
+query.policy.wanNetwork.policy						domain
+query.policy.wanNetwork.policy						fqdn
+query.policy.wanNetwork.policy						service {
+query.policy.wanNetwork.policy							id
+query.policy.wanNetwork.policy							name
+query.policy.wanNetwork.policy						}
+query.policy.wanNetwork.policy					}
+query.policy.wanNetwork.policy				}
+query.policy.wanNetwork.policy			}
+query.policy.wanNetwork.policy			properties
+query.policy.wanNetwork.policy		}
+query.policy.wanNetwork.policy		sections {
+query.policy.wanNetwork.policy			audit {
+query.policy.wanNetwork.policy				updatedTime
+query.policy.wanNetwork.policy				updatedBy
+query.policy.wanNetwork.policy			}
+query.policy.wanNetwork.policy			section {
+query.policy.wanNetwork.policy				id
+query.policy.wanNetwork.policy				name
+query.policy.wanNetwork.policy			}
+query.policy.wanNetwork.policy			properties
+query.policy.wanNetwork.policy		}
+query.policy.wanNetwork.policy		audit {
+query.policy.wanNetwork.policy			publishedTime
+query.policy.wanNetwork.policy			publishedBy
+query.policy.wanNetwork.policy		}
+query.policy.wanNetwork.policy		revision {
+query.policy.wanNetwork.policy			id
+query.policy.wanNetwork.policy			name
+query.policy.wanNetwork.policy			description
+query.policy.wanNetwork.policy			changes
+query.policy.wanNetwork.policy			createdTime
+query.policy.wanNetwork.policy			updatedTime
+query.policy.wanNetwork.policy		}
+query.policy.wanNetwork.policy	}
+query.policy.wanNetwork.policy}
 	}	
 }

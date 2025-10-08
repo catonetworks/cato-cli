@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.remotePortFwd.removeSection:
 
-`catocli mutation policy remotePortFwd removeSection -h`
+```bash
+catocli mutation policy remotePortFwd removeSection -h
 
-`catocli mutation policy remotePortFwd removeSection <json>`
+catocli mutation policy remotePortFwd removeSection <json>
 
-`catocli mutation policy remotePortFwd removeSection "$(cat < mutation.policy.remotePortFwd.removeSection.json)"`
+catocli mutation policy remotePortFwd removeSection "$(cat < mutation.policy.remotePortFwd.removeSection.json)"
 
-`catocli mutation policy remotePortFwd removeSection '{"policyRemoveSectionInput":{"id":"id"},"remotePortFwdPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
+catocli mutation policy remotePortFwd removeSection '{"policyRemoveSectionInput":{"id":"id"},"remotePortFwdPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-`catocli mutation policy remotePortFwd removeSection -p '{
+catocli mutation policy remotePortFwd removeSection -p '{
     "policyRemoveSectionInput": {
         "id": "id"
     },
@@ -22,7 +23,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.remotePortFwd.removeSection ####
 

@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.remotePortFwd.removeRule:
 
-`catocli mutation policy remotePortFwd removeRule -h`
+```bash
+catocli mutation policy remotePortFwd removeRule -h
 
-`catocli mutation policy remotePortFwd removeRule <json>`
+catocli mutation policy remotePortFwd removeRule <json>
 
-`catocli mutation policy remotePortFwd removeRule "$(cat < mutation.policy.remotePortFwd.removeRule.json)"`
+catocli mutation policy remotePortFwd removeRule "$(cat < mutation.policy.remotePortFwd.removeRule.json)"
 
-`catocli mutation policy remotePortFwd removeRule '{"remotePortFwdPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"remotePortFwdRemoveRuleInput":{"id":"id"}}'`
+catocli mutation policy remotePortFwd removeRule '{"remotePortFwdPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"remotePortFwdRemoveRuleInput":{"id":"id"}}'
 
-`catocli mutation policy remotePortFwd removeRule -p '{
+catocli mutation policy remotePortFwd removeRule -p '{
     "remotePortFwdPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"
@@ -22,7 +23,7 @@
         "id": "id"
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.remotePortFwd.removeRule ####
 

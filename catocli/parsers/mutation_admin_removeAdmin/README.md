@@ -4,18 +4,19 @@
 
 ### Usage for mutation.admin.removeAdmin:
 
-`catocli mutation admin removeAdmin -h`
+```bash
+catocli mutation admin removeAdmin -h
 
-`catocli mutation admin removeAdmin <json>`
+catocli mutation admin removeAdmin <json>
 
-`catocli mutation admin removeAdmin "$(cat < mutation.admin.removeAdmin.json)"`
+catocli mutation admin removeAdmin "$(cat < mutation.admin.removeAdmin.json)"
 
-`catocli mutation admin removeAdmin '{"adminID":"id"}'`
+catocli mutation admin removeAdmin '{"adminID":"id"}'
 
-`catocli mutation admin removeAdmin -p '{
+catocli mutation admin removeAdmin -p '{
     "adminID": "id"
 }'
-
+```
 
 #### Operation Arguments for mutation.admin.removeAdmin ####
 

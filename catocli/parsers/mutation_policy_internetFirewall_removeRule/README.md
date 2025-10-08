@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.internetFirewall.removeRule:
 
-`catocli mutation policy internetFirewall removeRule -h`
+```bash
+catocli mutation policy internetFirewall removeRule -h
 
-`catocli mutation policy internetFirewall removeRule <json>`
+catocli mutation policy internetFirewall removeRule <json>
 
-`catocli mutation policy internetFirewall removeRule "$(cat < mutation.policy.internetFirewall.removeRule.json)"`
+catocli mutation policy internetFirewall removeRule "$(cat < mutation.policy.internetFirewall.removeRule.json)"
 
-`catocli mutation policy internetFirewall removeRule '{"internetFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"internetFirewallRemoveRuleInput":{"id":"id"}}'`
+catocli mutation policy internetFirewall removeRule '{"internetFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"internetFirewallRemoveRuleInput":{"id":"id"}}'
 
-`catocli mutation policy internetFirewall removeRule -p '{
+catocli mutation policy internetFirewall removeRule -p '{
     "internetFirewallPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"
@@ -22,7 +23,7 @@
         "id": "id"
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.internetFirewall.removeRule ####
 

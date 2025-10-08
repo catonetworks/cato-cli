@@ -1,27 +1,24 @@
-mutation policyTlsInspectRemoveSection ( $policyRemoveSectionInput:PolicyRemoveSectionInput! $tlsInspectPolicyMutationInput:TlsInspectPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		tlsInspect ( input:$tlsInspectPolicyMutationInput  )  {
-			removeSectionTlsInspectPolicyMutations: removeSection ( input:$policyRemoveSectionInput   ) {
-				section  {
-					auditPolicySectionPayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					sectionPolicySectionPayload: section {
-						id 
-						name 
-					}
-					propertiesPolicySectionPayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyTlsInspectRemoveSection ( $tlsInspectPolicyMutationInput:TlsInspectPolicyMutationInput $policyRemoveSectionInput:PolicyRemoveSectionInput!) {
+	policy ( ) {
+mutation.policy.tlsInspect.removeSectiontlsInspect ( input:$tlsInspectPolicyMutationInput  )  {
+mutation.policy.tlsInspect.removeSection	removeSection ( input:$policyRemoveSectionInput   ) {
+mutation.policy.tlsInspect.removeSection		section {
+mutation.policy.tlsInspect.removeSection			audit {
+mutation.policy.tlsInspect.removeSection				updatedTime
+mutation.policy.tlsInspect.removeSection				updatedBy
+mutation.policy.tlsInspect.removeSection			}
+mutation.policy.tlsInspect.removeSection			section {
+mutation.policy.tlsInspect.removeSection				id
+mutation.policy.tlsInspect.removeSection				name
+mutation.policy.tlsInspect.removeSection			}
+mutation.policy.tlsInspect.removeSection			properties
+mutation.policy.tlsInspect.removeSection		}
+mutation.policy.tlsInspect.removeSection		status
+mutation.policy.tlsInspect.removeSection		errors {
+mutation.policy.tlsInspect.removeSection			errorMessage
+mutation.policy.tlsInspect.removeSection			errorCode
+mutation.policy.tlsInspect.removeSection		}
+mutation.policy.tlsInspect.removeSection	}
+mutation.policy.tlsInspect.removeSection}
 	}	
 }

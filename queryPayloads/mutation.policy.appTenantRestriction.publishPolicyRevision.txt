@@ -1,152 +1,144 @@
-mutation policyAppTenantRestrictionPublishPolicyRevision ( $policyPublishRevisionInput:PolicyPublishRevisionInput $appTenantRestrictionPolicyMutationInput:AppTenantRestrictionPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		appTenantRestriction ( input:$appTenantRestrictionPolicyMutationInput  )  {
-			publishPolicyRevisionAppTenantRestrictionPolicyMutations: publishPolicyRevision ( input:$policyPublishRevisionInput   ) {
-				policy  {
-					enabled
-					rulesAppTenantRestrictionPolicy: rules {
-						audit  {
-							updatedTime
-							updatedBy
-						}
-
-						rule  {
-							id
-							name
-							description
-							index
-							sectionAppTenantRestrictionRule: section {
-								id 
-								name 
-							}
-							enabled
-							applicationAppTenantRestrictionRule: application {
-								id 
-								name 
-							}
-							headersAppTenantRestrictionRule: headers {
-								name 
-								value 
-							}
-							sourceAppTenantRestrictionRule: source {
-								ip 
-								host  {
-									id
-									name
-								}
-
-								site  {
-									id
-									name
-								}
-
-								subnet 
-								ipRange  {
-									from
-									to
-								}
-
-								globalIpRange  {
-									id
-									name
-								}
-
-								networkInterface  {
-									id
-									name
-								}
-
-								siteNetworkSubnet  {
-									id
-									name
-								}
-
-								floatingSubnet  {
-									id
-									name
-								}
-
-								user  {
-									id
-									name
-								}
-
-								usersGroup  {
-									id
-									name
-								}
-
-								group  {
-									id
-									name
-								}
-
-								systemGroup  {
-									id
-									name
-								}
-
-								country  {
-									id
-									name
-								}
-
-							}
-							scheduleAppTenantRestrictionRule: schedule {
-								activeOn 
-								customTimeframe  {
-									from
-									to
-								}
-
-								customRecurring  {
-									from
-									to
-									daysPolicyCustomRecurring: days
-								}
-
-							}
-							actionAppTenantRestrictionRule: action
-							severityAppTenantRestrictionRule: severity
-						}
-
-						properties 
-					}
-					sectionsAppTenantRestrictionPolicy: sections {
-						audit  {
-							updatedTime
-							updatedBy
-						}
-
-						section  {
-							id
-							name
-						}
-
-						properties 
-					}
-					auditAppTenantRestrictionPolicy: audit {
-						publishedTime 
-						publishedBy 
-					}
-					revisionAppTenantRestrictionPolicy: revision {
-						id 
-						name 
-						description 
-						changes 
-						createdTime 
-						updatedTime 
-					}
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyAppTenantRestrictionPublishPolicyRevision ( $appTenantRestrictionPolicyMutationInput:AppTenantRestrictionPolicyMutationInput $policyPublishRevisionInput:PolicyPublishRevisionInput) {
+	policy ( ) {
+mutation.policy.appTenantRestriction.publishPolicyRevisionappTenantRestriction ( input:$appTenantRestrictionPolicyMutationInput  )  {
+mutation.policy.appTenantRestriction.publishPolicyRevision	publishPolicyRevision ( input:$policyPublishRevisionInput   ) {
+mutation.policy.appTenantRestriction.publishPolicyRevision		policy {
+mutation.policy.appTenantRestriction.publishPolicyRevision			enabled
+mutation.policy.appTenantRestriction.publishPolicyRevision			rules {
+mutation.policy.appTenantRestriction.publishPolicyRevision				audit {
+mutation.policy.appTenantRestriction.publishPolicyRevision					updatedTime
+mutation.policy.appTenantRestriction.publishPolicyRevision					updatedBy
+mutation.policy.appTenantRestriction.publishPolicyRevision				}
+mutation.policy.appTenantRestriction.publishPolicyRevision				rule {
+mutation.policy.appTenantRestriction.publishPolicyRevision					id
+mutation.policy.appTenantRestriction.publishPolicyRevision					name
+mutation.policy.appTenantRestriction.publishPolicyRevision					description
+mutation.policy.appTenantRestriction.publishPolicyRevision					index
+mutation.policy.appTenantRestriction.publishPolicyRevision					section {
+mutation.policy.appTenantRestriction.publishPolicyRevision						id
+mutation.policy.appTenantRestriction.publishPolicyRevision						name
+mutation.policy.appTenantRestriction.publishPolicyRevision					}
+mutation.policy.appTenantRestriction.publishPolicyRevision					enabled
+mutation.policy.appTenantRestriction.publishPolicyRevision					application {
+mutation.policy.appTenantRestriction.publishPolicyRevision						id
+mutation.policy.appTenantRestriction.publishPolicyRevision						name
+mutation.policy.appTenantRestriction.publishPolicyRevision					}
+mutation.policy.appTenantRestriction.publishPolicyRevision					headers {
+mutation.policy.appTenantRestriction.publishPolicyRevision						name
+mutation.policy.appTenantRestriction.publishPolicyRevision						value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.appTenantRestriction.publishPolicyRevision					}
+mutation.policy.appTenantRestriction.publishPolicyRevision					source {
+mutation.policy.appTenantRestriction.publishPolicyRevision						ip
+mutation.policy.appTenantRestriction.publishPolicyRevision						host {
+mutation.policy.appTenantRestriction.publishPolicyRevision							id
+mutation.policy.appTenantRestriction.publishPolicyRevision							name
+mutation.policy.appTenantRestriction.publishPolicyRevision						}
+mutation.policy.appTenantRestriction.publishPolicyRevision						site {
+mutation.policy.appTenantRestriction.publishPolicyRevision							id
+mutation.policy.appTenantRestriction.publishPolicyRevision							name
+mutation.policy.appTenantRestriction.publishPolicyRevision						}
+mutation.policy.appTenantRestriction.publishPolicyRevision						subnet
+mutation.policy.appTenantRestriction.publishPolicyRevision						ipRange {
+mutation.policy.appTenantRestriction.publishPolicyRevision							from
+mutation.policy.appTenantRestriction.publishPolicyRevision							to
+mutation.policy.appTenantRestriction.publishPolicyRevision						}
+mutation.policy.appTenantRestriction.publishPolicyRevision						globalIpRange {
+mutation.policy.appTenantRestriction.publishPolicyRevision							id
+mutation.policy.appTenantRestriction.publishPolicyRevision							name
+mutation.policy.appTenantRestriction.publishPolicyRevision						}
+mutation.policy.appTenantRestriction.publishPolicyRevision						networkInterface {
+mutation.policy.appTenantRestriction.publishPolicyRevision							id
+mutation.policy.appTenantRestriction.publishPolicyRevision							name
+mutation.policy.appTenantRestriction.publishPolicyRevision						}
+mutation.policy.appTenantRestriction.publishPolicyRevision						siteNetworkSubnet {
+mutation.policy.appTenantRestriction.publishPolicyRevision							id
+mutation.policy.appTenantRestriction.publishPolicyRevision							name
+mutation.policy.appTenantRestriction.publishPolicyRevision						}
+mutation.policy.appTenantRestriction.publishPolicyRevision						floatingSubnet {
+mutation.policy.appTenantRestriction.publishPolicyRevision							id
+mutation.policy.appTenantRestriction.publishPolicyRevision							name
+mutation.policy.appTenantRestriction.publishPolicyRevision						}
+mutation.policy.appTenantRestriction.publishPolicyRevision						user {
+mutation.policy.appTenantRestriction.publishPolicyRevision							id
+mutation.policy.appTenantRestriction.publishPolicyRevision							name
+mutation.policy.appTenantRestriction.publishPolicyRevision						}
+mutation.policy.appTenantRestriction.publishPolicyRevision						usersGroup {
+mutation.policy.appTenantRestriction.publishPolicyRevision							id
+mutation.policy.appTenantRestriction.publishPolicyRevision							name
+mutation.policy.appTenantRestriction.publishPolicyRevision						}
+mutation.policy.appTenantRestriction.publishPolicyRevision						group {
+mutation.policy.appTenantRestriction.publishPolicyRevision							id
+mutation.policy.appTenantRestriction.publishPolicyRevision							name
+mutation.policy.appTenantRestriction.publishPolicyRevision						}
+mutation.policy.appTenantRestriction.publishPolicyRevision						systemGroup {
+mutation.policy.appTenantRestriction.publishPolicyRevision							id
+mutation.policy.appTenantRestriction.publishPolicyRevision							name
+mutation.policy.appTenantRestriction.publishPolicyRevision						}
+mutation.policy.appTenantRestriction.publishPolicyRevision						country {
+mutation.policy.appTenantRestriction.publishPolicyRevision							id
+mutation.policy.appTenantRestriction.publishPolicyRevision							name
+mutation.policy.appTenantRestriction.publishPolicyRevision						}
+mutation.policy.appTenantRestriction.publishPolicyRevision					}
+mutation.policy.appTenantRestriction.publishPolicyRevision					schedule {
+mutation.policy.appTenantRestriction.publishPolicyRevision						activeOn
+mutation.policy.appTenantRestriction.publishPolicyRevision						customTimeframe {
+mutation.policy.appTenantRestriction.publishPolicyRevision							from
+mutation.policy.appTenantRestriction.publishPolicyRevision							to
+mutation.policy.appTenantRestriction.publishPolicyRevision						}
+mutation.policy.appTenantRestriction.publishPolicyRevision						customRecurring {
+mutation.policy.appTenantRestriction.publishPolicyRevision							from
+mutation.policy.appTenantRestriction.publishPolicyRevision							to
+mutation.policy.appTenantRestriction.publishPolicyRevision							days
+mutation.policy.appTenantRestriction.publishPolicyRevision						}
+mutation.policy.appTenantRestriction.publishPolicyRevision					}
+mutation.policy.appTenantRestriction.publishPolicyRevision					action
+mutation.policy.appTenantRestriction.publishPolicyRevision					severity
+mutation.policy.appTenantRestriction.publishPolicyRevision				}
+mutation.policy.appTenantRestriction.publishPolicyRevision				properties
+mutation.policy.appTenantRestriction.publishPolicyRevision			}
+mutation.policy.appTenantRestriction.publishPolicyRevision			sections {
+mutation.policy.appTenantRestriction.publishPolicyRevision				audit {
+mutation.policy.appTenantRestriction.publishPolicyRevision					updatedTime
+mutation.policy.appTenantRestriction.publishPolicyRevision					updatedBy
+mutation.policy.appTenantRestriction.publishPolicyRevision				}
+mutation.policy.appTenantRestriction.publishPolicyRevision				section {
+mutation.policy.appTenantRestriction.publishPolicyRevision					id
+mutation.policy.appTenantRestriction.publishPolicyRevision					name
+mutation.policy.appTenantRestriction.publishPolicyRevision				}
+mutation.policy.appTenantRestriction.publishPolicyRevision				properties
+mutation.policy.appTenantRestriction.publishPolicyRevision			}
+mutation.policy.appTenantRestriction.publishPolicyRevision			audit {
+mutation.policy.appTenantRestriction.publishPolicyRevision				publishedTime
+mutation.policy.appTenantRestriction.publishPolicyRevision				publishedBy
+mutation.policy.appTenantRestriction.publishPolicyRevision			}
+mutation.policy.appTenantRestriction.publishPolicyRevision			revision {
+mutation.policy.appTenantRestriction.publishPolicyRevision				id
+mutation.policy.appTenantRestriction.publishPolicyRevision				name
+mutation.policy.appTenantRestriction.publishPolicyRevision				description
+mutation.policy.appTenantRestriction.publishPolicyRevision				changes
+mutation.policy.appTenantRestriction.publishPolicyRevision				createdTime
+mutation.policy.appTenantRestriction.publishPolicyRevision				updatedTime
+mutation.policy.appTenantRestriction.publishPolicyRevision			}
+mutation.policy.appTenantRestriction.publishPolicyRevision		}
+mutation.policy.appTenantRestriction.publishPolicyRevision		status
+mutation.policy.appTenantRestriction.publishPolicyRevision		errors {
+mutation.policy.appTenantRestriction.publishPolicyRevision			errorMessage
+mutation.policy.appTenantRestriction.publishPolicyRevision			errorCode
+mutation.policy.appTenantRestriction.publishPolicyRevision		}
+mutation.policy.appTenantRestriction.publishPolicyRevision	}
+mutation.policy.appTenantRestriction.publishPolicyRevision}
 	}	
 }

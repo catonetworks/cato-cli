@@ -185,6 +185,132 @@
                 "non_null": false
             },
             "varName": "accountID"
+        },
+        "incidentId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "story___incidentId",
+            "name": "incidentId",
+            "path": "story.incidentId",
+            "requestStr": "$incidentId:ID ",
+            "required": false,
+            "responseStr": "incidentId:$incidentId ",
+            "type": {
+                "kind": [
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "incidentId"
+        },
+        "producer": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "story___producer",
+            "name": "producer",
+            "path": "story.producer",
+            "requestStr": "$producer:StoryProducerEnum ",
+            "required": false,
+            "responseStr": "producer:$producer ",
+            "type": {
+                "definition": {
+                    "description": null,
+                    "enumValues": [
+                        {
+                            "deprecationReason": null,
+                            "description": null,
+                            "isDeprecated": false,
+                            "name": "AnomalyStats"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": null,
+                            "isDeprecated": false,
+                            "name": "AnomalyEvents"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": null,
+                            "isDeprecated": false,
+                            "name": "AnomalyExperience"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": null,
+                            "isDeprecated": false,
+                            "name": "ThreatHunt"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": null,
+                            "isDeprecated": false,
+                            "name": "ThreatPrevention"
+                        },
+                        {
+                            "deprecationReason": "No longer supported",
+                            "description": null,
+                            "isDeprecated": true,
+                            "name": "NetworkMonitor"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": "The producer of the Site Operations stories",
+                            "isDeprecated": false,
+                            "name": "NetworkXDR"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": null,
+                            "isDeprecated": false,
+                            "name": "MicrosoftEndpointDefender"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": null,
+                            "isDeprecated": false,
+                            "name": "CatoEndpointAlert"
+                        },
+                        {
+                            "deprecationReason": null,
+                            "description": null,
+                            "isDeprecated": false,
+                            "name": "EntraIdAlert"
+                        }
+                    ],
+                    "fields": null,
+                    "inputFields": null,
+                    "interfaces": null,
+                    "kind": "ENUM",
+                    "name": "StoryProducerEnum",
+                    "possibleTypes": null
+                },
+                "indexType": "enum",
+                "kind": [
+                    "ENUM"
+                ],
+                "name": "StoryProducerEnum",
+                "non_null": false
+            },
+            "varName": "producer"
+        },
+        "storyId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "story___storyId",
+            "name": "storyId",
+            "path": "story.storyId",
+            "requestStr": "$storyId:ID ",
+            "required": false,
+            "responseStr": "storyId:$storyId ",
+            "type": {
+                "kind": [
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "storyId"
         }
     },
     "path": "query.xdr.story",
@@ -476,7 +602,6 @@
                                             "enumValues": null,
                                             "fields": {
                                                 "analystFeedback": {
-                                                    "alias": "analystFeedbackMergedIncident: analystFeedback",
                                                     "args": {},
                                                     "deprecationReason": null,
                                                     "description": "Fields related to analysts research of the threat incident",
@@ -747,7 +872,6 @@
                                                     "varName": "analystFeedback"
                                                 },
                                                 "connectionType": {
-                                                    "alias": "connectionTypeMergedIncident: connectionType",
                                                     "args": {},
                                                     "deprecationReason": null,
                                                     "description": "Connection for the incident",
@@ -838,7 +962,6 @@
                                                     "varName": "description"
                                                 },
                                                 "engineType": {
-                                                    "alias": "engineTypeMergedIncident: engineType",
                                                     "args": {},
                                                     "deprecationReason": null,
                                                     "description": "XDR engine involved with the incident",
@@ -1005,7 +1128,6 @@
                                                     "varName": "predictedThreatType"
                                                 },
                                                 "predictedVerdict": {
-                                                    "alias": "predictedVerdictMergedIncident: predictedVerdict",
                                                     "args": {},
                                                     "deprecationReason": null,
                                                     "description": null,
@@ -1062,7 +1184,6 @@
                                                     "varName": "predictedVerdict"
                                                 },
                                                 "producer": {
-                                                    "alias": "producerMergedIncident: producer",
                                                     "args": {},
                                                     "deprecationReason": null,
                                                     "description": "Producer (specific XDR engine and service) involved with the incident",
@@ -1217,7 +1338,6 @@
                                                     "varName": "research"
                                                 },
                                                 "site": {
-                                                    "alias": "siteMergedIncident: site",
                                                     "args": {},
                                                     "deprecationReason": null,
                                                     "description": "Cato ID and name for the site",
@@ -1358,7 +1478,6 @@
                                                     "varName": "sourceIp"
                                                 },
                                                 "status": {
-                                                    "alias": "statusMergedIncident: status",
                                                     "args": {},
                                                     "deprecationReason": null,
                                                     "description": "Status for the story",
@@ -1467,7 +1586,6 @@
                                                     "varName": "ticket"
                                                 },
                                                 "user": {
-                                                    "alias": "userMergedIncident: user",
                                                     "args": {},
                                                     "deprecationReason": null,
                                                     "description": "Cato ID and name for the user",
@@ -1548,7 +1666,6 @@
                                                     "varName": "userRef"
                                                 },
                                                 "vendor": {
-                                                    "alias": "vendorMergedIncident: vendor",
                                                     "args": {},
                                                     "deprecationReason": null,
                                                     "description": "Vendor that identified the incident, such as Cato or Microsoft",
@@ -1619,7 +1736,6 @@
                                                                     "enumValues": null,
                                                                     "fields": {
                                                                         "activities": {
-                                                                            "alias": "activitiesMicrosoftDefenderEndpointAlert: activities",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": null,
@@ -1824,7 +1940,6 @@
                                                                             "varName": "category"
                                                                         },
                                                                         "classification": {
-                                                                            "alias": "classificationMicrosoftDefenderEndpointAlert: classification",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": null,
@@ -1998,7 +2113,6 @@
                                                                             "varName": "destinationUrl"
                                                                         },
                                                                         "detectionSource": {
-                                                                            "alias": "detectionSourceMicrosoftDefenderEndpointAlert: detectionSource",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": null,
@@ -2127,7 +2241,6 @@
                                                                             "varName": "detectionSource"
                                                                         },
                                                                         "determination": {
-                                                                            "alias": "determinationMicrosoftDefenderEndpointAlert: determination",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": null,
@@ -2365,7 +2478,6 @@
                                                                             "varName": "localIp"
                                                                         },
                                                                         "mitreSubTechnique": {
-                                                                            "alias": "mitreSubTechniqueMicrosoftDefenderEndpointAlert: mitreSubTechnique",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": null,
@@ -2441,7 +2553,6 @@
                                                                             "varName": "mitre"
                                                                         },
                                                                         "mitreTechnique": {
-                                                                            "alias": "mitreTechniqueMicrosoftDefenderEndpointAlert: mitreTechnique",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": null,
@@ -2597,7 +2708,6 @@
                                                                             "varName": "resolvedDateTime"
                                                                         },
                                                                         "resources": {
-                                                                            "alias": "resourcesMicrosoftDefenderEndpointAlert: resources",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": null,
@@ -2655,7 +2765,6 @@
                                                                                             "varName": "id"
                                                                                         },
                                                                                         "remediationStatus": {
-                                                                                            "alias": "remediationStatusMicrosoftEndpointResource: remediationStatus",
                                                                                             "args": {},
                                                                                             "deprecationReason": null,
                                                                                             "description": null,
@@ -2828,7 +2937,6 @@
                                                                                             "varName": "remediationStatusDetails"
                                                                                         },
                                                                                         "roles": {
-                                                                                            "alias": "rolesMicrosoftEndpointResource: roles",
                                                                                             "args": {},
                                                                                             "deprecationReason": null,
                                                                                             "description": null,
@@ -2971,7 +3079,6 @@
                                                                                             "varName": "tags"
                                                                                         },
                                                                                         "verdict": {
-                                                                                            "alias": "verdictMicrosoftEndpointResource: verdict",
                                                                                             "args": {},
                                                                                             "deprecationReason": null,
                                                                                             "description": null,
@@ -3338,7 +3445,6 @@
                                                                                                     "varName": "processId"
                                                                                                 },
                                                                                                 "remediationStatus": {
-                                                                                                    "alias": "remediationStatusMicrosoftProcessResource: remediationStatus",
                                                                                                     "args": {},
                                                                                                     "deprecationReason": null,
                                                                                                     "description": null,
@@ -3511,7 +3617,6 @@
                                                                                                     "varName": "remediationStatusDetails"
                                                                                                 },
                                                                                                 "roles": {
-                                                                                                    "alias": "rolesMicrosoftProcessResource: roles",
                                                                                                     "args": {},
                                                                                                     "deprecationReason": null,
                                                                                                     "description": null,
@@ -3929,7 +4034,6 @@
                                                                                                     "varName": "endpointUser"
                                                                                                 },
                                                                                                 "verdict": {
-                                                                                                    "alias": "verdictMicrosoftProcessResource: verdict",
                                                                                                     "args": {},
                                                                                                     "deprecationReason": null,
                                                                                                     "description": null,
@@ -4317,7 +4421,6 @@
                                                                                                     "varName": "id"
                                                                                                 },
                                                                                                 "remediationStatus": {
-                                                                                                    "alias": "remediationStatusMicrosoftFileResource: remediationStatus",
                                                                                                     "args": {},
                                                                                                     "deprecationReason": null,
                                                                                                     "description": null,
@@ -4490,7 +4593,6 @@
                                                                                                     "varName": "remediationStatusDetails"
                                                                                                 },
                                                                                                 "roles": {
-                                                                                                    "alias": "rolesMicrosoftFileResource: roles",
                                                                                                     "args": {},
                                                                                                     "deprecationReason": null,
                                                                                                     "description": null,
@@ -4633,7 +4735,6 @@
                                                                                                     "varName": "tags"
                                                                                                 },
                                                                                                 "verdict": {
-                                                                                                    "alias": "verdictMicrosoftFileResource: verdict",
                                                                                                     "args": {},
                                                                                                     "deprecationReason": null,
                                                                                                     "description": null,
@@ -4799,7 +4900,6 @@
                                                                                                     "varName": "key"
                                                                                                 },
                                                                                                 "remediationStatus": {
-                                                                                                    "alias": "remediationStatusMicrosoftRegistryResource: remediationStatus",
                                                                                                     "args": {},
                                                                                                     "deprecationReason": null,
                                                                                                     "description": null,
@@ -4972,7 +5072,6 @@
                                                                                                     "varName": "remediationStatusDetails"
                                                                                                 },
                                                                                                 "roles": {
-                                                                                                    "alias": "rolesMicrosoftRegistryResource: roles",
                                                                                                     "args": {},
                                                                                                     "deprecationReason": null,
                                                                                                     "description": null,
@@ -5175,7 +5274,6 @@
                                                                                                     "varName": "valueType"
                                                                                                 },
                                                                                                 "verdict": {
-                                                                                                    "alias": "verdictMicrosoftRegistryResource: verdict",
                                                                                                     "args": {},
                                                                                                     "deprecationReason": null,
                                                                                                     "description": null,
@@ -5270,7 +5368,6 @@
                                                                             "varName": "microsoftEndpointResource"
                                                                         },
                                                                         "status": {
-                                                                            "alias": "statusMicrosoftDefenderEndpointAlert: status",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": null,
@@ -5426,7 +5523,6 @@
                                                             "varName": "microsoftDefenderEndpointAlert"
                                                         },
                                                         "analystFeedback": {
-                                                            "alias": "analystFeedbackMicrosoftEndpoint: analystFeedback",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -5697,7 +5793,6 @@
                                                             "varName": "analystFeedback"
                                                         },
                                                         "connectionType": {
-                                                            "alias": "connectionTypeMicrosoftEndpoint: connectionType",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -6582,7 +6677,6 @@
                                                             "varName": "microsoftDeviceDetails"
                                                         },
                                                         "engineType": {
-                                                            "alias": "engineTypeMicrosoftEndpoint: engineType",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -6749,7 +6843,6 @@
                                                             "varName": "predictedThreatType"
                                                         },
                                                         "predictedVerdict": {
-                                                            "alias": "predictedVerdictMicrosoftEndpoint: predictedVerdict",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -6806,7 +6899,6 @@
                                                             "varName": "predictedVerdict"
                                                         },
                                                         "producer": {
-                                                            "alias": "producerMicrosoftEndpoint: producer",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -7116,7 +7208,6 @@
                                                             "varName": "similarStoryData"
                                                         },
                                                         "site": {
-                                                            "alias": "siteMicrosoftEndpoint: site",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -7257,7 +7348,6 @@
                                                             "varName": "sourceIp"
                                                         },
                                                         "status": {
-                                                            "alias": "statusMicrosoftEndpoint: status",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -7366,7 +7456,6 @@
                                                             "varName": "ticket"
                                                         },
                                                         "user": {
-                                                            "alias": "userMicrosoftEndpoint: user",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -7447,7 +7536,6 @@
                                                             "varName": "userRef"
                                                         },
                                                         "vendor": {
-                                                            "alias": "vendorMicrosoftEndpoint: vendor",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -7515,7 +7603,6 @@
                                                     "enumValues": null,
                                                     "fields": {
                                                         "analystFeedback": {
-                                                            "alias": "analystFeedbackAnomalyStats: analystFeedback",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -7829,7 +7916,6 @@
                                                             "varName": "clientClass"
                                                         },
                                                         "connectionType": {
-                                                            "alias": "connectionTypeAnomalyStats: connectionType",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -8059,7 +8145,6 @@
                                                             "varName": "storyDrillDownFilter"
                                                         },
                                                         "engineType": {
-                                                            "alias": "engineTypeAnomalyStats: engineType",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -8737,7 +8822,6 @@
                                                             "varName": "predictedThreatType"
                                                         },
                                                         "predictedVerdict": {
-                                                            "alias": "predictedVerdictAnomalyStats: predictedVerdict",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -8794,7 +8878,6 @@
                                                             "varName": "predictedVerdict"
                                                         },
                                                         "producer": {
-                                                            "alias": "producerAnomalyStats: producer",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -9126,7 +9209,6 @@
                                                             "varName": "similarStoryData"
                                                         },
                                                         "site": {
-                                                            "alias": "siteAnomalyStats: site",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -9287,7 +9369,6 @@
                                                             "varName": "srcSiteId"
                                                         },
                                                         "status": {
-                                                            "alias": "statusAnomalyStats: status",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -9532,7 +9613,6 @@
                                                                             "varName": "engines"
                                                                         },
                                                                         "eventData": {
-                                                                            "alias": "eventDataIncidentTargetRep: eventData",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": null,
@@ -9669,7 +9749,6 @@
                                                                                             "varName": "ruleId"
                                                                                         },
                                                                                         "scanResult": {
-                                                                                            "alias": "scanResultEvent: scanResult",
                                                                                             "args": {},
                                                                                             "deprecationReason": null,
                                                                                             "description": null,
@@ -9963,7 +10042,6 @@
                                                                             "varName": "threatReference"
                                                                         },
                                                                         "type": {
-                                                                            "alias": "typeIncidentTargetRep: type",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": null,
@@ -10159,7 +10237,6 @@
                                                                             "varName": "info"
                                                                         },
                                                                         "key": {
-                                                                            "alias": "keyIncidentTimeseries: key",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": null,
@@ -10329,7 +10406,6 @@
                                                                             "varName": "sum"
                                                                         },
                                                                         "units": {
-                                                                            "alias": "unitsIncidentTimeseries: units",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": "Identifies what unit of data this timeseries represents. Note that toRate is only available for particular types\nof data to make sense.",
@@ -10446,7 +10522,6 @@
                                                             "varName": "incidentTimeseries"
                                                         },
                                                         "user": {
-                                                            "alias": "userAnomalyStats: user",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -10527,7 +10602,6 @@
                                                             "varName": "userRef"
                                                         },
                                                         "vendor": {
-                                                            "alias": "vendorAnomalyStats: vendor",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -10595,7 +10669,6 @@
                                                     "enumValues": null,
                                                     "fields": {
                                                         "analystFeedback": {
-                                                            "alias": "analystFeedbackAnomalyEvents: analystFeedback",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -10909,7 +10982,6 @@
                                                             "varName": "clientClass"
                                                         },
                                                         "connectionType": {
-                                                            "alias": "connectionTypeAnomalyEvents: connectionType",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -11139,7 +11211,6 @@
                                                             "varName": "storyDrillDownFilter"
                                                         },
                                                         "engineType": {
-                                                            "alias": "engineTypeAnomalyEvents: engineType",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -11817,7 +11888,6 @@
                                                             "varName": "predictedThreatType"
                                                         },
                                                         "predictedVerdict": {
-                                                            "alias": "predictedVerdictAnomalyEvents: predictedVerdict",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -11874,7 +11944,6 @@
                                                             "varName": "predictedVerdict"
                                                         },
                                                         "producer": {
-                                                            "alias": "producerAnomalyEvents: producer",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -12206,7 +12275,6 @@
                                                             "varName": "similarStoryData"
                                                         },
                                                         "site": {
-                                                            "alias": "siteAnomalyEvents: site",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -12367,7 +12435,6 @@
                                                             "varName": "srcSiteId"
                                                         },
                                                         "status": {
-                                                            "alias": "statusAnomalyEvents: status",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -12612,7 +12679,6 @@
                                                                             "varName": "engines"
                                                                         },
                                                                         "eventData": {
-                                                                            "alias": "eventDataIncidentTargetRep: eventData",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": null,
@@ -12749,7 +12815,6 @@
                                                                                             "varName": "ruleId"
                                                                                         },
                                                                                         "scanResult": {
-                                                                                            "alias": "scanResultEvent: scanResult",
                                                                                             "args": {},
                                                                                             "deprecationReason": null,
                                                                                             "description": null,
@@ -13043,7 +13108,6 @@
                                                                             "varName": "threatReference"
                                                                         },
                                                                         "type": {
-                                                                            "alias": "typeIncidentTargetRep: type",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": null,
@@ -13239,7 +13303,6 @@
                                                                             "varName": "info"
                                                                         },
                                                                         "key": {
-                                                                            "alias": "keyIncidentTimeseries: key",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": null,
@@ -13409,7 +13472,6 @@
                                                                             "varName": "sum"
                                                                         },
                                                                         "units": {
-                                                                            "alias": "unitsIncidentTimeseries: units",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": "Identifies what unit of data this timeseries represents. Note that toRate is only available for particular types\nof data to make sense.",
@@ -13526,7 +13588,6 @@
                                                             "varName": "incidentTimeseries"
                                                         },
                                                         "user": {
-                                                            "alias": "userAnomalyEvents: user",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -13607,7 +13668,6 @@
                                                             "varName": "userRef"
                                                         },
                                                         "vendor": {
-                                                            "alias": "vendorAnomalyEvents: vendor",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -13675,7 +13735,6 @@
                                                     "enumValues": null,
                                                     "fields": {
                                                         "analystFeedback": {
-                                                            "alias": "analystFeedbackThreat: analystFeedback",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "Fields related to analysts research of the threat incident",
@@ -13969,7 +14028,6 @@
                                                             "varName": "clientClass"
                                                         },
                                                         "connectionType": {
-                                                            "alias": "connectionTypeThreat: connectionType",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "Connection for this incident",
@@ -14100,7 +14158,6 @@
                                                             "varName": "direction"
                                                         },
                                                         "engineType": {
-                                                            "alias": "engineTypeThreat: engineType",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "XDR engine involved with the incident",
@@ -14299,7 +14356,6 @@
                                                                             "varName": "ruleId"
                                                                         },
                                                                         "scanResult": {
-                                                                            "alias": "scanResultEvent: scanResult",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": null,
@@ -15264,7 +15320,6 @@
                                                             "varName": "predictedThreatType"
                                                         },
                                                         "predictedVerdict": {
-                                                            "alias": "predictedVerdictThreat: predictedVerdict",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "Predicted verdict of the story based on Cato algorithm",
@@ -15321,7 +15376,6 @@
                                                             "varName": "predictedVerdict"
                                                         },
                                                         "producer": {
-                                                            "alias": "producerThreat: producer",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "Producer (specific XDR engine and service) involved with the incident",
@@ -15705,7 +15759,6 @@
                                                             "varName": "similarStoryData"
                                                         },
                                                         "site": {
-                                                            "alias": "siteThreat: site",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "Cato ID and name for the site",
@@ -15866,7 +15919,6 @@
                                                             "varName": "srcSiteId"
                                                         },
                                                         "status": {
-                                                            "alias": "statusThreat: status",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "Status of this story",
@@ -16091,7 +16143,6 @@
                                                                             "varName": "engines"
                                                                         },
                                                                         "eventData": {
-                                                                            "alias": "eventDataIncidentTargetRep: eventData",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": null,
@@ -16228,7 +16279,6 @@
                                                                                             "varName": "ruleId"
                                                                                         },
                                                                                         "scanResult": {
-                                                                                            "alias": "scanResultEvent: scanResult",
                                                                                             "args": {},
                                                                                             "deprecationReason": null,
                                                                                             "description": null,
@@ -16522,7 +16572,6 @@
                                                                             "varName": "threatReference"
                                                                         },
                                                                         "type": {
-                                                                            "alias": "typeIncidentTargetRep: type",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": null,
@@ -16718,7 +16767,6 @@
                                                                             "varName": "info"
                                                                         },
                                                                         "key": {
-                                                                            "alias": "keyIncidentTimeseries: key",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": null,
@@ -16888,7 +16936,6 @@
                                                                             "varName": "sum"
                                                                         },
                                                                         "units": {
-                                                                            "alias": "unitsIncidentTimeseries: units",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": "Identifies what unit of data this timeseries represents. Note that toRate is only available for particular types\nof data to make sense.",
@@ -17005,7 +17052,6 @@
                                                             "varName": "incidentTimeseries"
                                                         },
                                                         "user": {
-                                                            "alias": "userThreat: user",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "Cato ID and name for the user",
@@ -17086,7 +17132,6 @@
                                                             "varName": "userRef"
                                                         },
                                                         "vendor": {
-                                                            "alias": "vendorThreat: vendor",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "Vendor that identified the incident, such as Cato or Microsoft",
@@ -17149,7 +17194,6 @@
                                                     "enumValues": null,
                                                     "fields": {
                                                         "analystFeedback": {
-                                                            "alias": "analystFeedbackThreatPrevention: analystFeedback",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -17443,7 +17487,6 @@
                                                             "varName": "clientClass"
                                                         },
                                                         "connectionType": {
-                                                            "alias": "connectionTypeThreatPrevention: connectionType",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -17574,7 +17617,6 @@
                                                             "varName": "direction"
                                                         },
                                                         "engineType": {
-                                                            "alias": "engineTypeThreatPrevention: engineType",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -17773,7 +17815,6 @@
                                                                             "varName": "ruleId"
                                                                         },
                                                                         "scanResult": {
-                                                                            "alias": "scanResultEvent: scanResult",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": null,
@@ -18224,7 +18265,6 @@
                                                             "varName": "predictedThreatType"
                                                         },
                                                         "predictedVerdict": {
-                                                            "alias": "predictedVerdictThreatPrevention: predictedVerdict",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -18281,7 +18321,6 @@
                                                             "varName": "predictedVerdict"
                                                         },
                                                         "producer": {
-                                                            "alias": "producerThreatPrevention: producer",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -18665,7 +18704,6 @@
                                                             "varName": "similarStoryData"
                                                         },
                                                         "site": {
-                                                            "alias": "siteThreatPrevention: site",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -18826,7 +18864,6 @@
                                                             "varName": "srcSiteId"
                                                         },
                                                         "status": {
-                                                            "alias": "statusThreatPrevention: status",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -19051,7 +19088,6 @@
                                                                             "varName": "engines"
                                                                         },
                                                                         "eventData": {
-                                                                            "alias": "eventDataIncidentTargetRep: eventData",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": null,
@@ -19188,7 +19224,6 @@
                                                                                             "varName": "ruleId"
                                                                                         },
                                                                                         "scanResult": {
-                                                                                            "alias": "scanResultEvent: scanResult",
                                                                                             "args": {},
                                                                                             "deprecationReason": null,
                                                                                             "description": null,
@@ -19482,7 +19517,6 @@
                                                                             "varName": "threatReference"
                                                                         },
                                                                         "type": {
-                                                                            "alias": "typeIncidentTargetRep: type",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": null,
@@ -20192,7 +20226,6 @@
                                                                             "varName": "info"
                                                                         },
                                                                         "key": {
-                                                                            "alias": "keyIncidentTimeseries: key",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": null,
@@ -20362,7 +20395,6 @@
                                                                             "varName": "sum"
                                                                         },
                                                                         "units": {
-                                                                            "alias": "unitsIncidentTimeseries: units",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": "Identifies what unit of data this timeseries represents. Note that toRate is only available for particular types\nof data to make sense.",
@@ -20479,7 +20511,6 @@
                                                             "varName": "incidentTimeseries"
                                                         },
                                                         "user": {
-                                                            "alias": "userThreatPrevention: user",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -20560,7 +20591,6 @@
                                                             "varName": "userRef"
                                                         },
                                                         "vendor": {
-                                                            "alias": "vendorThreatPrevention: vendor",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -20643,7 +20673,6 @@
                                                             "varName": "acknowledged"
                                                         },
                                                         "analystFeedback": {
-                                                            "alias": "analystFeedbackNetworkXDRIncident: analystFeedback",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -21046,7 +21075,6 @@
                                                             "varName": "bGPConnection"
                                                         },
                                                         "connectionType": {
-                                                            "alias": "connectionTypeNetworkXDRIncident: connectionType",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -21181,7 +21209,6 @@
                                                             "varName": "deviceConfigHaRole"
                                                         },
                                                         "engineType": {
-                                                            "alias": "engineTypeNetworkXDRIncident: engineType",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -22112,7 +22139,6 @@
                                                                             "varName": "acknowledged"
                                                                         },
                                                                         "bgpConnection": {
-                                                                            "alias": "bgpConnectionNetworkTimelineEvent: bgpConnection",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": null,
@@ -22286,7 +22312,6 @@
                                                                             "varName": "description"
                                                                         },
                                                                         "deviceConfigHaRole": {
-                                                                            "alias": "deviceConfigHaRoleNetworkTimelineEvent: deviceConfigHaRole",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": null,
@@ -22331,7 +22356,6 @@
                                                                             "varName": "deviceConfigHaRole"
                                                                         },
                                                                         "deviceHaRoleState": {
-                                                                            "alias": "deviceHaRoleStateNetworkTimelineEvent: deviceHaRoleState",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": null,
@@ -22399,7 +22423,6 @@
                                                                             "varName": "eventIds"
                                                                         },
                                                                         "eventType": {
-                                                                            "alias": "eventTypeNetworkTimelineEvent: eventType",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": null,
@@ -22530,7 +22553,6 @@
                                                                             "varName": "linkConfigBandwidth"
                                                                         },
                                                                         "linkConfigPrecedence": {
-                                                                            "alias": "linkConfigPrecedenceNetworkTimelineEvent: linkConfigPrecedence",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": null,
@@ -22621,7 +22643,6 @@
                                                                             "varName": "linkName"
                                                                         },
                                                                         "linkQualityIssue": {
-                                                                            "alias": "linkQualityIssueNetworkTimelineEvent: linkQualityIssue",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": null,
@@ -22794,7 +22815,6 @@
                                                                             "varName": "linkQualityIssue"
                                                                         },
                                                                         "linkStatus": {
-                                                                            "alias": "linkStatusNetworkTimelineEvent: linkStatus",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": null,
@@ -22859,7 +22879,6 @@
                                                                             "varName": "muted"
                                                                         },
                                                                         "networkEventSource": {
-                                                                            "alias": "networkEventSourceNetworkTimelineEvent: networkEventSource",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": null,
@@ -23114,7 +23133,6 @@
                                                             "varName": "predictedThreatType"
                                                         },
                                                         "predictedVerdict": {
-                                                            "alias": "predictedVerdictNetworkXDRIncident: predictedVerdict",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -23171,7 +23189,6 @@
                                                             "varName": "predictedVerdict"
                                                         },
                                                         "producer": {
-                                                            "alias": "producerNetworkXDRIncident: producer",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -23501,7 +23518,6 @@
                                                             "varName": "similarStoryData"
                                                         },
                                                         "site": {
-                                                            "alias": "siteNetworkXDRIncident: site",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -23683,7 +23699,6 @@
                                                             "varName": "sourceIp"
                                                         },
                                                         "status": {
-                                                            "alias": "statusNetworkXDRIncident: status",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -23813,7 +23828,6 @@
                                                             "varName": "ticket"
                                                         },
                                                         "user": {
-                                                            "alias": "userNetworkXDRIncident: user",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -23894,7 +23908,6 @@
                                                             "varName": "userRef"
                                                         },
                                                         "vendor": {
-                                                            "alias": "vendorNetworkXDRIncident: vendor",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -24072,7 +24085,6 @@
                                                                                             "varName": "id"
                                                                                         },
                                                                                         "type": {
-                                                                                            "alias": "typeAccountOperationsTimelineBase: type",
                                                                                             "args": {},
                                                                                             "deprecationReason": null,
                                                                                             "description": null,
@@ -24256,7 +24268,6 @@
                                                                                                     "varName": "muted"
                                                                                                 },
                                                                                                 "type": {
-                                                                                                    "alias": "typeAccountOperationsTimelineEvent: type",
                                                                                                     "args": {},
                                                                                                     "deprecationReason": null,
                                                                                                     "description": null,
@@ -24367,7 +24378,6 @@
                                                             "varName": "accountOperationsIncident"
                                                         },
                                                         "analystFeedback": {
-                                                            "alias": "analystFeedbackAiOperationsIncident: analystFeedback",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -24638,7 +24648,6 @@
                                                             "varName": "analystFeedback"
                                                         },
                                                         "connectionType": {
-                                                            "alias": "connectionTypeAiOperationsIncident: connectionType",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -24729,7 +24738,6 @@
                                                             "varName": "description"
                                                         },
                                                         "engineType": {
-                                                            "alias": "engineTypeAiOperationsIncident: engineType",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -24959,7 +24967,6 @@
                                                             "varName": "predictedThreatType"
                                                         },
                                                         "predictedVerdict": {
-                                                            "alias": "predictedVerdictAiOperationsIncident: predictedVerdict",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -25016,7 +25023,6 @@
                                                             "varName": "predictedVerdict"
                                                         },
                                                         "producer": {
-                                                            "alias": "producerAiOperationsIncident: producer",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -25347,7 +25353,6 @@
                                                             "varName": "similarStoryData"
                                                         },
                                                         "site": {
-                                                            "alias": "siteAiOperationsIncident: site",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -25488,7 +25493,6 @@
                                                             "varName": "sourceIp"
                                                         },
                                                         "status": {
-                                                            "alias": "statusAiOperationsIncident: status",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -25635,7 +25639,6 @@
                                                             "varName": "type"
                                                         },
                                                         "user": {
-                                                            "alias": "userAiOperationsIncident: user",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -25716,7 +25719,6 @@
                                                             "varName": "userRef"
                                                         },
                                                         "vendor": {
-                                                            "alias": "vendorAiOperationsIncident: vendor",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -25795,7 +25797,6 @@
                                                                     "enumValues": null,
                                                                     "fields": {
                                                                         "activities": {
-                                                                            "alias": "activitiesCatoEndpointAlert: activities",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": "Unique Cato IDs for the activities related to the alert",
@@ -25980,7 +25981,6 @@
                                                                             "varName": "endpointProtectionProfile"
                                                                         },
                                                                         "engineType": {
-                                                                            "alias": "engineTypeCatoEndpointAlert: engineType",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": "Enum for the EPP engine related to this story",
@@ -26086,7 +26086,6 @@
                                                                             "varName": "localIp"
                                                                         },
                                                                         "mitreSubTechnique": {
-                                                                            "alias": "mitreSubTechniqueCatoEndpointAlert: mitreSubTechnique",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": "MITRE ATT&CK\u00ae sub-technique for the threat",
@@ -26162,7 +26161,6 @@
                                                                             "varName": "mitre"
                                                                         },
                                                                         "mitreTechnique": {
-                                                                            "alias": "mitreTechniqueCatoEndpointAlert: mitreTechnique",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": "MITRE ATT&CK\u00ae technique for the threat",
@@ -26238,7 +26236,6 @@
                                                                             "varName": "mitre"
                                                                         },
                                                                         "resources": {
-                                                                            "alias": "resourcesCatoEndpointAlert: resources",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": "Data for the remediation status of the alert",
@@ -26296,7 +26293,6 @@
                                                                                             "varName": "id"
                                                                                         },
                                                                                         "remediationStatus": {
-                                                                                            "alias": "remediationStatusCatoResource: remediationStatus",
                                                                                             "args": {},
                                                                                             "deprecationReason": null,
                                                                                             "description": "Enum for the remediation status associated with this resource",
@@ -26759,7 +26755,6 @@
                                                                                                     "varName": "processId"
                                                                                                 },
                                                                                                 "remediationStatus": {
-                                                                                                    "alias": "remediationStatusCatoProcessResource: remediationStatus",
                                                                                                     "args": {},
                                                                                                     "deprecationReason": null,
                                                                                                     "description": "Enum for the remediation status associated with this resource",
@@ -27518,7 +27513,6 @@
                                                                                                     "varName": "id"
                                                                                                 },
                                                                                                 "remediationStatus": {
-                                                                                                    "alias": "remediationStatusCatoFileResource: remediationStatus",
                                                                                                     "args": {},
                                                                                                     "deprecationReason": null,
                                                                                                     "description": "Enum for the remediation status associated with this file resource",
@@ -27709,7 +27703,6 @@
                                                                             "varName": "catoResource"
                                                                         },
                                                                         "status": {
-                                                                            "alias": "statusCatoEndpointAlert: status",
                                                                             "args": {},
                                                                             "deprecationReason": null,
                                                                             "description": "Enum for the remediation status of the EPP alert",
@@ -27927,7 +27920,6 @@
                                                             "varName": "catoEndpointAlert"
                                                         },
                                                         "analystFeedback": {
-                                                            "alias": "analystFeedbackCatoEndpoint: analystFeedback",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "Fields related to analysts research of the threat incident",
@@ -28198,7 +28190,6 @@
                                                             "varName": "analystFeedback"
                                                         },
                                                         "connectionType": {
-                                                            "alias": "connectionTypeCatoEndpoint: connectionType",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "enum for the connection for this incident (ie. host, user)",
@@ -28799,7 +28790,6 @@
                                                             "varName": "catoEndpointDeviceDetails"
                                                         },
                                                         "engineType": {
-                                                            "alias": "engineTypeCatoEndpoint: engineType",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "enum that shows XDR engine involved with the incident",
@@ -28966,7 +28956,6 @@
                                                             "varName": "predictedThreatType"
                                                         },
                                                         "predictedVerdict": {
-                                                            "alias": "predictedVerdictCatoEndpoint: predictedVerdict",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": null,
@@ -29023,7 +29012,6 @@
                                                             "varName": "predictedVerdict"
                                                         },
                                                         "producer": {
-                                                            "alias": "producerCatoEndpoint: producer",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "enum for the Producer (specific XDR engine or service) involved with the incident",
@@ -29333,7 +29321,6 @@
                                                             "varName": "similarStoryData"
                                                         },
                                                         "site": {
-                                                            "alias": "siteCatoEndpoint: site",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "Cato ID and name for the site",
@@ -29474,7 +29461,6 @@
                                                             "varName": "sourceIp"
                                                         },
                                                         "status": {
-                                                            "alias": "statusCatoEndpoint: status",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "Enum for the status of this story (ie. Open, Closed, Monitoring)",
@@ -29583,7 +29569,6 @@
                                                             "varName": "ticket"
                                                         },
                                                         "user": {
-                                                            "alias": "userCatoEndpoint: user",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "Cato ID and name for the site",
@@ -29664,7 +29649,6 @@
                                                             "varName": "userRef"
                                                         },
                                                         "vendor": {
-                                                            "alias": "vendorCatoEndpoint: vendor",
                                                             "args": {},
                                                             "deprecationReason": null,
                                                             "description": "Vendor that identified the incident, such as Cato or Microsoft",
@@ -29816,7 +29800,6 @@
                                                     "varName": "additionalInfo"
                                                 },
                                                 "analystInfo": {
-                                                    "alias": "analystInfoTimelineItem: analystInfo",
                                                     "args": {},
                                                     "deprecationReason": null,
                                                     "description": "Data about the analyst for this timeline item (ie. name, email)",
@@ -29889,7 +29872,6 @@
                                                     "varName": "analystInfo"
                                                 },
                                                 "category": {
-                                                    "alias": "categoryTimelineItem: category",
                                                     "args": {},
                                                     "deprecationReason": null,
                                                     "description": "Icon for the timeline item",
@@ -30026,7 +30008,6 @@
                                                     "varName": "descriptions"
                                                 },
                                                 "type": {
-                                                    "alias": "typeTimelineItem: type",
                                                     "args": {},
                                                     "deprecationReason": null,
                                                     "description": "Type of threat assigned by the analyst",
@@ -30149,6 +30130,8 @@
         "non_null": false
     },
     "variablesPayload": {
-        "accountID": "example_id"
+        "incidentId": "id",
+        "producer": "AnomalyStats",
+        "storyId": "id"
     }
 }

@@ -1,27 +1,24 @@
-mutation policyTerminalServerRemoveSection ( $policyRemoveSectionInput:PolicyRemoveSectionInput! $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		terminalServer ( input:$terminalServerPolicyMutationInput  )  {
-			removeSectionTerminalServerPolicyMutations: removeSection ( input:$policyRemoveSectionInput   ) {
-				section  {
-					auditPolicySectionPayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					sectionPolicySectionPayload: section {
-						id 
-						name 
-					}
-					propertiesPolicySectionPayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyTerminalServerRemoveSection ( $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput $policyRemoveSectionInput:PolicyRemoveSectionInput!) {
+	policy ( ) {
+mutation.policy.terminalServer.removeSectionterminalServer ( input:$terminalServerPolicyMutationInput  )  {
+mutation.policy.terminalServer.removeSection	removeSection ( input:$policyRemoveSectionInput   ) {
+mutation.policy.terminalServer.removeSection		section {
+mutation.policy.terminalServer.removeSection			audit {
+mutation.policy.terminalServer.removeSection				updatedTime
+mutation.policy.terminalServer.removeSection				updatedBy
+mutation.policy.terminalServer.removeSection			}
+mutation.policy.terminalServer.removeSection			section {
+mutation.policy.terminalServer.removeSection				id
+mutation.policy.terminalServer.removeSection				name
+mutation.policy.terminalServer.removeSection			}
+mutation.policy.terminalServer.removeSection			properties
+mutation.policy.terminalServer.removeSection		}
+mutation.policy.terminalServer.removeSection		status
+mutation.policy.terminalServer.removeSection		errors {
+mutation.policy.terminalServer.removeSection			errorMessage
+mutation.policy.terminalServer.removeSection			errorCode
+mutation.policy.terminalServer.removeSection		}
+mutation.policy.terminalServer.removeSection	}
+mutation.policy.terminalServer.removeSection}
 	}	
 }

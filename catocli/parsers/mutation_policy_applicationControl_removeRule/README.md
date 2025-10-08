@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.applicationControl.removeRule:
 
-`catocli mutation policy applicationControl removeRule -h`
+```bash
+catocli mutation policy applicationControl removeRule -h
 
-`catocli mutation policy applicationControl removeRule <json>`
+catocli mutation policy applicationControl removeRule <json>
 
-`catocli mutation policy applicationControl removeRule "$(cat < mutation.policy.applicationControl.removeRule.json)"`
+catocli mutation policy applicationControl removeRule "$(cat < mutation.policy.applicationControl.removeRule.json)"
 
-`catocli mutation policy applicationControl removeRule '{"applicationControlPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"applicationControlRemoveRuleInput":{"id":"id"}}'`
+catocli mutation policy applicationControl removeRule '{"applicationControlPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"applicationControlRemoveRuleInput":{"id":"id"}}'
 
-`catocli mutation policy applicationControl removeRule -p '{
+catocli mutation policy applicationControl removeRule -p '{
     "applicationControlPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"
@@ -22,7 +23,7 @@
         "id": "id"
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.applicationControl.removeRule ####
 

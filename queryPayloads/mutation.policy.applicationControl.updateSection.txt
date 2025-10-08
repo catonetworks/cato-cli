@@ -1,27 +1,24 @@
-mutation policyApplicationControlUpdateSection ( $policyUpdateSectionInput:PolicyUpdateSectionInput! $applicationControlPolicyMutationInput:ApplicationControlPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		applicationControl ( input:$applicationControlPolicyMutationInput  )  {
-			updateSectionApplicationControlPolicyMutations: updateSection ( input:$policyUpdateSectionInput   ) {
-				section  {
-					auditPolicySectionPayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					sectionPolicySectionPayload: section {
-						id 
-						name 
-					}
-					propertiesPolicySectionPayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyApplicationControlUpdateSection ( $applicationControlPolicyMutationInput:ApplicationControlPolicyMutationInput $policyUpdateSectionInput:PolicyUpdateSectionInput!) {
+	policy ( ) {
+mutation.policy.applicationControl.updateSectionapplicationControl ( input:$applicationControlPolicyMutationInput  )  {
+mutation.policy.applicationControl.updateSection	updateSection ( input:$policyUpdateSectionInput   ) {
+mutation.policy.applicationControl.updateSection		section {
+mutation.policy.applicationControl.updateSection			audit {
+mutation.policy.applicationControl.updateSection				updatedTime
+mutation.policy.applicationControl.updateSection				updatedBy
+mutation.policy.applicationControl.updateSection			}
+mutation.policy.applicationControl.updateSection			section {
+mutation.policy.applicationControl.updateSection				id
+mutation.policy.applicationControl.updateSection				name
+mutation.policy.applicationControl.updateSection			}
+mutation.policy.applicationControl.updateSection			properties
+mutation.policy.applicationControl.updateSection		}
+mutation.policy.applicationControl.updateSection		status
+mutation.policy.applicationControl.updateSection		errors {
+mutation.policy.applicationControl.updateSection			errorMessage
+mutation.policy.applicationControl.updateSection			errorCode
+mutation.policy.applicationControl.updateSection		}
+mutation.policy.applicationControl.updateSection	}
+mutation.policy.applicationControl.updateSection}
 	}	
 }

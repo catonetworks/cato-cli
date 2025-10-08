@@ -4,15 +4,16 @@
 
 ### Usage for mutation.site.updateSiteGeneralDetails:
 
-`catocli mutation site updateSiteGeneralDetails -h`
+```bash
+catocli mutation site updateSiteGeneralDetails -h
 
-`catocli mutation site updateSiteGeneralDetails <json>`
+catocli mutation site updateSiteGeneralDetails <json>
 
-`catocli mutation site updateSiteGeneralDetails "$(cat < mutation.site.updateSiteGeneralDetails.json)"`
+catocli mutation site updateSiteGeneralDetails "$(cat < mutation.site.updateSiteGeneralDetails.json)"
 
-`catocli mutation site updateSiteGeneralDetails '{"siteId":"id","updateSiteGeneralDetailsInput":{"description":"string","name":"string","siteType":"BRANCH","updateSiteLocationInput":{"address":"string","cityName":"string","countryCode":"string","stateCode":"string","timezone":"string"},"updateSitePreferredPopLocationInput":{"preferredOnly":true,"primary":{"by":"ID","input":"string"},"secondary":{"by":"ID","input":"string"}}}}'`
+catocli mutation site updateSiteGeneralDetails '{"siteId":"id","updateSiteGeneralDetailsInput":{"description":"string","name":"string","siteType":"BRANCH","updateSiteLocationInput":{"address":"string","cityName":"string","countryCode":"string","stateCode":"string","timezone":"string"},"updateSitePreferredPopLocationInput":{"preferredOnly":true,"primary":{"by":"ID","input":"string"},"secondary":{"by":"ID","input":"string"}}}}'
 
-`catocli mutation site updateSiteGeneralDetails -p '{
+catocli mutation site updateSiteGeneralDetails -p '{
     "siteId": "id",
     "updateSiteGeneralDetailsInput": {
         "description": "string",
@@ -38,7 +39,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.site.updateSiteGeneralDetails ####
 

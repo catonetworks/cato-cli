@@ -1,115 +1,109 @@
-query devices ( $deviceV2Input:DeviceV2Input $sortOrderInput:SortOrderInput $deviceAttributeCatalogInput:DeviceAttributeCatalogInput $deviceCsvExportInput:DeviceCsvExportInput $jobId:ID! $accountId:ID! ) {
-	devices ( accountId:$accountId ) {
-		list ( input:$deviceV2Input  )  {
-			deviceDevicesPayload: device {
-				id 
-				site  {
-					id
-					name
-				}
-
-				user  {
-					id
-					name
-				}
-
-				name 
-				firstSeen 
-				lastSeen 
-				ip 
-				ipAddress 
-				category 
-				riskScore 
-				nic  {
-					macAddress
-					vendor
-				}
-
-				os  {
-					product
-					vendor
-					version
-				}
-
-				hw  {
-					type
-					model
-					manufacturer
-				}
-
-				originTypes 
-				isManaged 
-				network  {
-					subnet
-					networkName
-				}
-
-				networkInfo 
-				connectionProfile  {
-					destApps
-					destDomains
-					destHosts
-					directions
-				}
-
-				confidence 
-			}
-			pagingDevicesPayload: paging {
-				total 
-			}
-		}
-
-		attributesCatalog  {
-			categoryDeviceAttributesCatalogQueries: category ( sort:$sortOrderInput   ) {
-				items 
-				pageInfo  {
-					total
-				}
-
-			}
-			typeDeviceAttributesCatalogQueries: type ( input:$deviceAttributeCatalogInput   ) {
-				items 
-				pageInfo  {
-					total
-				}
-
-			}
-			modelDeviceAttributesCatalogQueries: model ( input:$deviceAttributeCatalogInput   ) {
-				items 
-				pageInfo  {
-					total
-				}
-
-			}
-			manufacturerDeviceAttributesCatalogQueries: manufacturer ( input:$deviceAttributeCatalogInput   ) {
-				items 
-				pageInfo  {
-					total
-				}
-
-			}
-			osDeviceAttributesCatalogQueries: os ( input:$deviceAttributeCatalogInput   ) {
-				items 
-				pageInfo  {
-					total
-				}
-
-			}
-		}
-
-		csvExport ( input:$deviceCsvExportInput  )  {
-			jobId
-			message
-		}
-
-		csvExportStatus ( jobId:$jobId  )  {
-			jobId
-			statusExportStatusResponse: status
-			progress
-			message
-			downloadUrl
-			expiresAt
-		}
-
+query devices ( ) {
+	devices ( ) {
+query.deviceslist {
+query.devices	device {
+query.devices		id
+query.devices		site {
+query.devices			id
+query.devices			name
+query.devices		}
+query.devices		user {
+query.devices			id
+query.devices			name
+query.devices		}
+query.devices		name
+query.devices		firstSeen
+query.devices		lastSeen
+query.devices		ip
+query.devices		ipAddress
+query.devices		category
+query.devices		riskScore
+query.devices		nic {
+query.devices			macAddress
+query.devices			vendor
+query.devices		}
+query.devices		os {
+query.devices			product
+query.devices			vendor
+query.devices			version
+query.devices		}
+query.devices		hw {
+query.devices			type
+query.devices			model
+query.devices			manufacturer
+query.devices		}
+query.devices		originTypes
+query.devices		isManaged
+query.devices		network {
+query.devices			subnet
+query.devices			networkName
+query.devices		}
+query.devices		networkInfo {
+query.devices			__typename
+query.devices			... on SiteNetworkSubnetRef {
+query.devices				id
+query.devices				name
+query.devices			}
+query.devices			... on GlobalRangeRef {
+query.devices				id
+query.devices				name
+query.devices			}
+query.devices		}
+query.devices		connectionProfile {
+query.devices			destApps
+query.devices			destDomains
+query.devices			destHosts
+query.devices			directions
+query.devices		}
+query.devices		confidence
+query.devices	}
+query.devices	paging {
+query.devices		total
+query.devices	}
+query.devices}
+query.devicesattributesCatalog {
+query.devices	category {
+query.devices		items
+query.devices		pageInfo {
+query.devices			total
+query.devices		}
+query.devices	}
+query.devices	type {
+query.devices		items
+query.devices		pageInfo {
+query.devices			total
+query.devices		}
+query.devices	}
+query.devices	model {
+query.devices		items
+query.devices		pageInfo {
+query.devices			total
+query.devices		}
+query.devices	}
+query.devices	manufacturer {
+query.devices		items
+query.devices		pageInfo {
+query.devices			total
+query.devices		}
+query.devices	}
+query.devices	os {
+query.devices		items
+query.devices		pageInfo {
+query.devices			total
+query.devices		}
+query.devices	}
+query.devices}
+query.devicescsvExport {
+query.devices	jobId
+query.devices	message
+query.devices}
+query.devicescsvExportStatus {
+query.devices	jobId
+query.devices	status
+query.devices	progress
+query.devices	message
+query.devices	downloadUrl
+query.devices	expiresAt
+query.devices}
 	}	
 }

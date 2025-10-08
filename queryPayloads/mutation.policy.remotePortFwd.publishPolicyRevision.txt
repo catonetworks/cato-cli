@@ -1,112 +1,100 @@
-mutation policyRemotePortFwdPublishPolicyRevision ( $policyPublishRevisionInput:PolicyPublishRevisionInput $remotePortFwdPolicyMutationInput:RemotePortFwdPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		remotePortFwd ( input:$remotePortFwdPolicyMutationInput  )  {
-			publishPolicyRevisionRemotePortFwdPolicyMutations: publishPolicyRevision ( input:$policyPublishRevisionInput   ) {
-				policy  {
-					enabled
-					rulesRemotePortFwdPolicy: rules {
-						audit  {
-							updatedTime
-							updatedBy
-						}
-
-						rule  {
-							id
-							name
-							description
-							index
-							sectionRemotePortFwdRule: section {
-								id 
-								name 
-							}
-							enabled
-							forwardIcmp
-							externalIpRemotePortFwdRule: externalIp {
-								id 
-								name 
-							}
-							externalPortRangeRemotePortFwdRule: externalPortRange {
-								from 
-								to 
-							}
-							internalIp
-							internalPortRangeRemotePortFwdRule: internalPortRange {
-								from 
-								to 
-							}
-							remoteIPsRemotePortFwdRule: remoteIPs {
-								ip 
-								ipRange  {
-									from
-									to
-								}
-
-								subnet 
-								globalIpRange  {
-									id
-									name
-								}
-
-							}
-							restrictionTypeRemotePortFwdRule: restrictionType
-							trackingRemotePortFwdRule: tracking {
-								enabled 
-								frequency 
-								subscriptionGroup  {
-									id
-									name
-								}
-
-								webhook  {
-									id
-									name
-								}
-
-								mailingList  {
-									id
-									name
-								}
-
-							}
-						}
-
-						properties 
-					}
-					sectionsRemotePortFwdPolicy: sections {
-						audit  {
-							updatedTime
-							updatedBy
-						}
-
-						section  {
-							id
-							name
-						}
-
-						properties 
-					}
-					auditRemotePortFwdPolicy: audit {
-						publishedTime 
-						publishedBy 
-					}
-					revisionRemotePortFwdPolicy: revision {
-						id 
-						name 
-						description 
-						changes 
-						createdTime 
-						updatedTime 
-					}
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyRemotePortFwdPublishPolicyRevision ( $remotePortFwdPolicyMutationInput:RemotePortFwdPolicyMutationInput $policyPublishRevisionInput:PolicyPublishRevisionInput) {
+	policy ( ) {
+mutation.policy.remotePortFwd.publishPolicyRevisionremotePortFwd ( input:$remotePortFwdPolicyMutationInput  )  {
+mutation.policy.remotePortFwd.publishPolicyRevision	publishPolicyRevision ( input:$policyPublishRevisionInput   ) {
+mutation.policy.remotePortFwd.publishPolicyRevision		policy {
+mutation.policy.remotePortFwd.publishPolicyRevision			enabled
+mutation.policy.remotePortFwd.publishPolicyRevision			rules {
+mutation.policy.remotePortFwd.publishPolicyRevision				audit {
+mutation.policy.remotePortFwd.publishPolicyRevision					updatedTime
+mutation.policy.remotePortFwd.publishPolicyRevision					updatedBy
+mutation.policy.remotePortFwd.publishPolicyRevision				}
+mutation.policy.remotePortFwd.publishPolicyRevision				rule {
+mutation.policy.remotePortFwd.publishPolicyRevision					id
+mutation.policy.remotePortFwd.publishPolicyRevision					name
+mutation.policy.remotePortFwd.publishPolicyRevision					description
+mutation.policy.remotePortFwd.publishPolicyRevision					index
+mutation.policy.remotePortFwd.publishPolicyRevision					section {
+mutation.policy.remotePortFwd.publishPolicyRevision						id
+mutation.policy.remotePortFwd.publishPolicyRevision						name
+mutation.policy.remotePortFwd.publishPolicyRevision					}
+mutation.policy.remotePortFwd.publishPolicyRevision					enabled
+mutation.policy.remotePortFwd.publishPolicyRevision					forwardIcmp
+mutation.policy.remotePortFwd.publishPolicyRevision					externalIp {
+mutation.policy.remotePortFwd.publishPolicyRevision						id
+mutation.policy.remotePortFwd.publishPolicyRevision						name
+mutation.policy.remotePortFwd.publishPolicyRevision					}
+mutation.policy.remotePortFwd.publishPolicyRevision					externalPortRange {
+mutation.policy.remotePortFwd.publishPolicyRevision						from
+mutation.policy.remotePortFwd.publishPolicyRevision						to
+mutation.policy.remotePortFwd.publishPolicyRevision					}
+mutation.policy.remotePortFwd.publishPolicyRevision					internalIp
+mutation.policy.remotePortFwd.publishPolicyRevision					internalPortRange {
+mutation.policy.remotePortFwd.publishPolicyRevision						from
+mutation.policy.remotePortFwd.publishPolicyRevision						to
+mutation.policy.remotePortFwd.publishPolicyRevision					}
+mutation.policy.remotePortFwd.publishPolicyRevision					remoteIPs {
+mutation.policy.remotePortFwd.publishPolicyRevision						ip
+mutation.policy.remotePortFwd.publishPolicyRevision						ipRange {
+mutation.policy.remotePortFwd.publishPolicyRevision							from
+mutation.policy.remotePortFwd.publishPolicyRevision							to
+mutation.policy.remotePortFwd.publishPolicyRevision						}
+mutation.policy.remotePortFwd.publishPolicyRevision						subnet
+mutation.policy.remotePortFwd.publishPolicyRevision						globalIpRange {
+mutation.policy.remotePortFwd.publishPolicyRevision							id
+mutation.policy.remotePortFwd.publishPolicyRevision							name
+mutation.policy.remotePortFwd.publishPolicyRevision						}
+mutation.policy.remotePortFwd.publishPolicyRevision					}
+mutation.policy.remotePortFwd.publishPolicyRevision					restrictionType
+mutation.policy.remotePortFwd.publishPolicyRevision					tracking {
+mutation.policy.remotePortFwd.publishPolicyRevision						enabled
+mutation.policy.remotePortFwd.publishPolicyRevision						frequency
+mutation.policy.remotePortFwd.publishPolicyRevision						subscriptionGroup {
+mutation.policy.remotePortFwd.publishPolicyRevision							id
+mutation.policy.remotePortFwd.publishPolicyRevision							name
+mutation.policy.remotePortFwd.publishPolicyRevision						}
+mutation.policy.remotePortFwd.publishPolicyRevision						webhook {
+mutation.policy.remotePortFwd.publishPolicyRevision							id
+mutation.policy.remotePortFwd.publishPolicyRevision							name
+mutation.policy.remotePortFwd.publishPolicyRevision						}
+mutation.policy.remotePortFwd.publishPolicyRevision						mailingList {
+mutation.policy.remotePortFwd.publishPolicyRevision							id
+mutation.policy.remotePortFwd.publishPolicyRevision							name
+mutation.policy.remotePortFwd.publishPolicyRevision						}
+mutation.policy.remotePortFwd.publishPolicyRevision					}
+mutation.policy.remotePortFwd.publishPolicyRevision				}
+mutation.policy.remotePortFwd.publishPolicyRevision				properties
+mutation.policy.remotePortFwd.publishPolicyRevision			}
+mutation.policy.remotePortFwd.publishPolicyRevision			sections {
+mutation.policy.remotePortFwd.publishPolicyRevision				audit {
+mutation.policy.remotePortFwd.publishPolicyRevision					updatedTime
+mutation.policy.remotePortFwd.publishPolicyRevision					updatedBy
+mutation.policy.remotePortFwd.publishPolicyRevision				}
+mutation.policy.remotePortFwd.publishPolicyRevision				section {
+mutation.policy.remotePortFwd.publishPolicyRevision					id
+mutation.policy.remotePortFwd.publishPolicyRevision					name
+mutation.policy.remotePortFwd.publishPolicyRevision				}
+mutation.policy.remotePortFwd.publishPolicyRevision				properties
+mutation.policy.remotePortFwd.publishPolicyRevision			}
+mutation.policy.remotePortFwd.publishPolicyRevision			audit {
+mutation.policy.remotePortFwd.publishPolicyRevision				publishedTime
+mutation.policy.remotePortFwd.publishPolicyRevision				publishedBy
+mutation.policy.remotePortFwd.publishPolicyRevision			}
+mutation.policy.remotePortFwd.publishPolicyRevision			revision {
+mutation.policy.remotePortFwd.publishPolicyRevision				id
+mutation.policy.remotePortFwd.publishPolicyRevision				name
+mutation.policy.remotePortFwd.publishPolicyRevision				description
+mutation.policy.remotePortFwd.publishPolicyRevision				changes
+mutation.policy.remotePortFwd.publishPolicyRevision				createdTime
+mutation.policy.remotePortFwd.publishPolicyRevision				updatedTime
+mutation.policy.remotePortFwd.publishPolicyRevision			}
+mutation.policy.remotePortFwd.publishPolicyRevision		}
+mutation.policy.remotePortFwd.publishPolicyRevision		status
+mutation.policy.remotePortFwd.publishPolicyRevision		errors {
+mutation.policy.remotePortFwd.publishPolicyRevision			errorMessage
+mutation.policy.remotePortFwd.publishPolicyRevision			errorCode
+mutation.policy.remotePortFwd.publishPolicyRevision		}
+mutation.policy.remotePortFwd.publishPolicyRevision	}
+mutation.policy.remotePortFwd.publishPolicyRevision}
 	}	
 }

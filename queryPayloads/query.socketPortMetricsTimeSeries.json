@@ -1,9 +1,7 @@
 {
     "operationName": "socketPortMetricsTimeSeries",
-    "query": "query socketPortMetricsTimeSeries ( $perSecond:Boolean $withMissingData:Boolean $useDefaultSizeBucket:Boolean $buckets:Int! $accountID:ID! $timeFrame:TimeFrame! $socketPortMetricsMeasure:[SocketPortMetricsMeasure] $socketPortMetricsDimension:[SocketPortMetricsDimension] $socketPortMetricsFilter:[SocketPortMetricsFilter!] ) {\n\tsocketPortMetricsTimeSeries ( accountID:$accountID timeFrame:$timeFrame measures:$socketPortMetricsMeasure dimensions:$socketPortMetricsDimension filters:$socketPortMetricsFilter ) {\n\t\tid \n\t\tfrom \n\t\tto \n\t\tgranularity \n\t\ttimeseries ( buckets:$buckets  )  {\n\t\t\tdata ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket   )\n\t\t\tlabel\n\t\t\tdimensionsTimeseries: dimensions {\n\t\t\t\tlabel \n\t\t\t\tvalue \n\t\t\t}\n\t\t\tkeyTimeseries: key {\n\t\t\t\tmeasureFieldName \n\t\t\t\tdimensions  {\n\t\t\t\t\tfieldName\n\t\t\t\t\tvalue\n\t\t\t\t}\n\n\t\t\t}\n\t\t\tsum\n\t\t\tunitsTimeseries: units\n\t\t\tinfo\n\t\t}\n\n\t}\t\n}",
+    "query": "query socketPortMetricsTimeSeries ( $timeFrame:TimeFrame! $socketPortMetricsMeasure:[SocketPortMetricsMeasure] $socketPortMetricsDimension:[SocketPortMetricsDimension] $socketPortMetricsFilter:[SocketPortMetricsFilter!]) {\n\tsocketPortMetricsTimeSeries ( timeFrame:$timeFrame measures:$socketPortMetricsMeasure dimensions:$socketPortMetricsDimension filters:$socketPortMetricsFilter ) {\nquery.socketPortMetricsTimeSeriesid\nquery.socketPortMetricsTimeSeriesfrom\nquery.socketPortMetricsTimeSeriesto\nquery.socketPortMetricsTimeSeriesgranularity\nquery.socketPortMetricsTimeSeriestimeseries {\nquery.socketPortMetricsTimeSeries\tdata\nquery.socketPortMetricsTimeSeries\tlabel\nquery.socketPortMetricsTimeSeries\tdimensions {\nquery.socketPortMetricsTimeSeries\t\tlabel\nquery.socketPortMetricsTimeSeries\t\tvalue {\n\t__typename\n\t... on StringValue {\n\t\tstring\n\t}\n\t... on DateValue {\n\t\tdate\n\t}\n\t... on Entity {\n\t\tid\n\t\tname\n\t\ttype\n\t}\n}\nquery.socketPortMetricsTimeSeries\t}\nquery.socketPortMetricsTimeSeries\tkey {\nquery.socketPortMetricsTimeSeries\t\tmeasureFieldName\nquery.socketPortMetricsTimeSeries\t\tdimensions {\nquery.socketPortMetricsTimeSeries\t\t\tfieldName\nquery.socketPortMetricsTimeSeries\t\t\tvalue {\n\t__typename\n\t... on StringValue {\n\t\tstring\n\t}\n\t... on DateValue {\n\t\tdate\n\t}\n\t... on Entity {\n\t\tid\n\t\tname\n\t\ttype\n\t}\n}\nquery.socketPortMetricsTimeSeries\t\t}\nquery.socketPortMetricsTimeSeries\t}\nquery.socketPortMetricsTimeSeries\tsum\nquery.socketPortMetricsTimeSeries\tunits\nquery.socketPortMetricsTimeSeries\tinfo\nquery.socketPortMetricsTimeSeries}\n\t}\t\n}",
     "variables": {
-        "buckets": 1,
-        "perSecond": true,
         "socketPortMetricsDimension": {
             "fieldName": "account_id"
         },
@@ -20,8 +18,6 @@
             "fieldName": "account_id",
             "trend": true
         },
-        "timeFrame": "example_value",
-        "useDefaultSizeBucket": true,
-        "withMissingData": true
+        "timeFrame": "example_value"
     }
 }

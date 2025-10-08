@@ -4,18 +4,19 @@
 
 ### Usage for mutation.site.removeSecondaryAwsVSocket:
 
-`catocli mutation site removeSecondaryAwsVSocket -h`
+```bash
+catocli mutation site removeSecondaryAwsVSocket -h
 
-`catocli mutation site removeSecondaryAwsVSocket <json>`
+catocli mutation site removeSecondaryAwsVSocket <json>
 
-`catocli mutation site removeSecondaryAwsVSocket "$(cat < mutation.site.removeSecondaryAwsVSocket.json)"`
+catocli mutation site removeSecondaryAwsVSocket "$(cat < mutation.site.removeSecondaryAwsVSocket.json)"
 
-`catocli mutation site removeSecondaryAwsVSocket '{"socketId":"id"}'`
+catocli mutation site removeSecondaryAwsVSocket '{"socketId":"id"}'
 
-`catocli mutation site removeSecondaryAwsVSocket -p '{
+catocli mutation site removeSecondaryAwsVSocket -p '{
     "socketId": "id"
 }'
-
+```
 
 #### Operation Arguments for mutation.site.removeSecondaryAwsVSocket ####
 

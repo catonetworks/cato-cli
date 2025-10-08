@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.tlsInspect.updatePolicy:
 
-`catocli mutation policy tlsInspect updatePolicy -h`
+```bash
+catocli mutation policy tlsInspect updatePolicy -h
 
-`catocli mutation policy tlsInspect updatePolicy <json>`
+catocli mutation policy tlsInspect updatePolicy <json>
 
-`catocli mutation policy tlsInspect updatePolicy "$(cat < mutation.policy.tlsInspect.updatePolicy.json)"`
+catocli mutation policy tlsInspect updatePolicy "$(cat < mutation.policy.tlsInspect.updatePolicy.json)"
 
-`catocli mutation policy tlsInspect updatePolicy '{"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"tlsInspectPolicyUpdateInput":{"state":"ENABLED","tlsInspectConfigInput":{"defaultRuleAction":"INSPECT","defaultRuleUntrustedCertificateAction":"ALLOW"}}}'`
+catocli mutation policy tlsInspect updatePolicy '{"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"tlsInspectPolicyUpdateInput":{"state":"ENABLED","tlsInspectConfigInput":{"defaultRuleAction":"INSPECT","defaultRuleUntrustedCertificateAction":"ALLOW"}}}'
 
-`catocli mutation policy tlsInspect updatePolicy -p '{
+catocli mutation policy tlsInspect updatePolicy -p '{
     "tlsInspectPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"
@@ -26,7 +27,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.tlsInspect.updatePolicy ####
 

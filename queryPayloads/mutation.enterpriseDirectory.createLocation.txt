@@ -1,59 +1,100 @@
-mutation enterpriseDirectoryCreateLocation ( $enterpriseDirectoryCreateLocationInput:EnterpriseDirectoryCreateLocationInput! $accountId:ID! ) {
-	enterpriseDirectory ( accountId:$accountId ) {
-		createLocation ( input:$enterpriseDirectoryCreateLocationInput  )  {
-			locationEnterpriseDirectoryCreateLocationPayload: location {
-				id 
-				account  {
-					id
-					name
-				}
-
-				type 
-				name 
-				businessUnit 
-				description 
-				details  {
-					companyName
-					postalAddressLocationDetails: postalAddress {
-						street 
-						cityName 
-						country  {
-							id
-							name
-						}
-
-						stateName 
-						zipCode 
-						addressValidated 
-					}
-					vatId
-					contactLocationDetails: contact {
-						name 
-						phone 
-						email 
-					}
-					shippingLocation
-				}
-
-				archived 
-				audit  {
-					updatedTime
-					updatedByAuditingMetadata: updatedBy {
-						id 
-						name 
-						... on AdminRef {
-							id 
-							name 
-						}
-						... on ApiKeyRef {
-							id 
-							name 
-						}
-					}
-				}
-
+mutation enterpriseDirectoryCreateLocation ( $enterpriseDirectoryCreateLocationInput:EnterpriseDirectoryCreateLocationInput!) {
+	enterpriseDirectory ( ) {
+mutation.enterpriseDirectory.createLocationcreateLocation ( input:$enterpriseDirectoryCreateLocationInput  )  {
+mutation.enterpriseDirectory.createLocation	location {
+mutation.enterpriseDirectory.createLocation		id
+mutation.enterpriseDirectory.createLocation		account {
+mutation.enterpriseDirectory.createLocation			id
+mutation.enterpriseDirectory.createLocation			name
+mutation.enterpriseDirectory.createLocation		}
+mutation.enterpriseDirectory.createLocation		type
+mutation.enterpriseDirectory.createLocation		name
+mutation.enterpriseDirectory.createLocation		businessUnit
+mutation.enterpriseDirectory.createLocation		description
+mutation.enterpriseDirectory.createLocation		details {
+mutation.enterpriseDirectory.createLocation			companyName
+mutation.enterpriseDirectory.createLocation			postalAddress {
+mutation.enterpriseDirectory.createLocation				street
+mutation.enterpriseDirectory.createLocation				cityName
+mutation.enterpriseDirectory.createLocation				country {
+mutation.enterpriseDirectory.createLocation					id
+mutation.enterpriseDirectory.createLocation					name
+mutation.enterpriseDirectory.createLocation				}
+mutation.enterpriseDirectory.createLocation				stateName
+mutation.enterpriseDirectory.createLocation				zipCode
+mutation.enterpriseDirectory.createLocation				addressValidated
+mutation.enterpriseDirectory.createLocation			}
+mutation.enterpriseDirectory.createLocation			vatId
+mutation.enterpriseDirectory.createLocation			contact {
+mutation.enterpriseDirectory.createLocation				name
+mutation.enterpriseDirectory.createLocation				phone
+mutation.enterpriseDirectory.createLocation				email
+mutation.enterpriseDirectory.createLocation			}
+mutation.enterpriseDirectory.createLocation			shippingLocation {
+	id
+	type
+	name
+	description
+	businessUnit
+	archived
+	account {
+		id
+		name
+	}
+	details {
+		companyName
+		vatId
+		shippingLocation
+		postalAddress {
+			street
+			cityName
+			stateName
+			zipCode
+			addressValidated
+			country {
+				id
+				name
 			}
 		}
-
+		contact {
+			name
+			phone
+			email
+		}
+	}
+	audit {
+		updatedTime
+		updatedBy {
+			__typename
+			... on AdminRef {
+				id
+				name
+			}
+			... on ApiKeyRef {
+				id
+				name
+			}
+		}
+	}
+}
+mutation.enterpriseDirectory.createLocation		}
+mutation.enterpriseDirectory.createLocation		archived
+mutation.enterpriseDirectory.createLocation		audit {
+mutation.enterpriseDirectory.createLocation			updatedTime
+mutation.enterpriseDirectory.createLocation			updatedBy {
+mutation.enterpriseDirectory.createLocation				id
+mutation.enterpriseDirectory.createLocation				name
+mutation.enterpriseDirectory.createLocation				... on AdminRef {
+mutation.enterpriseDirectory.createLocation					id
+mutation.enterpriseDirectory.createLocation					name
+mutation.enterpriseDirectory.createLocation				}
+mutation.enterpriseDirectory.createLocation				... on ApiKeyRef {
+mutation.enterpriseDirectory.createLocation					id
+mutation.enterpriseDirectory.createLocation					name
+mutation.enterpriseDirectory.createLocation				}
+mutation.enterpriseDirectory.createLocation			}
+mutation.enterpriseDirectory.createLocation		}
+mutation.enterpriseDirectory.createLocation	}
+mutation.enterpriseDirectory.createLocation}
 	}	
 }

@@ -4,15 +4,16 @@
 
 ### Usage for query.policy.dynamicIpAllocation.policy:
 
-`catocli query policy dynamicIpAllocation policy -h`
+```bash
+catocli query policy dynamicIpAllocation policy -h
 
-`catocli query policy dynamicIpAllocation policy <json>`
+catocli query policy dynamicIpAllocation policy <json>
 
-`catocli query policy dynamicIpAllocation policy "$(cat < query.policy.dynamicIpAllocation.policy.json)"`
+catocli query policy dynamicIpAllocation policy "$(cat < query.policy.dynamicIpAllocation.policy.json)"
 
-`catocli query policy dynamicIpAllocation policy '{"dynamicIpAllocationPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'`
+catocli query policy dynamicIpAllocation policy '{"dynamicIpAllocationPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'
 
-`catocli query policy dynamicIpAllocation policy -p '{
+catocli query policy dynamicIpAllocation policy -p '{
     "dynamicIpAllocationPolicyInput": {
         "policyRevisionInput": {
             "id": "id",
@@ -20,7 +21,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for query.policy.dynamicIpAllocation.policy ####
 

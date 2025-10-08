@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.internetFirewall.updatePolicy:
 
-`catocli mutation policy internetFirewall updatePolicy -h`
+```bash
+catocli mutation policy internetFirewall updatePolicy -h
 
-`catocli mutation policy internetFirewall updatePolicy <json>`
+catocli mutation policy internetFirewall updatePolicy <json>
 
-`catocli mutation policy internetFirewall updatePolicy "$(cat < mutation.policy.internetFirewall.updatePolicy.json)"`
+catocli mutation policy internetFirewall updatePolicy "$(cat < mutation.policy.internetFirewall.updatePolicy.json)"
 
-`catocli mutation policy internetFirewall updatePolicy '{"internetFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"internetFirewallPolicyUpdateInput":{"state":"ENABLED"}}'`
+catocli mutation policy internetFirewall updatePolicy '{"internetFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"internetFirewallPolicyUpdateInput":{"state":"ENABLED"}}'
 
-`catocli mutation policy internetFirewall updatePolicy -p '{
+catocli mutation policy internetFirewall updatePolicy -p '{
     "internetFirewallPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"
@@ -22,7 +23,7 @@
         "state": "ENABLED"
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.internetFirewall.updatePolicy ####
 

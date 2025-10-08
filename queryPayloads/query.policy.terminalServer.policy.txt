@@ -1,66 +1,58 @@
-query policyTerminalServerPolicy ( $terminalServerPolicyInput:TerminalServerPolicyInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		terminalServer  {
-			policyTerminalServerPolicyQueries: policy ( input:$terminalServerPolicyInput   ) {
-				enabled 
-				rules  {
-					auditTerminalServerRulePayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					ruleTerminalServerRulePayload: rule {
-						id 
-						name 
-						description 
-						index 
-						section  {
-							id
-							name
-						}
-
-						enabled 
-						allowedHostIP  {
-							id
-							name
-						}
-
-						excludeTraffic  {
-							id
-							name
-						}
-
-					}
-					propertiesTerminalServerRulePayload: properties
-				}
-
-				sections  {
-					auditPolicySectionPayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					sectionPolicySectionPayload: section {
-						id 
-						name 
-					}
-					propertiesPolicySectionPayload: properties
-				}
-
-				audit  {
-					publishedTime
-					publishedBy
-				}
-
-				revision  {
-					id
-					name
-					description
-					changes
-					createdTime
-					updatedTime
-				}
-
-			}
-		}
-
+query policyTerminalServerPolicy ( $terminalServerPolicyInput:TerminalServerPolicyInput) {
+	policy ( ) {
+query.policy.terminalServer.policyterminalServer {
+query.policy.terminalServer.policy	policy ( input:$terminalServerPolicyInput   ) {
+query.policy.terminalServer.policy		enabled
+query.policy.terminalServer.policy		rules {
+query.policy.terminalServer.policy			audit {
+query.policy.terminalServer.policy				updatedTime
+query.policy.terminalServer.policy				updatedBy
+query.policy.terminalServer.policy			}
+query.policy.terminalServer.policy			rule {
+query.policy.terminalServer.policy				id
+query.policy.terminalServer.policy				name
+query.policy.terminalServer.policy				description
+query.policy.terminalServer.policy				index
+query.policy.terminalServer.policy				section {
+query.policy.terminalServer.policy					id
+query.policy.terminalServer.policy					name
+query.policy.terminalServer.policy				}
+query.policy.terminalServer.policy				enabled
+query.policy.terminalServer.policy				allowedHostIP {
+query.policy.terminalServer.policy					id
+query.policy.terminalServer.policy					name
+query.policy.terminalServer.policy				}
+query.policy.terminalServer.policy				excludeTraffic {
+query.policy.terminalServer.policy					id
+query.policy.terminalServer.policy					name
+query.policy.terminalServer.policy				}
+query.policy.terminalServer.policy			}
+query.policy.terminalServer.policy			properties
+query.policy.terminalServer.policy		}
+query.policy.terminalServer.policy		sections {
+query.policy.terminalServer.policy			audit {
+query.policy.terminalServer.policy				updatedTime
+query.policy.terminalServer.policy				updatedBy
+query.policy.terminalServer.policy			}
+query.policy.terminalServer.policy			section {
+query.policy.terminalServer.policy				id
+query.policy.terminalServer.policy				name
+query.policy.terminalServer.policy			}
+query.policy.terminalServer.policy			properties
+query.policy.terminalServer.policy		}
+query.policy.terminalServer.policy		audit {
+query.policy.terminalServer.policy			publishedTime
+query.policy.terminalServer.policy			publishedBy
+query.policy.terminalServer.policy		}
+query.policy.terminalServer.policy		revision {
+query.policy.terminalServer.policy			id
+query.policy.terminalServer.policy			name
+query.policy.terminalServer.policy			description
+query.policy.terminalServer.policy			changes
+query.policy.terminalServer.policy			createdTime
+query.policy.terminalServer.policy			updatedTime
+query.policy.terminalServer.policy		}
+query.policy.terminalServer.policy	}
+query.policy.terminalServer.policy}
 	}	
 }

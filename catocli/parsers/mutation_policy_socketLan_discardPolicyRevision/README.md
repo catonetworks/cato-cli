@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.socketLan.discardPolicyRevision:
 
-`catocli mutation policy socketLan discardPolicyRevision -h`
+```bash
+catocli mutation policy socketLan discardPolicyRevision -h
 
-`catocli mutation policy socketLan discardPolicyRevision <json>`
+catocli mutation policy socketLan discardPolicyRevision <json>
 
-`catocli mutation policy socketLan discardPolicyRevision "$(cat < mutation.policy.socketLan.discardPolicyRevision.json)"`
+catocli mutation policy socketLan discardPolicyRevision "$(cat < mutation.policy.socketLan.discardPolicyRevision.json)"
 
-`catocli mutation policy socketLan discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"socketLanPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
+catocli mutation policy socketLan discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"socketLanPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-`catocli mutation policy socketLan discardPolicyRevision -p '{
+catocli mutation policy socketLan discardPolicyRevision -p '{
     "policyDiscardRevisionInput": {
         "id": "id"
     },
@@ -22,7 +23,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.socketLan.discardPolicyRevision ####
 

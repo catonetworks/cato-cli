@@ -1,21 +1,33 @@
-query events ( $limit:Int $from:Int $accountID:ID! $timeFrame:TimeFrame! $eventsMeasure:[EventsMeasure] $eventsDimension:[EventsDimension] $eventsFilter:[EventsFilter!] $eventsSort:[EventsSort!] ) {
-	events ( accountID:$accountID timeFrame:$timeFrame measures:$eventsMeasure dimensions:$eventsDimension filters:$eventsFilter sort:$eventsSort ) {
-		id 
-		from 
-		to 
-		total 
-		totals 
-		records ( limit:$limit  from:$from  )  {
-			fieldsEventsRecord: fields {
-				name 
-				value 
-			}
-			fieldsUnitTypesEventsRecord: fieldsUnitTypes
-			fieldsMap
-			trends
-			prevTimeFrame
-			flatFields
-		}
-
+query events ( $timeFrame:TimeFrame! $eventsMeasure:[EventsMeasure] $eventsDimension:[EventsDimension] $eventsFilter:[EventsFilter!] $eventsSort:[EventsSort!]) {
+	events ( timeFrame:$timeFrame measures:$eventsMeasure dimensions:$eventsDimension filters:$eventsFilter sort:$eventsSort ) {
+query.eventsid
+query.eventsfrom
+query.eventsto
+query.eventstotal
+query.eventstotals
+query.eventsrecords {
+query.events	fields {
+query.events		name
+query.events		value {
+query.events			__typename
+query.events			... on StringValue {
+query.events				string
+query.events			}
+query.events			... on DateValue {
+query.events				date
+query.events			}
+query.events			... on Entity {
+query.events				id
+query.events				name
+query.events				type
+query.events			}
+query.events		}
+query.events	}
+query.events	fieldsUnitTypes
+query.events	fieldsMap
+query.events	trends
+query.events	prevTimeFrame
+query.events	flatFields
+query.events}
 	}	
 }

@@ -4,15 +4,16 @@
 
 ### Usage for mutation.site.removeSiteBwLicense:
 
-`catocli mutation site removeSiteBwLicense -h`
+```bash
+catocli mutation site removeSiteBwLicense -h
 
-`catocli mutation site removeSiteBwLicense <json>`
+catocli mutation site removeSiteBwLicense <json>
 
-`catocli mutation site removeSiteBwLicense "$(cat < mutation.site.removeSiteBwLicense.json)"`
+catocli mutation site removeSiteBwLicense "$(cat < mutation.site.removeSiteBwLicense.json)"
 
-`catocli mutation site removeSiteBwLicense '{"removeSiteBwLicenseInput":{"licenseId":"id","siteRefInput":{"by":"ID","input":"string"}}}'`
+catocli mutation site removeSiteBwLicense '{"removeSiteBwLicenseInput":{"licenseId":"id","siteRefInput":{"by":"ID","input":"string"}}}'
 
-`catocli mutation site removeSiteBwLicense -p '{
+catocli mutation site removeSiteBwLicense -p '{
     "removeSiteBwLicenseInput": {
         "licenseId": "id",
         "siteRefInput": {
@@ -21,7 +22,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.site.removeSiteBwLicense ####
 

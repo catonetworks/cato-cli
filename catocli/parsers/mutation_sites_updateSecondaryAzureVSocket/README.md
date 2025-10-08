@@ -4,22 +4,23 @@
 
 ### Usage for mutation.sites.updateSecondaryAzureVSocket:
 
-`catocli mutation sites updateSecondaryAzureVSocket -h`
+```bash
+catocli mutation sites updateSecondaryAzureVSocket -h
 
-`catocli mutation sites updateSecondaryAzureVSocket <json>`
+catocli mutation sites updateSecondaryAzureVSocket <json>
 
-`catocli mutation sites updateSecondaryAzureVSocket "$(cat < mutation.sites.updateSecondaryAzureVSocket.json)"`
+catocli mutation sites updateSecondaryAzureVSocket "$(cat < mutation.sites.updateSecondaryAzureVSocket.json)"
 
-`catocli mutation sites updateSecondaryAzureVSocket '{"updateSecondaryAzureVSocketInput":{"floatingIp":"example_value","id":"id","interfaceIp":"example_value"}}'`
+catocli mutation sites updateSecondaryAzureVSocket '{"updateSecondaryAzureVSocketInput":{"floatingIp":"example_value","id":"id","interfaceIp":"example_value"}}'
 
-`catocli mutation sites updateSecondaryAzureVSocket -p '{
+catocli mutation sites updateSecondaryAzureVSocket -p '{
     "updateSecondaryAzureVSocketInput": {
         "floatingIp": "example_value",
         "id": "id",
         "interfaceIp": "example_value"
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.sites.updateSecondaryAzureVSocket ####
 

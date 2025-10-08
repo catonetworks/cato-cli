@@ -1,90 +1,83 @@
-mutation siteUpdateBgpPeer ( $updateBgpPeerInput:UpdateBgpPeerInput! $accountId:ID! ) {
-	site ( accountId:$accountId ) {
-		updateBgpPeer ( input:$updateBgpPeerInput  )  {
-			bgpPeerUpdateBgpPeerPayload: bgpPeer {
-				site  {
-					id
-					name
-				}
-
-				id 
-				name 
-				peerAsn 
-				catoAsn 
-				peerIp 
-				catoIp 
-				advertiseDefaultRoute 
-				advertiseAllRoutes 
-				advertiseSummaryRoutes 
-				summaryRoute  {
-					id
-					route
-					communityBgpSummaryRoute: community {
-						from 
-						to 
-					}
-				}
-
-				defaultAction 
-				defaultActionExclusion  {
-					bgpRouteExactFilterRuleBgpFilterRule: bgpRouteExactFilterRule {
-						id 
-						globalIpRange  {
-							id
-							name
-						}
-
-						networkSubnet 
-					}
-					bgpRouteExactAndInclusiveFilterRuleBgpFilterRule: bgpRouteExactAndInclusiveFilterRule {
-						id 
-						globalIpRange  {
-							id
-							name
-						}
-
-						globalIpRangeException  {
-							id
-							name
-						}
-
-						networkSubnet 
-						networkSubnetException 
-						le 
-						ge 
-					}
-					communityFilterRuleBgpFilterRule: communityFilterRule {
-						id 
-						predicate 
-						community  {
-							from
-							to
-						}
-
-					}
-				}
-
-				performNat 
-				md5AuthKey 
-				metric 
-				holdTime 
-				keepaliveInterval 
-				bfdEnabled 
-				bfdSettings  {
-					transmitInterval
-					receiveInterval
-					multiplier
-				}
-
-				tracking  {
-					id
-					enabled
-					alertFrequencyBgpTracking: alertFrequency
-					subscriptionId
-				}
-
-			}
-		}
-
+mutation siteUpdateBgpPeer ( $updateBgpPeerInput:UpdateBgpPeerInput!) {
+	site ( ) {
+mutation.site.updateBgpPeerupdateBgpPeer ( input:$updateBgpPeerInput  )  {
+mutation.site.updateBgpPeer	bgpPeer {
+mutation.site.updateBgpPeer		site {
+mutation.site.updateBgpPeer			id
+mutation.site.updateBgpPeer			name
+mutation.site.updateBgpPeer		}
+mutation.site.updateBgpPeer		id
+mutation.site.updateBgpPeer		name
+mutation.site.updateBgpPeer		peerAsn
+mutation.site.updateBgpPeer		catoAsn
+mutation.site.updateBgpPeer		peerIp
+mutation.site.updateBgpPeer		catoIp
+mutation.site.updateBgpPeer		advertiseDefaultRoute
+mutation.site.updateBgpPeer		advertiseAllRoutes
+mutation.site.updateBgpPeer		advertiseSummaryRoutes
+mutation.site.updateBgpPeer		summaryRoute {
+mutation.site.updateBgpPeer			id
+mutation.site.updateBgpPeer			route
+mutation.site.updateBgpPeer			community {
+mutation.site.updateBgpPeer				from
+mutation.site.updateBgpPeer				to
+mutation.site.updateBgpPeer			}
+mutation.site.updateBgpPeer		}
+mutation.site.updateBgpPeer		defaultAction
+mutation.site.updateBgpPeer		defaultActionExclusion {
+mutation.site.updateBgpPeer			bgpRouteExactFilterRule {
+mutation.site.updateBgpPeer				id
+mutation.site.updateBgpPeer				globalIpRange {
+mutation.site.updateBgpPeer					id
+mutation.site.updateBgpPeer					name
+mutation.site.updateBgpPeer				}
+mutation.site.updateBgpPeer				networkSubnet
+mutation.site.updateBgpPeer			}
+mutation.site.updateBgpPeer			bgpRouteExactAndInclusiveFilterRule {
+mutation.site.updateBgpPeer				id
+mutation.site.updateBgpPeer				globalIpRange {
+mutation.site.updateBgpPeer					id
+mutation.site.updateBgpPeer					name
+mutation.site.updateBgpPeer				}
+mutation.site.updateBgpPeer				globalIpRangeException {
+mutation.site.updateBgpPeer					id
+mutation.site.updateBgpPeer					name
+mutation.site.updateBgpPeer				}
+mutation.site.updateBgpPeer				networkSubnet
+mutation.site.updateBgpPeer				networkSubnetException
+mutation.site.updateBgpPeer				le
+mutation.site.updateBgpPeer				ge
+mutation.site.updateBgpPeer			}
+mutation.site.updateBgpPeer			communityFilterRule {
+mutation.site.updateBgpPeer				id
+mutation.site.updateBgpPeer				predicate
+mutation.site.updateBgpPeer				community {
+mutation.site.updateBgpPeer					from
+mutation.site.updateBgpPeer					to
+mutation.site.updateBgpPeer				}
+mutation.site.updateBgpPeer			}
+mutation.site.updateBgpPeer		}
+mutation.site.updateBgpPeer		performNat
+mutation.site.updateBgpPeer		md5AuthKey
+mutation.site.updateBgpPeer		metric {
+	name
+	value
+}
+mutation.site.updateBgpPeer		holdTime
+mutation.site.updateBgpPeer		keepaliveInterval
+mutation.site.updateBgpPeer		bfdEnabled
+mutation.site.updateBgpPeer		bfdSettings {
+mutation.site.updateBgpPeer			transmitInterval
+mutation.site.updateBgpPeer			receiveInterval
+mutation.site.updateBgpPeer			multiplier
+mutation.site.updateBgpPeer		}
+mutation.site.updateBgpPeer		tracking {
+mutation.site.updateBgpPeer			id
+mutation.site.updateBgpPeer			enabled
+mutation.site.updateBgpPeer			alertFrequency
+mutation.site.updateBgpPeer			subscriptionId
+mutation.site.updateBgpPeer		}
+mutation.site.updateBgpPeer	}
+mutation.site.updateBgpPeer}
 	}	
 }

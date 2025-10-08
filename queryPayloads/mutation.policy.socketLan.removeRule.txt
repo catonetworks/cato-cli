@@ -1,318 +1,297 @@
-mutation policySocketLanRemoveRule ( $socketLanRemoveRuleInput:SocketLanRemoveRuleInput! $socketLanPolicyMutationInput:SocketLanPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		socketLan ( input:$socketLanPolicyMutationInput  )  {
-			removeRuleSocketLanPolicyMutations: removeRule ( input:$socketLanRemoveRuleInput   ) {
-				rule  {
-					auditSocketLanRulePayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					ruleSocketLanRulePayload: rule {
-						id 
-						name 
-						description 
-						index 
-						section  {
-							id
-							name
-						}
-
-						enabled 
-						firewall  {
-							auditSocketLanFirewallRulePayload: audit {
-								updatedTime 
-								updatedBy 
-							}
-							ruleSocketLanFirewallRulePayload: rule {
-								id 
-								name 
-								description 
-								index 
-								section  {
-									id
-									name
-								}
-
-								enabled 
-								source  {
-									vlan
-									mac
-									ipRangeSocketLanFirewallSource: ipRange {
-										from 
-										to 
-									}
-									groupSocketLanFirewallSource: group {
-										id 
-										name 
-									}
-									subnet
-									siteSocketLanFirewallSource: site {
-										id 
-										name 
-									}
-									networkInterfaceSocketLanFirewallSource: networkInterface {
-										id 
-										name 
-									}
-									systemGroupSocketLanFirewallSource: systemGroup {
-										id 
-										name 
-									}
-									hostSocketLanFirewallSource: host {
-										id 
-										name 
-									}
-									ip
-									globalIpRangeSocketLanFirewallSource: globalIpRange {
-										id 
-										name 
-									}
-									floatingSubnetSocketLanFirewallSource: floatingSubnet {
-										id 
-										name 
-									}
-									siteNetworkSubnetSocketLanFirewallSource: siteNetworkSubnet {
-										id 
-										name 
-									}
-								}
-
-								destination  {
-									vlan
-									ipRangeSocketLanFirewallDestination: ipRange {
-										from 
-										to 
-									}
-									subnet
-									siteSocketLanFirewallDestination: site {
-										id 
-										name 
-									}
-									networkInterfaceSocketLanFirewallDestination: networkInterface {
-										id 
-										name 
-									}
-									systemGroupSocketLanFirewallDestination: systemGroup {
-										id 
-										name 
-									}
-									hostSocketLanFirewallDestination: host {
-										id 
-										name 
-									}
-									ip
-									globalIpRangeSocketLanFirewallDestination: globalIpRange {
-										id 
-										name 
-									}
-									groupSocketLanFirewallDestination: group {
-										id 
-										name 
-									}
-									floatingSubnetSocketLanFirewallDestination: floatingSubnet {
-										id 
-										name 
-									}
-									siteNetworkSubnetSocketLanFirewallDestination: siteNetworkSubnet {
-										id 
-										name 
-									}
-								}
-
-								direction 
-								application  {
-									applicationSocketLanFirewallApplication: application {
-										id 
-										name 
-									}
-									customAppSocketLanFirewallApplication: customApp {
-										id 
-										name 
-									}
-									domain
-									fqdn
-									ip
-									subnet
-									ipRangeSocketLanFirewallApplication: ipRange {
-										from 
-										to 
-									}
-									globalIpRangeSocketLanFirewallApplication: globalIpRange {
-										id 
-										name 
-									}
-								}
-
-								service  {
-									simpleSocketLanFirewallServiceType: simple {
-										name 
-									}
-									standardSocketLanFirewallServiceType: standard {
-										id 
-										name 
-									}
-									customSocketLanFirewallServiceType: custom {
-										port 
-										portRange  {
-											from
-											to
-										}
-
-										protocol 
-									}
-								}
-
-								action 
-								tracking  {
-									eventPolicyTracking: event {
-										enabled 
-									}
-									alertPolicyTracking: alert {
-										enabled 
-										frequency 
-										subscriptionGroup  {
-											id
-											name
-										}
-
-										webhook  {
-											id
-											name
-										}
-
-										mailingList  {
-											id
-											name
-										}
-
-									}
-								}
-
-							}
-							propertiesSocketLanFirewallRulePayload: properties
-						}
-
-						site  {
-							siteSocketLanSite: site {
-								id 
-								name 
-							}
-							groupSocketLanSite: group {
-								id 
-								name 
-							}
-						}
-
-						source  {
-							vlan
-							ipRangeSocketLanSource: ipRange {
-								from 
-								to 
-							}
-							groupSocketLanSource: group {
-								id 
-								name 
-							}
-							subnet
-							networkInterfaceSocketLanSource: networkInterface {
-								id 
-								name 
-							}
-							systemGroupSocketLanSource: systemGroup {
-								id 
-								name 
-							}
-							hostSocketLanSource: host {
-								id 
-								name 
-							}
-							ip
-							globalIpRangeSocketLanSource: globalIpRange {
-								id 
-								name 
-							}
-							floatingSubnetSocketLanSource: floatingSubnet {
-								id 
-								name 
-							}
-							siteNetworkSubnetSocketLanSource: siteNetworkSubnet {
-								id 
-								name 
-							}
-						}
-
-						destination  {
-							vlan
-							ipRangeSocketLanDestination: ipRange {
-								from 
-								to 
-							}
-							subnet
-							networkInterfaceSocketLanDestination: networkInterface {
-								id 
-								name 
-							}
-							systemGroupSocketLanDestination: systemGroup {
-								id 
-								name 
-							}
-							hostSocketLanDestination: host {
-								id 
-								name 
-							}
-							ip
-							globalIpRangeSocketLanDestination: globalIpRange {
-								id 
-								name 
-							}
-							groupSocketLanDestination: group {
-								id 
-								name 
-							}
-							floatingSubnetSocketLanDestination: floatingSubnet {
-								id 
-								name 
-							}
-							siteNetworkSubnetSocketLanDestination: siteNetworkSubnet {
-								id 
-								name 
-							}
-						}
-
-						direction 
-						service  {
-							simpleSocketLanService: simple {
-								name 
-							}
-							customSocketLanService: custom {
-								port 
-								portRange  {
-									from
-									to
-								}
-
-								protocol 
-							}
-						}
-
-						nat  {
-							enabled
-							natTypeSocketLanNatSettings: natType
-						}
-
-						transport 
-					}
-					propertiesSocketLanRulePayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policySocketLanRemoveRule ( $socketLanPolicyMutationInput:SocketLanPolicyMutationInput $socketLanRemoveRuleInput:SocketLanRemoveRuleInput!) {
+	policy ( ) {
+mutation.policy.socketLan.removeRulesocketLan ( input:$socketLanPolicyMutationInput  )  {
+mutation.policy.socketLan.removeRule	removeRule ( input:$socketLanRemoveRuleInput   ) {
+mutation.policy.socketLan.removeRule		rule {
+mutation.policy.socketLan.removeRule			audit {
+mutation.policy.socketLan.removeRule				updatedTime
+mutation.policy.socketLan.removeRule				updatedBy
+mutation.policy.socketLan.removeRule			}
+mutation.policy.socketLan.removeRule			rule {
+mutation.policy.socketLan.removeRule				id
+mutation.policy.socketLan.removeRule				name
+mutation.policy.socketLan.removeRule				description
+mutation.policy.socketLan.removeRule				index
+mutation.policy.socketLan.removeRule				section {
+mutation.policy.socketLan.removeRule					id
+mutation.policy.socketLan.removeRule					name
+mutation.policy.socketLan.removeRule				}
+mutation.policy.socketLan.removeRule				enabled
+mutation.policy.socketLan.removeRule				firewall {
+mutation.policy.socketLan.removeRule					audit {
+mutation.policy.socketLan.removeRule						updatedTime
+mutation.policy.socketLan.removeRule						updatedBy
+mutation.policy.socketLan.removeRule					}
+mutation.policy.socketLan.removeRule					rule {
+mutation.policy.socketLan.removeRule						id
+mutation.policy.socketLan.removeRule						name
+mutation.policy.socketLan.removeRule						description
+mutation.policy.socketLan.removeRule						index
+mutation.policy.socketLan.removeRule						section {
+mutation.policy.socketLan.removeRule							id
+mutation.policy.socketLan.removeRule							name
+mutation.policy.socketLan.removeRule						}
+mutation.policy.socketLan.removeRule						enabled
+mutation.policy.socketLan.removeRule						source {
+mutation.policy.socketLan.removeRule							vlan
+mutation.policy.socketLan.removeRule							mac
+mutation.policy.socketLan.removeRule							ipRange {
+mutation.policy.socketLan.removeRule								from
+mutation.policy.socketLan.removeRule								to
+mutation.policy.socketLan.removeRule							}
+mutation.policy.socketLan.removeRule							group {
+mutation.policy.socketLan.removeRule								id
+mutation.policy.socketLan.removeRule								name
+mutation.policy.socketLan.removeRule							}
+mutation.policy.socketLan.removeRule							subnet
+mutation.policy.socketLan.removeRule							site {
+mutation.policy.socketLan.removeRule								id
+mutation.policy.socketLan.removeRule								name
+mutation.policy.socketLan.removeRule							}
+mutation.policy.socketLan.removeRule							networkInterface {
+mutation.policy.socketLan.removeRule								id
+mutation.policy.socketLan.removeRule								name
+mutation.policy.socketLan.removeRule							}
+mutation.policy.socketLan.removeRule							systemGroup {
+mutation.policy.socketLan.removeRule								id
+mutation.policy.socketLan.removeRule								name
+mutation.policy.socketLan.removeRule							}
+mutation.policy.socketLan.removeRule							host {
+mutation.policy.socketLan.removeRule								id
+mutation.policy.socketLan.removeRule								name
+mutation.policy.socketLan.removeRule							}
+mutation.policy.socketLan.removeRule							ip
+mutation.policy.socketLan.removeRule							globalIpRange {
+mutation.policy.socketLan.removeRule								id
+mutation.policy.socketLan.removeRule								name
+mutation.policy.socketLan.removeRule							}
+mutation.policy.socketLan.removeRule							floatingSubnet {
+mutation.policy.socketLan.removeRule								id
+mutation.policy.socketLan.removeRule								name
+mutation.policy.socketLan.removeRule							}
+mutation.policy.socketLan.removeRule							siteNetworkSubnet {
+mutation.policy.socketLan.removeRule								id
+mutation.policy.socketLan.removeRule								name
+mutation.policy.socketLan.removeRule							}
+mutation.policy.socketLan.removeRule						}
+mutation.policy.socketLan.removeRule						destination {
+mutation.policy.socketLan.removeRule							vlan
+mutation.policy.socketLan.removeRule							ipRange {
+mutation.policy.socketLan.removeRule								from
+mutation.policy.socketLan.removeRule								to
+mutation.policy.socketLan.removeRule							}
+mutation.policy.socketLan.removeRule							subnet
+mutation.policy.socketLan.removeRule							site {
+mutation.policy.socketLan.removeRule								id
+mutation.policy.socketLan.removeRule								name
+mutation.policy.socketLan.removeRule							}
+mutation.policy.socketLan.removeRule							networkInterface {
+mutation.policy.socketLan.removeRule								id
+mutation.policy.socketLan.removeRule								name
+mutation.policy.socketLan.removeRule							}
+mutation.policy.socketLan.removeRule							systemGroup {
+mutation.policy.socketLan.removeRule								id
+mutation.policy.socketLan.removeRule								name
+mutation.policy.socketLan.removeRule							}
+mutation.policy.socketLan.removeRule							host {
+mutation.policy.socketLan.removeRule								id
+mutation.policy.socketLan.removeRule								name
+mutation.policy.socketLan.removeRule							}
+mutation.policy.socketLan.removeRule							ip
+mutation.policy.socketLan.removeRule							globalIpRange {
+mutation.policy.socketLan.removeRule								id
+mutation.policy.socketLan.removeRule								name
+mutation.policy.socketLan.removeRule							}
+mutation.policy.socketLan.removeRule							group {
+mutation.policy.socketLan.removeRule								id
+mutation.policy.socketLan.removeRule								name
+mutation.policy.socketLan.removeRule							}
+mutation.policy.socketLan.removeRule							floatingSubnet {
+mutation.policy.socketLan.removeRule								id
+mutation.policy.socketLan.removeRule								name
+mutation.policy.socketLan.removeRule							}
+mutation.policy.socketLan.removeRule							siteNetworkSubnet {
+mutation.policy.socketLan.removeRule								id
+mutation.policy.socketLan.removeRule								name
+mutation.policy.socketLan.removeRule							}
+mutation.policy.socketLan.removeRule						}
+mutation.policy.socketLan.removeRule						direction
+mutation.policy.socketLan.removeRule						application {
+mutation.policy.socketLan.removeRule							application {
+mutation.policy.socketLan.removeRule								id
+mutation.policy.socketLan.removeRule								name
+mutation.policy.socketLan.removeRule							}
+mutation.policy.socketLan.removeRule							customApp {
+mutation.policy.socketLan.removeRule								id
+mutation.policy.socketLan.removeRule								name
+mutation.policy.socketLan.removeRule							}
+mutation.policy.socketLan.removeRule							domain
+mutation.policy.socketLan.removeRule							fqdn
+mutation.policy.socketLan.removeRule							ip
+mutation.policy.socketLan.removeRule							subnet
+mutation.policy.socketLan.removeRule							ipRange {
+mutation.policy.socketLan.removeRule								from
+mutation.policy.socketLan.removeRule								to
+mutation.policy.socketLan.removeRule							}
+mutation.policy.socketLan.removeRule							globalIpRange {
+mutation.policy.socketLan.removeRule								id
+mutation.policy.socketLan.removeRule								name
+mutation.policy.socketLan.removeRule							}
+mutation.policy.socketLan.removeRule						}
+mutation.policy.socketLan.removeRule						service {
+mutation.policy.socketLan.removeRule							simple {
+mutation.policy.socketLan.removeRule								name
+mutation.policy.socketLan.removeRule							}
+mutation.policy.socketLan.removeRule							standard {
+mutation.policy.socketLan.removeRule								id
+mutation.policy.socketLan.removeRule								name
+mutation.policy.socketLan.removeRule							}
+mutation.policy.socketLan.removeRule							custom {
+mutation.policy.socketLan.removeRule								port
+mutation.policy.socketLan.removeRule								portRange {
+mutation.policy.socketLan.removeRule									from
+mutation.policy.socketLan.removeRule									to
+mutation.policy.socketLan.removeRule								}
+mutation.policy.socketLan.removeRule								protocol
+mutation.policy.socketLan.removeRule							}
+mutation.policy.socketLan.removeRule						}
+mutation.policy.socketLan.removeRule						action
+mutation.policy.socketLan.removeRule						tracking {
+mutation.policy.socketLan.removeRule							event {
+mutation.policy.socketLan.removeRule								enabled
+mutation.policy.socketLan.removeRule							}
+mutation.policy.socketLan.removeRule							alert {
+mutation.policy.socketLan.removeRule								enabled
+mutation.policy.socketLan.removeRule								frequency
+mutation.policy.socketLan.removeRule								subscriptionGroup {
+mutation.policy.socketLan.removeRule									id
+mutation.policy.socketLan.removeRule									name
+mutation.policy.socketLan.removeRule								}
+mutation.policy.socketLan.removeRule								webhook {
+mutation.policy.socketLan.removeRule									id
+mutation.policy.socketLan.removeRule									name
+mutation.policy.socketLan.removeRule								}
+mutation.policy.socketLan.removeRule								mailingList {
+mutation.policy.socketLan.removeRule									id
+mutation.policy.socketLan.removeRule									name
+mutation.policy.socketLan.removeRule								}
+mutation.policy.socketLan.removeRule							}
+mutation.policy.socketLan.removeRule						}
+mutation.policy.socketLan.removeRule					}
+mutation.policy.socketLan.removeRule					properties
+mutation.policy.socketLan.removeRule				}
+mutation.policy.socketLan.removeRule				site {
+mutation.policy.socketLan.removeRule					site {
+mutation.policy.socketLan.removeRule						id
+mutation.policy.socketLan.removeRule						name
+mutation.policy.socketLan.removeRule					}
+mutation.policy.socketLan.removeRule					group {
+mutation.policy.socketLan.removeRule						id
+mutation.policy.socketLan.removeRule						name
+mutation.policy.socketLan.removeRule					}
+mutation.policy.socketLan.removeRule				}
+mutation.policy.socketLan.removeRule				source {
+mutation.policy.socketLan.removeRule					vlan
+mutation.policy.socketLan.removeRule					ipRange {
+mutation.policy.socketLan.removeRule						from
+mutation.policy.socketLan.removeRule						to
+mutation.policy.socketLan.removeRule					}
+mutation.policy.socketLan.removeRule					group {
+mutation.policy.socketLan.removeRule						id
+mutation.policy.socketLan.removeRule						name
+mutation.policy.socketLan.removeRule					}
+mutation.policy.socketLan.removeRule					subnet
+mutation.policy.socketLan.removeRule					networkInterface {
+mutation.policy.socketLan.removeRule						id
+mutation.policy.socketLan.removeRule						name
+mutation.policy.socketLan.removeRule					}
+mutation.policy.socketLan.removeRule					systemGroup {
+mutation.policy.socketLan.removeRule						id
+mutation.policy.socketLan.removeRule						name
+mutation.policy.socketLan.removeRule					}
+mutation.policy.socketLan.removeRule					host {
+mutation.policy.socketLan.removeRule						id
+mutation.policy.socketLan.removeRule						name
+mutation.policy.socketLan.removeRule					}
+mutation.policy.socketLan.removeRule					ip
+mutation.policy.socketLan.removeRule					globalIpRange {
+mutation.policy.socketLan.removeRule						id
+mutation.policy.socketLan.removeRule						name
+mutation.policy.socketLan.removeRule					}
+mutation.policy.socketLan.removeRule					floatingSubnet {
+mutation.policy.socketLan.removeRule						id
+mutation.policy.socketLan.removeRule						name
+mutation.policy.socketLan.removeRule					}
+mutation.policy.socketLan.removeRule					siteNetworkSubnet {
+mutation.policy.socketLan.removeRule						id
+mutation.policy.socketLan.removeRule						name
+mutation.policy.socketLan.removeRule					}
+mutation.policy.socketLan.removeRule				}
+mutation.policy.socketLan.removeRule				destination {
+mutation.policy.socketLan.removeRule					vlan
+mutation.policy.socketLan.removeRule					ipRange {
+mutation.policy.socketLan.removeRule						from
+mutation.policy.socketLan.removeRule						to
+mutation.policy.socketLan.removeRule					}
+mutation.policy.socketLan.removeRule					subnet
+mutation.policy.socketLan.removeRule					networkInterface {
+mutation.policy.socketLan.removeRule						id
+mutation.policy.socketLan.removeRule						name
+mutation.policy.socketLan.removeRule					}
+mutation.policy.socketLan.removeRule					systemGroup {
+mutation.policy.socketLan.removeRule						id
+mutation.policy.socketLan.removeRule						name
+mutation.policy.socketLan.removeRule					}
+mutation.policy.socketLan.removeRule					host {
+mutation.policy.socketLan.removeRule						id
+mutation.policy.socketLan.removeRule						name
+mutation.policy.socketLan.removeRule					}
+mutation.policy.socketLan.removeRule					ip
+mutation.policy.socketLan.removeRule					globalIpRange {
+mutation.policy.socketLan.removeRule						id
+mutation.policy.socketLan.removeRule						name
+mutation.policy.socketLan.removeRule					}
+mutation.policy.socketLan.removeRule					group {
+mutation.policy.socketLan.removeRule						id
+mutation.policy.socketLan.removeRule						name
+mutation.policy.socketLan.removeRule					}
+mutation.policy.socketLan.removeRule					floatingSubnet {
+mutation.policy.socketLan.removeRule						id
+mutation.policy.socketLan.removeRule						name
+mutation.policy.socketLan.removeRule					}
+mutation.policy.socketLan.removeRule					siteNetworkSubnet {
+mutation.policy.socketLan.removeRule						id
+mutation.policy.socketLan.removeRule						name
+mutation.policy.socketLan.removeRule					}
+mutation.policy.socketLan.removeRule				}
+mutation.policy.socketLan.removeRule				direction
+mutation.policy.socketLan.removeRule				service {
+mutation.policy.socketLan.removeRule					simple {
+mutation.policy.socketLan.removeRule						name
+mutation.policy.socketLan.removeRule					}
+mutation.policy.socketLan.removeRule					custom {
+mutation.policy.socketLan.removeRule						port
+mutation.policy.socketLan.removeRule						portRange {
+mutation.policy.socketLan.removeRule							from
+mutation.policy.socketLan.removeRule							to
+mutation.policy.socketLan.removeRule						}
+mutation.policy.socketLan.removeRule						protocol
+mutation.policy.socketLan.removeRule					}
+mutation.policy.socketLan.removeRule				}
+mutation.policy.socketLan.removeRule				nat {
+mutation.policy.socketLan.removeRule					enabled
+mutation.policy.socketLan.removeRule					natType
+mutation.policy.socketLan.removeRule				}
+mutation.policy.socketLan.removeRule				transport
+mutation.policy.socketLan.removeRule			}
+mutation.policy.socketLan.removeRule			properties
+mutation.policy.socketLan.removeRule		}
+mutation.policy.socketLan.removeRule		status
+mutation.policy.socketLan.removeRule		errors {
+mutation.policy.socketLan.removeRule			errorMessage
+mutation.policy.socketLan.removeRule			errorCode
+mutation.policy.socketLan.removeRule		}
+mutation.policy.socketLan.removeRule	}
+mutation.policy.socketLan.removeRule}
 	}	
 }

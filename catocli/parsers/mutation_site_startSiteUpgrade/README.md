@@ -4,15 +4,16 @@
 
 ### Usage for mutation.site.startSiteUpgrade:
 
-`catocli mutation site startSiteUpgrade -h`
+```bash
+catocli mutation site startSiteUpgrade -h
 
-`catocli mutation site startSiteUpgrade <json>`
+catocli mutation site startSiteUpgrade <json>
 
-`catocli mutation site startSiteUpgrade "$(cat < mutation.site.startSiteUpgrade.json)"`
+catocli mutation site startSiteUpgrade "$(cat < mutation.site.startSiteUpgrade.json)"
 
-`catocli mutation site startSiteUpgrade '{"startSiteUpgradeInput":{"siteUpgradeRequest":{"site":{"by":"ID","input":"string"},"targetVersion":"string"}}}'`
+catocli mutation site startSiteUpgrade '{"startSiteUpgradeInput":{"siteUpgradeRequest":{"site":{"by":"ID","input":"string"},"targetVersion":"string"}}}'
 
-`catocli mutation site startSiteUpgrade -p '{
+catocli mutation site startSiteUpgrade -p '{
     "startSiteUpgradeInput": {
         "siteUpgradeRequest": {
             "site": {
@@ -23,7 +24,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.site.startSiteUpgrade ####
 

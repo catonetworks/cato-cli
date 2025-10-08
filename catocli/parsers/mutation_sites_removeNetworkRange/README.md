@@ -4,18 +4,19 @@
 
 ### Usage for mutation.sites.removeNetworkRange:
 
-`catocli mutation sites removeNetworkRange -h`
+```bash
+catocli mutation sites removeNetworkRange -h
 
-`catocli mutation sites removeNetworkRange <json>`
+catocli mutation sites removeNetworkRange <json>
 
-`catocli mutation sites removeNetworkRange "$(cat < mutation.sites.removeNetworkRange.json)"`
+catocli mutation sites removeNetworkRange "$(cat < mutation.sites.removeNetworkRange.json)"
 
-`catocli mutation sites removeNetworkRange '{"networkRangeId":"id"}'`
+catocli mutation sites removeNetworkRange '{"networkRangeId":"id"}'
 
-`catocli mutation sites removeNetworkRange -p '{
+catocli mutation sites removeNetworkRange -p '{
     "networkRangeId": "id"
 }'
-
+```
 
 #### Operation Arguments for mutation.sites.removeNetworkRange ####
 

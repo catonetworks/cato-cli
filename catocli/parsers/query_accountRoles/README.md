@@ -4,18 +4,19 @@
 
 ### Usage for query.accountRoles:
 
-`catocli query accountRoles -h`
+```bash
+catocli query accountRoles -h
 
-`catocli query accountRoles <json>`
+catocli query accountRoles <json>
 
-`catocli query accountRoles "$(cat < query.accountRoles.json)"`
+catocli query accountRoles "$(cat < query.accountRoles.json)"
 
-`catocli query accountRoles '{"accountType":"SYSTEM"}'`
+catocli query accountRoles '{"accountType":"SYSTEM"}'
 
-`catocli query accountRoles -p '{
+catocli query accountRoles -p '{
     "accountType": "SYSTEM"
 }'
-
+```
 
 #### Operation Arguments for query.accountRoles ####
 

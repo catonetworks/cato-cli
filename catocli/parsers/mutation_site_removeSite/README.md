@@ -4,18 +4,19 @@
 
 ### Usage for mutation.site.removeSite:
 
-`catocli mutation site removeSite -h`
+```bash
+catocli mutation site removeSite -h
 
-`catocli mutation site removeSite <json>`
+catocli mutation site removeSite <json>
 
-`catocli mutation site removeSite "$(cat < mutation.site.removeSite.json)"`
+catocli mutation site removeSite "$(cat < mutation.site.removeSite.json)"
 
-`catocli mutation site removeSite '{"siteId":"id"}'`
+catocli mutation site removeSite '{"siteId":"id"}'
 
-`catocli mutation site removeSite -p '{
+catocli mutation site removeSite -p '{
     "siteId": "id"
 }'
-
+```
 
 #### Operation Arguments for mutation.site.removeSite ####
 

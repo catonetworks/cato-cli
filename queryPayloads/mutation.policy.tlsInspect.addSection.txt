@@ -1,27 +1,24 @@
-mutation policyTlsInspectAddSection ( $policyAddSectionInput:PolicyAddSectionInput! $tlsInspectPolicyMutationInput:TlsInspectPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		tlsInspect ( input:$tlsInspectPolicyMutationInput  )  {
-			addSectionTlsInspectPolicyMutations: addSection ( input:$policyAddSectionInput   ) {
-				section  {
-					auditPolicySectionPayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					sectionPolicySectionPayload: section {
-						id 
-						name 
-					}
-					propertiesPolicySectionPayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyTlsInspectAddSection ( $tlsInspectPolicyMutationInput:TlsInspectPolicyMutationInput $policyAddSectionInput:PolicyAddSectionInput!) {
+	policy ( ) {
+mutation.policy.tlsInspect.addSectiontlsInspect ( input:$tlsInspectPolicyMutationInput  )  {
+mutation.policy.tlsInspect.addSection	addSection ( input:$policyAddSectionInput   ) {
+mutation.policy.tlsInspect.addSection		section {
+mutation.policy.tlsInspect.addSection			audit {
+mutation.policy.tlsInspect.addSection				updatedTime
+mutation.policy.tlsInspect.addSection				updatedBy
+mutation.policy.tlsInspect.addSection			}
+mutation.policy.tlsInspect.addSection			section {
+mutation.policy.tlsInspect.addSection				id
+mutation.policy.tlsInspect.addSection				name
+mutation.policy.tlsInspect.addSection			}
+mutation.policy.tlsInspect.addSection			properties
+mutation.policy.tlsInspect.addSection		}
+mutation.policy.tlsInspect.addSection		status
+mutation.policy.tlsInspect.addSection		errors {
+mutation.policy.tlsInspect.addSection			errorMessage
+mutation.policy.tlsInspect.addSection			errorCode
+mutation.policy.tlsInspect.addSection		}
+mutation.policy.tlsInspect.addSection	}
+mutation.policy.tlsInspect.addSection}
 	}	
 }

@@ -1,27 +1,24 @@
-mutation policyApplicationControlRemoveSection ( $policyRemoveSectionInput:PolicyRemoveSectionInput! $applicationControlPolicyMutationInput:ApplicationControlPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		applicationControl ( input:$applicationControlPolicyMutationInput  )  {
-			removeSectionApplicationControlPolicyMutations: removeSection ( input:$policyRemoveSectionInput   ) {
-				section  {
-					auditPolicySectionPayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					sectionPolicySectionPayload: section {
-						id 
-						name 
-					}
-					propertiesPolicySectionPayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyApplicationControlRemoveSection ( $applicationControlPolicyMutationInput:ApplicationControlPolicyMutationInput $policyRemoveSectionInput:PolicyRemoveSectionInput!) {
+	policy ( ) {
+mutation.policy.applicationControl.removeSectionapplicationControl ( input:$applicationControlPolicyMutationInput  )  {
+mutation.policy.applicationControl.removeSection	removeSection ( input:$policyRemoveSectionInput   ) {
+mutation.policy.applicationControl.removeSection		section {
+mutation.policy.applicationControl.removeSection			audit {
+mutation.policy.applicationControl.removeSection				updatedTime
+mutation.policy.applicationControl.removeSection				updatedBy
+mutation.policy.applicationControl.removeSection			}
+mutation.policy.applicationControl.removeSection			section {
+mutation.policy.applicationControl.removeSection				id
+mutation.policy.applicationControl.removeSection				name
+mutation.policy.applicationControl.removeSection			}
+mutation.policy.applicationControl.removeSection			properties
+mutation.policy.applicationControl.removeSection		}
+mutation.policy.applicationControl.removeSection		status
+mutation.policy.applicationControl.removeSection		errors {
+mutation.policy.applicationControl.removeSection			errorMessage
+mutation.policy.applicationControl.removeSection			errorCode
+mutation.policy.applicationControl.removeSection		}
+mutation.policy.applicationControl.removeSection	}
+mutation.policy.applicationControl.removeSection}
 	}	
 }

@@ -1,59 +1,100 @@
-mutation enterpriseDirectoryArchiveLocation ( $locationId:ID $accountId:ID! ) {
-	enterpriseDirectory ( accountId:$accountId ) {
-		archiveLocation ( locationId:$locationId  )  {
-			locationEnterpriseDirectoryArchiveLocationPayload: location {
-				id 
-				account  {
-					id
-					name
-				}
-
-				type 
-				name 
-				businessUnit 
-				description 
-				details  {
-					companyName
-					postalAddressLocationDetails: postalAddress {
-						street 
-						cityName 
-						country  {
-							id
-							name
-						}
-
-						stateName 
-						zipCode 
-						addressValidated 
-					}
-					vatId
-					contactLocationDetails: contact {
-						name 
-						phone 
-						email 
-					}
-					shippingLocation
-				}
-
-				archived 
-				audit  {
-					updatedTime
-					updatedByAuditingMetadata: updatedBy {
-						id 
-						name 
-						... on AdminRef {
-							id 
-							name 
-						}
-						... on ApiKeyRef {
-							id 
-							name 
-						}
-					}
-				}
-
+mutation enterpriseDirectoryArchiveLocation ( $locationId:ID) {
+	enterpriseDirectory ( ) {
+mutation.enterpriseDirectory.archiveLocationarchiveLocation ( locationId:$locationId  )  {
+mutation.enterpriseDirectory.archiveLocation	location {
+mutation.enterpriseDirectory.archiveLocation		id
+mutation.enterpriseDirectory.archiveLocation		account {
+mutation.enterpriseDirectory.archiveLocation			id
+mutation.enterpriseDirectory.archiveLocation			name
+mutation.enterpriseDirectory.archiveLocation		}
+mutation.enterpriseDirectory.archiveLocation		type
+mutation.enterpriseDirectory.archiveLocation		name
+mutation.enterpriseDirectory.archiveLocation		businessUnit
+mutation.enterpriseDirectory.archiveLocation		description
+mutation.enterpriseDirectory.archiveLocation		details {
+mutation.enterpriseDirectory.archiveLocation			companyName
+mutation.enterpriseDirectory.archiveLocation			postalAddress {
+mutation.enterpriseDirectory.archiveLocation				street
+mutation.enterpriseDirectory.archiveLocation				cityName
+mutation.enterpriseDirectory.archiveLocation				country {
+mutation.enterpriseDirectory.archiveLocation					id
+mutation.enterpriseDirectory.archiveLocation					name
+mutation.enterpriseDirectory.archiveLocation				}
+mutation.enterpriseDirectory.archiveLocation				stateName
+mutation.enterpriseDirectory.archiveLocation				zipCode
+mutation.enterpriseDirectory.archiveLocation				addressValidated
+mutation.enterpriseDirectory.archiveLocation			}
+mutation.enterpriseDirectory.archiveLocation			vatId
+mutation.enterpriseDirectory.archiveLocation			contact {
+mutation.enterpriseDirectory.archiveLocation				name
+mutation.enterpriseDirectory.archiveLocation				phone
+mutation.enterpriseDirectory.archiveLocation				email
+mutation.enterpriseDirectory.archiveLocation			}
+mutation.enterpriseDirectory.archiveLocation			shippingLocation {
+	id
+	type
+	name
+	description
+	businessUnit
+	archived
+	account {
+		id
+		name
+	}
+	details {
+		companyName
+		vatId
+		shippingLocation
+		postalAddress {
+			street
+			cityName
+			stateName
+			zipCode
+			addressValidated
+			country {
+				id
+				name
 			}
 		}
-
+		contact {
+			name
+			phone
+			email
+		}
+	}
+	audit {
+		updatedTime
+		updatedBy {
+			__typename
+			... on AdminRef {
+				id
+				name
+			}
+			... on ApiKeyRef {
+				id
+				name
+			}
+		}
+	}
+}
+mutation.enterpriseDirectory.archiveLocation		}
+mutation.enterpriseDirectory.archiveLocation		archived
+mutation.enterpriseDirectory.archiveLocation		audit {
+mutation.enterpriseDirectory.archiveLocation			updatedTime
+mutation.enterpriseDirectory.archiveLocation			updatedBy {
+mutation.enterpriseDirectory.archiveLocation				id
+mutation.enterpriseDirectory.archiveLocation				name
+mutation.enterpriseDirectory.archiveLocation				... on AdminRef {
+mutation.enterpriseDirectory.archiveLocation					id
+mutation.enterpriseDirectory.archiveLocation					name
+mutation.enterpriseDirectory.archiveLocation				}
+mutation.enterpriseDirectory.archiveLocation				... on ApiKeyRef {
+mutation.enterpriseDirectory.archiveLocation					id
+mutation.enterpriseDirectory.archiveLocation					name
+mutation.enterpriseDirectory.archiveLocation				}
+mutation.enterpriseDirectory.archiveLocation			}
+mutation.enterpriseDirectory.archiveLocation		}
+mutation.enterpriseDirectory.archiveLocation	}
+mutation.enterpriseDirectory.archiveLocation}
 	}	
 }

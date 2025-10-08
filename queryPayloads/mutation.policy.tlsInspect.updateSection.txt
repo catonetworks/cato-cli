@@ -1,27 +1,24 @@
-mutation policyTlsInspectUpdateSection ( $policyUpdateSectionInput:PolicyUpdateSectionInput! $tlsInspectPolicyMutationInput:TlsInspectPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		tlsInspect ( input:$tlsInspectPolicyMutationInput  )  {
-			updateSectionTlsInspectPolicyMutations: updateSection ( input:$policyUpdateSectionInput   ) {
-				section  {
-					auditPolicySectionPayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					sectionPolicySectionPayload: section {
-						id 
-						name 
-					}
-					propertiesPolicySectionPayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyTlsInspectUpdateSection ( $tlsInspectPolicyMutationInput:TlsInspectPolicyMutationInput $policyUpdateSectionInput:PolicyUpdateSectionInput!) {
+	policy ( ) {
+mutation.policy.tlsInspect.updateSectiontlsInspect ( input:$tlsInspectPolicyMutationInput  )  {
+mutation.policy.tlsInspect.updateSection	updateSection ( input:$policyUpdateSectionInput   ) {
+mutation.policy.tlsInspect.updateSection		section {
+mutation.policy.tlsInspect.updateSection			audit {
+mutation.policy.tlsInspect.updateSection				updatedTime
+mutation.policy.tlsInspect.updateSection				updatedBy
+mutation.policy.tlsInspect.updateSection			}
+mutation.policy.tlsInspect.updateSection			section {
+mutation.policy.tlsInspect.updateSection				id
+mutation.policy.tlsInspect.updateSection				name
+mutation.policy.tlsInspect.updateSection			}
+mutation.policy.tlsInspect.updateSection			properties
+mutation.policy.tlsInspect.updateSection		}
+mutation.policy.tlsInspect.updateSection		status
+mutation.policy.tlsInspect.updateSection		errors {
+mutation.policy.tlsInspect.updateSection			errorMessage
+mutation.policy.tlsInspect.updateSection			errorCode
+mutation.policy.tlsInspect.updateSection		}
+mutation.policy.tlsInspect.updateSection	}
+mutation.policy.tlsInspect.updateSection}
 	}	
 }

@@ -1,27 +1,24 @@
-mutation policyWanNetworkUpdateSection ( $policyUpdateSectionInput:PolicyUpdateSectionInput! $wanNetworkPolicyMutationInput:WanNetworkPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		wanNetwork ( input:$wanNetworkPolicyMutationInput  )  {
-			updateSectionWanNetworkPolicyMutations: updateSection ( input:$policyUpdateSectionInput   ) {
-				section  {
-					auditPolicySectionPayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					sectionPolicySectionPayload: section {
-						id 
-						name 
-					}
-					propertiesPolicySectionPayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyWanNetworkUpdateSection ( $wanNetworkPolicyMutationInput:WanNetworkPolicyMutationInput $policyUpdateSectionInput:PolicyUpdateSectionInput!) {
+	policy ( ) {
+mutation.policy.wanNetwork.updateSectionwanNetwork ( input:$wanNetworkPolicyMutationInput  )  {
+mutation.policy.wanNetwork.updateSection	updateSection ( input:$policyUpdateSectionInput   ) {
+mutation.policy.wanNetwork.updateSection		section {
+mutation.policy.wanNetwork.updateSection			audit {
+mutation.policy.wanNetwork.updateSection				updatedTime
+mutation.policy.wanNetwork.updateSection				updatedBy
+mutation.policy.wanNetwork.updateSection			}
+mutation.policy.wanNetwork.updateSection			section {
+mutation.policy.wanNetwork.updateSection				id
+mutation.policy.wanNetwork.updateSection				name
+mutation.policy.wanNetwork.updateSection			}
+mutation.policy.wanNetwork.updateSection			properties
+mutation.policy.wanNetwork.updateSection		}
+mutation.policy.wanNetwork.updateSection		status
+mutation.policy.wanNetwork.updateSection		errors {
+mutation.policy.wanNetwork.updateSection			errorMessage
+mutation.policy.wanNetwork.updateSection			errorCode
+mutation.policy.wanNetwork.updateSection		}
+mutation.policy.wanNetwork.updateSection	}
+mutation.policy.wanNetwork.updateSection}
 	}	
 }

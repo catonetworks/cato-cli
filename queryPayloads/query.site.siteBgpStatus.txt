@@ -1,26 +1,24 @@
-query siteSiteBgpStatus ( $siteBgpStatusInput:SiteBgpStatusInput! $accountId:ID! ) {
-	site ( accountId:$accountId ) {
-		siteBgpStatus ( input:$siteBgpStatusInput  )  {
-			statusSiteBgpStatus: status {
-				remoteIp 
-				bgpSession 
-				bfdSession 
-				routesFromPeer 
-				routesToPeer 
-				rejectedRoutesFromPeer  {
-					subnet
-					type
-					communityBgpRejectedRoutesFromPeer: community {
-						from 
-						to 
-					}
-					rule
-					lastPublishAttempt
-				}
-
-			}
-			rawStatus
-		}
-
+query siteSiteBgpStatus ( $siteBgpStatusInput:SiteBgpStatusInput!) {
+	site ( ) {
+query.site.siteBgpStatussiteBgpStatus ( input:$siteBgpStatusInput  )  {
+query.site.siteBgpStatus	status {
+query.site.siteBgpStatus		remoteIp
+query.site.siteBgpStatus		bgpSession
+query.site.siteBgpStatus		bfdSession
+query.site.siteBgpStatus		routesFromPeer
+query.site.siteBgpStatus		routesToPeer
+query.site.siteBgpStatus		rejectedRoutesFromPeer {
+query.site.siteBgpStatus			subnet
+query.site.siteBgpStatus			type
+query.site.siteBgpStatus			community {
+query.site.siteBgpStatus				from
+query.site.siteBgpStatus				to
+query.site.siteBgpStatus			}
+query.site.siteBgpStatus			rule
+query.site.siteBgpStatus			lastPublishAttempt
+query.site.siteBgpStatus		}
+query.site.siteBgpStatus	}
+query.site.siteBgpStatus	rawStatus
+query.site.siteBgpStatus}
 	}	
 }

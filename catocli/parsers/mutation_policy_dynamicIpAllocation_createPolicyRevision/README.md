@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.dynamicIpAllocation.createPolicyRevision:
 
-`catocli mutation policy dynamicIpAllocation createPolicyRevision -h`
+```bash
+catocli mutation policy dynamicIpAllocation createPolicyRevision -h
 
-`catocli mutation policy dynamicIpAllocation createPolicyRevision <json>`
+catocli mutation policy dynamicIpAllocation createPolicyRevision <json>
 
-`catocli mutation policy dynamicIpAllocation createPolicyRevision "$(cat < mutation.policy.dynamicIpAllocation.createPolicyRevision.json)"`
+catocli mutation policy dynamicIpAllocation createPolicyRevision "$(cat < mutation.policy.dynamicIpAllocation.createPolicyRevision.json)"
 
-`catocli mutation policy dynamicIpAllocation createPolicyRevision '{"dynamicIpAllocationPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyCreateRevisionInput":{"description":"string","name":"string"}}'`
+catocli mutation policy dynamicIpAllocation createPolicyRevision '{"dynamicIpAllocationPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyCreateRevisionInput":{"description":"string","name":"string"}}'
 
-`catocli mutation policy dynamicIpAllocation createPolicyRevision -p '{
+catocli mutation policy dynamicIpAllocation createPolicyRevision -p '{
     "dynamicIpAllocationPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"
@@ -23,7 +24,7 @@
         "name": "string"
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.dynamicIpAllocation.createPolicyRevision ####
 

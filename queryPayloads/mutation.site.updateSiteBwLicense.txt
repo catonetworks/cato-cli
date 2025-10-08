@@ -1,287 +1,382 @@
-mutation siteUpdateSiteBwLicense ( $updateSiteBwLicenseInput:UpdateSiteBwLicenseInput! $accountId:ID! ) {
-	site ( accountId:$accountId ) {
-		updateSiteBwLicense ( input:$updateSiteBwLicenseInput  )  {
-			licenseUpdateSiteBwLicensePayload: license {
-				id 
-				description 
-				plan 
-				sku 
-				status 
-				startDate 
-				expirationDate 
-				lastUpdated 
-				... on DataLakeLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-					dpaVersion 
-					retentionPeriod 
-					total 
-				}
-				... on PublicIpsLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-					total 
-				}
-				... on SiteLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-					siteLicenseGroup 
-					regionality 
-					siteLicenseType 
-					total 
-					site  {
-						id
-						name
-					}
-
-				}
-				... on PooledBandwidthLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-					siteLicenseGroup 
-					siteLicenseType 
-					total 
-					allocatedBandwidth 
-					sites  {
-						sitePooledBandwidthLicenseSite: site {
-							id 
-							name 
-						}
-						allocatedBandwidth
-					}
-
-					accounts  {
-						accountPartnerPooledBandwidthLicenseAccount: account {
-							id 
-							name 
-						}
-						allocatedBandwidth
-					}
-
-				}
-				... on ZtnaUsersLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-					ztnaUsersLicenseGroup 
-					total 
-				}
-				... on EndpointProtectionLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-					total 
-				}
-				... on IlmmLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-					total 
-				}
-				... on IpsLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-				}
-				... on MalwareProtectionLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-				}
-				... on NextGenMalwareProtectionLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-				}
-				... on ThreatPreventionLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-				}
-				... on NOCaaSLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-				}
-				... on CasbLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-				}
-				... on DlpLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-				}
-				... on MdrLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-				}
-				... on ManagedXdrLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-				}
-				... on RbiLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-				}
-				... on SaasSecurityApiLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-					total 
-				}
-				... on XdrProLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-					total 
-				}
-				... on DemLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-					total 
-				}
-				... on IotOtLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-				}
-				... on AtpLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-				}
-				... on XOpsLicense {
-					id 
-					description 
-					plan 
-					sku 
-					status 
-					startDate 
-					expirationDate 
-					lastUpdated 
-				}
+mutation siteUpdateSiteBwLicense ( $updateSiteBwLicenseInput:UpdateSiteBwLicenseInput!) {
+	site ( ) {
+mutation.site.updateSiteBwLicenseupdateSiteBwLicense ( input:$updateSiteBwLicenseInput  )  {
+mutation.site.updateSiteBwLicense	license {
+mutation.site.updateSiteBwLicense		id
+mutation.site.updateSiteBwLicense		description
+mutation.site.updateSiteBwLicense		plan
+mutation.site.updateSiteBwLicense		sku
+mutation.site.updateSiteBwLicense		status
+mutation.site.updateSiteBwLicense		startDate
+mutation.site.updateSiteBwLicense		expirationDate
+mutation.site.updateSiteBwLicense		lastUpdated
+mutation.site.updateSiteBwLicense		... on DataLakeLicense {
+mutation.site.updateSiteBwLicense			id
+mutation.site.updateSiteBwLicense			description
+mutation.site.updateSiteBwLicense			plan
+mutation.site.updateSiteBwLicense			sku
+mutation.site.updateSiteBwLicense			status
+mutation.site.updateSiteBwLicense			startDate
+mutation.site.updateSiteBwLicense			expirationDate
+mutation.site.updateSiteBwLicense			lastUpdated
+mutation.site.updateSiteBwLicense			dpaVersion
+mutation.site.updateSiteBwLicense			retentionPeriod
+mutation.site.updateSiteBwLicense			total
+mutation.site.updateSiteBwLicense		}
+mutation.site.updateSiteBwLicense		... on PublicIpsLicense {
+mutation.site.updateSiteBwLicense			id
+mutation.site.updateSiteBwLicense			description
+mutation.site.updateSiteBwLicense			plan
+mutation.site.updateSiteBwLicense			sku
+mutation.site.updateSiteBwLicense			status
+mutation.site.updateSiteBwLicense			startDate
+mutation.site.updateSiteBwLicense			expirationDate
+mutation.site.updateSiteBwLicense			lastUpdated
+mutation.site.updateSiteBwLicense			total
+mutation.site.updateSiteBwLicense		}
+mutation.site.updateSiteBwLicense		... on SiteLicense {
+mutation.site.updateSiteBwLicense			id
+mutation.site.updateSiteBwLicense			description
+mutation.site.updateSiteBwLicense			plan
+mutation.site.updateSiteBwLicense			sku
+mutation.site.updateSiteBwLicense			status
+mutation.site.updateSiteBwLicense			startDate
+mutation.site.updateSiteBwLicense			expirationDate
+mutation.site.updateSiteBwLicense			lastUpdated
+mutation.site.updateSiteBwLicense			siteLicenseGroup {
+	id
+	name
+	description
+	membersCount
+	audit {
+		updatedTime
+		updatedBy {
+			__typename
+			... on AdminRef {
+				id
+				name
+			}
+			... on ApiKeyRef {
+				id
+				name
 			}
 		}
-
+	}
+	members {
+		items {
+			id
+			name
+			type
+		}
+		paging {
+			total
+		}
+	}
+	membersCountPerType {
+		type
+		membersCount
+	}
+}
+mutation.site.updateSiteBwLicense			regionality
+mutation.site.updateSiteBwLicense			siteLicenseType
+mutation.site.updateSiteBwLicense			total
+mutation.site.updateSiteBwLicense			site {
+mutation.site.updateSiteBwLicense				id
+mutation.site.updateSiteBwLicense				name
+mutation.site.updateSiteBwLicense			}
+mutation.site.updateSiteBwLicense		}
+mutation.site.updateSiteBwLicense		... on PooledBandwidthLicense {
+mutation.site.updateSiteBwLicense			id
+mutation.site.updateSiteBwLicense			description
+mutation.site.updateSiteBwLicense			plan
+mutation.site.updateSiteBwLicense			sku
+mutation.site.updateSiteBwLicense			status
+mutation.site.updateSiteBwLicense			startDate
+mutation.site.updateSiteBwLicense			expirationDate
+mutation.site.updateSiteBwLicense			lastUpdated
+mutation.site.updateSiteBwLicense			siteLicenseGroup {
+	id
+	name
+	description
+	membersCount
+	audit {
+		updatedTime
+		updatedBy {
+			__typename
+			... on AdminRef {
+				id
+				name
+			}
+			... on ApiKeyRef {
+				id
+				name
+			}
+		}
+	}
+	members {
+		items {
+			id
+			name
+			type
+		}
+		paging {
+			total
+		}
+	}
+	membersCountPerType {
+		type
+		membersCount
+	}
+}
+mutation.site.updateSiteBwLicense			siteLicenseType
+mutation.site.updateSiteBwLicense			total
+mutation.site.updateSiteBwLicense			allocatedBandwidth
+mutation.site.updateSiteBwLicense			sites {
+mutation.site.updateSiteBwLicense				site {
+mutation.site.updateSiteBwLicense					id
+mutation.site.updateSiteBwLicense					name
+mutation.site.updateSiteBwLicense				}
+mutation.site.updateSiteBwLicense				allocatedBandwidth
+mutation.site.updateSiteBwLicense			}
+mutation.site.updateSiteBwLicense			accounts {
+mutation.site.updateSiteBwLicense				account {
+mutation.site.updateSiteBwLicense					id
+mutation.site.updateSiteBwLicense					name
+mutation.site.updateSiteBwLicense				}
+mutation.site.updateSiteBwLicense				allocatedBandwidth
+mutation.site.updateSiteBwLicense			}
+mutation.site.updateSiteBwLicense		}
+mutation.site.updateSiteBwLicense		... on ZtnaUsersLicense {
+mutation.site.updateSiteBwLicense			id
+mutation.site.updateSiteBwLicense			description
+mutation.site.updateSiteBwLicense			plan
+mutation.site.updateSiteBwLicense			sku
+mutation.site.updateSiteBwLicense			status
+mutation.site.updateSiteBwLicense			startDate
+mutation.site.updateSiteBwLicense			expirationDate
+mutation.site.updateSiteBwLicense			lastUpdated
+mutation.site.updateSiteBwLicense			ztnaUsersLicenseGroup {
+	id
+	name
+	description
+	membersCount
+	audit {
+		updatedTime
+		updatedBy {
+			__typename
+			... on AdminRef {
+				id
+				name
+			}
+			... on ApiKeyRef {
+				id
+				name
+			}
+		}
+	}
+	members {
+		items {
+			id
+			name
+			type
+		}
+		paging {
+			total
+		}
+	}
+	membersCountPerType {
+		type
+		membersCount
+	}
+}
+mutation.site.updateSiteBwLicense			total
+mutation.site.updateSiteBwLicense		}
+mutation.site.updateSiteBwLicense		... on EndpointProtectionLicense {
+mutation.site.updateSiteBwLicense			id
+mutation.site.updateSiteBwLicense			description
+mutation.site.updateSiteBwLicense			plan
+mutation.site.updateSiteBwLicense			sku
+mutation.site.updateSiteBwLicense			status
+mutation.site.updateSiteBwLicense			startDate
+mutation.site.updateSiteBwLicense			expirationDate
+mutation.site.updateSiteBwLicense			lastUpdated
+mutation.site.updateSiteBwLicense			total
+mutation.site.updateSiteBwLicense		}
+mutation.site.updateSiteBwLicense		... on IlmmLicense {
+mutation.site.updateSiteBwLicense			id
+mutation.site.updateSiteBwLicense			description
+mutation.site.updateSiteBwLicense			plan
+mutation.site.updateSiteBwLicense			sku
+mutation.site.updateSiteBwLicense			status
+mutation.site.updateSiteBwLicense			startDate
+mutation.site.updateSiteBwLicense			expirationDate
+mutation.site.updateSiteBwLicense			lastUpdated
+mutation.site.updateSiteBwLicense			total
+mutation.site.updateSiteBwLicense		}
+mutation.site.updateSiteBwLicense		... on IpsLicense {
+mutation.site.updateSiteBwLicense			id
+mutation.site.updateSiteBwLicense			description
+mutation.site.updateSiteBwLicense			plan
+mutation.site.updateSiteBwLicense			sku
+mutation.site.updateSiteBwLicense			status
+mutation.site.updateSiteBwLicense			startDate
+mutation.site.updateSiteBwLicense			expirationDate
+mutation.site.updateSiteBwLicense			lastUpdated
+mutation.site.updateSiteBwLicense		}
+mutation.site.updateSiteBwLicense		... on MalwareProtectionLicense {
+mutation.site.updateSiteBwLicense			id
+mutation.site.updateSiteBwLicense			description
+mutation.site.updateSiteBwLicense			plan
+mutation.site.updateSiteBwLicense			sku
+mutation.site.updateSiteBwLicense			status
+mutation.site.updateSiteBwLicense			startDate
+mutation.site.updateSiteBwLicense			expirationDate
+mutation.site.updateSiteBwLicense			lastUpdated
+mutation.site.updateSiteBwLicense		}
+mutation.site.updateSiteBwLicense		... on NextGenMalwareProtectionLicense {
+mutation.site.updateSiteBwLicense			id
+mutation.site.updateSiteBwLicense			description
+mutation.site.updateSiteBwLicense			plan
+mutation.site.updateSiteBwLicense			sku
+mutation.site.updateSiteBwLicense			status
+mutation.site.updateSiteBwLicense			startDate
+mutation.site.updateSiteBwLicense			expirationDate
+mutation.site.updateSiteBwLicense			lastUpdated
+mutation.site.updateSiteBwLicense		}
+mutation.site.updateSiteBwLicense		... on ThreatPreventionLicense {
+mutation.site.updateSiteBwLicense			id
+mutation.site.updateSiteBwLicense			description
+mutation.site.updateSiteBwLicense			plan
+mutation.site.updateSiteBwLicense			sku
+mutation.site.updateSiteBwLicense			status
+mutation.site.updateSiteBwLicense			startDate
+mutation.site.updateSiteBwLicense			expirationDate
+mutation.site.updateSiteBwLicense			lastUpdated
+mutation.site.updateSiteBwLicense		}
+mutation.site.updateSiteBwLicense		... on NOCaaSLicense {
+mutation.site.updateSiteBwLicense			id
+mutation.site.updateSiteBwLicense			description
+mutation.site.updateSiteBwLicense			plan
+mutation.site.updateSiteBwLicense			sku
+mutation.site.updateSiteBwLicense			status
+mutation.site.updateSiteBwLicense			startDate
+mutation.site.updateSiteBwLicense			expirationDate
+mutation.site.updateSiteBwLicense			lastUpdated
+mutation.site.updateSiteBwLicense		}
+mutation.site.updateSiteBwLicense		... on CasbLicense {
+mutation.site.updateSiteBwLicense			id
+mutation.site.updateSiteBwLicense			description
+mutation.site.updateSiteBwLicense			plan
+mutation.site.updateSiteBwLicense			sku
+mutation.site.updateSiteBwLicense			status
+mutation.site.updateSiteBwLicense			startDate
+mutation.site.updateSiteBwLicense			expirationDate
+mutation.site.updateSiteBwLicense			lastUpdated
+mutation.site.updateSiteBwLicense		}
+mutation.site.updateSiteBwLicense		... on DlpLicense {
+mutation.site.updateSiteBwLicense			id
+mutation.site.updateSiteBwLicense			description
+mutation.site.updateSiteBwLicense			plan
+mutation.site.updateSiteBwLicense			sku
+mutation.site.updateSiteBwLicense			status
+mutation.site.updateSiteBwLicense			startDate
+mutation.site.updateSiteBwLicense			expirationDate
+mutation.site.updateSiteBwLicense			lastUpdated
+mutation.site.updateSiteBwLicense		}
+mutation.site.updateSiteBwLicense		... on MdrLicense {
+mutation.site.updateSiteBwLicense			id
+mutation.site.updateSiteBwLicense			description
+mutation.site.updateSiteBwLicense			plan
+mutation.site.updateSiteBwLicense			sku
+mutation.site.updateSiteBwLicense			status
+mutation.site.updateSiteBwLicense			startDate
+mutation.site.updateSiteBwLicense			expirationDate
+mutation.site.updateSiteBwLicense			lastUpdated
+mutation.site.updateSiteBwLicense		}
+mutation.site.updateSiteBwLicense		... on ManagedXdrLicense {
+mutation.site.updateSiteBwLicense			id
+mutation.site.updateSiteBwLicense			description
+mutation.site.updateSiteBwLicense			plan
+mutation.site.updateSiteBwLicense			sku
+mutation.site.updateSiteBwLicense			status
+mutation.site.updateSiteBwLicense			startDate
+mutation.site.updateSiteBwLicense			expirationDate
+mutation.site.updateSiteBwLicense			lastUpdated
+mutation.site.updateSiteBwLicense		}
+mutation.site.updateSiteBwLicense		... on RbiLicense {
+mutation.site.updateSiteBwLicense			id
+mutation.site.updateSiteBwLicense			description
+mutation.site.updateSiteBwLicense			plan
+mutation.site.updateSiteBwLicense			sku
+mutation.site.updateSiteBwLicense			status
+mutation.site.updateSiteBwLicense			startDate
+mutation.site.updateSiteBwLicense			expirationDate
+mutation.site.updateSiteBwLicense			lastUpdated
+mutation.site.updateSiteBwLicense		}
+mutation.site.updateSiteBwLicense		... on SaasSecurityApiLicense {
+mutation.site.updateSiteBwLicense			id
+mutation.site.updateSiteBwLicense			description
+mutation.site.updateSiteBwLicense			plan
+mutation.site.updateSiteBwLicense			sku
+mutation.site.updateSiteBwLicense			status
+mutation.site.updateSiteBwLicense			startDate
+mutation.site.updateSiteBwLicense			expirationDate
+mutation.site.updateSiteBwLicense			lastUpdated
+mutation.site.updateSiteBwLicense			total
+mutation.site.updateSiteBwLicense		}
+mutation.site.updateSiteBwLicense		... on XdrProLicense {
+mutation.site.updateSiteBwLicense			id
+mutation.site.updateSiteBwLicense			description
+mutation.site.updateSiteBwLicense			plan
+mutation.site.updateSiteBwLicense			sku
+mutation.site.updateSiteBwLicense			status
+mutation.site.updateSiteBwLicense			startDate
+mutation.site.updateSiteBwLicense			expirationDate
+mutation.site.updateSiteBwLicense			lastUpdated
+mutation.site.updateSiteBwLicense			total
+mutation.site.updateSiteBwLicense		}
+mutation.site.updateSiteBwLicense		... on DemLicense {
+mutation.site.updateSiteBwLicense			id
+mutation.site.updateSiteBwLicense			description
+mutation.site.updateSiteBwLicense			plan
+mutation.site.updateSiteBwLicense			sku
+mutation.site.updateSiteBwLicense			status
+mutation.site.updateSiteBwLicense			startDate
+mutation.site.updateSiteBwLicense			expirationDate
+mutation.site.updateSiteBwLicense			lastUpdated
+mutation.site.updateSiteBwLicense			total
+mutation.site.updateSiteBwLicense		}
+mutation.site.updateSiteBwLicense		... on IotOtLicense {
+mutation.site.updateSiteBwLicense			id
+mutation.site.updateSiteBwLicense			description
+mutation.site.updateSiteBwLicense			plan
+mutation.site.updateSiteBwLicense			sku
+mutation.site.updateSiteBwLicense			status
+mutation.site.updateSiteBwLicense			startDate
+mutation.site.updateSiteBwLicense			expirationDate
+mutation.site.updateSiteBwLicense			lastUpdated
+mutation.site.updateSiteBwLicense		}
+mutation.site.updateSiteBwLicense		... on AtpLicense {
+mutation.site.updateSiteBwLicense			id
+mutation.site.updateSiteBwLicense			description
+mutation.site.updateSiteBwLicense			plan
+mutation.site.updateSiteBwLicense			sku
+mutation.site.updateSiteBwLicense			status
+mutation.site.updateSiteBwLicense			startDate
+mutation.site.updateSiteBwLicense			expirationDate
+mutation.site.updateSiteBwLicense			lastUpdated
+mutation.site.updateSiteBwLicense		}
+mutation.site.updateSiteBwLicense		... on XOpsLicense {
+mutation.site.updateSiteBwLicense			id
+mutation.site.updateSiteBwLicense			description
+mutation.site.updateSiteBwLicense			plan
+mutation.site.updateSiteBwLicense			sku
+mutation.site.updateSiteBwLicense			status
+mutation.site.updateSiteBwLicense			startDate
+mutation.site.updateSiteBwLicense			expirationDate
+mutation.site.updateSiteBwLicense			lastUpdated
+mutation.site.updateSiteBwLicense		}
+mutation.site.updateSiteBwLicense	}
+mutation.site.updateSiteBwLicense}
 	}	
 }

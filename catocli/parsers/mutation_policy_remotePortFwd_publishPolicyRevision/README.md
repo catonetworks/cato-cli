@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.remotePortFwd.publishPolicyRevision:
 
-`catocli mutation policy remotePortFwd publishPolicyRevision -h`
+```bash
+catocli mutation policy remotePortFwd publishPolicyRevision -h
 
-`catocli mutation policy remotePortFwd publishPolicyRevision <json>`
+catocli mutation policy remotePortFwd publishPolicyRevision <json>
 
-`catocli mutation policy remotePortFwd publishPolicyRevision "$(cat < mutation.policy.remotePortFwd.publishPolicyRevision.json)"`
+catocli mutation policy remotePortFwd publishPolicyRevision "$(cat < mutation.policy.remotePortFwd.publishPolicyRevision.json)"
 
-`catocli mutation policy remotePortFwd publishPolicyRevision '{"policyPublishRevisionInput":{"description":"string","name":"string"},"remotePortFwdPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
+catocli mutation policy remotePortFwd publishPolicyRevision '{"policyPublishRevisionInput":{"description":"string","name":"string"},"remotePortFwdPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-`catocli mutation policy remotePortFwd publishPolicyRevision -p '{
+catocli mutation policy remotePortFwd publishPolicyRevision -p '{
     "policyPublishRevisionInput": {
         "description": "string",
         "name": "string"
@@ -23,7 +24,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.remotePortFwd.publishPolicyRevision ####
 

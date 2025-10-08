@@ -4,18 +4,19 @@
 
 ### Usage for mutation.enterpriseDirectory.archiveLocation:
 
-`catocli mutation enterpriseDirectory archiveLocation -h`
+```bash
+catocli mutation enterpriseDirectory archiveLocation -h
 
-`catocli mutation enterpriseDirectory archiveLocation <json>`
+catocli mutation enterpriseDirectory archiveLocation <json>
 
-`catocli mutation enterpriseDirectory archiveLocation "$(cat < mutation.enterpriseDirectory.archiveLocation.json)"`
+catocli mutation enterpriseDirectory archiveLocation "$(cat < mutation.enterpriseDirectory.archiveLocation.json)"
 
-`catocli mutation enterpriseDirectory archiveLocation '{"locationId":"id"}'`
+catocli mutation enterpriseDirectory archiveLocation '{"locationId":"id"}'
 
-`catocli mutation enterpriseDirectory archiveLocation -p '{
+catocli mutation enterpriseDirectory archiveLocation -p '{
     "locationId": "id"
 }'
-
+```
 
 #### Operation Arguments for mutation.enterpriseDirectory.archiveLocation ####
 

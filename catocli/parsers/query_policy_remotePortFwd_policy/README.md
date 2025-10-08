@@ -4,15 +4,16 @@
 
 ### Usage for query.policy.remotePortFwd.policy:
 
-`catocli query policy remotePortFwd policy -h`
+```bash
+catocli query policy remotePortFwd policy -h
 
-`catocli query policy remotePortFwd policy <json>`
+catocli query policy remotePortFwd policy <json>
 
-`catocli query policy remotePortFwd policy "$(cat < query.policy.remotePortFwd.policy.json)"`
+catocli query policy remotePortFwd policy "$(cat < query.policy.remotePortFwd.policy.json)"
 
-`catocli query policy remotePortFwd policy '{"remotePortFwdPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'`
+catocli query policy remotePortFwd policy '{"remotePortFwdPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'
 
-`catocli query policy remotePortFwd policy -p '{
+catocli query policy remotePortFwd policy -p '{
     "remotePortFwdPolicyInput": {
         "policyRevisionInput": {
             "id": "id",
@@ -20,7 +21,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for query.policy.remotePortFwd.policy ####
 

@@ -1,643 +1,680 @@
-mutation policyApplicationControlRemoveRule ( $applicationControlRemoveRuleInput:ApplicationControlRemoveRuleInput! $applicationControlPolicyMutationInput:ApplicationControlPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		applicationControl ( input:$applicationControlPolicyMutationInput  )  {
-			removeRuleApplicationControlPolicyMutations: removeRule ( input:$applicationControlRemoveRuleInput   ) {
-				rule  {
-					auditApplicationControlRulePayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					ruleApplicationControlRulePayload: rule {
-						id 
-						name 
-						description 
-						index 
-						section  {
-							id
-							name
-						}
-
-						enabled 
-						ruleType 
-						applicationRule  {
-							applicationApplicationControlApplicationRule: application {
-								application  {
-									id
-									name
-								}
-
-								customApp  {
-									id
-									name
-								}
-
-								appCategory  {
-									id
-									name
-								}
-
-								customCategory  {
-									id
-									name
-								}
-
-								sanctionedAppsCategory  {
-									id
-									name
-								}
-
-								applicationType 
-							}
-							applicationActivitySatisfyApplicationControlApplicationRule: applicationActivitySatisfy
-							applicationActivityApplicationControlApplicationRule: applicationActivity {
-								activity  {
-									id
-									name
-								}
-
-								field  {
-									id
-									name
-								}
-
-								operator 
-								value 
-								valueSet  {
-									id
-									name
-								}
-
-							}
-							applicationContextApplicationControlApplicationRule: applicationContext {
-								applicationTenant  {
-									operatorApplicationControlTenant: operator
-									value
-									valueSetApplicationControlTenant: valueSet {
-										id 
-										name 
-									}
-								}
-
-							}
-							accessMethodApplicationControlApplicationRule: accessMethod {
-								accessMethod 
-								operator 
-								value 
-								valueSet  {
-									id
-									name
-								}
-
-							}
-							sourceApplicationControlApplicationRule: source {
-								country  {
-									id
-									name
-								}
-
-								host  {
-									id
-									name
-								}
-
-								site  {
-									id
-									name
-								}
-
-								subnet 
-								ip 
-								ipRange  {
-									from
-									to
-								}
-
-								globalIpRange  {
-									id
-									name
-								}
-
-								networkInterface  {
-									id
-									name
-								}
-
-								siteNetworkSubnet  {
-									id
-									name
-								}
-
-								floatingSubnet  {
-									id
-									name
-								}
-
-								user  {
-									id
-									name
-								}
-
-								usersGroup  {
-									id
-									name
-								}
-
-								group  {
-									id
-									name
-								}
-
-								systemGroup  {
-									id
-									name
-								}
-
-							}
-							deviceApplicationControlApplicationRule: device {
-								id 
-								name 
-							}
-							actionApplicationControlApplicationRule: action
-							trackingApplicationControlApplicationRule: tracking {
-								event  {
-									enabled
-								}
-
-								alert  {
-									enabled
-									frequencyPolicyRuleTrackingAlert: frequency
-									subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
-										id 
-										name 
-									}
-									webhookPolicyRuleTrackingAlert: webhook {
-										id 
-										name 
-									}
-									mailingListPolicyRuleTrackingAlert: mailingList {
-										id 
-										name 
-									}
-								}
-
-							}
-							scheduleApplicationControlApplicationRule: schedule {
-								activeOn 
-								customTimeframe  {
-									from
-									to
-								}
-
-								customRecurring  {
-									from
-									to
-									daysPolicyCustomRecurring: days
-								}
-
-							}
-							severityApplicationControlApplicationRule: severity
-							applicationCriteriaSatisfyApplicationControlApplicationRule: applicationCriteriaSatisfy
-							applicationCriteriaApplicationControlApplicationRule: applicationCriteria {
-								attributes  {
-									complianceAttributesApplicationControlAttributes: complianceAttributes {
-										iso27001 
-										sox 
-										hippa 
-										soc1 
-										soc2 
-										soc3 
-										isae3402 
-										pciDss 
-									}
-									securityAttributesApplicationControlAttributes: securityAttributes {
-										mfa 
-										encryptionAtRest 
-										auditTrail 
-										rbac 
-										rememberPassword 
-										sso 
-										trustedCertificate 
-										tlsEnforcement 
-										httpSecurityHeaders 
-									}
-								}
-
-								originCountry  {
-									id
-									name
-								}
-
-								risk  {
-									risk
-									riskOperatorApplicationControlRiskCriteria: riskOperator
-								}
-
-							}
-						}
-
-						dataRule  {
-							applicationApplicationControlDataRule: application {
-								application  {
-									id
-									name
-								}
-
-								customApp  {
-									id
-									name
-								}
-
-								appCategory  {
-									id
-									name
-								}
-
-								customCategory  {
-									id
-									name
-								}
-
-								sanctionedAppsCategory  {
-									id
-									name
-								}
-
-								applicationType 
-							}
-							applicationContextApplicationControlDataRule: applicationContext {
-								applicationTenant  {
-									operatorApplicationControlTenant: operator
-									value
-									valueSetApplicationControlTenant: valueSet {
-										id 
-										name 
-									}
-								}
-
-							}
-							applicationActivitySatisfyApplicationControlDataRule: applicationActivitySatisfy
-							applicationActivityApplicationControlDataRule: applicationActivity {
-								activity  {
-									id
-									name
-								}
-
-								field  {
-									id
-									name
-								}
-
-								operator 
-								value 
-								valueSet  {
-									id
-									name
-								}
-
-							}
-							accessMethodApplicationControlDataRule: accessMethod {
-								accessMethod 
-								operator 
-								value 
-								valueSet  {
-									id
-									name
-								}
-
-							}
-							sourceApplicationControlDataRule: source {
-								country  {
-									id
-									name
-								}
-
-								host  {
-									id
-									name
-								}
-
-								site  {
-									id
-									name
-								}
-
-								subnet 
-								ip 
-								ipRange  {
-									from
-									to
-								}
-
-								globalIpRange  {
-									id
-									name
-								}
-
-								networkInterface  {
-									id
-									name
-								}
-
-								siteNetworkSubnet  {
-									id
-									name
-								}
-
-								floatingSubnet  {
-									id
-									name
-								}
-
-								user  {
-									id
-									name
-								}
-
-								usersGroup  {
-									id
-									name
-								}
-
-								group  {
-									id
-									name
-								}
-
-								systemGroup  {
-									id
-									name
-								}
-
-							}
-							deviceApplicationControlDataRule: device {
-								id 
-								name 
-							}
-							actionApplicationControlDataRule: action
-							trackingApplicationControlDataRule: tracking {
-								event  {
-									enabled
-								}
-
-								alert  {
-									enabled
-									frequencyPolicyRuleTrackingAlert: frequency
-									subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
-										id 
-										name 
-									}
-									webhookPolicyRuleTrackingAlert: webhook {
-										id 
-										name 
-									}
-									mailingListPolicyRuleTrackingAlert: mailingList {
-										id 
-										name 
-									}
-								}
-
-							}
-							scheduleApplicationControlDataRule: schedule {
-								activeOn 
-								customTimeframe  {
-									from
-									to
-								}
-
-								customRecurring  {
-									from
-									to
-									daysPolicyCustomRecurring: days
-								}
-
-							}
-							severityApplicationControlDataRule: severity
-							fileAttributeSatisfyApplicationControlDataRule: fileAttributeSatisfy
-							fileAttributeApplicationControlDataRule: fileAttribute {
-								fileAttribute 
-								operator 
-								value 
-								contentTypeValues  {
-									id
-									name
-								}
-
-								contentTypeGroupValues  {
-									id
-									name
-								}
-
-							}
-							dlpProfileApplicationControlDataRule: dlpProfile {
-								contentProfile  {
-									id
-									name
-								}
-
-								edmProfile  {
-									id
-									name
-								}
-
-							}
-						}
-
-						fileRule  {
-							applicationApplicationControlFileRule: application {
-								application  {
-									id
-									name
-								}
-
-								customApp  {
-									id
-									name
-								}
-
-								appCategory  {
-									id
-									name
-								}
-
-								customCategory  {
-									id
-									name
-								}
-
-								sanctionedAppsCategory  {
-									id
-									name
-								}
-
-								applicationType 
-							}
-							applicationActivitySatisfyApplicationControlFileRule: applicationActivitySatisfy
-							applicationActivityApplicationControlFileRule: applicationActivity {
-								activity  {
-									id
-									name
-								}
-
-								field  {
-									id
-									name
-								}
-
-								operator 
-								value 
-								valueSet  {
-									id
-									name
-								}
-
-							}
-							accessMethodApplicationControlFileRule: accessMethod {
-								accessMethod 
-								operator 
-								value 
-								valueSet  {
-									id
-									name
-								}
-
-							}
-							sourceApplicationControlFileRule: source {
-								country  {
-									id
-									name
-								}
-
-								host  {
-									id
-									name
-								}
-
-								site  {
-									id
-									name
-								}
-
-								subnet 
-								ip 
-								ipRange  {
-									from
-									to
-								}
-
-								globalIpRange  {
-									id
-									name
-								}
-
-								networkInterface  {
-									id
-									name
-								}
-
-								siteNetworkSubnet  {
-									id
-									name
-								}
-
-								floatingSubnet  {
-									id
-									name
-								}
-
-								user  {
-									id
-									name
-								}
-
-								usersGroup  {
-									id
-									name
-								}
-
-								group  {
-									id
-									name
-								}
-
-								systemGroup  {
-									id
-									name
-								}
-
-							}
-							deviceApplicationControlFileRule: device {
-								id 
-								name 
-							}
-							actionApplicationControlFileRule: action
-							trackingApplicationControlFileRule: tracking {
-								event  {
-									enabled
-								}
-
-								alert  {
-									enabled
-									frequencyPolicyRuleTrackingAlert: frequency
-									subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
-										id 
-										name 
-									}
-									webhookPolicyRuleTrackingAlert: webhook {
-										id 
-										name 
-									}
-									mailingListPolicyRuleTrackingAlert: mailingList {
-										id 
-										name 
-									}
-								}
-
-							}
-							scheduleApplicationControlFileRule: schedule {
-								activeOn 
-								customTimeframe  {
-									from
-									to
-								}
-
-								customRecurring  {
-									from
-									to
-									daysPolicyCustomRecurring: days
-								}
-
-							}
-							severityApplicationControlFileRule: severity
-							fileAttributeSatisfyApplicationControlFileRule: fileAttributeSatisfy
-							fileAttributeApplicationControlFileRule: fileAttribute {
-								fileAttribute 
-								operator 
-								value 
-								contentTypeValues  {
-									id
-									name
-								}
-
-								contentTypeGroupValues  {
-									id
-									name
-								}
-
-							}
-						}
-
-					}
-					propertiesApplicationControlRulePayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyApplicationControlRemoveRule ( $applicationControlPolicyMutationInput:ApplicationControlPolicyMutationInput $applicationControlRemoveRuleInput:ApplicationControlRemoveRuleInput!) {
+	policy ( ) {
+mutation.policy.applicationControl.removeRuleapplicationControl ( input:$applicationControlPolicyMutationInput  )  {
+mutation.policy.applicationControl.removeRule	removeRule ( input:$applicationControlRemoveRuleInput   ) {
+mutation.policy.applicationControl.removeRule		rule {
+mutation.policy.applicationControl.removeRule			audit {
+mutation.policy.applicationControl.removeRule				updatedTime
+mutation.policy.applicationControl.removeRule				updatedBy
+mutation.policy.applicationControl.removeRule			}
+mutation.policy.applicationControl.removeRule			rule {
+mutation.policy.applicationControl.removeRule				id
+mutation.policy.applicationControl.removeRule				name
+mutation.policy.applicationControl.removeRule				description
+mutation.policy.applicationControl.removeRule				index
+mutation.policy.applicationControl.removeRule				section {
+mutation.policy.applicationControl.removeRule					id
+mutation.policy.applicationControl.removeRule					name
+mutation.policy.applicationControl.removeRule				}
+mutation.policy.applicationControl.removeRule				enabled
+mutation.policy.applicationControl.removeRule				ruleType
+mutation.policy.applicationControl.removeRule				applicationRule {
+mutation.policy.applicationControl.removeRule					application {
+mutation.policy.applicationControl.removeRule						application {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						customApp {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						appCategory {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						customCategory {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						sanctionedAppsCategory {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						applicationType
+mutation.policy.applicationControl.removeRule					}
+mutation.policy.applicationControl.removeRule					applicationActivitySatisfy
+mutation.policy.applicationControl.removeRule					applicationActivity {
+mutation.policy.applicationControl.removeRule						activity {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						field {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						operator
+mutation.policy.applicationControl.removeRule						value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.removeRule						valueSet {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule					}
+mutation.policy.applicationControl.removeRule					applicationContext {
+mutation.policy.applicationControl.removeRule						applicationTenant {
+mutation.policy.applicationControl.removeRule							operator
+mutation.policy.applicationControl.removeRule							value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.removeRule							valueSet {
+mutation.policy.applicationControl.removeRule								id
+mutation.policy.applicationControl.removeRule								name
+mutation.policy.applicationControl.removeRule							}
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule					}
+mutation.policy.applicationControl.removeRule					accessMethod {
+mutation.policy.applicationControl.removeRule						accessMethod
+mutation.policy.applicationControl.removeRule						operator
+mutation.policy.applicationControl.removeRule						value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.removeRule						valueSet {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule					}
+mutation.policy.applicationControl.removeRule					source {
+mutation.policy.applicationControl.removeRule						country {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						host {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						site {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						subnet
+mutation.policy.applicationControl.removeRule						ip
+mutation.policy.applicationControl.removeRule						ipRange {
+mutation.policy.applicationControl.removeRule							from
+mutation.policy.applicationControl.removeRule							to
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						globalIpRange {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						networkInterface {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						siteNetworkSubnet {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						floatingSubnet {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						user {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						usersGroup {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						group {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						systemGroup {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule					}
+mutation.policy.applicationControl.removeRule					device {
+mutation.policy.applicationControl.removeRule						id
+mutation.policy.applicationControl.removeRule						name
+mutation.policy.applicationControl.removeRule					}
+mutation.policy.applicationControl.removeRule					action
+mutation.policy.applicationControl.removeRule					tracking {
+mutation.policy.applicationControl.removeRule						event {
+mutation.policy.applicationControl.removeRule							enabled
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						alert {
+mutation.policy.applicationControl.removeRule							enabled
+mutation.policy.applicationControl.removeRule							frequency
+mutation.policy.applicationControl.removeRule							subscriptionGroup {
+mutation.policy.applicationControl.removeRule								id
+mutation.policy.applicationControl.removeRule								name
+mutation.policy.applicationControl.removeRule							}
+mutation.policy.applicationControl.removeRule							webhook {
+mutation.policy.applicationControl.removeRule								id
+mutation.policy.applicationControl.removeRule								name
+mutation.policy.applicationControl.removeRule							}
+mutation.policy.applicationControl.removeRule							mailingList {
+mutation.policy.applicationControl.removeRule								id
+mutation.policy.applicationControl.removeRule								name
+mutation.policy.applicationControl.removeRule							}
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule					}
+mutation.policy.applicationControl.removeRule					schedule {
+mutation.policy.applicationControl.removeRule						activeOn
+mutation.policy.applicationControl.removeRule						customTimeframe {
+mutation.policy.applicationControl.removeRule							from
+mutation.policy.applicationControl.removeRule							to
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						customRecurring {
+mutation.policy.applicationControl.removeRule							from
+mutation.policy.applicationControl.removeRule							to
+mutation.policy.applicationControl.removeRule							days
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule					}
+mutation.policy.applicationControl.removeRule					severity
+mutation.policy.applicationControl.removeRule					applicationCriteriaSatisfy
+mutation.policy.applicationControl.removeRule					applicationCriteria {
+mutation.policy.applicationControl.removeRule						attributes {
+mutation.policy.applicationControl.removeRule							complianceAttributes {
+mutation.policy.applicationControl.removeRule								iso27001
+mutation.policy.applicationControl.removeRule								sox
+mutation.policy.applicationControl.removeRule								hippa
+mutation.policy.applicationControl.removeRule								soc1
+mutation.policy.applicationControl.removeRule								soc2
+mutation.policy.applicationControl.removeRule								soc3
+mutation.policy.applicationControl.removeRule								isae3402
+mutation.policy.applicationControl.removeRule								pciDss
+mutation.policy.applicationControl.removeRule							}
+mutation.policy.applicationControl.removeRule							securityAttributes {
+mutation.policy.applicationControl.removeRule								mfa
+mutation.policy.applicationControl.removeRule								encryptionAtRest
+mutation.policy.applicationControl.removeRule								auditTrail
+mutation.policy.applicationControl.removeRule								rbac
+mutation.policy.applicationControl.removeRule								rememberPassword
+mutation.policy.applicationControl.removeRule								sso
+mutation.policy.applicationControl.removeRule								trustedCertificate
+mutation.policy.applicationControl.removeRule								tlsEnforcement
+mutation.policy.applicationControl.removeRule								httpSecurityHeaders
+mutation.policy.applicationControl.removeRule							}
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						originCountry {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						risk {
+mutation.policy.applicationControl.removeRule							risk
+mutation.policy.applicationControl.removeRule							riskOperator
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule					}
+mutation.policy.applicationControl.removeRule				}
+mutation.policy.applicationControl.removeRule				dataRule {
+mutation.policy.applicationControl.removeRule					application {
+mutation.policy.applicationControl.removeRule						application {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						customApp {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						appCategory {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						customCategory {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						sanctionedAppsCategory {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						applicationType
+mutation.policy.applicationControl.removeRule					}
+mutation.policy.applicationControl.removeRule					applicationContext {
+mutation.policy.applicationControl.removeRule						applicationTenant {
+mutation.policy.applicationControl.removeRule							operator
+mutation.policy.applicationControl.removeRule							value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.removeRule							valueSet {
+mutation.policy.applicationControl.removeRule								id
+mutation.policy.applicationControl.removeRule								name
+mutation.policy.applicationControl.removeRule							}
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule					}
+mutation.policy.applicationControl.removeRule					applicationActivitySatisfy
+mutation.policy.applicationControl.removeRule					applicationActivity {
+mutation.policy.applicationControl.removeRule						activity {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						field {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						operator
+mutation.policy.applicationControl.removeRule						value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.removeRule						valueSet {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule					}
+mutation.policy.applicationControl.removeRule					accessMethod {
+mutation.policy.applicationControl.removeRule						accessMethod
+mutation.policy.applicationControl.removeRule						operator
+mutation.policy.applicationControl.removeRule						value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.removeRule						valueSet {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule					}
+mutation.policy.applicationControl.removeRule					source {
+mutation.policy.applicationControl.removeRule						country {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						host {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						site {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						subnet
+mutation.policy.applicationControl.removeRule						ip
+mutation.policy.applicationControl.removeRule						ipRange {
+mutation.policy.applicationControl.removeRule							from
+mutation.policy.applicationControl.removeRule							to
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						globalIpRange {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						networkInterface {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						siteNetworkSubnet {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						floatingSubnet {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						user {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						usersGroup {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						group {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						systemGroup {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule					}
+mutation.policy.applicationControl.removeRule					device {
+mutation.policy.applicationControl.removeRule						id
+mutation.policy.applicationControl.removeRule						name
+mutation.policy.applicationControl.removeRule					}
+mutation.policy.applicationControl.removeRule					action
+mutation.policy.applicationControl.removeRule					tracking {
+mutation.policy.applicationControl.removeRule						event {
+mutation.policy.applicationControl.removeRule							enabled
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						alert {
+mutation.policy.applicationControl.removeRule							enabled
+mutation.policy.applicationControl.removeRule							frequency
+mutation.policy.applicationControl.removeRule							subscriptionGroup {
+mutation.policy.applicationControl.removeRule								id
+mutation.policy.applicationControl.removeRule								name
+mutation.policy.applicationControl.removeRule							}
+mutation.policy.applicationControl.removeRule							webhook {
+mutation.policy.applicationControl.removeRule								id
+mutation.policy.applicationControl.removeRule								name
+mutation.policy.applicationControl.removeRule							}
+mutation.policy.applicationControl.removeRule							mailingList {
+mutation.policy.applicationControl.removeRule								id
+mutation.policy.applicationControl.removeRule								name
+mutation.policy.applicationControl.removeRule							}
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule					}
+mutation.policy.applicationControl.removeRule					schedule {
+mutation.policy.applicationControl.removeRule						activeOn
+mutation.policy.applicationControl.removeRule						customTimeframe {
+mutation.policy.applicationControl.removeRule							from
+mutation.policy.applicationControl.removeRule							to
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						customRecurring {
+mutation.policy.applicationControl.removeRule							from
+mutation.policy.applicationControl.removeRule							to
+mutation.policy.applicationControl.removeRule							days
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule					}
+mutation.policy.applicationControl.removeRule					severity
+mutation.policy.applicationControl.removeRule					fileAttributeSatisfy
+mutation.policy.applicationControl.removeRule					fileAttribute {
+mutation.policy.applicationControl.removeRule						fileAttribute
+mutation.policy.applicationControl.removeRule						operator
+mutation.policy.applicationControl.removeRule						value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.removeRule						contentTypeValues {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						contentTypeGroupValues {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule					}
+mutation.policy.applicationControl.removeRule					dlpProfile {
+mutation.policy.applicationControl.removeRule						contentProfile {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						edmProfile {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule					}
+mutation.policy.applicationControl.removeRule				}
+mutation.policy.applicationControl.removeRule				fileRule {
+mutation.policy.applicationControl.removeRule					application {
+mutation.policy.applicationControl.removeRule						application {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						customApp {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						appCategory {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						customCategory {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						sanctionedAppsCategory {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						applicationType
+mutation.policy.applicationControl.removeRule					}
+mutation.policy.applicationControl.removeRule					applicationActivitySatisfy
+mutation.policy.applicationControl.removeRule					applicationActivity {
+mutation.policy.applicationControl.removeRule						activity {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						field {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						operator
+mutation.policy.applicationControl.removeRule						value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.removeRule						valueSet {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule					}
+mutation.policy.applicationControl.removeRule					accessMethod {
+mutation.policy.applicationControl.removeRule						accessMethod
+mutation.policy.applicationControl.removeRule						operator
+mutation.policy.applicationControl.removeRule						value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.removeRule						valueSet {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule					}
+mutation.policy.applicationControl.removeRule					source {
+mutation.policy.applicationControl.removeRule						country {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						host {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						site {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						subnet
+mutation.policy.applicationControl.removeRule						ip
+mutation.policy.applicationControl.removeRule						ipRange {
+mutation.policy.applicationControl.removeRule							from
+mutation.policy.applicationControl.removeRule							to
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						globalIpRange {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						networkInterface {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						siteNetworkSubnet {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						floatingSubnet {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						user {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						usersGroup {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						group {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						systemGroup {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule					}
+mutation.policy.applicationControl.removeRule					device {
+mutation.policy.applicationControl.removeRule						id
+mutation.policy.applicationControl.removeRule						name
+mutation.policy.applicationControl.removeRule					}
+mutation.policy.applicationControl.removeRule					action
+mutation.policy.applicationControl.removeRule					tracking {
+mutation.policy.applicationControl.removeRule						event {
+mutation.policy.applicationControl.removeRule							enabled
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						alert {
+mutation.policy.applicationControl.removeRule							enabled
+mutation.policy.applicationControl.removeRule							frequency
+mutation.policy.applicationControl.removeRule							subscriptionGroup {
+mutation.policy.applicationControl.removeRule								id
+mutation.policy.applicationControl.removeRule								name
+mutation.policy.applicationControl.removeRule							}
+mutation.policy.applicationControl.removeRule							webhook {
+mutation.policy.applicationControl.removeRule								id
+mutation.policy.applicationControl.removeRule								name
+mutation.policy.applicationControl.removeRule							}
+mutation.policy.applicationControl.removeRule							mailingList {
+mutation.policy.applicationControl.removeRule								id
+mutation.policy.applicationControl.removeRule								name
+mutation.policy.applicationControl.removeRule							}
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule					}
+mutation.policy.applicationControl.removeRule					schedule {
+mutation.policy.applicationControl.removeRule						activeOn
+mutation.policy.applicationControl.removeRule						customTimeframe {
+mutation.policy.applicationControl.removeRule							from
+mutation.policy.applicationControl.removeRule							to
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						customRecurring {
+mutation.policy.applicationControl.removeRule							from
+mutation.policy.applicationControl.removeRule							to
+mutation.policy.applicationControl.removeRule							days
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule					}
+mutation.policy.applicationControl.removeRule					severity
+mutation.policy.applicationControl.removeRule					fileAttributeSatisfy
+mutation.policy.applicationControl.removeRule					fileAttribute {
+mutation.policy.applicationControl.removeRule						fileAttribute
+mutation.policy.applicationControl.removeRule						operator
+mutation.policy.applicationControl.removeRule						value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.removeRule						contentTypeValues {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule						contentTypeGroupValues {
+mutation.policy.applicationControl.removeRule							id
+mutation.policy.applicationControl.removeRule							name
+mutation.policy.applicationControl.removeRule						}
+mutation.policy.applicationControl.removeRule					}
+mutation.policy.applicationControl.removeRule				}
+mutation.policy.applicationControl.removeRule			}
+mutation.policy.applicationControl.removeRule			properties
+mutation.policy.applicationControl.removeRule		}
+mutation.policy.applicationControl.removeRule		status
+mutation.policy.applicationControl.removeRule		errors {
+mutation.policy.applicationControl.removeRule			errorMessage
+mutation.policy.applicationControl.removeRule			errorCode
+mutation.policy.applicationControl.removeRule		}
+mutation.policy.applicationControl.removeRule	}
+mutation.policy.applicationControl.removeRule}
 	}	
 }

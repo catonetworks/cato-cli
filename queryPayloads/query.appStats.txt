@@ -1,21 +1,33 @@
-query appStats ( $limit:Int $from:Int $accountID:ID! $timeFrame:TimeFrame! $measure:[Measure] $dimension:[Dimension] $appStatsFilter:[AppStatsFilter!] $appStatsSort:[AppStatsSort!] ) {
-	appStats ( accountID:$accountID timeFrame:$timeFrame measures:$measure dimensions:$dimension filters:$appStatsFilter sort:$appStatsSort ) {
-		id 
-		from 
-		to 
-		total 
-		totals 
-		records ( limit:$limit  from:$from  )  {
-			fieldsAppStatsRecord: fields {
-				name 
-				value 
-			}
-			fieldsUnitTypesAppStatsRecord: fieldsUnitTypes
-			fieldsMap
-			trends
-			prevTimeFrame
-			flatFields
-		}
-
+query appStats ( $timeFrame:TimeFrame! $measure:[Measure] $dimension:[Dimension] $appStatsFilter:[AppStatsFilter!] $appStatsSort:[AppStatsSort!]) {
+	appStats ( timeFrame:$timeFrame measures:$measure dimensions:$dimension filters:$appStatsFilter sort:$appStatsSort ) {
+query.appStatsid
+query.appStatsfrom
+query.appStatsto
+query.appStatstotal
+query.appStatstotals
+query.appStatsrecords {
+query.appStats	fields {
+query.appStats		name
+query.appStats		value {
+query.appStats			__typename
+query.appStats			... on StringValue {
+query.appStats				string
+query.appStats			}
+query.appStats			... on DateValue {
+query.appStats				date
+query.appStats			}
+query.appStats			... on Entity {
+query.appStats				id
+query.appStats				name
+query.appStats				type
+query.appStats			}
+query.appStats		}
+query.appStats	}
+query.appStats	fieldsUnitTypes
+query.appStats	fieldsMap
+query.appStats	trends
+query.appStats	prevTimeFrame
+query.appStats	flatFields
+query.appStats}
 	}	
 }

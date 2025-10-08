@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.dynamicIpAllocation.removeSection:
 
-`catocli mutation policy dynamicIpAllocation removeSection -h`
+```bash
+catocli mutation policy dynamicIpAllocation removeSection -h
 
-`catocli mutation policy dynamicIpAllocation removeSection <json>`
+catocli mutation policy dynamicIpAllocation removeSection <json>
 
-`catocli mutation policy dynamicIpAllocation removeSection "$(cat < mutation.policy.dynamicIpAllocation.removeSection.json)"`
+catocli mutation policy dynamicIpAllocation removeSection "$(cat < mutation.policy.dynamicIpAllocation.removeSection.json)"
 
-`catocli mutation policy dynamicIpAllocation removeSection '{"dynamicIpAllocationPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyRemoveSectionInput":{"id":"id"}}'`
+catocli mutation policy dynamicIpAllocation removeSection '{"dynamicIpAllocationPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyRemoveSectionInput":{"id":"id"}}'
 
-`catocli mutation policy dynamicIpAllocation removeSection -p '{
+catocli mutation policy dynamicIpAllocation removeSection -p '{
     "dynamicIpAllocationPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"
@@ -22,7 +23,7 @@
         "id": "id"
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.dynamicIpAllocation.removeSection ####
 

@@ -1,72 +1,65 @@
-mutation policyTerminalServerUpdatePolicy ( $terminalServerPolicyUpdateInput:TerminalServerPolicyUpdateInput! $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		terminalServer ( input:$terminalServerPolicyMutationInput  )  {
-			updatePolicyTerminalServerPolicyMutations: updatePolicy ( input:$terminalServerPolicyUpdateInput   ) {
-				policy  {
-					enabled
-					rulesTerminalServerPolicy: rules {
-						audit  {
-							updatedTime
-							updatedBy
-						}
-
-						rule  {
-							id
-							name
-							description
-							index
-							sectionTerminalServerRule: section {
-								id 
-								name 
-							}
-							enabled
-							allowedHostIPTerminalServerRule: allowedHostIP {
-								id 
-								name 
-							}
-							excludeTrafficTerminalServerRule: excludeTraffic {
-								id 
-								name 
-							}
-						}
-
-						properties 
-					}
-					sectionsTerminalServerPolicy: sections {
-						audit  {
-							updatedTime
-							updatedBy
-						}
-
-						section  {
-							id
-							name
-						}
-
-						properties 
-					}
-					auditTerminalServerPolicy: audit {
-						publishedTime 
-						publishedBy 
-					}
-					revisionTerminalServerPolicy: revision {
-						id 
-						name 
-						description 
-						changes 
-						createdTime 
-						updatedTime 
-					}
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyTerminalServerUpdatePolicy ( $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput $terminalServerPolicyUpdateInput:TerminalServerPolicyUpdateInput!) {
+	policy ( ) {
+mutation.policy.terminalServer.updatePolicyterminalServer ( input:$terminalServerPolicyMutationInput  )  {
+mutation.policy.terminalServer.updatePolicy	updatePolicy ( input:$terminalServerPolicyUpdateInput   ) {
+mutation.policy.terminalServer.updatePolicy		policy {
+mutation.policy.terminalServer.updatePolicy			enabled
+mutation.policy.terminalServer.updatePolicy			rules {
+mutation.policy.terminalServer.updatePolicy				audit {
+mutation.policy.terminalServer.updatePolicy					updatedTime
+mutation.policy.terminalServer.updatePolicy					updatedBy
+mutation.policy.terminalServer.updatePolicy				}
+mutation.policy.terminalServer.updatePolicy				rule {
+mutation.policy.terminalServer.updatePolicy					id
+mutation.policy.terminalServer.updatePolicy					name
+mutation.policy.terminalServer.updatePolicy					description
+mutation.policy.terminalServer.updatePolicy					index
+mutation.policy.terminalServer.updatePolicy					section {
+mutation.policy.terminalServer.updatePolicy						id
+mutation.policy.terminalServer.updatePolicy						name
+mutation.policy.terminalServer.updatePolicy					}
+mutation.policy.terminalServer.updatePolicy					enabled
+mutation.policy.terminalServer.updatePolicy					allowedHostIP {
+mutation.policy.terminalServer.updatePolicy						id
+mutation.policy.terminalServer.updatePolicy						name
+mutation.policy.terminalServer.updatePolicy					}
+mutation.policy.terminalServer.updatePolicy					excludeTraffic {
+mutation.policy.terminalServer.updatePolicy						id
+mutation.policy.terminalServer.updatePolicy						name
+mutation.policy.terminalServer.updatePolicy					}
+mutation.policy.terminalServer.updatePolicy				}
+mutation.policy.terminalServer.updatePolicy				properties
+mutation.policy.terminalServer.updatePolicy			}
+mutation.policy.terminalServer.updatePolicy			sections {
+mutation.policy.terminalServer.updatePolicy				audit {
+mutation.policy.terminalServer.updatePolicy					updatedTime
+mutation.policy.terminalServer.updatePolicy					updatedBy
+mutation.policy.terminalServer.updatePolicy				}
+mutation.policy.terminalServer.updatePolicy				section {
+mutation.policy.terminalServer.updatePolicy					id
+mutation.policy.terminalServer.updatePolicy					name
+mutation.policy.terminalServer.updatePolicy				}
+mutation.policy.terminalServer.updatePolicy				properties
+mutation.policy.terminalServer.updatePolicy			}
+mutation.policy.terminalServer.updatePolicy			audit {
+mutation.policy.terminalServer.updatePolicy				publishedTime
+mutation.policy.terminalServer.updatePolicy				publishedBy
+mutation.policy.terminalServer.updatePolicy			}
+mutation.policy.terminalServer.updatePolicy			revision {
+mutation.policy.terminalServer.updatePolicy				id
+mutation.policy.terminalServer.updatePolicy				name
+mutation.policy.terminalServer.updatePolicy				description
+mutation.policy.terminalServer.updatePolicy				changes
+mutation.policy.terminalServer.updatePolicy				createdTime
+mutation.policy.terminalServer.updatePolicy				updatedTime
+mutation.policy.terminalServer.updatePolicy			}
+mutation.policy.terminalServer.updatePolicy		}
+mutation.policy.terminalServer.updatePolicy		status
+mutation.policy.terminalServer.updatePolicy		errors {
+mutation.policy.terminalServer.updatePolicy			errorMessage
+mutation.policy.terminalServer.updatePolicy			errorCode
+mutation.policy.terminalServer.updatePolicy		}
+mutation.policy.terminalServer.updatePolicy	}
+mutation.policy.terminalServer.updatePolicy}
 	}	
 }

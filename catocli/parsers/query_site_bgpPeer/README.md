@@ -4,21 +4,22 @@
 
 ### Usage for query.site.bgpPeer:
 
-`catocli query site bgpPeer -h`
+```bash
+catocli query site bgpPeer -h
 
-`catocli query site bgpPeer <json>`
+catocli query site bgpPeer <json>
 
-`catocli query site bgpPeer "$(cat < query.site.bgpPeer.json)"`
+catocli query site bgpPeer "$(cat < query.site.bgpPeer.json)"
 
-`catocli query site bgpPeer '{"bgpPeerRefInput":{"by":"ID","input":"string"}}'`
+catocli query site bgpPeer '{"bgpPeerRefInput":{"by":"ID","input":"string"}}'
 
-`catocli query site bgpPeer -p '{
+catocli query site bgpPeer -p '{
     "bgpPeerRefInput": {
         "by": "ID",
         "input": "string"
     }
 }'
-
+```
 
 #### Operation Arguments for query.site.bgpPeer ####
 

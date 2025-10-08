@@ -4,15 +4,16 @@
 
 ### Usage for query.policy.wanNetwork.policy:
 
-`catocli query policy wanNetwork policy -h`
+```bash
+catocli query policy wanNetwork policy -h
 
-`catocli query policy wanNetwork policy <json>`
+catocli query policy wanNetwork policy <json>
 
-`catocli query policy wanNetwork policy "$(cat < query.policy.wanNetwork.policy.json)"`
+catocli query policy wanNetwork policy "$(cat < query.policy.wanNetwork.policy.json)"
 
-`catocli query policy wanNetwork policy '{"wanNetworkPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'`
+catocli query policy wanNetwork policy '{"wanNetworkPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'
 
-`catocli query policy wanNetwork policy -p '{
+catocli query policy wanNetwork policy -p '{
     "wanNetworkPolicyInput": {
         "policyRevisionInput": {
             "id": "id",
@@ -20,7 +21,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for query.policy.wanNetwork.policy ####
 

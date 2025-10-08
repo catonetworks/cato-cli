@@ -1,27 +1,24 @@
-mutation policyTerminalServerAddSection ( $policyAddSectionInput:PolicyAddSectionInput! $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		terminalServer ( input:$terminalServerPolicyMutationInput  )  {
-			addSectionTerminalServerPolicyMutations: addSection ( input:$policyAddSectionInput   ) {
-				section  {
-					auditPolicySectionPayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					sectionPolicySectionPayload: section {
-						id 
-						name 
-					}
-					propertiesPolicySectionPayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyTerminalServerAddSection ( $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput $policyAddSectionInput:PolicyAddSectionInput!) {
+	policy ( ) {
+mutation.policy.terminalServer.addSectionterminalServer ( input:$terminalServerPolicyMutationInput  )  {
+mutation.policy.terminalServer.addSection	addSection ( input:$policyAddSectionInput   ) {
+mutation.policy.terminalServer.addSection		section {
+mutation.policy.terminalServer.addSection			audit {
+mutation.policy.terminalServer.addSection				updatedTime
+mutation.policy.terminalServer.addSection				updatedBy
+mutation.policy.terminalServer.addSection			}
+mutation.policy.terminalServer.addSection			section {
+mutation.policy.terminalServer.addSection				id
+mutation.policy.terminalServer.addSection				name
+mutation.policy.terminalServer.addSection			}
+mutation.policy.terminalServer.addSection			properties
+mutation.policy.terminalServer.addSection		}
+mutation.policy.terminalServer.addSection		status
+mutation.policy.terminalServer.addSection		errors {
+mutation.policy.terminalServer.addSection			errorMessage
+mutation.policy.terminalServer.addSection			errorCode
+mutation.policy.terminalServer.addSection		}
+mutation.policy.terminalServer.addSection	}
+mutation.policy.terminalServer.addSection}
 	}	
 }

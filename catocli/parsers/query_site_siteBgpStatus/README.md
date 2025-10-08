@@ -4,15 +4,16 @@
 
 ### Usage for query.site.siteBgpStatus:
 
-`catocli query site siteBgpStatus -h`
+```bash
+catocli query site siteBgpStatus -h
 
-`catocli query site siteBgpStatus <json>`
+catocli query site siteBgpStatus <json>
 
-`catocli query site siteBgpStatus "$(cat < query.site.siteBgpStatus.json)"`
+catocli query site siteBgpStatus "$(cat < query.site.siteBgpStatus.json)"
 
-`catocli query site siteBgpStatus '{"siteBgpStatusInput":{"siteRefInput":{"by":"ID","input":"string"}}}'`
+catocli query site siteBgpStatus '{"siteBgpStatusInput":{"siteRefInput":{"by":"ID","input":"string"}}}'
 
-`catocli query site siteBgpStatus -p '{
+catocli query site siteBgpStatus -p '{
     "siteBgpStatusInput": {
         "siteRefInput": {
             "by": "ID",
@@ -20,7 +21,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for query.site.siteBgpStatus ####
 

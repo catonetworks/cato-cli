@@ -1,42 +1,5 @@
 {
     "operationName": "container",
-    "query": "query container ( $containerSearchInput:ContainerSearchInput! $ipAddressRangeContainerSearchInput:IpAddressRangeContainerSearchInput! $ipAddressRangeContainerSearchIpAddressRangeInput:IpAddressRangeContainerSearchIpAddressRangeInput! $downloadIpAddressRangeContainerFileInput:DownloadIpAddressRangeContainerFileInput! $fqdnContainerSearchInput:FqdnContainerSearchInput! $fqdnContainerSearchFqdnInput:FqdnContainerSearchFqdnInput! $downloadFqdnContainerFileInput:DownloadFqdnContainerFileInput! $accountId:ID! ) {\n\tcontainer ( accountId:$accountId ) {\n\t\tlist ( input:$containerSearchInput  )  {\n\t\t\tcontainersContainerSearchPayload: containers {\n\t\t\t\tid \n\t\t\t\tname \n\t\t\t\tdescription \n\t\t\t\tsize \n\t\t\t\taudit  {\n\t\t\t\t\tcreatedBy\n\t\t\t\t\tlastModifiedBy\n\t\t\t\t\tlastModifiedAt\n\t\t\t\t\tcreatedAt\n\t\t\t\t}\n\n\t\t\t\t... on FqdnContainer {\n\t\t\t\t\tid \n\t\t\t\t\tname \n\t\t\t\t\tdescription \n\t\t\t\t\tsize \n\t\t\t\t\taudit  {\n\t\t\t\t\t\tcreatedBy\n\t\t\t\t\t\tlastModifiedBy\n\t\t\t\t\t\tlastModifiedAt\n\t\t\t\t\t\tcreatedAt\n\t\t\t\t\t}\n\n\t\t\t\t}\n\t\t\t\t... on IpAddressRangeContainer {\n\t\t\t\t\tid \n\t\t\t\t\tname \n\t\t\t\t\tdescription \n\t\t\t\t\tsize \n\t\t\t\t\taudit  {\n\t\t\t\t\t\tcreatedBy\n\t\t\t\t\t\tlastModifiedBy\n\t\t\t\t\t\tlastModifiedAt\n\t\t\t\t\t\tcreatedAt\n\t\t\t\t\t}\n\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\n\t\tipAddressRange  {\n\t\t\tsearchIpAddressRangeContainerQueries: search ( input:$ipAddressRangeContainerSearchInput   ) {\n\t\t\t\tcontainer  {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t\tdescription\n\t\t\t\t\tsize\n\t\t\t\t\tauditIpAddressRangeContainer: audit {\n\t\t\t\t\t\tcreatedBy \n\t\t\t\t\t\tlastModifiedBy \n\t\t\t\t\t\tlastModifiedAt \n\t\t\t\t\t\tcreatedAt \n\t\t\t\t\t}\n\t\t\t\t}\n\n\t\t\t}\n\t\t\tsearchIpAddressRangeIpAddressRangeContainerQueries: searchIpAddressRange ( input:$ipAddressRangeContainerSearchIpAddressRangeInput   ) {\n\t\t\t\tcontainers  {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t\tdescription\n\t\t\t\t\tsize\n\t\t\t\t\tauditIpAddressRangeContainer: audit {\n\t\t\t\t\t\tcreatedBy \n\t\t\t\t\t\tlastModifiedBy \n\t\t\t\t\t\tlastModifiedAt \n\t\t\t\t\t\tcreatedAt \n\t\t\t\t\t}\n\t\t\t\t}\n\n\t\t\t}\n\t\t\tdownloadFileIpAddressRangeContainerQueries: downloadFile ( input:$downloadIpAddressRangeContainerFileInput   ) {\n\t\t\t\tid \n\t\t\t\tname \n\t\t\t\tencodedFile \n\t\t\t}\n\t\t}\n\n\t\tfqdn  {\n\t\t\tsearchFqdnContainerQueries: search ( input:$fqdnContainerSearchInput   ) {\n\t\t\t\tcontainer  {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t\tdescription\n\t\t\t\t\tsize\n\t\t\t\t\tauditFqdnContainer: audit {\n\t\t\t\t\t\tcreatedBy \n\t\t\t\t\t\tlastModifiedBy \n\t\t\t\t\t\tlastModifiedAt \n\t\t\t\t\t\tcreatedAt \n\t\t\t\t\t}\n\t\t\t\t}\n\n\t\t\t}\n\t\t\tsearchFqdnFqdnContainerQueries: searchFqdn ( input:$fqdnContainerSearchFqdnInput   ) {\n\t\t\t\tcontainers  {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t\tdescription\n\t\t\t\t\tsize\n\t\t\t\t\tauditFqdnContainer: audit {\n\t\t\t\t\t\tcreatedBy \n\t\t\t\t\t\tlastModifiedBy \n\t\t\t\t\t\tlastModifiedAt \n\t\t\t\t\t\tcreatedAt \n\t\t\t\t\t}\n\t\t\t\t}\n\n\t\t\t}\n\t\t\tdownloadFileFqdnContainerQueries: downloadFile ( input:$downloadFqdnContainerFileInput   ) {\n\t\t\t\tid \n\t\t\t\tname \n\t\t\t\tencodedFile \n\t\t\t}\n\t\t}\n\n\t}\t\n}",
-    "variables": {
-        "containerSearchInput": {
-            "containerRefInput": {
-                "by": "ID",
-                "input": "string"
-            },
-            "types": "IP_RANGE"
-        },
-        "downloadFqdnContainerFileInput": {
-            "by": "ID",
-            "input": "string"
-        },
-        "downloadIpAddressRangeContainerFileInput": {
-            "by": "ID",
-            "input": "string"
-        },
-        "fqdnContainerSearchFqdnInput": {
-            "fqdn": "example_value"
-        },
-        "fqdnContainerSearchInput": {
-            "containerRefInput": {
-                "by": "ID",
-                "input": "string"
-            }
-        },
-        "ipAddressRangeContainerSearchInput": {
-            "containerRefInput": {
-                "by": "ID",
-                "input": "string"
-            }
-        },
-        "ipAddressRangeContainerSearchIpAddressRangeInput": {
-            "ipAddressRangeInput": {
-                "from": "example_value",
-                "to": "example_value"
-            }
-        }
-    }
+    "query": "query container ( ) {\n\tcontainer ( ) {\nquery.containerlist {\nquery.container\tcontainers {\nquery.container\t\tid\nquery.container\t\tname\nquery.container\t\tdescription\nquery.container\t\tsize\nquery.container\t\taudit {\nquery.container\t\t\tcreatedBy\nquery.container\t\t\tlastModifiedBy\nquery.container\t\t\tlastModifiedAt\nquery.container\t\t\tcreatedAt\nquery.container\t\t}\nquery.container\t\t... on FqdnContainer {\nquery.container\t\t\tid\nquery.container\t\t\tname\nquery.container\t\t\tdescription\nquery.container\t\t\tsize\nquery.container\t\t\taudit {\nquery.container\t\t\t\tcreatedBy\nquery.container\t\t\t\tlastModifiedBy\nquery.container\t\t\t\tlastModifiedAt\nquery.container\t\t\t\tcreatedAt\nquery.container\t\t\t}\nquery.container\t\t}\nquery.container\t\t... on IpAddressRangeContainer {\nquery.container\t\t\tid\nquery.container\t\t\tname\nquery.container\t\t\tdescription\nquery.container\t\t\tsize\nquery.container\t\t\taudit {\nquery.container\t\t\t\tcreatedBy\nquery.container\t\t\t\tlastModifiedBy\nquery.container\t\t\t\tlastModifiedAt\nquery.container\t\t\t\tcreatedAt\nquery.container\t\t\t}\nquery.container\t\t}\nquery.container\t}\nquery.container}\nquery.containeripAddressRange {\nquery.container\tsearch {\nquery.container\t\tcontainer {\nquery.container\t\t\tid\nquery.container\t\t\tname\nquery.container\t\t\tdescription\nquery.container\t\t\tsize\nquery.container\t\t\taudit {\nquery.container\t\t\t\tcreatedBy\nquery.container\t\t\t\tlastModifiedBy\nquery.container\t\t\t\tlastModifiedAt\nquery.container\t\t\t\tcreatedAt\nquery.container\t\t\t}\nquery.container\t\t}\nquery.container\t}\nquery.container\tsearchIpAddressRange {\nquery.container\t\tcontainers {\nquery.container\t\t\tid\nquery.container\t\t\tname\nquery.container\t\t\tdescription\nquery.container\t\t\tsize\nquery.container\t\t\taudit {\nquery.container\t\t\t\tcreatedBy\nquery.container\t\t\t\tlastModifiedBy\nquery.container\t\t\t\tlastModifiedAt\nquery.container\t\t\t\tcreatedAt\nquery.container\t\t\t}\nquery.container\t\t}\nquery.container\t}\nquery.container\tdownloadFile {\nquery.container\t\tid\nquery.container\t\tname\nquery.container\t\tencodedFile\nquery.container\t}\nquery.container}\nquery.containerfqdn {\nquery.container\tsearch {\nquery.container\t\tcontainer {\nquery.container\t\t\tid\nquery.container\t\t\tname\nquery.container\t\t\tdescription\nquery.container\t\t\tsize\nquery.container\t\t\taudit {\nquery.container\t\t\t\tcreatedBy\nquery.container\t\t\t\tlastModifiedBy\nquery.container\t\t\t\tlastModifiedAt\nquery.container\t\t\t\tcreatedAt\nquery.container\t\t\t}\nquery.container\t\t}\nquery.container\t}\nquery.container\tsearchFqdn {\nquery.container\t\tcontainers {\nquery.container\t\t\tid\nquery.container\t\t\tname\nquery.container\t\t\tdescription\nquery.container\t\t\tsize\nquery.container\t\t\taudit {\nquery.container\t\t\t\tcreatedBy\nquery.container\t\t\t\tlastModifiedBy\nquery.container\t\t\t\tlastModifiedAt\nquery.container\t\t\t\tcreatedAt\nquery.container\t\t\t}\nquery.container\t\t}\nquery.container\t}\nquery.container\tdownloadFile {\nquery.container\t\tid\nquery.container\t\tname\nquery.container\t\tencodedFile\nquery.container\t}\nquery.container}\n\t}\t\n}",
+    "variables": {}
 }

@@ -4,18 +4,19 @@
 
 ### Usage for mutation.sites.removeSecondaryAzureVSocket:
 
-`catocli mutation sites removeSecondaryAzureVSocket -h`
+```bash
+catocli mutation sites removeSecondaryAzureVSocket -h
 
-`catocli mutation sites removeSecondaryAzureVSocket <json>`
+catocli mutation sites removeSecondaryAzureVSocket <json>
 
-`catocli mutation sites removeSecondaryAzureVSocket "$(cat < mutation.sites.removeSecondaryAzureVSocket.json)"`
+catocli mutation sites removeSecondaryAzureVSocket "$(cat < mutation.sites.removeSecondaryAzureVSocket.json)"
 
-`catocli mutation sites removeSecondaryAzureVSocket '{"socketId":"id"}'`
+catocli mutation sites removeSecondaryAzureVSocket '{"socketId":"id"}'
 
-`catocli mutation sites removeSecondaryAzureVSocket -p '{
+catocli mutation sites removeSecondaryAzureVSocket -p '{
     "socketId": "id"
 }'
-
+```
 
 #### Operation Arguments for mutation.sites.removeSecondaryAzureVSocket ####
 

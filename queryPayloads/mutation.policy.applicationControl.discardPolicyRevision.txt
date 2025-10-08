@@ -1,626 +1,709 @@
-mutation policyApplicationControlDiscardPolicyRevision ( $policyDiscardRevisionInput:PolicyDiscardRevisionInput $applicationControlPolicyMutationInput:ApplicationControlPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		applicationControl ( input:$applicationControlPolicyMutationInput  )  {
-			discardPolicyRevisionApplicationControlPolicyMutations: discardPolicyRevision ( input:$policyDiscardRevisionInput   ) {
-				policy  {
-					enabled
-					rulesApplicationControlPolicy: rules {
-						audit  {
-							updatedTime
-							updatedBy
-						}
-
-						rule  {
-							id
-							name
-							description
-							index
-							sectionApplicationControlRule: section {
-								id 
-								name 
-							}
-							enabled
-							ruleTypeApplicationControlRule: ruleType
-							applicationRuleApplicationControlRule: applicationRule {
-								application  {
-									applicationApplicationControlApplication: application {
-										id 
-										name 
-									}
-									customAppApplicationControlApplication: customApp {
-										id 
-										name 
-									}
-									appCategoryApplicationControlApplication: appCategory {
-										id 
-										name 
-									}
-									customCategoryApplicationControlApplication: customCategory {
-										id 
-										name 
-									}
-									sanctionedAppsCategoryApplicationControlApplication: sanctionedAppsCategory {
-										id 
-										name 
-									}
-									applicationTypeApplicationControlApplication: applicationType
-								}
-
-								applicationActivitySatisfy 
-								applicationActivity  {
-									activityApplicationControlActivity: activity {
-										id 
-										name 
-									}
-									fieldApplicationControlActivity: field {
-										id 
-										name 
-									}
-									operatorApplicationControlActivity: operator
-									value
-									valueSetApplicationControlActivity: valueSet {
-										id 
-										name 
-									}
-								}
-
-								applicationContext  {
-									applicationTenantApplicationControlContext: applicationTenant {
-										operator 
-										value 
-										valueSet  {
-											id
-											name
-										}
-
-									}
-								}
-
-								accessMethod  {
-									accessMethodApplicationControlAccessMethod: accessMethod
-									operatorApplicationControlAccessMethod: operator
-									value
-									valueSetApplicationControlAccessMethod: valueSet {
-										id 
-										name 
-									}
-								}
-
-								source  {
-									countryApplicationControlSource: country {
-										id 
-										name 
-									}
-									hostApplicationControlSource: host {
-										id 
-										name 
-									}
-									siteApplicationControlSource: site {
-										id 
-										name 
-									}
-									subnet
-									ip
-									ipRangeApplicationControlSource: ipRange {
-										from 
-										to 
-									}
-									globalIpRangeApplicationControlSource: globalIpRange {
-										id 
-										name 
-									}
-									networkInterfaceApplicationControlSource: networkInterface {
-										id 
-										name 
-									}
-									siteNetworkSubnetApplicationControlSource: siteNetworkSubnet {
-										id 
-										name 
-									}
-									floatingSubnetApplicationControlSource: floatingSubnet {
-										id 
-										name 
-									}
-									userApplicationControlSource: user {
-										id 
-										name 
-									}
-									usersGroupApplicationControlSource: usersGroup {
-										id 
-										name 
-									}
-									groupApplicationControlSource: group {
-										id 
-										name 
-									}
-									systemGroupApplicationControlSource: systemGroup {
-										id 
-										name 
-									}
-								}
-
-								device  {
-									id
-									name
-								}
-
-								action 
-								tracking  {
-									eventPolicyTracking: event {
-										enabled 
-									}
-									alertPolicyTracking: alert {
-										enabled 
-										frequency 
-										subscriptionGroup  {
-											id
-											name
-										}
-
-										webhook  {
-											id
-											name
-										}
-
-										mailingList  {
-											id
-											name
-										}
-
-									}
-								}
-
-								schedule  {
-									activeOnPolicySchedule: activeOn
-									customTimeframePolicySchedule: customTimeframe {
-										from 
-										to 
-									}
-									customRecurringPolicySchedule: customRecurring {
-										from 
-										to 
-										days 
-									}
-								}
-
-								severity 
-								applicationCriteriaSatisfy 
-								applicationCriteria  {
-									attributesApplicationControlCriteria: attributes {
-										complianceAttributes  {
-											iso27001ApplicationControlComplianceAttributes: iso27001
-											soxApplicationControlComplianceAttributes: sox
-											hippaApplicationControlComplianceAttributes: hippa
-											soc1ApplicationControlComplianceAttributes: soc1
-											soc2ApplicationControlComplianceAttributes: soc2
-											soc3ApplicationControlComplianceAttributes: soc3
-											isae3402ApplicationControlComplianceAttributes: isae3402
-											pciDssApplicationControlComplianceAttributes: pciDss
-										}
-
-										securityAttributes  {
-											mfaApplicationControlSecurityAttributes: mfa
-											encryptionAtRestApplicationControlSecurityAttributes: encryptionAtRest
-											auditTrailApplicationControlSecurityAttributes: auditTrail
-											rbacApplicationControlSecurityAttributes: rbac
-											rememberPasswordApplicationControlSecurityAttributes: rememberPassword
-											ssoApplicationControlSecurityAttributes: sso
-											trustedCertificateApplicationControlSecurityAttributes: trustedCertificate
-											tlsEnforcementApplicationControlSecurityAttributes: tlsEnforcement
-											httpSecurityHeadersApplicationControlSecurityAttributes: httpSecurityHeaders
-										}
-
-									}
-									originCountryApplicationControlCriteria: originCountry {
-										id 
-										name 
-									}
-									riskApplicationControlCriteria: risk {
-										risk 
-										riskOperator 
-									}
-								}
-
-							}
-							dataRuleApplicationControlRule: dataRule {
-								application  {
-									applicationApplicationControlApplication: application {
-										id 
-										name 
-									}
-									customAppApplicationControlApplication: customApp {
-										id 
-										name 
-									}
-									appCategoryApplicationControlApplication: appCategory {
-										id 
-										name 
-									}
-									customCategoryApplicationControlApplication: customCategory {
-										id 
-										name 
-									}
-									sanctionedAppsCategoryApplicationControlApplication: sanctionedAppsCategory {
-										id 
-										name 
-									}
-									applicationTypeApplicationControlApplication: applicationType
-								}
-
-								applicationContext  {
-									applicationTenantApplicationControlContext: applicationTenant {
-										operator 
-										value 
-										valueSet  {
-											id
-											name
-										}
-
-									}
-								}
-
-								applicationActivitySatisfy 
-								applicationActivity  {
-									activityApplicationControlActivity: activity {
-										id 
-										name 
-									}
-									fieldApplicationControlActivity: field {
-										id 
-										name 
-									}
-									operatorApplicationControlActivity: operator
-									value
-									valueSetApplicationControlActivity: valueSet {
-										id 
-										name 
-									}
-								}
-
-								accessMethod  {
-									accessMethodApplicationControlAccessMethod: accessMethod
-									operatorApplicationControlAccessMethod: operator
-									value
-									valueSetApplicationControlAccessMethod: valueSet {
-										id 
-										name 
-									}
-								}
-
-								source  {
-									countryApplicationControlSource: country {
-										id 
-										name 
-									}
-									hostApplicationControlSource: host {
-										id 
-										name 
-									}
-									siteApplicationControlSource: site {
-										id 
-										name 
-									}
-									subnet
-									ip
-									ipRangeApplicationControlSource: ipRange {
-										from 
-										to 
-									}
-									globalIpRangeApplicationControlSource: globalIpRange {
-										id 
-										name 
-									}
-									networkInterfaceApplicationControlSource: networkInterface {
-										id 
-										name 
-									}
-									siteNetworkSubnetApplicationControlSource: siteNetworkSubnet {
-										id 
-										name 
-									}
-									floatingSubnetApplicationControlSource: floatingSubnet {
-										id 
-										name 
-									}
-									userApplicationControlSource: user {
-										id 
-										name 
-									}
-									usersGroupApplicationControlSource: usersGroup {
-										id 
-										name 
-									}
-									groupApplicationControlSource: group {
-										id 
-										name 
-									}
-									systemGroupApplicationControlSource: systemGroup {
-										id 
-										name 
-									}
-								}
-
-								device  {
-									id
-									name
-								}
-
-								action 
-								tracking  {
-									eventPolicyTracking: event {
-										enabled 
-									}
-									alertPolicyTracking: alert {
-										enabled 
-										frequency 
-										subscriptionGroup  {
-											id
-											name
-										}
-
-										webhook  {
-											id
-											name
-										}
-
-										mailingList  {
-											id
-											name
-										}
-
-									}
-								}
-
-								schedule  {
-									activeOnPolicySchedule: activeOn
-									customTimeframePolicySchedule: customTimeframe {
-										from 
-										to 
-									}
-									customRecurringPolicySchedule: customRecurring {
-										from 
-										to 
-										days 
-									}
-								}
-
-								severity 
-								fileAttributeSatisfy 
-								fileAttribute  {
-									fileAttributeApplicationControlFileAttribute: fileAttribute
-									operatorApplicationControlFileAttribute: operator
-									value
-									contentTypeValuesApplicationControlFileAttribute: contentTypeValues {
-										id 
-										name 
-									}
-									contentTypeGroupValuesApplicationControlFileAttribute: contentTypeGroupValues {
-										id 
-										name 
-									}
-								}
-
-								dlpProfile  {
-									contentProfileApplicationControlDlpProfile: contentProfile {
-										id 
-										name 
-									}
-									edmProfileApplicationControlDlpProfile: edmProfile {
-										id 
-										name 
-									}
-								}
-
-							}
-							fileRuleApplicationControlRule: fileRule {
-								application  {
-									applicationApplicationControlApplication: application {
-										id 
-										name 
-									}
-									customAppApplicationControlApplication: customApp {
-										id 
-										name 
-									}
-									appCategoryApplicationControlApplication: appCategory {
-										id 
-										name 
-									}
-									customCategoryApplicationControlApplication: customCategory {
-										id 
-										name 
-									}
-									sanctionedAppsCategoryApplicationControlApplication: sanctionedAppsCategory {
-										id 
-										name 
-									}
-									applicationTypeApplicationControlApplication: applicationType
-								}
-
-								applicationActivitySatisfy 
-								applicationActivity  {
-									activityApplicationControlActivity: activity {
-										id 
-										name 
-									}
-									fieldApplicationControlActivity: field {
-										id 
-										name 
-									}
-									operatorApplicationControlActivity: operator
-									value
-									valueSetApplicationControlActivity: valueSet {
-										id 
-										name 
-									}
-								}
-
-								accessMethod  {
-									accessMethodApplicationControlAccessMethod: accessMethod
-									operatorApplicationControlAccessMethod: operator
-									value
-									valueSetApplicationControlAccessMethod: valueSet {
-										id 
-										name 
-									}
-								}
-
-								source  {
-									countryApplicationControlSource: country {
-										id 
-										name 
-									}
-									hostApplicationControlSource: host {
-										id 
-										name 
-									}
-									siteApplicationControlSource: site {
-										id 
-										name 
-									}
-									subnet
-									ip
-									ipRangeApplicationControlSource: ipRange {
-										from 
-										to 
-									}
-									globalIpRangeApplicationControlSource: globalIpRange {
-										id 
-										name 
-									}
-									networkInterfaceApplicationControlSource: networkInterface {
-										id 
-										name 
-									}
-									siteNetworkSubnetApplicationControlSource: siteNetworkSubnet {
-										id 
-										name 
-									}
-									floatingSubnetApplicationControlSource: floatingSubnet {
-										id 
-										name 
-									}
-									userApplicationControlSource: user {
-										id 
-										name 
-									}
-									usersGroupApplicationControlSource: usersGroup {
-										id 
-										name 
-									}
-									groupApplicationControlSource: group {
-										id 
-										name 
-									}
-									systemGroupApplicationControlSource: systemGroup {
-										id 
-										name 
-									}
-								}
-
-								device  {
-									id
-									name
-								}
-
-								action 
-								tracking  {
-									eventPolicyTracking: event {
-										enabled 
-									}
-									alertPolicyTracking: alert {
-										enabled 
-										frequency 
-										subscriptionGroup  {
-											id
-											name
-										}
-
-										webhook  {
-											id
-											name
-										}
-
-										mailingList  {
-											id
-											name
-										}
-
-									}
-								}
-
-								schedule  {
-									activeOnPolicySchedule: activeOn
-									customTimeframePolicySchedule: customTimeframe {
-										from 
-										to 
-									}
-									customRecurringPolicySchedule: customRecurring {
-										from 
-										to 
-										days 
-									}
-								}
-
-								severity 
-								fileAttributeSatisfy 
-								fileAttribute  {
-									fileAttributeApplicationControlFileAttribute: fileAttribute
-									operatorApplicationControlFileAttribute: operator
-									value
-									contentTypeValuesApplicationControlFileAttribute: contentTypeValues {
-										id 
-										name 
-									}
-									contentTypeGroupValuesApplicationControlFileAttribute: contentTypeGroupValues {
-										id 
-										name 
-									}
-								}
-
-							}
-						}
-
-						properties 
-					}
-					sectionsApplicationControlPolicy: sections {
-						audit  {
-							updatedTime
-							updatedBy
-						}
-
-						section  {
-							id
-							name
-						}
-
-						properties 
-					}
-					auditApplicationControlPolicy: audit {
-						publishedTime 
-						publishedBy 
-					}
-					revisionApplicationControlPolicy: revision {
-						id 
-						name 
-						description 
-						changes 
-						createdTime 
-						updatedTime 
-					}
-					additionalAttributesApplicationControlPolicy: additionalAttributes {
-						dataControlEnabled 
-					}
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyApplicationControlDiscardPolicyRevision ( $applicationControlPolicyMutationInput:ApplicationControlPolicyMutationInput $policyDiscardRevisionInput:PolicyDiscardRevisionInput) {
+	policy ( ) {
+mutation.policy.applicationControl.discardPolicyRevisionapplicationControl ( input:$applicationControlPolicyMutationInput  )  {
+mutation.policy.applicationControl.discardPolicyRevision	discardPolicyRevision ( input:$policyDiscardRevisionInput   ) {
+mutation.policy.applicationControl.discardPolicyRevision		policy {
+mutation.policy.applicationControl.discardPolicyRevision			enabled
+mutation.policy.applicationControl.discardPolicyRevision			rules {
+mutation.policy.applicationControl.discardPolicyRevision				audit {
+mutation.policy.applicationControl.discardPolicyRevision					updatedTime
+mutation.policy.applicationControl.discardPolicyRevision					updatedBy
+mutation.policy.applicationControl.discardPolicyRevision				}
+mutation.policy.applicationControl.discardPolicyRevision				rule {
+mutation.policy.applicationControl.discardPolicyRevision					id
+mutation.policy.applicationControl.discardPolicyRevision					name
+mutation.policy.applicationControl.discardPolicyRevision					description
+mutation.policy.applicationControl.discardPolicyRevision					index
+mutation.policy.applicationControl.discardPolicyRevision					section {
+mutation.policy.applicationControl.discardPolicyRevision						id
+mutation.policy.applicationControl.discardPolicyRevision						name
+mutation.policy.applicationControl.discardPolicyRevision					}
+mutation.policy.applicationControl.discardPolicyRevision					enabled
+mutation.policy.applicationControl.discardPolicyRevision					ruleType
+mutation.policy.applicationControl.discardPolicyRevision					applicationRule {
+mutation.policy.applicationControl.discardPolicyRevision						application {
+mutation.policy.applicationControl.discardPolicyRevision							application {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							customApp {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							appCategory {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							customCategory {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							sanctionedAppsCategory {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							applicationType
+mutation.policy.applicationControl.discardPolicyRevision						}
+mutation.policy.applicationControl.discardPolicyRevision						applicationActivitySatisfy
+mutation.policy.applicationControl.discardPolicyRevision						applicationActivity {
+mutation.policy.applicationControl.discardPolicyRevision							activity {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							field {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							operator
+mutation.policy.applicationControl.discardPolicyRevision							value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.discardPolicyRevision							valueSet {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision						}
+mutation.policy.applicationControl.discardPolicyRevision						applicationContext {
+mutation.policy.applicationControl.discardPolicyRevision							applicationTenant {
+mutation.policy.applicationControl.discardPolicyRevision								operator
+mutation.policy.applicationControl.discardPolicyRevision								value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.discardPolicyRevision								valueSet {
+mutation.policy.applicationControl.discardPolicyRevision									id
+mutation.policy.applicationControl.discardPolicyRevision									name
+mutation.policy.applicationControl.discardPolicyRevision								}
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision						}
+mutation.policy.applicationControl.discardPolicyRevision						accessMethod {
+mutation.policy.applicationControl.discardPolicyRevision							accessMethod
+mutation.policy.applicationControl.discardPolicyRevision							operator
+mutation.policy.applicationControl.discardPolicyRevision							value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.discardPolicyRevision							valueSet {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision						}
+mutation.policy.applicationControl.discardPolicyRevision						source {
+mutation.policy.applicationControl.discardPolicyRevision							country {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							host {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							site {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							subnet
+mutation.policy.applicationControl.discardPolicyRevision							ip
+mutation.policy.applicationControl.discardPolicyRevision							ipRange {
+mutation.policy.applicationControl.discardPolicyRevision								from
+mutation.policy.applicationControl.discardPolicyRevision								to
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							globalIpRange {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							networkInterface {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							siteNetworkSubnet {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							floatingSubnet {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							user {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							usersGroup {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							group {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							systemGroup {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision						}
+mutation.policy.applicationControl.discardPolicyRevision						device {
+mutation.policy.applicationControl.discardPolicyRevision							id
+mutation.policy.applicationControl.discardPolicyRevision							name
+mutation.policy.applicationControl.discardPolicyRevision						}
+mutation.policy.applicationControl.discardPolicyRevision						action
+mutation.policy.applicationControl.discardPolicyRevision						tracking {
+mutation.policy.applicationControl.discardPolicyRevision							event {
+mutation.policy.applicationControl.discardPolicyRevision								enabled
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							alert {
+mutation.policy.applicationControl.discardPolicyRevision								enabled
+mutation.policy.applicationControl.discardPolicyRevision								frequency
+mutation.policy.applicationControl.discardPolicyRevision								subscriptionGroup {
+mutation.policy.applicationControl.discardPolicyRevision									id
+mutation.policy.applicationControl.discardPolicyRevision									name
+mutation.policy.applicationControl.discardPolicyRevision								}
+mutation.policy.applicationControl.discardPolicyRevision								webhook {
+mutation.policy.applicationControl.discardPolicyRevision									id
+mutation.policy.applicationControl.discardPolicyRevision									name
+mutation.policy.applicationControl.discardPolicyRevision								}
+mutation.policy.applicationControl.discardPolicyRevision								mailingList {
+mutation.policy.applicationControl.discardPolicyRevision									id
+mutation.policy.applicationControl.discardPolicyRevision									name
+mutation.policy.applicationControl.discardPolicyRevision								}
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision						}
+mutation.policy.applicationControl.discardPolicyRevision						schedule {
+mutation.policy.applicationControl.discardPolicyRevision							activeOn
+mutation.policy.applicationControl.discardPolicyRevision							customTimeframe {
+mutation.policy.applicationControl.discardPolicyRevision								from
+mutation.policy.applicationControl.discardPolicyRevision								to
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							customRecurring {
+mutation.policy.applicationControl.discardPolicyRevision								from
+mutation.policy.applicationControl.discardPolicyRevision								to
+mutation.policy.applicationControl.discardPolicyRevision								days
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision						}
+mutation.policy.applicationControl.discardPolicyRevision						severity
+mutation.policy.applicationControl.discardPolicyRevision						applicationCriteriaSatisfy
+mutation.policy.applicationControl.discardPolicyRevision						applicationCriteria {
+mutation.policy.applicationControl.discardPolicyRevision							attributes {
+mutation.policy.applicationControl.discardPolicyRevision								complianceAttributes {
+mutation.policy.applicationControl.discardPolicyRevision									iso27001
+mutation.policy.applicationControl.discardPolicyRevision									sox
+mutation.policy.applicationControl.discardPolicyRevision									hippa
+mutation.policy.applicationControl.discardPolicyRevision									soc1
+mutation.policy.applicationControl.discardPolicyRevision									soc2
+mutation.policy.applicationControl.discardPolicyRevision									soc3
+mutation.policy.applicationControl.discardPolicyRevision									isae3402
+mutation.policy.applicationControl.discardPolicyRevision									pciDss
+mutation.policy.applicationControl.discardPolicyRevision								}
+mutation.policy.applicationControl.discardPolicyRevision								securityAttributes {
+mutation.policy.applicationControl.discardPolicyRevision									mfa
+mutation.policy.applicationControl.discardPolicyRevision									encryptionAtRest
+mutation.policy.applicationControl.discardPolicyRevision									auditTrail
+mutation.policy.applicationControl.discardPolicyRevision									rbac
+mutation.policy.applicationControl.discardPolicyRevision									rememberPassword
+mutation.policy.applicationControl.discardPolicyRevision									sso
+mutation.policy.applicationControl.discardPolicyRevision									trustedCertificate
+mutation.policy.applicationControl.discardPolicyRevision									tlsEnforcement
+mutation.policy.applicationControl.discardPolicyRevision									httpSecurityHeaders
+mutation.policy.applicationControl.discardPolicyRevision								}
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							originCountry {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							risk {
+mutation.policy.applicationControl.discardPolicyRevision								risk
+mutation.policy.applicationControl.discardPolicyRevision								riskOperator
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision						}
+mutation.policy.applicationControl.discardPolicyRevision					}
+mutation.policy.applicationControl.discardPolicyRevision					dataRule {
+mutation.policy.applicationControl.discardPolicyRevision						application {
+mutation.policy.applicationControl.discardPolicyRevision							application {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							customApp {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							appCategory {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							customCategory {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							sanctionedAppsCategory {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							applicationType
+mutation.policy.applicationControl.discardPolicyRevision						}
+mutation.policy.applicationControl.discardPolicyRevision						applicationContext {
+mutation.policy.applicationControl.discardPolicyRevision							applicationTenant {
+mutation.policy.applicationControl.discardPolicyRevision								operator
+mutation.policy.applicationControl.discardPolicyRevision								value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.discardPolicyRevision								valueSet {
+mutation.policy.applicationControl.discardPolicyRevision									id
+mutation.policy.applicationControl.discardPolicyRevision									name
+mutation.policy.applicationControl.discardPolicyRevision								}
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision						}
+mutation.policy.applicationControl.discardPolicyRevision						applicationActivitySatisfy
+mutation.policy.applicationControl.discardPolicyRevision						applicationActivity {
+mutation.policy.applicationControl.discardPolicyRevision							activity {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							field {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							operator
+mutation.policy.applicationControl.discardPolicyRevision							value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.discardPolicyRevision							valueSet {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision						}
+mutation.policy.applicationControl.discardPolicyRevision						accessMethod {
+mutation.policy.applicationControl.discardPolicyRevision							accessMethod
+mutation.policy.applicationControl.discardPolicyRevision							operator
+mutation.policy.applicationControl.discardPolicyRevision							value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.discardPolicyRevision							valueSet {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision						}
+mutation.policy.applicationControl.discardPolicyRevision						source {
+mutation.policy.applicationControl.discardPolicyRevision							country {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							host {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							site {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							subnet
+mutation.policy.applicationControl.discardPolicyRevision							ip
+mutation.policy.applicationControl.discardPolicyRevision							ipRange {
+mutation.policy.applicationControl.discardPolicyRevision								from
+mutation.policy.applicationControl.discardPolicyRevision								to
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							globalIpRange {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							networkInterface {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							siteNetworkSubnet {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							floatingSubnet {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							user {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							usersGroup {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							group {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							systemGroup {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision						}
+mutation.policy.applicationControl.discardPolicyRevision						device {
+mutation.policy.applicationControl.discardPolicyRevision							id
+mutation.policy.applicationControl.discardPolicyRevision							name
+mutation.policy.applicationControl.discardPolicyRevision						}
+mutation.policy.applicationControl.discardPolicyRevision						action
+mutation.policy.applicationControl.discardPolicyRevision						tracking {
+mutation.policy.applicationControl.discardPolicyRevision							event {
+mutation.policy.applicationControl.discardPolicyRevision								enabled
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							alert {
+mutation.policy.applicationControl.discardPolicyRevision								enabled
+mutation.policy.applicationControl.discardPolicyRevision								frequency
+mutation.policy.applicationControl.discardPolicyRevision								subscriptionGroup {
+mutation.policy.applicationControl.discardPolicyRevision									id
+mutation.policy.applicationControl.discardPolicyRevision									name
+mutation.policy.applicationControl.discardPolicyRevision								}
+mutation.policy.applicationControl.discardPolicyRevision								webhook {
+mutation.policy.applicationControl.discardPolicyRevision									id
+mutation.policy.applicationControl.discardPolicyRevision									name
+mutation.policy.applicationControl.discardPolicyRevision								}
+mutation.policy.applicationControl.discardPolicyRevision								mailingList {
+mutation.policy.applicationControl.discardPolicyRevision									id
+mutation.policy.applicationControl.discardPolicyRevision									name
+mutation.policy.applicationControl.discardPolicyRevision								}
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision						}
+mutation.policy.applicationControl.discardPolicyRevision						schedule {
+mutation.policy.applicationControl.discardPolicyRevision							activeOn
+mutation.policy.applicationControl.discardPolicyRevision							customTimeframe {
+mutation.policy.applicationControl.discardPolicyRevision								from
+mutation.policy.applicationControl.discardPolicyRevision								to
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							customRecurring {
+mutation.policy.applicationControl.discardPolicyRevision								from
+mutation.policy.applicationControl.discardPolicyRevision								to
+mutation.policy.applicationControl.discardPolicyRevision								days
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision						}
+mutation.policy.applicationControl.discardPolicyRevision						severity
+mutation.policy.applicationControl.discardPolicyRevision						fileAttributeSatisfy
+mutation.policy.applicationControl.discardPolicyRevision						fileAttribute {
+mutation.policy.applicationControl.discardPolicyRevision							fileAttribute
+mutation.policy.applicationControl.discardPolicyRevision							operator
+mutation.policy.applicationControl.discardPolicyRevision							value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.discardPolicyRevision							contentTypeValues {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							contentTypeGroupValues {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision						}
+mutation.policy.applicationControl.discardPolicyRevision						dlpProfile {
+mutation.policy.applicationControl.discardPolicyRevision							contentProfile {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							edmProfile {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision						}
+mutation.policy.applicationControl.discardPolicyRevision					}
+mutation.policy.applicationControl.discardPolicyRevision					fileRule {
+mutation.policy.applicationControl.discardPolicyRevision						application {
+mutation.policy.applicationControl.discardPolicyRevision							application {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							customApp {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							appCategory {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							customCategory {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							sanctionedAppsCategory {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							applicationType
+mutation.policy.applicationControl.discardPolicyRevision						}
+mutation.policy.applicationControl.discardPolicyRevision						applicationActivitySatisfy
+mutation.policy.applicationControl.discardPolicyRevision						applicationActivity {
+mutation.policy.applicationControl.discardPolicyRevision							activity {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							field {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							operator
+mutation.policy.applicationControl.discardPolicyRevision							value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.discardPolicyRevision							valueSet {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision						}
+mutation.policy.applicationControl.discardPolicyRevision						accessMethod {
+mutation.policy.applicationControl.discardPolicyRevision							accessMethod
+mutation.policy.applicationControl.discardPolicyRevision							operator
+mutation.policy.applicationControl.discardPolicyRevision							value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.discardPolicyRevision							valueSet {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision						}
+mutation.policy.applicationControl.discardPolicyRevision						source {
+mutation.policy.applicationControl.discardPolicyRevision							country {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							host {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							site {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							subnet
+mutation.policy.applicationControl.discardPolicyRevision							ip
+mutation.policy.applicationControl.discardPolicyRevision							ipRange {
+mutation.policy.applicationControl.discardPolicyRevision								from
+mutation.policy.applicationControl.discardPolicyRevision								to
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							globalIpRange {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							networkInterface {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							siteNetworkSubnet {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							floatingSubnet {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							user {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							usersGroup {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							group {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							systemGroup {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision						}
+mutation.policy.applicationControl.discardPolicyRevision						device {
+mutation.policy.applicationControl.discardPolicyRevision							id
+mutation.policy.applicationControl.discardPolicyRevision							name
+mutation.policy.applicationControl.discardPolicyRevision						}
+mutation.policy.applicationControl.discardPolicyRevision						action
+mutation.policy.applicationControl.discardPolicyRevision						tracking {
+mutation.policy.applicationControl.discardPolicyRevision							event {
+mutation.policy.applicationControl.discardPolicyRevision								enabled
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							alert {
+mutation.policy.applicationControl.discardPolicyRevision								enabled
+mutation.policy.applicationControl.discardPolicyRevision								frequency
+mutation.policy.applicationControl.discardPolicyRevision								subscriptionGroup {
+mutation.policy.applicationControl.discardPolicyRevision									id
+mutation.policy.applicationControl.discardPolicyRevision									name
+mutation.policy.applicationControl.discardPolicyRevision								}
+mutation.policy.applicationControl.discardPolicyRevision								webhook {
+mutation.policy.applicationControl.discardPolicyRevision									id
+mutation.policy.applicationControl.discardPolicyRevision									name
+mutation.policy.applicationControl.discardPolicyRevision								}
+mutation.policy.applicationControl.discardPolicyRevision								mailingList {
+mutation.policy.applicationControl.discardPolicyRevision									id
+mutation.policy.applicationControl.discardPolicyRevision									name
+mutation.policy.applicationControl.discardPolicyRevision								}
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision						}
+mutation.policy.applicationControl.discardPolicyRevision						schedule {
+mutation.policy.applicationControl.discardPolicyRevision							activeOn
+mutation.policy.applicationControl.discardPolicyRevision							customTimeframe {
+mutation.policy.applicationControl.discardPolicyRevision								from
+mutation.policy.applicationControl.discardPolicyRevision								to
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							customRecurring {
+mutation.policy.applicationControl.discardPolicyRevision								from
+mutation.policy.applicationControl.discardPolicyRevision								to
+mutation.policy.applicationControl.discardPolicyRevision								days
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision						}
+mutation.policy.applicationControl.discardPolicyRevision						severity
+mutation.policy.applicationControl.discardPolicyRevision						fileAttributeSatisfy
+mutation.policy.applicationControl.discardPolicyRevision						fileAttribute {
+mutation.policy.applicationControl.discardPolicyRevision							fileAttribute
+mutation.policy.applicationControl.discardPolicyRevision							operator
+mutation.policy.applicationControl.discardPolicyRevision							value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.applicationControl.discardPolicyRevision							contentTypeValues {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision							contentTypeGroupValues {
+mutation.policy.applicationControl.discardPolicyRevision								id
+mutation.policy.applicationControl.discardPolicyRevision								name
+mutation.policy.applicationControl.discardPolicyRevision							}
+mutation.policy.applicationControl.discardPolicyRevision						}
+mutation.policy.applicationControl.discardPolicyRevision					}
+mutation.policy.applicationControl.discardPolicyRevision				}
+mutation.policy.applicationControl.discardPolicyRevision				properties
+mutation.policy.applicationControl.discardPolicyRevision			}
+mutation.policy.applicationControl.discardPolicyRevision			sections {
+mutation.policy.applicationControl.discardPolicyRevision				audit {
+mutation.policy.applicationControl.discardPolicyRevision					updatedTime
+mutation.policy.applicationControl.discardPolicyRevision					updatedBy
+mutation.policy.applicationControl.discardPolicyRevision				}
+mutation.policy.applicationControl.discardPolicyRevision				section {
+mutation.policy.applicationControl.discardPolicyRevision					id
+mutation.policy.applicationControl.discardPolicyRevision					name
+mutation.policy.applicationControl.discardPolicyRevision				}
+mutation.policy.applicationControl.discardPolicyRevision				properties
+mutation.policy.applicationControl.discardPolicyRevision			}
+mutation.policy.applicationControl.discardPolicyRevision			audit {
+mutation.policy.applicationControl.discardPolicyRevision				publishedTime
+mutation.policy.applicationControl.discardPolicyRevision				publishedBy
+mutation.policy.applicationControl.discardPolicyRevision			}
+mutation.policy.applicationControl.discardPolicyRevision			revision {
+mutation.policy.applicationControl.discardPolicyRevision				id
+mutation.policy.applicationControl.discardPolicyRevision				name
+mutation.policy.applicationControl.discardPolicyRevision				description
+mutation.policy.applicationControl.discardPolicyRevision				changes
+mutation.policy.applicationControl.discardPolicyRevision				createdTime
+mutation.policy.applicationControl.discardPolicyRevision				updatedTime
+mutation.policy.applicationControl.discardPolicyRevision			}
+mutation.policy.applicationControl.discardPolicyRevision			additionalAttributes {
+mutation.policy.applicationControl.discardPolicyRevision				dataControlEnabled
+mutation.policy.applicationControl.discardPolicyRevision			}
+mutation.policy.applicationControl.discardPolicyRevision		}
+mutation.policy.applicationControl.discardPolicyRevision		status
+mutation.policy.applicationControl.discardPolicyRevision		errors {
+mutation.policy.applicationControl.discardPolicyRevision			errorMessage
+mutation.policy.applicationControl.discardPolicyRevision			errorCode
+mutation.policy.applicationControl.discardPolicyRevision		}
+mutation.policy.applicationControl.discardPolicyRevision	}
+mutation.policy.applicationControl.discardPolicyRevision}
 	}	
 }

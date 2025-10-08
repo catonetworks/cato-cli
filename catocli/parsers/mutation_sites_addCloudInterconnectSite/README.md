@@ -4,15 +4,16 @@
 
 ### Usage for mutation.sites.addCloudInterconnectSite:
 
-`catocli mutation sites addCloudInterconnectSite -h`
+```bash
+catocli mutation sites addCloudInterconnectSite -h
 
-`catocli mutation sites addCloudInterconnectSite <json>`
+catocli mutation sites addCloudInterconnectSite <json>
 
-`catocli mutation sites addCloudInterconnectSite "$(cat < mutation.sites.addCloudInterconnectSite.json)"`
+catocli mutation sites addCloudInterconnectSite "$(cat < mutation.sites.addCloudInterconnectSite.json)"
 
-`catocli mutation sites addCloudInterconnectSite '{"addCloudInterconnectSiteInput":{"addSiteLocationInput":{"address":"string","city":"string","countryCode":"string","stateCode":"string","timezone":"string"},"description":"string","name":"string","siteType":"BRANCH"}}'`
+catocli mutation sites addCloudInterconnectSite '{"addCloudInterconnectSiteInput":{"addSiteLocationInput":{"address":"string","city":"string","countryCode":"string","stateCode":"string","timezone":"string"},"description":"string","name":"string","siteType":"BRANCH"}}'
 
-`catocli mutation sites addCloudInterconnectSite -p '{
+catocli mutation sites addCloudInterconnectSite -p '{
     "addCloudInterconnectSiteInput": {
         "addSiteLocationInput": {
             "address": "string",
@@ -26,7 +27,7 @@
         "siteType": "BRANCH"
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.sites.addCloudInterconnectSite ####
 

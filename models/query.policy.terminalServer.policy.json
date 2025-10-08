@@ -195,6 +195,126 @@
                 "non_null": false
             },
             "varName": "accountId"
+        },
+        "terminalServerPolicyInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "policy___input",
+            "name": "input",
+            "path": "policy.input",
+            "requestStr": "$terminalServerPolicyInput:TerminalServerPolicyInput ",
+            "required": false,
+            "responseStr": "input:$terminalServerPolicyInput ",
+            "type": {
+                "definition": {
+                    "description": null,
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "revision": {
+                            "defaultValue": null,
+                            "description": "A revision is a specific instance of the policy.\n Unpublished revisions are working copies of the policy available to a specific\n admin or a set of admins\n Published revisions are revisions that were applied to the account network.\n The last published revision is the active policy.",
+                            "id_str": "policy___input___revision",
+                            "name": "revision",
+                            "path": "policy.input.revision",
+                            "requestStr": "$policyRevisionInput:PolicyRevisionInput ",
+                            "required": false,
+                            "responseStr": "revision:$policyRevisionInput ",
+                            "type": {
+                                "definition": {
+                                    "description": "Input for specifying a policy revision",
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "id": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "policy___input___revision___id",
+                                            "name": "id",
+                                            "path": "policy.input.revision.id",
+                                            "requestStr": "$id:ID ",
+                                            "required": false,
+                                            "responseStr": "id:$id ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "ID",
+                                                "non_null": false
+                                            },
+                                            "varName": "id"
+                                        },
+                                        "type": {
+                                            "defaultValue": "PRIVATE",
+                                            "description": null,
+                                            "id_str": "policy___input___revision___type",
+                                            "name": "type",
+                                            "path": "policy.input.revision.type",
+                                            "requestStr": "$type:PolicyRevisionType ",
+                                            "required": false,
+                                            "responseStr": "type:$type ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "Enum for the type of a policy revision",
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "PRIVATE"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "PUBLIC"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "PolicyRevisionType",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "ENUM"
+                                                ],
+                                                "name": "PolicyRevisionType",
+                                                "non_null": false
+                                            },
+                                            "varName": "type"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "PolicyRevisionInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "PolicyRevisionInput",
+                                "non_null": false
+                            },
+                            "varName": "policyRevisionInput"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "TerminalServerPolicyInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "INPUT_OBJECT"
+                ],
+                "name": "TerminalServerPolicyInput",
+                "non_null": false
+            },
+            "varName": "terminalServerPolicyInput"
         }
     },
     "path": "query.policy.terminalServer.policy",
@@ -357,7 +477,6 @@
                                             "enumValues": null,
                                             "fields": {
                                                 "audit": {
-                                                    "alias": "auditTerminalServerPolicy: audit",
                                                     "args": {},
                                                     "deprecationReason": null,
                                                     "description": null,
@@ -453,7 +572,6 @@
                                                     "varName": "enabled"
                                                 },
                                                 "revision": {
-                                                    "alias": "revisionTerminalServerPolicy: revision",
                                                     "args": {},
                                                     "deprecationReason": null,
                                                     "description": null,
@@ -612,7 +730,6 @@
                                                     "varName": "policyRevision"
                                                 },
                                                 "rules": {
-                                                    "alias": "rulesTerminalServerPolicy: rules",
                                                     "args": {},
                                                     "deprecationReason": null,
                                                     "description": null,
@@ -629,7 +746,6 @@
                                                             "enumValues": null,
                                                             "fields": {
                                                                 "audit": {
-                                                                    "alias": "auditTerminalServerRulePayload: audit",
                                                                     "args": {},
                                                                     "deprecationReason": null,
                                                                     "description": null,
@@ -705,7 +821,6 @@
                                                                     "varName": "policyElementAudit"
                                                                 },
                                                                 "properties": {
-                                                                    "alias": "propertiesTerminalServerRulePayload: properties",
                                                                     "args": {},
                                                                     "deprecationReason": null,
                                                                     "description": null,
@@ -783,7 +898,6 @@
                                                                     "varName": "properties"
                                                                 },
                                                                 "rule": {
-                                                                    "alias": "ruleTerminalServerRulePayload: rule",
                                                                     "args": {},
                                                                     "deprecationReason": null,
                                                                     "description": null,
@@ -800,7 +914,6 @@
                                                                             "enumValues": null,
                                                                             "fields": {
                                                                                 "allowedHostIP": {
-                                                                                    "alias": "allowedHostIPTerminalServerRule: allowedHostIP",
                                                                                     "args": {},
                                                                                     "deprecationReason": null,
                                                                                     "description": "Allowed Host IP range.\nall the other IPs will be blocked by the pop.\nGlobally defined IP range",
@@ -924,7 +1037,6 @@
                                                                                     "varName": "enabled"
                                                                                 },
                                                                                 "excludeTraffic": {
-                                                                                    "alias": "excludeTrafficTerminalServerRule: excludeTraffic",
                                                                                     "args": {},
                                                                                     "deprecationReason": null,
                                                                                     "description": "Exclude traffic IP Range.\nall traffic to those Ips will be excluded from the GRE tunnel.\nGlobally defined IP range",
@@ -1071,7 +1183,6 @@
                                                                                     "varName": "name"
                                                                                 },
                                                                                 "section": {
-                                                                                    "alias": "sectionTerminalServerRule: section",
                                                                                     "args": {},
                                                                                     "deprecationReason": null,
                                                                                     "description": "Policy section where the rule is located",
@@ -1195,7 +1306,6 @@
                                                     "varName": "terminalServerRulePayload"
                                                 },
                                                 "sections": {
-                                                    "alias": "sectionsTerminalServerPolicy: sections",
                                                     "args": {},
                                                     "deprecationReason": null,
                                                     "description": null,
@@ -1212,7 +1322,6 @@
                                                             "enumValues": null,
                                                             "fields": {
                                                                 "audit": {
-                                                                    "alias": "auditPolicySectionPayload: audit",
                                                                     "args": {},
                                                                     "deprecationReason": null,
                                                                     "description": null,
@@ -1288,7 +1397,6 @@
                                                                     "varName": "policyElementAudit"
                                                                 },
                                                                 "properties": {
-                                                                    "alias": "propertiesPolicySectionPayload: properties",
                                                                     "args": {},
                                                                     "deprecationReason": null,
                                                                     "description": null,
@@ -1366,7 +1474,6 @@
                                                                     "varName": "properties"
                                                                 },
                                                                 "section": {
-                                                                    "alias": "sectionPolicySectionPayload: section",
                                                                     "args": {},
                                                                     "deprecationReason": null,
                                                                     "description": null,
@@ -1514,7 +1621,11 @@
         "non_null": false
     },
     "variablesPayload": {
-        "accountID": "example_account_id",
-        "accountId": "example_id"
+        "terminalServerPolicyInput": {
+            "policyRevisionInput": {
+                "id": "id",
+                "type": "PRIVATE"
+            }
+        }
     }
 }

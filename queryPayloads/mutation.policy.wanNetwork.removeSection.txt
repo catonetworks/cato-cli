@@ -1,27 +1,24 @@
-mutation policyWanNetworkRemoveSection ( $policyRemoveSectionInput:PolicyRemoveSectionInput! $wanNetworkPolicyMutationInput:WanNetworkPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		wanNetwork ( input:$wanNetworkPolicyMutationInput  )  {
-			removeSectionWanNetworkPolicyMutations: removeSection ( input:$policyRemoveSectionInput   ) {
-				section  {
-					auditPolicySectionPayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					sectionPolicySectionPayload: section {
-						id 
-						name 
-					}
-					propertiesPolicySectionPayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyWanNetworkRemoveSection ( $wanNetworkPolicyMutationInput:WanNetworkPolicyMutationInput $policyRemoveSectionInput:PolicyRemoveSectionInput!) {
+	policy ( ) {
+mutation.policy.wanNetwork.removeSectionwanNetwork ( input:$wanNetworkPolicyMutationInput  )  {
+mutation.policy.wanNetwork.removeSection	removeSection ( input:$policyRemoveSectionInput   ) {
+mutation.policy.wanNetwork.removeSection		section {
+mutation.policy.wanNetwork.removeSection			audit {
+mutation.policy.wanNetwork.removeSection				updatedTime
+mutation.policy.wanNetwork.removeSection				updatedBy
+mutation.policy.wanNetwork.removeSection			}
+mutation.policy.wanNetwork.removeSection			section {
+mutation.policy.wanNetwork.removeSection				id
+mutation.policy.wanNetwork.removeSection				name
+mutation.policy.wanNetwork.removeSection			}
+mutation.policy.wanNetwork.removeSection			properties
+mutation.policy.wanNetwork.removeSection		}
+mutation.policy.wanNetwork.removeSection		status
+mutation.policy.wanNetwork.removeSection		errors {
+mutation.policy.wanNetwork.removeSection			errorMessage
+mutation.policy.wanNetwork.removeSection			errorCode
+mutation.policy.wanNetwork.removeSection		}
+mutation.policy.wanNetwork.removeSection	}
+mutation.policy.wanNetwork.removeSection}
 	}	
 }

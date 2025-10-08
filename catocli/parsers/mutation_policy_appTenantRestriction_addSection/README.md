@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.appTenantRestriction.addSection:
 
-`catocli mutation policy appTenantRestriction addSection -h`
+```bash
+catocli mutation policy appTenantRestriction addSection -h
 
-`catocli mutation policy appTenantRestriction addSection <json>`
+catocli mutation policy appTenantRestriction addSection <json>
 
-`catocli mutation policy appTenantRestriction addSection "$(cat < mutation.policy.appTenantRestriction.addSection.json)"`
+catocli mutation policy appTenantRestriction addSection "$(cat < mutation.policy.appTenantRestriction.addSection.json)"
 
-`catocli mutation policy appTenantRestriction addSection '{"appTenantRestrictionPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyAddSectionInput":{"policyAddSectionInfoInput":{"name":"string"},"policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}}}'`
+catocli mutation policy appTenantRestriction addSection '{"appTenantRestrictionPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyAddSectionInput":{"policyAddSectionInfoInput":{"name":"string"},"policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}}}'
 
-`catocli mutation policy appTenantRestriction addSection -p '{
+catocli mutation policy appTenantRestriction addSection -p '{
     "appTenantRestrictionPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"
@@ -28,7 +29,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.appTenantRestriction.addSection ####
 

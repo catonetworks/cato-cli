@@ -1,28 +1,52 @@
-query appStatsTimeSeries ( $perSecond:Boolean $withMissingData:Boolean $useDefaultSizeBucket:Boolean $buckets:Int! $accountID:ID! $timeFrame:TimeFrame! $measure:[Measure] $dimension:[Dimension] $appStatsFilter:[AppStatsFilter!] ) {
-	appStatsTimeSeries ( accountID:$accountID timeFrame:$timeFrame measures:$measure dimensions:$dimension filters:$appStatsFilter ) {
-		id 
-		from 
-		to 
-		granularity 
-		timeseries ( buckets:$buckets  )  {
-			data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket   )
-			label
-			dimensionsTimeseries: dimensions {
-				label 
-				value 
-			}
-			keyTimeseries: key {
-				measureFieldName 
-				dimensions  {
-					fieldName
-					value
-				}
-
-			}
-			sum
-			unitsTimeseries: units
-			info
-		}
-
+query appStatsTimeSeries ( $timeFrame:TimeFrame! $measure:[Measure] $dimension:[Dimension] $appStatsFilter:[AppStatsFilter!]) {
+	appStatsTimeSeries ( timeFrame:$timeFrame measures:$measure dimensions:$dimension filters:$appStatsFilter ) {
+query.appStatsTimeSeriesid
+query.appStatsTimeSeriesfrom
+query.appStatsTimeSeriesto
+query.appStatsTimeSeriesgranularity
+query.appStatsTimeSeriestimeseries {
+query.appStatsTimeSeries	data
+query.appStatsTimeSeries	label
+query.appStatsTimeSeries	dimensions {
+query.appStatsTimeSeries		label
+query.appStatsTimeSeries		value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+query.appStatsTimeSeries	}
+query.appStatsTimeSeries	key {
+query.appStatsTimeSeries		measureFieldName
+query.appStatsTimeSeries		dimensions {
+query.appStatsTimeSeries			fieldName
+query.appStatsTimeSeries			value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+query.appStatsTimeSeries		}
+query.appStatsTimeSeries	}
+query.appStatsTimeSeries	sum
+query.appStatsTimeSeries	units
+query.appStatsTimeSeries	info
+query.appStatsTimeSeries}
 	}	
 }

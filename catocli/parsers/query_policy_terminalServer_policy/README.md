@@ -4,15 +4,16 @@
 
 ### Usage for query.policy.terminalServer.policy:
 
-`catocli query policy terminalServer policy -h`
+```bash
+catocli query policy terminalServer policy -h
 
-`catocli query policy terminalServer policy <json>`
+catocli query policy terminalServer policy <json>
 
-`catocli query policy terminalServer policy "$(cat < query.policy.terminalServer.policy.json)"`
+catocli query policy terminalServer policy "$(cat < query.policy.terminalServer.policy.json)"
 
-`catocli query policy terminalServer policy '{"terminalServerPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'`
+catocli query policy terminalServer policy '{"terminalServerPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'
 
-`catocli query policy terminalServer policy -p '{
+catocli query policy terminalServer policy -p '{
     "terminalServerPolicyInput": {
         "policyRevisionInput": {
             "id": "id",
@@ -20,7 +21,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for query.policy.terminalServer.policy ####
 

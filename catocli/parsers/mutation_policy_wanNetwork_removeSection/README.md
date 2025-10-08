@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.wanNetwork.removeSection:
 
-`catocli mutation policy wanNetwork removeSection -h`
+```bash
+catocli mutation policy wanNetwork removeSection -h
 
-`catocli mutation policy wanNetwork removeSection <json>`
+catocli mutation policy wanNetwork removeSection <json>
 
-`catocli mutation policy wanNetwork removeSection "$(cat < mutation.policy.wanNetwork.removeSection.json)"`
+catocli mutation policy wanNetwork removeSection "$(cat < mutation.policy.wanNetwork.removeSection.json)"
 
-`catocli mutation policy wanNetwork removeSection '{"policyRemoveSectionInput":{"id":"id"},"wanNetworkPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'`
+catocli mutation policy wanNetwork removeSection '{"policyRemoveSectionInput":{"id":"id"},"wanNetworkPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-`catocli mutation policy wanNetwork removeSection -p '{
+catocli mutation policy wanNetwork removeSection -p '{
     "policyRemoveSectionInput": {
         "id": "id"
     },
@@ -22,7 +23,7 @@
         }
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.wanNetwork.removeSection ####
 

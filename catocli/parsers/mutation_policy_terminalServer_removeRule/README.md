@@ -4,15 +4,16 @@
 
 ### Usage for mutation.policy.terminalServer.removeRule:
 
-`catocli mutation policy terminalServer removeRule -h`
+```bash
+catocli mutation policy terminalServer removeRule -h
 
-`catocli mutation policy terminalServer removeRule <json>`
+catocli mutation policy terminalServer removeRule <json>
 
-`catocli mutation policy terminalServer removeRule "$(cat < mutation.policy.terminalServer.removeRule.json)"`
+catocli mutation policy terminalServer removeRule "$(cat < mutation.policy.terminalServer.removeRule.json)"
 
-`catocli mutation policy terminalServer removeRule '{"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"terminalServerRemoveRuleInput":{"id":"id"}}'`
+catocli mutation policy terminalServer removeRule '{"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"terminalServerRemoveRuleInput":{"id":"id"}}'
 
-`catocli mutation policy terminalServer removeRule -p '{
+catocli mutation policy terminalServer removeRule -p '{
     "terminalServerPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"
@@ -22,7 +23,7 @@
         "id": "id"
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.policy.terminalServer.removeRule ####
 

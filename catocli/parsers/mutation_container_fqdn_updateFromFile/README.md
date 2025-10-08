@@ -4,15 +4,16 @@
 
 ### Usage for mutation.container.fqdn.updateFromFile:
 
-`catocli mutation container fqdn updateFromFile -h`
+```bash
+catocli mutation container fqdn updateFromFile -h
 
-`catocli mutation container fqdn updateFromFile <json>`
+catocli mutation container fqdn updateFromFile <json>
 
-`catocli mutation container fqdn updateFromFile "$(cat < mutation.container.fqdn.updateFromFile.json)"`
+catocli mutation container fqdn updateFromFile "$(cat < mutation.container.fqdn.updateFromFile.json)"
 
-`catocli mutation container fqdn updateFromFile '{"updateFqdnContainerFromFileInput":{"containerRefInput":{"by":"ID","input":"string"},"description":"string","fileType":"STIX","uploadFile":"example_value"}}'`
+catocli mutation container fqdn updateFromFile '{"updateFqdnContainerFromFileInput":{"containerRefInput":{"by":"ID","input":"string"},"description":"string","fileType":"STIX","uploadFile":"example_value"}}'
 
-`catocli mutation container fqdn updateFromFile -p '{
+catocli mutation container fqdn updateFromFile -p '{
     "updateFqdnContainerFromFileInput": {
         "containerRefInput": {
             "by": "ID",
@@ -23,7 +24,7 @@
         "uploadFile": "example_value"
     }
 }'
-
+```
 
 #### Operation Arguments for mutation.container.fqdn.updateFromFile ####
 

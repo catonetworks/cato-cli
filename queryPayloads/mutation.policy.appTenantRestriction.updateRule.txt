@@ -1,113 +1,118 @@
-mutation policyAppTenantRestrictionUpdateRule ( $appTenantRestrictionUpdateRuleInput:AppTenantRestrictionUpdateRuleInput! $appTenantRestrictionPolicyMutationInput:AppTenantRestrictionPolicyMutationInput $accountId:ID! ) {
-	policy ( accountId:$accountId ) {
-		appTenantRestriction ( input:$appTenantRestrictionPolicyMutationInput  )  {
-			updateRuleAppTenantRestrictionPolicyMutations: updateRule ( input:$appTenantRestrictionUpdateRuleInput   ) {
-				rule  {
-					auditAppTenantRestrictionRulePayload: audit {
-						updatedTime 
-						updatedBy 
-					}
-					ruleAppTenantRestrictionRulePayload: rule {
-						id 
-						name 
-						description 
-						index 
-						section  {
-							id
-							name
-						}
-
-						enabled 
-						application  {
-							id
-							name
-						}
-
-						headers  {
-							name
-							value
-						}
-
-						source  {
-							ip
-							hostAppTenantRestrictionSource: host {
-								id 
-								name 
-							}
-							siteAppTenantRestrictionSource: site {
-								id 
-								name 
-							}
-							subnet
-							ipRangeAppTenantRestrictionSource: ipRange {
-								from 
-								to 
-							}
-							globalIpRangeAppTenantRestrictionSource: globalIpRange {
-								id 
-								name 
-							}
-							networkInterfaceAppTenantRestrictionSource: networkInterface {
-								id 
-								name 
-							}
-							siteNetworkSubnetAppTenantRestrictionSource: siteNetworkSubnet {
-								id 
-								name 
-							}
-							floatingSubnetAppTenantRestrictionSource: floatingSubnet {
-								id 
-								name 
-							}
-							userAppTenantRestrictionSource: user {
-								id 
-								name 
-							}
-							usersGroupAppTenantRestrictionSource: usersGroup {
-								id 
-								name 
-							}
-							groupAppTenantRestrictionSource: group {
-								id 
-								name 
-							}
-							systemGroupAppTenantRestrictionSource: systemGroup {
-								id 
-								name 
-							}
-							countryAppTenantRestrictionSource: country {
-								id 
-								name 
-							}
-						}
-
-						schedule  {
-							activeOnPolicySchedule: activeOn
-							customTimeframePolicySchedule: customTimeframe {
-								from 
-								to 
-							}
-							customRecurringPolicySchedule: customRecurring {
-								from 
-								to 
-								days 
-							}
-						}
-
-						action 
-						severity 
-					}
-					propertiesAppTenantRestrictionRulePayload: properties
-				}
-
-				status 
-				errors  {
-					errorMessage
-					errorCode
-				}
-
-			}
-		}
-
+mutation policyAppTenantRestrictionUpdateRule ( $appTenantRestrictionPolicyMutationInput:AppTenantRestrictionPolicyMutationInput $appTenantRestrictionUpdateRuleInput:AppTenantRestrictionUpdateRuleInput!) {
+	policy ( ) {
+mutation.policy.appTenantRestriction.updateRuleappTenantRestriction ( input:$appTenantRestrictionPolicyMutationInput  )  {
+mutation.policy.appTenantRestriction.updateRule	updateRule ( input:$appTenantRestrictionUpdateRuleInput   ) {
+mutation.policy.appTenantRestriction.updateRule		rule {
+mutation.policy.appTenantRestriction.updateRule			audit {
+mutation.policy.appTenantRestriction.updateRule				updatedTime
+mutation.policy.appTenantRestriction.updateRule				updatedBy
+mutation.policy.appTenantRestriction.updateRule			}
+mutation.policy.appTenantRestriction.updateRule			rule {
+mutation.policy.appTenantRestriction.updateRule				id
+mutation.policy.appTenantRestriction.updateRule				name
+mutation.policy.appTenantRestriction.updateRule				description
+mutation.policy.appTenantRestriction.updateRule				index
+mutation.policy.appTenantRestriction.updateRule				section {
+mutation.policy.appTenantRestriction.updateRule					id
+mutation.policy.appTenantRestriction.updateRule					name
+mutation.policy.appTenantRestriction.updateRule				}
+mutation.policy.appTenantRestriction.updateRule				enabled
+mutation.policy.appTenantRestriction.updateRule				application {
+mutation.policy.appTenantRestriction.updateRule					id
+mutation.policy.appTenantRestriction.updateRule					name
+mutation.policy.appTenantRestriction.updateRule				}
+mutation.policy.appTenantRestriction.updateRule				headers {
+mutation.policy.appTenantRestriction.updateRule					name
+mutation.policy.appTenantRestriction.updateRule					value {
+	__typename
+	... on StringValue {
+		string
+	}
+	... on DateValue {
+		date
+	}
+	... on Entity {
+		id
+		name
+		type
+	}
+}
+mutation.policy.appTenantRestriction.updateRule				}
+mutation.policy.appTenantRestriction.updateRule				source {
+mutation.policy.appTenantRestriction.updateRule					ip
+mutation.policy.appTenantRestriction.updateRule					host {
+mutation.policy.appTenantRestriction.updateRule						id
+mutation.policy.appTenantRestriction.updateRule						name
+mutation.policy.appTenantRestriction.updateRule					}
+mutation.policy.appTenantRestriction.updateRule					site {
+mutation.policy.appTenantRestriction.updateRule						id
+mutation.policy.appTenantRestriction.updateRule						name
+mutation.policy.appTenantRestriction.updateRule					}
+mutation.policy.appTenantRestriction.updateRule					subnet
+mutation.policy.appTenantRestriction.updateRule					ipRange {
+mutation.policy.appTenantRestriction.updateRule						from
+mutation.policy.appTenantRestriction.updateRule						to
+mutation.policy.appTenantRestriction.updateRule					}
+mutation.policy.appTenantRestriction.updateRule					globalIpRange {
+mutation.policy.appTenantRestriction.updateRule						id
+mutation.policy.appTenantRestriction.updateRule						name
+mutation.policy.appTenantRestriction.updateRule					}
+mutation.policy.appTenantRestriction.updateRule					networkInterface {
+mutation.policy.appTenantRestriction.updateRule						id
+mutation.policy.appTenantRestriction.updateRule						name
+mutation.policy.appTenantRestriction.updateRule					}
+mutation.policy.appTenantRestriction.updateRule					siteNetworkSubnet {
+mutation.policy.appTenantRestriction.updateRule						id
+mutation.policy.appTenantRestriction.updateRule						name
+mutation.policy.appTenantRestriction.updateRule					}
+mutation.policy.appTenantRestriction.updateRule					floatingSubnet {
+mutation.policy.appTenantRestriction.updateRule						id
+mutation.policy.appTenantRestriction.updateRule						name
+mutation.policy.appTenantRestriction.updateRule					}
+mutation.policy.appTenantRestriction.updateRule					user {
+mutation.policy.appTenantRestriction.updateRule						id
+mutation.policy.appTenantRestriction.updateRule						name
+mutation.policy.appTenantRestriction.updateRule					}
+mutation.policy.appTenantRestriction.updateRule					usersGroup {
+mutation.policy.appTenantRestriction.updateRule						id
+mutation.policy.appTenantRestriction.updateRule						name
+mutation.policy.appTenantRestriction.updateRule					}
+mutation.policy.appTenantRestriction.updateRule					group {
+mutation.policy.appTenantRestriction.updateRule						id
+mutation.policy.appTenantRestriction.updateRule						name
+mutation.policy.appTenantRestriction.updateRule					}
+mutation.policy.appTenantRestriction.updateRule					systemGroup {
+mutation.policy.appTenantRestriction.updateRule						id
+mutation.policy.appTenantRestriction.updateRule						name
+mutation.policy.appTenantRestriction.updateRule					}
+mutation.policy.appTenantRestriction.updateRule					country {
+mutation.policy.appTenantRestriction.updateRule						id
+mutation.policy.appTenantRestriction.updateRule						name
+mutation.policy.appTenantRestriction.updateRule					}
+mutation.policy.appTenantRestriction.updateRule				}
+mutation.policy.appTenantRestriction.updateRule				schedule {
+mutation.policy.appTenantRestriction.updateRule					activeOn
+mutation.policy.appTenantRestriction.updateRule					customTimeframe {
+mutation.policy.appTenantRestriction.updateRule						from
+mutation.policy.appTenantRestriction.updateRule						to
+mutation.policy.appTenantRestriction.updateRule					}
+mutation.policy.appTenantRestriction.updateRule					customRecurring {
+mutation.policy.appTenantRestriction.updateRule						from
+mutation.policy.appTenantRestriction.updateRule						to
+mutation.policy.appTenantRestriction.updateRule						days
+mutation.policy.appTenantRestriction.updateRule					}
+mutation.policy.appTenantRestriction.updateRule				}
+mutation.policy.appTenantRestriction.updateRule				action
+mutation.policy.appTenantRestriction.updateRule				severity
+mutation.policy.appTenantRestriction.updateRule			}
+mutation.policy.appTenantRestriction.updateRule			properties
+mutation.policy.appTenantRestriction.updateRule		}
+mutation.policy.appTenantRestriction.updateRule		status
+mutation.policy.appTenantRestriction.updateRule		errors {
+mutation.policy.appTenantRestriction.updateRule			errorMessage
+mutation.policy.appTenantRestriction.updateRule			errorCode
+mutation.policy.appTenantRestriction.updateRule		}
+mutation.policy.appTenantRestriction.updateRule	}
+mutation.policy.appTenantRestriction.updateRule}
 	}	
 }

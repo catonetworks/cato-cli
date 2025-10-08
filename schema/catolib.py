@@ -229,6 +229,14 @@ def processOperation(operationType, operationName):
             arg = parsedOperation["args"][argName]
             parsedOperation["operationArgs"][arg["varName"]] = arg
         
+        # Also include child operation arguments in operationArgs
+        if "childOperations" in parsedOperation:
+            for childOpName, childOp in parsedOperation["childOperations"].items():
+                if "args" in childOp:
+                    for childArgName, childArg in childOp["args"].items():
+                        if "varName" in childArg:
+                            parsedOperation["operationArgs"][childArg["varName"]] = childArg
+        
         parsedOperation["variablesPayload"] = generateExampleVariables(parsedOperation)
         
         # Write files with thread-safe locking
@@ -356,55 +364,698 @@ def getNestedInterfaceDefinitions(possibleTypesAry, parentParamPath, childOperat
     return curInterfaces
 
 def generateExampleVariables(operation):
-    """Generate example variables for an operation"""
-    variables = {}
-    
-    # Add accountID if not present
-    if "accountID" not in variables:
-        variables["accountID"] = "example_account_id"
-    
-    for arg_name in operation.get("args", {}):
-        arg = operation["args"][arg_name]
-        var_name = arg.get("varName", arg_name)
-        
-        # Generate example value based on type
-        if "SCALAR" in arg["type"]["kind"]:
-            type_name = arg["type"]["name"]
-            if type_name == "ID":
-                variables[var_name] = "example_id"
-            elif type_name == "String":
-                variables[var_name] = "example_string"
-            elif type_name == "Int":
-                variables[var_name] = 1
-            elif type_name == "Boolean":
-                variables[var_name] = True
-            elif type_name == "Float":
-                variables[var_name] = 1.0
-            else:
-                variables[var_name] = "example_value"
-        elif "INPUT_OBJECT" in arg["type"]["kind"]:
-            variables[var_name] = {}
-        elif "LIST" in arg["type"]["kind"]:
-            variables[var_name] = []
+    """Generate example variables for operation"""
+    variablesObj = {}
+    for argName in operation["operationArgs"]:
+        arg = operation["operationArgs"][argName]
+        if "SCALAR" in arg["type"]["kind"] or "ENUM" in arg["type"]["kind"]:
+            variablesObj[arg["name"]] = renderInputFieldVal(arg)
         else:
-            variables[var_name] = "example_value"
+            argTD = arg["type"]["definition"]
+            variablesObj[arg["varName"]] = {}
+            if "inputFields" in argTD and argTD["inputFields"] != None:
+                for inputFieldName in argTD["inputFields"]:
+                    inputField = argTD["inputFields"][inputFieldName]
+                    variablesObj[arg["varName"]][inputField["varName"]] = parseNestedArgFields(inputField)
     
-    return variables
+    if "accountID" in variablesObj:
+        del variablesObj["accountID"]
+    if "accountId" in variablesObj:
+        del variablesObj["accountId"]
+    return variablesObj
+
+def parseNestedArgFields(fieldObj):
+    """Parse nested argument fields with realistic examples"""
+    if "SCALAR" in fieldObj["type"]["kind"] or "ENUM" in fieldObj["type"]["kind"]:
+        return renderInputFieldVal(fieldObj)
+    else:
+        # For complex types, create a nested object with realistic examples
+        subVariableObj = {}
+        if "type" in fieldObj and "definition" in fieldObj["type"] and "inputFields" in fieldObj["type"]["definition"]:
+            inputFields = fieldObj["type"]["definition"]["inputFields"]
+            if inputFields:
+                for inputFieldName, inputField in inputFields.items():
+                    if isinstance(inputField, dict):
+                        subVariableObj[inputField["name"]] = parseNestedArgFields(inputField)
+        return subVariableObj
+
+def renderInputFieldVal(arg):
+    """Render input field values with realistic JSON examples"""
+    value = "string"
+    
+    if "SCALAR" in arg["type"]["kind"]:
+        type_name = arg["type"]["name"]
+        if "LIST" in arg["type"]["kind"]:
+            # Return array of realistic values based on scalar type
+            if type_name == "String":
+                value = ["string1", "string2"]
+            elif type_name == "Int":
+                value = [1, 2]
+            elif type_name == "Float":
+                value = [1.5, 2.5]
+            elif type_name == "Boolean":
+                value = [True, False]
+            elif type_name == "ID":
+                value = ["id1", "id2"]
+            else:
+                value = ["example1", "example2"]
+        else:
+            # Return single realistic value based on scalar type
+            if type_name == "String":
+                value = "string"
+            elif type_name == "Int":
+                value = 1
+            elif type_name == "Float":
+                value = 1.5
+            elif type_name == "Boolean":
+                value = True
+            elif type_name == "ID":
+                value = "id"
+            else:
+                value = "example_value"
+    elif "ENUM" in arg["type"]["kind"]:
+        # For enums, get the first available value if possible, otherwise generic example
+        enum_definition = arg.get("type", {}).get("definition", {})
+        enum_values = enum_definition.get("enumValues", [])
+        if enum_values and len(enum_values) > 0:
+            value = enum_values[0].get("name", "ENUM_VALUE")
+        else:
+            value = "ENUM_VALUE"
+    
+    return value
 
 def writeCliDriver(catoApiSchema):
-    """Write CLI driver - placeholder implementation"""
-    print("Writing CLI driver...")
-    pass
+    """Write CLI driver - thread-safe implementation"""
+    parsersIndex = {}
+    for operationType in catoApiSchema:
+        for operation in catoApiSchema[operationType]:
+            operationNameAry = operation.split(".")
+            # Skip eventsFeed - it's handled as a custom parser
+            if operationNameAry[1] == "eventsFeed":
+                continue
+            parsersIndex[operationNameAry[0]+"_"+operationNameAry[1]] = True
+    parsers = list(parsersIndex.keys())
+
+    cliDriverStr = """
+import os
+import argparse
+import json
+import catocli
+from graphql_client import Configuration
+from graphql_client.api_client import ApiException
+from ..parsers.customParserApiClient import get_help
+from .profile_manager import get_profile_manager
+from .version_checker import check_for_updates, force_check_updates
+import traceback
+import sys
+sys.path.insert(0, 'vendor')
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+# Initialize profile manager
+profile_manager = get_profile_manager()
+CATO_DEBUG = bool(os.getenv("CATO_DEBUG", False))
+from ..parsers.raw import raw_parse
+from ..parsers.custom import custom_parse
+from ..parsers.custom_private import private_parse
+from ..parsers.query_siteLocation import query_siteLocation_parse
+from ..parsers.custom.query_eventsFeed import query_eventsFeed_parse
+from .help_formatter import CustomSubparserHelpFormatter
+"""
+    for parserName in parsers:
+        cliDriverStr += "from ..parsers."+parserName+" import "+parserName+"_parse\n"
+
+    cliDriverStr += """
+def show_version_info(args, configuration=None):
+    print(f"catocli version {catocli.__version__}")
+    
+    if not args.current_only:
+        if args.check_updates:
+            # Force check for updates
+            is_newer, latest_version, source = force_check_updates()
+        else:
+            # Regular check (uses cache)
+            is_newer, latest_version, source = check_for_updates(show_if_available=False)
+        
+        if latest_version:
+            if is_newer:
+                print(f"Latest version: {latest_version} (from {source}) - UPDATE AVAILABLE!")
+                print()
+                print("To upgrade, run:")
+                print("pip install --upgrade catocli")
+            else:
+                print(f"Latest version: {latest_version} (from {source}) - You are up to date!")
+        else:
+            print("Unable to check for updates (check your internet connection)")
+    return [{"success": True, "current_version": catocli.__version__, "latest_version": latest_version if not args.current_only else None}]
+        
+def get_configuration(skip_api_key=False):
+    configuration = Configuration()
+    configuration.verify_ssl = False
+    configuration.debug = CATO_DEBUG
+    configuration.version = "{}".format(catocli.__version__)
+    
+    # Try to migrate from environment variables first
+    profile_manager.migrate_from_environment()
+    
+    # Get credentials from profile
+    credentials = profile_manager.get_credentials()
+    if not credentials:
+        print("No Cato CLI profile configured.")
+        print("Run 'catocli configure set' to set up your credentials.")
+        exit(1)
+
+    if not credentials.get('cato_token') or not credentials.get('account_id'):
+        profile_name = profile_manager.get_current_profile()
+        print(f"Profile '{profile_name}' is missing required credentials.")
+        print(f"Run 'catocli configure set --profile {profile_name}' to update your credentials.")
+        exit(1)
+    
+    # Use standard endpoint from profile for regular API calls
+    configuration.host = credentials['endpoint']
+        
+    # Only set API key if not using custom headers file
+    # (Private settings are handled separately in createPrivateRequest)
+    if not skip_api_key:
+        configuration.api_key["x-api-key"] = credentials['cato_token']
+    configuration.accountID = credentials['account_id']
+    
+    return configuration
+
+defaultReadmeStr = \"""
+The Cato CLI is a command-line interface tool designed to simplify the management and automation of Cato Networks' configurations and operations. 
+It enables users to interact with Cato's API for tasks such as managing Cato Management Application (CMA) site and account configurations, security policies, retrieving events, etc.\n\n
+For assistance in generating syntax for the cli to perform various operations, please refer to the Cato API Explorer application.\n\n
+https://github.com/catonetworks/cato-api-explorer
+\"""
+
+parser = argparse.ArgumentParser(prog='catocli', usage='%(prog)s <operationType> <operationName> [options]', description=defaultReadmeStr)
+parser.add_argument('--version', action='version', version=catocli.__version__)
+parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+subparsers = parser.add_subparsers()
+
+# Version command - enhanced with update checking
+version_parser = subparsers.add_parser('version', help='Show version information and check for updates')
+version_parser.add_argument('--check-updates', action='store_true', help='Force check for updates (ignores cache)')
+version_parser.add_argument('--current-only', action='store_true', help='Show only current version')
+version_parser.set_defaults(func=show_version_info)
+
+custom_parsers = custom_parse(subparsers)
+private_parsers = private_parse(subparsers)
+raw_parsers = subparsers.add_parser('raw', help='Raw GraphQL', usage=get_help("raw"))
+raw_parser = raw_parse(raw_parsers)
+query_parser = subparsers.add_parser('query', help='Query', usage='catocli query <operationName> [options]', formatter_class=CustomSubparserHelpFormatter)
+query_subparsers = query_parser.add_subparsers(description='Available query operations:', help='Use catocli query <operation> -h for detailed help on each operation')
+query_siteLocation_parser = query_siteLocation_parse(query_subparsers)
+query_eventsFeed_parser = query_eventsFeed_parse(query_subparsers)
+mutation_parser = subparsers.add_parser('mutation', help='Mutation', usage='catocli mutation <operationName> [options]', formatter_class=CustomSubparserHelpFormatter)
+mutation_subparsers = mutation_parser.add_subparsers(description='Available mutation operations:', help='Use catocli mutation <operation> -h for detailed help on each operation')
+
+"""
+    for parserName in parsers:
+        cliDriverStr += parserName+"_parser = "+parserName+"_parse("+parserName.split("_")[0]+"_subparsers)\n"
+
+    cliDriverStr += """
+
+def parse_headers(header_strings):
+    headers = {}
+    if header_strings:
+        for header_string in header_strings:
+            if ':' not in header_string:
+                print(f"ERROR: Invalid header format '{header_string}'. Use 'Key: Value' format.")
+                exit(1)
+            key, value = header_string.split(':', 1)
+            headers[key.strip()] = value.strip()
+    return headers
+
+def parse_headers_from_file(file_path):
+    headers = {}
+    try:
+        with open(file_path, 'r') as f:
+            for line_num, line in enumerate(f, 1):
+                line = line.strip()
+                if not line or line.startswith('#'):
+                    continue
+                if ':' not in line:
+                    print(f"ERROR: Invalid header format in {file_path} at line {line_num}: '{line}'. Use 'Key: Value' format.")
+                    exit(1)
+                key, value = line.split(':', 1)
+                headers[key.strip()] = value.strip()
+    except FileNotFoundError:
+        print(f"ERROR: Headers file '{file_path}' not found.")
+        exit(1)
+    except IOError as e:
+        print(f"ERROR: Could not read headers file '{file_path}': {e}")
+        exit(1)
+    return headers
+
+def main(args=None):
+    # Check if no arguments provided or help is requested
+    if args is None:
+        args = sys.argv[1:]
+
+    # Show version check when displaying help or when no command specified
+    if not args or '-h' in args or '--help' in args:
+        # Check for updates in background (non-blocking)
+        try:
+            check_for_updates(show_if_available=True)
+        except Exception:
+            # Don't let version check interfere with CLI operation
+            pass
+
+    args = parser.parse_args(args=args)
+    try:
+        # Skip authentication for configure commands
+        if hasattr(args, 'func') and hasattr(args.func, '__module__') and 'configure' in str(args.func.__module__):
+            response = args.func(args, None)
+        else:
+            # Check if using headers file to determine if we should skip API key
+            # Note: Private settings should NOT affect regular API calls - only private commands
+            using_headers_file = hasattr(args, 'headers_file') and args.headers_file
+            
+            # Get configuration from profiles
+            configuration = get_configuration(skip_api_key=using_headers_file)
+            
+            # Parse custom headers if provided
+            custom_headers = {}
+            if hasattr(args, 'headers') and args.headers:
+                custom_headers.update(parse_headers(args.headers))
+            if hasattr(args, 'headers_file') and args.headers_file:
+                custom_headers.update(parse_headers_from_file(args.headers_file))
+            if custom_headers:
+                configuration.custom_headers.update(custom_headers)
+            # Handle account ID override (applies to all commands except raw)
+            if args.func.__name__ not in ["createRawRequest"]:
+                if hasattr(args, 'accountID') and args.accountID is not None:
+                    # Command line override takes precedence
+                    configuration.accountID = args.accountID
+                # Otherwise use the account ID from the profile (already set in get_configuration)
+            response = args.func(args, configuration)
+
+        if type(response) == ApiException:
+            print("ERROR! Status code: {}".format(response.status))
+            print(response)
+        else:
+            if response!=None:
+                # Check if this is CSV output
+                if (isinstance(response, list) and len(response) > 0 and 
+                    isinstance(response[0], dict) and "__csv_output__" in response[0]):
+                    # Print CSV output directly without JSON formatting
+                    print(response[0]["__csv_output__"], end='')
+                else:
+                    # Standard JSON output
+                    print(json.dumps(response[0], sort_keys=True, indent=4))
+    except KeyboardInterrupt:
+        print('Operation cancelled by user (Ctrl+C).')
+        exit(130)  # Standard exit code for SIGINT
+    except Exception as e:
+        if isinstance(e, AttributeError):
+            print('Missing arguments. Usage: catocli <operation> -h')
+            if args.v==True:
+                print('ERROR: ',e)
+                traceback.print_exc()
+        else:
+            print('ERROR: ',e)
+            traceback.print_exc()
+    exit(1)
+"""
+    with file_write_lock:
+        writeFile("../catocli/Utils/clidriver.py", cliDriverStr)
+    print("  - CLI driver written successfully")
 
 def writeOperationParsers(catoApiSchema):
-    """Write operation parsers - placeholder implementation"""
-    print("Writing operation parsers...")
-    pass
+    """Write operation parsers - thread-safe implementation"""
+    parserMapping = {"query":{},"mutation":{}}
+    
+    # Load settings to get CSV-supported operations
+    settings = loadJSON("../catocli/clisettings.json")
+    csv_supported_operations = settings.get("queryOperationCsvOutput", {})
+    
+    ## Write the raw query parser ##
+    cliDriverStr =f"""
+from ..customParserApiClient import createRawRequest, get_help
+
+def raw_parse(raw_parser):
+    raw_parser.add_argument('json', nargs='?', default='{{}}', help='Query, Variables and opertaionName in JSON format (defaults to empty object if not provided).')
+    raw_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    raw_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    raw_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    raw_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    raw_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    raw_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    raw_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    raw_parser.add_argument('-e', '--endpoint', dest='endpoint', help='Override the API endpoint URL (e.g., https://api.catonetworks.com/api/v1/graphql2)')
+    raw_parser.set_defaults(func=createRawRequest,operation_name='raw')
+"""
+    parserPath = "../catocli/parsers/raw"
+    if not os.path.exists(parserPath):
+        os.makedirs(parserPath)
+    with file_write_lock:
+        writeFile(parserPath+"/__init__.py",cliDriverStr)
+
+    ## Write the siteLocation query parser ##
+    cliDriverStr =f"""
+from ..customParserApiClient import querySiteLocation, get_help
+
+def query_siteLocation_parse(query_subparsers):
+    query_siteLocation_parser = query_subparsers.add_parser('siteLocation', 
+            help='siteLocation local cli query', 
+            usage=get_help("query_siteLocation"))
+    query_siteLocation_parser.add_argument('json', nargs='?', default='{{}}', help='Variables in JSON format (defaults to empty object if not provided).')
+    query_siteLocation_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    query_siteLocation_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    query_siteLocation_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    query_siteLocation_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    query_siteLocation_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    query_siteLocation_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    query_siteLocation_parser.set_defaults(func=querySiteLocation,operation_name='query.siteLocation')
+"""
+    parserPath = "../catocli/parsers/query_siteLocation"
+    if not os.path.exists(parserPath):
+        os.makedirs(parserPath)
+    with file_write_lock:
+        writeFile(parserPath+"/__init__.py",cliDriverStr)
+
+    # Process all operations to create parsers
+    for operationType in parserMapping:
+        operationAry = catoApiSchema[operationType]
+        for operationName in operationAry:
+            parserMapping = getParserMapping(parserMapping,operationName,operationName,operationAry[operationName])
+    
+    # Generate parser files for each operation
+    for operationType in parserMapping:
+        for operationName in parserMapping[operationType]:
+            # Skip eventsFeed - it's handled as a custom parser
+            if operationName == "eventsFeed":
+                continue
+            parserName = operationType+"_"+operationName
+            parser = parserMapping[operationType][operationName]
+            cliDriverStr = f"""
+from ..customParserApiClient import createRequest, get_help
+from ...Utils.help_formatter import CustomSubparserHelpFormatter
+
+def {parserName}_parse({operationType}_subparsers):
+    {parserName}_parser = {operationType}_subparsers.add_parser('{operationName}', 
+            help='{operationName}() {operationType} operation', 
+            usage=get_help("{operationType}_{operationName}"), formatter_class=CustomSubparserHelpFormatter)
+"""
+            if "path" in parser:
+                # Check if this operation supports CSV output
+                operation_path = parserName.replace("_", ".")
+                supports_csv = operation_path in csv_supported_operations
+                
+                cliDriverStr += f"""
+    {parserName}_parser.add_argument('json', nargs='?', default='{{}}', help='Variables in JSON format (defaults to empty object if not provided).')
+    {parserName}_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    {parserName}_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    {parserName}_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    {parserName}_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    {parserName}_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    {parserName}_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    {parserName}_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    {parserName}_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+"""
+                # Add -f flag for CSV-supported operations
+                if supports_csv:
+                    cliDriverStr += f"""
+    {parserName}_parser.add_argument('-f', '--format', choices=['json', 'csv'], default='json', help='Output format (default: json)')
+    {parserName}_parser.add_argument('--csv-filename', dest='csv_filename', help='Override CSV file name (default: accountmetrics.csv)')
+    {parserName}_parser.add_argument('--append-timestamp', dest='append_timestamp', action='store_true', help='Append timestamp to the CSV file name')
+"""
+                
+                cliDriverStr += f"    {parserName}_parser.set_defaults(func=createRequest,operation_name='{parserName.replace("_",".")}')"
+                cliDriverStr += "\n"
+            else:
+                cliDriverStr += renderSubParser(parser,operationType+"_"+operationName)
+            
+            parserPath = "../catocli/parsers/"+parserName
+            if not os.path.exists(parserPath):
+                os.makedirs(parserPath)
+            with file_write_lock:
+                writeFile(parserPath+"/__init__.py",cliDriverStr)
+    
+    print("  - Operation parsers written successfully")
 
 def writeReadmes(catoApiSchema):
-    """Write README files - placeholder implementation"""
-    print("Writing README files...")
-    pass
+    """Write README files - thread-safe implementation"""
+    parserMapping = {"query":{},"mutation":{}}
+    
+    ## Write the raw query readme ##
+    readmeStr = """
+## CATO-CLI - raw.graphql
+[Click here](https://api.catonetworks.com/documentation/) for documentation on this operation.
+
+### Usage for raw.graphql
+
+```bash
+catocli raw -h
+
+catocli raw <json>
+
+catocli raw "$(cat < rawGraphqQL.json)"
+
+catocli raw '{ "query": "query operationNameHere($yourArgument:String!) { field1 field2 }", "variables": { "yourArgument": "string", "accountID": "10949" }, "operationName": "operationNameHere" } '
+
+catocli raw -p '{
+    "query": "mutation operationNameHere($yourArgument:String!) { field1 field2 }",
+    "variables": {
+        "yourArgument": "string",
+        "accountID": "10949"
+    },
+    "operationName": "operationNameHere"
+}'
+```
+
+#### Override API endpoint
+
+```bash
+catocli raw --endpoint https://custom-api.example.com/graphql '<json>'
+```
+
+"""
+    parserPath = "../catocli/parsers/raw"
+    if not os.path.exists(parserPath):
+        os.makedirs(parserPath)
+    with file_write_lock:
+        writeFile(parserPath+"/README.md",readmeStr)
+    
+    ## Write the query.siteLocation readme ##
+    readmeStr = """
+
+## CATO-CLI - query.siteLocation:
+
+### Usage for query.siteLocation:
+
+```bash
+catocli query siteLocation -h
+
+catocli query siteLocation <json>`
+
+catocli query siteLocation "$(cat < siteLocation.json)"`
+
+catocli query siteLocation '{"filters":[{"search": "Your city here","field":"city","operation":"exact"}]}'
+
+catocli query siteLocation -p '{
+    "filters": [
+        {
+            "search": "Your Country here",
+            "field": "countryName",
+            "operation": "startsWith"
+        }
+    ]
+}'
+
+catocli query siteLocation -p '{
+    "filters": [
+        {
+            "search": "Your stateName here",
+            "field": "stateName",
+            "operation": "endsWith"
+        }
+    ]
+}'
+
+catocli query siteLocation -p '{
+    "filters": [
+        {
+            "search": "Your City here",
+            "field": "city",
+            "operation": "startsWith"
+        },
+        {
+            "search": "Your StateName here",
+            "field": "stateName",
+            "operation": "endsWith"
+        },
+        {
+            "search": "Your Country here",
+            "field": "countryName",
+            "operation": "contains"
+        }
+    ]
+}'
+```
+
+#### Operation Arguments for query.siteLocation ####
+`accountID` [ID] - (required) Unique Identifier of Account. 
+`filters[]` [Array] - (optional) Array of objects consisting of `search`, `field` and `operation` attributes.
+`filters[].search` [String] - (required) String to match countryName, stateName, or city specificed in `filters[].field`.
+`filters[].field` [String] - (required) Specify field to match query against, defaults to look for any.  Possible values: `countryName`, `stateName`, or `city`.
+`filters[].operation` [string] - (required) If a field is specified, operation to match the field value.  Possible values: `startsWith`,`endsWith`,`exact`, `contains`.
+"""
+    parserPath = "../catocli/parsers/query_siteLocation"
+    if not os.path.exists(parserPath):
+        os.makedirs(parserPath)
+    with file_write_lock:
+        writeFile(parserPath+"/README.md",readmeStr)
+    
+    # Process operations for README generation directly from schema
+    for operationType in catoApiSchema:
+        for operationName in catoApiSchema[operationType]:
+            # Skip operations that don't start with the operation type (these are nested)
+            if not operationName.startswith(operationType + "."):
+                continue
+            
+            # Skip eventsFeed - it's handled as a custom parser with custom documentation
+            operation_parts = operationName.split(".")[1:]
+            if len(operation_parts) > 0 and operation_parts[0] == "eventsFeed":
+                continue
+                
+            operation = catoApiSchema[operationType][operationName]
+            
+            # Get example from operation directly or from payload files
+            example = operation.get("variablesPayload", {})
+            if not example:
+                payload_file_path = f"../queryPayloads/{operationName}.json"
+                try:
+                    payload_data = loadJSON(payload_file_path)
+                    if "variables" in payload_data:
+                        example = payload_data["variables"]
+                except Exception as e:
+                    # If payload file doesn't exist or has issues, use empty dict
+                    pass
+            
+            # Create parser object
+            parser = {
+                "path": operationName,
+                "args": {},
+                "example": example
+            }
+            
+            # Load operation arguments from the model file instead of schema
+            try:
+                model_file_path = f"../models/{operationName}.json"
+                model_data = loadJSON(model_file_path)
+                operationArgs = model_data.get("operationArgs", {})
+                
+                for argName in operationArgs:
+                    arg = operationArgs[argName]
+                    values = []
+                    if "definition" in arg["type"] and "enumValues" in arg["type"]["definition"] and arg["type"]["definition"]["enumValues"] != None:
+                        for enumValue in arg["type"]["definition"]["enumValues"]:
+                            values.append(enumValue["name"])
+                    parser["args"][arg["varName"]] = {
+                        "name": arg["name"],
+                        "description": "N/A" if arg["description"] == None else arg["description"],
+                        "type": arg["type"]["name"] + ("[]" if "LIST" in arg["type"]["kind"] else ""),
+                        "required": "required" if arg["required"] == True else "optional",
+                        "values": values
+                    }
+            except Exception as e:
+                # If model file doesn't exist or has issues, fall back to schema operationArgs
+                operationArgs = operation.get("operationArgs", {})
+                for argName in operationArgs:
+                    arg = operationArgs[argName]
+                    values = []
+                    if "definition" in arg["type"] and "enumValues" in arg["type"]["definition"] and arg["type"]["definition"]["enumValues"] != None:
+                        for enumValue in arg["type"]["definition"]["enumValues"]:
+                            values.append(enumValue["name"])
+                    parser["args"][arg["varName"]] = {
+                        "name": arg["name"],
+                        "description": "N/A" if arg["description"] == None else arg["description"],
+                        "type": arg["type"]["name"] + ("[]" if "LIST" in arg["type"]["kind"] else ""),
+                        "required": "required" if arg["required"] == True else "optional",
+                        "values": values
+                    }
+            
+            # Generate README for this operation
+            # Extract the operation parts (e.g., "query.xdr.stories" -> "xdr stories")
+            operation_parts = operationName.split(".")[1:]  # Remove the operation type prefix
+            parserName = operationType + "_" + "_".join(operation_parts)
+            operationPath = operationName
+            operationCmd = operationType + " " + " ".join(operation_parts)
+            readmeStr = f"""
+## CATO-CLI - {operationPath}:
+[Click here](https://api.catonetworks.com/documentation/#{operationType}-{operationName}) for documentation on this operation.
+
+### Usage for {operationPath}:
+
+```bash
+catocli {operationCmd} -h
+"""
+            if "path" in parser:
+                readmeStr += f"""
+catocli {operationCmd} <json>
+
+catocli {operationCmd} "$(cat < {operationName}.json)"
+"""
+                # Add realistic JSON example if available
+                if "example" in parser and parser["example"]:
+                    import json
+                    example_json = json.dumps(parser["example"], separators=(',', ':'))
+                    example_json_pretty = json.dumps(parser["example"], indent=4)
+                    readmeStr += f"""
+catocli {operationCmd} '{example_json}'
+
+catocli {operationCmd} -p '{example_json_pretty}'
+```
+"""
+                
+                # Note: GitHub links for advanced examples are now handled dynamically in the help system
+                
+                # Check for example file and insert its content before Operation Arguments
+                example_file_path = f"examples/{operationPath}.md"
+                try:
+                    example_content = openFile(example_file_path)
+                    # Add the example content with proper formatting
+                    readmeStr += f"""
+## Advanced Usage
+{example_content}
+
+"""
+                except:
+                    # If example file doesn't exist, continue without adding example content
+                    pass
+                
+                readmeStr += f"""
+#### Operation Arguments for {operationPath} ####
+
+"""
+                if "args" in parser:
+                    for argName in parser["args"]:
+                        arg = parser["args"][argName]
+                        arg_type = arg.get("type", "Unknown")
+                        required_status = "required" if arg.get("required", False) else "optional"
+                        description = arg.get("description", "No description available")
+                        values_str = "Default Value: " + str(arg["values"]) if len(arg.get("values", [])) > 0 else ""
+                        readmeStr += f'`{argName}` [{arg_type}] - ({required_status}) {description} {values_str}   \n'
+                
+                parserPath = "../catocli/parsers/"+parserName
+                if not os.path.exists(parserPath):
+                    os.makedirs(parserPath)
+                with file_write_lock:
+                    writeFile(parserPath+"/README.md",readmeStr)
+            else:
+                parserPath = "../catocli/parsers/"+parserName
+                if not os.path.exists(parserPath):
+                    os.makedirs(parserPath)
+                with file_write_lock:
+                    writeFile(parserPath+"/README.md",readmeStr)
+                renderSubReadme(parser,operationType,operationPath)
+    
+    print("  - README files written successfully")
 
 def getOfType(curType, ofType, parentParamPath, childOperations, parentFields, parentTypeName=None):
     """Thread-safe version with recursion depth management"""
@@ -729,569 +1380,6 @@ def getNestedInterfaceDefinitions(possibleTypesAry, parentParamPath, childOperat
             expandedTypes.append(possibleType)
     return expandedTypes
 
-def writeCliDriver(catoApiSchema):
-    """Write CLI driver - thread-safe implementation"""
-    parsersIndex = {}
-    for operationType in catoApiSchema:
-        for operation in catoApiSchema[operationType]:
-            operationNameAry = operation.split(".")
-            # Skip eventsFeed - it's handled as a custom parser
-            if operationNameAry[1] == "eventsFeed":
-                continue
-            parsersIndex[operationNameAry[0]+"_"+operationNameAry[1]] = True
-    parsers = list(parsersIndex.keys())
-
-    cliDriverStr = """
-import os
-import argparse
-import json
-import catocli
-from graphql_client import Configuration
-from graphql_client.api_client import ApiException
-from ..parsers.customParserApiClient import get_help
-from .profile_manager import get_profile_manager
-from .version_checker import check_for_updates, force_check_updates
-import traceback
-import sys
-sys.path.insert(0, 'vendor')
-import urllib3
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-# Initialize profile manager
-profile_manager = get_profile_manager()
-CATO_DEBUG = bool(os.getenv("CATO_DEBUG", False))
-from ..parsers.raw import raw_parse
-from ..parsers.custom import custom_parse
-from ..parsers.custom_private import private_parse
-from ..parsers.query_siteLocation import query_siteLocation_parse
-from ..parsers.custom.query_eventsFeed import query_eventsFeed_parse
-from .help_formatter import CustomSubparserHelpFormatter
-"""
-    for parserName in parsers:
-        cliDriverStr += "from ..parsers."+parserName+" import "+parserName+"_parse\n"
-
-    cliDriverStr += """
-def show_version_info(args, configuration=None):
-    print(f"catocli version {catocli.__version__}")
-    
-    if not args.current_only:
-        if args.check_updates:
-            # Force check for updates
-            is_newer, latest_version, source = force_check_updates()
-        else:
-            # Regular check (uses cache)
-            is_newer, latest_version, source = check_for_updates(show_if_available=False)
-        
-        if latest_version:
-            if is_newer:
-                print(f"Latest version: {latest_version} (from {source}) - UPDATE AVAILABLE!")
-                print()
-                print("To upgrade, run:")
-                print("pip install --upgrade catocli")
-            else:
-                print(f"Latest version: {latest_version} (from {source}) - You are up to date!")
-        else:
-            print("Unable to check for updates (check your internet connection)")
-    return [{"success": True, "current_version": catocli.__version__, "latest_version": latest_version if not args.current_only else None}]
-        
-def get_configuration(skip_api_key=False):
-    configuration = Configuration()
-    configuration.verify_ssl = False
-    configuration.debug = CATO_DEBUG
-    configuration.version = "{}".format(catocli.__version__)
-    
-    # Try to migrate from environment variables first
-    profile_manager.migrate_from_environment()
-    
-    # Get credentials from profile
-    credentials = profile_manager.get_credentials()
-    if not credentials:
-        print("No Cato CLI profile configured.")
-        print("Run 'catocli configure set' to set up your credentials.")
-        exit(1)
-
-    if not credentials.get('cato_token') or not credentials.get('account_id'):
-        profile_name = profile_manager.get_current_profile()
-        print(f"Profile '{profile_name}' is missing required credentials.")
-        print(f"Run 'catocli configure set --profile {profile_name}' to update your credentials.")
-        exit(1)
-    
-    # Use standard endpoint from profile for regular API calls
-    configuration.host = credentials['endpoint']
-        
-    # Only set API key if not using custom headers file
-    # (Private settings are handled separately in createPrivateRequest)
-    if not skip_api_key:
-        configuration.api_key["x-api-key"] = credentials['cato_token']
-    configuration.accountID = credentials['account_id']
-    
-    return configuration
-
-defaultReadmeStr = \"""
-The Cato CLI is a command-line interface tool designed to simplify the management and automation of Cato Networks’ configurations and operations. 
-It enables users to interact with Cato’s API for tasks such as managing Cato Management Application (CMA) site and account configurations, security policies, retrieving events, etc.\n\n
-For assistance in generating syntax for the cli to perform various operations, please refer to the Cato API Explorer application.\n\n
-https://github.com/catonetworks/cato-api-explorer
-\"""
-
-parser = argparse.ArgumentParser(prog='catocli', usage='%(prog)s <operationType> <operationName> [options]', description=defaultReadmeStr)
-parser.add_argument('--version', action='version', version=catocli.__version__)
-parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
-parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
-parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
-subparsers = parser.add_subparsers()
-
-# Version command - enhanced with update checking
-version_parser = subparsers.add_parser('version', help='Show version information and check for updates')
-version_parser.add_argument('--check-updates', action='store_true', help='Force check for updates (ignores cache)')
-version_parser.add_argument('--current-only', action='store_true', help='Show only current version')
-version_parser.set_defaults(func=show_version_info)
-
-custom_parsers = custom_parse(subparsers)
-private_parsers = private_parse(subparsers)
-raw_parsers = subparsers.add_parser('raw', help='Raw GraphQL', usage=get_help("raw"))
-raw_parser = raw_parse(raw_parsers)
-query_parser = subparsers.add_parser('query', help='Query', usage='catocli query <operationName> [options]', formatter_class=CustomSubparserHelpFormatter)
-query_subparsers = query_parser.add_subparsers(description='Available query operations:', help='Use catocli query <operation> -h for detailed help on each operation')
-query_siteLocation_parser = query_siteLocation_parse(query_subparsers)
-query_eventsFeed_parser = query_eventsFeed_parse(query_subparsers)
-mutation_parser = subparsers.add_parser('mutation', help='Mutation', usage='catocli mutation <operationName> [options]', formatter_class=CustomSubparserHelpFormatter)
-mutation_subparsers = mutation_parser.add_subparsers(description='Available mutation operations:', help='Use catocli mutation <operation> -h for detailed help on each operation')
-
-"""
-    for parserName in parsers:
-        cliDriverStr += parserName+"_parser = "+parserName+"_parse("+parserName.split("_")[0]+"_subparsers)\n"
-
-    cliDriverStr += """
-
-def parse_headers(header_strings):
-    headers = {}
-    if header_strings:
-        for header_string in header_strings:
-            if ':' not in header_string:
-                print(f"ERROR: Invalid header format '{header_string}'. Use 'Key: Value' format.")
-                exit(1)
-            key, value = header_string.split(':', 1)
-            headers[key.strip()] = value.strip()
-    return headers
-
-def parse_headers_from_file(file_path):
-    headers = {}
-    try:
-        with open(file_path, 'r') as f:
-            for line_num, line in enumerate(f, 1):
-                line = line.strip()
-                if not line or line.startswith('#'):
-                    continue
-                if ':' not in line:
-                    print(f"ERROR: Invalid header format in {file_path} at line {line_num}: '{line}'. Use 'Key: Value' format.")
-                    exit(1)
-                key, value = line.split(':', 1)
-                headers[key.strip()] = value.strip()
-    except FileNotFoundError:
-        print(f"ERROR: Headers file '{file_path}' not found.")
-        exit(1)
-    except IOError as e:
-        print(f"ERROR: Could not read headers file '{file_path}': {e}")
-        exit(1)
-    return headers
-
-def main(args=None):
-    # Check if no arguments provided or help is requested
-    if args is None:
-        args = sys.argv[1:]
-
-    # Show version check when displaying help or when no command specified
-    if not args or '-h' in args or '--help' in args:
-        # Check for updates in background (non-blocking)
-        try:
-            check_for_updates(show_if_available=True)
-        except Exception:
-            # Don't let version check interfere with CLI operation
-            pass
-
-    args = parser.parse_args(args=args)
-    try:
-        # Skip authentication for configure commands
-        if hasattr(args, 'func') and hasattr(args.func, '__module__') and 'configure' in str(args.func.__module__):
-            response = args.func(args, None)
-        else:
-            # Check if using headers file to determine if we should skip API key
-            # Note: Private settings should NOT affect regular API calls - only private commands
-            using_headers_file = hasattr(args, 'headers_file') and args.headers_file
-            
-            # Get configuration from profiles
-            configuration = get_configuration(skip_api_key=using_headers_file)
-            
-            # Parse custom headers if provided
-            custom_headers = {}
-            if hasattr(args, 'headers') and args.headers:
-                custom_headers.update(parse_headers(args.headers))
-            if hasattr(args, 'headers_file') and args.headers_file:
-                custom_headers.update(parse_headers_from_file(args.headers_file))
-            if custom_headers:
-                configuration.custom_headers.update(custom_headers)
-            # Handle account ID override (applies to all commands except raw)
-            if args.func.__name__ not in ["createRawRequest"]:
-                if hasattr(args, 'accountID') and args.accountID is not None:
-                    # Command line override takes precedence
-                    configuration.accountID = args.accountID
-                # Otherwise use the account ID from the profile (already set in get_configuration)
-            response = args.func(args, configuration)
-
-        if type(response) == ApiException:
-            print("ERROR! Status code: {}".format(response.status))
-            print(response)
-        else:
-            if response!=None:
-                # Check if this is CSV output
-                if (isinstance(response, list) and len(response) > 0 and 
-                    isinstance(response[0], dict) and "__csv_output__" in response[0]):
-                    # Print CSV output directly without JSON formatting
-                    print(response[0]["__csv_output__"], end='')
-                else:
-                    # Standard JSON output
-                    print(json.dumps(response[0], sort_keys=True, indent=4))
-    except KeyboardInterrupt:
-        print('Operation cancelled by user (Ctrl+C).')
-        exit(130)  # Standard exit code for SIGINT
-    except Exception as e:
-        if isinstance(e, AttributeError):
-            print('Missing arguments. Usage: catocli <operation> -h')
-            if args.v==True:
-                print('ERROR: ',e)
-                traceback.print_exc()
-        else:
-            print('ERROR: ',e)
-            traceback.print_exc()
-    exit(1)
-"""
-    with file_write_lock:
-        writeFile("../catocli/Utils/clidriver.py", cliDriverStr)
-    print("  - CLI driver written successfully")
-
-def writeOperationParsers(catoApiSchema):
-    """Write operation parsers - thread-safe implementation"""
-    parserMapping = {"query":{},"mutation":{}}
-    
-    # Load settings to get CSV-supported operations
-    settings = loadJSON("../catocli/clisettings.json")
-    csv_supported_operations = settings.get("queryOperationCsvOutput", {})
-    
-    ## Write the raw query parser ##
-    cliDriverStr =f"""
-from ..customParserApiClient import createRawRequest, get_help
-
-def raw_parse(raw_parser):
-    raw_parser.add_argument('json', nargs='?', default='{{}}', help='Query, Variables and opertaionName in JSON format (defaults to empty object if not provided).')
-    raw_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
-    raw_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
-    raw_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
-    raw_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
-    raw_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
-    raw_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
-    raw_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-    raw_parser.add_argument('-e', '--endpoint', dest='endpoint', help='Override the API endpoint URL (e.g., https://api.catonetworks.com/api/v1/graphql2)')
-    raw_parser.set_defaults(func=createRawRequest,operation_name='raw')
-"""
-    parserPath = "../catocli/parsers/raw"
-    if not os.path.exists(parserPath):
-        os.makedirs(parserPath)
-    with file_write_lock:
-        writeFile(parserPath+"/__init__.py",cliDriverStr)
-
-    ## Write the siteLocation query parser ##
-    cliDriverStr =f"""
-from ..customParserApiClient import querySiteLocation, get_help
-
-def query_siteLocation_parse(query_subparsers):
-    query_siteLocation_parser = query_subparsers.add_parser('siteLocation', 
-            help='siteLocation local cli query', 
-            usage=get_help("query_siteLocation"))
-    query_siteLocation_parser.add_argument('json', nargs='?', default='{{}}', help='Variables in JSON format (defaults to empty object if not provided).')
-    query_siteLocation_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
-    query_siteLocation_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
-    query_siteLocation_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
-    query_siteLocation_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
-    query_siteLocation_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
-    query_siteLocation_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
-    query_siteLocation_parser.set_defaults(func=querySiteLocation,operation_name='query.siteLocation')
-"""
-    parserPath = "../catocli/parsers/query_siteLocation"
-    if not os.path.exists(parserPath):
-        os.makedirs(parserPath)
-    with file_write_lock:
-        writeFile(parserPath+"/__init__.py",cliDriverStr)
-
-    # Process all operations to create parsers
-    for operationType in parserMapping:
-        operationAry = catoApiSchema[operationType]
-        for operationName in operationAry:
-            parserMapping = getParserMapping(parserMapping,operationName,operationName,operationAry[operationName])
-    
-    # Generate parser files for each operation
-    for operationType in parserMapping:
-        for operationName in parserMapping[operationType]:
-            # Skip eventsFeed - it's handled as a custom parser
-            if operationName == "eventsFeed":
-                continue
-            parserName = operationType+"_"+operationName
-            parser = parserMapping[operationType][operationName]
-            cliDriverStr = f"""
-from ..customParserApiClient import createRequest, get_help
-from ...Utils.help_formatter import CustomSubparserHelpFormatter
-
-def {parserName}_parse({operationType}_subparsers):
-    {parserName}_parser = {operationType}_subparsers.add_parser('{operationName}', 
-            help='{operationName}() {operationType} operation', 
-            usage=get_help("{operationType}_{operationName}"), formatter_class=CustomSubparserHelpFormatter)
-"""
-            if "path" in parser:
-                # Check if this operation supports CSV output
-                operation_path = parserName.replace("_", ".")
-                supports_csv = operation_path in csv_supported_operations
-                
-                cliDriverStr += f"""
-    {parserName}_parser.add_argument('json', nargs='?', default='{{}}', help='Variables in JSON format (defaults to empty object if not provided).')
-    {parserName}_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
-    {parserName}_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
-    {parserName}_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
-    {parserName}_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
-    {parserName}_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
-    {parserName}_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
-    {parserName}_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
-    {parserName}_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-"""
-                # Add -f flag for CSV-supported operations
-                if supports_csv:
-                    cliDriverStr += f"""
-    {parserName}_parser.add_argument('-f', '--format', choices=['json', 'csv'], default='json', help='Output format (default: json)')
-    {parserName}_parser.add_argument('--csv-filename', dest='csv_filename', help='Override CSV file name (default: accountmetrics.csv)')
-    {parserName}_parser.add_argument('--append-timestamp', dest='append_timestamp', action='store_true', help='Append timestamp to the CSV file name')
-"""
-                
-                cliDriverStr += f"    {parserName}_parser.set_defaults(func=createRequest,operation_name='{parserName.replace("_",".")}')"
-                cliDriverStr += "\n"
-            else:
-                cliDriverStr += renderSubParser(parser,operationType+"_"+operationName)
-            
-            parserPath = "../catocli/parsers/"+parserName
-            if not os.path.exists(parserPath):
-                os.makedirs(parserPath)
-            with file_write_lock:
-                writeFile(parserPath+"/__init__.py",cliDriverStr)
-    
-    print("  - Operation parsers written successfully")
-
-def writeReadmes(catoApiSchema):
-    """Write README files - thread-safe implementation"""
-    parserMapping = {"query":{},"mutation":{}}
-    
-    ## Write the raw query readme ##
-    readmeStr = """
-## CATO-CLI - raw.graphql
-[Click here](https://api.catonetworks.com/documentation/) for documentation on this operation.
-
-### Usage for raw.graphql
-
-`catocli raw -h`
-
-`catocli raw <json>`
-
-`catocli raw "$(cat < rawGraphqQL.json)"`
-
-`catocli raw '{ "query": "query operationNameHere($yourArgument:String!) { field1 field2 }", "variables": { "yourArgument": "string", "accountID": "10949" }, "operationName": "operationNameHere" } '`
-
-`catocli raw '{ "query": "mutation operationNameHere($yourArgument:String!) { field1 field2 }", "variables": { "yourArgument": "string", "accountID": "10949" }, "operationName": "operationNameHere" } '`
-
-#### Override API endpoint
-
-`catocli raw --endpoint https://custom-api.example.com/graphql '<json>'`
-"""
-    parserPath = "../catocli/parsers/raw"
-    if not os.path.exists(parserPath):
-        os.makedirs(parserPath)
-    with file_write_lock:
-        writeFile(parserPath+"/README.md",readmeStr)
-    
-    ## Write the query.siteLocation readme ##
-    readmeStr = """
-
-## CATO-CLI - query.siteLocation:
-
-### Usage for query.siteLocation:
-
-`catocli query siteLocation -h`
-
-`catocli query siteLocation <json>`
-
-`catocli query siteLocation "$(cat < siteLocation.json)"`
-
-`catocli query siteLocation '{"filters":[{"search": "Your city here","field":"city","operation":"exact"}]}'`
-
-`catocli query siteLocation '{"filters":[{"search": "Your Country here","field":"countryName","operation":"startsWith"}]}'`
-
-`catocli query siteLocation '{"filters":[{"search": "Your stateName here","field":"stateName","operation":"endsWith"}]}'`
-
-`catocli query siteLocation '{"filters":[{"search": "Your City here","field":"city","operation":"startsWith"},{"search": "Your StateName here","field":"stateName","operation":"endsWith"},{"search": "Your Country here","field":"countryName","operation":"contains"}]}'`
-
-#### Operation Arguments for query.siteLocation ####
-`accountID` [ID] - (required) Unique Identifier of Account. 
-`filters[]` [Array] - (optional) Array of objects consisting of `search`, `field` and `operation` attributes.
-`filters[].search` [String] - (required) String to match countryName, stateName, or city specificed in `filters[].field`.
-`filters[].field` [String] - (required) Specify field to match query against, defaults to look for any.  Possible values: `countryName`, `stateName`, or `city`.
-`filters[].operation` [string] - (required) If a field is specified, operation to match the field value.  Possible values: `startsWith`,`endsWith`,`exact`, `contains`.
-"""
-    parserPath = "../catocli/parsers/query_siteLocation"
-    if not os.path.exists(parserPath):
-        os.makedirs(parserPath)
-    with file_write_lock:
-        writeFile(parserPath+"/README.md",readmeStr)
-    
-    # Process operations for README generation directly from schema
-    for operationType in catoApiSchema:
-        for operationName in catoApiSchema[operationType]:
-            # Skip operations that don't start with the operation type (these are nested)
-            if not operationName.startswith(operationType + "."):
-                continue
-            
-            # Skip eventsFeed - it's handled as a custom parser with custom documentation
-            operation_parts = operationName.split(".")[1:]
-            if len(operation_parts) > 0 and operation_parts[0] == "eventsFeed":
-                continue
-                
-            operation = catoApiSchema[operationType][operationName]
-            
-            # Get example from operation directly or from payload files
-            example = operation.get("variablesPayload", {})
-            if not example:
-                payload_file_path = f"../queryPayloads/{operationName}.json"
-                try:
-                    payload_data = loadJSON(payload_file_path)
-                    if "variables" in payload_data:
-                        example = payload_data["variables"]
-                except Exception as e:
-                    # If payload file doesn't exist or has issues, use empty dict
-                    pass
-            
-            # Create parser object
-            parser = {
-                "path": operationName,
-                "args": {},
-                "example": example
-            }
-            
-            # Load operation arguments from the model file instead of schema
-            try:
-                model_file_path = f"../models/{operationName}.json"
-                model_data = loadJSON(model_file_path)
-                operationArgs = model_data.get("operationArgs", {})
-                
-                for argName in operationArgs:
-                    arg = operationArgs[argName]
-                    values = []
-                    if "definition" in arg["type"] and "enumValues" in arg["type"]["definition"] and arg["type"]["definition"]["enumValues"] != None:
-                        for enumValue in arg["type"]["definition"]["enumValues"]:
-                            values.append(enumValue["name"])
-                    parser["args"][arg["varName"]] = {
-                        "name": arg["name"],
-                        "description": "N/A" if arg["description"] == None else arg["description"],
-                        "type": arg["type"]["name"] + ("[]" if "LIST" in arg["type"]["kind"] else ""),
-                        "required": "required" if arg["required"] == True else "optional",
-                        "values": values
-                    }
-            except Exception as e:
-                # If model file doesn't exist or has issues, fall back to schema operationArgs
-                operationArgs = operation.get("operationArgs", {})
-                for argName in operationArgs:
-                    arg = operationArgs[argName]
-                    values = []
-                    if "definition" in arg["type"] and "enumValues" in arg["type"]["definition"] and arg["type"]["definition"]["enumValues"] != None:
-                        for enumValue in arg["type"]["definition"]["enumValues"]:
-                            values.append(enumValue["name"])
-                    parser["args"][arg["varName"]] = {
-                        "name": arg["name"],
-                        "description": "N/A" if arg["description"] == None else arg["description"],
-                        "type": arg["type"]["name"] + ("[]" if "LIST" in arg["type"]["kind"] else ""),
-                        "required": "required" if arg["required"] == True else "optional",
-                        "values": values
-                    }
-            
-            # Generate README for this operation
-            # Extract the operation parts (e.g., "query.xdr.stories" -> "xdr stories")
-            operation_parts = operationName.split(".")[1:]  # Remove the operation type prefix
-            parserName = operationType + "_" + "_".join(operation_parts)
-            operationPath = operationName
-            operationCmd = operationType + " " + " ".join(operation_parts)
-            readmeStr = f"""
-## CATO-CLI - {operationPath}:
-[Click here](https://api.catonetworks.com/documentation/#{operationType}-{operationName}) for documentation on this operation.
-
-### Usage for {operationPath}:
-
-`catocli {operationCmd} -h`
-"""
-            if "path" in parser:
-                readmeStr += f"""
-`catocli {operationCmd} <json>`
-
-`catocli {operationCmd} "$(cat < {operationName}.json)"`
-"""
-                # Add realistic JSON example if available
-                if "example" in parser and parser["example"]:
-                    import json
-                    example_json = json.dumps(parser["example"], separators=(',', ':'))
-                    example_json_pretty = json.dumps(parser["example"], indent=4)
-                    readmeStr += f"""
-`catocli {operationCmd} '{example_json}'`
-
-`catocli {operationCmd} -p '{example_json_pretty}'
-
-"""
-                
-                # Note: GitHub links for advanced examples are now handled dynamically in the help system
-                
-                # Check for example file and insert its content before Operation Arguments
-                example_file_path = f"examples/{operationPath}.md"
-                try:
-                    example_content = openFile(example_file_path)
-                    # Add the example content with proper formatting
-                    readmeStr += f"""
-## Advanced Usage
-{example_content}
-
-"""
-                except:
-                    # If example file doesn't exist, continue without adding example content
-                    pass
-                
-                readmeStr += f"""
-#### Operation Arguments for {operationPath} ####
-
-"""
-                if "args" in parser:
-                    for argName in parser["args"]:
-                        arg = parser["args"][argName]
-                        arg_type = arg.get("type", "Unknown")
-                        required_status = "required" if arg.get("required", False) else "optional"
-                        description = arg.get("description", "No description available")
-                        values_str = "Default Value: " + str(arg["values"]) if len(arg.get("values", [])) > 0 else ""
-                        readmeStr += f'`{argName}` [{arg_type}] - ({required_status}) {description} {values_str}   \n'
-                
-                parserPath = "../catocli/parsers/"+parserName
-                if not os.path.exists(parserPath):
-                    os.makedirs(parserPath)
-                with file_write_lock:
-                    writeFile(parserPath+"/README.md",readmeStr)
-            else:
-                parserPath = "../catocli/parsers/"+parserName
-                if not os.path.exists(parserPath):
-                    os.makedirs(parserPath)
-                with file_write_lock:
-                    writeFile(parserPath+"/README.md",readmeStr)
-                renderSubReadme(parser,operationType,operationPath)
-    
-    print("  - README files written successfully")
 
 # Helper functions needed for the above implementations
 def getParserMapping(curParser, curPath, operationFullPath, operation):
@@ -1452,17 +1540,29 @@ def renderSubReadme(subParser, operationType, parentOperationPath):
 
 ### Usage for {subOperationPath}:
 
-`catocli {subOperationCmd} -h`
+```bash
+catocli {subOperationCmd} -h
 """
         if isinstance(subOperation, dict) and "path" in subOperation:
             readmeStr += f"""
-`catocli {subOperationCmd} <json>`
+catocli {subOperationCmd} <json>
 
-`catocli {subOperationCmd} "$(cat < {subOperationName}.json)"`
+catocli {subOperationCmd} "$(cat < {subOperationName}.json)"
 
 """
-            # Note: GitHub links for advanced examples are now handled dynamically in the help system
-            
+
+        # Add realistic JSON example if available
+        if "example" in subParser and subParser["example"]:
+            import json
+            example_json = json.dumps(subParser["example"], separators=(',', ':'))
+            example_json_pretty = json.dumps(subParser["example"], indent=4)
+            readmeStr += f"""
+catocli {subOperationCmd} '{example_json}'
+
+catocli {subOperationCmd} -p '{example_json_pretty}'
+```
+"""
+            # Note: GitHub links for advanced examples are now handled dynamically in the help system            
             # Check for example file and insert its content before Operation Arguments
             example_file_path = f"examples/{subOperationPath}.md"
             try:

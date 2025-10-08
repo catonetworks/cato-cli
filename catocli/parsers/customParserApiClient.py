@@ -32,6 +32,7 @@ import ssl
 import urllib.request
 import urllib.error
 import socket
+import re
 
 # Import shared utilities
 from catocli.Utils.graphql_utils import (
@@ -71,6 +72,58 @@ class CustomAPIClient:
 
 # Global instance for field mappings
 custom_client = CustomAPIClient()
+
+def preprocess_json_input(json_string):
+    """
+    Preprocess JSON input to handle common formatting issues from different shells
+    
+    Args:
+        json_string: Raw JSON string that may have formatting issues
+        
+    Returns:
+        Cleaned JSON string ready for parsing
+    """
+    if not json_string or json_string.strip() == "":
+        return "{}"
+    
+    # Remove BOM if present
+    json_string = json_string.lstrip('\ufeff')
+    
+    # Strip leading and trailing whitespace
+    json_string = json_string.strip()
+    
+    # If it's already valid JSON, return as-is
+    try:
+        json.loads(json_string)
+        return json_string
+    except (json.JSONDecodeError, ValueError):
+        pass
+    
+    # Try to fix common formatting issues
+    # Remove excessive whitespace while preserving JSON structure
+    try:
+        # First attempt: Parse and re-serialize to normalize formatting
+        # This handles cases where JSON is valid but has formatting issues
+        parsed = json.loads(json_string)
+        return json.dumps(parsed, separators=(',', ':'))
+    except (json.JSONDecodeError, ValueError):
+        pass
+    
+    # If standard parsing fails, try more aggressive preprocessing
+    try:
+        # Remove all line breaks and normalize whitespace around JSON punctuation
+        cleaned = re.sub(r'\s+', ' ', json_string)  # Replace multiple whitespace with single space
+        cleaned = re.sub(r'\s*([{}\[\]:,])\s*', r'\1', cleaned)  # Remove spaces around JSON punctuation
+        cleaned = cleaned.strip()
+        
+        # Try to parse the cleaned version
+        parsed = json.loads(cleaned)
+        return json.dumps(parsed, separators=(',', ':'))
+    except (json.JSONDecodeError, ValueError):
+        pass
+    
+    # If all preprocessing attempts fail, return original for error reporting
+    return json_string
 
 
 def createRequest(args, configuration):
@@ -118,19 +171,23 @@ def createRequest(args, configuration):
         
     variables_obj = {}
     
-    # Parse JSON input with better error handling (including for -t flag)
+    # Parse JSON input with robust preprocessing and error handling
     if params["json"]:
         try:
-            variables_obj = json.loads(params["json"])
+            # Preprocess JSON to handle formatting issues from different shells
+            preprocessed_json = preprocess_json_input(params["json"])
+            variables_obj = json.loads(preprocessed_json)
             if not isinstance(variables_obj, dict):
                 print("ERROR: JSON input must be an object/dictionary")
                 return None
         except ValueError as e:
             print(f"ERROR: Invalid JSON syntax: {e}")
+            print(f"Attempted to parse: {params['json'][:100]}{'...' if len(params['json']) > 100 else ''}")
             print("Example: '{\"yourKey\":\"yourValue\"}'")
             return None
         except Exception as e:
             print(f"ERROR: Unexpected error parsing JSON: {e}")
+            print(f"Input received: {params['json'][:100]}{'...' if len(params['json']) > 100 else ''}")
             return None
     else:
         # Default to empty object if no json provided
@@ -311,9 +368,12 @@ def querySiteLocation(args, configuration):
         return None
         
     try:
-        variables_obj = json.loads(params["json"])
+        # Use the same robust JSON preprocessing as other functions
+        preprocessed_json = preprocess_json_input(params["json"])
+        variables_obj = json.loads(preprocessed_json)
     except ValueError as e:
         print(f"ERROR: Invalid JSON syntax: {e}")
+        print(f"Attempted to parse: {params['json'][:100]}{'...' if len(params['json']) > 100 else ''}")
         pretty_example = {
             "filters": [
                 {
@@ -569,7 +629,9 @@ def createRawRequest(args, configuration):
     instance = CallApi(ApiClient(configuration))
     
     try:
-        body = json.loads(params["json"])
+        # Use the same robust JSON preprocessing as other functions
+        preprocessed_json = preprocess_json_input(params["json"])
+        body = json.loads(preprocessed_json)
         
         # Validate GraphQL request structure
         if not isinstance(body, dict):
@@ -582,9 +644,11 @@ def createRawRequest(args, configuration):
             
     except ValueError as e:
         print(f"ERROR: Invalid JSON syntax: {e}")
+        print(f"Attempted to parse: {params['json'][:100]}{'...' if len(params['json']) > 100 else ''}")
         return None
     except Exception as e:
         print(f"ERROR: Unexpected error parsing request: {e}")
+        print(f"Input received: {params['json'][:100]}{'...' if len(params['json']) > 100 else ''}")
         return None
     
     if params["t"]:
@@ -1132,14 +1196,17 @@ def createRawBinaryRequest(args, configuration):
     """Handle multipart/form-data requests for file uploads and binary content"""
     params = vars(args)
     
-    # Parse the JSON body
+    # Parse the JSON body with robust preprocessing
     try:
-        body = json.loads(params["json"])
+        preprocessed_json = preprocess_json_input(params["json"])
+        body = json.loads(preprocessed_json)
     except ValueError as e:
         print(f"ERROR: JSON argument must be valid json: {e}")
+        print(f"Attempted to parse: {params['json'][:100]}{'...' if len(params['json']) > 100 else ''}")
         return
     except Exception as e:
         print(f"ERROR: {e}")
+        print(f"Input received: {params['json'][:100]}{'...' if len(params['json']) > 100 else ''}")
         return
     
     # Build form data
@@ -1470,11 +1537,15 @@ def createPrivateRequest(args, configuration):
         for key, value in private_settings['headers'].items():
             configuration.custom_headers[key] = value
     
-    # Parse input JSON variables
+    # Parse input JSON variables with robust preprocessing
     try:
-        variables = json.loads(params.get('json', '{}'))
+        json_input = params.get('json', '{}')
+        preprocessed_json = preprocess_json_input(json_input)
+        variables = json.loads(preprocessed_json)
     except ValueError as e:
         print(f"ERROR: Invalid JSON input: {e}")
+        json_input = params.get('json', '{}')
+        print(f"Attempted to parse: {json_input[:100]}{'...' if len(json_input) > 100 else ''}")
         return None
     
     # Apply default values from settings configuration first

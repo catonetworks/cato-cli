@@ -82,29 +82,109 @@ class JSONExample:
         """Format the JSON example for the specific platform - show only the best format"""
         if platform_info.platform == 'windows':
             if platform_info.shell == 'powershell':
-                # For PowerShell, prefer multi-line
-                return [self.command_template.format(command=command_name, json=self.json_data)]
+                # For PowerShell, show multiple options to work around quote stripping issues
+                return self._format_powershell_comprehensive(command_name)
             else:
-                # For cmd, use single-line with double quotes
+                # For cmd, use single-line with escaped quotes
                 single_line = json.dumps(self.parsed_json) if self.parsed_json else self.json_data.replace('\n', ' ')
-                return [f'catocli {command_name} "{single_line}" -p']
+                escaped_json = single_line.replace('"', '\\"')
+                return [f'catocli {command_name} "{escaped_json}" -p']
         else:
             # For Unix-like systems, use multi-line
             return [self.command_template.format(command=command_name, json=self.json_data)]
     
-    def _format_powershell(self, command_name: str) -> List[str]:
-        """Format for PowerShell"""
+    def _format_powershell_comprehensive(self, command_name: str) -> List[str]:
+        """Format comprehensive PowerShell examples with workarounds for quote stripping"""
+        # Method 1: Using PowerShell objects (most reliable)
+        powershell_object = self._convert_to_powershell_object()
+        
         examples = [
-            "# PowerShell (recommended)",
-            self.command_template.format(command=command_name, json=self.json_data),
+            "# PowerShell Method 1 (Recommended - avoids quote issues):",
+            powershell_object,
+            f"$json = $queryObject | ConvertTo-Json -Compress -Depth 3",
+            f"catocli {command_name} $json -p",
             "",
-            "# PowerShell alternative using here-string:",
+            "# PowerShell Method 2 (Single-line with escaped quotes):",
+        ]
+        
+        # Method 2: Single line with properly escaped quotes
+        single_line = json.dumps(self.parsed_json, separators=(',', ':')) if self.parsed_json else self.json_data.replace('\n', ' ')
+        escaped_for_powershell = single_line.replace('"', '`"')  # Use PowerShell backtick escaping
+        examples.extend([
+            f'catocli {command_name} "{escaped_for_powershell}" -p',
+            "",
+            "# PowerShell Method 3 (Here-string - may have quote issues):",
             "$json = @'",
             self.json_data,
             "'@",
             f"catocli {command_name} $json -p"
-        ]
+        ])
+        
         return examples
+    
+    def _convert_to_powershell_object(self) -> str:
+        """Convert JSON to PowerShell object syntax"""
+        if not self.parsed_json:
+            return "# Unable to convert to PowerShell object"
+        
+        return self._json_to_powershell_recursive(self.parsed_json, 0)
+    
+    def _json_to_powershell_recursive(self, obj, indent_level: int) -> str:
+        """Recursively convert JSON object to PowerShell syntax"""
+        indent = "    " * indent_level
+        
+        if isinstance(obj, dict):
+            if not obj:
+                return "@{}"
+            
+            lines = ["$queryObject = @{"]
+            for i, (key, value) in enumerate(obj.items()):
+                value_str = self._json_to_powershell_recursive(value, indent_level + 1)
+                if isinstance(value, (dict, list)):
+                    lines.append(f"{indent}    {key} = {value_str}")
+                else:
+                    lines.append(f"{indent}    {key} = {value_str}")
+                if i < len(obj) - 1:
+                    lines[-1] += ";"
+            lines.append(f"{indent}}}")
+            return "\n".join(lines)
+            
+        elif isinstance(obj, list):
+            if not obj:
+                return "@()"
+            
+            if len(obj) == 1:
+                # Single item array
+                item_str = self._json_to_powershell_recursive(obj[0], indent_level)
+                return f"@({item_str})"
+            else:
+                # Multi-item array
+                lines = ["@("]
+                for i, item in enumerate(obj):
+                    item_str = self._json_to_powershell_recursive(item, indent_level + 1)
+                    if isinstance(item, (dict, list)):
+                        lines.append(f"{indent}    {item_str}")
+                    else:
+                        lines.append(f"{indent}    {item_str}")
+                    if i < len(obj) - 1:
+                        lines[-1] += ","
+                lines.append(f"{indent})")
+                return "\n".join(lines)
+                
+        elif isinstance(obj, str):
+            # Use double quotes and escape internal quotes
+            escaped_str = obj.replace('"', '`"')
+            return f'"{escaped_str}"'
+        elif isinstance(obj, bool):
+            return "$true" if obj else "$false"
+        elif obj is None:
+            return "$null"
+        else:
+            return str(obj)
+    
+    def _format_powershell(self, command_name: str) -> List[str]:
+        """Legacy format for PowerShell (kept for compatibility)"""
+        return self._format_powershell_comprehensive(command_name)
     
     def _format_cmd(self, command_name: str) -> List[str]:
         """Format for Windows Command Prompt"""
@@ -297,8 +377,17 @@ class UniversalHelpFormatter:
             elif self.platform_info.shell == 'powershell':
                 hints.extend([
                     "",
-                    "TIP: PowerShell supports multi-line commands and here-strings (@'...'@)."
+                    "POWERSHELL JSON TIPS:",
+                    "• Method 1 (PowerShell objects) is most reliable and avoids quote issues",
+                    "• Method 2 (escaped quotes) works for single-line JSON", 
+                    "• Method 3 (here-strings) may strip quotes - use with caution",
+                    "• If you get 'Invalid JSON' errors, try Method 1 or escape quotes with backticks (`)"
                 ])
+        else:
+            hints.extend([
+                "",
+                "TIP: Multi-line JSON is fully supported in Unix shells."
+            ])
         
         if self.platform_info.installation_method == 'pipx':
             hints.extend([

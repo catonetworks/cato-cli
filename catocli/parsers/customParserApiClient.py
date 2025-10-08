@@ -95,33 +95,8 @@ def preprocess_json_input(json_string):
     # If it's already valid JSON, return as-is
     try:
         json.loads(json_string)
+        # Try to load json and print response
         return json_string
-    except (json.JSONDecodeError, ValueError):
-        pass
-    
-    # Try very conservative whitespace normalization only
-    # The goal is to handle PowerShell here-string formatting without breaking JSON
-    try:
-        # Replace Windows line endings with Unix line endings
-        normalized = json_string.replace('\r\n', '\n').replace('\r', '\n')
-        
-        # Parse and re-serialize to ensure valid JSON structure
-        # This will handle whitespace normalization safely
-        parsed = json.loads(normalized)
-        return json.dumps(parsed)
-        
-    except (json.JSONDecodeError, ValueError):
-        pass
-    
-    # If that fails, try removing line breaks entirely (for single-line JSON)
-    try:
-        # Remove all line breaks and excessive whitespace
-        single_line = re.sub(r'\s+', ' ', json_string)
-        single_line = single_line.strip()
-        
-        parsed = json.loads(single_line)
-        return json.dumps(parsed)
-        
     except (json.JSONDecodeError, ValueError):
         pass
     

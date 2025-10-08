@@ -99,30 +99,33 @@ def preprocess_json_input(json_string):
     except (json.JSONDecodeError, ValueError):
         pass
     
-    # Try to fix common formatting issues
-    # Remove excessive whitespace while preserving JSON structure
+    # Try very conservative whitespace normalization only
+    # The goal is to handle PowerShell here-string formatting without breaking JSON
     try:
-        # First attempt: Parse and re-serialize to normalize formatting
-        # This handles cases where JSON is valid but has formatting issues
-        parsed = json.loads(json_string)
-        return json.dumps(parsed, separators=(',', ':'))
-    except (json.JSONDecodeError, ValueError):
-        pass
-    
-    # If standard parsing fails, try more aggressive preprocessing
-    try:
-        # Remove all line breaks and normalize whitespace around JSON punctuation
-        cleaned = re.sub(r'\s+', ' ', json_string)  # Replace multiple whitespace with single space
-        cleaned = re.sub(r'\s*([{}\[\]:,])\s*', r'\1', cleaned)  # Remove spaces around JSON punctuation
-        cleaned = cleaned.strip()
+        # Replace Windows line endings with Unix line endings
+        normalized = json_string.replace('\r\n', '\n').replace('\r', '\n')
         
-        # Try to parse the cleaned version
-        parsed = json.loads(cleaned)
-        return json.dumps(parsed, separators=(',', ':'))
+        # Parse and re-serialize to ensure valid JSON structure
+        # This will handle whitespace normalization safely
+        parsed = json.loads(normalized)
+        return json.dumps(parsed)
+        
     except (json.JSONDecodeError, ValueError):
         pass
     
-    # If all preprocessing attempts fail, return original for error reporting
+    # If that fails, try removing line breaks entirely (for single-line JSON)
+    try:
+        # Remove all line breaks and excessive whitespace
+        single_line = re.sub(r'\s+', ' ', json_string)
+        single_line = single_line.strip()
+        
+        parsed = json.loads(single_line)
+        return json.dumps(parsed)
+        
+    except (json.JSONDecodeError, ValueError):
+        pass
+    
+    # If all preprocessing fails, return original for proper error reporting
     return json_string
 
 
@@ -182,7 +185,8 @@ def createRequest(args, configuration):
                 return None
         except ValueError as e:
             print(f"ERROR: Invalid JSON syntax: {e}")
-            print(f"Attempted to parse: {params['json'][:100]}{'...' if len(params['json']) > 100 else ''}")
+            print(f"Raw input received (first 200 chars): {repr(params['json'][:200])}")
+            print(f"After preprocessing (first 200 chars): {repr(preprocessed_json[:200])}")
             print("Example: '{\"yourKey\":\"yourValue\"}'")
             return None
         except Exception as e:
@@ -373,7 +377,8 @@ def querySiteLocation(args, configuration):
         variables_obj = json.loads(preprocessed_json)
     except ValueError as e:
         print(f"ERROR: Invalid JSON syntax: {e}")
-        print(f"Attempted to parse: {params['json'][:100]}{'...' if len(params['json']) > 100 else ''}")
+        print(f"Raw input received (first 200 chars): {repr(params['json'][:200])}")
+        print(f"After preprocessing (first 200 chars): {repr(preprocessed_json[:200])}")
         pretty_example = {
             "filters": [
                 {

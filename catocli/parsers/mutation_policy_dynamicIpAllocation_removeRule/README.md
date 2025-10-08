@@ -13,7 +13,7 @@ catocli mutation policy dynamicIpAllocation removeRule "$(cat < mutation.policy.
 
 catocli mutation policy dynamicIpAllocation removeRule '{"dynamicIpAllocationPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"dynamicIpAllocationRemoveRuleInput":{"id":"id"}}'
 
-catocli mutation policy dynamicIpAllocation removeRule -p '{
+catocli mutation policy dynamicIpAllocation removeRule '{
     "dynamicIpAllocationPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"

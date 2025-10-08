@@ -78,3 +78,11 @@
 ## 3.0.4 (2025-09-26)
 
 - Updated csv formatting for appStatsTimeSeries, and socketPortMetricsTimeSeries 
+
+## 3.0.8 (2025-10-08)
+
+- Added bulk import, export, and purge for scim users and groups for json and csv, as well as options to generate templates
+- Updated dynamic schema generation to format examples with pretty print as well as single line json blob
+- OS context aware help menus for unix vs windows, and multi-line json input for both unix and windows
+- Added comprehensive timeframe examples to dynamic readme generation process (appStats, socketPortMetrics, etc)
+

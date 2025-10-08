@@ -13,7 +13,7 @@ catocli mutation admin addServicePrincipalAdmin "$(cat < mutation.admin.addServi
 
 catocli mutation admin addServicePrincipalAdmin '{"addServicePrincipalAdminInput":{"email":"string","name":"string","updateAdminRoleInput":{"allowedAccounts":["id1","id2"],"allowedEntities":{"id":"id","name":"string","type":"account"},"role":{"id":"id","name":"string"}}}}'
 
-catocli mutation admin addServicePrincipalAdmin -p '{
+catocli mutation admin addServicePrincipalAdmin '{
     "addServicePrincipalAdminInput": {
         "email": "string",
         "name": "string",

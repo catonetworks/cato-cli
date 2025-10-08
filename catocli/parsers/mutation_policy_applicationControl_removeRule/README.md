@@ -13,7 +13,7 @@ catocli mutation policy applicationControl removeRule "$(cat < mutation.policy.a
 
 catocli mutation policy applicationControl removeRule '{"applicationControlPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"applicationControlRemoveRuleInput":{"id":"id"}}'
 
-catocli mutation policy applicationControl removeRule -p '{
+catocli mutation policy applicationControl removeRule '{
     "applicationControlPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"

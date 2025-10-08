@@ -13,7 +13,7 @@ catocli mutation policy wanFirewall createPolicyRevision "$(cat < mutation.polic
 
 catocli mutation policy wanFirewall createPolicyRevision '{"policyCreateRevisionInput":{"description":"string","name":"string"},"wanFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-catocli mutation policy wanFirewall createPolicyRevision -p '{
+catocli mutation policy wanFirewall createPolicyRevision '{
     "policyCreateRevisionInput": {
         "description": "string",
         "name": "string"

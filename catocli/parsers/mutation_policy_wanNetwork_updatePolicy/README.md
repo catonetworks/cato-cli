@@ -13,7 +13,7 @@ catocli mutation policy wanNetwork updatePolicy "$(cat < mutation.policy.wanNetw
 
 catocli mutation policy wanNetwork updatePolicy '{"wanNetworkPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"wanNetworkPolicyUpdateInput":{"state":"ENABLED"}}'
 
-catocli mutation policy wanNetwork updatePolicy -p '{
+catocli mutation policy wanNetwork updatePolicy '{
     "wanNetworkPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"

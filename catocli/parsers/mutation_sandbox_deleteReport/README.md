@@ -13,7 +13,7 @@ catocli mutation sandbox deleteReport "$(cat < mutation.sandbox.deleteReport.jso
 
 catocli mutation sandbox deleteReport '{"deleteReportInput":{"fileHash":"string"}}'
 
-catocli mutation sandbox deleteReport -p '{
+catocli mutation sandbox deleteReport '{
     "deleteReportInput": {
         "fileHash": "string"
     }

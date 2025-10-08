@@ -13,7 +13,7 @@ catocli mutation policy appTenantRestriction updatePolicy "$(cat < mutation.poli
 
 catocli mutation policy appTenantRestriction updatePolicy '{"appTenantRestrictionPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"appTenantRestrictionPolicyUpdateInput":{"state":"ENABLED"}}'
 
-catocli mutation policy appTenantRestriction updatePolicy -p '{
+catocli mutation policy appTenantRestriction updatePolicy '{
     "appTenantRestrictionPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"

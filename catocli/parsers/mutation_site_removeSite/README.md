@@ -13,7 +13,7 @@ catocli mutation site removeSite "$(cat < mutation.site.removeSite.json)"
 
 catocli mutation site removeSite '{"siteId":"id"}'
 
-catocli mutation site removeSite -p '{
+catocli mutation site removeSite '{
     "siteId": "id"
 }'
 ```

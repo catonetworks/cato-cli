@@ -13,7 +13,7 @@ catocli mutation site removeSocketAddOnCard "$(cat < mutation.site.removeSocketA
 
 catocli mutation site removeSocketAddOnCard '{"removeSocketAddOnCardInput":{"expansionSlotNumbers":"SLOT_1","siteRefInput":{"by":"ID","input":"string"}}}'
 
-catocli mutation site removeSocketAddOnCard -p '{
+catocli mutation site removeSocketAddOnCard '{
     "removeSocketAddOnCardInput": {
         "expansionSlotNumbers": "SLOT_1",
         "siteRefInput": {

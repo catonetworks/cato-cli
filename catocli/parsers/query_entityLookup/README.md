@@ -13,7 +13,7 @@ catocli query entityLookup "$(cat < query.entityLookup.json)"
 
 catocli query entityLookup '{"entityIDs":["id1","id2"],"entityInput":{"id":"id","name":"string","type":"account"},"from":1,"helperFields":["string1","string2"],"limit":1,"lookupFilterInput":{"filter":"filterByConnectionTypeFamily","value":"string"},"search":"string","sortInput":{"field":"string","order":"asc"},"type":"account"}'
 
-catocli query entityLookup -p '{
+catocli query entityLookup '{
     "entityIDs": [
         "id1",
         "id2"

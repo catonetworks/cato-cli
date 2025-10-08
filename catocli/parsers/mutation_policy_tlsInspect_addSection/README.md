@@ -13,7 +13,7 @@ catocli mutation policy tlsInspect addSection "$(cat < mutation.policy.tlsInspec
 
 catocli mutation policy tlsInspect addSection '{"policyAddSectionInput":{"policyAddSectionInfoInput":{"name":"string"},"policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}},"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-catocli mutation policy tlsInspect addSection -p '{
+catocli mutation policy tlsInspect addSection '{
     "policyAddSectionInput": {
         "policyAddSectionInfoInput": {
             "name": "string"

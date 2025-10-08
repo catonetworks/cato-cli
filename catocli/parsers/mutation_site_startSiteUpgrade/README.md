@@ -13,7 +13,7 @@ catocli mutation site startSiteUpgrade "$(cat < mutation.site.startSiteUpgrade.j
 
 catocli mutation site startSiteUpgrade '{"startSiteUpgradeInput":{"siteUpgradeRequest":{"site":{"by":"ID","input":"string"},"targetVersion":"string"}}}'
 
-catocli mutation site startSiteUpgrade -p '{
+catocli mutation site startSiteUpgrade '{
     "startSiteUpgradeInput": {
         "siteUpgradeRequest": {
             "site": {

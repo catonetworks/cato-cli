@@ -13,7 +13,7 @@ catocli mutation policy wanFirewall removeRule "$(cat < mutation.policy.wanFirew
 
 catocli mutation policy wanFirewall removeRule '{"wanFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"wanFirewallRemoveRuleInput":{"id":"id"}}'
 
-catocli mutation policy wanFirewall removeRule -p '{
+catocli mutation policy wanFirewall removeRule '{
     "wanFirewallPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"

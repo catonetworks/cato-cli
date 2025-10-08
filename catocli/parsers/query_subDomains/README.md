@@ -13,7 +13,7 @@ catocli query subDomains "$(cat < query.subDomains.json)"
 
 catocli query subDomains '{"managedAccount":true}'
 
-catocli query subDomains -p '{
+catocli query subDomains '{
     "managedAccount": true
 }'
 ```

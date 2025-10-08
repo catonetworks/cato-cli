@@ -13,7 +13,7 @@ catocli mutation policy wanNetwork publishPolicyRevision "$(cat < mutation.polic
 
 catocli mutation policy wanNetwork publishPolicyRevision '{"policyPublishRevisionInput":{"description":"string","name":"string"},"wanNetworkPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-catocli mutation policy wanNetwork publishPolicyRevision -p '{
+catocli mutation policy wanNetwork publishPolicyRevision '{
     "policyPublishRevisionInput": {
         "description": "string",
         "name": "string"

@@ -13,7 +13,7 @@ catocli mutation enterpriseDirectory restoreLocation "$(cat < mutation.enterpris
 
 catocli mutation enterpriseDirectory restoreLocation '{"locationId":"id"}'
 
-catocli mutation enterpriseDirectory restoreLocation -p '{
+catocli mutation enterpriseDirectory restoreLocation '{
     "locationId": "id"
 }'
 ```

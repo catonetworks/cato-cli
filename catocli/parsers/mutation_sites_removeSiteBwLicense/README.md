@@ -13,7 +13,7 @@ catocli mutation sites removeSiteBwLicense "$(cat < mutation.sites.removeSiteBwL
 
 catocli mutation sites removeSiteBwLicense '{"removeSiteBwLicenseInput":{"licenseId":"id","siteRefInput":{"by":"ID","input":"string"}}}'
 
-catocli mutation sites removeSiteBwLicense -p '{
+catocli mutation sites removeSiteBwLicense '{
     "removeSiteBwLicenseInput": {
         "licenseId": "id",
         "siteRefInput": {

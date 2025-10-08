@@ -13,7 +13,7 @@ catocli mutation policy dynamicIpAllocation discardPolicyRevision "$(cat < mutat
 
 catocli mutation policy dynamicIpAllocation discardPolicyRevision '{"dynamicIpAllocationPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyDiscardRevisionInput":{"id":"id"}}'
 
-catocli mutation policy dynamicIpAllocation discardPolicyRevision -p '{
+catocli mutation policy dynamicIpAllocation discardPolicyRevision '{
     "dynamicIpAllocationPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"

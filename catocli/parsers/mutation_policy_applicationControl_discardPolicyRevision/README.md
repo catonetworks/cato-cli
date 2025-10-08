@@ -13,7 +13,7 @@ catocli mutation policy applicationControl discardPolicyRevision "$(cat < mutati
 
 catocli mutation policy applicationControl discardPolicyRevision '{"applicationControlPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyDiscardRevisionInput":{"id":"id"}}'
 
-catocli mutation policy applicationControl discardPolicyRevision -p '{
+catocli mutation policy applicationControl discardPolicyRevision '{
     "applicationControlPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"

@@ -348,10 +348,20 @@ def generateGraphqlPayload(variables_obj, operation, operation_name, renderArgsA
     query_str += f"{indent}{operation['name']} ( "
     
     # Add operation arguments - only include arguments that have actual values
-    for arg_name in operation["args"]:
-        arg = operation["args"][arg_name]
-        # Only include arguments that have actual values (matching the JavaScript logic)
-        if arg["varName"] in variables_obj and variables_obj[arg["varName"]] is not None and variables_obj[arg["varName"]] != "" and variables_obj[arg["varName"]] != [] and variables_obj[arg["varName"]] != {}:
+    # Use operationArgs instead of args to get complete argument list including child operations
+    operation_args = operation.get("operationArgs", operation.get("args", {}))
+    for arg_name in operation_args:
+        arg = operation_args[arg_name]
+        # Include required arguments always, and optional arguments only when they have meaningful values
+        var_name = arg["varName"]
+        is_required = arg.get("required", False)
+        has_value = (var_name in variables_obj and 
+                    variables_obj[var_name] is not None and 
+                    variables_obj[var_name] != "" and 
+                    variables_obj[var_name] != [] and 
+                    variables_obj[var_name] != {})
+        
+        if is_required or has_value:
             query_str += arg["responseStr"]
     
     # Generate field selection with enhanced rendering and dynamic argument collection
@@ -381,8 +391,16 @@ def generateGraphqlPayload(variables_obj, operation, operation_name, renderArgsA
     variable_str = ""
     for arg_name in dynamic_operation_args:
         arg = dynamic_operation_args[arg_name]
-        # Only include variables that have actual values in variables_obj
-        if arg["varName"] in variables_obj and variables_obj[arg["varName"]] is not None and variables_obj[arg["varName"]] != "" and variables_obj[arg["varName"]] != [] and variables_obj[arg["varName"]] != {}:
+        # Include required arguments always, and optional arguments only when they have meaningful values
+        var_name = arg["varName"]
+        is_required = arg.get("required", False)
+        has_value = (var_name in variables_obj and 
+                    variables_obj[var_name] is not None and 
+                    variables_obj[var_name] != "" and 
+                    variables_obj[var_name] != [] and 
+                    variables_obj[var_name] != {})
+        
+        if is_required or has_value:
             variable_str += arg["requestStr"]
     
     # Replace the placeholder with actual variables
@@ -797,6 +815,9 @@ def renderArgsAndFields(response_arg_str, variables_obj, cur_operation, definiti
         # The API returns simple field names like "audit" not "auditWanFirewallRulePayload: audit"
         field_display_name = field['name']
         
+        # JAVASCRIPT COMPATIBILITY: Field inclusion logic will be handled at the subfield level
+        # The JavaScript implementation strategically excludes certain subfields for specific operations
+        
         # DISABLED: Field conflict resolution for fields with different types across union fragments
         # The original aliasing logic was creating aliases that don't match the API response structure
         # For example: auditWanFirewallRulePayload: audit instead of just audit
@@ -818,8 +839,8 @@ def renderArgsAndFields(response_arg_str, variables_obj, cur_operation, definiti
         #                 # Different nullability - create alias
         #                 field_display_name = f"{field['name']}{definition['name']}: {field['name']}"
         
-        # NO SKIPPING: Always include fields like JavaScript implementation
-        # Complex fields will be expanded automatically if they have definitions
+        # Field inclusion logic: Skip fields that are known to cause issues
+        # This matches the JavaScript implementation approach of being selective about fields
         
         # Check if field has arguments and whether they are present in variables
         should_include_field = True
@@ -918,6 +939,14 @@ def renderArgsAndFields(response_arg_str, variables_obj, cur_operation, definiti
                 # Force use of plain field name instead of alias to match API response structure
                 # The API returns simple field names like "audit" not "auditWanFirewallRulePayload: audit"
                 subfield_name = subfield['name']
+                
+                # JAVASCRIPT COMPATIBILITY: Skip problematic 'fields' subfield in 'records' for socketPortMetrics
+                # The JavaScript implementation strategically excludes the 'fields' object within 'records'
+                # because it contains union types that cause GraphQL validation errors
+                if (operation_name and 'socketPortMetrics' in operation_name and 
+                    field_display_name == 'records' and subfield_name == 'fields'):
+                    continue  # Skip the fields subfield that contains the problematic Value union type
+                
                 response_arg_str += f"{indent}\t{subfield_name}"
                 
                 if subfield.get("args") and len(list(subfield["args"].keys())) > 0:

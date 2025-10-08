@@ -13,7 +13,7 @@ catocli query policy internetFirewall policy "$(cat < query.policy.internetFirew
 
 catocli query policy internetFirewall policy '{"internetFirewallPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'
 
-catocli query policy internetFirewall policy -p '{
+catocli query policy internetFirewall policy '{
     "internetFirewallPolicyInput": {
         "policyRevisionInput": {
             "id": "id",

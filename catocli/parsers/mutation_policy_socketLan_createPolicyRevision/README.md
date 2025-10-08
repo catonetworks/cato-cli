@@ -13,7 +13,7 @@ catocli mutation policy socketLan createPolicyRevision "$(cat < mutation.policy.
 
 catocli mutation policy socketLan createPolicyRevision '{"policyCreateRevisionInput":{"description":"string","name":"string"},"socketLanPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-catocli mutation policy socketLan createPolicyRevision -p '{
+catocli mutation policy socketLan createPolicyRevision '{
     "policyCreateRevisionInput": {
         "description": "string",
         "name": "string"

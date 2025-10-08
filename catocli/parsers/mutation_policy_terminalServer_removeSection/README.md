@@ -13,7 +13,7 @@ catocli mutation policy terminalServer removeSection "$(cat < mutation.policy.te
 
 catocli mutation policy terminalServer removeSection '{"policyRemoveSectionInput":{"id":"id"},"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-catocli mutation policy terminalServer removeSection -p '{
+catocli mutation policy terminalServer removeSection '{
     "policyRemoveSectionInput": {
         "id": "id"
     },

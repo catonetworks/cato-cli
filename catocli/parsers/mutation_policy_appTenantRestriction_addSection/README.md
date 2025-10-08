@@ -13,7 +13,7 @@ catocli mutation policy appTenantRestriction addSection "$(cat < mutation.policy
 
 catocli mutation policy appTenantRestriction addSection '{"appTenantRestrictionPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyAddSectionInput":{"policyAddSectionInfoInput":{"name":"string"},"policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}}}'
 
-catocli mutation policy appTenantRestriction addSection -p '{
+catocli mutation policy appTenantRestriction addSection '{
     "appTenantRestrictionPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"

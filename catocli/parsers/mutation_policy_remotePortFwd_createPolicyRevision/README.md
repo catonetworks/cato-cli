@@ -13,7 +13,7 @@ catocli mutation policy remotePortFwd createPolicyRevision "$(cat < mutation.pol
 
 catocli mutation policy remotePortFwd createPolicyRevision '{"policyCreateRevisionInput":{"description":"string","name":"string"},"remotePortFwdPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-catocli mutation policy remotePortFwd createPolicyRevision -p '{
+catocli mutation policy remotePortFwd createPolicyRevision '{
     "policyCreateRevisionInput": {
         "description": "string",
         "name": "string"

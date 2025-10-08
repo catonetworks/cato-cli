@@ -13,7 +13,7 @@ catocli query accountRoles "$(cat < query.accountRoles.json)"
 
 catocli query accountRoles '{"accountType":"SYSTEM"}'
 
-catocli query accountRoles -p '{
+catocli query accountRoles '{
     "accountType": "SYSTEM"
 }'
 ```

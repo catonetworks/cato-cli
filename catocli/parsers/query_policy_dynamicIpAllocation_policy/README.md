@@ -13,7 +13,7 @@ catocli query policy dynamicIpAllocation policy "$(cat < query.policy.dynamicIpA
 
 catocli query policy dynamicIpAllocation policy '{"dynamicIpAllocationPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'
 
-catocli query policy dynamicIpAllocation policy -p '{
+catocli query policy dynamicIpAllocation policy '{
     "dynamicIpAllocationPolicyInput": {
         "policyRevisionInput": {
             "id": "id",

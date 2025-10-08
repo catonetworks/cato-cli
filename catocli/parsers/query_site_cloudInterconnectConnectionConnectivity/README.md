@@ -13,7 +13,7 @@ catocli query site cloudInterconnectConnectionConnectivity "$(cat < query.site.c
 
 catocli query site cloudInterconnectConnectionConnectivity '{"cloudInterconnectConnectionConnectivityInput":{"id":"id"}}'
 
-catocli query site cloudInterconnectConnectionConnectivity -p '{
+catocli query site cloudInterconnectConnectionConnectivity '{
     "cloudInterconnectConnectionConnectivityInput": {
         "id": "id"
     }

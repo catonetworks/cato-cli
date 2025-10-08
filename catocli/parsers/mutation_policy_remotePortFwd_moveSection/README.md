@@ -13,7 +13,7 @@ catocli mutation policy remotePortFwd moveSection "$(cat < mutation.policy.remot
 
 catocli mutation policy remotePortFwd moveSection '{"policyMoveSectionInput":{"id":"id","policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}},"remotePortFwdPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-catocli mutation policy remotePortFwd moveSection -p '{
+catocli mutation policy remotePortFwd moveSection '{
     "policyMoveSectionInput": {
         "id": "id",
         "policySectionPositionInput": {

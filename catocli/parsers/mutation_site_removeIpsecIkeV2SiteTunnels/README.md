@@ -13,7 +13,7 @@ catocli mutation site removeIpsecIkeV2SiteTunnels "$(cat < mutation.site.removeI
 
 catocli mutation site removeIpsecIkeV2SiteTunnels '{"removeIpsecIkeV2SiteTunnelsInput":{"tunnelId":"PRIMARY1"},"siteId":"id"}'
 
-catocli mutation site removeIpsecIkeV2SiteTunnels -p '{
+catocli mutation site removeIpsecIkeV2SiteTunnels '{
     "removeIpsecIkeV2SiteTunnelsInput": {
         "tunnelId": "PRIMARY1"
     },

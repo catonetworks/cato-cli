@@ -13,7 +13,7 @@ catocli mutation policy appTenantRestriction removeRule "$(cat < mutation.policy
 
 catocli mutation policy appTenantRestriction removeRule '{"appTenantRestrictionPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"appTenantRestrictionRemoveRuleInput":{"id":"id"}}'
 
-catocli mutation policy appTenantRestriction removeRule -p '{
+catocli mutation policy appTenantRestriction removeRule '{
     "appTenantRestrictionPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"

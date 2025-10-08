@@ -13,7 +13,7 @@ catocli mutation policy wanFirewall moveSection "$(cat < mutation.policy.wanFire
 
 catocli mutation policy wanFirewall moveSection '{"policyMoveSectionInput":{"id":"id","policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}},"wanFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-catocli mutation policy wanFirewall moveSection -p '{
+catocli mutation policy wanFirewall moveSection '{
     "policyMoveSectionInput": {
         "id": "id",
         "policySectionPositionInput": {

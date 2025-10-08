@@ -13,7 +13,7 @@ catocli mutation policy tlsInspect discardPolicyRevision "$(cat < mutation.polic
 
 catocli mutation policy tlsInspect discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-catocli mutation policy tlsInspect discardPolicyRevision -p '{
+catocli mutation policy tlsInspect discardPolicyRevision '{
     "policyDiscardRevisionInput": {
         "id": "id"
     },

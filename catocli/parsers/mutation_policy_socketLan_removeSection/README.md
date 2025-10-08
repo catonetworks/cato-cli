@@ -13,7 +13,7 @@ catocli mutation policy socketLan removeSection "$(cat < mutation.policy.socketL
 
 catocli mutation policy socketLan removeSection '{"policyRemoveSectionInput":{"id":"id"},"socketLanPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-catocli mutation policy socketLan removeSection -p '{
+catocli mutation policy socketLan removeSection '{
     "policyRemoveSectionInput": {
         "id": "id"
     },

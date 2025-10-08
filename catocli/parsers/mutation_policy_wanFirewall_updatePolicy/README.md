@@ -13,7 +13,7 @@ catocli mutation policy wanFirewall updatePolicy "$(cat < mutation.policy.wanFir
 
 catocli mutation policy wanFirewall updatePolicy '{"wanFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"wanFirewallPolicyUpdateInput":{"state":"ENABLED"}}'
 
-catocli mutation policy wanFirewall updatePolicy -p '{
+catocli mutation policy wanFirewall updatePolicy '{
     "wanFirewallPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"

@@ -13,7 +13,7 @@ catocli query policy appTenantRestriction policy "$(cat < query.policy.appTenant
 
 catocli query policy appTenantRestriction policy '{"appTenantRestrictionPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'
 
-catocli query policy appTenantRestriction policy -p '{
+catocli query policy appTenantRestriction policy '{
     "appTenantRestrictionPolicyInput": {
         "policyRevisionInput": {
             "id": "id",

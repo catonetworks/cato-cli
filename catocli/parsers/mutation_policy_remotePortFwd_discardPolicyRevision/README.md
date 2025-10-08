@@ -13,7 +13,7 @@ catocli mutation policy remotePortFwd discardPolicyRevision "$(cat < mutation.po
 
 catocli mutation policy remotePortFwd discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"remotePortFwdPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-catocli mutation policy remotePortFwd discardPolicyRevision -p '{
+catocli mutation policy remotePortFwd discardPolicyRevision '{
     "policyDiscardRevisionInput": {
         "id": "id"
     },

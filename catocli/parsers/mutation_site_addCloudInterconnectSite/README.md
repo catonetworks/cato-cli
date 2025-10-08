@@ -13,7 +13,7 @@ catocli mutation site addCloudInterconnectSite "$(cat < mutation.site.addCloudIn
 
 catocli mutation site addCloudInterconnectSite '{"addCloudInterconnectSiteInput":{"addSiteLocationInput":{"address":"string","city":"string","countryCode":"string","stateCode":"string","timezone":"string"},"description":"string","name":"string","siteType":"BRANCH"}}'
 
-catocli mutation site addCloudInterconnectSite -p '{
+catocli mutation site addCloudInterconnectSite '{
     "addCloudInterconnectSiteInput": {
         "addSiteLocationInput": {
             "address": "string",

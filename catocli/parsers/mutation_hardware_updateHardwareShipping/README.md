@@ -13,7 +13,7 @@ catocli mutation hardware updateHardwareShipping "$(cat < mutation.hardware.upda
 
 catocli mutation hardware updateHardwareShipping '{"updateHardwareShippingInput":{"hardwareShippingDetailsInput":{"details":{"address":{"cityName":"string","companyName":"string","countryName":"string","stateName":"string","street":"string","zipCode":"string"},"comment":"string","contact":{"email":"example_value","name":"string","phone":"example_value"},"incoterms":"string","instruction":"string","vatId":"string"},"powerCable":"string"},"ids":["id1","id2"]}}'
 
-catocli mutation hardware updateHardwareShipping -p '{
+catocli mutation hardware updateHardwareShipping '{
     "updateHardwareShippingInput": {
         "hardwareShippingDetailsInput": {
             "details": {

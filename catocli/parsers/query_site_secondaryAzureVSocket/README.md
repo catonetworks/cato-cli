@@ -13,7 +13,7 @@ catocli query site secondaryAzureVSocket "$(cat < query.site.secondaryAzureVSock
 
 catocli query site secondaryAzureVSocket '{"socketId":"id"}'
 
-catocli query site secondaryAzureVSocket -p '{
+catocli query site secondaryAzureVSocket '{
     "socketId": "id"
 }'
 ```

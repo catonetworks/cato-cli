@@ -13,7 +13,7 @@ catocli mutation policy terminalServer publishPolicyRevision "$(cat < mutation.p
 
 catocli mutation policy terminalServer publishPolicyRevision '{"policyPublishRevisionInput":{"description":"string","name":"string"},"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-catocli mutation policy terminalServer publishPolicyRevision -p '{
+catocli mutation policy terminalServer publishPolicyRevision '{
     "policyPublishRevisionInput": {
         "description": "string",
         "name": "string"

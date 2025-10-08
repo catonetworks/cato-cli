@@ -13,7 +13,7 @@ catocli query accountBySubdomain "$(cat < query.accountBySubdomain.json)"
 
 catocli query accountBySubdomain '{"subdomains":["string1","string2"]}'
 
-catocli query accountBySubdomain -p '{
+catocli query accountBySubdomain '{
     "subdomains": [
         "string1",
         "string2"

@@ -13,7 +13,7 @@ catocli query policy remotePortFwd policy "$(cat < query.policy.remotePortFwd.po
 
 catocli query policy remotePortFwd policy '{"remotePortFwdPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'
 
-catocli query policy remotePortFwd policy -p '{
+catocli query policy remotePortFwd policy '{
     "remotePortFwdPolicyInput": {
         "policyRevisionInput": {
             "id": "id",

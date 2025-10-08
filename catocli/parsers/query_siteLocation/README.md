@@ -13,7 +13,7 @@ catocli query siteLocation "$(cat < siteLocation.json)"`
 
 catocli query siteLocation '{"filters":[{"search": "Your city here","field":"city","operation":"exact"}]}'
 
-catocli query siteLocation -p '{
+catocli query siteLocation '{
     "filters": [
         {
             "search": "Your Country here",
@@ -23,7 +23,7 @@ catocli query siteLocation -p '{
     ]
 }'
 
-catocli query siteLocation -p '{
+catocli query siteLocation '{
     "filters": [
         {
             "search": "Your stateName here",
@@ -33,7 +33,7 @@ catocli query siteLocation -p '{
     ]
 }'
 
-catocli query siteLocation -p '{
+catocli query siteLocation '{
     "filters": [
         {
             "search": "Your City here",

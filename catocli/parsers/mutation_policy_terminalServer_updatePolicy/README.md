@@ -13,7 +13,7 @@ catocli mutation policy terminalServer updatePolicy "$(cat < mutation.policy.ter
 
 catocli mutation policy terminalServer updatePolicy '{"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"terminalServerPolicyUpdateInput":{"state":"ENABLED"}}'
 
-catocli mutation policy terminalServer updatePolicy -p '{
+catocli mutation policy terminalServer updatePolicy '{
     "terminalServerPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"

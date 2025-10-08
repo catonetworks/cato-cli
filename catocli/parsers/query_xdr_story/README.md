@@ -13,7 +13,7 @@ catocli query xdr story "$(cat < query.xdr.story.json)"
 
 catocli query xdr story '{"incidentId":"id","producer":"AnomalyStats","storyId":"id"}'
 
-catocli query xdr story -p '{
+catocli query xdr story '{
     "incidentId": "id",
     "producer": "AnomalyStats",
     "storyId": "id"

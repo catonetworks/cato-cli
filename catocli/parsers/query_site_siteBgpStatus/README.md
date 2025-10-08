@@ -13,7 +13,7 @@ catocli query site siteBgpStatus "$(cat < query.site.siteBgpStatus.json)"
 
 catocli query site siteBgpStatus '{"siteBgpStatusInput":{"siteRefInput":{"by":"ID","input":"string"}}}'
 
-catocli query site siteBgpStatus -p '{
+catocli query site siteBgpStatus '{
     "siteBgpStatusInput": {
         "siteRefInput": {
             "by": "ID",

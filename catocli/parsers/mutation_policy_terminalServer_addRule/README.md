@@ -13,7 +13,7 @@ catocli mutation policy terminalServer addRule "$(cat < mutation.policy.terminal
 
 catocli mutation policy terminalServer addRule '{"terminalServerAddRuleInput":{"policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"},"terminalServerAddRuleDataInput":{"allowedHostIP":{"by":"ID","input":"string"},"description":"string","enabled":true,"excludeTraffic":{"by":"ID","input":"string"},"name":"string"}},"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-catocli mutation policy terminalServer addRule -p '{
+catocli mutation policy terminalServer addRule '{
     "terminalServerAddRuleInput": {
         "policyRulePositionInput": {
             "position": "AFTER_RULE",

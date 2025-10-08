@@ -13,7 +13,7 @@ catocli mutation policy terminalServer createPolicyRevision "$(cat < mutation.po
 
 catocli mutation policy terminalServer createPolicyRevision '{"policyCreateRevisionInput":{"description":"string","name":"string"},"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-catocli mutation policy terminalServer createPolicyRevision -p '{
+catocli mutation policy terminalServer createPolicyRevision '{
     "policyCreateRevisionInput": {
         "description": "string",
         "name": "string"

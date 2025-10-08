@@ -13,7 +13,7 @@ catocli mutation policy internetFirewall updateSection "$(cat < mutation.policy.
 
 catocli mutation policy internetFirewall updateSection '{"internetFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyUpdateSectionInput":{"id":"id","policyUpdateSectionInfoInput":{"name":"string"}}}'
 
-catocli mutation policy internetFirewall updateSection -p '{
+catocli mutation policy internetFirewall updateSection '{
     "internetFirewallPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"

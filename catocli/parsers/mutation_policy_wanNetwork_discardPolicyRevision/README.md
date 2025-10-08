@@ -13,7 +13,7 @@ catocli mutation policy wanNetwork discardPolicyRevision "$(cat < mutation.polic
 
 catocli mutation policy wanNetwork discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"wanNetworkPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-catocli mutation policy wanNetwork discardPolicyRevision -p '{
+catocli mutation policy wanNetwork discardPolicyRevision '{
     "policyDiscardRevisionInput": {
         "id": "id"
     },

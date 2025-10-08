@@ -13,7 +13,7 @@ catocli query site availableVersionList "$(cat < query.site.availableVersionList
 
 catocli query site availableVersionList '{"availableVersionListInput":{"platforms":["string1","string2"]}}'
 
-catocli query site availableVersionList -p '{
+catocli query site availableVersionList '{
     "availableVersionListInput": {
         "platforms": [
             "string1",

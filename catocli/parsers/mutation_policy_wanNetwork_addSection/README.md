@@ -13,7 +13,7 @@ catocli mutation policy wanNetwork addSection "$(cat < mutation.policy.wanNetwor
 
 catocli mutation policy wanNetwork addSection '{"policyAddSectionInput":{"policyAddSectionInfoInput":{"name":"string"},"policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}},"wanNetworkPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-catocli mutation policy wanNetwork addSection -p '{
+catocli mutation policy wanNetwork addSection '{
     "policyAddSectionInput": {
         "policyAddSectionInfoInput": {
             "name": "string"

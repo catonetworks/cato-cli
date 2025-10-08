@@ -13,7 +13,7 @@ catocli mutation accountManagement updateAccount "$(cat < mutation.accountManage
 
 catocli mutation accountManagement updateAccount '{"updateAccountInput":{"description":"string"}}'
 
-catocli mutation accountManagement updateAccount -p '{
+catocli mutation accountManagement updateAccount '{
     "updateAccountInput": {
         "description": "string"
     }

@@ -13,7 +13,7 @@ catocli mutation policy applicationControl moveSection "$(cat < mutation.policy.
 
 catocli mutation policy applicationControl moveSection '{"applicationControlPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyMoveSectionInput":{"id":"id","policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}}}'
 
-catocli mutation policy applicationControl moveSection -p '{
+catocli mutation policy applicationControl moveSection '{
     "applicationControlPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"

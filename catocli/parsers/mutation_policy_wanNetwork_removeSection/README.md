@@ -13,7 +13,7 @@ catocli mutation policy wanNetwork removeSection "$(cat < mutation.policy.wanNet
 
 catocli mutation policy wanNetwork removeSection '{"policyRemoveSectionInput":{"id":"id"},"wanNetworkPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-catocli mutation policy wanNetwork removeSection -p '{
+catocli mutation policy wanNetwork removeSection '{
     "policyRemoveSectionInput": {
         "id": "id"
     },

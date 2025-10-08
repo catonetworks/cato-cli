@@ -314,7 +314,7 @@ def createRequest(args, configuration):
             except ApiException as e:
                 return e
     else:
-        print(f"ERROR: {message}, {', '.join(invalid_vars)}")
+        print(f"ERROR: {message}")
         try:
             query_payload_file = f"queryPayloads/{operation_name}.json"
             query_payload = loadJSON(query_payload_file)

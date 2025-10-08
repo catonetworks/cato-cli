@@ -13,7 +13,7 @@ catocli mutation policy applicationControl updatePolicy "$(cat < mutation.policy
 
 catocli mutation policy applicationControl updatePolicy '{"applicationControlPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"applicationControlPolicyUpdateInput":{"applicationControlConfigInput":{"dataControlEnabled":"ENABLED"},"state":"ENABLED"}}'
 
-catocli mutation policy applicationControl updatePolicy -p '{
+catocli mutation policy applicationControl updatePolicy '{
     "applicationControlPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"

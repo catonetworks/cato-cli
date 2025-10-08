@@ -13,7 +13,7 @@ catocli query policy wanFirewall policy "$(cat < query.policy.wanFirewall.policy
 
 catocli query policy wanFirewall policy '{"wanFirewallPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'
 
-catocli query policy wanFirewall policy -p '{
+catocli query policy wanFirewall policy '{
     "wanFirewallPolicyInput": {
         "policyRevisionInput": {
             "id": "id",

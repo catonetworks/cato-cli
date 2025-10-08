@@ -13,7 +13,7 @@ catocli mutation policy tlsInspect updatePolicy "$(cat < mutation.policy.tlsInsp
 
 catocli mutation policy tlsInspect updatePolicy '{"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"tlsInspectPolicyUpdateInput":{"state":"ENABLED","tlsInspectConfigInput":{"defaultRuleAction":"INSPECT","defaultRuleUntrustedCertificateAction":"ALLOW"}}}'
 
-catocli mutation policy tlsInspect updatePolicy -p '{
+catocli mutation policy tlsInspect updatePolicy '{
     "tlsInspectPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"

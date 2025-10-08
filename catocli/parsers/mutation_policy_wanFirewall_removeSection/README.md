@@ -13,7 +13,7 @@ catocli mutation policy wanFirewall removeSection "$(cat < mutation.policy.wanFi
 
 catocli mutation policy wanFirewall removeSection '{"policyRemoveSectionInput":{"id":"id"},"wanFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-catocli mutation policy wanFirewall removeSection -p '{
+catocli mutation policy wanFirewall removeSection '{
     "policyRemoveSectionInput": {
         "id": "id"
     },

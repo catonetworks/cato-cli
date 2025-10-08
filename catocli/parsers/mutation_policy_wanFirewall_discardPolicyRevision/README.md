@@ -13,7 +13,7 @@ catocli mutation policy wanFirewall discardPolicyRevision "$(cat < mutation.poli
 
 catocli mutation policy wanFirewall discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"wanFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-catocli mutation policy wanFirewall discardPolicyRevision -p '{
+catocli mutation policy wanFirewall discardPolicyRevision '{
     "policyDiscardRevisionInput": {
         "id": "id"
     },

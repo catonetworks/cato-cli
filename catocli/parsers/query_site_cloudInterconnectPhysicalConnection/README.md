@@ -13,7 +13,7 @@ catocli query site cloudInterconnectPhysicalConnection "$(cat < query.site.cloud
 
 catocli query site cloudInterconnectPhysicalConnection '{"cloudInterconnectPhysicalConnectionInput":{"id":"id"}}'
 
-catocli query site cloudInterconnectPhysicalConnection -p '{
+catocli query site cloudInterconnectPhysicalConnection '{
     "cloudInterconnectPhysicalConnectionInput": {
         "id": "id"
     }

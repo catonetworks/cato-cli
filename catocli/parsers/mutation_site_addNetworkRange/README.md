@@ -13,7 +13,7 @@ catocli mutation site addNetworkRange "$(cat < mutation.site.addNetworkRange.jso
 
 catocli mutation site addNetworkRange '{"addNetworkRangeInput":{"azureFloatingIp":"example_value","gateway":"example_value","internetOnly":true,"localIp":"example_value","mdnsReflector":true,"name":"string","networkDhcpSettingsInput":{"dhcpMicrosegmentation":true,"dhcpType":"DHCP_RELAY","ipRange":"example_value","relayGroupId":"id"},"rangeType":"Routed","subnet":"example_value","translatedSubnet":"example_value","vlan":1},"lanSocketInterfaceId":"id"}'
 
-catocli mutation site addNetworkRange -p '{
+catocli mutation site addNetworkRange '{
     "addNetworkRangeInput": {
         "azureFloatingIp": "example_value",
         "gateway": "example_value",

@@ -13,7 +13,7 @@ catocli mutation sites removeCloudInterconnectPhysicalConnection "$(cat < mutati
 
 catocli mutation sites removeCloudInterconnectPhysicalConnection '{"removeCloudInterconnectPhysicalConnectionInput":{"id":"id"}}'
 
-catocli mutation sites removeCloudInterconnectPhysicalConnection -p '{
+catocli mutation sites removeCloudInterconnectPhysicalConnection '{
     "removeCloudInterconnectPhysicalConnectionInput": {
         "id": "id"
     }

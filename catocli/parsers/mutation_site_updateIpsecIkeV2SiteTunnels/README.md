@@ -13,7 +13,7 @@ catocli mutation site updateIpsecIkeV2SiteTunnels "$(cat < mutation.site.updateI
 
 catocli mutation site updateIpsecIkeV2SiteTunnels '{"siteId":"id","updateIpsecIkeV2SiteTunnelsInput":{"updateIpsecIkeV2TunnelsInput":{"destinationType":"IPv4","popLocationId":"id","publicCatoIpId":"id","tunnels":{"lastMileBw":{"downstream":1,"downstreamMbpsPrecision":1.5,"upstream":1,"upstreamMbpsPrecision":1.5},"name":"string","privateCatoIp":"example_value","privateSiteIp":"example_value","psk":"string","publicSiteIp":"example_value","role":"WAN1","tunnelId":"PRIMARY1"}}}}'
 
-catocli mutation site updateIpsecIkeV2SiteTunnels -p '{
+catocli mutation site updateIpsecIkeV2SiteTunnels '{
     "siteId": "id",
     "updateIpsecIkeV2SiteTunnelsInput": {
         "updateIpsecIkeV2TunnelsInput": {

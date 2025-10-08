@@ -13,7 +13,7 @@ catocli mutation sites addSecondaryAzureVSocket "$(cat < mutation.sites.addSecon
 
 catocli mutation sites addSecondaryAzureVSocket '{"addSecondaryAzureVSocketInput":{"floatingIp":"example_value","interfaceIp":"example_value","siteRefInput":{"by":"ID","input":"string"}}}'
 
-catocli mutation sites addSecondaryAzureVSocket -p '{
+catocli mutation sites addSecondaryAzureVSocket '{
     "addSecondaryAzureVSocketInput": {
         "floatingIp": "example_value",
         "interfaceIp": "example_value",

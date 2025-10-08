@@ -13,7 +13,7 @@ catocli mutation policy internetFirewall discardPolicyRevision "$(cat < mutation
 
 catocli mutation policy internetFirewall discardPolicyRevision '{"internetFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyDiscardRevisionInput":{"id":"id"}}'
 
-catocli mutation policy internetFirewall discardPolicyRevision -p '{
+catocli mutation policy internetFirewall discardPolicyRevision '{
     "internetFirewallPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"

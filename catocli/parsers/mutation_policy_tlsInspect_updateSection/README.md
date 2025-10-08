@@ -13,7 +13,7 @@ catocli mutation policy tlsInspect updateSection "$(cat < mutation.policy.tlsIns
 
 catocli mutation policy tlsInspect updateSection '{"policyUpdateSectionInput":{"id":"id","policyUpdateSectionInfoInput":{"name":"string"}},"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-catocli mutation policy tlsInspect updateSection -p '{
+catocli mutation policy tlsInspect updateSection '{
     "policyUpdateSectionInput": {
         "id": "id",
         "policyUpdateSectionInfoInput": {

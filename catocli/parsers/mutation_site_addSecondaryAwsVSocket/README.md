@@ -13,7 +13,7 @@ catocli mutation site addSecondaryAwsVSocket "$(cat < mutation.site.addSecondary
 
 catocli mutation site addSecondaryAwsVSocket '{"addSecondaryAwsVSocketInput":{"eniIpAddress":"example_value","eniIpSubnet":"example_value","routeTableId":"string","siteRefInput":{"by":"ID","input":"string"}}}'
 
-catocli mutation site addSecondaryAwsVSocket -p '{
+catocli mutation site addSecondaryAwsVSocket '{
     "addSecondaryAwsVSocketInput": {
         "eniIpAddress": "example_value",
         "eniIpSubnet": "example_value",

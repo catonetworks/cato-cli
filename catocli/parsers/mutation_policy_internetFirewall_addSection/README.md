@@ -13,7 +13,7 @@ catocli mutation policy internetFirewall addSection "$(cat < mutation.policy.int
 
 catocli mutation policy internetFirewall addSection '{"internetFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyAddSectionInput":{"policyAddSectionInfoInput":{"name":"string"},"policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}}}'
 
-catocli mutation policy internetFirewall addSection -p '{
+catocli mutation policy internetFirewall addSection '{
     "internetFirewallPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"

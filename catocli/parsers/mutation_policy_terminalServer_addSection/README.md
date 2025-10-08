@@ -13,7 +13,7 @@ catocli mutation policy terminalServer addSection "$(cat < mutation.policy.termi
 
 catocli mutation policy terminalServer addSection '{"policyAddSectionInput":{"policyAddSectionInfoInput":{"name":"string"},"policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}},"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-catocli mutation policy terminalServer addSection -p '{
+catocli mutation policy terminalServer addSection '{
     "policyAddSectionInput": {
         "policyAddSectionInfoInput": {
             "name": "string"

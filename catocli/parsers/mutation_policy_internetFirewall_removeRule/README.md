@@ -13,7 +13,7 @@ catocli mutation policy internetFirewall removeRule "$(cat < mutation.policy.int
 
 catocli mutation policy internetFirewall removeRule '{"internetFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"internetFirewallRemoveRuleInput":{"id":"id"}}'
 
-catocli mutation policy internetFirewall removeRule -p '{
+catocli mutation policy internetFirewall removeRule '{
     "internetFirewallPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"

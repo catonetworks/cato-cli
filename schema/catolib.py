@@ -229,12 +229,12 @@ def processOperation(operationType, operationName):
             arg = parsedOperation["args"][argName]
             parsedOperation["operationArgs"][arg["varName"]] = arg
         
-        # Also include child operation arguments in operationArgs
+        # Also include child operation arguments in operationArgs (avoid duplicates)
         if "childOperations" in parsedOperation:
             for childOpName, childOp in parsedOperation["childOperations"].items():
                 if "args" in childOp:
                     for childArgName, childArg in childOp["args"].items():
-                        if "varName" in childArg:
+                        if "varName" in childArg and childArg["varName"] not in parsedOperation["operationArgs"]:
                             parsedOperation["operationArgs"][childArg["varName"]] = childArg
         
         parsedOperation["variablesPayload"] = generateExampleVariables(parsedOperation)
@@ -798,6 +798,46 @@ def {parserName}_parse({operationType}_subparsers):
     
     print("  - Operation parsers written successfully")
 
+def generate_timeframe_examples(operation_args):
+    """
+    Generate comprehensive timeFrame examples if the operation has a timeFrame parameter
+    
+    Returns:
+        String containing timeFrame examples section or empty string if no timeFrame parameter
+    """
+    # Check if this operation has a timeFrame parameter
+    has_timeframe = False
+    for arg_name, arg_info in operation_args.items():
+        if arg_info.get("varName", "").lower() in ["timeframe", "timeFrame"] or arg_info.get("name", "").lower() in ["timeframe", "timeFrame"]:
+            has_timeframe = True
+            break
+    
+    if not has_timeframe:
+        return ""
+    
+    return """
+
+#### TimeFrame Parameter Examples
+
+The `timeFrame` parameter supports both relative time ranges and absolute date ranges:
+
+**Relative Time Ranges:**
+- `"last.PT5M"` = Previous 5 minutes
+- `"last.PT1H"` = Previous 1 hour  
+- `"last.P1D"` = Previous 1 day
+- `"last.P14D"` = Previous 14 days
+- `"last.P1M"` = Previous 1 month
+
+**Absolute Date Ranges:**
+Format: `"utc.YYYY-MM-{DD/HH:MM:SS--DD/HH:MM:SS}"`
+
+- Single day: `"utc.2023-02-{28/00:00:00--28/23:59:59}"`
+- Multiple days: `"utc.2023-02-{25/00:00:00--28/23:59:59}"`  
+- Specific hours: `"utc.2023-02-{28/09:00:00--28/17:00:00}"`
+- Across months: `"utc.2023-{01-28/00:00:00--02-03/23:59:59}"`
+
+"""
+
 def writeReadmes(catoApiSchema):
     """Write README files - thread-safe implementation"""
     parserMapping = {"query":{},"mutation":{}}
@@ -818,7 +858,7 @@ catocli raw "$(cat < rawGraphqQL.json)"
 
 catocli raw '{ "query": "query operationNameHere($yourArgument:String!) { field1 field2 }", "variables": { "yourArgument": "string", "accountID": "10949" }, "operationName": "operationNameHere" } '
 
-catocli raw -p '{
+catocli raw '{
     "query": "mutation operationNameHere($yourArgument:String!) { field1 field2 }",
     "variables": {
         "yourArgument": "string",
@@ -857,7 +897,7 @@ catocli query siteLocation "$(cat < siteLocation.json)"`
 
 catocli query siteLocation '{"filters":[{"search": "Your city here","field":"city","operation":"exact"}]}'
 
-catocli query siteLocation -p '{
+catocli query siteLocation '{
     "filters": [
         {
             "search": "Your Country here",
@@ -867,7 +907,7 @@ catocli query siteLocation -p '{
     ]
 }'
 
-catocli query siteLocation -p '{
+catocli query siteLocation '{
     "filters": [
         {
             "search": "Your stateName here",
@@ -877,7 +917,7 @@ catocli query siteLocation -p '{
     ]
 }'
 
-catocli query siteLocation -p '{
+catocli query siteLocation '{
     "filters": [
         {
             "search": "Your City here",
@@ -1009,7 +1049,7 @@ catocli {operationCmd} "$(cat < {operationName}.json)"
                     readmeStr += f"""
 catocli {operationCmd} '{example_json}'
 
-catocli {operationCmd} -p '{example_json_pretty}'
+catocli {operationCmd} '{example_json_pretty}'
 ```
 """
                 
@@ -1028,6 +1068,11 @@ catocli {operationCmd} -p '{example_json_pretty}'
                 except:
                     # If example file doesn't exist, continue without adding example content
                     pass
+                
+                # Add timeFrame examples if this operation has timeFrame parameter
+                timeframe_examples = generate_timeframe_examples(parser.get("args", {}))
+                if timeframe_examples:
+                    readmeStr += timeframe_examples
                 
                 readmeStr += f"""
 #### Operation Arguments for {operationPath} ####
@@ -1559,7 +1604,7 @@ catocli {subOperationCmd} "$(cat < {subOperationName}.json)"
             readmeStr += f"""
 catocli {subOperationCmd} '{example_json}'
 
-catocli {subOperationCmd} -p '{example_json_pretty}'
+catocli {subOperationCmd} '{example_json_pretty}'
 ```
 """
             # Note: GitHub links for advanced examples are now handled dynamically in the help system            

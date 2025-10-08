@@ -13,7 +13,7 @@ catocli mutation container fqdn addValues "$(cat < mutation.container.fqdn.addVa
 
 catocli mutation container fqdn addValues '{"fqdnContainerAddValuesInput":{"containerRefInput":{"by":"ID","input":"string"},"values":["example1","example2"]}}'
 
-catocli mutation container fqdn addValues -p '{
+catocli mutation container fqdn addValues '{
     "fqdnContainerAddValuesInput": {
         "containerRefInput": {
             "by": "ID",

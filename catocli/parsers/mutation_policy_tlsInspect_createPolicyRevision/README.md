@@ -13,7 +13,7 @@ catocli mutation policy tlsInspect createPolicyRevision "$(cat < mutation.policy
 
 catocli mutation policy tlsInspect createPolicyRevision '{"policyCreateRevisionInput":{"description":"string","name":"string"},"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-catocli mutation policy tlsInspect createPolicyRevision -p '{
+catocli mutation policy tlsInspect createPolicyRevision '{
     "policyCreateRevisionInput": {
         "description": "string",
         "name": "string"

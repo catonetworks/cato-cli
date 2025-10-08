@@ -13,7 +13,7 @@ catocli query policy wanNetwork policy "$(cat < query.policy.wanNetwork.policy.j
 
 catocli query policy wanNetwork policy '{"wanNetworkPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'
 
-catocli query policy wanNetwork policy -p '{
+catocli query policy wanNetwork policy '{
     "wanNetworkPolicyInput": {
         "policyRevisionInput": {
             "id": "id",

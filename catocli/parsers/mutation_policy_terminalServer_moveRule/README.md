@@ -13,7 +13,7 @@ catocli mutation policy terminalServer moveRule "$(cat < mutation.policy.termina
 
 catocli mutation policy terminalServer moveRule '{"policyMoveRuleInput":{"id":"id","policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"}},"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-catocli mutation policy terminalServer moveRule -p '{
+catocli mutation policy terminalServer moveRule '{
     "policyMoveRuleInput": {
         "id": "id",
         "policyRulePositionInput": {

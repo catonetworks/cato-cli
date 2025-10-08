@@ -13,7 +13,7 @@ catocli query site secondaryAwsVSocket "$(cat < query.site.secondaryAwsVSocket.j
 
 catocli query site secondaryAwsVSocket '{"socketId":"id"}'
 
-catocli query site secondaryAwsVSocket -p '{
+catocli query site secondaryAwsVSocket '{
     "socketId": "id"
 }'
 ```

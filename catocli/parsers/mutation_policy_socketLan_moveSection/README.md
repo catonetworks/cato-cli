@@ -13,7 +13,7 @@ catocli mutation policy socketLan moveSection "$(cat < mutation.policy.socketLan
 
 catocli mutation policy socketLan moveSection '{"policyMoveSectionInput":{"id":"id","policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}},"socketLanPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-catocli mutation policy socketLan moveSection -p '{
+catocli mutation policy socketLan moveSection '{
     "policyMoveSectionInput": {
         "id": "id",
         "policySectionPositionInput": {

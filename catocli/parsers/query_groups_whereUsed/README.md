@@ -13,7 +13,7 @@ catocli query groups whereUsed "$(cat < query.groups.whereUsed.json)"
 
 catocli query groups whereUsed '{"groupRefInput":{"by":"ID","input":"string"}}'
 
-catocli query groups whereUsed -p '{
+catocli query groups whereUsed '{
     "groupRefInput": {
         "by": "ID",
         "input": "string"

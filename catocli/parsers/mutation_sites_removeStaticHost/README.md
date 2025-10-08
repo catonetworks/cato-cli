@@ -13,7 +13,7 @@ catocli mutation sites removeStaticHost "$(cat < mutation.sites.removeStaticHost
 
 catocli mutation sites removeStaticHost '{"hostId":"id"}'
 
-catocli mutation sites removeStaticHost -p '{
+catocli mutation sites removeStaticHost '{
     "hostId": "id"
 }'
 ```

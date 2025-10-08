@@ -13,7 +13,7 @@ catocli mutation policy remotePortFwd removeRule "$(cat < mutation.policy.remote
 
 catocli mutation policy remotePortFwd removeRule '{"remotePortFwdPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"remotePortFwdRemoveRuleInput":{"id":"id"}}'
 
-catocli mutation policy remotePortFwd removeRule -p '{
+catocli mutation policy remotePortFwd removeRule '{
     "remotePortFwdPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"

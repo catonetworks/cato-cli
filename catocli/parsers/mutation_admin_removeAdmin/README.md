@@ -13,7 +13,7 @@ catocli mutation admin removeAdmin "$(cat < mutation.admin.removeAdmin.json)"
 
 catocli mutation admin removeAdmin '{"adminID":"id"}'
 
-catocli mutation admin removeAdmin -p '{
+catocli mutation admin removeAdmin '{
     "adminID": "id"
 }'
 ```

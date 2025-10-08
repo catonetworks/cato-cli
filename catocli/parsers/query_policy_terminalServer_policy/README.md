@@ -13,7 +13,7 @@ catocli query policy terminalServer policy "$(cat < query.policy.terminalServer.
 
 catocli query policy terminalServer policy '{"terminalServerPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'
 
-catocli query policy terminalServer policy -p '{
+catocli query policy terminalServer policy '{
     "terminalServerPolicyInput": {
         "policyRevisionInput": {
             "id": "id",

@@ -13,7 +13,7 @@ catocli mutation sites updateNetworkRange "$(cat < mutation.sites.updateNetworkR
 
 catocli mutation sites updateNetworkRange '{"networkRangeId":"id","updateNetworkRangeInput":{"azureFloatingIp":"example_value","gateway":"example_value","internetOnly":true,"localIp":"example_value","mdnsReflector":true,"name":"string","networkDhcpSettingsInput":{"dhcpMicrosegmentation":true,"dhcpType":"DHCP_RELAY","ipRange":"example_value","relayGroupId":"id"},"rangeType":"Routed","subnet":"example_value","translatedSubnet":"example_value","vlan":1}}'
 
-catocli mutation sites updateNetworkRange -p '{
+catocli mutation sites updateNetworkRange '{
     "networkRangeId": "id",
     "updateNetworkRangeInput": {
         "azureFloatingIp": "example_value",

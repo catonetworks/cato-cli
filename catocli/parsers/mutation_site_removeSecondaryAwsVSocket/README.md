@@ -13,7 +13,7 @@ catocli mutation site removeSecondaryAwsVSocket "$(cat < mutation.site.removeSec
 
 catocli mutation site removeSecondaryAwsVSocket '{"socketId":"id"}'
 
-catocli mutation site removeSecondaryAwsVSocket -p '{
+catocli mutation site removeSecondaryAwsVSocket '{
     "socketId": "id"
 }'
 ```

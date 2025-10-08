@@ -13,7 +13,7 @@ catocli mutation sites addStaticHost "$(cat < mutation.sites.addStaticHost.json)
 
 catocli mutation sites addStaticHost '{"addStaticHostInput":{"ip":"example_value","macAddress":"string","name":"string"},"siteId":"id"}'
 
-catocli mutation sites addStaticHost -p '{
+catocli mutation sites addStaticHost '{
     "addStaticHostInput": {
         "ip": "example_value",
         "macAddress": "string",

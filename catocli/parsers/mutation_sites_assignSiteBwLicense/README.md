@@ -13,7 +13,7 @@ catocli mutation sites assignSiteBwLicense "$(cat < mutation.sites.assignSiteBwL
 
 catocli mutation sites assignSiteBwLicense '{"assignSiteBwLicenseInput":{"bw":1,"licenseId":"id","siteRefInput":{"by":"ID","input":"string"}}}'
 
-catocli mutation sites assignSiteBwLicense -p '{
+catocli mutation sites assignSiteBwLicense '{
     "assignSiteBwLicenseInput": {
         "bw": 1,
         "licenseId": "id",

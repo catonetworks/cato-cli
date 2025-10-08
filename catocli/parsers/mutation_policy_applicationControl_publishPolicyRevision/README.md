@@ -13,7 +13,7 @@ catocli mutation policy applicationControl publishPolicyRevision "$(cat < mutati
 
 catocli mutation policy applicationControl publishPolicyRevision '{"applicationControlPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyPublishRevisionInput":{"description":"string","name":"string"}}'
 
-catocli mutation policy applicationControl publishPolicyRevision -p '{
+catocli mutation policy applicationControl publishPolicyRevision '{
     "applicationControlPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"

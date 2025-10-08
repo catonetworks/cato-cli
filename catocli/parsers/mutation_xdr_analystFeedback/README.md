@@ -13,7 +13,7 @@ catocli mutation xdr analystFeedback "$(cat < mutation.xdr.analystFeedback.json)
 
 catocli mutation xdr analystFeedback '{"analystFeedbackInput":{"additionalInfo":"string","severity":"High","status":"Open","storyId":"id","storyThreatType":{"details":"string","name":"string","recommendedAction":"string"},"threatClassification":"string","verdict":"Suspicious"}}'
 
-catocli mutation xdr analystFeedback -p '{
+catocli mutation xdr analystFeedback '{
     "analystFeedbackInput": {
         "additionalInfo": "string",
         "severity": "High",

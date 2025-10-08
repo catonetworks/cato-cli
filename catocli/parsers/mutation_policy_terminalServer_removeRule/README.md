@@ -13,7 +13,7 @@ catocli mutation policy terminalServer removeRule "$(cat < mutation.policy.termi
 
 catocli mutation policy terminalServer removeRule '{"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"terminalServerRemoveRuleInput":{"id":"id"}}'
 
-catocli mutation policy terminalServer removeRule -p '{
+catocli mutation policy terminalServer removeRule '{
     "terminalServerPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"

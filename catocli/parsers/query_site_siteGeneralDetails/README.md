@@ -13,7 +13,7 @@ catocli query site siteGeneralDetails "$(cat < query.site.siteGeneralDetails.jso
 
 catocli query site siteGeneralDetails '{"siteRefInput":{"by":"ID","input":"string"}}'
 
-catocli query site siteGeneralDetails -p '{
+catocli query site siteGeneralDetails '{
     "siteRefInput": {
         "by": "ID",
         "input": "string"

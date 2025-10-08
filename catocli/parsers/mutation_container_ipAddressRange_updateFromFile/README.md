@@ -13,7 +13,7 @@ catocli mutation container ipAddressRange updateFromFile "$(cat < mutation.conta
 
 catocli mutation container ipAddressRange updateFromFile '{"updateIpAddressRangeContainerFromFileInput":{"containerRefInput":{"by":"ID","input":"string"},"description":"string","fileType":"STIX","uploadFile":"example_value"}}'
 
-catocli mutation container ipAddressRange updateFromFile -p '{
+catocli mutation container ipAddressRange updateFromFile '{
     "updateIpAddressRangeContainerFromFileInput": {
         "containerRefInput": {
             "by": "ID",

@@ -13,7 +13,7 @@ catocli query site cloudInterconnectPhysicalConnectionId "$(cat < query.site.clo
 
 catocli query site cloudInterconnectPhysicalConnectionId '{"cloudInterconnectPhysicalConnectionIdInput":{"haRole":"PRIMARY","siteRefInput":{"by":"ID","input":"string"}}}'
 
-catocli query site cloudInterconnectPhysicalConnectionId -p '{
+catocli query site cloudInterconnectPhysicalConnectionId '{
     "cloudInterconnectPhysicalConnectionIdInput": {
         "haRole": "PRIMARY",
         "siteRefInput": {

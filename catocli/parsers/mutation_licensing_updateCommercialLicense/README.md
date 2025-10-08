@@ -13,7 +13,7 @@ catocli mutation licensing updateCommercialLicense "$(cat < mutation.licensing.u
 
 catocli mutation licensing updateCommercialLicense '{"updateCommercialLicenseInput":{"licenseId":"id","startDate":"example_value"}}'
 
-catocli mutation licensing updateCommercialLicense -p '{
+catocli mutation licensing updateCommercialLicense '{
     "updateCommercialLicenseInput": {
         "licenseId": "id",
         "startDate": "example_value"

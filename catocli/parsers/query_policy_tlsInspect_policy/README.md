@@ -13,7 +13,7 @@ catocli query policy tlsInspect policy "$(cat < query.policy.tlsInspect.policy.j
 
 catocli query policy tlsInspect policy '{"tlsInspectPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'
 
-catocli query policy tlsInspect policy -p '{
+catocli query policy tlsInspect policy '{
     "tlsInspectPolicyInput": {
         "policyRevisionInput": {
             "id": "id",

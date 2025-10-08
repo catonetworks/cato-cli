@@ -259,6 +259,11 @@ class UniversalHelpFormatter:
         #             help_lines.extend(example.format_for_platform(self.platform_info, command_name))
         #             help_lines.append("")
         
+        # Add additional sections (timeFrame examples and Operation Arguments) if present in README
+        additional_sections = self._extract_additional_sections(command_path)
+        if additional_sections:
+            help_lines.extend([""] + additional_sections)
+        
         # Add platform-specific hints
         help_lines.extend(self._get_platform_hints())
         
@@ -299,8 +304,8 @@ class UniversalHelpFormatter:
                             # Save previous multi-line command
                             examples.append(current_command)
                         current_command = stripped_line
-                        # Check if this starts a multi-line JSON command (ends with -p '{')
-                        if stripped_line.endswith("-p '{"):
+                        # Check if this starts a multi-line JSON command (ends with '{' with optional flags before it)
+                        if stripped_line.endswith("'{"):
                             in_multiline_json = True
                             # Keep the full command line including the opening bracket
                     elif in_multiline_json and current_command:
@@ -345,6 +350,39 @@ class UniversalHelpFormatter:
                 unique_examples.append(example)
         
         return unique_examples
+    
+    def _extract_additional_sections(self, command_path: str) -> List[str]:
+        """Extract timeFrame examples and Operation Arguments sections from README"""
+        sections = []
+        
+        # Find README.md file
+        base_dir = os.path.dirname(os.path.dirname(__file__))  # Go up from Utils to catocli
+        readme_path = os.path.join(base_dir, "parsers", command_path, "README.md")
+        
+        if not os.path.exists(readme_path):
+            return sections
+        
+        try:
+            with open(readme_path, "r", encoding='utf-8') as f:
+                content = f.read()
+            
+            # Extract TimeFrame Parameter Examples section
+            timeframe_section_pattern = r'#### TimeFrame Parameter Examples.*?(?=\n####|\Z)'
+            timeframe_match = re.search(timeframe_section_pattern, content, re.DOTALL)
+            if timeframe_match:
+                sections.append(timeframe_match.group(0).strip())
+            
+            # Extract Operation Arguments section  
+            op_args_section_pattern = r'#### Operation Arguments for [^\n]*####.*?(?=\n####|\Z)'
+            op_args_match = re.search(op_args_section_pattern, content, re.DOTALL)
+            if op_args_match:
+                sections.append(op_args_match.group(0).strip())
+                
+        except Exception as e:
+            # If anything fails, return what we have so far
+            pass
+        
+        return sections
     
     def _extract_from_description(self, command_path: str) -> List[str]:
         """Extract command examples from argparse description text (like SCIM)"""

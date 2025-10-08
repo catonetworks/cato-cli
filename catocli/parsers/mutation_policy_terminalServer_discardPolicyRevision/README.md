@@ -13,7 +13,7 @@ catocli mutation policy terminalServer discardPolicyRevision "$(cat < mutation.p
 
 catocli mutation policy terminalServer discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-catocli mutation policy terminalServer discardPolicyRevision -p '{
+catocli mutation policy terminalServer discardPolicyRevision '{
     "policyDiscardRevisionInput": {
         "id": "id"
     },

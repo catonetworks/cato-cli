@@ -13,7 +13,7 @@ catocli mutation policy applicationControl moveRule "$(cat < mutation.policy.app
 
 catocli mutation policy applicationControl moveRule '{"applicationControlPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyMoveRuleInput":{"id":"id","policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"}}}'
 
-catocli mutation policy applicationControl moveRule -p '{
+catocli mutation policy applicationControl moveRule '{
     "applicationControlPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"

@@ -13,7 +13,7 @@ catocli mutation policy tlsInspect removeRule "$(cat < mutation.policy.tlsInspec
 
 catocli mutation policy tlsInspect removeRule '{"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"tlsInspectRemoveRuleInput":{"id":"id"}}'
 
-catocli mutation policy tlsInspect removeRule -p '{
+catocli mutation policy tlsInspect removeRule '{
     "tlsInspectPolicyMutationInput": {
         "policyMutationRevisionInput": {
             "id": "id"

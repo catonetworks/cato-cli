@@ -13,7 +13,7 @@ catocli query admin "$(cat < query.admin.json)"
 
 catocli query admin '{"adminID":"id"}'
 
-catocli query admin -p '{
+catocli query admin '{
     "adminID": "id"
 }'
 ```

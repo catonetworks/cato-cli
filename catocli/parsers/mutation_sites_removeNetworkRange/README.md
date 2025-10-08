@@ -13,7 +13,7 @@ catocli mutation sites removeNetworkRange "$(cat < mutation.sites.removeNetworkR
 
 catocli mutation sites removeNetworkRange '{"networkRangeId":"id"}'
 
-catocli mutation sites removeNetworkRange -p '{
+catocli mutation sites removeNetworkRange '{
     "networkRangeId": "id"
 }'
 ```

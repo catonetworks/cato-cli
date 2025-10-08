@@ -13,7 +13,7 @@ catocli mutation admin removeServicePrincipalAdmin "$(cat < mutation.admin.remov
 
 catocli mutation admin removeServicePrincipalAdmin '{"adminID":"id"}'
 
-catocli mutation admin removeServicePrincipalAdmin -p '{
+catocli mutation admin removeServicePrincipalAdmin '{
     "adminID": "id"
 }'
 ```

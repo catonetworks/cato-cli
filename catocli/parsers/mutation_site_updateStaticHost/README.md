@@ -13,7 +13,7 @@ catocli mutation site updateStaticHost "$(cat < mutation.site.updateStaticHost.j
 
 catocli mutation site updateStaticHost '{"hostId":"id","updateStaticHostInput":{"ip":"example_value","macAddress":"string","name":"string"}}'
 
-catocli mutation site updateStaticHost -p '{
+catocli mutation site updateStaticHost '{
     "hostId": "id",
     "updateStaticHostInput": {
         "ip": "example_value",

@@ -13,7 +13,7 @@ catocli mutation policy terminalServer updateSection "$(cat < mutation.policy.te
 
 catocli mutation policy terminalServer updateSection '{"policyUpdateSectionInput":{"id":"id","policyUpdateSectionInfoInput":{"name":"string"}},"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 
-catocli mutation policy terminalServer updateSection -p '{
+catocli mutation policy terminalServer updateSection '{
     "policyUpdateSectionInput": {
         "id": "id",
         "policyUpdateSectionInfoInput": {

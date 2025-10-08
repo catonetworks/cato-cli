@@ -13,7 +13,7 @@ catocli mutation sites removeSecondaryAzureVSocket "$(cat < mutation.sites.remov
 
 catocli mutation sites removeSecondaryAzureVSocket '{"socketId":"id"}'
 
-catocli mutation sites removeSecondaryAzureVSocket -p '{
+catocli mutation sites removeSecondaryAzureVSocket '{
     "socketId": "id"
 }'
 ```

@@ -13,7 +13,7 @@ catocli mutation enterpriseDirectory createLocation "$(cat < mutation.enterprise
 
 catocli mutation enterpriseDirectory createLocation '{"enterpriseDirectoryCreateLocationInput":{"businessUnit":"string","createLocationDetailsInput":{"companyName":"string","contact":{"email":"example_value","name":"string","phone":"example_value"},"postalAddress":{"cityName":"string","country":{"by":"ID","input":"string"},"stateName":"string","street":"string","zipCode":"string"},"vatId":"string"},"description":"string","name":"string","type":"BRANCH"}}'
 
-catocli mutation enterpriseDirectory createLocation -p '{
+catocli mutation enterpriseDirectory createLocation '{
     "enterpriseDirectoryCreateLocationInput": {
         "businessUnit": "string",
         "createLocationDetailsInput": {

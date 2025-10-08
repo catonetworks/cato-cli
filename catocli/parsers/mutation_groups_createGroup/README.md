@@ -13,7 +13,7 @@ catocli mutation groups createGroup "$(cat < mutation.groups.createGroup.json)"
 
 catocli mutation groups createGroup '{"createGroupInput":{"description":"string","groupMemberRefTypedInput":{"by":"ID","input":"string","type":"SITE"},"name":"string"}}'
 
-catocli mutation groups createGroup -p '{
+catocli mutation groups createGroup '{
     "createGroupInput": {
         "description": "string",
         "groupMemberRefTypedInput": {

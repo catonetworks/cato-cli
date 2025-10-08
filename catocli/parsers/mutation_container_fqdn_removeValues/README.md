@@ -13,7 +13,7 @@ catocli mutation container fqdn removeValues "$(cat < mutation.container.fqdn.re
 
 catocli mutation container fqdn removeValues '{"fqdnContainerRemoveValuesInput":{"containerRefInput":{"by":"ID","input":"string"},"values":["example1","example2"]}}'
 
-catocli mutation container fqdn removeValues -p '{
+catocli mutation container fqdn removeValues '{
     "fqdnContainerRemoveValuesInput": {
         "containerRefInput": {
             "by": "ID",

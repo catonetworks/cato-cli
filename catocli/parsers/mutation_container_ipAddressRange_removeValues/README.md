@@ -13,7 +13,7 @@ catocli mutation container ipAddressRange removeValues "$(cat < mutation.contain
 
 catocli mutation container ipAddressRange removeValues '{"ipAddressRangeContainerRemoveValuesInput":{"containerRefInput":{"by":"ID","input":"string"},"ipAddressRangeInput":{"from":"example_value","to":"example_value"}}}'
 
-catocli mutation container ipAddressRange removeValues -p '{
+catocli mutation container ipAddressRange removeValues '{
     "ipAddressRangeContainerRemoveValuesInput": {
         "containerRefInput": {
             "by": "ID",

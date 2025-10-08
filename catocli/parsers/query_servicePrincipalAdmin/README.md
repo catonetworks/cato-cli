@@ -13,7 +13,7 @@ catocli query servicePrincipalAdmin "$(cat < query.servicePrincipalAdmin.json)"
 
 catocli query servicePrincipalAdmin '{"adminID":"id"}'
 
-catocli query servicePrincipalAdmin -p '{
+catocli query servicePrincipalAdmin '{
     "adminID": "id"
 }'
 ```

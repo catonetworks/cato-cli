@@ -13,7 +13,7 @@ catocli query policy applicationControl policy "$(cat < query.policy.application
 
 catocli query policy applicationControl policy '{"applicationControlPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'
 
-catocli query policy applicationControl policy -p '{
+catocli query policy applicationControl policy '{
     "applicationControlPolicyInput": {
         "policyRevisionInput": {
             "id": "id",

@@ -94,31 +94,17 @@ class JSONExample:
             return [self.command_template.format(command=command_name, json=self.json_data)]
     
     def _format_powershell_comprehensive(self, command_name: str) -> List[str]:
-        """Format comprehensive PowerShell examples with workarounds for quote stripping"""
-        # Method 1: Using PowerShell objects (most reliable)
-        powershell_object = self._convert_to_powershell_object()
+        """Format PowerShell here-string example with dynamic escape characters"""
+        # Method 3: Here-string with properly escaped quotes
+        escaped_json = self.json_data.replace('"', '\"')
         
         examples = [
-            "# PowerShell Method 1 (Recommended - avoids quote issues):",
-            powershell_object,
-            f"$json = $queryObject | ConvertTo-Json -Compress -Depth 3",
-            f"catocli {command_name} $json -p",
-            "",
-            "# PowerShell Method 2 (Single-line with escaped quotes):",
-        ]
-        
-        # Method 2: Single line with properly escaped quotes
-        single_line = json.dumps(self.parsed_json, separators=(',', ':')) if self.parsed_json else self.json_data.replace('\n', ' ')
-        escaped_for_powershell = single_line.replace('"', '`"')  # Use PowerShell backtick escaping
-        examples.extend([
-            f'catocli {command_name} "{escaped_for_powershell}" -p',
-            "",
-            "# PowerShell Method 3 (Here-string - may have quote issues):",
+            "# PowerShell (Here-string):",
             "$json = @'",
-            self.json_data,
+            escaped_json,
             "'@",
             f"catocli {command_name} $json -p"
-        ])
+        ]
         
         return examples
     
@@ -378,10 +364,8 @@ class UniversalHelpFormatter:
                 hints.extend([
                     "",
                     "POWERSHELL JSON TIPS:",
-                    "• Method 1 (PowerShell objects) is most reliable and avoids quote issues",
-                    "• Method 2 (escaped quotes) works for single-line JSON", 
-                    "• Method 3 (here-strings) may strip quotes - use with caution",
-                    "• If you get 'Invalid JSON' errors, try Method 1 or escape quotes with backticks (`)"
+                    "• Here-strings preserve JSON formatting and automatically escape quotes",
+                    "• If you get 'Invalid JSON' errors, ensure quotes within JSON are escaped"
                 ])
         else:
             hints.extend([

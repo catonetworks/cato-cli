@@ -4,48 +4,58 @@
 
 ### Basic Usage for query.eventsFeed:
 
-```
-bash
+```bash
+# Show help for all available options
 catocli query eventsFeed -h
 
-catocli query eventsFeed <json>
+# Standard eventsFeed query (basic GraphQL mode)
+catocli query eventsFeed '{"marker": ""}'
 
-catocli query eventsFeed "$(cat < query.eventsFeed.json)"
+# Start from beginning of event queue
+catocli query eventsFeed '{"marker": ""}' -p
 
-catocli query eventsFeed '{"accountIDs":["id1","id2"],"eventFeedFieldFilterInput":{"fieldName":"event_sub_type","operator":"is","values":["string1","string2"]},"fieldNames":"access_method","marker":"string"}'
-
-catocli query eventsFeed '{"accountIDs":["id1","id2"],"eventFeedFieldFilterInput":{"fieldName":"event_sub_type","operator":"is","values":["string1","string2"]},"fieldNames":"access_method","marker-file":"my-marker.txt"}
+# Use a JSON file for complex queries
+catocli query eventsFeed "$(cat query.eventsFeed.json)"
 ```
 
 ### Enhanced Usage (with advanced features):
 
-**IMPORTANT USAGE NOTE**: When using the `-v` (verbose) flag, place the JSON argument BEFORE the `-v` flag to avoid argument parsing issues:
-- ✅ Correct: `catocli query eventsFeed --run '{"marker": ""}' -v`
-- ❌ Wrong: `catocli query eventsFeed --run -v '{"marker": ""}'`
+The enhanced eventsFeed supports additional features like marker persistence, continuous polling, filtering, and streaming.
 
-#### Start from beginning with run mode:
-`catocli query eventsFeed --run '{"marker": ""}' --print-events -v`
+```bash
+# Basic enhanced mode: fetch once and print events
+catocli query eventsFeed --print-events --prettify
 
-#### Print events with pretty formatting:
-`catocli query eventsFeed --run --print-events --prettify`
+# Start from beginning with run mode (continuous polling)
+catocli query eventsFeed --run --print-events -v
 
-#### Stream to network and display locally:
-`catocli query eventsFeed --run --print-events --prettify -n 192.168.1.1:8000`
+# Use marker file for persistent position tracking
+catocli query eventsFeed --marker-file=./events-marker.txt --print-events
 
-#### Filter connectivity events only:
-`catocli query eventsFeed --run --print-events --event-types Connectivity`
+# Continuous mode with marker persistence
+catocli query eventsFeed --run --marker-file=./events-marker.txt --print-events -v
 
-#### Filter multiple sub-types:
-`catocli query eventsFeed --run --print-events --event-sub-types "NG Anti Malware,Anti Malware"`
+# Filter by event types
+catocli query eventsFeed --print-events --event-types="Connectivity,Security"
 
-#### Send to Azure Sentinel:
-`catocli query eventsFeed --run -z customerid:sharedkey`
+# Filter by event sub-types
+catocli query eventsFeed --print-events --event-sub-types="Internet Firewall,WAN Firewall"
 
-#### Run with time and fetch limits:
-`catocli query eventsFeed --run --print-events --fetch-limit 100 --runtime-limit 3600 -v`
+# Network streaming with newlines
+catocli query eventsFeed --run -n 192.168.1.100:8000 --append-new-line -v
 
-#### Continuous polling with marker persistence:
-`catocli query eventsFeed --run --config-file ./my-events-marker.txt --print-events -v`
+# Send to Azure Sentinel
+catocli query eventsFeed --run -z "workspace-id:shared-key"
+
+# Combined: display locally AND stream to network
+catocli query eventsFeed --run --print-events --prettify -n 192.168.1.100:8000 -anl
+
+# With fetch and runtime limits
+catocli query eventsFeed --run --print-events --fetch-limit=50 --runtime-limit=3600
+
+# Very verbose debugging
+catocli query eventsFeed --marker-file=./marker.txt --print-events -vv
+```
 
 
 #### Operation Arguments for query.eventsFeed ####
@@ -61,16 +71,17 @@ catocli query eventsFeed '{"accountIDs":["id1","id2"],"eventFeedFieldFilterInput
 `--print-events` [Flag] - Print event records to console  
 `--prettify` [Flag] - Prettify JSON output  
 `--marker` [String] - Initial marker value (default: "", start of queue)  
-`--config-file` [String] - Config file location for marker persistence (default: ./config.txt)  
+`--marker-file` [String] - Marker file location for persistence (default: ./events-marker.txt)  
 `--event-types` [String] - Comma-separated list of event types to filter on  
 `--event-sub-types` [String] - Comma-separated list of event sub types to filter on  
 `--fetch-limit` [Integer] - Stop if a fetch returns less than this number of events (default: 1)  
 `--runtime-limit` [Integer] - Stop after this many seconds (default: unlimited)  
-`--very-verbose` [Flag] - Print detailed debug information  
-`-n, --stream-events` [String] - Send events to host:port TCP (inherited from catocli)  
-`-z, --sentinel` [String] - Send to Azure Sentinel customerid:sharedkey (inherited from catocli)  
+`-vv, --very-verbose` [Flag] - Print detailed debug information  
+`--append-new-line, -anl` [Flag] - Append newline character (\n) to events sent via -n or -z  
+`-n, --stream-events` [String] - Send events to host:port TCP  
+`-z, --sentinel` [String] - Send to Azure Sentinel customerid:sharedkey  
 `-v` [Flag] - Verbose output (inherited from catocli)  
-`-p` [Flag] - Pretty print (inherited from catocli)  
+`-p` [Flag] - Pretty print (inherited from catocli)
 
 ##### Key Features:
 - **Native Authentication**: Uses ~/.cato profile credentials automatically  

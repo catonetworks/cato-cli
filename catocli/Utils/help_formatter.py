@@ -96,7 +96,7 @@ class JSONExample:
     def _format_powershell_comprehensive(self, command_name: str) -> List[str]:
         """Format PowerShell here-string example with dynamic escape characters"""
         # Method 3: Here-string with properly escaped quotes
-        escaped_json = self.json_data.replace('"', '\"')
+        escaped_json = self.json_data.replace('"', '\\"')
         
         examples = [
             "# PowerShell:",

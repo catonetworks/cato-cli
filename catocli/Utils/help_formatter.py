@@ -226,18 +226,23 @@ class UniversalHelpFormatter:
             readme_examples = self._extract_from_readme(command_path)
             if readme_examples:
                 for example in readme_examples:
-                    # Check if this is a multi-line JSON example that can be platform-formatted
-                    json_match = self._extract_json_from_example(example)
-                    if json_match:
-                        # Create JSONExample and apply platform-specific formatting
-                        json_example = JSONExample(json_match)
-                        formatted_examples = json_example.format_for_platform(self.platform_info, command_name)
-                        help_lines.extend(formatted_examples)
-                    elif not ('{' in example and '}' in example):
-                        # Simple command examples without JSON
+                    # Check if this example starts with a comment (lines starting with #)
+                    if example.startswith('#') and '\n' in example:
+                        # This is a comment followed by a command - preserve as-is
                         help_lines.append(example)
+                    elif '{' in example and '}' in example:
+                        # Check if this is a multi-line JSON example that can be platform-formatted
+                        json_match = self._extract_json_from_example(example)
+                        if json_match and not example.startswith('#'):
+                            # Create JSONExample and apply platform-specific formatting
+                            json_example = JSONExample(json_match)
+                            formatted_examples = json_example.format_for_platform(self.platform_info, command_name)
+                            help_lines.extend(formatted_examples)
+                        else:
+                            # Preserve as-is if it has comments or JSON extraction fails
+                            help_lines.append(example)
                     else:
-                        # Fallback: preserve as-is if JSON extraction fails
+                        # Simple command examples without JSON
                         help_lines.append(example)
                     help_lines.append("")  # Add spacing between examples
         
@@ -273,7 +278,7 @@ class UniversalHelpFormatter:
         return "\n".join(help_lines)
 
     def _extract_from_readme(self, command_path: str) -> List[str]:
-        """Extract all catocli examples from README.md files"""
+        """Extract all catocli examples from README.md files with comments"""
         examples = []
         
         # Find README.md file
@@ -289,24 +294,47 @@ class UniversalHelpFormatter:
             
             command_name = command_path.replace('_', ' ')
             
+            # Check if "### Examples Summary" or "### Additional Examples" sections exist
+            has_examples_summary = "### Examples Summary" in content or "### Additional Examples" in content
+            if has_examples_summary:
+                # Extract and display the examples summary section
+                summary_pattern = r'### (?:Examples Summary|Additional Examples)\n(.*?)(?=\n###|\n## |\Z)'
+                summary_match = re.search(summary_pattern, content, re.DOTALL)
+                if summary_match:
+                    summary_content = summary_match.group(1).strip()
+                    examples.append(f"\n### Examples Summary")
+                    examples.append(summary_content)
+                    examples.append("")  # Add spacing
+            
             # Extract ALL catocli commands from markdown code blocks
             code_block_pattern = r'```(?:bash|shell|json)?\n(.*?)```'
             matches = re.findall(code_block_pattern, content, re.DOTALL)
             
             for match in matches:
-                # Split the match into individual lines and extract catocli commands
+                # Split the match into individual lines and extract catocli commands with comments
                 lines = match.split('\n')
                 current_command = None
+                current_comment = None
                 in_multiline_json = False
                 
                 for i, line in enumerate(lines):
                     stripped_line = line.strip()
                     
-                    if stripped_line.startswith('catocli') and command_name in stripped_line:
+                    # Check for comments that precede catocli commands
+                    if stripped_line.startswith('# ') and not current_command:
+                        current_comment = stripped_line
+                    elif stripped_line.startswith('catocli') and command_name in stripped_line:
                         if current_command:
                             # Save previous multi-line command
                             examples.append(current_command)
-                        current_command = stripped_line
+                        
+                        # Include comment if it exists
+                        if current_comment:
+                            current_command = current_comment + '\n' + stripped_line
+                            current_comment = None  # Reset comment
+                        else:
+                            current_command = stripped_line
+                            
                         # Check if this starts a multi-line JSON command (ends with '{' with optional flags before it)
                         if stripped_line.endswith("'{"):
                             in_multiline_json = True
@@ -320,7 +348,7 @@ class UniversalHelpFormatter:
                         else:
                             # Continue multi-line JSON with exact indentation
                             current_command += '\n' + line
-                    elif current_command and not in_multiline_json and stripped_line and not stripped_line.startswith('catocli'):
+                    elif current_command and not in_multiline_json and stripped_line and not stripped_line.startswith('catocli') and not stripped_line.startswith('# '):
                         # This could be continuation of a single-line command
                         current_command += ' ' + stripped_line
                     elif current_command and (stripped_line.startswith('catocli') or stripped_line == '' or i == len(lines) - 1):
@@ -328,6 +356,13 @@ class UniversalHelpFormatter:
                         if not in_multiline_json:
                             examples.append(current_command)
                             current_command = stripped_line if stripped_line.startswith('catocli') and command_name in stripped_line else None
+                            # Reset comment when starting a new command
+                            if not current_command:
+                                current_comment = None
+                    elif stripped_line == '':
+                        # Reset comment on empty lines if no command is being processed
+                        if not current_command:
+                            current_comment = None
                 
                 # Don't forget the last command
                 if current_command and not in_multiline_json:

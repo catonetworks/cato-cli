@@ -41,9 +41,14 @@ catocli query appStats '{
 ```
 
 ## Advanced Usage
+### Additional Examples
+- Query to export user activity as in flows_created, for distinct users (user_name) for the last day
+- Query to export application_name, user_name and risk_score with traffic sum(upstream, downstream, trafffic) for last day
+
 # Query to export user activity as in flows_created, for distinct users (user_name) for the last day
 
 ```bash
+# Query to export user activity as in flows_created, for distinct users (user_name) for the last day
 catocli query appStats '{
     "appStatsFilter": [],
     "appStatsSort": [],
@@ -69,6 +74,7 @@ catocli query appStats '{
 # Query to export application_name, user_name and risk_score with traffic sum(upstream, downstream, trafffic) for last day
 
 ```bash
+## Query to export application_name, user_name and risk_score with traffic sum(upstream, downstream, trafffic) for last day
 catocli query appStats '{
     "appStatsFilter": [],
     "appStatsSort": [],

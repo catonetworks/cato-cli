@@ -151,9 +151,14 @@ catocli query xdr stories '{
 ```
 
 ## Advanced Usage
+### Additional Examples
+- XDR query with minimum fields
+- Example with minimum required fields
+
 # XDR query with minimum fields
 
 ```bash
+# Example with minimum required fields
 catocli query xdr stories '{
     "storyInput": {
         "filter": [
@@ -166,10 +171,10 @@ catocli query xdr stories '{
         "paging": {
             "from": 0,
             "limit": 100
-        },
-        "sort": []
+        }
     }
 }'
+```
 
 
 #### Operation Arguments for query.xdr.stories ####

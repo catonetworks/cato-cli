@@ -15,6 +15,7 @@ import concurrent.futures
 import threading
 from functools import lru_cache
 import traceback
+import re
 
 # Import shared utilities
 from catocli.Utils.graphql_utils import (
@@ -92,6 +93,41 @@ def openFile(fileName, readMode="rt"):
     except:
         # print('[ERROR] File path "'+fileName+'" in csv not found, or script unable to read.')
         exit()
+
+def extract_comments_from_example_file(file_content):
+    """
+    Extract comments from example markdown file.
+    Returns both markdown headers and comments inside bash code blocks, deduplicated.
+    """
+    comments = []
+    lines = file_content.split('\n')
+    in_bash_block = False
+    seen_comments = set()
+    
+    for line in lines:
+        # Check for markdown headers (lines starting with #)
+        if line.strip().startswith('# ') and not in_bash_block:
+            comment = line.strip()
+            if comment not in seen_comments:
+                comments.append(comment)
+                seen_comments.add(comment)
+        
+        # Check for bash code block start/end
+        if line.strip() == '```bash':
+            in_bash_block = True
+            continue
+        elif line.strip() == '```':
+            in_bash_block = False
+            continue
+        
+        # Extract comments inside bash blocks
+        if in_bash_block and line.strip().startswith('# '):
+            comment = line.strip()
+            if comment not in seen_comments:
+                comments.append(comment)
+                seen_comments.add(comment)
+    
+    return comments
 
 ############ parsing schema - THREADED VERSION ############
 
@@ -1086,10 +1122,25 @@ catocli {operationCmd} '{example_json_pretty}'
                 example_file_path = f"examples/{operationPath}.md"
                 try:
                     example_content = openFile(example_file_path)
+                    
+                    # Extract comments from the example file
+                    comments = extract_comments_from_example_file(example_content)
+                    
+                    # Add comments as a summary section if any comments were found
+                    comments_section = ""
+                    if comments:
+                        comments_section = "### Additional Examples\n"
+                        for comment in comments:
+                            # Remove the leading # and clean up the comment
+                            clean_comment = comment.lstrip('# ').strip()
+                            if clean_comment:  # Only add non-empty comments
+                                comments_section += f"- {clean_comment}\n"
+                        comments_section += "\n"
+                    
                     # Add the example content with proper formatting
                     readmeStr += f"""
 ## Advanced Usage
-{example_content}
+{comments_section}{example_content}
 
 """
                 except:
@@ -1555,7 +1606,7 @@ def renderSubParser(subParser, parentParserPath):
     {subParserPath}_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
     {subParserPath}_parser.set_defaults(func=createRequest,operation_name='{operation_path}')
 """
-                            # Add -f flag for CSV-supported operations
+            # Add -f flag for CSV-supported operations
             if supports_csv:
                 cliDriverStr += f"""
     {subParserPath}_parser.add_argument('-f', '--format', choices=['json', 'csv'], default='json', help='Output format (default: json)')
@@ -1616,10 +1667,25 @@ catocli {subOperationCmd} '{example_json_pretty}'
             example_file_path = f"examples/{subOperationPath}.md"
             try:
                 example_content = openFile(example_file_path)
+                
+                # Extract comments from the example file
+                comments = extract_comments_from_example_file(example_content)
+                
+                # Add comments as a summary section if any comments were found
+                comments_section = ""
+                if comments:
+                    comments_section = "### Additional Examples\n"
+                    for comment in comments:
+                        # Remove the leading # and clean up the comment
+                        clean_comment = comment.lstrip('# ').strip()
+                        if clean_comment:  # Only add non-empty comments
+                            comments_section += f"- {clean_comment}\n"
+                    comments_section += "\n"
+                
                 # Add the example content with proper formatting
                 readmeStr += f"""
 ## Advanced Usage
-{example_content}
+{comments_section}{example_content}
 
 """
             except:

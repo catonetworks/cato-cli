@@ -39,9 +39,14 @@ catocli query appStatsTimeSeries '{
 ```
 
 ## Advanced Usage
+### Additional Examples
+- Query to export upstream, downstream and traffic for user_name and application_name for last day broken into 1 hour buckets
+- Query to export WANBOUND traffic including upstream, downstream and traffic for user_name and application_name for last day broken into 1 hour buckets
+
 # Query to export upstream, downstream and traffic for user_name and application_name for last day broken into 1 hour buckets
 
 ```bash
+# Query to export upstream, downstream and traffic for user_name and application_name for last day broken into 1 hour buckets
 catocli query appStatsTimeSeries '{
     "appStatsFilter": [],
     "buckets": 24,
@@ -74,6 +79,7 @@ catocli query appStatsTimeSeries '{
 # Query to export WANBOUND traffic including upstream, downstream and traffic for user_name and application_name for last day broken into 1 hour buckets
 
 ```bash
+# Query to export WANBOUND traffic including upstream, downstream and traffic for user_name and application_name for last day broken into 1 hour buckets
 catocli query appStatsTimeSeries '{
     "appStatsFilter": [
         {

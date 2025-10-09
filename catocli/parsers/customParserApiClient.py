@@ -754,6 +754,13 @@ def get_help_enhanced(path):
     doc = f"{path}/README.md"
     abs_path = os.path.join(pwd, doc)
     
+    # If not found, try custom path (for commands like query_eventsFeed)
+    if not os.path.exists(abs_path):
+        custom_doc = f"custom/{path}/README.md"
+        custom_abs_path = os.path.join(pwd, custom_doc)
+        if os.path.exists(custom_abs_path):
+            abs_path = custom_abs_path
+    
     try:
         with open(abs_path, "r", encoding='utf-8') as f:
             content = f.read()

@@ -72,7 +72,7 @@ catocli query appStatsTimeSeries '{
             "fieldName": "traffic"
         }
     ],
-    "timeFrame": "last.PT1H"
+    "timeFrame": "last.P1D"
 }'
 ```
 

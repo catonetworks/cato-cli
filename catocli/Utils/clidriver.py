@@ -48,8 +48,8 @@ from ..parsers.query_enterpriseDirectory import query_enterpriseDirectory_parse
 from ..parsers.query_devices import query_devices_parse
 from ..parsers.query_accountSnapshot import query_accountSnapshot_parse
 from ..parsers.query_catalogs import query_catalogs_parse
-from ..parsers.query_site import query_site_parse
 from ..parsers.query_xdr import query_xdr_parse
+from ..parsers.query_site import query_site_parse
 from ..parsers.query_policy import query_policy_parse
 from ..parsers.query_groups import query_groups_parse
 from ..parsers.mutation_xdr import mutation_xdr_parse
@@ -183,8 +183,8 @@ query_enterpriseDirectory_parser = query_enterpriseDirectory_parse(query_subpars
 query_devices_parser = query_devices_parse(query_subparsers)
 query_accountSnapshot_parser = query_accountSnapshot_parse(query_subparsers)
 query_catalogs_parser = query_catalogs_parse(query_subparsers)
-query_site_parser = query_site_parse(query_subparsers)
 query_xdr_parser = query_xdr_parse(query_subparsers)
+query_site_parser = query_site_parse(query_subparsers)
 query_policy_parser = query_policy_parse(query_subparsers)
 query_groups_parser = query_groups_parse(query_subparsers)
 mutation_xdr_parser = mutation_xdr_parse(mutation_subparsers)
@@ -269,7 +269,7 @@ def main(args=None):
             if custom_headers:
                 configuration.custom_headers.update(custom_headers)
             # Handle account ID override (applies to all commands except raw)
-            if hasattr(args, 'func') and args.func.__name__ not in ["createRawRequest"]:
+            if args.func.__name__ not in ["createRawRequest"]:
                 if hasattr(args, 'accountID') and args.accountID is not None:
                     # Command line override takes precedence
                     configuration.accountID = args.accountID
@@ -295,7 +295,7 @@ def main(args=None):
     except Exception as e:
         if isinstance(e, AttributeError):
             print('Missing arguments. Usage: catocli <operation> -h')
-            if hasattr(args, 'v') and args.v==True:
+            if args.v==True:
                 print('ERROR: ',e)
                 traceback.print_exc()
         else:

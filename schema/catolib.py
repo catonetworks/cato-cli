@@ -21,7 +21,7 @@ from catocli.Utils.graphql_utils import (
     loadJSON,
     renderCamelCase,
     generateGraphqlPayload as shared_generateGraphqlPayload,
-    renderArgsAndFields as shared_renderArgsAndFields,
+    renderArgsAndFields,
     postProcessBareComplexFields
 )
 
@@ -229,20 +229,17 @@ def processOperation(operationType, operationName):
             arg = parsedOperation["args"][argName]
             parsedOperation["operationArgs"][arg["varName"]] = arg
         
-        # Also include child operation arguments in operationArgs (avoid duplicates)
-        if "childOperations" in parsedOperation:
-            for childOpName, childOp in parsedOperation["childOperations"].items():
-                if "args" in childOp:
-                    for childArgName, childArg in childOp["args"].items():
-                        if "varName" in childArg and childArg["varName"] not in parsedOperation["operationArgs"]:
-                            parsedOperation["operationArgs"][childArg["varName"]] = childArg
+        # CRITICAL FIX: Do NOT include child operation arguments in parent operationArgs
+        # Child operation arguments belong to their respective child fields, not the parent operation
+        # Adding them to parent operationArgs causes GraphQL validation errors like "Unknown argument 'site' on field 'Query.site'"
+        # The JavaScript implementation keeps child arguments separate from parent arguments
         
         parsedOperation["variablesPayload"] = generateExampleVariables(parsedOperation)
         
         # Write files with thread-safe locking
         writeFile("../models/"+operationName+".json", json.dumps(parsedOperation, indent=4, sort_keys=True))
         
-        payload = generateGraphqlPayload(parsedOperation["variablesPayload"], parsedOperation, operationName)
+        payload = shared_generateGraphqlPayload(parsedOperation["variablesPayload"], parsedOperation, operationName, renderArgsAndFields)
         writeFile("../queryPayloads/"+operationName+".json", json.dumps(payload, indent=4, sort_keys=True))
         writeFile("../queryPayloads/"+operationName+".txt", payload["query"])
         
@@ -1314,31 +1311,8 @@ def generateExampleVariables(operation):
         del variablesObj["accountId"]
     return variablesObj
 
-def renderArgsAndFields(responseArgStr, variablesObj, curOperation, definition, indent, dynamic_operation_args=None, operation_name=None):
-    """Wrapper function to use the shared renderArgsAndFields with proper signature"""
-    # Handle variable argument signatures for backward compatibility
-    if operation_name is None:
-        operation_name = curOperation.get('name', 'unknown_operation')
-    
-    return shared_renderArgsAndFields(
-        responseArgStr, 
-        variablesObj, 
-        curOperation, 
-        definition, 
-        operation_name,
-        indent, 
-        dynamic_operation_args,
-        None  # custom_client
-    )
+# Local renderArgsAndFields wrapper removed - now using shared function directly
 
-def generateGraphqlPayload(variables_obj, operation, operation_name):
-    """Wrapper function to use the shared generateGraphqlPayload with renderArgsAndFields"""
-    return shared_generateGraphqlPayload(
-        variables_obj,
-        operation,
-        operation_name,
-        renderArgsAndFields  # Pass our local wrapper function
-    )
 
 def parseNestedArgFields(fieldObj):
     """Parse nested argument fields with realistic examples"""

@@ -11,22 +11,6 @@ catocli mutation site addSecondaryAwsVSocket <json>
 
 catocli mutation site addSecondaryAwsVSocket "$(cat < mutation.site.addSecondaryAwsVSocket.json)"
 
-catocli mutation site addSecondaryAwsVSocket '{"addSecondaryAwsVSocketInput":{"eniIpAddress":"example_value","eniIpSubnet":"example_value","routeTableId":"string","siteRefInput":{"by":"ID","input":"string"}}}'
-
-catocli mutation site addSecondaryAwsVSocket '{
-    "addSecondaryAwsVSocketInput": {
-        "eniIpAddress": "example_value",
-        "eniIpSubnet": "example_value",
-        "routeTableId": "string",
-        "siteRefInput": {
-            "by": "ID",
-            "input": "string"
-        }
-    }
-}'
-```
-
 #### Operation Arguments for mutation.site.addSecondaryAwsVSocket ####
 
 `accountId` [ID] - (required) N/A    
-`addSecondaryAwsVSocketInput` [AddSecondaryAwsVSocketInput] - (required) N/A    

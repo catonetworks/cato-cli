@@ -11,22 +11,6 @@ catocli mutation site replaceSiteBwLicense <json>
 
 catocli mutation site replaceSiteBwLicense "$(cat < mutation.site.replaceSiteBwLicense.json)"
 
-catocli mutation site replaceSiteBwLicense '{"replaceSiteBwLicenseInput":{"bw":1,"licenseIdToAdd":"id","licenseIdToRemove":"id","siteRefInput":{"by":"ID","input":"string"}}}'
-
-catocli mutation site replaceSiteBwLicense '{
-    "replaceSiteBwLicenseInput": {
-        "bw": 1,
-        "licenseIdToAdd": "id",
-        "licenseIdToRemove": "id",
-        "siteRefInput": {
-            "by": "ID",
-            "input": "string"
-        }
-    }
-}'
-```
-
 #### Operation Arguments for mutation.site.replaceSiteBwLicense ####
 
 `accountId` [ID] - (required) N/A    
-`replaceSiteBwLicenseInput` [ReplaceSiteBwLicenseInput] - (required) N/A    

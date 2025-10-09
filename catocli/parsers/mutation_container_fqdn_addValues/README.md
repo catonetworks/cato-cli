@@ -11,23 +11,6 @@ catocli mutation container fqdn addValues <json>
 
 catocli mutation container fqdn addValues "$(cat < mutation.container.fqdn.addValues.json)"
 
-catocli mutation container fqdn addValues '{"fqdnContainerAddValuesInput":{"containerRefInput":{"by":"ID","input":"string"},"values":["example1","example2"]}}'
-
-catocli mutation container fqdn addValues '{
-    "fqdnContainerAddValuesInput": {
-        "containerRefInput": {
-            "by": "ID",
-            "input": "string"
-        },
-        "values": [
-            "example1",
-            "example2"
-        ]
-    }
-}'
-```
-
 #### Operation Arguments for mutation.container.fqdn.addValues ####
 
 `accountId` [ID] - (required) N/A    
-`fqdnContainerAddValuesInput` [FqdnContainerAddValuesInput] - (required) N/A    

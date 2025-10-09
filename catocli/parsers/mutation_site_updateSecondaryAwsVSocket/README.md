@@ -11,19 +11,6 @@ catocli mutation site updateSecondaryAwsVSocket <json>
 
 catocli mutation site updateSecondaryAwsVSocket "$(cat < mutation.site.updateSecondaryAwsVSocket.json)"
 
-catocli mutation site updateSecondaryAwsVSocket '{"updateSecondaryAwsVSocketInput":{"id":"id","ipAddress":"example_value","routeTableId":"string","subnet":"example_value"}}'
-
-catocli mutation site updateSecondaryAwsVSocket '{
-    "updateSecondaryAwsVSocketInput": {
-        "id": "id",
-        "ipAddress": "example_value",
-        "routeTableId": "string",
-        "subnet": "example_value"
-    }
-}'
-```
-
 #### Operation Arguments for mutation.site.updateSecondaryAwsVSocket ####
 
 `accountId` [ID] - (required) N/A    
-`updateSecondaryAwsVSocketInput` [UpdateSecondaryAwsVSocketInput] - (required) N/A    

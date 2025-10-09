@@ -1,24 +1,149 @@
-mutation policySocketLanMoveSection ( $accountId:ID! $socketLanPolicyMutationInput:SocketLanPolicyMutationInput $policyMoveSectionInput:PolicyMoveSectionInput!) {
-	policy ( accountId:$accountId input:$socketLanPolicyMutationInput input:$policyMoveSectionInput ) {
-mutation.policy.socketLan.moveSectionsocketLan ( input:$socketLanPolicyMutationInput  )  {
-mutation.policy.socketLan.moveSection	moveSection ( input:$policyMoveSectionInput   ) {
-mutation.policy.socketLan.moveSection		section {
-mutation.policy.socketLan.moveSection			audit {
-mutation.policy.socketLan.moveSection				updatedTime
-mutation.policy.socketLan.moveSection				updatedBy
-mutation.policy.socketLan.moveSection			}
-mutation.policy.socketLan.moveSection			section {
-mutation.policy.socketLan.moveSection				id
-mutation.policy.socketLan.moveSection				name
-mutation.policy.socketLan.moveSection			}
-mutation.policy.socketLan.moveSection			properties
-mutation.policy.socketLan.moveSection		}
-mutation.policy.socketLan.moveSection		status
-mutation.policy.socketLan.moveSection		errors {
-mutation.policy.socketLan.moveSection			errorMessage
-mutation.policy.socketLan.moveSection			errorCode
-mutation.policy.socketLan.moveSection		}
-mutation.policy.socketLan.moveSection	}
-mutation.policy.socketLan.moveSection}
+mutation policySocketLanMoveSection ( $accountId:ID! $policyMoveSectionInput:PolicyMoveSectionInput!) {
+	policy ( accountId:$accountId ) {
+		socketLan {
+			moveSection {
+				section {
+					audit {
+						updatedTime
+	updatedBy {
+		__typename
+		... on AdminRef {
+			id
+			name
+		}
+		... on ApiKeyRef {
+			id
+			name
+		}
+	}
+					}
+					section {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+						name
+					}
+					properties
+				}
+	status {
+		rawStatus
+		status
+	}
+				errors {
+					errorMessage
+					errorCode
+				}
+			}
+		}
 	}	
 }

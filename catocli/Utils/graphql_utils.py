@@ -860,6 +860,10 @@ def renderArgsAndFields(response_arg_str, variables_obj, cur_operation, definiti
                     if dynamic_operation_args is not None and isinstance(dynamic_operation_args, dict):
                         dynamic_operation_args[arg["varName"]] = arg
                     
+                    # CRITICAL FIX: Match JavaScript logic exactly - regenerate responseStr here
+                    # JavaScript line 868: arg.responseStr = arg.name + ":$" + arg.varName + " ";
+                    arg['responseStr'] = arg['name'] + ":$" + arg['varName'] + " "
+                    
                     # Only include arguments that are present in variables_obj and have values
                     # This matches the JavaScript implementation behavior
                     if arg["varName"] in variables_obj and variables_obj[arg["varName"]] is not None and variables_obj[arg["varName"]] != "" and variables_obj[arg["varName"]] != [] and variables_obj[arg["varName"]] != {}:
@@ -954,6 +958,11 @@ def renderArgsAndFields(response_arg_str, variables_obj, cur_operation, definiti
                     sub_arg_str = " ( "
                     for arg_name in subfield['args']:
                         arg = subfield['args'][arg_name]
+                        
+                        # CRITICAL: Match JavaScript logic exactly - DO NOT regenerate responseStr for subfield arguments
+                        # JavaScript implementation (lines 901, 904) uses the existing arg.responseStr without modification
+                        # The responseStr should have been set correctly during schema generation
+                        # We only regenerate for NEW arguments discovered dynamically
                         
                         # NEW: Dynamic argument collection for subfield arguments too
                         if dynamic_operation_args is not None and isinstance(dynamic_operation_args, dict):

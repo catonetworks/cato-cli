@@ -11,22 +11,6 @@ catocli mutation policy applicationControl discardPolicyRevision <json>
 
 catocli mutation policy applicationControl discardPolicyRevision "$(cat < mutation.policy.applicationControl.discardPolicyRevision.json)"
 
-catocli mutation policy applicationControl discardPolicyRevision '{"applicationControlPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyDiscardRevisionInput":{"id":"id"}}'
-
-catocli mutation policy applicationControl discardPolicyRevision '{
-    "applicationControlPolicyMutationInput": {
-        "policyMutationRevisionInput": {
-            "id": "id"
-        }
-    },
-    "policyDiscardRevisionInput": {
-        "id": "id"
-    }
-}'
-```
-
 #### Operation Arguments for mutation.policy.applicationControl.discardPolicyRevision ####
 
 `accountId` [ID] - (required) N/A    
-`applicationControlPolicyMutationInput` [ApplicationControlPolicyMutationInput] - (required) N/A    
-`policyDiscardRevisionInput` [PolicyDiscardRevisionInput] - (required) N/A    

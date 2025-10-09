@@ -1,57 +1,456 @@
 query hardware ( $accountId:ID!) {
 	hardware ( accountId:$accountId ) {
-query.hardwarehardware {
-query.hardware	items {
-query.hardware		id
-query.hardware		account {
-query.hardware			id
-query.hardware			name
-query.hardware		}
-query.hardware		siteCountryName
-query.hardware		productType
-query.hardware		model
-query.hardware		serialNumber
-query.hardware		macAddress
-query.hardware		poNumber
-query.hardware		quoteId
-query.hardware		licenseId
-query.hardware		licenseStartDate
-query.hardware		shippingTracking {
-query.hardware			shippingStatus
-query.hardware			shippingDate
-query.hardware			trackingUrl
-query.hardware			trackingNumber
-query.hardware			carrier
-query.hardware		}
-query.hardware		shippingDetail {
-query.hardware			companyName
-query.hardware			street
-query.hardware			cityName
-query.hardware			countryName
-query.hardware			stateName
-query.hardware			zipCode
-query.hardware			incoterms
-query.hardware			instruction
-query.hardware			vatId
-query.hardware			contact {
-query.hardware				name
-query.hardware				phone
-query.hardware				email
-query.hardware			}
-query.hardware			comment
-query.hardware			powerCable
-query.hardware		}
-query.hardware		validation {
-query.hardware			completed
-query.hardware			incompleteReason
-query.hardware			addressValidationStatus
-query.hardware		}
-query.hardware		lastModified
-query.hardware		locationId
-query.hardware	}
-query.hardware	pageInfo {
-query.hardware		total
-query.hardware	}
-query.hardware}
+		hardware {
+			items {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+				account {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+					name
+				}
+				siteCountryName
+				productType
+	model {
+		items
+		pageInfo {
+			total
+		}
+	}
+				serialNumber
+				macAddress
+				poNumber
+				quoteId
+	licenseId {
+		__typename
+		... on DataLakeLicense {
+			id
+			description
+			plan
+			sku
+			status
+			startDate
+			expirationDate
+			lastUpdated
+			dpaVersion
+			retentionPeriod
+		}
+		... on PublicIpsLicense {
+			id
+			description
+			plan
+			sku
+			status
+			startDate
+			expirationDate
+			lastUpdated
+			total
+		}
+		... on SiteLicense {
+			id
+			description
+			plan
+			sku
+			status
+			startDate
+			expirationDate
+			lastUpdated
+			siteLicenseGroup
+			regionality
+		}
+		... on PooledBandwidthLicense {
+			id
+			description
+			plan
+			sku
+			status
+			startDate
+			expirationDate
+			lastUpdated
+			siteLicenseGroup
+			siteLicenseType
+		}
+		... on ZtnaUsersLicense {
+			id
+			description
+			plan
+			sku
+			status
+			startDate
+			expirationDate
+			lastUpdated
+			ztnaUsersLicenseGroup
+			total
+		}
+	}
+	licenseStartDate {
+		__typename
+		... on DataLakeLicense {
+			id
+			description
+			plan
+			sku
+			status
+			startDate
+			expirationDate
+			lastUpdated
+			dpaVersion
+			retentionPeriod
+		}
+		... on PublicIpsLicense {
+			id
+			description
+			plan
+			sku
+			status
+			startDate
+			expirationDate
+			lastUpdated
+			total
+		}
+		... on SiteLicense {
+			id
+			description
+			plan
+			sku
+			status
+			startDate
+			expirationDate
+			lastUpdated
+			siteLicenseGroup
+			regionality
+		}
+		... on PooledBandwidthLicense {
+			id
+			description
+			plan
+			sku
+			status
+			startDate
+			expirationDate
+			lastUpdated
+			siteLicenseGroup
+			siteLicenseType
+		}
+		... on ZtnaUsersLicense {
+			id
+			description
+			plan
+			sku
+			status
+			startDate
+			expirationDate
+			lastUpdated
+			ztnaUsersLicenseGroup
+			total
+		}
+	}
+				shippingTracking {
+					shippingStatus
+					shippingDate
+					trackingUrl
+					trackingNumber
+					carrier
+				}
+				shippingDetail {
+					companyName
+					street
+					cityName
+					countryName
+					stateName
+					zipCode
+					incoterms
+					instruction
+					vatId
+					contact {
+						name
+						phone
+						email
+					}
+	comment {
+		comment
+	}
+					powerCable
+				}
+				validation {
+					completed
+					incompleteReason
+					addressValidationStatus
+				}
+				lastModified
+	locationId {
+		id
+		type
+		name
+		description
+		businessUnit
+		archived
+		account {
+			id
+			name
+		}
+		details {
+			companyName
+			vatId
+			shippingLocation
+			postalAddress {
+				street
+				cityName
+				stateName
+				zipCode
+				addressValidated
+				country {
+					id
+					name
+				}
+			}
+			contact {
+				name
+				phone
+				email
+			}
+		}
+		audit {
+			updatedTime
+			updatedBy {
+				__typename
+				... on AdminRef {
+					id
+					name
+				}
+				... on ApiKeyRef {
+					id
+					name
+				}
+			}
+		}
+	}
+			}
+			pageInfo {
+				total
+			}
+		}
 	}	
 }

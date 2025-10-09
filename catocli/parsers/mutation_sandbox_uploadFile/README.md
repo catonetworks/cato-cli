@@ -11,16 +11,6 @@ catocli mutation sandbox uploadFile <json>
 
 catocli mutation sandbox uploadFile "$(cat < mutation.sandbox.uploadFile.json)"
 
-catocli mutation sandbox uploadFile '{"uploadFileInput":{"fileName":"string"}}'
-
-catocli mutation sandbox uploadFile '{
-    "uploadFileInput": {
-        "fileName": "string"
-    }
-}'
-```
-
 #### Operation Arguments for mutation.sandbox.uploadFile ####
 
 `accountId` [ID] - (required) N/A    
-`uploadFileInput` [UploadFileInput] - (required) N/A    

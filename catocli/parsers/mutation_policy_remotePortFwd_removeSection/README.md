@@ -11,22 +11,6 @@ catocli mutation policy remotePortFwd removeSection <json>
 
 catocli mutation policy remotePortFwd removeSection "$(cat < mutation.policy.remotePortFwd.removeSection.json)"
 
-catocli mutation policy remotePortFwd removeSection '{"policyRemoveSectionInput":{"id":"id"},"remotePortFwdPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
-
-catocli mutation policy remotePortFwd removeSection '{
-    "policyRemoveSectionInput": {
-        "id": "id"
-    },
-    "remotePortFwdPolicyMutationInput": {
-        "policyMutationRevisionInput": {
-            "id": "id"
-        }
-    }
-}'
-```
-
 #### Operation Arguments for mutation.policy.remotePortFwd.removeSection ####
 
 `accountId` [ID] - (required) N/A    
-`policyRemoveSectionInput` [PolicyRemoveSectionInput] - (required) N/A    
-`remotePortFwdPolicyMutationInput` [RemotePortFwdPolicyMutationInput] - (required) N/A    

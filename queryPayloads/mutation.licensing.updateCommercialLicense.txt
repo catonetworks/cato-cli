@@ -1,382 +1,3478 @@
 mutation licensingUpdateCommercialLicense ( $accountId:ID! $updateCommercialLicenseInput:UpdateCommercialLicenseInput!) {
-	licensing ( accountId:$accountId input:$updateCommercialLicenseInput ) {
-mutation.licensing.updateCommercialLicenseupdateCommercialLicense ( input:$updateCommercialLicenseInput  )  {
-mutation.licensing.updateCommercialLicense	license {
-mutation.licensing.updateCommercialLicense		id
-mutation.licensing.updateCommercialLicense		description
-mutation.licensing.updateCommercialLicense		plan
-mutation.licensing.updateCommercialLicense		sku
-mutation.licensing.updateCommercialLicense		status
-mutation.licensing.updateCommercialLicense		startDate
-mutation.licensing.updateCommercialLicense		expirationDate
-mutation.licensing.updateCommercialLicense		lastUpdated
-mutation.licensing.updateCommercialLicense		... on DataLakeLicense {
-mutation.licensing.updateCommercialLicense			id
-mutation.licensing.updateCommercialLicense			description
-mutation.licensing.updateCommercialLicense			plan
-mutation.licensing.updateCommercialLicense			sku
-mutation.licensing.updateCommercialLicense			status
-mutation.licensing.updateCommercialLicense			startDate
-mutation.licensing.updateCommercialLicense			expirationDate
-mutation.licensing.updateCommercialLicense			lastUpdated
-mutation.licensing.updateCommercialLicense			dpaVersion
-mutation.licensing.updateCommercialLicense			retentionPeriod
-mutation.licensing.updateCommercialLicense			total
-mutation.licensing.updateCommercialLicense		}
-mutation.licensing.updateCommercialLicense		... on PublicIpsLicense {
-mutation.licensing.updateCommercialLicense			id
-mutation.licensing.updateCommercialLicense			description
-mutation.licensing.updateCommercialLicense			plan
-mutation.licensing.updateCommercialLicense			sku
-mutation.licensing.updateCommercialLicense			status
-mutation.licensing.updateCommercialLicense			startDate
-mutation.licensing.updateCommercialLicense			expirationDate
-mutation.licensing.updateCommercialLicense			lastUpdated
-mutation.licensing.updateCommercialLicense			total
-mutation.licensing.updateCommercialLicense		}
-mutation.licensing.updateCommercialLicense		... on SiteLicense {
-mutation.licensing.updateCommercialLicense			id
-mutation.licensing.updateCommercialLicense			description
-mutation.licensing.updateCommercialLicense			plan
-mutation.licensing.updateCommercialLicense			sku
-mutation.licensing.updateCommercialLicense			status
-mutation.licensing.updateCommercialLicense			startDate
-mutation.licensing.updateCommercialLicense			expirationDate
-mutation.licensing.updateCommercialLicense			lastUpdated
-mutation.licensing.updateCommercialLicense			siteLicenseGroup {
-	id
-	name
-	description
-	membersCount
-	audit {
-		updatedTime
-		updatedBy {
-			__typename
-			... on AdminRef {
-				id
+	licensing ( accountId:$accountId ) {
+		updateCommercialLicense {
+			license {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
 				name
-			}
-			... on ApiKeyRef {
-				id
-				name
+				recommendedAction
+				details
 			}
 		}
-	}
-	members {
-		items {
+		site {
 			id
 			name
-			type
 		}
-		paging {
-			total
-		}
-	}
-	membersCountPerType {
-		type
-		membersCount
-	}
-}
-mutation.licensing.updateCommercialLicense			regionality
-mutation.licensing.updateCommercialLicense			siteLicenseType
-mutation.licensing.updateCommercialLicense			total
-mutation.licensing.updateCommercialLicense			site {
-mutation.licensing.updateCommercialLicense				id
-mutation.licensing.updateCommercialLicense				name
-mutation.licensing.updateCommercialLicense			}
-mutation.licensing.updateCommercialLicense		}
-mutation.licensing.updateCommercialLicense		... on PooledBandwidthLicense {
-mutation.licensing.updateCommercialLicense			id
-mutation.licensing.updateCommercialLicense			description
-mutation.licensing.updateCommercialLicense			plan
-mutation.licensing.updateCommercialLicense			sku
-mutation.licensing.updateCommercialLicense			status
-mutation.licensing.updateCommercialLicense			startDate
-mutation.licensing.updateCommercialLicense			expirationDate
-mutation.licensing.updateCommercialLicense			lastUpdated
-mutation.licensing.updateCommercialLicense			siteLicenseGroup {
-	id
-	name
-	description
-	membersCount
-	audit {
-		updatedTime
-		updatedBy {
-			__typename
-			... on AdminRef {
-				id
-				name
-			}
-			... on ApiKeyRef {
-				id
-				name
-			}
-		}
-	}
-	members {
-		items {
+		user {
 			id
 			name
-			type
 		}
-		paging {
-			total
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
 		}
-	}
-	membersCountPerType {
-		type
-		membersCount
-	}
-}
-mutation.licensing.updateCommercialLicense			siteLicenseType
-mutation.licensing.updateCommercialLicense			total
-mutation.licensing.updateCommercialLicense			allocatedBandwidth
-mutation.licensing.updateCommercialLicense			sites {
-mutation.licensing.updateCommercialLicense				site {
-mutation.licensing.updateCommercialLicense					id
-mutation.licensing.updateCommercialLicense					name
-mutation.licensing.updateCommercialLicense				}
-mutation.licensing.updateCommercialLicense				allocatedBandwidth
-mutation.licensing.updateCommercialLicense			}
-mutation.licensing.updateCommercialLicense			accounts {
-mutation.licensing.updateCommercialLicense				account {
-mutation.licensing.updateCommercialLicense					id
-mutation.licensing.updateCommercialLicense					name
-mutation.licensing.updateCommercialLicense				}
-mutation.licensing.updateCommercialLicense				allocatedBandwidth
-mutation.licensing.updateCommercialLicense			}
-mutation.licensing.updateCommercialLicense		}
-mutation.licensing.updateCommercialLicense		... on ZtnaUsersLicense {
-mutation.licensing.updateCommercialLicense			id
-mutation.licensing.updateCommercialLicense			description
-mutation.licensing.updateCommercialLicense			plan
-mutation.licensing.updateCommercialLicense			sku
-mutation.licensing.updateCommercialLicense			status
-mutation.licensing.updateCommercialLicense			startDate
-mutation.licensing.updateCommercialLicense			expirationDate
-mutation.licensing.updateCommercialLicense			lastUpdated
-mutation.licensing.updateCommercialLicense			ztnaUsersLicenseGroup {
-	id
-	name
-	description
-	membersCount
-	audit {
-		updatedTime
-		updatedBy {
-			__typename
-			... on AdminRef {
-				id
-				name
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
 			}
-			... on ApiKeyRef {
-				id
-				name
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
 			}
 		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
 	}
-	members {
-		items {
+				description
+				plan
+				sku
+	status {
+		rawStatus
+		status
+	}
+				startDate
+				expirationDate
+				lastUpdated
+				... on DataLakeLicense {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
 			id
 			name
-			type
 		}
-		paging {
-			total
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
 		}
 	}
-	membersCountPerType {
-		type
+					description
+					plan
+					sku
+	status {
+		rawStatus
+		status
+	}
+					startDate
+					expirationDate
+					lastUpdated
+					dpaVersion
+					retentionPeriod
+					total
+				}
+				... on PublicIpsLicense {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+					description
+					plan
+					sku
+	status {
+		rawStatus
+		status
+	}
+					startDate
+					expirationDate
+					lastUpdated
+					total
+				}
+				... on SiteLicense {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+					description
+					plan
+					sku
+	status {
+		rawStatus
+		status
+	}
+					startDate
+					expirationDate
+					lastUpdated
+	siteLicenseGroup {
+		id
+		name
+		description
 		membersCount
+		audit {
+			updatedTime
+			updatedBy {
+				__typename
+				... on AdminRef {
+					id
+					name
+				}
+				... on ApiKeyRef {
+					id
+					name
+				}
+			}
+		}
+		members {
+			items {
+				id
+				name
+				type
+			}
+			paging {
+				total
+			}
+		}
+		membersCountPerType {
+			type
+			membersCount
+		}
 	}
-}
-mutation.licensing.updateCommercialLicense			total
-mutation.licensing.updateCommercialLicense		}
-mutation.licensing.updateCommercialLicense		... on EndpointProtectionLicense {
-mutation.licensing.updateCommercialLicense			id
-mutation.licensing.updateCommercialLicense			description
-mutation.licensing.updateCommercialLicense			plan
-mutation.licensing.updateCommercialLicense			sku
-mutation.licensing.updateCommercialLicense			status
-mutation.licensing.updateCommercialLicense			startDate
-mutation.licensing.updateCommercialLicense			expirationDate
-mutation.licensing.updateCommercialLicense			lastUpdated
-mutation.licensing.updateCommercialLicense			total
-mutation.licensing.updateCommercialLicense		}
-mutation.licensing.updateCommercialLicense		... on IlmmLicense {
-mutation.licensing.updateCommercialLicense			id
-mutation.licensing.updateCommercialLicense			description
-mutation.licensing.updateCommercialLicense			plan
-mutation.licensing.updateCommercialLicense			sku
-mutation.licensing.updateCommercialLicense			status
-mutation.licensing.updateCommercialLicense			startDate
-mutation.licensing.updateCommercialLicense			expirationDate
-mutation.licensing.updateCommercialLicense			lastUpdated
-mutation.licensing.updateCommercialLicense			total
-mutation.licensing.updateCommercialLicense		}
-mutation.licensing.updateCommercialLicense		... on IpsLicense {
-mutation.licensing.updateCommercialLicense			id
-mutation.licensing.updateCommercialLicense			description
-mutation.licensing.updateCommercialLicense			plan
-mutation.licensing.updateCommercialLicense			sku
-mutation.licensing.updateCommercialLicense			status
-mutation.licensing.updateCommercialLicense			startDate
-mutation.licensing.updateCommercialLicense			expirationDate
-mutation.licensing.updateCommercialLicense			lastUpdated
-mutation.licensing.updateCommercialLicense		}
-mutation.licensing.updateCommercialLicense		... on MalwareProtectionLicense {
-mutation.licensing.updateCommercialLicense			id
-mutation.licensing.updateCommercialLicense			description
-mutation.licensing.updateCommercialLicense			plan
-mutation.licensing.updateCommercialLicense			sku
-mutation.licensing.updateCommercialLicense			status
-mutation.licensing.updateCommercialLicense			startDate
-mutation.licensing.updateCommercialLicense			expirationDate
-mutation.licensing.updateCommercialLicense			lastUpdated
-mutation.licensing.updateCommercialLicense		}
-mutation.licensing.updateCommercialLicense		... on NextGenMalwareProtectionLicense {
-mutation.licensing.updateCommercialLicense			id
-mutation.licensing.updateCommercialLicense			description
-mutation.licensing.updateCommercialLicense			plan
-mutation.licensing.updateCommercialLicense			sku
-mutation.licensing.updateCommercialLicense			status
-mutation.licensing.updateCommercialLicense			startDate
-mutation.licensing.updateCommercialLicense			expirationDate
-mutation.licensing.updateCommercialLicense			lastUpdated
-mutation.licensing.updateCommercialLicense		}
-mutation.licensing.updateCommercialLicense		... on ThreatPreventionLicense {
-mutation.licensing.updateCommercialLicense			id
-mutation.licensing.updateCommercialLicense			description
-mutation.licensing.updateCommercialLicense			plan
-mutation.licensing.updateCommercialLicense			sku
-mutation.licensing.updateCommercialLicense			status
-mutation.licensing.updateCommercialLicense			startDate
-mutation.licensing.updateCommercialLicense			expirationDate
-mutation.licensing.updateCommercialLicense			lastUpdated
-mutation.licensing.updateCommercialLicense		}
-mutation.licensing.updateCommercialLicense		... on NOCaaSLicense {
-mutation.licensing.updateCommercialLicense			id
-mutation.licensing.updateCommercialLicense			description
-mutation.licensing.updateCommercialLicense			plan
-mutation.licensing.updateCommercialLicense			sku
-mutation.licensing.updateCommercialLicense			status
-mutation.licensing.updateCommercialLicense			startDate
-mutation.licensing.updateCommercialLicense			expirationDate
-mutation.licensing.updateCommercialLicense			lastUpdated
-mutation.licensing.updateCommercialLicense		}
-mutation.licensing.updateCommercialLicense		... on CasbLicense {
-mutation.licensing.updateCommercialLicense			id
-mutation.licensing.updateCommercialLicense			description
-mutation.licensing.updateCommercialLicense			plan
-mutation.licensing.updateCommercialLicense			sku
-mutation.licensing.updateCommercialLicense			status
-mutation.licensing.updateCommercialLicense			startDate
-mutation.licensing.updateCommercialLicense			expirationDate
-mutation.licensing.updateCommercialLicense			lastUpdated
-mutation.licensing.updateCommercialLicense		}
-mutation.licensing.updateCommercialLicense		... on DlpLicense {
-mutation.licensing.updateCommercialLicense			id
-mutation.licensing.updateCommercialLicense			description
-mutation.licensing.updateCommercialLicense			plan
-mutation.licensing.updateCommercialLicense			sku
-mutation.licensing.updateCommercialLicense			status
-mutation.licensing.updateCommercialLicense			startDate
-mutation.licensing.updateCommercialLicense			expirationDate
-mutation.licensing.updateCommercialLicense			lastUpdated
-mutation.licensing.updateCommercialLicense		}
-mutation.licensing.updateCommercialLicense		... on MdrLicense {
-mutation.licensing.updateCommercialLicense			id
-mutation.licensing.updateCommercialLicense			description
-mutation.licensing.updateCommercialLicense			plan
-mutation.licensing.updateCommercialLicense			sku
-mutation.licensing.updateCommercialLicense			status
-mutation.licensing.updateCommercialLicense			startDate
-mutation.licensing.updateCommercialLicense			expirationDate
-mutation.licensing.updateCommercialLicense			lastUpdated
-mutation.licensing.updateCommercialLicense		}
-mutation.licensing.updateCommercialLicense		... on ManagedXdrLicense {
-mutation.licensing.updateCommercialLicense			id
-mutation.licensing.updateCommercialLicense			description
-mutation.licensing.updateCommercialLicense			plan
-mutation.licensing.updateCommercialLicense			sku
-mutation.licensing.updateCommercialLicense			status
-mutation.licensing.updateCommercialLicense			startDate
-mutation.licensing.updateCommercialLicense			expirationDate
-mutation.licensing.updateCommercialLicense			lastUpdated
-mutation.licensing.updateCommercialLicense		}
-mutation.licensing.updateCommercialLicense		... on RbiLicense {
-mutation.licensing.updateCommercialLicense			id
-mutation.licensing.updateCommercialLicense			description
-mutation.licensing.updateCommercialLicense			plan
-mutation.licensing.updateCommercialLicense			sku
-mutation.licensing.updateCommercialLicense			status
-mutation.licensing.updateCommercialLicense			startDate
-mutation.licensing.updateCommercialLicense			expirationDate
-mutation.licensing.updateCommercialLicense			lastUpdated
-mutation.licensing.updateCommercialLicense		}
-mutation.licensing.updateCommercialLicense		... on SaasSecurityApiLicense {
-mutation.licensing.updateCommercialLicense			id
-mutation.licensing.updateCommercialLicense			description
-mutation.licensing.updateCommercialLicense			plan
-mutation.licensing.updateCommercialLicense			sku
-mutation.licensing.updateCommercialLicense			status
-mutation.licensing.updateCommercialLicense			startDate
-mutation.licensing.updateCommercialLicense			expirationDate
-mutation.licensing.updateCommercialLicense			lastUpdated
-mutation.licensing.updateCommercialLicense			total
-mutation.licensing.updateCommercialLicense		}
-mutation.licensing.updateCommercialLicense		... on XdrProLicense {
-mutation.licensing.updateCommercialLicense			id
-mutation.licensing.updateCommercialLicense			description
-mutation.licensing.updateCommercialLicense			plan
-mutation.licensing.updateCommercialLicense			sku
-mutation.licensing.updateCommercialLicense			status
-mutation.licensing.updateCommercialLicense			startDate
-mutation.licensing.updateCommercialLicense			expirationDate
-mutation.licensing.updateCommercialLicense			lastUpdated
-mutation.licensing.updateCommercialLicense			total
-mutation.licensing.updateCommercialLicense		}
-mutation.licensing.updateCommercialLicense		... on DemLicense {
-mutation.licensing.updateCommercialLicense			id
-mutation.licensing.updateCommercialLicense			description
-mutation.licensing.updateCommercialLicense			plan
-mutation.licensing.updateCommercialLicense			sku
-mutation.licensing.updateCommercialLicense			status
-mutation.licensing.updateCommercialLicense			startDate
-mutation.licensing.updateCommercialLicense			expirationDate
-mutation.licensing.updateCommercialLicense			lastUpdated
-mutation.licensing.updateCommercialLicense			total
-mutation.licensing.updateCommercialLicense		}
-mutation.licensing.updateCommercialLicense		... on IotOtLicense {
-mutation.licensing.updateCommercialLicense			id
-mutation.licensing.updateCommercialLicense			description
-mutation.licensing.updateCommercialLicense			plan
-mutation.licensing.updateCommercialLicense			sku
-mutation.licensing.updateCommercialLicense			status
-mutation.licensing.updateCommercialLicense			startDate
-mutation.licensing.updateCommercialLicense			expirationDate
-mutation.licensing.updateCommercialLicense			lastUpdated
-mutation.licensing.updateCommercialLicense		}
-mutation.licensing.updateCommercialLicense		... on AtpLicense {
-mutation.licensing.updateCommercialLicense			id
-mutation.licensing.updateCommercialLicense			description
-mutation.licensing.updateCommercialLicense			plan
-mutation.licensing.updateCommercialLicense			sku
-mutation.licensing.updateCommercialLicense			status
-mutation.licensing.updateCommercialLicense			startDate
-mutation.licensing.updateCommercialLicense			expirationDate
-mutation.licensing.updateCommercialLicense			lastUpdated
-mutation.licensing.updateCommercialLicense		}
-mutation.licensing.updateCommercialLicense		... on XOpsLicense {
-mutation.licensing.updateCommercialLicense			id
-mutation.licensing.updateCommercialLicense			description
-mutation.licensing.updateCommercialLicense			plan
-mutation.licensing.updateCommercialLicense			sku
-mutation.licensing.updateCommercialLicense			status
-mutation.licensing.updateCommercialLicense			startDate
-mutation.licensing.updateCommercialLicense			expirationDate
-mutation.licensing.updateCommercialLicense			lastUpdated
-mutation.licensing.updateCommercialLicense		}
-mutation.licensing.updateCommercialLicense	}
-mutation.licensing.updateCommercialLicense}
+					regionality
+					siteLicenseType
+					total
+					site {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+						name
+					}
+				}
+				... on PooledBandwidthLicense {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+					description
+					plan
+					sku
+	status {
+		rawStatus
+		status
+	}
+					startDate
+					expirationDate
+					lastUpdated
+	siteLicenseGroup {
+		id
+		name
+		description
+		membersCount
+		audit {
+			updatedTime
+			updatedBy {
+				__typename
+				... on AdminRef {
+					id
+					name
+				}
+				... on ApiKeyRef {
+					id
+					name
+				}
+			}
+		}
+		members {
+			items {
+				id
+				name
+				type
+			}
+			paging {
+				total
+			}
+		}
+		membersCountPerType {
+			type
+			membersCount
+		}
+	}
+					siteLicenseType
+					total
+					allocatedBandwidth
+					sites {
+						site {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+							name
+						}
+						allocatedBandwidth
+					}
+					accounts {
+						account {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+							name
+						}
+						allocatedBandwidth
+					}
+				}
+				... on ZtnaUsersLicense {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+					description
+					plan
+					sku
+	status {
+		rawStatus
+		status
+	}
+					startDate
+					expirationDate
+					lastUpdated
+	ztnaUsersLicenseGroup {
+		id
+		name
+		description
+		membersCount
+		audit {
+			updatedTime
+			updatedBy {
+				__typename
+				... on AdminRef {
+					id
+					name
+				}
+				... on ApiKeyRef {
+					id
+					name
+				}
+			}
+		}
+		members {
+			items {
+				id
+				name
+				type
+			}
+			paging {
+				total
+			}
+		}
+		membersCountPerType {
+			type
+			membersCount
+		}
+	}
+					total
+				}
+				... on EndpointProtectionLicense {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+					description
+					plan
+					sku
+	status {
+		rawStatus
+		status
+	}
+					startDate
+					expirationDate
+					lastUpdated
+					total
+				}
+				... on IlmmLicense {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+					description
+					plan
+					sku
+	status {
+		rawStatus
+		status
+	}
+					startDate
+					expirationDate
+					lastUpdated
+					total
+				}
+				... on IpsLicense {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+					description
+					plan
+					sku
+	status {
+		rawStatus
+		status
+	}
+					startDate
+					expirationDate
+					lastUpdated
+				}
+				... on MalwareProtectionLicense {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+					description
+					plan
+					sku
+	status {
+		rawStatus
+		status
+	}
+					startDate
+					expirationDate
+					lastUpdated
+				}
+				... on NextGenMalwareProtectionLicense {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+					description
+					plan
+					sku
+	status {
+		rawStatus
+		status
+	}
+					startDate
+					expirationDate
+					lastUpdated
+				}
+				... on ThreatPreventionLicense {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+					description
+					plan
+					sku
+	status {
+		rawStatus
+		status
+	}
+					startDate
+					expirationDate
+					lastUpdated
+				}
+				... on NOCaaSLicense {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+					description
+					plan
+					sku
+	status {
+		rawStatus
+		status
+	}
+					startDate
+					expirationDate
+					lastUpdated
+				}
+				... on CasbLicense {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+					description
+					plan
+					sku
+	status {
+		rawStatus
+		status
+	}
+					startDate
+					expirationDate
+					lastUpdated
+				}
+				... on DlpLicense {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+					description
+					plan
+					sku
+	status {
+		rawStatus
+		status
+	}
+					startDate
+					expirationDate
+					lastUpdated
+				}
+				... on MdrLicense {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+					description
+					plan
+					sku
+	status {
+		rawStatus
+		status
+	}
+					startDate
+					expirationDate
+					lastUpdated
+				}
+				... on ManagedXdrLicense {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+					description
+					plan
+					sku
+	status {
+		rawStatus
+		status
+	}
+					startDate
+					expirationDate
+					lastUpdated
+				}
+				... on RbiLicense {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+					description
+					plan
+					sku
+	status {
+		rawStatus
+		status
+	}
+					startDate
+					expirationDate
+					lastUpdated
+				}
+				... on SaasSecurityApiLicense {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+					description
+					plan
+					sku
+	status {
+		rawStatus
+		status
+	}
+					startDate
+					expirationDate
+					lastUpdated
+					total
+				}
+				... on XdrProLicense {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+					description
+					plan
+					sku
+	status {
+		rawStatus
+		status
+	}
+					startDate
+					expirationDate
+					lastUpdated
+					total
+				}
+				... on DemLicense {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+					description
+					plan
+					sku
+	status {
+		rawStatus
+		status
+	}
+					startDate
+					expirationDate
+					lastUpdated
+					total
+				}
+				... on IotOtLicense {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+					description
+					plan
+					sku
+	status {
+		rawStatus
+		status
+	}
+					startDate
+					expirationDate
+					lastUpdated
+				}
+				... on AtpLicense {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+					description
+					plan
+					sku
+	status {
+		rawStatus
+		status
+	}
+					startDate
+					expirationDate
+					lastUpdated
+				}
+				... on XOpsLicense {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+					description
+					plan
+					sku
+	status {
+		rawStatus
+		status
+	}
+					startDate
+					expirationDate
+					lastUpdated
+				}
+			}
+		}
 	}	
 }

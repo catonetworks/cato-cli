@@ -11,20 +11,6 @@ catocli mutation site removeSocketAddOnCard <json>
 
 catocli mutation site removeSocketAddOnCard "$(cat < mutation.site.removeSocketAddOnCard.json)"
 
-catocli mutation site removeSocketAddOnCard '{"removeSocketAddOnCardInput":{"expansionSlotNumbers":"SLOT_1","siteRefInput":{"by":"ID","input":"string"}}}'
-
-catocli mutation site removeSocketAddOnCard '{
-    "removeSocketAddOnCardInput": {
-        "expansionSlotNumbers": "SLOT_1",
-        "siteRefInput": {
-            "by": "ID",
-            "input": "string"
-        }
-    }
-}'
-```
-
 #### Operation Arguments for mutation.site.removeSocketAddOnCard ####
 
 `accountId` [ID] - (required) N/A    
-`removeSocketAddOnCardInput` [RemoveSocketAddOnCardInput] - (required) N/A    

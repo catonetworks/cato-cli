@@ -1,24 +1,149 @@
-mutation policyAppTenantRestrictionAddSection ( $accountId:ID! $appTenantRestrictionPolicyMutationInput:AppTenantRestrictionPolicyMutationInput $policyAddSectionInput:PolicyAddSectionInput!) {
-	policy ( accountId:$accountId input:$appTenantRestrictionPolicyMutationInput input:$policyAddSectionInput ) {
-mutation.policy.appTenantRestriction.addSectionappTenantRestriction ( input:$appTenantRestrictionPolicyMutationInput  )  {
-mutation.policy.appTenantRestriction.addSection	addSection ( input:$policyAddSectionInput   ) {
-mutation.policy.appTenantRestriction.addSection		section {
-mutation.policy.appTenantRestriction.addSection			audit {
-mutation.policy.appTenantRestriction.addSection				updatedTime
-mutation.policy.appTenantRestriction.addSection				updatedBy
-mutation.policy.appTenantRestriction.addSection			}
-mutation.policy.appTenantRestriction.addSection			section {
-mutation.policy.appTenantRestriction.addSection				id
-mutation.policy.appTenantRestriction.addSection				name
-mutation.policy.appTenantRestriction.addSection			}
-mutation.policy.appTenantRestriction.addSection			properties
-mutation.policy.appTenantRestriction.addSection		}
-mutation.policy.appTenantRestriction.addSection		status
-mutation.policy.appTenantRestriction.addSection		errors {
-mutation.policy.appTenantRestriction.addSection			errorMessage
-mutation.policy.appTenantRestriction.addSection			errorCode
-mutation.policy.appTenantRestriction.addSection		}
-mutation.policy.appTenantRestriction.addSection	}
-mutation.policy.appTenantRestriction.addSection}
+mutation policyAppTenantRestrictionAddSection ( $accountId:ID! $policyAddSectionInput:PolicyAddSectionInput!) {
+	policy ( accountId:$accountId ) {
+		appTenantRestriction {
+			addSection {
+				section {
+					audit {
+						updatedTime
+	updatedBy {
+		__typename
+		... on AdminRef {
+			id
+			name
+		}
+		... on ApiKeyRef {
+			id
+			name
+		}
+	}
+					}
+					section {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+						name
+					}
+					properties
+				}
+	status {
+		rawStatus
+		status
+	}
+				errors {
+					errorMessage
+					errorCode
+				}
+			}
+		}
 	}	
 }

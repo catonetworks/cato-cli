@@ -1,24 +1,149 @@
-mutation policyAppTenantRestrictionMoveSection ( $accountId:ID! $appTenantRestrictionPolicyMutationInput:AppTenantRestrictionPolicyMutationInput $policyMoveSectionInput:PolicyMoveSectionInput!) {
-	policy ( accountId:$accountId input:$appTenantRestrictionPolicyMutationInput input:$policyMoveSectionInput ) {
-mutation.policy.appTenantRestriction.moveSectionappTenantRestriction ( input:$appTenantRestrictionPolicyMutationInput  )  {
-mutation.policy.appTenantRestriction.moveSection	moveSection ( input:$policyMoveSectionInput   ) {
-mutation.policy.appTenantRestriction.moveSection		section {
-mutation.policy.appTenantRestriction.moveSection			audit {
-mutation.policy.appTenantRestriction.moveSection				updatedTime
-mutation.policy.appTenantRestriction.moveSection				updatedBy
-mutation.policy.appTenantRestriction.moveSection			}
-mutation.policy.appTenantRestriction.moveSection			section {
-mutation.policy.appTenantRestriction.moveSection				id
-mutation.policy.appTenantRestriction.moveSection				name
-mutation.policy.appTenantRestriction.moveSection			}
-mutation.policy.appTenantRestriction.moveSection			properties
-mutation.policy.appTenantRestriction.moveSection		}
-mutation.policy.appTenantRestriction.moveSection		status
-mutation.policy.appTenantRestriction.moveSection		errors {
-mutation.policy.appTenantRestriction.moveSection			errorMessage
-mutation.policy.appTenantRestriction.moveSection			errorCode
-mutation.policy.appTenantRestriction.moveSection		}
-mutation.policy.appTenantRestriction.moveSection	}
-mutation.policy.appTenantRestriction.moveSection}
+mutation policyAppTenantRestrictionMoveSection ( $accountId:ID! $policyMoveSectionInput:PolicyMoveSectionInput!) {
+	policy ( accountId:$accountId ) {
+		appTenantRestriction {
+			moveSection {
+				section {
+					audit {
+						updatedTime
+	updatedBy {
+		__typename
+		... on AdminRef {
+			id
+			name
+		}
+		... on ApiKeyRef {
+			id
+			name
+		}
+	}
+					}
+					section {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+						name
+					}
+					properties
+				}
+	status {
+		rawStatus
+		status
+	}
+				errors {
+					errorMessage
+					errorCode
+				}
+			}
+		}
 	}	
 }

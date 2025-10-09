@@ -11,14 +11,6 @@ catocli mutation sites removeSite <json>
 
 catocli mutation sites removeSite "$(cat < mutation.sites.removeSite.json)"
 
-catocli mutation sites removeSite '{"siteId":"id"}'
-
-catocli mutation sites removeSite '{
-    "siteId": "id"
-}'
-```
-
 #### Operation Arguments for mutation.sites.removeSite ####
 
 `accountId` [ID] - (required) N/A    
-`siteId` [ID] - (required) N/A    

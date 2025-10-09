@@ -11,23 +11,6 @@ catocli mutation policy appTenantRestriction createPolicyRevision <json>
 
 catocli mutation policy appTenantRestriction createPolicyRevision "$(cat < mutation.policy.appTenantRestriction.createPolicyRevision.json)"
 
-catocli mutation policy appTenantRestriction createPolicyRevision '{"appTenantRestrictionPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyCreateRevisionInput":{"description":"string","name":"string"}}'
-
-catocli mutation policy appTenantRestriction createPolicyRevision '{
-    "appTenantRestrictionPolicyMutationInput": {
-        "policyMutationRevisionInput": {
-            "id": "id"
-        }
-    },
-    "policyCreateRevisionInput": {
-        "description": "string",
-        "name": "string"
-    }
-}'
-```
-
 #### Operation Arguments for mutation.policy.appTenantRestriction.createPolicyRevision ####
 
 `accountId` [ID] - (required) N/A    
-`appTenantRestrictionPolicyMutationInput` [AppTenantRestrictionPolicyMutationInput] - (required) N/A    
-`policyCreateRevisionInput` [PolicyCreateRevisionInput] - (required) N/A    

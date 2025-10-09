@@ -1,24 +1,149 @@
-mutation policyDynamicIpAllocationUpdateSection ( $accountId:ID! $dynamicIpAllocationPolicyMutationInput:DynamicIpAllocationPolicyMutationInput $policyUpdateSectionInput:PolicyUpdateSectionInput!) {
-	policy ( accountId:$accountId input:$dynamicIpAllocationPolicyMutationInput input:$policyUpdateSectionInput ) {
-mutation.policy.dynamicIpAllocation.updateSectiondynamicIpAllocation ( input:$dynamicIpAllocationPolicyMutationInput  )  {
-mutation.policy.dynamicIpAllocation.updateSection	updateSection ( input:$policyUpdateSectionInput   ) {
-mutation.policy.dynamicIpAllocation.updateSection		section {
-mutation.policy.dynamicIpAllocation.updateSection			audit {
-mutation.policy.dynamicIpAllocation.updateSection				updatedTime
-mutation.policy.dynamicIpAllocation.updateSection				updatedBy
-mutation.policy.dynamicIpAllocation.updateSection			}
-mutation.policy.dynamicIpAllocation.updateSection			section {
-mutation.policy.dynamicIpAllocation.updateSection				id
-mutation.policy.dynamicIpAllocation.updateSection				name
-mutation.policy.dynamicIpAllocation.updateSection			}
-mutation.policy.dynamicIpAllocation.updateSection			properties
-mutation.policy.dynamicIpAllocation.updateSection		}
-mutation.policy.dynamicIpAllocation.updateSection		status
-mutation.policy.dynamicIpAllocation.updateSection		errors {
-mutation.policy.dynamicIpAllocation.updateSection			errorMessage
-mutation.policy.dynamicIpAllocation.updateSection			errorCode
-mutation.policy.dynamicIpAllocation.updateSection		}
-mutation.policy.dynamicIpAllocation.updateSection	}
-mutation.policy.dynamicIpAllocation.updateSection}
+mutation policyDynamicIpAllocationUpdateSection ( $accountId:ID! $policyUpdateSectionInput:PolicyUpdateSectionInput!) {
+	policy ( accountId:$accountId ) {
+		dynamicIpAllocation {
+			updateSection {
+				section {
+					audit {
+						updatedTime
+	updatedBy {
+		__typename
+		... on AdminRef {
+			id
+			name
+		}
+		... on ApiKeyRef {
+			id
+			name
+		}
+	}
+					}
+					section {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+						name
+					}
+					properties
+				}
+	status {
+		rawStatus
+		status
+	}
+				errors {
+					errorMessage
+					errorCode
+				}
+			}
+		}
 	}	
 }

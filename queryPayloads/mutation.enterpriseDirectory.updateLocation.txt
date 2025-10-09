@@ -1,100 +1,776 @@
 mutation enterpriseDirectoryUpdateLocation ( $accountId:ID! $enterpriseDirectoryUpdateLocationInput:EnterpriseDirectoryUpdateLocationInput!) {
-	enterpriseDirectory ( accountId:$accountId input:$enterpriseDirectoryUpdateLocationInput ) {
-mutation.enterpriseDirectory.updateLocationupdateLocation ( input:$enterpriseDirectoryUpdateLocationInput  )  {
-mutation.enterpriseDirectory.updateLocation	location {
-mutation.enterpriseDirectory.updateLocation		id
-mutation.enterpriseDirectory.updateLocation		account {
-mutation.enterpriseDirectory.updateLocation			id
-mutation.enterpriseDirectory.updateLocation			name
-mutation.enterpriseDirectory.updateLocation		}
-mutation.enterpriseDirectory.updateLocation		type
-mutation.enterpriseDirectory.updateLocation		name
-mutation.enterpriseDirectory.updateLocation		businessUnit
-mutation.enterpriseDirectory.updateLocation		description
-mutation.enterpriseDirectory.updateLocation		details {
-mutation.enterpriseDirectory.updateLocation			companyName
-mutation.enterpriseDirectory.updateLocation			postalAddress {
-mutation.enterpriseDirectory.updateLocation				street
-mutation.enterpriseDirectory.updateLocation				cityName
-mutation.enterpriseDirectory.updateLocation				country {
-mutation.enterpriseDirectory.updateLocation					id
-mutation.enterpriseDirectory.updateLocation					name
-mutation.enterpriseDirectory.updateLocation				}
-mutation.enterpriseDirectory.updateLocation				stateName
-mutation.enterpriseDirectory.updateLocation				zipCode
-mutation.enterpriseDirectory.updateLocation				addressValidated
-mutation.enterpriseDirectory.updateLocation			}
-mutation.enterpriseDirectory.updateLocation			vatId
-mutation.enterpriseDirectory.updateLocation			contact {
-mutation.enterpriseDirectory.updateLocation				name
-mutation.enterpriseDirectory.updateLocation				phone
-mutation.enterpriseDirectory.updateLocation				email
-mutation.enterpriseDirectory.updateLocation			}
-mutation.enterpriseDirectory.updateLocation			shippingLocation {
-	id
-	type
-	name
-	description
-	businessUnit
-	archived
-	account {
+	enterpriseDirectory ( accountId:$accountId ) {
+		updateLocation {
+			location {
+	id {
 		id
-		name
-	}
-	details {
-		companyName
-		vatId
-		shippingLocation
-		postalAddress {
-			street
-			cityName
-			stateName
-			zipCode
-			addressValidated
-			country {
-				id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
 				name
+				recommendedAction
+				details
 			}
 		}
-		contact {
+		site {
+			id
 			name
-			phone
-			email
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
 		}
 	}
-	audit {
-		updatedTime
-		updatedBy {
-			__typename
-			... on AdminRef {
-				id
+				account {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
 				name
+				recommendedAction
+				details
 			}
-			... on ApiKeyRef {
-				id
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
 				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
 			}
 		}
 	}
-}
-mutation.enterpriseDirectory.updateLocation		}
-mutation.enterpriseDirectory.updateLocation		archived
-mutation.enterpriseDirectory.updateLocation		audit {
-mutation.enterpriseDirectory.updateLocation			updatedTime
-mutation.enterpriseDirectory.updateLocation			updatedBy {
-mutation.enterpriseDirectory.updateLocation				id
-mutation.enterpriseDirectory.updateLocation				name
-mutation.enterpriseDirectory.updateLocation				... on AdminRef {
-mutation.enterpriseDirectory.updateLocation					id
-mutation.enterpriseDirectory.updateLocation					name
-mutation.enterpriseDirectory.updateLocation				}
-mutation.enterpriseDirectory.updateLocation				... on ApiKeyRef {
-mutation.enterpriseDirectory.updateLocation					id
-mutation.enterpriseDirectory.updateLocation					name
-mutation.enterpriseDirectory.updateLocation				}
-mutation.enterpriseDirectory.updateLocation			}
-mutation.enterpriseDirectory.updateLocation		}
-mutation.enterpriseDirectory.updateLocation	}
-mutation.enterpriseDirectory.updateLocation}
+					name
+				}
+	type {
+		name
+		recommendedAction
+		details
+	}
+				name
+				businessUnit
+				description
+				details {
+					companyName
+					postalAddress {
+						street
+						cityName
+						country {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+							name
+						}
+						stateName
+						zipCode
+						addressValidated
+					}
+					vatId
+					contact {
+						name
+						phone
+						email
+					}
+	shippingLocation {
+		id
+		type
+		name
+		description
+		businessUnit
+		archived
+		account {
+			id
+			name
+		}
+		details {
+			companyName
+			vatId
+			shippingLocation
+			postalAddress {
+				street
+				cityName
+				stateName
+				zipCode
+				addressValidated
+				country {
+					id
+					name
+				}
+			}
+			contact {
+				name
+				phone
+				email
+			}
+		}
+		audit {
+			updatedTime
+			updatedBy {
+				__typename
+				... on AdminRef {
+					id
+					name
+				}
+				... on ApiKeyRef {
+					id
+					name
+				}
+			}
+		}
+	}
+				}
+				archived
+				audit {
+					updatedTime
+					updatedBy {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+						name
+						... on AdminRef {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+							name
+						}
+						... on ApiKeyRef {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+							name
+						}
+					}
+				}
+			}
+		}
 	}	
 }

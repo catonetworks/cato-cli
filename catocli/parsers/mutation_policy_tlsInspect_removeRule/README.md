@@ -11,22 +11,6 @@ catocli mutation policy tlsInspect removeRule <json>
 
 catocli mutation policy tlsInspect removeRule "$(cat < mutation.policy.tlsInspect.removeRule.json)"
 
-catocli mutation policy tlsInspect removeRule '{"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"tlsInspectRemoveRuleInput":{"id":"id"}}'
-
-catocli mutation policy tlsInspect removeRule '{
-    "tlsInspectPolicyMutationInput": {
-        "policyMutationRevisionInput": {
-            "id": "id"
-        }
-    },
-    "tlsInspectRemoveRuleInput": {
-        "id": "id"
-    }
-}'
-```
-
 #### Operation Arguments for mutation.policy.tlsInspect.removeRule ####
 
 `accountId` [ID] - (required) N/A    
-`tlsInspectPolicyMutationInput` [TlsInspectPolicyMutationInput] - (required) N/A    
-`tlsInspectRemoveRuleInput` [TlsInspectRemoveRuleInput] - (required) N/A    

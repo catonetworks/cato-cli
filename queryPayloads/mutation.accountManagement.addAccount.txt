@@ -1,18 +1,137 @@
 mutation accountManagementAddAccount ( $accountId:ID! $addAccountInput:AddAccountInput!) {
-	accountManagement ( accountId:$accountId input:$addAccountInput ) {
-mutation.accountManagement.addAccountaddAccount ( input:$addAccountInput  )  {
-mutation.accountManagement.addAccount	id
-mutation.accountManagement.addAccount	name
-mutation.accountManagement.addAccount	description
-mutation.accountManagement.addAccount	timeZone
-mutation.accountManagement.addAccount	type
-mutation.accountManagement.addAccount	tenancy
-mutation.accountManagement.addAccount	audit {
-mutation.accountManagement.addAccount		createdBy
-mutation.accountManagement.addAccount		createdTime
-mutation.accountManagement.addAccount	}
-mutation.accountManagement.addAccount	plan
-mutation.accountManagement.addAccount	status
-mutation.accountManagement.addAccount}
+	accountManagement ( accountId:$accountId ) {
+		addAccount {
+id {
+	id
+	status
+	description
+	firstSignal
+	lastSignal
+	engineType
+	vendor
+	producer
+	producerName
+	connectionType
+	indication
+	queryName
+	source
+	criticality
+	ticket
+	research
+	siteName
+	storyDuration
+	analystFeedback {
+		verdict
+		severity
+		threatClassification
+		additionalInfo
+		threatType {
+			name
+			recommendedAction
+			details
+		}
+	}
+	site {
+		id
+		name
+	}
+	user {
+		id
+		name
+	}
+	similarStoriesData {
+		storyId
+		threatTypeName
+		verdict
+		threatClassification
+		similarityPercentage
+		indication
+	}
+	networkIncidentTimeline {
+		description
+		created
+		validated
+		eventType
+		incidentId
+		networkEventSource
+		eventIds
+		acknowledged
+		linkId
+		linkName
+		linkConfigPrecedence
+		linkStatus
+		linkConfigBandwidth
+		deviceConfigHaRole
+		deviceHaRoleState
+		socketSerialId
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		linkQualityIssue {
+			issueType
+			direction
+			current
+			threshold
+		}
+	}
+	bgpConnection {
+		connectionName
+		peerIp
+		peerAsn
+		catoIp
+		catoAsn
+	}
+	ilmmDetails {
+		linkDetails {
+			description
+			linkId
+			ispLinkId
+			comments
+			onboardingStatus
+			activeLicense
+		}
+		ispDetails {
+			name
+			description
+			ispAccountId
+			supportEmail
+			supportPhone
+			countryCode
+			loaFile {
+				fileName
+				fileHash
+				uploadedAt
+			}
+		}
+		contacts {
+			name
+			phone
+			email
+		}
+	}
+}
+			name
+			description
+			timeZone
+type {
+	name
+	recommendedAction
+	details
+}
+			tenancy
+			audit {
+				createdBy
+				createdTime
+			}
+			plan
+status {
+	rawStatus
+	status
+}
+		}
 	}	
 }

@@ -1,20 +1,132 @@
 mutation containerFqdnUpdateFromFile ( $accountId:ID! $updateFqdnContainerFromFileInput:UpdateFqdnContainerFromFileInput!) {
-	container ( accountId:$accountId input:$updateFqdnContainerFromFileInput ) {
-mutation.container.fqdn.updateFromFilefqdn {
-mutation.container.fqdn.updateFromFile	updateFromFile ( input:$updateFqdnContainerFromFileInput   ) {
-mutation.container.fqdn.updateFromFile		container {
-mutation.container.fqdn.updateFromFile			id
-mutation.container.fqdn.updateFromFile			name
-mutation.container.fqdn.updateFromFile			description
-mutation.container.fqdn.updateFromFile			size
-mutation.container.fqdn.updateFromFile			audit {
-mutation.container.fqdn.updateFromFile				createdBy
-mutation.container.fqdn.updateFromFile				lastModifiedBy
-mutation.container.fqdn.updateFromFile				lastModifiedAt
-mutation.container.fqdn.updateFromFile				createdAt
-mutation.container.fqdn.updateFromFile			}
-mutation.container.fqdn.updateFromFile		}
-mutation.container.fqdn.updateFromFile	}
-mutation.container.fqdn.updateFromFile}
+	container ( accountId:$accountId ) {
+		fqdn {
+			updateFromFile {
+				container {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+					name
+					description
+					size
+					audit {
+						createdBy
+						lastModifiedBy
+						lastModifiedAt
+						createdAt
+					}
+				}
+			}
+		}
 	}	
 }

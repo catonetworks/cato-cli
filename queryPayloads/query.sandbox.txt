@@ -1,19 +1,69 @@
-query sandbox ( $accountId:ID!) {
+query sandbox ( $accountId:ID! $sandboxReportsInput:SandboxReportsInput!) {
 	sandbox ( accountId:$accountId ) {
-query.sandboxreports {
-query.sandbox	report {
-query.sandbox		fileName
-query.sandbox		fileHash
-query.sandbox		creationDate
-query.sandbox		expirationDate
-query.sandbox		verdict
-query.sandbox		status
-query.sandbox		downloadUrl
-query.sandbox		failureReason
-query.sandbox	}
-query.sandbox	pageInfo {
-query.sandbox		total
-query.sandbox	}
-query.sandbox}
+		reports {
+			report {
+				fileName
+	fileHash {
+		enabled
+		rules {
+			properties
+			audit {
+				updatedTime
+				updatedBy
+			}
+			rule {
+				id
+				name
+				description
+				index
+				enabled
+				fileName
+				expirationDate
+				action
+				sha256
+				section {
+					id
+					name
+				}
+			}
+		}
+		sections {
+			properties
+			audit {
+				updatedTime
+				updatedBy
+			}
+			section {
+				id
+				name
+			}
+		}
+		audit {
+			publishedTime
+			publishedBy
+		}
+		revision {
+			id
+			name
+			description
+			changes
+			createdTime
+			updatedTime
+		}
+	}
+				creationDate
+				expirationDate
+				verdict
+	status {
+		rawStatus
+		status
+	}
+				downloadUrl
+				failureReason
+			}
+			pageInfo {
+				total
+			}
+		}
 	}	
 }

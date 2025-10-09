@@ -11,14 +11,6 @@ catocli mutation admin removeServicePrincipalAdmin <json>
 
 catocli mutation admin removeServicePrincipalAdmin "$(cat < mutation.admin.removeServicePrincipalAdmin.json)"
 
-catocli mutation admin removeServicePrincipalAdmin '{"adminID":"id"}'
-
-catocli mutation admin removeServicePrincipalAdmin '{
-    "adminID": "id"
-}'
-```
-
 #### Operation Arguments for mutation.admin.removeServicePrincipalAdmin ####
 
 `accountId` [ID] - (required) N/A    
-`adminID` [ID] - (required) N/A    

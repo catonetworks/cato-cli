@@ -1,33 +1,303 @@
 query events ( $accountID:ID! $timeFrame:TimeFrame! $eventsMeasure:[EventsMeasure] $eventsDimension:[EventsDimension] $eventsFilter:[EventsFilter!] $eventsSort:[EventsSort!]) {
 	events ( accountID:$accountID timeFrame:$timeFrame measures:$eventsMeasure dimensions:$eventsDimension filters:$eventsFilter sort:$eventsSort ) {
-query.eventsid
-query.eventsfrom
-query.eventsto
-query.eventstotal
-query.eventstotals
-query.eventsrecords {
-query.events	fields {
-query.events		name
-query.events		value {
-query.events			__typename
-query.events			... on StringValue {
-query.events				string
-query.events			}
-query.events			... on DateValue {
-query.events				date
-query.events			}
-query.events			... on Entity {
-query.events				id
-query.events				name
-query.events				type
-query.events			}
-query.events		}
-query.events	}
-query.events	fieldsUnitTypes
-query.events	fieldsMap
-query.events	trends
-query.events	prevTimeFrame
-query.events	flatFields
-query.events}
+id {
+	id
+	status
+	description
+	firstSignal
+	lastSignal
+	engineType
+	vendor
+	producer
+	producerName
+	connectionType
+	indication
+	queryName
+	source
+	criticality
+	ticket
+	research
+	siteName
+	storyDuration
+	analystFeedback {
+		verdict
+		severity
+		threatClassification
+		additionalInfo
+		threatType {
+			name
+			recommendedAction
+			details
+		}
+	}
+	site {
+		id
+		name
+	}
+	user {
+		id
+		name
+	}
+	similarStoriesData {
+		storyId
+		threatTypeName
+		verdict
+		threatClassification
+		similarityPercentage
+		indication
+	}
+	networkIncidentTimeline {
+		description
+		created
+		validated
+		eventType
+		incidentId
+		networkEventSource
+		eventIds
+		acknowledged
+		linkId
+		linkName
+		linkConfigPrecedence
+		linkStatus
+		linkConfigBandwidth
+		deviceConfigHaRole
+		deviceHaRoleState
+		socketSerialId
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		linkQualityIssue {
+			issueType
+			direction
+			current
+			threshold
+		}
+	}
+	bgpConnection {
+		connectionName
+		peerIp
+		peerAsn
+		catoIp
+		catoAsn
+	}
+	ilmmDetails {
+		linkDetails {
+			description
+			linkId
+			ispLinkId
+			comments
+			onboardingStatus
+			activeLicense
+		}
+		ispDetails {
+			name
+			description
+			ispAccountId
+			supportEmail
+			supportPhone
+			countryCode
+			loaFile {
+				fileName
+				fileHash
+				uploadedAt
+			}
+		}
+		contacts {
+			name
+			phone
+			email
+		}
+	}
+}
+from {
+	container {
+		id
+		name
+		description
+		size
+		audit {
+			createdAt
+			createdBy
+			lastModifiedBy
+			lastModifiedAt
+		}
+	}
+}
+to {
+	comment {
+		id
+		createdAt
+		text
+		actor {
+			__typename
+			... on AdminRef {
+				id
+				name
+			}
+			... on ApiKeyRef {
+				id
+				name
+			}
+		}
+	}
+}
+		total
+		totals
+		records {
+			fields {
+				name
+				value {
+					__typename
+					... on StringValue {
+	string {
+		string
+	}
+					}
+					... on DateValue {
+	date {
+		secondaryAzureVSocket {
+			id
+			interfaceIp
+			floatingIp
+			site {
+				id
+				name
+			}
+		}
+	}
+					}
+					... on Entity {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+						name
+	type {
+		name
+		recommendedAction
+		details
+	}
+					}
+				}
+			}
+			fieldsUnitTypes
+			fieldsMap
+			trends
+			prevTimeFrame
+			flatFields
+		}
 	}	
 }

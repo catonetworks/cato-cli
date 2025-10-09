@@ -11,19 +11,6 @@ catocli query policy remotePortFwd policy <json>
 
 catocli query policy remotePortFwd policy "$(cat < query.policy.remotePortFwd.policy.json)"
 
-catocli query policy remotePortFwd policy '{"remotePortFwdPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'
-
-catocli query policy remotePortFwd policy '{
-    "remotePortFwdPolicyInput": {
-        "policyRevisionInput": {
-            "id": "id",
-            "type": "PRIVATE"
-        }
-    }
-}'
-```
-
 #### Operation Arguments for query.policy.remotePortFwd.policy ####
 
 `accountId` [ID] - (required) N/A    
-`remotePortFwdPolicyInput` [RemotePortFwdPolicyInput] - (required) N/A    

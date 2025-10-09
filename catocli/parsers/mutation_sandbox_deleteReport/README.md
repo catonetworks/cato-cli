@@ -11,16 +11,6 @@ catocli mutation sandbox deleteReport <json>
 
 catocli mutation sandbox deleteReport "$(cat < mutation.sandbox.deleteReport.json)"
 
-catocli mutation sandbox deleteReport '{"deleteReportInput":{"fileHash":"string"}}'
-
-catocli mutation sandbox deleteReport '{
-    "deleteReportInput": {
-        "fileHash": "string"
-    }
-}'
-```
-
 #### Operation Arguments for mutation.sandbox.deleteReport ####
 
 `accountId` [ID] - (required) N/A    
-`deleteReportInput` [DeleteReportInput] - (required) N/A    

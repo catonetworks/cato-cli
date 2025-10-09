@@ -11,23 +11,6 @@ catocli mutation policy internetFirewall createPolicyRevision <json>
 
 catocli mutation policy internetFirewall createPolicyRevision "$(cat < mutation.policy.internetFirewall.createPolicyRevision.json)"
 
-catocli mutation policy internetFirewall createPolicyRevision '{"internetFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyCreateRevisionInput":{"description":"string","name":"string"}}'
-
-catocli mutation policy internetFirewall createPolicyRevision '{
-    "internetFirewallPolicyMutationInput": {
-        "policyMutationRevisionInput": {
-            "id": "id"
-        }
-    },
-    "policyCreateRevisionInput": {
-        "description": "string",
-        "name": "string"
-    }
-}'
-```
-
 #### Operation Arguments for mutation.policy.internetFirewall.createPolicyRevision ####
 
 `accountId` [ID] - (required) N/A    
-`internetFirewallPolicyMutationInput` [InternetFirewallPolicyMutationInput] - (required) N/A    
-`policyCreateRevisionInput` [PolicyCreateRevisionInput] - (required) N/A    

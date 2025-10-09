@@ -1,692 +1,3536 @@
 query accountMetrics ( $timeFrame:TimeFrame! $groupInterfaces:Boolean $groupDevices:Boolean) {
 	accountMetrics ( timeFrame:$timeFrame groupInterfaces:$groupInterfaces groupDevices:$groupDevices ) {
-query.accountMetricsid
-query.accountMetricsfrom
-query.accountMetricsto
-query.accountMetricsgranularity
-query.accountMetricssites {
-query.accountMetrics	id
-query.accountMetrics	interfaces {
-query.accountMetrics		metrics {
-query.accountMetrics			duration
-query.accountMetrics			granularity
-query.accountMetrics			bytesDownstream
-query.accountMetrics			bytesUpstream
-query.accountMetrics			bytesTotal
-query.accountMetrics			lostDownstream
-query.accountMetrics			lostDownstreamPcnt
-query.accountMetrics			lostUpstream
-query.accountMetrics			lostUpstreamPcnt
-query.accountMetrics			packetsDownstream
-query.accountMetrics			packetsUpstream
-query.accountMetrics			jitterUpstream
-query.accountMetrics			jitterDownstream
-query.accountMetrics			packetsDiscardedDownstream
-query.accountMetrics			packetsDiscardedUpstream
-query.accountMetrics			rtt
-query.accountMetrics			hostCount
-query.accountMetrics			hostLimit
-query.accountMetrics			flowCount
-query.accountMetrics		}
-query.accountMetrics		name
-query.accountMetrics		timeseries {
-query.accountMetrics			data
-query.accountMetrics			label
-query.accountMetrics			dimensions {
-query.accountMetrics				label
-query.accountMetrics				value {
-	__typename
-	... on StringValue {
-		string
+id {
+	id
+	status
+	description
+	firstSignal
+	lastSignal
+	engineType
+	vendor
+	producer
+	producerName
+	connectionType
+	indication
+	queryName
+	source
+	criticality
+	ticket
+	research
+	siteName
+	storyDuration
+	analystFeedback {
+		verdict
+		severity
+		threatClassification
+		additionalInfo
+		threatType {
+			name
+			recommendedAction
+			details
+		}
 	}
-	... on DateValue {
-		date
-	}
-	... on Entity {
+	site {
 		id
 		name
-		type
 	}
-}
-query.accountMetrics			}
-query.accountMetrics			key {
-query.accountMetrics				measureFieldName
-query.accountMetrics				dimensions {
-query.accountMetrics					fieldName
-query.accountMetrics					value {
-	__typename
-	... on StringValue {
-		string
-	}
-	... on DateValue {
-		date
-	}
-	... on Entity {
+	user {
 		id
 		name
-		type
+	}
+	similarStoriesData {
+		storyId
+		threatTypeName
+		verdict
+		threatClassification
+		similarityPercentage
+		indication
+	}
+	networkIncidentTimeline {
+		description
+		created
+		validated
+		eventType
+		incidentId
+		networkEventSource
+		eventIds
+		acknowledged
+		linkId
+		linkName
+		linkConfigPrecedence
+		linkStatus
+		linkConfigBandwidth
+		deviceConfigHaRole
+		deviceHaRoleState
+		socketSerialId
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		linkQualityIssue {
+			issueType
+			direction
+			current
+			threshold
+		}
+	}
+	bgpConnection {
+		connectionName
+		peerIp
+		peerAsn
+		catoIp
+		catoAsn
+	}
+	ilmmDetails {
+		linkDetails {
+			description
+			linkId
+			ispLinkId
+			comments
+			onboardingStatus
+			activeLicense
+		}
+		ispDetails {
+			name
+			description
+			ispAccountId
+			supportEmail
+			supportPhone
+			countryCode
+			loaFile {
+				fileName
+				fileHash
+				uploadedAt
+			}
+		}
+		contacts {
+			name
+			phone
+			email
+		}
 	}
 }
-query.accountMetrics				}
-query.accountMetrics			}
-query.accountMetrics			sum
-query.accountMetrics			units
-query.accountMetrics			info
-query.accountMetrics		}
-query.accountMetrics		annotations {
-query.accountMetrics			time
-query.accountMetrics			label
-query.accountMetrics			shortLabel
-query.accountMetrics			type
-query.accountMetrics		}
-query.accountMetrics		periods {
-query.accountMetrics			duration
-query.accountMetrics			title
-query.accountMetrics			type
-query.accountMetrics		}
-query.accountMetrics		remoteIPInfo {
-query.accountMetrics			ip
-query.accountMetrics			countryCode
-query.accountMetrics			countryName
-query.accountMetrics			city
-query.accountMetrics			state
-query.accountMetrics			provider
-query.accountMetrics			latitude
-query.accountMetrics			longitude
-query.accountMetrics		}
-query.accountMetrics		remoteIP
-query.accountMetrics		socketInfo {
-query.accountMetrics			id
-query.accountMetrics			serial
-query.accountMetrics			isPrimary
-query.accountMetrics			platform
-query.accountMetrics			version
-query.accountMetrics			versionUpdateTime
-query.accountMetrics		}
-query.accountMetrics		ipsecInfo {
-query.accountMetrics			isPrimary
-query.accountMetrics			catoIP
-query.accountMetrics			remoteIP
-query.accountMetrics			ikeVersion
-query.accountMetrics			tunnelConfig {
-query.accountMetrics				tunnelId
-query.accountMetrics				tunnelRemoteIdentifier
-query.accountMetrics				localId
-query.accountMetrics			}
-query.accountMetrics		}
-query.accountMetrics		interfaceInfo {
-query.accountMetrics			id
-query.accountMetrics			name
-query.accountMetrics			upstreamBandwidth
-query.accountMetrics			downstreamBandwidth
-query.accountMetrics			upstreamBandwidthMbpsPrecision
-query.accountMetrics			downstreamBandwidthMbpsPrecision
-query.accountMetrics			destType
-query.accountMetrics			wanRole
-query.accountMetrics		}
-query.accountMetrics	}
-query.accountMetrics	metrics {
-query.accountMetrics		duration
-query.accountMetrics		granularity
-query.accountMetrics		bytesDownstream
-query.accountMetrics		bytesUpstream
-query.accountMetrics		bytesTotal
-query.accountMetrics		lostDownstream
-query.accountMetrics		lostDownstreamPcnt
-query.accountMetrics		lostUpstream
-query.accountMetrics		lostUpstreamPcnt
-query.accountMetrics		packetsDownstream
-query.accountMetrics		packetsUpstream
-query.accountMetrics		jitterUpstream
-query.accountMetrics		jitterDownstream
-query.accountMetrics		packetsDiscardedDownstream
-query.accountMetrics		packetsDiscardedUpstream
-query.accountMetrics		rtt
-query.accountMetrics		hostCount
-query.accountMetrics		hostLimit
-query.accountMetrics		flowCount
-query.accountMetrics	}
-query.accountMetrics	name
-query.accountMetrics	info {
-query.accountMetrics		name
-query.accountMetrics		type
-query.accountMetrics		description
-query.accountMetrics		countryCode
-query.accountMetrics		region
-query.accountMetrics		countryName
-query.accountMetrics		countryStateName
-query.accountMetrics		cityName
-query.accountMetrics		address
-query.accountMetrics		isHA
-query.accountMetrics		connType
-query.accountMetrics		creationTime
-query.accountMetrics		interfaces {
-query.accountMetrics			id
-query.accountMetrics			name
-query.accountMetrics			upstreamBandwidth
-query.accountMetrics			downstreamBandwidth
-query.accountMetrics			upstreamBandwidthMbpsPrecision
-query.accountMetrics			downstreamBandwidthMbpsPrecision
-query.accountMetrics			destType
-query.accountMetrics			wanRole
-query.accountMetrics		}
-query.accountMetrics		sockets {
-query.accountMetrics			id
-query.accountMetrics			serial
-query.accountMetrics			isPrimary
-query.accountMetrics			platform
-query.accountMetrics			version
-query.accountMetrics			versionUpdateTime
-query.accountMetrics		}
-query.accountMetrics		ipsec {
-query.accountMetrics			isPrimary
-query.accountMetrics			catoIP
-query.accountMetrics			remoteIP
-query.accountMetrics			ikeVersion
-query.accountMetrics			tunnelConfig {
-query.accountMetrics				tunnelId
-query.accountMetrics				tunnelRemoteIdentifier
-query.accountMetrics				localId
-query.accountMetrics			}
-query.accountMetrics		}
-query.accountMetrics	}
-query.accountMetrics	hostCount {
-query.accountMetrics		data
-query.accountMetrics		label
-query.accountMetrics		dimensions {
-query.accountMetrics			label
-query.accountMetrics			value {
-	__typename
-	... on StringValue {
-		string
-	}
-	... on DateValue {
-		date
-	}
-	... on Entity {
+from {
+	container {
 		id
 		name
-		type
+		description
+		size
+		audit {
+			createdAt
+			createdBy
+			lastModifiedBy
+			lastModifiedAt
+		}
 	}
 }
-query.accountMetrics		}
-query.accountMetrics		key {
-query.accountMetrics			measureFieldName
-query.accountMetrics			dimensions {
-query.accountMetrics				fieldName
-query.accountMetrics				value {
-	__typename
-	... on StringValue {
-		string
+to {
+	comment {
+		id
+		createdAt
+		text
+		actor {
+			__typename
+			... on AdminRef {
+				id
+				name
+			}
+			... on ApiKeyRef {
+				id
+				name
+			}
+		}
 	}
-	... on DateValue {
-		date
+}
+		granularity
+		sites {
+id {
+	id
+	status
+	description
+	firstSignal
+	lastSignal
+	engineType
+	vendor
+	producer
+	producerName
+	connectionType
+	indication
+	queryName
+	source
+	criticality
+	ticket
+	research
+	siteName
+	storyDuration
+	analystFeedback {
+		verdict
+		severity
+		threatClassification
+		additionalInfo
+		threatType {
+			name
+			recommendedAction
+			details
+		}
 	}
-	... on Entity {
+	site {
 		id
 		name
-		type
 	}
-}
-query.accountMetrics			}
-query.accountMetrics		}
-query.accountMetrics		sum
-query.accountMetrics		units
-query.accountMetrics		info
-query.accountMetrics	}
-query.accountMetrics	flowCount {
-query.accountMetrics		data
-query.accountMetrics		label
-query.accountMetrics		dimensions {
-query.accountMetrics			label
-query.accountMetrics			value {
-	__typename
-	... on StringValue {
-		string
-	}
-	... on DateValue {
-		date
-	}
-	... on Entity {
+	user {
 		id
 		name
-		type
+	}
+	similarStoriesData {
+		storyId
+		threatTypeName
+		verdict
+		threatClassification
+		similarityPercentage
+		indication
+	}
+	networkIncidentTimeline {
+		description
+		created
+		validated
+		eventType
+		incidentId
+		networkEventSource
+		eventIds
+		acknowledged
+		linkId
+		linkName
+		linkConfigPrecedence
+		linkStatus
+		linkConfigBandwidth
+		deviceConfigHaRole
+		deviceHaRoleState
+		socketSerialId
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		linkQualityIssue {
+			issueType
+			direction
+			current
+			threshold
+		}
+	}
+	bgpConnection {
+		connectionName
+		peerIp
+		peerAsn
+		catoIp
+		catoAsn
+	}
+	ilmmDetails {
+		linkDetails {
+			description
+			linkId
+			ispLinkId
+			comments
+			onboardingStatus
+			activeLicense
+		}
+		ispDetails {
+			name
+			description
+			ispAccountId
+			supportEmail
+			supportPhone
+			countryCode
+			loaFile {
+				fileName
+				fileHash
+				uploadedAt
+			}
+		}
+		contacts {
+			name
+			phone
+			email
+		}
 	}
 }
-query.accountMetrics		}
-query.accountMetrics		key {
-query.accountMetrics			measureFieldName
-query.accountMetrics			dimensions {
-query.accountMetrics				fieldName
-query.accountMetrics				value {
-	__typename
-	... on StringValue {
-		string
+			interfaces {
+				metrics {
+					duration
+					granularity
+					bytesDownstream
+					bytesUpstream
+					bytesTotal
+					lostDownstream
+					lostDownstreamPcnt
+					lostUpstream
+					lostUpstreamPcnt
+					packetsDownstream
+					packetsUpstream
+					jitterUpstream
+					jitterDownstream
+					packetsDiscardedDownstream
+					packetsDiscardedUpstream
+					rtt
+	hostCount {
+		data
+		label
+		sum
+		units
+		info
+		dimensions {
+			value
+			label
+		}
+		key {
+			measureFieldName
+			dimensions {
+				value
+				fieldName
+			}
+		}
 	}
-	... on DateValue {
-		date
+	hostLimit {
+		data
+		label
+		sum
+		units
+		info
+		dimensions {
+			value
+			label
+		}
+		key {
+			measureFieldName
+			dimensions {
+				value
+				fieldName
+			}
+		}
 	}
-	... on Entity {
+	flowCount {
+		data
+		label
+		sum
+		units
+		info
+		dimensions {
+			value
+			label
+		}
+		key {
+			measureFieldName
+			dimensions {
+				value
+				fieldName
+			}
+		}
+	}
+				}
+				name
+				timeseries {
+	data {
+		paging {
+			from
+			limit
+			total
+		}
+		items {
+			id
+			updatedAt
+			createdAt
+			accountId
+			analystName
+			analystEmail
+			accountName
+			playbook
+			summary
+			incident {
+				__typename
+				... on MicrosoftEndpoint {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on AnomalyStats {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on AnomalyEvents {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on Threat {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on ThreatPrevention {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+			}
+			timeline {
+				createdAt
+				description
+				type
+				context
+				descriptions
+				category
+				additionalInfo
+				analystInfo {
+					name
+					email
+				}
+			}
+		}
+	}
+					label
+					dimensions {
+						label
+	value {
+		__typename
+		... on StringValue {
+			string
+		}
+		... on DateValue {
+			date
+		}
+		... on Entity {
+			id
+			name
+			type
+		}
+	}
+					}
+					key {
+						measureFieldName
+						dimensions {
+							fieldName
+	value {
+		__typename
+		... on StringValue {
+			string
+		}
+		... on DateValue {
+			date
+		}
+		... on Entity {
+			id
+			name
+			type
+		}
+	}
+						}
+					}
+	sum {
+		id
+		route
+		community {
+			from
+			to
+		}
+	}
+	units {
+		id
+		predicate
+		community {
+			from
+			to
+		}
+	}
+	info {
+		name
+		email
+	}
+				}
+				annotations {
+	time {
+		createdAt
+		description
+		type
+		context
+		descriptions
+		category
+		additionalInfo
+		analystInfo {
+			name
+			email
+		}
+	}
+					label
+					shortLabel
+	type {
+		name
+		recommendedAction
+		details
+	}
+				}
+				periods {
+					duration
+					title
+	type {
+		name
+		recommendedAction
+		details
+	}
+				}
+				remoteIPInfo {
+	ip {
+		enabled
+		rules {
+			properties
+			audit {
+				updatedTime
+				updatedBy
+			}
+			rule {
+				id
+				name
+				description
+				index
+				enabled
+				platform
+				section {
+					id
+					name
+				}
+				source {
+					user
+					usersGroup
+				}
+				country {
+					id
+					name
+				}
+				range {
+					globalIpRange
+				}
+			}
+		}
+		sections {
+			properties
+			audit {
+				updatedTime
+				updatedBy
+			}
+			section {
+				id
+				name
+			}
+		}
+		audit {
+			publishedTime
+			publishedBy
+		}
+		revision {
+			id
+			name
+			description
+			changes
+			createdTime
+			updatedTime
+		}
+	}
+					countryCode
+					countryName
+					city
+	state {
+		id
+		up
+		mediaIn
+		linkSpeed
+		duplex
+		hasAddress
+		hasInternet
+		hasTunnel
+	}
+					provider
+					latitude
+					longitude
+				}
+	remoteIP {
+		ip
+		subnet
+		ipRange {
+			from
+			to
+		}
+		globalIpRange {
+			id
+			name
+		}
+	}
+				socketInfo {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+					serial
+					isPrimary
+	platform {
+		platform
+		versions
+	}
+	version {
+		items {
+			platform
+			versions
+		}
+	}
+					versionUpdateTime
+				}
+				ipsecInfo {
+					isPrimary
+					catoIP
+	remoteIP {
+		ip
+		subnet
+		ipRange {
+			from
+			to
+		}
+		globalIpRange {
+			id
+			name
+		}
+	}
+					ikeVersion
+					tunnelConfig {
+						tunnelId
+						tunnelRemoteIdentifier
+						localId
+					}
+				}
+				interfaceInfo {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+					name
+					upstreamBandwidth
+					downstreamBandwidth
+					upstreamBandwidthMbpsPrecision
+					downstreamBandwidthMbpsPrecision
+					destType
+					wanRole
+				}
+			}
+			metrics {
+				duration
+				granularity
+				bytesDownstream
+				bytesUpstream
+				bytesTotal
+				lostDownstream
+				lostDownstreamPcnt
+				lostUpstream
+				lostUpstreamPcnt
+				packetsDownstream
+				packetsUpstream
+				jitterUpstream
+				jitterDownstream
+				packetsDiscardedDownstream
+				packetsDiscardedUpstream
+				rtt
+	hostCount {
+		data
+		label
+		sum
+		units
+		info
+		dimensions {
+			value
+			label
+		}
+		key {
+			measureFieldName
+			dimensions {
+				value
+				fieldName
+			}
+		}
+	}
+	hostLimit {
+		data
+		label
+		sum
+		units
+		info
+		dimensions {
+			value
+			label
+		}
+		key {
+			measureFieldName
+			dimensions {
+				value
+				fieldName
+			}
+		}
+	}
+	flowCount {
+		data
+		label
+		sum
+		units
+		info
+		dimensions {
+			value
+			label
+		}
+		key {
+			measureFieldName
+			dimensions {
+				value
+				fieldName
+			}
+		}
+	}
+			}
+			name
+			info {
+				name
+	type {
+		name
+		recommendedAction
+		details
+	}
+				description
+				countryCode
+				region
+				countryName
+				countryStateName
+				cityName
+	address {
+		createFromFile {
+			container {
+				id
+				name
+				description
+				size
+				audit {
+					createdAt
+					createdBy
+					lastModifiedBy
+					lastModifiedAt
+				}
+			}
+		}
+		updateFromFile {
+			container {
+				id
+				name
+				description
+				size
+				audit {
+					createdAt
+					createdBy
+					lastModifiedBy
+					lastModifiedAt
+				}
+			}
+		}
+		addValues {
+			container {
+				id
+				name
+				description
+				size
+				audit {
+					createdAt
+					createdBy
+					lastModifiedBy
+					lastModifiedAt
+				}
+			}
+		}
+		removeValues {
+			container {
+				id
+				name
+				description
+				size
+				audit {
+					createdAt
+					createdBy
+					lastModifiedBy
+					lastModifiedAt
+				}
+			}
+		}
+	}
+				isHA
+				connType
+				creationTime
+				interfaces {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+					name
+					upstreamBandwidth
+					downstreamBandwidth
+					upstreamBandwidthMbpsPrecision
+					downstreamBandwidthMbpsPrecision
+					destType
+					wanRole
+				}
+				sockets {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+					serial
+					isPrimary
+	platform {
+		platform
+		versions
+	}
+	version {
+		items {
+			platform
+			versions
+		}
+	}
+					versionUpdateTime
+				}
+				ipsec {
+					isPrimary
+					catoIP
+	remoteIP {
+		ip
+		subnet
+		ipRange {
+			from
+			to
+		}
+		globalIpRange {
+			id
+			name
+		}
+	}
+					ikeVersion
+					tunnelConfig {
+						tunnelId
+						tunnelRemoteIdentifier
+						localId
+					}
+				}
+			}
+			hostCount {
+	data {
+		paging {
+			from
+			limit
+			total
+		}
+		items {
+			id
+			updatedAt
+			createdAt
+			accountId
+			analystName
+			analystEmail
+			accountName
+			playbook
+			summary
+			incident {
+				__typename
+				... on MicrosoftEndpoint {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on AnomalyStats {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on AnomalyEvents {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on Threat {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on ThreatPrevention {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+			}
+			timeline {
+				createdAt
+				description
+				type
+				context
+				descriptions
+				category
+				additionalInfo
+				analystInfo {
+					name
+					email
+				}
+			}
+		}
+	}
+				label
+				dimensions {
+					label
+	value {
+		__typename
+		... on StringValue {
+			string
+		}
+		... on DateValue {
+			date
+		}
+		... on Entity {
+			id
+			name
+			type
+		}
+	}
+				}
+				key {
+					measureFieldName
+					dimensions {
+						fieldName
+	value {
+		__typename
+		... on StringValue {
+			string
+		}
+		... on DateValue {
+			date
+		}
+		... on Entity {
+			id
+			name
+			type
+		}
+	}
+					}
+				}
+	sum {
+		id
+		route
+		community {
+			from
+			to
+		}
+	}
+	units {
+		id
+		predicate
+		community {
+			from
+			to
+		}
+	}
+	info {
+		name
+		email
+	}
+			}
+			flowCount {
+	data {
+		paging {
+			from
+			limit
+			total
+		}
+		items {
+			id
+			updatedAt
+			createdAt
+			accountId
+			analystName
+			analystEmail
+			accountName
+			playbook
+			summary
+			incident {
+				__typename
+				... on MicrosoftEndpoint {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on AnomalyStats {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on AnomalyEvents {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on Threat {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on ThreatPrevention {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+			}
+			timeline {
+				createdAt
+				description
+				type
+				context
+				descriptions
+				category
+				additionalInfo
+				analystInfo {
+					name
+					email
+				}
+			}
+		}
+	}
+				label
+				dimensions {
+					label
+	value {
+		__typename
+		... on StringValue {
+			string
+		}
+		... on DateValue {
+			date
+		}
+		... on Entity {
+			id
+			name
+			type
+		}
+	}
+				}
+				key {
+					measureFieldName
+					dimensions {
+						fieldName
+	value {
+		__typename
+		... on StringValue {
+			string
+		}
+		... on DateValue {
+			date
+		}
+		... on Entity {
+			id
+			name
+			type
+		}
+	}
+					}
+				}
+	sum {
+		id
+		route
+		community {
+			from
+			to
+		}
+	}
+	units {
+		id
+		predicate
+		community {
+			from
+			to
+		}
+	}
+	info {
+		name
+		email
+	}
+			}
+			hostLimit {
+	data {
+		paging {
+			from
+			limit
+			total
+		}
+		items {
+			id
+			updatedAt
+			createdAt
+			accountId
+			analystName
+			analystEmail
+			accountName
+			playbook
+			summary
+			incident {
+				__typename
+				... on MicrosoftEndpoint {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on AnomalyStats {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on AnomalyEvents {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on Threat {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on ThreatPrevention {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+			}
+			timeline {
+				createdAt
+				description
+				type
+				context
+				descriptions
+				category
+				additionalInfo
+				analystInfo {
+					name
+					email
+				}
+			}
+		}
+	}
+				label
+				dimensions {
+					label
+	value {
+		__typename
+		... on StringValue {
+			string
+		}
+		... on DateValue {
+			date
+		}
+		... on Entity {
+			id
+			name
+			type
+		}
+	}
+				}
+				key {
+					measureFieldName
+					dimensions {
+						fieldName
+	value {
+		__typename
+		... on StringValue {
+			string
+		}
+		... on DateValue {
+			date
+		}
+		... on Entity {
+			id
+			name
+			type
+		}
+	}
+					}
+				}
+	sum {
+		id
+		route
+		community {
+			from
+			to
+		}
+	}
+	units {
+		id
+		predicate
+		community {
+			from
+			to
+		}
+	}
+	info {
+		name
+		email
+	}
+			}
+			samples
+		}
+		users {
+id {
+	id
+	status
+	description
+	firstSignal
+	lastSignal
+	engineType
+	vendor
+	producer
+	producerName
+	connectionType
+	indication
+	queryName
+	source
+	criticality
+	ticket
+	research
+	siteName
+	storyDuration
+	analystFeedback {
+		verdict
+		severity
+		threatClassification
+		additionalInfo
+		threatType {
+			name
+			recommendedAction
+			details
+		}
+	}
+	site {
 		id
 		name
-		type
 	}
-}
-query.accountMetrics			}
-query.accountMetrics		}
-query.accountMetrics		sum
-query.accountMetrics		units
-query.accountMetrics		info
-query.accountMetrics	}
-query.accountMetrics	hostLimit {
-query.accountMetrics		data
-query.accountMetrics		label
-query.accountMetrics		dimensions {
-query.accountMetrics			label
-query.accountMetrics			value {
-	__typename
-	... on StringValue {
-		string
-	}
-	... on DateValue {
-		date
-	}
-	... on Entity {
+	user {
 		id
 		name
-		type
+	}
+	similarStoriesData {
+		storyId
+		threatTypeName
+		verdict
+		threatClassification
+		similarityPercentage
+		indication
+	}
+	networkIncidentTimeline {
+		description
+		created
+		validated
+		eventType
+		incidentId
+		networkEventSource
+		eventIds
+		acknowledged
+		linkId
+		linkName
+		linkConfigPrecedence
+		linkStatus
+		linkConfigBandwidth
+		deviceConfigHaRole
+		deviceHaRoleState
+		socketSerialId
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		linkQualityIssue {
+			issueType
+			direction
+			current
+			threshold
+		}
+	}
+	bgpConnection {
+		connectionName
+		peerIp
+		peerAsn
+		catoIp
+		catoAsn
+	}
+	ilmmDetails {
+		linkDetails {
+			description
+			linkId
+			ispLinkId
+			comments
+			onboardingStatus
+			activeLicense
+		}
+		ispDetails {
+			name
+			description
+			ispAccountId
+			supportEmail
+			supportPhone
+			countryCode
+			loaFile {
+				fileName
+				fileHash
+				uploadedAt
+			}
+		}
+		contacts {
+			name
+			phone
+			email
+		}
 	}
 }
-query.accountMetrics		}
-query.accountMetrics		key {
-query.accountMetrics			measureFieldName
-query.accountMetrics			dimensions {
-query.accountMetrics				fieldName
-query.accountMetrics				value {
-	__typename
-	... on StringValue {
-		string
+			interfaces {
+				metrics {
+					duration
+					granularity
+					bytesDownstream
+					bytesUpstream
+					bytesTotal
+					lostDownstream
+					lostDownstreamPcnt
+					lostUpstream
+					lostUpstreamPcnt
+					packetsDownstream
+					packetsUpstream
+					jitterUpstream
+					jitterDownstream
+					packetsDiscardedDownstream
+					packetsDiscardedUpstream
+					rtt
+	hostCount {
+		data
+		label
+		sum
+		units
+		info
+		dimensions {
+			value
+			label
+		}
+		key {
+			measureFieldName
+			dimensions {
+				value
+				fieldName
+			}
+		}
 	}
-	... on DateValue {
-		date
+	hostLimit {
+		data
+		label
+		sum
+		units
+		info
+		dimensions {
+			value
+			label
+		}
+		key {
+			measureFieldName
+			dimensions {
+				value
+				fieldName
+			}
+		}
 	}
-	... on Entity {
+	flowCount {
+		data
+		label
+		sum
+		units
+		info
+		dimensions {
+			value
+			label
+		}
+		key {
+			measureFieldName
+			dimensions {
+				value
+				fieldName
+			}
+		}
+	}
+				}
+				name
+				timeseries {
+	data {
+		paging {
+			from
+			limit
+			total
+		}
+		items {
+			id
+			updatedAt
+			createdAt
+			accountId
+			analystName
+			analystEmail
+			accountName
+			playbook
+			summary
+			incident {
+				__typename
+				... on MicrosoftEndpoint {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on AnomalyStats {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on AnomalyEvents {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on Threat {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on ThreatPrevention {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+			}
+			timeline {
+				createdAt
+				description
+				type
+				context
+				descriptions
+				category
+				additionalInfo
+				analystInfo {
+					name
+					email
+				}
+			}
+		}
+	}
+					label
+					dimensions {
+						label
+	value {
+		__typename
+		... on StringValue {
+			string
+		}
+		... on DateValue {
+			date
+		}
+		... on Entity {
+			id
+			name
+			type
+		}
+	}
+					}
+					key {
+						measureFieldName
+						dimensions {
+							fieldName
+	value {
+		__typename
+		... on StringValue {
+			string
+		}
+		... on DateValue {
+			date
+		}
+		... on Entity {
+			id
+			name
+			type
+		}
+	}
+						}
+					}
+	sum {
 		id
-		name
-		type
+		route
+		community {
+			from
+			to
+		}
 	}
-}
-query.accountMetrics			}
-query.accountMetrics		}
-query.accountMetrics		sum
-query.accountMetrics		units
-query.accountMetrics		info
-query.accountMetrics	}
-query.accountMetrics	samples
-query.accountMetrics}
-query.accountMetricsusers {
-query.accountMetrics	id
-query.accountMetrics	interfaces {
-query.accountMetrics		metrics {
-query.accountMetrics			duration
-query.accountMetrics			granularity
-query.accountMetrics			bytesDownstream
-query.accountMetrics			bytesUpstream
-query.accountMetrics			bytesTotal
-query.accountMetrics			lostDownstream
-query.accountMetrics			lostDownstreamPcnt
-query.accountMetrics			lostUpstream
-query.accountMetrics			lostUpstreamPcnt
-query.accountMetrics			packetsDownstream
-query.accountMetrics			packetsUpstream
-query.accountMetrics			jitterUpstream
-query.accountMetrics			jitterDownstream
-query.accountMetrics			packetsDiscardedDownstream
-query.accountMetrics			packetsDiscardedUpstream
-query.accountMetrics			rtt
-query.accountMetrics			hostCount
-query.accountMetrics			hostLimit
-query.accountMetrics			flowCount
-query.accountMetrics		}
-query.accountMetrics		name
-query.accountMetrics		timeseries {
-query.accountMetrics			data
-query.accountMetrics			label
-query.accountMetrics			dimensions {
-query.accountMetrics				label
-query.accountMetrics				value {
-	__typename
-	... on StringValue {
-		string
-	}
-	... on DateValue {
-		date
-	}
-	... on Entity {
+	units {
 		id
+		predicate
+		community {
+			from
+			to
+		}
+	}
+	info {
 		name
+		email
+	}
+				}
+				annotations {
+	time {
+		createdAt
+		description
 		type
+		context
+		descriptions
+		category
+		additionalInfo
+		analystInfo {
+			name
+			email
+		}
 	}
-}
-query.accountMetrics			}
-query.accountMetrics			key {
-query.accountMetrics				measureFieldName
-query.accountMetrics				dimensions {
-query.accountMetrics					fieldName
-query.accountMetrics					value {
-	__typename
-	... on StringValue {
-		string
+					label
+					shortLabel
+	type {
+		name
+		recommendedAction
+		details
 	}
-	... on DateValue {
-		date
+				}
+				periods {
+					duration
+					title
+	type {
+		name
+		recommendedAction
+		details
 	}
-	... on Entity {
+				}
+				remoteIPInfo {
+	ip {
+		enabled
+		rules {
+			properties
+			audit {
+				updatedTime
+				updatedBy
+			}
+			rule {
+				id
+				name
+				description
+				index
+				enabled
+				platform
+				section {
+					id
+					name
+				}
+				source {
+					user
+					usersGroup
+				}
+				country {
+					id
+					name
+				}
+				range {
+					globalIpRange
+				}
+			}
+		}
+		sections {
+			properties
+			audit {
+				updatedTime
+				updatedBy
+			}
+			section {
+				id
+				name
+			}
+		}
+		audit {
+			publishedTime
+			publishedBy
+		}
+		revision {
+			id
+			name
+			description
+			changes
+			createdTime
+			updatedTime
+		}
+	}
+					countryCode
+					countryName
+					city
+	state {
 		id
-		name
-		type
+		up
+		mediaIn
+		linkSpeed
+		duplex
+		hasAddress
+		hasInternet
+		hasTunnel
 	}
-}
-query.accountMetrics				}
-query.accountMetrics			}
-query.accountMetrics			sum
-query.accountMetrics			units
-query.accountMetrics			info
-query.accountMetrics		}
-query.accountMetrics		annotations {
-query.accountMetrics			time
-query.accountMetrics			label
-query.accountMetrics			shortLabel
-query.accountMetrics			type
-query.accountMetrics		}
-query.accountMetrics		periods {
-query.accountMetrics			duration
-query.accountMetrics			title
-query.accountMetrics			type
-query.accountMetrics		}
-query.accountMetrics		remoteIPInfo {
-query.accountMetrics			ip
-query.accountMetrics			countryCode
-query.accountMetrics			countryName
-query.accountMetrics			city
-query.accountMetrics			state
-query.accountMetrics			provider
-query.accountMetrics			latitude
-query.accountMetrics			longitude
-query.accountMetrics		}
-query.accountMetrics		remoteIP
-query.accountMetrics		socketInfo {
-query.accountMetrics			id
-query.accountMetrics			serial
-query.accountMetrics			isPrimary
-query.accountMetrics			platform
-query.accountMetrics			version
-query.accountMetrics			versionUpdateTime
-query.accountMetrics		}
-query.accountMetrics		ipsecInfo {
-query.accountMetrics			isPrimary
-query.accountMetrics			catoIP
-query.accountMetrics			remoteIP
-query.accountMetrics			ikeVersion
-query.accountMetrics			tunnelConfig {
-query.accountMetrics				tunnelId
-query.accountMetrics				tunnelRemoteIdentifier
-query.accountMetrics				localId
-query.accountMetrics			}
-query.accountMetrics		}
-query.accountMetrics		interfaceInfo {
-query.accountMetrics			id
-query.accountMetrics			name
-query.accountMetrics			upstreamBandwidth
-query.accountMetrics			downstreamBandwidth
-query.accountMetrics			upstreamBandwidthMbpsPrecision
-query.accountMetrics			downstreamBandwidthMbpsPrecision
-query.accountMetrics			destType
-query.accountMetrics			wanRole
-query.accountMetrics		}
-query.accountMetrics	}
-query.accountMetrics	metrics {
-query.accountMetrics		duration
-query.accountMetrics		granularity
-query.accountMetrics		bytesDownstream
-query.accountMetrics		bytesUpstream
-query.accountMetrics		bytesTotal
-query.accountMetrics		lostDownstream
-query.accountMetrics		lostDownstreamPcnt
-query.accountMetrics		lostUpstream
-query.accountMetrics		lostUpstreamPcnt
-query.accountMetrics		packetsDownstream
-query.accountMetrics		packetsUpstream
-query.accountMetrics		jitterUpstream
-query.accountMetrics		jitterDownstream
-query.accountMetrics		packetsDiscardedDownstream
-query.accountMetrics		packetsDiscardedUpstream
-query.accountMetrics		rtt
-query.accountMetrics		hostCount
-query.accountMetrics		hostLimit
-query.accountMetrics		flowCount
-query.accountMetrics	}
-query.accountMetrics	name
-query.accountMetrics	info {
-query.accountMetrics		name
-query.accountMetrics		type
-query.accountMetrics		description
-query.accountMetrics		countryCode
-query.accountMetrics		region
-query.accountMetrics		countryName
-query.accountMetrics		countryStateName
-query.accountMetrics		cityName
-query.accountMetrics		address
-query.accountMetrics		isHA
-query.accountMetrics		connType
-query.accountMetrics		creationTime
-query.accountMetrics		interfaces {
-query.accountMetrics			id
-query.accountMetrics			name
-query.accountMetrics			upstreamBandwidth
-query.accountMetrics			downstreamBandwidth
-query.accountMetrics			upstreamBandwidthMbpsPrecision
-query.accountMetrics			downstreamBandwidthMbpsPrecision
-query.accountMetrics			destType
-query.accountMetrics			wanRole
-query.accountMetrics		}
-query.accountMetrics		sockets {
-query.accountMetrics			id
-query.accountMetrics			serial
-query.accountMetrics			isPrimary
-query.accountMetrics			platform
-query.accountMetrics			version
-query.accountMetrics			versionUpdateTime
-query.accountMetrics		}
-query.accountMetrics		ipsec {
-query.accountMetrics			isPrimary
-query.accountMetrics			catoIP
-query.accountMetrics			remoteIP
-query.accountMetrics			ikeVersion
-query.accountMetrics			tunnelConfig {
-query.accountMetrics				tunnelId
-query.accountMetrics				tunnelRemoteIdentifier
-query.accountMetrics				localId
-query.accountMetrics			}
-query.accountMetrics		}
-query.accountMetrics	}
-query.accountMetrics	hostCount {
-query.accountMetrics		data
-query.accountMetrics		label
-query.accountMetrics		dimensions {
-query.accountMetrics			label
-query.accountMetrics			value {
-	__typename
-	... on StringValue {
-		string
+					provider
+					latitude
+					longitude
+				}
+	remoteIP {
+		ip
+		subnet
+		ipRange {
+			from
+			to
+		}
+		globalIpRange {
+			id
+			name
+		}
 	}
-	... on DateValue {
-		date
-	}
-	... on Entity {
+				socketInfo {
+	id {
 		id
-		name
-		type
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
 	}
-}
-query.accountMetrics		}
-query.accountMetrics		key {
-query.accountMetrics			measureFieldName
-query.accountMetrics			dimensions {
-query.accountMetrics				fieldName
-query.accountMetrics				value {
-	__typename
-	... on StringValue {
-		string
+					serial
+					isPrimary
+	platform {
+		platform
+		versions
 	}
-	... on DateValue {
-		date
+	version {
+		items {
+			platform
+			versions
+		}
 	}
-	... on Entity {
+					versionUpdateTime
+				}
+				ipsecInfo {
+					isPrimary
+					catoIP
+	remoteIP {
+		ip
+		subnet
+		ipRange {
+			from
+			to
+		}
+		globalIpRange {
+			id
+			name
+		}
+	}
+					ikeVersion
+					tunnelConfig {
+						tunnelId
+						tunnelRemoteIdentifier
+						localId
+					}
+				}
+				interfaceInfo {
+	id {
 		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+					name
+					upstreamBandwidth
+					downstreamBandwidth
+					upstreamBandwidthMbpsPrecision
+					downstreamBandwidthMbpsPrecision
+					destType
+					wanRole
+				}
+			}
+			metrics {
+				duration
+				granularity
+				bytesDownstream
+				bytesUpstream
+				bytesTotal
+				lostDownstream
+				lostDownstreamPcnt
+				lostUpstream
+				lostUpstreamPcnt
+				packetsDownstream
+				packetsUpstream
+				jitterUpstream
+				jitterDownstream
+				packetsDiscardedDownstream
+				packetsDiscardedUpstream
+				rtt
+	hostCount {
+		data
+		label
+		sum
+		units
+		info
+		dimensions {
+			value
+			label
+		}
+		key {
+			measureFieldName
+			dimensions {
+				value
+				fieldName
+			}
+		}
+	}
+	hostLimit {
+		data
+		label
+		sum
+		units
+		info
+		dimensions {
+			value
+			label
+		}
+		key {
+			measureFieldName
+			dimensions {
+				value
+				fieldName
+			}
+		}
+	}
+	flowCount {
+		data
+		label
+		sum
+		units
+		info
+		dimensions {
+			value
+			label
+		}
+		key {
+			measureFieldName
+			dimensions {
+				value
+				fieldName
+			}
+		}
+	}
+			}
+			name
+			info {
+				name
+	type {
 		name
-		type
+		recommendedAction
+		details
 	}
-}
-query.accountMetrics			}
-query.accountMetrics		}
-query.accountMetrics		sum
-query.accountMetrics		units
-query.accountMetrics		info
-query.accountMetrics	}
-query.accountMetrics	flowCount {
-query.accountMetrics		data
-query.accountMetrics		label
-query.accountMetrics		dimensions {
-query.accountMetrics			label
-query.accountMetrics			value {
-	__typename
-	... on StringValue {
-		string
+				description
+				countryCode
+				region
+				countryName
+				countryStateName
+				cityName
+	address {
+		createFromFile {
+			container {
+				id
+				name
+				description
+				size
+				audit {
+					createdAt
+					createdBy
+					lastModifiedBy
+					lastModifiedAt
+				}
+			}
+		}
+		updateFromFile {
+			container {
+				id
+				name
+				description
+				size
+				audit {
+					createdAt
+					createdBy
+					lastModifiedBy
+					lastModifiedAt
+				}
+			}
+		}
+		addValues {
+			container {
+				id
+				name
+				description
+				size
+				audit {
+					createdAt
+					createdBy
+					lastModifiedBy
+					lastModifiedAt
+				}
+			}
+		}
+		removeValues {
+			container {
+				id
+				name
+				description
+				size
+				audit {
+					createdAt
+					createdBy
+					lastModifiedBy
+					lastModifiedAt
+				}
+			}
+		}
 	}
-	... on DateValue {
-		date
-	}
-	... on Entity {
+				isHA
+				connType
+				creationTime
+				interfaces {
+	id {
 		id
-		name
-		type
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
 	}
-}
-query.accountMetrics		}
-query.accountMetrics		key {
-query.accountMetrics			measureFieldName
-query.accountMetrics			dimensions {
-query.accountMetrics				fieldName
-query.accountMetrics				value {
-	__typename
-	... on StringValue {
-		string
-	}
-	... on DateValue {
-		date
-	}
-	... on Entity {
+					name
+					upstreamBandwidth
+					downstreamBandwidth
+					upstreamBandwidthMbpsPrecision
+					downstreamBandwidthMbpsPrecision
+					destType
+					wanRole
+				}
+				sockets {
+	id {
 		id
-		name
-		type
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
 	}
-}
-query.accountMetrics			}
-query.accountMetrics		}
-query.accountMetrics		sum
-query.accountMetrics		units
-query.accountMetrics		info
-query.accountMetrics	}
-query.accountMetrics	hostLimit {
-query.accountMetrics		data
-query.accountMetrics		label
-query.accountMetrics		dimensions {
-query.accountMetrics			label
-query.accountMetrics			value {
-	__typename
-	... on StringValue {
-		string
+					serial
+					isPrimary
+	platform {
+		platform
+		versions
 	}
-	... on DateValue {
-		date
+	version {
+		items {
+			platform
+			versions
+		}
 	}
-	... on Entity {
+					versionUpdateTime
+				}
+				ipsec {
+					isPrimary
+					catoIP
+	remoteIP {
+		ip
+		subnet
+		ipRange {
+			from
+			to
+		}
+		globalIpRange {
+			id
+			name
+		}
+	}
+					ikeVersion
+					tunnelConfig {
+						tunnelId
+						tunnelRemoteIdentifier
+						localId
+					}
+				}
+			}
+			hostCount {
+	data {
+		paging {
+			from
+			limit
+			total
+		}
+		items {
+			id
+			updatedAt
+			createdAt
+			accountId
+			analystName
+			analystEmail
+			accountName
+			playbook
+			summary
+			incident {
+				__typename
+				... on MicrosoftEndpoint {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on AnomalyStats {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on AnomalyEvents {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on Threat {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on ThreatPrevention {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+			}
+			timeline {
+				createdAt
+				description
+				type
+				context
+				descriptions
+				category
+				additionalInfo
+				analystInfo {
+					name
+					email
+				}
+			}
+		}
+	}
+				label
+				dimensions {
+					label
+	value {
+		__typename
+		... on StringValue {
+			string
+		}
+		... on DateValue {
+			date
+		}
+		... on Entity {
+			id
+			name
+			type
+		}
+	}
+				}
+				key {
+					measureFieldName
+					dimensions {
+						fieldName
+	value {
+		__typename
+		... on StringValue {
+			string
+		}
+		... on DateValue {
+			date
+		}
+		... on Entity {
+			id
+			name
+			type
+		}
+	}
+					}
+				}
+	sum {
 		id
-		name
-		type
+		route
+		community {
+			from
+			to
+		}
 	}
-}
-query.accountMetrics		}
-query.accountMetrics		key {
-query.accountMetrics			measureFieldName
-query.accountMetrics			dimensions {
-query.accountMetrics				fieldName
-query.accountMetrics				value {
-	__typename
-	... on StringValue {
-		string
-	}
-	... on DateValue {
-		date
-	}
-	... on Entity {
+	units {
 		id
+		predicate
+		community {
+			from
+			to
+		}
+	}
+	info {
 		name
-		type
+		email
 	}
-}
-query.accountMetrics			}
-query.accountMetrics		}
-query.accountMetrics		sum
-query.accountMetrics		units
-query.accountMetrics		info
-query.accountMetrics	}
-query.accountMetrics	samples
-query.accountMetrics}
-query.accountMetricstimeseries {
-query.accountMetrics	data
-query.accountMetrics	label
-query.accountMetrics	dimensions {
-query.accountMetrics		label
-query.accountMetrics		value {
-	__typename
-	... on StringValue {
-		string
+			}
+			flowCount {
+	data {
+		paging {
+			from
+			limit
+			total
+		}
+		items {
+			id
+			updatedAt
+			createdAt
+			accountId
+			analystName
+			analystEmail
+			accountName
+			playbook
+			summary
+			incident {
+				__typename
+				... on MicrosoftEndpoint {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on AnomalyStats {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on AnomalyEvents {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on Threat {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on ThreatPrevention {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+			}
+			timeline {
+				createdAt
+				description
+				type
+				context
+				descriptions
+				category
+				additionalInfo
+				analystInfo {
+					name
+					email
+				}
+			}
+		}
 	}
-	... on DateValue {
-		date
+				label
+				dimensions {
+					label
+	value {
+		__typename
+		... on StringValue {
+			string
+		}
+		... on DateValue {
+			date
+		}
+		... on Entity {
+			id
+			name
+			type
+		}
 	}
-	... on Entity {
+				}
+				key {
+					measureFieldName
+					dimensions {
+						fieldName
+	value {
+		__typename
+		... on StringValue {
+			string
+		}
+		... on DateValue {
+			date
+		}
+		... on Entity {
+			id
+			name
+			type
+		}
+	}
+					}
+				}
+	sum {
 		id
-		name
-		type
+		route
+		community {
+			from
+			to
+		}
 	}
-}
-query.accountMetrics	}
-query.accountMetrics	key {
-query.accountMetrics		measureFieldName
-query.accountMetrics		dimensions {
-query.accountMetrics			fieldName
-query.accountMetrics			value {
-	__typename
-	... on StringValue {
-		string
-	}
-	... on DateValue {
-		date
-	}
-	... on Entity {
+	units {
 		id
+		predicate
+		community {
+			from
+			to
+		}
+	}
+	info {
 		name
-		type
+		email
+	}
+			}
+			hostLimit {
+	data {
+		paging {
+			from
+			limit
+			total
+		}
+		items {
+			id
+			updatedAt
+			createdAt
+			accountId
+			analystName
+			analystEmail
+			accountName
+			playbook
+			summary
+			incident {
+				__typename
+				... on MicrosoftEndpoint {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on AnomalyStats {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on AnomalyEvents {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on Threat {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on ThreatPrevention {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+			}
+			timeline {
+				createdAt
+				description
+				type
+				context
+				descriptions
+				category
+				additionalInfo
+				analystInfo {
+					name
+					email
+				}
+			}
+		}
+	}
+				label
+				dimensions {
+					label
+	value {
+		__typename
+		... on StringValue {
+			string
+		}
+		... on DateValue {
+			date
+		}
+		... on Entity {
+			id
+			name
+			type
+		}
+	}
+				}
+				key {
+					measureFieldName
+					dimensions {
+						fieldName
+	value {
+		__typename
+		... on StringValue {
+			string
+		}
+		... on DateValue {
+			date
+		}
+		... on Entity {
+			id
+			name
+			type
+		}
+	}
+					}
+				}
+	sum {
+		id
+		route
+		community {
+			from
+			to
+		}
+	}
+	units {
+		id
+		predicate
+		community {
+			from
+			to
+		}
+	}
+	info {
+		name
+		email
+	}
+			}
+			samples
+		}
+		timeseries {
+data {
+	paging {
+		from
+		limit
+		total
+	}
+	items {
+		id
+		updatedAt
+		createdAt
+		accountId
+		analystName
+		analystEmail
+		accountName
+		playbook
+		summary
+		incident {
+			__typename
+			... on MicrosoftEndpoint {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on AnomalyStats {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on AnomalyEvents {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on Threat {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on ThreatPrevention {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+		}
+		timeline {
+			createdAt
+			description
+			type
+			context
+			descriptions
+			category
+			additionalInfo
+			analystInfo {
+				name
+				email
+			}
+		}
 	}
 }
-query.accountMetrics		}
-query.accountMetrics	}
-query.accountMetrics	sum
-query.accountMetrics	units
-query.accountMetrics	info
-query.accountMetrics}
+			label
+			dimensions {
+				label
+	value {
+		__typename
+		... on StringValue {
+			string
+		}
+		... on DateValue {
+			date
+		}
+		... on Entity {
+			id
+			name
+			type
+		}
+	}
+			}
+			key {
+				measureFieldName
+				dimensions {
+					fieldName
+	value {
+		__typename
+		... on StringValue {
+			string
+		}
+		... on DateValue {
+			date
+		}
+		... on Entity {
+			id
+			name
+			type
+		}
+	}
+				}
+			}
+sum {
+	id
+	route
+	community {
+		from
+		to
+	}
+}
+units {
+	id
+	predicate
+	community {
+		from
+		to
+	}
+}
+info {
+	name
+	email
+}
+		}
 	}	
 }

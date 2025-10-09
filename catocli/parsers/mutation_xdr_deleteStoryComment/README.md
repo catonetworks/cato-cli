@@ -11,17 +11,6 @@ catocli mutation xdr deleteStoryComment <json>
 
 catocli mutation xdr deleteStoryComment "$(cat < mutation.xdr.deleteStoryComment.json)"
 
-catocli mutation xdr deleteStoryComment '{"deleteStoryCommentInput":{"commentId":"id","storyId":"id"}}'
-
-catocli mutation xdr deleteStoryComment '{
-    "deleteStoryCommentInput": {
-        "commentId": "id",
-        "storyId": "id"
-    }
-}'
-```
-
 #### Operation Arguments for mutation.xdr.deleteStoryComment ####
 
 `accountId` [ID] - (required) N/A    
-`deleteStoryCommentInput` [DeleteStoryCommentInput] - (required) N/A    

@@ -11,26 +11,6 @@ catocli mutation policy tlsInspect moveSection <json>
 
 catocli mutation policy tlsInspect moveSection "$(cat < mutation.policy.tlsInspect.moveSection.json)"
 
-catocli mutation policy tlsInspect moveSection '{"policyMoveSectionInput":{"id":"id","policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}},"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
-
-catocli mutation policy tlsInspect moveSection '{
-    "policyMoveSectionInput": {
-        "id": "id",
-        "policySectionPositionInput": {
-            "position": "AFTER_SECTION",
-            "ref": "id"
-        }
-    },
-    "tlsInspectPolicyMutationInput": {
-        "policyMutationRevisionInput": {
-            "id": "id"
-        }
-    }
-}'
-```
-
 #### Operation Arguments for mutation.policy.tlsInspect.moveSection ####
 
 `accountId` [ID] - (required) N/A    
-`policyMoveSectionInput` [PolicyMoveSectionInput] - (required) N/A    
-`tlsInspectPolicyMutationInput` [TlsInspectPolicyMutationInput] - (required) N/A    

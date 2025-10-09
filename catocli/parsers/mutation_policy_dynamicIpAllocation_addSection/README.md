@@ -11,28 +11,6 @@ catocli mutation policy dynamicIpAllocation addSection <json>
 
 catocli mutation policy dynamicIpAllocation addSection "$(cat < mutation.policy.dynamicIpAllocation.addSection.json)"
 
-catocli mutation policy dynamicIpAllocation addSection '{"dynamicIpAllocationPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyAddSectionInput":{"policyAddSectionInfoInput":{"name":"string"},"policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}}}'
-
-catocli mutation policy dynamicIpAllocation addSection '{
-    "dynamicIpAllocationPolicyMutationInput": {
-        "policyMutationRevisionInput": {
-            "id": "id"
-        }
-    },
-    "policyAddSectionInput": {
-        "policyAddSectionInfoInput": {
-            "name": "string"
-        },
-        "policySectionPositionInput": {
-            "position": "AFTER_SECTION",
-            "ref": "id"
-        }
-    }
-}'
-```
-
 #### Operation Arguments for mutation.policy.dynamicIpAllocation.addSection ####
 
 `accountId` [ID] - (required) N/A    
-`dynamicIpAllocationPolicyMutationInput` [DynamicIpAllocationPolicyMutationInput] - (required) N/A    
-`policyAddSectionInput` [PolicyAddSectionInput] - (required) N/A    

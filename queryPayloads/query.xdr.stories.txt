@@ -1,509 +1,4887 @@
 query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
-	xdr ( accountID:$accountID input:$storyInput ) {
-query.xdr.storiesstories ( input:$storyInput  )  {
-query.xdr.stories	paging {
-query.xdr.stories		from
-query.xdr.stories		limit
-query.xdr.stories		total
-query.xdr.stories	}
-query.xdr.stories	items {
-query.xdr.stories		id
-query.xdr.stories		accountId
-query.xdr.stories		analystName
-query.xdr.stories		analystEmail
-query.xdr.stories		accountName
-query.xdr.stories		updatedAt
-query.xdr.stories		createdAt
-query.xdr.stories		playbook
-query.xdr.stories		summary
-query.xdr.stories		incident {
-query.xdr.stories			id
-query.xdr.stories			firstSignal
-query.xdr.stories			lastSignal
-query.xdr.stories			engineType
-query.xdr.stories			vendor
-query.xdr.stories			producer
-query.xdr.stories			producerName
-query.xdr.stories			connectionType
-query.xdr.stories			indication
-query.xdr.stories			queryName
-query.xdr.stories			criticality
-query.xdr.stories			source
-query.xdr.stories			ticket
-query.xdr.stories			status
-query.xdr.stories			research
-query.xdr.stories			siteName
-query.xdr.stories			storyDuration
-query.xdr.stories			description
-query.xdr.stories			sourceIp
-query.xdr.stories			analystFeedback {
-query.xdr.stories				verdict
-query.xdr.stories				severity
-query.xdr.stories				threatType {
-query.xdr.stories					name
-query.xdr.stories					recommendedAction
-query.xdr.stories					details
-query.xdr.stories				}
-query.xdr.stories				threatClassification
-query.xdr.stories				additionalInfo
-query.xdr.stories			}
-query.xdr.stories			site {
-query.xdr.stories				id
-query.xdr.stories				name
-query.xdr.stories			}
-query.xdr.stories			user {
-query.xdr.stories				id
-query.xdr.stories				name
-query.xdr.stories			}
-query.xdr.stories			predictedVerdict
-query.xdr.stories			predictedThreatType
-query.xdr.stories			... on MicrosoftEndpoint {
-query.xdr.stories				id
-query.xdr.stories				firstSignal
-query.xdr.stories				lastSignal
-query.xdr.stories				engineType
-query.xdr.stories				vendor
-query.xdr.stories				producer
-query.xdr.stories				producerName
-query.xdr.stories				connectionType
-query.xdr.stories				indication
-query.xdr.stories				queryName
-query.xdr.stories				source
-query.xdr.stories				criticality
-query.xdr.stories				ticket
-query.xdr.stories				status
-query.xdr.stories				research
-query.xdr.stories				siteName
-query.xdr.stories				storyDuration
-query.xdr.stories				description
-query.xdr.stories				sourceIp
-query.xdr.stories				analystFeedback
-query.xdr.stories				site
-query.xdr.stories				user
-query.xdr.stories				similarStoriesData
-query.xdr.stories				predictedVerdict
-query.xdr.stories				predictedThreatType
-query.xdr.stories				device
-query.xdr.stories				alerts
-query.xdr.stories			}
-query.xdr.stories			... on AnomalyStats {
-query.xdr.stories				id
-query.xdr.stories				firstSignal
-query.xdr.stories				lastSignal
-query.xdr.stories				engineType
-query.xdr.stories				vendor
-query.xdr.stories				producer
-query.xdr.stories				producerName
-query.xdr.stories				connectionType
-query.xdr.stories				indication
-query.xdr.stories				queryName
-query.xdr.stories				source
-query.xdr.stories				criticality
-query.xdr.stories				ticket
-query.xdr.stories				status
-query.xdr.stories				research
-query.xdr.stories				siteName
-query.xdr.stories				storyDuration
-query.xdr.stories				description
-query.xdr.stories				analystFeedback
-query.xdr.stories				site
-query.xdr.stories				user
-query.xdr.stories				sourceIp
-query.xdr.stories				similarStoriesData
-query.xdr.stories				predictedVerdict
-query.xdr.stories				predictedThreatType
-query.xdr.stories				srcSiteId
-query.xdr.stories				os
-query.xdr.stories				deviceName
-query.xdr.stories				macAddress
-query.xdr.stories				logonName
-query.xdr.stories				clientClass
-query.xdr.stories				drillDownFilter
-query.xdr.stories				breakdownField
-query.xdr.stories				subjectType
-query.xdr.stories				extra {
-	name
-	type
-	value
-}
-query.xdr.stories				gaussian {
-	std
-	ss
-	z_score
-	avg
-	n
-}
-query.xdr.stories				metric {
-	name
-	value
-}
-query.xdr.stories				metricDetails
-query.xdr.stories				mitres {
-	id
-	name
-}
-query.xdr.stories				rules
-query.xdr.stories				timeSeries
-query.xdr.stories				targets
-query.xdr.stories				direction
-query.xdr.stories			}
-query.xdr.stories			... on AnomalyEvents {
-query.xdr.stories				id
-query.xdr.stories				firstSignal
-query.xdr.stories				lastSignal
-query.xdr.stories				engineType
-query.xdr.stories				vendor
-query.xdr.stories				producer
-query.xdr.stories				producerName
-query.xdr.stories				connectionType
-query.xdr.stories				indication
-query.xdr.stories				queryName
-query.xdr.stories				source
-query.xdr.stories				criticality
-query.xdr.stories				ticket
-query.xdr.stories				status
-query.xdr.stories				research
-query.xdr.stories				siteName
-query.xdr.stories				storyDuration
-query.xdr.stories				description
-query.xdr.stories				analystFeedback
-query.xdr.stories				site
-query.xdr.stories				user
-query.xdr.stories				sourceIp
-query.xdr.stories				similarStoriesData
-query.xdr.stories				predictedVerdict
-query.xdr.stories				predictedThreatType
-query.xdr.stories				srcSiteId
-query.xdr.stories				os
-query.xdr.stories				deviceName
-query.xdr.stories				macAddress
-query.xdr.stories				logonName
-query.xdr.stories				clientClass
-query.xdr.stories				drillDownFilter
-query.xdr.stories				breakdownField
-query.xdr.stories				subjectType
-query.xdr.stories				extra {
-	name
-	type
-	value
-}
-query.xdr.stories				gaussian {
-	std
-	ss
-	z_score
-	avg
-	n
-}
-query.xdr.stories				metric {
-	name
-	value
-}
-query.xdr.stories				metricDetails
-query.xdr.stories				mitres {
-	id
-	name
-}
-query.xdr.stories				rules
-query.xdr.stories				timeSeries
-query.xdr.stories				targets
-query.xdr.stories				direction
-query.xdr.stories			}
-query.xdr.stories			... on Threat {
-query.xdr.stories				id
-query.xdr.stories				firstSignal
-query.xdr.stories				lastSignal
-query.xdr.stories				engineType
-query.xdr.stories				vendor
-query.xdr.stories				producer
-query.xdr.stories				producerName
-query.xdr.stories				connectionType
-query.xdr.stories				indication
-query.xdr.stories				queryName
-query.xdr.stories				source
-query.xdr.stories				criticality
-query.xdr.stories				ticket
-query.xdr.stories				status
-query.xdr.stories				research
-query.xdr.stories				siteName
-query.xdr.stories				storyDuration
-query.xdr.stories				description
-query.xdr.stories				analystFeedback
-query.xdr.stories				site
-query.xdr.stories				user
-query.xdr.stories				similarStoriesData
-query.xdr.stories				predictedVerdict
-query.xdr.stories				predictedThreatType
-query.xdr.stories				srcSiteId
-query.xdr.stories				flowsCardinality
-query.xdr.stories				riskLevel
-query.xdr.stories				os
-query.xdr.stories				deviceName
-query.xdr.stories				macAddress
-query.xdr.stories				sourceIp
-query.xdr.stories				logonName
-query.xdr.stories				direction
-query.xdr.stories				clientClass
-query.xdr.stories				events {
-	signatureId
-	eventType
-	threatType
-	threatName
-	severity
-	action
-	ruleId
-	virusName
-	scanResult
-	appId
-	appName
-	dnsProtectionCategory
-}
-query.xdr.stories				mitres {
-	id
-	name
-}
-query.xdr.stories				timeSeries
-query.xdr.stories				targets
-query.xdr.stories				flows
-query.xdr.stories			}
-query.xdr.stories			... on ThreatPrevention {
-query.xdr.stories				id
-query.xdr.stories				firstSignal
-query.xdr.stories				lastSignal
-query.xdr.stories				engineType
-query.xdr.stories				vendor
-query.xdr.stories				producer
-query.xdr.stories				producerName
-query.xdr.stories				connectionType
-query.xdr.stories				indication
-query.xdr.stories				queryName
-query.xdr.stories				source
-query.xdr.stories				criticality
-query.xdr.stories				ticket
-query.xdr.stories				status
-query.xdr.stories				research
-query.xdr.stories				siteName
-query.xdr.stories				storyDuration
-query.xdr.stories				description
-query.xdr.stories				analystFeedback
-query.xdr.stories				site
-query.xdr.stories				user
-query.xdr.stories				similarStoriesData
-query.xdr.stories				predictedVerdict
-query.xdr.stories				predictedThreatType
-query.xdr.stories				srcSiteId
-query.xdr.stories				flowsCardinality
-query.xdr.stories				riskLevel
-query.xdr.stories				os
-query.xdr.stories				deviceName
-query.xdr.stories				macAddress
-query.xdr.stories				sourceIp
-query.xdr.stories				logonName
-query.xdr.stories				direction
-query.xdr.stories				clientClass
-query.xdr.stories				events {
-	signatureId
-	eventType
-	threatType
-	threatName
-	severity
-	action
-	ruleId
-	virusName
-	scanResult
-	appId
-	appName
-	dnsProtectionCategory
-}
-query.xdr.stories				mitres {
-	id
-	name
-}
-query.xdr.stories				timeSeries
-query.xdr.stories				targets
-query.xdr.stories				threatPreventionsEvents {
-	signatureId
-	eventType
-	threatType
-	threatName
-	severity
-	action
-	ruleId
-	virusName
-	scanResult
-	appId
-	appName
-	dnsProtectionCategory
-}
-query.xdr.stories			}
-query.xdr.stories			... on NetworkXDRIncident {
-query.xdr.stories				id
-query.xdr.stories				firstSignal
-query.xdr.stories				lastSignal
-query.xdr.stories				engineType
-query.xdr.stories				vendor
-query.xdr.stories				producer
-query.xdr.stories				producerName
-query.xdr.stories				connectionType
-query.xdr.stories				indication
-query.xdr.stories				queryName
-query.xdr.stories				source
-query.xdr.stories				criticality
-query.xdr.stories				ticket
-query.xdr.stories				status
-query.xdr.stories				research
-query.xdr.stories				siteName
-query.xdr.stories				storyDuration
-query.xdr.stories				description
-query.xdr.stories				sourceIp
-query.xdr.stories				analystFeedback
-query.xdr.stories				site
-query.xdr.stories				user
-query.xdr.stories				similarStoriesData
-query.xdr.stories				predictedVerdict
-query.xdr.stories				predictedThreatType
-query.xdr.stories				networkIncidentTimeline
-query.xdr.stories				storyType
-query.xdr.stories				occurrences
-query.xdr.stories				siteConnectionType
-query.xdr.stories				siteConfigLocation {
-	id
-	type
-	name
-	description
-	businessUnit
-	archived
-	account {
-		id
-		name
+	xdr ( accountID:$accountID ) {
+		stories {
+			paging {
+	from {
+		container {
+			id
+			name
+			description
+			size
+			audit {
+				createdAt
+				createdBy
+				lastModifiedBy
+				lastModifiedAt
+			}
+		}
 	}
-	details {
-		companyName
-		vatId
-		shippingLocation
-		postalAddress {
-			street
-			cityName
-			stateName
-			zipCode
-			addressValidated
-			country {
+				limit
+				total
+			}
+			items {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+				accountId
+				analystName
+				analystEmail
+				accountName
+				updatedAt
+				createdAt
+				playbook
+	summary {
+		id
+		route
+		community {
+			from
+			to
+		}
+	}
+				incident {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+					criticality
+	source {
+		id
+		createdDateTime
+		remediationStatus
+		remediationStatusDetails
+		tags
+		roles
+		verdict
+		processId
+		processCommandLine
+		imageFile {
+			name
+			path
+			size
+			sha1
+			sha256
+			md5
+			issuer
+			signer
+			publisher
+		}
+		userAccount {
+			__typename
+			... on MicrosoftEndpointUser {
+				id
+				name
+				userSid
+				accountName
+				domainName
+				principalName
+			}
+			... on CatoEndpointUser {
 				id
 				name
 			}
 		}
-		contact {
+	}
+					ticket
+	status {
+		rawStatus
+		status
+	}
+					research
+					siteName
+	storyDuration {
+		id
+		updatedAt
+		createdAt
+		accountId
+		analystName
+		analystEmail
+		accountName
+		playbook
+		summary
+		incident {
+			__typename
+			... on MicrosoftEndpoint {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on AnomalyStats {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on AnomalyEvents {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on Threat {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on ThreatPrevention {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+		}
+		timeline {
+			createdAt
+			description
+			type
+			context
+			descriptions
+			category
+			additionalInfo
+			analystInfo {
+				name
+				email
+			}
+		}
+	}
+					description
+					sourceIp
+					analystFeedback {
+						verdict
+						severity
+						threatType {
+							name
+							recommendedAction
+	details {
+		id
+		deviceName
+		externalIp
+		localIp
+		firstSeenDateTime
+		avStatus
+		healthStatus
+		ipInterfaces
+		azureAdDeviceId
+		onboardingStatus
+		osDetails {
+			osType
+			osBuild
+			osVersion
+		}
+		loggedOnUsers {
+			__typename
+			... on MicrosoftEndpointUser {
+				id
+				name
+				userSid
+				accountName
+				domainName
+				principalName
+			}
+			... on CatoEndpointUser {
+				id
+				name
+			}
+		}
+		rbacGroup {
+			id
+			name
+		}
+	}
+						}
+	threatClassification {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		events {
+			signatureId
+			eventType
+			threatType
+			threatName
+			severity
+			action
+			ruleId
+			virusName
+			scanResult
+			appId
+			appName
+			dnsProtectionCategory
+		}
+		mitres {
+			id
+			name
+		}
+		timeSeries {
+			data
+			groupBy
+			label
+			sum
+			units
+			info
+			key {
+				measureFieldName
+				dimensions {
+					value
+					fieldName
+				}
+			}
+		}
+		targets {
+			type
+			name
+			analysisScore
+			infectionSource
+			threatReference
+			catoPopularity
+			threatFeeds
+			creationTime
+			categories
+			countryOfRegistration
+			searchHits
+			engines
+			eventData {
+				signatureId
+				eventType
+				threatType
+				threatName
+				severity
+				action
+				ruleId
+				virusName
+				scanResult
+				appId
+				appName
+				dnsProtectionCategory
+			}
+		}
+	}
+						additionalInfo
+					}
+					site {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+						name
+					}
+					user {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+						name
+					}
+					predictedVerdict
+					predictedThreatType
+					... on MicrosoftEndpoint {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+						firstSignal
+						lastSignal
+						engineType
+						vendor
+						producer
+						producerName
+						connectionType
+						indication
+						queryName
+	source {
+		id
+		createdDateTime
+		remediationStatus
+		remediationStatusDetails
+		tags
+		roles
+		verdict
+		processId
+		processCommandLine
+		imageFile {
+			name
+			path
+			size
+			sha1
+			sha256
+			md5
+			issuer
+			signer
+			publisher
+		}
+		userAccount {
+			__typename
+			... on MicrosoftEndpointUser {
+				id
+				name
+				userSid
+				accountName
+				domainName
+				principalName
+			}
+			... on CatoEndpointUser {
+				id
+				name
+			}
+		}
+	}
+						criticality
+						ticket
+	status {
+		rawStatus
+		status
+	}
+						research
+						siteName
+	storyDuration {
+		id
+		updatedAt
+		createdAt
+		accountId
+		analystName
+		analystEmail
+		accountName
+		playbook
+		summary
+		incident {
+			__typename
+			... on MicrosoftEndpoint {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on AnomalyStats {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on AnomalyEvents {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on Threat {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on ThreatPrevention {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+		}
+		timeline {
+			createdAt
+			description
+			type
+			context
+			descriptions
+			category
+			additionalInfo
+			analystInfo {
+				name
+				email
+			}
+		}
+	}
+						description
+						sourceIp
+	analystFeedback {
+		story {
+			id
+			updatedAt
+			createdAt
+			accountId
+			analystName
+			analystEmail
+			accountName
+			playbook
+			summary
+			incident {
+				__typename
+				... on MicrosoftEndpoint {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on AnomalyStats {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on AnomalyEvents {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on Threat {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on ThreatPrevention {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+			}
+			timeline {
+				createdAt
+				description
+				type
+				context
+				descriptions
+				category
+				additionalInfo
+				analystInfo {
+					name
+					email
+				}
+			}
+		}
+	}
+	site {
+		id
+		name
+	}
+	user {
+		id
+		name
+	}
+	similarStoriesData {
+		storyId
+		threatTypeName
+		verdict
+		threatClassification
+		similarityPercentage
+		indication
+	}
+						predictedVerdict
+						predictedThreatType
+	device {
+		__typename
+		... on MicrosoftDeviceDetails {
+			id
+			deviceName
+			osDetails {
+				osType
+				osBuild
+				osVersion
+			}
+			loggedOnUsers {
+				__typename
+				... on MicrosoftEndpointUser {
+					id
+					name
+					userSid
+					accountName
+					domainName
+					principalName
+				}
+				... on CatoEndpointUser {
+					id
+					name
+				}
+			}
+			externalIp
+			localIp
+			firstSeenDateTime
+			avStatus
+			healthStatus
+			rbacGroup {
+				id
+				name
+			}
+		}
+		... on CatoEndpointDeviceDetails {
+			id
+			deviceName
+			osDetails {
+				osType
+				osBuild
+				osVersion
+			}
+			loggedOnUsers {
+				__typename
+				... on MicrosoftEndpointUser {
+					id
+					name
+					userSid
+					accountName
+					domainName
+					principalName
+				}
+				... on CatoEndpointUser {
+					id
+					name
+				}
+			}
+			macAddress
+			externalIp
+			localIp
+		}
+	}
+	alerts {
+		id
+		description
+		status
+		title
+		threatName
+		createdDateTime
+		criticality
+		externalIp
+		localIp
+		comments
+		recommendedActions
+		category
+		ownerName
+		threatFamilyName
+		threatType
+		resolvedDateTime
+		firstActivityDateTime
+		lastActivityDateTime
+		mitreTechnique {
+			id
+			name
+		}
+		mitreSubTechnique {
+			id
+			name
+		}
+		resources {
+			__typename
+			... on MicrosoftProcessResource {
+				id
+				createdDateTime
+				remediationStatus
+				remediationStatusDetails
+				tags
+				roles
+				verdict
+				processId
+				processCommandLine
+				imageFile {
+					name
+					path
+					size
+					sha1
+					sha256
+					md5
+					issuer
+					signer
+					publisher
+				}
+			}
+			... on MicrosoftFileResource {
+				id
+				createdDateTime
+				remediationStatus
+				remediationStatusDetails
+				tags
+				roles
+				verdict
+				fileDetails {
+					name
+					path
+					size
+					sha1
+					sha256
+					md5
+					issuer
+					signer
+					publisher
+				}
+				detectionStatus
+			}
+			... on MicrosoftRegistryResource {
+				id
+				createdDateTime
+				remediationStatus
+				remediationStatusDetails
+				tags
+				roles
+				verdict
+				hive
+				key
+				value
+			}
+		}
+		activities {
+			id
+			resourceId
+			parentResourceId
+			action
+			firstActivityDateTime
+			lastActivityDateTime
+		}
+	}
+					}
+					... on AnomalyStats {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+						firstSignal
+						lastSignal
+						engineType
+						vendor
+						producer
+						producerName
+						connectionType
+						indication
+						queryName
+	source {
+		id
+		createdDateTime
+		remediationStatus
+		remediationStatusDetails
+		tags
+		roles
+		verdict
+		processId
+		processCommandLine
+		imageFile {
+			name
+			path
+			size
+			sha1
+			sha256
+			md5
+			issuer
+			signer
+			publisher
+		}
+		userAccount {
+			__typename
+			... on MicrosoftEndpointUser {
+				id
+				name
+				userSid
+				accountName
+				domainName
+				principalName
+			}
+			... on CatoEndpointUser {
+				id
+				name
+			}
+		}
+	}
+						criticality
+						ticket
+	status {
+		rawStatus
+		status
+	}
+						research
+						siteName
+	storyDuration {
+		id
+		updatedAt
+		createdAt
+		accountId
+		analystName
+		analystEmail
+		accountName
+		playbook
+		summary
+		incident {
+			__typename
+			... on MicrosoftEndpoint {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on AnomalyStats {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on AnomalyEvents {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on Threat {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on ThreatPrevention {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+		}
+		timeline {
+			createdAt
+			description
+			type
+			context
+			descriptions
+			category
+			additionalInfo
+			analystInfo {
+				name
+				email
+			}
+		}
+	}
+						description
+	analystFeedback {
+		story {
+			id
+			updatedAt
+			createdAt
+			accountId
+			analystName
+			analystEmail
+			accountName
+			playbook
+			summary
+			incident {
+				__typename
+				... on MicrosoftEndpoint {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on AnomalyStats {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on AnomalyEvents {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on Threat {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on ThreatPrevention {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+			}
+			timeline {
+				createdAt
+				description
+				type
+				context
+				descriptions
+				category
+				additionalInfo
+				analystInfo {
+					name
+					email
+				}
+			}
+		}
+	}
+	site {
+		id
+		name
+	}
+	user {
+		id
+		name
+	}
+						sourceIp
+	similarStoriesData {
+		storyId
+		threatTypeName
+		verdict
+		threatClassification
+		similarityPercentage
+		indication
+	}
+						predictedVerdict
+						predictedThreatType
+						srcSiteId
+	os {
+		osType
+		osBuild
+		osVersion
+	}
+						deviceName
+						macAddress
+						logonName
+						clientClass
+	drillDownFilter {
+		name
+		value
+		values
+	}
+						breakdownField
+						subjectType
+	extra {
+		name
+		type
+		value
+	}
+	gaussian {
+		std
+		ss
+		z_score
+		avg
+		n
+	}
+	metric {
+		name
+		value
+	}
+	metricDetails {
+		name
+		units
+	}
+	mitres {
+		id
+		name
+	}
+	rules {
+		ip
+		subnet
+		user {
+			id
+			name
+		}
+		floatingSubnet {
+			id
+			name
+		}
+		globalIpRange {
+			id
+			name
+		}
+		group {
+			id
+			name
+		}
+		host {
+			id
+			name
+		}
+		ipRange {
+			from
+			to
+		}
+		networkInterface {
+			id
+			name
+		}
+		site {
+			id
+			name
+		}
+	}
+	timeSeries {
+		data
+		label
+		sum
+		units
+		info
+		dimensions {
+			value
+			label
+		}
+		key {
+			measureFieldName
+			dimensions {
+				value
+				fieldName
+			}
+		}
+	}
+	targets {
+		type
+		name
+		analysisScore
+		infectionSource
+		threatReference
+		catoPopularity
+		threatFeeds
+		creationTime
+		categories
+		countryOfRegistration
+		searchHits
+		engines
+		eventData {
+			signatureId
+			eventType
+			threatType
+			threatName
+			severity
+			action
+			ruleId
+			virusName
+			scanResult
+			appId
+			appName
+			dnsProtectionCategory
+		}
+	}
+						direction
+					}
+					... on AnomalyEvents {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+						firstSignal
+						lastSignal
+						engineType
+						vendor
+						producer
+						producerName
+						connectionType
+						indication
+						queryName
+	source {
+		id
+		createdDateTime
+		remediationStatus
+		remediationStatusDetails
+		tags
+		roles
+		verdict
+		processId
+		processCommandLine
+		imageFile {
+			name
+			path
+			size
+			sha1
+			sha256
+			md5
+			issuer
+			signer
+			publisher
+		}
+		userAccount {
+			__typename
+			... on MicrosoftEndpointUser {
+				id
+				name
+				userSid
+				accountName
+				domainName
+				principalName
+			}
+			... on CatoEndpointUser {
+				id
+				name
+			}
+		}
+	}
+						criticality
+						ticket
+	status {
+		rawStatus
+		status
+	}
+						research
+						siteName
+	storyDuration {
+		id
+		updatedAt
+		createdAt
+		accountId
+		analystName
+		analystEmail
+		accountName
+		playbook
+		summary
+		incident {
+			__typename
+			... on MicrosoftEndpoint {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on AnomalyStats {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on AnomalyEvents {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on Threat {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on ThreatPrevention {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+		}
+		timeline {
+			createdAt
+			description
+			type
+			context
+			descriptions
+			category
+			additionalInfo
+			analystInfo {
+				name
+				email
+			}
+		}
+	}
+						description
+	analystFeedback {
+		story {
+			id
+			updatedAt
+			createdAt
+			accountId
+			analystName
+			analystEmail
+			accountName
+			playbook
+			summary
+			incident {
+				__typename
+				... on MicrosoftEndpoint {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on AnomalyStats {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on AnomalyEvents {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on Threat {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on ThreatPrevention {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+			}
+			timeline {
+				createdAt
+				description
+				type
+				context
+				descriptions
+				category
+				additionalInfo
+				analystInfo {
+					name
+					email
+				}
+			}
+		}
+	}
+	site {
+		id
+		name
+	}
+	user {
+		id
+		name
+	}
+						sourceIp
+	similarStoriesData {
+		storyId
+		threatTypeName
+		verdict
+		threatClassification
+		similarityPercentage
+		indication
+	}
+						predictedVerdict
+						predictedThreatType
+						srcSiteId
+	os {
+		osType
+		osBuild
+		osVersion
+	}
+						deviceName
+						macAddress
+						logonName
+						clientClass
+	drillDownFilter {
+		name
+		value
+		values
+	}
+						breakdownField
+						subjectType
+	extra {
+		name
+		type
+		value
+	}
+	gaussian {
+		std
+		ss
+		z_score
+		avg
+		n
+	}
+	metric {
+		name
+		value
+	}
+	metricDetails {
+		name
+		units
+	}
+	mitres {
+		id
+		name
+	}
+	rules {
+		ip
+		subnet
+		user {
+			id
+			name
+		}
+		floatingSubnet {
+			id
+			name
+		}
+		globalIpRange {
+			id
+			name
+		}
+		group {
+			id
+			name
+		}
+		host {
+			id
+			name
+		}
+		ipRange {
+			from
+			to
+		}
+		networkInterface {
+			id
+			name
+		}
+		site {
+			id
+			name
+		}
+	}
+	timeSeries {
+		data
+		label
+		sum
+		units
+		info
+		dimensions {
+			value
+			label
+		}
+		key {
+			measureFieldName
+			dimensions {
+				value
+				fieldName
+			}
+		}
+	}
+	targets {
+		type
+		name
+		analysisScore
+		infectionSource
+		threatReference
+		catoPopularity
+		threatFeeds
+		creationTime
+		categories
+		countryOfRegistration
+		searchHits
+		engines
+		eventData {
+			signatureId
+			eventType
+			threatType
+			threatName
+			severity
+			action
+			ruleId
+			virusName
+			scanResult
+			appId
+			appName
+			dnsProtectionCategory
+		}
+	}
+						direction
+					}
+					... on Threat {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+						firstSignal
+						lastSignal
+						engineType
+						vendor
+						producer
+						producerName
+						connectionType
+						indication
+						queryName
+	source {
+		id
+		createdDateTime
+		remediationStatus
+		remediationStatusDetails
+		tags
+		roles
+		verdict
+		processId
+		processCommandLine
+		imageFile {
+			name
+			path
+			size
+			sha1
+			sha256
+			md5
+			issuer
+			signer
+			publisher
+		}
+		userAccount {
+			__typename
+			... on MicrosoftEndpointUser {
+				id
+				name
+				userSid
+				accountName
+				domainName
+				principalName
+			}
+			... on CatoEndpointUser {
+				id
+				name
+			}
+		}
+	}
+						criticality
+						ticket
+	status {
+		rawStatus
+		status
+	}
+						research
+						siteName
+	storyDuration {
+		id
+		updatedAt
+		createdAt
+		accountId
+		analystName
+		analystEmail
+		accountName
+		playbook
+		summary
+		incident {
+			__typename
+			... on MicrosoftEndpoint {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on AnomalyStats {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on AnomalyEvents {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on Threat {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on ThreatPrevention {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+		}
+		timeline {
+			createdAt
+			description
+			type
+			context
+			descriptions
+			category
+			additionalInfo
+			analystInfo {
+				name
+				email
+			}
+		}
+	}
+						description
+	analystFeedback {
+		story {
+			id
+			updatedAt
+			createdAt
+			accountId
+			analystName
+			analystEmail
+			accountName
+			playbook
+			summary
+			incident {
+				__typename
+				... on MicrosoftEndpoint {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on AnomalyStats {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on AnomalyEvents {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on Threat {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on ThreatPrevention {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+			}
+			timeline {
+				createdAt
+				description
+				type
+				context
+				descriptions
+				category
+				additionalInfo
+				analystInfo {
+					name
+					email
+				}
+			}
+		}
+	}
+	site {
+		id
+		name
+	}
+	user {
+		id
+		name
+	}
+	similarStoriesData {
+		storyId
+		threatTypeName
+		verdict
+		threatClassification
+		similarityPercentage
+		indication
+	}
+						predictedVerdict
+						predictedThreatType
+						srcSiteId
+						flowsCardinality
+						riskLevel
+	os {
+		osType
+		osBuild
+		osVersion
+	}
+						deviceName
+						macAddress
+						sourceIp
+						logonName
+						direction
+						clientClass
+	events {
+		id
+		from
+		to
+		total
+		totals
+		records {
+			fieldsUnitTypes
+			fieldsMap
+			trends
+			prevTimeFrame
+			flatFields
+			fields {
+				name
+				value {
+					__typename
+					... on StringValue {
+					}
+					... on DateValue {
+					}
+					... on Entity {
+					}
+				}
+			}
+		}
+	}
+	mitres {
+		id
+		name
+	}
+	timeSeries {
+		data
+		label
+		sum
+		units
+		info
+		dimensions {
+			value
+			label
+		}
+		key {
+			measureFieldName
+			dimensions {
+				value
+				fieldName
+			}
+		}
+	}
+	targets {
+		type
+		name
+		analysisScore
+		infectionSource
+		threatReference
+		catoPopularity
+		threatFeeds
+		creationTime
+		categories
+		countryOfRegistration
+		searchHits
+		engines
+		eventData {
+			signatureId
+			eventType
+			threatType
+			threatName
+			severity
+			action
+			ruleId
+			virusName
+			scanResult
+			appId
+			appName
+			dnsProtectionCategory
+		}
+	}
+	flows {
+		createdAt
+		appName
+		clientClass
+		sourceIp
+		sourcePort
+		destinationCountry
+		destinationIp
+		destinationPort
+		direction
+		referer
+		userAgent
+		method
+		url
+		target
+		domain
+		sourceGeolocation
+	}
+					}
+					... on ThreatPrevention {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+						firstSignal
+						lastSignal
+						engineType
+						vendor
+						producer
+						producerName
+						connectionType
+						indication
+						queryName
+	source {
+		id
+		createdDateTime
+		remediationStatus
+		remediationStatusDetails
+		tags
+		roles
+		verdict
+		processId
+		processCommandLine
+		imageFile {
+			name
+			path
+			size
+			sha1
+			sha256
+			md5
+			issuer
+			signer
+			publisher
+		}
+		userAccount {
+			__typename
+			... on MicrosoftEndpointUser {
+				id
+				name
+				userSid
+				accountName
+				domainName
+				principalName
+			}
+			... on CatoEndpointUser {
+				id
+				name
+			}
+		}
+	}
+						criticality
+						ticket
+	status {
+		rawStatus
+		status
+	}
+						research
+						siteName
+	storyDuration {
+		id
+		updatedAt
+		createdAt
+		accountId
+		analystName
+		analystEmail
+		accountName
+		playbook
+		summary
+		incident {
+			__typename
+			... on MicrosoftEndpoint {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on AnomalyStats {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on AnomalyEvents {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on Threat {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on ThreatPrevention {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+		}
+		timeline {
+			createdAt
+			description
+			type
+			context
+			descriptions
+			category
+			additionalInfo
+			analystInfo {
+				name
+				email
+			}
+		}
+	}
+						description
+	analystFeedback {
+		story {
+			id
+			updatedAt
+			createdAt
+			accountId
+			analystName
+			analystEmail
+			accountName
+			playbook
+			summary
+			incident {
+				__typename
+				... on MicrosoftEndpoint {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on AnomalyStats {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on AnomalyEvents {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on Threat {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on ThreatPrevention {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+			}
+			timeline {
+				createdAt
+				description
+				type
+				context
+				descriptions
+				category
+				additionalInfo
+				analystInfo {
+					name
+					email
+				}
+			}
+		}
+	}
+	site {
+		id
+		name
+	}
+	user {
+		id
+		name
+	}
+	similarStoriesData {
+		storyId
+		threatTypeName
+		verdict
+		threatClassification
+		similarityPercentage
+		indication
+	}
+						predictedVerdict
+						predictedThreatType
+						srcSiteId
+						flowsCardinality
+						riskLevel
+	os {
+		osType
+		osBuild
+		osVersion
+	}
+						deviceName
+						macAddress
+						sourceIp
+						logonName
+						direction
+						clientClass
+	events {
+		id
+		from
+		to
+		total
+		totals
+		records {
+			fieldsUnitTypes
+			fieldsMap
+			trends
+			prevTimeFrame
+			flatFields
+			fields {
+				name
+				value {
+					__typename
+					... on StringValue {
+					}
+					... on DateValue {
+					}
+					... on Entity {
+					}
+				}
+			}
+		}
+	}
+	mitres {
+		id
+		name
+	}
+	timeSeries {
+		data
+		label
+		sum
+		units
+		info
+		dimensions {
+			value
+			label
+		}
+		key {
+			measureFieldName
+			dimensions {
+				value
+				fieldName
+			}
+		}
+	}
+	targets {
+		type
+		name
+		analysisScore
+		infectionSource
+		threatReference
+		catoPopularity
+		threatFeeds
+		creationTime
+		categories
+		countryOfRegistration
+		searchHits
+		engines
+		eventData {
+			signatureId
+			eventType
+			threatType
+			threatName
+			severity
+			action
+			ruleId
+			virusName
+			scanResult
+			appId
+			appName
+			dnsProtectionCategory
+		}
+	}
+	threatPreventionsEvents {
+		signatureId
+		eventType
+		threatType
+		threatName
+		severity
+		action
+		ruleId
+		virusName
+		scanResult
+		appId
+		appName
+		dnsProtectionCategory
+	}
+					}
+					... on NetworkXDRIncident {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+						firstSignal
+						lastSignal
+						engineType
+						vendor
+						producer
+						producerName
+						connectionType
+						indication
+						queryName
+	source {
+		id
+		createdDateTime
+		remediationStatus
+		remediationStatusDetails
+		tags
+		roles
+		verdict
+		processId
+		processCommandLine
+		imageFile {
+			name
+			path
+			size
+			sha1
+			sha256
+			md5
+			issuer
+			signer
+			publisher
+		}
+		userAccount {
+			__typename
+			... on MicrosoftEndpointUser {
+				id
+				name
+				userSid
+				accountName
+				domainName
+				principalName
+			}
+			... on CatoEndpointUser {
+				id
+				name
+			}
+		}
+	}
+						criticality
+						ticket
+	status {
+		rawStatus
+		status
+	}
+						research
+						siteName
+	storyDuration {
+		id
+		updatedAt
+		createdAt
+		accountId
+		analystName
+		analystEmail
+		accountName
+		playbook
+		summary
+		incident {
+			__typename
+			... on MicrosoftEndpoint {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on AnomalyStats {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on AnomalyEvents {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on Threat {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on ThreatPrevention {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+		}
+		timeline {
+			createdAt
+			description
+			type
+			context
+			descriptions
+			category
+			additionalInfo
+			analystInfo {
+				name
+				email
+			}
+		}
+	}
+						description
+						sourceIp
+	analystFeedback {
+		story {
+			id
+			updatedAt
+			createdAt
+			accountId
+			analystName
+			analystEmail
+			accountName
+			playbook
+			summary
+			incident {
+				__typename
+				... on MicrosoftEndpoint {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on AnomalyStats {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on AnomalyEvents {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on Threat {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on ThreatPrevention {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+			}
+			timeline {
+				createdAt
+				description
+				type
+				context
+				descriptions
+				category
+				additionalInfo
+				analystInfo {
+					name
+					email
+				}
+			}
+		}
+	}
+	site {
+		id
+		name
+	}
+	user {
+		id
+		name
+	}
+	similarStoriesData {
+		storyId
+		threatTypeName
+		verdict
+		threatClassification
+		similarityPercentage
+		indication
+	}
+						predictedVerdict
+						predictedThreatType
+	networkIncidentTimeline {
+		description
+		created
+		validated
+		eventType
+		incidentId
+		networkEventSource
+		eventIds
+		acknowledged
+		linkId
+		linkName
+		linkConfigPrecedence
+		linkStatus
+		linkConfigBandwidth
+		deviceConfigHaRole
+		deviceHaRoleState
+		socketSerialId
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		linkQualityIssue {
+			issueType
+			direction
+			current
+			threshold
+		}
+	}
+	storyType {
+		id
+		updatedAt
+		createdAt
+		accountId
+		analystName
+		analystEmail
+		accountName
+		playbook
+		summary
+		incident {
+			__typename
+			... on MicrosoftEndpoint {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on AnomalyStats {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on AnomalyEvents {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on Threat {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on ThreatPrevention {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+		}
+		timeline {
+			createdAt
+			description
+			type
+			context
+			descriptions
+			category
+			additionalInfo
+			analystInfo {
+				name
+				email
+			}
+		}
+	}
+						occurrences
+						siteConnectionType
+	siteConfigLocation {
+		id
+		type
+		name
+		description
+		businessUnit
+		archived
+		account {
+			id
+			name
+		}
+		details {
+			companyName
+			vatId
+			shippingLocation
+			postalAddress {
+				street
+				cityName
+				stateName
+				zipCode
+				addressValidated
+				country {
+					id
+					name
+				}
+			}
+			contact {
+				name
+				phone
+				email
+			}
+		}
+		audit {
+			updatedTime
+			updatedBy {
+				__typename
+				... on AdminRef {
+					id
+					name
+				}
+				... on ApiKeyRef {
+					id
+					name
+				}
+			}
+		}
+	}
+						acknowledged
+						linkId
+						linkName
+						linkConfigPrecedence
+						deviceConfigHaRole
+	licenseRegion {
+		__typename
+		... on DataLakeLicense {
+			id
+			description
+			plan
+			sku
+			status
+			startDate
+			expirationDate
+			lastUpdated
+			dpaVersion
+			retentionPeriod
+		}
+		... on PublicIpsLicense {
+			id
+			description
+			plan
+			sku
+			status
+			startDate
+			expirationDate
+			lastUpdated
+			total
+		}
+		... on SiteLicense {
+			id
+			description
+			plan
+			sku
+			status
+			startDate
+			expirationDate
+			lastUpdated
+			siteLicenseGroup
+			regionality
+		}
+		... on PooledBandwidthLicense {
+			id
+			description
+			plan
+			sku
+			status
+			startDate
+			expirationDate
+			lastUpdated
+			siteLicenseGroup
+			siteLicenseType
+		}
+		... on ZtnaUsersLicense {
+			id
+			description
+			plan
+			sku
+			status
+			startDate
+			expirationDate
+			lastUpdated
+			ztnaUsersLicenseGroup
+			total
+		}
+	}
+	licenseBandwidth {
+		__typename
+		... on DataLakeLicense {
+			id
+			description
+			plan
+			sku
+			status
+			startDate
+			expirationDate
+			lastUpdated
+			dpaVersion
+			retentionPeriod
+		}
+		... on PublicIpsLicense {
+			id
+			description
+			plan
+			sku
+			status
+			startDate
+			expirationDate
+			lastUpdated
+			total
+		}
+		... on SiteLicense {
+			id
+			description
+			plan
+			sku
+			status
+			startDate
+			expirationDate
+			lastUpdated
+			siteLicenseGroup
+			regionality
+		}
+		... on PooledBandwidthLicense {
+			id
+			description
+			plan
+			sku
+			status
+			startDate
+			expirationDate
+			lastUpdated
+			siteLicenseGroup
+			siteLicenseType
+		}
+		... on ZtnaUsersLicense {
+			id
+			description
+			plan
+			sku
+			status
+			startDate
+			expirationDate
+			lastUpdated
+			ztnaUsersLicenseGroup
+			total
+		}
+	}
+	pop {
+		id
+		name
+	}
+	isp {
+		fileName
+		fileHash
+		uploadedAt
+	}
+	bgpConnection {
+		connectionName
+		peerIp
+		peerAsn
+		catoIp
+		catoAsn
+	}
+						hostIp
+						ruleName
+						muted
+	ilmmDetails {
+		linkDetails {
+			description
+			linkId
+			ispLinkId
+			comments
+			onboardingStatus
+			activeLicense
+		}
+		ispDetails {
+			name
+			description
+			ispAccountId
+			supportEmail
+			supportPhone
+			countryCode
+			loaFile {
+				fileName
+				fileHash
+				uploadedAt
+			}
+		}
+		contacts {
 			name
 			phone
 			email
 		}
 	}
-	audit {
-		updatedTime
-		updatedBy {
+					}
+					... on AiOperationsIncident {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+						firstSignal
+						lastSignal
+						engineType
+						vendor
+						producer
+						producerName
+						connectionType
+						indication
+						queryName
+						criticality
+						ticket
+	status {
+		rawStatus
+		status
+	}
+						research
+	storyDuration {
+		id
+		updatedAt
+		createdAt
+		accountId
+		analystName
+		analystEmail
+		accountName
+		playbook
+		summary
+		incident {
 			__typename
-			... on AdminRef {
+			... on MicrosoftEndpoint {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on AnomalyStats {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on AnomalyEvents {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on Threat {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on ThreatPrevention {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+		}
+		timeline {
+			createdAt
+			description
+			type
+			context
+			descriptions
+			category
+			additionalInfo
+			analystInfo {
+				name
+				email
+			}
+		}
+	}
+						description
+	analystFeedback {
+		story {
+			id
+			updatedAt
+			createdAt
+			accountId
+			analystName
+			analystEmail
+			accountName
+			playbook
+			summary
+			incident {
+				__typename
+				... on MicrosoftEndpoint {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on AnomalyStats {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on AnomalyEvents {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on Threat {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on ThreatPrevention {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+			}
+			timeline {
+				createdAt
+				description
+				type
+				context
+				descriptions
+				category
+				additionalInfo
+				analystInfo {
+					name
+					email
+				}
+			}
+		}
+	}
+	site {
+		id
+		name
+	}
+	user {
+		id
+		name
+	}
+	similarStoriesData {
+		storyId
+		threatTypeName
+		verdict
+		threatClassification
+		similarityPercentage
+		indication
+	}
+						predictedVerdict
+						predictedThreatType
+						flowLastTime
+						flowStartTime
+	source {
+		id
+		createdDateTime
+		remediationStatus
+		remediationStatusDetails
+		tags
+		roles
+		verdict
+		processId
+		processCommandLine
+		imageFile {
+			name
+			path
+			size
+			sha1
+			sha256
+			md5
+			issuer
+			signer
+			publisher
+		}
+		userAccount {
+			__typename
+			... on MicrosoftEndpointUser {
 				id
 				name
+				userSid
+				accountName
+				domainName
+				principalName
 			}
-			... on ApiKeyRef {
+			... on CatoEndpointUser {
 				id
 				name
 			}
 		}
 	}
-}
-query.xdr.stories				acknowledged
-query.xdr.stories				linkId
-query.xdr.stories				linkName
-query.xdr.stories				linkConfigPrecedence
-query.xdr.stories				deviceConfigHaRole
-query.xdr.stories				licenseRegion
-query.xdr.stories				licenseBandwidth
-query.xdr.stories				pop
-query.xdr.stories				isp
-query.xdr.stories				bgpConnection
-query.xdr.stories				hostIp
-query.xdr.stories				ruleName
-query.xdr.stories				muted
-query.xdr.stories				ilmmDetails
-query.xdr.stories			}
-query.xdr.stories			... on AiOperationsIncident {
-query.xdr.stories				id
-query.xdr.stories				firstSignal
-query.xdr.stories				lastSignal
-query.xdr.stories				engineType
-query.xdr.stories				vendor
-query.xdr.stories				producer
-query.xdr.stories				producerName
-query.xdr.stories				connectionType
-query.xdr.stories				indication
-query.xdr.stories				queryName
-query.xdr.stories				criticality
-query.xdr.stories				ticket
-query.xdr.stories				status
-query.xdr.stories				research
-query.xdr.stories				storyDuration
-query.xdr.stories				description
-query.xdr.stories				analystFeedback
-query.xdr.stories				site
-query.xdr.stories				user
-query.xdr.stories				similarStoriesData
-query.xdr.stories				predictedVerdict
-query.xdr.stories				predictedThreatType
-query.xdr.stories				flowLastTime
-query.xdr.stories				flowStartTime
-query.xdr.stories				source
-query.xdr.stories				ioa
-query.xdr.stories				riskScore
-query.xdr.stories				sourceIp
-query.xdr.stories				siteName
-query.xdr.stories				type
-query.xdr.stories				accountOperationIncident
-query.xdr.stories			}
-query.xdr.stories			... on CatoEndpoint {
-query.xdr.stories				id
-query.xdr.stories				firstSignal
-query.xdr.stories				lastSignal
-query.xdr.stories				engineType
-query.xdr.stories				vendor
-query.xdr.stories				producer
-query.xdr.stories				producerName
-query.xdr.stories				connectionType
-query.xdr.stories				indication
-query.xdr.stories				queryName
-query.xdr.stories				source
-query.xdr.stories				criticality
-query.xdr.stories				ticket
-query.xdr.stories				status
-query.xdr.stories				research
-query.xdr.stories				siteName
-query.xdr.stories				storyDuration
-query.xdr.stories				description
-query.xdr.stories				sourceIp
-query.xdr.stories				analystFeedback
-query.xdr.stories				site
-query.xdr.stories				user
-query.xdr.stories				similarStoriesData
-query.xdr.stories				predictedVerdict
-query.xdr.stories				predictedThreatType
-query.xdr.stories				device
-query.xdr.stories				alerts
-query.xdr.stories			}
-query.xdr.stories		}
-query.xdr.stories		timeline {
-query.xdr.stories			createdAt
-query.xdr.stories			description
-query.xdr.stories			context
-query.xdr.stories			type
-query.xdr.stories			descriptions
-query.xdr.stories			category
-query.xdr.stories			additionalInfo
-query.xdr.stories			analystInfo {
-query.xdr.stories				name
-query.xdr.stories				email
-query.xdr.stories			}
-query.xdr.stories		}
-query.xdr.stories	}
-query.xdr.stories}
+						ioa
+						riskScore
+						sourceIp
+						siteName
+	type {
+		name
+		recommendedAction
+		details
+	}
+	accountOperationIncident {
+		impact
+		incidentTimeline {
+			__typename
+			... on AccountOperationsTimelineEvent {
+				id
+				created
+				validated
+				description
+				type
+				eventIds
+				muted
+			}
+		}
+	}
+					}
+					... on CatoEndpoint {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+						firstSignal
+						lastSignal
+						engineType
+						vendor
+						producer
+						producerName
+						connectionType
+						indication
+						queryName
+	source {
+		id
+		createdDateTime
+		remediationStatus
+		remediationStatusDetails
+		tags
+		roles
+		verdict
+		processId
+		processCommandLine
+		imageFile {
+			name
+			path
+			size
+			sha1
+			sha256
+			md5
+			issuer
+			signer
+			publisher
+		}
+		userAccount {
+			__typename
+			... on MicrosoftEndpointUser {
+				id
+				name
+				userSid
+				accountName
+				domainName
+				principalName
+			}
+			... on CatoEndpointUser {
+				id
+				name
+			}
+		}
+	}
+						criticality
+						ticket
+	status {
+		rawStatus
+		status
+	}
+						research
+						siteName
+	storyDuration {
+		id
+		updatedAt
+		createdAt
+		accountId
+		analystName
+		analystEmail
+		accountName
+		playbook
+		summary
+		incident {
+			__typename
+			... on MicrosoftEndpoint {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on AnomalyStats {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on AnomalyEvents {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on Threat {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on ThreatPrevention {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+		}
+		timeline {
+			createdAt
+			description
+			type
+			context
+			descriptions
+			category
+			additionalInfo
+			analystInfo {
+				name
+				email
+			}
+		}
+	}
+						description
+						sourceIp
+	analystFeedback {
+		story {
+			id
+			updatedAt
+			createdAt
+			accountId
+			analystName
+			analystEmail
+			accountName
+			playbook
+			summary
+			incident {
+				__typename
+				... on MicrosoftEndpoint {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on AnomalyStats {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on AnomalyEvents {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on Threat {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+				... on ThreatPrevention {
+					id
+					firstSignal
+					lastSignal
+					engineType
+					vendor
+					producer
+					producerName
+					connectionType
+					indication
+					queryName
+				}
+			}
+			timeline {
+				createdAt
+				description
+				type
+				context
+				descriptions
+				category
+				additionalInfo
+				analystInfo {
+					name
+					email
+				}
+			}
+		}
+	}
+	site {
+		id
+		name
+	}
+	user {
+		id
+		name
+	}
+	similarStoriesData {
+		storyId
+		threatTypeName
+		verdict
+		threatClassification
+		similarityPercentage
+		indication
+	}
+						predictedVerdict
+						predictedThreatType
+	device {
+		__typename
+		... on MicrosoftDeviceDetails {
+			id
+			deviceName
+			osDetails {
+				osType
+				osBuild
+				osVersion
+			}
+			loggedOnUsers {
+				__typename
+				... on MicrosoftEndpointUser {
+					id
+					name
+					userSid
+					accountName
+					domainName
+					principalName
+				}
+				... on CatoEndpointUser {
+					id
+					name
+				}
+			}
+			externalIp
+			localIp
+			firstSeenDateTime
+			avStatus
+			healthStatus
+			rbacGroup {
+				id
+				name
+			}
+		}
+		... on CatoEndpointDeviceDetails {
+			id
+			deviceName
+			osDetails {
+				osType
+				osBuild
+				osVersion
+			}
+			loggedOnUsers {
+				__typename
+				... on MicrosoftEndpointUser {
+					id
+					name
+					userSid
+					accountName
+					domainName
+					principalName
+				}
+				... on CatoEndpointUser {
+					id
+					name
+				}
+			}
+			macAddress
+			externalIp
+			localIp
+		}
+	}
+	alerts {
+		id
+		description
+		status
+		title
+		threatName
+		createdDateTime
+		criticality
+		externalIp
+		localIp
+		comments
+		recommendedActions
+		category
+		ownerName
+		threatFamilyName
+		threatType
+		resolvedDateTime
+		firstActivityDateTime
+		lastActivityDateTime
+		mitreTechnique {
+			id
+			name
+		}
+		mitreSubTechnique {
+			id
+			name
+		}
+		resources {
+			__typename
+			... on MicrosoftProcessResource {
+				id
+				createdDateTime
+				remediationStatus
+				remediationStatusDetails
+				tags
+				roles
+				verdict
+				processId
+				processCommandLine
+				imageFile {
+					name
+					path
+					size
+					sha1
+					sha256
+					md5
+					issuer
+					signer
+					publisher
+				}
+			}
+			... on MicrosoftFileResource {
+				id
+				createdDateTime
+				remediationStatus
+				remediationStatusDetails
+				tags
+				roles
+				verdict
+				fileDetails {
+					name
+					path
+					size
+					sha1
+					sha256
+					md5
+					issuer
+					signer
+					publisher
+				}
+				detectionStatus
+			}
+			... on MicrosoftRegistryResource {
+				id
+				createdDateTime
+				remediationStatus
+				remediationStatusDetails
+				tags
+				roles
+				verdict
+				hive
+				key
+				value
+			}
+		}
+		activities {
+			id
+			resourceId
+			parentResourceId
+			action
+			firstActivityDateTime
+			lastActivityDateTime
+		}
+	}
+					}
+				}
+				timeline {
+					createdAt
+					description
+	context {
+		applicationTenant {
+			value
+			operator
+			valueSet {
+				id
+				name
+			}
+		}
+	}
+	type {
+		name
+		recommendedAction
+		details
+	}
+					descriptions
+	category {
+		id
+		name
+	}
+					additionalInfo
+					analystInfo {
+						name
+						email
+					}
+				}
+			}
+		}
 	}	
 }

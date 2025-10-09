@@ -1,7 +1,55 @@
-mutation adminUpdateAdmin ( $accountId:ID! $adminID:ID! $updateAdminInput:UpdateAdminInput!) {
-	admin ( accountId:$accountId adminID:$adminID input:$updateAdminInput ) {
-mutation.admin.updateAdminupdateAdmin ( adminID:$adminID  input:$updateAdminInput  )  {
-mutation.admin.updateAdmin	adminID
-mutation.admin.updateAdmin}
+mutation adminUpdateAdmin ( $accountId:ID! $adminID:ID!) {
+	admin ( accountId:$accountId ) {
+		updateAdmin {
+adminID {
+	id
+	status
+	version
+	role
+	firstName
+	lastName
+	email
+	creationDate
+	modifyDate
+	passwordNeverExpires
+	mfaEnabled
+	nativeAccountID
+	presentUsageAndEvents
+	adminType
+	allowedItems {
+		id
+		name
+		type
+	}
+	managedRoles {
+		allowedAccounts
+		role {
+			id
+			name
+			description
+			isPredefined
+		}
+		allowedEntities {
+			id
+			name
+			type
+		}
+	}
+	resellerRoles {
+		allowedAccounts
+		role {
+			id
+			name
+			description
+			isPredefined
+		}
+		allowedEntities {
+			id
+			name
+			type
+		}
+	}
+}
+		}
 	}	
 }

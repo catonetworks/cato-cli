@@ -11,20 +11,6 @@ catocli mutation site updateStaticHost <json>
 
 catocli mutation site updateStaticHost "$(cat < mutation.site.updateStaticHost.json)"
 
-catocli mutation site updateStaticHost '{"hostId":"id","updateStaticHostInput":{"ip":"example_value","macAddress":"string","name":"string"}}'
-
-catocli mutation site updateStaticHost '{
-    "hostId": "id",
-    "updateStaticHostInput": {
-        "ip": "example_value",
-        "macAddress": "string",
-        "name": "string"
-    }
-}'
-```
-
 #### Operation Arguments for mutation.site.updateStaticHost ####
 
 `accountId` [ID] - (required) N/A    
-`hostId` [ID] - (required) N/A    
-`updateStaticHostInput` [UpdateStaticHostInput] - (required) N/A    

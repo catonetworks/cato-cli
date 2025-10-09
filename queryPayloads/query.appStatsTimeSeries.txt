@@ -1,52 +1,304 @@
-query appStatsTimeSeries ( $accountID:ID! $timeFrame:TimeFrame! $measure:[Measure] $dimension:[Dimension] $appStatsFilter:[AppStatsFilter!]) {
+query appStatsTimeSeries ( $accountID:ID! $timeFrame:TimeFrame! $measure:[Measure] $dimension:[Dimension] $appStatsFilter:[AppStatsFilter!] $buckets:Int!) {
 	appStatsTimeSeries ( accountID:$accountID timeFrame:$timeFrame measures:$measure dimensions:$dimension filters:$appStatsFilter ) {
-query.appStatsTimeSeriesid
-query.appStatsTimeSeriesfrom
-query.appStatsTimeSeriesto
-query.appStatsTimeSeriesgranularity
-query.appStatsTimeSeriestimeseries {
-query.appStatsTimeSeries	data
-query.appStatsTimeSeries	label
-query.appStatsTimeSeries	dimensions {
-query.appStatsTimeSeries		label
-query.appStatsTimeSeries		value {
-	__typename
-	... on StringValue {
-		string
+id {
+	id
+	status
+	description
+	firstSignal
+	lastSignal
+	engineType
+	vendor
+	producer
+	producerName
+	connectionType
+	indication
+	queryName
+	source
+	criticality
+	ticket
+	research
+	siteName
+	storyDuration
+	analystFeedback {
+		verdict
+		severity
+		threatClassification
+		additionalInfo
+		threatType {
+			name
+			recommendedAction
+			details
+		}
 	}
-	... on DateValue {
-		date
-	}
-	... on Entity {
+	site {
 		id
 		name
-		type
 	}
-}
-query.appStatsTimeSeries	}
-query.appStatsTimeSeries	key {
-query.appStatsTimeSeries		measureFieldName
-query.appStatsTimeSeries		dimensions {
-query.appStatsTimeSeries			fieldName
-query.appStatsTimeSeries			value {
-	__typename
-	... on StringValue {
-		string
-	}
-	... on DateValue {
-		date
-	}
-	... on Entity {
+	user {
 		id
 		name
-		type
+	}
+	similarStoriesData {
+		storyId
+		threatTypeName
+		verdict
+		threatClassification
+		similarityPercentage
+		indication
+	}
+	networkIncidentTimeline {
+		description
+		created
+		validated
+		eventType
+		incidentId
+		networkEventSource
+		eventIds
+		acknowledged
+		linkId
+		linkName
+		linkConfigPrecedence
+		linkStatus
+		linkConfigBandwidth
+		deviceConfigHaRole
+		deviceHaRoleState
+		socketSerialId
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		linkQualityIssue {
+			issueType
+			direction
+			current
+			threshold
+		}
+	}
+	bgpConnection {
+		connectionName
+		peerIp
+		peerAsn
+		catoIp
+		catoAsn
+	}
+	ilmmDetails {
+		linkDetails {
+			description
+			linkId
+			ispLinkId
+			comments
+			onboardingStatus
+			activeLicense
+		}
+		ispDetails {
+			name
+			description
+			ispAccountId
+			supportEmail
+			supportPhone
+			countryCode
+			loaFile {
+				fileName
+				fileHash
+				uploadedAt
+			}
+		}
+		contacts {
+			name
+			phone
+			email
+		}
 	}
 }
-query.appStatsTimeSeries		}
-query.appStatsTimeSeries	}
-query.appStatsTimeSeries	sum
-query.appStatsTimeSeries	units
-query.appStatsTimeSeries	info
-query.appStatsTimeSeries}
+from {
+	container {
+		id
+		name
+		description
+		size
+		audit {
+			createdAt
+			createdBy
+			lastModifiedBy
+			lastModifiedAt
+		}
+	}
+}
+to {
+	comment {
+		id
+		createdAt
+		text
+		actor {
+			__typename
+			... on AdminRef {
+				id
+				name
+			}
+			... on ApiKeyRef {
+				id
+				name
+			}
+		}
+	}
+}
+		granularity
+		timeseries {
+data {
+	paging {
+		from
+		limit
+		total
+	}
+	items {
+		id
+		updatedAt
+		createdAt
+		accountId
+		analystName
+		analystEmail
+		accountName
+		playbook
+		summary
+		incident {
+			__typename
+			... on MicrosoftEndpoint {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on AnomalyStats {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on AnomalyEvents {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on Threat {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+			... on ThreatPrevention {
+				id
+				firstSignal
+				lastSignal
+				engineType
+				vendor
+				producer
+				producerName
+				connectionType
+				indication
+				queryName
+			}
+		}
+		timeline {
+			createdAt
+			description
+			type
+			context
+			descriptions
+			category
+			additionalInfo
+			analystInfo {
+				name
+				email
+			}
+		}
+	}
+}
+			label
+			dimensions {
+				label
+	value {
+		__typename
+		... on StringValue {
+			string
+		}
+		... on DateValue {
+			date
+		}
+		... on Entity {
+			id
+			name
+			type
+		}
+	}
+			}
+			key {
+				measureFieldName
+				dimensions {
+					fieldName
+	value {
+		__typename
+		... on StringValue {
+			string
+		}
+		... on DateValue {
+			date
+		}
+		... on Entity {
+			id
+			name
+			type
+		}
+	}
+				}
+			}
+sum {
+	id
+	route
+	community {
+		from
+		to
+	}
+}
+units {
+	id
+	predicate
+	community {
+		from
+		to
+	}
+}
+info {
+	name
+	email
+}
+		}
 	}	
 }

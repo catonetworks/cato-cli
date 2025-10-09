@@ -11,23 +11,6 @@ catocli mutation policy applicationControl createPolicyRevision <json>
 
 catocli mutation policy applicationControl createPolicyRevision "$(cat < mutation.policy.applicationControl.createPolicyRevision.json)"
 
-catocli mutation policy applicationControl createPolicyRevision '{"applicationControlPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyCreateRevisionInput":{"description":"string","name":"string"}}'
-
-catocli mutation policy applicationControl createPolicyRevision '{
-    "applicationControlPolicyMutationInput": {
-        "policyMutationRevisionInput": {
-            "id": "id"
-        }
-    },
-    "policyCreateRevisionInput": {
-        "description": "string",
-        "name": "string"
-    }
-}'
-```
-
 #### Operation Arguments for mutation.policy.applicationControl.createPolicyRevision ####
 
 `accountId` [ID] - (required) N/A    
-`applicationControlPolicyMutationInput` [ApplicationControlPolicyMutationInput] - (required) N/A    
-`policyCreateRevisionInput` [PolicyCreateRevisionInput] - (required) N/A    

@@ -11,25 +11,6 @@ catocli mutation policy applicationControl updateSection <json>
 
 catocli mutation policy applicationControl updateSection "$(cat < mutation.policy.applicationControl.updateSection.json)"
 
-catocli mutation policy applicationControl updateSection '{"applicationControlPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyUpdateSectionInput":{"id":"id","policyUpdateSectionInfoInput":{"name":"string"}}}'
-
-catocli mutation policy applicationControl updateSection '{
-    "applicationControlPolicyMutationInput": {
-        "policyMutationRevisionInput": {
-            "id": "id"
-        }
-    },
-    "policyUpdateSectionInput": {
-        "id": "id",
-        "policyUpdateSectionInfoInput": {
-            "name": "string"
-        }
-    }
-}'
-```
-
 #### Operation Arguments for mutation.policy.applicationControl.updateSection ####
 
 `accountId` [ID] - (required) N/A    
-`applicationControlPolicyMutationInput` [ApplicationControlPolicyMutationInput] - (required) N/A    
-`policyUpdateSectionInput` [PolicyUpdateSectionInput] - (required) N/A    

@@ -1,24 +1,95 @@
 query siteSiteBgpStatus ( $accountId:ID! $siteBgpStatusInput:SiteBgpStatusInput!) {
-	site ( accountId:$accountId input:$siteBgpStatusInput ) {
-query.site.siteBgpStatussiteBgpStatus ( input:$siteBgpStatusInput  )  {
-query.site.siteBgpStatus	status {
-query.site.siteBgpStatus		remoteIp
-query.site.siteBgpStatus		bgpSession
-query.site.siteBgpStatus		bfdSession
-query.site.siteBgpStatus		routesFromPeer
-query.site.siteBgpStatus		routesToPeer
-query.site.siteBgpStatus		rejectedRoutesFromPeer {
-query.site.siteBgpStatus			subnet
-query.site.siteBgpStatus			type
-query.site.siteBgpStatus			community {
-query.site.siteBgpStatus				from
-query.site.siteBgpStatus				to
-query.site.siteBgpStatus			}
-query.site.siteBgpStatus			rule
-query.site.siteBgpStatus			lastPublishAttempt
-query.site.siteBgpStatus		}
-query.site.siteBgpStatus	}
-query.site.siteBgpStatus	rawStatus
-query.site.siteBgpStatus}
+	site ( accountId:$accountId ) {
+		siteBgpStatus {
+			status {
+	remoteIp {
+		ip
+		subnet
+		ipRange {
+			from
+			to
+		}
+		globalIpRange {
+			id
+			name
+		}
+	}
+				bgpSession
+				bfdSession
+	routesFromPeer {
+		type
+		subnet
+		rule
+		lastPublishAttempt
+		community {
+			from
+			to
+		}
+	}
+				routesToPeer
+				rejectedRoutesFromPeer {
+	subnet {
+		id
+		name
+	}
+	type {
+		name
+		recommendedAction
+		details
+	}
+					community {
+	from {
+		container {
+			id
+			name
+			description
+			size
+			audit {
+				createdAt
+				createdBy
+				lastModifiedBy
+				lastModifiedAt
+			}
+		}
+	}
+	to {
+		comment {
+			id
+			createdAt
+			text
+			actor {
+				__typename
+				... on AdminRef {
+					id
+					name
+				}
+				... on ApiKeyRef {
+					id
+					name
+				}
+			}
+		}
+	}
+					}
+	rule {
+		id
+		name
+		description
+		index
+		enabled
+		fileName
+		expirationDate
+		action
+		sha256
+		section {
+			id
+			name
+		}
+	}
+					lastPublishAttempt
+				}
+			}
+			rawStatus
+		}
 	}	
 }

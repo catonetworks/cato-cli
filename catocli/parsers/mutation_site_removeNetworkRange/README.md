@@ -11,14 +11,6 @@ catocli mutation site removeNetworkRange <json>
 
 catocli mutation site removeNetworkRange "$(cat < mutation.site.removeNetworkRange.json)"
 
-catocli mutation site removeNetworkRange '{"networkRangeId":"id"}'
-
-catocli mutation site removeNetworkRange '{
-    "networkRangeId": "id"
-}'
-```
-
 #### Operation Arguments for mutation.site.removeNetworkRange ####
 
 `accountId` [ID] - (required) N/A    
-`networkRangeId` [ID] - (required) N/A    

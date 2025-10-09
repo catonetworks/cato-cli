@@ -11,22 +11,6 @@ catocli mutation policy socketLan removeSection <json>
 
 catocli mutation policy socketLan removeSection "$(cat < mutation.policy.socketLan.removeSection.json)"
 
-catocli mutation policy socketLan removeSection '{"policyRemoveSectionInput":{"id":"id"},"socketLanPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
-
-catocli mutation policy socketLan removeSection '{
-    "policyRemoveSectionInput": {
-        "id": "id"
-    },
-    "socketLanPolicyMutationInput": {
-        "policyMutationRevisionInput": {
-            "id": "id"
-        }
-    }
-}'
-```
-
 #### Operation Arguments for mutation.policy.socketLan.removeSection ####
 
 `accountId` [ID] - (required) N/A    
-`policyRemoveSectionInput` [PolicyRemoveSectionInput] - (required) N/A    
-`socketLanPolicyMutationInput` [SocketLanPolicyMutationInput] - (required) N/A    

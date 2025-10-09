@@ -11,22 +11,6 @@ catocli mutation policy appTenantRestriction removeSection <json>
 
 catocli mutation policy appTenantRestriction removeSection "$(cat < mutation.policy.appTenantRestriction.removeSection.json)"
 
-catocli mutation policy appTenantRestriction removeSection '{"appTenantRestrictionPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyRemoveSectionInput":{"id":"id"}}'
-
-catocli mutation policy appTenantRestriction removeSection '{
-    "appTenantRestrictionPolicyMutationInput": {
-        "policyMutationRevisionInput": {
-            "id": "id"
-        }
-    },
-    "policyRemoveSectionInput": {
-        "id": "id"
-    }
-}'
-```
-
 #### Operation Arguments for mutation.policy.appTenantRestriction.removeSection ####
 
 `accountId` [ID] - (required) N/A    
-`appTenantRestrictionPolicyMutationInput` [AppTenantRestrictionPolicyMutationInput] - (required) N/A    
-`policyRemoveSectionInput` [PolicyRemoveSectionInput] - (required) N/A    

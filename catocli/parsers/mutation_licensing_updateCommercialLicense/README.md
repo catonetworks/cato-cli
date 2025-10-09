@@ -11,17 +11,6 @@ catocli mutation licensing updateCommercialLicense <json>
 
 catocli mutation licensing updateCommercialLicense "$(cat < mutation.licensing.updateCommercialLicense.json)"
 
-catocli mutation licensing updateCommercialLicense '{"updateCommercialLicenseInput":{"licenseId":"id","startDate":"example_value"}}'
-
-catocli mutation licensing updateCommercialLicense '{
-    "updateCommercialLicenseInput": {
-        "licenseId": "id",
-        "startDate": "example_value"
-    }
-}'
-```
-
 #### Operation Arguments for mutation.licensing.updateCommercialLicense ####
 
 `accountId` [ID] - (required) N/A    
-`updateCommercialLicenseInput` [UpdateCommercialLicenseInput] - (required) N/A    

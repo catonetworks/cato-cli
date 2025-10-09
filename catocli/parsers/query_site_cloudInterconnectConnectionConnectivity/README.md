@@ -11,16 +11,6 @@ catocli query site cloudInterconnectConnectionConnectivity <json>
 
 catocli query site cloudInterconnectConnectionConnectivity "$(cat < query.site.cloudInterconnectConnectionConnectivity.json)"
 
-catocli query site cloudInterconnectConnectionConnectivity '{"cloudInterconnectConnectionConnectivityInput":{"id":"id"}}'
-
-catocli query site cloudInterconnectConnectionConnectivity '{
-    "cloudInterconnectConnectionConnectivityInput": {
-        "id": "id"
-    }
-}'
-```
-
 #### Operation Arguments for query.site.cloudInterconnectConnectionConnectivity ####
 
 `accountId` [ID] - (required) N/A    
-`cloudInterconnectConnectionConnectivityInput` [CloudInterconnectConnectionConnectivityInput] - (required) N/A    

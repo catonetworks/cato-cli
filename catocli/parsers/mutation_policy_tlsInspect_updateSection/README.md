@@ -11,25 +11,6 @@ catocli mutation policy tlsInspect updateSection <json>
 
 catocli mutation policy tlsInspect updateSection "$(cat < mutation.policy.tlsInspect.updateSection.json)"
 
-catocli mutation policy tlsInspect updateSection '{"policyUpdateSectionInput":{"id":"id","policyUpdateSectionInfoInput":{"name":"string"}},"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
-
-catocli mutation policy tlsInspect updateSection '{
-    "policyUpdateSectionInput": {
-        "id": "id",
-        "policyUpdateSectionInfoInput": {
-            "name": "string"
-        }
-    },
-    "tlsInspectPolicyMutationInput": {
-        "policyMutationRevisionInput": {
-            "id": "id"
-        }
-    }
-}'
-```
-
 #### Operation Arguments for mutation.policy.tlsInspect.updateSection ####
 
 `accountId` [ID] - (required) N/A    
-`policyUpdateSectionInput` [PolicyUpdateSectionInput] - (required) N/A    
-`tlsInspectPolicyMutationInput` [TlsInspectPolicyMutationInput] - (required) N/A    

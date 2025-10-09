@@ -11,22 +11,6 @@ catocli mutation policy wanNetwork discardPolicyRevision <json>
 
 catocli mutation policy wanNetwork discardPolicyRevision "$(cat < mutation.policy.wanNetwork.discardPolicyRevision.json)"
 
-catocli mutation policy wanNetwork discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"wanNetworkPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
-
-catocli mutation policy wanNetwork discardPolicyRevision '{
-    "policyDiscardRevisionInput": {
-        "id": "id"
-    },
-    "wanNetworkPolicyMutationInput": {
-        "policyMutationRevisionInput": {
-            "id": "id"
-        }
-    }
-}'
-```
-
 #### Operation Arguments for mutation.policy.wanNetwork.discardPolicyRevision ####
 
 `accountId` [ID] - (required) N/A    
-`policyDiscardRevisionInput` [PolicyDiscardRevisionInput] - (required) N/A    
-`wanNetworkPolicyMutationInput` [WanNetworkPolicyMutationInput] - (required) N/A    

@@ -11,25 +11,6 @@ catocli mutation policy socketLan updateSection <json>
 
 catocli mutation policy socketLan updateSection "$(cat < mutation.policy.socketLan.updateSection.json)"
 
-catocli mutation policy socketLan updateSection '{"policyUpdateSectionInput":{"id":"id","policyUpdateSectionInfoInput":{"name":"string"}},"socketLanPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
-
-catocli mutation policy socketLan updateSection '{
-    "policyUpdateSectionInput": {
-        "id": "id",
-        "policyUpdateSectionInfoInput": {
-            "name": "string"
-        }
-    },
-    "socketLanPolicyMutationInput": {
-        "policyMutationRevisionInput": {
-            "id": "id"
-        }
-    }
-}'
-```
-
 #### Operation Arguments for mutation.policy.socketLan.updateSection ####
 
 `accountId` [ID] - (required) N/A    
-`policyUpdateSectionInput` [PolicyUpdateSectionInput] - (required) N/A    
-`socketLanPolicyMutationInput` [SocketLanPolicyMutationInput] - (required) N/A    

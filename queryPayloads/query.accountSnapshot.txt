@@ -1,407 +1,2668 @@
 query accountSnapshot ( ) {
 	accountSnapshot ( ) {
-query.accountSnapshotid
-query.accountSnapshotsites {
-query.accountSnapshot	id
-query.accountSnapshot	protoId
-query.accountSnapshot	connectivityStatus
-query.accountSnapshot	haStatus {
-query.accountSnapshot		readiness
-query.accountSnapshot		wanConnectivity
-query.accountSnapshot		keepalive
-query.accountSnapshot		socketVersion
-query.accountSnapshot	}
-query.accountSnapshot	operationalStatus
-query.accountSnapshot	lastConnected
-query.accountSnapshot	connectedSince
-query.accountSnapshot	popName
-query.accountSnapshot	devices {
-query.accountSnapshot		id
-query.accountSnapshot		name
-query.accountSnapshot		identifier
-query.accountSnapshot		connected
-query.accountSnapshot		haRole
-query.accountSnapshot		interfaces {
-query.accountSnapshot			connected
-query.accountSnapshot			id
-query.accountSnapshot			name
-query.accountSnapshot			physicalPort
-query.accountSnapshot			naturalOrder
-query.accountSnapshot			popName
-query.accountSnapshot			previousPopID
-query.accountSnapshot			previousPopName
-query.accountSnapshot			tunnelConnectionReason
-query.accountSnapshot			tunnelUptime
-query.accountSnapshot			tunnelRemoteIP
-query.accountSnapshot			tunnelRemoteIPInfo {
-query.accountSnapshot				ip
-query.accountSnapshot				countryCode
-query.accountSnapshot				countryName
-query.accountSnapshot				city
-query.accountSnapshot				state
-query.accountSnapshot				provider
-query.accountSnapshot				latitude
-query.accountSnapshot				longitude
-query.accountSnapshot			}
-query.accountSnapshot			type
-query.accountSnapshot			info {
-query.accountSnapshot				id
-query.accountSnapshot				name
-query.accountSnapshot				upstreamBandwidth
-query.accountSnapshot				downstreamBandwidth
-query.accountSnapshot				upstreamBandwidthMbpsPrecision
-query.accountSnapshot				downstreamBandwidthMbpsPrecision
-query.accountSnapshot				destType
-query.accountSnapshot				wanRole
-query.accountSnapshot			}
-query.accountSnapshot			cellularInterfaceInfo {
-query.accountSnapshot				networkType
-query.accountSnapshot				simSlotId
-query.accountSnapshot				modemStatus
-query.accountSnapshot				isModemConnected
-query.accountSnapshot				iccid
-query.accountSnapshot				imei
-query.accountSnapshot				operatorName
-query.accountSnapshot				isModemSuspended
-query.accountSnapshot				apn
-query.accountSnapshot				apnSelectionMethod
-query.accountSnapshot				signalStrength
-query.accountSnapshot				isRoamingAllowed
-query.accountSnapshot				simNumber
-query.accountSnapshot				disconnectionReason
-query.accountSnapshot				isSimSlot1Detected
-query.accountSnapshot				isSimSlot2Detected
-query.accountSnapshot			}
-query.accountSnapshot		}
-query.accountSnapshot		lastConnected
-query.accountSnapshot		lastDuration
-query.accountSnapshot		connectedSince
-query.accountSnapshot		lastPopID
-query.accountSnapshot		lastPopName
-query.accountSnapshot		recentConnections {
-query.accountSnapshot			duration
-query.accountSnapshot			interfaceName
-query.accountSnapshot			deviceName
-query.accountSnapshot			lastConnected
-query.accountSnapshot			popName
-query.accountSnapshot			remoteIP
-query.accountSnapshot			remoteIPInfo {
-query.accountSnapshot				ip
-query.accountSnapshot				countryCode
-query.accountSnapshot				countryName
-query.accountSnapshot				city
-query.accountSnapshot				state
-query.accountSnapshot				provider
-query.accountSnapshot				latitude
-query.accountSnapshot				longitude
-query.accountSnapshot			}
-query.accountSnapshot		}
-query.accountSnapshot		type
-query.accountSnapshot		deviceUptime
-query.accountSnapshot		socketInfo {
-query.accountSnapshot			id
-query.accountSnapshot			serial
-query.accountSnapshot			isPrimary
-query.accountSnapshot			platform
-query.accountSnapshot			version
-query.accountSnapshot			versionUpdateTime
-query.accountSnapshot		}
-query.accountSnapshot		interfacesLinkState {
-query.accountSnapshot			id
-query.accountSnapshot			up
-query.accountSnapshot			mediaIn
-query.accountSnapshot			linkSpeed
-query.accountSnapshot			duplex
-query.accountSnapshot			hasAddress
-query.accountSnapshot			hasInternet
-query.accountSnapshot			hasTunnel
-query.accountSnapshot		}
-query.accountSnapshot		osType
-query.accountSnapshot		osVersion
-query.accountSnapshot		version
-query.accountSnapshot		versionNumber
-query.accountSnapshot		releaseGroup {
+id {
 	id
-	name
+	status
 	description
-	membersCount
-	audit {
-		updatedTime
-		updatedBy {
-			__typename
-			... on AdminRef {
-				id
-				name
-			}
-			... on ApiKeyRef {
-				id
-				name
-			}
-		}
-	}
-	members {
-		items {
-			id
+	firstSignal
+	lastSignal
+	engineType
+	vendor
+	producer
+	producerName
+	connectionType
+	indication
+	queryName
+	source
+	criticality
+	ticket
+	research
+	siteName
+	storyDuration
+	analystFeedback {
+		verdict
+		severity
+		threatClassification
+		additionalInfo
+		threatType {
 			name
-			type
-		}
-		paging {
-			total
+			recommendedAction
+			details
 		}
 	}
-	membersCountPerType {
-		type
-		membersCount
+	site {
+		id
+		name
+	}
+	user {
+		id
+		name
+	}
+	similarStoriesData {
+		storyId
+		threatTypeName
+		verdict
+		threatClassification
+		similarityPercentage
+		indication
+	}
+	networkIncidentTimeline {
+		description
+		created
+		validated
+		eventType
+		incidentId
+		networkEventSource
+		eventIds
+		acknowledged
+		linkId
+		linkName
+		linkConfigPrecedence
+		linkStatus
+		linkConfigBandwidth
+		deviceConfigHaRole
+		deviceHaRoleState
+		socketSerialId
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		linkQualityIssue {
+			issueType
+			direction
+			current
+			threshold
+		}
+	}
+	bgpConnection {
+		connectionName
+		peerIp
+		peerAsn
+		catoIp
+		catoAsn
+	}
+	ilmmDetails {
+		linkDetails {
+			description
+			linkId
+			ispLinkId
+			comments
+			onboardingStatus
+			activeLicense
+		}
+		ispDetails {
+			name
+			description
+			ispAccountId
+			supportEmail
+			supportPhone
+			countryCode
+			loaFile {
+				fileName
+				fileHash
+				uploadedAt
+			}
+		}
+		contacts {
+			name
+			phone
+			email
+		}
 	}
 }
-query.accountSnapshot		mfaExpirationTime
-query.accountSnapshot		mfaCreationTime
-query.accountSnapshot		internalIP
-query.accountSnapshot	}
-query.accountSnapshot	info {
-query.accountSnapshot		name
-query.accountSnapshot		type
-query.accountSnapshot		description
-query.accountSnapshot		countryCode
-query.accountSnapshot		region
-query.accountSnapshot		countryName
-query.accountSnapshot		countryStateName
-query.accountSnapshot		cityName
-query.accountSnapshot		address
-query.accountSnapshot		isHA
-query.accountSnapshot		connType
-query.accountSnapshot		creationTime
-query.accountSnapshot		interfaces {
-query.accountSnapshot			id
-query.accountSnapshot			name
-query.accountSnapshot			upstreamBandwidth
-query.accountSnapshot			downstreamBandwidth
-query.accountSnapshot			upstreamBandwidthMbpsPrecision
-query.accountSnapshot			downstreamBandwidthMbpsPrecision
-query.accountSnapshot			destType
-query.accountSnapshot			wanRole
-query.accountSnapshot		}
-query.accountSnapshot		sockets {
-query.accountSnapshot			id
-query.accountSnapshot			serial
-query.accountSnapshot			isPrimary
-query.accountSnapshot			platform
-query.accountSnapshot			version
-query.accountSnapshot			versionUpdateTime
-query.accountSnapshot		}
-query.accountSnapshot		ipsec {
-query.accountSnapshot			isPrimary
-query.accountSnapshot			catoIP
-query.accountSnapshot			remoteIP
-query.accountSnapshot			ikeVersion
-query.accountSnapshot			tunnelConfig {
-query.accountSnapshot				tunnelId
-query.accountSnapshot				tunnelRemoteIdentifier
-query.accountSnapshot				localId
-query.accountSnapshot			}
-query.accountSnapshot		}
-query.accountSnapshot	}
-query.accountSnapshot	hostCount
-query.accountSnapshot	altWanStatus
-query.accountSnapshot}
-query.accountSnapshotusers {
-query.accountSnapshot	id
-query.accountSnapshot	connectivityStatus
-query.accountSnapshot	operationalStatus
-query.accountSnapshot	name
-query.accountSnapshot	deviceName
-query.accountSnapshot	uptime
-query.accountSnapshot	lastConnected
-query.accountSnapshot	version
-query.accountSnapshot	versionNumber
-query.accountSnapshot	popID
-query.accountSnapshot	popName
-query.accountSnapshot	remoteIP
-query.accountSnapshot	remoteIPInfo {
-query.accountSnapshot		ip
-query.accountSnapshot		countryCode
-query.accountSnapshot		countryName
-query.accountSnapshot		city
-query.accountSnapshot		state
-query.accountSnapshot		provider
-query.accountSnapshot		latitude
-query.accountSnapshot		longitude
-query.accountSnapshot	}
-query.accountSnapshot	internalIP
-query.accountSnapshot	osType
-query.accountSnapshot	osVersion
-query.accountSnapshot	devices {
-query.accountSnapshot		id
-query.accountSnapshot		name
-query.accountSnapshot		identifier
-query.accountSnapshot		connected
-query.accountSnapshot		haRole
-query.accountSnapshot		interfaces {
-query.accountSnapshot			connected
-query.accountSnapshot			id
-query.accountSnapshot			name
-query.accountSnapshot			physicalPort
-query.accountSnapshot			naturalOrder
-query.accountSnapshot			popName
-query.accountSnapshot			previousPopID
-query.accountSnapshot			previousPopName
-query.accountSnapshot			tunnelConnectionReason
-query.accountSnapshot			tunnelUptime
-query.accountSnapshot			tunnelRemoteIP
-query.accountSnapshot			tunnelRemoteIPInfo {
-query.accountSnapshot				ip
-query.accountSnapshot				countryCode
-query.accountSnapshot				countryName
-query.accountSnapshot				city
-query.accountSnapshot				state
-query.accountSnapshot				provider
-query.accountSnapshot				latitude
-query.accountSnapshot				longitude
-query.accountSnapshot			}
-query.accountSnapshot			type
-query.accountSnapshot			info {
-query.accountSnapshot				id
-query.accountSnapshot				name
-query.accountSnapshot				upstreamBandwidth
-query.accountSnapshot				downstreamBandwidth
-query.accountSnapshot				upstreamBandwidthMbpsPrecision
-query.accountSnapshot				downstreamBandwidthMbpsPrecision
-query.accountSnapshot				destType
-query.accountSnapshot				wanRole
-query.accountSnapshot			}
-query.accountSnapshot			cellularInterfaceInfo {
-query.accountSnapshot				networkType
-query.accountSnapshot				simSlotId
-query.accountSnapshot				modemStatus
-query.accountSnapshot				isModemConnected
-query.accountSnapshot				iccid
-query.accountSnapshot				imei
-query.accountSnapshot				operatorName
-query.accountSnapshot				isModemSuspended
-query.accountSnapshot				apn
-query.accountSnapshot				apnSelectionMethod
-query.accountSnapshot				signalStrength
-query.accountSnapshot				isRoamingAllowed
-query.accountSnapshot				simNumber
-query.accountSnapshot				disconnectionReason
-query.accountSnapshot				isSimSlot1Detected
-query.accountSnapshot				isSimSlot2Detected
-query.accountSnapshot			}
-query.accountSnapshot		}
-query.accountSnapshot		lastConnected
-query.accountSnapshot		lastDuration
-query.accountSnapshot		connectedSince
-query.accountSnapshot		lastPopID
-query.accountSnapshot		lastPopName
-query.accountSnapshot		recentConnections {
-query.accountSnapshot			duration
-query.accountSnapshot			interfaceName
-query.accountSnapshot			deviceName
-query.accountSnapshot			lastConnected
-query.accountSnapshot			popName
-query.accountSnapshot			remoteIP
-query.accountSnapshot			remoteIPInfo {
-query.accountSnapshot				ip
-query.accountSnapshot				countryCode
-query.accountSnapshot				countryName
-query.accountSnapshot				city
-query.accountSnapshot				state
-query.accountSnapshot				provider
-query.accountSnapshot				latitude
-query.accountSnapshot				longitude
-query.accountSnapshot			}
-query.accountSnapshot		}
-query.accountSnapshot		type
-query.accountSnapshot		deviceUptime
-query.accountSnapshot		socketInfo {
-query.accountSnapshot			id
-query.accountSnapshot			serial
-query.accountSnapshot			isPrimary
-query.accountSnapshot			platform
-query.accountSnapshot			version
-query.accountSnapshot			versionUpdateTime
-query.accountSnapshot		}
-query.accountSnapshot		interfacesLinkState {
-query.accountSnapshot			id
-query.accountSnapshot			up
-query.accountSnapshot			mediaIn
-query.accountSnapshot			linkSpeed
-query.accountSnapshot			duplex
-query.accountSnapshot			hasAddress
-query.accountSnapshot			hasInternet
-query.accountSnapshot			hasTunnel
-query.accountSnapshot		}
-query.accountSnapshot		osType
-query.accountSnapshot		osVersion
-query.accountSnapshot		version
-query.accountSnapshot		versionNumber
-query.accountSnapshot		releaseGroup {
+		sites {
+id {
 	id
-	name
+	status
 	description
-	membersCount
-	audit {
-		updatedTime
-		updatedBy {
-			__typename
-			... on AdminRef {
-				id
-				name
-			}
-			... on ApiKeyRef {
-				id
-				name
-			}
-		}
-	}
-	members {
-		items {
-			id
+	firstSignal
+	lastSignal
+	engineType
+	vendor
+	producer
+	producerName
+	connectionType
+	indication
+	queryName
+	source
+	criticality
+	ticket
+	research
+	siteName
+	storyDuration
+	analystFeedback {
+		verdict
+		severity
+		threatClassification
+		additionalInfo
+		threatType {
 			name
-			type
-		}
-		paging {
-			total
+			recommendedAction
+			details
 		}
 	}
-	membersCountPerType {
-		type
-		membersCount
+	site {
+		id
+		name
+	}
+	user {
+		id
+		name
+	}
+	similarStoriesData {
+		storyId
+		threatTypeName
+		verdict
+		threatClassification
+		similarityPercentage
+		indication
+	}
+	networkIncidentTimeline {
+		description
+		created
+		validated
+		eventType
+		incidentId
+		networkEventSource
+		eventIds
+		acknowledged
+		linkId
+		linkName
+		linkConfigPrecedence
+		linkStatus
+		linkConfigBandwidth
+		deviceConfigHaRole
+		deviceHaRoleState
+		socketSerialId
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		linkQualityIssue {
+			issueType
+			direction
+			current
+			threshold
+		}
+	}
+	bgpConnection {
+		connectionName
+		peerIp
+		peerAsn
+		catoIp
+		catoAsn
+	}
+	ilmmDetails {
+		linkDetails {
+			description
+			linkId
+			ispLinkId
+			comments
+			onboardingStatus
+			activeLicense
+		}
+		ispDetails {
+			name
+			description
+			ispAccountId
+			supportEmail
+			supportPhone
+			countryCode
+			loaFile {
+				fileName
+				fileHash
+				uploadedAt
+			}
+		}
+		contacts {
+			name
+			phone
+			email
+		}
 	}
 }
-query.accountSnapshot		mfaExpirationTime
-query.accountSnapshot		mfaCreationTime
-query.accountSnapshot		internalIP
-query.accountSnapshot	}
-query.accountSnapshot	connectedInOffice
-query.accountSnapshot	info {
-query.accountSnapshot		name
-query.accountSnapshot		status
-query.accountSnapshot		email
-query.accountSnapshot		creationTime
-query.accountSnapshot		phoneNumber
-query.accountSnapshot		origin
-query.accountSnapshot		authMethod
-query.accountSnapshot	}
-query.accountSnapshot	recentConnections {
-query.accountSnapshot		duration
-query.accountSnapshot		interfaceName
-query.accountSnapshot		deviceName
-query.accountSnapshot		lastConnected
-query.accountSnapshot		popName
-query.accountSnapshot		remoteIP
-query.accountSnapshot		remoteIPInfo {
-query.accountSnapshot			ip
-query.accountSnapshot			countryCode
-query.accountSnapshot			countryName
-query.accountSnapshot			city
-query.accountSnapshot			state
-query.accountSnapshot			provider
-query.accountSnapshot			latitude
-query.accountSnapshot			longitude
-query.accountSnapshot		}
-query.accountSnapshot	}
-query.accountSnapshot}
-query.accountSnapshottimestamp
+			protoId
+			connectivityStatus
+			haStatus {
+				readiness
+				wanConnectivity
+				keepalive
+				socketVersion
+			}
+			operationalStatus
+			lastConnected
+			connectedSince
+			popName
+			devices {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+				name
+				identifier
+				connected
+				haRole
+				interfaces {
+					connected
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+					name
+					physicalPort
+					naturalOrder
+					popName
+					previousPopID
+					previousPopName
+					tunnelConnectionReason
+					tunnelUptime
+					tunnelRemoteIP
+					tunnelRemoteIPInfo {
+	ip {
+		enabled
+		rules {
+			properties
+			audit {
+				updatedTime
+				updatedBy
+			}
+			rule {
+				id
+				name
+				description
+				index
+				enabled
+				platform
+				section {
+					id
+					name
+				}
+				source {
+					user
+					usersGroup
+				}
+				country {
+					id
+					name
+				}
+				range {
+					globalIpRange
+				}
+			}
+		}
+		sections {
+			properties
+			audit {
+				updatedTime
+				updatedBy
+			}
+			section {
+				id
+				name
+			}
+		}
+		audit {
+			publishedTime
+			publishedBy
+		}
+		revision {
+			id
+			name
+			description
+			changes
+			createdTime
+			updatedTime
+		}
+	}
+						countryCode
+						countryName
+						city
+	state {
+		id
+		up
+		mediaIn
+		linkSpeed
+		duplex
+		hasAddress
+		hasInternet
+		hasTunnel
+	}
+						provider
+						latitude
+						longitude
+					}
+	type {
+		name
+		recommendedAction
+		details
+	}
+					info {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+						name
+						upstreamBandwidth
+						downstreamBandwidth
+						upstreamBandwidthMbpsPrecision
+						downstreamBandwidthMbpsPrecision
+						destType
+						wanRole
+					}
+					cellularInterfaceInfo {
+						networkType
+						simSlotId
+						modemStatus
+						isModemConnected
+						iccid
+						imei
+						operatorName
+						isModemSuspended
+						apn
+						apnSelectionMethod
+						signalStrength
+						isRoamingAllowed
+						simNumber
+						disconnectionReason
+						isSimSlot1Detected
+						isSimSlot2Detected
+					}
+				}
+				lastConnected
+				lastDuration
+				connectedSince
+				lastPopID
+				lastPopName
+				recentConnections {
+					duration
+					interfaceName
+					deviceName
+					lastConnected
+					popName
+	remoteIP {
+		ip
+		subnet
+		ipRange {
+			from
+			to
+		}
+		globalIpRange {
+			id
+			name
+		}
+	}
+					remoteIPInfo {
+	ip {
+		enabled
+		rules {
+			properties
+			audit {
+				updatedTime
+				updatedBy
+			}
+			rule {
+				id
+				name
+				description
+				index
+				enabled
+				platform
+				section {
+					id
+					name
+				}
+				source {
+					user
+					usersGroup
+				}
+				country {
+					id
+					name
+				}
+				range {
+					globalIpRange
+				}
+			}
+		}
+		sections {
+			properties
+			audit {
+				updatedTime
+				updatedBy
+			}
+			section {
+				id
+				name
+			}
+		}
+		audit {
+			publishedTime
+			publishedBy
+		}
+		revision {
+			id
+			name
+			description
+			changes
+			createdTime
+			updatedTime
+		}
+	}
+						countryCode
+						countryName
+						city
+	state {
+		id
+		up
+		mediaIn
+		linkSpeed
+		duplex
+		hasAddress
+		hasInternet
+		hasTunnel
+	}
+						provider
+						latitude
+						longitude
+					}
+				}
+	type {
+		name
+		recommendedAction
+		details
+	}
+				deviceUptime
+				socketInfo {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+					serial
+					isPrimary
+	platform {
+		platform
+		versions
+	}
+	version {
+		items {
+			platform
+			versions
+		}
+	}
+					versionUpdateTime
+				}
+				interfacesLinkState {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+	up {
+		id
+		name
+	}
+					mediaIn
+					linkSpeed
+					duplex
+					hasAddress
+					hasInternet
+					hasTunnel
+				}
+				osType
+				osVersion
+	version {
+		items {
+			platform
+			versions
+		}
+	}
+				versionNumber
+	releaseGroup {
+		id
+		name
+		description
+		membersCount
+		audit {
+			updatedTime
+			updatedBy {
+				__typename
+				... on AdminRef {
+					id
+					name
+				}
+				... on ApiKeyRef {
+					id
+					name
+				}
+			}
+		}
+		members {
+			items {
+				id
+				name
+				type
+			}
+			paging {
+				total
+			}
+		}
+		membersCountPerType {
+			type
+			membersCount
+		}
+	}
+				mfaExpirationTime
+				mfaCreationTime
+				internalIP
+			}
+			info {
+				name
+	type {
+		name
+		recommendedAction
+		details
+	}
+				description
+				countryCode
+				region
+				countryName
+				countryStateName
+				cityName
+	address {
+		createFromFile {
+			container {
+				id
+				name
+				description
+				size
+				audit {
+					createdAt
+					createdBy
+					lastModifiedBy
+					lastModifiedAt
+				}
+			}
+		}
+		updateFromFile {
+			container {
+				id
+				name
+				description
+				size
+				audit {
+					createdAt
+					createdBy
+					lastModifiedBy
+					lastModifiedAt
+				}
+			}
+		}
+		addValues {
+			container {
+				id
+				name
+				description
+				size
+				audit {
+					createdAt
+					createdBy
+					lastModifiedBy
+					lastModifiedAt
+				}
+			}
+		}
+		removeValues {
+			container {
+				id
+				name
+				description
+				size
+				audit {
+					createdAt
+					createdBy
+					lastModifiedBy
+					lastModifiedAt
+				}
+			}
+		}
+	}
+				isHA
+				connType
+				creationTime
+				interfaces {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+					name
+					upstreamBandwidth
+					downstreamBandwidth
+					upstreamBandwidthMbpsPrecision
+					downstreamBandwidthMbpsPrecision
+					destType
+					wanRole
+				}
+				sockets {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+					serial
+					isPrimary
+	platform {
+		platform
+		versions
+	}
+	version {
+		items {
+			platform
+			versions
+		}
+	}
+					versionUpdateTime
+				}
+				ipsec {
+					isPrimary
+					catoIP
+	remoteIP {
+		ip
+		subnet
+		ipRange {
+			from
+			to
+		}
+		globalIpRange {
+			id
+			name
+		}
+	}
+					ikeVersion
+					tunnelConfig {
+						tunnelId
+						tunnelRemoteIdentifier
+						localId
+					}
+				}
+			}
+hostCount {
+	data
+	label
+	sum
+	units
+	info
+	dimensions {
+		value
+		label
+	}
+	key {
+		measureFieldName
+		dimensions {
+			value
+			fieldName
+		}
+	}
+}
+			altWanStatus
+		}
+		users {
+id {
+	id
+	status
+	description
+	firstSignal
+	lastSignal
+	engineType
+	vendor
+	producer
+	producerName
+	connectionType
+	indication
+	queryName
+	source
+	criticality
+	ticket
+	research
+	siteName
+	storyDuration
+	analystFeedback {
+		verdict
+		severity
+		threatClassification
+		additionalInfo
+		threatType {
+			name
+			recommendedAction
+			details
+		}
+	}
+	site {
+		id
+		name
+	}
+	user {
+		id
+		name
+	}
+	similarStoriesData {
+		storyId
+		threatTypeName
+		verdict
+		threatClassification
+		similarityPercentage
+		indication
+	}
+	networkIncidentTimeline {
+		description
+		created
+		validated
+		eventType
+		incidentId
+		networkEventSource
+		eventIds
+		acknowledged
+		linkId
+		linkName
+		linkConfigPrecedence
+		linkStatus
+		linkConfigBandwidth
+		deviceConfigHaRole
+		deviceHaRoleState
+		socketSerialId
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		linkQualityIssue {
+			issueType
+			direction
+			current
+			threshold
+		}
+	}
+	bgpConnection {
+		connectionName
+		peerIp
+		peerAsn
+		catoIp
+		catoAsn
+	}
+	ilmmDetails {
+		linkDetails {
+			description
+			linkId
+			ispLinkId
+			comments
+			onboardingStatus
+			activeLicense
+		}
+		ispDetails {
+			name
+			description
+			ispAccountId
+			supportEmail
+			supportPhone
+			countryCode
+			loaFile {
+				fileName
+				fileHash
+				uploadedAt
+			}
+		}
+		contacts {
+			name
+			phone
+			email
+		}
+	}
+}
+			connectivityStatus
+			operationalStatus
+			name
+			deviceName
+			uptime
+			lastConnected
+version {
+	items {
+		platform
+		versions
+	}
+}
+			versionNumber
+			popID
+			popName
+remoteIP {
+	ip
+	subnet
+	ipRange {
+		from
+		to
+	}
+	globalIpRange {
+		id
+		name
+	}
+}
+			remoteIPInfo {
+	ip {
+		enabled
+		rules {
+			properties
+			audit {
+				updatedTime
+				updatedBy
+			}
+			rule {
+				id
+				name
+				description
+				index
+				enabled
+				platform
+				section {
+					id
+					name
+				}
+				source {
+					user
+					usersGroup
+				}
+				country {
+					id
+					name
+				}
+				range {
+					globalIpRange
+				}
+			}
+		}
+		sections {
+			properties
+			audit {
+				updatedTime
+				updatedBy
+			}
+			section {
+				id
+				name
+			}
+		}
+		audit {
+			publishedTime
+			publishedBy
+		}
+		revision {
+			id
+			name
+			description
+			changes
+			createdTime
+			updatedTime
+		}
+	}
+				countryCode
+				countryName
+				city
+	state {
+		id
+		up
+		mediaIn
+		linkSpeed
+		duplex
+		hasAddress
+		hasInternet
+		hasTunnel
+	}
+				provider
+				latitude
+				longitude
+			}
+			internalIP
+			osType
+			osVersion
+			devices {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+				name
+				identifier
+				connected
+				haRole
+				interfaces {
+					connected
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+					name
+					physicalPort
+					naturalOrder
+					popName
+					previousPopID
+					previousPopName
+					tunnelConnectionReason
+					tunnelUptime
+					tunnelRemoteIP
+					tunnelRemoteIPInfo {
+	ip {
+		enabled
+		rules {
+			properties
+			audit {
+				updatedTime
+				updatedBy
+			}
+			rule {
+				id
+				name
+				description
+				index
+				enabled
+				platform
+				section {
+					id
+					name
+				}
+				source {
+					user
+					usersGroup
+				}
+				country {
+					id
+					name
+				}
+				range {
+					globalIpRange
+				}
+			}
+		}
+		sections {
+			properties
+			audit {
+				updatedTime
+				updatedBy
+			}
+			section {
+				id
+				name
+			}
+		}
+		audit {
+			publishedTime
+			publishedBy
+		}
+		revision {
+			id
+			name
+			description
+			changes
+			createdTime
+			updatedTime
+		}
+	}
+						countryCode
+						countryName
+						city
+	state {
+		id
+		up
+		mediaIn
+		linkSpeed
+		duplex
+		hasAddress
+		hasInternet
+		hasTunnel
+	}
+						provider
+						latitude
+						longitude
+					}
+	type {
+		name
+		recommendedAction
+		details
+	}
+					info {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+						name
+						upstreamBandwidth
+						downstreamBandwidth
+						upstreamBandwidthMbpsPrecision
+						downstreamBandwidthMbpsPrecision
+						destType
+						wanRole
+					}
+					cellularInterfaceInfo {
+						networkType
+						simSlotId
+						modemStatus
+						isModemConnected
+						iccid
+						imei
+						operatorName
+						isModemSuspended
+						apn
+						apnSelectionMethod
+						signalStrength
+						isRoamingAllowed
+						simNumber
+						disconnectionReason
+						isSimSlot1Detected
+						isSimSlot2Detected
+					}
+				}
+				lastConnected
+				lastDuration
+				connectedSince
+				lastPopID
+				lastPopName
+				recentConnections {
+					duration
+					interfaceName
+					deviceName
+					lastConnected
+					popName
+	remoteIP {
+		ip
+		subnet
+		ipRange {
+			from
+			to
+		}
+		globalIpRange {
+			id
+			name
+		}
+	}
+					remoteIPInfo {
+	ip {
+		enabled
+		rules {
+			properties
+			audit {
+				updatedTime
+				updatedBy
+			}
+			rule {
+				id
+				name
+				description
+				index
+				enabled
+				platform
+				section {
+					id
+					name
+				}
+				source {
+					user
+					usersGroup
+				}
+				country {
+					id
+					name
+				}
+				range {
+					globalIpRange
+				}
+			}
+		}
+		sections {
+			properties
+			audit {
+				updatedTime
+				updatedBy
+			}
+			section {
+				id
+				name
+			}
+		}
+		audit {
+			publishedTime
+			publishedBy
+		}
+		revision {
+			id
+			name
+			description
+			changes
+			createdTime
+			updatedTime
+		}
+	}
+						countryCode
+						countryName
+						city
+	state {
+		id
+		up
+		mediaIn
+		linkSpeed
+		duplex
+		hasAddress
+		hasInternet
+		hasTunnel
+	}
+						provider
+						latitude
+						longitude
+					}
+				}
+	type {
+		name
+		recommendedAction
+		details
+	}
+				deviceUptime
+				socketInfo {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+					serial
+					isPrimary
+	platform {
+		platform
+		versions
+	}
+	version {
+		items {
+			platform
+			versions
+		}
+	}
+					versionUpdateTime
+				}
+				interfacesLinkState {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+	up {
+		id
+		name
+	}
+					mediaIn
+					linkSpeed
+					duplex
+					hasAddress
+					hasInternet
+					hasTunnel
+				}
+				osType
+				osVersion
+	version {
+		items {
+			platform
+			versions
+		}
+	}
+				versionNumber
+	releaseGroup {
+		id
+		name
+		description
+		membersCount
+		audit {
+			updatedTime
+			updatedBy {
+				__typename
+				... on AdminRef {
+					id
+					name
+				}
+				... on ApiKeyRef {
+					id
+					name
+				}
+			}
+		}
+		members {
+			items {
+				id
+				name
+				type
+			}
+			paging {
+				total
+			}
+		}
+		membersCountPerType {
+			type
+			membersCount
+		}
+	}
+				mfaExpirationTime
+				mfaCreationTime
+				internalIP
+			}
+			connectedInOffice
+			info {
+				name
+	status {
+		rawStatus
+		status
+	}
+				email
+				creationTime
+				phoneNumber
+				origin
+				authMethod
+			}
+			recentConnections {
+				duration
+				interfaceName
+				deviceName
+				lastConnected
+				popName
+	remoteIP {
+		ip
+		subnet
+		ipRange {
+			from
+			to
+		}
+		globalIpRange {
+			id
+			name
+		}
+	}
+				remoteIPInfo {
+	ip {
+		enabled
+		rules {
+			properties
+			audit {
+				updatedTime
+				updatedBy
+			}
+			rule {
+				id
+				name
+				description
+				index
+				enabled
+				platform
+				section {
+					id
+					name
+				}
+				source {
+					user
+					usersGroup
+				}
+				country {
+					id
+					name
+				}
+				range {
+					globalIpRange
+				}
+			}
+		}
+		sections {
+			properties
+			audit {
+				updatedTime
+				updatedBy
+			}
+			section {
+				id
+				name
+			}
+		}
+		audit {
+			publishedTime
+			publishedBy
+		}
+		revision {
+			id
+			name
+			description
+			changes
+			createdTime
+			updatedTime
+		}
+	}
+					countryCode
+					countryName
+					city
+	state {
+		id
+		up
+		mediaIn
+		linkSpeed
+		duplex
+		hasAddress
+		hasInternet
+		hasTunnel
+	}
+					provider
+					latitude
+					longitude
+				}
+			}
+		}
+		timestamp
 	}	
 }

@@ -11,25 +11,6 @@ catocli mutation policy terminalServer updateSection <json>
 
 catocli mutation policy terminalServer updateSection "$(cat < mutation.policy.terminalServer.updateSection.json)"
 
-catocli mutation policy terminalServer updateSection '{"policyUpdateSectionInput":{"id":"id","policyUpdateSectionInfoInput":{"name":"string"}},"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
-
-catocli mutation policy terminalServer updateSection '{
-    "policyUpdateSectionInput": {
-        "id": "id",
-        "policyUpdateSectionInfoInput": {
-            "name": "string"
-        }
-    },
-    "terminalServerPolicyMutationInput": {
-        "policyMutationRevisionInput": {
-            "id": "id"
-        }
-    }
-}'
-```
-
 #### Operation Arguments for mutation.policy.terminalServer.updateSection ####
 
 `accountId` [ID] - (required) N/A    
-`policyUpdateSectionInput` [PolicyUpdateSectionInput] - (required) N/A    
-`terminalServerPolicyMutationInput` [TerminalServerPolicyMutationInput] - (required) N/A    

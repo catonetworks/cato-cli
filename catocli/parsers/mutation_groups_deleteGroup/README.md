@@ -11,17 +11,6 @@ catocli mutation groups deleteGroup <json>
 
 catocli mutation groups deleteGroup "$(cat < mutation.groups.deleteGroup.json)"
 
-catocli mutation groups deleteGroup '{"groupRefInput":{"by":"ID","input":"string"}}'
-
-catocli mutation groups deleteGroup '{
-    "groupRefInput": {
-        "by": "ID",
-        "input": "string"
-    }
-}'
-```
-
 #### Operation Arguments for mutation.groups.deleteGroup ####
 
 `accountId` [ID] - (required) N/A    
-`groupRefInput` [GroupRefInput] - (required) N/A    

@@ -11,22 +11,6 @@ catocli mutation policy dynamicIpAllocation removeSection <json>
 
 catocli mutation policy dynamicIpAllocation removeSection "$(cat < mutation.policy.dynamicIpAllocation.removeSection.json)"
 
-catocli mutation policy dynamicIpAllocation removeSection '{"dynamicIpAllocationPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyRemoveSectionInput":{"id":"id"}}'
-
-catocli mutation policy dynamicIpAllocation removeSection '{
-    "dynamicIpAllocationPolicyMutationInput": {
-        "policyMutationRevisionInput": {
-            "id": "id"
-        }
-    },
-    "policyRemoveSectionInput": {
-        "id": "id"
-    }
-}'
-```
-
 #### Operation Arguments for mutation.policy.dynamicIpAllocation.removeSection ####
 
 `accountId` [ID] - (required) N/A    
-`dynamicIpAllocationPolicyMutationInput` [DynamicIpAllocationPolicyMutationInput] - (required) N/A    
-`policyRemoveSectionInput` [PolicyRemoveSectionInput] - (required) N/A    

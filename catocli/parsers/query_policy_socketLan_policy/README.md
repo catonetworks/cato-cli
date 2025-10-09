@@ -11,19 +11,6 @@ catocli query policy socketLan policy <json>
 
 catocli query policy socketLan policy "$(cat < query.policy.socketLan.policy.json)"
 
-catocli query policy socketLan policy '{"socketLanPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'
-
-catocli query policy socketLan policy '{
-    "socketLanPolicyInput": {
-        "policyRevisionInput": {
-            "id": "id",
-            "type": "PRIVATE"
-        }
-    }
-}'
-```
-
 #### Operation Arguments for query.policy.socketLan.policy ####
 
 `accountId` [ID] - (required) N/A    
-`socketLanPolicyInput` [SocketLanPolicyInput] - (required) N/A    

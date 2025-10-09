@@ -11,19 +11,6 @@ catocli query policy applicationControl policy <json>
 
 catocli query policy applicationControl policy "$(cat < query.policy.applicationControl.policy.json)"
 
-catocli query policy applicationControl policy '{"applicationControlPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'
-
-catocli query policy applicationControl policy '{
-    "applicationControlPolicyInput": {
-        "policyRevisionInput": {
-            "id": "id",
-            "type": "PRIVATE"
-        }
-    }
-}'
-```
-
 #### Operation Arguments for query.policy.applicationControl.policy ####
 
 `accountId` [ID] - (required) N/A    
-`applicationControlPolicyInput` [ApplicationControlPolicyInput] - (required) N/A    

@@ -1,15 +1,139 @@
 query eventsFeed ( $accountIDs:[ID!] $eventFeedFieldFilterInput:[EventFeedFieldFilterInput!] $marker:String) {
 	eventsFeed ( accountIDs:$accountIDs filters:$eventFeedFieldFilterInput marker:$marker ) {
-query.eventsFeedmarker
-query.eventsFeedfetchedCount
-query.eventsFeedaccounts {
-query.eventsFeed	id
-query.eventsFeed	errorString
-query.eventsFeed	records {
-query.eventsFeed		time
-query.eventsFeed		fieldsMap
-query.eventsFeed		flatFields
-query.eventsFeed	}
-query.eventsFeed}
+		marker
+		fetchedCount
+		accounts {
+id {
+	id
+	status
+	description
+	firstSignal
+	lastSignal
+	engineType
+	vendor
+	producer
+	producerName
+	connectionType
+	indication
+	queryName
+	source
+	criticality
+	ticket
+	research
+	siteName
+	storyDuration
+	analystFeedback {
+		verdict
+		severity
+		threatClassification
+		additionalInfo
+		threatType {
+			name
+			recommendedAction
+			details
+		}
+	}
+	site {
+		id
+		name
+	}
+	user {
+		id
+		name
+	}
+	similarStoriesData {
+		storyId
+		threatTypeName
+		verdict
+		threatClassification
+		similarityPercentage
+		indication
+	}
+	networkIncidentTimeline {
+		description
+		created
+		validated
+		eventType
+		incidentId
+		networkEventSource
+		eventIds
+		acknowledged
+		linkId
+		linkName
+		linkConfigPrecedence
+		linkStatus
+		linkConfigBandwidth
+		deviceConfigHaRole
+		deviceHaRoleState
+		socketSerialId
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		linkQualityIssue {
+			issueType
+			direction
+			current
+			threshold
+		}
+	}
+	bgpConnection {
+		connectionName
+		peerIp
+		peerAsn
+		catoIp
+		catoAsn
+	}
+	ilmmDetails {
+		linkDetails {
+			description
+			linkId
+			ispLinkId
+			comments
+			onboardingStatus
+			activeLicense
+		}
+		ispDetails {
+			name
+			description
+			ispAccountId
+			supportEmail
+			supportPhone
+			countryCode
+			loaFile {
+				fileName
+				fileHash
+				uploadedAt
+			}
+		}
+		contacts {
+			name
+			phone
+			email
+		}
+	}
+}
+			errorString
+			records {
+	time {
+		createdAt
+		description
+		type
+		context
+		descriptions
+		category
+		additionalInfo
+		analystInfo {
+			name
+			email
+		}
+	}
+				fieldsMap
+				flatFields
+			}
+		}
 	}	
 }

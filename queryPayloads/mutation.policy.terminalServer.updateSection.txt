@@ -1,24 +1,149 @@
-mutation policyTerminalServerUpdateSection ( $accountId:ID! $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput $policyUpdateSectionInput:PolicyUpdateSectionInput!) {
-	policy ( accountId:$accountId input:$terminalServerPolicyMutationInput input:$policyUpdateSectionInput ) {
-mutation.policy.terminalServer.updateSectionterminalServer ( input:$terminalServerPolicyMutationInput  )  {
-mutation.policy.terminalServer.updateSection	updateSection ( input:$policyUpdateSectionInput   ) {
-mutation.policy.terminalServer.updateSection		section {
-mutation.policy.terminalServer.updateSection			audit {
-mutation.policy.terminalServer.updateSection				updatedTime
-mutation.policy.terminalServer.updateSection				updatedBy
-mutation.policy.terminalServer.updateSection			}
-mutation.policy.terminalServer.updateSection			section {
-mutation.policy.terminalServer.updateSection				id
-mutation.policy.terminalServer.updateSection				name
-mutation.policy.terminalServer.updateSection			}
-mutation.policy.terminalServer.updateSection			properties
-mutation.policy.terminalServer.updateSection		}
-mutation.policy.terminalServer.updateSection		status
-mutation.policy.terminalServer.updateSection		errors {
-mutation.policy.terminalServer.updateSection			errorMessage
-mutation.policy.terminalServer.updateSection			errorCode
-mutation.policy.terminalServer.updateSection		}
-mutation.policy.terminalServer.updateSection	}
-mutation.policy.terminalServer.updateSection}
+mutation policyTerminalServerUpdateSection ( $accountId:ID! $policyUpdateSectionInput:PolicyUpdateSectionInput!) {
+	policy ( accountId:$accountId ) {
+		terminalServer {
+			updateSection {
+				section {
+					audit {
+						updatedTime
+	updatedBy {
+		__typename
+		... on AdminRef {
+			id
+			name
+		}
+		... on ApiKeyRef {
+			id
+			name
+		}
+	}
+					}
+					section {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+						name
+					}
+					properties
+				}
+	status {
+		rawStatus
+		status
+	}
+				errors {
+					errorMessage
+					errorCode
+				}
+			}
+		}
 	}	
 }

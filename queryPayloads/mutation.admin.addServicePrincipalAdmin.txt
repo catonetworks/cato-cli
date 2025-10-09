@@ -1,7 +1,55 @@
 mutation adminAddServicePrincipalAdmin ( $accountId:ID! $addServicePrincipalAdminInput:AddServicePrincipalAdminInput!) {
-	admin ( accountId:$accountId input:$addServicePrincipalAdminInput ) {
-mutation.admin.addServicePrincipalAdminaddServicePrincipalAdmin ( input:$addServicePrincipalAdminInput  )  {
-mutation.admin.addServicePrincipalAdmin	adminID
-mutation.admin.addServicePrincipalAdmin}
+	admin ( accountId:$accountId ) {
+		addServicePrincipalAdmin {
+adminID {
+	id
+	status
+	version
+	role
+	firstName
+	lastName
+	email
+	creationDate
+	modifyDate
+	passwordNeverExpires
+	mfaEnabled
+	nativeAccountID
+	presentUsageAndEvents
+	adminType
+	allowedItems {
+		id
+		name
+		type
+	}
+	managedRoles {
+		allowedAccounts
+		role {
+			id
+			name
+			description
+			isPredefined
+		}
+		allowedEntities {
+			id
+			name
+			type
+		}
+	}
+	resellerRoles {
+		allowedAccounts
+		role {
+			id
+			name
+			description
+			isPredefined
+		}
+		allowedEntities {
+			id
+			name
+			type
+		}
+	}
+}
+		}
 	}	
 }

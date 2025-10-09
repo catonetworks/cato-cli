@@ -11,23 +11,6 @@ catocli mutation policy tlsInspect publishPolicyRevision <json>
 
 catocli mutation policy tlsInspect publishPolicyRevision "$(cat < mutation.policy.tlsInspect.publishPolicyRevision.json)"
 
-catocli mutation policy tlsInspect publishPolicyRevision '{"policyPublishRevisionInput":{"description":"string","name":"string"},"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
-
-catocli mutation policy tlsInspect publishPolicyRevision '{
-    "policyPublishRevisionInput": {
-        "description": "string",
-        "name": "string"
-    },
-    "tlsInspectPolicyMutationInput": {
-        "policyMutationRevisionInput": {
-            "id": "id"
-        }
-    }
-}'
-```
-
 #### Operation Arguments for mutation.policy.tlsInspect.publishPolicyRevision ####
 
 `accountId` [ID] - (required) N/A    
-`policyPublishRevisionInput` [PolicyPublishRevisionInput] - (required) N/A    
-`tlsInspectPolicyMutationInput` [TlsInspectPolicyMutationInput] - (required) N/A    

@@ -269,7 +269,7 @@ def main(args=None):
             if custom_headers:
                 configuration.custom_headers.update(custom_headers)
             # Handle account ID override (applies to all commands except raw)
-            if args.func.__name__ not in ["createRawRequest"]:
+            if hasattr(args, 'func') and args.func.__name__ not in ["createRawRequest"]:
                 if hasattr(args, 'accountID') and args.accountID is not None:
                     # Command line override takes precedence
                     configuration.accountID = args.accountID
@@ -295,7 +295,7 @@ def main(args=None):
     except Exception as e:
         if isinstance(e, AttributeError):
             print('Missing arguments. Usage: catocli <operation> -h')
-            if args.v==True:
+            if hasattr(args, 'v') and args.v==True:
                 print('ERROR: ',e)
                 traceback.print_exc()
         else:

@@ -285,8 +285,13 @@ class UniversalHelpFormatter:
         base_dir = os.path.dirname(os.path.dirname(__file__))  # Go up from Utils to catocli
         readme_path = os.path.join(base_dir, "parsers", command_path, "README.md")
         
+        # If not found, try custom path (for commands like query_eventsFeed)
         if not os.path.exists(readme_path):
-            return examples
+            custom_readme_path = os.path.join(base_dir, "parsers", "custom", command_path, "README.md")
+            if os.path.exists(custom_readme_path):
+                readme_path = custom_readme_path
+            else:
+                return examples
         
         try:
             with open(readme_path, "r", encoding='utf-8') as f:
@@ -423,8 +428,13 @@ class UniversalHelpFormatter:
         base_dir = os.path.dirname(os.path.dirname(__file__))  # Go up from Utils to catocli
         readme_path = os.path.join(base_dir, "parsers", command_path, "README.md")
         
+        # If not found, try custom path (for commands like query_eventsFeed)
         if not os.path.exists(readme_path):
-            return sections
+            custom_readme_path = os.path.join(base_dir, "parsers", "custom", command_path, "README.md")
+            if os.path.exists(custom_readme_path):
+                readme_path = custom_readme_path
+            else:
+                return sections
         
         try:
             with open(readme_path, "r", encoding='utf-8') as f:

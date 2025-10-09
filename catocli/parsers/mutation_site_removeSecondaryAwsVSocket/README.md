@@ -11,6 +11,14 @@ catocli mutation site removeSecondaryAwsVSocket <json>
 
 catocli mutation site removeSecondaryAwsVSocket "$(cat < mutation.site.removeSecondaryAwsVSocket.json)"
 
+catocli mutation site removeSecondaryAwsVSocket '{"socketId":"id"}'
+
+catocli mutation site removeSecondaryAwsVSocket '{
+    "socketId": "id"
+}'
+```
+
 #### Operation Arguments for mutation.site.removeSecondaryAwsVSocket ####
 
 `accountId` [ID] - (required) N/A    
+`socketId` [ID] - (required) N/A    

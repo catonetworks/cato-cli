@@ -1,7 +1,7 @@
-query policySocketLanPolicy ( $accountId:ID!) {
-	policy ( accountId:$accountId ) {
+query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPolicyInput) {
+	policy ( accountId:$accountId input:$socketLanPolicyInput ) {
 		socketLan {
-			policy {
+			policy ( input:$socketLanPolicyInput   ) {
 				enabled
 				rules {
 					audit {

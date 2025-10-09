@@ -1,7 +1,7 @@
-mutation policyWanNetworkDiscardPolicyRevision ( $accountId:ID!) {
-	policy ( accountId:$accountId ) {
-		wanNetwork {
-			discardPolicyRevision {
+mutation policyWanNetworkDiscardPolicyRevision ( $accountId:ID! $wanNetworkPolicyMutationInput:WanNetworkPolicyMutationInput $policyDiscardRevisionInput:PolicyDiscardRevisionInput) {
+	policy ( accountId:$accountId input:$wanNetworkPolicyMutationInput input:$policyDiscardRevisionInput ) {
+		wanNetwork ( input:$wanNetworkPolicyMutationInput  )  {
+			discardPolicyRevision ( input:$policyDiscardRevisionInput   ) {
 				policy {
 					enabled
 					rules {

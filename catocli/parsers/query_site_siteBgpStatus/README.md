@@ -11,6 +11,19 @@ catocli query site siteBgpStatus <json>
 
 catocli query site siteBgpStatus "$(cat < query.site.siteBgpStatus.json)"
 
+catocli query site siteBgpStatus '{"siteBgpStatusInput":{"siteRefInput":{"by":"ID","input":"string"}}}'
+
+catocli query site siteBgpStatus '{
+    "siteBgpStatusInput": {
+        "siteRefInput": {
+            "by": "ID",
+            "input": "string"
+        }
+    }
+}'
+```
+
 #### Operation Arguments for query.site.siteBgpStatus ####
 
 `accountId` [ID] - (required) N/A    
+`siteBgpStatusInput` [SiteBgpStatusInput] - (required) N/A    

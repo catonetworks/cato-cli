@@ -552,6 +552,499 @@
                 "non_null": false
             },
             "varName": "accountId"
+        },
+        "siteId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "updateSiteGeneralDetails___siteId",
+            "name": "siteId",
+            "path": "updateSiteGeneralDetails.siteId",
+            "requestStr": "$siteId:ID! ",
+            "required": true,
+            "responseStr": "siteId:$siteId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "siteId"
+        },
+        "updateSiteGeneralDetailsInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "updateSiteGeneralDetails___input",
+            "name": "input",
+            "path": "updateSiteGeneralDetails.input",
+            "requestStr": "$updateSiteGeneralDetailsInput:UpdateSiteGeneralDetailsInput! ",
+            "required": true,
+            "responseStr": "input:$updateSiteGeneralDetailsInput ",
+            "type": {
+                "definition": {
+                    "description": null,
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "description": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "updateSiteGeneralDetails___input___description",
+                            "name": "description",
+                            "path": "updateSiteGeneralDetails.input.description",
+                            "requestStr": "$description:String ",
+                            "required": false,
+                            "responseStr": "description:$description ",
+                            "type": {
+                                "kind": [
+                                    "SCALAR"
+                                ],
+                                "name": "String",
+                                "non_null": false
+                            },
+                            "varName": "description"
+                        },
+                        "name": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "updateSiteGeneralDetails___input___name",
+                            "name": "name",
+                            "path": "updateSiteGeneralDetails.input.name",
+                            "requestStr": "$name:String ",
+                            "required": false,
+                            "responseStr": "name:$name ",
+                            "type": {
+                                "kind": [
+                                    "SCALAR"
+                                ],
+                                "name": "String",
+                                "non_null": false
+                            },
+                            "varName": "name"
+                        },
+                        "preferredPopLocation": {
+                            "defaultValue": null,
+                            "description": "Only relevant for socket sites",
+                            "id_str": "updateSiteGeneralDetails___input___preferredPopLocation",
+                            "name": "preferredPopLocation",
+                            "path": "updateSiteGeneralDetails.input.preferredPopLocation",
+                            "requestStr": "$updateSitePreferredPopLocationInput:UpdateSitePreferredPopLocationInput ",
+                            "required": false,
+                            "responseStr": "preferredPopLocation:$updateSitePreferredPopLocationInput ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "preferredOnly": {
+                                            "defaultValue": null,
+                                            "description": "Forces the socket to connect exclusively to the configured PoP locations",
+                                            "id_str": "updateSiteGeneralDetails___input___preferredPopLocation___preferredOnly",
+                                            "name": "preferredOnly",
+                                            "path": "updateSiteGeneralDetails.input.preferredPopLocation.preferredOnly",
+                                            "requestStr": "$preferredOnly:Boolean! ",
+                                            "required": true,
+                                            "responseStr": "preferredOnly:$preferredOnly ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "Boolean",
+                                                "non_null": false
+                                            },
+                                            "varName": "preferredOnly"
+                                        },
+                                        "primary": {
+                                            "defaultValue": null,
+                                            "description": "Set the location reference to -1, `Automatic`, or null to enable automatic selection.\nSet the location reference to -2 or `None` to disable the preferred PoP location (only allowed for secondary).",
+                                            "id_str": "updateSiteGeneralDetails___input___preferredPopLocation___primary",
+                                            "name": "primary",
+                                            "path": "updateSiteGeneralDetails.input.preferredPopLocation.primary",
+                                            "requestStr": "$popLocationRefInput:PopLocationRefInput ",
+                                            "required": false,
+                                            "responseStr": "primary:$popLocationRefInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "by": {
+                                                            "defaultValue": "ID",
+                                                            "description": null,
+                                                            "id_str": "updateSiteGeneralDetails___input___preferredPopLocation___primary___by",
+                                                            "name": "by",
+                                                            "path": "updateSiteGeneralDetails.input.preferredPopLocation.primary.by",
+                                                            "requestStr": "$by:ObjectRefBy! ",
+                                                            "required": true,
+                                                            "responseStr": "by:$by ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "ID"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "NAME"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "ObjectRefBy",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "ObjectRefBy",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "by"
+                                                        },
+                                                        "input": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "updateSiteGeneralDetails___input___preferredPopLocation___primary___input",
+                                                            "name": "input",
+                                                            "path": "updateSiteGeneralDetails.input.preferredPopLocation.primary.input",
+                                                            "requestStr": "$input:String! ",
+                                                            "required": true,
+                                                            "responseStr": "input:$input ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "input"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "PopLocationRefInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "PopLocationRefInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "popLocationRefInput"
+                                        },
+                                        "secondary": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "updateSiteGeneralDetails___input___preferredPopLocation___secondary",
+                                            "name": "secondary",
+                                            "path": "updateSiteGeneralDetails.input.preferredPopLocation.secondary",
+                                            "requestStr": "$popLocationRefInput:PopLocationRefInput ",
+                                            "required": false,
+                                            "responseStr": "secondary:$popLocationRefInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "by": {
+                                                            "defaultValue": "ID",
+                                                            "description": null,
+                                                            "id_str": "updateSiteGeneralDetails___input___preferredPopLocation___secondary___by",
+                                                            "name": "by",
+                                                            "path": "updateSiteGeneralDetails.input.preferredPopLocation.secondary.by",
+                                                            "requestStr": "$by:ObjectRefBy! ",
+                                                            "required": true,
+                                                            "responseStr": "by:$by ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "ID"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "NAME"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "ObjectRefBy",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "ObjectRefBy",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "by"
+                                                        },
+                                                        "input": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "updateSiteGeneralDetails___input___preferredPopLocation___secondary___input",
+                                                            "name": "input",
+                                                            "path": "updateSiteGeneralDetails.input.preferredPopLocation.secondary.input",
+                                                            "requestStr": "$input:String! ",
+                                                            "required": true,
+                                                            "responseStr": "input:$input ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "input"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "PopLocationRefInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "PopLocationRefInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "popLocationRefInput"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "UpdateSitePreferredPopLocationInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "UpdateSitePreferredPopLocationInput",
+                                "non_null": false
+                            },
+                            "varName": "updateSitePreferredPopLocationInput"
+                        },
+                        "siteLocation": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "updateSiteGeneralDetails___input___siteLocation",
+                            "name": "siteLocation",
+                            "path": "updateSiteGeneralDetails.input.siteLocation",
+                            "requestStr": "$updateSiteLocationInput:UpdateSiteLocationInput ",
+                            "required": false,
+                            "responseStr": "siteLocation:$updateSiteLocationInput ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "address": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "updateSiteGeneralDetails___input___siteLocation___address",
+                                            "name": "address",
+                                            "path": "updateSiteGeneralDetails.input.siteLocation.address",
+                                            "requestStr": "$address:String ",
+                                            "required": false,
+                                            "responseStr": "address:$address ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "String",
+                                                "non_null": false
+                                            },
+                                            "varName": "address"
+                                        },
+                                        "cityName": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "updateSiteGeneralDetails___input___siteLocation___cityName",
+                                            "name": "cityName",
+                                            "path": "updateSiteGeneralDetails.input.siteLocation.cityName",
+                                            "requestStr": "$cityName:String ",
+                                            "required": false,
+                                            "responseStr": "cityName:$cityName ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "String",
+                                                "non_null": false
+                                            },
+                                            "varName": "cityName"
+                                        },
+                                        "countryCode": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "updateSiteGeneralDetails___input___siteLocation___countryCode",
+                                            "name": "countryCode",
+                                            "path": "updateSiteGeneralDetails.input.siteLocation.countryCode",
+                                            "requestStr": "$countryCode:String ",
+                                            "required": false,
+                                            "responseStr": "countryCode:$countryCode ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "String",
+                                                "non_null": false
+                                            },
+                                            "varName": "countryCode"
+                                        },
+                                        "stateCode": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "updateSiteGeneralDetails___input___siteLocation___stateCode",
+                                            "name": "stateCode",
+                                            "path": "updateSiteGeneralDetails.input.siteLocation.stateCode",
+                                            "requestStr": "$stateCode:String ",
+                                            "required": false,
+                                            "responseStr": "stateCode:$stateCode ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "String",
+                                                "non_null": false
+                                            },
+                                            "varName": "stateCode"
+                                        },
+                                        "timezone": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "updateSiteGeneralDetails___input___siteLocation___timezone",
+                                            "name": "timezone",
+                                            "path": "updateSiteGeneralDetails.input.siteLocation.timezone",
+                                            "requestStr": "$timezone:String ",
+                                            "required": false,
+                                            "responseStr": "timezone:$timezone ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "String",
+                                                "non_null": false
+                                            },
+                                            "varName": "timezone"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "UpdateSiteLocationInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "UpdateSiteLocationInput",
+                                "non_null": false
+                            },
+                            "varName": "updateSiteLocationInput"
+                        },
+                        "siteType": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "updateSiteGeneralDetails___input___siteType",
+                            "name": "siteType",
+                            "path": "updateSiteGeneralDetails.input.siteType",
+                            "requestStr": "$siteType:SiteType ",
+                            "required": false,
+                            "responseStr": "siteType:$siteType ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": [
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "BRANCH"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "HEADQUARTERS"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "CLOUD_DC"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "DATACENTER"
+                                        }
+                                    ],
+                                    "fields": null,
+                                    "inputFields": null,
+                                    "interfaces": null,
+                                    "kind": "ENUM",
+                                    "name": "SiteType",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "enum",
+                                "kind": [
+                                    "ENUM"
+                                ],
+                                "name": "SiteType",
+                                "non_null": false
+                            },
+                            "varName": "siteType"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "UpdateSiteGeneralDetailsInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "UpdateSiteGeneralDetailsInput",
+                "non_null": false
+            },
+            "varName": "updateSiteGeneralDetailsInput"
         }
     },
     "path": "mutation.site.updateSiteGeneralDetails",
@@ -1122,5 +1615,30 @@
         "name": "SiteMutations",
         "non_null": false
     },
-    "variablesPayload": {}
+    "variablesPayload": {
+        "siteId": "id",
+        "updateSiteGeneralDetailsInput": {
+            "description": "string",
+            "name": "string",
+            "siteType": "BRANCH",
+            "updateSiteLocationInput": {
+                "address": "string",
+                "cityName": "string",
+                "countryCode": "string",
+                "stateCode": "string",
+                "timezone": "string"
+            },
+            "updateSitePreferredPopLocationInput": {
+                "preferredOnly": true,
+                "primary": {
+                    "by": "ID",
+                    "input": "string"
+                },
+                "secondary": {
+                    "by": "ID",
+                    "input": "string"
+                }
+            }
+        }
+    }
 }

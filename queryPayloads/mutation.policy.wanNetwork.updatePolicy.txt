@@ -1,7 +1,7 @@
-mutation policyWanNetworkUpdatePolicy ( $accountId:ID! $wanNetworkPolicyUpdateInput:WanNetworkPolicyUpdateInput!) {
-	policy ( accountId:$accountId ) {
-		wanNetwork {
-			updatePolicy {
+mutation policyWanNetworkUpdatePolicy ( $accountId:ID! $wanNetworkPolicyMutationInput:WanNetworkPolicyMutationInput $wanNetworkPolicyUpdateInput:WanNetworkPolicyUpdateInput!) {
+	policy ( accountId:$accountId input:$wanNetworkPolicyMutationInput input:$wanNetworkPolicyUpdateInput ) {
+		wanNetwork ( input:$wanNetworkPolicyMutationInput  )  {
+			updatePolicy ( input:$wanNetworkPolicyUpdateInput   ) {
 				policy {
 					enabled
 					rules {

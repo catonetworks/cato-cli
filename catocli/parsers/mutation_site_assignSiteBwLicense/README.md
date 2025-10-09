@@ -11,6 +11,21 @@ catocli mutation site assignSiteBwLicense <json>
 
 catocli mutation site assignSiteBwLicense "$(cat < mutation.site.assignSiteBwLicense.json)"
 
+catocli mutation site assignSiteBwLicense '{"assignSiteBwLicenseInput":{"bw":1,"licenseId":"id","siteRefInput":{"by":"ID","input":"string"}}}'
+
+catocli mutation site assignSiteBwLicense '{
+    "assignSiteBwLicenseInput": {
+        "bw": 1,
+        "licenseId": "id",
+        "siteRefInput": {
+            "by": "ID",
+            "input": "string"
+        }
+    }
+}'
+```
+
 #### Operation Arguments for mutation.site.assignSiteBwLicense ####
 
 `accountId` [ID] - (required) N/A    
+`assignSiteBwLicenseInput` [AssignSiteBwLicenseInput] - (required) N/A    

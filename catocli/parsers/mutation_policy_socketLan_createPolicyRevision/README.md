@@ -11,6 +11,23 @@ catocli mutation policy socketLan createPolicyRevision <json>
 
 catocli mutation policy socketLan createPolicyRevision "$(cat < mutation.policy.socketLan.createPolicyRevision.json)"
 
+catocli mutation policy socketLan createPolicyRevision '{"policyCreateRevisionInput":{"description":"string","name":"string"},"socketLanPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
+
+catocli mutation policy socketLan createPolicyRevision '{
+    "policyCreateRevisionInput": {
+        "description": "string",
+        "name": "string"
+    },
+    "socketLanPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    }
+}'
+```
+
 #### Operation Arguments for mutation.policy.socketLan.createPolicyRevision ####
 
 `accountId` [ID] - (required) N/A    
+`policyCreateRevisionInput` [PolicyCreateRevisionInput] - (required) N/A    
+`socketLanPolicyMutationInput` [SocketLanPolicyMutationInput] - (required) N/A    

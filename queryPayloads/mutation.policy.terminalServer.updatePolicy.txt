@@ -1,7 +1,7 @@
-mutation policyTerminalServerUpdatePolicy ( $accountId:ID! $terminalServerPolicyUpdateInput:TerminalServerPolicyUpdateInput!) {
-	policy ( accountId:$accountId ) {
-		terminalServer {
-			updatePolicy {
+mutation policyTerminalServerUpdatePolicy ( $accountId:ID! $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput $terminalServerPolicyUpdateInput:TerminalServerPolicyUpdateInput!) {
+	policy ( accountId:$accountId input:$terminalServerPolicyMutationInput input:$terminalServerPolicyUpdateInput ) {
+		terminalServer ( input:$terminalServerPolicyMutationInput  )  {
+			updatePolicy ( input:$terminalServerPolicyUpdateInput   ) {
 				policy {
 					enabled
 					rules {

@@ -11,6 +11,20 @@ catocli query site cloudInterconnectPhysicalConnectionId <json>
 
 catocli query site cloudInterconnectPhysicalConnectionId "$(cat < query.site.cloudInterconnectPhysicalConnectionId.json)"
 
+catocli query site cloudInterconnectPhysicalConnectionId '{"cloudInterconnectPhysicalConnectionIdInput":{"haRole":"PRIMARY","siteRefInput":{"by":"ID","input":"string"}}}'
+
+catocli query site cloudInterconnectPhysicalConnectionId '{
+    "cloudInterconnectPhysicalConnectionIdInput": {
+        "haRole": "PRIMARY",
+        "siteRefInput": {
+            "by": "ID",
+            "input": "string"
+        }
+    }
+}'
+```
+
 #### Operation Arguments for query.site.cloudInterconnectPhysicalConnectionId ####
 
 `accountId` [ID] - (required) N/A    
+`cloudInterconnectPhysicalConnectionIdInput` [CloudInterconnectPhysicalConnectionIdInput] - (required) N/A    

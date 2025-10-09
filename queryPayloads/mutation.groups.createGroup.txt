@@ -1,6 +1,6 @@
 mutation groupsCreateGroup ( $accountId:ID! $createGroupInput:CreateGroupInput! $groupMembersListInput:GroupMembersListInput!) {
-	groups ( accountId:$accountId ) {
-		createGroup {
+	groups ( accountId:$accountId input:$createGroupInput input:$groupMembersListInput ) {
+		createGroup ( input:$createGroupInput  )  {
 			group {
 	id {
 		id
@@ -468,7 +468,7 @@ mutation groupsCreateGroup ( $accountId:ID! $createGroupInput:CreateGroupInput! 
 						}
 					}
 				}
-				members {
+				members ( input:$groupMembersListInput  )  {
 					items {
 	id {
 		id

@@ -1,7 +1,7 @@
-mutation policyDynamicIpAllocationAddSection ( $accountId:ID! $policyAddSectionInput:PolicyAddSectionInput!) {
-	policy ( accountId:$accountId ) {
-		dynamicIpAllocation {
-			addSection {
+mutation policyDynamicIpAllocationAddSection ( $accountId:ID! $dynamicIpAllocationPolicyMutationInput:DynamicIpAllocationPolicyMutationInput $policyAddSectionInput:PolicyAddSectionInput!) {
+	policy ( accountId:$accountId input:$dynamicIpAllocationPolicyMutationInput input:$policyAddSectionInput ) {
+		dynamicIpAllocation ( input:$dynamicIpAllocationPolicyMutationInput  )  {
+			addSection ( input:$policyAddSectionInput   ) {
 				section {
 					audit {
 						updatedTime

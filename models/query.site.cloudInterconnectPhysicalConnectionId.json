@@ -226,6 +226,173 @@
                 "non_null": false
             },
             "varName": "accountId"
+        },
+        "cloudInterconnectPhysicalConnectionIdInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "cloudInterconnectPhysicalConnectionId___input",
+            "name": "input",
+            "path": "cloudInterconnectPhysicalConnectionId.input",
+            "requestStr": "$cloudInterconnectPhysicalConnectionIdInput:CloudInterconnectPhysicalConnectionIdInput! ",
+            "required": true,
+            "responseStr": "input:$cloudInterconnectPhysicalConnectionIdInput ",
+            "type": {
+                "definition": {
+                    "description": "Input for getting the ID of a physical connection at a cloud interconnect site.",
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "haRole": {
+                            "defaultValue": null,
+                            "description": "High availability role of the connection.",
+                            "id_str": "cloudInterconnectPhysicalConnectionId___input___haRole",
+                            "name": "haRole",
+                            "path": "cloudInterconnectPhysicalConnectionId.input.haRole",
+                            "requestStr": "$haRole:HaRole! ",
+                            "required": true,
+                            "responseStr": "haRole:$haRole ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": [
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "PRIMARY"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "SECONDARY"
+                                        }
+                                    ],
+                                    "fields": null,
+                                    "inputFields": null,
+                                    "interfaces": null,
+                                    "kind": "ENUM",
+                                    "name": "HaRole",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "enum",
+                                "kind": [
+                                    "NON_NULL",
+                                    "ENUM"
+                                ],
+                                "name": "HaRole",
+                                "non_null": false
+                            },
+                            "varName": "haRole"
+                        },
+                        "site": {
+                            "defaultValue": null,
+                            "description": "Identifying data for the site.",
+                            "id_str": "cloudInterconnectPhysicalConnectionId___input___site",
+                            "name": "site",
+                            "path": "cloudInterconnectPhysicalConnectionId.input.site",
+                            "requestStr": "$siteRefInput:SiteRefInput! ",
+                            "required": true,
+                            "responseStr": "site:$siteRefInput ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "by": {
+                                            "defaultValue": "ID",
+                                            "description": null,
+                                            "id_str": "cloudInterconnectPhysicalConnectionId___input___site___by",
+                                            "name": "by",
+                                            "path": "cloudInterconnectPhysicalConnectionId.input.site.by",
+                                            "requestStr": "$by:ObjectRefBy! ",
+                                            "required": true,
+                                            "responseStr": "by:$by ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "ID"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "NAME"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "ObjectRefBy",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "ENUM"
+                                                ],
+                                                "name": "ObjectRefBy",
+                                                "non_null": false
+                                            },
+                                            "varName": "by"
+                                        },
+                                        "input": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "cloudInterconnectPhysicalConnectionId___input___site___input",
+                                            "name": "input",
+                                            "path": "cloudInterconnectPhysicalConnectionId.input.site.input",
+                                            "requestStr": "$input:String! ",
+                                            "required": true,
+                                            "responseStr": "input:$input ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "String",
+                                                "non_null": false
+                                            },
+                                            "varName": "input"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "SiteRefInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "NON_NULL",
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "SiteRefInput",
+                                "non_null": false
+                            },
+                            "varName": "siteRefInput"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "CloudInterconnectPhysicalConnectionIdInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "CloudInterconnectPhysicalConnectionIdInput",
+                "non_null": false
+            },
+            "varName": "cloudInterconnectPhysicalConnectionIdInput"
         }
     },
     "path": "query.site.cloudInterconnectPhysicalConnectionId",
@@ -470,5 +637,13 @@
         "name": "SiteQueries",
         "non_null": false
     },
-    "variablesPayload": {}
+    "variablesPayload": {
+        "cloudInterconnectPhysicalConnectionIdInput": {
+            "haRole": "PRIMARY",
+            "siteRefInput": {
+                "by": "ID",
+                "input": "string"
+            }
+        }
+    }
 }

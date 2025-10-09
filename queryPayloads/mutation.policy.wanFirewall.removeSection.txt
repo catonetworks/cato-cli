@@ -1,7 +1,7 @@
-mutation policyWanFirewallRemoveSection ( $accountId:ID! $policyRemoveSectionInput:PolicyRemoveSectionInput!) {
-	policy ( accountId:$accountId ) {
-		wanFirewall {
-			removeSection {
+mutation policyWanFirewallRemoveSection ( $accountId:ID! $wanFirewallPolicyMutationInput:WanFirewallPolicyMutationInput $policyRemoveSectionInput:PolicyRemoveSectionInput!) {
+	policy ( accountId:$accountId input:$wanFirewallPolicyMutationInput input:$policyRemoveSectionInput ) {
+		wanFirewall ( input:$wanFirewallPolicyMutationInput  )  {
+			removeSection ( input:$policyRemoveSectionInput   ) {
 				section {
 					audit {
 						updatedTime

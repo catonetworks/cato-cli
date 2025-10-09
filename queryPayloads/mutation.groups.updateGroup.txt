@@ -1,6 +1,6 @@
 mutation groupsUpdateGroup ( $accountId:ID! $updateGroupInput:UpdateGroupInput! $groupMembersListInput:GroupMembersListInput!) {
-	groups ( accountId:$accountId ) {
-		updateGroup {
+	groups ( accountId:$accountId input:$updateGroupInput input:$groupMembersListInput ) {
+		updateGroup ( input:$updateGroupInput  )  {
 			group {
 	id {
 		id
@@ -468,7 +468,7 @@ mutation groupsUpdateGroup ( $accountId:ID! $updateGroupInput:UpdateGroupInput! 
 						}
 					}
 				}
-				members {
+				members ( input:$groupMembersListInput  )  {
 					items {
 	id {
 		id

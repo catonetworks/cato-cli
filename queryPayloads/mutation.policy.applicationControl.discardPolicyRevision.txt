@@ -1,7 +1,7 @@
-mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID!) {
-	policy ( accountId:$accountId ) {
-		applicationControl {
-			discardPolicyRevision {
+mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applicationControlPolicyMutationInput:ApplicationControlPolicyMutationInput $policyDiscardRevisionInput:PolicyDiscardRevisionInput) {
+	policy ( accountId:$accountId input:$applicationControlPolicyMutationInput input:$policyDiscardRevisionInput ) {
+		applicationControl ( input:$applicationControlPolicyMutationInput  )  {
+			discardPolicyRevision ( input:$policyDiscardRevisionInput   ) {
 				policy {
 					enabled
 					rules {

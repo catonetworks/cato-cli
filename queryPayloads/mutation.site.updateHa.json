@@ -1,5 +1,12 @@
 {
     "operationName": "siteUpdateHa",
-    "query": "mutation siteUpdateHa ( $accountId:ID! $siteId:ID!) {\n\tsite ( accountId:$accountId ) {\n\t\tupdateHa {\n\t\t\tsiteId\n\t\t}\n\t}\t\n}",
-    "variables": {}
+    "query": "mutation siteUpdateHa ( $accountId:ID! $siteId:ID! $updateHaInput:UpdateHaInput!) {\n\tsite ( accountId:$accountId siteId:$siteId input:$updateHaInput ) {\n\t\tupdateHa ( siteId:$siteId  input:$updateHaInput  )  {\n\t\t\tsiteId\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "siteId": "id",
+        "updateHaInput": {
+            "primaryManagementIp": "example_value",
+            "secondaryManagementIp": "example_value",
+            "vrid": 1
+        }
+    }
 }

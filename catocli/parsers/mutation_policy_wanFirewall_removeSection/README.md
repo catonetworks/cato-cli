@@ -11,6 +11,22 @@ catocli mutation policy wanFirewall removeSection <json>
 
 catocli mutation policy wanFirewall removeSection "$(cat < mutation.policy.wanFirewall.removeSection.json)"
 
+catocli mutation policy wanFirewall removeSection '{"policyRemoveSectionInput":{"id":"id"},"wanFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
+
+catocli mutation policy wanFirewall removeSection '{
+    "policyRemoveSectionInput": {
+        "id": "id"
+    },
+    "wanFirewallPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    }
+}'
+```
+
 #### Operation Arguments for mutation.policy.wanFirewall.removeSection ####
 
 `accountId` [ID] - (required) N/A    
+`policyRemoveSectionInput` [PolicyRemoveSectionInput] - (required) N/A    
+`wanFirewallPolicyMutationInput` [WanFirewallPolicyMutationInput] - (required) N/A    

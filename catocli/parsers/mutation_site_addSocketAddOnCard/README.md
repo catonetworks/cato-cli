@@ -11,6 +11,23 @@ catocli mutation site addSocketAddOnCard <json>
 
 catocli mutation site addSocketAddOnCard "$(cat < mutation.site.addSocketAddOnCard.json)"
 
+catocli mutation site addSocketAddOnCard '{"addSocketAddOnCardInput":{"siteRefInput":{"by":"ID","input":"string"},"socketAddOnCardInput":{"expansionSlotNumber":"SLOT_1","type":"FOUR_1G_COPPER"}}}'
+
+catocli mutation site addSocketAddOnCard '{
+    "addSocketAddOnCardInput": {
+        "siteRefInput": {
+            "by": "ID",
+            "input": "string"
+        },
+        "socketAddOnCardInput": {
+            "expansionSlotNumber": "SLOT_1",
+            "type": "FOUR_1G_COPPER"
+        }
+    }
+}'
+```
+
 #### Operation Arguments for mutation.site.addSocketAddOnCard ####
 
 `accountId` [ID] - (required) N/A    
+`addSocketAddOnCardInput` [AddSocketAddOnCardInput] - (required) N/A    

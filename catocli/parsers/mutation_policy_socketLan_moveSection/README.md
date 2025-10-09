@@ -11,6 +11,26 @@ catocli mutation policy socketLan moveSection <json>
 
 catocli mutation policy socketLan moveSection "$(cat < mutation.policy.socketLan.moveSection.json)"
 
+catocli mutation policy socketLan moveSection '{"policyMoveSectionInput":{"id":"id","policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}},"socketLanPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
+
+catocli mutation policy socketLan moveSection '{
+    "policyMoveSectionInput": {
+        "id": "id",
+        "policySectionPositionInput": {
+            "position": "AFTER_SECTION",
+            "ref": "id"
+        }
+    },
+    "socketLanPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    }
+}'
+```
+
 #### Operation Arguments for mutation.policy.socketLan.moveSection ####
 
 `accountId` [ID] - (required) N/A    
+`policyMoveSectionInput` [PolicyMoveSectionInput] - (required) N/A    
+`socketLanPolicyMutationInput` [SocketLanPolicyMutationInput] - (required) N/A    

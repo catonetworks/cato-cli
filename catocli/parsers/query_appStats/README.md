@@ -11,7 +11,7 @@ catocli query appStats <json>
 
 catocli query appStats "$(cat < query.appStats.json)"
 
-catocli query appStats '{"appStatsFilter":{"fieldName":"ad_name","operator":"is","values":["string1","string2"]},"appStatsSort":{"fieldName":"ad_name","order":"asc"},"dimension":{"fieldName":"ad_name"},"measure":{"aggType":"sum","fieldName":"ad_name","trend":true},"timeFrame":"example_value"}'
+catocli query appStats '{"appStatsFilter":{"fieldName":"ad_name","operator":"is","values":["string1","string2"]},"appStatsSort":{"fieldName":"ad_name","order":"asc"},"dimension":{"fieldName":"ad_name"},"from":1,"limit":1,"measure":{"aggType":"sum","fieldName":"ad_name","trend":true},"timeFrame":"example_value"}'
 
 catocli query appStats '{
     "appStatsFilter": {
@@ -29,6 +29,8 @@ catocli query appStats '{
     "dimension": {
         "fieldName": "ad_name"
     },
+    "from": 1,
+    "limit": 1,
     "measure": {
         "aggType": "sum",
         "fieldName": "ad_name",
@@ -128,5 +130,7 @@ Format: `"utc.YYYY-MM-{DD/HH:MM:SS--DD/HH:MM:SS}"`
 `appStatsFilter` [AppStatsFilter[]] - (required) N/A    
 `appStatsSort` [AppStatsSort[]] - (required) N/A    
 `dimension` [Dimension[]] - (required) N/A    
+`from` [Int] - (required) N/A    
+`limit` [Int] - (required) N/A    
 `measure` [Measure[]] - (required) N/A    
 `timeFrame` [TimeFrame] - (required) N/A    

@@ -1,7 +1,7 @@
-query policyRemotePortFwdPolicy ( $accountId:ID!) {
-	policy ( accountId:$accountId ) {
+query policyRemotePortFwdPolicy ( $accountId:ID! $remotePortFwdPolicyInput:RemotePortFwdPolicyInput) {
+	policy ( accountId:$accountId input:$remotePortFwdPolicyInput ) {
 		remotePortFwd {
-			policy {
+			policy ( input:$remotePortFwdPolicyInput   ) {
 				enabled
 				rules {
 					audit {

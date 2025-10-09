@@ -1,7 +1,7 @@
 query groupsGroupMembers ( $accountId:ID! $groupRefInput:GroupRefInput! $groupMembersListInput:GroupMembersListInput!) {
-	groups ( accountId:$accountId ) {
-		group {
-			members {
+	groups ( accountId:$accountId input:$groupRefInput input:$groupMembersListInput ) {
+		group ( input:$groupRefInput  )  {
+			members ( input:$groupMembersListInput   ) {
 				items {
 	id {
 		id

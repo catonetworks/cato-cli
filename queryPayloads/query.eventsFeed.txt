@@ -1,5 +1,5 @@
-query eventsFeed ( $accountIDs:[ID!] $eventFeedFieldFilterInput:[EventFeedFieldFilterInput!] $marker:String) {
-	eventsFeed ( accountIDs:$accountIDs filters:$eventFeedFieldFilterInput marker:$marker ) {
+query eventsFeed ( $accountIDs:[ID!] $eventFeedFieldFilterInput:[EventFeedFieldFilterInput!] $marker:String $fieldNames:[EventFieldName!]) {
+	eventsFeed ( accountIDs:$accountIDs filters:$eventFeedFieldFilterInput marker:$marker fieldNames:$fieldNames ) {
 		marker
 		fetchedCount
 		accounts {
@@ -117,7 +117,7 @@ id {
 	}
 }
 			errorString
-			records {
+			records ( fieldNames:$fieldNames   ) {
 	time {
 		createdAt
 		description

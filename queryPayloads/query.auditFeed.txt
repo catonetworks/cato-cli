@@ -1,5 +1,5 @@
-query auditFeed ( $accountIDs:[ID!] $timeFrame:TimeFrame! $auditFieldFilterInput:[AuditFieldFilterInput!] $marker:String) {
-	auditFeed ( accountIDs:$accountIDs timeFrame:$timeFrame filters:$auditFieldFilterInput marker:$marker ) {
+query auditFeed ( $accountIDs:[ID!] $timeFrame:TimeFrame! $auditFieldFilterInput:[AuditFieldFilterInput!] $marker:String $fieldNames:[AuditFieldName!]) {
+	auditFeed ( accountIDs:$accountIDs timeFrame:$timeFrame filters:$auditFieldFilterInput marker:$marker fieldNames:$fieldNames ) {
 from {
 	container {
 		id
@@ -149,7 +149,7 @@ id {
 		}
 	}
 }
-			records {
+			records ( fieldNames:$fieldNames   ) {
 				admin {
 	id {
 		id

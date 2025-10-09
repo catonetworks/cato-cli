@@ -1,7 +1,7 @@
-mutation policyWanFirewallUpdatePolicy ( $accountId:ID! $wanFirewallPolicyUpdateInput:WanFirewallPolicyUpdateInput!) {
-	policy ( accountId:$accountId ) {
-		wanFirewall {
-			updatePolicy {
+mutation policyWanFirewallUpdatePolicy ( $accountId:ID! $wanFirewallPolicyMutationInput:WanFirewallPolicyMutationInput $wanFirewallPolicyUpdateInput:WanFirewallPolicyUpdateInput!) {
+	policy ( accountId:$accountId input:$wanFirewallPolicyMutationInput input:$wanFirewallPolicyUpdateInput ) {
+		wanFirewall ( input:$wanFirewallPolicyMutationInput  )  {
+			updatePolicy ( input:$wanFirewallPolicyUpdateInput   ) {
 				policy {
 					enabled
 					rules {

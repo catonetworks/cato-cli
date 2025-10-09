@@ -1,7 +1,7 @@
-mutation policyAppTenantRestrictionRemoveSection ( $accountId:ID! $policyRemoveSectionInput:PolicyRemoveSectionInput!) {
-	policy ( accountId:$accountId ) {
-		appTenantRestriction {
-			removeSection {
+mutation policyAppTenantRestrictionRemoveSection ( $accountId:ID! $appTenantRestrictionPolicyMutationInput:AppTenantRestrictionPolicyMutationInput $policyRemoveSectionInput:PolicyRemoveSectionInput!) {
+	policy ( accountId:$accountId input:$appTenantRestrictionPolicyMutationInput input:$policyRemoveSectionInput ) {
+		appTenantRestriction ( input:$appTenantRestrictionPolicyMutationInput  )  {
+			removeSection ( input:$policyRemoveSectionInput   ) {
 				section {
 					audit {
 						updatedTime

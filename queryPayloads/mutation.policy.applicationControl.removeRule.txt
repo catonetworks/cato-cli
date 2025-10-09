@@ -1,7 +1,7 @@
-mutation policyApplicationControlRemoveRule ( $accountId:ID! $applicationControlRemoveRuleInput:ApplicationControlRemoveRuleInput!) {
-	policy ( accountId:$accountId ) {
-		applicationControl {
-			removeRule {
+mutation policyApplicationControlRemoveRule ( $accountId:ID! $applicationControlPolicyMutationInput:ApplicationControlPolicyMutationInput $applicationControlRemoveRuleInput:ApplicationControlRemoveRuleInput!) {
+	policy ( accountId:$accountId input:$applicationControlPolicyMutationInput input:$applicationControlRemoveRuleInput ) {
+		applicationControl ( input:$applicationControlPolicyMutationInput  )  {
+			removeRule ( input:$applicationControlRemoveRuleInput   ) {
 				rule {
 					audit {
 						updatedTime

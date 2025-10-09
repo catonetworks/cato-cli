@@ -1,7 +1,7 @@
-mutation policyTerminalServerDiscardPolicyRevision ( $accountId:ID!) {
-	policy ( accountId:$accountId ) {
-		terminalServer {
-			discardPolicyRevision {
+mutation policyTerminalServerDiscardPolicyRevision ( $accountId:ID! $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput $policyDiscardRevisionInput:PolicyDiscardRevisionInput) {
+	policy ( accountId:$accountId input:$terminalServerPolicyMutationInput input:$policyDiscardRevisionInput ) {
+		terminalServer ( input:$terminalServerPolicyMutationInput  )  {
+			discardPolicyRevision ( input:$policyDiscardRevisionInput   ) {
 				policy {
 					enabled
 					rules {

@@ -11,6 +11,22 @@ catocli mutation policy socketLan discardPolicyRevision <json>
 
 catocli mutation policy socketLan discardPolicyRevision "$(cat < mutation.policy.socketLan.discardPolicyRevision.json)"
 
+catocli mutation policy socketLan discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"socketLanPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
+
+catocli mutation policy socketLan discardPolicyRevision '{
+    "policyDiscardRevisionInput": {
+        "id": "id"
+    },
+    "socketLanPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    }
+}'
+```
+
 #### Operation Arguments for mutation.policy.socketLan.discardPolicyRevision ####
 
 `accountId` [ID] - (required) N/A    
+`policyDiscardRevisionInput` [PolicyDiscardRevisionInput] - (required) N/A    
+`socketLanPolicyMutationInput` [SocketLanPolicyMutationInput] - (required) N/A    

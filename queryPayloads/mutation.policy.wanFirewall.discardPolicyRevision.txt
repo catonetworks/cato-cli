@@ -1,7 +1,7 @@
-mutation policyWanFirewallDiscardPolicyRevision ( $accountId:ID!) {
-	policy ( accountId:$accountId ) {
-		wanFirewall {
-			discardPolicyRevision {
+mutation policyWanFirewallDiscardPolicyRevision ( $accountId:ID! $wanFirewallPolicyMutationInput:WanFirewallPolicyMutationInput $policyDiscardRevisionInput:PolicyDiscardRevisionInput) {
+	policy ( accountId:$accountId input:$wanFirewallPolicyMutationInput input:$policyDiscardRevisionInput ) {
+		wanFirewall ( input:$wanFirewallPolicyMutationInput  )  {
+			discardPolicyRevision ( input:$policyDiscardRevisionInput   ) {
 				policy {
 					enabled
 					rules {

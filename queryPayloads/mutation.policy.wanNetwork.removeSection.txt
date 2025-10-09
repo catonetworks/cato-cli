@@ -1,7 +1,7 @@
-mutation policyWanNetworkRemoveSection ( $accountId:ID! $policyRemoveSectionInput:PolicyRemoveSectionInput!) {
-	policy ( accountId:$accountId ) {
-		wanNetwork {
-			removeSection {
+mutation policyWanNetworkRemoveSection ( $accountId:ID! $wanNetworkPolicyMutationInput:WanNetworkPolicyMutationInput $policyRemoveSectionInput:PolicyRemoveSectionInput!) {
+	policy ( accountId:$accountId input:$wanNetworkPolicyMutationInput input:$policyRemoveSectionInput ) {
+		wanNetwork ( input:$wanNetworkPolicyMutationInput  )  {
+			removeSection ( input:$policyRemoveSectionInput   ) {
 				section {
 					audit {
 						updatedTime

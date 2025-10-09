@@ -11,6 +11,22 @@ catocli mutation container ipAddressRange updateFromFile <json>
 
 catocli mutation container ipAddressRange updateFromFile "$(cat < mutation.container.ipAddressRange.updateFromFile.json)"
 
+catocli mutation container ipAddressRange updateFromFile '{"updateIpAddressRangeContainerFromFileInput":{"containerRefInput":{"by":"ID","input":"string"},"description":"string","fileType":"STIX","uploadFile":"example_value"}}'
+
+catocli mutation container ipAddressRange updateFromFile '{
+    "updateIpAddressRangeContainerFromFileInput": {
+        "containerRefInput": {
+            "by": "ID",
+            "input": "string"
+        },
+        "description": "string",
+        "fileType": "STIX",
+        "uploadFile": "example_value"
+    }
+}'
+```
+
 #### Operation Arguments for mutation.container.ipAddressRange.updateFromFile ####
 
 `accountId` [ID] - (required) N/A    
+`updateIpAddressRangeContainerFromFileInput` [UpdateIpAddressRangeContainerFromFileInput] - (required) N/A    

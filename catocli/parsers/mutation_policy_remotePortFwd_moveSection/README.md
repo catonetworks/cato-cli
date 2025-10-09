@@ -11,6 +11,26 @@ catocli mutation policy remotePortFwd moveSection <json>
 
 catocli mutation policy remotePortFwd moveSection "$(cat < mutation.policy.remotePortFwd.moveSection.json)"
 
+catocli mutation policy remotePortFwd moveSection '{"policyMoveSectionInput":{"id":"id","policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}},"remotePortFwdPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
+
+catocli mutation policy remotePortFwd moveSection '{
+    "policyMoveSectionInput": {
+        "id": "id",
+        "policySectionPositionInput": {
+            "position": "AFTER_SECTION",
+            "ref": "id"
+        }
+    },
+    "remotePortFwdPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    }
+}'
+```
+
 #### Operation Arguments for mutation.policy.remotePortFwd.moveSection ####
 
 `accountId` [ID] - (required) N/A    
+`policyMoveSectionInput` [PolicyMoveSectionInput] - (required) N/A    
+`remotePortFwdPolicyMutationInput` [RemotePortFwdPolicyMutationInput] - (required) N/A    

@@ -896,6 +896,843 @@
                 "non_null": false
             },
             "varName": "accountId"
+        },
+        "siteId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "updateIpsecIkeV2SiteGeneralDetails___siteId",
+            "name": "siteId",
+            "path": "updateIpsecIkeV2SiteGeneralDetails.siteId",
+            "requestStr": "$siteId:ID! ",
+            "required": true,
+            "responseStr": "siteId:$siteId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "siteId"
+        },
+        "updateIpsecIkeV2SiteGeneralDetailsInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "updateIpsecIkeV2SiteGeneralDetails___input",
+            "name": "input",
+            "path": "updateIpsecIkeV2SiteGeneralDetails.input",
+            "requestStr": "$updateIpsecIkeV2SiteGeneralDetailsInput:UpdateIpsecIkeV2SiteGeneralDetailsInput! ",
+            "required": true,
+            "responseStr": "input:$updateIpsecIkeV2SiteGeneralDetailsInput ",
+            "type": {
+                "definition": {
+                    "description": null,
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "authMessage": {
+                            "defaultValue": null,
+                            "description": "The auth message parameters.",
+                            "id_str": "updateIpsecIkeV2SiteGeneralDetails___input___authMessage",
+                            "name": "authMessage",
+                            "path": "updateIpsecIkeV2SiteGeneralDetails.input.authMessage",
+                            "requestStr": "$ipsecIkeV2MessageInput:IpsecIkeV2MessageInput ",
+                            "required": false,
+                            "responseStr": "authMessage:$ipsecIkeV2MessageInput ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "cipher": {
+                                            "defaultValue": null,
+                                            "description": "The SA tunnel encryption method. Note: For situations where GCM isn\u2019t supported for the INIT phase, we recommend that you use the CBC algorithm for the INIT phase, and GCM for AUTH",
+                                            "id_str": "updateIpsecIkeV2SiteGeneralDetails___input___authMessage___cipher",
+                                            "name": "cipher",
+                                            "path": "updateIpsecIkeV2SiteGeneralDetails.input.authMessage.cipher",
+                                            "requestStr": "$cipher:IpSecCipher ",
+                                            "required": false,
+                                            "responseStr": "cipher:$cipher ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "NONE"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "AUTOMATIC"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "AES_CBC_128"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "AES_CBC_256"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "AES_GCM_128"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "AES_GCM_256"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "DES3_CBC"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "IpSecCipher",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "ENUM"
+                                                ],
+                                                "name": "IpSecCipher",
+                                                "non_null": false
+                                            },
+                                            "varName": "cipher"
+                                        },
+                                        "dhGroup": {
+                                            "defaultValue": null,
+                                            "description": "The Diffie-Hellman Group. The first number is the DH-group number, and the second number is the corresponding prime modulus size in bits",
+                                            "id_str": "updateIpsecIkeV2SiteGeneralDetails___input___authMessage___dhGroup",
+                                            "name": "dhGroup",
+                                            "path": "updateIpsecIkeV2SiteGeneralDetails.input.authMessage.dhGroup",
+                                            "requestStr": "$dhGroup:IpSecDHGroup ",
+                                            "required": false,
+                                            "responseStr": "dhGroup:$dhGroup ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "NONE"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "AUTOMATIC"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "DH_2_MODP1024"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "DH_5_MODP1536"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "DH_14_MODP2048"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "DH_15_MODP3072"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "DH_16_MODP4096"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "DH_19_ECP256"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "DH_20_ECP384"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "DH_21_ECP521"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "IpSecDHGroup",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "ENUM"
+                                                ],
+                                                "name": "IpSecDHGroup",
+                                                "non_null": false
+                                            },
+                                            "varName": "dhGroup"
+                                        },
+                                        "integrity": {
+                                            "defaultValue": null,
+                                            "description": "The algorithm used to verify the integrity and authenticity of IPsec packets",
+                                            "id_str": "updateIpsecIkeV2SiteGeneralDetails___input___authMessage___integrity",
+                                            "name": "integrity",
+                                            "path": "updateIpsecIkeV2SiteGeneralDetails.input.authMessage.integrity",
+                                            "requestStr": "$integrity:IpSecHash ",
+                                            "required": false,
+                                            "responseStr": "integrity:$integrity ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "NONE"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "AUTOMATIC"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "MD5"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "SHA1"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "SHA256"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "SHA384"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "SHA512"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "IpSecHash",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "ENUM"
+                                                ],
+                                                "name": "IpSecHash",
+                                                "non_null": false
+                                            },
+                                            "varName": "integrity"
+                                        },
+                                        "prf": {
+                                            "defaultValue": null,
+                                            "description": "The Pseudo-random function (PRF) used to derive the cryptographic keys used in the SA establishment process",
+                                            "id_str": "updateIpsecIkeV2SiteGeneralDetails___input___authMessage___prf",
+                                            "name": "prf",
+                                            "path": "updateIpsecIkeV2SiteGeneralDetails.input.authMessage.prf",
+                                            "requestStr": "$prf:IpSecHash ",
+                                            "required": false,
+                                            "responseStr": "prf:$prf ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "NONE"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "AUTOMATIC"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "MD5"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "SHA1"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "SHA256"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "SHA384"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "SHA512"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "IpSecHash",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "ENUM"
+                                                ],
+                                                "name": "IpSecHash",
+                                                "non_null": false
+                                            },
+                                            "varName": "prf"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "IpsecIkeV2MessageInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "IpsecIkeV2MessageInput",
+                                "non_null": false
+                            },
+                            "varName": "ipsecIkeV2MessageInput"
+                        },
+                        "connectionMode": {
+                            "defaultValue": null,
+                            "description": "Determines the protocol for establishing the Security Association (SA) Tunnel. Valid values are:\nResponder-Only Mode: Cato Cloud only responds to incoming requests by the initiator (e.g. a Firewall device) to establish a security association.\nBidirectional Mode: Both Cato Cloud and the peer device on customer site can initiate the IPSec SA establishment.",
+                            "id_str": "updateIpsecIkeV2SiteGeneralDetails___input___connectionMode",
+                            "name": "connectionMode",
+                            "path": "updateIpsecIkeV2SiteGeneralDetails.input.connectionMode",
+                            "requestStr": "$connectionMode:ConnectionMode ",
+                            "required": false,
+                            "responseStr": "connectionMode:$connectionMode ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": [
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "RESPONDER_ONLY"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "BIDIRECTIONAL"
+                                        }
+                                    ],
+                                    "fields": null,
+                                    "inputFields": null,
+                                    "interfaces": null,
+                                    "kind": "ENUM",
+                                    "name": "ConnectionMode",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "enum",
+                                "kind": [
+                                    "ENUM"
+                                ],
+                                "name": "ConnectionMode",
+                                "non_null": false
+                            },
+                            "varName": "connectionMode"
+                        },
+                        "identificationType": {
+                            "defaultValue": null,
+                            "description": "The authentication identification type used for SA authentication. When using \u201cBIDIRECTIONAL\u201d, it is set to \u201cIPv4\u201d by default. Other methods are available in Responder mode only.",
+                            "id_str": "updateIpsecIkeV2SiteGeneralDetails___input___identificationType",
+                            "name": "identificationType",
+                            "path": "updateIpsecIkeV2SiteGeneralDetails.input.identificationType",
+                            "requestStr": "$identificationType:IdentificationType ",
+                            "required": false,
+                            "responseStr": "identificationType:$identificationType ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": [
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "IPV4"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "FQDN"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "EMAIL"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "KEY_ID"
+                                        }
+                                    ],
+                                    "fields": null,
+                                    "inputFields": null,
+                                    "interfaces": null,
+                                    "kind": "ENUM",
+                                    "name": "IdentificationType",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "enum",
+                                "kind": [
+                                    "ENUM"
+                                ],
+                                "name": "IdentificationType",
+                                "non_null": false
+                            },
+                            "varName": "identificationType"
+                        },
+                        "initMessage": {
+                            "defaultValue": null,
+                            "description": "The init message parameters",
+                            "id_str": "updateIpsecIkeV2SiteGeneralDetails___input___initMessage",
+                            "name": "initMessage",
+                            "path": "updateIpsecIkeV2SiteGeneralDetails.input.initMessage",
+                            "requestStr": "$ipsecIkeV2MessageInput:IpsecIkeV2MessageInput ",
+                            "required": false,
+                            "responseStr": "initMessage:$ipsecIkeV2MessageInput ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "cipher": {
+                                            "defaultValue": null,
+                                            "description": "The SA tunnel encryption method. Note: For situations where GCM isn\u2019t supported for the INIT phase, we recommend that you use the CBC algorithm for the INIT phase, and GCM for AUTH",
+                                            "id_str": "updateIpsecIkeV2SiteGeneralDetails___input___initMessage___cipher",
+                                            "name": "cipher",
+                                            "path": "updateIpsecIkeV2SiteGeneralDetails.input.initMessage.cipher",
+                                            "requestStr": "$cipher:IpSecCipher ",
+                                            "required": false,
+                                            "responseStr": "cipher:$cipher ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "NONE"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "AUTOMATIC"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "AES_CBC_128"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "AES_CBC_256"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "AES_GCM_128"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "AES_GCM_256"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "DES3_CBC"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "IpSecCipher",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "ENUM"
+                                                ],
+                                                "name": "IpSecCipher",
+                                                "non_null": false
+                                            },
+                                            "varName": "cipher"
+                                        },
+                                        "dhGroup": {
+                                            "defaultValue": null,
+                                            "description": "The Diffie-Hellman Group. The first number is the DH-group number, and the second number is the corresponding prime modulus size in bits",
+                                            "id_str": "updateIpsecIkeV2SiteGeneralDetails___input___initMessage___dhGroup",
+                                            "name": "dhGroup",
+                                            "path": "updateIpsecIkeV2SiteGeneralDetails.input.initMessage.dhGroup",
+                                            "requestStr": "$dhGroup:IpSecDHGroup ",
+                                            "required": false,
+                                            "responseStr": "dhGroup:$dhGroup ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "NONE"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "AUTOMATIC"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "DH_2_MODP1024"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "DH_5_MODP1536"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "DH_14_MODP2048"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "DH_15_MODP3072"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "DH_16_MODP4096"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "DH_19_ECP256"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "DH_20_ECP384"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "DH_21_ECP521"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "IpSecDHGroup",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "ENUM"
+                                                ],
+                                                "name": "IpSecDHGroup",
+                                                "non_null": false
+                                            },
+                                            "varName": "dhGroup"
+                                        },
+                                        "integrity": {
+                                            "defaultValue": null,
+                                            "description": "The algorithm used to verify the integrity and authenticity of IPsec packets",
+                                            "id_str": "updateIpsecIkeV2SiteGeneralDetails___input___initMessage___integrity",
+                                            "name": "integrity",
+                                            "path": "updateIpsecIkeV2SiteGeneralDetails.input.initMessage.integrity",
+                                            "requestStr": "$integrity:IpSecHash ",
+                                            "required": false,
+                                            "responseStr": "integrity:$integrity ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "NONE"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "AUTOMATIC"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "MD5"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "SHA1"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "SHA256"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "SHA384"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "SHA512"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "IpSecHash",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "ENUM"
+                                                ],
+                                                "name": "IpSecHash",
+                                                "non_null": false
+                                            },
+                                            "varName": "integrity"
+                                        },
+                                        "prf": {
+                                            "defaultValue": null,
+                                            "description": "The Pseudo-random function (PRF) used to derive the cryptographic keys used in the SA establishment process",
+                                            "id_str": "updateIpsecIkeV2SiteGeneralDetails___input___initMessage___prf",
+                                            "name": "prf",
+                                            "path": "updateIpsecIkeV2SiteGeneralDetails.input.initMessage.prf",
+                                            "requestStr": "$prf:IpSecHash ",
+                                            "required": false,
+                                            "responseStr": "prf:$prf ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "NONE"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "AUTOMATIC"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "MD5"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "SHA1"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "SHA256"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "SHA384"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "SHA512"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "IpSecHash",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "ENUM"
+                                                ],
+                                                "name": "IpSecHash",
+                                                "non_null": false
+                                            },
+                                            "varName": "prf"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "IpsecIkeV2MessageInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "IpsecIkeV2MessageInput",
+                                "non_null": false
+                            },
+                            "varName": "ipsecIkeV2MessageInput"
+                        },
+                        "networkRanges": {
+                            "defaultValue": null,
+                            "description": "The local IP ranges for the SAs",
+                            "id_str": "updateIpsecIkeV2SiteGeneralDetails___input___networkRanges",
+                            "name": "networkRanges",
+                            "path": "updateIpsecIkeV2SiteGeneralDetails.input.networkRanges",
+                            "requestStr": "$networkRanges:[IPSubnet] ",
+                            "required": false,
+                            "responseStr": "networkRanges:$networkRanges ",
+                            "type": {
+                                "kind": [
+                                    "LIST",
+                                    "SCALAR"
+                                ],
+                                "name": "IPSubnet",
+                                "non_null": false
+                            },
+                            "varName": "networkRanges"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "UpdateIpsecIkeV2SiteGeneralDetailsInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "UpdateIpsecIkeV2SiteGeneralDetailsInput",
+                "non_null": false
+            },
+            "varName": "updateIpsecIkeV2SiteGeneralDetailsInput"
         }
     },
     "path": "mutation.site.updateIpsecIkeV2SiteGeneralDetails",
@@ -1830,5 +2667,21 @@
         "name": "SiteMutations",
         "non_null": false
     },
-    "variablesPayload": {}
+    "variablesPayload": {
+        "siteId": "id",
+        "updateIpsecIkeV2SiteGeneralDetailsInput": {
+            "connectionMode": "RESPONDER_ONLY",
+            "identificationType": "IPV4",
+            "ipsecIkeV2MessageInput": {
+                "cipher": "NONE",
+                "dhGroup": "NONE",
+                "integrity": "NONE",
+                "prf": "NONE"
+            },
+            "networkRanges": [
+                "example1",
+                "example2"
+            ]
+        }
+    }
 }

@@ -224,6 +224,151 @@
                 "non_null": false
             },
             "varName": "accountId"
+        },
+        "fqdnContainerAddValuesInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "addValues___input",
+            "name": "input",
+            "path": "addValues.input",
+            "requestStr": "$fqdnContainerAddValuesInput:FqdnContainerAddValuesInput! ",
+            "required": true,
+            "responseStr": "input:$fqdnContainerAddValuesInput ",
+            "type": {
+                "definition": {
+                    "description": "Input for adding values to existing FQDN typed container",
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "ref": {
+                            "defaultValue": null,
+                            "description": "Reference to existing container by container ID or container name",
+                            "id_str": "addValues___input___ref",
+                            "name": "ref",
+                            "path": "addValues.input.ref",
+                            "requestStr": "$containerRefInput:ContainerRefInput! ",
+                            "required": true,
+                            "responseStr": "ref:$containerRefInput ",
+                            "type": {
+                                "definition": {
+                                    "description": "Add a container by ID or name",
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "by": {
+                                            "defaultValue": "ID",
+                                            "description": "Defines the object identification method \u2013 by ID (default) or by name",
+                                            "id_str": "addValues___input___ref___by",
+                                            "name": "by",
+                                            "path": "addValues.input.ref.by",
+                                            "requestStr": "$by:ObjectRefBy! ",
+                                            "required": true,
+                                            "responseStr": "by:$by ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "ID"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "NAME"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "ObjectRefBy",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "ENUM"
+                                                ],
+                                                "name": "ObjectRefBy",
+                                                "non_null": false
+                                            },
+                                            "varName": "by"
+                                        },
+                                        "input": {
+                                            "defaultValue": null,
+                                            "description": "The object identification (ID or name) value",
+                                            "id_str": "addValues___input___ref___input",
+                                            "name": "input",
+                                            "path": "addValues.input.ref.input",
+                                            "requestStr": "$input:String! ",
+                                            "required": true,
+                                            "responseStr": "input:$input ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "String",
+                                                "non_null": false
+                                            },
+                                            "varName": "input"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "ContainerRefInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "NON_NULL",
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "ContainerRefInput",
+                                "non_null": false
+                            },
+                            "varName": "containerRefInput"
+                        },
+                        "values": {
+                            "defaultValue": "[]",
+                            "description": null,
+                            "id_str": "addValues___input___values",
+                            "name": "values",
+                            "path": "addValues.input.values",
+                            "requestStr": "$values:[Fqdn]! ",
+                            "required": true,
+                            "responseStr": "values:$values ",
+                            "type": {
+                                "kind": [
+                                    "NON_NULL",
+                                    "LIST",
+                                    "NON_NULL",
+                                    "SCALAR"
+                                ],
+                                "name": "Fqdn",
+                                "non_null": false
+                            },
+                            "varName": "values"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "FqdnContainerAddValuesInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "FqdnContainerAddValuesInput",
+                "non_null": false
+            },
+            "varName": "fqdnContainerAddValuesInput"
         }
     },
     "path": "mutation.container.fqdn.addValues",
@@ -697,5 +842,16 @@
         "name": "ContainerMutations",
         "non_null": false
     },
-    "variablesPayload": {}
+    "variablesPayload": {
+        "fqdnContainerAddValuesInput": {
+            "containerRefInput": {
+                "by": "ID",
+                "input": "string"
+            },
+            "values": [
+                "example1",
+                "example2"
+            ]
+        }
+    }
 }

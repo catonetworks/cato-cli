@@ -11,6 +11,22 @@ catocli mutation policy appTenantRestriction updatePolicy <json>
 
 catocli mutation policy appTenantRestriction updatePolicy "$(cat < mutation.policy.appTenantRestriction.updatePolicy.json)"
 
+catocli mutation policy appTenantRestriction updatePolicy '{"appTenantRestrictionPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"appTenantRestrictionPolicyUpdateInput":{"state":"ENABLED"}}'
+
+catocli mutation policy appTenantRestriction updatePolicy '{
+    "appTenantRestrictionPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    },
+    "appTenantRestrictionPolicyUpdateInput": {
+        "state": "ENABLED"
+    }
+}'
+```
+
 #### Operation Arguments for mutation.policy.appTenantRestriction.updatePolicy ####
 
 `accountId` [ID] - (required) N/A    
+`appTenantRestrictionPolicyMutationInput` [AppTenantRestrictionPolicyMutationInput] - (required) N/A    
+`appTenantRestrictionPolicyUpdateInput` [AppTenantRestrictionPolicyUpdateInput] - (required) N/A    

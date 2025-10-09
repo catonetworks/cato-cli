@@ -229,10 +229,40 @@ def processOperation(operationType, operationName):
             arg = parsedOperation["args"][argName]
             parsedOperation["operationArgs"][arg["varName"]] = arg
         
-        # CRITICAL FIX: Do NOT include child operation arguments in parent operationArgs
-        # Child operation arguments belong to their respective child fields, not the parent operation
-        # Adding them to parent operationArgs causes GraphQL validation errors like "Unknown argument 'site' on field 'Query.site'"
-        # The JavaScript implementation keeps child arguments separate from parent arguments
+        # Include child operation arguments and field arguments in operationArgs for README generation
+        # This is needed so that README generation shows all arguments including:
+        # 1. Child operation arguments like storyInput (for query.xdr.stories)
+        # 2. Field arguments like siteIDs and userIDs (for query.accountSnapshot)
+        def addAllOperationArgs(data, operationArgs):
+            """Recursively add child operation arguments and field arguments to operationArgs"""
+            if isinstance(data, dict):
+                # Handle child operations (like in query.xdr.stories)
+                if "childOperations" in data:
+                    for childName, childOp in data["childOperations"].items():
+                        if isinstance(childOp, dict) and "args" in childOp:
+                            for argName, arg in childOp["args"].items():
+                                # Use the arg's varName as the key to match how main args are stored
+                                operationArgs[arg["varName"]] = arg
+                        # Recursively process nested child operations
+                        addAllOperationArgs(childOp, operationArgs)
+                
+                # Handle field arguments (like siteIDs in sites field, userIDs in users field)
+                # Add null checks to prevent AttributeError
+                if ("type" in data and 
+                    "definition" in data["type"] and 
+                    "fields" in data["type"]["definition"] and 
+                    data["type"]["definition"]["fields"] is not None):
+                    
+                    for fieldName, field in data["type"]["definition"]["fields"].items():
+                        if isinstance(field, dict) and "args" in field:
+                            for argName, arg in field["args"].items():
+                                # Use the arg's varName as the key to match how main args are stored
+                                operationArgs[arg["varName"]] = arg
+                        # Recursively process nested fields
+                        addAllOperationArgs(field, operationArgs)
+        
+        # Add child operation arguments and field arguments to operationArgs
+        addAllOperationArgs(parsedOperation, parsedOperation["operationArgs"])
         
         parsedOperation["variablesPayload"] = generateExampleVariables(parsedOperation)
         

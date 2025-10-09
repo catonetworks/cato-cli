@@ -1,7 +1,7 @@
-mutation policySocketLanUpdatePolicy ( $accountId:ID! $socketLanPolicyUpdateInput:SocketLanPolicyUpdateInput!) {
-	policy ( accountId:$accountId ) {
-		socketLan {
-			updatePolicy {
+mutation policySocketLanUpdatePolicy ( $accountId:ID! $socketLanPolicyMutationInput:SocketLanPolicyMutationInput $socketLanPolicyUpdateInput:SocketLanPolicyUpdateInput!) {
+	policy ( accountId:$accountId input:$socketLanPolicyMutationInput input:$socketLanPolicyUpdateInput ) {
+		socketLan ( input:$socketLanPolicyMutationInput  )  {
+			updatePolicy ( input:$socketLanPolicyUpdateInput   ) {
 				policy {
 					enabled
 					rules {

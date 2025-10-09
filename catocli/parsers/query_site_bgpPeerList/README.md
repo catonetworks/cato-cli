@@ -11,6 +11,19 @@ catocli query site bgpPeerList <json>
 
 catocli query site bgpPeerList "$(cat < query.site.bgpPeerList.json)"
 
+catocli query site bgpPeerList '{"bgpPeerListInput":{"siteRefInput":{"by":"ID","input":"string"}}}'
+
+catocli query site bgpPeerList '{
+    "bgpPeerListInput": {
+        "siteRefInput": {
+            "by": "ID",
+            "input": "string"
+        }
+    }
+}'
+```
+
 #### Operation Arguments for query.site.bgpPeerList ####
 
 `accountId` [ID] - (required) N/A    
+`bgpPeerListInput` [BgpPeerListInput] - (required) N/A    

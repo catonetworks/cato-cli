@@ -1,7 +1,7 @@
-mutation policyTlsInspectUpdatePolicy ( $accountId:ID! $tlsInspectPolicyUpdateInput:TlsInspectPolicyUpdateInput!) {
-	policy ( accountId:$accountId ) {
-		tlsInspect {
-			updatePolicy {
+mutation policyTlsInspectUpdatePolicy ( $accountId:ID! $tlsInspectPolicyMutationInput:TlsInspectPolicyMutationInput $tlsInspectPolicyUpdateInput:TlsInspectPolicyUpdateInput!) {
+	policy ( accountId:$accountId input:$tlsInspectPolicyMutationInput input:$tlsInspectPolicyUpdateInput ) {
+		tlsInspect ( input:$tlsInspectPolicyMutationInput  )  {
+			updatePolicy ( input:$tlsInspectPolicyUpdateInput   ) {
 				policy {
 					enabled
 					rules {

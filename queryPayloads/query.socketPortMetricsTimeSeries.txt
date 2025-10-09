@@ -1,5 +1,5 @@
-query socketPortMetricsTimeSeries ( $accountID:ID! $timeFrame:TimeFrame! $socketPortMetricsMeasure:[SocketPortMetricsMeasure] $socketPortMetricsDimension:[SocketPortMetricsDimension] $socketPortMetricsFilter:[SocketPortMetricsFilter!] $buckets:Int!) {
-	socketPortMetricsTimeSeries ( accountID:$accountID timeFrame:$timeFrame measures:$socketPortMetricsMeasure dimensions:$socketPortMetricsDimension filters:$socketPortMetricsFilter ) {
+query socketPortMetricsTimeSeries ( $accountID:ID! $timeFrame:TimeFrame! $socketPortMetricsMeasure:[SocketPortMetricsMeasure] $socketPortMetricsDimension:[SocketPortMetricsDimension] $socketPortMetricsFilter:[SocketPortMetricsFilter!] $buckets:Int! $perSecond:Boolean $withMissingData:Boolean $useDefaultSizeBucket:Boolean) {
+	socketPortMetricsTimeSeries ( accountID:$accountID timeFrame:$timeFrame measures:$socketPortMetricsMeasure dimensions:$socketPortMetricsDimension filters:$socketPortMetricsFilter buckets:$buckets perSecond:$perSecond withMissingData:$withMissingData useDefaultSizeBucket:$useDefaultSizeBucket ) {
 id {
 	id
 	status
@@ -146,101 +146,8 @@ to {
 	}
 }
 		granularity
-		timeseries {
-data {
-	paging {
-		from
-		limit
-		total
-	}
-	items {
-		id
-		updatedAt
-		createdAt
-		accountId
-		analystName
-		analystEmail
-		accountName
-		playbook
-		summary
-		incident {
-			__typename
-			... on MicrosoftEndpoint {
-				id
-				firstSignal
-				lastSignal
-				engineType
-				vendor
-				producer
-				producerName
-				connectionType
-				indication
-				queryName
-			}
-			... on AnomalyStats {
-				id
-				firstSignal
-				lastSignal
-				engineType
-				vendor
-				producer
-				producerName
-				connectionType
-				indication
-				queryName
-			}
-			... on AnomalyEvents {
-				id
-				firstSignal
-				lastSignal
-				engineType
-				vendor
-				producer
-				producerName
-				connectionType
-				indication
-				queryName
-			}
-			... on Threat {
-				id
-				firstSignal
-				lastSignal
-				engineType
-				vendor
-				producer
-				producerName
-				connectionType
-				indication
-				queryName
-			}
-			... on ThreatPrevention {
-				id
-				firstSignal
-				lastSignal
-				engineType
-				vendor
-				producer
-				producerName
-				connectionType
-				indication
-				queryName
-			}
-		}
-		timeline {
-			createdAt
-			description
-			type
-			context
-			descriptions
-			category
-			additionalInfo
-			analystInfo {
-				name
-				email
-			}
-		}
-	}
-}
+		timeseries ( buckets:$buckets  )  {
+			data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket   )
 			label
 			dimensions {
 				label

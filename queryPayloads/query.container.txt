@@ -1,6 +1,6 @@
 query container ( $accountId:ID! $containerSearchInput:ContainerSearchInput! $ipAddressRangeContainerSearchInput:IpAddressRangeContainerSearchInput! $ipAddressRangeContainerSearchIpAddressRangeInput:IpAddressRangeContainerSearchIpAddressRangeInput! $downloadIpAddressRangeContainerFileInput:DownloadIpAddressRangeContainerFileInput! $fqdnContainerSearchInput:FqdnContainerSearchInput! $fqdnContainerSearchFqdnInput:FqdnContainerSearchFqdnInput! $downloadFqdnContainerFileInput:DownloadFqdnContainerFileInput!) {
-	container ( accountId:$accountId ) {
-		list {
+	container ( accountId:$accountId input:$containerSearchInput input:$ipAddressRangeContainerSearchInput input:$ipAddressRangeContainerSearchIpAddressRangeInput input:$downloadIpAddressRangeContainerFileInput input:$fqdnContainerSearchInput input:$fqdnContainerSearchFqdnInput input:$downloadFqdnContainerFileInput ) {
+		list ( input:$containerSearchInput  )  {
 			containers {
 	id {
 		id
@@ -375,7 +375,7 @@ query container ( $accountId:ID! $containerSearchInput:ContainerSearchInput! $ip
 			}
 		}
 		ipAddressRange {
-			search {
+			search ( input:$ipAddressRangeContainerSearchInput   ) {
 				container {
 	id {
 		id
@@ -501,7 +501,7 @@ query container ( $accountId:ID! $containerSearchInput:ContainerSearchInput! $ip
 					}
 				}
 			}
-			searchIpAddressRange {
+			searchIpAddressRange ( input:$ipAddressRangeContainerSearchIpAddressRangeInput   ) {
 				containers {
 	id {
 		id
@@ -627,7 +627,7 @@ query container ( $accountId:ID! $containerSearchInput:ContainerSearchInput! $ip
 					}
 				}
 			}
-			downloadFile {
+			downloadFile ( input:$downloadIpAddressRangeContainerFileInput   ) {
 	id {
 		id
 		status
@@ -746,7 +746,7 @@ query container ( $accountId:ID! $containerSearchInput:ContainerSearchInput! $ip
 			}
 		}
 		fqdn {
-			search {
+			search ( input:$fqdnContainerSearchInput   ) {
 				container {
 	id {
 		id
@@ -872,7 +872,7 @@ query container ( $accountId:ID! $containerSearchInput:ContainerSearchInput! $ip
 					}
 				}
 			}
-			searchFqdn {
+			searchFqdn ( input:$fqdnContainerSearchFqdnInput   ) {
 				containers {
 	id {
 		id
@@ -998,7 +998,7 @@ query container ( $accountId:ID! $containerSearchInput:ContainerSearchInput! $ip
 					}
 				}
 			}
-			downloadFile {
+			downloadFile ( input:$downloadFqdnContainerFileInput   ) {
 	id {
 		id
 		status

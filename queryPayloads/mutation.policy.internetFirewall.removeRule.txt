@@ -1,7 +1,7 @@
-mutation policyInternetFirewallRemoveRule ( $accountId:ID! $internetFirewallRemoveRuleInput:InternetFirewallRemoveRuleInput!) {
-	policy ( accountId:$accountId ) {
-		internetFirewall {
-			removeRule {
+mutation policyInternetFirewallRemoveRule ( $accountId:ID! $internetFirewallPolicyMutationInput:InternetFirewallPolicyMutationInput $internetFirewallRemoveRuleInput:InternetFirewallRemoveRuleInput!) {
+	policy ( accountId:$accountId input:$internetFirewallPolicyMutationInput input:$internetFirewallRemoveRuleInput ) {
+		internetFirewall ( input:$internetFirewallPolicyMutationInput  )  {
+			removeRule ( input:$internetFirewallRemoveRuleInput   ) {
 				rule {
 					audit {
 						updatedTime

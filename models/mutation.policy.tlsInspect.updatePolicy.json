@@ -349,6 +349,279 @@
                 "non_null": false
             },
             "varName": "accountId"
+        },
+        "tlsInspectPolicyMutationInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "tlsInspect___input",
+            "name": "input",
+            "path": "tlsInspect.input",
+            "requestStr": "$tlsInspectPolicyMutationInput:TlsInspectPolicyMutationInput ",
+            "required": false,
+            "responseStr": "input:$tlsInspectPolicyMutationInput ",
+            "type": {
+                "definition": {
+                    "description": null,
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "revision": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "tlsInspect___input___revision",
+                            "name": "revision",
+                            "path": "tlsInspect.input.revision",
+                            "requestStr": "$policyMutationRevisionInput:PolicyMutationRevisionInput ",
+                            "required": false,
+                            "responseStr": "revision:$policyMutationRevisionInput ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "id": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "tlsInspect___input___revision___id",
+                                            "name": "id",
+                                            "path": "tlsInspect.input.revision.id",
+                                            "requestStr": "$id:ID ",
+                                            "required": false,
+                                            "responseStr": "id:$id ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "ID",
+                                                "non_null": false
+                                            },
+                                            "varName": "id"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "PolicyMutationRevisionInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "PolicyMutationRevisionInput",
+                                "non_null": false
+                            },
+                            "varName": "policyMutationRevisionInput"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "TlsInspectPolicyMutationInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "INPUT_OBJECT"
+                ],
+                "name": "TlsInspectPolicyMutationInput",
+                "non_null": false
+            },
+            "varName": "tlsInspectPolicyMutationInput"
+        },
+        "tlsInspectPolicyUpdateInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "updatePolicy___input",
+            "name": "input",
+            "path": "updatePolicy.input",
+            "requestStr": "$tlsInspectPolicyUpdateInput:TlsInspectPolicyUpdateInput! ",
+            "required": true,
+            "responseStr": "input:$tlsInspectPolicyUpdateInput ",
+            "type": {
+                "definition": {
+                    "description": null,
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "additionalAttributes": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "updatePolicy___input___additionalAttributes",
+                            "name": "additionalAttributes",
+                            "path": "updatePolicy.input.additionalAttributes",
+                            "requestStr": "$tlsInspectConfigInput:TlsInspectConfigInput ",
+                            "required": false,
+                            "responseStr": "additionalAttributes:$tlsInspectConfigInput ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "defaultRuleAction": {
+                                            "defaultValue": "INSPECT",
+                                            "description": "Action to take on traffic that matches the default rule",
+                                            "id_str": "updatePolicy___input___additionalAttributes___defaultRuleAction",
+                                            "name": "defaultRuleAction",
+                                            "path": "updatePolicy.input.additionalAttributes.defaultRuleAction",
+                                            "requestStr": "$defaultRuleAction:TlsInspectAction! ",
+                                            "required": true,
+                                            "responseStr": "defaultRuleAction:$defaultRuleAction ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "INSPECT"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "BYPASS"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "TlsInspectAction",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "ENUM"
+                                                ],
+                                                "name": "TlsInspectAction",
+                                                "non_null": false
+                                            },
+                                            "varName": "defaultRuleAction"
+                                        },
+                                        "defaultRuleUntrustedCertificateAction": {
+                                            "defaultValue": "ALLOW",
+                                            "description": "Action to take when an untrusted certificate is detected for traffic matching the default rule",
+                                            "id_str": "updatePolicy___input___additionalAttributes___defaultRuleUntrustedCertificateAction",
+                                            "name": "defaultRuleUntrustedCertificateAction",
+                                            "path": "updatePolicy.input.additionalAttributes.defaultRuleUntrustedCertificateAction",
+                                            "requestStr": "$defaultRuleUntrustedCertificateAction:TlsInspectUntrustedCertificateAction! ",
+                                            "required": true,
+                                            "responseStr": "defaultRuleUntrustedCertificateAction:$defaultRuleUntrustedCertificateAction ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "ALLOW"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "PROMPT"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "BLOCK"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "TlsInspectUntrustedCertificateAction",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "ENUM"
+                                                ],
+                                                "name": "TlsInspectUntrustedCertificateAction",
+                                                "non_null": false
+                                            },
+                                            "varName": "defaultRuleUntrustedCertificateAction"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "TlsInspectConfigInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "TlsInspectConfigInput",
+                                "non_null": false
+                            },
+                            "varName": "tlsInspectConfigInput"
+                        },
+                        "state": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "updatePolicy___input___state",
+                            "name": "state",
+                            "path": "updatePolicy.input.state",
+                            "requestStr": "$state:PolicyToggleState ",
+                            "required": false,
+                            "responseStr": "state:$state ",
+                            "type": {
+                                "definition": {
+                                    "description": "Enum for the state of a policy",
+                                    "enumValues": [
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "ENABLED"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "DISABLED"
+                                        }
+                                    ],
+                                    "fields": null,
+                                    "inputFields": null,
+                                    "interfaces": null,
+                                    "kind": "ENUM",
+                                    "name": "PolicyToggleState",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "enum",
+                                "kind": [
+                                    "ENUM"
+                                ],
+                                "name": "PolicyToggleState",
+                                "non_null": false
+                            },
+                            "varName": "state"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "TlsInspectPolicyUpdateInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "TlsInspectPolicyUpdateInput",
+                "non_null": false
+            },
+            "varName": "tlsInspectPolicyUpdateInput"
         }
     },
     "path": "mutation.policy.tlsInspect.updatePolicy",
@@ -4497,5 +4770,18 @@
         "name": "PolicyMutations",
         "non_null": false
     },
-    "variablesPayload": {}
+    "variablesPayload": {
+        "tlsInspectPolicyMutationInput": {
+            "policyMutationRevisionInput": {
+                "id": "id"
+            }
+        },
+        "tlsInspectPolicyUpdateInput": {
+            "state": "ENABLED",
+            "tlsInspectConfigInput": {
+                "defaultRuleAction": "INSPECT",
+                "defaultRuleUntrustedCertificateAction": "ALLOW"
+            }
+        }
+    }
 }

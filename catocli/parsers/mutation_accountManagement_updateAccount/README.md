@@ -11,6 +11,16 @@ catocli mutation accountManagement updateAccount <json>
 
 catocli mutation accountManagement updateAccount "$(cat < mutation.accountManagement.updateAccount.json)"
 
+catocli mutation accountManagement updateAccount '{"updateAccountInput":{"description":"string"}}'
+
+catocli mutation accountManagement updateAccount '{
+    "updateAccountInput": {
+        "description": "string"
+    }
+}'
+```
+
 #### Operation Arguments for mutation.accountManagement.updateAccount ####
 
 `accountId` [ID] - (required) N/A    
+`updateAccountInput` [UpdateAccountInput] - (required) N/A    

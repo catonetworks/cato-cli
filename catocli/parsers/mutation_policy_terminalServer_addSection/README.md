@@ -11,6 +11,28 @@ catocli mutation policy terminalServer addSection <json>
 
 catocli mutation policy terminalServer addSection "$(cat < mutation.policy.terminalServer.addSection.json)"
 
+catocli mutation policy terminalServer addSection '{"policyAddSectionInput":{"policyAddSectionInfoInput":{"name":"string"},"policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}},"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
+
+catocli mutation policy terminalServer addSection '{
+    "policyAddSectionInput": {
+        "policyAddSectionInfoInput": {
+            "name": "string"
+        },
+        "policySectionPositionInput": {
+            "position": "AFTER_SECTION",
+            "ref": "id"
+        }
+    },
+    "terminalServerPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    }
+}'
+```
+
 #### Operation Arguments for mutation.policy.terminalServer.addSection ####
 
 `accountId` [ID] - (required) N/A    
+`policyAddSectionInput` [PolicyAddSectionInput] - (required) N/A    
+`terminalServerPolicyMutationInput` [TerminalServerPolicyMutationInput] - (required) N/A    

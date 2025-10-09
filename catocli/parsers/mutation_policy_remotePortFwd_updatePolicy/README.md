@@ -11,6 +11,22 @@ catocli mutation policy remotePortFwd updatePolicy <json>
 
 catocli mutation policy remotePortFwd updatePolicy "$(cat < mutation.policy.remotePortFwd.updatePolicy.json)"
 
+catocli mutation policy remotePortFwd updatePolicy '{"remotePortFwdPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"remotePortFwdPolicyUpdateInput":{"state":"ENABLED"}}'
+
+catocli mutation policy remotePortFwd updatePolicy '{
+    "remotePortFwdPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    },
+    "remotePortFwdPolicyUpdateInput": {
+        "state": "ENABLED"
+    }
+}'
+```
+
 #### Operation Arguments for mutation.policy.remotePortFwd.updatePolicy ####
 
 `accountId` [ID] - (required) N/A    
+`remotePortFwdPolicyMutationInput` [RemotePortFwdPolicyMutationInput] - (required) N/A    
+`remotePortFwdPolicyUpdateInput` [RemotePortFwdPolicyUpdateInput] - (required) N/A    

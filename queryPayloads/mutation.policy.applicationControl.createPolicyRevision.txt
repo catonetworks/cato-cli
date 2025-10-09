@@ -1,7 +1,7 @@
-mutation policyApplicationControlCreatePolicyRevision ( $accountId:ID! $policyCreateRevisionInput:PolicyCreateRevisionInput!) {
-	policy ( accountId:$accountId ) {
-		applicationControl {
-			createPolicyRevision {
+mutation policyApplicationControlCreatePolicyRevision ( $accountId:ID! $applicationControlPolicyMutationInput:ApplicationControlPolicyMutationInput $policyCreateRevisionInput:PolicyCreateRevisionInput!) {
+	policy ( accountId:$accountId input:$applicationControlPolicyMutationInput input:$policyCreateRevisionInput ) {
+		applicationControl ( input:$applicationControlPolicyMutationInput  )  {
+			createPolicyRevision ( input:$policyCreateRevisionInput   ) {
 				policy {
 					enabled
 					rules {

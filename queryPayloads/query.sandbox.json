@@ -1,5 +1,68 @@
 {
     "operationName": "sandbox",
-    "query": "query sandbox ( $accountId:ID! $sandboxReportsInput:SandboxReportsInput!) {\n\tsandbox ( accountId:$accountId ) {\n\t\treports {\n\t\t\treport {\n\t\t\t\tfileName\n\tfileHash {\n\t\tenabled\n\t\trules {\n\t\t\tproperties\n\t\t\taudit {\n\t\t\t\tupdatedTime\n\t\t\t\tupdatedBy\n\t\t\t}\n\t\t\trule {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t\tdescription\n\t\t\t\tindex\n\t\t\t\tenabled\n\t\t\t\tfileName\n\t\t\t\texpirationDate\n\t\t\t\taction\n\t\t\t\tsha256\n\t\t\t\tsection {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tsections {\n\t\t\tproperties\n\t\t\taudit {\n\t\t\t\tupdatedTime\n\t\t\t\tupdatedBy\n\t\t\t}\n\t\t\tsection {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t}\n\t\t}\n\t\taudit {\n\t\t\tpublishedTime\n\t\t\tpublishedBy\n\t\t}\n\t\trevision {\n\t\t\tid\n\t\t\tname\n\t\t\tdescription\n\t\t\tchanges\n\t\t\tcreatedTime\n\t\t\tupdatedTime\n\t\t}\n\t}\n\t\t\t\tcreationDate\n\t\t\t\texpirationDate\n\t\t\t\tverdict\n\tstatus {\n\t\trawStatus\n\t\tstatus\n\t}\n\t\t\t\tdownloadUrl\n\t\t\t\tfailureReason\n\t\t\t}\n\t\t\tpageInfo {\n\t\t\t\ttotal\n\t\t\t}\n\t\t}\n\t}\t\n}",
-    "variables": {}
+    "query": "query sandbox ( $accountId:ID! $sandboxReportsInput:SandboxReportsInput!) {\n\tsandbox ( accountId:$accountId input:$sandboxReportsInput ) {\n\t\treports ( input:$sandboxReportsInput  )  {\n\t\t\treport {\n\t\t\t\tfileName\n\tfileHash {\n\t\tenabled\n\t\trules {\n\t\t\tproperties\n\t\t\taudit {\n\t\t\t\tupdatedTime\n\t\t\t\tupdatedBy\n\t\t\t}\n\t\t\trule {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t\tdescription\n\t\t\t\tindex\n\t\t\t\tenabled\n\t\t\t\tfileName\n\t\t\t\texpirationDate\n\t\t\t\taction\n\t\t\t\tsha256\n\t\t\t\tsection {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tsections {\n\t\t\tproperties\n\t\t\taudit {\n\t\t\t\tupdatedTime\n\t\t\t\tupdatedBy\n\t\t\t}\n\t\t\tsection {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t}\n\t\t}\n\t\taudit {\n\t\t\tpublishedTime\n\t\t\tpublishedBy\n\t\t}\n\t\trevision {\n\t\t\tid\n\t\t\tname\n\t\t\tdescription\n\t\t\tchanges\n\t\t\tcreatedTime\n\t\t\tupdatedTime\n\t\t}\n\t}\n\t\t\t\tcreationDate\n\t\t\t\texpirationDate\n\t\t\t\tverdict\n\tstatus {\n\t\trawStatus\n\t\tstatus\n\t}\n\t\t\t\tdownloadUrl\n\t\t\t\tfailureReason\n\t\t\t}\n\t\t\tpageInfo {\n\t\t\t\ttotal\n\t\t\t}\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "sandboxReportsInput": {
+            "pagingInput": {
+                "from": 1,
+                "limit": 1
+            },
+            "sandboxReportsFilterInput": {
+                "fileHash": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "fileName": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "reportCreateDate": {
+                    "between": [
+                        "example1",
+                        "example2"
+                    ],
+                    "eq": "example_value",
+                    "gt": "example_value",
+                    "gte": "example_value",
+                    "in": [
+                        "example1",
+                        "example2"
+                    ],
+                    "lt": "example_value",
+                    "lte": "example_value",
+                    "neq": "example_value",
+                    "nin": [
+                        "example1",
+                        "example2"
+                    ]
+                }
+            },
+            "sandboxReportsSortInput": {
+                "fileName": {
+                    "direction": "ASC",
+                    "priority": 1
+                },
+                "reportCreateDate": {
+                    "direction": "ASC",
+                    "priority": 1
+                }
+            }
+        }
+    }
 }

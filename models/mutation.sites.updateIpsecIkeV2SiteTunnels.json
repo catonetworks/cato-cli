@@ -1005,6 +1005,952 @@
                 "non_null": false
             },
             "varName": "accountId"
+        },
+        "siteId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "updateIpsecIkeV2SiteTunnels___siteId",
+            "name": "siteId",
+            "path": "updateIpsecIkeV2SiteTunnels.siteId",
+            "requestStr": "$siteId:ID! ",
+            "required": true,
+            "responseStr": "siteId:$siteId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "siteId"
+        },
+        "updateIpsecIkeV2SiteTunnelsInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "updateIpsecIkeV2SiteTunnels___input",
+            "name": "input",
+            "path": "updateIpsecIkeV2SiteTunnels.input",
+            "requestStr": "$updateIpsecIkeV2SiteTunnelsInput:UpdateIpsecIkeV2SiteTunnelsInput! ",
+            "required": true,
+            "responseStr": "input:$updateIpsecIkeV2SiteTunnelsInput ",
+            "type": {
+                "definition": {
+                    "description": null,
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "primary": {
+                            "defaultValue": null,
+                            "description": "The configuration of the site\u2019s primary tunnel",
+                            "id_str": "updateIpsecIkeV2SiteTunnels___input___primary",
+                            "name": "primary",
+                            "path": "updateIpsecIkeV2SiteTunnels.input.primary",
+                            "requestStr": "$updateIpsecIkeV2TunnelsInput:UpdateIpsecIkeV2TunnelsInput ",
+                            "required": false,
+                            "responseStr": "primary:$updateIpsecIkeV2TunnelsInput ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "destinationType": {
+                                            "defaultValue": null,
+                                            "description": "The destination type of the IPsec tunnel",
+                                            "id_str": "updateIpsecIkeV2SiteTunnels___input___primary___destinationType",
+                                            "name": "destinationType",
+                                            "path": "updateIpsecIkeV2SiteTunnels.input.primary.destinationType",
+                                            "requestStr": "$destinationType:DestinationType ",
+                                            "required": false,
+                                            "responseStr": "destinationType:$destinationType ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "IPv4"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "FQDN"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "DestinationType",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "ENUM"
+                                                ],
+                                                "name": "DestinationType",
+                                                "non_null": false
+                                            },
+                                            "varName": "destinationType"
+                                        },
+                                        "popLocationId": {
+                                            "defaultValue": null,
+                                            "description": "The PoP location ID",
+                                            "id_str": "updateIpsecIkeV2SiteTunnels___input___primary___popLocationId",
+                                            "name": "popLocationId",
+                                            "path": "updateIpsecIkeV2SiteTunnels.input.primary.popLocationId",
+                                            "requestStr": "$popLocationId:ID ",
+                                            "required": false,
+                                            "responseStr": "popLocationId:$popLocationId ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "ID",
+                                                "non_null": false
+                                            },
+                                            "varName": "popLocationId"
+                                        },
+                                        "publicCatoIpId": {
+                                            "defaultValue": null,
+                                            "description": "The ID of the public IP (Allocated IP) of the Cato PoP to which the tunnel will connect. This will be the source-IP of the traffic transmitted to the Cato cloud over this tunnel when egressing the Cato Cloud",
+                                            "id_str": "updateIpsecIkeV2SiteTunnels___input___primary___publicCatoIpId",
+                                            "name": "publicCatoIpId",
+                                            "path": "updateIpsecIkeV2SiteTunnels.input.primary.publicCatoIpId",
+                                            "requestStr": "$publicCatoIpId:ID ",
+                                            "required": false,
+                                            "responseStr": "publicCatoIpId:$publicCatoIpId ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "ID",
+                                                "non_null": false
+                                            },
+                                            "varName": "publicCatoIpId"
+                                        },
+                                        "tunnels": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "updateIpsecIkeV2SiteTunnels___input___primary___tunnels",
+                                            "name": "tunnels",
+                                            "path": "updateIpsecIkeV2SiteTunnels.input.primary.tunnels",
+                                            "requestStr": "$updateIpsecIkeV2TunnelInput:[UpdateIpsecIkeV2TunnelInput]! ",
+                                            "required": true,
+                                            "responseStr": "tunnels:$updateIpsecIkeV2TunnelInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "lastMileBw": {
+                                                            "defaultValue": null,
+                                                            "description": "The maximum allowed bandwidth for the site. If not specified, it will be set according to the site license. If the ISP provided bandwidth is below the site bandwidth, set this parameter to the ISP bandwidth or below",
+                                                            "id_str": "updateIpsecIkeV2SiteTunnels___input___primary___tunnels___lastMileBw",
+                                                            "name": "lastMileBw",
+                                                            "path": "updateIpsecIkeV2SiteTunnels.input.primary.tunnels.lastMileBw",
+                                                            "requestStr": "$lastMileBwInput:LastMileBwInput ",
+                                                            "required": false,
+                                                            "responseStr": "lastMileBw:$lastMileBwInput ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": null,
+                                                                    "fields": null,
+                                                                    "inputFields": {
+                                                                        "downstream": {
+                                                                            "defaultValue": null,
+                                                                            "description": "The maximum downstream bandwidth from the Cato Cloud to the site, in Mbps. This value can be used for capping the downstream traffic. It should not be set above the ISP downstream bandwidth or the site license bandwidth.",
+                                                                            "id_str": "updateIpsecIkeV2SiteTunnels___input___primary___tunnels___lastMileBw___downstream",
+                                                                            "name": "downstream",
+                                                                            "path": "updateIpsecIkeV2SiteTunnels.input.primary.tunnels.lastMileBw.downstream",
+                                                                            "requestStr": "$downstream:Int ",
+                                                                            "required": false,
+                                                                            "responseStr": "downstream:$downstream ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "Int",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "downstream"
+                                                                        },
+                                                                        "downstreamMbpsPrecision": {
+                                                                            "defaultValue": null,
+                                                                            "description": "The maximum downstream bandwidth from the Cato Cloud to the site, in Mbps with single decimal precision. This value can be used for capping the downstream traffic. It should not be set above the ISP downstream bandwidth or the site license bandwidth.",
+                                                                            "id_str": "updateIpsecIkeV2SiteTunnels___input___primary___tunnels___lastMileBw___downstreamMbpsPrecision",
+                                                                            "name": "downstreamMbpsPrecision",
+                                                                            "path": "updateIpsecIkeV2SiteTunnels.input.primary.tunnels.lastMileBw.downstreamMbpsPrecision",
+                                                                            "requestStr": "$downstreamMbpsPrecision:Float ",
+                                                                            "required": false,
+                                                                            "responseStr": "downstreamMbpsPrecision:$downstreamMbpsPrecision ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "Float",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "downstreamMbpsPrecision"
+                                                                        },
+                                                                        "upstream": {
+                                                                            "defaultValue": null,
+                                                                            "description": "The maximum upstream bandwidth, in Mbps. The Cato Cloud cannot cap this direction, and this setting is used as a best-effort indication by the Cato Cloud.",
+                                                                            "id_str": "updateIpsecIkeV2SiteTunnels___input___primary___tunnels___lastMileBw___upstream",
+                                                                            "name": "upstream",
+                                                                            "path": "updateIpsecIkeV2SiteTunnels.input.primary.tunnels.lastMileBw.upstream",
+                                                                            "requestStr": "$upstream:Int ",
+                                                                            "required": false,
+                                                                            "responseStr": "upstream:$upstream ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "Int",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "upstream"
+                                                                        },
+                                                                        "upstreamMbpsPrecision": {
+                                                                            "defaultValue": null,
+                                                                            "description": "The maximum upstream bandwidth, in Mbps with single decimal precision. The Cato Cloud cannot cap this direction, and this setting is used as a best-effort indication by the Cato Cloud.",
+                                                                            "id_str": "updateIpsecIkeV2SiteTunnels___input___primary___tunnels___lastMileBw___upstreamMbpsPrecision",
+                                                                            "name": "upstreamMbpsPrecision",
+                                                                            "path": "updateIpsecIkeV2SiteTunnels.input.primary.tunnels.lastMileBw.upstreamMbpsPrecision",
+                                                                            "requestStr": "$upstreamMbpsPrecision:Float ",
+                                                                            "required": false,
+                                                                            "responseStr": "upstreamMbpsPrecision:$upstreamMbpsPrecision ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "Float",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "upstreamMbpsPrecision"
+                                                                        }
+                                                                    },
+                                                                    "interfaces": null,
+                                                                    "kind": "INPUT_OBJECT",
+                                                                    "name": "LastMileBwInput",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "input_object",
+                                                                "kind": [
+                                                                    "INPUT_OBJECT"
+                                                                ],
+                                                                "name": "LastMileBwInput",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "lastMileBwInput"
+                                                        },
+                                                        "name": {
+                                                            "defaultValue": null,
+                                                            "description": "Tunnel name",
+                                                            "id_str": "updateIpsecIkeV2SiteTunnels___input___primary___tunnels___name",
+                                                            "name": "name",
+                                                            "path": "updateIpsecIkeV2SiteTunnels.input.primary.tunnels.name",
+                                                            "requestStr": "$name:String ",
+                                                            "required": false,
+                                                            "responseStr": "name:$name ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "name"
+                                                        },
+                                                        "privateCatoIp": {
+                                                            "defaultValue": null,
+                                                            "description": "Cato\u2019s private IP, used for BGP routing. Applicable for sites using BGP only",
+                                                            "id_str": "updateIpsecIkeV2SiteTunnels___input___primary___tunnels___privateCatoIp",
+                                                            "name": "privateCatoIp",
+                                                            "path": "updateIpsecIkeV2SiteTunnels.input.primary.tunnels.privateCatoIp",
+                                                            "requestStr": "$privateCatoIp:IPAddress ",
+                                                            "required": false,
+                                                            "responseStr": "privateCatoIp:$privateCatoIp ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "IPAddress",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "privateCatoIp"
+                                                        },
+                                                        "privateSiteIp": {
+                                                            "defaultValue": null,
+                                                            "description": "Site private IP, used for BGP routing. Applicable for sites using BGP only",
+                                                            "id_str": "updateIpsecIkeV2SiteTunnels___input___primary___tunnels___privateSiteIp",
+                                                            "name": "privateSiteIp",
+                                                            "path": "updateIpsecIkeV2SiteTunnels.input.primary.tunnels.privateSiteIp",
+                                                            "requestStr": "$privateSiteIp:IPAddress ",
+                                                            "required": false,
+                                                            "responseStr": "privateSiteIp:$privateSiteIp ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "IPAddress",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "privateSiteIp"
+                                                        },
+                                                        "psk": {
+                                                            "defaultValue": null,
+                                                            "description": "Pre-shared key. This field is write-only.",
+                                                            "id_str": "updateIpsecIkeV2SiteTunnels___input___primary___tunnels___psk",
+                                                            "name": "psk",
+                                                            "path": "updateIpsecIkeV2SiteTunnels.input.primary.tunnels.psk",
+                                                            "requestStr": "$psk:String ",
+                                                            "required": false,
+                                                            "responseStr": "psk:$psk ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "psk"
+                                                        },
+                                                        "publicSiteIp": {
+                                                            "defaultValue": null,
+                                                            "description": "The public IP address where the IPsec tunnel is initiated",
+                                                            "id_str": "updateIpsecIkeV2SiteTunnels___input___primary___tunnels___publicSiteIp",
+                                                            "name": "publicSiteIp",
+                                                            "path": "updateIpsecIkeV2SiteTunnels.input.primary.tunnels.publicSiteIp",
+                                                            "requestStr": "$publicSiteIp:IPAddress ",
+                                                            "required": false,
+                                                            "responseStr": "publicSiteIp:$publicSiteIp ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "IPAddress",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "publicSiteIp"
+                                                        },
+                                                        "role": {
+                                                            "defaultValue": null,
+                                                            "description": "Tunnel role",
+                                                            "id_str": "updateIpsecIkeV2SiteTunnels___input___primary___tunnels___role",
+                                                            "name": "role",
+                                                            "path": "updateIpsecIkeV2SiteTunnels.input.primary.tunnels.role",
+                                                            "requestStr": "$role:IPSecV2TunnelRole ",
+                                                            "required": false,
+                                                            "responseStr": "role:$role ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "WAN1"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "WAN2"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "WAN3"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "IPSecV2TunnelRole",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "IPSecV2TunnelRole",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "role"
+                                                        },
+                                                        "tunnelId": {
+                                                            "defaultValue": null,
+                                                            "description": "The ID of the tunnel",
+                                                            "id_str": "updateIpsecIkeV2SiteTunnels___input___primary___tunnels___tunnelId",
+                                                            "name": "tunnelId",
+                                                            "path": "updateIpsecIkeV2SiteTunnels.input.primary.tunnels.tunnelId",
+                                                            "requestStr": "$tunnelId:IPSecV2InterfaceId! ",
+                                                            "required": true,
+                                                            "responseStr": "tunnelId:$tunnelId ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "PRIMARY1"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "PRIMARY2"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "PRIMARY3"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "SECONDARY1"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "SECONDARY2"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "SECONDARY3"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "IPSecV2InterfaceId",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "IPSecV2InterfaceId",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "tunnelId"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "UpdateIpsecIkeV2TunnelInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "LIST",
+                                                    "NON_NULL",
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "UpdateIpsecIkeV2TunnelInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "updateIpsecIkeV2TunnelInput"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "UpdateIpsecIkeV2TunnelsInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "UpdateIpsecIkeV2TunnelsInput",
+                                "non_null": false
+                            },
+                            "varName": "updateIpsecIkeV2TunnelsInput"
+                        },
+                        "secondary": {
+                            "defaultValue": null,
+                            "description": "The configuration of the site\u2019s secondary tunnel",
+                            "id_str": "updateIpsecIkeV2SiteTunnels___input___secondary",
+                            "name": "secondary",
+                            "path": "updateIpsecIkeV2SiteTunnels.input.secondary",
+                            "requestStr": "$updateIpsecIkeV2TunnelsInput:UpdateIpsecIkeV2TunnelsInput ",
+                            "required": false,
+                            "responseStr": "secondary:$updateIpsecIkeV2TunnelsInput ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "destinationType": {
+                                            "defaultValue": null,
+                                            "description": "The destination type of the IPsec tunnel",
+                                            "id_str": "updateIpsecIkeV2SiteTunnels___input___secondary___destinationType",
+                                            "name": "destinationType",
+                                            "path": "updateIpsecIkeV2SiteTunnels.input.secondary.destinationType",
+                                            "requestStr": "$destinationType:DestinationType ",
+                                            "required": false,
+                                            "responseStr": "destinationType:$destinationType ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "IPv4"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "FQDN"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "DestinationType",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "ENUM"
+                                                ],
+                                                "name": "DestinationType",
+                                                "non_null": false
+                                            },
+                                            "varName": "destinationType"
+                                        },
+                                        "popLocationId": {
+                                            "defaultValue": null,
+                                            "description": "The PoP location ID",
+                                            "id_str": "updateIpsecIkeV2SiteTunnels___input___secondary___popLocationId",
+                                            "name": "popLocationId",
+                                            "path": "updateIpsecIkeV2SiteTunnels.input.secondary.popLocationId",
+                                            "requestStr": "$popLocationId:ID ",
+                                            "required": false,
+                                            "responseStr": "popLocationId:$popLocationId ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "ID",
+                                                "non_null": false
+                                            },
+                                            "varName": "popLocationId"
+                                        },
+                                        "publicCatoIpId": {
+                                            "defaultValue": null,
+                                            "description": "The ID of the public IP (Allocated IP) of the Cato PoP to which the tunnel will connect. This will be the source-IP of the traffic transmitted to the Cato cloud over this tunnel when egressing the Cato Cloud",
+                                            "id_str": "updateIpsecIkeV2SiteTunnels___input___secondary___publicCatoIpId",
+                                            "name": "publicCatoIpId",
+                                            "path": "updateIpsecIkeV2SiteTunnels.input.secondary.publicCatoIpId",
+                                            "requestStr": "$publicCatoIpId:ID ",
+                                            "required": false,
+                                            "responseStr": "publicCatoIpId:$publicCatoIpId ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "ID",
+                                                "non_null": false
+                                            },
+                                            "varName": "publicCatoIpId"
+                                        },
+                                        "tunnels": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "updateIpsecIkeV2SiteTunnels___input___secondary___tunnels",
+                                            "name": "tunnels",
+                                            "path": "updateIpsecIkeV2SiteTunnels.input.secondary.tunnels",
+                                            "requestStr": "$updateIpsecIkeV2TunnelInput:[UpdateIpsecIkeV2TunnelInput]! ",
+                                            "required": true,
+                                            "responseStr": "tunnels:$updateIpsecIkeV2TunnelInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "lastMileBw": {
+                                                            "defaultValue": null,
+                                                            "description": "The maximum allowed bandwidth for the site. If not specified, it will be set according to the site license. If the ISP provided bandwidth is below the site bandwidth, set this parameter to the ISP bandwidth or below",
+                                                            "id_str": "updateIpsecIkeV2SiteTunnels___input___secondary___tunnels___lastMileBw",
+                                                            "name": "lastMileBw",
+                                                            "path": "updateIpsecIkeV2SiteTunnels.input.secondary.tunnels.lastMileBw",
+                                                            "requestStr": "$lastMileBwInput:LastMileBwInput ",
+                                                            "required": false,
+                                                            "responseStr": "lastMileBw:$lastMileBwInput ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": null,
+                                                                    "fields": null,
+                                                                    "inputFields": {
+                                                                        "downstream": {
+                                                                            "defaultValue": null,
+                                                                            "description": "The maximum downstream bandwidth from the Cato Cloud to the site, in Mbps. This value can be used for capping the downstream traffic. It should not be set above the ISP downstream bandwidth or the site license bandwidth.",
+                                                                            "id_str": "updateIpsecIkeV2SiteTunnels___input___secondary___tunnels___lastMileBw___downstream",
+                                                                            "name": "downstream",
+                                                                            "path": "updateIpsecIkeV2SiteTunnels.input.secondary.tunnels.lastMileBw.downstream",
+                                                                            "requestStr": "$downstream:Int ",
+                                                                            "required": false,
+                                                                            "responseStr": "downstream:$downstream ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "Int",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "downstream"
+                                                                        },
+                                                                        "downstreamMbpsPrecision": {
+                                                                            "defaultValue": null,
+                                                                            "description": "The maximum downstream bandwidth from the Cato Cloud to the site, in Mbps with single decimal precision. This value can be used for capping the downstream traffic. It should not be set above the ISP downstream bandwidth or the site license bandwidth.",
+                                                                            "id_str": "updateIpsecIkeV2SiteTunnels___input___secondary___tunnels___lastMileBw___downstreamMbpsPrecision",
+                                                                            "name": "downstreamMbpsPrecision",
+                                                                            "path": "updateIpsecIkeV2SiteTunnels.input.secondary.tunnels.lastMileBw.downstreamMbpsPrecision",
+                                                                            "requestStr": "$downstreamMbpsPrecision:Float ",
+                                                                            "required": false,
+                                                                            "responseStr": "downstreamMbpsPrecision:$downstreamMbpsPrecision ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "Float",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "downstreamMbpsPrecision"
+                                                                        },
+                                                                        "upstream": {
+                                                                            "defaultValue": null,
+                                                                            "description": "The maximum upstream bandwidth, in Mbps. The Cato Cloud cannot cap this direction, and this setting is used as a best-effort indication by the Cato Cloud.",
+                                                                            "id_str": "updateIpsecIkeV2SiteTunnels___input___secondary___tunnels___lastMileBw___upstream",
+                                                                            "name": "upstream",
+                                                                            "path": "updateIpsecIkeV2SiteTunnels.input.secondary.tunnels.lastMileBw.upstream",
+                                                                            "requestStr": "$upstream:Int ",
+                                                                            "required": false,
+                                                                            "responseStr": "upstream:$upstream ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "Int",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "upstream"
+                                                                        },
+                                                                        "upstreamMbpsPrecision": {
+                                                                            "defaultValue": null,
+                                                                            "description": "The maximum upstream bandwidth, in Mbps with single decimal precision. The Cato Cloud cannot cap this direction, and this setting is used as a best-effort indication by the Cato Cloud.",
+                                                                            "id_str": "updateIpsecIkeV2SiteTunnels___input___secondary___tunnels___lastMileBw___upstreamMbpsPrecision",
+                                                                            "name": "upstreamMbpsPrecision",
+                                                                            "path": "updateIpsecIkeV2SiteTunnels.input.secondary.tunnels.lastMileBw.upstreamMbpsPrecision",
+                                                                            "requestStr": "$upstreamMbpsPrecision:Float ",
+                                                                            "required": false,
+                                                                            "responseStr": "upstreamMbpsPrecision:$upstreamMbpsPrecision ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "Float",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "upstreamMbpsPrecision"
+                                                                        }
+                                                                    },
+                                                                    "interfaces": null,
+                                                                    "kind": "INPUT_OBJECT",
+                                                                    "name": "LastMileBwInput",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "input_object",
+                                                                "kind": [
+                                                                    "INPUT_OBJECT"
+                                                                ],
+                                                                "name": "LastMileBwInput",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "lastMileBwInput"
+                                                        },
+                                                        "name": {
+                                                            "defaultValue": null,
+                                                            "description": "Tunnel name",
+                                                            "id_str": "updateIpsecIkeV2SiteTunnels___input___secondary___tunnels___name",
+                                                            "name": "name",
+                                                            "path": "updateIpsecIkeV2SiteTunnels.input.secondary.tunnels.name",
+                                                            "requestStr": "$name:String ",
+                                                            "required": false,
+                                                            "responseStr": "name:$name ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "name"
+                                                        },
+                                                        "privateCatoIp": {
+                                                            "defaultValue": null,
+                                                            "description": "Cato\u2019s private IP, used for BGP routing. Applicable for sites using BGP only",
+                                                            "id_str": "updateIpsecIkeV2SiteTunnels___input___secondary___tunnels___privateCatoIp",
+                                                            "name": "privateCatoIp",
+                                                            "path": "updateIpsecIkeV2SiteTunnels.input.secondary.tunnels.privateCatoIp",
+                                                            "requestStr": "$privateCatoIp:IPAddress ",
+                                                            "required": false,
+                                                            "responseStr": "privateCatoIp:$privateCatoIp ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "IPAddress",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "privateCatoIp"
+                                                        },
+                                                        "privateSiteIp": {
+                                                            "defaultValue": null,
+                                                            "description": "Site private IP, used for BGP routing. Applicable for sites using BGP only",
+                                                            "id_str": "updateIpsecIkeV2SiteTunnels___input___secondary___tunnels___privateSiteIp",
+                                                            "name": "privateSiteIp",
+                                                            "path": "updateIpsecIkeV2SiteTunnels.input.secondary.tunnels.privateSiteIp",
+                                                            "requestStr": "$privateSiteIp:IPAddress ",
+                                                            "required": false,
+                                                            "responseStr": "privateSiteIp:$privateSiteIp ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "IPAddress",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "privateSiteIp"
+                                                        },
+                                                        "psk": {
+                                                            "defaultValue": null,
+                                                            "description": "Pre-shared key. This field is write-only.",
+                                                            "id_str": "updateIpsecIkeV2SiteTunnels___input___secondary___tunnels___psk",
+                                                            "name": "psk",
+                                                            "path": "updateIpsecIkeV2SiteTunnels.input.secondary.tunnels.psk",
+                                                            "requestStr": "$psk:String ",
+                                                            "required": false,
+                                                            "responseStr": "psk:$psk ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "psk"
+                                                        },
+                                                        "publicSiteIp": {
+                                                            "defaultValue": null,
+                                                            "description": "The public IP address where the IPsec tunnel is initiated",
+                                                            "id_str": "updateIpsecIkeV2SiteTunnels___input___secondary___tunnels___publicSiteIp",
+                                                            "name": "publicSiteIp",
+                                                            "path": "updateIpsecIkeV2SiteTunnels.input.secondary.tunnels.publicSiteIp",
+                                                            "requestStr": "$publicSiteIp:IPAddress ",
+                                                            "required": false,
+                                                            "responseStr": "publicSiteIp:$publicSiteIp ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "IPAddress",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "publicSiteIp"
+                                                        },
+                                                        "role": {
+                                                            "defaultValue": null,
+                                                            "description": "Tunnel role",
+                                                            "id_str": "updateIpsecIkeV2SiteTunnels___input___secondary___tunnels___role",
+                                                            "name": "role",
+                                                            "path": "updateIpsecIkeV2SiteTunnels.input.secondary.tunnels.role",
+                                                            "requestStr": "$role:IPSecV2TunnelRole ",
+                                                            "required": false,
+                                                            "responseStr": "role:$role ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "WAN1"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "WAN2"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "WAN3"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "IPSecV2TunnelRole",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "IPSecV2TunnelRole",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "role"
+                                                        },
+                                                        "tunnelId": {
+                                                            "defaultValue": null,
+                                                            "description": "The ID of the tunnel",
+                                                            "id_str": "updateIpsecIkeV2SiteTunnels___input___secondary___tunnels___tunnelId",
+                                                            "name": "tunnelId",
+                                                            "path": "updateIpsecIkeV2SiteTunnels.input.secondary.tunnels.tunnelId",
+                                                            "requestStr": "$tunnelId:IPSecV2InterfaceId! ",
+                                                            "required": true,
+                                                            "responseStr": "tunnelId:$tunnelId ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "PRIMARY1"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "PRIMARY2"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "PRIMARY3"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "SECONDARY1"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "SECONDARY2"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "SECONDARY3"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "IPSecV2InterfaceId",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "IPSecV2InterfaceId",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "tunnelId"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "UpdateIpsecIkeV2TunnelInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "LIST",
+                                                    "NON_NULL",
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "UpdateIpsecIkeV2TunnelInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "updateIpsecIkeV2TunnelInput"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "UpdateIpsecIkeV2TunnelsInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "UpdateIpsecIkeV2TunnelsInput",
+                                "non_null": false
+                            },
+                            "varName": "updateIpsecIkeV2TunnelsInput"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "UpdateIpsecIkeV2SiteTunnelsInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "UpdateIpsecIkeV2SiteTunnelsInput",
+                "non_null": false
+            },
+            "varName": "updateIpsecIkeV2SiteTunnelsInput"
         }
     },
     "path": "mutation.sites.updateIpsecIkeV2SiteTunnels",
@@ -2378,5 +3324,29 @@
         "name": "SiteMutations",
         "non_null": false
     },
-    "variablesPayload": {}
+    "variablesPayload": {
+        "siteId": "id",
+        "updateIpsecIkeV2SiteTunnelsInput": {
+            "updateIpsecIkeV2TunnelsInput": {
+                "destinationType": "IPv4",
+                "popLocationId": "id",
+                "publicCatoIpId": "id",
+                "tunnels": {
+                    "lastMileBw": {
+                        "downstream": 1,
+                        "downstreamMbpsPrecision": 1.5,
+                        "upstream": 1,
+                        "upstreamMbpsPrecision": 1.5
+                    },
+                    "name": "string",
+                    "privateCatoIp": "example_value",
+                    "privateSiteIp": "example_value",
+                    "psk": "string",
+                    "publicSiteIp": "example_value",
+                    "role": "WAN1",
+                    "tunnelId": "PRIMARY1"
+                }
+            }
+        }
+    }
 }

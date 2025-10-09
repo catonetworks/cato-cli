@@ -1,7 +1,7 @@
-mutation policyDynamicIpAllocationRemoveRule ( $accountId:ID! $dynamicIpAllocationRemoveRuleInput:DynamicIpAllocationRemoveRuleInput!) {
-	policy ( accountId:$accountId ) {
-		dynamicIpAllocation {
-			removeRule {
+mutation policyDynamicIpAllocationRemoveRule ( $accountId:ID! $dynamicIpAllocationPolicyMutationInput:DynamicIpAllocationPolicyMutationInput $dynamicIpAllocationRemoveRuleInput:DynamicIpAllocationRemoveRuleInput!) {
+	policy ( accountId:$accountId input:$dynamicIpAllocationPolicyMutationInput input:$dynamicIpAllocationRemoveRuleInput ) {
+		dynamicIpAllocation ( input:$dynamicIpAllocationPolicyMutationInput  )  {
+			removeRule ( input:$dynamicIpAllocationRemoveRuleInput   ) {
 				rule {
 					audit {
 						updatedTime

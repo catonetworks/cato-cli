@@ -1,5 +1,25 @@
 {
     "operationName": "siteAddNetworkRange",
-    "query": "mutation siteAddNetworkRange ( $accountId:ID! $lanSocketInterfaceId:ID!) {\n\tsite ( accountId:$accountId ) {\n\t\taddNetworkRange {\n\t\t\tnetworkRangeId\n\t\t}\n\t}\t\n}",
-    "variables": {}
+    "query": "mutation siteAddNetworkRange ( $accountId:ID! $lanSocketInterfaceId:ID! $addNetworkRangeInput:AddNetworkRangeInput!) {\n\tsite ( accountId:$accountId lanSocketInterfaceId:$lanSocketInterfaceId input:$addNetworkRangeInput ) {\n\t\taddNetworkRange ( lanSocketInterfaceId:$lanSocketInterfaceId  input:$addNetworkRangeInput  )  {\n\t\t\tnetworkRangeId\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "addNetworkRangeInput": {
+            "azureFloatingIp": "example_value",
+            "gateway": "example_value",
+            "internetOnly": true,
+            "localIp": "example_value",
+            "mdnsReflector": true,
+            "name": "string",
+            "networkDhcpSettingsInput": {
+                "dhcpMicrosegmentation": true,
+                "dhcpType": "DHCP_RELAY",
+                "ipRange": "example_value",
+                "relayGroupId": "id"
+            },
+            "rangeType": "Routed",
+            "subnet": "example_value",
+            "translatedSubnet": "example_value",
+            "vlan": 1
+        },
+        "lanSocketInterfaceId": "id"
+    }
 }

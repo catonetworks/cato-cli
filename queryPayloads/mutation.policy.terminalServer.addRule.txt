@@ -1,7 +1,7 @@
-mutation policyTerminalServerAddRule ( $accountId:ID! $terminalServerAddRuleInput:TerminalServerAddRuleInput!) {
-	policy ( accountId:$accountId ) {
-		terminalServer {
-			addRule {
+mutation policyTerminalServerAddRule ( $accountId:ID! $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput $terminalServerAddRuleInput:TerminalServerAddRuleInput!) {
+	policy ( accountId:$accountId input:$terminalServerPolicyMutationInput input:$terminalServerAddRuleInput ) {
+		terminalServer ( input:$terminalServerPolicyMutationInput  )  {
+			addRule ( input:$terminalServerAddRuleInput   ) {
 				rule {
 					audit {
 						updatedTime

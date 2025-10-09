@@ -1,7 +1,7 @@
-mutation policyAppTenantRestrictionUpdateRule ( $accountId:ID! $appTenantRestrictionUpdateRuleInput:AppTenantRestrictionUpdateRuleInput!) {
-	policy ( accountId:$accountId ) {
-		appTenantRestriction {
-			updateRule {
+mutation policyAppTenantRestrictionUpdateRule ( $accountId:ID! $appTenantRestrictionPolicyMutationInput:AppTenantRestrictionPolicyMutationInput $appTenantRestrictionUpdateRuleInput:AppTenantRestrictionUpdateRuleInput!) {
+	policy ( accountId:$accountId input:$appTenantRestrictionPolicyMutationInput input:$appTenantRestrictionUpdateRuleInput ) {
+		appTenantRestriction ( input:$appTenantRestrictionPolicyMutationInput  )  {
+			updateRule ( input:$appTenantRestrictionUpdateRuleInput   ) {
 				rule {
 					audit {
 						updatedTime

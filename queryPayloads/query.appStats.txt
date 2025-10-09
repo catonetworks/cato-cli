@@ -1,5 +1,5 @@
-query appStats ( $accountID:ID! $timeFrame:TimeFrame! $measure:[Measure] $dimension:[Dimension] $appStatsFilter:[AppStatsFilter!] $appStatsSort:[AppStatsSort!]) {
-	appStats ( accountID:$accountID timeFrame:$timeFrame measures:$measure dimensions:$dimension filters:$appStatsFilter sort:$appStatsSort ) {
+query appStats ( $accountID:ID! $timeFrame:TimeFrame! $measure:[Measure] $dimension:[Dimension] $appStatsFilter:[AppStatsFilter!] $appStatsSort:[AppStatsSort!] $limit:Int $from:Int) {
+	appStats ( accountID:$accountID timeFrame:$timeFrame measures:$measure dimensions:$dimension filters:$appStatsFilter sort:$appStatsSort limit:$limit from:$from ) {
 id {
 	id
 	status
@@ -147,7 +147,7 @@ to {
 }
 		total
 		totals
-		records {
+		records ( limit:$limit  from:$from  )  {
 			fields {
 				name
 				value {

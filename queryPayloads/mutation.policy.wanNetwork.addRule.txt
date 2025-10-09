@@ -1,7 +1,7 @@
-mutation policyWanNetworkAddRule ( $accountId:ID! $wanNetworkAddRuleInput:WanNetworkAddRuleInput!) {
-	policy ( accountId:$accountId ) {
-		wanNetwork {
-			addRule {
+mutation policyWanNetworkAddRule ( $accountId:ID! $wanNetworkPolicyMutationInput:WanNetworkPolicyMutationInput $wanNetworkAddRuleInput:WanNetworkAddRuleInput!) {
+	policy ( accountId:$accountId input:$wanNetworkPolicyMutationInput input:$wanNetworkAddRuleInput ) {
+		wanNetwork ( input:$wanNetworkPolicyMutationInput  )  {
+			addRule ( input:$wanNetworkAddRuleInput   ) {
 				rule {
 					audit {
 						updatedTime

@@ -11,6 +11,14 @@ catocli mutation enterpriseDirectory archiveLocation <json>
 
 catocli mutation enterpriseDirectory archiveLocation "$(cat < mutation.enterpriseDirectory.archiveLocation.json)"
 
+catocli mutation enterpriseDirectory archiveLocation '{"locationId":"id"}'
+
+catocli mutation enterpriseDirectory archiveLocation '{
+    "locationId": "id"
+}'
+```
+
 #### Operation Arguments for mutation.enterpriseDirectory.archiveLocation ####
 
 `accountId` [ID] - (required) N/A    
+`locationId` [ID] - (required) N/A    

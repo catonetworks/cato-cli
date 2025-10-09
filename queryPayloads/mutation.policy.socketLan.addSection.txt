@@ -1,7 +1,7 @@
-mutation policySocketLanAddSection ( $accountId:ID! $policyAddSectionInput:PolicyAddSectionInput!) {
-	policy ( accountId:$accountId ) {
-		socketLan {
-			addSection {
+mutation policySocketLanAddSection ( $accountId:ID! $socketLanPolicyMutationInput:SocketLanPolicyMutationInput $policyAddSectionInput:PolicyAddSectionInput!) {
+	policy ( accountId:$accountId input:$socketLanPolicyMutationInput input:$policyAddSectionInput ) {
+		socketLan ( input:$socketLanPolicyMutationInput  )  {
+			addSection ( input:$policyAddSectionInput   ) {
 				section {
 					audit {
 						updatedTime

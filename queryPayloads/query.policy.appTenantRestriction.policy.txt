@@ -1,7 +1,7 @@
-query policyAppTenantRestrictionPolicy ( $accountId:ID!) {
-	policy ( accountId:$accountId ) {
+query policyAppTenantRestrictionPolicy ( $accountId:ID! $appTenantRestrictionPolicyInput:AppTenantRestrictionPolicyInput) {
+	policy ( accountId:$accountId input:$appTenantRestrictionPolicyInput ) {
 		appTenantRestriction {
-			policy {
+			policy ( input:$appTenantRestrictionPolicyInput   ) {
 				enabled
 				rules {
 					audit {

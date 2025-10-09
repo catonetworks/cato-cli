@@ -1,7 +1,7 @@
-mutation policyTerminalServerRemoveRule ( $accountId:ID! $terminalServerRemoveRuleInput:TerminalServerRemoveRuleInput!) {
-	policy ( accountId:$accountId ) {
-		terminalServer {
-			removeRule {
+mutation policyTerminalServerRemoveRule ( $accountId:ID! $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput $terminalServerRemoveRuleInput:TerminalServerRemoveRuleInput!) {
+	policy ( accountId:$accountId input:$terminalServerPolicyMutationInput input:$terminalServerRemoveRuleInput ) {
+		terminalServer ( input:$terminalServerPolicyMutationInput  )  {
+			removeRule ( input:$terminalServerRemoveRuleInput   ) {
 				rule {
 					audit {
 						updatedTime

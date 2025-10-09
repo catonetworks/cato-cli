@@ -1,7 +1,7 @@
-query policyWanNetworkPolicy ( $accountId:ID!) {
-	policy ( accountId:$accountId ) {
+query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkPolicyInput) {
+	policy ( accountId:$accountId input:$wanNetworkPolicyInput ) {
 		wanNetwork {
-			policy {
+			policy ( input:$wanNetworkPolicyInput   ) {
 				enabled
 				rules {
 					audit {

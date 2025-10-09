@@ -1,5 +1,12 @@
 {
     "operationName": "siteAvailableVersionList",
-    "query": "query siteAvailableVersionList ( $accountId:ID! $availableVersionListInput:AvailableVersionListInput!) {\n\tsite ( accountId:$accountId ) {\n\t\tavailableVersionList {\n\t\t\titems {\n\tplatform {\n\t\tplatform\n\t\tversions\n\t}\n\tversions {\n\t\tplatform\n\t\tversions\n\t}\n\t\t\t}\n\t\t}\n\t}\t\n}",
-    "variables": {}
+    "query": "query siteAvailableVersionList ( $accountId:ID! $availableVersionListInput:AvailableVersionListInput!) {\n\tsite ( accountId:$accountId input:$availableVersionListInput ) {\n\t\tavailableVersionList ( input:$availableVersionListInput  )  {\n\t\t\titems {\n\tplatform {\n\t\tplatform\n\t\tversions\n\t}\n\tversions {\n\t\tplatform\n\t\tversions\n\t}\n\t\t\t}\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "availableVersionListInput": {
+            "platforms": [
+                "string1",
+                "string2"
+            ]
+        }
+    }
 }

@@ -11,6 +11,14 @@ catocli query site secondaryAzureVSocket <json>
 
 catocli query site secondaryAzureVSocket "$(cat < query.site.secondaryAzureVSocket.json)"
 
+catocli query site secondaryAzureVSocket '{"socketId":"id"}'
+
+catocli query site secondaryAzureVSocket '{
+    "socketId": "id"
+}'
+```
+
 #### Operation Arguments for query.site.secondaryAzureVSocket ####
 
 `accountId` [ID] - (required) N/A    
+`socketId` [ID] - (required) N/A    

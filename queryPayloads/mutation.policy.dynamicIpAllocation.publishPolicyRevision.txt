@@ -1,7 +1,7 @@
-mutation policyDynamicIpAllocationPublishPolicyRevision ( $accountId:ID!) {
-	policy ( accountId:$accountId ) {
-		dynamicIpAllocation {
-			publishPolicyRevision {
+mutation policyDynamicIpAllocationPublishPolicyRevision ( $accountId:ID! $dynamicIpAllocationPolicyMutationInput:DynamicIpAllocationPolicyMutationInput $policyPublishRevisionInput:PolicyPublishRevisionInput) {
+	policy ( accountId:$accountId input:$dynamicIpAllocationPolicyMutationInput input:$policyPublishRevisionInput ) {
+		dynamicIpAllocation ( input:$dynamicIpAllocationPolicyMutationInput  )  {
+			publishPolicyRevision ( input:$policyPublishRevisionInput   ) {
 				policy {
 					enabled
 					rules {

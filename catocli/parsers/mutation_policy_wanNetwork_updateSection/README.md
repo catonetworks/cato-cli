@@ -11,6 +11,25 @@ catocli mutation policy wanNetwork updateSection <json>
 
 catocli mutation policy wanNetwork updateSection "$(cat < mutation.policy.wanNetwork.updateSection.json)"
 
+catocli mutation policy wanNetwork updateSection '{"policyUpdateSectionInput":{"id":"id","policyUpdateSectionInfoInput":{"name":"string"}},"wanNetworkPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
+
+catocli mutation policy wanNetwork updateSection '{
+    "policyUpdateSectionInput": {
+        "id": "id",
+        "policyUpdateSectionInfoInput": {
+            "name": "string"
+        }
+    },
+    "wanNetworkPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    }
+}'
+```
+
 #### Operation Arguments for mutation.policy.wanNetwork.updateSection ####
 
 `accountId` [ID] - (required) N/A    
+`policyUpdateSectionInput` [PolicyUpdateSectionInput] - (required) N/A    
+`wanNetworkPolicyMutationInput` [WanNetworkPolicyMutationInput] - (required) N/A    

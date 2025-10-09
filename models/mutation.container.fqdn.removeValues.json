@@ -224,6 +224,151 @@
                 "non_null": false
             },
             "varName": "accountId"
+        },
+        "fqdnContainerRemoveValuesInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "removeValues___input",
+            "name": "input",
+            "path": "removeValues.input",
+            "requestStr": "$fqdnContainerRemoveValuesInput:FqdnContainerRemoveValuesInput! ",
+            "required": true,
+            "responseStr": "input:$fqdnContainerRemoveValuesInput ",
+            "type": {
+                "definition": {
+                    "description": "Input for removing values from existing FQDN typed container",
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "ref": {
+                            "defaultValue": null,
+                            "description": "Reference to existing container by container ID or container name",
+                            "id_str": "removeValues___input___ref",
+                            "name": "ref",
+                            "path": "removeValues.input.ref",
+                            "requestStr": "$containerRefInput:ContainerRefInput! ",
+                            "required": true,
+                            "responseStr": "ref:$containerRefInput ",
+                            "type": {
+                                "definition": {
+                                    "description": "Add a container by ID or name",
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "by": {
+                                            "defaultValue": "ID",
+                                            "description": "Defines the object identification method \u2013 by ID (default) or by name",
+                                            "id_str": "removeValues___input___ref___by",
+                                            "name": "by",
+                                            "path": "removeValues.input.ref.by",
+                                            "requestStr": "$by:ObjectRefBy! ",
+                                            "required": true,
+                                            "responseStr": "by:$by ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "ID"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "NAME"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "ObjectRefBy",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "ENUM"
+                                                ],
+                                                "name": "ObjectRefBy",
+                                                "non_null": false
+                                            },
+                                            "varName": "by"
+                                        },
+                                        "input": {
+                                            "defaultValue": null,
+                                            "description": "The object identification (ID or name) value",
+                                            "id_str": "removeValues___input___ref___input",
+                                            "name": "input",
+                                            "path": "removeValues.input.ref.input",
+                                            "requestStr": "$input:String! ",
+                                            "required": true,
+                                            "responseStr": "input:$input ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "String",
+                                                "non_null": false
+                                            },
+                                            "varName": "input"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "ContainerRefInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "NON_NULL",
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "ContainerRefInput",
+                                "non_null": false
+                            },
+                            "varName": "containerRefInput"
+                        },
+                        "values": {
+                            "defaultValue": "[]",
+                            "description": null,
+                            "id_str": "removeValues___input___values",
+                            "name": "values",
+                            "path": "removeValues.input.values",
+                            "requestStr": "$values:[Fqdn]! ",
+                            "required": true,
+                            "responseStr": "values:$values ",
+                            "type": {
+                                "kind": [
+                                    "NON_NULL",
+                                    "LIST",
+                                    "NON_NULL",
+                                    "SCALAR"
+                                ],
+                                "name": "Fqdn",
+                                "non_null": false
+                            },
+                            "varName": "values"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "FqdnContainerRemoveValuesInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "FqdnContainerRemoveValuesInput",
+                "non_null": false
+            },
+            "varName": "fqdnContainerRemoveValuesInput"
         }
     },
     "path": "mutation.container.fqdn.removeValues",
@@ -697,5 +842,16 @@
         "name": "ContainerMutations",
         "non_null": false
     },
-    "variablesPayload": {}
+    "variablesPayload": {
+        "fqdnContainerRemoveValuesInput": {
+            "containerRefInput": {
+                "by": "ID",
+                "input": "string"
+            },
+            "values": [
+                "example1",
+                "example2"
+            ]
+        }
+    }
 }

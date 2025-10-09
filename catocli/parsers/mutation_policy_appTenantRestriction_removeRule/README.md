@@ -11,6 +11,22 @@ catocli mutation policy appTenantRestriction removeRule <json>
 
 catocli mutation policy appTenantRestriction removeRule "$(cat < mutation.policy.appTenantRestriction.removeRule.json)"
 
+catocli mutation policy appTenantRestriction removeRule '{"appTenantRestrictionPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"appTenantRestrictionRemoveRuleInput":{"id":"id"}}'
+
+catocli mutation policy appTenantRestriction removeRule '{
+    "appTenantRestrictionPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    },
+    "appTenantRestrictionRemoveRuleInput": {
+        "id": "id"
+    }
+}'
+```
+
 #### Operation Arguments for mutation.policy.appTenantRestriction.removeRule ####
 
 `accountId` [ID] - (required) N/A    
+`appTenantRestrictionPolicyMutationInput` [AppTenantRestrictionPolicyMutationInput] - (required) N/A    
+`appTenantRestrictionRemoveRuleInput` [AppTenantRestrictionRemoveRuleInput] - (required) N/A    

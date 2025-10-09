@@ -1,7 +1,7 @@
-query policyInternetFirewallPolicy ( $accountId:ID!) {
-	policy ( accountId:$accountId ) {
+query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput:InternetFirewallPolicyInput) {
+	policy ( accountId:$accountId input:$internetFirewallPolicyInput ) {
 		internetFirewall {
-			policy {
+			policy ( input:$internetFirewallPolicyInput   ) {
 				enabled
 				rules {
 					audit {

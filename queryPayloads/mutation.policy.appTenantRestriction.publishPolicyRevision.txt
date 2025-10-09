@@ -1,7 +1,7 @@
-mutation policyAppTenantRestrictionPublishPolicyRevision ( $accountId:ID!) {
-	policy ( accountId:$accountId ) {
-		appTenantRestriction {
-			publishPolicyRevision {
+mutation policyAppTenantRestrictionPublishPolicyRevision ( $accountId:ID! $appTenantRestrictionPolicyMutationInput:AppTenantRestrictionPolicyMutationInput $policyPublishRevisionInput:PolicyPublishRevisionInput) {
+	policy ( accountId:$accountId input:$appTenantRestrictionPolicyMutationInput input:$policyPublishRevisionInput ) {
+		appTenantRestriction ( input:$appTenantRestrictionPolicyMutationInput  )  {
+			publishPolicyRevision ( input:$policyPublishRevisionInput   ) {
 				policy {
 					enabled
 					rules {

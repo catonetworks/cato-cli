@@ -11,6 +11,22 @@ catocli mutation policy dynamicIpAllocation removeRule <json>
 
 catocli mutation policy dynamicIpAllocation removeRule "$(cat < mutation.policy.dynamicIpAllocation.removeRule.json)"
 
+catocli mutation policy dynamicIpAllocation removeRule '{"dynamicIpAllocationPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"dynamicIpAllocationRemoveRuleInput":{"id":"id"}}'
+
+catocli mutation policy dynamicIpAllocation removeRule '{
+    "dynamicIpAllocationPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    },
+    "dynamicIpAllocationRemoveRuleInput": {
+        "id": "id"
+    }
+}'
+```
+
 #### Operation Arguments for mutation.policy.dynamicIpAllocation.removeRule ####
 
 `accountId` [ID] - (required) N/A    
+`dynamicIpAllocationPolicyMutationInput` [DynamicIpAllocationPolicyMutationInput] - (required) N/A    
+`dynamicIpAllocationRemoveRuleInput` [DynamicIpAllocationRemoveRuleInput] - (required) N/A    

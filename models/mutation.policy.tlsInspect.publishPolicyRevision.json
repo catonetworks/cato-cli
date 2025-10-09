@@ -220,6 +220,150 @@
                 "non_null": false
             },
             "varName": "accountId"
+        },
+        "policyPublishRevisionInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "publishPolicyRevision___input",
+            "name": "input",
+            "path": "publishPolicyRevision.input",
+            "requestStr": "$policyPublishRevisionInput:PolicyPublishRevisionInput ",
+            "required": false,
+            "responseStr": "input:$policyPublishRevisionInput ",
+            "type": {
+                "definition": {
+                    "description": "Published revision is the active policy\napplied on the traffic.\nIn addition, when a policy is published, revision changes become visible\nto other admins, and rules locked by the revision become unlocked",
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "description": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "publishPolicyRevision___input___description",
+                            "name": "description",
+                            "path": "publishPolicyRevision.input.description",
+                            "requestStr": "$description:String ",
+                            "required": false,
+                            "responseStr": "description:$description ",
+                            "type": {
+                                "kind": [
+                                    "SCALAR"
+                                ],
+                                "name": "String",
+                                "non_null": false
+                            },
+                            "varName": "description"
+                        },
+                        "name": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "publishPolicyRevision___input___name",
+                            "name": "name",
+                            "path": "publishPolicyRevision.input.name",
+                            "requestStr": "$name:String ",
+                            "required": false,
+                            "responseStr": "name:$name ",
+                            "type": {
+                                "kind": [
+                                    "SCALAR"
+                                ],
+                                "name": "String",
+                                "non_null": false
+                            },
+                            "varName": "name"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "PolicyPublishRevisionInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "INPUT_OBJECT"
+                ],
+                "name": "PolicyPublishRevisionInput",
+                "non_null": false
+            },
+            "varName": "policyPublishRevisionInput"
+        },
+        "tlsInspectPolicyMutationInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "tlsInspect___input",
+            "name": "input",
+            "path": "tlsInspect.input",
+            "requestStr": "$tlsInspectPolicyMutationInput:TlsInspectPolicyMutationInput ",
+            "required": false,
+            "responseStr": "input:$tlsInspectPolicyMutationInput ",
+            "type": {
+                "definition": {
+                    "description": null,
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "revision": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "tlsInspect___input___revision",
+                            "name": "revision",
+                            "path": "tlsInspect.input.revision",
+                            "requestStr": "$policyMutationRevisionInput:PolicyMutationRevisionInput ",
+                            "required": false,
+                            "responseStr": "revision:$policyMutationRevisionInput ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "id": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "tlsInspect___input___revision___id",
+                                            "name": "id",
+                                            "path": "tlsInspect.input.revision.id",
+                                            "requestStr": "$id:ID ",
+                                            "required": false,
+                                            "responseStr": "id:$id ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "ID",
+                                                "non_null": false
+                                            },
+                                            "varName": "id"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "PolicyMutationRevisionInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "PolicyMutationRevisionInput",
+                                "non_null": false
+                            },
+                            "varName": "policyMutationRevisionInput"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "TlsInspectPolicyMutationInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "INPUT_OBJECT"
+                ],
+                "name": "TlsInspectPolicyMutationInput",
+                "non_null": false
+            },
+            "varName": "tlsInspectPolicyMutationInput"
         }
     },
     "path": "mutation.policy.tlsInspect.publishPolicyRevision",
@@ -4239,5 +4383,15 @@
         "name": "PolicyMutations",
         "non_null": false
     },
-    "variablesPayload": {}
+    "variablesPayload": {
+        "policyPublishRevisionInput": {
+            "description": "string",
+            "name": "string"
+        },
+        "tlsInspectPolicyMutationInput": {
+            "policyMutationRevisionInput": {
+                "id": "id"
+            }
+        }
+    }
 }

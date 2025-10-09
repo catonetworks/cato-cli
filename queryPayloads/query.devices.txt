@@ -1,6 +1,6 @@
-query devices ( $accountId:ID! $jobId:ID!) {
-	devices ( accountId:$accountId ) {
-		list {
+query devices ( $accountId:ID! $deviceV2Input:DeviceV2Input $sortOrderInput:SortOrderInput $deviceAttributeCatalogInput:DeviceAttributeCatalogInput $deviceCsvExportInput:DeviceCsvExportInput $jobId:ID!) {
+	devices ( accountId:$accountId input:$deviceV2Input sort:$sortOrderInput input:$deviceAttributeCatalogInput input:$deviceCsvExportInput jobId:$jobId ) {
+		list ( input:$deviceV2Input  )  {
 			device {
 	id {
 		id
@@ -759,7 +759,7 @@ query devices ( $accountId:ID! $jobId:ID!) {
 			}
 		}
 		attributesCatalog {
-			category {
+			category ( sort:$sortOrderInput   ) {
 	items {
 		createdAt
 		description
@@ -777,7 +777,7 @@ query devices ( $accountId:ID! $jobId:ID!) {
 					total
 				}
 			}
-			type {
+			type ( input:$deviceAttributeCatalogInput   ) {
 	items {
 		createdAt
 		description
@@ -795,7 +795,7 @@ query devices ( $accountId:ID! $jobId:ID!) {
 					total
 				}
 			}
-			model {
+			model ( input:$deviceAttributeCatalogInput   ) {
 	items {
 		createdAt
 		description
@@ -813,7 +813,7 @@ query devices ( $accountId:ID! $jobId:ID!) {
 					total
 				}
 			}
-			manufacturer {
+			manufacturer ( input:$deviceAttributeCatalogInput   ) {
 	items {
 		createdAt
 		description
@@ -831,7 +831,7 @@ query devices ( $accountId:ID! $jobId:ID!) {
 					total
 				}
 			}
-			os {
+			os ( input:$deviceAttributeCatalogInput   ) {
 	items {
 		createdAt
 		description
@@ -850,11 +850,11 @@ query devices ( $accountId:ID! $jobId:ID!) {
 				}
 			}
 		}
-		csvExport {
+		csvExport ( input:$deviceCsvExportInput  )  {
 			jobId
 			message
 		}
-		csvExportStatus {
+		csvExportStatus ( jobId:$jobId  )  {
 			jobId
 status {
 	rawStatus

@@ -1,6 +1,6 @@
 mutation groupsDeleteGroup ( $accountId:ID! $groupRefInput:GroupRefInput! $groupMembersListInput:GroupMembersListInput!) {
-	groups ( accountId:$accountId ) {
-		deleteGroup {
+	groups ( accountId:$accountId input:$groupRefInput input:$groupMembersListInput ) {
+		deleteGroup ( input:$groupRefInput  )  {
 			group {
 	id {
 		id
@@ -468,7 +468,7 @@ mutation groupsDeleteGroup ( $accountId:ID! $groupRefInput:GroupRefInput! $group
 						}
 					}
 				}
-				members {
+				members ( input:$groupMembersListInput  )  {
 					items {
 	id {
 		id

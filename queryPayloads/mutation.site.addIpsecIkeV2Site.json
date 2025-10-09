@@ -1,5 +1,20 @@
 {
     "operationName": "siteAddIpsecIkeV2Site",
-    "query": "mutation siteAddIpsecIkeV2Site ( $accountId:ID! $addIpsecIkeV2SiteInput:AddIpsecIkeV2SiteInput!) {\n\tsite ( accountId:$accountId ) {\n\t\taddIpsecIkeV2Site {\n\t\t\tsiteId\n\t\t}\n\t}\t\n}",
-    "variables": {}
+    "query": "mutation siteAddIpsecIkeV2Site ( $accountId:ID! $addIpsecIkeV2SiteInput:AddIpsecIkeV2SiteInput!) {\n\tsite ( accountId:$accountId input:$addIpsecIkeV2SiteInput ) {\n\t\taddIpsecIkeV2Site ( input:$addIpsecIkeV2SiteInput  )  {\n\t\t\tsiteId\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "addIpsecIkeV2SiteInput": {
+            "addSiteLocationInput": {
+                "address": "string",
+                "city": "string",
+                "countryCode": "string",
+                "stateCode": "string",
+                "timezone": "string"
+            },
+            "description": "string",
+            "name": "string",
+            "nativeNetworkRange": "example_value",
+            "siteType": "BRANCH",
+            "vlan": "example_value"
+        }
+    }
 }

@@ -11,6 +11,23 @@ catocli mutation policy wanNetwork publishPolicyRevision <json>
 
 catocli mutation policy wanNetwork publishPolicyRevision "$(cat < mutation.policy.wanNetwork.publishPolicyRevision.json)"
 
+catocli mutation policy wanNetwork publishPolicyRevision '{"policyPublishRevisionInput":{"description":"string","name":"string"},"wanNetworkPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
+
+catocli mutation policy wanNetwork publishPolicyRevision '{
+    "policyPublishRevisionInput": {
+        "description": "string",
+        "name": "string"
+    },
+    "wanNetworkPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    }
+}'
+```
+
 #### Operation Arguments for mutation.policy.wanNetwork.publishPolicyRevision ####
 
 `accountId` [ID] - (required) N/A    
+`policyPublishRevisionInput` [PolicyPublishRevisionInput] - (required) N/A    
+`wanNetworkPolicyMutationInput` [WanNetworkPolicyMutationInput] - (required) N/A    

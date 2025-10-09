@@ -1,7 +1,7 @@
-query policyDynamicIpAllocationPolicy ( $accountId:ID!) {
-	policy ( accountId:$accountId ) {
+query policyDynamicIpAllocationPolicy ( $accountId:ID! $dynamicIpAllocationPolicyInput:DynamicIpAllocationPolicyInput) {
+	policy ( accountId:$accountId input:$dynamicIpAllocationPolicyInput ) {
 		dynamicIpAllocation {
-			policy {
+			policy ( input:$dynamicIpAllocationPolicyInput   ) {
 				enabled
 				rules {
 					audit {

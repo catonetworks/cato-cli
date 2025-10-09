@@ -1,7 +1,7 @@
-mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $policyCreateRevisionInput:PolicyCreateRevisionInput!) {
-	policy ( accountId:$accountId ) {
-		internetFirewall {
-			createPolicyRevision {
+mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFirewallPolicyMutationInput:InternetFirewallPolicyMutationInput $policyCreateRevisionInput:PolicyCreateRevisionInput!) {
+	policy ( accountId:$accountId input:$internetFirewallPolicyMutationInput input:$policyCreateRevisionInput ) {
+		internetFirewall ( input:$internetFirewallPolicyMutationInput  )  {
+			createPolicyRevision ( input:$policyCreateRevisionInput   ) {
 				policy {
 					enabled
 					rules {

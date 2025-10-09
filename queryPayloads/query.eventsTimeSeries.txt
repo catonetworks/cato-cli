@@ -1,5 +1,5 @@
-query eventsTimeSeries ( $accountID:ID! $timeFrame:TimeFrame! $eventsMeasure:[EventsMeasure] $eventsDimension:[EventsDimension] $eventsFilter:[EventsFilter!] $buckets:Int!) {
-	eventsTimeSeries ( accountID:$accountID timeFrame:$timeFrame measures:$eventsMeasure dimensions:$eventsDimension filters:$eventsFilter ) {
+query eventsTimeSeries ( $accountID:ID! $timeFrame:TimeFrame! $eventsMeasure:[EventsMeasure] $eventsDimension:[EventsDimension] $eventsFilter:[EventsFilter!] $buckets:Int! $perSecond:Boolean $withMissingData:Boolean $useDefaultSizeBucket:Boolean) {
+	eventsTimeSeries ( accountID:$accountID timeFrame:$timeFrame measures:$eventsMeasure dimensions:$eventsDimension filters:$eventsFilter buckets:$buckets perSecond:$perSecond withMissingData:$withMissingData useDefaultSizeBucket:$useDefaultSizeBucket ) {
 id {
 	id
 	status
@@ -146,101 +146,8 @@ to {
 	}
 }
 		granularity
-		timeseries {
-data {
-	paging {
-		from
-		limit
-		total
-	}
-	items {
-		id
-		updatedAt
-		createdAt
-		accountId
-		analystName
-		analystEmail
-		accountName
-		playbook
-		summary
-		incident {
-			__typename
-			... on MicrosoftEndpoint {
-				id
-				firstSignal
-				lastSignal
-				engineType
-				vendor
-				producer
-				producerName
-				connectionType
-				indication
-				queryName
-			}
-			... on AnomalyStats {
-				id
-				firstSignal
-				lastSignal
-				engineType
-				vendor
-				producer
-				producerName
-				connectionType
-				indication
-				queryName
-			}
-			... on AnomalyEvents {
-				id
-				firstSignal
-				lastSignal
-				engineType
-				vendor
-				producer
-				producerName
-				connectionType
-				indication
-				queryName
-			}
-			... on Threat {
-				id
-				firstSignal
-				lastSignal
-				engineType
-				vendor
-				producer
-				producerName
-				connectionType
-				indication
-				queryName
-			}
-			... on ThreatPrevention {
-				id
-				firstSignal
-				lastSignal
-				engineType
-				vendor
-				producer
-				producerName
-				connectionType
-				indication
-				queryName
-			}
-		}
-		timeline {
-			createdAt
-			description
-			type
-			context
-			descriptions
-			category
-			additionalInfo
-			analystInfo {
-				name
-				email
-			}
-		}
-	}
-}
+		timeseries ( buckets:$buckets  )  {
+			data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket   )
 			label
 			dimensions {
 				label

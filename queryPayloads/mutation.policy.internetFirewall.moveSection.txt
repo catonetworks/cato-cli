@@ -1,7 +1,7 @@
-mutation policyInternetFirewallMoveSection ( $accountId:ID! $policyMoveSectionInput:PolicyMoveSectionInput!) {
-	policy ( accountId:$accountId ) {
-		internetFirewall {
-			moveSection {
+mutation policyInternetFirewallMoveSection ( $accountId:ID! $internetFirewallPolicyMutationInput:InternetFirewallPolicyMutationInput $policyMoveSectionInput:PolicyMoveSectionInput!) {
+	policy ( accountId:$accountId input:$internetFirewallPolicyMutationInput input:$policyMoveSectionInput ) {
+		internetFirewall ( input:$internetFirewallPolicyMutationInput  )  {
+			moveSection ( input:$policyMoveSectionInput   ) {
 				section {
 					audit {
 						updatedTime

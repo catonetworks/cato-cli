@@ -1,5 +1,5 @@
-query socketPortMetrics ( $accountID:ID! $timeFrame:TimeFrame! $socketPortMetricsMeasure:[SocketPortMetricsMeasure] $socketPortMetricsDimension:[SocketPortMetricsDimension] $socketPortMetricsFilter:[SocketPortMetricsFilter!] $socketPortMetricsSort:[SocketPortMetricsSort!]) {
-	socketPortMetrics ( accountID:$accountID timeFrame:$timeFrame measures:$socketPortMetricsMeasure dimensions:$socketPortMetricsDimension filters:$socketPortMetricsFilter sort:$socketPortMetricsSort ) {
+query socketPortMetrics ( $accountID:ID! $timeFrame:TimeFrame! $socketPortMetricsMeasure:[SocketPortMetricsMeasure] $socketPortMetricsDimension:[SocketPortMetricsDimension] $socketPortMetricsFilter:[SocketPortMetricsFilter!] $socketPortMetricsSort:[SocketPortMetricsSort!] $limit:Int $from:Int) {
+	socketPortMetrics ( accountID:$accountID timeFrame:$timeFrame measures:$socketPortMetricsMeasure dimensions:$socketPortMetricsDimension filters:$socketPortMetricsFilter sort:$socketPortMetricsSort limit:$limit from:$from ) {
 id {
 	id
 	status
@@ -147,7 +147,7 @@ to {
 }
 		total
 		totals
-		records {
+		records ( limit:$limit  from:$from  )  {
 			fieldsUnitTypes
 			fieldsMap
 			trends

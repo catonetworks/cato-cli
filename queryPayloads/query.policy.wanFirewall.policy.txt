@@ -1,7 +1,7 @@
-query policyWanFirewallPolicy ( $accountId:ID!) {
-	policy ( accountId:$accountId ) {
+query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewallPolicyInput) {
+	policy ( accountId:$accountId input:$wanFirewallPolicyInput ) {
 		wanFirewall {
-			policy {
+			policy ( input:$wanFirewallPolicyInput   ) {
 				enabled
 				rules {
 					audit {

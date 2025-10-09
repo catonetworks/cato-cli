@@ -1,7 +1,7 @@
-mutation policyWanFirewallRemoveRule ( $accountId:ID! $wanFirewallRemoveRuleInput:WanFirewallRemoveRuleInput!) {
-	policy ( accountId:$accountId ) {
-		wanFirewall {
-			removeRule {
+mutation policyWanFirewallRemoveRule ( $accountId:ID! $wanFirewallPolicyMutationInput:WanFirewallPolicyMutationInput $wanFirewallRemoveRuleInput:WanFirewallRemoveRuleInput!) {
+	policy ( accountId:$accountId input:$wanFirewallPolicyMutationInput input:$wanFirewallRemoveRuleInput ) {
+		wanFirewall ( input:$wanFirewallPolicyMutationInput  )  {
+			removeRule ( input:$wanFirewallRemoveRuleInput   ) {
 				rule {
 					audit {
 						updatedTime

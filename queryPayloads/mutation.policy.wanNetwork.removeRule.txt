@@ -1,7 +1,7 @@
-mutation policyWanNetworkRemoveRule ( $accountId:ID! $wanNetworkRemoveRuleInput:WanNetworkRemoveRuleInput!) {
-	policy ( accountId:$accountId ) {
-		wanNetwork {
-			removeRule {
+mutation policyWanNetworkRemoveRule ( $accountId:ID! $wanNetworkPolicyMutationInput:WanNetworkPolicyMutationInput $wanNetworkRemoveRuleInput:WanNetworkRemoveRuleInput!) {
+	policy ( accountId:$accountId input:$wanNetworkPolicyMutationInput input:$wanNetworkRemoveRuleInput ) {
+		wanNetwork ( input:$wanNetworkPolicyMutationInput  )  {
+			removeRule ( input:$wanNetworkRemoveRuleInput   ) {
 				rule {
 					audit {
 						updatedTime

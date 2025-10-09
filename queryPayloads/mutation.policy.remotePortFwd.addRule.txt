@@ -1,7 +1,7 @@
-mutation policyRemotePortFwdAddRule ( $accountId:ID! $remotePortFwdAddRuleInput:RemotePortFwdAddRuleInput!) {
-	policy ( accountId:$accountId ) {
-		remotePortFwd {
-			addRule {
+mutation policyRemotePortFwdAddRule ( $accountId:ID! $remotePortFwdPolicyMutationInput:RemotePortFwdPolicyMutationInput $remotePortFwdAddRuleInput:RemotePortFwdAddRuleInput!) {
+	policy ( accountId:$accountId input:$remotePortFwdPolicyMutationInput input:$remotePortFwdAddRuleInput ) {
+		remotePortFwd ( input:$remotePortFwdPolicyMutationInput  )  {
+			addRule ( input:$remotePortFwdAddRuleInput   ) {
 				rule {
 					audit {
 						updatedTime

@@ -1336,6 +1336,1283 @@
                 "non_null": false
             },
             "varName": "accountId"
+        },
+        "updateBgpPeerInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "updateBgpPeer___input",
+            "name": "input",
+            "path": "updateBgpPeer.input",
+            "requestStr": "$updateBgpPeerInput:UpdateBgpPeerInput! ",
+            "required": true,
+            "responseStr": "input:$updateBgpPeerInput ",
+            "type": {
+                "definition": {
+                    "description": null,
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "advertiseAllRoutes": {
+                            "defaultValue": null,
+                            "description": "Update for all route advertisements.",
+                            "id_str": "updateBgpPeer___input___advertiseAllRoutes",
+                            "name": "advertiseAllRoutes",
+                            "path": "updateBgpPeer.input.advertiseAllRoutes",
+                            "requestStr": "$advertiseAllRoutes:Boolean ",
+                            "required": false,
+                            "responseStr": "advertiseAllRoutes:$advertiseAllRoutes ",
+                            "type": {
+                                "kind": [
+                                    "SCALAR"
+                                ],
+                                "name": "Boolean",
+                                "non_null": false
+                            },
+                            "varName": "advertiseAllRoutes"
+                        },
+                        "advertiseDefaultRoute": {
+                            "defaultValue": null,
+                            "description": "Update for default route advertisement.",
+                            "id_str": "updateBgpPeer___input___advertiseDefaultRoute",
+                            "name": "advertiseDefaultRoute",
+                            "path": "updateBgpPeer.input.advertiseDefaultRoute",
+                            "requestStr": "$advertiseDefaultRoute:Boolean ",
+                            "required": false,
+                            "responseStr": "advertiseDefaultRoute:$advertiseDefaultRoute ",
+                            "type": {
+                                "kind": [
+                                    "SCALAR"
+                                ],
+                                "name": "Boolean",
+                                "non_null": false
+                            },
+                            "varName": "advertiseDefaultRoute"
+                        },
+                        "advertiseSummaryRoutes": {
+                            "defaultValue": null,
+                            "description": "Update for summary route advertisement.",
+                            "id_str": "updateBgpPeer___input___advertiseSummaryRoutes",
+                            "name": "advertiseSummaryRoutes",
+                            "path": "updateBgpPeer.input.advertiseSummaryRoutes",
+                            "requestStr": "$advertiseSummaryRoutes:Boolean ",
+                            "required": false,
+                            "responseStr": "advertiseSummaryRoutes:$advertiseSummaryRoutes ",
+                            "type": {
+                                "kind": [
+                                    "SCALAR"
+                                ],
+                                "name": "Boolean",
+                                "non_null": false
+                            },
+                            "varName": "advertiseSummaryRoutes"
+                        },
+                        "bfdEnabled": {
+                            "defaultValue": null,
+                            "description": "Update to enable or disable BFD.",
+                            "id_str": "updateBgpPeer___input___bfdEnabled",
+                            "name": "bfdEnabled",
+                            "path": "updateBgpPeer.input.bfdEnabled",
+                            "requestStr": "$bfdEnabled:Boolean ",
+                            "required": false,
+                            "responseStr": "bfdEnabled:$bfdEnabled ",
+                            "type": {
+                                "kind": [
+                                    "SCALAR"
+                                ],
+                                "name": "Boolean",
+                                "non_null": false
+                            },
+                            "varName": "bfdEnabled"
+                        },
+                        "bfdSettings": {
+                            "defaultValue": null,
+                            "description": "Updated BFD settings.",
+                            "id_str": "updateBgpPeer___input___bfdSettings",
+                            "name": "bfdSettings",
+                            "path": "updateBgpPeer.input.bfdSettings",
+                            "requestStr": "$bfdSettingsInput:BfdSettingsInput ",
+                            "required": false,
+                            "responseStr": "bfdSettings:$bfdSettingsInput ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "multiplier": {
+                                            "defaultValue": "5",
+                                            "description": "Number of missed BFD packets before considering the session down.",
+                                            "id_str": "updateBgpPeer___input___bfdSettings___multiplier",
+                                            "name": "multiplier",
+                                            "path": "updateBgpPeer.input.bfdSettings.multiplier",
+                                            "requestStr": "$multiplier:Int! ",
+                                            "required": true,
+                                            "responseStr": "multiplier:$multiplier ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "Int",
+                                                "non_null": false
+                                            },
+                                            "varName": "multiplier"
+                                        },
+                                        "receiveInterval": {
+                                            "defaultValue": "1000",
+                                            "description": "Time interval (in milliseconds) in which this peer expects to receive BFD packets.",
+                                            "id_str": "updateBgpPeer___input___bfdSettings___receiveInterval",
+                                            "name": "receiveInterval",
+                                            "path": "updateBgpPeer.input.bfdSettings.receiveInterval",
+                                            "requestStr": "$receiveInterval:Int! ",
+                                            "required": true,
+                                            "responseStr": "receiveInterval:$receiveInterval ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "Int",
+                                                "non_null": false
+                                            },
+                                            "varName": "receiveInterval"
+                                        },
+                                        "transmitInterval": {
+                                            "defaultValue": "1000",
+                                            "description": "Time interval (in milliseconds) between BFD packets sent by this peer.",
+                                            "id_str": "updateBgpPeer___input___bfdSettings___transmitInterval",
+                                            "name": "transmitInterval",
+                                            "path": "updateBgpPeer.input.bfdSettings.transmitInterval",
+                                            "requestStr": "$transmitInterval:Int! ",
+                                            "required": true,
+                                            "responseStr": "transmitInterval:$transmitInterval ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "Int",
+                                                "non_null": false
+                                            },
+                                            "varName": "transmitInterval"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "BfdSettingsInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "BfdSettingsInput",
+                                "non_null": false
+                            },
+                            "varName": "bfdSettingsInput"
+                        },
+                        "catoAsn": {
+                            "defaultValue": null,
+                            "description": "Updated AS number of Cato's BGP endpoint.",
+                            "id_str": "updateBgpPeer___input___catoAsn",
+                            "name": "catoAsn",
+                            "path": "updateBgpPeer.input.catoAsn",
+                            "requestStr": "$catoAsn:Asn16 ",
+                            "required": false,
+                            "responseStr": "catoAsn:$catoAsn ",
+                            "type": {
+                                "kind": [
+                                    "SCALAR"
+                                ],
+                                "name": "Asn16",
+                                "non_null": false
+                            },
+                            "varName": "catoAsn"
+                        },
+                        "defaultAction": {
+                            "defaultValue": null,
+                            "description": "Update for the default action on unmatched routes.",
+                            "id_str": "updateBgpPeer___input___defaultAction",
+                            "name": "defaultAction",
+                            "path": "updateBgpPeer.input.defaultAction",
+                            "requestStr": "$defaultAction:BgpDefaultAction ",
+                            "required": false,
+                            "responseStr": "defaultAction:$defaultAction ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": [
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Default action to drop all unmatched routes.",
+                                            "isDeprecated": false,
+                                            "name": "DROP"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Default action to accept all unmatched routes.",
+                                            "isDeprecated": false,
+                                            "name": "ACCEPT"
+                                        }
+                                    ],
+                                    "fields": null,
+                                    "inputFields": null,
+                                    "interfaces": null,
+                                    "kind": "ENUM",
+                                    "name": "BgpDefaultAction",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "enum",
+                                "kind": [
+                                    "ENUM"
+                                ],
+                                "name": "BgpDefaultAction",
+                                "non_null": false
+                            },
+                            "varName": "defaultAction"
+                        },
+                        "defaultActionExclusion": {
+                            "defaultValue": null,
+                            "description": "Updated rules excluded from the default action.",
+                            "id_str": "updateBgpPeer___input___defaultActionExclusion",
+                            "name": "defaultActionExclusion",
+                            "path": "updateBgpPeer.input.defaultActionExclusion",
+                            "requestStr": "$bgpFilterRuleInput:[BgpFilterRuleInput] ",
+                            "required": false,
+                            "responseStr": "defaultActionExclusion:$bgpFilterRuleInput ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "bgpRouteExactAndInclusiveFilterRule": {
+                                            "defaultValue": null,
+                                            "description": "Input for exact and inclusive filter rule.",
+                                            "id_str": "updateBgpPeer___input___defaultActionExclusion___bgpRouteExactAndInclusiveFilterRule",
+                                            "name": "bgpRouteExactAndInclusiveFilterRule",
+                                            "path": "updateBgpPeer.input.defaultActionExclusion.bgpRouteExactAndInclusiveFilterRule",
+                                            "requestStr": "$bgpRouteExactAndInclusiveFilterRuleInput:BgpRouteExactAndInclusiveFilterRuleInput ",
+                                            "required": false,
+                                            "responseStr": "bgpRouteExactAndInclusiveFilterRule:$bgpRouteExactAndInclusiveFilterRuleInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "ge": {
+                                                            "defaultValue": null,
+                                                            "description": "Minimum prefix length for the filter rule.",
+                                                            "id_str": "updateBgpPeer___input___defaultActionExclusion___bgpRouteExactAndInclusiveFilterRule___ge",
+                                                            "name": "ge",
+                                                            "path": "updateBgpPeer.input.defaultActionExclusion.bgpRouteExactAndInclusiveFilterRule.ge",
+                                                            "requestStr": "$ge:Int ",
+                                                            "required": false,
+                                                            "responseStr": "ge:$ge ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "Int",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "ge"
+                                                        },
+                                                        "globalIpRange": {
+                                                            "defaultValue": "[]",
+                                                            "description": "Global IP ranges to include.",
+                                                            "id_str": "updateBgpPeer___input___defaultActionExclusion___bgpRouteExactAndInclusiveFilterRule___globalIpRange",
+                                                            "name": "globalIpRange",
+                                                            "path": "updateBgpPeer.input.defaultActionExclusion.bgpRouteExactAndInclusiveFilterRule.globalIpRange",
+                                                            "requestStr": "$globalIpRangeRefInput:[GlobalIpRangeRefInput]! ",
+                                                            "required": true,
+                                                            "responseStr": "globalIpRange:$globalIpRangeRefInput ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": null,
+                                                                    "fields": null,
+                                                                    "inputFields": {
+                                                                        "by": {
+                                                                            "defaultValue": "ID",
+                                                                            "description": null,
+                                                                            "id_str": "updateBgpPeer___input___defaultActionExclusion___bgpRouteExactAndInclusiveFilterRule___globalIpRange___by",
+                                                                            "name": "by",
+                                                                            "path": "updateBgpPeer.input.defaultActionExclusion.bgpRouteExactAndInclusiveFilterRule.globalIpRange.by",
+                                                                            "requestStr": "$by:ObjectRefBy! ",
+                                                                            "required": true,
+                                                                            "responseStr": "by:$by ",
+                                                                            "type": {
+                                                                                "definition": {
+                                                                                    "description": null,
+                                                                                    "enumValues": [
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "ID"
+                                                                                        },
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "NAME"
+                                                                                        }
+                                                                                    ],
+                                                                                    "fields": null,
+                                                                                    "inputFields": null,
+                                                                                    "interfaces": null,
+                                                                                    "kind": "ENUM",
+                                                                                    "name": "ObjectRefBy",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "indexType": "enum",
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "ENUM"
+                                                                                ],
+                                                                                "name": "ObjectRefBy",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "by"
+                                                                        },
+                                                                        "input": {
+                                                                            "defaultValue": null,
+                                                                            "description": null,
+                                                                            "id_str": "updateBgpPeer___input___defaultActionExclusion___bgpRouteExactAndInclusiveFilterRule___globalIpRange___input",
+                                                                            "name": "input",
+                                                                            "path": "updateBgpPeer.input.defaultActionExclusion.bgpRouteExactAndInclusiveFilterRule.globalIpRange.input",
+                                                                            "requestStr": "$input:String! ",
+                                                                            "required": true,
+                                                                            "responseStr": "input:$input ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "String",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "input"
+                                                                        }
+                                                                    },
+                                                                    "interfaces": null,
+                                                                    "kind": "INPUT_OBJECT",
+                                                                    "name": "GlobalIpRangeRefInput",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "input_object",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "LIST",
+                                                                    "NON_NULL",
+                                                                    "INPUT_OBJECT"
+                                                                ],
+                                                                "name": "GlobalIpRangeRefInput",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "globalIpRangeRefInput"
+                                                        },
+                                                        "globalIpRangeException": {
+                                                            "defaultValue": "[]",
+                                                            "description": "Global IP ranges to exclude.",
+                                                            "id_str": "updateBgpPeer___input___defaultActionExclusion___bgpRouteExactAndInclusiveFilterRule___globalIpRangeException",
+                                                            "name": "globalIpRangeException",
+                                                            "path": "updateBgpPeer.input.defaultActionExclusion.bgpRouteExactAndInclusiveFilterRule.globalIpRangeException",
+                                                            "requestStr": "$globalIpRangeRefInput:[GlobalIpRangeRefInput]! ",
+                                                            "required": true,
+                                                            "responseStr": "globalIpRangeException:$globalIpRangeRefInput ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": null,
+                                                                    "fields": null,
+                                                                    "inputFields": {
+                                                                        "by": {
+                                                                            "defaultValue": "ID",
+                                                                            "description": null,
+                                                                            "id_str": "updateBgpPeer___input___defaultActionExclusion___bgpRouteExactAndInclusiveFilterRule___globalIpRangeException___by",
+                                                                            "name": "by",
+                                                                            "path": "updateBgpPeer.input.defaultActionExclusion.bgpRouteExactAndInclusiveFilterRule.globalIpRangeException.by",
+                                                                            "requestStr": "$by:ObjectRefBy! ",
+                                                                            "required": true,
+                                                                            "responseStr": "by:$by ",
+                                                                            "type": {
+                                                                                "definition": {
+                                                                                    "description": null,
+                                                                                    "enumValues": [
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "ID"
+                                                                                        },
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "NAME"
+                                                                                        }
+                                                                                    ],
+                                                                                    "fields": null,
+                                                                                    "inputFields": null,
+                                                                                    "interfaces": null,
+                                                                                    "kind": "ENUM",
+                                                                                    "name": "ObjectRefBy",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "indexType": "enum",
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "ENUM"
+                                                                                ],
+                                                                                "name": "ObjectRefBy",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "by"
+                                                                        },
+                                                                        "input": {
+                                                                            "defaultValue": null,
+                                                                            "description": null,
+                                                                            "id_str": "updateBgpPeer___input___defaultActionExclusion___bgpRouteExactAndInclusiveFilterRule___globalIpRangeException___input",
+                                                                            "name": "input",
+                                                                            "path": "updateBgpPeer.input.defaultActionExclusion.bgpRouteExactAndInclusiveFilterRule.globalIpRangeException.input",
+                                                                            "requestStr": "$input:String! ",
+                                                                            "required": true,
+                                                                            "responseStr": "input:$input ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "String",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "input"
+                                                                        }
+                                                                    },
+                                                                    "interfaces": null,
+                                                                    "kind": "INPUT_OBJECT",
+                                                                    "name": "GlobalIpRangeRefInput",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "input_object",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "LIST",
+                                                                    "NON_NULL",
+                                                                    "INPUT_OBJECT"
+                                                                ],
+                                                                "name": "GlobalIpRangeRefInput",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "globalIpRangeRefInput"
+                                                        },
+                                                        "le": {
+                                                            "defaultValue": null,
+                                                            "description": "Maximum prefix length for the filter rule.",
+                                                            "id_str": "updateBgpPeer___input___defaultActionExclusion___bgpRouteExactAndInclusiveFilterRule___le",
+                                                            "name": "le",
+                                                            "path": "updateBgpPeer.input.defaultActionExclusion.bgpRouteExactAndInclusiveFilterRule.le",
+                                                            "requestStr": "$le:Int ",
+                                                            "required": false,
+                                                            "responseStr": "le:$le ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "Int",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "le"
+                                                        },
+                                                        "networkSubnet": {
+                                                            "defaultValue": "[]",
+                                                            "description": "Network subnets to include.",
+                                                            "id_str": "updateBgpPeer___input___defaultActionExclusion___bgpRouteExactAndInclusiveFilterRule___networkSubnet",
+                                                            "name": "networkSubnet",
+                                                            "path": "updateBgpPeer.input.defaultActionExclusion.bgpRouteExactAndInclusiveFilterRule.networkSubnet",
+                                                            "requestStr": "$networkSubnet:[NetworkSubnet]! ",
+                                                            "required": true,
+                                                            "responseStr": "networkSubnet:$networkSubnet ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "LIST",
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "NetworkSubnet",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "networkSubnet"
+                                                        },
+                                                        "networkSubnetException": {
+                                                            "defaultValue": "[]",
+                                                            "description": "Network subnets to exclude.",
+                                                            "id_str": "updateBgpPeer___input___defaultActionExclusion___bgpRouteExactAndInclusiveFilterRule___networkSubnetException",
+                                                            "name": "networkSubnetException",
+                                                            "path": "updateBgpPeer.input.defaultActionExclusion.bgpRouteExactAndInclusiveFilterRule.networkSubnetException",
+                                                            "requestStr": "$networkSubnetException:[NetworkSubnet]! ",
+                                                            "required": true,
+                                                            "responseStr": "networkSubnetException:$networkSubnetException ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "LIST",
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "NetworkSubnet",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "networkSubnetException"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "BgpRouteExactAndInclusiveFilterRuleInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "BgpRouteExactAndInclusiveFilterRuleInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "bgpRouteExactAndInclusiveFilterRuleInput"
+                                        },
+                                        "bgpRouteExactFilterRule": {
+                                            "defaultValue": null,
+                                            "description": "Input for exact route filter rule.",
+                                            "id_str": "updateBgpPeer___input___defaultActionExclusion___bgpRouteExactFilterRule",
+                                            "name": "bgpRouteExactFilterRule",
+                                            "path": "updateBgpPeer.input.defaultActionExclusion.bgpRouteExactFilterRule",
+                                            "requestStr": "$bgpRouteExactFilterRuleInput:BgpRouteExactFilterRuleInput ",
+                                            "required": false,
+                                            "responseStr": "bgpRouteExactFilterRule:$bgpRouteExactFilterRuleInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "globalIpRange": {
+                                                            "defaultValue": "[]",
+                                                            "description": "Global IP ranges to include.",
+                                                            "id_str": "updateBgpPeer___input___defaultActionExclusion___bgpRouteExactFilterRule___globalIpRange",
+                                                            "name": "globalIpRange",
+                                                            "path": "updateBgpPeer.input.defaultActionExclusion.bgpRouteExactFilterRule.globalIpRange",
+                                                            "requestStr": "$globalIpRangeRefInput:[GlobalIpRangeRefInput]! ",
+                                                            "required": true,
+                                                            "responseStr": "globalIpRange:$globalIpRangeRefInput ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": null,
+                                                                    "fields": null,
+                                                                    "inputFields": {
+                                                                        "by": {
+                                                                            "defaultValue": "ID",
+                                                                            "description": null,
+                                                                            "id_str": "updateBgpPeer___input___defaultActionExclusion___bgpRouteExactFilterRule___globalIpRange___by",
+                                                                            "name": "by",
+                                                                            "path": "updateBgpPeer.input.defaultActionExclusion.bgpRouteExactFilterRule.globalIpRange.by",
+                                                                            "requestStr": "$by:ObjectRefBy! ",
+                                                                            "required": true,
+                                                                            "responseStr": "by:$by ",
+                                                                            "type": {
+                                                                                "definition": {
+                                                                                    "description": null,
+                                                                                    "enumValues": [
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "ID"
+                                                                                        },
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "NAME"
+                                                                                        }
+                                                                                    ],
+                                                                                    "fields": null,
+                                                                                    "inputFields": null,
+                                                                                    "interfaces": null,
+                                                                                    "kind": "ENUM",
+                                                                                    "name": "ObjectRefBy",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "indexType": "enum",
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "ENUM"
+                                                                                ],
+                                                                                "name": "ObjectRefBy",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "by"
+                                                                        },
+                                                                        "input": {
+                                                                            "defaultValue": null,
+                                                                            "description": null,
+                                                                            "id_str": "updateBgpPeer___input___defaultActionExclusion___bgpRouteExactFilterRule___globalIpRange___input",
+                                                                            "name": "input",
+                                                                            "path": "updateBgpPeer.input.defaultActionExclusion.bgpRouteExactFilterRule.globalIpRange.input",
+                                                                            "requestStr": "$input:String! ",
+                                                                            "required": true,
+                                                                            "responseStr": "input:$input ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "String",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "input"
+                                                                        }
+                                                                    },
+                                                                    "interfaces": null,
+                                                                    "kind": "INPUT_OBJECT",
+                                                                    "name": "GlobalIpRangeRefInput",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "input_object",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "LIST",
+                                                                    "NON_NULL",
+                                                                    "INPUT_OBJECT"
+                                                                ],
+                                                                "name": "GlobalIpRangeRefInput",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "globalIpRangeRefInput"
+                                                        },
+                                                        "networkSubnet": {
+                                                            "defaultValue": "[]",
+                                                            "description": "Network subnets to include.",
+                                                            "id_str": "updateBgpPeer___input___defaultActionExclusion___bgpRouteExactFilterRule___networkSubnet",
+                                                            "name": "networkSubnet",
+                                                            "path": "updateBgpPeer.input.defaultActionExclusion.bgpRouteExactFilterRule.networkSubnet",
+                                                            "requestStr": "$networkSubnet:[NetworkSubnet]! ",
+                                                            "required": true,
+                                                            "responseStr": "networkSubnet:$networkSubnet ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "LIST",
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "NetworkSubnet",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "networkSubnet"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "BgpRouteExactFilterRuleInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "BgpRouteExactFilterRuleInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "bgpRouteExactFilterRuleInput"
+                                        },
+                                        "communityFilterRule": {
+                                            "defaultValue": null,
+                                            "description": "Input for community filter rule.",
+                                            "id_str": "updateBgpPeer___input___defaultActionExclusion___communityFilterRule",
+                                            "name": "communityFilterRule",
+                                            "path": "updateBgpPeer.input.defaultActionExclusion.communityFilterRule",
+                                            "requestStr": "$bgpCommunityFilterRuleInput:BgpCommunityFilterRuleInput ",
+                                            "required": false,
+                                            "responseStr": "communityFilterRule:$bgpCommunityFilterRuleInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "community": {
+                                                            "defaultValue": "[]",
+                                                            "description": "Community values to match.",
+                                                            "id_str": "updateBgpPeer___input___defaultActionExclusion___communityFilterRule___community",
+                                                            "name": "community",
+                                                            "path": "updateBgpPeer.input.defaultActionExclusion.communityFilterRule.community",
+                                                            "requestStr": "$bgpCommunityInput:[BgpCommunityInput]! ",
+                                                            "required": true,
+                                                            "responseStr": "community:$bgpCommunityInput ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": null,
+                                                                    "fields": null,
+                                                                    "inputFields": {
+                                                                        "from": {
+                                                                            "defaultValue": null,
+                                                                            "description": "Start of the community range.",
+                                                                            "id_str": "updateBgpPeer___input___defaultActionExclusion___communityFilterRule___community___from",
+                                                                            "name": "from",
+                                                                            "path": "updateBgpPeer.input.defaultActionExclusion.communityFilterRule.community.from",
+                                                                            "requestStr": "$from:Asn16! ",
+                                                                            "required": true,
+                                                                            "responseStr": "from:$from ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "Asn16",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "from"
+                                                                        },
+                                                                        "to": {
+                                                                            "defaultValue": null,
+                                                                            "description": "End of the community range.",
+                                                                            "id_str": "updateBgpPeer___input___defaultActionExclusion___communityFilterRule___community___to",
+                                                                            "name": "to",
+                                                                            "path": "updateBgpPeer.input.defaultActionExclusion.communityFilterRule.community.to",
+                                                                            "requestStr": "$to:Asn16! ",
+                                                                            "required": true,
+                                                                            "responseStr": "to:$to ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "Asn16",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "to"
+                                                                        }
+                                                                    },
+                                                                    "interfaces": null,
+                                                                    "kind": "INPUT_OBJECT",
+                                                                    "name": "BgpCommunityInput",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "input_object",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "LIST",
+                                                                    "NON_NULL",
+                                                                    "INPUT_OBJECT"
+                                                                ],
+                                                                "name": "BgpCommunityInput",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "bgpCommunityInput"
+                                                        },
+                                                        "predicate": {
+                                                            "defaultValue": null,
+                                                            "description": "Predicate to apply to the community filter (e.g., EQUAL, NOT_EQUAL).",
+                                                            "id_str": "updateBgpPeer___input___defaultActionExclusion___communityFilterRule___predicate",
+                                                            "name": "predicate",
+                                                            "path": "updateBgpPeer.input.defaultActionExclusion.communityFilterRule.predicate",
+                                                            "requestStr": "$predicate:BgpCommunityFilterPredicate ",
+                                                            "required": false,
+                                                            "responseStr": "predicate:$predicate ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "Matches exactly the specified community value.",
+                                                                            "isDeprecated": false,
+                                                                            "name": "EQUAL"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "Matches any community value except the specified one.",
+                                                                            "isDeprecated": false,
+                                                                            "name": "NOT_EQUAL"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "BgpCommunityFilterPredicate",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "BgpCommunityFilterPredicate",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "predicate"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "BgpCommunityFilterRuleInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "BgpCommunityFilterRuleInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "bgpCommunityFilterRuleInput"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "BgpFilterRuleInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "LIST",
+                                    "NON_NULL",
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "BgpFilterRuleInput",
+                                "non_null": false
+                            },
+                            "varName": "bgpFilterRuleInput"
+                        },
+                        "holdTime": {
+                            "defaultValue": null,
+                            "description": "Updated hold time for the BGP session.",
+                            "id_str": "updateBgpPeer___input___holdTime",
+                            "name": "holdTime",
+                            "path": "updateBgpPeer.input.holdTime",
+                            "requestStr": "$holdTime:Int ",
+                            "required": false,
+                            "responseStr": "holdTime:$holdTime ",
+                            "type": {
+                                "kind": [
+                                    "SCALAR"
+                                ],
+                                "name": "Int",
+                                "non_null": false
+                            },
+                            "varName": "holdTime"
+                        },
+                        "id": {
+                            "defaultValue": null,
+                            "description": "Unique identifier of the BGP peer to be updated.",
+                            "id_str": "updateBgpPeer___input___id",
+                            "name": "id",
+                            "path": "updateBgpPeer.input.id",
+                            "requestStr": "$id:ID! ",
+                            "required": true,
+                            "responseStr": "id:$id ",
+                            "type": {
+                                "kind": [
+                                    "NON_NULL",
+                                    "SCALAR"
+                                ],
+                                "name": "ID",
+                                "non_null": false
+                            },
+                            "varName": "id"
+                        },
+                        "keepaliveInterval": {
+                            "defaultValue": null,
+                            "description": "Updated keepalive interval for the BGP session.",
+                            "id_str": "updateBgpPeer___input___keepaliveInterval",
+                            "name": "keepaliveInterval",
+                            "path": "updateBgpPeer.input.keepaliveInterval",
+                            "requestStr": "$keepaliveInterval:Int ",
+                            "required": false,
+                            "responseStr": "keepaliveInterval:$keepaliveInterval ",
+                            "type": {
+                                "kind": [
+                                    "SCALAR"
+                                ],
+                                "name": "Int",
+                                "non_null": false
+                            },
+                            "varName": "keepaliveInterval"
+                        },
+                        "md5AuthKey": {
+                            "defaultValue": null,
+                            "description": "Updated MD5 authentication key.",
+                            "id_str": "updateBgpPeer___input___md5AuthKey",
+                            "name": "md5AuthKey",
+                            "path": "updateBgpPeer.input.md5AuthKey",
+                            "requestStr": "$md5AuthKey:String ",
+                            "required": false,
+                            "responseStr": "md5AuthKey:$md5AuthKey ",
+                            "type": {
+                                "kind": [
+                                    "SCALAR"
+                                ],
+                                "name": "String",
+                                "non_null": false
+                            },
+                            "varName": "md5AuthKey"
+                        },
+                        "metric": {
+                            "defaultValue": null,
+                            "description": "Updated metric value for route preferences.",
+                            "id_str": "updateBgpPeer___input___metric",
+                            "name": "metric",
+                            "path": "updateBgpPeer.input.metric",
+                            "requestStr": "$metric:Int ",
+                            "required": false,
+                            "responseStr": "metric:$metric ",
+                            "type": {
+                                "kind": [
+                                    "SCALAR"
+                                ],
+                                "name": "Int",
+                                "non_null": false
+                            },
+                            "varName": "metric"
+                        },
+                        "name": {
+                            "defaultValue": null,
+                            "description": "Updated name of the BGP configuration entity.",
+                            "id_str": "updateBgpPeer___input___name",
+                            "name": "name",
+                            "path": "updateBgpPeer.input.name",
+                            "requestStr": "$name:String ",
+                            "required": false,
+                            "responseStr": "name:$name ",
+                            "type": {
+                                "kind": [
+                                    "SCALAR"
+                                ],
+                                "name": "String",
+                                "non_null": false
+                            },
+                            "varName": "name"
+                        },
+                        "peerAsn": {
+                            "defaultValue": null,
+                            "description": "Updated AS number of the peer BGP endpoint.",
+                            "id_str": "updateBgpPeer___input___peerAsn",
+                            "name": "peerAsn",
+                            "path": "updateBgpPeer.input.peerAsn",
+                            "requestStr": "$peerAsn:Asn32 ",
+                            "required": false,
+                            "responseStr": "peerAsn:$peerAsn ",
+                            "type": {
+                                "kind": [
+                                    "SCALAR"
+                                ],
+                                "name": "Asn32",
+                                "non_null": false
+                            },
+                            "varName": "peerAsn"
+                        },
+                        "peerIp": {
+                            "defaultValue": null,
+                            "description": "Updated IP address of the peer BGP endpoint.",
+                            "id_str": "updateBgpPeer___input___peerIp",
+                            "name": "peerIp",
+                            "path": "updateBgpPeer.input.peerIp",
+                            "requestStr": "$peerIp:IPAddress ",
+                            "required": false,
+                            "responseStr": "peerIp:$peerIp ",
+                            "type": {
+                                "kind": [
+                                    "SCALAR"
+                                ],
+                                "name": "IPAddress",
+                                "non_null": false
+                            },
+                            "varName": "peerIp"
+                        },
+                        "performNat": {
+                            "defaultValue": null,
+                            "description": "Update for NAT configuration.",
+                            "id_str": "updateBgpPeer___input___performNat",
+                            "name": "performNat",
+                            "path": "updateBgpPeer.input.performNat",
+                            "requestStr": "$performNat:Boolean ",
+                            "required": false,
+                            "responseStr": "performNat:$performNat ",
+                            "type": {
+                                "kind": [
+                                    "SCALAR"
+                                ],
+                                "name": "Boolean",
+                                "non_null": false
+                            },
+                            "varName": "performNat"
+                        },
+                        "summaryRoute": {
+                            "defaultValue": null,
+                            "description": "Updated summarized routes to advertise.",
+                            "id_str": "updateBgpPeer___input___summaryRoute",
+                            "name": "summaryRoute",
+                            "path": "updateBgpPeer.input.summaryRoute",
+                            "requestStr": "$bgpSummaryRouteInput:[BgpSummaryRouteInput] ",
+                            "required": false,
+                            "responseStr": "summaryRoute:$bgpSummaryRouteInput ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "community": {
+                                            "defaultValue": "[]",
+                                            "description": "Community values to associate with the summarized route.",
+                                            "id_str": "updateBgpPeer___input___summaryRoute___community",
+                                            "name": "community",
+                                            "path": "updateBgpPeer.input.summaryRoute.community",
+                                            "requestStr": "$bgpCommunityInput:[BgpCommunityInput]! ",
+                                            "required": true,
+                                            "responseStr": "community:$bgpCommunityInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "from": {
+                                                            "defaultValue": null,
+                                                            "description": "Start of the community range.",
+                                                            "id_str": "updateBgpPeer___input___summaryRoute___community___from",
+                                                            "name": "from",
+                                                            "path": "updateBgpPeer.input.summaryRoute.community.from",
+                                                            "requestStr": "$from:Asn16! ",
+                                                            "required": true,
+                                                            "responseStr": "from:$from ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "Asn16",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "from"
+                                                        },
+                                                        "to": {
+                                                            "defaultValue": null,
+                                                            "description": "End of the community range.",
+                                                            "id_str": "updateBgpPeer___input___summaryRoute___community___to",
+                                                            "name": "to",
+                                                            "path": "updateBgpPeer.input.summaryRoute.community.to",
+                                                            "requestStr": "$to:Asn16! ",
+                                                            "required": true,
+                                                            "responseStr": "to:$to ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "Asn16",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "to"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "BgpCommunityInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "LIST",
+                                                    "NON_NULL",
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "BgpCommunityInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "bgpCommunityInput"
+                                        },
+                                        "route": {
+                                            "defaultValue": null,
+                                            "description": "Subnet of the summarized route to be advertised.",
+                                            "id_str": "updateBgpPeer___input___summaryRoute___route",
+                                            "name": "route",
+                                            "path": "updateBgpPeer.input.summaryRoute.route",
+                                            "requestStr": "$route:NetworkSubnet! ",
+                                            "required": true,
+                                            "responseStr": "route:$route ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "NetworkSubnet",
+                                                "non_null": false
+                                            },
+                                            "varName": "route"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "BgpSummaryRouteInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "LIST",
+                                    "NON_NULL",
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "BgpSummaryRouteInput",
+                                "non_null": false
+                            },
+                            "varName": "bgpSummaryRouteInput"
+                        },
+                        "tracking": {
+                            "defaultValue": null,
+                            "description": "Updated tracking configuration for the BGP peer.",
+                            "id_str": "updateBgpPeer___input___tracking",
+                            "name": "tracking",
+                            "path": "updateBgpPeer.input.tracking",
+                            "requestStr": "$bgpTrackingInput:BgpTrackingInput ",
+                            "required": false,
+                            "responseStr": "tracking:$bgpTrackingInput ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "alertFrequency": {
+                                            "defaultValue": "HOURLY",
+                                            "description": "Frequency of health alerts.",
+                                            "id_str": "updateBgpPeer___input___tracking___alertFrequency",
+                                            "name": "alertFrequency",
+                                            "path": "updateBgpPeer.input.tracking.alertFrequency",
+                                            "requestStr": "$alertFrequency:PolicyRuleTrackingFrequencyEnum! ",
+                                            "required": true,
+                                            "responseStr": "alertFrequency:$alertFrequency ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "Enum for the frequency of an alert event for a rule",
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "HOURLY"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "DAILY"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "WEEKLY"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "IMMEDIATE"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "PolicyRuleTrackingFrequencyEnum",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "ENUM"
+                                                ],
+                                                "name": "PolicyRuleTrackingFrequencyEnum",
+                                                "non_null": false
+                                            },
+                                            "varName": "alertFrequency"
+                                        },
+                                        "enabled": {
+                                            "defaultValue": "false",
+                                            "description": "Indicates if tracking is enabled.",
+                                            "id_str": "updateBgpPeer___input___tracking___enabled",
+                                            "name": "enabled",
+                                            "path": "updateBgpPeer.input.tracking.enabled",
+                                            "requestStr": "$enabled:Boolean! ",
+                                            "required": true,
+                                            "responseStr": "enabled:$enabled ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "Boolean",
+                                                "non_null": false
+                                            },
+                                            "varName": "enabled"
+                                        },
+                                        "subscriptionId": {
+                                            "defaultValue": null,
+                                            "description": "Subscription ID associated with this tracking rule.",
+                                            "id_str": "updateBgpPeer___input___tracking___subscriptionId",
+                                            "name": "subscriptionId",
+                                            "path": "updateBgpPeer.input.tracking.subscriptionId",
+                                            "requestStr": "$subscriptionId:ID! ",
+                                            "required": true,
+                                            "responseStr": "subscriptionId:$subscriptionId ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "ID",
+                                                "non_null": false
+                                            },
+                                            "varName": "subscriptionId"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "BgpTrackingInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "BgpTrackingInput",
+                                "non_null": false
+                            },
+                            "varName": "bgpTrackingInput"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "UpdateBgpPeerInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "UpdateBgpPeerInput",
+                "non_null": false
+            },
+            "varName": "updateBgpPeerInput"
         }
     },
     "path": "mutation.sites.updateBgpPeer",
@@ -4216,5 +5493,79 @@
         "name": "SiteMutations",
         "non_null": false
     },
-    "variablesPayload": {}
+    "variablesPayload": {
+        "updateBgpPeerInput": {
+            "advertiseAllRoutes": true,
+            "advertiseDefaultRoute": true,
+            "advertiseSummaryRoutes": true,
+            "bfdEnabled": true,
+            "bfdSettingsInput": {
+                "multiplier": 1,
+                "receiveInterval": 1,
+                "transmitInterval": 1
+            },
+            "bgpFilterRuleInput": {
+                "bgpRouteExactAndInclusiveFilterRule": {
+                    "ge": 1,
+                    "globalIpRange": {
+                        "by": "ID",
+                        "input": "string"
+                    },
+                    "globalIpRangeException": {
+                        "by": "ID",
+                        "input": "string"
+                    },
+                    "le": 1,
+                    "networkSubnet": [
+                        "example1",
+                        "example2"
+                    ],
+                    "networkSubnetException": [
+                        "example1",
+                        "example2"
+                    ]
+                },
+                "bgpRouteExactFilterRule": {
+                    "globalIpRange": {
+                        "by": "ID",
+                        "input": "string"
+                    },
+                    "networkSubnet": [
+                        "example1",
+                        "example2"
+                    ]
+                },
+                "communityFilterRule": {
+                    "community": {
+                        "from": "example_value",
+                        "to": "example_value"
+                    },
+                    "predicate": "EQUAL"
+                }
+            },
+            "bgpSummaryRouteInput": {
+                "community": {
+                    "from": "example_value",
+                    "to": "example_value"
+                },
+                "route": "example_value"
+            },
+            "bgpTrackingInput": {
+                "alertFrequency": "HOURLY",
+                "enabled": true,
+                "subscriptionId": "id"
+            },
+            "catoAsn": "example_value",
+            "defaultAction": "DROP",
+            "holdTime": 1,
+            "id": "id",
+            "keepaliveInterval": 1,
+            "md5AuthKey": "string",
+            "metric": 1,
+            "name": "string",
+            "peerAsn": "example_value",
+            "peerIp": "example_value",
+            "performNat": true
+        }
+    }
 }

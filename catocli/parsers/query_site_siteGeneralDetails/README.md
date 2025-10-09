@@ -11,6 +11,17 @@ catocli query site siteGeneralDetails <json>
 
 catocli query site siteGeneralDetails "$(cat < query.site.siteGeneralDetails.json)"
 
+catocli query site siteGeneralDetails '{"siteRefInput":{"by":"ID","input":"string"}}'
+
+catocli query site siteGeneralDetails '{
+    "siteRefInput": {
+        "by": "ID",
+        "input": "string"
+    }
+}'
+```
+
 #### Operation Arguments for query.site.siteGeneralDetails ####
 
 `accountId` [ID] - (required) N/A    
+`siteRefInput` [SiteRefInput] - (required) N/A    

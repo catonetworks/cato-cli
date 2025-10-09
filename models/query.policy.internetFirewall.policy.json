@@ -195,6 +195,126 @@
                 "non_null": false
             },
             "varName": "accountId"
+        },
+        "internetFirewallPolicyInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "policy___input",
+            "name": "input",
+            "path": "policy.input",
+            "requestStr": "$internetFirewallPolicyInput:InternetFirewallPolicyInput ",
+            "required": false,
+            "responseStr": "input:$internetFirewallPolicyInput ",
+            "type": {
+                "definition": {
+                    "description": null,
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "revision": {
+                            "defaultValue": null,
+                            "description": "A revision is a specific instance of the policy.\n Unpublished revisions are working copies of the policy available to a specific\n admin or a set of admins\n Published revisions are revisions that were applied to the account network.\n The last published revision is the active policy.",
+                            "id_str": "policy___input___revision",
+                            "name": "revision",
+                            "path": "policy.input.revision",
+                            "requestStr": "$policyRevisionInput:PolicyRevisionInput ",
+                            "required": false,
+                            "responseStr": "revision:$policyRevisionInput ",
+                            "type": {
+                                "definition": {
+                                    "description": "Input for specifying a policy revision",
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "id": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "policy___input___revision___id",
+                                            "name": "id",
+                                            "path": "policy.input.revision.id",
+                                            "requestStr": "$id:ID ",
+                                            "required": false,
+                                            "responseStr": "id:$id ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "ID",
+                                                "non_null": false
+                                            },
+                                            "varName": "id"
+                                        },
+                                        "type": {
+                                            "defaultValue": "PRIVATE",
+                                            "description": null,
+                                            "id_str": "policy___input___revision___type",
+                                            "name": "type",
+                                            "path": "policy.input.revision.type",
+                                            "requestStr": "$type:PolicyRevisionType ",
+                                            "required": false,
+                                            "responseStr": "type:$type ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "Enum for the type of a policy revision",
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "PRIVATE"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "PUBLIC"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "PolicyRevisionType",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "ENUM"
+                                                ],
+                                                "name": "PolicyRevisionType",
+                                                "non_null": false
+                                            },
+                                            "varName": "type"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "PolicyRevisionInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "PolicyRevisionInput",
+                                "non_null": false
+                            },
+                            "varName": "policyRevisionInput"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "InternetFirewallPolicyInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "INPUT_OBJECT"
+                ],
+                "name": "InternetFirewallPolicyInput",
+                "non_null": false
+            },
+            "varName": "internetFirewallPolicyInput"
         }
     },
     "path": "query.policy.internetFirewall.policy",
@@ -7846,5 +7966,12 @@
         "name": "PolicyQueries",
         "non_null": false
     },
-    "variablesPayload": {}
+    "variablesPayload": {
+        "internetFirewallPolicyInput": {
+            "policyRevisionInput": {
+                "id": "id",
+                "type": "PRIVATE"
+            }
+        }
+    }
 }

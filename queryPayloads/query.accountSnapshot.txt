@@ -1,5 +1,5 @@
-query accountSnapshot ( ) {
-	accountSnapshot ( ) {
+query accountSnapshot ( $siteIDs:[ID!] $userIDs:[ID!]) {
+	accountSnapshot ( siteIDs:$siteIDs userIDs:$userIDs ) {
 id {
 	id
 	status
@@ -113,7 +113,7 @@ id {
 		}
 	}
 }
-		sites {
+		sites ( siteIDs:$siteIDs  )  {
 id {
 	id
 	status
@@ -1472,7 +1472,7 @@ hostCount {
 }
 			altWanStatus
 		}
-		users {
+		users ( userIDs:$userIDs  )  {
 id {
 	id
 	status

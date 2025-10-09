@@ -1,6 +1,6 @@
-query hardwareManagement ( $accountId:ID!) {
-	hardwareManagement ( accountId:$accountId ) {
-		socketInventory {
+query hardwareManagement ( $accountId:ID! $socketInventoryInput:SocketInventoryInput) {
+	hardwareManagement ( accountId:$accountId input:$socketInventoryInput ) {
+		socketInventory ( input:$socketInventoryInput  )  {
 			items {
 	id {
 		id

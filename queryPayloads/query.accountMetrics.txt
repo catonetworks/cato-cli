@@ -1,5 +1,5 @@
-query accountMetrics ( $timeFrame:TimeFrame! $groupInterfaces:Boolean $groupDevices:Boolean) {
-	accountMetrics ( timeFrame:$timeFrame groupInterfaces:$groupInterfaces groupDevices:$groupDevices ) {
+query accountMetrics ( $timeFrame:TimeFrame! $groupInterfaces:Boolean $groupDevices:Boolean $siteIDs:[ID!] $toRate:Boolean $buckets:Int $labels:[TimeseriesMetricType!] $perSecond:Boolean $withMissingData:Boolean $useDefaultSizeBucket:Boolean $types:[String!] $userIDs:[ID!]) {
+	accountMetrics ( timeFrame:$timeFrame groupInterfaces:$groupInterfaces groupDevices:$groupDevices siteIDs:$siteIDs toRate:$toRate buckets:$buckets labels:$labels perSecond:$perSecond withMissingData:$withMissingData useDefaultSizeBucket:$useDefaultSizeBucket types:$types userIDs:$userIDs ) {
 id {
 	id
 	status
@@ -146,7 +146,7 @@ to {
 	}
 }
 		granularity
-		sites {
+		sites ( siteIDs:$siteIDs  )  {
 id {
 	id
 	status
@@ -261,7 +261,7 @@ id {
 	}
 }
 			interfaces {
-				metrics {
+				metrics ( toRate:$toRate  )  {
 					duration
 					granularity
 					bytesDownstream
@@ -334,101 +334,8 @@ id {
 	}
 				}
 				name
-				timeseries {
-	data {
-		paging {
-			from
-			limit
-			total
-		}
-		items {
-			id
-			updatedAt
-			createdAt
-			accountId
-			analystName
-			analystEmail
-			accountName
-			playbook
-			summary
-			incident {
-				__typename
-				... on MicrosoftEndpoint {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-				... on AnomalyStats {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-				... on AnomalyEvents {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-				... on Threat {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-				... on ThreatPrevention {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-			}
-			timeline {
-				createdAt
-				description
-				type
-				context
-				descriptions
-				category
-				additionalInfo
-				analystInfo {
-					name
-					email
-				}
-			}
-		}
-	}
+				timeseries ( buckets:$buckets  labels:$labels  )  {
+					data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket   )
 					label
 					dimensions {
 						label
@@ -488,7 +395,7 @@ id {
 		email
 	}
 				}
-				annotations {
+				annotations ( types:$types  )  {
 	time {
 		createdAt
 		description
@@ -878,7 +785,7 @@ id {
 					wanRole
 				}
 			}
-			metrics {
+			metrics ( toRate:$toRate   ) {
 				duration
 				granularity
 				bytesDownstream
@@ -1299,100 +1206,7 @@ id {
 				}
 			}
 			hostCount {
-	data {
-		paging {
-			from
-			limit
-			total
-		}
-		items {
-			id
-			updatedAt
-			createdAt
-			accountId
-			analystName
-			analystEmail
-			accountName
-			playbook
-			summary
-			incident {
-				__typename
-				... on MicrosoftEndpoint {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-				... on AnomalyStats {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-				... on AnomalyEvents {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-				... on Threat {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-				... on ThreatPrevention {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-			}
-			timeline {
-				createdAt
-				description
-				type
-				context
-				descriptions
-				category
-				additionalInfo
-				analystInfo {
-					name
-					email
-				}
-			}
-		}
-	}
+				data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket  ) 
 				label
 				dimensions {
 					label
@@ -1453,100 +1267,7 @@ id {
 	}
 			}
 			flowCount {
-	data {
-		paging {
-			from
-			limit
-			total
-		}
-		items {
-			id
-			updatedAt
-			createdAt
-			accountId
-			analystName
-			analystEmail
-			accountName
-			playbook
-			summary
-			incident {
-				__typename
-				... on MicrosoftEndpoint {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-				... on AnomalyStats {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-				... on AnomalyEvents {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-				... on Threat {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-				... on ThreatPrevention {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-			}
-			timeline {
-				createdAt
-				description
-				type
-				context
-				descriptions
-				category
-				additionalInfo
-				analystInfo {
-					name
-					email
-				}
-			}
-		}
-	}
+				data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket  ) 
 				label
 				dimensions {
 					label
@@ -1607,100 +1328,7 @@ id {
 	}
 			}
 			hostLimit {
-	data {
-		paging {
-			from
-			limit
-			total
-		}
-		items {
-			id
-			updatedAt
-			createdAt
-			accountId
-			analystName
-			analystEmail
-			accountName
-			playbook
-			summary
-			incident {
-				__typename
-				... on MicrosoftEndpoint {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-				... on AnomalyStats {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-				... on AnomalyEvents {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-				... on Threat {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-				... on ThreatPrevention {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-			}
-			timeline {
-				createdAt
-				description
-				type
-				context
-				descriptions
-				category
-				additionalInfo
-				analystInfo {
-					name
-					email
-				}
-			}
-		}
-	}
+				data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket  ) 
 				label
 				dimensions {
 					label
@@ -1762,7 +1390,7 @@ id {
 			}
 			samples
 		}
-		users {
+		users ( userIDs:$userIDs  )  {
 id {
 	id
 	status
@@ -1877,7 +1505,7 @@ id {
 	}
 }
 			interfaces {
-				metrics {
+				metrics ( toRate:$toRate  )  {
 					duration
 					granularity
 					bytesDownstream
@@ -1950,101 +1578,8 @@ id {
 	}
 				}
 				name
-				timeseries {
-	data {
-		paging {
-			from
-			limit
-			total
-		}
-		items {
-			id
-			updatedAt
-			createdAt
-			accountId
-			analystName
-			analystEmail
-			accountName
-			playbook
-			summary
-			incident {
-				__typename
-				... on MicrosoftEndpoint {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-				... on AnomalyStats {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-				... on AnomalyEvents {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-				... on Threat {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-				... on ThreatPrevention {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-			}
-			timeline {
-				createdAt
-				description
-				type
-				context
-				descriptions
-				category
-				additionalInfo
-				analystInfo {
-					name
-					email
-				}
-			}
-		}
-	}
+				timeseries ( buckets:$buckets  labels:$labels  )  {
+					data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket   )
 					label
 					dimensions {
 						label
@@ -2104,7 +1639,7 @@ id {
 		email
 	}
 				}
-				annotations {
+				annotations ( types:$types  )  {
 	time {
 		createdAt
 		description
@@ -2494,7 +2029,7 @@ id {
 					wanRole
 				}
 			}
-			metrics {
+			metrics ( toRate:$toRate   ) {
 				duration
 				granularity
 				bytesDownstream
@@ -2915,100 +2450,7 @@ id {
 				}
 			}
 			hostCount {
-	data {
-		paging {
-			from
-			limit
-			total
-		}
-		items {
-			id
-			updatedAt
-			createdAt
-			accountId
-			analystName
-			analystEmail
-			accountName
-			playbook
-			summary
-			incident {
-				__typename
-				... on MicrosoftEndpoint {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-				... on AnomalyStats {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-				... on AnomalyEvents {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-				... on Threat {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-				... on ThreatPrevention {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-			}
-			timeline {
-				createdAt
-				description
-				type
-				context
-				descriptions
-				category
-				additionalInfo
-				analystInfo {
-					name
-					email
-				}
-			}
-		}
-	}
+				data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket  ) 
 				label
 				dimensions {
 					label
@@ -3069,100 +2511,7 @@ id {
 	}
 			}
 			flowCount {
-	data {
-		paging {
-			from
-			limit
-			total
-		}
-		items {
-			id
-			updatedAt
-			createdAt
-			accountId
-			analystName
-			analystEmail
-			accountName
-			playbook
-			summary
-			incident {
-				__typename
-				... on MicrosoftEndpoint {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-				... on AnomalyStats {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-				... on AnomalyEvents {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-				... on Threat {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-				... on ThreatPrevention {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-			}
-			timeline {
-				createdAt
-				description
-				type
-				context
-				descriptions
-				category
-				additionalInfo
-				analystInfo {
-					name
-					email
-				}
-			}
-		}
-	}
+				data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket  ) 
 				label
 				dimensions {
 					label
@@ -3223,100 +2572,7 @@ id {
 	}
 			}
 			hostLimit {
-	data {
-		paging {
-			from
-			limit
-			total
-		}
-		items {
-			id
-			updatedAt
-			createdAt
-			accountId
-			analystName
-			analystEmail
-			accountName
-			playbook
-			summary
-			incident {
-				__typename
-				... on MicrosoftEndpoint {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-				... on AnomalyStats {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-				... on AnomalyEvents {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-				... on Threat {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-				... on ThreatPrevention {
-					id
-					firstSignal
-					lastSignal
-					engineType
-					vendor
-					producer
-					producerName
-					connectionType
-					indication
-					queryName
-				}
-			}
-			timeline {
-				createdAt
-				description
-				type
-				context
-				descriptions
-				category
-				additionalInfo
-				analystInfo {
-					name
-					email
-				}
-			}
-		}
-	}
+				data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket  ) 
 				label
 				dimensions {
 					label
@@ -3378,101 +2634,8 @@ id {
 			}
 			samples
 		}
-		timeseries {
-data {
-	paging {
-		from
-		limit
-		total
-	}
-	items {
-		id
-		updatedAt
-		createdAt
-		accountId
-		analystName
-		analystEmail
-		accountName
-		playbook
-		summary
-		incident {
-			__typename
-			... on MicrosoftEndpoint {
-				id
-				firstSignal
-				lastSignal
-				engineType
-				vendor
-				producer
-				producerName
-				connectionType
-				indication
-				queryName
-			}
-			... on AnomalyStats {
-				id
-				firstSignal
-				lastSignal
-				engineType
-				vendor
-				producer
-				producerName
-				connectionType
-				indication
-				queryName
-			}
-			... on AnomalyEvents {
-				id
-				firstSignal
-				lastSignal
-				engineType
-				vendor
-				producer
-				producerName
-				connectionType
-				indication
-				queryName
-			}
-			... on Threat {
-				id
-				firstSignal
-				lastSignal
-				engineType
-				vendor
-				producer
-				producerName
-				connectionType
-				indication
-				queryName
-			}
-			... on ThreatPrevention {
-				id
-				firstSignal
-				lastSignal
-				engineType
-				vendor
-				producer
-				producerName
-				connectionType
-				indication
-				queryName
-			}
-		}
-		timeline {
-			createdAt
-			description
-			type
-			context
-			descriptions
-			category
-			additionalInfo
-			analystInfo {
-				name
-				email
-			}
-		}
-	}
-}
+		timeseries ( labels:$labels  buckets:$buckets  )  {
+			data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket   )
 			label
 			dimensions {
 				label

@@ -1,6 +1,6 @@
 query catalogs ( $accountId:ID! $applicationRefInput:ApplicationRefInput! $catalogApplicationListInput:CatalogApplicationListInput! $catalogApplicationContentTypeGroupListInput:CatalogApplicationContentTypeGroupListInput!) {
-	catalogs ( accountId:$accountId ) {
-		catalogApplication {
+	catalogs ( accountId:$accountId input:$applicationRefInput input:$catalogApplicationListInput input:$catalogApplicationContentTypeGroupListInput ) {
+		catalogApplication ( input:$applicationRefInput  )  {
 id {
 	id
 	status
@@ -703,7 +703,7 @@ sanctioned {
 				protocol
 			}
 		}
-		catalogApplicationList {
+		catalogApplicationList ( input:$catalogApplicationListInput  )  {
 			application {
 	id {
 		id
@@ -1411,7 +1411,7 @@ sanctioned {
 				total
 			}
 		}
-		contentTypeGroupList {
+		contentTypeGroupList ( input:$catalogApplicationContentTypeGroupListInput  )  {
 			contentTypeGroup {
 	id {
 		id

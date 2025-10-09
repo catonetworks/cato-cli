@@ -282,6 +282,209 @@
                 "non_null": false
             },
             "varName": "accountId"
+        },
+        "updateFqdnContainerFromFileInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "updateFromFile___input",
+            "name": "input",
+            "path": "updateFromFile.input",
+            "requestStr": "$updateFqdnContainerFromFileInput:UpdateFqdnContainerFromFileInput! ",
+            "required": true,
+            "responseStr": "input:$updateFqdnContainerFromFileInput ",
+            "type": {
+                "definition": {
+                    "description": "Input for updating FQDN typed container from file",
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "description": {
+                            "defaultValue": null,
+                            "description": "Description for the container",
+                            "id_str": "updateFromFile___input___description",
+                            "name": "description",
+                            "path": "updateFromFile.input.description",
+                            "requestStr": "$description:String ",
+                            "required": false,
+                            "responseStr": "description:$description ",
+                            "type": {
+                                "kind": [
+                                    "SCALAR"
+                                ],
+                                "name": "String",
+                                "non_null": false
+                            },
+                            "varName": "description"
+                        },
+                        "fileType": {
+                            "defaultValue": "CSV",
+                            "description": "File type that will be uploaded",
+                            "id_str": "updateFromFile___input___fileType",
+                            "name": "fileType",
+                            "path": "updateFromFile.input.fileType",
+                            "requestStr": "$fileType:ContainerFileType! ",
+                            "required": true,
+                            "responseStr": "fileType:$fileType ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": [
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "STIX"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "CSV"
+                                        }
+                                    ],
+                                    "fields": null,
+                                    "inputFields": null,
+                                    "interfaces": null,
+                                    "kind": "ENUM",
+                                    "name": "ContainerFileType",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "enum",
+                                "kind": [
+                                    "NON_NULL",
+                                    "ENUM"
+                                ],
+                                "name": "ContainerFileType",
+                                "non_null": false
+                            },
+                            "varName": "fileType"
+                        },
+                        "ref": {
+                            "defaultValue": null,
+                            "description": "Reference to existing container by container ID or container name",
+                            "id_str": "updateFromFile___input___ref",
+                            "name": "ref",
+                            "path": "updateFromFile.input.ref",
+                            "requestStr": "$containerRefInput:ContainerRefInput! ",
+                            "required": true,
+                            "responseStr": "ref:$containerRefInput ",
+                            "type": {
+                                "definition": {
+                                    "description": "Add a container by ID or name",
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "by": {
+                                            "defaultValue": "ID",
+                                            "description": "Defines the object identification method \u2013 by ID (default) or by name",
+                                            "id_str": "updateFromFile___input___ref___by",
+                                            "name": "by",
+                                            "path": "updateFromFile.input.ref.by",
+                                            "requestStr": "$by:ObjectRefBy! ",
+                                            "required": true,
+                                            "responseStr": "by:$by ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "ID"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "NAME"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "ObjectRefBy",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "ENUM"
+                                                ],
+                                                "name": "ObjectRefBy",
+                                                "non_null": false
+                                            },
+                                            "varName": "by"
+                                        },
+                                        "input": {
+                                            "defaultValue": null,
+                                            "description": "The object identification (ID or name) value",
+                                            "id_str": "updateFromFile___input___ref___input",
+                                            "name": "input",
+                                            "path": "updateFromFile.input.ref.input",
+                                            "requestStr": "$input:String! ",
+                                            "required": true,
+                                            "responseStr": "input:$input ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "String",
+                                                "non_null": false
+                                            },
+                                            "varName": "input"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "ContainerRefInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "NON_NULL",
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "ContainerRefInput",
+                                "non_null": false
+                            },
+                            "varName": "containerRefInput"
+                        },
+                        "uploadFile": {
+                            "defaultValue": null,
+                            "description": "Multipart file containing FQDNs with fileType delimiter",
+                            "id_str": "updateFromFile___input___uploadFile",
+                            "name": "uploadFile",
+                            "path": "updateFromFile.input.uploadFile",
+                            "requestStr": "$uploadFile:Upload ",
+                            "required": false,
+                            "responseStr": "uploadFile:$uploadFile ",
+                            "type": {
+                                "kind": [
+                                    "SCALAR"
+                                ],
+                                "name": "Upload",
+                                "non_null": false
+                            },
+                            "varName": "uploadFile"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "UpdateFqdnContainerFromFileInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "UpdateFqdnContainerFromFileInput",
+                "non_null": false
+            },
+            "varName": "updateFqdnContainerFromFileInput"
         }
     },
     "path": "mutation.container.fqdn.updateFromFile",
@@ -813,5 +1016,15 @@
         "name": "ContainerMutations",
         "non_null": false
     },
-    "variablesPayload": {}
+    "variablesPayload": {
+        "updateFqdnContainerFromFileInput": {
+            "containerRefInput": {
+                "by": "ID",
+                "input": "string"
+            },
+            "description": "string",
+            "fileType": "STIX",
+            "uploadFile": "example_value"
+        }
+    }
 }

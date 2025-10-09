@@ -11,6 +11,14 @@ catocli mutation enterpriseDirectory restoreLocation <json>
 
 catocli mutation enterpriseDirectory restoreLocation "$(cat < mutation.enterpriseDirectory.restoreLocation.json)"
 
+catocli mutation enterpriseDirectory restoreLocation '{"locationId":"id"}'
+
+catocli mutation enterpriseDirectory restoreLocation '{
+    "locationId": "id"
+}'
+```
+
 #### Operation Arguments for mutation.enterpriseDirectory.restoreLocation ####
 
 `accountId` [ID] - (required) N/A    
+`locationId` [ID] - (required) N/A    

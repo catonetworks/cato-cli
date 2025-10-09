@@ -1,7 +1,7 @@
-query policyApplicationControlPolicy ( $accountId:ID!) {
-	policy ( accountId:$accountId ) {
+query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyInput:ApplicationControlPolicyInput) {
+	policy ( accountId:$accountId input:$applicationControlPolicyInput ) {
 		applicationControl {
-			policy {
+			policy ( input:$applicationControlPolicyInput   ) {
 				enabled
 				rules {
 					audit {

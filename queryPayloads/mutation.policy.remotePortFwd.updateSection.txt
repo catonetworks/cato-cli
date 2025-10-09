@@ -1,7 +1,7 @@
-mutation policyRemotePortFwdUpdateSection ( $accountId:ID! $policyUpdateSectionInput:PolicyUpdateSectionInput!) {
-	policy ( accountId:$accountId ) {
-		remotePortFwd {
-			updateSection {
+mutation policyRemotePortFwdUpdateSection ( $accountId:ID! $remotePortFwdPolicyMutationInput:RemotePortFwdPolicyMutationInput $policyUpdateSectionInput:PolicyUpdateSectionInput!) {
+	policy ( accountId:$accountId input:$remotePortFwdPolicyMutationInput input:$policyUpdateSectionInput ) {
+		remotePortFwd ( input:$remotePortFwdPolicyMutationInput  )  {
+			updateSection ( input:$policyUpdateSectionInput   ) {
 				section {
 					audit {
 						updatedTime

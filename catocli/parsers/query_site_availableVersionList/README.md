@@ -11,6 +11,19 @@ catocli query site availableVersionList <json>
 
 catocli query site availableVersionList "$(cat < query.site.availableVersionList.json)"
 
+catocli query site availableVersionList '{"availableVersionListInput":{"platforms":["string1","string2"]}}'
+
+catocli query site availableVersionList '{
+    "availableVersionListInput": {
+        "platforms": [
+            "string1",
+            "string2"
+        ]
+    }
+}'
+```
+
 #### Operation Arguments for query.site.availableVersionList ####
 
 `accountId` [ID] - (required) N/A    
+`availableVersionListInput` [AvailableVersionListInput] - (required) N/A    

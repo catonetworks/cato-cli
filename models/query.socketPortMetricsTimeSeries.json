@@ -844,6 +844,43 @@
             },
             "varName": "accountID"
         },
+        "buckets": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "timeseries___buckets",
+            "name": "buckets",
+            "path": "timeseries.buckets",
+            "requestStr": "$buckets:Int! ",
+            "required": true,
+            "responseStr": "buckets:$buckets ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "Int",
+                "non_null": false
+            },
+            "varName": "buckets"
+        },
+        "perSecond": {
+            "defaultValue": "true",
+            "description": "whether to normalize the data into per second (i.e. divide by granularity)",
+            "id_str": "data___perSecond",
+            "name": "perSecond",
+            "path": "data.perSecond",
+            "requestStr": "$perSecond:Boolean ",
+            "required": false,
+            "responseStr": "perSecond:$perSecond ",
+            "type": {
+                "kind": [
+                    "SCALAR"
+                ],
+                "name": "Boolean",
+                "non_null": false
+            },
+            "varName": "perSecond"
+        },
         "socketPortMetricsDimension": {
             "defaultValue": null,
             "description": null,
@@ -1642,6 +1679,42 @@
                 "non_null": false
             },
             "varName": "timeFrame"
+        },
+        "useDefaultSizeBucket": {
+            "defaultValue": "false",
+            "description": "In case we want to have the default size bucket (from properties)",
+            "id_str": "data___useDefaultSizeBucket",
+            "name": "useDefaultSizeBucket",
+            "path": "data.useDefaultSizeBucket",
+            "requestStr": "$useDefaultSizeBucket:Boolean ",
+            "required": false,
+            "responseStr": "useDefaultSizeBucket:$useDefaultSizeBucket ",
+            "type": {
+                "kind": [
+                    "SCALAR"
+                ],
+                "name": "Boolean",
+                "non_null": false
+            },
+            "varName": "useDefaultSizeBucket"
+        },
+        "withMissingData": {
+            "defaultValue": "false",
+            "description": "If false, the data field will be set to '0' for buckets with no reported data. Otherwise it will be set to -1",
+            "id_str": "data___withMissingData",
+            "name": "withMissingData",
+            "path": "data.withMissingData",
+            "requestStr": "$withMissingData:Boolean ",
+            "required": false,
+            "responseStr": "withMissingData:$withMissingData ",
+            "type": {
+                "kind": [
+                    "SCALAR"
+                ],
+                "name": "Boolean",
+                "non_null": false
+            },
+            "varName": "withMissingData"
         }
     },
     "path": "query.socketPortMetricsTimeSeries",
@@ -2241,6 +2314,8 @@
         "non_null": false
     },
     "variablesPayload": {
+        "buckets": 1,
+        "perSecond": true,
         "socketPortMetricsDimension": {
             "fieldName": "account_id"
         },
@@ -2257,6 +2332,8 @@
             "fieldName": "account_id",
             "trend": true
         },
-        "timeFrame": "example_value"
+        "timeFrame": "example_value",
+        "useDefaultSizeBucket": true,
+        "withMissingData": true
     }
 }

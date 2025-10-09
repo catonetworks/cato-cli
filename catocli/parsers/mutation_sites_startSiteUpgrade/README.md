@@ -11,6 +11,22 @@ catocli mutation sites startSiteUpgrade <json>
 
 catocli mutation sites startSiteUpgrade "$(cat < mutation.sites.startSiteUpgrade.json)"
 
+catocli mutation sites startSiteUpgrade '{"startSiteUpgradeInput":{"siteUpgradeRequest":{"site":{"by":"ID","input":"string"},"targetVersion":"string"}}}'
+
+catocli mutation sites startSiteUpgrade '{
+    "startSiteUpgradeInput": {
+        "siteUpgradeRequest": {
+            "site": {
+                "by": "ID",
+                "input": "string"
+            },
+            "targetVersion": "string"
+        }
+    }
+}'
+```
+
 #### Operation Arguments for mutation.sites.startSiteUpgrade ####
 
 `accountId` [ID] - (required) N/A    
+`startSiteUpgradeInput` [StartSiteUpgradeInput] - (required) N/A    

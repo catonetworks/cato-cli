@@ -1,5 +1,21 @@
 {
     "operationName": "sitesUpdateIpsecIkeV2SiteGeneralDetails",
-    "query": "mutation sitesUpdateIpsecIkeV2SiteGeneralDetails ( $accountId:ID! $siteId:ID!) {\n\tsites ( accountId:$accountId ) {\n\t\tupdateIpsecIkeV2SiteGeneralDetails {\n\t\t\tsiteId\n\t\t\tlocalId\n\t\t}\n\t}\t\n}",
-    "variables": {}
+    "query": "mutation sitesUpdateIpsecIkeV2SiteGeneralDetails ( $accountId:ID! $siteId:ID! $updateIpsecIkeV2SiteGeneralDetailsInput:UpdateIpsecIkeV2SiteGeneralDetailsInput!) {\n\tsites ( accountId:$accountId siteId:$siteId input:$updateIpsecIkeV2SiteGeneralDetailsInput ) {\n\t\tupdateIpsecIkeV2SiteGeneralDetails ( siteId:$siteId  input:$updateIpsecIkeV2SiteGeneralDetailsInput  )  {\n\t\t\tsiteId\n\t\t\tlocalId\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "siteId": "id",
+        "updateIpsecIkeV2SiteGeneralDetailsInput": {
+            "connectionMode": "RESPONDER_ONLY",
+            "identificationType": "IPV4",
+            "ipsecIkeV2MessageInput": {
+                "cipher": "NONE",
+                "dhGroup": "NONE",
+                "integrity": "NONE",
+                "prf": "NONE"
+            },
+            "networkRanges": [
+                "example1",
+                "example2"
+            ]
+        }
+    }
 }

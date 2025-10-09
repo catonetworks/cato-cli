@@ -42,6 +42,46 @@
                 "non_null": false
             },
             "varName": "accountID"
+        },
+        "siteIDs": {
+            "defaultValue": null,
+            "description": "List of Unique Site Identifiers. If specified, only sites in list will be returned",
+            "id_str": "sites___siteIDs",
+            "name": "siteIDs",
+            "path": "sites.siteIDs",
+            "requestStr": "$siteIDs:[ID!] ",
+            "required": false,
+            "responseStr": "siteIDs:$siteIDs ",
+            "type": {
+                "kind": [
+                    "LIST",
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "siteIDs"
+        },
+        "userIDs": {
+            "defaultValue": null,
+            "description": "request specific IDs, regardless of if connected or not",
+            "id_str": "users___userIDs",
+            "name": "userIDs",
+            "path": "users.userIDs",
+            "requestStr": "$userIDs:[ID!] ",
+            "required": false,
+            "responseStr": "userIDs:$userIDs ",
+            "type": {
+                "kind": [
+                    "LIST",
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "userIDs"
         }
     },
     "path": "query.accountSnapshot",
@@ -7700,5 +7740,14 @@
         "name": "AccountSnapshot",
         "non_null": false
     },
-    "variablesPayload": {}
+    "variablesPayload": {
+        "siteIDs": [
+            "id1",
+            "id2"
+        ],
+        "userIDs": [
+            "id1",
+            "id2"
+        ]
+    }
 }

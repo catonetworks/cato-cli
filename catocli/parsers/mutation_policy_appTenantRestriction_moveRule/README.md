@@ -11,6 +11,26 @@ catocli mutation policy appTenantRestriction moveRule <json>
 
 catocli mutation policy appTenantRestriction moveRule "$(cat < mutation.policy.appTenantRestriction.moveRule.json)"
 
+catocli mutation policy appTenantRestriction moveRule '{"appTenantRestrictionPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyMoveRuleInput":{"id":"id","policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"}}}'
+
+catocli mutation policy appTenantRestriction moveRule '{
+    "appTenantRestrictionPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    },
+    "policyMoveRuleInput": {
+        "id": "id",
+        "policyRulePositionInput": {
+            "position": "AFTER_RULE",
+            "ref": "id"
+        }
+    }
+}'
+```
+
 #### Operation Arguments for mutation.policy.appTenantRestriction.moveRule ####
 
 `accountId` [ID] - (required) N/A    
+`appTenantRestrictionPolicyMutationInput` [AppTenantRestrictionPolicyMutationInput] - (required) N/A    
+`policyMoveRuleInput` [PolicyMoveRuleInput] - (required) N/A    

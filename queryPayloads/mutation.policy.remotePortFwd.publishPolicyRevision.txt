@@ -1,7 +1,7 @@
-mutation policyRemotePortFwdPublishPolicyRevision ( $accountId:ID!) {
-	policy ( accountId:$accountId ) {
-		remotePortFwd {
-			publishPolicyRevision {
+mutation policyRemotePortFwdPublishPolicyRevision ( $accountId:ID! $remotePortFwdPolicyMutationInput:RemotePortFwdPolicyMutationInput $policyPublishRevisionInput:PolicyPublishRevisionInput) {
+	policy ( accountId:$accountId input:$remotePortFwdPolicyMutationInput input:$policyPublishRevisionInput ) {
+		remotePortFwd ( input:$remotePortFwdPolicyMutationInput  )  {
+			publishPolicyRevision ( input:$policyPublishRevisionInput   ) {
 				policy {
 					enabled
 					rules {

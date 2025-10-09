@@ -11,6 +11,22 @@ catocli mutation policy tlsInspect discardPolicyRevision <json>
 
 catocli mutation policy tlsInspect discardPolicyRevision "$(cat < mutation.policy.tlsInspect.discardPolicyRevision.json)"
 
+catocli mutation policy tlsInspect discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
+
+catocli mutation policy tlsInspect discardPolicyRevision '{
+    "policyDiscardRevisionInput": {
+        "id": "id"
+    },
+    "tlsInspectPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    }
+}'
+```
+
 #### Operation Arguments for mutation.policy.tlsInspect.discardPolicyRevision ####
 
 `accountId` [ID] - (required) N/A    
+`policyDiscardRevisionInput` [PolicyDiscardRevisionInput] - (required) N/A    
+`tlsInspectPolicyMutationInput` [TlsInspectPolicyMutationInput] - (required) N/A    

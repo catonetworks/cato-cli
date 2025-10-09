@@ -11,6 +11,20 @@ catocli mutation accountManagement addAccount <json>
 
 catocli mutation accountManagement addAccount "$(cat < mutation.accountManagement.addAccount.json)"
 
+catocli mutation accountManagement addAccount '{"addAccountInput":{"description":"string","name":"string","tenancy":"SINGLE_TENANT","timezone":"example_value","type":"CUSTOMER"}}'
+
+catocli mutation accountManagement addAccount '{
+    "addAccountInput": {
+        "description": "string",
+        "name": "string",
+        "tenancy": "SINGLE_TENANT",
+        "timezone": "example_value",
+        "type": "CUSTOMER"
+    }
+}'
+```
+
 #### Operation Arguments for mutation.accountManagement.addAccount ####
 
 `accountId` [ID] - (required) N/A    
+`addAccountInput` [AddAccountInput] - (required) N/A    

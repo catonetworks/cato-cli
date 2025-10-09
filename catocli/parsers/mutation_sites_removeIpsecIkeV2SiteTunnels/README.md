@@ -11,6 +11,18 @@ catocli mutation sites removeIpsecIkeV2SiteTunnels <json>
 
 catocli mutation sites removeIpsecIkeV2SiteTunnels "$(cat < mutation.sites.removeIpsecIkeV2SiteTunnels.json)"
 
+catocli mutation sites removeIpsecIkeV2SiteTunnels '{"removeIpsecIkeV2SiteTunnelsInput":{"tunnelId":"PRIMARY1"},"siteId":"id"}'
+
+catocli mutation sites removeIpsecIkeV2SiteTunnels '{
+    "removeIpsecIkeV2SiteTunnelsInput": {
+        "tunnelId": "PRIMARY1"
+    },
+    "siteId": "id"
+}'
+```
+
 #### Operation Arguments for mutation.sites.removeIpsecIkeV2SiteTunnels ####
 
 `accountId` [ID] - (required) N/A    
+`removeIpsecIkeV2SiteTunnelsInput` [RemoveIpsecIkeV2SiteTunnelsInput] - (required) N/A    
+`siteId` [ID] - (required) N/A    

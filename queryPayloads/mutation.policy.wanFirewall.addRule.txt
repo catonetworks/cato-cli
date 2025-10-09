@@ -1,7 +1,7 @@
-mutation policyWanFirewallAddRule ( $accountId:ID! $wanFirewallAddRuleInput:WanFirewallAddRuleInput!) {
-	policy ( accountId:$accountId ) {
-		wanFirewall {
-			addRule {
+mutation policyWanFirewallAddRule ( $accountId:ID! $wanFirewallPolicyMutationInput:WanFirewallPolicyMutationInput $wanFirewallAddRuleInput:WanFirewallAddRuleInput!) {
+	policy ( accountId:$accountId input:$wanFirewallPolicyMutationInput input:$wanFirewallAddRuleInput ) {
+		wanFirewall ( input:$wanFirewallPolicyMutationInput  )  {
+			addRule ( input:$wanFirewallAddRuleInput   ) {
 				rule {
 					audit {
 						updatedTime

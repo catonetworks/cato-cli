@@ -1,7 +1,7 @@
-mutation policyTlsInspectRemoveSection ( $accountId:ID! $policyRemoveSectionInput:PolicyRemoveSectionInput!) {
-	policy ( accountId:$accountId ) {
-		tlsInspect {
-			removeSection {
+mutation policyTlsInspectRemoveSection ( $accountId:ID! $tlsInspectPolicyMutationInput:TlsInspectPolicyMutationInput $policyRemoveSectionInput:PolicyRemoveSectionInput!) {
+	policy ( accountId:$accountId input:$tlsInspectPolicyMutationInput input:$policyRemoveSectionInput ) {
+		tlsInspect ( input:$tlsInspectPolicyMutationInput  )  {
+			removeSection ( input:$policyRemoveSectionInput   ) {
 				section {
 					audit {
 						updatedTime

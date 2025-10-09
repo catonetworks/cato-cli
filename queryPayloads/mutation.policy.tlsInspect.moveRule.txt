@@ -1,7 +1,7 @@
-mutation policyTlsInspectMoveRule ( $accountId:ID! $policyMoveRuleInput:PolicyMoveRuleInput!) {
-	policy ( accountId:$accountId ) {
-		tlsInspect {
-			moveRule {
+mutation policyTlsInspectMoveRule ( $accountId:ID! $tlsInspectPolicyMutationInput:TlsInspectPolicyMutationInput $policyMoveRuleInput:PolicyMoveRuleInput!) {
+	policy ( accountId:$accountId input:$tlsInspectPolicyMutationInput input:$policyMoveRuleInput ) {
+		tlsInspect ( input:$tlsInspectPolicyMutationInput  )  {
+			moveRule ( input:$policyMoveRuleInput   ) {
 				rule {
 					audit {
 						updatedTime

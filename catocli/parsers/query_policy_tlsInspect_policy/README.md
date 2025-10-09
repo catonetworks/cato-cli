@@ -11,6 +11,19 @@ catocli query policy tlsInspect policy <json>
 
 catocli query policy tlsInspect policy "$(cat < query.policy.tlsInspect.policy.json)"
 
+catocli query policy tlsInspect policy '{"tlsInspectPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'
+
+catocli query policy tlsInspect policy '{
+    "tlsInspectPolicyInput": {
+        "policyRevisionInput": {
+            "id": "id",
+            "type": "PRIVATE"
+        }
+    }
+}'
+```
+
 #### Operation Arguments for query.policy.tlsInspect.policy ####
 
 `accountId` [ID] - (required) N/A    
+`tlsInspectPolicyInput` [TlsInspectPolicyInput] - (required) N/A    

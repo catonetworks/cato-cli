@@ -11,6 +11,25 @@ catocli mutation site addCloudInterconnectSite <json>
 
 catocli mutation site addCloudInterconnectSite "$(cat < mutation.site.addCloudInterconnectSite.json)"
 
+catocli mutation site addCloudInterconnectSite '{"addCloudInterconnectSiteInput":{"addSiteLocationInput":{"address":"string","city":"string","countryCode":"string","stateCode":"string","timezone":"string"},"description":"string","name":"string","siteType":"BRANCH"}}'
+
+catocli mutation site addCloudInterconnectSite '{
+    "addCloudInterconnectSiteInput": {
+        "addSiteLocationInput": {
+            "address": "string",
+            "city": "string",
+            "countryCode": "string",
+            "stateCode": "string",
+            "timezone": "string"
+        },
+        "description": "string",
+        "name": "string",
+        "siteType": "BRANCH"
+    }
+}'
+```
+
 #### Operation Arguments for mutation.site.addCloudInterconnectSite ####
 
 `accountId` [ID] - (required) N/A    
+`addCloudInterconnectSiteInput` [AddCloudInterconnectSiteInput] - (required) N/A    

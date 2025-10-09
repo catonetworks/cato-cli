@@ -1,7 +1,7 @@
-mutation policyTlsInspectDiscardPolicyRevision ( $accountId:ID!) {
-	policy ( accountId:$accountId ) {
-		tlsInspect {
-			discardPolicyRevision {
+mutation policyTlsInspectDiscardPolicyRevision ( $accountId:ID! $tlsInspectPolicyMutationInput:TlsInspectPolicyMutationInput $policyDiscardRevisionInput:PolicyDiscardRevisionInput) {
+	policy ( accountId:$accountId input:$tlsInspectPolicyMutationInput input:$policyDiscardRevisionInput ) {
+		tlsInspect ( input:$tlsInspectPolicyMutationInput  )  {
+			discardPolicyRevision ( input:$policyDiscardRevisionInput   ) {
 				policy {
 					enabled
 					rules {

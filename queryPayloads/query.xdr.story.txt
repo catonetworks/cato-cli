@@ -1,6 +1,6 @@
-query xdrStory ( $accountID:ID!) {
-	xdr ( accountID:$accountID ) {
-		story {
+query xdrStory ( $accountID:ID! $storyId:ID $producer:StoryProducerEnum $incidentId:ID) {
+	xdr ( accountID:$accountID storyId:$storyId producer:$producer incidentId:$incidentId ) {
+		story ( storyId:$storyId  producer:$producer  incidentId:$incidentId  )  {
 id {
 	id
 	status

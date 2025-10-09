@@ -1,7 +1,7 @@
-mutation policyAppTenantRestrictionDiscardPolicyRevision ( $accountId:ID!) {
-	policy ( accountId:$accountId ) {
-		appTenantRestriction {
-			discardPolicyRevision {
+mutation policyAppTenantRestrictionDiscardPolicyRevision ( $accountId:ID! $appTenantRestrictionPolicyMutationInput:AppTenantRestrictionPolicyMutationInput $policyDiscardRevisionInput:PolicyDiscardRevisionInput) {
+	policy ( accountId:$accountId input:$appTenantRestrictionPolicyMutationInput input:$policyDiscardRevisionInput ) {
+		appTenantRestriction ( input:$appTenantRestrictionPolicyMutationInput  )  {
+			discardPolicyRevision ( input:$policyDiscardRevisionInput   ) {
 				policy {
 					enabled
 					rules {

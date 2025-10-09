@@ -1,7 +1,7 @@
-mutation policyApplicationControlAddSection ( $accountId:ID! $policyAddSectionInput:PolicyAddSectionInput!) {
-	policy ( accountId:$accountId ) {
-		applicationControl {
-			addSection {
+mutation policyApplicationControlAddSection ( $accountId:ID! $applicationControlPolicyMutationInput:ApplicationControlPolicyMutationInput $policyAddSectionInput:PolicyAddSectionInput!) {
+	policy ( accountId:$accountId input:$applicationControlPolicyMutationInput input:$policyAddSectionInput ) {
+		applicationControl ( input:$applicationControlPolicyMutationInput  )  {
+			addSection ( input:$policyAddSectionInput   ) {
 				section {
 					audit {
 						updatedTime

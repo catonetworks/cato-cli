@@ -1,7 +1,7 @@
-mutation policyApplicationControlMoveRule ( $accountId:ID! $policyMoveRuleInput:PolicyMoveRuleInput!) {
-	policy ( accountId:$accountId ) {
-		applicationControl {
-			moveRule {
+mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPolicyMutationInput:ApplicationControlPolicyMutationInput $policyMoveRuleInput:PolicyMoveRuleInput!) {
+	policy ( accountId:$accountId input:$applicationControlPolicyMutationInput input:$policyMoveRuleInput ) {
+		applicationControl ( input:$applicationControlPolicyMutationInput  )  {
+			moveRule ( input:$policyMoveRuleInput   ) {
 				rule {
 					audit {
 						updatedTime

@@ -187,6 +187,130 @@
                 "non_null": false
             },
             "varName": "accountId"
+        },
+        "deleteContainerInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "delete___input",
+            "name": "input",
+            "path": "delete.input",
+            "requestStr": "$deleteContainerInput:DeleteContainerInput! ",
+            "required": true,
+            "responseStr": "input:$deleteContainerInput ",
+            "type": {
+                "definition": {
+                    "description": "Identification of container for delete operation",
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "ref": {
+                            "defaultValue": null,
+                            "description": "Reference to existing container by container ID or container name",
+                            "id_str": "delete___input___ref",
+                            "name": "ref",
+                            "path": "delete.input.ref",
+                            "requestStr": "$containerRefInput:ContainerRefInput! ",
+                            "required": true,
+                            "responseStr": "ref:$containerRefInput ",
+                            "type": {
+                                "definition": {
+                                    "description": "Add a container by ID or name",
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "by": {
+                                            "defaultValue": "ID",
+                                            "description": "Defines the object identification method \u2013 by ID (default) or by name",
+                                            "id_str": "delete___input___ref___by",
+                                            "name": "by",
+                                            "path": "delete.input.ref.by",
+                                            "requestStr": "$by:ObjectRefBy! ",
+                                            "required": true,
+                                            "responseStr": "by:$by ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "ID"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "NAME"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "ObjectRefBy",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "ENUM"
+                                                ],
+                                                "name": "ObjectRefBy",
+                                                "non_null": false
+                                            },
+                                            "varName": "by"
+                                        },
+                                        "input": {
+                                            "defaultValue": null,
+                                            "description": "The object identification (ID or name) value",
+                                            "id_str": "delete___input___ref___input",
+                                            "name": "input",
+                                            "path": "delete.input.ref.input",
+                                            "requestStr": "$input:String! ",
+                                            "required": true,
+                                            "responseStr": "input:$input ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "String",
+                                                "non_null": false
+                                            },
+                                            "varName": "input"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "ContainerRefInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "NON_NULL",
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "ContainerRefInput",
+                                "non_null": false
+                            },
+                            "varName": "containerRefInput"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "DeleteContainerInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "DeleteContainerInput",
+                "non_null": false
+            },
+            "varName": "deleteContainerInput"
         }
     },
     "path": "mutation.container.delete",
@@ -1037,5 +1161,12 @@
         "name": "ContainerMutations",
         "non_null": false
     },
-    "variablesPayload": {}
+    "variablesPayload": {
+        "deleteContainerInput": {
+            "containerRefInput": {
+                "by": "ID",
+                "input": "string"
+            }
+        }
+    }
 }

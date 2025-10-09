@@ -1,7 +1,7 @@
-mutation policyWanNetworkAddSection ( $accountId:ID! $policyAddSectionInput:PolicyAddSectionInput!) {
-	policy ( accountId:$accountId ) {
-		wanNetwork {
-			addSection {
+mutation policyWanNetworkAddSection ( $accountId:ID! $wanNetworkPolicyMutationInput:WanNetworkPolicyMutationInput $policyAddSectionInput:PolicyAddSectionInput!) {
+	policy ( accountId:$accountId input:$wanNetworkPolicyMutationInput input:$policyAddSectionInput ) {
+		wanNetwork ( input:$wanNetworkPolicyMutationInput  )  {
+			addSection ( input:$policyAddSectionInput   ) {
 				section {
 					audit {
 						updatedTime

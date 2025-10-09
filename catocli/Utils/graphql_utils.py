@@ -347,11 +347,12 @@ def generateGraphqlPayload(variables_obj, operation, operation_name, renderArgsA
     query_str += f" ( VARIABLES_PLACEHOLDER) {{\n"
     query_str += f"{indent}{operation['name']} ( "
     
-    # Add operation arguments - only include arguments that have actual values
-    # Use operationArgs instead of args to get complete argument list including child operations
-    operation_args = operation.get("operationArgs", operation.get("args", {}))
-    for arg_name in operation_args:
-        arg = operation_args[arg_name]
+    # Add main operation arguments - only include arguments that belong to the root operation field
+    # Arguments for nested fields (like updateRule.input) will be handled in the field rendering process
+    # Use args (not operationArgs) to only get main-level arguments for the root operation field
+    main_args = operation.get("args", {})
+    for arg_name in main_args:
+        arg = main_args[arg_name]
         # Include required arguments always, and optional arguments only when they have meaningful values
         var_name = arg["varName"]
         is_required = arg.get("required", False)

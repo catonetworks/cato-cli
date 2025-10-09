@@ -11,6 +11,22 @@ catocli mutation policy wanFirewall discardPolicyRevision <json>
 
 catocli mutation policy wanFirewall discardPolicyRevision "$(cat < mutation.policy.wanFirewall.discardPolicyRevision.json)"
 
+catocli mutation policy wanFirewall discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"wanFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
+
+catocli mutation policy wanFirewall discardPolicyRevision '{
+    "policyDiscardRevisionInput": {
+        "id": "id"
+    },
+    "wanFirewallPolicyMutationInput": {
+        "policyMutationRevisionInput": {
+            "id": "id"
+        }
+    }
+}'
+```
+
 #### Operation Arguments for mutation.policy.wanFirewall.discardPolicyRevision ####
 
 `accountId` [ID] - (required) N/A    
+`policyDiscardRevisionInput` [PolicyDiscardRevisionInput] - (required) N/A    
+`wanFirewallPolicyMutationInput` [WanFirewallPolicyMutationInput] - (required) N/A    

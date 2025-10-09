@@ -1,5 +1,12 @@
 {
     "operationName": "siteAddStaticHost",
-    "query": "mutation siteAddStaticHost ( $accountId:ID! $siteId:ID!) {\n\tsite ( accountId:$accountId ) {\n\t\taddStaticHost {\n\t\t\thostId\n\t\t}\n\t}\t\n}",
-    "variables": {}
+    "query": "mutation siteAddStaticHost ( $accountId:ID! $siteId:ID! $addStaticHostInput:AddStaticHostInput!) {\n\tsite ( accountId:$accountId siteId:$siteId input:$addStaticHostInput ) {\n\t\taddStaticHost ( siteId:$siteId  input:$addStaticHostInput  )  {\n\t\t\thostId\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "addStaticHostInput": {
+            "ip": "example_value",
+            "macAddress": "string",
+            "name": "string"
+        },
+        "siteId": "id"
+    }
 }

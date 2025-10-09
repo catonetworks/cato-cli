@@ -1,7 +1,7 @@
-mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanRemoveRuleInput:SocketLanRemoveRuleInput!) {
-	policy ( accountId:$accountId ) {
-		socketLan {
-			removeRule {
+mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInput:SocketLanPolicyMutationInput $socketLanRemoveRuleInput:SocketLanRemoveRuleInput!) {
+	policy ( accountId:$accountId input:$socketLanPolicyMutationInput input:$socketLanRemoveRuleInput ) {
+		socketLan ( input:$socketLanPolicyMutationInput  )  {
+			removeRule ( input:$socketLanRemoveRuleInput   ) {
 				rule {
 					audit {
 						updatedTime

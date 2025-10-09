@@ -11,9 +11,11 @@ catocli query socketPortMetrics <json>
 
 catocli query socketPortMetrics "$(cat < query.socketPortMetrics.json)"
 
-catocli query socketPortMetrics '{"socketPortMetricsDimension":{"fieldName":"account_id"},"socketPortMetricsFilter":{"fieldName":"account_id","operator":"is","values":["string1","string2"]},"socketPortMetricsMeasure":{"aggType":"sum","fieldName":"account_id","trend":true},"socketPortMetricsSort":{"fieldName":"account_id","order":"asc"},"timeFrame":"example_value"}'
+catocli query socketPortMetrics '{"from":1,"limit":1,"socketPortMetricsDimension":{"fieldName":"account_id"},"socketPortMetricsFilter":{"fieldName":"account_id","operator":"is","values":["string1","string2"]},"socketPortMetricsMeasure":{"aggType":"sum","fieldName":"account_id","trend":true},"socketPortMetricsSort":{"fieldName":"account_id","order":"asc"},"timeFrame":"example_value"}'
 
 catocli query socketPortMetrics '{
+    "from": 1,
+    "limit": 1,
     "socketPortMetricsDimension": {
         "fieldName": "account_id"
     },
@@ -62,6 +64,8 @@ Format: `"utc.YYYY-MM-{DD/HH:MM:SS--DD/HH:MM:SS}"`
 #### Operation Arguments for query.socketPortMetrics ####
 
 `accountID` [ID] - (required) Account ID    
+`from` [Int] - (required) N/A    
+`limit` [Int] - (required) N/A    
 `socketPortMetricsDimension` [SocketPortMetricsDimension[]] - (required) N/A    
 `socketPortMetricsFilter` [SocketPortMetricsFilter[]] - (required) N/A    
 `socketPortMetricsMeasure` [SocketPortMetricsMeasure[]] - (required) N/A    

@@ -1,7 +1,7 @@
-query policyTlsInspectPolicy ( $accountId:ID!) {
-	policy ( accountId:$accountId ) {
+query policyTlsInspectPolicy ( $accountId:ID! $tlsInspectPolicyInput:TlsInspectPolicyInput) {
+	policy ( accountId:$accountId input:$tlsInspectPolicyInput ) {
 		tlsInspect {
-			policy {
+			policy ( input:$tlsInspectPolicyInput   ) {
 				enabled
 				rules {
 					audit {

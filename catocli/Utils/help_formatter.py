@@ -94,12 +94,15 @@ class JSONExample:
             return [self.command_template.format(command=command_name, json=self.json_data)]
     
     def _format_powershell_comprehensive(self, command_name: str) -> List[str]:
-        """Format PowerShell here-string example with better compatibility"""
+        """Format PowerShell here-string example with proper quote escaping"""
+        # Escape double quotes in JSON for PowerShell compatibility
+        escaped_json = self.json_data.replace('"', '\\"')
+        
         # Use here-string format which handles quotes better in PowerShell
         examples = [
             "# PowerShell (using here-string):",
             f"catocli {command_name} @'",
-            self.json_data,  # Use original JSON without extra escaping
+            escaped_json,
             "'@ -p"
         ]
         

@@ -431,10 +431,15 @@ class UniversalHelpFormatter:
             if self.platform_info.shell == 'powershell':
                 # PowerShell-specific adjustments
                 # Convert Unix-style command substitution to PowerShell equivalent
-                if '$(cat ' in example:
-                    # Convert $(cat file.json) to PowerShell equivalent
-                    example = example.replace('$(cat ', '(Get-Content ')
-                    example = example.replace('.json)', '.json -Raw)')
+                if '$(cat' in example:
+                    # Handle different $(cat) variations
+                    import re
+                    # Pattern for $(cat file.json) or $(cat < file.json)
+                    cat_pattern = r'\$\(cat\s*<?\s*([^\)]+)\)'
+                    def replace_cat(match):
+                        filename = match.group(1).strip()
+                        return f'(Get-Content {filename} -Raw)'
+                    example = re.sub(cat_pattern, replace_cat, example)
                 # Handle quotes - PowerShell prefers double quotes for JSON strings
                 # But for simple parameter examples, keep single quotes for strings
                 return example

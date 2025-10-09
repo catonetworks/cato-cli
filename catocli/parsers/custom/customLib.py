@@ -18,7 +18,9 @@ def entityTypeList(args, configuration):
             }
         }
     }
-    variablesObj = { "accountID": (params.get("accountID") if params.get("accountID") else params.get("accountId"))}
+    # Use accountID from configuration (profile) or fall back to command line parameter
+    account_id = configuration.accountID if configuration and hasattr(configuration, 'accountID') else (params.get("accountID") or params.get("accountId"))
+    variablesObj = { "accountID": account_id }
 
     # Create the API client instance
     api_client = ApiClient(configuration)

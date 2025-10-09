@@ -9,8 +9,14 @@ import datetime
 import json
 import os
 import signal
+import socket
+import ssl
 import sys
 import time
+import urllib.request
+import base64
+import hmac
+import hashlib
 from ..customParserApiClient import createRequest
 
 
@@ -22,10 +28,13 @@ def enhanced_events_feed_handler(args, configuration):
     original_args = vars(args).copy()
     
     # Setup marker and config file handling
-    marker, config_file = setup_marker_and_config(args)
+    marker, marker_file = setup_marker_and_config(args)
     
     # Setup filters
     filter_obj = setup_filters(args)
+    
+    # Setup network streaming and Sentinel options
+    network_config, sentinel_config = setup_output_options(args)
     
     # Setup thresholds
     fetch_threshold = getattr(args, 'fetch_limit', 1)
@@ -40,7 +49,7 @@ def enhanced_events_feed_handler(args, configuration):
     start = datetime.datetime.now()
     
     log(f"Starting enhanced eventsFeed with marker: {marker}", args)
-    log(f"Config file: {config_file}, fetch_limit: {fetch_threshold}, runtime_limit: {runtime_limit}", args)
+    log(f"Marker file: {marker_file}, fetch_limit: {fetch_threshold}, runtime_limit: {runtime_limit}", args)
     
     # Setup signal handling for graceful shutdown in enhanced mode
     interrupted = False
@@ -103,8 +112,8 @@ def enhanced_events_feed_handler(args, configuration):
             events_list = []
             accounts = events_feed_data.get("accounts", [])
             if accounts and len(accounts) > 0:
-                # The GraphQL response uses 'recordsEventsFeedAccountRecords' field name
-                records = accounts[0].get("recordsEventsFeedAccountRecords", [])
+                # Try different possible field names for records
+                records = accounts[0].get("records", accounts[0].get("recordsEventsFeedAccountRecords", []))
                 for record in records:
                     # Process fieldsMap format like original script
                     if "fieldsMap" in record:
@@ -134,14 +143,18 @@ def enhanced_events_feed_handler(args, configuration):
                         except Exception:
                             print(json.dumps(event))
             
-            # Write marker back to config file
+            # Send events to network or Sentinel if configured
+            if (network_config or sentinel_config) and events_list:
+                send_events_to_outputs(events_list, network_config, sentinel_config, args)
+            
+            # Write marker back to marker file
             if marker:
                 try:
-                    with open(config_file, "w") as f:
+                    with open(marker_file, "w") as f:
                         f.write(marker)
-                    logd(f"Written marker to {config_file}: {marker}", args)
+                    logd(f"Written marker to {marker_file}: {marker}", args)
                 except IOError as e:
-                    log(f"Warning: Could not write marker to config file: {e}", args)
+                    log(f"Warning: Could not write marker to marker file: {e}", args)
             
         except (KeyError, TypeError, ValueError) as e:
             log(f"Error processing response: {e}", args)
@@ -190,32 +203,32 @@ def enhanced_events_feed_handler(args, configuration):
 
 
 def setup_marker_and_config(args):
-    """Setup marker and config file handling (similar to original eventsFeed.py)"""
-    config_file = "./config.txt"
+    """Setup marker and marker file handling (similar to original eventsFeed.py)"""
+    marker_file = "./events-marker.txt"  # Default from argument parser help text
     
-    if getattr(args, 'config_file', None):
-        config_file = args.config_file
-        log(f"Using config file from argument: {config_file}", args)
+    if getattr(args, 'marker_file', None):
+        marker_file = args.marker_file
+        log(f"Using marker file from argument: {marker_file}", args)
     else:
-        log(f"Using default config file: {config_file}", args)
+        log(f"Using default marker file: {marker_file}", args)
     
     marker = ""
     if getattr(args, 'marker', None):
         marker = args.marker
         log(f"Using marker from argument: {marker}", args)
     else:
-        # Try to load marker from config file
-        if os.path.isfile(config_file):
+        # Try to load marker from marker file
+        if os.path.isfile(marker_file):
             try:
-                with open(config_file, "r") as f:
+                with open(marker_file, "r") as f:
                     marker = f.readlines()[0].strip()
-                log(f"Read marker from config file: {marker}", args)
+                log(f"Read marker from marker file: {marker}", args)
             except (IndexError, IOError) as e:
-                log(f"Could not read marker from config file: {e}", args)
+                log(f"Could not read marker from marker file: {e}", args)
         else:
-            log("Config file does not exist, starting with empty marker", args)
+            log("Marker file does not exist, starting with empty marker", args)
     
-    return marker, config_file
+    return marker, marker_file
 
 
 def setup_filters(args):
@@ -266,3 +279,129 @@ def logd(text, args):
     """Log detailed debug output"""
     if getattr(args, 'very_verbose', False):
         log(text, args)
+
+
+def setup_output_options(args):
+    """Setup network streaming and Sentinel output options"""
+    network_config = None
+    sentinel_config = None
+    
+    # Process network options (-n)
+    if getattr(args, 'stream_events', None):
+        network_elements = args.stream_events.split(":")
+        if len(network_elements) != 2:
+            log("Error: -n value must be in the form of host:port", args)
+            sys.exit(1)
+        
+        try:
+            host = network_elements[0]
+            port = int(network_elements[1])
+            network_config = {'host': host, 'port': port}
+            log(f"Network streaming enabled to {host}:{port}", args)
+        except ValueError:
+            log("Error: -n port must be a valid integer", args)
+            sys.exit(1)
+    
+    # Process Sentinel options (-z)
+    if getattr(args, 'sentinel', None):
+        sentinel_elements = args.sentinel.split(":")
+        if len(sentinel_elements) != 2:
+            log("Error: -z value must be in the form of customerid:sharedkey", args)
+            sys.exit(1)
+        
+        customer_id = sentinel_elements[0]
+        shared_key = sentinel_elements[1]
+        sentinel_config = {'customer_id': customer_id, 'shared_key': shared_key}
+        log(f"Sentinel streaming enabled to workspace {customer_id}", args)
+    
+    return network_config, sentinel_config
+
+
+def send_events_to_outputs(events_list, network_config, sentinel_config, args):
+    """Send events to network and/or Sentinel outputs with optional newline appending"""
+    append_newline = getattr(args, 'append_new_line', False)
+    
+    for event in events_list:
+        try:
+            # Convert event to JSON string
+            event_json = json.dumps(event, ensure_ascii=False)
+            
+            # Add newline if requested
+            if append_newline:
+                event_json += "\n"
+            
+            # Send to network if configured
+            if network_config:
+                send_event_to_network(event_json, network_config['host'], network_config['port'], args)
+            
+            # Send to Sentinel if configured
+            if sentinel_config:
+                send_event_to_sentinel(event, sentinel_config['customer_id'], sentinel_config['shared_key'], args)
+            
+        except Exception as e:
+            log(f"Error processing event for output: {e}", args)
+
+
+def send_event_to_network(event_json, host, port, args):
+    """Send a single event over network to host:port TCP"""
+    try:
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+            sock.settimeout(10)  # 10 second timeout
+            sock.connect((host, port))
+            sock.sendall(event_json.encode('utf-8'))
+        logd(f"Sent event to {host}:{port}", args)
+    except socket.error as e:
+        log(f"Network error sending to {host}:{port}: {e}", args)
+    except Exception as e:
+        log(f"Error sending event to network: {e}", args)
+
+
+def build_sentinel_signature(customer_id, shared_key, date, content_length):
+    """Build the API signature for Sentinel"""
+    x_headers = 'x-ms-date:' + date
+    string_to_hash = f"POST\n{content_length}\napplication/json\n{x_headers}\n/api/logs"
+    bytes_to_hash = bytes(string_to_hash, encoding="utf-8")
+    decoded_key = base64.b64decode(shared_key)
+    encoded_hash = base64.b64encode(hmac.new(decoded_key, bytes_to_hash, digestmod=hashlib.sha256).digest()).decode()
+    authorization = "SharedKey {}:{}".format(customer_id, encoded_hash)
+    return authorization
+
+
+def send_event_to_sentinel(event, customer_id, shared_key, args):
+    """Send a single event to Microsoft Sentinel"""
+    try:
+        # Convert event to JSON bytes
+        event_data = [event]  # Sentinel expects an array
+        json_data = json.dumps(event_data).encode('utf-8')
+        
+        # Build request
+        rfc1123date = datetime.datetime.utcnow().strftime('%a, %d %b %Y %H:%M:%S GMT')
+        content_length = len(json_data)
+        signature = build_sentinel_signature(customer_id, shared_key, rfc1123date, content_length)
+        
+        headers = {
+            'content-type': 'application/json',
+            'Authorization': signature,
+            'Log-Type': 'CatoEvents',
+            'Time-generated-field': 'event_timestamp',
+            'x-ms-date': rfc1123date
+        }
+        
+        # Send request
+        no_verify = ssl._create_unverified_context()
+        request = urllib.request.Request(
+            url='https://' + customer_id + '.ods.opinsights.azure.com/api/logs?api-version=2016-04-01',
+            data=json_data,
+            headers=headers
+        )
+        response = urllib.request.urlopen(request, context=no_verify, timeout=30)
+        
+        if response.code < 200 or response.code >= 300:
+            log(f"Sentinel API returned {response.code}", args)
+        else:
+            logd(f"Sent event to Sentinel workspace {customer_id}", args)
+            
+    except urllib.error.URLError as e:
+        log(f"Sentinel API error: {e}", args)
+    except Exception as e:
+        log(f"Error sending event to Sentinel: {e}", args)

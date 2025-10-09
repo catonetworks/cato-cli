@@ -4,13 +4,18 @@
 
 ### Basic Usage for query.eventsFeed:
 
-`catocli query eventsFeed -h`
+```
+bash
+catocli query eventsFeed -h
 
-`catocli query eventsFeed <json>`
+catocli query eventsFeed <json>
 
-`catocli query eventsFeed "$(cat < query.eventsFeed.json)"`
+catocli query eventsFeed "$(cat < query.eventsFeed.json)"
 
-`catocli query eventsFeed '{"accountIDs":["id1","id2"],"eventFeedFieldFilterInput":{"fieldName":"event_sub_type","operator":"is","values":["string1","string2"]},"fieldNames":"access_method","marker":"string"}'`
+catocli query eventsFeed '{"accountIDs":["id1","id2"],"eventFeedFieldFilterInput":{"fieldName":"event_sub_type","operator":"is","values":["string1","string2"]},"fieldNames":"access_method","marker":"string"}'
+
+catocli query eventsFeed '{"accountIDs":["id1","id2"],"eventFeedFieldFilterInput":{"fieldName":"event_sub_type","operator":"is","values":["string1","string2"]},"fieldNames":"access_method","marker-file":"my-marker.txt"}
+```
 
 ### Enhanced Usage (with advanced features):
 

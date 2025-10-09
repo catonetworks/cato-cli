@@ -29,6 +29,7 @@ def query_eventsFeed_parse(query_subparsers):
     query_eventsFeed_parser.add_argument('--runtime-limit', dest='runtime_limit', type=int, help='Stop execution if total runtime exceeds this many seconds (default=infinite)')
     query_eventsFeed_parser.add_argument('--run', dest='run', action='store_true', help='Use run mode with continuous polling, marker persistence, and advanced filtering')
     query_eventsFeed_parser.add_argument('-vv', '--very-verbose', dest='very_verbose', action='store_true', help='Print detailed debug information')
+    query_eventsFeed_parser.add_argument('--append-new-line', '-anl', dest='append_new_line', action='store_true', help='Append a newline character (\\n) to each event when sent over network (-n) or to Sentinel (-z)')
     
     query_eventsFeed_parser.set_defaults(func=eventsFeed_dispatcher, operation_name='query.eventsFeed')
 
@@ -39,14 +40,15 @@ def eventsFeed_dispatcher(args, configuration):
     enhanced_features = [
         getattr(args, 'run', False),
         getattr(args, 'marker', None),
-        getattr(args, 'config_file', None),
+        getattr(args, 'marker_file', None),
         getattr(args, 'event_types', None),
         getattr(args, 'event_sub_types', None),
         getattr(args, 'print_events', False),
         getattr(args, 'prettify', False),
         getattr(args, 'fetch_limit', 1) != 1,
         getattr(args, 'runtime_limit', None),
-        getattr(args, 'very_verbose', False)
+        getattr(args, 'very_verbose', False),
+        getattr(args, 'append_new_line', False)
     ]
     
     if any(enhanced_features):

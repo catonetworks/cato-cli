@@ -100,7 +100,7 @@ class JSONExample:
         
         examples = [
             "# PowerShell:",
-            "catocli {command_name} @'",
+            f"catocli {command_name} @'",
             escaped_json,
             "'@"
         ]
@@ -226,15 +226,18 @@ class UniversalHelpFormatter:
             readme_examples = self._extract_from_readme(command_path)
             if readme_examples:
                 for example in readme_examples:
-                    # Check if this is a multi-line formatted example (contains newlines and proper indentation)
-                    if '\n' in example and ('    "' in example or '\t"' in example):
-                        # This is already properly formatted multi-line - preserve it exactly
-                        help_lines.append(example)
+                    # Check if this is a multi-line JSON example that can be platform-formatted
+                    json_match = self._extract_json_from_example(example)
+                    if json_match:
+                        # Create JSONExample and apply platform-specific formatting
+                        json_example = JSONExample(json_match)
+                        formatted_examples = json_example.format_for_platform(self.platform_info, command_name)
+                        help_lines.extend(formatted_examples)
                     elif not ('{' in example and '}' in example):
                         # Simple command examples without JSON
                         help_lines.append(example)
                     else:
-                        # Single-line JSON examples - could format them, but preserve as-is for consistency
+                        # Fallback: preserve as-is if JSON extraction fails
                         help_lines.append(example)
                     help_lines.append("")  # Add spacing between examples
         
@@ -350,6 +353,32 @@ class UniversalHelpFormatter:
                 unique_examples.append(example)
         
         return unique_examples
+    
+    def _extract_json_from_example(self, example: str) -> str:
+        """Extract JSON data from a catocli command example"""
+        try:
+            # Look for JSON in single quotes first (most common)
+            single_quote_pattern = r"catocli[^']*'([^']+)'"
+            match = re.search(single_quote_pattern, example)
+            if match:
+                json_str = match.group(1)
+                # Validate it's JSON by trying to parse it
+                json.loads(json_str)
+                return json_str
+            
+            # Look for multi-line JSON (between '{ and }')
+            multiline_pattern = r"'\{([\s\S]*?)\}'"
+            match = re.search(multiline_pattern, example)
+            if match:
+                json_str = "{" + match.group(1) + "}"
+                # Validate it's JSON by trying to parse it
+                json.loads(json_str)
+                return json_str
+                
+        except (json.JSONDecodeError, AttributeError):
+            pass
+        
+        return None
     
     def _extract_additional_sections(self, command_path: str) -> List[str]:
         """Extract timeFrame examples and Operation Arguments sections from README"""

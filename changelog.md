@@ -86,18 +86,12 @@
 - OS context aware help menus for unix vs windows, and multi-line json input for both unix and windows
 - Added comprehensive timeframe examples to dynamic readme generation process (appStats, socketPortMetrics, etc)
 
-## 3.0.12 (2025-10-09)
+## 3.0.14 (2025-10-09)
 
 - Upated cli to support multi-line json input for ease of use for windows and unix
 - Updated eventsFeed with marker and run, and included --append-new-line for Chronicle support
 - Updated help menu formatting to be dynamic for windows powershell
 - Added custom report examples in readme and help menu for appStats, and appStatsTimeSeries
-
-## 3.0.13 (2025-10-09)
-
+- Updated custom exmaples to render properly for windows
 - Minor fix for readme for eventsFeed, and exception handling in menu for configure with no -h
-
-
-
-
-
+- Updated eventsFeed help menu to properly render on Windows systems

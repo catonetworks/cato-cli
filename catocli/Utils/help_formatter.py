@@ -94,15 +94,13 @@ class JSONExample:
             return [self.command_template.format(command=command_name, json=self.json_data)]
     
     def _format_powershell_comprehensive(self, command_name: str) -> List[str]:
-        """Format PowerShell here-string example with dynamic escape characters"""
-        # Method 3: Here-string with properly escaped quotes
-        escaped_json = self.json_data.replace('"', '\\"')
-        
+        """Format PowerShell here-string example with better compatibility"""
+        # Use here-string format which handles quotes better in PowerShell
         examples = [
-            "# PowerShell:",
+            "# PowerShell (using here-string):",
             f"catocli {command_name} @'",
-            escaped_json,
-            "'@"
+            self.json_data,  # Use original JSON without extra escaping
+            "'@ -p"
         ]
         
         return examples
@@ -228,8 +226,35 @@ class UniversalHelpFormatter:
                 for example in readme_examples:
                     # Check if this example starts with a comment (lines starting with #)
                     if example.startswith('#') and '\n' in example:
-                        # This is a comment followed by a command - preserve as-is
-                        help_lines.append(example)
+                        # This is a comment followed by a command - need to format the command part
+                        lines = example.split('\n', 1)
+                        if len(lines) == 2:
+                            comment_line = lines[0]
+                            command_line = lines[1]
+                            
+                            # Check if command has JSON and format appropriately
+                            if '{' in command_line and '}' in command_line:
+                                json_match = self._extract_json_from_example(command_line)
+                                if json_match:
+                                    # Create JSONExample and apply platform-specific formatting
+                                    json_example = JSONExample(json_match)
+                                    formatted_commands = json_example.format_for_platform(self.platform_info, command_name)
+                                    # Add comment first, then formatted commands
+                                    help_lines.append(comment_line)
+                                    help_lines.extend(formatted_commands)
+                                else:
+                                    # JSON extraction failed, format as simple command
+                                    formatted_command = self._format_simple_command_for_platform(command_line)
+                                    help_lines.append(comment_line)
+                                    help_lines.append(formatted_command)
+                            else:
+                                # Simple command - apply platform formatting
+                                formatted_command = self._format_simple_command_for_platform(command_line)
+                                help_lines.append(comment_line)
+                                help_lines.append(formatted_command)
+                        else:
+                            # Fallback - preserve as-is
+                            help_lines.append(example)
                     elif '{' in example and '}' in example:
                         # Check if this is a multi-line JSON example that can be platform-formatted
                         json_match = self._extract_json_from_example(example)
@@ -242,8 +267,9 @@ class UniversalHelpFormatter:
                             # Preserve as-is if it has comments or JSON extraction fails
                             help_lines.append(example)
                     else:
-                        # Simple command examples without JSON
-                        help_lines.append(example)
+                        # Simple command examples without JSON - apply platform formatting
+                        formatted_example = self._format_simple_command_for_platform(example)
+                        help_lines.append(formatted_example)
                     help_lines.append("")  # Add spacing between examples
         
         description_examples = []
@@ -393,6 +419,40 @@ class UniversalHelpFormatter:
                 unique_examples.append(example)
         
         return unique_examples
+    
+    def _format_simple_command_for_platform(self, example: str) -> str:
+        """Format a simple command example for the current platform"""
+        # If it's already a comment or doesn't contain catocli command, return as-is
+        if example.startswith('#') or 'catocli' not in example:
+            return example
+        
+        # For Windows, we need to adjust command syntax
+        if self.platform_info.platform == 'windows':
+            if self.platform_info.shell == 'powershell':
+                # PowerShell-specific adjustments
+                # Convert Unix-style command substitution to PowerShell equivalent
+                if '$(cat ' in example:
+                    # Convert $(cat file.json) to PowerShell equivalent
+                    example = example.replace('$(cat ', '(Get-Content ')
+                    example = example.replace('.json)', '.json -Raw)')
+                # Handle quotes - PowerShell prefers double quotes for JSON strings
+                # But for simple parameter examples, keep single quotes for strings
+                return example
+            elif self.platform_info.shell == 'cmd':
+                # CMD-specific adjustments - CMD has many limitations
+                if '$(cat ' in example:
+                    return "# CMD: Save JSON to file first, then use the file path"
+                elif len(example) > 100:
+                    return "# CMD: Use PowerShell for complex commands - CMD has line length limits"
+                # For CMD, convert single quotes to double quotes for JSON
+                if "'{" in example and "}'" in example:
+                    example = example.replace("'{", '"{')
+                    example = example.replace("}'", '}"')
+                    # Escape internal double quotes
+                    # This is complex, so provide a simplification
+                    return "# CMD: " + example + " (escape internal quotes as needed)"
+        
+        return example
     
     def _extract_json_from_example(self, example: str) -> str:
         """Extract JSON data from a catocli command example"""

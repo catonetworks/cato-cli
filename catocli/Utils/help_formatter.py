@@ -159,7 +159,7 @@ class JSONExample:
                 
         elif isinstance(obj, str):
             # Use double quotes and escape internal quotes
-            escaped_str = obj.replace('"', '`"')
+            escaped_str = obj.replace('"', '"')
             return f'"{escaped_str}"'
         elif isinstance(obj, bool):
             return "$true" if obj else "$false"

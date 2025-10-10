@@ -598,24 +598,17 @@ def scim_get_user(args, configuration=None):
             
         # Extract required path parameters
         user_id = json_data.get('user_id') or json_data.get('id')
-        source_id = json_data.get('source_id')
         
         # Extract optional query parameters
         excluded_attributes = json_data.get('excluded_attributes')
         
-        # Get accountID from configuration
-        account_id = getattr(args, 'accountID', None) or getattr(configuration, 'accountID', None) if configuration else None
-        
         if not user_id:
             return handle_scim_error("Missing required field: user_id (or id)", args.verbose)
-        if not account_id:
-            return handle_scim_error("Missing accountID. Please ensure your Cato configuration is set up correctly.", args.verbose)
-        if not source_id:
-            return handle_scim_error("Missing required field: source_id", args.verbose)
         
         # Get SCIM client and execute operation
+        # accountId and sourceId are automatically extracted from the SCIM URL in credentials
         client = get_scim_client(verbose=hasattr(args, 'verbose') and args.verbose)
-        success, result = client.get_user(user_id, account_id, source_id, excluded_attributes)
+        success, result = client.get_user(user_id, excluded_attributes)
         
         return format_scim_response(
             success, result, f"Get user {user_id}",
@@ -637,25 +630,15 @@ def scim_get_users(args, configuration=None):
             except json.JSONDecodeError as e:
                 return handle_scim_error(f"Invalid JSON input: {e}", args.verbose)
         
-        # Extract required path parameters
-        source_id = json_data.get('source_id')
-        
         # Extract optional query parameters
         count = json_data.get('count')
         start_index = json_data.get('start_index') or json_data.get('startIndex')
         params = json_data.get('params', {})
         
-        # Get accountID from configuration
-        account_id = getattr(args, 'accountID', None) or getattr(configuration, 'accountID', None) if configuration else None
-        
-        if not account_id:
-            return handle_scim_error("Missing accountID. Please ensure your Cato configuration is set up correctly.", args.verbose)
-        if not source_id:
-            return handle_scim_error("Missing required field: source_id", args.verbose)
-        
         # Get SCIM client and execute operation
+        # accountId and sourceId are automatically extracted from the SCIM URL in credentials
         client = get_scim_client(verbose=hasattr(args, 'verbose') and args.verbose)
-        success, result = client.get_users(account_id, source_id, count, start_index, params)
+        success, result = client.get_users(count, start_index, params)
         
         if success:
             # Handle both direct array response and ListResponse format
@@ -839,16 +822,10 @@ def scim_update_user(args, configuration=None):
         
         # Extract required path parameters
         user_id = json_data.get('user_id') or json_data.get('id')
-        account_id = json_data.get('account_id')
-        source_id = json_data.get('source_id')
         user_data = json_data.get('user_data', json_data)
         
         if not user_id:
             return handle_scim_error("Missing required field: user_id (or id)", args.verbose)
-        if not account_id:
-            return handle_scim_error("Missing required field: account_id", args.verbose)
-        if not source_id:
-            return handle_scim_error("Missing required field: source_id", args.verbose)
         if not user_data:
             return handle_scim_error("Missing required field: user_data", args.verbose)
         
@@ -857,8 +834,9 @@ def scim_update_user(args, configuration=None):
             return handle_scim_error("User data must be a JSON object", args.verbose)
         
         # Get SCIM client and execute operation
+        # accountId and sourceId are automatically extracted from the SCIM URL in credentials
         client = get_scim_client(verbose=hasattr(args, 'verbose') and args.verbose)
-        success, result = client.update_user(user_id, account_id, source_id, user_data)
+        success, result = client.update_user(user_id, user_data)
         
         return format_scim_response(
             success, result, f"Update user {user_id}",
@@ -890,18 +868,12 @@ def scim_patch_user(args, configuration=None):
         
         # Extract required path parameters
         user_id = json_data.get('user_id') or json_data.get('id')
-        account_id = json_data.get('account_id')
-        source_id = json_data.get('source_id')
         
         # Extract patch request data
         patch_data = json_data.get('patch_data', json_data)
         
         if not user_id:
             return handle_scim_error("Missing required field: user_id (or id)", args.verbose)
-        if not account_id:
-            return handle_scim_error("Missing required field: account_id", args.verbose)
-        if not source_id:
-            return handle_scim_error("Missing required field: source_id", args.verbose)
         
         # Build PatchRequestDTO according to swagger schema
         patch_request = {
@@ -930,8 +902,9 @@ def scim_patch_user(args, configuration=None):
                 return handle_scim_error(f"Operation {i+1}: Invalid operation '{op['op']}'. Must be 'add', 'remove', or 'replace'", args.verbose)
         
         # Get SCIM client and execute operation
+        # accountId and sourceId are automatically extracted from the SCIM URL in credentials
         client = get_scim_client(verbose=hasattr(args, 'verbose') and args.verbose)
-        success, result = client.patch_user(user_id, account_id, source_id, patch_request)
+        success, result = client.patch_user(user_id, patch_request)
         
         return format_scim_response(
             success, result, f"Patch user {user_id}",
@@ -963,19 +936,14 @@ def scim_delete_user(args, configuration=None):
         
         # Extract required path parameters
         user_id = json_data.get('user_id') or json_data.get('id')
-        account_id = json_data.get('account_id')
-        source_id = json_data.get('source_id')
         
         if not user_id:
             return handle_scim_error("Missing required field: user_id (or id)", args.verbose)
-        if not account_id:
-            return handle_scim_error("Missing required field: account_id", args.verbose)
-        if not source_id:
-            return handle_scim_error("Missing required field: source_id", args.verbose)
         
         # Get SCIM client and execute operation
+        # accountId and sourceId are automatically extracted from the SCIM URL in credentials
         client = get_scim_client(verbose=hasattr(args, 'verbose') and args.verbose)
-        success, result = client.delete_user(user_id, account_id, source_id)
+        success, result = client.delete_user(user_id)
         
         return format_scim_response(
             success, result, f"Delete user {user_id}",
@@ -1007,18 +975,12 @@ def scim_patch_group(args, configuration=None):
         
         # Extract required path parameters
         group_id = json_data.get('group_id') or json_data.get('id')
-        account_id = json_data.get('account_id')
-        source_id = json_data.get('source_id')
         
         # Extract patch request data
         patch_data = json_data.get('patch_data', json_data)
         
         if not group_id:
             return handle_scim_error("Missing required field: group_id (or id)", args.verbose)
-        if not account_id:
-            return handle_scim_error("Missing required field: account_id", args.verbose)
-        if not source_id:
-            return handle_scim_error("Missing required field: source_id", args.verbose)
         
         # Build PatchRequestDTO according to swagger schema
         patch_request = {
@@ -1047,8 +1009,9 @@ def scim_patch_group(args, configuration=None):
                 return handle_scim_error(f"Operation {i+1}: Invalid operation '{op['op']}'. Must be 'add', 'remove', or 'replace'", args.verbose)
         
         # Get SCIM client and execute operation
+        # accountId and sourceId are automatically extracted from the SCIM URL in credentials
         client = get_scim_client(verbose=hasattr(args, 'verbose') and args.verbose)
-        success, result = client.patch_group(group_id, account_id, source_id, patch_request)
+        success, result = client.patch_group(group_id, patch_request)
         
         return format_scim_response(
             success, result, f"Patch group {group_id}",
@@ -1080,19 +1043,14 @@ def scim_delete_group(args, configuration=None):
         
         # Extract required path parameters
         group_id = json_data.get('group_id') or json_data.get('id')
-        account_id = json_data.get('account_id')
-        source_id = json_data.get('source_id')
         
         if not group_id:
             return handle_scim_error("Missing required field: group_id (or id)", args.verbose)
-        if not account_id:
-            return handle_scim_error("Missing required field: account_id", args.verbose)
-        if not source_id:
-            return handle_scim_error("Missing required field: source_id", args.verbose)
         
         # Get SCIM client and execute operation
+        # accountId and sourceId are automatically extracted from the SCIM URL in credentials
         client = get_scim_client(verbose=hasattr(args, 'verbose') and args.verbose)
-        success, result = client.delete_group(group_id, account_id, source_id)
+        success, result = client.delete_group(group_id)
         
         return format_scim_response(
             success, result, f"Delete group {group_id}",

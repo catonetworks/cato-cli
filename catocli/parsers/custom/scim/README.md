@@ -98,7 +98,6 @@ catocli scim create_user "jane.doe@company.com" "Jane" "Doe" "external123" --act
 ```bash
 # Update user with complete user data (JSON format)
 catocli scim update_user "6283630dfd7ec758a8bf4b61" '{
-  "schemas": ["urn:ietf:params:scim:schemas:core:2.0:User"],
   "userName": "john.doe@company.com",
   "name": {
     "givenName": "John",
@@ -178,7 +177,6 @@ catocli scim create_group "Sales Team" "sales-external-id" '[
 ```bash
 # Update group with complete group data
 catocli scim update_group "6283630dfd7ec758a8bf4b62" '{
-  "schemas": ["urn:ietf:params:scim:schemas:core:2.0:Group"],
   "displayName": "Updated Team Name",
   "members": [
     {
@@ -265,9 +263,7 @@ For more information, see: https://support.catonetworks.com/hc/en-us/articles/29
 
 ```json
 {
-  "schemas": ["urn:ietf:params:scim:schemas:core:2.0:User"],
   "id": "6283630dfd7ec758a8bf4b61",
-  "externalId": "external123",
   "userName": "john.doe@company.com",
   "name": {
     "givenName": "John",
@@ -288,10 +284,8 @@ For more information, see: https://support.catonetworks.com/hc/en-us/articles/29
 
 ```json
 {
-  "schemas": ["urn:ietf:params:scim:schemas:core:2.0:Group"],
   "id": "6283630dfd7ec758a8bf4b62",
   "displayName": "Development Team",
-  "externalId": "dev-team-external-id",
   "members": [
     {
       "value": "6283630dfd7ec758a8bf4b61",
@@ -317,8 +311,8 @@ For more information, see: https://support.catonetworks.com/hc/en-us/articles/29
 ```bash
 #!/bin/bash
 # Read CSV file and create users
-while IFS=',' read -r email given_name family_name external_id; do
-    catocli scim create_user "$email" "$given_name" "$family_name" "$external_id" --verbose
+while IFS=',' read -r email given_name family_name; do
+    catocli scim create_user "$email" "$given_name" "$family_name" --verbose
 done < users.csv
 ```
 

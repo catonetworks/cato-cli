@@ -74,6 +74,9 @@ class CatoSCIMClient:
         self.verbose = verbose
         self.call_count = 0
         
+        # Parse accountId and sourceId from the SCIM URL
+        self.account_id, self.source_id = self._parse_scim_url(self.baseurl)
+        
         # Configure module logger
         if isinstance(log_level, int):
             # Backwards compatibility: 0=CRITICAL+1, 1=ERROR, 2=INFO, 3=DEBUG
@@ -93,6 +96,52 @@ class CatoSCIMClient:
             logger.warning("SSL certificate verification is disabled - this is insecure!")
         
         logger.debug(f"Initialized CatoSCIMClient with baseurl: {self.baseurl}")
+        logger.debug(f"Parsed accountId: {self.account_id}, sourceId: {self.source_id}")
+
+    def _parse_scim_url(self, scim_url):
+        """
+        Parse accountId and sourceId from SCIM URL.
+        
+        Args:
+            scim_url: SCIM URL in format https://scimservice.catonetworks.com:4443/scim/v2/{accountId}/{sourceId}
+        
+        Returns:
+            tuple: (account_id, source_id)
+        
+        Raises:
+            ValueError: If URL format is invalid
+        """
+        if not scim_url:
+            raise ValueError("SCIM URL is required")
+        
+        try:
+            parsed = urllib.parse.urlparse(scim_url)
+            path_parts = parsed.path.strip('/').split('/')
+            
+            # Expected path: ['scim', 'v2', 'accountId', 'sourceId']
+            if len(path_parts) < 4 or path_parts[0] != 'scim' or path_parts[1] != 'v2':
+                raise ValueError(
+                    f"Invalid SCIM URL format. Expected: https://scimservice.catonetworks.com:4443/scim/v2/{{accountId}}/{{sourceId}}, "
+                    f"got: {scim_url}"
+                )
+            
+            account_id = path_parts[2]
+            source_id = path_parts[3]
+            
+            # Validate that they are numeric (optional, but helpful for catching errors)
+            try:
+                int(account_id)
+                int(source_id)
+            except ValueError:
+                logger.warning(f"Non-numeric accountId ({account_id}) or sourceId ({source_id}) in SCIM URL: {scim_url}")
+            
+            return account_id, source_id
+            
+        except (IndexError, AttributeError) as e:
+            raise ValueError(
+                f"Failed to parse SCIM URL: {scim_url}. "
+                f"Expected format: https://scimservice.catonetworks.com:4443/scim/v2/{{accountId}}/{{sourceId}}"
+            ) from e
 
     def send(self, method="GET", path="/", request_data=None):
         """
@@ -477,27 +526,74 @@ class CatoSCIMClient:
 
         return True, groups
 
-    def get_user(self, userid):
+    def get_user(self, userid, excluded_attributes=None):
         """
         Gets a user by their ID.
         
         Args:
             userid: SCIM user ID to retrieve
+            excluded_attributes: Optional comma-separated list of attributes to exclude
         
         Returns:
             Tuple of (success_boolean, user_data)
+        
+        Note:
+            accountId and sourceId are automatically extracted from the SCIM URL in credentials
         """
         logger.info(f'Getting user: {userid}')
-        return self.send("GET", f'/Users/{userid}')
+        
+        # Build query parameters if excluded_attributes is provided
+        path = f'/Users/{userid}'
+        if excluded_attributes:
+            path += f'?excludedAttributes={urllib.parse.quote(excluded_attributes)}'
+        
+        return self.send("GET", path)
 
-    def get_users(self):
+    def get_users(self, count=None, start_index=None, params=None):
         """
-        Returns all users.
+        Returns users with optional pagination and filtering support.
+        
+        Args:
+            count: Optional maximum number of users to return
+            start_index: Optional starting index for pagination (1-based)
+            params: Optional additional query parameters
         
         Returns:
-            Tuple of (success_boolean, list_of_users)
+            Tuple of (success_boolean, list_of_users_or_paginated_response)
+        
+        Note:
+            accountId and sourceId are automatically extracted from the SCIM URL in credentials
         """
-        logger.info('Fetching all users')
+        logger.info('Fetching users')
+        
+        # If specific pagination parameters are provided, return paginated response
+        if count is not None or start_index is not None:
+            # Build query parameters
+            query_params = []
+            if count is not None:
+                query_params.append(f'count={count}')
+            if start_index is not None:
+                query_params.append(f'startIndex={start_index}')
+            
+            # Add any additional params
+            if params and isinstance(params, dict):
+                for key, value in params.items():
+                    query_params.append(f'{key}={urllib.parse.quote(str(value))}')
+            
+            query_string = '&'.join(query_params)
+            path = f'/Users?{query_string}' if query_string else '/Users'
+            
+            logger.debug(f'Sending paginated users request: {path}')
+            success, response = self.send("GET", path)
+            
+            if success:
+                # Return the full paginated response format
+                return True, response
+            else:
+                logger.error(f'Error retrieving users: {response}')
+                return False, response
+        
+        # Default behavior: fetch all users (backward compatibility)
         users = []
         iteration = 0
         while True:
@@ -609,27 +705,34 @@ class CatoSCIMClient:
         
         Returns:
             Tuple of (success_boolean, response_data)
+        
+        Note:
+            accountId and sourceId are automatically extracted from the SCIM URL in credentials
         """
         logger.info(f'Updating user {userid}')
+
+        if user_data is None:
+            raise ValueError("user_data is required")
 
         # Send the request
         success, result = self.send("PUT", f'/Users/{userid}', user_data)
         return success, result
 
-    def patch_user(self, user_id, account_id, source_id, patch_request):
+    def patch_user(self, user_id, patch_request):
         """
-        Patch a SCIM user with partial updates (PATCH operation) using the full API schema.
+        Patch a SCIM user with partial updates (PATCH operation).
         
         Args:
             user_id: SCIM user ID to patch
-            account_id: SCIM account identifier
-            source_id: SCIM source identifier
             patch_request: PatchRequestDTO containing Operations array
         
         Returns:
             Tuple of (success_boolean, response_data)
+        
+        Note:
+            accountId and sourceId are automatically extracted from the SCIM URL in credentials
         """
-        logger.info(f'Patching user {user_id} in account {account_id}, source {source_id}')
+        logger.info(f'Patching user {user_id} in account {self.account_id}, source {self.source_id}')
 
         # The SCIM API expects the full path format: /scim/v2/{accountId}/{sourceId}/Users/{id}
         # But our base URL already includes the /scim/v2/{accountId}/{sourceId} part,
@@ -638,19 +741,20 @@ class CatoSCIMClient:
         success, result = self.send("PATCH", path, patch_request)
         return success, result
 
-    def delete_user(self, user_id, account_id, source_id):
+    def delete_user(self, user_id):
         """
-        Delete a SCIM user (DELETE operation) using the full API schema.
+        Delete a SCIM user (DELETE operation).
         
         Args:
             user_id: SCIM user ID to delete
-            account_id: SCIM account identifier  
-            source_id: SCIM source identifier
         
         Returns:
             Tuple of (success_boolean, response_data)
+        
+        Note:
+            accountId and sourceId are automatically extracted from the SCIM URL in credentials
         """
-        logger.info(f'Deleting user {user_id} in account {account_id}, source {source_id}')
+        logger.info(f'Deleting user {user_id} in account {self.account_id}, source {self.source_id}')
 
         # The SCIM API expects the full path format: /scim/v2/{accountId}/{sourceId}/Users/{id}
         # But our base URL already includes the /scim/v2/{accountId}/{sourceId} part,
@@ -659,20 +763,21 @@ class CatoSCIMClient:
         success, result = self.send("DELETE", path)
         return success, result
 
-    def patch_group(self, group_id, account_id, source_id, patch_request):
+    def patch_group(self, group_id, patch_request):
         """
-        Patch a SCIM group with partial updates (PATCH operation) using the full API schema.
+        Patch a SCIM group with partial updates (PATCH operation).
         
         Args:
             group_id: SCIM group ID to patch
-            account_id: SCIM account identifier
-            source_id: SCIM source identifier
             patch_request: PatchRequestDTO containing Operations array
         
         Returns:
             Tuple of (success_boolean, response_data)
+        
+        Note:
+            accountId and sourceId are automatically extracted from the SCIM URL in credentials
         """
-        logger.info(f'Patching group {group_id} in account {account_id}, source {source_id}')
+        logger.info(f'Patching group {group_id} in account {self.account_id}, source {self.source_id}')
 
         # The SCIM API expects the full path format: /scim/v2/{accountId}/{sourceId}/Groups/{id}
         # But our base URL already includes the /scim/v2/{accountId}/{sourceId} part,
@@ -681,19 +786,20 @@ class CatoSCIMClient:
         success, result = self.send("PATCH", path, patch_request)
         return success, result
 
-    def delete_group(self, group_id, account_id, source_id):
+    def delete_group(self, group_id):
         """
-        Delete a SCIM group (DELETE operation) using the full API schema.
+        Delete a SCIM group (DELETE operation).
         
         Args:
             group_id: SCIM group ID to delete
-            account_id: SCIM account identifier  
-            source_id: SCIM source identifier
         
         Returns:
             Tuple of (success_boolean, response_data)
+        
+        Note:
+            accountId and sourceId are automatically extracted from the SCIM URL in credentials
         """
-        logger.info(f'Deleting group {group_id} in account {account_id}, source {source_id}')
+        logger.info(f'Deleting group {group_id} in account {self.account_id}, source {self.source_id}')
 
         # The SCIM API expects the full path format: /scim/v2/{accountId}/{sourceId}/Groups/{id}
         # But our base URL already includes the /scim/v2/{accountId}/{sourceId} part,

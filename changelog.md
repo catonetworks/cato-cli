@@ -86,7 +86,7 @@
 - OS context aware help menus for unix vs windows, and multi-line json input for both unix and windows
 - Added comprehensive timeframe examples to dynamic readme generation process (appStats, socketPortMetrics, etc)
 
-## 3.0.17 (2025-10-09)
+## 3.0.18 (2025-10-09)
 
 - Upated cli to support multi-line json input for ease of use for windows and unix
 - Updated eventsFeed with marker and run, and included --append-new-line for Chronicle support

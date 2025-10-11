@@ -26,10 +26,30 @@
         "ContainerQueries": true,
         "SiteQueries": true
     },
-    "queryOperationCsvOutput": {
-        "query.appStats": "format_app_stats_to_csv",
-        "query.appStatsTimeSeries": "format_app_stats_timeseries_to_csv",
-        "query.socketPortMetricsTimeSeries": "format_socket_port_metrics_timeseries_to_csv",
-        "query.userMetrics": "format_user_metrics_to_csv"
+    "queryOperationDefaultFormatOverrides": {
+        "query.appStats": {
+            "enabled": true,
+            "default_format": "json",
+            "format_function": "format_app_stats",
+            "supports_raw_flag": true
+        },
+        "query.appStatsTimeSeries": {
+            "enabled": true,
+            "default_format": "json",
+            "format_function": "format_app_stats_timeseries",
+            "supports_raw_flag": true
+        },
+        "query.socketPortMetricsTimeSeries": {
+            "enabled": true,
+            "default_format": "json",
+            "format_function": "format_socket_port_metrics_timeseries",
+            "supports_raw_flag": true
+        },
+        "query.accountMetrics": {
+            "enabled": true,
+            "default_format": "json",
+            "format_function": "format_account_metrics",
+            "supports_raw_flag": true
+        }
     }
 }

@@ -129,22 +129,50 @@ def createRequest(args, configuration):
         print(f"ERROR: Failed to load operation model for {operation_name}: {e}")
         return None
         
-    # Load CSV configuration for this operation
+    # Load configuration for output formatting
     csv_function = None
-    output_format = getattr(args, 'format', 'json')  # Default to json if -f not provided
-    
-    if output_format == 'csv':
-        try:
-            settings = loadJSON("clisettings.json")
-            csv_supported_operations = settings.get("queryOperationCsvOutput", {})
+    output_format = getattr(args, 'format', None)
+    raw_output = getattr(args, 'raw_output', False)
+    default_override = None
+
+    try:
+        settings = loadJSON("clisettings.json")
+        csv_supported_operations = settings.get("queryOperationCsvOutput", {})
+        default_overrides = settings.get("queryOperationDefaultFormatOverrides", {})
+        default_override = default_overrides.get(operation_name)
+    except Exception as e:
+        csv_supported_operations = {}
+        default_override = None
+
+    # Determine effective format
+    # Priority: -raw flag -> raw/original; -f -> explicit; config override -> default; fallback -> json
+    effective_format = 'json'
+    if raw_output:
+        effective_format = 'raw'
+    elif output_format in ['json', 'csv']:
+        effective_format = output_format
+    elif default_override and default_override.get('enabled'):
+        effective_format = default_override.get('default_format', 'json')
+
+    # If CSV requested, validate support - check both new and legacy systems
+    if effective_format == 'csv':
+        # First check new format override system
+        if default_override and default_override.get('format_function'):
+            csv_function = default_override.get('format_function')
+        else:
+            # Fallback to legacy CSV system for backward compatibility
             csv_function = csv_supported_operations.get(operation_name)
-        except Exception as e:
-            print(f"WARNING: Could not load CSV settings: {e}")
-            csv_function = None
         
         if not csv_function:
+            # List all operations that support CSV from both systems
+            supported_ops = list(csv_supported_operations.keys())
+            if default_overrides:
+                for op_name, config in default_overrides.items():
+                    if config.get('enabled') and config.get('format_function'):
+                        supported_ops.append(op_name)
+            
             print(f"ERROR: CSV output not supported for operation '{operation_name}'")
-            print(f"Supported CSV operations: {list(csv_supported_operations.keys()) if 'csv_supported_operations' in locals() else 'none'}")
+            print(f"Supported CSV operations: {sorted(list(set(supported_ops))) if supported_ops else 'none'}")
             return None
         
     variables_obj = {}
@@ -235,10 +263,16 @@ def createRequest(args, configuration):
                         )
                         print(f"Sentinel API response code: {result_code}")
                 
-                # Apply CSV formatting if requested
-                if output_format == 'csv' and csv_function and response:
+                # Apply formatting based on effective format
+                if effective_format == 'raw' or not default_override:
+                    # Raw format - return only the data portion, not HTTP headers/status
+                    if isinstance(response, (list, tuple)) and len(response) > 0:
+                        return response[0]  # Extract just the data portion
+                    else:
+                        return response
+                elif effective_format == 'csv' and csv_function and response:
+                    # CSV formatting requested
                     try:
-                        # Import the CSV formatter dynamically
                         # Get the response data (handle both list and tuple responses)
                         if isinstance(response, (list, tuple)) and len(response) > 0:
                             response_data = response[0]
@@ -257,7 +291,14 @@ def createRequest(args, configuration):
                         # Call the appropriate CSV formatter function
                         if hasattr(csv_formatter, csv_function):
                             csv_formatter_func = getattr(csv_formatter, csv_function)
-                            csv_output = csv_formatter_func(response_data)
+                            
+                            # Check if this is a new format function that takes output_format parameter
+                            if default_override and default_override.get('format_function') == csv_function:
+                                # New format functions that support output_format parameter
+                                csv_output = csv_formatter_func(response_data, output_format='csv')
+                            else:
+                                # Legacy CSV functions that only take response_data
+                                csv_output = csv_formatter_func(response_data)
                             
                             if csv_output:
                                 # Determine output directory (reports) in current folder
@@ -299,15 +340,74 @@ def createRequest(args, configuration):
                                 
                                 # Return structured response similar to export functions
                                 return [{"success": True, "output_file": output_path, "operation": operation_name}]
+                            elif csv_output is None:
+                                # Formatter returned None, indicating we should fall back to raw response
+                                print("INFO: No processable data found, returning raw API response")
+                                # Extract just the data portion to avoid HTTP headers
+                                if isinstance(response, (list, tuple)) and len(response) > 0:
+                                    return response[0]
+                                else:
+                                    return response
                             else:
-                                print("WARNING: CSV formatter returned empty result")
-                                return response
+                                print("WARNING: CSV formatter returned empty result - no data available for the specified criteria")
+                                # Return clean error response instead of raw response with HTTP headers
+                                return [{"error": "No data available for CSV export", "operation": operation_name, "success": False}]
                         else:
                             print(f"ERROR: CSV formatter function '{csv_function}' not found")
-                            return response
+                            # Return clean error response instead of raw response with HTTP headers
+                            return [{"error": f"CSV formatter function '{csv_function}' not found", "operation": operation_name, "success": False}]
                     except Exception as e:
                         print(f"ERROR: Failed to format CSV output: {e}")
-                        return response
+                        # Return clean error response instead of raw response with HTTP headers
+                        return [{"error": f"Failed to format CSV output: {str(e)}", "operation": operation_name, "success": False}]
+                elif effective_format == 'json' and default_override and default_override.get('format_function') and response:
+                    # Enhanced JSON formatting requested
+                    try:
+                        # Get the response data (handle both list and tuple responses)
+                        if isinstance(response, (list, tuple)) and len(response) > 0:
+                            response_data = response[0]
+                        else:
+                            response_data = response
+                        
+                        # Add Utils directory to path and import csv_formatter module for format_app_stats
+                        current_dir = os.path.dirname(os.path.abspath(__file__))
+                        utils_dir = os.path.join(os.path.dirname(current_dir), 'Utils')
+                        if utils_dir not in sys.path:
+                            sys.path.insert(0, utils_dir)
+                        
+                        # Import the csv_formatter module (which contains format_app_stats)
+                        import csv_formatter
+                        
+                        # Call the appropriate formatter function with JSON format
+                        format_function = default_override.get('format_function')
+                        if hasattr(csv_formatter, format_function):
+                            formatter_func = getattr(csv_formatter, format_function)
+                            formatted_output = formatter_func(response_data, output_format='json')
+                            
+                            if formatted_output is None:
+                                # Formatter returned None, indicating we should fall back to raw response
+                                print("INFO: No processable data found, returning raw API response")
+                                return response_data
+                            else:
+                                # Pretty print the formatted JSON directly to stdout
+                                print(formatted_output)
+                                return None  # Return None to prevent further processing/output
+                        else:
+                            print(f"WARNING: Formatter function '{format_function}' not found, using original response")
+                            return response
+                    except Exception as e:
+                        print(f"ERROR: Failed to apply enhanced JSON formatting: {e}")
+                        # Instead of returning the raw response which may contain non-serializable objects,
+                        # extract just the JSON data portion to avoid HTTPHeaderDict serialization errors
+                        try:
+                            if isinstance(response, (list, tuple)) and len(response) > 0:
+                                response_data = response[0]
+                            else:
+                                response_data = response
+                            return response_data
+                        except Exception:
+                            # If we can't extract data safely, return a minimal error response
+                            return [{"error": "Failed to format response and fallback failed", "original_error": str(e)}]
                 
                 return response
                 

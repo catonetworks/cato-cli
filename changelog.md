@@ -97,8 +97,8 @@
 - Updated eventsFeed help menu to properly render on Windows systems
 - Updated SCIM client removing external_id from standard client to pull from url
 
-## 3.0.29 (2025-10-15)
+## 3.0.21 (2025-10-15)
 - Added custom reports for query.accountMetrics, query.appStats, query.appStatsTimeSeries, query.eventsTimeSeries, query.socketPortMetrics, query.socketPortMetricsTimeSeries, updating format to human readable output
 - Added -f csv for custom reports
 - Updated report generation to be a part of dynamic cli generation process
-
+- Adding examples for socketPortMetrics

@@ -47,7 +47,7 @@ catocli query socketPortMetricsTimeSeries '{
 
 ```bash
 # 1 Day sum of traffic by site, socket_interface, device_id as csv
-catocli query socketPortMetrics '{
+catocli query socketPortMetricsTimeSeries
     "buckets": 24,
     "socketPortMetricsDimension": [
         {
@@ -86,7 +86,7 @@ catocli query socketPortMetrics '{
 
 ```bash
 # 1 Day sum of traffic by site, socket_interface, device_id
-catocli query socketPortMetrics '{
+catocli query socketPortMetricsTimeSeries '{
     "buckets": 120,
     "socketPortMetricsDimension": [
         {

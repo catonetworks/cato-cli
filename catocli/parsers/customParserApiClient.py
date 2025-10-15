@@ -279,18 +279,23 @@ def createRequest(args, configuration):
                         else:
                             response_data = response
                         
-                        # Add Utils directory to path and import csv_formatter
+                        # Add Utils directory to path and import formatter_utils
                         current_dir = os.path.dirname(os.path.abspath(__file__))
                         utils_dir = os.path.join(os.path.dirname(current_dir), 'Utils')
                         if utils_dir not in sys.path:
                             sys.path.insert(0, utils_dir)
                         
-                        # Import the csv_formatter module
-                        import csv_formatter
+                        # Import the formatter_utils module
+                        import formatter_utils
                         
-                        # Call the appropriate CSV formatter function
-                        if hasattr(csv_formatter, csv_function):
-                            csv_formatter_func = getattr(csv_formatter, csv_function)
+                        # Use the centralized format_to_csv function
+                        csv_output = None
+                        if hasattr(formatter_utils, 'format_to_csv'):
+                            # Use format_to_csv with the operation name
+                            csv_output = formatter_utils.format_to_csv(response_data, operation_name)
+                        elif hasattr(formatter_utils, csv_function):
+                            # Fallback to direct function call for legacy support
+                            csv_formatter_func = getattr(formatter_utils, csv_function)
                             
                             # Check if this is a new format function that takes output_format parameter
                             if default_override and default_override.get('format_function') == csv_function:
@@ -299,63 +304,65 @@ def createRequest(args, configuration):
                             else:
                                 # Legacy CSV functions that only take response_data
                                 csv_output = csv_formatter_func(response_data)
-                            
-                            if csv_output:
-                                # Determine output directory (reports) in current folder
-                                reports_dir = os.path.join(os.getcwd(), 'reports')
-                                if not os.path.exists(reports_dir):
-                                    os.makedirs(reports_dir)
-                                
-                                # Default filename is the operation name (second segment) lowercased
-                                op_base = operation_name.split('.')[-1].lower()
-                                default_filename = f"{op_base}.csv"
-                                filename = default_filename
-                                
-                                # Override filename if provided
-                                if hasattr(args, 'csv_filename') and getattr(args, 'csv_filename'):
-                                    filename = getattr(args, 'csv_filename')
-                                    # Ensure .csv extension
-                                    if not filename.lower().endswith('.csv'):
-                                        filename += '.csv'
-                                
-                                # Append timestamp if requested
-                                if hasattr(args, 'append_timestamp') and getattr(args, 'append_timestamp'):
-                                    ts = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-                                    name, ext = os.path.splitext(filename)
-                                    filename = f"{name}_{ts}{ext}"
-                                
-                                output_path = os.path.join(reports_dir, filename)
-                                
-                                # Write CSV to file
-                                try:
-                                    with open(output_path, 'w', encoding='utf-8', newline='') as f:
-                                        f.write(csv_output)
-                                except Exception as write_err:
-                                    print(f"ERROR: Failed to write CSV to file {output_path}: {write_err}")
-                                    # Fallback: return CSV to stdout behavior
-                                    return [{"__csv_output__": csv_output}]
-                                
-                                if params.get('v'):
-                                    print(f"Saved CSV report to: {output_path}")
-                                
-                                # Return structured response similar to export functions
-                                return [{"success": True, "output_file": output_path, "operation": operation_name}]
-                            elif csv_output is None:
-                                # Formatter returned None, indicating we should fall back to raw response
-                                print("INFO: No processable data found, returning raw API response")
-                                # Extract just the data portion to avoid HTTP headers
-                                if isinstance(response, (list, tuple)) and len(response) > 0:
-                                    return response[0]
-                                else:
-                                    return response
-                            else:
-                                print("WARNING: CSV formatter returned empty result - no data available for the specified criteria")
-                                # Return clean error response instead of raw response with HTTP headers
-                                return [{"error": "No data available for CSV export", "operation": operation_name, "success": False}]
                         else:
+                            # CSV formatter function not found
                             print(f"ERROR: CSV formatter function '{csv_function}' not found")
                             # Return clean error response instead of raw response with HTTP headers
                             return [{"error": f"CSV formatter function '{csv_function}' not found", "operation": operation_name, "success": False}]
+                        
+                        # Handle CSV output regardless of which formatter path was used
+                        if csv_output:
+                            # Determine output directory (reports) in current folder
+                            reports_dir = os.path.join(os.getcwd(), 'reports')
+                            if not os.path.exists(reports_dir):
+                                os.makedirs(reports_dir)
+                            
+                            # Default filename is the operation name (second segment) lowercased
+                            op_base = operation_name.split('.')[-1].lower()
+                            default_filename = f"{op_base}.csv"
+                            filename = default_filename
+                            
+                            # Override filename if provided
+                            if hasattr(args, 'csv_filename') and getattr(args, 'csv_filename'):
+                                filename = getattr(args, 'csv_filename')
+                                # Ensure .csv extension
+                                if not filename.lower().endswith('.csv'):
+                                    filename += '.csv'
+                            
+                            # Append timestamp if requested
+                            if hasattr(args, 'append_timestamp') and getattr(args, 'append_timestamp'):
+                                ts = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+                                name, ext = os.path.splitext(filename)
+                                filename = f"{name}_{ts}{ext}"
+                            
+                            output_path = os.path.join(reports_dir, filename)
+                            
+                            # Write CSV to file
+                            try:
+                                with open(output_path, 'w', encoding='utf-8', newline='') as f:
+                                    f.write(csv_output)
+                            except Exception as write_err:
+                                print(f"ERROR: Failed to write CSV to file {output_path}: {write_err}")
+                                # Fallback: return CSV to stdout behavior
+                                return [{"__csv_output__": csv_output}]
+                            
+                            if params.get('v'):
+                                print(f"Saved CSV report to: {output_path}")
+                            
+                            # Return structured response similar to export functions
+                            return [{"success": True, "output_file": output_path, "operation": operation_name}]
+                        elif csv_output is None:
+                            # Formatter returned None, indicating we should fall back to raw response
+                            print("INFO: No processable data found, returning raw API response")
+                            # Extract just the data portion to avoid HTTP headers
+                            if isinstance(response, (list, tuple)) and len(response) > 0:
+                                return response[0]
+                            else:
+                                return response
+                        else:
+                            print("WARNING: CSV formatter returned empty result - no data available for the specified criteria")
+                            # Return clean error response instead of raw response with HTTP headers
+                            return [{"error": "No data available for CSV export", "operation": operation_name, "success": False}]
                     except Exception as e:
                         print(f"ERROR: Failed to format CSV output: {e}")
                         # Return clean error response instead of raw response with HTTP headers
@@ -369,19 +376,53 @@ def createRequest(args, configuration):
                         else:
                             response_data = response
                         
-                        # Add Utils directory to path and import csv_formatter module for format_app_stats
+                        # Add Utils directory to path and import formatter_utils module for format functions
                         current_dir = os.path.dirname(os.path.abspath(__file__))
                         utils_dir = os.path.join(os.path.dirname(current_dir), 'Utils')
                         if utils_dir not in sys.path:
                             sys.path.insert(0, utils_dir)
                         
-                        # Import the csv_formatter module (which contains format_app_stats)
-                        import csv_formatter
+                        # Import the formatter_utils module (which contains format functions)
+                        import formatter_utils
                         
-                        # Call the appropriate formatter function with JSON format
+                        # Use the centralized format_to_csv function which can handle JSON output too
                         format_function = default_override.get('format_function')
-                        if hasattr(csv_formatter, format_function):
-                            formatter_func = getattr(csv_formatter, format_function)
+                        if hasattr(formatter_utils, 'format_to_csv'):
+                            # The individual formatters handle JSON output internally when called from format_to_csv
+                            # We need to directly call the specific formatter for JSON output
+                            try:
+                                # Dynamic import of the specific formatter function
+                                if format_function == 'format_app_stats':
+                                    from formatter_app_stats import format_app_stats
+                                    formatted_output = format_app_stats(response_data, output_format='json')
+                                elif format_function == 'format_app_stats_timeseries':
+                                    from formatter_app_stats_timeseries import format_app_stats_timeseries
+                                    formatted_output = format_app_stats_timeseries(response_data, output_format='json')
+                                elif format_function == 'format_account_metrics':
+                                    from formatter_account_metrics import format_account_metrics
+                                    formatted_output = format_account_metrics(response_data, output_format='json')
+                                elif format_function == 'format_socket_port_metrics_timeseries':
+                                    from formatter_socket_port_metrics_timeseries import format_socket_port_metrics_timeseries
+                                    formatted_output = format_socket_port_metrics_timeseries(response_data, output_format='json')
+                                elif format_function == 'format_events_timeseries':
+                                    from formatter_events_timeseries import format_events_timeseries
+                                    formatted_output = format_events_timeseries(response_data, output_format='json')
+                                else:
+                                    formatted_output = None
+                            except ImportError:
+                                formatted_output = None
+                            
+                            # Handle the formatted output from individual formatters
+                            if formatted_output is None:
+                                # Formatter returned None, indicating we should fall back to raw response
+                                print("INFO: No processable data found, returning raw API response")
+                                return response_data
+                            else:
+                                # Pretty print the formatted JSON directly to stdout
+                                print(formatted_output)
+                                return None  # Return None to prevent further processing/output
+                        elif hasattr(formatter_utils, format_function):
+                            formatter_func = getattr(formatter_utils, format_function)
                             formatted_output = formatter_func(response_data, output_format='json')
                             
                             if formatted_output is None:

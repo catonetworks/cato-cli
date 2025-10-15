@@ -16,4 +16,9 @@ def query_socketPortMetrics_parse(query_subparsers):
     query_socketPortMetrics_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_socketPortMetrics_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_socketPortMetrics_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+
+    query_socketPortMetrics_parser.add_argument('-f', '--format', choices=['json', 'csv'], help='Output format (default: formatted json, use -raw for original json)')
+    query_socketPortMetrics_parser.add_argument('-raw', '--raw', dest='raw_output', action='store_true', help='Return raw/original JSON format (bypasses default formatting)')
+    query_socketPortMetrics_parser.add_argument('--csv-filename', dest='csv_filename', help='Override CSV file name (default: socketportmetrics.csv)')
+    query_socketPortMetrics_parser.add_argument('--append-timestamp', dest='append_timestamp', action='store_true', help='Append timestamp to the CSV file name')
     query_socketPortMetrics_parser.set_defaults(func=createRequest,operation_name='query.socketPortMetrics')

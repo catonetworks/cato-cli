@@ -13,77 +13,14 @@ import json
 from datetime import datetime
 from typing import Dict, List, Any, Optional, Set, Tuple
 
-# Helper functions (copied from csv_formatter to avoid circular import)
-def format_timestamp(timestamp_ms: int) -> str:
-    """
-    Convert timestamp from milliseconds to readable format
-    
-    Args:
-        timestamp_ms: Timestamp in milliseconds
-        
-    Returns:
-        Formatted timestamp string in UTC
-    """
+# Import shared utility functions
+try:
+    from .formatter_utils import convert_bytes_to_mb, format_timestamp, is_bytes_measure
+except ImportError:
     try:
-        # Convert milliseconds to seconds for datetime
-        timestamp_sec = timestamp_ms / 1000
-        dt = datetime.utcfromtimestamp(timestamp_sec)
-        return dt.strftime('%Y-%m-%d %H:%M:%S UTC')
-    except (ValueError, OSError):
-        return str(timestamp_ms)
-
-
-def convert_bytes_to_mb(value: Any) -> str:
-    """
-    Convert bytes value to megabytes with proper formatting
-
-    Args:
-        value: The value to convert (should be numeric)
-        
-    Returns:
-        Formatted MB value as string
-    """
-    if not value or not str(value).replace('.', '').replace('-', '').isdigit():
-        return str(value) if value is not None else ''
-    
-    try:
-        # Convert bytes to megabytes (divide by 1,048,576)
-        mb_value = float(value) / 1048576
-        # Format to 3 decimal places, but remove trailing zeros
-        return f"{mb_value:.3f}".rstrip('0').rstrip('.')
-    except (ValueError, ZeroDivisionError):
-        return str(value) if value is not None else ''
-
-
-def is_bytes_measure(measure: str, units: str = "") -> bool:
-    """
-    Determine if a measure represents bytes data that should be converted to MB
-    
-    Args:
-        measure: The measure name
-        units: The units field if available
-        
-    Returns:
-        True if this measure should be converted to MB
-    """
-    bytes_measures = {
-        'downstream', 'upstream', 'traffic', 'bytes', 'bytesDownstream', 
-        'bytesUpstream', 'bytesTotal', 'throughput_downstream', 'throughput_upstream'
-    }
-    
-    # Check if measure name indicates bytes
-    if measure.lower() in bytes_measures:
-        return True
-        
-    # Check if measure contains bytes-related keywords
-    if any(keyword in measure.lower() for keyword in ['bytes', 'throughput']):
-        return True
-        
-    # Check units field
-    if units and 'bytes' in units.lower():
-        return True
-        
-    return False
+        from catocli.Utils.formatter_utils import convert_bytes_to_mb, format_timestamp, is_bytes_measure
+    except ImportError:
+        from formatter_utils import convert_bytes_to_mb, format_timestamp, is_bytes_measure
 
 
 def format_account_metrics(response_data: Dict[str, Any], output_format: str = 'json') -> str:
@@ -388,9 +325,8 @@ def _format_account_metrics_to_csv(response_data: Dict[str, Any]) -> str:
             interface_metrics = interface.get('metrics', {})
             for metric_key in interface_metrics.keys():
                 if metric_key in ['bytesDownstream', 'bytesUpstream', 'bytesTotal']:
-                    all_metric_labels.add(f'bytes_downstream_total_mb' if metric_key == 'bytesDownstream' else
-                                         f'bytes_upstream_total_mb' if metric_key == 'bytesUpstream' else
-                                         f'bytes_total_mb' if metric_key == 'bytesTotal' else metric_key)
+                    # Use consistent naming: {metric}_mb for both timeseries and interface totals
+                    all_metric_labels.add(f'{metric_key}_mb')
                 else:
                     all_metric_labels.add(f'{metric_key}_total')
     
@@ -440,17 +376,15 @@ def _format_account_metrics_to_csv(response_data: Dict[str, Any]) -> str:
                             for label in sorted_metric_labels:
                                 data_by_timestamp[key][label] = ''
                             
-                            # Add interface-level metrics (totals) with byte conversion
+                            # Add interface-level metrics with byte conversion
                             for metric_key, metric_value in interface_metrics.items():
                                 if metric_key in ['bytesDownstream', 'bytesUpstream', 'bytesTotal']:
                                     # Convert bytes to MB for these specific metrics
                                     mb_value = float(metric_value) / (1024 * 1024) if metric_value and metric_value != 0 else 0
-                                    column_name_total = (
-                                        'bytes_downstream_total_mb' if metric_key == 'bytesDownstream' else
-                                        'bytes_upstream_total_mb' if metric_key == 'bytesUpstream' else
-                                        'bytes_total_mb' if metric_key == 'bytesTotal' else f'{metric_key}_total_mb'
-                                    )
-                                    data_by_timestamp[key][column_name_total] = f"{mb_value:.3f}".rstrip('0').rstrip('.')
+                                    column_name = f'{metric_key}_mb'
+                                    # If timeseries data exists for this metric, don't overwrite it
+                                    if not data_by_timestamp[key][column_name]:
+                                        data_by_timestamp[key][column_name] = f"{mb_value:.3f}".rstrip('0').rstrip('.')
                                 else:
                                     # Add other interface metrics as-is
                                     data_by_timestamp[key][f'{metric_key}_total'] = str(metric_value) if metric_value is not None else ''
@@ -480,16 +414,12 @@ def _format_account_metrics_to_csv(response_data: Dict[str, Any]) -> str:
                     for label in sorted_metric_labels:
                         data_by_timestamp[key][label] = ''
                     
-                    # Add interface-level metrics (totals) with byte conversion
+                    # Add interface-level metrics with byte conversion
                     for metric_key, metric_value in interface_metrics.items():
                         if metric_key in ['bytesDownstream', 'bytesUpstream', 'bytesTotal']:
                             # Convert bytes to MB for these specific metrics
                             mb_value = float(metric_value) / (1024 * 1024) if metric_value and metric_value != 0 else 0
-                            column_name = (
-                                'bytes_downstream_total_mb' if metric_key == 'bytesDownstream' else
-                                'bytes_upstream_total_mb' if metric_key == 'bytesUpstream' else
-                                'bytes_total_mb' if metric_key == 'bytesTotal' else f'{metric_key}_total_mb'
-                            )
+                            column_name = f'{metric_key}_mb'
                             data_by_timestamp[key][column_name] = f"{mb_value:.3f}".rstrip('0').rstrip('.')
                         else:
                             # Add other interface metrics as-is
@@ -519,7 +449,7 @@ def _format_account_metrics_to_csv(response_data: Dict[str, Any]) -> str:
                 # Add interface metrics to labels
                 for metric_key in interface_metrics.keys():
                     if metric_key in ['bytesDownstream', 'bytesUpstream', 'bytesTotal']:
-                        all_metric_labels.add(f'{metric_key}_total_mb')
+                        all_metric_labels.add(f'{metric_key}_mb')
                     else:
                         all_metric_labels.add(f'{metric_key}_total')
                 

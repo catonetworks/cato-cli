@@ -14,56 +14,14 @@ import re
 from datetime import datetime
 from typing import Dict, List, Any, Tuple
 
-# Helper functions
-def format_timestamp(timestamp_ms: int) -> str:
-    """
-    Convert timestamp from milliseconds to readable format
-    
-    Args:
-        timestamp_ms: Timestamp in milliseconds
-        
-    Returns:
-        Formatted timestamp string in UTC
-    """
+# Import shared utility functions
+try:
+    from .formatter_utils import format_timestamp, parse_label_for_dimensions_and_measure
+except ImportError:
     try:
-        # Convert milliseconds to seconds for datetime
-        timestamp_sec = timestamp_ms / 1000
-        dt = datetime.utcfromtimestamp(timestamp_sec)
-        return dt.strftime('%Y-%m-%d %H:%M:%S UTC')
-    except (ValueError, OSError):
-        return str(timestamp_ms)
-
-
-def parse_label_for_dimensions_and_measure(label: str) -> Tuple[str, Dict[str, str]]:
-    """
-    Parse timeseries label to extract measure and dimensions
-    
-    Args:
-        label: Label like "sum(traffic) for application_name='App', user_name='User'"
-        
-    Returns:
-        Tuple of (measure, dimensions_dict)
-    """
-    measure = ""
-    dimensions = {}
-    
-    if ' for ' in label:
-        measure_part, dim_part = label.split(' for ', 1)
-        # Extract measure (e.g., "sum(traffic)")
-        if '(' in measure_part and ')' in measure_part:
-            measure = measure_part.split('(')[1].split(')')[0]
-        
-        # Parse dimensions using regex for better handling of quoted values
-        # Matches: key='value' or key="value" or key=value
-        dim_pattern = r'(\w+)=[\'"]*([^,\'"]+)[\'"]*'
-        matches = re.findall(dim_pattern, dim_part)
-        for key, value in matches:
-            dimensions[key.strip()] = value.strip()
-    else:
-        # Fallback: use the whole label as measure
-        measure = label
-    
-    return measure, dimensions
+        from catocli.Utils.formatter_utils import format_timestamp, parse_label_for_dimensions_and_measure
+    except ImportError:
+        from formatter_utils import format_timestamp, parse_label_for_dimensions_and_measure
 
 
 def format_app_stats_timeseries(response_data: Dict[str, Any], output_format: str = 'json') -> str:
@@ -220,12 +178,12 @@ def _format_app_stats_timeseries_to_json(response_data: Dict[str, Any]) -> str:
                         formatted_data[timestamp_str] = {
                             'value': value,
                             'formatted_mb': formatted_value,
-                            'unit_type': 'bytes'
+                            'unit_type': 'mb'
                         }
                     except (ValueError, ZeroDivisionError):
                         formatted_data[timestamp_str] = {
                             'value': value,
-                            'unit_type': 'bytes'
+                            'unit_type': 'mb'
                         }
                 else:
                     formatted_data[timestamp_str] = {

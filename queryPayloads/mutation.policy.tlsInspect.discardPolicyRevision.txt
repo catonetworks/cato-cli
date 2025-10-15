@@ -251,6 +251,7 @@ mutation policyTlsInspectDiscardPolicyRevision ( $accountId:ID! $tlsInspectPolic
 			}
 		}
 								name
+								subPolicyId
 							}
 							enabled
 							source {
@@ -1337,60 +1338,7 @@ mutation policyTlsInspectDiscardPolicyRevision ( $accountId:ID! $tlsInspectPolic
 									name
 								}
 		ip {
-			enabled
-			rules {
-				properties
-				audit {
-					updatedTime
-					updatedBy
-				}
-				rule {
-					id
-					name
-					description
-					index
-					enabled
-					platform
-					section {
-						id
-						name
-					}
-					source {
-						user
-						usersGroup
-					}
-					country {
-						id
-						name
-					}
-					range {
-						globalIpRange
-					}
-				}
-			}
-			sections {
-				properties
-				audit {
-					updatedTime
-					updatedBy
-				}
-				section {
-					id
-					name
-				}
-			}
-			audit {
-				publishedTime
-				publishedBy
-			}
-			revision {
-				id
-				name
-				description
-				changes
-				createdTime
-				updatedTime
-			}
+			siteId
 		}
 								siteNetworkSubnet {
 		id {
@@ -2330,60 +2278,7 @@ mutation policyTlsInspectDiscardPolicyRevision ( $accountId:ID! $tlsInspectPolic
 								customServiceIp {
 									name
 		ip {
-			enabled
-			rules {
-				properties
-				audit {
-					updatedTime
-					updatedBy
-				}
-				rule {
-					id
-					name
-					description
-					index
-					enabled
-					platform
-					section {
-						id
-						name
-					}
-					source {
-						user
-						usersGroup
-					}
-					country {
-						id
-						name
-					}
-					range {
-						globalIpRange
-					}
-				}
-			}
-			sections {
-				properties
-				audit {
-					updatedTime
-					updatedBy
-				}
-				section {
-					id
-					name
-				}
-			}
-			audit {
-				publishedTime
-				publishedBy
-			}
-			revision {
-				id
-				name
-				description
-				changes
-				createdTime
-				updatedTime
-			}
+			siteId
 		}
 									ipRange {
 		from {
@@ -2489,60 +2384,7 @@ mutation policyTlsInspectDiscardPolicyRevision ( $accountId:ID! $tlsInspectPolic
 			name
 		}
 		ip {
-			enabled
-			rules {
-				properties
-				audit {
-					updatedTime
-					updatedBy
-				}
-				rule {
-					id
-					name
-					description
-					index
-					enabled
-					platform
-					section {
-						id
-						name
-					}
-					source {
-						user
-						usersGroup
-					}
-					country {
-						id
-						name
-					}
-					range {
-						globalIpRange
-					}
-				}
-			}
-			sections {
-				properties
-				audit {
-					updatedTime
-					updatedBy
-				}
-				section {
-					id
-					name
-				}
-			}
-			audit {
-				publishedTime
-				publishedBy
-			}
-			revision {
-				id
-				name
-				description
-				changes
-				createdTime
-				updatedTime
-			}
+			siteId
 		}
 								ipRange {
 		from {
@@ -3010,8 +2852,12 @@ mutation policyTlsInspectDiscardPolicyRevision ( $accountId:ID! $tlsInspectPolic
 		}
 	}
 							name
+							subPolicyId
 						}
 						properties
+						access {
+							action
+						}
 					}
 					audit {
 						publishedTime

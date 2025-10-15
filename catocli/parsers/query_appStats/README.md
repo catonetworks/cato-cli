@@ -74,7 +74,7 @@ catocli query appStats '{
 # Query to export application_name, user_name and risk_score with traffic sum(upstream, downstream, trafffic) for last day
 
 ```bash
-## Query to export application_name, user_name and risk_score with traffic sum(upstream, downstream, trafffic) for last day
+## Query to export application_name, user_name and risk_score with traffic sum(upstream, downstream, trafffic) for last day exported to csv format
 catocli query appStats '{
     "appStatsFilter": [],
     "appStatsSort": [],
@@ -104,7 +104,7 @@ catocli query appStats '{
         }
     ],
     "timeFrame": "last.P1D"
-}' -f csv
+}' -f csv --csv-filename app_user_account_metrics_report.csv
 ```
 
 

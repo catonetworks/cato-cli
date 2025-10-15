@@ -261,6 +261,7 @@ summary {
 		tags
 		roles
 		verdict
+		action
 		processId
 		processCommandLine
 		imageFile {
@@ -904,6 +905,7 @@ summary {
 		tags
 		roles
 		verdict
+		action
 		processId
 		processCommandLine
 		imageFile {
@@ -3038,6 +3040,7 @@ summary {
 			}
 		}
 								verdict
+								action
 								processId
 								processCommandLine
 								imageFile {
@@ -3765,6 +3768,151 @@ summary {
 			}
 		}
 							}
+							... on MicrosoftNetworkResource {
+		id {
+			id
+			status
+			description
+			firstSignal
+			lastSignal
+			engineType
+			vendor
+			producer
+			producerName
+			connectionType
+			indication
+			queryName
+			source
+			criticality
+			ticket
+			research
+			siteName
+			storyDuration
+			analystFeedback {
+				verdict
+				severity
+				threatClassification
+				additionalInfo
+				threatType {
+					name
+					recommendedAction
+					details
+				}
+			}
+			site {
+				id
+				name
+			}
+			user {
+				id
+				name
+			}
+			similarStoriesData {
+				storyId
+				threatTypeName
+				verdict
+				threatClassification
+				similarityPercentage
+				indication
+			}
+			networkIncidentTimeline {
+				description
+				created
+				validated
+				eventType
+				incidentId
+				networkEventSource
+				eventIds
+				acknowledged
+				linkId
+				linkName
+				linkConfigPrecedence
+				linkStatus
+				linkConfigBandwidth
+				deviceConfigHaRole
+				deviceHaRoleState
+				socketSerialId
+				bgpConnection {
+					connectionName
+					peerIp
+					peerAsn
+					catoIp
+					catoAsn
+				}
+				linkQualityIssue {
+					issueType
+					direction
+					current
+					threshold
+				}
+			}
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			ilmmDetails {
+				linkDetails {
+					description
+					linkId
+					ispLinkId
+					comments
+					onboardingStatus
+					activeLicense
+				}
+				ispDetails {
+					name
+					description
+					ispAccountId
+					supportEmail
+					supportPhone
+					countryCode
+					loaFile {
+						fileName
+						fileHash
+						uploadedAt
+					}
+				}
+				contacts {
+					name
+					phone
+					email
+				}
+			}
+		}
+								createdDateTime
+								remediationStatus
+								remediationStatusDetails
+								tags
+		roles {
+			total
+			items {
+				id
+				name
+				description
+				isPredefined
+			}
+		}
+								verdict
+								action
+								dnsRequest
+								dnsResponse
+								destinationIp
+								destinationPort
+								sourcePort
+								url
+		method {
+			value
+			accessMethod
+			operator
+			valueSet {
+				id
+				name
+			}
+		}
+							}
 						}
 						activities {
 	id {
@@ -4177,6 +4325,7 @@ summary {
 		tags
 		roles
 		verdict
+		action
 		processId
 		processCommandLine
 		imageFile {
@@ -5073,6 +5222,7 @@ summary {
 		tags
 		roles
 		verdict
+		action
 		processId
 		processCommandLine
 		imageFile {
@@ -5223,9 +5373,9 @@ summary {
 					tags
 					roles
 					verdict
+					action
 					processId
 					processCommandLine
-					imageFile
 				}
 				... on MicrosoftFileResource {
 					id
@@ -5249,6 +5399,18 @@ summary {
 					hive
 					key
 					value
+				}
+				... on MicrosoftNetworkResource {
+					id
+					createdDateTime
+					remediationStatus
+					remediationStatusDetails
+					tags
+					roles
+					verdict
+					action
+					dnsRequest
+					dnsResponse
 				}
 			}
 			activities {
@@ -6116,6 +6278,7 @@ summary {
 		tags
 		roles
 		verdict
+		action
 		processId
 		processCommandLine
 		imageFile {
@@ -7012,6 +7175,7 @@ summary {
 		tags
 		roles
 		verdict
+		action
 		processId
 		processCommandLine
 		imageFile {
@@ -7162,9 +7326,9 @@ summary {
 					tags
 					roles
 					verdict
+					action
 					processId
 					processCommandLine
-					imageFile
 				}
 				... on MicrosoftFileResource {
 					id
@@ -7188,6 +7352,18 @@ summary {
 					hive
 					key
 					value
+				}
+				... on MicrosoftNetworkResource {
+					id
+					createdDateTime
+					remediationStatus
+					remediationStatusDetails
+					tags
+					roles
+					verdict
+					action
+					dnsRequest
+					dnsResponse
 				}
 			}
 			activities {
@@ -8055,6 +8231,7 @@ summary {
 		tags
 		roles
 		verdict
+		action
 		processId
 		processCommandLine
 		imageFile {
@@ -9771,6 +9948,7 @@ summary {
 				section {
 					id
 					name
+					subPolicyId
 				}
 			}
 		}
@@ -9783,6 +9961,10 @@ summary {
 			section {
 				id
 				name
+				subPolicyId
+			}
+			access {
+				action
 			}
 		}
 		audit {
@@ -9932,6 +10114,7 @@ summary {
 		tags
 		roles
 		verdict
+		action
 		processId
 		processCommandLine
 		imageFile {
@@ -11646,6 +11829,7 @@ summary {
 				section {
 					id
 					name
+					subPolicyId
 				}
 			}
 		}
@@ -11658,6 +11842,10 @@ summary {
 			section {
 				id
 				name
+				subPolicyId
+			}
+			access {
+				action
 			}
 		}
 		audit {
@@ -11809,6 +11997,7 @@ summary {
 		tags
 		roles
 		verdict
+		action
 		processId
 		processCommandLine
 		imageFile {
@@ -13101,6 +13290,7 @@ summary {
 					section {
 						id
 						name
+						subPolicyId
 					}
 				}
 			}
@@ -13113,6 +13303,10 @@ summary {
 				section {
 					id
 					name
+					subPolicyId
+				}
+				access {
+					action
 				}
 			}
 			audit {
@@ -14061,6 +14255,7 @@ summary {
 		tags
 		roles
 		verdict
+		action
 		processId
 		processCommandLine
 		imageFile {
@@ -14099,6 +14294,7 @@ summary {
 		recommendedAction
 		details
 	}
+					occurrences
 					accountOperationIncident {
 						incidentTimeline {
 	id {
@@ -14361,7 +14557,34 @@ summary {
 								muted
 							}
 						}
-						impact
+						metadata {
+	type {
+		name
+		recommendedAction
+		details
+	}
+	key {
+		measureFieldName
+		dimensions {
+			value
+			fieldName
+		}
+	}
+	value {
+		__typename
+		... on StringValue {
+			string
+		}
+		... on DateValue {
+			date
+		}
+		... on Entity {
+			id
+			name
+			type
+		}
+	}
+						}
 					}
 				}
 				... on CatoEndpoint {
@@ -14495,6 +14718,7 @@ summary {
 		tags
 		roles
 		verdict
+		action
 		processId
 		processCommandLine
 		imageFile {

@@ -250,64 +250,12 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 		}
 	}
 							name
+							subPolicyId
 						}
 						enabled
 						source {
 	ip {
-		enabled
-		rules {
-			properties
-			audit {
-				updatedTime
-				updatedBy
-			}
-			rule {
-				id
-				name
-				description
-				index
-				enabled
-				platform
-				section {
-					id
-					name
-				}
-				source {
-					user
-					usersGroup
-				}
-				country {
-					id
-					name
-				}
-				range {
-					globalIpRange
-				}
-			}
-		}
-		sections {
-			properties
-			audit {
-				updatedTime
-				updatedBy
-			}
-			section {
-				id
-				name
-			}
-		}
-		audit {
-			publishedTime
-			publishedBy
-		}
-		revision {
-			id
-			name
-			description
-			changes
-			createdTime
-			updatedTime
-		}
+		siteId
 	}
 							host {
 		id {
@@ -2537,60 +2485,7 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 		}
 	}
 	ip {
-		enabled
-		rules {
-			properties
-			audit {
-				updatedTime
-				updatedBy
-			}
-			rule {
-				id
-				name
-				description
-				index
-				enabled
-				platform
-				section {
-					id
-					name
-				}
-				source {
-					user
-					usersGroup
-				}
-				country {
-					id
-					name
-				}
-				range {
-					globalIpRange
-				}
-			}
-		}
-		sections {
-			properties
-			audit {
-				updatedTime
-				updatedBy
-			}
-			section {
-				id
-				name
-			}
-		}
-		audit {
-			publishedTime
-			publishedBy
-		}
-		revision {
-			id
-			name
-			description
-			changes
-			createdTime
-			updatedTime
-		}
+		siteId
 	}
 	subnet {
 		id
@@ -3602,60 +3497,7 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 							name
 							source {
 		ip {
-			enabled
-			rules {
-				properties
-				audit {
-					updatedTime
-					updatedBy
-				}
-				rule {
-					id
-					name
-					description
-					index
-					enabled
-					platform
-					section {
-						id
-						name
-					}
-					source {
-						user
-						usersGroup
-					}
-					country {
-						id
-						name
-					}
-					range {
-						globalIpRange
-					}
-				}
-			}
-			sections {
-				properties
-				audit {
-					updatedTime
-					updatedBy
-				}
-				section {
-					id
-					name
-				}
-			}
-			audit {
-				publishedTime
-				publishedBy
-			}
-			revision {
-				id
-				name
-				description
-				changes
-				createdTime
-				updatedTime
-			}
+			siteId
 		}
 								host {
 		id {
@@ -5884,60 +5726,7 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 			}
 		}
 		ip {
-			enabled
-			rules {
-				properties
-				audit {
-					updatedTime
-					updatedBy
-				}
-				rule {
-					id
-					name
-					description
-					index
-					enabled
-					platform
-					section {
-						id
-						name
-					}
-					source {
-						user
-						usersGroup
-					}
-					country {
-						id
-						name
-					}
-					range {
-						globalIpRange
-					}
-				}
-			}
-			sections {
-				properties
-				audit {
-					updatedTime
-					updatedBy
-				}
-				section {
-					id
-					name
-				}
-			}
-			audit {
-				publishedTime
-				publishedBy
-			}
-			revision {
-				id
-				name
-				description
-				changes
-				createdTime
-				updatedTime
-			}
+			siteId
 		}
 		subnet {
 			id
@@ -6644,8 +6433,12 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 		}
 	}
 						name
+						subPolicyId
 					}
 					properties
+					access {
+						action
+					}
 				}
 				audit {
 					publishedTime

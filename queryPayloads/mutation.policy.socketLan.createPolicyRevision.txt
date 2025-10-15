@@ -251,6 +251,7 @@ mutation policySocketLanCreatePolicyRevision ( $accountId:ID! $socketLanPolicyMu
 			}
 		}
 								name
+								subPolicyId
 							}
 							enabled
 							firewall {
@@ -500,6 +501,7 @@ mutation policySocketLanCreatePolicyRevision ( $accountId:ID! $socketLanPolicyMu
 			}
 		}
 										name
+										subPolicyId
 									}
 									enabled
 									source {
@@ -1124,60 +1126,7 @@ mutation policySocketLanCreatePolicyRevision ( $accountId:ID! $socketLanPolicyMu
 											name
 										}
 		ip {
-			enabled
-			rules {
-				properties
-				audit {
-					updatedTime
-					updatedBy
-				}
-				rule {
-					id
-					name
-					description
-					index
-					enabled
-					platform
-					section {
-						id
-						name
-					}
-					source {
-						user
-						usersGroup
-					}
-					country {
-						id
-						name
-					}
-					range {
-						globalIpRange
-					}
-				}
-			}
-			sections {
-				properties
-				audit {
-					updatedTime
-					updatedBy
-				}
-				section {
-					id
-					name
-				}
-			}
-			audit {
-				publishedTime
-				publishedBy
-			}
-			revision {
-				id
-				name
-				description
-				changes
-				createdTime
-				updatedTime
-			}
+			siteId
 		}
 										globalIpRange {
 		id {
@@ -2033,60 +1982,7 @@ mutation policySocketLanCreatePolicyRevision ( $accountId:ID! $socketLanPolicyMu
 											name
 										}
 		ip {
-			enabled
-			rules {
-				properties
-				audit {
-					updatedTime
-					updatedBy
-				}
-				rule {
-					id
-					name
-					description
-					index
-					enabled
-					platform
-					section {
-						id
-						name
-					}
-					source {
-						user
-						usersGroup
-					}
-					country {
-						id
-						name
-					}
-					range {
-						globalIpRange
-					}
-				}
-			}
-			sections {
-				properties
-				audit {
-					updatedTime
-					updatedBy
-				}
-				section {
-					id
-					name
-				}
-			}
-			audit {
-				publishedTime
-				publishedBy
-			}
-			revision {
-				id
-				name
-				description
-				changes
-				createdTime
-				updatedTime
-			}
+			siteId
 		}
 										globalIpRange {
 		id {
@@ -2852,60 +2748,7 @@ mutation policySocketLanCreatePolicyRevision ( $accountId:ID! $socketLanPolicyMu
 			}
 		}
 		ip {
-			enabled
-			rules {
-				properties
-				audit {
-					updatedTime
-					updatedBy
-				}
-				rule {
-					id
-					name
-					description
-					index
-					enabled
-					platform
-					section {
-						id
-						name
-					}
-					source {
-						user
-						usersGroup
-					}
-					country {
-						id
-						name
-					}
-					range {
-						globalIpRange
-					}
-				}
-			}
-			sections {
-				properties
-				audit {
-					updatedTime
-					updatedBy
-				}
-				section {
-					id
-					name
-				}
-			}
-			audit {
-				publishedTime
-				publishedBy
-			}
-			revision {
-				id
-				name
-				description
-				changes
-				createdTime
-				updatedTime
-			}
+			siteId
 		}
 		subnet {
 			id
@@ -4345,60 +4188,7 @@ mutation policySocketLanCreatePolicyRevision ( $accountId:ID! $socketLanPolicyMu
 									name
 								}
 		ip {
-			enabled
-			rules {
-				properties
-				audit {
-					updatedTime
-					updatedBy
-				}
-				rule {
-					id
-					name
-					description
-					index
-					enabled
-					platform
-					section {
-						id
-						name
-					}
-					source {
-						user
-						usersGroup
-					}
-					country {
-						id
-						name
-					}
-					range {
-						globalIpRange
-					}
-				}
-			}
-			sections {
-				properties
-				audit {
-					updatedTime
-					updatedBy
-				}
-				section {
-					id
-					name
-				}
-			}
-			audit {
-				publishedTime
-				publishedBy
-			}
-			revision {
-				id
-				name
-				description
-				changes
-				createdTime
-				updatedTime
-			}
+			siteId
 		}
 								globalIpRange {
 		id {
@@ -5138,60 +4928,7 @@ mutation policySocketLanCreatePolicyRevision ( $accountId:ID! $socketLanPolicyMu
 									name
 								}
 		ip {
-			enabled
-			rules {
-				properties
-				audit {
-					updatedTime
-					updatedBy
-				}
-				rule {
-					id
-					name
-					description
-					index
-					enabled
-					platform
-					section {
-						id
-						name
-					}
-					source {
-						user
-						usersGroup
-					}
-					country {
-						id
-						name
-					}
-					range {
-						globalIpRange
-					}
-				}
-			}
-			sections {
-				properties
-				audit {
-					updatedTime
-					updatedBy
-				}
-				section {
-					id
-					name
-				}
-			}
-			audit {
-				publishedTime
-				publishedBy
-			}
-			revision {
-				id
-				name
-				description
-				changes
-				createdTime
-				updatedTime
-			}
+			siteId
 		}
 								globalIpRange {
 		id {
@@ -5868,8 +5605,12 @@ mutation policySocketLanCreatePolicyRevision ( $accountId:ID! $socketLanPolicyMu
 		}
 	}
 							name
+							subPolicyId
 						}
 						properties
+						access {
+							action
+						}
 					}
 					audit {
 						publishedTime

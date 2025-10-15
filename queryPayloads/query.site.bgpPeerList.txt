@@ -1021,19 +1021,9 @@ query siteBgpPeerList ( $accountId:ID! $bgpPeerListInput:BgpPeerListInput!) {
 				tags
 				roles
 				verdict
+				action
 				processId
 				processCommandLine
-				imageFile {
-					name
-					path
-					size
-					sha1
-					sha256
-					md5
-					issuer
-					signer
-					publisher
-				}
 			}
 			... on MicrosoftFileResource {
 				id
@@ -1067,6 +1057,18 @@ query siteBgpPeerList ( $accountId:ID! $bgpPeerListInput:BgpPeerListInput!) {
 				hive
 				key
 				value
+			}
+			... on MicrosoftNetworkResource {
+				id
+				createdDateTime
+				remediationStatus
+				remediationStatusDetails
+				tags
+				roles
+				verdict
+				action
+				dnsRequest
+				dnsResponse
 			}
 		}
 		activities {

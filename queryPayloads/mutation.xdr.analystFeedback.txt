@@ -262,6 +262,7 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 		tags
 		roles
 		verdict
+		action
 		processId
 		processCommandLine
 		imageFile {
@@ -905,6 +906,7 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 		tags
 		roles
 		verdict
+		action
 		processId
 		processCommandLine
 		imageFile {
@@ -1238,19 +1240,9 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 				tags
 				roles
 				verdict
+				action
 				processId
 				processCommandLine
-				imageFile {
-					name
-					path
-					size
-					sha1
-					sha256
-					md5
-					issuer
-					signer
-					publisher
-				}
 			}
 			... on MicrosoftFileResource {
 				id
@@ -1284,6 +1276,18 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 				hive
 				key
 				value
+			}
+			... on MicrosoftNetworkResource {
+				id
+				createdDateTime
+				remediationStatus
+				remediationStatusDetails
+				tags
+				roles
+				verdict
+				action
+				dnsRequest
+				dnsResponse
 			}
 		}
 		activities {
@@ -1427,6 +1431,7 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 		tags
 		roles
 		verdict
+		action
 		processId
 		processCommandLine
 		imageFile {
@@ -1916,6 +1921,7 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 		tags
 		roles
 		verdict
+		action
 		processId
 		processCommandLine
 		imageFile {
@@ -2405,6 +2411,7 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 		tags
 		roles
 		verdict
+		action
 		processId
 		processCommandLine
 		imageFile {
@@ -2877,6 +2884,7 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 		tags
 		roles
 		verdict
+		action
 		processId
 		processCommandLine
 		imageFile {
@@ -3345,6 +3353,7 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 		tags
 		roles
 		verdict
+		action
 		processId
 		processCommandLine
 		imageFile {
@@ -4257,6 +4266,7 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 		tags
 		roles
 		verdict
+		action
 		processId
 		processCommandLine
 		imageFile {
@@ -4295,8 +4305,8 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 		recommendedAction
 		details
 	}
+						occurrences
 	accountOperationIncident {
-		impact
 		incidentTimeline {
 			__typename
 			... on AccountOperationsTimelineEvent {
@@ -4308,6 +4318,11 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 				eventIds
 				muted
 			}
+		}
+		metadata {
+			type
+			value
+			key
 		}
 	}
 					}
@@ -4442,6 +4457,7 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 		tags
 		roles
 		verdict
+		action
 		processId
 		processCommandLine
 		imageFile {
@@ -4775,19 +4791,9 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 				tags
 				roles
 				verdict
+				action
 				processId
 				processCommandLine
-				imageFile {
-					name
-					path
-					size
-					sha1
-					sha256
-					md5
-					issuer
-					signer
-					publisher
-				}
 			}
 			... on MicrosoftFileResource {
 				id
@@ -4821,6 +4827,18 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 				hive
 				key
 				value
+			}
+			... on MicrosoftNetworkResource {
+				id
+				createdDateTime
+				remediationStatus
+				remediationStatusDetails
+				tags
+				roles
+				verdict
+				action
+				dnsRequest
+				dnsResponse
 			}
 		}
 		activities {

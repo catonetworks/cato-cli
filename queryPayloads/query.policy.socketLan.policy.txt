@@ -250,6 +250,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 		}
 	}
 							name
+							subPolicyId
 						}
 						enabled
 						firewall {
@@ -499,6 +500,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 			}
 		}
 									name
+									subPolicyId
 								}
 								enabled
 								source {
@@ -1123,60 +1125,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 										name
 									}
 		ip {
-			enabled
-			rules {
-				properties
-				audit {
-					updatedTime
-					updatedBy
-				}
-				rule {
-					id
-					name
-					description
-					index
-					enabled
-					platform
-					section {
-						id
-						name
-					}
-					source {
-						user
-						usersGroup
-					}
-					country {
-						id
-						name
-					}
-					range {
-						globalIpRange
-					}
-				}
-			}
-			sections {
-				properties
-				audit {
-					updatedTime
-					updatedBy
-				}
-				section {
-					id
-					name
-				}
-			}
-			audit {
-				publishedTime
-				publishedBy
-			}
-			revision {
-				id
-				name
-				description
-				changes
-				createdTime
-				updatedTime
-			}
+			siteId
 		}
 									globalIpRange {
 		id {
@@ -2032,60 +1981,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 										name
 									}
 		ip {
-			enabled
-			rules {
-				properties
-				audit {
-					updatedTime
-					updatedBy
-				}
-				rule {
-					id
-					name
-					description
-					index
-					enabled
-					platform
-					section {
-						id
-						name
-					}
-					source {
-						user
-						usersGroup
-					}
-					country {
-						id
-						name
-					}
-					range {
-						globalIpRange
-					}
-				}
-			}
-			sections {
-				properties
-				audit {
-					updatedTime
-					updatedBy
-				}
-				section {
-					id
-					name
-				}
-			}
-			audit {
-				publishedTime
-				publishedBy
-			}
-			revision {
-				id
-				name
-				description
-				changes
-				createdTime
-				updatedTime
-			}
+			siteId
 		}
 									globalIpRange {
 		id {
@@ -2851,60 +2747,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 			}
 		}
 		ip {
-			enabled
-			rules {
-				properties
-				audit {
-					updatedTime
-					updatedBy
-				}
-				rule {
-					id
-					name
-					description
-					index
-					enabled
-					platform
-					section {
-						id
-						name
-					}
-					source {
-						user
-						usersGroup
-					}
-					country {
-						id
-						name
-					}
-					range {
-						globalIpRange
-					}
-				}
-			}
-			sections {
-				properties
-				audit {
-					updatedTime
-					updatedBy
-				}
-				section {
-					id
-					name
-				}
-			}
-			audit {
-				publishedTime
-				publishedBy
-			}
-			revision {
-				id
-				name
-				description
-				changes
-				createdTime
-				updatedTime
-			}
+			siteId
 		}
 		subnet {
 			id
@@ -4344,60 +4187,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 								name
 							}
 	ip {
-		enabled
-		rules {
-			properties
-			audit {
-				updatedTime
-				updatedBy
-			}
-			rule {
-				id
-				name
-				description
-				index
-				enabled
-				platform
-				section {
-					id
-					name
-				}
-				source {
-					user
-					usersGroup
-				}
-				country {
-					id
-					name
-				}
-				range {
-					globalIpRange
-				}
-			}
-		}
-		sections {
-			properties
-			audit {
-				updatedTime
-				updatedBy
-			}
-			section {
-				id
-				name
-			}
-		}
-		audit {
-			publishedTime
-			publishedBy
-		}
-		revision {
-			id
-			name
-			description
-			changes
-			createdTime
-			updatedTime
-		}
+		siteId
 	}
 							globalIpRange {
 		id {
@@ -5137,60 +4927,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 								name
 							}
 	ip {
-		enabled
-		rules {
-			properties
-			audit {
-				updatedTime
-				updatedBy
-			}
-			rule {
-				id
-				name
-				description
-				index
-				enabled
-				platform
-				section {
-					id
-					name
-				}
-				source {
-					user
-					usersGroup
-				}
-				country {
-					id
-					name
-				}
-				range {
-					globalIpRange
-				}
-			}
-		}
-		sections {
-			properties
-			audit {
-				updatedTime
-				updatedBy
-			}
-			section {
-				id
-				name
-			}
-		}
-		audit {
-			publishedTime
-			publishedBy
-		}
-		revision {
-			id
-			name
-			description
-			changes
-			createdTime
-			updatedTime
-		}
+		siteId
 	}
 							globalIpRange {
 		id {
@@ -5867,8 +5604,12 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 		}
 	}
 						name
+						subPolicyId
 					}
 					properties
+					access {
+						action
+					}
 				}
 				audit {
 					publishedTime

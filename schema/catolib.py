@@ -728,8 +728,16 @@ def main(args=None):
                     # Print CSV output directly without JSON formatting
                     print(response[0]["__csv_output__"], end='')
                 else:
-                    # Standard JSON output
-                    print(json.dumps(response[0], sort_keys=True, indent=4))
+                    # Handle different response formats more robustly
+                    if isinstance(response, list) and len(response) > 0:
+                        # Standard format: [data, status, headers]
+                        print(json.dumps(response[0], sort_keys=True, indent=4))
+                    elif isinstance(response, dict):
+                        # Direct dict response
+                        print(json.dumps(response, sort_keys=True, indent=4))
+                    else:
+                        # Fallback: print as-is
+                        print(json.dumps(response, sort_keys=True, indent=4))
     except KeyboardInterrupt:
         print('Operation cancelled by user (Ctrl+C).')
         exit(130)  # Standard exit code for SIGINT
@@ -752,9 +760,10 @@ def writeOperationParsers(catoApiSchema):
     """Write operation parsers - thread-safe implementation"""
     parserMapping = {"query":{},"mutation":{}}
     
-    # Load settings to get CSV-supported operations
+    # Load settings to get format-supported operations
     settings = loadJSON("../catocli/clisettings.json")
     csv_supported_operations = settings.get("queryOperationCsvOutput", {})
+    format_overrides = settings.get("queryOperationDefaultFormatOverrides", {})
     
     ## Write the raw query parser ##
     cliDriverStr =f"""
@@ -825,9 +834,11 @@ def {parserName}_parse({operationType}_subparsers):
             usage=get_help("{operationType}_{operationName}"), formatter_class=CustomSubparserHelpFormatter)
 """
             if "path" in parser:
-                # Check if this operation supports CSV output
+                # Check if this operation supports format overrides (CSV, etc.)
                 operation_path = parserName.replace("_", ".")
-                supports_csv = operation_path in csv_supported_operations
+                supports_csv = (operation_path in csv_supported_operations or 
+                               (operation_path in format_overrides and 
+                                format_overrides[operation_path].get("enabled", False)))
                 
                 cliDriverStr += f"""
     {parserName}_parser.add_argument('json', nargs='?', default='{{}}', help='Variables in JSON format (defaults to empty object if not provided).')
@@ -840,11 +851,17 @@ def {parserName}_parse({operationType}_subparsers):
     {parserName}_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     {parserName}_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
 """
-                # Add -f flag for CSV-supported operations
+                # Add format flags for operations with format overrides
                 if supports_csv:
+                    # Generate appropriate default CSV filename from operation name
+                    # Use the full operation name instead of stripping parts to ensure clarity
+                    default_csv_name = f"{operationName.lower()}.csv"
+                    
                     cliDriverStr += f"""
-    {parserName}_parser.add_argument('-f', '--format', choices=['json', 'csv'], default='json', help='Output format (default: json)')
-    {parserName}_parser.add_argument('--csv-filename', dest='csv_filename', help='Override CSV file name (default: accountmetrics.csv)')
+
+    {parserName}_parser.add_argument('-f', '--format', choices=['json', 'csv'], help='Output format (default: formatted json, use -raw for original json)')
+    {parserName}_parser.add_argument('-raw', '--raw', dest='raw_output', action='store_true', help='Return raw/original JSON format (bypasses default formatting)')
+    {parserName}_parser.add_argument('--csv-filename', dest='csv_filename', help='Override CSV file name (default: {default_csv_name})')
     {parserName}_parser.add_argument('--append-timestamp', dest='append_timestamp', action='store_true', help='Append timestamp to the CSV file name')
 """
                 

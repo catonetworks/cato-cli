@@ -195,192 +195,6 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_antiMalwareFileHash_updatePolicy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
     mutation_policy_antiMalwareFileHash_updatePolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.antiMalwareFileHash.updatePolicy')
 
-    mutation_policy_dynamicIpAllocation_parser = mutation_policy_subparsers.add_parser('dynamicIpAllocation', 
-            help='dynamicIpAllocation() policy operation', 
-            usage=get_help("mutation_policy_dynamicIpAllocation"))
-
-    mutation_policy_dynamicIpAllocation_subparsers = mutation_policy_dynamicIpAllocation_parser.add_subparsers()
-
-    mutation_policy_dynamicIpAllocation_addRule_parser = mutation_policy_dynamicIpAllocation_subparsers.add_parser('addRule', 
-            help='addRule() dynamicIpAllocation operation', 
-            usage=get_help("mutation_policy_dynamicIpAllocation_addRule"))
-
-    mutation_policy_dynamicIpAllocation_addRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
-    mutation_policy_dynamicIpAllocation_addRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
-    mutation_policy_dynamicIpAllocation_addRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
-    mutation_policy_dynamicIpAllocation_addRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
-    mutation_policy_dynamicIpAllocation_addRule_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
-    mutation_policy_dynamicIpAllocation_addRule_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
-    mutation_policy_dynamicIpAllocation_addRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
-    mutation_policy_dynamicIpAllocation_addRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
-    mutation_policy_dynamicIpAllocation_addRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-    mutation_policy_dynamicIpAllocation_addRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.dynamicIpAllocation.addRule')
-
-    mutation_policy_dynamicIpAllocation_updateRule_parser = mutation_policy_dynamicIpAllocation_subparsers.add_parser('updateRule', 
-            help='updateRule() dynamicIpAllocation operation', 
-            usage=get_help("mutation_policy_dynamicIpAllocation_updateRule"))
-
-    mutation_policy_dynamicIpAllocation_updateRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
-    mutation_policy_dynamicIpAllocation_updateRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
-    mutation_policy_dynamicIpAllocation_updateRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
-    mutation_policy_dynamicIpAllocation_updateRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
-    mutation_policy_dynamicIpAllocation_updateRule_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
-    mutation_policy_dynamicIpAllocation_updateRule_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
-    mutation_policy_dynamicIpAllocation_updateRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
-    mutation_policy_dynamicIpAllocation_updateRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
-    mutation_policy_dynamicIpAllocation_updateRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-    mutation_policy_dynamicIpAllocation_updateRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.dynamicIpAllocation.updateRule')
-
-    mutation_policy_dynamicIpAllocation_removeRule_parser = mutation_policy_dynamicIpAllocation_subparsers.add_parser('removeRule', 
-            help='removeRule() dynamicIpAllocation operation', 
-            usage=get_help("mutation_policy_dynamicIpAllocation_removeRule"))
-
-    mutation_policy_dynamicIpAllocation_removeRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
-    mutation_policy_dynamicIpAllocation_removeRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
-    mutation_policy_dynamicIpAllocation_removeRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
-    mutation_policy_dynamicIpAllocation_removeRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
-    mutation_policy_dynamicIpAllocation_removeRule_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
-    mutation_policy_dynamicIpAllocation_removeRule_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
-    mutation_policy_dynamicIpAllocation_removeRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
-    mutation_policy_dynamicIpAllocation_removeRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
-    mutation_policy_dynamicIpAllocation_removeRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-    mutation_policy_dynamicIpAllocation_removeRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.dynamicIpAllocation.removeRule')
-
-    mutation_policy_dynamicIpAllocation_moveRule_parser = mutation_policy_dynamicIpAllocation_subparsers.add_parser('moveRule', 
-            help='moveRule() dynamicIpAllocation operation', 
-            usage=get_help("mutation_policy_dynamicIpAllocation_moveRule"))
-
-    mutation_policy_dynamicIpAllocation_moveRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
-    mutation_policy_dynamicIpAllocation_moveRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
-    mutation_policy_dynamicIpAllocation_moveRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
-    mutation_policy_dynamicIpAllocation_moveRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
-    mutation_policy_dynamicIpAllocation_moveRule_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
-    mutation_policy_dynamicIpAllocation_moveRule_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
-    mutation_policy_dynamicIpAllocation_moveRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
-    mutation_policy_dynamicIpAllocation_moveRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
-    mutation_policy_dynamicIpAllocation_moveRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-    mutation_policy_dynamicIpAllocation_moveRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.dynamicIpAllocation.moveRule')
-
-    mutation_policy_dynamicIpAllocation_addSection_parser = mutation_policy_dynamicIpAllocation_subparsers.add_parser('addSection', 
-            help='addSection() dynamicIpAllocation operation', 
-            usage=get_help("mutation_policy_dynamicIpAllocation_addSection"))
-
-    mutation_policy_dynamicIpAllocation_addSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
-    mutation_policy_dynamicIpAllocation_addSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
-    mutation_policy_dynamicIpAllocation_addSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
-    mutation_policy_dynamicIpAllocation_addSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
-    mutation_policy_dynamicIpAllocation_addSection_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
-    mutation_policy_dynamicIpAllocation_addSection_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
-    mutation_policy_dynamicIpAllocation_addSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
-    mutation_policy_dynamicIpAllocation_addSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
-    mutation_policy_dynamicIpAllocation_addSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-    mutation_policy_dynamicIpAllocation_addSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.dynamicIpAllocation.addSection')
-
-    mutation_policy_dynamicIpAllocation_updateSection_parser = mutation_policy_dynamicIpAllocation_subparsers.add_parser('updateSection', 
-            help='updateSection() dynamicIpAllocation operation', 
-            usage=get_help("mutation_policy_dynamicIpAllocation_updateSection"))
-
-    mutation_policy_dynamicIpAllocation_updateSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
-    mutation_policy_dynamicIpAllocation_updateSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
-    mutation_policy_dynamicIpAllocation_updateSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
-    mutation_policy_dynamicIpAllocation_updateSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
-    mutation_policy_dynamicIpAllocation_updateSection_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
-    mutation_policy_dynamicIpAllocation_updateSection_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
-    mutation_policy_dynamicIpAllocation_updateSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
-    mutation_policy_dynamicIpAllocation_updateSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
-    mutation_policy_dynamicIpAllocation_updateSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-    mutation_policy_dynamicIpAllocation_updateSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.dynamicIpAllocation.updateSection')
-
-    mutation_policy_dynamicIpAllocation_removeSection_parser = mutation_policy_dynamicIpAllocation_subparsers.add_parser('removeSection', 
-            help='removeSection() dynamicIpAllocation operation', 
-            usage=get_help("mutation_policy_dynamicIpAllocation_removeSection"))
-
-    mutation_policy_dynamicIpAllocation_removeSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
-    mutation_policy_dynamicIpAllocation_removeSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
-    mutation_policy_dynamicIpAllocation_removeSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
-    mutation_policy_dynamicIpAllocation_removeSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
-    mutation_policy_dynamicIpAllocation_removeSection_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
-    mutation_policy_dynamicIpAllocation_removeSection_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
-    mutation_policy_dynamicIpAllocation_removeSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
-    mutation_policy_dynamicIpAllocation_removeSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
-    mutation_policy_dynamicIpAllocation_removeSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-    mutation_policy_dynamicIpAllocation_removeSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.dynamicIpAllocation.removeSection')
-
-    mutation_policy_dynamicIpAllocation_moveSection_parser = mutation_policy_dynamicIpAllocation_subparsers.add_parser('moveSection', 
-            help='moveSection() dynamicIpAllocation operation', 
-            usage=get_help("mutation_policy_dynamicIpAllocation_moveSection"))
-
-    mutation_policy_dynamicIpAllocation_moveSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
-    mutation_policy_dynamicIpAllocation_moveSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
-    mutation_policy_dynamicIpAllocation_moveSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
-    mutation_policy_dynamicIpAllocation_moveSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
-    mutation_policy_dynamicIpAllocation_moveSection_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
-    mutation_policy_dynamicIpAllocation_moveSection_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
-    mutation_policy_dynamicIpAllocation_moveSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
-    mutation_policy_dynamicIpAllocation_moveSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
-    mutation_policy_dynamicIpAllocation_moveSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-    mutation_policy_dynamicIpAllocation_moveSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.dynamicIpAllocation.moveSection')
-
-    mutation_policy_dynamicIpAllocation_createPolicyRevision_parser = mutation_policy_dynamicIpAllocation_subparsers.add_parser('createPolicyRevision', 
-            help='createPolicyRevision() dynamicIpAllocation operation', 
-            usage=get_help("mutation_policy_dynamicIpAllocation_createPolicyRevision"))
-
-    mutation_policy_dynamicIpAllocation_createPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
-    mutation_policy_dynamicIpAllocation_createPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
-    mutation_policy_dynamicIpAllocation_createPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
-    mutation_policy_dynamicIpAllocation_createPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
-    mutation_policy_dynamicIpAllocation_createPolicyRevision_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
-    mutation_policy_dynamicIpAllocation_createPolicyRevision_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
-    mutation_policy_dynamicIpAllocation_createPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
-    mutation_policy_dynamicIpAllocation_createPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
-    mutation_policy_dynamicIpAllocation_createPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-    mutation_policy_dynamicIpAllocation_createPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.dynamicIpAllocation.createPolicyRevision')
-
-    mutation_policy_dynamicIpAllocation_publishPolicyRevision_parser = mutation_policy_dynamicIpAllocation_subparsers.add_parser('publishPolicyRevision', 
-            help='publishPolicyRevision() dynamicIpAllocation operation', 
-            usage=get_help("mutation_policy_dynamicIpAllocation_publishPolicyRevision"))
-
-    mutation_policy_dynamicIpAllocation_publishPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
-    mutation_policy_dynamicIpAllocation_publishPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
-    mutation_policy_dynamicIpAllocation_publishPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
-    mutation_policy_dynamicIpAllocation_publishPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
-    mutation_policy_dynamicIpAllocation_publishPolicyRevision_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
-    mutation_policy_dynamicIpAllocation_publishPolicyRevision_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
-    mutation_policy_dynamicIpAllocation_publishPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
-    mutation_policy_dynamicIpAllocation_publishPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
-    mutation_policy_dynamicIpAllocation_publishPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-    mutation_policy_dynamicIpAllocation_publishPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.dynamicIpAllocation.publishPolicyRevision')
-
-    mutation_policy_dynamicIpAllocation_discardPolicyRevision_parser = mutation_policy_dynamicIpAllocation_subparsers.add_parser('discardPolicyRevision', 
-            help='discardPolicyRevision() dynamicIpAllocation operation', 
-            usage=get_help("mutation_policy_dynamicIpAllocation_discardPolicyRevision"))
-
-    mutation_policy_dynamicIpAllocation_discardPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
-    mutation_policy_dynamicIpAllocation_discardPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
-    mutation_policy_dynamicIpAllocation_discardPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
-    mutation_policy_dynamicIpAllocation_discardPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
-    mutation_policy_dynamicIpAllocation_discardPolicyRevision_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
-    mutation_policy_dynamicIpAllocation_discardPolicyRevision_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
-    mutation_policy_dynamicIpAllocation_discardPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
-    mutation_policy_dynamicIpAllocation_discardPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
-    mutation_policy_dynamicIpAllocation_discardPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-    mutation_policy_dynamicIpAllocation_discardPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.dynamicIpAllocation.discardPolicyRevision')
-
-    mutation_policy_dynamicIpAllocation_updatePolicy_parser = mutation_policy_dynamicIpAllocation_subparsers.add_parser('updatePolicy', 
-            help='updatePolicy() dynamicIpAllocation operation', 
-            usage=get_help("mutation_policy_dynamicIpAllocation_updatePolicy"))
-
-    mutation_policy_dynamicIpAllocation_updatePolicy_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
-    mutation_policy_dynamicIpAllocation_updatePolicy_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
-    mutation_policy_dynamicIpAllocation_updatePolicy_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
-    mutation_policy_dynamicIpAllocation_updatePolicy_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
-    mutation_policy_dynamicIpAllocation_updatePolicy_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
-    mutation_policy_dynamicIpAllocation_updatePolicy_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
-    mutation_policy_dynamicIpAllocation_updatePolicy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
-    mutation_policy_dynamicIpAllocation_updatePolicy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
-    mutation_policy_dynamicIpAllocation_updatePolicy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-    mutation_policy_dynamicIpAllocation_updatePolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.dynamicIpAllocation.updatePolicy')
-
     mutation_policy_socketLan_parser = mutation_policy_subparsers.add_parser('socketLan', 
             help='socketLan() policy operation', 
             usage=get_help("mutation_policy_socketLan"))
@@ -566,192 +380,6 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_socketLan_updatePolicy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_socketLan_updatePolicy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
     mutation_policy_socketLan_updatePolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.socketLan.updatePolicy')
-
-    mutation_policy_terminalServer_parser = mutation_policy_subparsers.add_parser('terminalServer', 
-            help='terminalServer() policy operation', 
-            usage=get_help("mutation_policy_terminalServer"))
-
-    mutation_policy_terminalServer_subparsers = mutation_policy_terminalServer_parser.add_subparsers()
-
-    mutation_policy_terminalServer_addRule_parser = mutation_policy_terminalServer_subparsers.add_parser('addRule', 
-            help='addRule() terminalServer operation', 
-            usage=get_help("mutation_policy_terminalServer_addRule"))
-
-    mutation_policy_terminalServer_addRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
-    mutation_policy_terminalServer_addRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
-    mutation_policy_terminalServer_addRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
-    mutation_policy_terminalServer_addRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
-    mutation_policy_terminalServer_addRule_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
-    mutation_policy_terminalServer_addRule_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
-    mutation_policy_terminalServer_addRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
-    mutation_policy_terminalServer_addRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
-    mutation_policy_terminalServer_addRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-    mutation_policy_terminalServer_addRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.terminalServer.addRule')
-
-    mutation_policy_terminalServer_updateRule_parser = mutation_policy_terminalServer_subparsers.add_parser('updateRule', 
-            help='updateRule() terminalServer operation', 
-            usage=get_help("mutation_policy_terminalServer_updateRule"))
-
-    mutation_policy_terminalServer_updateRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
-    mutation_policy_terminalServer_updateRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
-    mutation_policy_terminalServer_updateRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
-    mutation_policy_terminalServer_updateRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
-    mutation_policy_terminalServer_updateRule_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
-    mutation_policy_terminalServer_updateRule_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
-    mutation_policy_terminalServer_updateRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
-    mutation_policy_terminalServer_updateRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
-    mutation_policy_terminalServer_updateRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-    mutation_policy_terminalServer_updateRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.terminalServer.updateRule')
-
-    mutation_policy_terminalServer_removeRule_parser = mutation_policy_terminalServer_subparsers.add_parser('removeRule', 
-            help='removeRule() terminalServer operation', 
-            usage=get_help("mutation_policy_terminalServer_removeRule"))
-
-    mutation_policy_terminalServer_removeRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
-    mutation_policy_terminalServer_removeRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
-    mutation_policy_terminalServer_removeRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
-    mutation_policy_terminalServer_removeRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
-    mutation_policy_terminalServer_removeRule_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
-    mutation_policy_terminalServer_removeRule_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
-    mutation_policy_terminalServer_removeRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
-    mutation_policy_terminalServer_removeRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
-    mutation_policy_terminalServer_removeRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-    mutation_policy_terminalServer_removeRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.terminalServer.removeRule')
-
-    mutation_policy_terminalServer_moveRule_parser = mutation_policy_terminalServer_subparsers.add_parser('moveRule', 
-            help='moveRule() terminalServer operation', 
-            usage=get_help("mutation_policy_terminalServer_moveRule"))
-
-    mutation_policy_terminalServer_moveRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
-    mutation_policy_terminalServer_moveRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
-    mutation_policy_terminalServer_moveRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
-    mutation_policy_terminalServer_moveRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
-    mutation_policy_terminalServer_moveRule_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
-    mutation_policy_terminalServer_moveRule_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
-    mutation_policy_terminalServer_moveRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
-    mutation_policy_terminalServer_moveRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
-    mutation_policy_terminalServer_moveRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-    mutation_policy_terminalServer_moveRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.terminalServer.moveRule')
-
-    mutation_policy_terminalServer_addSection_parser = mutation_policy_terminalServer_subparsers.add_parser('addSection', 
-            help='addSection() terminalServer operation', 
-            usage=get_help("mutation_policy_terminalServer_addSection"))
-
-    mutation_policy_terminalServer_addSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
-    mutation_policy_terminalServer_addSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
-    mutation_policy_terminalServer_addSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
-    mutation_policy_terminalServer_addSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
-    mutation_policy_terminalServer_addSection_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
-    mutation_policy_terminalServer_addSection_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
-    mutation_policy_terminalServer_addSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
-    mutation_policy_terminalServer_addSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
-    mutation_policy_terminalServer_addSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-    mutation_policy_terminalServer_addSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.terminalServer.addSection')
-
-    mutation_policy_terminalServer_updateSection_parser = mutation_policy_terminalServer_subparsers.add_parser('updateSection', 
-            help='updateSection() terminalServer operation', 
-            usage=get_help("mutation_policy_terminalServer_updateSection"))
-
-    mutation_policy_terminalServer_updateSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
-    mutation_policy_terminalServer_updateSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
-    mutation_policy_terminalServer_updateSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
-    mutation_policy_terminalServer_updateSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
-    mutation_policy_terminalServer_updateSection_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
-    mutation_policy_terminalServer_updateSection_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
-    mutation_policy_terminalServer_updateSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
-    mutation_policy_terminalServer_updateSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
-    mutation_policy_terminalServer_updateSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-    mutation_policy_terminalServer_updateSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.terminalServer.updateSection')
-
-    mutation_policy_terminalServer_removeSection_parser = mutation_policy_terminalServer_subparsers.add_parser('removeSection', 
-            help='removeSection() terminalServer operation', 
-            usage=get_help("mutation_policy_terminalServer_removeSection"))
-
-    mutation_policy_terminalServer_removeSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
-    mutation_policy_terminalServer_removeSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
-    mutation_policy_terminalServer_removeSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
-    mutation_policy_terminalServer_removeSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
-    mutation_policy_terminalServer_removeSection_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
-    mutation_policy_terminalServer_removeSection_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
-    mutation_policy_terminalServer_removeSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
-    mutation_policy_terminalServer_removeSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
-    mutation_policy_terminalServer_removeSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-    mutation_policy_terminalServer_removeSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.terminalServer.removeSection')
-
-    mutation_policy_terminalServer_moveSection_parser = mutation_policy_terminalServer_subparsers.add_parser('moveSection', 
-            help='moveSection() terminalServer operation', 
-            usage=get_help("mutation_policy_terminalServer_moveSection"))
-
-    mutation_policy_terminalServer_moveSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
-    mutation_policy_terminalServer_moveSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
-    mutation_policy_terminalServer_moveSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
-    mutation_policy_terminalServer_moveSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
-    mutation_policy_terminalServer_moveSection_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
-    mutation_policy_terminalServer_moveSection_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
-    mutation_policy_terminalServer_moveSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
-    mutation_policy_terminalServer_moveSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
-    mutation_policy_terminalServer_moveSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-    mutation_policy_terminalServer_moveSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.terminalServer.moveSection')
-
-    mutation_policy_terminalServer_createPolicyRevision_parser = mutation_policy_terminalServer_subparsers.add_parser('createPolicyRevision', 
-            help='createPolicyRevision() terminalServer operation', 
-            usage=get_help("mutation_policy_terminalServer_createPolicyRevision"))
-
-    mutation_policy_terminalServer_createPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
-    mutation_policy_terminalServer_createPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
-    mutation_policy_terminalServer_createPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
-    mutation_policy_terminalServer_createPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
-    mutation_policy_terminalServer_createPolicyRevision_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
-    mutation_policy_terminalServer_createPolicyRevision_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
-    mutation_policy_terminalServer_createPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
-    mutation_policy_terminalServer_createPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
-    mutation_policy_terminalServer_createPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-    mutation_policy_terminalServer_createPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.terminalServer.createPolicyRevision')
-
-    mutation_policy_terminalServer_publishPolicyRevision_parser = mutation_policy_terminalServer_subparsers.add_parser('publishPolicyRevision', 
-            help='publishPolicyRevision() terminalServer operation', 
-            usage=get_help("mutation_policy_terminalServer_publishPolicyRevision"))
-
-    mutation_policy_terminalServer_publishPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
-    mutation_policy_terminalServer_publishPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
-    mutation_policy_terminalServer_publishPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
-    mutation_policy_terminalServer_publishPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
-    mutation_policy_terminalServer_publishPolicyRevision_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
-    mutation_policy_terminalServer_publishPolicyRevision_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
-    mutation_policy_terminalServer_publishPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
-    mutation_policy_terminalServer_publishPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
-    mutation_policy_terminalServer_publishPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-    mutation_policy_terminalServer_publishPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.terminalServer.publishPolicyRevision')
-
-    mutation_policy_terminalServer_discardPolicyRevision_parser = mutation_policy_terminalServer_subparsers.add_parser('discardPolicyRevision', 
-            help='discardPolicyRevision() terminalServer operation', 
-            usage=get_help("mutation_policy_terminalServer_discardPolicyRevision"))
-
-    mutation_policy_terminalServer_discardPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
-    mutation_policy_terminalServer_discardPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
-    mutation_policy_terminalServer_discardPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
-    mutation_policy_terminalServer_discardPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
-    mutation_policy_terminalServer_discardPolicyRevision_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
-    mutation_policy_terminalServer_discardPolicyRevision_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
-    mutation_policy_terminalServer_discardPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
-    mutation_policy_terminalServer_discardPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
-    mutation_policy_terminalServer_discardPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-    mutation_policy_terminalServer_discardPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.terminalServer.discardPolicyRevision')
-
-    mutation_policy_terminalServer_updatePolicy_parser = mutation_policy_terminalServer_subparsers.add_parser('updatePolicy', 
-            help='updatePolicy() terminalServer operation', 
-            usage=get_help("mutation_policy_terminalServer_updatePolicy"))
-
-    mutation_policy_terminalServer_updatePolicy_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
-    mutation_policy_terminalServer_updatePolicy_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
-    mutation_policy_terminalServer_updatePolicy_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
-    mutation_policy_terminalServer_updatePolicy_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
-    mutation_policy_terminalServer_updatePolicy_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
-    mutation_policy_terminalServer_updatePolicy_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
-    mutation_policy_terminalServer_updatePolicy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
-    mutation_policy_terminalServer_updatePolicy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
-    mutation_policy_terminalServer_updatePolicy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-    mutation_policy_terminalServer_updatePolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.terminalServer.updatePolicy')
 
     mutation_policy_wanNetwork_parser = mutation_policy_subparsers.add_parser('wanNetwork', 
             help='wanNetwork() policy operation', 
@@ -2054,3 +1682,375 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_tlsInspect_updatePolicy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_tlsInspect_updatePolicy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
     mutation_policy_tlsInspect_updatePolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.tlsInspect.updatePolicy')
+
+    mutation_policy_dynamicIpAllocation_parser = mutation_policy_subparsers.add_parser('dynamicIpAllocation', 
+            help='dynamicIpAllocation() policy operation', 
+            usage=get_help("mutation_policy_dynamicIpAllocation"))
+
+    mutation_policy_dynamicIpAllocation_subparsers = mutation_policy_dynamicIpAllocation_parser.add_subparsers()
+
+    mutation_policy_dynamicIpAllocation_addRule_parser = mutation_policy_dynamicIpAllocation_subparsers.add_parser('addRule', 
+            help='addRule() dynamicIpAllocation operation', 
+            usage=get_help("mutation_policy_dynamicIpAllocation_addRule"))
+
+    mutation_policy_dynamicIpAllocation_addRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_dynamicIpAllocation_addRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_dynamicIpAllocation_addRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_dynamicIpAllocation_addRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_dynamicIpAllocation_addRule_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_dynamicIpAllocation_addRule_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_dynamicIpAllocation_addRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_dynamicIpAllocation_addRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_dynamicIpAllocation_addRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_dynamicIpAllocation_addRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.dynamicIpAllocation.addRule')
+
+    mutation_policy_dynamicIpAllocation_updateRule_parser = mutation_policy_dynamicIpAllocation_subparsers.add_parser('updateRule', 
+            help='updateRule() dynamicIpAllocation operation', 
+            usage=get_help("mutation_policy_dynamicIpAllocation_updateRule"))
+
+    mutation_policy_dynamicIpAllocation_updateRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_dynamicIpAllocation_updateRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_dynamicIpAllocation_updateRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_dynamicIpAllocation_updateRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_dynamicIpAllocation_updateRule_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_dynamicIpAllocation_updateRule_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_dynamicIpAllocation_updateRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_dynamicIpAllocation_updateRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_dynamicIpAllocation_updateRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_dynamicIpAllocation_updateRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.dynamicIpAllocation.updateRule')
+
+    mutation_policy_dynamicIpAllocation_removeRule_parser = mutation_policy_dynamicIpAllocation_subparsers.add_parser('removeRule', 
+            help='removeRule() dynamicIpAllocation operation', 
+            usage=get_help("mutation_policy_dynamicIpAllocation_removeRule"))
+
+    mutation_policy_dynamicIpAllocation_removeRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_dynamicIpAllocation_removeRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_dynamicIpAllocation_removeRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_dynamicIpAllocation_removeRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_dynamicIpAllocation_removeRule_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_dynamicIpAllocation_removeRule_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_dynamicIpAllocation_removeRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_dynamicIpAllocation_removeRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_dynamicIpAllocation_removeRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_dynamicIpAllocation_removeRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.dynamicIpAllocation.removeRule')
+
+    mutation_policy_dynamicIpAllocation_moveRule_parser = mutation_policy_dynamicIpAllocation_subparsers.add_parser('moveRule', 
+            help='moveRule() dynamicIpAllocation operation', 
+            usage=get_help("mutation_policy_dynamicIpAllocation_moveRule"))
+
+    mutation_policy_dynamicIpAllocation_moveRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_dynamicIpAllocation_moveRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_dynamicIpAllocation_moveRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_dynamicIpAllocation_moveRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_dynamicIpAllocation_moveRule_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_dynamicIpAllocation_moveRule_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_dynamicIpAllocation_moveRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_dynamicIpAllocation_moveRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_dynamicIpAllocation_moveRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_dynamicIpAllocation_moveRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.dynamicIpAllocation.moveRule')
+
+    mutation_policy_dynamicIpAllocation_addSection_parser = mutation_policy_dynamicIpAllocation_subparsers.add_parser('addSection', 
+            help='addSection() dynamicIpAllocation operation', 
+            usage=get_help("mutation_policy_dynamicIpAllocation_addSection"))
+
+    mutation_policy_dynamicIpAllocation_addSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_dynamicIpAllocation_addSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_dynamicIpAllocation_addSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_dynamicIpAllocation_addSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_dynamicIpAllocation_addSection_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_dynamicIpAllocation_addSection_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_dynamicIpAllocation_addSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_dynamicIpAllocation_addSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_dynamicIpAllocation_addSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_dynamicIpAllocation_addSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.dynamicIpAllocation.addSection')
+
+    mutation_policy_dynamicIpAllocation_updateSection_parser = mutation_policy_dynamicIpAllocation_subparsers.add_parser('updateSection', 
+            help='updateSection() dynamicIpAllocation operation', 
+            usage=get_help("mutation_policy_dynamicIpAllocation_updateSection"))
+
+    mutation_policy_dynamicIpAllocation_updateSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_dynamicIpAllocation_updateSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_dynamicIpAllocation_updateSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_dynamicIpAllocation_updateSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_dynamicIpAllocation_updateSection_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_dynamicIpAllocation_updateSection_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_dynamicIpAllocation_updateSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_dynamicIpAllocation_updateSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_dynamicIpAllocation_updateSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_dynamicIpAllocation_updateSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.dynamicIpAllocation.updateSection')
+
+    mutation_policy_dynamicIpAllocation_removeSection_parser = mutation_policy_dynamicIpAllocation_subparsers.add_parser('removeSection', 
+            help='removeSection() dynamicIpAllocation operation', 
+            usage=get_help("mutation_policy_dynamicIpAllocation_removeSection"))
+
+    mutation_policy_dynamicIpAllocation_removeSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_dynamicIpAllocation_removeSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_dynamicIpAllocation_removeSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_dynamicIpAllocation_removeSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_dynamicIpAllocation_removeSection_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_dynamicIpAllocation_removeSection_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_dynamicIpAllocation_removeSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_dynamicIpAllocation_removeSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_dynamicIpAllocation_removeSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_dynamicIpAllocation_removeSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.dynamicIpAllocation.removeSection')
+
+    mutation_policy_dynamicIpAllocation_moveSection_parser = mutation_policy_dynamicIpAllocation_subparsers.add_parser('moveSection', 
+            help='moveSection() dynamicIpAllocation operation', 
+            usage=get_help("mutation_policy_dynamicIpAllocation_moveSection"))
+
+    mutation_policy_dynamicIpAllocation_moveSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_dynamicIpAllocation_moveSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_dynamicIpAllocation_moveSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_dynamicIpAllocation_moveSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_dynamicIpAllocation_moveSection_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_dynamicIpAllocation_moveSection_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_dynamicIpAllocation_moveSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_dynamicIpAllocation_moveSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_dynamicIpAllocation_moveSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_dynamicIpAllocation_moveSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.dynamicIpAllocation.moveSection')
+
+    mutation_policy_dynamicIpAllocation_createPolicyRevision_parser = mutation_policy_dynamicIpAllocation_subparsers.add_parser('createPolicyRevision', 
+            help='createPolicyRevision() dynamicIpAllocation operation', 
+            usage=get_help("mutation_policy_dynamicIpAllocation_createPolicyRevision"))
+
+    mutation_policy_dynamicIpAllocation_createPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_dynamicIpAllocation_createPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_dynamicIpAllocation_createPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_dynamicIpAllocation_createPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_dynamicIpAllocation_createPolicyRevision_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_dynamicIpAllocation_createPolicyRevision_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_dynamicIpAllocation_createPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_dynamicIpAllocation_createPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_dynamicIpAllocation_createPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_dynamicIpAllocation_createPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.dynamicIpAllocation.createPolicyRevision')
+
+    mutation_policy_dynamicIpAllocation_publishPolicyRevision_parser = mutation_policy_dynamicIpAllocation_subparsers.add_parser('publishPolicyRevision', 
+            help='publishPolicyRevision() dynamicIpAllocation operation', 
+            usage=get_help("mutation_policy_dynamicIpAllocation_publishPolicyRevision"))
+
+    mutation_policy_dynamicIpAllocation_publishPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_dynamicIpAllocation_publishPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_dynamicIpAllocation_publishPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_dynamicIpAllocation_publishPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_dynamicIpAllocation_publishPolicyRevision_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_dynamicIpAllocation_publishPolicyRevision_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_dynamicIpAllocation_publishPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_dynamicIpAllocation_publishPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_dynamicIpAllocation_publishPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_dynamicIpAllocation_publishPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.dynamicIpAllocation.publishPolicyRevision')
+
+    mutation_policy_dynamicIpAllocation_discardPolicyRevision_parser = mutation_policy_dynamicIpAllocation_subparsers.add_parser('discardPolicyRevision', 
+            help='discardPolicyRevision() dynamicIpAllocation operation', 
+            usage=get_help("mutation_policy_dynamicIpAllocation_discardPolicyRevision"))
+
+    mutation_policy_dynamicIpAllocation_discardPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_dynamicIpAllocation_discardPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_dynamicIpAllocation_discardPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_dynamicIpAllocation_discardPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_dynamicIpAllocation_discardPolicyRevision_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_dynamicIpAllocation_discardPolicyRevision_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_dynamicIpAllocation_discardPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_dynamicIpAllocation_discardPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_dynamicIpAllocation_discardPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_dynamicIpAllocation_discardPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.dynamicIpAllocation.discardPolicyRevision')
+
+    mutation_policy_dynamicIpAllocation_updatePolicy_parser = mutation_policy_dynamicIpAllocation_subparsers.add_parser('updatePolicy', 
+            help='updatePolicy() dynamicIpAllocation operation', 
+            usage=get_help("mutation_policy_dynamicIpAllocation_updatePolicy"))
+
+    mutation_policy_dynamicIpAllocation_updatePolicy_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_dynamicIpAllocation_updatePolicy_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_dynamicIpAllocation_updatePolicy_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_dynamicIpAllocation_updatePolicy_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_dynamicIpAllocation_updatePolicy_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_dynamicIpAllocation_updatePolicy_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_dynamicIpAllocation_updatePolicy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_dynamicIpAllocation_updatePolicy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_dynamicIpAllocation_updatePolicy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_dynamicIpAllocation_updatePolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.dynamicIpAllocation.updatePolicy')
+
+    mutation_policy_terminalServer_parser = mutation_policy_subparsers.add_parser('terminalServer', 
+            help='terminalServer() policy operation', 
+            usage=get_help("mutation_policy_terminalServer"))
+
+    mutation_policy_terminalServer_subparsers = mutation_policy_terminalServer_parser.add_subparsers()
+
+    mutation_policy_terminalServer_addRule_parser = mutation_policy_terminalServer_subparsers.add_parser('addRule', 
+            help='addRule() terminalServer operation', 
+            usage=get_help("mutation_policy_terminalServer_addRule"))
+
+    mutation_policy_terminalServer_addRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_terminalServer_addRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_terminalServer_addRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_terminalServer_addRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_terminalServer_addRule_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_terminalServer_addRule_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_terminalServer_addRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_terminalServer_addRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_terminalServer_addRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_terminalServer_addRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.terminalServer.addRule')
+
+    mutation_policy_terminalServer_updateRule_parser = mutation_policy_terminalServer_subparsers.add_parser('updateRule', 
+            help='updateRule() terminalServer operation', 
+            usage=get_help("mutation_policy_terminalServer_updateRule"))
+
+    mutation_policy_terminalServer_updateRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_terminalServer_updateRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_terminalServer_updateRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_terminalServer_updateRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_terminalServer_updateRule_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_terminalServer_updateRule_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_terminalServer_updateRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_terminalServer_updateRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_terminalServer_updateRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_terminalServer_updateRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.terminalServer.updateRule')
+
+    mutation_policy_terminalServer_removeRule_parser = mutation_policy_terminalServer_subparsers.add_parser('removeRule', 
+            help='removeRule() terminalServer operation', 
+            usage=get_help("mutation_policy_terminalServer_removeRule"))
+
+    mutation_policy_terminalServer_removeRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_terminalServer_removeRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_terminalServer_removeRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_terminalServer_removeRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_terminalServer_removeRule_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_terminalServer_removeRule_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_terminalServer_removeRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_terminalServer_removeRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_terminalServer_removeRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_terminalServer_removeRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.terminalServer.removeRule')
+
+    mutation_policy_terminalServer_moveRule_parser = mutation_policy_terminalServer_subparsers.add_parser('moveRule', 
+            help='moveRule() terminalServer operation', 
+            usage=get_help("mutation_policy_terminalServer_moveRule"))
+
+    mutation_policy_terminalServer_moveRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_terminalServer_moveRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_terminalServer_moveRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_terminalServer_moveRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_terminalServer_moveRule_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_terminalServer_moveRule_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_terminalServer_moveRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_terminalServer_moveRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_terminalServer_moveRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_terminalServer_moveRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.terminalServer.moveRule')
+
+    mutation_policy_terminalServer_addSection_parser = mutation_policy_terminalServer_subparsers.add_parser('addSection', 
+            help='addSection() terminalServer operation', 
+            usage=get_help("mutation_policy_terminalServer_addSection"))
+
+    mutation_policy_terminalServer_addSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_terminalServer_addSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_terminalServer_addSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_terminalServer_addSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_terminalServer_addSection_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_terminalServer_addSection_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_terminalServer_addSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_terminalServer_addSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_terminalServer_addSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_terminalServer_addSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.terminalServer.addSection')
+
+    mutation_policy_terminalServer_updateSection_parser = mutation_policy_terminalServer_subparsers.add_parser('updateSection', 
+            help='updateSection() terminalServer operation', 
+            usage=get_help("mutation_policy_terminalServer_updateSection"))
+
+    mutation_policy_terminalServer_updateSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_terminalServer_updateSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_terminalServer_updateSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_terminalServer_updateSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_terminalServer_updateSection_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_terminalServer_updateSection_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_terminalServer_updateSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_terminalServer_updateSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_terminalServer_updateSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_terminalServer_updateSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.terminalServer.updateSection')
+
+    mutation_policy_terminalServer_removeSection_parser = mutation_policy_terminalServer_subparsers.add_parser('removeSection', 
+            help='removeSection() terminalServer operation', 
+            usage=get_help("mutation_policy_terminalServer_removeSection"))
+
+    mutation_policy_terminalServer_removeSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_terminalServer_removeSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_terminalServer_removeSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_terminalServer_removeSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_terminalServer_removeSection_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_terminalServer_removeSection_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_terminalServer_removeSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_terminalServer_removeSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_terminalServer_removeSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_terminalServer_removeSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.terminalServer.removeSection')
+
+    mutation_policy_terminalServer_moveSection_parser = mutation_policy_terminalServer_subparsers.add_parser('moveSection', 
+            help='moveSection() terminalServer operation', 
+            usage=get_help("mutation_policy_terminalServer_moveSection"))
+
+    mutation_policy_terminalServer_moveSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_terminalServer_moveSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_terminalServer_moveSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_terminalServer_moveSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_terminalServer_moveSection_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_terminalServer_moveSection_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_terminalServer_moveSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_terminalServer_moveSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_terminalServer_moveSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_terminalServer_moveSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.terminalServer.moveSection')
+
+    mutation_policy_terminalServer_createPolicyRevision_parser = mutation_policy_terminalServer_subparsers.add_parser('createPolicyRevision', 
+            help='createPolicyRevision() terminalServer operation', 
+            usage=get_help("mutation_policy_terminalServer_createPolicyRevision"))
+
+    mutation_policy_terminalServer_createPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_terminalServer_createPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_terminalServer_createPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_terminalServer_createPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_terminalServer_createPolicyRevision_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_terminalServer_createPolicyRevision_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_terminalServer_createPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_terminalServer_createPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_terminalServer_createPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_terminalServer_createPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.terminalServer.createPolicyRevision')
+
+    mutation_policy_terminalServer_publishPolicyRevision_parser = mutation_policy_terminalServer_subparsers.add_parser('publishPolicyRevision', 
+            help='publishPolicyRevision() terminalServer operation', 
+            usage=get_help("mutation_policy_terminalServer_publishPolicyRevision"))
+
+    mutation_policy_terminalServer_publishPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_terminalServer_publishPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_terminalServer_publishPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_terminalServer_publishPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_terminalServer_publishPolicyRevision_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_terminalServer_publishPolicyRevision_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_terminalServer_publishPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_terminalServer_publishPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_terminalServer_publishPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_terminalServer_publishPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.terminalServer.publishPolicyRevision')
+
+    mutation_policy_terminalServer_discardPolicyRevision_parser = mutation_policy_terminalServer_subparsers.add_parser('discardPolicyRevision', 
+            help='discardPolicyRevision() terminalServer operation', 
+            usage=get_help("mutation_policy_terminalServer_discardPolicyRevision"))
+
+    mutation_policy_terminalServer_discardPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_terminalServer_discardPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_terminalServer_discardPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_terminalServer_discardPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_terminalServer_discardPolicyRevision_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_terminalServer_discardPolicyRevision_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_terminalServer_discardPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_terminalServer_discardPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_terminalServer_discardPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_terminalServer_discardPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.terminalServer.discardPolicyRevision')
+
+    mutation_policy_terminalServer_updatePolicy_parser = mutation_policy_terminalServer_subparsers.add_parser('updatePolicy', 
+            help='updatePolicy() terminalServer operation', 
+            usage=get_help("mutation_policy_terminalServer_updatePolicy"))
+
+    mutation_policy_terminalServer_updatePolicy_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_terminalServer_updatePolicy_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_terminalServer_updatePolicy_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_terminalServer_updatePolicy_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_terminalServer_updatePolicy_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_terminalServer_updatePolicy_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_terminalServer_updatePolicy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_terminalServer_updatePolicy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_terminalServer_updatePolicy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_terminalServer_updatePolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.terminalServer.updatePolicy')

@@ -280,6 +280,7 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 		tags
 		roles
 		verdict
+		action
 		processId
 		processCommandLine
 		imageFile {
@@ -923,6 +924,7 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 		tags
 		roles
 		verdict
+		action
 		processId
 		processCommandLine
 		imageFile {
@@ -1256,19 +1258,9 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 				tags
 				roles
 				verdict
+				action
 				processId
 				processCommandLine
-				imageFile {
-					name
-					path
-					size
-					sha1
-					sha256
-					md5
-					issuer
-					signer
-					publisher
-				}
 			}
 			... on MicrosoftFileResource {
 				id
@@ -1302,6 +1294,18 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 				hive
 				key
 				value
+			}
+			... on MicrosoftNetworkResource {
+				id
+				createdDateTime
+				remediationStatus
+				remediationStatusDetails
+				tags
+				roles
+				verdict
+				action
+				dnsRequest
+				dnsResponse
 			}
 		}
 		activities {
@@ -1445,6 +1449,7 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 		tags
 		roles
 		verdict
+		action
 		processId
 		processCommandLine
 		imageFile {
@@ -1934,6 +1939,7 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 		tags
 		roles
 		verdict
+		action
 		processId
 		processCommandLine
 		imageFile {
@@ -2423,6 +2429,7 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 		tags
 		roles
 		verdict
+		action
 		processId
 		processCommandLine
 		imageFile {
@@ -2895,6 +2902,7 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 		tags
 		roles
 		verdict
+		action
 		processId
 		processCommandLine
 		imageFile {
@@ -3363,6 +3371,7 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 		tags
 		roles
 		verdict
+		action
 		processId
 		processCommandLine
 		imageFile {
@@ -4275,6 +4284,7 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 		tags
 		roles
 		verdict
+		action
 		processId
 		processCommandLine
 		imageFile {
@@ -4313,8 +4323,8 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 		recommendedAction
 		details
 	}
+						occurrences
 	accountOperationIncident {
-		impact
 		incidentTimeline {
 			__typename
 			... on AccountOperationsTimelineEvent {
@@ -4326,6 +4336,11 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 				eventIds
 				muted
 			}
+		}
+		metadata {
+			type
+			value
+			key
 		}
 	}
 					}
@@ -4460,6 +4475,7 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 		tags
 		roles
 		verdict
+		action
 		processId
 		processCommandLine
 		imageFile {
@@ -4793,19 +4809,9 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 				tags
 				roles
 				verdict
+				action
 				processId
 				processCommandLine
-				imageFile {
-					name
-					path
-					size
-					sha1
-					sha256
-					md5
-					issuer
-					signer
-					publisher
-				}
 			}
 			... on MicrosoftFileResource {
 				id
@@ -4839,6 +4845,18 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 				hive
 				key
 				value
+			}
+			... on MicrosoftNetworkResource {
+				id
+				createdDateTime
+				remediationStatus
+				remediationStatusDetails
+				tags
+				roles
+				verdict
+				action
+				dnsRequest
+				dnsResponse
 			}
 		}
 		activities {

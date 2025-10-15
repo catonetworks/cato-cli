@@ -114,21 +114,6 @@ def mutation_sites_parse(mutation_subparsers):
     mutation_sites_addSocketSite_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
     mutation_sites_addSocketSite_parser.set_defaults(func=createRequest,operation_name='mutation.sites.addSocketSite')
 
-    mutation_sites_updateSiteGeneralDetails_parser = mutation_sites_subparsers.add_parser('updateSiteGeneralDetails', 
-            help='updateSiteGeneralDetails() sites operation', 
-            usage=get_help("mutation_sites_updateSiteGeneralDetails"))
-
-    mutation_sites_updateSiteGeneralDetails_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
-    mutation_sites_updateSiteGeneralDetails_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
-    mutation_sites_updateSiteGeneralDetails_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
-    mutation_sites_updateSiteGeneralDetails_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
-    mutation_sites_updateSiteGeneralDetails_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
-    mutation_sites_updateSiteGeneralDetails_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
-    mutation_sites_updateSiteGeneralDetails_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
-    mutation_sites_updateSiteGeneralDetails_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
-    mutation_sites_updateSiteGeneralDetails_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-    mutation_sites_updateSiteGeneralDetails_parser.set_defaults(func=createRequest,operation_name='mutation.sites.updateSiteGeneralDetails')
-
     mutation_sites_removeSite_parser = mutation_sites_subparsers.add_parser('removeSite', 
             help='removeSite() sites operation', 
             usage=get_help("mutation_sites_removeSite"))
@@ -518,6 +503,21 @@ def mutation_sites_parse(mutation_subparsers):
     mutation_sites_removeSiteBwLicense_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_sites_removeSiteBwLicense_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
     mutation_sites_removeSiteBwLicense_parser.set_defaults(func=createRequest,operation_name='mutation.sites.removeSiteBwLicense')
+
+    mutation_sites_updateSiteGeneralDetails_parser = mutation_sites_subparsers.add_parser('updateSiteGeneralDetails', 
+            help='updateSiteGeneralDetails() sites operation', 
+            usage=get_help("mutation_sites_updateSiteGeneralDetails"))
+
+    mutation_sites_updateSiteGeneralDetails_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_sites_updateSiteGeneralDetails_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_sites_updateSiteGeneralDetails_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_sites_updateSiteGeneralDetails_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_sites_updateSiteGeneralDetails_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_sites_updateSiteGeneralDetails_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_sites_updateSiteGeneralDetails_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_sites_updateSiteGeneralDetails_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_sites_updateSiteGeneralDetails_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_sites_updateSiteGeneralDetails_parser.set_defaults(func=createRequest,operation_name='mutation.sites.updateSiteGeneralDetails')
 
     mutation_sites_addSocketAddOnCard_parser = mutation_sites_subparsers.add_parser('addSocketAddOnCard', 
             help='addSocketAddOnCard() sites operation', 

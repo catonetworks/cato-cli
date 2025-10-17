@@ -102,3 +102,7 @@
 - Added -f csv for custom reports
 - Updated report generation to be a part of dynamic cli generation process
 - Fixed examples for socketPortMetrics
+
+## 3.0.23 (2025-10-17)
+- Merged user guide documentation into the cato-cli readmes
+- Added exclusions in the generation process for problematic fields for rule management

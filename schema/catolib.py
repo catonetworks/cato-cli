@@ -256,8 +256,8 @@ def processOperation(operationType, operationName):
         
         childOperations = operation_data.get("childOperations", {}).keys() if "childOperations" in operation_data else []
         
-        # Process with recursion depth tracking
-        parsedOperation = parseOperationWithDepthTracking(operation_data, childOperations, max_depth=50)
+        # Process with recursion depth tracking and pass operation name for filtering
+        parsedOperation = parseOperationWithDepthTracking(operation_data, childOperations, max_depth=50, operation_path=operationName)
         parsedOperation = getOperationArgs(parsedOperation["type"]["definition"], parsedOperation)
         parsedOperation["path"] = operationName
         
@@ -313,7 +313,7 @@ def processOperation(operationType, operationName):
         print(f"Error in processOperation {operationName}: {e}")
         raise
 
-def parseOperationWithDepthTracking(curOperation, childOperations, max_depth=50):
+def parseOperationWithDepthTracking(curOperation, childOperations, max_depth=50, operation_path=None):
     """Parse operation with recursion depth tracking to prevent stack overflow"""
     if not hasattr(thread_local, 'depth'):
         thread_local.depth = 0
@@ -325,7 +325,7 @@ def parseOperationWithDepthTracking(curOperation, childOperations, max_depth=50)
             print(f"WARNING: Max recursion depth {max_depth} reached, truncating...")
             return curOperation
         
-        return parseOperation(curOperation, childOperations)
+        return parseOperation(curOperation, childOperations, operation_path)
     finally:
         thread_local.depth -= 1
 
@@ -405,7 +405,7 @@ def getNestedArgDefinitions(argsAry, parentParamPath, childOperations, parentFie
         newArgsList[arg["id_str"]] = arg
     return newArgsList
 
-def getNestedInterfaceDefinitions(possibleTypesAry, parentParamPath, childOperations, parentFields):
+def getNestedInterfaceDefinitions(possibleTypesAry, parentParamPath, childOperations, parentFields, operation_path=None):
     """Thread-safe version of interface definitions processing"""
     curInterfaces = {}
     for possibleType in possibleTypesAry:
@@ -416,13 +416,13 @@ def getNestedInterfaceDefinitions(possibleTypesAry, parentParamPath, childOperat
         curInterface = curInterfaces[interfaceName]
         curParamPath = "" if (parentParamPath == None) else parentParamPath + curInterface["name"] + "___"
         if "fields" in curInterface and curInterface["fields"] != None and curInterface["name"] != "CatoEndpointUser":
-            curInterface["fields"] = getNestedFieldDefinitions(copy.deepcopy(curInterface["fields"]), curParamPath, childOperations, parentFields, curInterface["name"])
+            curInterface["fields"] = getNestedFieldDefinitions(copy.deepcopy(curInterface["fields"]), curParamPath, childOperations, parentFields, curInterface["name"], operation_path)
         if "inputFields" in curInterface and curInterface["inputFields"] != None:
-            curInterface["inputFields"] = getNestedFieldDefinitions(copy.deepcopy(curInterface["inputFields"]), curParamPath, childOperations, parentFields, curInterface["name"])
+            curInterface["inputFields"] = getNestedFieldDefinitions(copy.deepcopy(curInterface["inputFields"]), curParamPath, childOperations, parentFields, curInterface["name"], operation_path)
         if "interfaces" in curInterface and curInterface["interfaces"] != None:
-            curInterface["interfaces"] = getNestedInterfaceDefinitions(copy.deepcopy(curInterface["interfaces"]), parentParamPath, childOperations, parentFields)
+            curInterface["interfaces"] = getNestedInterfaceDefinitions(copy.deepcopy(curInterface["interfaces"]), parentParamPath, childOperations, parentFields, operation_path)
         if "possibleTypes" in curInterface and curInterface["possibleTypes"] != None:
-            curInterface["possibleTypes"] = getNestedInterfaceDefinitions(copy.deepcopy(curInterface["possibleTypes"]), parentParamPath, childOperations, parentFields)
+            curInterface["possibleTypes"] = getNestedInterfaceDefinitions(copy.deepcopy(curInterface["possibleTypes"]), parentParamPath, childOperations, parentFields, operation_path)
     
     return curInterfaces
 
@@ -1197,7 +1197,7 @@ catocli {operationCmd} '{example_json_pretty}'
     
     print("  - README files written successfully")
 
-def getOfType(curType, ofType, parentParamPath, childOperations, parentFields, parentTypeName=None):
+def getOfType(curType, ofType, parentParamPath, childOperations, parentFields, parentTypeName=None, operation_path=None):
     """Thread-safe version with recursion depth management"""
     if not hasattr(thread_local, 'depth'):
         thread_local.depth = 0
@@ -1213,7 +1213,7 @@ def getOfType(curType, ofType, parentParamPath, childOperations, parentFields, p
         curParamPath = "" if (parentParamPath == None) else parentParamPath + "___"
         
         if curType["ofType"] != None:
-            ofType = getOfType(copy.deepcopy(curType["ofType"]), ofType, parentParamPath, childOperations, parentFields)
+            ofType = getOfType(copy.deepcopy(curType["ofType"]), ofType, parentParamPath, childOperations, parentFields, parentTypeName, operation_path)
         else:
             ofType["name"] = curType["name"]
         
@@ -1227,28 +1227,28 @@ def getOfType(curType, ofType, parentParamPath, childOperations, parentFields, p
             ofType["indexType"] = "input_object"
             ofType["definition"] = copy.deepcopy(catoApiIntrospection["input_objects"][ofType["name"]])
             if ofType["definition"]["inputFields"] != None:
-                ofType["definition"]["inputFields"] = getNestedFieldDefinitions(copy.deepcopy(ofType["definition"]["inputFields"]), curParamPath, childOperations, parentFields, ofType["name"])
+                ofType["definition"]["inputFields"] = getNestedFieldDefinitions(copy.deepcopy(ofType["definition"]["inputFields"]), curParamPath, childOperations, parentFields, ofType["name"], operation_path)
         elif "UNION" in ofType["kind"]:
             ofType["indexType"] = "interface"
             ofType["definition"] = copy.deepcopy(catoApiIntrospection["unions"][ofType["name"]])
             if ofType["definition"]["possibleTypes"] != None:
-                ofType["definition"]["possibleTypes"] = getNestedInterfaceDefinitions(copy.deepcopy(ofType["definition"]["possibleTypes"]), curParamPath, childOperations, parentFields)
+                ofType["definition"]["possibleTypes"] = getNestedInterfaceDefinitions(copy.deepcopy(ofType["definition"]["possibleTypes"]), curParamPath, childOperations, parentFields, operation_path)
         elif "OBJECT" in ofType["kind"]:
             ofType["indexType"] = "object"
             ofType["definition"] = copy.deepcopy(catoApiIntrospection["objects"][ofType["name"]])
             if ofType["definition"]["fields"] != None and childOperations!=None:
                 ofType["definition"]["fields"] = checkForChildOperation(copy.deepcopy(ofType["definition"]["fields"]), childOperations)
-                ofType["definition"]["fields"] = getNestedFieldDefinitions(copy.deepcopy(ofType["definition"]["fields"]), curParamPath, childOperations, parentFields, ofType["name"])
+                ofType["definition"]["fields"] = getNestedFieldDefinitions(copy.deepcopy(ofType["definition"]["fields"]), curParamPath, childOperations, parentFields, ofType["name"], operation_path)
             if ofType["definition"]["interfaces"] != None:
-                ofType["definition"]["interfaces"] = getNestedInterfaceDefinitions(copy.deepcopy(ofType["definition"]["interfaces"]), curParamPath, childOperations, parentFields)
+                ofType["definition"]["interfaces"] = getNestedInterfaceDefinitions(copy.deepcopy(ofType["definition"]["interfaces"]), curParamPath, childOperations, parentFields, operation_path)
         elif "INTERFACE" in ofType["kind"]:
             ofType["indexType"] = "interface"
             ofType["definition"] = copy.deepcopy(catoApiIntrospection["interfaces"][ofType["name"]])
             if ofType["definition"]["fields"] != None:
-                ofType["definition"]["fields"] = getNestedFieldDefinitions(copy.deepcopy(ofType["definition"]["fields"]), curParamPath, childOperations, parentFields, ofType["name"])
+                ofType["definition"]["fields"] = getNestedFieldDefinitions(copy.deepcopy(ofType["definition"]["fields"]), curParamPath, childOperations, parentFields, ofType["name"], operation_path)
             # CRITICAL FIX: Also handle possibleTypes for interfaces (like MergedIncident)
             if ofType["definition"]["possibleTypes"] != None:
-                ofType["definition"]["possibleTypes"] = getNestedInterfaceDefinitions(copy.deepcopy(ofType["definition"]["possibleTypes"]), curParamPath, childOperations, parentFields)
+                ofType["definition"]["possibleTypes"] = getNestedInterfaceDefinitions(copy.deepcopy(ofType["definition"]["possibleTypes"]), curParamPath, childOperations, parentFields, operation_path)
         elif "ENUM" in ofType["kind"]:
             ofType["indexType"] = "enum"
             ofType["definition"] = copy.deepcopy(catoApiIntrospection["enums"][ofType["name"]])
@@ -1257,16 +1257,53 @@ def getOfType(curType, ofType, parentParamPath, childOperations, parentFields, p
     finally:
         thread_local.depth -= 1
 
-def getNestedFieldDefinitions(fieldsAry, parentParamPath, childOperations, parentFields, parentTypeName=None):
-    """Thread-safe version with FIXED records exclusion removal"""
+def should_exclude_field(field_name, field_type, operation_path, parent_path):
+    """
+    Determine if a field should be excluded from model generation for query.policy and mutation.policy operations.
+    
+    Excludes:
+    - subPolicyId field (type: ID) from rules.rule.section and sections.section
+    - access field from sections with EntityAccess type containing action field (enum: RBACAction)
+    """
+    # Only apply filtering to query.policy and mutation.policy operations
+    if not operation_path or not (operation_path.startswith("query.policy") or operation_path.startswith("mutation.policy")):
+        return False
+    
+    # Exclude subPolicyId field from specific sections (handles nested paths like firewall.rule.section)
+    if (field_name == "subPolicyId" and 
+        field_type.get("name") == "ID" and
+        parent_path and (
+            parent_path.endswith(".section.subPolicyId") and 
+            ("rules.rule" in parent_path or "sections.section" in parent_path or
+             "rule.rule.section" in parent_path or     # For mutations like addRule.rule.rule.section
+             "section.section" in parent_path or       # For mutations like addSection.section.section
+             "firewall.rule.section" in parent_path)   # For socketLan mutations like addRule.rule.rule.firewall.rule.section
+        )):
+        return True
+    
+    # Exclude access field from sections with EntityAccess type
+    if (field_name == "access" and 
+        field_type.get("name") == "EntityAccess" and
+        parent_path and ("sections.access" in parent_path or 
+                        parent_path.endswith(".access") and "section" in parent_path)):
+        return True
+    
+    return False
+
+def getNestedFieldDefinitions(fieldsAry, parentParamPath, childOperations, parentFields, parentTypeName=None, operation_path=None):
+    """Thread-safe version with field exclusion logic for policy operations"""
     newFieldsList = {}
     for field in fieldsAry:
         if isinstance(field, str):
             field = fieldsAry[field]
         curParamPath = field["name"] if (parentParamPath == None) else (parentParamPath.replace("___",".") + field["name"])
-        field["type"] = getOfType(field["type"], { "non_null": False, "kind": [], "name": None }, curParamPath, childOperations, parentFields, parentTypeName)
+        field["type"] = getOfType(field["type"], { "non_null": False, "kind": [], "name": None }, curParamPath, childOperations, parentFields, parentTypeName, operation_path)
         field["path"] = curParamPath
         field["id_str"] = curParamPath.replace(".","___")
+        
+        # Check if this field should be excluded from policy operations
+        if should_exclude_field(field["name"], field["type"], operation_path, curParamPath):
+            continue  # Skip this field
         
         if isinstance(field["type"]["kind"], list):
             field["required"] = True if field["type"]["kind"][0] == "NON_NULL" else False
@@ -1333,21 +1370,21 @@ def send(api_key, query, variables={}, operationName=None):
 #  writeCliDriver, writeOperationParsers, writeReadmes, etc.)
 # For space reasons, I'm not including them all here, but they should be copied over
 
-def parseOperation(curOperation, childOperations):
+def parseOperation(curOperation, childOperations, operation_path=None):
     if "operationArgs" not in curOperation:
         curOperation["operationArgs"] = {}
     curOperation["fieldTypes"] = {}
-    curOfType = getOfType(curOperation["type"], { "non_null": False, "kind": [], "name": None }, None, childOperations, None)
+    curOfType = getOfType(curOperation["type"], { "non_null": False, "kind": [], "name": None }, None, childOperations, None, None, operation_path)
     curOperation["type"] = copy.deepcopy(curOfType)
     if curOfType["name"] in catoApiIntrospection["objects"]:
         curOperation["args"] = getNestedArgDefinitions(curOperation["args"], None, childOperations, None)
         curOperation["type"]["definition"] = copy.deepcopy(catoApiIntrospection["objects"][curOperation["type"]["name"]])
         if "fields" in curOperation["type"]["definition"] and curOperation["type"]["definition"]["fields"] != None:
             curOperation["type"]["definition"]["fields"] = checkForChildOperation(copy.deepcopy(curOperation["type"]["definition"]["fields"]), childOperations)
-            curOperation["type"]["definition"]["fields"] = copy.deepcopy(getNestedFieldDefinitions(curOperation["type"]["definition"]["fields"], None, childOperations, [], curOperation["type"]["name"]))
+            curOperation["type"]["definition"]["fields"] = copy.deepcopy(getNestedFieldDefinitions(curOperation["type"]["definition"]["fields"], None, childOperations, [], curOperation["type"]["name"], operation_path))
         if "inputFields" in curOperation["type"]["definition"] and curOperation["type"]["definition"]["inputFields"] != None:
             parentFields = curOperation["type"]["definition"]["inputFields"].keys()
-            curOperation["type"]["definition"]["inputFields"] = copy.deepcopy(getNestedFieldDefinitions(curOperation["type"]["definition"]["inputFields"], None, childOperations, parentFields, curOperation["type"]["name"]))
+            curOperation["type"]["definition"]["inputFields"] = copy.deepcopy(getNestedFieldDefinitions(curOperation["type"]["definition"]["inputFields"], None, childOperations, parentFields, curOperation["type"]["name"], operation_path))
     return curOperation
 
 def checkForChildOperation(fieldsAry, childOperations):
@@ -1472,7 +1509,7 @@ def renderInputFieldVal(arg):
     
     return value
 
-def getNestedInterfaceDefinitions(possibleTypesAry, parentParamPath, childOperations, parentFields):
+def getNestedInterfaceDefinitions(possibleTypesAry, parentParamPath, childOperations, parentFields, operation_path=None):
     """Get nested interface definitions - returns expanded possibleTypes array with complete field definitions"""
     expandedTypes = []
     for possibleType in possibleTypesAry:
@@ -1489,7 +1526,8 @@ def getNestedInterfaceDefinitions(possibleTypesAry, parentParamPath, childOperat
                     parentParamPath, 
                     childOperations, 
                     parentFields, 
-                    possibleType["name"]
+                    possibleType["name"],
+                    operation_path
                 )
             expandedTypes.append(expandedType)
         else:
@@ -1717,33 +1755,3 @@ catocli {subOperationCmd} '{example_json_pretty}'
         # Only recurse if subOperation is a dict and doesn't have a "path" key
         if isinstance(subOperation, dict) and "path" not in subOperation:
             renderSubReadme(subOperation, operationType, subOperationPath)
-
-def main():
-    # Main execution function with threading support
-    options = initParser()
-    
-    # Load the introspection schema
-    print("Loading schema...")
-    schema = loadJSON("./introspection.json")
-    
-    print("Starting multi-threaded schema parsing...")
-    start_time = time.time()
-    
-    # Parse the schema using multi-threading
-    parseSchema(schema)
-    
-    end_time = time.time()
-    print(f"\n• Schema processing completed in {end_time - start_time:.2f} seconds")
-    
-    print("\n• Generating CLI components...")
-    writeCliDriver(catoApiSchema)
-    writeOperationParsers(catoApiSchema)
-    writeReadmes(catoApiSchema)
-    
-    total_operations = len(catoApiSchema["query"]) + len(catoApiSchema["mutation"])
-    print(f"\n• Successfully generated {total_operations} operation models")
-    print(f"   - Query operations: {len(catoApiSchema['query'])}")
-    print(f"   - Mutation operations: {len(catoApiSchema['mutation'])}")
-    
-if __name__ == "__main__":
-    main()

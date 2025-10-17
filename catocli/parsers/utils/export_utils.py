@@ -183,9 +183,11 @@ def write_json_export(
         if verbose:
             print(f"Successfully exported data to JSON: {filepath}")
         
+        # Normalize path separators for better cross-platform display
+        display_path = filepath.replace(os.sep, '/')
         return {
             'success': True,
-            'output_file': filepath,
+            'output_file': display_path,
             'format': 'json',
             'record_count': len(data) if isinstance(data, (list, dict)) else 1
         }
@@ -232,9 +234,11 @@ def write_csv_export(
         if verbose:
             print(f"Successfully exported {len(data)} records to CSV: {filepath}")
         
+        # Normalize path separators for better cross-platform display
+        display_path = filepath.replace(os.sep, '/')
         return {
             'success': True,
-            'output_file': filepath,
+            'output_file': display_path,
             'format': 'csv',
             'record_count': len(data)
         }

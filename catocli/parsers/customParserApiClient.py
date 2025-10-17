@@ -350,7 +350,9 @@ def createRequest(args, configuration):
                                 print(f"Saved CSV report to: {output_path}")
                             
                             # Return structured response similar to export functions
-                            return [{"success": True, "output_file": output_path, "operation": operation_name}]
+                            # Normalize path separators for better cross-platform display
+                            display_path = output_path.replace(os.sep, '/')
+                            return [{"success": True, "output_file": display_path, "operation": operation_name}]
                         elif csv_output is None:
                             # Formatter returned None, indicating we should fall back to raw response
                             print("INFO: No processable data found, returning raw API response")
@@ -1844,7 +1846,9 @@ def createPrivateRequest(args, configuration):
                                 print(f"Saved CSV report to: {output_path}")
                             
                             # Return structured response similar to export functions
-                            return [{"success": True, "output_file": output_path, "operation": csv_operation, "private_command": private_command}]
+                            # Normalize path separators for better cross-platform display
+                            display_path = output_path.replace(os.sep, '/')
+                            return [{"success": True, "output_file": display_path, "operation": csv_operation, "private_command": private_command}]
                         else:
                             print("WARNING: CSV formatter returned empty result")
                             return response

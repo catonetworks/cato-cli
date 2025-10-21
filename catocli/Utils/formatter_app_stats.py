@@ -14,12 +14,12 @@ from typing import Dict, List, Any
 
 # Import shared utility functions
 try:
-    from .formatter_utils import convert_bytes_to_mb
+    from .formatter_utils import convert_bytes_to_mb, is_bytes_measure
 except ImportError:
     try:
-        from catocli.Utils.formatter_utils import convert_bytes_to_mb
+        from catocli.Utils.formatter_utils import convert_bytes_to_mb, is_bytes_measure
     except ImportError:
-        from formatter_utils import convert_bytes_to_mb
+        from formatter_utils import convert_bytes_to_mb, is_bytes_measure
 
 
 def format_app_stats(response_data: Dict[str, Any], output_format: str = 'json') -> str:
@@ -89,24 +89,27 @@ def _format_app_stats_to_json(response_data: Dict[str, Any]) -> str:
         record_data = {}
         
         for i, (field, value) in enumerate(fields_map.items()):
-            # Add unit type information for bytes fields
-            if (i < len(record_unit_types) and record_unit_types[i] == 'bytes'):
-                formatted_mb = convert_bytes_to_mb(value)
-                if formatted_mb and formatted_mb != str(value):
+            # Check if this is a bytes field using both unit type and field name
+            unit_type = record_unit_types[i] if i < len(record_unit_types) else "unknown"
+            is_bytes_field = (unit_type == 'bytes') or is_bytes_measure(field, unit_type)
+            
+            if is_bytes_field:
+                try:
+                    formatted_mb = convert_bytes_to_mb(value)
                     record_data[field] = {
                         "value": value,
                         "formatted_mb": formatted_mb,
                         "unit_type": "bytes"
                     }
-                else:
+                except (ValueError, ZeroDivisionError):
                     record_data[field] = {
                         "value": value,
-                        "unit_type": "bytes"
+                        "unit_type": "bytes_err"
                     }
             else:
                 record_data[field] = {
                     "value": value,
-                    "unit_type": record_unit_types[i] if i < len(record_unit_types) else "unknown"
+                    "unit_type": unit_type
                 }
         
         organized_data["appStats"]["records"].append(record_data)
@@ -155,7 +158,10 @@ def _format_app_stats_to_csv(response_data: Dict[str, Any]) -> str:
     # Create headers with _mb suffix for bytes fields
     headers = []
     for i, field_name in enumerate(field_names):
-        if i < len(field_unit_types) and field_unit_types[i] == 'bytes':
+        unit_type = field_unit_types[i] if i < len(field_unit_types) else "unknown"
+        is_bytes_field = (unit_type == 'bytes') or is_bytes_measure(field_name, unit_type)
+        
+        if is_bytes_field:
             headers.append(f'{field_name}_mb')
         else:
             headers.append(field_name)
@@ -172,12 +178,19 @@ def _format_app_stats_to_csv(response_data: Dict[str, Any]) -> str:
         for i, field in enumerate(field_names):
             value = fields_map.get(field, '')
             
-            # Convert bytes to MB if the field type is bytes
-            if (i < len(record_unit_types) and record_unit_types[i] == 'bytes'):
-                formatted_value = convert_bytes_to_mb(value)
-                row.append(formatted_value if formatted_value else value)
+            # Check if this is a bytes field using both unit type and field name
+            unit_type = record_unit_types[i] if i < len(record_unit_types) else "unknown"
+            is_bytes_field = (unit_type == 'bytes') or is_bytes_measure(field, unit_type)
+            
+            # Convert bytes to MB if the field is a bytes field
+            if is_bytes_field:
+                try:
+                    formatted_value = convert_bytes_to_mb(value) if value != '' else ''
+                    row.append(formatted_value)
+                except (ValueError, ZeroDivisionError):
+                    row.append(str(value) if value != '' else '')
             else:
-                row.append(value)
+                row.append(str(value) if value != '' else '')
         
         writer.writerow(row)
     

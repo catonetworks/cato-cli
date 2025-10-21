@@ -118,6 +118,7 @@ def is_bytes_measure(measure: str, units: str = "") -> bool:
     """
     bytes_measures = {
         'downstream', 'upstream', 'traffic', 'bytes', 'bytesDownstream', 
+        'bytes_upstream', 'bytes_downstream', 'bytes_total',
         'bytesUpstream', 'bytesTotal', 'throughput_downstream', 'throughput_upstream'
     }
     

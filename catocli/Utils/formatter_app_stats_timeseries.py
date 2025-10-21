@@ -16,12 +16,12 @@ from typing import Dict, List, Any, Tuple
 
 # Import shared utility functions
 try:
-    from .formatter_utils import format_timestamp, parse_label_for_dimensions_and_measure
+    from .formatter_utils import format_timestamp, parse_label_for_dimensions_and_measure, is_bytes_measure, convert_bytes_to_mb
 except ImportError:
     try:
-        from catocli.Utils.formatter_utils import format_timestamp, parse_label_for_dimensions_and_measure
+        from catocli.Utils.formatter_utils import format_timestamp, parse_label_for_dimensions_and_measure, is_bytes_measure, convert_bytes_to_mb
     except ImportError:
-        from formatter_utils import format_timestamp, parse_label_for_dimensions_and_measure
+        from formatter_utils import format_timestamp, parse_label_for_dimensions_and_measure, is_bytes_measure, convert_bytes_to_mb
 
 
 def format_app_stats_timeseries(response_data: Dict[str, Any], output_format: str = 'json') -> str:
@@ -170,20 +170,18 @@ def _format_app_stats_timeseries_to_json(response_data: Dict[str, Any]) -> str:
             for timestamp, value in measure_data['data'].items():
                 timestamp_str = format_timestamp(timestamp)
                 
-                if measure in ['downstream', 'upstream', 'traffic'] and value:
+                if is_bytes_measure(measure):
                     try:
-                        mb_value = value
-                        # mb_value = float(value) / 1048576
-                        formatted_value = f"{mb_value:.3f}".rstrip('0').rstrip('.')
+                        converted_value = convert_bytes_to_mb(value)
                         formatted_data[timestamp_str] = {
                             'value': value,
-                            'formatted_mb': formatted_value,
-                            'unit_type': 'mb'
+                            'formatted_mb': converted_value,
+                            'unit_type': 'bytes'
                         }
                     except (ValueError, ZeroDivisionError):
                         formatted_data[timestamp_str] = {
                             'value': value,
-                            'unit_type': 'mb'
+                            'unit_type': 'bytes_err'
                         }
                 else:
                     formatted_data[timestamp_str] = {
@@ -322,20 +320,14 @@ def _format_app_stats_timeseries_to_csv(response_data: Dict[str, Any]) -> str:
                 value = data.get(timestamp, '')
                 
                 # Convert bytes measures to MB and add appropriate suffix
-                if measure in ['downstream', 'upstream', 'traffic']:
-                    if value:
-                        try:
-                            # Current bug in appStatsTimeSeries returning mb indicating unit as bytes
-                            # mb_value = float(value) / 1048576
-                            mb_value = value
-                            formatted_value = f"{mb_value:.3f}".rstrip('0').rstrip('.')
-                            row_data[f'{measure}_mb'] = formatted_value
-                        except (ValueError, ZeroDivisionError):
-                            row_data[f'{measure}_mb'] = value
-                    else:
-                        row_data[f'{measure}_mb'] = value
+                if is_bytes_measure(measure):
+                    try:
+                        converted_value = convert_bytes_to_mb(value) if value != '' else ''
+                        row_data[f'{measure}_mb'] = converted_value
+                    except (ValueError, ZeroDivisionError):
+                        row_data[f'{measure}_mb'] = str(value) if value != '' else ''
                 else:
-                    row_data[measure] = value
+                    row_data[measure] = str(value) if value != '' else ''
             
             rows.append(row_data)
     

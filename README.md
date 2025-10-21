@@ -68,7 +68,7 @@ For detailed information about profile management, see [PROFILES.md](PROFILES.md
 |-----------|-------------|--------|
 | [Account Metrics](./catocli_user_guide/account-metrics.md) | Network performance metrics by site, user, or interface | 📊 |
 | [Application Statistics](./catocli_user_guide/app-stats.md) | User activity and application usage analysis | 📱 |
-| [Application Time Series](./catocli_user_guide/app-stats-timeseries.md) | Traffic analysis over time with hourly/daily breakdowns | 📈 |
+| [Application Statistics Time Series](./catocli_user_guide/app-stats-timeseries.md) | Traffic analysis over time with hourly/daily breakdowns | 📈 |
 | [Events Time Series](./catocli_user_guide/events-timeseries.md) | Security events, connectivity, and threat analysis | 🔒 |
 | [Socket Port Metrics](./catocli_user_guide/socket-port-metrics.md) | Socket interface performance and traffic analysis | 🔌 |
 | [Socket Port Time Series](./catocli_user_guide/socket-port-timeseries.md) | Socket performance metrics over time | ⏱️ |
@@ -145,6 +145,3 @@ This CLI is a Python 3 application and has been tested with Python 3.6 -> 3.8
 
 ## Installing the correct version for environment:
 https://www.python.org/downloads/
-
-
-

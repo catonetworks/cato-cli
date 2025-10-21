@@ -12,12 +12,17 @@ Application statistics time series help you analyze:
 - **Capacity Planning**: Understand usage patterns for network planning
 - **Filtered Analysis**: Focus on specific traffic types (WANBOUND, LANBOUND)
 
+## Important Note
+
+**To get accurate metrics for throughput statistics for measures like `upstream`, `downstream`, and `traffic`, it is important to set the `"perSecond"` value to `false`.**
+
 ## Basic Usage
 
 ```bash
 catocli query appStatsTimeSeries '{
     "buckets": 24,
     "dimension": [{"fieldName": "user_name"}, {"fieldName": "application_name"}],
+    "perSecond": false,
     "measure": [{"aggType": "sum", "fieldName": "traffic"}],
     "timeFrame": "last.P1D"
 }'
@@ -56,16 +61,16 @@ The `buckets` parameter determines how your time frame is divided:
 ### Examples by Time Frame
 ```json
 // Hourly breakdown for one day
-{"buckets": 24, "timeFrame": "last.P1D"}
+{"buckets": 24, "perSecond": false, "timeFrame": "last.P1D"}
 
 // 6-hour breakdown for one week  
-{"buckets": 28, "timeFrame": "last.P7D"}
+{"buckets": 28,"perSecond": false, "timeFrame": "last.P7D"}
 
 // Daily breakdown for one month
-{"buckets": 30, "timeFrame": "last.P1M"}
+{"buckets": 30, "perSecond": false, "timeFrame": "last.P1M"}
 
 // 15-minute intervals for 6 hours
-{"buckets": 24, "timeFrame": "last.PT6H"}
+{"buckets": 24, "perSecond": false, "timeFrame": "last.PT6H"}
 ```
 
 ## Available Dimensions
@@ -117,6 +122,7 @@ catocli query appStatsTimeSeries '{
         {"fieldName": "user_name"},
         {"fieldName": "application_name"}
     ],
+    "perSecond": false,
     "measure": [
         {"aggType": "sum", "fieldName": "upstream"},
         {"aggType": "sum", "fieldName": "downstream"},
@@ -144,6 +150,7 @@ catocli query appStatsTimeSeries '{
         {"fieldName": "application_name"},
         {"fieldName": "user_name"}
     ],
+    "perSecond": false,
     "measure": [
         {"aggType": "sum", "fieldName": "traffic"},
         {"aggType": "sum", "fieldName": "upstream"},
@@ -164,6 +171,7 @@ catocli query appStatsTimeSeries '{
         {"fieldName": "application_category"},
         {"fieldName": "site_name"}
     ],
+    "perSecond": false,
     "measure": [
         {"aggType": "sum", "fieldName": "traffic"},
         {"aggType": "sum", "fieldName": "flows_created"}
@@ -182,6 +190,7 @@ catocli query appStatsTimeSeries '{
     "dimension": [
         {"fieldName": "user_name"}
     ],
+    "perSecond": false,
     "measure": [
         {"aggType": "sum", "fieldName": "traffic"}
     ],
@@ -199,6 +208,7 @@ catocli query appStatsTimeSeries '{
     "dimension": [
         {"fieldName": "application_name"}
     ],
+    "perSecond": false,
     "measure": [
         {"aggType": "sum", "fieldName": "traffic"},
         {"aggType": "sum", "fieldName": "flows_created"}
@@ -218,6 +228,7 @@ catocli query appStatsTimeSeries '{
         {"fieldName": "user_name"},
         {"fieldName": "application_category"}
     ],
+    "perSecond": false,
     "measure": [
         {"aggType": "sum", "fieldName": "session_duration"},
         {"aggType": "sum", "fieldName": "flows_created"}
@@ -347,6 +358,7 @@ catocli query appStatsTimeSeries '{
     "dimension": [
         {"fieldName": "application_name"}
     ],
+    "perSecond": false,
     "measure": [
         {"aggType": "sum", "fieldName": "traffic"}
     ],
@@ -369,6 +381,7 @@ catocli query appStatsTimeSeries '{
         {"fieldName": "application_name"},
         {"fieldName": "risk_score"}
     ],
+    "perSecond": false,
     "measure": [
         {"aggType": "sum", "fieldName": "traffic"},
         {"aggType": "sum", "fieldName": "flows_created"}
@@ -385,6 +398,7 @@ catocli query appStatsTimeSeries '{
         {"fieldName": "site_name"},
         {"fieldName": "application_category"}
     ],
+    "perSecond": false,
     "measure": [
         {"aggType": "sum", "fieldName": "traffic"}
     ],
@@ -406,6 +420,7 @@ catocli query appStatsTimeSeries '{
     "dimension": [
         {"fieldName": "application_category"}
     ],
+    "perSecond": false,
     "measure": [
         {"aggType": "sum", "fieldName": "traffic"},
         {"aggType": "sum", "fieldName": "session_duration"}
@@ -439,6 +454,7 @@ catocli query appStatsTimeSeries '{
         {"fieldName": "application_name"},
         {"fieldName": "user_name"}
     ],
+    "perSecond": false,
     "measure": [
         {"aggType": "sum", "fieldName": "traffic"}
     ],
@@ -453,6 +469,7 @@ catocli query appStatsTimeSeries '{
 catocli query appStatsTimeSeries '{
     "buckets": 72,
     "dimension": [{"fieldName": "application_name"}],
+    "perSecond": false,
     "measure": [{"aggType": "sum", "fieldName": "traffic"}],
     "timeFrame": "last.PT6H"
 }' -f csv --csv-filename "realtime_monitoring.csv"

@@ -13,6 +13,7 @@ catocli query appStatsTimeSeries '{
             "fieldName": "application_name"
         }
     ],
+    "perSecond": false,
     "measure": [
         {
             "aggType": "sum",
@@ -54,6 +55,7 @@ catocli query appStatsTimeSeries '{
             "fieldName": "user_name"
         }
     ],
+    "perSecond": false,
     "measure": [
         {
             "aggType": "sum",

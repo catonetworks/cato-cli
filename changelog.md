@@ -106,3 +106,13 @@
 ## 3.0.23 (2025-10-17)
 - Merged user guide documentation into the cato-cli readmes
 - Added exclusions in the generation process for problematic fields for rule management
+
+## 3.0.24 (2025-10-17)
+- Merged user guide documentation into the cato-cli readmes
+- Added exclusions in the generation process for problematic fields for rule management
+
+## 3.0.25 (2025-10-21)
+- Updated appStatsTimeSeries to process bytes, updated readme to include perSecond value as false in appStatsTimeSeries, updated dynamic examples to include this value
+
+## 3.0.26 (2025-10-21)
+- Updated dynamic param generation to split out containers to separate queries to reflect API explorer

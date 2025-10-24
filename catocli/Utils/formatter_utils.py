@@ -165,17 +165,6 @@ def build_wide_timeseries_header(dimension_names: List[str], measures: List[str]
     return header
 
 
-
-
-
-
-
-
-
-
-
-
-
 def format_to_csv(response_data: Dict[str, Any], operation_name: str) -> str:
     """
     Main function to format response data to CSV based on operation type

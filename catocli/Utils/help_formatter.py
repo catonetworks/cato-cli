@@ -82,28 +82,40 @@ class JSONExample:
         """Format the JSON example for the specific platform - show only the best format"""
         if platform_info.platform == 'windows':
             if platform_info.shell == 'powershell':
-                # For PowerShell, show multiple options to work around quote stripping issues
+                # For PowerShell, show here-string format
                 return self._format_powershell_comprehensive(command_name)
             else:
                 # For cmd, use single-line with escaped quotes
                 single_line = json.dumps(self.parsed_json) if self.parsed_json else self.json_data.replace('\n', ' ')
                 escaped_json = single_line.replace('"', '\\"')
-                return [f'catocli {command_name} "{escaped_json}" -p']
+                # Extract flags from command template
+                flags = self._extract_flags_from_template()
+                return [f'catocli {command_name} "{escaped_json}" {flags}'.strip()]
         else:
-            # For Unix-like systems, use multi-line
+            # For Unix-like systems, use multi-line with proper formatting
             return [self.command_template.format(command=command_name, json=self.json_data)]
     
+    def _extract_flags_from_template(self) -> str:
+        """Extract flags from the command template (everything after {json})""" 
+        # Extract everything after '{json}' in the template
+        if "'{json}'" in self.command_template:
+            parts = self.command_template.split("'{json}'")
+            if len(parts) > 1:
+                return parts[1].strip()
+        return ""
+    
     def _format_powershell_comprehensive(self, command_name: str) -> List[str]:
-        """Format PowerShell here-string example with proper quote escaping"""
-        # Escape double quotes in JSON for PowerShell compatibility
-        escaped_json = self.json_data.replace('"', '\\"')
+        """Format PowerShell here-string example - no escaping needed for here-strings"""
+        # Extract flags from command template
+        flags = self._extract_flags_from_template()
         
-        # Use here-string format which handles quotes better in PowerShell
+        # Use here-string format which handles quotes perfectly in PowerShell
+        # No escaping needed for here-strings
         examples = [
             "# PowerShell (using here-string):",
             f"catocli {command_name} @'",
-            escaped_json,
-            "'@ -p"
+            self.json_data,
+            f"'@ {flags}".strip() if flags else "'@"
         ]
         
         return examples
@@ -227,52 +239,94 @@ class UniversalHelpFormatter:
             readme_examples = self._extract_from_readme(command_path)
             if readme_examples:
                 for example in readme_examples:
-                    # Check if this example starts with a comment (lines starting with #)
-                    if example.startswith('#') and '\n' in example:
-                        # This is a comment followed by a command - need to format the command part
+                    # Check if this is a header or description line (not a command)
+                    if example.startswith('###') or (example.startswith('-') and 'catocli' not in example):
+                        # This is a header or description - preserve as-is
+                        help_lines.append(example)
+                        continue
+                    
+                    # Check if this example starts with a comment followed by a command
+                    if example.startswith('#') and '\n' in example and 'catocli' in example:
+                        # This is a comment followed by a command - extract both parts
                         lines = example.split('\n', 1)
                         if len(lines) == 2:
                             comment_line = lines[0]
-                            command_line = lines[1]
+                            command_part = lines[1]
                             
-                            # Check if command has JSON and format appropriately
-                            if '{' in command_line and '}' in command_line:
-                                json_match = self._extract_json_from_example(command_line)
+                            # Check if command has multi-line JSON and format appropriately
+                            if "'{" in command_part and "}'" in command_part:
+                                json_match = self._extract_json_from_example(command_part)
                                 if json_match:
+                                    # Extract command flags (everything after }')
+                                    flags = ""
+                                    if "}'" in command_part:
+                                        flags_match = re.search(r"}'\s*(.*)$", command_part, re.MULTILINE)
+                                        if flags_match:
+                                            flags = flags_match.group(1).strip()
+                                    
+                                    # Create command template with flags
+                                    if flags:
+                                        command_template = f"catocli {{command}} '{{json}}' {flags}"
+                                    else:
+                                        command_template = "catocli {command} '{json}'"
+                                    
                                     # Create JSONExample and apply platform-specific formatting
-                                    json_example = JSONExample(json_match)
+                                    json_example = JSONExample(json_match, command_template)
                                     formatted_commands = json_example.format_for_platform(self.platform_info, command_name)
                                     # Add comment first, then formatted commands
                                     help_lines.append(comment_line)
                                     help_lines.extend(formatted_commands)
                                 else:
                                     # JSON extraction failed, format as simple command
-                                    formatted_command = self._format_simple_command_for_platform(command_line)
+                                    formatted_command = self._format_simple_command_for_platform(command_part)
                                     help_lines.append(comment_line)
                                     help_lines.append(formatted_command)
                             else:
                                 # Simple command - apply platform formatting
-                                formatted_command = self._format_simple_command_for_platform(command_line)
+                                formatted_command = self._format_simple_command_for_platform(command_part)
                                 help_lines.append(comment_line)
                                 help_lines.append(formatted_command)
                         else:
                             # Fallback - preserve as-is
                             help_lines.append(example)
-                    elif '{' in example and '}' in example:
-                        # Check if this is a multi-line JSON example that can be platform-formatted
-                        json_match = self._extract_json_from_example(example)
-                        if json_match and not example.startswith('#'):
-                            # Create JSONExample and apply platform-specific formatting
-                            json_example = JSONExample(json_match)
-                            formatted_examples = json_example.format_for_platform(self.platform_info, command_name)
-                            help_lines.extend(formatted_examples)
+                    elif 'catocli' in example and '{' in example and '}' in example:
+                        # This is a catocli command with JSON - check if multi-line
+                        if '\n' in example and "'{" in example:
+                            # Multi-line JSON command
+                            json_match = self._extract_json_from_example(example)
+                            if json_match:
+                                # Extract command flags (everything after }')
+                                flags = ""
+                                if "}'" in example:
+                                    flags_match = re.search(r"}'\s*(.*)$", example, re.MULTILINE)
+                                    if flags_match:
+                                        flags = flags_match.group(1).strip()
+                                
+                                # Create command template with flags
+                                if flags:
+                                    command_template = f"catocli {{command}} '{{json}}' {flags}"
+                                else:
+                                    command_template = "catocli {command} '{json}'"
+                                
+                                # Create JSONExample and apply platform-specific formatting
+                                json_example = JSONExample(json_match, command_template)
+                                formatted_examples = json_example.format_for_platform(self.platform_info, command_name)
+                                help_lines.extend(formatted_examples)
+                            else:
+                                # Preserve as-is if JSON extraction fails
+                                help_lines.append(example)
                         else:
-                            # Preserve as-is if it has comments or JSON extraction fails
-                            help_lines.append(example)
+                            # Single-line command with JSON - format as simple command
+                            formatted_example = self._format_simple_command_for_platform(example)
+                            help_lines.append(formatted_example)
                     else:
-                        # Simple command examples without JSON - apply platform formatting
-                        formatted_example = self._format_simple_command_for_platform(example)
-                        help_lines.append(formatted_example)
+                        # Simple command examples without JSON or description text - apply platform formatting
+                        if 'catocli' in example:
+                            formatted_example = self._format_simple_command_for_platform(example)
+                            help_lines.append(formatted_example)
+                        else:
+                            # Not a command - preserve as-is (likely description text)
+                            help_lines.append(example)
                     help_lines.append("")  # Add spacing between examples
         
         description_examples = []
@@ -307,7 +361,7 @@ class UniversalHelpFormatter:
         return "\n".join(help_lines)
 
     def _extract_from_readme(self, command_path: str) -> List[str]:
-        """Extract all catocli examples from README.md files with comments"""
+        """Extract catocli examples from README.md files, prioritizing Additional Examples section"""
         examples = []
         
         # Find README.md file
@@ -328,21 +382,48 @@ class UniversalHelpFormatter:
             
             command_name = command_path.replace('_', ' ')
             
-            # Check if "### Examples Summary" or "### Additional Examples" sections exist
-            has_examples_summary = "### Examples Summary" in content or "### Additional Examples" in content
-            if has_examples_summary:
-                # Extract and display the examples summary section
-                summary_pattern = r'### (?:Examples Summary|Additional Examples)\n(.*?)(?=\n###|\n## |\Z)'
-                summary_match = re.search(summary_pattern, content, re.DOTALL)
-                if summary_match:
-                    summary_content = summary_match.group(1).strip()
-                    examples.append(f"\n### Examples Summary")
-                    examples.append(summary_content)
+            # Check if "## Advanced Usage" or "### Additional Examples" section exists
+            has_advanced_usage = "## Advanced Usage" in content
+            has_additional_examples = "### Additional Examples" in content
+            
+            # Define content to parse
+            content_to_parse = content
+            if has_advanced_usage:
+                # Extract the Advanced Usage section (up to #### which is next level heading)
+                advanced_pattern = r'## Advanced Usage\n(.*?)(?=\n####|\Z)'
+                advanced_match = re.search(advanced_pattern, content, re.DOTALL)
+                if advanced_match:
+                    content_to_parse = advanced_match.group(1)
+                    # Add a header for the examples
+                    examples.append("### Examples")
+                    # Extract list items from Additional Examples intro (before first # heading)
+                    intro_pattern = r'### Additional Examples\n(.*?)(?=\n#[^#])'
+                    intro_match = re.search(intro_pattern, content_to_parse, re.DOTALL)
+                    if intro_match and intro_match.group(1).strip():
+                        intro_text = intro_match.group(1).strip()
+                        # Only add if it contains bullet points or descriptions
+                        if '-' in intro_text:
+                            examples.append(intro_text)
+                    examples.append("")  # Add spacing
+            elif has_additional_examples:
+                # Fallback: Extract only the Additional Examples section
+                additional_pattern = r'### Additional Examples\n(.*?)(?=\n####|\n## |\Z)'
+                additional_match = re.search(additional_pattern, content, re.DOTALL)
+                if additional_match:
+                    content_to_parse = additional_match.group(1)
+                    examples.append("### Examples")
+                    # Extract list items from the section intro
+                    intro_pattern = r'^(.*?)(?=\n#[^#])'
+                    intro_match = re.search(intro_pattern, content_to_parse, re.DOTALL)
+                    if intro_match and intro_match.group(1).strip():
+                        intro_text = intro_match.group(1).strip()
+                        if '-' in intro_text:
+                            examples.append(intro_text)
                     examples.append("")  # Add spacing
             
-            # Extract ALL catocli commands from markdown code blocks
+            # Extract catocli commands from markdown code blocks
             code_block_pattern = r'```(?:bash|shell|json)?\n(.*?)```'
-            matches = re.findall(code_block_pattern, content, re.DOTALL)
+            matches = re.findall(code_block_pattern, content_to_parse, re.DOTALL)
             
             for match in matches:
                 # Split the match into individual lines and extract catocli commands with comments
@@ -375,10 +456,14 @@ class UniversalHelpFormatter:
                             # Keep the full command line including the opening bracket
                     elif in_multiline_json and current_command:
                         # We're in a multi-line JSON block - preserve exact formatting
-                        if stripped_line == "}'":
-                            # End of multi-line JSON
+                        if "}'" in stripped_line:
+                            # End of multi-line JSON - include any flags after }'
                             current_command += '\n' + line
                             in_multiline_json = False
+                            # Append the completed command
+                            examples.append(current_command)
+                            current_command = None
+                            current_comment = None
                         else:
                             # Continue multi-line JSON with exact indentation
                             current_command += '\n' + line
@@ -402,13 +487,14 @@ class UniversalHelpFormatter:
                 if current_command and not in_multiline_json:
                     examples.append(current_command)
             
-            # Also look for inline catocli commands (in backticks)
-            inline_pattern = r'`(catocli[^`]+)`'
-            inline_matches = re.findall(inline_pattern, content)
-            
-            for cmd in inline_matches:
-                if command_name in cmd and cmd not in examples:
-                    examples.append(cmd)
+            # If no Additional Examples section was found, also look for inline catocli commands (in backticks)
+            if not has_additional_examples:
+                inline_pattern = r'`(catocli[^`]+)`'
+                inline_matches = re.findall(inline_pattern, content)
+                
+                for cmd in inline_matches:
+                    if command_name in cmd and cmd not in examples:
+                        examples.append(cmd)
                     
         except Exception as e:
             print(f"Warning: Could not parse README for {command_path}: {e}")
@@ -465,20 +551,21 @@ class UniversalHelpFormatter:
     def _extract_json_from_example(self, example: str) -> str:
         """Extract JSON data from a catocli command example"""
         try:
-            # Look for JSON in single quotes first (most common)
-            single_quote_pattern = r"catocli[^']*'([^']+)'"
-            match = re.search(single_quote_pattern, example)
+            # Look for multi-line JSON first (between '{ and }' with potential flags after)
+            # This pattern captures everything between '{ and }' (non-greedy)
+            multiline_pattern = r"'(\{[\s\S]*?\})'(?:\s+[-\w])*"
+            match = re.search(multiline_pattern, example)
             if match:
                 json_str = match.group(1)
                 # Validate it's JSON by trying to parse it
                 json.loads(json_str)
                 return json_str
             
-            # Look for multi-line JSON (between '{ and }')
-            multiline_pattern = r"'\{([\s\S]*?)\}'"
-            match = re.search(multiline_pattern, example)
+            # Fallback to simple single-line JSON in single quotes
+            single_quote_pattern = r"catocli[^']*'([^']+)'"
+            match = re.search(single_quote_pattern, example)
             if match:
-                json_str = "{" + match.group(1) + "}"
+                json_str = match.group(1)
                 # Validate it's JSON by trying to parse it
                 json.loads(json_str)
                 return json_str

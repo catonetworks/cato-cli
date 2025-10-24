@@ -32,7 +32,6 @@ catocli query appStatsTimeSeries '{
 }' -f csv --csv-filename=appStatsTimeSeries_app_bw.csv
 ```
 
-
 # Traffic patterns throughout the day
 
 ```bash

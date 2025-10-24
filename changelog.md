@@ -117,5 +117,6 @@
 ## 3.0.26 (2025-10-21)
 - Updated dynamic param generation to split out containers to separate queries to reflect API explorer
 
-## 3.0.27 (2025-10-23)
+## 3.0.28 (2025-10-23)
 - Updated all timeseries calls to refrence perSecond as false, and validated all examples in readme and embedded in cli help menu 
+- Updated dynamic help menu structure

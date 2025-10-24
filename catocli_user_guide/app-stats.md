@@ -95,17 +95,21 @@ Calculate these metrics with various aggregation types:
 
 ### 1. User Activity Analysis
 
-Track user engagement and flow creation:
+Track daily user engagement and flow creation:
 
 ```bash
 catocli query appStats '{
-    "dimension": [{"fieldName": "user_name"}],
+    "dimension": [
+      {"fieldName": "user_name"},
+      {"fieldName": "domain"}
+    ],
     "measure": [
         {"aggType": "sum", "fieldName": "flows_created"},
-        {"aggType": "count_distinct", "fieldName": "user_name"}
+        {"aggType": "count_distinct", "fieldName": "user_name"},
+        {"aggType": "sum", "fieldName": "traffic"}
     ],
-    "timeFrame": "last.P1M"
-}'
+    "timeFrame": "last.P1D"
+}' -f csv --csv-filename=appstats_user_activity.csv
 ```
 
 ### 2. Application Usage Report with Risk Assessment
@@ -125,12 +129,12 @@ catocli query appStats '{
         {"aggType": "sum", "fieldName": "traffic"}
     ],
     "timeFrame": "last.P1D"
-}' -f csv --csv-filename app_user_risk_report.csv
+}' -f csv --csv-filename=appstats_user_risk_report.csv
 ```
 
 ### 3. Top Applications by Traffic
 
-Identify bandwidth-heavy applications:
+Identify weekly bandwidth-heavy applications:
 
 ```bash
 catocli query appStats '{
@@ -143,26 +147,26 @@ catocli query appStats '{
         {"fieldName": "traffic", "order": "desc"}
     ],
     "timeFrame": "last.P7D"
-}'
+}' -f csv --csv-filename=appstats_app_utilization.csv
 ```
 
 ### 4. User Traffic Distribution
 
-Analyze per-user bandwidth consumption:
+Analyze daily per-user bandwidth consumption:
 
 ```bash
 catocli query appStats '{
     "dimension": [
-        {"fieldName": "user_name"},
-        {"fieldName": "site_name"}
+        {"fieldName": "user_name"}
     ],
     "measure": [
         {"aggType": "sum", "fieldName": "downstream"},
         {"aggType": "sum", "fieldName": "upstream"},
-        {"aggType": "avg", "fieldName": "session_duration"}
+        {"aggType": "sum", "fieldName": "traffic"},
+        {"aggType": "sum", "fieldName": "flows_created"}
     ],
     "timeFrame": "last.P1D"
-}'
+}' -f csv --csv-filename=appstats_user_bw.csv
 ```
 
 ### 5. High-Risk Application Analysis
@@ -175,7 +179,13 @@ catocli query appStats '{
         {
             "fieldName": "risk_score",
             "operator": "gte", 
-            "values": ["7"]
+            "values": ["5"]
+        }
+    ],
+    "appStatsSort": [
+        {
+            "fieldName": "risk_score",
+            "order": "desc"
         }
     ],
     "dimension": [
@@ -188,7 +198,7 @@ catocli query appStats '{
         {"aggType": "sum", "fieldName": "flows_created"}
     ],
     "timeFrame": "last.P7D"
-}'
+}' -f csv --csv-filename=appstats_app_by_risk.csv
 ```
 
 ### 6. Geographic Traffic Analysis
@@ -198,15 +208,15 @@ Analyze traffic patterns by country:
 ```bash
 catocli query appStats '{
     "dimension": [
-        {"fieldName": "src_country"},
-        {"fieldName": "dst_country"}
+        {"fieldName": "site_country"},
+        {"fieldName": "src_site_country_code"}
     ],
     "measure": [
         {"aggType": "sum", "fieldName": "traffic"},
         {"aggType": "count_distinct", "fieldName": "user_name"}
     ],
     "timeFrame": "last.P1M"
-}'
+}' -f csv --csv-filename=appstats_by_country.csv
 ```
 
 ## Filtering Options

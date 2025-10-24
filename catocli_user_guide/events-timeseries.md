@@ -22,6 +22,10 @@ catocli query eventsTimeSeries '{
 }'
 ```
 
+## IMPORTANT USAGE NOTE
+
+Set `perSecond` to `false` on all timeSeries calls.  When perSecond is set to true (default), the API divides the returned value by the granularity period (e.g., 300 seconds for 5-minute intervals), giving you a per-second rate that requires multiplying back by the granularity to get the actual total for that time period. Setting perSecond to false returns the raw aggregate value for each time bucket directly, making the data immediately interpretable without additional calculation.
+
 ## Query Structure
 
 ```json
@@ -102,31 +106,39 @@ Group your results by these event fields:
 
 ### 1. Internet Firewall Events Analysis
 
-Track firewall activity over time by rule:
+Weekly break down by hour of Internet Firewall events by rule_name
 
 ```bash
 catocli query eventsTimeSeries '{
     "buckets": 168,
     "eventsDimension": [
-        {"fieldName": "rule_name"}
+        {
+            "fieldName": "rule_name"
+        }
     ],
     "eventsFilter": [
         {
             "fieldName": "event_sub_type",
             "operator": "is",
-            "values": ["Internet Firewall"]
+            "values": [
+                "Internet Firewall"
+            ]
         }
     ],
     "eventsMeasure": [
-        {"aggType": "sum", "fieldName": "event_count"}
+        {
+            "aggType": "sum",
+            "fieldName": "event_count"
+        }
     ],
-    "timeFrame": "last.P7D"
-}'
+    "perSecond": false,
+    "timeFrame": "last.P1D"
+}' -f csv --csv-filename=eventsTimeSeries_by_subType.csv
 ```
 
 ### 2. Site Connectivity Monitoring
 
-Monitor site connectivity events and patterns:
+Weekly hourly breakdown by hour of sum of site events
 
 ```bash
 catocli query eventsTimeSeries '{
@@ -136,41 +148,77 @@ catocli query eventsTimeSeries '{
         {
             "fieldName": "src_is_site_or_vpn",
             "operator": "is",
-            "values": ["Site"]
+            "values": [
+                "Site"
+            ]
         }
     ],
     "eventsMeasure": [
-        {"aggType": "sum", "fieldName": "event_count"}
+        {
+            "aggType": "sum",
+            "fieldName": "event_count"
+        }
     ],
+    "perSecond": false,
     "timeFrame": "last.P7D"
-}'
+}' -f csv --csv-filename=eventsTimeSeries_hourly_site_events.csv
 ```
 
 ### 3. High-Frequency Event Detection
 
-Detect potential DDoS or throttling with high-resolution monitoring:
+1 hour 5 min increments of sum of site events used for detecting throttling
 
 ```bash
 catocli query eventsTimeSeries '{
-    "buckets": 12,
+    "buckets": 168,
     "eventsDimension": [],
     "eventsFilter": [
         {
             "fieldName": "src_is_site_or_vpn",
-            "operator": "is", 
-            "values": ["Site"]
+            "operator": "is",
+            "values": [
+                "Site"
+            ]
         }
     ],
     "eventsMeasure": [
-        {"aggType": "sum", "fieldName": "event_count"}
+        {
+            "aggType": "sum",
+            "fieldName": "event_count"
+        }
     ],
-    "timeFrame": "last.PT1H"
-}'
+    "perSecond": false,
+    "timeFrame": "last.P1D"
+}' -f csv --csv-filename=eventsTimeSeries_15_min_site_events.csv
 ```
 
-### 4. Security Events Analysis
+### 4. Events Analysis
 
-Focus on security-related events with daily breakdown:
+Basic event count - weekly hourly
+
+```bash
+catocli query eventsTimeSeries '{
+    "buckets": 168,
+    "eventsDimension": [
+        {
+            "fieldName": "rule_name"
+        }
+    ],
+    "eventsFilter": [],
+    "eventsMeasure": [
+        {
+            "aggType": "sum",
+            "fieldName": "event_count"
+        }
+    ],
+    "perSecond": false,
+    "timeFrame": "last.P7D"
+}' -f csv --csv-filename=eventsTimeSeries_weekly_hourly_events.csv
+```
+
+### 5. Security Events Analysis
+
+Security Events Analysis - Daily breakdown of security events
 
 ```bash
 catocli query eventsTimeSeries '{
@@ -184,13 +232,17 @@ catocli query eventsTimeSeries '{
         }
     ],
     "eventsMeasure": [
-        {"aggType": "sum", "fieldName": "event_count"}
+        {
+            "aggType": "sum",
+            "fieldName": "event_count"
+        }
     ],
-    "timeFrame": "utc.2023-02-{28/00:00:00--28/23:59:59}"
-}'
+    "perSecond": false,
+    "timeFrame": "last.P1D"
+}' -f csv --csv-filename=eventsTimeSeries_daily_security_events.csv
 ```
 
-### 5. Connectivity Events by Country
+### 6. Connectivity Events by Country
 
 Analyze connectivity patterns by geographic location:
 
@@ -198,7 +250,9 @@ Analyze connectivity patterns by geographic location:
 catocli query eventsTimeSeries '{
     "buckets": 7,
     "eventsDimension": [
-        {"fieldName": "src_country"}
+        {
+            "fieldName": "src_country"
+        }
     ],
     "eventsFilter": [
         {
@@ -208,48 +262,27 @@ catocli query eventsTimeSeries '{
         }
     ],
     "eventsMeasure": [
-        {"aggType": "sum", "fieldName": "event_count"}
-    ],
-    "timeFrame": "utc.2023-03-{01/00:00:00--07/23:59:59}"
-}'
-```
-
-### 6. High-Threat Score Analysis
-
-Monitor high-severity threats with trend analysis:
-
-```bash
-catocli query eventsTimeSeries '{
-    "buckets": 31,
-    "eventsDimension": [],
-    "eventsFilter": [
         {
-            "fieldName": "event_type",
-            "operator": "is",
-            "values": ["Security"]
-        },
-        {
-            "fieldName": "threat_score",
-            "operator": "gt",
-            "values": ["50"]
+            "aggType": "sum",
+            "fieldName": "event_count"
         }
     ],
-    "eventsMeasure": [
-        {"aggType": "avg", "fieldName": "threat_score"}
-    ],
-    "timeFrame": "utc.2023-01-{01/00:00:00--31/23:59:59}"
-}'
+    "perSecond": false,
+    "timeFrame": "last.P1D"
+}' -f csv --csv-filename=eventsTimeSeries_weekly_daily_by_country.csv
 ```
 
 ### 7. Socket Connectivity Analysis
 
-Monitor socket interface connection events:
+Connection events by socket interface
 
 ```bash
 catocli query eventsTimeSeries '{
-    "buckets": 28,
+    "buckets": 7,
     "eventsDimension": [
-        {"fieldName": "socket_interface"}
+        {
+            "fieldName": "socket_interface"
+        }
     ],
     "eventsFilter": [
         {
@@ -264,10 +297,14 @@ catocli query eventsTimeSeries '{
         }
     ],
     "eventsMeasure": [
-        {"aggType": "sum", "fieldName": "event_count"}
+        {
+            "aggType": "sum",
+            "fieldName": "event_count"
+        }
     ],
-    "timeFrame": "utc.2023-02-{01/00:00:00--28/23:59:59}"
-}'
+    "perSecond": false,
+    "timeFrame": "last.P7D"
+}' -f csv --csv-filename=eventsTimeSeries_daily_socket_connect.csv
 ```
 
 ## Advanced Filtering

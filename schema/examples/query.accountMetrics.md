@@ -41,34 +41,78 @@ catocli query accountMetrics '{
 }' 
 ```
 
-# Example all values and lables for a single user
+# Monitor all key performance indicators for a specific site:
 
 ```bash
-# Example all values and lables for a single user
+# Monitor all key performance indicators for a specific site:
+catocli query accountMetrics '{
+    "buckets": 24,
+    "groupDevices": true,
+    "groupInterfaces": true,
+    "labels": [
+        "bytesDownstream",
+        "bytesUpstream",
+        "health",
+        "lastMileLatency",
+        "lastMilePacketLoss",
+        "rtt"
+    ],
+    "siteIDs": ["132814"],
+    "timeFrame": "last.P1D",
+    "perSecond": true,
+    "toRate": true
+}' -f csv --csv-filename=accountmetrics_site.csv
+```
+
+# Analyze network performance for specific users:
+
+```bash
+# Analyze network performance for specific users:
 catocli query accountMetrics '{
     "buckets": 24,
     "labels": [
         "health",
-        "jitterDownstream",
+        "jitterDownstream", 
         "jitterUpstream",
         "lastMileLatency",
         "lastMilePacketLoss",
-        "lostDownstream",
-        "lostDownstreamPcnt",
-        "lostUpstream",
-        "lostUpstreamPcnt",
-        "packetsDiscardedDownstream",
-        "packetsDiscardedDownstreamPcnt",
-        "packetsDiscardedUpstream",
-        "packetsDiscardedUpstreamPcnt",
         "packetsDownstream",
         "packetsUpstream"
     ],
-    "timeFrame": "last.PT1H",
-    "userIDs": [
-        "0"
-    ]
-}'
+    "timeFrame": "last.P1D",
+    "userIDs": ["1000000"]
+}' -f csv --csv-filename=accountmetrics_user.csv
+```
+
+# Get a simple health snapshot without filters:
+
+```bash
+# Get a simple health snapshot without filters:
+catocli query accountMetrics '{
+    "timeFrame": "last.PT1H"
+}' -f csv --csv-filename=accountmetrics_health.csv
+```
+
+# Focus on bandwidth utilization with packet loss metrics
+
+```bash
+# Focus on bandwidth utilization with packet loss metrics
+catocli query accountMetrics '{
+    "buckets": 48,
+    "labels": [
+        "bytesDownstream",
+        "bytesUpstream", 
+        "bytesTotal",
+        "bytesDownstreamMax",
+        "bytesUpstreamMax",
+        "lostDownstreamPcnt",
+        "lostUpstreamPcnt"
+    ],
+    "siteIDs": ["132814"],
+    "timeFrame": "last.P2D",
+    "perSecond": true,
+    "withMissingData": true
+}' -f csv --csv-filename=accountmetrics_packet_loss.csv
 ```
 
 # Last hour no filters

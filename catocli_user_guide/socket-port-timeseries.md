@@ -26,9 +26,14 @@ catocli query socketPortMetricsTimeSeries '{
     "socketPortMetricsMeasure": [
         {"aggType": "sum", "fieldName": "bytes_total"}
     ],
+    "perSecond": false,
     "timeFrame": "last.P1D"
 }'
 ```
+
+## IMPORTANT USAGE NOTE
+
+Set `perSecond` to `false` on all timeSeries calls.  When perSecond is set to true (default), the API divides the returned value by the granularity period (e.g., 300 seconds for 5-minute intervals), giving you a per-second rate that requires multiplying back by the granularity to get the actual total for that time period. Setting perSecond to false returns the raw aggregate value for each time bucket directly, making the data immediately interpretable without additional calculation.
 
 ## Time Bucket Configuration
 
@@ -72,26 +77,35 @@ catocli query socketPortMetricsTimeSeries '{
         {"aggType": "sum", "fieldName": "bytes_upstream"},
         {"aggType": "sum", "fieldName": "bytes_total"}
     ],
+    "perSecond": false,
     "timeFrame": "last.P1D"
-}' -f csv --csv-filename daily_traffic_patterns.csv
+}' -f csv --csv-filename socketPortMetricsTimeSeries_daily_traffic_patterns.csv
 ```
 
-### 2. Weekly Capacity Analysis
+### 2. Weekly BW Analysis
 
-Track weekly utilization patterns for capacity planning:
+Track weekly average utilization patterns
 
 ```bash
 catocli query socketPortMetricsTimeSeries '{
-    "buckets": 168,
+    "buckets": 24,
+    "perSecond": false,
     "socketPortMetricsDimension": [
-        {"fieldName": "site_name"}
+        { "fieldName": "site_name" }
     ],
+    "socketPortMetricsFilter": [],
     "socketPortMetricsMeasure": [
-        {"aggType": "avg", "fieldName": "utilization_total"},
-        {"aggType": "max", "fieldName": "throughput_total"}
+        {
+            "aggType": "avg",
+            "fieldName": "throughput_downstream"
+        },
+        {
+            "aggType": "avg",
+            "fieldName": "throughput_upstream"
+        }
     ],
-    "timeFrame": "last.P7D"
-}' -f csv --csv-filename weekly_capacity_analysis.csv
+    "timeFrame": "last.P1D"
+}' -f csv --csv-filename socketPortMetricsTimeSeries_weekly_bw_analysis.csv
 ```
 
 ### 3. Long-Term Throughput Trends
@@ -110,8 +124,9 @@ catocli query socketPortMetricsTimeSeries '{
         {"aggType": "sum", "fieldName": "throughput_downstream"},
         {"aggType": "sum", "fieldName": "throughput_upstream"}
     ],
+    "perSecond": false,
     "timeFrame": "last.P2M"
-}' -f csv --csv-filename longterm_throughput_trends.csv
+}' -f csv --csv-filename socketPortMetricsTimeSeries_longterm_throughput_trends.csv
 ```
 
 ### 4. Peak Hour Identification
@@ -127,8 +142,9 @@ catocli query socketPortMetricsTimeSeries '{
     "socketPortMetricsMeasure": [
         {"aggType": "sum", "fieldName": "bytes_total"}
     ],
+    "perSecond": false,
     "timeFrame": "last.P1D"
-}' -f csv --csv-filename peak_hour_analysis.csv
+}' -f csv --csv-filename socketPortMetricsTimeSeries_peak_hour_analysis.csv
 ```
 
 ### 5. Multi-Site Performance Comparison
@@ -143,52 +159,41 @@ catocli query socketPortMetricsTimeSeries '{
         {"fieldName": "socket_interface"}
     ],
     "socketPortMetricsMeasure": [
-        {"aggType": "avg", "fieldName": "utilization_total"},
+        {"aggType": "sum", "fieldName": "throughput_downstream"},
+        {"aggType": "sum", "fieldName": "throughput_upstream"},
         {"aggType": "sum", "fieldName": "bytes_total"}
     ],
+    "perSecond": false,
     "timeFrame": "last.P2D"
-}' -f csv --csv-filename multisite_performance.csv
-```
-
-### 6. Real-Time Performance Monitoring
-
-High-frequency monitoring for real-time analysis:
-
-```bash
-catocli query socketPortMetricsTimeSeries '{
-    "buckets": 60,
-    "socketPortMetricsDimension": [
-        {"fieldName": "socket_interface"}
-    ],
-    "socketPortMetricsMeasure": [
-        {"aggType": "avg", "fieldName": "latency"},
-        {"aggType": "avg", "fieldName": "packet_loss"},
-        {"aggType": "avg", "fieldName": "utilization_total"}
-    ],
-    "timeFrame": "last.PT1H"
-}'
+}' -f csv --csv-filename socketPortMetricsTimeSeries_multisite_performance.csv
 ```
 
 ## Advanced Time Series Analysis
 
-### Business Hours Focus
+### 6. Business Hours Focus
 
 Analyze performance during specific business hours:
 
 ```bash
 catocli query socketPortMetricsTimeSeries '{
-    "buckets": 32,
+    "buckets": 24,
+    "perSecond": false,
     "socketPortMetricsDimension": [
-        {"fieldName": "socket_interface"}
+        { "fieldName": "site_name" },
+        { "fieldName": "socket_interface" }
     ],
+    "socketPortMetricsFilter": [],
     "socketPortMetricsMeasure": [
-        {"aggType": "avg", "fieldName": "utilization_total"}
+        { "aggType": "avg", "fieldName": "bytes_upstream" },
+        { "aggType": "avg", "fieldName": "bytes_total" },
+        { "aggType": "avg", "fieldName": "bytes_downstream" }
     ],
-    "timeFrame": "utc.2023-10-{15/09:00:00--15/17:00:00}"
-}' -f csv --csv-filename business_hours_utilization.csv
+    "perSecond": false,
+    "timeFrame": "last.P1D"
+}' -f csv --csv-filename socketPortMetricsTimeSeries_business_hours_utilization.csv
 ```
 
-### Weekend vs Weekday Comparison
+### 7. Weekend vs Weekday Comparison
 
 Compare traffic patterns between weekdays and weekends:
 
@@ -198,19 +203,20 @@ catocli query socketPortMetricsTimeSeries '{
     "buckets": 120,
     "socketPortMetricsDimension": [{"fieldName": "site_name"}],
     "socketPortMetricsMeasure": [{"aggType": "sum", "fieldName": "bytes_total"}],
-    "timeFrame": "utc.2023-10-{09/00:00:00--13/23:59:59}"
-}' -f csv --csv-filename weekday_traffic.csv
+    "perSecond": false,
+    "timeFrame": "utc.2025-10-{13/00:00:00--17/23:59:59}"
+}' -f csv --csv-filename socketPortMetricsTimeSeries_weekday_traffic.csv
 
 # Weekend analysis  
 catocli query socketPortMetricsTimeSeries '{
     "buckets": 48,
     "socketPortMetricsDimension": [{"fieldName": "site_name"}],
     "socketPortMetricsMeasure": [{"aggType": "sum", "fieldName": "bytes_total"}],
-    "timeFrame": "utc.2023-10-{14/00:00:00--15/23:59:59}"
-}' -f csv --csv-filename weekend_traffic.csv
+    "timeFrame": "utc.2025-10-{18/00:00:00--19/23:59:59}"
+}' -f csv --csv-filename socketPortMetricsTimeSeries_weekend_traffic.csv
 ```
 
-### Growth Trend Analysis
+### 8. Growth Trend Analysis
 
 Analyze month-over-month growth trends:
 
@@ -221,165 +227,39 @@ catocli query socketPortMetricsTimeSeries '{
         {"fieldName": "site_name"}
     ],
     "socketPortMetricsMeasure": [
-        {"aggType": "sum", "fieldName": "bytes_total"},
-        {"aggType": "avg", "fieldName": "utilization_total"}
+        { "aggType": "avg", "fieldName": "bytes_upstream" },
+        { "aggType": "avg", "fieldName": "bytes_total" },
+        { "aggType": "avg", "fieldName": "bytes_downstream" }
     ],
+    "perSecond": false,
     "timeFrame": "last.P1M"
-}' -f csv --csv-filename monthly_growth_trends.csv
+}' -f csv --csv-filename socketPortMetricsTimeSeries_monthly_growth_trends.csv
 ```
 
 ## Performance Monitoring Dashboards
 
-### Executive Dashboard Data
+### 9. Executive Dashboard Data
 
 High-level metrics for executive reporting:
 
 ```bash
-#!/bin/bash
 # Executive dashboard - daily summary
 catocli query socketPortMetricsTimeSeries '{
     "buckets": 7,
     "socketPortMetricsDimension": [
+        {"fieldName": "socket_interface"},
         {"fieldName": "site_name"}
     ],
     "socketPortMetricsMeasure": [
-        {"aggType": "avg", "fieldName": "utilization_total"},
-        {"aggType": "sum", "fieldName": "bytes_total"}
+        { "aggType": "sum", "fieldName": "bytes_upstream" },
+        { "aggType": "sum", "fieldName": "bytes_total" },
+        { "aggType": "sum", "fieldName": "bytes_downstream" },
+        { "aggType": "avg", "fieldName": "throughput_downstream" },
+        { "aggType": "avg", "fieldName": "throughput_upstream" }
     ],
+    "perSecond": false,
     "timeFrame": "last.P7D"
-}' -f csv --csv-filename "executive_dashboard_$(date +%Y%m%d).csv"
-```
-
-### Operations Dashboard Data
-
-Detailed operational metrics:
-
-```bash
-#!/bin/bash
-# Operations dashboard - hourly breakdown
-catocli query socketPortMetricsTimeSeries '{
-    "buckets": 24,
-    "socketPortMetricsDimension": [
-        {"fieldName": "socket_interface"},
-        {"fieldName": "site_name"}
-    ],
-    "socketPortMetricsMeasure": [
-        {"aggType": "avg", "fieldName": "utilization_total"},
-        {"aggType": "avg", "fieldName": "latency"},
-        {"aggType": "sum", "fieldName": "bytes_total"}
-    ],
-    "timeFrame": "last.P1D"
-}' -f csv --csv-filename "ops_dashboard_$(date +%Y%m%d_%H%M).csv"
-```
-
-## Capacity Planning Analysis
-
-### Monthly Capacity Report
-
-Comprehensive capacity planning analysis:
-
-```bash
-catocli query socketPortMetricsTimeSeries '{
-    "buckets": 720,
-    "socketPortMetricsDimension": [
-        {"fieldName": "socket_interface"},
-        {"fieldName": "site_name"}
-    ],
-    "socketPortMetricsMeasure": [
-        {"aggType": "avg", "fieldName": "utilization_total"},
-        {"aggType": "max", "fieldName": "utilization_total"},
-        {"aggType": "max", "fieldName": "throughput_total"}
-    ],
-    "timeFrame": "last.P1M"
-}' -f csv --csv-filename monthly_capacity_report.csv
-```
-
-### Interface Upgrade Planning
-
-Identify interfaces approaching capacity limits:
-
-```bash
-catocli query socketPortMetricsTimeSeries '{
-    "socketPortMetricsFilter": [
-        {
-            "fieldName": "utilization_total",
-            "operator": "gte",
-            "values": ["75"]
-        }
-    ],
-    "buckets": 168,
-    "socketPortMetricsDimension": [
-        {"fieldName": "socket_interface"},
-        {"fieldName": "site_name"}
-    ],
-    "socketPortMetricsMeasure": [
-        {"aggType": "avg", "fieldName": "utilization_total"},
-        {"aggType": "max", "fieldName": "utilization_total"}
-    ],
-    "timeFrame": "last.P7D"
-}' -f csv --csv-filename interface_upgrade_candidates.csv
-```
-
-## Automation Scripts
-
-### Automated Threshold Monitoring
-
-```bash
-#!/bin/bash
-# Monitor interfaces exceeding 90% utilization
-THRESHOLD=90
-OUTPUT_FILE="/tmp/high_utilization_interfaces.csv"
-
-catocli query socketPortMetricsTimeSeries '{
-    "socketPortMetricsFilter": [
-        {
-            "fieldName": "utilization_total",
-            "operator": "gte",
-            "values": ["'$THRESHOLD'"]
-        }
-    ],
-    "buckets": 12,
-    "socketPortMetricsDimension": [
-        {"fieldName": "socket_interface"},
-        {"fieldName": "site_name"}
-    ],
-    "socketPortMetricsMeasure": [
-        {"aggType": "avg", "fieldName": "utilization_total"}
-    ],
-    "timeFrame": "last.PT1H"
-}' -f csv --csv-filename "$OUTPUT_FILE"
-
-# Check if any interfaces exceed threshold
-if [ -s "$OUTPUT_FILE" ]; then
-    echo "ALERT: High utilization interfaces detected!"
-    cat "$OUTPUT_FILE"
-fi
-```
-
-### Weekly Capacity Planning Report
-
-```bash
-#!/bin/bash
-# Automated weekly capacity planning report
-WEEK=$(date +%Y-W%V)
-REPORT_DIR="/reports/capacity"
-mkdir -p "$REPORT_DIR"
-
-catocli query socketPortMetricsTimeSeries '{
-    "buckets": 168,
-    "socketPortMetricsDimension": [
-        {"fieldName": "site_name"},
-        {"fieldName": "socket_interface"}
-    ],
-    "socketPortMetricsMeasure": [
-        {"aggType": "avg", "fieldName": "utilization_total"},
-        {"aggType": "max", "fieldName": "utilization_total"},
-        {"aggType": "sum", "fieldName": "bytes_total"}
-    ],
-    "timeFrame": "last.P7D"
-}' -f csv --csv-filename "${REPORT_DIR}/capacity_report_${WEEK}.csv" --append-timestamp
-
-echo "Weekly capacity report generated: ${REPORT_DIR}/capacity_report_${WEEK}.csv"
+}' -f csv --csv-filename socketPortMetricsTimeSeries_executive_dashboard.csv --append-timestamp
 ```
 
 ## Data Visualization Recommendations
@@ -417,31 +297,6 @@ echo "Weekly capacity report generated: ${REPORT_DIR}/capacity_report_${WEEK}.cs
 - Watch for sudden spikes that may indicate issues
 
 ## Integration with Alerting Systems
-
-### Threshold-Based Alerting
-
-```bash
-#!/bin/bash
-# Integration with alerting system
-ALERT_THRESHOLD=85
-CRITICAL_THRESHOLD=95
-
-# Get current utilization data
-RESULT=$(catocli query socketPortMetricsTimeSeries '{
-    "buckets": 1,
-    "socketPortMetricsDimension": [
-        {"fieldName": "socket_interface"},
-        {"fieldName": "site_name"}
-    ],
-    "socketPortMetricsMeasure": [
-        {"aggType": "avg", "fieldName": "utilization_total"}
-    ],
-    "timeFrame": "last.PT15M"
-}' -raw)
-
-# Process results and send alerts (implementation depends on alerting system)
-echo "$RESULT" | jq -r '.data[] | select(.utilization_total > '$ALERT_THRESHOLD') | "ALERT: \(.socket_interface) at \(.site_name): \(.utilization_total)%"'
-```
 
 ## Related Operations
 

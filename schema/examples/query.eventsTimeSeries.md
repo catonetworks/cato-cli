@@ -24,15 +24,16 @@ catocli query eventsTimeSeries '{
             "fieldName": "event_count"
         }
     ],
-    "timeFrame": "last.P7D"
-}'
+    "perSecond": false,
+    "timeFrame": "last.P1D"
+}' -f csv --csv-filename=eventsTimeSeries_by_subType.csv
 ```
 
 # Weekly hourly breakdown by hour of sum of site events
 
 ```bash
 # Weekly hourly breakdown by hour of sum of site events
-catocli query eventsTimeSeries -accountID=15412 '{
+catocli query eventsTimeSeries '{
     "buckets": 168,
     "eventsDimension": [],
     "eventsFilter": [
@@ -50,17 +51,18 @@ catocli query eventsTimeSeries -accountID=15412 '{
             "fieldName": "event_count"
         }
     ],
+    "perSecond": false,
     "timeFrame": "last.P7D"
-}'
+}' -f csv --csv-filename=eventsTimeSeries_hourly_site_events.csv
 ```
 
 
-# 1 hour in 5 min increments of sum of site events used for detecting throttling
+# 1 hour 5 min increment of sum of site events used for detecting throttling
 
 ```bash
-# 1 hour in 5 min increments of sum of site events used for detecting throttling
-catocli query eventsTimeSeries -accountID=15412 '{
-    "buckets": 12,
+# 1 hour 5 min increments of sum of site events used for detecting throttling
+catocli query eventsTimeSeries '{
+    "buckets": 168,
     "eventsDimension": [],
     "eventsFilter": [
         {
@@ -77,20 +79,22 @@ catocli query eventsTimeSeries -accountID=15412 '{
             "fieldName": "event_count"
         }
     ],
+    "perSecond": false,
     "timeFrame": "last.P1D"
-}'
+}' -f csv --csv-filename=eventsTimeSeries_15_min_site_events.csv
 ```
 
-
-
-
-# Basic Event Count Query with enhanced formatting
+# Basic event count - weekly hourly
 
 ```bash
-# Basic Event Count Query - Returns formatted JSON with granularity-adjusted values
+# Basic event count - weekly hourly
 catocli query eventsTimeSeries '{
-    "buckets": 4,
-    "eventsDimension": [],
+    "buckets": 168,
+    "eventsDimension": [
+        {
+            "fieldName": "rule_name"
+        }
+    ],
     "eventsFilter": [],
     "eventsMeasure": [
         {
@@ -98,8 +102,9 @@ catocli query eventsTimeSeries '{
             "fieldName": "event_count"
         }
     ],
-    "timeFrame": "utc.2023-02-{28/00:00:00--28/23:59:59}"
-}'
+    "perSecond": false,
+    "timeFrame": "last.P7D"
+}' -f csv --csv-filename=eventsTimeSeries_weekly_hourly_events.csv
 ```
 
 # Security Events Analysis
@@ -122,8 +127,9 @@ catocli query eventsTimeSeries '{
             "fieldName": "event_count"
         }
     ],
-    "timeFrame": "utc.2023-02-{28/00:00:00--28/23:59:59}"
-}'
+    "perSecond": false,
+    "timeFrame": "last.P1D"
+}' -f csv --csv-filename=eventsTimeSeries_daily_security_events.csv
 ```
 
 # Connectivity Events by Country
@@ -150,37 +156,9 @@ catocli query eventsTimeSeries '{
             "fieldName": "event_count"
         }
     ],
-    "timeFrame": "utc.2023-03-{01/00:00:00--07/23:59:59}"
-}'
-```
-
-# Threat Analysis with Trend
-
-```bash
-# Threat Analysis with Trend - Monthly threat score analysis
-catocli query eventsTimeSeries '{
-    "buckets": 31,
-    "eventsDimension": [],
-    "eventsFilter": [
-        {
-            "fieldName": "event_type",
-            "operator": "is",
-            "values": ["Security"]
-        },
-        {
-            "fieldName": "threat_score",
-            "operator": "gt",
-            "values": ["50"]
-        }
-    ],
-    "eventsMeasure": [
-        {
-            "aggType": "avg",
-            "fieldName": "threat_score"
-        }
-    ],
-    "timeFrame": "utc.2023-01-{01/00:00:00--31/23:59:59}"
-}'
+    "perSecond": false,
+    "timeFrame": "last.P1D"
+}' -f csv --csv-filename=eventsTimeSeries_weekly_daily_by_country.csv
 ```
 
 # Socket Connectivity Analysis
@@ -188,7 +166,7 @@ catocli query eventsTimeSeries '{
 ```bash
 # Socket Connectivity Analysis - Connection events by socket interface
 catocli query eventsTimeSeries '{
-    "buckets": 28,
+    "buckets": 7,
     "eventsDimension": [
         {
             "fieldName": "socket_interface"
@@ -212,8 +190,9 @@ catocli query eventsTimeSeries '{
             "fieldName": "event_count"
         }
     ],
-    "timeFrame": "utc.2023-02-{01/00:00:00--28/23:59:59}"
-}'
+    "perSecond": false,
+    "timeFrame": "last.P7D"
+}' -f csv --csv-filename=eventsTimeSeries_daily_socket_connect.csv
 ```
 
 ## Output Format Options

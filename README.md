@@ -60,9 +60,9 @@ For detailed information about profile management, see [PROFILES.md](PROFILES.md
 	cd cato-cli
 	python3 -m catocli -h
 
-## Query Operations
+## Custom Report Query Operations
 
-### Core Analytics Queries
+### Custom Report Analytics Queries
 
 | Operation | Description | Guide |
 |-----------|-------------|--------|
@@ -92,10 +92,17 @@ catocli query accountMetrics '{"timeFrame":"last.PT1H"}'
 ```bash
 # Export user activity for the last month to CSV
 catocli query appStats '{
-    "dimension": [{"fieldName": "user_name"}],
-    "measure": [{"aggType": "sum", "fieldName": "flows_created"}],
-    "timeFrame": "last.P1M"
-}' -f csv --csv-filename user_activity_report.csv
+    "appStatsFilter": [],
+    "appStatsSort": [],
+    "dimension": [ { "fieldName": "user_name" }, { "fieldName": "domain" } ],
+    "measure": [
+        { "aggType": "sum", "fieldName": "upstream" },
+        { "aggType": "sum", "fieldName": "downstream" },
+        { "aggType": "sum", "fieldName": "traffic" },
+        { "aggType": "sum", "fieldName": "flows_created" }
+    ],
+    "timeFrame": "last.P1D"
+}' -f csv --csv-filename appStats_daily_user_activity_report.csv
 ```
 
 ### Security Events Analysis
@@ -105,8 +112,9 @@ catocli query eventsTimeSeries '{
     "buckets": 7,
     "eventsFilter": [{"fieldName": "event_type", "operator": "is", "values": ["Security"]}],
     "eventsMeasure": [{"aggType": "sum", "fieldName": "event_count"}],
+    "perSecond": false,
     "timeFrame": "last.P7D"
-}'
+}' -f csv --csv-filename eventsTimeSeries_weekly_security_events_report.csv
 ```
 
 ## Output Formats

@@ -25,22 +25,7 @@ catocli query socketPortMetrics '{
         {"aggType": "sum", "fieldName": "bytes_total"}
     ],
     "timeFrame": "last.P1D"
-}'
-```
-
-### Socket Port Metrics Time Series
-```bash
-catocli query socketPortMetricsTimeSeries '{
-    "buckets": 24,
-    "socketPortMetricsDimension": [
-        {"fieldName": "socket_interface"},
-        {"fieldName": "site_name"}
-    ],
-    "socketPortMetricsMeasure": [
-        {"aggType": "sum", "fieldName": "bytes_total"}
-    ],
-    "timeFrame": "last.P1D"
-}'
+}' -f csv --csv-filename socketPortMetrics_daily_bw_by_interface.csv
 ```
 
 ## Query Structure
@@ -148,88 +133,11 @@ catocli query socketPortMetrics '{
         {"aggType": "sum", "fieldName": "bytes_downstream"},
         {"aggType": "sum", "fieldName": "bytes_total"}
     ],
-    "timeFrame": "last.P1D"
-}'
-```
-
-### 2. Interface Performance Over Time
-
-Track interface performance with hourly breakdown:
-
-```bash
-catocli query socketPortMetricsTimeSeries '{
-    "buckets": 24,
-    "socketPortMetricsDimension": [
-        {"fieldName": "socket_interface"},
-        {"fieldName": "device_id"},
-        {"fieldName": "site_name"}
-    ],
-    "socketPortMetricsMeasure": [
-        {"aggType": "sum", "fieldName": "bytes_downstream"},
-        {"aggType": "sum", "fieldName": "bytes_upstream"},
-        {"aggType": "sum", "fieldName": "bytes_total"}
-    ],
-    "timeFrame": "last.P1D"
-}' -f csv --csv-filename interface_performance_hourly.csv
-```
-
-### 3. Long-Term Throughput Analysis
-
-Analyze throughput patterns over extended periods:
-
-```bash
-catocli query socketPortMetricsTimeSeries '{
-    "buckets": 120,
-    "socketPortMetricsDimension": [
-        {"fieldName": "socket_interface"},
-        {"fieldName": "device_id"},
-        {"fieldName": "site_name"}
-    ],
-    "socketPortMetricsMeasure": [
-        {"aggType": "sum", "fieldName": "throughput_downstream"},
-        {"aggType": "sum", "fieldName": "throughput_upstream"}
-    ],
-    "timeFrame": "last.P2M"
-}'
-```
-
-### 4. Top Traffic Interfaces
-
-Identify highest traffic interfaces with sorting:
-
-```bash
-catocli query socketPortMetrics '{
-    "socketPortMetricsDimension": [
-        {"fieldName": "socket_interface"},
-        {"fieldName": "site_name"}
-    ],
-    "socketPortMetricsMeasure": [
-        {"aggType": "sum", "fieldName": "bytes_total"}
-    ],
     "socketPortMetricsSort": [
         {"fieldName": "bytes_total", "order": "desc"}
     ],
-    "timeFrame": "last.P7D"
-}' -f csv --csv-filename top_traffic_interfaces.csv
-```
-
-### 5. Site Comparison Analysis
-
-Compare traffic patterns across multiple sites:
-
-```bash
-catocli query socketPortMetrics '{
-    "socketPortMetricsDimension": [
-        {"fieldName": "site_name"},
-        {"fieldName": "socket_interface"}
-    ],
-    "socketPortMetricsMeasure": [
-        {"aggType": "sum", "fieldName": "bytes_upstream"},
-        {"aggType": "sum", "fieldName": "bytes_downstream"},
-        {"aggType": "avg", "fieldName": "utilization_total"}
-    ],
     "timeFrame": "last.P1D"
-}'
+}' -f csv --csv-filename socketPortMetrics_traffic_by_site_interface.csv
 ```
 
 ### 6. Device-Level Traffic Distribution
@@ -239,19 +147,36 @@ Analyze traffic distribution across devices:
 ```bash
 catocli query socketPortMetrics '{
     "socketPortMetricsDimension": [
-        {"fieldName": "device_id"},
-        {"fieldName": "device_name"},
-        {"fieldName": "site_name"}
+        {
+            "fieldName": "device_id"
+        },
+        {
+            "fieldName": "site_name"
+        }
     ],
+    "socketPortMetricsFilter": [],
     "socketPortMetricsMeasure": [
-        {"aggType": "sum", "fieldName": "bytes_total"},
-        {"aggType": "avg", "fieldName": "throughput_total"}
+        {
+            "aggType": "sum",
+            "fieldName": "bytes_total"
+        },
+        {
+            "aggType": "avg",
+            "fieldName": "throughput_downstream"
+        },
+        {
+            "aggType": "avg",
+            "fieldName": "throughput_upstream"
+        }
     ],
     "socketPortMetricsSort": [
-        {"fieldName": "bytes_total", "order": "desc"}
+        {
+            "fieldName": "bytes_total",
+            "order": "desc"
+        }
     ],
     "timeFrame": "last.P1D"
-}'
+}' -f csv --csv-filename socketPortMetrics_site_bw_by_device.csv
 ```
 
 ## Filtering Options

@@ -91,7 +91,7 @@ catocli query accountMetrics '{
     "timeFrame": "last.P1D",
     "perSecond": true,
     "toRate": true
-}'
+}' -f csv --csv-filename=accountmetrics_site.csv
 ```
 
 ### 2. User Performance Analysis
@@ -110,9 +110,9 @@ catocli query accountMetrics '{
         "packetsDownstream",
         "packetsUpstream"
     ],
-    "timeFrame": "last.PT1H",
-    "userIDs": ["0"]
-}'
+    "timeFrame": "last.P1D",
+    "userIDs": ["1000000"]
+}' -f csv --csv-filename=accountmetrics_user.csv
 ```
 
 ### 3. Quick Health Overview
@@ -122,7 +122,7 @@ Get a simple health snapshot without filters:
 ```bash
 catocli query accountMetrics '{
     "timeFrame": "last.PT1H"
-}'
+}' -f csv --csv-filename=accountmetrics_health.csv
 ```
 
 ### 4. Detailed Bandwidth Analysis
@@ -145,7 +145,7 @@ catocli query accountMetrics '{
     "timeFrame": "last.P2D",
     "perSecond": true,
     "withMissingData": true
-}'
+}' -f csv --csv-filename=accountmetrics_packet_loss.csv
 ```
 
 ## Time Frame Options
@@ -180,7 +180,7 @@ Analyze performance for multiple sites within a specific date range:
 catocli query accountMetrics '{
     "timeFrame": "utc.2023-02-{28/00:00:00--28/23:59:59}",
     "siteIDs": ["456", "789"]
-}'
+}' -f csv --csv-filename=accountmetrics_sites.csv
 ```
 
 ### 6. High Availability Site Analysis (Last Day)
@@ -191,7 +191,7 @@ Monitor site health without device grouping for simplified analysis:
 catocli query accountMetrics '{
     "timeFrame": "last.P1D",
     "groupDevices": false
-}'
+}' -f csv --csv-filename=accountmetrics_group_devices.csv
 ```
 
 ## Output Options

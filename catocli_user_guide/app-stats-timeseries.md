@@ -28,6 +28,11 @@ catocli query appStatsTimeSeries '{
 }'
 ```
 
+## IMPORTANT USAGE NOTE
+
+Set `perSecond` to `false` on all timeSeries calls.  When perSecond is set to true (default), the API divides the returned value by the granularity period (e.g., 300 seconds for 5-minute intervals), giving you a per-second rate that requires multiplying back by the granularity to get the actual total for that time period. Setting perSecond to false returns the raw aggregate value for each time bucket directly, making the data immediately interpretable without additional calculation.
+
+
 ## Query Structure
 
 ```json
@@ -129,12 +134,12 @@ catocli query appStatsTimeSeries '{
         {"aggType": "sum", "fieldName": "traffic"}
     ],
     "timeFrame": "last.P1D"
-}'
+}' -f csv --csv-filename=appStatsTimeSeries_user_app.csv
 ```
 
 ### 2. WAN-Bound Traffic Analysis
 
-Focus on outbound internet traffic with hourly breakdown:
+Focus on wanbound traffic with hourly breakdown:
 
 ```bash
 catocli query appStatsTimeSeries '{
@@ -157,7 +162,7 @@ catocli query appStatsTimeSeries '{
         {"aggType": "sum", "fieldName": "downstream"}
     ],
     "timeFrame": "last.P1D"
-}'
+}' -f csv --csv-filename=appStatsTimeSeries_user_wan.csv
 ```
 
 ### 3. Weekly Usage Patterns
@@ -168,8 +173,8 @@ Analyze usage patterns over a full week:
 catocli query appStatsTimeSeries '{
     "buckets": 168,
     "dimension": [
-        {"fieldName": "application_category"},
-        {"fieldName": "site_name"}
+        {"fieldName": "category"},
+        {"fieldName": "src_site_name"}
     ],
     "perSecond": false,
     "measure": [
@@ -177,7 +182,7 @@ catocli query appStatsTimeSeries '{
         {"aggType": "sum", "fieldName": "flows_created"}
     ],
     "timeFrame": "last.P7D"
-}' -f csv --csv-filename weekly_usage_patterns.csv
+}' -f csv --csv-filename appStatsTimeSeries_weekly_usage_category.csv
 ```
 
 ### 4. High-Resolution Monitoring
@@ -195,7 +200,7 @@ catocli query appStatsTimeSeries '{
         {"aggType": "sum", "fieldName": "traffic"}
     ],
     "timeFrame": "last.PT6H"
-}'
+}' -f csv --csv-filename appStatsTimeSeries_high_resolution_user.csv
 ```
 
 ### 5. Peak Hours Identification
@@ -213,8 +218,8 @@ catocli query appStatsTimeSeries '{
         {"aggType": "sum", "fieldName": "traffic"},
         {"aggType": "sum", "fieldName": "flows_created"}
     ],
-    "timeFrame": "utc.2023-10-{15/08:00:00--15/16:00:00}"
-}'
+    "timeFrame": "utc.2025-10-{15/08:00:00--15/16:00:00}"
+}' -f csv --csv-filename appStatsTimeSeries_bus_hours.csv
 ```
 
 ### 6. User Activity Correlation
@@ -226,15 +231,14 @@ catocli query appStatsTimeSeries '{
     "buckets": 48,
     "dimension": [
         {"fieldName": "user_name"},
-        {"fieldName": "application_category"}
+        {"fieldName": "categories"}
     ],
     "perSecond": false,
     "measure": [
-        {"aggType": "sum", "fieldName": "session_duration"},
         {"aggType": "sum", "fieldName": "flows_created"}
     ],
     "timeFrame": "last.P2D"
-}' -f csv --csv-filename user_activity_correlation.csv
+}' -f csv --csv-filename appStatsTimeSeries_user_by_category.csv
 ```
 
 ## Advanced Filtering

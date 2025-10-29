@@ -28,11 +28,6 @@ catocli query appStatsTimeSeries '{
 }'
 ```
 
-## IMPORTANT USAGE NOTE
-
-Set `perSecond` to `false` on all timeSeries calls.  When perSecond is set to true (default), the API divides the returned value by the granularity period (e.g., 300 seconds for 5-minute intervals), giving you a per-second rate that requires multiplying back by the granularity to get the actual total for that time period. Setting perSecond to false returns the raw aggregate value for each time bucket directly, making the data immediately interpretable without additional calculation.
-
-
 ## Query Structure
 
 ```json
@@ -397,17 +392,21 @@ catocli query appStatsTimeSeries '{
 ### Multi-Site Comparison
 ```bash
 catocli query appStatsTimeSeries '{
+    "appStatsFilter": [],
     "buckets": 24,
     "dimension": [
-        {"fieldName": "site_name"},
-        {"fieldName": "application_category"}
+        { "fieldName": "src_site_name" },
+        { "fieldName": "category" }
+    ],
+    "measure": [
+        {
+            "aggType": "sum",
+            "fieldName": "traffic"
+        }
     ],
     "perSecond": false,
-    "measure": [
-        {"aggType": "sum", "fieldName": "traffic"}
-    ],
     "timeFrame": "last.P1D"
-}' -f csv --csv-filename multi_site_comparison.csv
+}' -f csv --csv-filename appStatsTimeSeries_multi_site_comparison.csv
 ```
 
 ### Productivity vs Entertainment Analysis
@@ -415,7 +414,7 @@ catocli query appStatsTimeSeries '{
 catocli query appStatsTimeSeries '{
     "appStatsFilter": [
         {
-            "fieldName": "application_category",
+            "fieldName": "category",
             "operator": "in",
             "values": ["Business", "Collaboration", "Entertainment", "Gaming", "Social Media"]
         }
@@ -430,7 +429,7 @@ catocli query appStatsTimeSeries '{
         {"aggType": "sum", "fieldName": "session_duration"}
     ],
     "timeFrame": "last.P2D"
-}' -f csv --csv-filename productivity_analysis.csv
+}' -f csv --csv-filename appStatsTimeSeries_productivity_analysis.csv
 ```
 
 ## Integration and Automation
@@ -445,7 +444,7 @@ catocli query appStatsTimeSeries '{
     "dimension": [{"fieldName": "application_category"}],
     "measure": [{"aggType": "sum", "fieldName": "traffic"}],
     "timeFrame": "last.P1D"
-}' -f csv --csv-filename "daily_traffic_patterns_${DATE}.csv"
+}' -f csv --csv-filename "appStatsTimeSeries_daily_traffic_patterns_${DATE}.csv"
 ```
 
 ### Weekly Trend Analysis
@@ -463,7 +462,7 @@ catocli query appStatsTimeSeries '{
         {"aggType": "sum", "fieldName": "traffic"}
     ],
     "timeFrame": "last.P7D"
-}' -f csv --csv-filename "weekly_trends.csv" --append-timestamp
+}' -f csv --csv-filename "appStatsTimeSeries_weekly_trends.csv" --append-timestamp
 ```
 
 ### Real-Time Monitoring Script
@@ -476,7 +475,7 @@ catocli query appStatsTimeSeries '{
     "perSecond": false,
     "measure": [{"aggType": "sum", "fieldName": "traffic"}],
     "timeFrame": "last.PT6H"
-}' -f csv --csv-filename "realtime_monitoring.csv"
+}' -f csv --csv-filename "appStatsTimeSeries_realtime_monitoring.csv"
 ```
 
 ## Performance and Best Practices

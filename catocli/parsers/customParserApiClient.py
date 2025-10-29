@@ -262,6 +262,9 @@ def createRequest(args, configuration):
                             json_data
                         )
                         print(f"Sentinel API response code: {result_code}")
+                    
+                    # Return None to prevent JSON output to stdout when streaming to network/sentinel
+                    return None
                 
                 # Apply formatting based on effective format
                 if effective_format == 'raw' or not default_override:

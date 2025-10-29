@@ -7,7 +7,8 @@ from graphql_client.api_client import ApiException
 from ..customLib import writeDataToFile, makeCall, getAccountID
 
 def strip_ids_recursive(data):
-    """Recursively strip id attributes from data structure, but only from objects that contain only 'id' and 'name' keys"""
+    """Recursively strip id attributes from data structure, but only from objects that contain only 'id' and 'name' keys.
+    If a name contains a backslash character, keep the id and remove the name instead."""
     try:
         if isinstance(data, dict):
             # Check if this dict should have its 'id' stripped
@@ -15,10 +16,19 @@ def strip_ids_recursive(data):
             dict_keys = set(data.keys())
             should_strip_id = dict_keys == {'id', 'name'} or dict_keys == {'name', 'id'}
             
+            # Check if name contains backslash
+            name_has_backslash = should_strip_id and 'name' in data and isinstance(data['name'], str) and '\\' in data['name']
+            
             result = {}
             for k, v in data.items():
-                if k == 'id' and should_strip_id:
-                    # Skip this 'id' key only if this object contains only id and name
+                if name_has_backslash:
+                    # If name contains backslash, keep id and skip name
+                    if k == 'name':
+                        continue
+                    else:
+                        result[k] = strip_ids_recursive(v)
+                elif k == 'id' and should_strip_id:
+                    # Normal case: Skip id key if this object contains only id and name
                     continue
                 else:
                     # Keep the key and recursively process the value

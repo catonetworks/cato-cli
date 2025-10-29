@@ -99,11 +99,6 @@ Group your results by these fields:
 - `throughput_downstream` - Downstream throughput
 - `throughput_total` - Total throughput
 
-### Utilization Measures
-- `utilization_upstream` - Upstream utilization percentage
-- `utilization_downstream` - Downstream utilization percentage
-- `utilization_total` - Total utilization percentage
-
 ### Packet Measures
 - `packets_upstream` - Upstream packet count
 - `packets_downstream` - Downstream packet count
@@ -231,19 +226,6 @@ catocli query socketPortMetrics '{
 }
 ```
 
-#### Filter by High Utilization
-```json
-{
-  "socketPortMetricsFilter": [
-    {
-      "fieldName": "utilization_total",
-      "operator": "gte",
-      "values": ["80"]
-    }
-  ]
-}
-```
-
 ## Sorting Results
 
 ### Sort Structure
@@ -265,15 +247,6 @@ catocli query socketPortMetrics '{
 {
   "socketPortMetricsSort": [
     {"fieldName": "bytes_total", "order": "desc"}
-  ]
-}
-```
-
-#### Sort by Utilization
-```json
-{
-  "socketPortMetricsSort": [
-    {"fieldName": "utilization_total", "order": "desc"}
   ]
 }
 ```
@@ -310,7 +283,7 @@ catocli query socketPortMetricsTimeSeries '{
         {"aggType": "sum", "fieldName": "bytes_total"}
     ],
     "timeFrame": "last.P7D"
-}' -f csv --csv-filename weekly_traffic_patterns.csv
+}' -f csv --csv-filename socketPortMetricsTimeSeries_weekly_traffic_patterns.csv
 ```
 
 #### Peak Usage Identification
@@ -324,7 +297,7 @@ catocli query socketPortMetricsTimeSeries '{
         {"aggType": "sum", "fieldName": "throughput_total"}
     ],
     "timeFrame": "last.P2D"
-}' -f csv --csv-filename peak_usage_analysis.csv
+}' -f csv --csv-filename socketPortMetricsTimeSeries_peak_usage_analysis.csv
 ```
 
 ## Output Format Options
@@ -351,62 +324,25 @@ catocli query socketPortMetricsTimeSeries '{...}' -f csv --csv-filename socket_t
 
 ## Advanced Analysis Examples
 
-### Capacity Planning Analysis
-```bash
-catocli query socketPortMetricsTimeSeries '{
-    "buckets": 720,
-    "socketPortMetricsDimension": [
-        {"fieldName": "socket_interface"},
-        {"fieldName": "site_name"}
-    ],
-    "socketPortMetricsMeasure": [
-        {"aggType": "avg", "fieldName": "utilization_total"},
-        {"aggType": "max", "fieldName": "throughput_total"}
-    ],
-    "timeFrame": "last.P1M"
-}' -f csv --csv-filename capacity_planning_analysis.csv
-```
-
-### Performance Monitoring Dashboard
-```bash
-catocli query socketPortMetrics '{
-    "socketPortMetricsDimension": [
-        {"fieldName": "site_name"},
-        {"fieldName": "socket_interface"}
-    ],
-    "socketPortMetricsMeasure": [
-        {"aggType": "avg", "fieldName": "latency"},
-        {"aggType": "avg", "fieldName": "packet_loss"},
-        {"aggType": "avg", "fieldName": "utilization_total"}
-    ],
-    "timeFrame": "last.PT1H"
-}' -f csv --csv-filename performance_dashboard.csv
-```
-
 ### Network Bottleneck Identification
 ```bash
 catocli query socketPortMetrics '{
-    "socketPortMetricsFilter": [
-        {
-            "fieldName": "utilization_total",
-            "operator": "gte",
-            "values": ["90"]
-        }
-    ],
     "socketPortMetricsDimension": [
-        {"fieldName": "socket_interface"},
-        {"fieldName": "site_name"},
-        {"fieldName": "device_id"}
+        { "fieldName": "socket_interface" },
+        { "fieldName": "device_id" },
+        { "fieldName": "site_name" }
     ],
+    "socketPortMetricsFilter": [],
     "socketPortMetricsMeasure": [
-        {"aggType": "avg", "fieldName": "utilization_total"},
-        {"aggType": "sum", "fieldName": "bytes_total"}
+        { "aggType": "sum", "fieldName": "throughput_downstream" },
+        { "aggType": "sum", "fieldName": "throughput_upstream" },
+        { "aggType": "sum", "fieldName": "bytes_downstream" },
+        { "aggType": "sum", "fieldName": "bytes_upstream" },
+        { "aggType": "sum", "fieldName": "bytes_total" }
     ],
-    "socketPortMetricsSort": [
-        {"fieldName": "utilization_total", "order": "desc"}
-    ],
+    "socketPortMetricsSort": [],
     "timeFrame": "last.P1D"
-}' -f csv --csv-filename network_bottlenecks.csv
+}' -f csv --csv-filename socketPortMetrics_network_bottlenecks.csv
 ```
 
 ### Site-to-Site Traffic Comparison
@@ -421,7 +357,7 @@ catocli query socketPortMetricsTimeSeries '{
         {"aggType": "sum", "fieldName": "bytes_downstream"}
     ],
     "timeFrame": "last.P1D"
-}' -f csv --csv-filename site_traffic_comparison.csv
+}' -f csv --csv-filename socketPortMetrics_site_traffic_comparison.csv
 ```
 
 ## Integration and Automation
@@ -438,10 +374,11 @@ catocli query socketPortMetrics '{
     ],
     "socketPortMetricsMeasure": [
         {"aggType": "sum", "fieldName": "bytes_total"},
-        {"aggType": "avg", "fieldName": "utilization_total"}
+        {"aggType": "sum", "fieldName": "bytes_upstream"},
+        {"aggType": "sum", "fieldName": "bytes_downstream"}
     ],
     "timeFrame": "last.P1D"
-}' -f csv --csv-filename "daily_interface_report_${DATE}.csv"
+}' -f csv --csv-filename "socketPortMetrics_daily_interface_report_${DATE}.csv"
 ```
 
 ### Weekly Capacity Planning Report
@@ -454,11 +391,12 @@ catocli query socketPortMetricsTimeSeries '{
         {"fieldName": "site_name"}
     ],
     "socketPortMetricsMeasure": [
-        {"aggType": "max", "fieldName": "utilization_total"},
-        {"aggType": "avg", "fieldName": "throughput_total"}
+        {"aggType": "sum", "fieldName": "bytes_total"},
+        {"aggType": "sum", "fieldName": "bytes_upstream"},
+        {"aggType": "sum", "fieldName": "bytes_downstream"}
     ],
     "timeFrame": "last.P7D"
-}' -f csv --csv-filename "weekly_capacity_report.csv" --append-timestamp
+}' -f csv --csv-filename "socketPortMetrics_weekly_capacity_report.csv" --append-timestamp
 ```
 
 ### Real-Time Performance Monitoring
@@ -470,11 +408,11 @@ catocli query socketPortMetrics '{
         {"fieldName": "socket_interface"}
     ],
     "socketPortMetricsMeasure": [
-        {"aggType": "avg", "fieldName": "utilization_total"},
+        {"aggType": "sum", "fieldName": "bytes_total"},
         {"aggType": "avg", "fieldName": "packet_loss"}
     ],
     "timeFrame": "last.PT15M"
-}' > /tmp/realtime_interface_status.json
+}' > socketPortMetrics_realtime_interface_status.json
 ```
 
 ## Best Practices
@@ -496,42 +434,6 @@ catocli query socketPortMetrics '{
 2. **Peak identification**: Identify peak usage patterns
 3. **Anomaly detection**: Monitor for unusual traffic patterns
 4. **Capacity planning**: Use historical data for future planning
-
-## Troubleshooting Common Issues
-
-### High Utilization Interfaces
-```bash
-# Identify high utilization interfaces
-catocli query socketPortMetrics '{
-    "socketPortMetricsFilter": [
-        {"fieldName": "utilization_total", "operator": "gte", "values": ["85"]}
-    ],
-    "socketPortMetricsDimension": [
-        {"fieldName": "socket_interface"},
-        {"fieldName": "site_name"}
-    ],
-    "socketPortMetricsMeasure": [
-        {"aggType": "avg", "fieldName": "utilization_total"}
-    ],
-    "timeFrame": "last.P1D"
-}'
-```
-
-### Performance Degradation Analysis
-```bash
-# Analyze performance metrics over time
-catocli query socketPortMetricsTimeSeries '{
-    "buckets": 48,
-    "socketPortMetricsDimension": [
-        {"fieldName": "socket_interface"}
-    ],
-    "socketPortMetricsMeasure": [
-        {"aggType": "avg", "fieldName": "latency"},
-        {"aggType": "avg", "fieldName": "packet_loss"}
-    ],
-    "timeFrame": "last.P2D"
-}' -f csv --csv-filename performance_degradation.csv
-```
 
 ## Related Operations
 

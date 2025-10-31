@@ -120,3 +120,6 @@
 ## 3.0.28 (2025-10-23)
 - Updated all timeseries calls to refrence perSecond as false, and validated all examples in readme and embedded in cli help menu 
 - Updated dynamic help menu structure
+
+## 3.0.31 (2025-10-31)
+- Added support for tls inspection import/export

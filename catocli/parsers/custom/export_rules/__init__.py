@@ -56,7 +56,6 @@ Examples:
     
     if_rules_parser.add_argument('-accountID', help='Account ID to export rules from (uses CATO_ACCOUNT_ID environment variable if not specified)', required=False)
     if_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
-    
     if_rules_parser.set_defaults(func=export_rules.export_if_rules_to_json)
     
     # Add wf_rules command
@@ -83,7 +82,33 @@ Examples:
     
     wf_rules_parser.add_argument('-accountID', help='Account ID to export rules from (uses CATO_ACCOUNT_ID environment variable if not specified)', required=False)
     wf_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
-    
     wf_rules_parser.set_defaults(func=export_rules.export_wf_rules_to_json)
+
+    # Add tls_rules command
+    tls_rules_parser = export_subparsers.add_parser(
+        'tls_rules', 
+        help='Export TLS Inspection rules to JSON format',
+        usage='catocli export tls_rules [-accountID <account_id>] [options]',
+        description='''Export TLS Inspection rules to JSON format for backup, analysis, or migration purposes.
+
+Examples:
+  # Basic export (uses CATO_ACCOUNT_ID environment variable)
+  catocli export tls_rules
+  
+  # Export with specific account ID
+  catocli export tls_rules -accountID 12345
+  
+  # Export with verbose output to see detailed progress
+  catocli export tls_rules -v
+  
+  # Export for specific account with full logging
+  catocli export tls_rules -accountID 12345 -v''',
+        formatter_class=__import__('argparse').RawDescriptionHelpFormatter
+    )
     
+    tls_rules_parser.add_argument('-accountID', help='Account ID to export rules from (uses CATO_ACCOUNT_ID environment variable if not specified)', required=False)
+    tls_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    tls_rules_parser.set_defaults(func=export_rules.export_tls_rules_to_json)
+
+
     return export_parser

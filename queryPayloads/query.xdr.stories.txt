@@ -4324,6 +4324,27 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 		details
 	}
 						occurrences
+	eventsGraphQuery {
+		type
+		timeSeriesEvents {
+			accountID
+			timeFrame
+			buckets
+			measures {
+				aggType
+				fieldName
+				trend
+			}
+			dimensions {
+				fieldName
+			}
+			filters {
+				fieldName
+				operator
+				values
+			}
+		}
+	}
 	accountOperationIncident {
 		incidentTimeline {
 			__typename

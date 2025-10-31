@@ -460,3 +460,181 @@ def import_wf_rules_to_tf(args, configuration):
     except Exception as e:
         print(f"ERROR: {str(e)}")
         return [{"success": False, "error": str(e)}]
+
+
+def load_tls_json_data(json_file):
+    """Load TLS Inspection data from JSON file"""
+    try:
+        with open(json_file, 'r') as f:
+            data = json.load(f)
+            return data['data']['policy']['tlsInspect']['policy']
+    except FileNotFoundError:
+        print(f"Error: JSON file '{json_file}' not found")
+        sys.exit(1)
+    except json.JSONDecodeError as e:
+        print(f"Error: Invalid JSON in '{json_file}': {e}")
+        sys.exit(1)
+    except KeyError as e:
+        print(f"Error: Expected JSON structure not found in '{json_file}': {e}")
+        sys.exit(1)
+
+
+def import_tls_sections(sections, module_name, verbose=False,
+                       resource_type="cato_tls_section", resource_name="sections"):
+    """Import all TLS Inspection sections"""
+    print("\nStarting TLS Inspection section imports...")
+    total_sections = len(sections)
+    successful_imports = 0
+    failed_imports = 0
+    
+    for i, section in enumerate(sections):
+        section_id = section['section_id']
+        section_name = section['section_name']
+        section_index = section['section_index']
+        # Add module. prefix if not present
+        if not module_name.startswith('module.'):
+            module_name = f'module.{module_name}'
+        resource_address = f'{module_name}.{resource_type}.{resource_name}["{section_name}"]'
+        print(f"\n[{i+1}/{total_sections}] Section: {section_name} (index: {section_index})")
+
+        # For sections, we use the section name as the ID since that's how Cato identifies them
+        success, stdout, stderr = run_terraform_import(resource_address, section_id, verbose=verbose)
+        
+        if success:
+            successful_imports += 1
+        else:
+            failed_imports += 1
+    
+    print(f"\nTLS Inspection Section Import Summary: {successful_imports} successful, {failed_imports} failed")
+    return successful_imports, failed_imports
+
+
+def import_tls_rules(rules, module_name, verbose=False,
+                    resource_type="cato_tls_rule", resource_name="rules",
+                    batch_size=10, delay_between_batches=2, auto_approve=False):
+    """Import all TLS Inspection rules in batches"""
+    print("\nStarting TLS Inspection rule imports...")
+    successful_imports = 0
+    failed_imports = 0
+    total_rules = len(rules)
+    
+    for i, rule in enumerate(rules):
+        rule_id = rule['id']
+        rule_name = rule['name']
+        rule_index = find_rule_index(rules, rule_name)
+        terraform_key = sanitize_name_for_terraform(rule_name)
+        
+        # Add module. prefix if not present
+        if not module_name.startswith('module.'):
+            module_name = f'module.{module_name}'
+
+        # Use array index syntax instead of rule ID
+        resource_address = f'{module_name}.{resource_type}.{resource_name}["{str(rule_name)}"]'
+        print(f"\n[{i+1}/{total_rules}] Rule: {rule_name} (index: {rule_index})")
+        
+        success, stdout, stderr = run_terraform_import(resource_address, rule_id, verbose=verbose)
+        
+        if success:
+            successful_imports += 1
+        else:
+            failed_imports += 1
+            
+            # Ask user if they want to continue on failure (unless auto-approved)
+            if failed_imports <= 3 and not auto_approve:  # Only prompt for first few failures
+                response = input(f"\nContinue with remaining imports? (y/n): ").lower()
+                if response == 'n':
+                    print("Import process stopped by user.")
+                    break
+        
+        # Delay between batches
+        if (i + 1) % batch_size == 0 and i < total_rules - 1:
+            print(f"\n   Batch complete. Waiting {delay_between_batches}s before next batch...")
+            time.sleep(delay_between_batches)
+    
+    print(f"\nTLS Inspection Rule Import Summary: {successful_imports} successful, {failed_imports} failed")
+    return successful_imports, failed_imports
+
+
+def import_tls_rules_to_tf(args, configuration):
+    """Main function to orchestrate the TLS Inspection import process"""
+    try:
+        print(" Terraform Import Tool - Cato TLS Inspection Rules & Sections")
+        print("=" * 60)
+        
+        # Load data
+        print(f" Loading data from {args.json_file}...")
+        policy_data = load_tls_json_data(args.json_file)
+        
+        # Extract rules and sections
+        rules, sections = extract_rules_and_sections(policy_data)
+        
+        if hasattr(args, 'verbose') and args.verbose:
+            print(f"section_ids: {json.dumps(policy_data.get('section_ids', {}), indent=2)}")
+        
+        print(f" Found {len(rules)} rules")
+        print(f"  Found {len(sections)} sections")
+        
+        if not rules and not sections:
+            print(" No rules or sections found. Exiting.")
+            return [{"success": False, "error": "No rules or sections found"}]
+        
+        # Validate Terraform environment before proceeding
+        validate_terraform_environment(args.module_name, verbose=args.verbose)
+        
+        # Ask for confirmation (unless auto-approved)
+        if not args.rules_only and not args.sections_only:
+            print(f"\n Ready to import {len(sections)} sections and {len(rules)} rules.")
+        elif args.rules_only:
+            print(f"\n Ready to import {len(rules)} rules only.")
+        elif args.sections_only:
+            print(f"\n Ready to import {len(sections)} sections only.")
+        
+        if hasattr(args, 'auto_approve') and args.auto_approve:
+            print("\nAuto-approve enabled, proceeding with import...")
+        else:
+            confirm = input(f"\nProceed with import? (y/n): ").lower()
+            if confirm != 'y':
+                print("Import cancelled.")
+                return [{"success": False, "error": "Import cancelled by user"}]
+        
+        total_successful = 0
+        total_failed = 0
+        
+        # Import sections first (if not skipped)
+        if not args.rules_only and sections:
+            successful, failed = import_tls_sections(sections, module_name=args.module_name, verbose=args.verbose)
+            total_successful += successful
+            total_failed += failed
+        
+        # Import rules (if not skipped)
+        if not args.sections_only and rules:
+            successful, failed = import_tls_rules(rules, module_name=args.module_name, 
+                                                 verbose=args.verbose, batch_size=args.batch_size, 
+                                                 delay_between_batches=args.delay,
+                                                 auto_approve=getattr(args, 'auto_approve', False))
+            total_successful += successful
+            total_failed += failed
+        
+        # Final summary
+        print("\n" + "=" * 60)
+        print(" FINAL IMPORT SUMMARY")
+        print("=" * 60)
+        print(f" Total successful imports: {total_successful}")
+        print(f" Total failed imports: {total_failed}")
+        print(f" Overall success rate: {(total_successful / (total_successful + total_failed) * 100):.1f}%" if (total_successful + total_failed) > 0 else "N/A")
+        print("\n Import process completed!")
+        
+        return [{
+            "success": True, 
+            "total_successful": total_successful,
+            "total_failed": total_failed,
+            "module_name": args.module_name
+        }]
+    
+    except KeyboardInterrupt:
+        print("\nImport process cancelled by user (Ctrl+C).")
+        print("Partial imports may have been completed.")
+        return [{"success": False, "error": "Import cancelled by user"}]
+    except Exception as e:
+        print(f"ERROR: {str(e)}")
+        return [{"success": False, "error": str(e)}]

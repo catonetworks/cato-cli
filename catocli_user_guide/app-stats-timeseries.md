@@ -386,7 +386,7 @@ catocli query appStatsTimeSeries '{
         {"aggType": "sum", "fieldName": "flows_created"}
     ],
     "timeFrame": "last.P3D"
-}' -f csv --csv-filename security_risk_trending.csv
+}' -f csv --csv-filename appStatsTimeSeries_security_risk_trending.csv
 ```
 
 ### Multi-Site Comparison

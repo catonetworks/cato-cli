@@ -23,6 +23,26 @@ catocli query policy wanNetwork policy '{
 }'
 ```
 
+## Advanced Usage
+### Additional Examples
+- Parse the query response using jq to get names and ids only
+- Parse the query response using jq to get names and ids with index included:
+
+# Parse the query response using jq to get names and ids only
+
+```bash
+# Parse the query response using jq to get names and ids only
+catocli query policy wanNetwork policy | jq '.data.policy.wanNetwork.policy.rules[].rule | {name: .name, id: .id}'
+```
+
+# Parse the query response using jq to get names and ids with index included:
+
+```bash
+# Parse the query response using jq to get names and ids with index included:
+catocli query policy wanNetwork policy | jq -r '.data.policy.wanNetwork.policy.rules[] | "\(.rule.index) | \(.rule.name) | \(.rule.id)"'
+```
+
+
 #### Operation Arguments for query.policy.wanNetwork.policy ####
 
 `accountId` [ID] - (required) N/A    

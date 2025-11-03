@@ -60,6 +60,14 @@ For detailed information about profile management, see [PROFILES.md](PROFILES.md
 	cd cato-cli
 	python3 -m catocli -h
 
+### Advanced cato-cli Topics
+
+- [Common Patterns & Best Practices](./catocli_user_guide/common-patterns.md) - Output formats, time frames, filtering patterns
+- [Python Integration - Windows](./catocli_user_guide/python-integration-windows.md) - Windows-specific Python automation examples
+- [Python Integration - Unix/Linux/macOS](./catocli_user_guide/python-integration-unix.md) - Unix-based Python integration guide
+- [SIEM Integration Guide](./catocli_user_guide/siem-integration.md) - Real-time security event streaming to SIEM platforms
+- [Terraform Rules Integration](./catocli_user_guide/terraform-rules-integration.md) - Export/import policy rules to Terraform for IaC management
+
 ## Custom Report Query Operations
 
 ### Custom Report Analytics Queries
@@ -72,13 +80,6 @@ For detailed information about profile management, see [PROFILES.md](PROFILES.md
 | [Events Time Series](./catocli_user_guide/events-timeseries.md) | Security events, connectivity, and threat analysis | 🔒 |
 | [Socket Port Metrics](./catocli_user_guide/socket-port-metrics.md) | Socket interface performance and traffic analysis | 🔌 |
 | [Socket Port Time Series](./catocli_user_guide/socket-port-timeseries.md) | Socket performance metrics over time | ⏱️ |
-
-### Advanced Topics
-
-- [Common Patterns & Best Practices](./catocli_user_guide/common-patterns.md) - Output formats, time frames, filtering patterns
-- [Python Integration - Windows](./catocli_user_guide/python-integration-windows.md) - Windows-specific Python automation examples
-- [Python Integration - Unix/Linux/macOS](./catocli_user_guide/python-integration-unix.md) - Unix-based Python integration guide
-- [SIEM Integration Guide](./catocli_user_guide/siem-integration.md) - Real-time security event streaming to SIEM platforms
 
 ## Quick Start Examples
 

@@ -398,14 +398,7 @@ class UniversalHelpFormatter:
                     content_to_parse = advanced_match.group(1)
                     # Add a header for the examples
                     examples.append("### Examples")
-                    # Extract list items from Additional Examples intro (before first # heading)
-                    intro_pattern = r'### Additional Examples\n(.*?)(?=\n#[^#])'
-                    intro_match = re.search(intro_pattern, content_to_parse, re.DOTALL)
-                    if intro_match and intro_match.group(1).strip():
-                        intro_text = intro_match.group(1).strip()
-                        # Only add if it contains bullet points or descriptions
-                        if '-' in intro_text:
-                            examples.append(intro_text)
+                    # Don't extract intro text - it's redundant with the actual command examples
                     examples.append("")  # Add spacing
             elif has_additional_examples:
                 # Fallback: Extract only the Additional Examples section
@@ -414,13 +407,7 @@ class UniversalHelpFormatter:
                 if additional_match:
                     content_to_parse = additional_match.group(1)
                     examples.append("### Examples")
-                    # Extract list items from the section intro
-                    intro_pattern = r'^(.*?)(?=\n#[^#])'
-                    intro_match = re.search(intro_pattern, content_to_parse, re.DOTALL)
-                    if intro_match and intro_match.group(1).strip():
-                        intro_text = intro_match.group(1).strip()
-                        if '-' in intro_text:
-                            examples.append(intro_text)
+                    # Don't extract intro text - it's redundant with the actual command examples
                     examples.append("")  # Add spacing
             
             # Extract catocli commands from markdown code blocks

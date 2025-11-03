@@ -269,7 +269,12 @@ def createRequest(args, configuration):
                 # Apply formatting based on effective format
                 if effective_format == 'raw' or not default_override:
                     # Raw format - return only the data portion, not HTTP headers/status
-                    if isinstance(response, (list, tuple)) and len(response) > 0:
+                    # UNLESS verbose mode is enabled, in which case we need the full response for header printing
+                    verbose_mode = params.get('v', False)
+                    if verbose_mode:
+                        # In verbose mode, preserve the full response tuple [data, status, headers]
+                        return response
+                    elif isinstance(response, (list, tuple)) and len(response) > 0:
                         return response[0]  # Extract just the data portion
                     else:
                         return response

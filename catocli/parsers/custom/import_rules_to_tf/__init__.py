@@ -97,6 +97,30 @@ Common Examples:
     tls_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
     tls_rules_parser.add_argument('--auto-approve', action='store_true', help='Skip confirmation prompt and proceed automatically')
 
-    tls_rules_parser.set_defaults(func=import_rules_to_tf.import_tls_rules_to_tf)    
+    tls_rules_parser.set_defaults(func=import_rules_to_tf.import_tls_rules_to_tf)
+
+    # Add wnw_rules_to_tf command
+    wnw_rules_parser = import_subparsers.add_parser(
+        'wnw_rules_to_tf', 
+        help='Import WAN Network rules to Terraform state',
+        usage='catocli import wnw_rules_to_tf <json_file> --module-name <module_name> [options]\n\nexample: catocli import wnw_rules_to_tf config_data/all_wnw_rules_and_sections.json --module-name module.wnw_rules'
+    )
+    
+    wnw_rules_parser.add_argument('json_file', help='Path to the JSON file containing WNW rules and sections')
+    wnw_rules_parser.add_argument('--module-name', required=True, 
+                                help='Terraform module name to import resources into')
+    wnw_rules_parser.add_argument('-accountID', help='Account ID (required by CLI framework but not used for import)', required=False)
+    wnw_rules_parser.add_argument('--batch-size', type=int, default=10, 
+                                help='Number of imports per batch (default: 10)')
+    wnw_rules_parser.add_argument('--delay', type=int, default=2, 
+                                help='Delay between batches in seconds (default: 2)')
+    wnw_rules_parser.add_argument('--rules-only', action='store_true', 
+                                help='Import only rules, skip sections')
+    wnw_rules_parser.add_argument('--sections-only', action='store_true', 
+                                help='Import only sections, skip rules')
+    wnw_rules_parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    wnw_rules_parser.add_argument('--auto-approve', action='store_true', help='Skip confirmation prompt and proceed automatically')
+
+    wnw_rules_parser.set_defaults(func=import_rules_to_tf.import_wnw_rules_to_tf)    
 
     return import_parser

@@ -123,3 +123,6 @@
 
 ## 3.0.31 (2025-10-31)
 - Added support for tls inspection import/export
+
+## 3.0.32 (2025-11-03)
+- Added support for wan network rules import/export

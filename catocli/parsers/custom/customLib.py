@@ -253,7 +253,7 @@ def writeDataToFile(data, args, account_id=None, default_filename_template="data
     
     Args:
         data: The data to write to file (will be JSON serialized)
-        args: Command line arguments containing output_file_path and verbose options
+        args: Command line arguments containing output_file_path, output_directory and verbose options
         account_id: Optional account ID for default filename generation
         default_filename_template: Template for default filename (use {account_id} placeholder)
         default_directory: Default directory for output files
@@ -271,7 +271,14 @@ def writeDataToFile(data, args, account_id=None, default_filename_template="data
         if hasattr(args, 'verbose') and args.verbose:
             print(f"Using output file path: {output_file}")
     else:
-        destination_dir = default_directory
+        # Use output_directory from args if provided, otherwise use default_directory
+        if hasattr(args, 'output_directory') and args.output_directory:
+            destination_dir = args.output_directory
+            if hasattr(args, 'verbose') and args.verbose:
+                print(f"Using custom output directory: {destination_dir}")
+        else:
+            destination_dir = default_directory
+        
         if account_id:
             filename = default_filename_template.format(account_id=account_id)
         else:

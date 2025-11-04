@@ -126,3 +126,6 @@
 
 ## 3.0.32 (2025-11-03)
 - Added support for wan network rules import/export
+
+## 3.0.33 (2025-11-04)
+- Added queryPaylaods to manifest file to fix windows, and added tests to main package.

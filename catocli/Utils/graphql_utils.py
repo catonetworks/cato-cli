@@ -19,8 +19,8 @@ Functions included:
 import json
 import logging
 import os
+import re
 import sys
-
 
 def loadJSON(file, calling_module_path=None):
     """
@@ -84,7 +84,20 @@ def loadJSON(file, calling_module_path=None):
     
     try:
         with open(file_path, 'r', encoding='utf-8') as data:
-            config = json.load(data)
+            content = data.read()
+            
+            # Remove JavaScript-style single-line comments
+            # This regex removes // comments but preserves URLs (http://)
+            lines = []
+            for line in content.split('\n'):
+                # Remove // comments, but not if part of a URL (preceded by :)
+                # Also handle comments at the start of lines or after whitespace
+                line = re.sub(r'(?<!:)//.*$', '', line)
+                lines.append(line)
+            
+            cleaned_content = '\n'.join(lines)
+            
+            config = json.loads(cleaned_content)
             logging.debug(f"Successfully loaded {file} from {file_path}")
             return config
     except FileNotFoundError:

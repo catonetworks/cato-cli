@@ -1,0 +1,263 @@
+{
+    "ignoreOperations": {
+        // Skipping query operations covered in custom payloads used in MCP
+        "query.appStats": {},
+        "query.appStatsTimeSeries": {},
+        "query.eventsTimeSeries": {},
+        "query.socketPortMetricsTimeSeries": {},
+        "query.socketPortMetrics": {},
+        // The following queries need investigation
+        "query.devices": {},
+        "query.groups.groupList": {},
+        "query.groups.group.members":{},
+        "query.policy.socketLan.policy": {},
+        "query.catalogs.catalogApplication": {},
+        "query.catalogs.catalogApplicationList": {}
+    },
+    "defaultValues": {
+        "timeFrame": "last.P1D",
+        "adminID": "0",
+        "platforms": [
+            "OSX"
+        ]
+    },
+    "overrideOperationPayload": {
+        "query.accountBySubdomain": {
+            "subdomains": [
+                "AnalystDemo"
+            ]
+        },
+        "query.container.fqdn.downloadFile": {
+            "payload": {
+                "downloadFqdnContainerFileInput": {
+                    "by": "NAME",
+                    "input": "fqdn_container"
+                }
+            },
+            "assertions": [
+                "container.fqdn.downloadFile"
+            ]
+        },
+        "query.container.fqdn.searchFqdn": {
+            "payload": {
+                "fqdnContainerSearchFqdnInput": {
+                    "fqdn": "something.com"
+                }
+            },
+            "assertions": [
+                "container.fqdn.searchFqdn.containers"
+            ]
+        },
+        "query.container.list": {
+            "payload": {
+                "containerSearchInput": {
+                    "refs": [],
+                    "types": [
+                        "FQDN",
+                        "IP_RANGE"
+                    ]
+                }
+            },
+            "assertions": [
+                "container.list.containers"
+            ]
+        },
+        "query.container.ipAddressRange.downloadFile": {
+            "payload": {
+                "downloadIpAddressRangeContainerFileInput": {
+                    "by": "NAME",
+                    "input": "ip_container"
+                }
+            },
+            "assertions": [
+                "container.ipAddressRange.downloadFile"
+            ]
+        },
+        "query.container.ipAddressRange.searchIpAddressRange": {
+            "payload": {
+                "ipAddressRangeContainerSearchIpAddressRangeInput": {
+                    "ipAddressRange": {
+                        "from": "1.2.3.4",
+                        "to": "1.2.3.5"
+                    }
+                }
+            },
+            "assertions": []
+        },
+        "query.container.ipAddressRange.search": {
+            "payload": {
+                "ipAddressRangeContainerSearchInput": {
+                    "ref": {
+                        "by": "NAME",
+                        "input": "ip_container"
+                    }
+                }
+            },
+            "assertions": []
+        },
+        "query.container.fqdn.search": {
+            "payload": {
+                "fqdnContainerSearchInput": {
+                    "ref": {
+                        "by": "NAME",
+                        "input": "fqdn_container"
+                    }
+                }
+            },
+            "assertions": []
+        },
+        "query.events": {
+            "payload": {
+                "eventsDimension": [
+                    {
+                        "fieldName": "action"
+                    }
+                ],
+                "timeFrame": "last.P1D"
+            },
+            "assertions": [
+                "events"
+            ]
+        },
+        "query.groups.group.members": {
+            "payload": {
+                "groupRefInput": {
+                    "by": "NAME",
+                    "input": "Advanced Group"
+                }
+            },
+            "assertions": [
+                "groups.group.members.items"
+            ]
+        },
+        // "query.groups.groupList": {
+        //     "payload": {
+        //         "groupMembersListInput": {
+        //             "filter": [],
+        //             "paging": {
+        //                 "from": 0,
+        //                 "limit": 100
+        //             },
+        //             "sort": {
+        //                 "name": {
+        //                     "direction": "ASC",
+        //                     "priority": 1
+        //                 }
+        //             }
+        //         }
+        //     },
+        //     "assertions": []
+        // },
+        "query.catalogs.contentTypeGroupList": {
+            "payload": {
+                "catalogApplicationContentTypeGroupListInput": {
+                    "filter": [],
+                    "paging": {
+                        "from": 0,
+                        "limit": 100
+                    }
+                }
+            },
+            "assertions": []
+        },
+        "query.groups.whereUsed": {
+            "payload": {
+                "groupRefInput": {
+                    "by": "NAME",
+                    "input": "Advanced Group"
+                }
+            },
+            "assertions": []
+        },
+        "query.sandbox": {
+            "payload": {
+                "sandboxReportsInput": {
+                    "paging": {
+                        "from": 0,
+                        "limit": 100
+                    }
+                }
+            },
+            "assertions": []
+        },
+        "query.site.bgpPeerList": {
+            "payload": {
+                "bgpPeerListInput": {
+                    "site": {
+                        "by": "NAME",
+                        "input": "PM demo branch"
+                    }
+                }
+            },
+            "assertions": [
+                "container.list.containers"
+            ]
+        },
+        "query.site.cloudInterconnectPhysicalConnectionId": {
+            "payload": {
+                "cloudInterconnectPhysicalConnectionIdInput": {
+                    "haRole": "PRIMARY",
+                    "site": {
+                        "by": "NAME",
+                        "input": "Interconnect"
+                    }
+                }
+            },
+            "assertions": []
+        },
+        "query.site.availableVersionList": {
+            "payload": {
+                "availableVersionListInput": {
+                    "platforms": [
+                        "OSX"
+                    ]
+                }
+            },
+            "assertions": [
+                "site.availableVersionList"
+            ]
+        },
+        "query.site.siteBgpStatus": {
+            "payload": {
+                "siteBgpStatusInput": {
+                    "site": {
+                        "by": "NAME",
+                        "input": "PM demo branch"
+                    }
+                }
+            },
+            "assertions": [
+                "site.siteBgpStatus"
+            ]
+        },
+        "query.xdr.stories": {
+            "payload": {
+                "perSecond": false,
+                "storyInput": {
+                    "filter": [
+                        {
+                            "timeFrame": {
+                                "time": "last.P1D"
+                            }
+                        }
+                    ],
+                    "paging": {
+                        "from": 0,
+                        "limit": 5
+                    },
+                    "sort": []
+                }
+            },
+            "assertions": []
+        },
+        "query.xdr.story": {
+            "payload": {
+                "perSecond": false,
+                "storyId": "689affd12fbfda452b652f99"
+            },
+            "assertions": [
+                "xdr.story"
+            ]
+        }
+    }
+}

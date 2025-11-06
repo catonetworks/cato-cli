@@ -243,6 +243,32 @@ def createRequest(args, configuration):
             try:
                 response = instance.call_api(body, params)
                 
+                # Extract and display X-Trace-ID if trace_id flag is enabled
+                trace_id_value = None
+                if params.get('trace_id', False) and response:
+                    # Response is a tuple: (data, status, headers)
+                    if isinstance(response, (list, tuple)) and len(response) >= 3:
+                        headers = response[2]
+                        
+                        # Extract Trace_id from headers (the API returns it as 'Trace_id', not 'X-Trace-ID')
+                        if headers:
+                            for key, value in headers.items():
+                                if key.lower() in ['trace_id', 'x-trace-id', 'traceid']:
+                                    trace_id_value = value
+                                    break
+                        
+                        # Display trace ID if found
+                        if trace_id_value:
+                            print(f"Trace-ID: {trace_id_value}")
+                            print()  # Add blank line for readability
+                        else:
+                            print("Warning: x-force-tracing header was sent but no Trace-ID received in response")
+                            print()
+                        
+                        # Extract just the data portion from the response tuple
+                        # to avoid HTTPHeaderDict serialization issues
+                        response = response[0]
+                
                 # Handle output routing if network or sentinel options are specified
                 if (network_config or sentinel_config) and response:
                     # Get the response data
@@ -363,7 +389,7 @@ def createRequest(args, configuration):
                             return [{"success": True, "output_file": display_path, "operation": operation_name}]
                         elif csv_output is None:
                             # Formatter returned None, indicating we should fall back to raw response
-                            print("INFO: No processable data found, returning raw API response")
+                            print("INFO: No processable data found, returning raw API response", file=sys.stderr)
                             # Extract just the data portion to avoid HTTP headers
                             if isinstance(response, (list, tuple)) and len(response) > 0:
                                 return response[0]
@@ -425,7 +451,7 @@ def createRequest(args, configuration):
                             # Handle the formatted output from individual formatters
                             if formatted_output is None:
                                 # Formatter returned None, indicating we should fall back to raw response
-                                print("INFO: No processable data found, returning raw API response")
+                                print("INFO: No processable data found, returning raw API response", file=sys.stderr)
                                 return response_data
                             else:
                                 # Pretty print the formatted JSON directly to stdout
@@ -437,7 +463,7 @@ def createRequest(args, configuration):
                             
                             if formatted_output is None:
                                 # Formatter returned None, indicating we should fall back to raw response
-                                print("INFO: No processable data found, returning raw API response")
+                                print("INFO: No processable data found, returning raw API response", file=sys.stderr)
                                 return response_data
                             else:
                                 # Pretty print the formatted JSON directly to stdout

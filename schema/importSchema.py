@@ -37,6 +37,8 @@ def run():
     print("• CLI driver generated")
     catolib.writeOperationParsers(catolib.catoApiSchema)
     print("• Operation parsers generated")
+    catolib.writePayloadsJson(catolib.catoApiSchema)
+    print("• Payloads manifest generated")
     catolib.writeReadmes(catolib.catoApiSchema)
     print("• README files generated")
         

@@ -28,6 +28,7 @@ def query_policy_parse(query_subparsers):
     query_policy_antiMalwareFileHash_policy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_policy_antiMalwareFileHash_policy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_policy_antiMalwareFileHash_policy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_policy_antiMalwareFileHash_policy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_policy_antiMalwareFileHash_policy_parser.set_defaults(func=createRequest,operation_name='query.policy.antiMalwareFileHash.policy')
 
     query_policy_socketLan_parser = query_policy_subparsers.add_parser('socketLan', 
@@ -49,6 +50,7 @@ def query_policy_parse(query_subparsers):
     query_policy_socketLan_policy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_policy_socketLan_policy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_policy_socketLan_policy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_policy_socketLan_policy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_policy_socketLan_policy_parser.set_defaults(func=createRequest,operation_name='query.policy.socketLan.policy')
 
     query_policy_wanNetwork_parser = query_policy_subparsers.add_parser('wanNetwork', 
@@ -70,6 +72,7 @@ def query_policy_parse(query_subparsers):
     query_policy_wanNetwork_policy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_policy_wanNetwork_policy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_policy_wanNetwork_policy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_policy_wanNetwork_policy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_policy_wanNetwork_policy_parser.set_defaults(func=createRequest,operation_name='query.policy.wanNetwork.policy')
 
     query_policy_internetFirewall_parser = query_policy_subparsers.add_parser('internetFirewall', 
@@ -91,6 +94,7 @@ def query_policy_parse(query_subparsers):
     query_policy_internetFirewall_policy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_policy_internetFirewall_policy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_policy_internetFirewall_policy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_policy_internetFirewall_policy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_policy_internetFirewall_policy_parser.set_defaults(func=createRequest,operation_name='query.policy.internetFirewall.policy')
 
     query_policy_remotePortFwd_parser = query_policy_subparsers.add_parser('remotePortFwd', 
@@ -112,6 +116,7 @@ def query_policy_parse(query_subparsers):
     query_policy_remotePortFwd_policy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_policy_remotePortFwd_policy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_policy_remotePortFwd_policy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_policy_remotePortFwd_policy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_policy_remotePortFwd_policy_parser.set_defaults(func=createRequest,operation_name='query.policy.remotePortFwd.policy')
 
     query_policy_wanFirewall_parser = query_policy_subparsers.add_parser('wanFirewall', 
@@ -133,6 +138,7 @@ def query_policy_parse(query_subparsers):
     query_policy_wanFirewall_policy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_policy_wanFirewall_policy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_policy_wanFirewall_policy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_policy_wanFirewall_policy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_policy_wanFirewall_policy_parser.set_defaults(func=createRequest,operation_name='query.policy.wanFirewall.policy')
 
     query_policy_appTenantRestriction_parser = query_policy_subparsers.add_parser('appTenantRestriction', 
@@ -154,6 +160,7 @@ def query_policy_parse(query_subparsers):
     query_policy_appTenantRestriction_policy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_policy_appTenantRestriction_policy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_policy_appTenantRestriction_policy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_policy_appTenantRestriction_policy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_policy_appTenantRestriction_policy_parser.set_defaults(func=createRequest,operation_name='query.policy.appTenantRestriction.policy')
 
     query_policy_applicationControl_parser = query_policy_subparsers.add_parser('applicationControl', 
@@ -175,6 +182,7 @@ def query_policy_parse(query_subparsers):
     query_policy_applicationControl_policy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_policy_applicationControl_policy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_policy_applicationControl_policy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_policy_applicationControl_policy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_policy_applicationControl_policy_parser.set_defaults(func=createRequest,operation_name='query.policy.applicationControl.policy')
 
     query_policy_tlsInspect_parser = query_policy_subparsers.add_parser('tlsInspect', 
@@ -196,6 +204,7 @@ def query_policy_parse(query_subparsers):
     query_policy_tlsInspect_policy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_policy_tlsInspect_policy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_policy_tlsInspect_policy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_policy_tlsInspect_policy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_policy_tlsInspect_policy_parser.set_defaults(func=createRequest,operation_name='query.policy.tlsInspect.policy')
 
     query_policy_dynamicIpAllocation_parser = query_policy_subparsers.add_parser('dynamicIpAllocation', 
@@ -217,6 +226,7 @@ def query_policy_parse(query_subparsers):
     query_policy_dynamicIpAllocation_policy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_policy_dynamicIpAllocation_policy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_policy_dynamicIpAllocation_policy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_policy_dynamicIpAllocation_policy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_policy_dynamicIpAllocation_policy_parser.set_defaults(func=createRequest,operation_name='query.policy.dynamicIpAllocation.policy')
 
     query_policy_terminalServer_parser = query_policy_subparsers.add_parser('terminalServer', 
@@ -238,4 +248,5 @@ def query_policy_parse(query_subparsers):
     query_policy_terminalServer_policy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_policy_terminalServer_policy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_policy_terminalServer_policy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_policy_terminalServer_policy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_policy_terminalServer_policy_parser.set_defaults(func=createRequest,operation_name='query.policy.terminalServer.policy')

@@ -28,6 +28,7 @@ def mutation_container_parse(mutation_subparsers):
     mutation_container_ipAddressRange_createFromFile_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_container_ipAddressRange_createFromFile_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_container_ipAddressRange_createFromFile_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_container_ipAddressRange_createFromFile_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_container_ipAddressRange_createFromFile_parser.set_defaults(func=createRequest,operation_name='mutation.container.ipAddressRange.createFromFile')
 
     mutation_container_ipAddressRange_updateFromFile_parser = mutation_container_ipAddressRange_subparsers.add_parser('updateFromFile', 
@@ -43,6 +44,7 @@ def mutation_container_parse(mutation_subparsers):
     mutation_container_ipAddressRange_updateFromFile_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_container_ipAddressRange_updateFromFile_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_container_ipAddressRange_updateFromFile_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_container_ipAddressRange_updateFromFile_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_container_ipAddressRange_updateFromFile_parser.set_defaults(func=createRequest,operation_name='mutation.container.ipAddressRange.updateFromFile')
 
     mutation_container_ipAddressRange_addValues_parser = mutation_container_ipAddressRange_subparsers.add_parser('addValues', 
@@ -58,6 +60,7 @@ def mutation_container_parse(mutation_subparsers):
     mutation_container_ipAddressRange_addValues_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_container_ipAddressRange_addValues_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_container_ipAddressRange_addValues_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_container_ipAddressRange_addValues_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_container_ipAddressRange_addValues_parser.set_defaults(func=createRequest,operation_name='mutation.container.ipAddressRange.addValues')
 
     mutation_container_ipAddressRange_removeValues_parser = mutation_container_ipAddressRange_subparsers.add_parser('removeValues', 
@@ -73,6 +76,7 @@ def mutation_container_parse(mutation_subparsers):
     mutation_container_ipAddressRange_removeValues_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_container_ipAddressRange_removeValues_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_container_ipAddressRange_removeValues_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_container_ipAddressRange_removeValues_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_container_ipAddressRange_removeValues_parser.set_defaults(func=createRequest,operation_name='mutation.container.ipAddressRange.removeValues')
 
     mutation_container_fqdn_parser = mutation_container_subparsers.add_parser('fqdn', 
@@ -94,6 +98,7 @@ def mutation_container_parse(mutation_subparsers):
     mutation_container_fqdn_createFromFile_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_container_fqdn_createFromFile_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_container_fqdn_createFromFile_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_container_fqdn_createFromFile_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_container_fqdn_createFromFile_parser.set_defaults(func=createRequest,operation_name='mutation.container.fqdn.createFromFile')
 
     mutation_container_fqdn_updateFromFile_parser = mutation_container_fqdn_subparsers.add_parser('updateFromFile', 
@@ -109,6 +114,7 @@ def mutation_container_parse(mutation_subparsers):
     mutation_container_fqdn_updateFromFile_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_container_fqdn_updateFromFile_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_container_fqdn_updateFromFile_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_container_fqdn_updateFromFile_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_container_fqdn_updateFromFile_parser.set_defaults(func=createRequest,operation_name='mutation.container.fqdn.updateFromFile')
 
     mutation_container_fqdn_addValues_parser = mutation_container_fqdn_subparsers.add_parser('addValues', 
@@ -124,6 +130,7 @@ def mutation_container_parse(mutation_subparsers):
     mutation_container_fqdn_addValues_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_container_fqdn_addValues_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_container_fqdn_addValues_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_container_fqdn_addValues_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_container_fqdn_addValues_parser.set_defaults(func=createRequest,operation_name='mutation.container.fqdn.addValues')
 
     mutation_container_fqdn_removeValues_parser = mutation_container_fqdn_subparsers.add_parser('removeValues', 
@@ -139,6 +146,7 @@ def mutation_container_parse(mutation_subparsers):
     mutation_container_fqdn_removeValues_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_container_fqdn_removeValues_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_container_fqdn_removeValues_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_container_fqdn_removeValues_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_container_fqdn_removeValues_parser.set_defaults(func=createRequest,operation_name='mutation.container.fqdn.removeValues')
 
     mutation_container_delete_parser = mutation_container_subparsers.add_parser('delete', 
@@ -154,4 +162,5 @@ def mutation_container_parse(mutation_subparsers):
     mutation_container_delete_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_container_delete_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_container_delete_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_container_delete_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_container_delete_parser.set_defaults(func=createRequest,operation_name='mutation.container.delete')

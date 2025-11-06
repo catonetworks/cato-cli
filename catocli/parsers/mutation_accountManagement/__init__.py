@@ -22,6 +22,7 @@ def mutation_accountManagement_parse(mutation_subparsers):
     mutation_accountManagement_addAccount_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_accountManagement_addAccount_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_accountManagement_addAccount_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_accountManagement_addAccount_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_accountManagement_addAccount_parser.set_defaults(func=createRequest,operation_name='mutation.accountManagement.addAccount')
 
     mutation_accountManagement_updateAccount_parser = mutation_accountManagement_subparsers.add_parser('updateAccount', 
@@ -37,6 +38,7 @@ def mutation_accountManagement_parse(mutation_subparsers):
     mutation_accountManagement_updateAccount_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_accountManagement_updateAccount_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_accountManagement_updateAccount_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_accountManagement_updateAccount_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_accountManagement_updateAccount_parser.set_defaults(func=createRequest,operation_name='mutation.accountManagement.updateAccount')
 
     mutation_accountManagement_removeAccount_parser = mutation_accountManagement_subparsers.add_parser('removeAccount', 
@@ -52,6 +54,7 @@ def mutation_accountManagement_parse(mutation_subparsers):
     mutation_accountManagement_removeAccount_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_accountManagement_removeAccount_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_accountManagement_removeAccount_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_accountManagement_removeAccount_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_accountManagement_removeAccount_parser.set_defaults(func=createRequest,operation_name='mutation.accountManagement.removeAccount')
 
     mutation_accountManagement_disableAccount_parser = mutation_accountManagement_subparsers.add_parser('disableAccount', 
@@ -67,4 +70,5 @@ def mutation_accountManagement_parse(mutation_subparsers):
     mutation_accountManagement_disableAccount_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_accountManagement_disableAccount_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_accountManagement_disableAccount_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_accountManagement_disableAccount_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_accountManagement_disableAccount_parser.set_defaults(func=createRequest,operation_name='mutation.accountManagement.disableAccount')

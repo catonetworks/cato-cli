@@ -17,8 +17,13 @@ class CallApi(object):
 		self.api_client = api_client
 
 	def call_api(self, body, args, **kwargs):  # noqa: E501
-		(data) = self.call_api_with_http_info(body, args, **kwargs)  # noqa: E501
-		return data
+		# When trace_id is enabled, we need to return the full response including headers
+		if args.get('trace_id', False):
+			# Return full response tuple: (data, status, headers)
+			return self.call_api_with_http_info(body, args, **kwargs)
+		else:
+			(data) = self.call_api_with_http_info(body, args, **kwargs)  # noqa: E501
+			return data
 	
 	def call_api_with_http_info(self, body, args, **kwargs):  # noqa: E501
 		all_params = ['body', 'sync_type']  # noqa: E501
@@ -58,6 +63,10 @@ class CallApi(object):
 			if not using_custom_headers and 'x-api-key' in self.api_client.configuration.api_key:
 				header_params['x-api-key'] = self.api_client.configuration.api_key['x-api-key']
 			header_params['User-Agent'] = "Cato-CLI-v"+self.api_client.configuration.version
+			
+			# Add x-force-tracing header if trace_id flag is enabled
+			if args.get('trace_id', False):
+				header_params['x-force-tracing'] = 'true'
 		
 		# Add custom headers from configuration with proper encoding handling
 		if using_custom_headers:
@@ -90,13 +99,20 @@ class CallApi(object):
 			print("Request Headers:",json.dumps(masked_headers,indent=4,sort_keys=True))
 			print("Request Data:",json.dumps(body_params,indent=4,sort_keys=True),"\n\n")
 			
+		# When trace_id is enabled, we need the full response tuple to access headers
+		# Set _return_http_data_only to False to get (data, status, headers)
+		if args.get('trace_id', False):
+			return_http_data_only = False
+		else:
+			return_http_data_only = params.get('_return_http_data_only')
+		
 		return self.api_client.call_api(
 			header_params,
 			body=body_params,
 			files=local_var_files,
 			response_type="NoSchema",  # noqa: E501 
 			async_req=params.get('async_req'),
-			_return_http_data_only=params.get('_return_http_data_only'),
+			_return_http_data_only=return_http_data_only,
 			_preload_content=params.get('_preload_content', True),
 			_request_timeout=params.get('_request_timeout'),
 			collection_formats=collection_formats)

@@ -779,6 +779,7 @@ def raw_parse(raw_parser):
     raw_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     raw_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
     raw_parser.add_argument('-e', '--endpoint', dest='endpoint', help='Override the API endpoint URL (e.g., https://api.catonetworks.com/api/v1/graphql2)')
+    raw_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     raw_parser.set_defaults(func=createRawRequest,operation_name='raw')
 """
     parserPath = "../catocli/parsers/raw"
@@ -802,6 +803,7 @@ def query_siteLocation_parse(query_subparsers):
     query_siteLocation_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
     query_siteLocation_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
     query_siteLocation_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    query_siteLocation_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_siteLocation_parser.set_defaults(func=querySiteLocation,operation_name='query.siteLocation')
 """
     parserPath = "../catocli/parsers/query_siteLocation"
@@ -850,6 +852,7 @@ def {parserName}_parse({operationType}_subparsers):
     {parserName}_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     {parserName}_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     {parserName}_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    {parserName}_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
 """
                 # Add format flags for operations with format overrides
                 if supports_csv:
@@ -1659,6 +1662,7 @@ def renderSubParser(subParser, parentParserPath):
     {subParserPath}_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     {subParserPath}_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     {subParserPath}_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    {subParserPath}_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     {subParserPath}_parser.set_defaults(func=createRequest,operation_name='{operation_path}')
 """
             # Add -f flag for CSV-supported operations
@@ -1755,3 +1759,79 @@ catocli {subOperationCmd} '{example_json_pretty}'
         # Only recurse if subOperation is a dict and doesn't have a "path" key
         if isinstance(subOperation, dict) and "path" not in subOperation:
             renderSubReadme(subOperation, operationType, subOperationPath)
+
+def writePayloadsJson(schema):
+    """Write payloads_generated.json with required arguments for each query operation"""
+    import json
+    
+    # Load payloads settings for configuration
+    payloads_settings_path = "../tests/payloads_settings.json"
+    payloads_settings = {}
+    try:
+        payloads_settings = loadJSON(payloads_settings_path)
+    except Exception as e:
+        print(f"  - Warning: Could not load payloads_settings.json: {e}")
+        payloads_settings = {"ignoreOperations": {}, "defaultValues": {}}
+    
+    ignore_operations = payloads_settings.get("ignoreOperations", {})
+    default_values = payloads_settings.get("defaultValues", {})
+    override_operations = payloads_settings.get("overrideOperationPayload", {})
+    
+    payloads = {}
+    operation_count = 0
+    
+    # Only process query operations
+    for operation_name in sorted(schema.get("query", {}).keys()):
+        # Skip operations in ignore list
+        if operation_name in ignore_operations:
+            continue
+        
+        # If operation has override payload defined, add it with empty object
+        # The actual payload will be used from payloads_settings.json at test time
+        if operation_name in override_operations:
+            payloads[operation_name] = {}
+            operation_count += 1
+            continue
+        
+        operation = schema["query"][operation_name]
+        
+        # Load the model file to get operationArgs and variablesPayload
+        model_file_path = f"../models/{operation_name}.json"
+        try:
+            model_data = loadJSON(model_file_path)
+            
+            # Extract ONLY required arguments (excluding accountID which is handled by CLI)
+            required_args = {}
+            if "operationArgs" in model_data:
+                for arg_name, arg_data in model_data["operationArgs"].items():
+                    # Skip accountID as it's provided by CLI configuration
+                    if arg_name.lower() in ["accountid", "account_id"]:
+                        continue
+                    
+                    # Only include required arguments
+                    if arg_data.get("required", False):
+                        # Get the actual argument name (not the varName)
+                        arg_real_name = arg_data.get("name", arg_name)
+                        
+                        # Check if there's a configured default value in payloads_settings.json
+                        if arg_real_name in default_values:
+                            required_args[arg_name] = default_values[arg_real_name]
+                        elif "variablesPayload" in model_data and arg_name in model_data["variablesPayload"]:
+                            # Use value from variablesPayload if available
+                            required_args[arg_name] = model_data["variablesPayload"][arg_name]
+                        # If no default and not in variablesPayload, don't add it (will result in empty object {})
+            
+            payloads[operation_name] = required_args
+            operation_count += 1
+        
+        except Exception as e:
+            # If model file doesn't exist or has issues, skip this operation
+            print(f"  - Warning: Could not load model for {operation_name}: {e}")
+            continue
+    
+    # Write to tests/payloads_generated.json
+    output_path = "../tests/payloads_generated.json"
+    with file_write_lock:
+        writeFile(output_path, json.dumps(payloads, indent=4, sort_keys=True))
+    
+    print(f"  - Generated payloads_generated.json with {operation_count} query operations")

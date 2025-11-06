@@ -28,6 +28,7 @@ def query_groups_parse(query_subparsers):
     query_groups_group_members_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_groups_group_members_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_groups_group_members_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_groups_group_members_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_groups_group_members_parser.set_defaults(func=createRequest,operation_name='query.groups.group.members')
 
     query_groups_whereUsed_parser = query_groups_subparsers.add_parser('whereUsed', 
@@ -43,6 +44,7 @@ def query_groups_parse(query_subparsers):
     query_groups_whereUsed_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_groups_whereUsed_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_groups_whereUsed_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_groups_whereUsed_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_groups_whereUsed_parser.set_defaults(func=createRequest,operation_name='query.groups.whereUsed')
 
     query_groups_groupList_parser = query_groups_subparsers.add_parser('groupList', 
@@ -58,4 +60,5 @@ def query_groups_parse(query_subparsers):
     query_groups_groupList_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_groups_groupList_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_groups_groupList_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_groups_groupList_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_groups_groupList_parser.set_defaults(func=createRequest,operation_name='query.groups.groupList')

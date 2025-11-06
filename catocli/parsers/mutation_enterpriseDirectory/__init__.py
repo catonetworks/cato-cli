@@ -22,6 +22,7 @@ def mutation_enterpriseDirectory_parse(mutation_subparsers):
     mutation_enterpriseDirectory_createLocation_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_enterpriseDirectory_createLocation_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_enterpriseDirectory_createLocation_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_enterpriseDirectory_createLocation_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_enterpriseDirectory_createLocation_parser.set_defaults(func=createRequest,operation_name='mutation.enterpriseDirectory.createLocation')
 
     mutation_enterpriseDirectory_updateLocation_parser = mutation_enterpriseDirectory_subparsers.add_parser('updateLocation', 
@@ -37,6 +38,7 @@ def mutation_enterpriseDirectory_parse(mutation_subparsers):
     mutation_enterpriseDirectory_updateLocation_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_enterpriseDirectory_updateLocation_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_enterpriseDirectory_updateLocation_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_enterpriseDirectory_updateLocation_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_enterpriseDirectory_updateLocation_parser.set_defaults(func=createRequest,operation_name='mutation.enterpriseDirectory.updateLocation')
 
     mutation_enterpriseDirectory_archiveLocation_parser = mutation_enterpriseDirectory_subparsers.add_parser('archiveLocation', 
@@ -52,6 +54,7 @@ def mutation_enterpriseDirectory_parse(mutation_subparsers):
     mutation_enterpriseDirectory_archiveLocation_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_enterpriseDirectory_archiveLocation_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_enterpriseDirectory_archiveLocation_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_enterpriseDirectory_archiveLocation_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_enterpriseDirectory_archiveLocation_parser.set_defaults(func=createRequest,operation_name='mutation.enterpriseDirectory.archiveLocation')
 
     mutation_enterpriseDirectory_restoreLocation_parser = mutation_enterpriseDirectory_subparsers.add_parser('restoreLocation', 
@@ -67,4 +70,5 @@ def mutation_enterpriseDirectory_parse(mutation_subparsers):
     mutation_enterpriseDirectory_restoreLocation_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_enterpriseDirectory_restoreLocation_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_enterpriseDirectory_restoreLocation_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_enterpriseDirectory_restoreLocation_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_enterpriseDirectory_restoreLocation_parser.set_defaults(func=createRequest,operation_name='mutation.enterpriseDirectory.restoreLocation')

@@ -1,0 +1,497 @@
+{
+    "query.accountmetrics.site": {
+        "name": "Account Metrics - Site Health Check",
+        "description": "Monitor all key performance indicators for a specific site",
+        "operation": "query.accountMetrics",
+        "payload": {
+            "buckets": 24,
+            "groupDevices": true,
+            "groupInterfaces": true,
+            "labels": [
+                "bytesDownstream",
+                "bytesUpstream",
+                "health",
+                "lastMileLatency",
+                "lastMilePacketLoss",
+                "rtt"
+            ],
+            "siteIDs": [
+                "144905"
+            ],
+            "timeFrame": "last.P1D",
+            "perSecond": true,
+            "toRate": true
+        },
+        "timeout": 30,
+        "assertions": [
+            "accountMetrics.metadata",
+            "accountMetrics.sites"
+        ]
+    },
+    "query.accountmetrics.users": {
+        "name": "Account Metrics - User Performance Analysis",
+        "description": "Analyze network performance for specific users",
+        "operation": "query.accountMetrics",
+        "payload": {
+            "buckets": 24,
+            "labels": [
+                "health",
+                "jitterDownstream",
+                "jitterUpstream",
+                "lastMileLatency",
+                "lastMilePacketLoss",
+                "packetsDownstream",
+                "packetsUpstream"
+            ],
+            "timeFrame": "last.P1D",
+            "userIDs": [
+                "1000000"
+            ]
+        },
+        "timeout": 30,
+        "assertions": [
+            "accountMetrics.metadata",
+            "accountMetrics.sites"
+        ]
+    },
+    "query.accountmetrics.health": {
+        "name": "Account Metrics - Quick Health Overview",
+        "description": "Get a simple health snapshot without filters",
+        "operation": "query.accountMetrics",
+        "payload": {
+            "timeFrame": "last.P1D"
+        },
+        "timeout": 30,
+        "assertions": [
+            "accountMetrics.metadata",
+            "accountMetrics.sites"
+        ]
+    },
+    "query.accountmetrics.packet_loss": {
+        "name": "Account Metrics - Detailed Bandwidth Analysis",
+        "description": "Focus on bandwidth utilization with packet loss metrics",
+        "operation": "query.accountMetrics",
+        "payload": {
+            "buckets": 48,
+            "labels": [
+                "bytesDownstream",
+                "bytesUpstream",
+                "bytesTotal",
+                "bytesDownstreamMax",
+                "bytesUpstreamMax",
+                "lostDownstreamPcnt",
+                "lostUpstreamPcnt"
+            ],
+            "siteIDs": [
+                "132814"
+            ],
+            "timeFrame": "last.P2D",
+            "perSecond": true,
+            "withMissingData": true
+        },
+        "timeout": 30,
+        "assertions": [
+            "accountMetrics.metadata",
+            "accountMetrics.sites"
+        ]
+    },
+    "query.appStats.app_by_risk": {
+        "name": "AppStats - Apps by Risk Score",
+        "description": "Filter and sort applications by risk score >= 5",
+        "operation": "query.appStats",
+        "payload": {
+            "appStatsFilter": [
+                {
+                    "fieldName": "risk_score",
+                    "operator": "gte",
+                    "values": [
+                        "5"
+                    ]
+                }
+            ],
+            "appStatsSort": [
+                {
+                    "fieldName": "risk_score",
+                    "order": "desc"
+                }
+            ],
+            "dimension": [
+                {
+                    "fieldName": "application_name"
+                },
+                {
+                    "fieldName": "risk_score"
+                },
+                {
+                    "fieldName": "user_name"
+                }
+            ],
+            "measure": [
+                {
+                    "aggType": "sum",
+                    "fieldName": "traffic"
+                },
+                {
+                    "aggType": "sum",
+                    "fieldName": "flows_created"
+                }
+            ],
+            "timeFrame": "last.P7D"
+        },
+        "timeout": 30,
+        "assertions": [
+            "appStats",
+            "appStats.records"
+        ]
+    },
+    "query.appStats.app_utilization": {
+        "name": "AppStats - App Utilization",
+        "description": "Query application utilization sorted by traffic for last 7 days",
+        "operation": "query.appStats",
+        "payload": {
+            "dimension": [
+                {
+                    "fieldName": "application_name"
+                }
+            ],
+            "measure": [
+                {
+                    "aggType": "sum",
+                    "fieldName": "traffic"
+                },
+                {
+                    "aggType": "sum",
+                    "fieldName": "flows_created"
+                }
+            ],
+            "appStatsSort": [
+                {
+                    "fieldName": "traffic",
+                    "order": "desc"
+                }
+            ],
+            "timeFrame": "last.P7D"
+        },
+        "timeout": 30,
+        "assertions": [
+            "appStats",
+            "appStats.records"
+        ]
+    },
+    "query.appStats.by_country": {
+        "name": "AppStats - Traffic by Country",
+        "description": "Query traffic statistics grouped by site country",
+        "operation": "query.appStats",
+        "payload": {
+            "dimension": [
+                {
+                    "fieldName": "site_country"
+                },
+                {
+                    "fieldName": "src_site_country_code"
+                }
+            ],
+            "measure": [
+                {
+                    "aggType": "sum",
+                    "fieldName": "traffic"
+                },
+                {
+                    "aggType": "count_distinct",
+                    "fieldName": "user_name"
+                }
+            ],
+            "timeFrame": "last.P1M"
+        },
+        "timeout": 30,
+        "assertions": [
+            "appStats",
+            "appStats.records"
+        ]
+    },
+    "query.appStats.user_activity": {
+        "name": "AppStats - User Activity",
+        "description": "Query user activity with application, user, and risk dimensions",
+        "operation": "query.appStats",
+        "payload": {
+            "dimension": [
+                {
+                    "fieldName": "application_name"
+                },
+                {
+                    "fieldName": "user_name"
+                },
+                {
+                    "fieldName": "risk_score"
+                }
+            ],
+            "measure": [
+                {
+                    "aggType": "sum",
+                    "fieldName": "downstream"
+                },
+                {
+                    "aggType": "sum",
+                    "fieldName": "upstream"
+                },
+                {
+                    "aggType": "sum",
+                    "fieldName": "traffic"
+                }
+            ],
+            "timeFrame": "last.P1D"
+        },
+        "timeout": 30,
+        "assertions": [
+            "appStats",
+            "appStats.records"
+        ]
+    },
+    "query.appStats.user_app_risk": {
+        "name": "AppStats - User App Risk",
+        "description": "Query application usage by user with risk score analysis",
+        "operation": "query.appStats",
+        "payload": {
+            "appStatsFilter": [],
+            "appStatsSort": [],
+            "dimension": [
+                {
+                    "fieldName": "application_name"
+                },
+                {
+                    "fieldName": "user_name"
+                },
+                {
+                    "fieldName": "risk_score"
+                }
+            ],
+            "measure": [
+                {
+                    "aggType": "sum",
+                    "fieldName": "downstream"
+                },
+                {
+                    "aggType": "sum",
+                    "fieldName": "upstream"
+                },
+                {
+                    "aggType": "sum",
+                    "fieldName": "traffic"
+                }
+            ],
+            "timeFrame": "last.P1D"
+        },
+        "timeout": 30,
+        "assertions": [
+            "appStats",
+            "appStats.records"
+        ]
+    },
+    "query.appStats.user_bw": {
+        "name": "AppStats - User Bandwidth",
+        "description": "Query user bandwidth consumption with traffic and flows for the last day",
+        "operation": "query.appStats",
+        "payload": {
+            "dimension": [
+                {
+                    "fieldName": "user_name"
+                }
+            ],
+            "measure": [
+                {
+                    "aggType": "sum",
+                    "fieldName": "downstream"
+                },
+                {
+                    "aggType": "sum",
+                    "fieldName": "upstream"
+                },
+                {
+                    "aggType": "sum",
+                    "fieldName": "traffic"
+                },
+                {
+                    "aggType": "sum",
+                    "fieldName": "flows_created"
+                }
+            ],
+            "timeFrame": "last.P1D"
+        },
+        "timeout": 30,
+        "assertions": [
+            "appStats",
+            "appStats.records"
+        ]
+    },
+    "query.appStats.user_risk_report": {
+        "name": "AppStats - User Risk Report",
+        "description": "Generate risk report with user and application traffic metrics",
+        "operation": "query.appStats",
+        "payload": {
+            "dimension": [
+                {
+                    "fieldName": "application_name"
+                },
+                {
+                    "fieldName": "user_name"
+                },
+                {
+                    "fieldName": "risk_score"
+                }
+            ],
+            "measure": [
+                {
+                    "aggType": "sum",
+                    "fieldName": "downstream"
+                },
+                {
+                    "aggType": "sum",
+                    "fieldName": "upstream"
+                },
+                {
+                    "aggType": "sum",
+                    "fieldName": "traffic"
+                }
+            ],
+            "timeFrame": "last.P1D"
+        },
+        "timeout": 30,
+        "assertions": [
+            "appStats",
+            "appStats.records"
+        ]
+    },
+    "query.appStatsTimeSeries.user_risk_report": {
+        "name": "appStatsTimeSeries - Hourly Traffic Analysis",
+        "description": "Track traffic patterns throughout the day",
+        "operation": "query.appStatsTimeSeries",
+        "payload": {
+            "buckets": 24,
+            "dimension": [
+                {
+                    "fieldName": "user_name"
+                },
+                {
+                    "fieldName": "application_name"
+                }
+            ],
+            "perSecond": false,
+            "measure": [
+                {
+                    "aggType": "sum",
+                    "fieldName": "upstream"
+                },
+                {
+                    "aggType": "sum",
+                    "fieldName": "downstream"
+                },
+                {
+                    "aggType": "sum",
+                    "fieldName": "traffic"
+                }
+            ],
+            "timeFrame": "last.P1D"
+        },
+        "timeout": 30,
+        "assertions": [
+            "appStatsTimeSeries"
+        ]
+    },
+    "query.eventsTimeSeries.by_subType": {
+        "name": "EventsTimeSeries -  Internet Firewall Events Analysis",
+        "description": "Weekly break down by hour of Internet Firewall events by rule_name",
+        "operation": "query.eventsTimeSeries",
+        "payload": {
+            "buckets": 168,
+            "eventsDimension": [
+                {
+                    "fieldName": "rule_name"
+                }
+            ],
+            "eventsFilter": [
+                {
+                    "fieldName": "event_sub_type",
+                    "operator": "is",
+                    "values": [
+                        "Internet Firewall"
+                    ]
+                }
+            ],
+            "eventsMeasure": [
+                {
+                    "aggType": "sum",
+                    "fieldName": "event_count"
+                }
+            ],
+            "perSecond": false,
+            "timeFrame": "last.P1D"
+        },
+        "timeout": 30,
+        "assertions": [
+            "eventsTimeSeries"
+        ]
+    },
+    "query.socketPortMetrics.daily_bw_by_interface": {
+        "name": "socketPortMetrics - Daily BW by Interface",
+        "description": "Daily BW by Interface",
+        "operation": "query.socketPortMetrics",
+        "payload": {
+            "socketPortMetricsDimension": [
+                {
+                    "fieldName": "socket_interface"
+                },
+                {
+                    "fieldName": "site_name"
+                }
+            ],
+            "socketPortMetricsMeasure": [
+                {
+                    "aggType": "sum",
+                    "fieldName": "bytes_total"
+                }
+            ],
+            "timeFrame": "last.P1D"
+        },
+        "timeout": 30,
+        "assertions": [
+            "socketPortMetrics.records"
+        ]
+    },
+    "query.socketPortMetricsTimeSeries.daily_bw_by_interface": {
+        "name": "Daily Traffic Patterns",
+        "description": "Analyze interface traffic patterns throughout the day",
+        "operation": "query.socketPortMetricsTimeSeries",
+        "payload": {
+            "buckets": 24,
+            "socketPortMetricsDimension": [
+                {
+                    "fieldName": "socket_interface"
+                },
+                {
+                    "fieldName": "site_name"
+                }
+            ],
+            "socketPortMetricsMeasure": [
+                {
+                    "aggType": "sum",
+                    "fieldName": "bytes_downstream"
+                },
+                {
+                    "aggType": "sum",
+                    "fieldName": "bytes_upstream"
+                },
+                {
+                    "aggType": "sum",
+                    "fieldName": "bytes_total"
+                }
+            ],
+            "perSecond": false,
+            "timeFrame": "last.P1D"
+        },
+        "timeout": 30,
+        "assertions": [
+            "socketPortMetricsTimeSeries.summary",
+            "socketPortMetricsTimeSeries.series"
+        ]
+    }
+}

@@ -22,6 +22,7 @@ def query_site_parse(query_subparsers):
     query_site_secondaryAwsVSocket_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_site_secondaryAwsVSocket_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_site_secondaryAwsVSocket_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_site_secondaryAwsVSocket_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_site_secondaryAwsVSocket_parser.set_defaults(func=createRequest,operation_name='query.site.secondaryAwsVSocket')
 
     query_site_secondaryAzureVSocket_parser = query_site_subparsers.add_parser('secondaryAzureVSocket', 
@@ -37,6 +38,7 @@ def query_site_parse(query_subparsers):
     query_site_secondaryAzureVSocket_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_site_secondaryAzureVSocket_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_site_secondaryAzureVSocket_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_site_secondaryAzureVSocket_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_site_secondaryAzureVSocket_parser.set_defaults(func=createRequest,operation_name='query.site.secondaryAzureVSocket')
 
     query_site_cloudInterconnectPhysicalConnection_parser = query_site_subparsers.add_parser('cloudInterconnectPhysicalConnection', 
@@ -52,6 +54,7 @@ def query_site_parse(query_subparsers):
     query_site_cloudInterconnectPhysicalConnection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_site_cloudInterconnectPhysicalConnection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_site_cloudInterconnectPhysicalConnection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_site_cloudInterconnectPhysicalConnection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_site_cloudInterconnectPhysicalConnection_parser.set_defaults(func=createRequest,operation_name='query.site.cloudInterconnectPhysicalConnection')
 
     query_site_cloudInterconnectPhysicalConnectionId_parser = query_site_subparsers.add_parser('cloudInterconnectPhysicalConnectionId', 
@@ -67,6 +70,7 @@ def query_site_parse(query_subparsers):
     query_site_cloudInterconnectPhysicalConnectionId_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_site_cloudInterconnectPhysicalConnectionId_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_site_cloudInterconnectPhysicalConnectionId_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_site_cloudInterconnectPhysicalConnectionId_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_site_cloudInterconnectPhysicalConnectionId_parser.set_defaults(func=createRequest,operation_name='query.site.cloudInterconnectPhysicalConnectionId')
 
     query_site_cloudInterconnectConnectionConnectivity_parser = query_site_subparsers.add_parser('cloudInterconnectConnectionConnectivity', 
@@ -82,6 +86,7 @@ def query_site_parse(query_subparsers):
     query_site_cloudInterconnectConnectionConnectivity_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_site_cloudInterconnectConnectionConnectivity_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_site_cloudInterconnectConnectionConnectivity_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_site_cloudInterconnectConnectionConnectivity_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_site_cloudInterconnectConnectionConnectivity_parser.set_defaults(func=createRequest,operation_name='query.site.cloudInterconnectConnectionConnectivity')
 
     query_site_bgpPeer_parser = query_site_subparsers.add_parser('bgpPeer', 
@@ -97,6 +102,7 @@ def query_site_parse(query_subparsers):
     query_site_bgpPeer_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_site_bgpPeer_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_site_bgpPeer_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_site_bgpPeer_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_site_bgpPeer_parser.set_defaults(func=createRequest,operation_name='query.site.bgpPeer')
 
     query_site_bgpPeerList_parser = query_site_subparsers.add_parser('bgpPeerList', 
@@ -112,6 +118,7 @@ def query_site_parse(query_subparsers):
     query_site_bgpPeerList_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_site_bgpPeerList_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_site_bgpPeerList_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_site_bgpPeerList_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_site_bgpPeerList_parser.set_defaults(func=createRequest,operation_name='query.site.bgpPeerList')
 
     query_site_siteBgpStatus_parser = query_site_subparsers.add_parser('siteBgpStatus', 
@@ -127,6 +134,7 @@ def query_site_parse(query_subparsers):
     query_site_siteBgpStatus_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_site_siteBgpStatus_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_site_siteBgpStatus_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_site_siteBgpStatus_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_site_siteBgpStatus_parser.set_defaults(func=createRequest,operation_name='query.site.siteBgpStatus')
 
     query_site_availableVersionList_parser = query_site_subparsers.add_parser('availableVersionList', 
@@ -142,6 +150,7 @@ def query_site_parse(query_subparsers):
     query_site_availableVersionList_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_site_availableVersionList_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_site_availableVersionList_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_site_availableVersionList_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_site_availableVersionList_parser.set_defaults(func=createRequest,operation_name='query.site.availableVersionList')
 
     query_site_siteGeneralDetails_parser = query_site_subparsers.add_parser('siteGeneralDetails', 
@@ -157,4 +166,5 @@ def query_site_parse(query_subparsers):
     query_site_siteGeneralDetails_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_site_siteGeneralDetails_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_site_siteGeneralDetails_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_site_siteGeneralDetails_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_site_siteGeneralDetails_parser.set_defaults(func=createRequest,operation_name='query.site.siteGeneralDetails')

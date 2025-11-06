@@ -22,6 +22,7 @@ def query_xdr_parse(query_subparsers):
     query_xdr_stories_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_xdr_stories_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_xdr_stories_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_xdr_stories_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_xdr_stories_parser.set_defaults(func=createRequest,operation_name='query.xdr.stories')
 
     query_xdr_story_parser = query_xdr_subparsers.add_parser('story', 
@@ -37,4 +38,5 @@ def query_xdr_parse(query_subparsers):
     query_xdr_story_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_xdr_story_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_xdr_story_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_xdr_story_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_xdr_story_parser.set_defaults(func=createRequest,operation_name='query.xdr.story')

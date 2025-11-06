@@ -28,5 +28,3 @@ catocli mutation site replaceSiteBwLicense '{
 
 #### Operation Arguments for mutation.site.replaceSiteBwLicense ####
 
-`accountId` [ID] - (required) N/A    
-`replaceSiteBwLicenseInput` [ReplaceSiteBwLicenseInput] - (required) N/A    

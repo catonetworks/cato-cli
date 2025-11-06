@@ -22,6 +22,7 @@ def query_container_parse(query_subparsers):
     query_container_list_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_container_list_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_container_list_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_container_list_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_container_list_parser.set_defaults(func=createRequest,operation_name='query.container.list')
 
     query_container_ipAddressRange_parser = query_container_subparsers.add_parser('ipAddressRange', 
@@ -43,6 +44,7 @@ def query_container_parse(query_subparsers):
     query_container_ipAddressRange_search_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_container_ipAddressRange_search_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_container_ipAddressRange_search_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_container_ipAddressRange_search_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_container_ipAddressRange_search_parser.set_defaults(func=createRequest,operation_name='query.container.ipAddressRange.search')
 
     query_container_ipAddressRange_searchIpAddressRange_parser = query_container_ipAddressRange_subparsers.add_parser('searchIpAddressRange', 
@@ -58,6 +60,7 @@ def query_container_parse(query_subparsers):
     query_container_ipAddressRange_searchIpAddressRange_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_container_ipAddressRange_searchIpAddressRange_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_container_ipAddressRange_searchIpAddressRange_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_container_ipAddressRange_searchIpAddressRange_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_container_ipAddressRange_searchIpAddressRange_parser.set_defaults(func=createRequest,operation_name='query.container.ipAddressRange.searchIpAddressRange')
 
     query_container_ipAddressRange_downloadFile_parser = query_container_ipAddressRange_subparsers.add_parser('downloadFile', 
@@ -73,6 +76,7 @@ def query_container_parse(query_subparsers):
     query_container_ipAddressRange_downloadFile_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_container_ipAddressRange_downloadFile_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_container_ipAddressRange_downloadFile_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_container_ipAddressRange_downloadFile_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_container_ipAddressRange_downloadFile_parser.set_defaults(func=createRequest,operation_name='query.container.ipAddressRange.downloadFile')
 
     query_container_fqdn_parser = query_container_subparsers.add_parser('fqdn', 
@@ -94,6 +98,7 @@ def query_container_parse(query_subparsers):
     query_container_fqdn_search_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_container_fqdn_search_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_container_fqdn_search_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_container_fqdn_search_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_container_fqdn_search_parser.set_defaults(func=createRequest,operation_name='query.container.fqdn.search')
 
     query_container_fqdn_searchFqdn_parser = query_container_fqdn_subparsers.add_parser('searchFqdn', 
@@ -109,6 +114,7 @@ def query_container_parse(query_subparsers):
     query_container_fqdn_searchFqdn_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_container_fqdn_searchFqdn_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_container_fqdn_searchFqdn_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_container_fqdn_searchFqdn_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_container_fqdn_searchFqdn_parser.set_defaults(func=createRequest,operation_name='query.container.fqdn.searchFqdn')
 
     query_container_fqdn_downloadFile_parser = query_container_fqdn_subparsers.add_parser('downloadFile', 
@@ -124,4 +130,5 @@ def query_container_parse(query_subparsers):
     query_container_fqdn_downloadFile_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_container_fqdn_downloadFile_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_container_fqdn_downloadFile_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_container_fqdn_downloadFile_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_container_fqdn_downloadFile_parser.set_defaults(func=createRequest,operation_name='query.container.fqdn.downloadFile')

@@ -12,4 +12,5 @@ def query_siteLocation_parse(query_subparsers):
     query_siteLocation_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
     query_siteLocation_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
     query_siteLocation_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    query_siteLocation_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_siteLocation_parser.set_defaults(func=querySiteLocation,operation_name='query.siteLocation')

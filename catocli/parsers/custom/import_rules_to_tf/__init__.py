@@ -31,7 +31,7 @@ Common Examples:
     if_rules_parser = import_subparsers.add_parser(
         'if_rules_to_tf', 
         help='Import Internet Firewall rules to Terraform state',
-        usage='catocli import if_rules_to_tf <json_file> --module-name <module_name> [options]\n\nexample: catocli import if_rules_to_tf config_data/all_wf_rules_and_sections.json --module-name module.if_rules'
+        usage='catocli import if_rules_to_tf <json_file> --module-name <module_name> [options]\n\nexample: catocli import if_rules_to_tf config_data/all_ifw_rules_and_sections.json --module-name module.if_rules'
     )
     
     if_rules_parser.add_argument('json_file', help='Path to the JSON file containing IFW rules and sections')

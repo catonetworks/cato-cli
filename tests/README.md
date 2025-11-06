@@ -14,54 +14,54 @@ pip install -r tests/requirements.txt
 
 ### Run all tests
 ```bash
-pytest tests/test_cli_regression.py -v
+pytest run_config_validation_tests.sh -v
 ```
 
 ### Run specific test class
 ```bash
 # Test CLI structure only
-pytest tests/test_cli_regression.py::TestCLIStructure -v
+pytest run_config_validation_tests.sh::TestCLIStructure -v
 
 # Test model files only
-pytest tests/test_cli_regression.py::TestModelFiles -v
+pytest run_config_validation_tests.sh::TestModelFiles -v
 
 # Test query payloads only
-pytest tests/test_cli_regression.py::TestQueryPayloads -v
+pytest run_config_validation_tests.sh::TestQueryPayloads -v
 
 # Test query operations
-pytest tests/test_cli_regression.py::TestQueryOperations -v
+pytest run_config_validation_tests.sh::TestQueryOperations -v
 
 # Test mutation operations
-pytest tests/test_cli_regression.py::TestMutationOperations -v
+pytest run_config_validation_tests.sh::TestMutationOperations -v
 
 # Test data integrity
-pytest tests/test_cli_regression.py::TestDataIntegrity -v
+pytest run_config_validation_tests.sh::TestDataIntegrity -v
 
 # Test error handling
-pytest tests/test_cli_regression.py::TestErrorHandling -v
+pytest run_config_validation_tests.sh::TestErrorHandling -v
 
 # Test packaging
-pytest tests/test_cli_regression.py::TestPackaging -v
+pytest run_config_validation_tests.sh::TestPackaging -v
 ```
 
 ### Run specific test
 ```bash
-pytest tests/test_cli_regression.py::TestCLIStructure::test_cli_entry_point_exists -v
+pytest run_config_validation_tests.sh::TestCLIStructure::test_cli_entry_point_exists -v
 ```
 
 ### Run with coverage
 ```bash
-pytest tests/test_cli_regression.py --cov=catocli --cov-report=html
+pytest run_config_validation_tests.sh --cov=catocli --cov-report=html
 ```
 
 ### Run with detailed output
 ```bash
-pytest tests/test_cli_regression.py -vv -s
+pytest run_config_validation_tests.sh -vv -s
 ```
 
 ### Run and stop on first failure
 ```bash
-pytest tests/test_cli_regression.py -x
+pytest run_config_validation_tests.sh -x
 ```
 
 ## Test Categories
@@ -146,7 +146,7 @@ jobs:
     
     - name: Run regression tests
       run: |
-        pytest tests/test_cli_regression.py -v --tb=short
+        pytest run_config_validation_tests.sh -v --tb=short
 ```
 
 ## Troubleshooting

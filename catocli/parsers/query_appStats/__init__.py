@@ -16,6 +16,7 @@ def query_appStats_parse(query_subparsers):
     query_appStats_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_appStats_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_appStats_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_appStats_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
 
 
     query_appStats_parser.add_argument('-f', '--format', choices=['json', 'csv'], help='Output format (default: formatted json, use -raw for original json)')

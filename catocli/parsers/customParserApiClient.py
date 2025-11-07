@@ -233,7 +233,12 @@ def createRequest(args, configuration):
         is_ok, invalid_vars, message = validateArgs(variables_obj, operation)
     
     if is_ok:
-        body = generateGraphqlPayload_local(variables_obj, operation, operation_name)
+        # Define a local renderArgsAndFields wrapper that passes custom_client
+        def local_renderArgsAndFields(response_arg_str, variables_obj, cur_operation, definition, operation_name, indent, dynamic_operation_args=None):
+            return renderArgsAndFields(response_arg_str, variables_obj, cur_operation, definition, operation_name, indent, dynamic_operation_args, custom_client)
+        
+        # Use shared generateGraphqlPayload with custom renderArgsAndFields
+        body = generateGraphqlPayload(variables_obj, operation, operation_name, renderArgsAndFields_func=local_renderArgsAndFields)
         
         if params["t"]:
             # Use dynamically generated query with custom field mappings
@@ -511,10 +516,16 @@ def querySiteLocation(args, configuration):
     try:
         import os
         import json
-        # Find the full path to the models directory
+        # Find the full path - for query.siteLocation, use custom parser directory
         current_dir = os.path.dirname(os.path.abspath(__file__))
-        root_dir = os.path.dirname(os.path.dirname(current_dir))
-        models_file = os.path.join(root_dir, "models", f"{operation_name}.json")
+        
+        if operation_name == "query.siteLocation":
+            # Custom parser location
+            models_file = os.path.join(current_dir, "custom", "query_siteLocation", f"{operation_name}.json")
+        else:
+            # Standard models directory
+            root_dir = os.path.dirname(os.path.dirname(current_dir))
+            models_file = os.path.join(root_dir, "models", f"{operation_name}.json")
         
         # Load with explicit UTF-8 encoding to fix Windows charmap issues
         with open(models_file, 'r', encoding='utf-8') as f:
@@ -886,24 +897,6 @@ def collectUsedVariables(variables_obj, definition):
     
     return used_variables
 
-
-def generateGraphqlPayload_local(variables_obj, operation, operation_name):
-    """
-    Local wrapper around the shared GraphQL payload generation function.
-    
-    This wrapper provides the renderArgsAndFields function and custom_client to the shared implementation.
-    """
-    # Define a local renderArgsAndFields function that passes custom_client
-    def local_renderArgsAndFields(response_arg_str, variables_obj, cur_operation, definition, operation_name, indent, dynamic_operation_args=None):
-        return renderArgsAndFields(response_arg_str, variables_obj, cur_operation, definition, operation_name, indent, dynamic_operation_args, custom_client)
-    
-    # Call the shared implementation with the local renderArgsAndFields function
-    return generateGraphqlPayload(
-        variables_obj, 
-        operation, 
-        operation_name, 
-        renderArgsAndFields_func=local_renderArgsAndFields
-    )
 
 def get_help(path):
     """

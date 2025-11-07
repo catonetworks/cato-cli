@@ -1,10 +1,10 @@
 mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicyMutationInput:WanNetworkPolicyMutationInput $policyCreateRevisionInput:PolicyCreateRevisionInput!) {
 	policy ( accountId:$accountId ) {
 		wanNetwork ( input:$wanNetworkPolicyMutationInput  )  {
-			createPolicyRevision ( input:$policyCreateRevisionInput   ) {
+			createPolicyRevisionWanNetworkPolicyMutations: createPolicyRevision ( input:$policyCreateRevisionInput   ) {
 				policy {
 					enabled
-					rules {
+					rulesWanNetworkPolicy: rules {
 						audit {
 							updatedTime
 	updatedBy {
@@ -136,7 +136,7 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 							name
 							description
 							index
-							section {
+							sectionWanNetworkRule: section {
 		id {
 			id
 			status
@@ -253,9 +253,9 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 								name
 							}
 							enabled
-							ruleType
-							routeType
-							source {
+							ruleTypeWanNetworkRule: ruleType
+							routeTypeWanNetworkRule: routeType
+							sourceWanNetworkRule: source {
 								user {
 		id {
 			id
@@ -1458,7 +1458,7 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 									name
 								}
 							}
-							destination {
+							destinationWanNetworkRule: destination {
 								user {
 		id {
 			id
@@ -2661,7 +2661,7 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 									name
 								}
 							}
-							application {
+							applicationWanNetworkRule: application {
 								application {
 		id {
 			id
@@ -3131,7 +3131,7 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 		ip {
 			siteId
 		}
-									ipRange {
+									ipRangeCustomServiceIp: ipRange {
 		from {
 			container {
 				id
@@ -3192,7 +3192,7 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 				}
 			}
 		}
-									portRange {
+									portRangeCustomService: portRange {
 		from {
 			container {
 				id
@@ -3226,7 +3226,7 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 			}
 		}
 									}
-									protocol
+									protocolCustomService: protocol
 								}
 		domain {
 			accountId
@@ -3409,19 +3409,19 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 									name
 								}
 							}
-							configuration {
+							configurationWanNetworkRule: configuration {
 								activeTcpAcceleration
 								packetLossMitigation
 								preserveSourcePort
 								primaryTransport {
-									transportType
-									primaryInterfaceRole
-									secondaryInterfaceRole
+									transportTypeWanNetworkRuleTransport: transportType
+									primaryInterfaceRoleWanNetworkRuleTransport: primaryInterfaceRole
+									secondaryInterfaceRoleWanNetworkRuleTransport: secondaryInterfaceRole
 								}
 								secondaryTransport {
-									transportType
-									primaryInterfaceRole
-									secondaryInterfaceRole
+									transportTypeWanNetworkRuleTransport: transportType
+									primaryInterfaceRoleWanNetworkRuleTransport: primaryInterfaceRole
+									secondaryInterfaceRoleWanNetworkRuleTransport: secondaryInterfaceRole
 								}
 								allocationIp {
 		id {
@@ -3772,7 +3772,7 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 									name
 								}
 							}
-							bandwidthPriority {
+							bandwidthPriorityWanNetworkRule: bandwidthPriority {
 		id {
 			id
 			status
@@ -3888,10 +3888,10 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 		}
 								name
 							}
-							exceptions {
+							exceptionsWanNetworkRule: exceptions {
 								name
 								source {
-									user {
+									userWanNetworkRuleSource: user {
 		id {
 			id
 			status
@@ -4007,7 +4007,7 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 		}
 										name
 									}
-									floatingSubnet {
+									floatingSubnetWanNetworkRuleSource: floatingSubnet {
 		id {
 			id
 			status
@@ -4123,7 +4123,7 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 		}
 										name
 									}
-									globalIpRange {
+									globalIpRangeWanNetworkRuleSource: globalIpRange {
 		id {
 			id
 			status
@@ -4239,7 +4239,7 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 		}
 										name
 									}
-									group {
+									groupWanNetworkRuleSource: group {
 		id {
 			id
 			status
@@ -4355,7 +4355,7 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 		}
 										name
 									}
-									host {
+									hostWanNetworkRuleSource: host {
 		id {
 			id
 			status
@@ -4474,7 +4474,7 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 		ip {
 			siteId
 		}
-									ipRange {
+									ipRangeWanNetworkRuleSource: ipRange {
 		from {
 			container {
 				id
@@ -4508,7 +4508,7 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 			}
 		}
 									}
-									networkInterface {
+									networkInterfaceWanNetworkRuleSource: networkInterface {
 		id {
 			id
 			status
@@ -4628,7 +4628,7 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 			id
 			name
 		}
-									site {
+									siteWanNetworkRuleSource: site {
 		id {
 			id
 			status
@@ -4744,7 +4744,7 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 		}
 										name
 									}
-									siteNetworkSubnet {
+									siteNetworkSubnetWanNetworkRuleSource: siteNetworkSubnet {
 		id {
 			id
 			status
@@ -4860,7 +4860,7 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 		}
 										name
 									}
-									systemGroup {
+									systemGroupWanNetworkRuleSource: systemGroup {
 		id {
 			id
 			status
@@ -4976,7 +4976,7 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 		}
 										name
 									}
-									usersGroup {
+									usersGroupWanNetworkRuleSource: usersGroup {
 		id {
 			id
 			status
@@ -5094,7 +5094,7 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 									}
 								}
 								destination {
-									user {
+									userWanNetworkRuleDestination: user {
 		id {
 			id
 			status
@@ -5210,7 +5210,7 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 		}
 										name
 									}
-									floatingSubnet {
+									floatingSubnetWanNetworkRuleDestination: floatingSubnet {
 		id {
 			id
 			status
@@ -5326,7 +5326,7 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 		}
 										name
 									}
-									globalIpRange {
+									globalIpRangeWanNetworkRuleDestination: globalIpRange {
 		id {
 			id
 			status
@@ -5442,7 +5442,7 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 		}
 										name
 									}
-									group {
+									groupWanNetworkRuleDestination: group {
 		id {
 			id
 			status
@@ -5558,7 +5558,7 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 		}
 										name
 									}
-									host {
+									hostWanNetworkRuleDestination: host {
 		id {
 			id
 			status
@@ -5677,7 +5677,7 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 		ip {
 			siteId
 		}
-									ipRange {
+									ipRangeWanNetworkRuleDestination: ipRange {
 		from {
 			container {
 				id
@@ -5711,7 +5711,7 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 			}
 		}
 									}
-									networkInterface {
+									networkInterfaceWanNetworkRuleDestination: networkInterface {
 		id {
 			id
 			status
@@ -5831,7 +5831,7 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 			id
 			name
 		}
-									site {
+									siteWanNetworkRuleDestination: site {
 		id {
 			id
 			status
@@ -5947,7 +5947,7 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 		}
 										name
 									}
-									siteNetworkSubnet {
+									siteNetworkSubnetWanNetworkRuleDestination: siteNetworkSubnet {
 		id {
 			id
 			status
@@ -6063,7 +6063,7 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 		}
 										name
 									}
-									systemGroup {
+									systemGroupWanNetworkRuleDestination: systemGroup {
 		id {
 			id
 			status
@@ -6179,7 +6179,7 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 		}
 										name
 									}
-									usersGroup {
+									usersGroupWanNetworkRuleDestination: usersGroup {
 		id {
 			id
 			status
@@ -6297,7 +6297,7 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 									}
 								}
 								application {
-									application {
+									applicationWanNetworkRuleApplication: application {
 		id {
 			id
 			status
@@ -6413,7 +6413,7 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 		}
 										name
 									}
-									appCategory {
+									appCategoryWanNetworkRuleApplication: appCategory {
 		id {
 			id
 			status
@@ -6529,7 +6529,7 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 		}
 										name
 									}
-									customApp {
+									customAppWanNetworkRuleApplication: customApp {
 		id {
 			id
 			status
@@ -6645,7 +6645,7 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 		}
 										name
 									}
-									customCategory {
+									customCategoryWanNetworkRuleApplication: customCategory {
 		id {
 			id
 			status
@@ -6761,7 +6761,7 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 		}
 										name
 									}
-									customServiceIp {
+									customServiceIpWanNetworkRuleApplication: customServiceIp {
 										name
 		ip {
 			siteId
@@ -6801,7 +6801,7 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 		}
 										}
 									}
-									customService {
+									customServiceWanNetworkRuleApplication: customService {
 		port {
 			id
 			from
@@ -6927,7 +6927,7 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 				}
 			}
 		}
-									service {
+									serviceWanNetworkRuleApplication: service {
 		id {
 			id
 			status
@@ -7048,7 +7048,7 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 						}
 						properties
 					}
-					sections {
+					sectionsWanNetworkPolicy: sections {
 						audit {
 							updatedTime
 	updatedBy {
@@ -7181,11 +7181,11 @@ mutation policyWanNetworkCreatePolicyRevision ( $accountId:ID! $wanNetworkPolicy
 						}
 						properties
 					}
-					audit {
+					auditWanNetworkPolicy: audit {
 						publishedTime
 						publishedBy
 					}
-					revision {
+					revisionWanNetworkPolicy: revision {
 	id {
 		id
 		status

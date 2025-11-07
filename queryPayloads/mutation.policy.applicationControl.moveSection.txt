@@ -1,9 +1,9 @@
 mutation policyApplicationControlMoveSection ( $accountId:ID! $applicationControlPolicyMutationInput:ApplicationControlPolicyMutationInput $policyMoveSectionInput:PolicyMoveSectionInput!) {
 	policy ( accountId:$accountId ) {
 		applicationControl ( input:$applicationControlPolicyMutationInput  )  {
-			moveSection ( input:$policyMoveSectionInput   ) {
+			moveSectionApplicationControlPolicyMutations: moveSection ( input:$policyMoveSectionInput   ) {
 				section {
-					audit {
+					auditPolicySectionPayload: audit {
 						updatedTime
 	updatedBy {
 		__typename
@@ -17,7 +17,7 @@ mutation policyApplicationControlMoveSection ( $accountId:ID! $applicationContro
 		}
 	}
 					}
-					section {
+					sectionPolicySectionPayload: section {
 	id {
 		id
 		status
@@ -133,7 +133,7 @@ mutation policyApplicationControlMoveSection ( $accountId:ID! $applicationContro
 	}
 						name
 					}
-					properties
+					propertiesPolicySectionPayload: properties
 				}
 	status {
 		rawStatus

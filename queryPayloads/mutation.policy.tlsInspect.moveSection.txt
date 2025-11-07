@@ -1,9 +1,9 @@
 mutation policyTlsInspectMoveSection ( $accountId:ID! $tlsInspectPolicyMutationInput:TlsInspectPolicyMutationInput $policyMoveSectionInput:PolicyMoveSectionInput!) {
 	policy ( accountId:$accountId ) {
 		tlsInspect ( input:$tlsInspectPolicyMutationInput  )  {
-			moveSection ( input:$policyMoveSectionInput   ) {
+			moveSectionTlsInspectPolicyMutations: moveSection ( input:$policyMoveSectionInput   ) {
 				section {
-					audit {
+					auditPolicySectionPayload: audit {
 						updatedTime
 	updatedBy {
 		__typename
@@ -17,7 +17,7 @@ mutation policyTlsInspectMoveSection ( $accountId:ID! $tlsInspectPolicyMutationI
 		}
 	}
 					}
-					section {
+					sectionPolicySectionPayload: section {
 	id {
 		id
 		status
@@ -133,7 +133,7 @@ mutation policyTlsInspectMoveSection ( $accountId:ID! $tlsInspectPolicyMutationI
 	}
 						name
 					}
-					properties
+					propertiesPolicySectionPayload: properties
 				}
 	status {
 		rawStatus

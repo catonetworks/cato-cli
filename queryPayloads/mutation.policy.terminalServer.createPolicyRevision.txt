@@ -1,10 +1,10 @@
 mutation policyTerminalServerCreatePolicyRevision ( $accountId:ID! $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput $policyCreateRevisionInput:PolicyCreateRevisionInput!) {
 	policy ( accountId:$accountId ) {
 		terminalServer ( input:$terminalServerPolicyMutationInput  )  {
-			createPolicyRevision ( input:$policyCreateRevisionInput   ) {
+			createPolicyRevisionTerminalServerPolicyMutations: createPolicyRevision ( input:$policyCreateRevisionInput   ) {
 				policy {
 					enabled
-					rules {
+					rulesTerminalServerPolicy: rules {
 						audit {
 							updatedTime
 	updatedBy {
@@ -136,7 +136,7 @@ mutation policyTerminalServerCreatePolicyRevision ( $accountId:ID! $terminalServ
 							name
 							description
 							index
-							section {
+							sectionTerminalServerRule: section {
 		id {
 			id
 			status
@@ -253,7 +253,7 @@ mutation policyTerminalServerCreatePolicyRevision ( $accountId:ID! $terminalServ
 								name
 							}
 							enabled
-							allowedHostIP {
+							allowedHostIPTerminalServerRule: allowedHostIP {
 		id {
 			id
 			status
@@ -369,7 +369,7 @@ mutation policyTerminalServerCreatePolicyRevision ( $accountId:ID! $terminalServ
 		}
 								name
 							}
-							excludeTraffic {
+							excludeTrafficTerminalServerRule: excludeTraffic {
 		id {
 			id
 			status
@@ -488,7 +488,7 @@ mutation policyTerminalServerCreatePolicyRevision ( $accountId:ID! $terminalServ
 						}
 						properties
 					}
-					sections {
+					sectionsTerminalServerPolicy: sections {
 						audit {
 							updatedTime
 	updatedBy {
@@ -621,11 +621,11 @@ mutation policyTerminalServerCreatePolicyRevision ( $accountId:ID! $terminalServ
 						}
 						properties
 					}
-					audit {
+					auditTerminalServerPolicy: audit {
 						publishedTime
 						publishedBy
 					}
-					revision {
+					revisionTerminalServerPolicy: revision {
 	id {
 		id
 		status

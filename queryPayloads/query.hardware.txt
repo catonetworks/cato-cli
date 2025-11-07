@@ -1,7 +1,7 @@
 query hardware ( $accountId:ID! $hardwareSearchInput:HardwareSearchInput) {
 	hardware ( accountId:$accountId ) {
 		hardware ( input:$hardwareSearchInput  )  {
-			items {
+			itemsHardwarePayload: items {
 	id {
 		id
 		status
@@ -368,7 +368,7 @@ query hardware ( $accountId:ID! $hardwareSearchInput:HardwareSearchInput) {
 		}
 	}
 				shippingTracking {
-					shippingStatus
+					shippingStatusShippingTracking: shippingStatus
 					shippingDate
 					trackingUrl
 					trackingNumber
@@ -384,7 +384,7 @@ query hardware ( $accountId:ID! $hardwareSearchInput:HardwareSearchInput) {
 					incoterms
 					instruction
 					vatId
-					contact {
+					contactShippingDetails: contact {
 						name
 						phone
 						email
@@ -397,7 +397,7 @@ query hardware ( $accountId:ID! $hardwareSearchInput:HardwareSearchInput) {
 				validation {
 					completed
 					incompleteReason
-					addressValidationStatus
+					addressValidationStatusHardwareValidation: addressValidationStatus
 				}
 				lastModified
 	locationId {
@@ -448,7 +448,7 @@ query hardware ( $accountId:ID! $hardwareSearchInput:HardwareSearchInput) {
 		}
 	}
 			}
-			pageInfo {
+			pageInfoHardwarePayload: pageInfo {
 				total
 			}
 		}

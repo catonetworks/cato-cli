@@ -1,7 +1,7 @@
 query siteBgpPeer ( $accountId:ID! $bgpPeerRefInput:BgpPeerRefInput!) {
 	site ( accountId:$accountId ) {
 		bgpPeer ( input:$bgpPeerRefInput  )  {
-			site {
+			siteBgpPeer: site {
 	id {
 		id
 		status
@@ -238,7 +238,7 @@ id {
 			advertiseDefaultRoute
 			advertiseAllRoutes
 			advertiseSummaryRoutes
-			summaryRoute {
+			summaryRouteBgpPeer: summaryRoute {
 	id {
 		id
 		status
@@ -395,8 +395,8 @@ id {
 	}
 				}
 			}
-			defaultAction
-			defaultActionExclusion {
+			defaultActionBgpPeer: defaultAction
+			defaultActionExclusionBgpPeer: defaultActionExclusion {
 				bgpRouteExactFilterRule {
 	id {
 		id
@@ -511,7 +511,7 @@ id {
 			}
 		}
 	}
-					globalIpRange {
+					globalIpRangeBgpRouteExactFilterRule: globalIpRange {
 	id {
 		id
 		status
@@ -746,7 +746,7 @@ id {
 			}
 		}
 	}
-					globalIpRange {
+					globalIpRangeBgpRouteExactAndInclusiveFilterRule: globalIpRange {
 	id {
 		id
 		status
@@ -862,7 +862,7 @@ id {
 	}
 						name
 					}
-					globalIpRangeException {
+					globalIpRangeExceptionBgpRouteExactAndInclusiveFilterRule: globalIpRangeException {
 	id {
 		id
 		status
@@ -1222,8 +1222,8 @@ id {
 			}
 		}
 	}
-					predicate
-					community {
+					predicateBgpCommunityFilterRule: predicate
+					communityBgpCommunityFilterRule: community {
 	from {
 		container {
 			id
@@ -1268,12 +1268,12 @@ metric {
 			holdTime
 			keepaliveInterval
 			bfdEnabled
-			bfdSettings {
+			bfdSettingsBgpPeer: bfdSettings {
 				transmitInterval
 				receiveInterval
 				multiplier
 			}
-			tracking {
+			trackingBgpPeer: tracking {
 	id {
 		id
 		status

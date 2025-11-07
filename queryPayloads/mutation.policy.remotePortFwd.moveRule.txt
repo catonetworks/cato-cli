@@ -1,9 +1,9 @@
 mutation policyRemotePortFwdMoveRule ( $accountId:ID! $remotePortFwdPolicyMutationInput:RemotePortFwdPolicyMutationInput $policyMoveRuleInput:PolicyMoveRuleInput!) {
 	policy ( accountId:$accountId ) {
 		remotePortFwd ( input:$remotePortFwdPolicyMutationInput  )  {
-			moveRule ( input:$policyMoveRuleInput   ) {
+			moveRuleRemotePortFwdPolicyMutations: moveRule ( input:$policyMoveRuleInput   ) {
 				rule {
-					audit {
+					auditRemotePortFwdRulePayload: audit {
 						updatedTime
 	updatedBy {
 		__typename
@@ -17,7 +17,7 @@ mutation policyRemotePortFwdMoveRule ( $accountId:ID! $remotePortFwdPolicyMutati
 		}
 	}
 					}
-					rule {
+					ruleRemotePortFwdRulePayload: rule {
 	id {
 		id
 		status
@@ -441,7 +441,7 @@ mutation policyRemotePortFwdMoveRule ( $accountId:ID! $remotePortFwdPolicyMutati
 	ip {
 		siteId
 	}
-							ipRange {
+							ipRangeRemotePortFwdRemoteIps: ipRange {
 		from {
 			container {
 				id
@@ -479,7 +479,7 @@ mutation policyRemotePortFwdMoveRule ( $accountId:ID! $remotePortFwdPolicyMutati
 		id
 		name
 	}
-							globalIpRange {
+							globalIpRangeRemotePortFwdRemoteIps: globalIpRange {
 		id {
 			id
 			status
@@ -599,8 +599,8 @@ mutation policyRemotePortFwdMoveRule ( $accountId:ID! $remotePortFwdPolicyMutati
 						restrictionType
 						tracking {
 							enabled
-							frequency
-							subscriptionGroup {
+							frequencyPolicyRuleTrackingAlert: frequency
+							subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
 		id {
 			id
 			status
@@ -716,7 +716,7 @@ mutation policyRemotePortFwdMoveRule ( $accountId:ID! $remotePortFwdPolicyMutati
 		}
 								name
 							}
-							webhook {
+							webhookPolicyRuleTrackingAlert: webhook {
 		id {
 			id
 			status
@@ -832,7 +832,7 @@ mutation policyRemotePortFwdMoveRule ( $accountId:ID! $remotePortFwdPolicyMutati
 		}
 								name
 							}
-							mailingList {
+							mailingListPolicyRuleTrackingAlert: mailingList {
 		id {
 			id
 			status
@@ -950,7 +950,7 @@ mutation policyRemotePortFwdMoveRule ( $accountId:ID! $remotePortFwdPolicyMutati
 							}
 						}
 					}
-					properties
+					propertiesRemotePortFwdRulePayload: properties
 				}
 	status {
 		rawStatus

@@ -1,10 +1,10 @@
 mutation policyRemotePortFwdCreatePolicyRevision ( $accountId:ID! $remotePortFwdPolicyMutationInput:RemotePortFwdPolicyMutationInput $policyCreateRevisionInput:PolicyCreateRevisionInput!) {
 	policy ( accountId:$accountId ) {
 		remotePortFwd ( input:$remotePortFwdPolicyMutationInput  )  {
-			createPolicyRevision ( input:$policyCreateRevisionInput   ) {
+			createPolicyRevisionRemotePortFwdPolicyMutations: createPolicyRevision ( input:$policyCreateRevisionInput   ) {
 				policy {
 					enabled
-					rules {
+					rulesRemotePortFwdPolicy: rules {
 						audit {
 							updatedTime
 	updatedBy {
@@ -136,7 +136,7 @@ mutation policyRemotePortFwdCreatePolicyRevision ( $accountId:ID! $remotePortFwd
 							name
 							description
 							index
-							section {
+							sectionRemotePortFwdRule: section {
 		id {
 			id
 			status
@@ -254,7 +254,7 @@ mutation policyRemotePortFwdCreatePolicyRevision ( $accountId:ID! $remotePortFwd
 							}
 							enabled
 							forwardIcmp
-							externalIp {
+							externalIpRemotePortFwdRule: externalIp {
 		id {
 			id
 			status
@@ -370,7 +370,7 @@ mutation policyRemotePortFwdCreatePolicyRevision ( $accountId:ID! $remotePortFwd
 		}
 								name
 							}
-							externalPortRange {
+							externalPortRangeRemotePortFwdRule: externalPortRange {
 		from {
 			container {
 				id
@@ -405,7 +405,7 @@ mutation policyRemotePortFwdCreatePolicyRevision ( $accountId:ID! $remotePortFwd
 		}
 							}
 							internalIp
-							internalPortRange {
+							internalPortRangeRemotePortFwdRule: internalPortRange {
 		from {
 			container {
 				id
@@ -439,7 +439,7 @@ mutation policyRemotePortFwdCreatePolicyRevision ( $accountId:ID! $remotePortFwd
 			}
 		}
 							}
-							remoteIPs {
+							remoteIPsRemotePortFwdRule: remoteIPs {
 		ip {
 			siteId
 		}
@@ -598,8 +598,8 @@ mutation policyRemotePortFwdCreatePolicyRevision ( $accountId:ID! $remotePortFwd
 									name
 								}
 							}
-							restrictionType
-							tracking {
+							restrictionTypeRemotePortFwdRule: restrictionType
+							trackingRemotePortFwdRule: tracking {
 								enabled
 								frequency
 								subscriptionGroup {
@@ -954,7 +954,7 @@ mutation policyRemotePortFwdCreatePolicyRevision ( $accountId:ID! $remotePortFwd
 						}
 						properties
 					}
-					sections {
+					sectionsRemotePortFwdPolicy: sections {
 						audit {
 							updatedTime
 	updatedBy {
@@ -1087,11 +1087,11 @@ mutation policyRemotePortFwdCreatePolicyRevision ( $accountId:ID! $remotePortFwd
 						}
 						properties
 					}
-					audit {
+					auditRemotePortFwdPolicy: audit {
 						publishedTime
 						publishedBy
 					}
-					revision {
+					revisionRemotePortFwdPolicy: revision {
 	id {
 		id
 		status

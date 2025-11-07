@@ -1,7 +1,7 @@
 mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedbackInput!) {
 	xdr ( accountId:$accountId ) {
 		analystFeedback ( input:$analystFeedbackInput  )  {
-			story {
+			storyAnalystFeedbackPayload: story {
 	id {
 		id
 		status
@@ -246,11 +246,11 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 	}
 					firstSignal
 					lastSignal
-					engineType
-					vendor
-					producer
+					engineTypeMergedIncident: engineType
+					vendorMergedIncident: vendor
+					producerMergedIncident: producer
 					producerName
-					connectionType
+					connectionTypeMergedIncident: connectionType
 					indication
 					queryName
 					criticality
@@ -293,7 +293,7 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 		}
 	}
 					ticket
-	status {
+	statusMergedIncident: status {
 		rawStatus
 		status
 	}
@@ -388,7 +388,7 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 	}
 					description
 					sourceIp
-					analystFeedback {
+					analystFeedbackMergedIncident: analystFeedback {
 						verdict
 						severity
 						threatType {
@@ -541,7 +541,7 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 	}
 						additionalInfo
 					}
-					site {
+					siteMergedIncident: site {
 	id {
 		id
 		status
@@ -657,7 +657,7 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 	}
 						name
 					}
-					user {
+					userMergedIncident: user {
 	id {
 		id
 		status
@@ -773,7 +773,7 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 	}
 						name
 					}
-					predictedVerdict
+					predictedVerdictMergedIncident: predictedVerdict
 					predictedThreatType
 					... on MicrosoftEndpoint {
 	id {
@@ -4886,18 +4886,18 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 			}
 		}
 	}
-	type {
+	typeTimelineItem: type {
 		name
 		recommendedAction
 		details
 	}
 					descriptions
-	category {
+	categoryTimelineItem: category {
 		id
 		name
 	}
 					additionalInfo
-					analystInfo {
+					analystInfoTimelineItem: analystInfo {
 						name
 						email
 					}

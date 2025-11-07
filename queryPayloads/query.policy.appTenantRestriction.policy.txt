@@ -1,10 +1,10 @@
 query policyAppTenantRestrictionPolicy ( $accountId:ID! $appTenantRestrictionPolicyInput:AppTenantRestrictionPolicyInput) {
 	policy ( accountId:$accountId ) {
 		appTenantRestriction {
-			policy ( input:$appTenantRestrictionPolicyInput   ) {
+			policyAppTenantRestrictionPolicyQueries: policy ( input:$appTenantRestrictionPolicyInput   ) {
 				enabled
 				rules {
-					audit {
+					auditAppTenantRestrictionRulePayload: audit {
 						updatedTime
 	updatedBy {
 		__typename
@@ -18,7 +18,7 @@ query policyAppTenantRestrictionPolicy ( $accountId:ID! $appTenantRestrictionPol
 		}
 	}
 					}
-					rule {
+					ruleAppTenantRestrictionRulePayload: rule {
 	id {
 		id
 		status
@@ -389,7 +389,7 @@ query policyAppTenantRestrictionPolicy ( $accountId:ID! $appTenantRestrictionPol
 	ip {
 		siteId
 	}
-							host {
+							hostAppTenantRestrictionSource: host {
 		id {
 			id
 			status
@@ -505,7 +505,7 @@ query policyAppTenantRestrictionPolicy ( $accountId:ID! $appTenantRestrictionPol
 		}
 								name
 							}
-							site {
+							siteAppTenantRestrictionSource: site {
 		id {
 			id
 			status
@@ -625,7 +625,7 @@ query policyAppTenantRestrictionPolicy ( $accountId:ID! $appTenantRestrictionPol
 		id
 		name
 	}
-							ipRange {
+							ipRangeAppTenantRestrictionSource: ipRange {
 		from {
 			container {
 				id
@@ -659,7 +659,7 @@ query policyAppTenantRestrictionPolicy ( $accountId:ID! $appTenantRestrictionPol
 			}
 		}
 							}
-							globalIpRange {
+							globalIpRangeAppTenantRestrictionSource: globalIpRange {
 		id {
 			id
 			status
@@ -775,7 +775,7 @@ query policyAppTenantRestrictionPolicy ( $accountId:ID! $appTenantRestrictionPol
 		}
 								name
 							}
-							networkInterface {
+							networkInterfaceAppTenantRestrictionSource: networkInterface {
 		id {
 			id
 			status
@@ -891,7 +891,7 @@ query policyAppTenantRestrictionPolicy ( $accountId:ID! $appTenantRestrictionPol
 		}
 								name
 							}
-							siteNetworkSubnet {
+							siteNetworkSubnetAppTenantRestrictionSource: siteNetworkSubnet {
 		id {
 			id
 			status
@@ -1007,7 +1007,7 @@ query policyAppTenantRestrictionPolicy ( $accountId:ID! $appTenantRestrictionPol
 		}
 								name
 							}
-							floatingSubnet {
+							floatingSubnetAppTenantRestrictionSource: floatingSubnet {
 		id {
 			id
 			status
@@ -1123,7 +1123,7 @@ query policyAppTenantRestrictionPolicy ( $accountId:ID! $appTenantRestrictionPol
 		}
 								name
 							}
-							user {
+							userAppTenantRestrictionSource: user {
 		id {
 			id
 			status
@@ -1239,7 +1239,7 @@ query policyAppTenantRestrictionPolicy ( $accountId:ID! $appTenantRestrictionPol
 		}
 								name
 							}
-							usersGroup {
+							usersGroupAppTenantRestrictionSource: usersGroup {
 		id {
 			id
 			status
@@ -1355,7 +1355,7 @@ query policyAppTenantRestrictionPolicy ( $accountId:ID! $appTenantRestrictionPol
 		}
 								name
 							}
-							group {
+							groupAppTenantRestrictionSource: group {
 		id {
 			id
 			status
@@ -1471,7 +1471,7 @@ query policyAppTenantRestrictionPolicy ( $accountId:ID! $appTenantRestrictionPol
 		}
 								name
 							}
-							systemGroup {
+							systemGroupAppTenantRestrictionSource: systemGroup {
 		id {
 			id
 			status
@@ -1587,7 +1587,7 @@ query policyAppTenantRestrictionPolicy ( $accountId:ID! $appTenantRestrictionPol
 		}
 								name
 							}
-							country {
+							countryAppTenantRestrictionSource: country {
 		id {
 			id
 			status
@@ -1705,8 +1705,8 @@ query policyAppTenantRestrictionPolicy ( $accountId:ID! $appTenantRestrictionPol
 							}
 						}
 						schedule {
-							activeOn
-							customTimeframe {
+							activeOnPolicySchedule: activeOn
+							customTimeframePolicySchedule: customTimeframe {
 		from {
 			container {
 				id
@@ -1740,7 +1740,7 @@ query policyAppTenantRestrictionPolicy ( $accountId:ID! $appTenantRestrictionPol
 			}
 		}
 							}
-							customRecurring {
+							customRecurringPolicySchedule: customRecurring {
 		from {
 			container {
 				id
@@ -1779,10 +1779,10 @@ query policyAppTenantRestrictionPolicy ( $accountId:ID! $appTenantRestrictionPol
 						action
 						severity
 					}
-					properties
+					propertiesAppTenantRestrictionRulePayload: properties
 				}
 				sections {
-					audit {
+					auditPolicySectionPayload: audit {
 						updatedTime
 	updatedBy {
 		__typename
@@ -1796,7 +1796,7 @@ query policyAppTenantRestrictionPolicy ( $accountId:ID! $appTenantRestrictionPol
 		}
 	}
 					}
-					section {
+					sectionPolicySectionPayload: section {
 	id {
 		id
 		status
@@ -1912,7 +1912,7 @@ query policyAppTenantRestrictionPolicy ( $accountId:ID! $appTenantRestrictionPol
 	}
 						name
 					}
-					properties
+					propertiesPolicySectionPayload: properties
 				}
 				audit {
 					publishedTime

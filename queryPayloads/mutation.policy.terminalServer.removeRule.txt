@@ -1,9 +1,9 @@
 mutation policyTerminalServerRemoveRule ( $accountId:ID! $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput $terminalServerRemoveRuleInput:TerminalServerRemoveRuleInput!) {
 	policy ( accountId:$accountId ) {
 		terminalServer ( input:$terminalServerPolicyMutationInput  )  {
-			removeRule ( input:$terminalServerRemoveRuleInput   ) {
+			removeRuleTerminalServerPolicyMutations: removeRule ( input:$terminalServerRemoveRuleInput   ) {
 				rule {
-					audit {
+					auditTerminalServerRulePayload: audit {
 						updatedTime
 	updatedBy {
 		__typename
@@ -17,7 +17,7 @@ mutation policyTerminalServerRemoveRule ( $accountId:ID! $terminalServerPolicyMu
 		}
 	}
 					}
-					rule {
+					ruleTerminalServerRulePayload: rule {
 	id {
 		id
 		status
@@ -484,7 +484,7 @@ mutation policyTerminalServerRemoveRule ( $accountId:ID! $terminalServerPolicyMu
 							name
 						}
 					}
-					properties
+					propertiesTerminalServerRulePayload: properties
 				}
 	status {
 		rawStatus

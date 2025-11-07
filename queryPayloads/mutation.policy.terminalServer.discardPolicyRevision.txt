@@ -1,10 +1,10 @@
 mutation policyTerminalServerDiscardPolicyRevision ( $accountId:ID! $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput $policyDiscardRevisionInput:PolicyDiscardRevisionInput) {
 	policy ( accountId:$accountId ) {
 		terminalServer ( input:$terminalServerPolicyMutationInput  )  {
-			discardPolicyRevision ( input:$policyDiscardRevisionInput   ) {
+			discardPolicyRevisionTerminalServerPolicyMutations: discardPolicyRevision ( input:$policyDiscardRevisionInput   ) {
 				policy {
 					enabled
-					rules {
+					rulesTerminalServerPolicy: rules {
 						audit {
 							updatedTime
 	updatedBy {
@@ -136,7 +136,7 @@ mutation policyTerminalServerDiscardPolicyRevision ( $accountId:ID! $terminalSer
 							name
 							description
 							index
-							section {
+							sectionTerminalServerRule: section {
 		id {
 			id
 			status
@@ -253,7 +253,7 @@ mutation policyTerminalServerDiscardPolicyRevision ( $accountId:ID! $terminalSer
 								name
 							}
 							enabled
-							allowedHostIP {
+							allowedHostIPTerminalServerRule: allowedHostIP {
 		id {
 			id
 			status
@@ -369,7 +369,7 @@ mutation policyTerminalServerDiscardPolicyRevision ( $accountId:ID! $terminalSer
 		}
 								name
 							}
-							excludeTraffic {
+							excludeTrafficTerminalServerRule: excludeTraffic {
 		id {
 			id
 			status
@@ -488,7 +488,7 @@ mutation policyTerminalServerDiscardPolicyRevision ( $accountId:ID! $terminalSer
 						}
 						properties
 					}
-					sections {
+					sectionsTerminalServerPolicy: sections {
 						audit {
 							updatedTime
 	updatedBy {
@@ -621,11 +621,11 @@ mutation policyTerminalServerDiscardPolicyRevision ( $accountId:ID! $terminalSer
 						}
 						properties
 					}
-					audit {
+					auditTerminalServerPolicy: audit {
 						publishedTime
 						publishedBy
 					}
-					revision {
+					revisionTerminalServerPolicy: revision {
 	id {
 		id
 		status

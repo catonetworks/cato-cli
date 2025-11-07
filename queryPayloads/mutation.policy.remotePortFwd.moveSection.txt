@@ -1,9 +1,9 @@
 mutation policyRemotePortFwdMoveSection ( $accountId:ID! $remotePortFwdPolicyMutationInput:RemotePortFwdPolicyMutationInput $policyMoveSectionInput:PolicyMoveSectionInput!) {
 	policy ( accountId:$accountId ) {
 		remotePortFwd ( input:$remotePortFwdPolicyMutationInput  )  {
-			moveSection ( input:$policyMoveSectionInput   ) {
+			moveSectionRemotePortFwdPolicyMutations: moveSection ( input:$policyMoveSectionInput   ) {
 				section {
-					audit {
+					auditPolicySectionPayload: audit {
 						updatedTime
 	updatedBy {
 		__typename
@@ -17,7 +17,7 @@ mutation policyRemotePortFwdMoveSection ( $accountId:ID! $remotePortFwdPolicyMut
 		}
 	}
 					}
-					section {
+					sectionPolicySectionPayload: section {
 	id {
 		id
 		status
@@ -133,7 +133,7 @@ mutation policyRemotePortFwdMoveSection ( $accountId:ID! $remotePortFwdPolicyMut
 	}
 						name
 					}
-					properties
+					propertiesPolicySectionPayload: properties
 				}
 	status {
 		rawStatus

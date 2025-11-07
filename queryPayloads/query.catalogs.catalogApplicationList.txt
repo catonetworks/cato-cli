@@ -1,7 +1,7 @@
 query catalogsCatalogApplicationList ( $accountId:ID! $catalogApplicationListInput:CatalogApplicationListInput!) {
 	catalogs ( accountId:$accountId ) {
 		catalogApplicationList ( input:$catalogApplicationListInput  )  {
-			application {
+			applicationCatalogApplicationListPayload: application {
 	id {
 		id
 		status
@@ -235,28 +235,28 @@ query catalogsCatalogApplicationList ( $accountId:ID! $catalogApplicationListInp
 					name
 				}
 				complianceAttributes {
-					iso27001
-					sox
-					hippa
-					soc1
-					soc2
-					soc3
-					isae3402
-					pciDss
+					iso27001CatalogApplicationComplianceAttributes: iso27001
+					soxCatalogApplicationComplianceAttributes: sox
+					hippaCatalogApplicationComplianceAttributes: hippa
+					soc1CatalogApplicationComplianceAttributes: soc1
+					soc2CatalogApplicationComplianceAttributes: soc2
+					soc3CatalogApplicationComplianceAttributes: soc3
+					isae3402CatalogApplicationComplianceAttributes: isae3402
+					pciDssCatalogApplicationComplianceAttributes: pciDss
 				}
 				securityAttributes {
-					mfa
-					encryptionAtRest
-					auditTrail
-	rbac {
+					mfaCatalogApplicationSecurityAttributes: mfa
+					encryptionAtRestCatalogApplicationSecurityAttributes: encryptionAtRest
+					auditTrailCatalogApplicationSecurityAttributes: auditTrail
+	rbacCatalogApplicationSecurityAttributes: rbac {
 		id
 		name
 	}
-					rememberPassword
-					sso
-					trustedCertificate
-					tlsEnforcement
-					httpSecurityHeaders
+					rememberPasswordCatalogApplicationSecurityAttributes: rememberPassword
+					ssoCatalogApplicationSecurityAttributes: sso
+					trustedCertificateCatalogApplicationSecurityAttributes: trustedCertificate
+					tlsEnforcementCatalogApplicationSecurityAttributes: tlsEnforcement
+					httpSecurityHeadersCatalogApplicationSecurityAttributes: httpSecurityHeaders
 				}
 				ipoStatus
 				website
@@ -499,7 +499,7 @@ query catalogsCatalogApplicationList ( $accountId:ID! $catalogApplicationListInp
 		}
 	}
 					name
-					fields {
+					fieldsCatalogApplicationActivity: fields {
 	id {
 		id
 		status
@@ -667,7 +667,7 @@ query catalogsCatalogApplicationList ( $accountId:ID! $catalogApplicationListInp
 			}
 		}
 	}
-					portRange {
+					portRangeCustomService: portRange {
 	from {
 		container {
 			id
@@ -701,10 +701,10 @@ query catalogsCatalogApplicationList ( $accountId:ID! $catalogApplicationListInp
 		}
 	}
 					}
-					protocol
+					protocolCustomService: protocol
 				}
 			}
-			pageInfo {
+			pageInfoCatalogApplicationListPayload: pageInfo {
 				total
 			}
 		}

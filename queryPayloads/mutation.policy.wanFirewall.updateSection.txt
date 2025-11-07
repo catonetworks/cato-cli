@@ -1,9 +1,9 @@
 mutation policyWanFirewallUpdateSection ( $accountId:ID! $wanFirewallPolicyMutationInput:WanFirewallPolicyMutationInput $policyUpdateSectionInput:PolicyUpdateSectionInput!) {
 	policy ( accountId:$accountId ) {
 		wanFirewall ( input:$wanFirewallPolicyMutationInput  )  {
-			updateSection ( input:$policyUpdateSectionInput   ) {
+			updateSectionWanFirewallPolicyMutations: updateSection ( input:$policyUpdateSectionInput   ) {
 				section {
-					audit {
+					auditPolicySectionPayload: audit {
 						updatedTime
 	updatedBy {
 		__typename
@@ -17,7 +17,7 @@ mutation policyWanFirewallUpdateSection ( $accountId:ID! $wanFirewallPolicyMutat
 		}
 	}
 					}
-					section {
+					sectionPolicySectionPayload: section {
 	id {
 		id
 		status
@@ -133,7 +133,7 @@ mutation policyWanFirewallUpdateSection ( $accountId:ID! $wanFirewallPolicyMutat
 	}
 						name
 					}
-					properties
+					propertiesPolicySectionPayload: properties
 				}
 	status {
 		rawStatus

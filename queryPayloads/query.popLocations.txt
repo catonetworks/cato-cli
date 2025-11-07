@@ -1,7 +1,7 @@
 query popLocations ( $accountId:ID! $popLocationFilterInput:PopLocationFilterInput) {
 	popLocations ( accountId:$accountId ) {
 		popLocationList ( input:$popLocationFilterInput  )  {
-			items {
+			itemsPopLocationPayload: items {
 	id {
 		id
 		status
@@ -235,7 +235,7 @@ query popLocations ( $accountId:ID! $popLocationFilterInput:PopLocationFilterInp
 				}
 				isPrivate
 				cloudInterconnect {
-					taggingMethod
+					taggingMethodPopLocationCloudInterconnect: taggingMethod
 					providerName
 				}
 			}

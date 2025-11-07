@@ -1,10 +1,10 @@
 query policyRemotePortFwdPolicy ( $accountId:ID! $remotePortFwdPolicyInput:RemotePortFwdPolicyInput) {
 	policy ( accountId:$accountId ) {
 		remotePortFwd {
-			policy ( input:$remotePortFwdPolicyInput   ) {
+			policyRemotePortFwdPolicyQueries: policy ( input:$remotePortFwdPolicyInput   ) {
 				enabled
 				rules {
-					audit {
+					auditRemotePortFwdRulePayload: audit {
 						updatedTime
 	updatedBy {
 		__typename
@@ -18,7 +18,7 @@ query policyRemotePortFwdPolicy ( $accountId:ID! $remotePortFwdPolicyInput:Remot
 		}
 	}
 					}
-					rule {
+					ruleRemotePortFwdRulePayload: rule {
 	id {
 		id
 		status
@@ -442,7 +442,7 @@ query policyRemotePortFwdPolicy ( $accountId:ID! $remotePortFwdPolicyInput:Remot
 	ip {
 		siteId
 	}
-							ipRange {
+							ipRangeRemotePortFwdRemoteIps: ipRange {
 		from {
 			container {
 				id
@@ -480,7 +480,7 @@ query policyRemotePortFwdPolicy ( $accountId:ID! $remotePortFwdPolicyInput:Remot
 		id
 		name
 	}
-							globalIpRange {
+							globalIpRangeRemotePortFwdRemoteIps: globalIpRange {
 		id {
 			id
 			status
@@ -600,8 +600,8 @@ query policyRemotePortFwdPolicy ( $accountId:ID! $remotePortFwdPolicyInput:Remot
 						restrictionType
 						tracking {
 							enabled
-							frequency
-							subscriptionGroup {
+							frequencyPolicyRuleTrackingAlert: frequency
+							subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
 		id {
 			id
 			status
@@ -717,7 +717,7 @@ query policyRemotePortFwdPolicy ( $accountId:ID! $remotePortFwdPolicyInput:Remot
 		}
 								name
 							}
-							webhook {
+							webhookPolicyRuleTrackingAlert: webhook {
 		id {
 			id
 			status
@@ -833,7 +833,7 @@ query policyRemotePortFwdPolicy ( $accountId:ID! $remotePortFwdPolicyInput:Remot
 		}
 								name
 							}
-							mailingList {
+							mailingListPolicyRuleTrackingAlert: mailingList {
 		id {
 			id
 			status
@@ -951,10 +951,10 @@ query policyRemotePortFwdPolicy ( $accountId:ID! $remotePortFwdPolicyInput:Remot
 							}
 						}
 					}
-					properties
+					propertiesRemotePortFwdRulePayload: properties
 				}
 				sections {
-					audit {
+					auditPolicySectionPayload: audit {
 						updatedTime
 	updatedBy {
 		__typename
@@ -968,7 +968,7 @@ query policyRemotePortFwdPolicy ( $accountId:ID! $remotePortFwdPolicyInput:Remot
 		}
 	}
 					}
-					section {
+					sectionPolicySectionPayload: section {
 	id {
 		id
 		status
@@ -1084,7 +1084,7 @@ query policyRemotePortFwdPolicy ( $accountId:ID! $remotePortFwdPolicyInput:Remot
 	}
 						name
 					}
-					properties
+					propertiesPolicySectionPayload: properties
 				}
 				audit {
 					publishedTime

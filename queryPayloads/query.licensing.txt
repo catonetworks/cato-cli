@@ -1,7 +1,7 @@
 query licensing ( $accountId:ID!) {
 	licensing ( accountId:$accountId ) {
 		licensingInfo {
-			licenses {
+			licensesLicensingInfo: licenses {
 	id {
 		id
 		status
@@ -126,383 +126,14 @@ query licensing ( $accountId:ID!) {
 				expirationDate
 				lastUpdated
 				... on DataLakeLicense {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
-					description
-					plan
-					sku
-	status {
-		rawStatus
-		status
-	}
-					startDate
-					expirationDate
-					lastUpdated
 					dpaVersion
 					retentionPeriod
 					total
 				}
 				... on PublicIpsLicense {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
-					description
-					plan
-					sku
-	status {
-		rawStatus
-		status
-	}
-					startDate
-					expirationDate
-					lastUpdated
 					total
 				}
 				... on SiteLicense {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
-					description
-					plan
-					sku
-	status {
-		rawStatus
-		status
-	}
-					startDate
-					expirationDate
-					lastUpdated
 	siteLicenseGroup {
 		id
 		name
@@ -658,129 +289,6 @@ query licensing ( $accountId:ID!) {
 					}
 				}
 				... on PooledBandwidthLicense {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
-					description
-					plan
-					sku
-	status {
-		rawStatus
-		status
-	}
-					startDate
-					expirationDate
-					lastUpdated
 	siteLicenseGroup {
 		id
 		name
@@ -819,7 +327,7 @@ query licensing ( $accountId:ID!) {
 					total
 					allocatedBandwidth
 					sites {
-						site {
+						sitePooledBandwidthLicenseSite: site {
 	id {
 		id
 		status
@@ -938,7 +446,7 @@ query licensing ( $accountId:ID!) {
 						allocatedBandwidth
 					}
 					accounts {
-						account {
+						accountPartnerPooledBandwidthLicenseAccount: account {
 	id {
 		id
 		status
@@ -1058,129 +566,6 @@ query licensing ( $accountId:ID!) {
 					}
 				}
 				... on ZtnaUsersLicense {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
-					description
-					plan
-					sku
-	status {
-		rawStatus
-		status
-	}
-					startDate
-					expirationDate
-					lastUpdated
 	ztnaUsersLicenseGroup {
 		id
 		name
@@ -1218,2262 +603,22 @@ query licensing ( $accountId:ID!) {
 					total
 				}
 				... on EndpointProtectionLicense {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
-					description
-					plan
-					sku
-	status {
-		rawStatus
-		status
-	}
-					startDate
-					expirationDate
-					lastUpdated
 					total
 				}
 				... on IlmmLicense {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
-					description
-					plan
-					sku
-	status {
-		rawStatus
-		status
-	}
-					startDate
-					expirationDate
-					lastUpdated
 					total
 				}
-				... on IpsLicense {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
-					description
-					plan
-					sku
-	status {
-		rawStatus
-		status
-	}
-					startDate
-					expirationDate
-					lastUpdated
-				}
-				... on MalwareProtectionLicense {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
-					description
-					plan
-					sku
-	status {
-		rawStatus
-		status
-	}
-					startDate
-					expirationDate
-					lastUpdated
-				}
-				... on NextGenMalwareProtectionLicense {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
-					description
-					plan
-					sku
-	status {
-		rawStatus
-		status
-	}
-					startDate
-					expirationDate
-					lastUpdated
-				}
-				... on ThreatPreventionLicense {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
-					description
-					plan
-					sku
-	status {
-		rawStatus
-		status
-	}
-					startDate
-					expirationDate
-					lastUpdated
-				}
-				... on NOCaaSLicense {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
-					description
-					plan
-					sku
-	status {
-		rawStatus
-		status
-	}
-					startDate
-					expirationDate
-					lastUpdated
-				}
-				... on CasbLicense {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
-					description
-					plan
-					sku
-	status {
-		rawStatus
-		status
-	}
-					startDate
-					expirationDate
-					lastUpdated
-				}
-				... on DlpLicense {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
-					description
-					plan
-					sku
-	status {
-		rawStatus
-		status
-	}
-					startDate
-					expirationDate
-					lastUpdated
-				}
-				... on MdrLicense {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
-					description
-					plan
-					sku
-	status {
-		rawStatus
-		status
-	}
-					startDate
-					expirationDate
-					lastUpdated
-				}
-				... on ManagedXdrLicense {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
-					description
-					plan
-					sku
-	status {
-		rawStatus
-		status
-	}
-					startDate
-					expirationDate
-					lastUpdated
-				}
-				... on RbiLicense {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
-					description
-					plan
-					sku
-	status {
-		rawStatus
-		status
-	}
-					startDate
-					expirationDate
-					lastUpdated
-				}
 				... on SaasSecurityApiLicense {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
-					description
-					plan
-					sku
-	status {
-		rawStatus
-		status
-	}
-					startDate
-					expirationDate
-					lastUpdated
 					total
 				}
 				... on XdrProLicense {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
-					description
-					plan
-					sku
-	status {
-		rawStatus
-		status
-	}
-					startDate
-					expirationDate
-					lastUpdated
 					total
 				}
 				... on DemLicense {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
-					description
-					plan
-					sku
-	status {
-		rawStatus
-		status
-	}
-					startDate
-					expirationDate
-					lastUpdated
 					total
 				}
-				... on IotOtLicense {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
 			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
-					description
-					plan
-					sku
-	status {
-		rawStatus
-		status
-	}
-					startDate
-					expirationDate
-					lastUpdated
-				}
-				... on AtpLicense {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
-					description
-					plan
-					sku
-	status {
-		rawStatus
-		status
-	}
-					startDate
-					expirationDate
-					lastUpdated
-				}
-				... on XOpsLicense {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
-					description
-					plan
-					sku
-	status {
-		rawStatus
-		status
-	}
-					startDate
-					expirationDate
-					lastUpdated
-				}
-			}
-			dataLake {
+			dataLakeLicensingInfo: dataLake {
 	id {
 		id
 		status
@@ -3601,7 +746,7 @@ query licensing ( $accountId:ID!) {
 				retentionPeriod
 				total
 			}
-			publicIps {
+			publicIpsLicensingInfo: publicIps {
 	id {
 		id
 		status
@@ -3727,7 +872,7 @@ query licensing ( $accountId:ID!) {
 				lastUpdated
 				total
 			}
-			site {
+			siteLicensingInfo: site {
 	id {
 		id
 		status
@@ -4005,7 +1150,7 @@ query licensing ( $accountId:ID!) {
 					name
 				}
 			}
-			pooledBandwidth {
+			pooledBandwidthLicensingInfo: pooledBandwidth {
 	id {
 		id
 		status
@@ -4167,7 +1312,7 @@ query licensing ( $accountId:ID!) {
 				total
 				allocatedBandwidth
 				sites {
-					site {
+					sitePooledBandwidthLicenseSite: site {
 	id {
 		id
 		status
@@ -4286,7 +1431,7 @@ query licensing ( $accountId:ID!) {
 					allocatedBandwidth
 				}
 				accounts {
-					account {
+					accountPartnerPooledBandwidthLicenseAccount: account {
 	id {
 		id
 		status
@@ -4405,7 +1550,7 @@ query licensing ( $accountId:ID!) {
 					allocatedBandwidth
 				}
 			}
-			ztnaUsers {
+			ztnaUsersLicensingInfo: ztnaUsers {
 	id {
 		id
 		status
@@ -4565,7 +1710,7 @@ query licensing ( $accountId:ID!) {
 	}
 				total
 			}
-			endpointProtection {
+			endpointProtectionLicensingInfo: endpointProtection {
 	id {
 		id
 		status
@@ -4691,7 +1836,7 @@ query licensing ( $accountId:ID!) {
 				lastUpdated
 				total
 			}
-			ilmm {
+			ilmmLicensingInfo: ilmm {
 	id {
 		id
 		status
@@ -4817,7 +1962,7 @@ query licensing ( $accountId:ID!) {
 				lastUpdated
 				total
 			}
-			ips {
+			ipsLicensingInfo: ips {
 	id {
 		id
 		status
@@ -4942,7 +2087,7 @@ query licensing ( $accountId:ID!) {
 				expirationDate
 				lastUpdated
 			}
-			malwareProtection {
+			malwareProtectionLicensingInfo: malwareProtection {
 	id {
 		id
 		status
@@ -5067,7 +2212,7 @@ query licensing ( $accountId:ID!) {
 				expirationDate
 				lastUpdated
 			}
-			nextGenMalwareProtection {
+			nextGenMalwareProtectionLicensingInfo: nextGenMalwareProtection {
 	id {
 		id
 		status
@@ -5192,7 +2337,7 @@ query licensing ( $accountId:ID!) {
 				expirationDate
 				lastUpdated
 			}
-			threatPrevention {
+			threatPreventionLicensingInfo: threatPrevention {
 	id {
 		id
 		status
@@ -5317,7 +2462,7 @@ query licensing ( $accountId:ID!) {
 				expirationDate
 				lastUpdated
 			}
-			nocaas {
+			nocaasLicensingInfo: nocaas {
 	id {
 		id
 		status
@@ -5442,7 +2587,7 @@ query licensing ( $accountId:ID!) {
 				expirationDate
 				lastUpdated
 			}
-			casb {
+			casbLicensingInfo: casb {
 	id {
 		id
 		status
@@ -5567,7 +2712,7 @@ query licensing ( $accountId:ID!) {
 				expirationDate
 				lastUpdated
 			}
-			dlp {
+			dlpLicensingInfo: dlp {
 	id {
 		id
 		status
@@ -5692,7 +2837,7 @@ query licensing ( $accountId:ID!) {
 				expirationDate
 				lastUpdated
 			}
-			mdr {
+			mdrLicensingInfo: mdr {
 	id {
 		id
 		status
@@ -5817,7 +2962,7 @@ query licensing ( $accountId:ID!) {
 				expirationDate
 				lastUpdated
 			}
-			managedXdr {
+			managedXdrLicensingInfo: managedXdr {
 	id {
 		id
 		status
@@ -5942,7 +3087,7 @@ query licensing ( $accountId:ID!) {
 				expirationDate
 				lastUpdated
 			}
-			rbi {
+			rbiLicensingInfo: rbi {
 	id {
 		id
 		status
@@ -6067,133 +3212,7 @@ query licensing ( $accountId:ID!) {
 				expirationDate
 				lastUpdated
 			}
-			saasSecurityApi {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
-				description
-				plan
-				sku
-	status {
-		rawStatus
-		status
-	}
-				startDate
-				expirationDate
-				lastUpdated
-				total
-			}
-			xdrPro {
+			saasSecurityApiLicensingInfo: saasSecurityApi {
 	id {
 		id
 		status
@@ -6319,7 +3338,7 @@ query licensing ( $accountId:ID!) {
 				lastUpdated
 				total
 			}
-			dem {
+			xdrProLicensingInfo: xdrPro {
 	id {
 		id
 		status
@@ -6445,7 +3464,133 @@ query licensing ( $accountId:ID!) {
 				lastUpdated
 				total
 			}
-			iotOt {
+			demLicensingInfo: dem {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+				description
+				plan
+				sku
+	status {
+		rawStatus
+		status
+	}
+				startDate
+				expirationDate
+				lastUpdated
+				total
+			}
+			iotOtLicensingInfo: iotOt {
 	id {
 		id
 		status
@@ -6570,7 +3715,7 @@ query licensing ( $accountId:ID!) {
 				expirationDate
 				lastUpdated
 			}
-			atp {
+			atpLicensingInfo: atp {
 	id {
 		id
 		status
@@ -6695,7 +3840,7 @@ query licensing ( $accountId:ID!) {
 				expirationDate
 				lastUpdated
 			}
-			xOps {
+			xOpsLicensingInfo: xOps {
 	id {
 		id
 		status
@@ -6820,7 +3965,7 @@ query licensing ( $accountId:ID!) {
 				expirationDate
 				lastUpdated
 			}
-			globalLicenseAllocations {
+			globalLicenseAllocationsLicensingInfo: globalLicenseAllocations {
 				publicIps {
 					total
 	allocated {

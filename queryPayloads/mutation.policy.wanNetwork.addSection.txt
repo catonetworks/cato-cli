@@ -1,9 +1,9 @@
 mutation policyWanNetworkAddSection ( $accountId:ID! $wanNetworkPolicyMutationInput:WanNetworkPolicyMutationInput $policyAddSectionInput:PolicyAddSectionInput!) {
 	policy ( accountId:$accountId ) {
 		wanNetwork ( input:$wanNetworkPolicyMutationInput  )  {
-			addSection ( input:$policyAddSectionInput   ) {
+			addSectionWanNetworkPolicyMutations: addSection ( input:$policyAddSectionInput   ) {
 				section {
-					audit {
+					auditPolicySectionPayload: audit {
 						updatedTime
 	updatedBy {
 		__typename
@@ -17,7 +17,7 @@ mutation policyWanNetworkAddSection ( $accountId:ID! $wanNetworkPolicyMutationIn
 		}
 	}
 					}
-					section {
+					sectionPolicySectionPayload: section {
 	id {
 		id
 		status
@@ -133,7 +133,7 @@ mutation policyWanNetworkAddSection ( $accountId:ID! $wanNetworkPolicyMutationIn
 	}
 						name
 					}
-					properties
+					propertiesPolicySectionPayload: properties
 				}
 	status {
 		rawStatus

@@ -1,9 +1,9 @@
 mutation policyTerminalServerMoveRule ( $accountId:ID! $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput $policyMoveRuleInput:PolicyMoveRuleInput!) {
 	policy ( accountId:$accountId ) {
 		terminalServer ( input:$terminalServerPolicyMutationInput  )  {
-			moveRule ( input:$policyMoveRuleInput   ) {
+			moveRuleTerminalServerPolicyMutations: moveRule ( input:$policyMoveRuleInput   ) {
 				rule {
-					audit {
+					auditTerminalServerRulePayload: audit {
 						updatedTime
 	updatedBy {
 		__typename
@@ -17,7 +17,7 @@ mutation policyTerminalServerMoveRule ( $accountId:ID! $terminalServerPolicyMuta
 		}
 	}
 					}
-					rule {
+					ruleTerminalServerRulePayload: rule {
 	id {
 		id
 		status
@@ -484,7 +484,7 @@ mutation policyTerminalServerMoveRule ( $accountId:ID! $terminalServerPolicyMuta
 							name
 						}
 					}
-					properties
+					propertiesTerminalServerRulePayload: properties
 				}
 	status {
 		rawStatus

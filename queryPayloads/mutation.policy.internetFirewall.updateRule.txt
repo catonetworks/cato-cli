@@ -1,9 +1,9 @@
 mutation policyInternetFirewallUpdateRule ( $accountId:ID! $internetFirewallPolicyMutationInput:InternetFirewallPolicyMutationInput $internetFirewallUpdateRuleInput:InternetFirewallUpdateRuleInput!) {
 	policy ( accountId:$accountId ) {
 		internetFirewall ( input:$internetFirewallPolicyMutationInput  )  {
-			updateRule ( input:$internetFirewallUpdateRuleInput   ) {
+			updateRuleInternetFirewallPolicyMutations: updateRule ( input:$internetFirewallUpdateRuleInput   ) {
 				rule {
-					audit {
+					auditInternetFirewallRulePayload: audit {
 						updatedTime
 	updatedBy {
 		__typename
@@ -17,7 +17,7 @@ mutation policyInternetFirewallUpdateRule ( $accountId:ID! $internetFirewallPoli
 		}
 	}
 					}
-					rule {
+					ruleInternetFirewallRulePayload: rule {
 	id {
 		id
 		status
@@ -255,7 +255,7 @@ mutation policyInternetFirewallUpdateRule ( $accountId:ID! $internetFirewallPoli
 	ip {
 		siteId
 	}
-							host {
+							hostInternetFirewallSource: host {
 		id {
 			id
 			status
@@ -371,7 +371,7 @@ mutation policyInternetFirewallUpdateRule ( $accountId:ID! $internetFirewallPoli
 		}
 								name
 							}
-							site {
+							siteInternetFirewallSource: site {
 		id {
 			id
 			status
@@ -491,7 +491,7 @@ mutation policyInternetFirewallUpdateRule ( $accountId:ID! $internetFirewallPoli
 		id
 		name
 	}
-							ipRange {
+							ipRangeInternetFirewallSource: ipRange {
 		from {
 			container {
 				id
@@ -525,7 +525,7 @@ mutation policyInternetFirewallUpdateRule ( $accountId:ID! $internetFirewallPoli
 			}
 		}
 							}
-							globalIpRange {
+							globalIpRangeInternetFirewallSource: globalIpRange {
 		id {
 			id
 			status
@@ -641,7 +641,7 @@ mutation policyInternetFirewallUpdateRule ( $accountId:ID! $internetFirewallPoli
 		}
 								name
 							}
-							networkInterface {
+							networkInterfaceInternetFirewallSource: networkInterface {
 		id {
 			id
 			status
@@ -757,7 +757,7 @@ mutation policyInternetFirewallUpdateRule ( $accountId:ID! $internetFirewallPoli
 		}
 								name
 							}
-							siteNetworkSubnet {
+							siteNetworkSubnetInternetFirewallSource: siteNetworkSubnet {
 		id {
 			id
 			status
@@ -873,7 +873,7 @@ mutation policyInternetFirewallUpdateRule ( $accountId:ID! $internetFirewallPoli
 		}
 								name
 							}
-							floatingSubnet {
+							floatingSubnetInternetFirewallSource: floatingSubnet {
 		id {
 			id
 			status
@@ -989,7 +989,7 @@ mutation policyInternetFirewallUpdateRule ( $accountId:ID! $internetFirewallPoli
 		}
 								name
 							}
-							user {
+							userInternetFirewallSource: user {
 		id {
 			id
 			status
@@ -1105,7 +1105,7 @@ mutation policyInternetFirewallUpdateRule ( $accountId:ID! $internetFirewallPoli
 		}
 								name
 							}
-							usersGroup {
+							usersGroupInternetFirewallSource: usersGroup {
 		id {
 			id
 			status
@@ -1221,7 +1221,7 @@ mutation policyInternetFirewallUpdateRule ( $accountId:ID! $internetFirewallPoli
 		}
 								name
 							}
-							group {
+							groupInternetFirewallSource: group {
 		id {
 			id
 			status
@@ -1337,7 +1337,7 @@ mutation policyInternetFirewallUpdateRule ( $accountId:ID! $internetFirewallPoli
 		}
 								name
 							}
-							systemGroup {
+							systemGroupInternetFirewallSource: systemGroup {
 		id {
 			id
 			status
@@ -1722,7 +1722,7 @@ mutation policyInternetFirewallUpdateRule ( $accountId:ID! $internetFirewallPoli
 							osVersion
 						}
 						destination {
-							application {
+							applicationInternetFirewallDestination: application {
 		id {
 			id
 			status
@@ -1838,7 +1838,7 @@ mutation policyInternetFirewallUpdateRule ( $accountId:ID! $internetFirewallPoli
 		}
 								name
 							}
-							customApp {
+							customAppInternetFirewallDestination: customApp {
 		id {
 			id
 			status
@@ -1954,7 +1954,7 @@ mutation policyInternetFirewallUpdateRule ( $accountId:ID! $internetFirewallPoli
 		}
 								name
 							}
-							appCategory {
+							appCategoryInternetFirewallDestination: appCategory {
 		id {
 			id
 			status
@@ -2070,7 +2070,7 @@ mutation policyInternetFirewallUpdateRule ( $accountId:ID! $internetFirewallPoli
 		}
 								name
 							}
-							customCategory {
+							customCategoryInternetFirewallDestination: customCategory {
 		id {
 			id
 			status
@@ -2186,7 +2186,7 @@ mutation policyInternetFirewallUpdateRule ( $accountId:ID! $internetFirewallPoli
 		}
 								name
 							}
-							sanctionedAppsCategory {
+							sanctionedAppsCategoryInternetFirewallDestination: sanctionedAppsCategory {
 		id {
 			id
 			status
@@ -2302,7 +2302,7 @@ mutation policyInternetFirewallUpdateRule ( $accountId:ID! $internetFirewallPoli
 		}
 								name
 							}
-							country {
+							countryInternetFirewallDestination: country {
 		id {
 			id
 			status
@@ -2489,7 +2489,7 @@ mutation policyInternetFirewallUpdateRule ( $accountId:ID! $internetFirewallPoli
 		id
 		name
 	}
-							ipRange {
+							ipRangeInternetFirewallDestination: ipRange {
 		from {
 			container {
 				id
@@ -2523,7 +2523,7 @@ mutation policyInternetFirewallUpdateRule ( $accountId:ID! $internetFirewallPoli
 			}
 		}
 							}
-							globalIpRange {
+							globalIpRangeInternetFirewallDestination: globalIpRange {
 		id {
 			id
 			status
@@ -2640,7 +2640,7 @@ mutation policyInternetFirewallUpdateRule ( $accountId:ID! $internetFirewallPoli
 								name
 							}
 							remoteAsn
-							containers {
+							containersInternetFirewallDestination: containers {
 								fqdnContainer {
 		id {
 			id
@@ -2876,7 +2876,7 @@ mutation policyInternetFirewallUpdateRule ( $accountId:ID! $internetFirewallPoli
 							}
 						}
 						service {
-							standard {
+							standardInternetFirewallServiceType: standard {
 		id {
 			id
 			status
@@ -2992,7 +2992,7 @@ mutation policyInternetFirewallUpdateRule ( $accountId:ID! $internetFirewallPoli
 		}
 								name
 							}
-							custom {
+							customInternetFirewallServiceType: custom {
 		port {
 			id
 			from
@@ -3057,10 +3057,10 @@ mutation policyInternetFirewallUpdateRule ( $accountId:ID! $internetFirewallPoli
 						}
 						action
 						tracking {
-							event {
+							eventPolicyTracking: event {
 								enabled
 							}
-							alert {
+							alertPolicyTracking: alert {
 								enabled
 								frequency
 								subscriptionGroup {
@@ -3414,8 +3414,8 @@ mutation policyInternetFirewallUpdateRule ( $accountId:ID! $internetFirewallPoli
 							}
 						}
 						schedule {
-							activeOn
-							customTimeframe {
+							activeOnPolicySchedule: activeOn
+							customTimeframePolicySchedule: customTimeframe {
 		from {
 			container {
 				id
@@ -3449,7 +3449,7 @@ mutation policyInternetFirewallUpdateRule ( $accountId:ID! $internetFirewallPoli
 			}
 		}
 							}
-							customRecurring {
+							customRecurringPolicySchedule: customRecurring {
 		from {
 			container {
 				id
@@ -3493,7 +3493,7 @@ mutation policyInternetFirewallUpdateRule ( $accountId:ID! $internetFirewallPoli
 						}
 						exceptions {
 							name
-							source {
+							sourceInternetFirewallRuleException: source {
 		ip {
 			siteId
 		}
@@ -4696,12 +4696,12 @@ mutation policyInternetFirewallUpdateRule ( $accountId:ID! $internetFirewallPoli
 									name
 								}
 							}
-	deviceOS {
+	deviceOSInternetFirewallRuleException: deviceOS {
 		product
 		vendor
 		version
 	}
-							country {
+							countryInternetFirewallRuleException: country {
 		id {
 			id
 			status
@@ -4817,7 +4817,7 @@ mutation policyInternetFirewallUpdateRule ( $accountId:ID! $internetFirewallPoli
 		}
 								name
 							}
-							device {
+							deviceInternetFirewallRuleException: device {
 		id {
 			id
 			status
@@ -4933,7 +4933,7 @@ mutation policyInternetFirewallUpdateRule ( $accountId:ID! $internetFirewallPoli
 		}
 								name
 							}
-							deviceAttributes {
+							deviceAttributesInternetFirewallRuleException: deviceAttributes {
 		category {
 			id
 			name
@@ -4962,7 +4962,7 @@ mutation policyInternetFirewallUpdateRule ( $accountId:ID! $internetFirewallPoli
 		}
 								osVersion
 							}
-							destination {
+							destinationInternetFirewallRuleException: destination {
 								application {
 		id {
 			id
@@ -5882,7 +5882,7 @@ mutation policyInternetFirewallUpdateRule ( $accountId:ID! $internetFirewallPoli
 								}
 								remoteAsn
 								containers {
-									fqdnContainer {
+									fqdnContainerInternetFirewallContainer: fqdnContainer {
 		id {
 			id
 			status
@@ -5998,7 +5998,7 @@ mutation policyInternetFirewallUpdateRule ( $accountId:ID! $internetFirewallPoli
 		}
 										name
 									}
-									ipAddressRangeContainer {
+									ipAddressRangeContainerInternetFirewallContainer: ipAddressRangeContainer {
 		id {
 			id
 			status
@@ -6116,7 +6116,7 @@ mutation policyInternetFirewallUpdateRule ( $accountId:ID! $internetFirewallPoli
 									}
 								}
 							}
-							service {
+							serviceInternetFirewallRuleException: service {
 								standard {
 		id {
 			id
@@ -6259,7 +6259,7 @@ mutation policyInternetFirewallUpdateRule ( $accountId:ID! $internetFirewallPoli
 				}
 			}
 		}
-									portRange {
+									portRangeCustomService: portRange {
 		from {
 			container {
 				id
@@ -6293,13 +6293,13 @@ mutation policyInternetFirewallUpdateRule ( $accountId:ID! $internetFirewallPoli
 			}
 		}
 									}
-									protocol
+									protocolCustomService: protocol
 								}
 							}
-							connectionOrigin
+							connectionOriginInternetFirewallRuleException: connectionOrigin
 						}
 					}
-					properties
+					propertiesInternetFirewallRulePayload: properties
 				}
 	status {
 		rawStatus

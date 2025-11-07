@@ -1,10 +1,10 @@
 query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPolicyInput) {
 	policy ( accountId:$accountId ) {
 		socketLan {
-			policy ( input:$socketLanPolicyInput   ) {
+			policySocketLanPolicyQueries: policy ( input:$socketLanPolicyInput   ) {
 				enabled
 				rules {
-					audit {
+					auditSocketLanRulePayload: audit {
 						updatedTime
 	updatedBy {
 		__typename
@@ -18,7 +18,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 		}
 	}
 					}
-					rule {
+					ruleSocketLanRulePayload: rule {
 	id {
 		id
 		status
@@ -253,7 +253,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 						}
 						enabled
 						firewall {
-							audit {
+							auditSocketLanFirewallRulePayload: audit {
 								updatedTime
 		updatedBy {
 			__typename
@@ -267,7 +267,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 			}
 		}
 							}
-							rule {
+							ruleSocketLanFirewallRulePayload: rule {
 		id {
 			id
 			status
@@ -504,7 +504,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 								source {
 									vlan
 									mac
-									ipRange {
+									ipRangeSocketLanFirewallSource: ipRange {
 		from {
 			container {
 				id
@@ -538,7 +538,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 			}
 		}
 									}
-									group {
+									groupSocketLanFirewallSource: group {
 		id {
 			id
 			status
@@ -658,7 +658,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 			id
 			name
 		}
-									site {
+									siteSocketLanFirewallSource: site {
 		id {
 			id
 			status
@@ -774,7 +774,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 		}
 										name
 									}
-									networkInterface {
+									networkInterfaceSocketLanFirewallSource: networkInterface {
 		id {
 			id
 			status
@@ -890,7 +890,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 		}
 										name
 									}
-									systemGroup {
+									systemGroupSocketLanFirewallSource: systemGroup {
 		id {
 			id
 			status
@@ -1006,7 +1006,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 		}
 										name
 									}
-									host {
+									hostSocketLanFirewallSource: host {
 		id {
 			id
 			status
@@ -1125,7 +1125,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 		ip {
 			siteId
 		}
-									globalIpRange {
+									globalIpRangeSocketLanFirewallSource: globalIpRange {
 		id {
 			id
 			status
@@ -1241,7 +1241,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 		}
 										name
 									}
-									floatingSubnet {
+									floatingSubnetSocketLanFirewallSource: floatingSubnet {
 		id {
 			id
 			status
@@ -1357,7 +1357,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 		}
 										name
 									}
-									siteNetworkSubnet {
+									siteNetworkSubnetSocketLanFirewallSource: siteNetworkSubnet {
 		id {
 			id
 			status
@@ -1476,7 +1476,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 								}
 								destination {
 									vlan
-									ipRange {
+									ipRangeSocketLanFirewallDestination: ipRange {
 		from {
 			container {
 				id
@@ -1514,7 +1514,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 			id
 			name
 		}
-									site {
+									siteSocketLanFirewallDestination: site {
 		id {
 			id
 			status
@@ -1630,7 +1630,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 		}
 										name
 									}
-									networkInterface {
+									networkInterfaceSocketLanFirewallDestination: networkInterface {
 		id {
 			id
 			status
@@ -1746,7 +1746,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 		}
 										name
 									}
-									systemGroup {
+									systemGroupSocketLanFirewallDestination: systemGroup {
 		id {
 			id
 			status
@@ -1862,7 +1862,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 		}
 										name
 									}
-									host {
+									hostSocketLanFirewallDestination: host {
 		id {
 			id
 			status
@@ -1981,7 +1981,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 		ip {
 			siteId
 		}
-									globalIpRange {
+									globalIpRangeSocketLanFirewallDestination: globalIpRange {
 		id {
 			id
 			status
@@ -2097,7 +2097,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 		}
 										name
 									}
-									group {
+									groupSocketLanFirewallDestination: group {
 		id {
 			id
 			status
@@ -2213,7 +2213,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 		}
 										name
 									}
-									floatingSubnet {
+									floatingSubnetSocketLanFirewallDestination: floatingSubnet {
 		id {
 			id
 			status
@@ -2329,7 +2329,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 		}
 										name
 									}
-									siteNetworkSubnet {
+									siteNetworkSubnetSocketLanFirewallDestination: siteNetworkSubnet {
 		id {
 			id
 			status
@@ -2448,7 +2448,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 								}
 								direction
 								application {
-									application {
+									applicationSocketLanFirewallApplication: application {
 		id {
 			id
 			status
@@ -2564,7 +2564,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 		}
 										name
 									}
-									customApp {
+									customAppSocketLanFirewallApplication: customApp {
 		id {
 			id
 			status
@@ -2751,7 +2751,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 			id
 			name
 		}
-									ipRange {
+									ipRangeSocketLanFirewallApplication: ipRange {
 		from {
 			container {
 				id
@@ -2785,7 +2785,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 			}
 		}
 									}
-									globalIpRange {
+									globalIpRangeSocketLanFirewallApplication: globalIpRange {
 		id {
 			id
 			status
@@ -2903,10 +2903,10 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 									}
 								}
 								service {
-									simple {
+									simpleSocketLanFirewallServiceType: simple {
 										name
 									}
-									standard {
+									standardSocketLanFirewallServiceType: standard {
 		id {
 			id
 			status
@@ -3022,7 +3022,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 		}
 										name
 									}
-									custom {
+									customSocketLanFirewallServiceType: custom {
 		port {
 			id
 			from
@@ -3087,10 +3087,10 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 								}
 								action
 								tracking {
-									event {
+									eventPolicyTracking: event {
 										enabled
 									}
-									alert {
+									alertPolicyTracking: alert {
 										enabled
 										frequency
 										subscriptionGroup {
@@ -3444,10 +3444,10 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 									}
 								}
 							}
-							properties
+							propertiesSocketLanFirewallRulePayload: properties
 						}
 						site {
-							site {
+							siteSocketLanSite: site {
 		id {
 			id
 			status
@@ -3563,7 +3563,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 		}
 								name
 							}
-							group {
+							groupSocketLanSite: group {
 		id {
 			id
 			status
@@ -3682,7 +3682,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 						}
 						source {
 							vlan
-							ipRange {
+							ipRangeSocketLanSource: ipRange {
 		from {
 			container {
 				id
@@ -3716,7 +3716,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 			}
 		}
 							}
-							group {
+							groupSocketLanSource: group {
 		id {
 			id
 			status
@@ -3836,7 +3836,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 		id
 		name
 	}
-							networkInterface {
+							networkInterfaceSocketLanSource: networkInterface {
 		id {
 			id
 			status
@@ -3952,7 +3952,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 		}
 								name
 							}
-							systemGroup {
+							systemGroupSocketLanSource: systemGroup {
 		id {
 			id
 			status
@@ -4068,7 +4068,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 		}
 								name
 							}
-							host {
+							hostSocketLanSource: host {
 		id {
 			id
 			status
@@ -4187,7 +4187,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 	ip {
 		siteId
 	}
-							globalIpRange {
+							globalIpRangeSocketLanSource: globalIpRange {
 		id {
 			id
 			status
@@ -4303,7 +4303,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 		}
 								name
 							}
-							floatingSubnet {
+							floatingSubnetSocketLanSource: floatingSubnet {
 		id {
 			id
 			status
@@ -4419,7 +4419,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 		}
 								name
 							}
-							siteNetworkSubnet {
+							siteNetworkSubnetSocketLanSource: siteNetworkSubnet {
 		id {
 			id
 			status
@@ -4538,7 +4538,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 						}
 						destination {
 							vlan
-							ipRange {
+							ipRangeSocketLanDestination: ipRange {
 		from {
 			container {
 				id
@@ -4576,7 +4576,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 		id
 		name
 	}
-							networkInterface {
+							networkInterfaceSocketLanDestination: networkInterface {
 		id {
 			id
 			status
@@ -4692,7 +4692,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 		}
 								name
 							}
-							systemGroup {
+							systemGroupSocketLanDestination: systemGroup {
 		id {
 			id
 			status
@@ -4808,7 +4808,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 		}
 								name
 							}
-							host {
+							hostSocketLanDestination: host {
 		id {
 			id
 			status
@@ -4927,7 +4927,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 	ip {
 		siteId
 	}
-							globalIpRange {
+							globalIpRangeSocketLanDestination: globalIpRange {
 		id {
 			id
 			status
@@ -5043,7 +5043,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 		}
 								name
 							}
-							group {
+							groupSocketLanDestination: group {
 		id {
 			id
 			status
@@ -5159,7 +5159,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 		}
 								name
 							}
-							floatingSubnet {
+							floatingSubnetSocketLanDestination: floatingSubnet {
 		id {
 			id
 			status
@@ -5275,7 +5275,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 		}
 								name
 							}
-							siteNetworkSubnet {
+							siteNetworkSubnetSocketLanDestination: siteNetworkSubnet {
 		id {
 			id
 			status
@@ -5394,10 +5394,10 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 						}
 						direction
 						service {
-							simple {
+							simpleSocketLanService: simple {
 								name
 							}
-							custom {
+							customSocketLanService: custom {
 		port {
 			id
 			from
@@ -5462,7 +5462,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 						}
 						nat {
 							enabled
-							natType
+							natTypeSocketLanNatSettings: natType
 						}
 	transport {
 		transportType
@@ -5470,10 +5470,10 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 		secondaryInterfaceRole
 	}
 					}
-					properties
+					propertiesSocketLanRulePayload: properties
 				}
 				sections {
-					audit {
+					auditPolicySectionPayload: audit {
 						updatedTime
 	updatedBy {
 		__typename
@@ -5487,7 +5487,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 		}
 	}
 					}
-					section {
+					sectionPolicySectionPayload: section {
 	id {
 		id
 		status
@@ -5603,7 +5603,7 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 	}
 						name
 					}
-					properties
+					propertiesPolicySectionPayload: properties
 				}
 				audit {
 					publishedTime

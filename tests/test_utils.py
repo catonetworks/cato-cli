@@ -31,6 +31,39 @@ TEST_SETTINGS_FILE = TESTS_DIR / "payloads_settings.json"
 PYTHON_CMD = "python3" if sys.platform != "win32" else "python"
 
 
+def load_json_with_comments(file_path: Path) -> Any:
+    """
+    Load a JSON file that may contain JavaScript-style // comments.
+    Returns the parsed JSON data.
+    
+    Args:
+        file_path: Path to the JSON file
+    
+    Returns:
+        Parsed JSON data (dict, list, etc.)
+    
+    Raises:
+        json.JSONDecodeError: If the JSON is invalid after comment removal
+        FileNotFoundError: If the file doesn't exist
+    """
+    with open(file_path, 'r', encoding='utf-8') as f:
+        content = f.read()
+    
+    # Remove JavaScript-style single-line comments
+    # This regex removes // comments but preserves URLs (http://)
+    lines = []
+    for line in content.split('\n'):
+        # Remove // comments, but not if part of a URL (preceded by :)
+        # Also handle comments at the start of lines or after whitespace
+        line = re.sub(r'(?<!:)//.*$', '', line)
+        lines.append(line)
+    
+    cleaned_content = '\n'.join(lines)
+    
+    # Parse the cleaned JSON
+    return json.loads(cleaned_content)
+
+
 def load_test_settings(verbose: bool = False) -> Dict:
     """
     Load test_settings.json which contains ignoreOperations, overrideOperationPayload, etc.
@@ -41,22 +74,7 @@ def load_test_settings(verbose: bool = False) -> Dict:
         return {}
     
     try:
-        with open(TEST_SETTINGS_FILE, 'r', encoding='utf-8') as f:
-            content = f.read()
-        
-        # Remove JavaScript-style single-line comments
-        # This regex removes // comments but preserves URLs (http://)
-        lines = []
-        for line in content.split('\n'):
-            # Remove // comments, but not if part of a URL (preceded by :)
-            # Also handle comments at the start of lines or after whitespace
-            line = re.sub(r'(?<!:)//.*$', '', line)
-            lines.append(line)
-        
-        cleaned_content = '\n'.join(lines)
-        
-        # Parse the cleaned JSON
-        settings = json.loads(cleaned_content)
+        settings = load_json_with_comments(TEST_SETTINGS_FILE)
         
         ignore_ops = settings.get('ignoreOperations', {})
         override_ops = settings.get('overrideOperationPayload', {})
@@ -474,14 +492,14 @@ def run_test_from_config(test_key: str, test_config: Dict, verbose: bool = False
 def load_test_payloads_tests(ignore_operations: set, override_payloads: Dict, verbose: bool = False) -> Dict[str, Dict]:
     """
     Load tests from payloads_generated.json and return test configs.
+    Supports JavaScript-style // comments in the JSON file.
     Returns dict of test configs indexed by operation name.
     """
     if not TEST_PAYLOADS_FILE.exists():
         return {}
     
     try:
-        with open(TEST_PAYLOADS_FILE, 'r', encoding='utf-8') as f:
-            test_payloads = json.load(f)
+        test_payloads = load_json_with_comments(TEST_PAYLOADS_FILE)
     except Exception as e:
         print(f"{Colors.YELLOW}Error loading {TEST_PAYLOADS_FILE.name}: {str(e)}{Colors.NC}")
         return {}
@@ -529,7 +547,7 @@ def load_test_payloads_tests(ignore_operations: set, override_payloads: Dict, ve
         
         # Build test config
         test_config = {
-            "name": f"{operation} - Basic Test",
+            "name": f"{operation} - Generated Test",
             "description": f"Auto-generated test for {operation}",
             "operation": operation,
             "payload": payload if payload else {},
@@ -545,17 +563,17 @@ def load_test_payloads_tests(ignore_operations: set, override_payloads: Dict, ve
 def load_custom_tests(verbose: bool = False) -> Dict[str, Dict]:
     """
     Load custom tests from payloads_custom.json.
+    Supports JavaScript-style // comments in the JSON file.
     Returns a dict of test configs indexed by test key.
     """
     if not PAYLOADS_CUSTOM_FILE.exists():
         return {}
     
     try:
-        with open(PAYLOADS_CUSTOM_FILE, 'r', encoding='utf-8') as f:
-            custom_tests = json.load(f)
-            if verbose:
-                print(f"{Colors.CYAN}Loaded {len(custom_tests)} custom test(s) from {PAYLOADS_CUSTOM_FILE.name}{Colors.NC}")
-            return custom_tests
+        custom_tests = load_json_with_comments(PAYLOADS_CUSTOM_FILE)
+        if verbose:
+            print(f"{Colors.CYAN}Loaded {len(custom_tests)} custom test(s) from {PAYLOADS_CUSTOM_FILE.name}{Colors.NC}")
+        return custom_tests
     except Exception as e:
         print(f"{Colors.YELLOW}Error loading {PAYLOADS_CUSTOM_FILE.name}: {str(e)}{Colors.NC}")
         return {}

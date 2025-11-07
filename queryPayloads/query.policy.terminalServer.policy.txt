@@ -1,10 +1,10 @@
 query policyTerminalServerPolicy ( $accountId:ID! $terminalServerPolicyInput:TerminalServerPolicyInput) {
 	policy ( accountId:$accountId ) {
 		terminalServer {
-			policy ( input:$terminalServerPolicyInput   ) {
+			policyTerminalServerPolicyQueries: policy ( input:$terminalServerPolicyInput   ) {
 				enabled
 				rules {
-					audit {
+					auditTerminalServerRulePayload: audit {
 						updatedTime
 	updatedBy {
 		__typename
@@ -18,7 +18,7 @@ query policyTerminalServerPolicy ( $accountId:ID! $terminalServerPolicyInput:Ter
 		}
 	}
 					}
-					rule {
+					ruleTerminalServerRulePayload: rule {
 	id {
 		id
 		status
@@ -485,10 +485,10 @@ query policyTerminalServerPolicy ( $accountId:ID! $terminalServerPolicyInput:Ter
 							name
 						}
 					}
-					properties
+					propertiesTerminalServerRulePayload: properties
 				}
 				sections {
-					audit {
+					auditPolicySectionPayload: audit {
 						updatedTime
 	updatedBy {
 		__typename
@@ -502,7 +502,7 @@ query policyTerminalServerPolicy ( $accountId:ID! $terminalServerPolicyInput:Ter
 		}
 	}
 					}
-					section {
+					sectionPolicySectionPayload: section {
 	id {
 		id
 		status
@@ -618,7 +618,7 @@ query policyTerminalServerPolicy ( $accountId:ID! $terminalServerPolicyInput:Ter
 	}
 						name
 					}
-					properties
+					propertiesPolicySectionPayload: properties
 				}
 				audit {
 					publishedTime

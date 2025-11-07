@@ -1,7 +1,7 @@
 query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 	xdr ( accountID:$accountID ) {
 		stories ( input:$storyInput  )  {
-			paging {
+			pagingStoriesData: paging {
 	from {
 		container {
 			id
@@ -19,7 +19,7 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 				limit
 				total
 			}
-			items {
+			itemsStoriesData: items {
 	id {
 		id
 		status
@@ -264,11 +264,11 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 	}
 					firstSignal
 					lastSignal
-					engineType
-					vendor
-					producer
+					engineTypeMergedIncident: engineType
+					vendorMergedIncident: vendor
+					producerMergedIncident: producer
 					producerName
-					connectionType
+					connectionTypeMergedIncident: connectionType
 					indication
 					queryName
 					criticality
@@ -311,7 +311,7 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 		}
 	}
 					ticket
-	status {
+	statusMergedIncident: status {
 		rawStatus
 		status
 	}
@@ -406,7 +406,7 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 	}
 					description
 					sourceIp
-					analystFeedback {
+					analystFeedbackMergedIncident: analystFeedback {
 						verdict
 						severity
 						threatType {
@@ -559,7 +559,7 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 	}
 						additionalInfo
 					}
-					site {
+					siteMergedIncident: site {
 	id {
 		id
 		status
@@ -675,7 +675,7 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 	}
 						name
 					}
-					user {
+					userMergedIncident: user {
 	id {
 		id
 		status
@@ -791,7 +791,7 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 	}
 						name
 					}
-					predictedVerdict
+					predictedVerdictMergedIncident: predictedVerdict
 					predictedThreatType
 					... on MicrosoftEndpoint {
 	id {
@@ -4904,18 +4904,18 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 			}
 		}
 	}
-	type {
+	typeTimelineItem: type {
 		name
 		recommendedAction
 		details
 	}
 					descriptions
-	category {
+	categoryTimelineItem: category {
 		id
 		name
 	}
 					additionalInfo
-					analystInfo {
+					analystInfoTimelineItem: analystInfo {
 						name
 						email
 					}

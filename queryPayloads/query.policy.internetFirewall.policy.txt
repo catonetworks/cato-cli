@@ -1,10 +1,10 @@
 query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput:InternetFirewallPolicyInput) {
 	policy ( accountId:$accountId ) {
 		internetFirewall {
-			policy ( input:$internetFirewallPolicyInput   ) {
+			policyInternetFirewallPolicyQueries: policy ( input:$internetFirewallPolicyInput   ) {
 				enabled
 				rules {
-					audit {
+					auditInternetFirewallRulePayload: audit {
 						updatedTime
 	updatedBy {
 		__typename
@@ -18,7 +18,7 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 		}
 	}
 					}
-					rule {
+					ruleInternetFirewallRulePayload: rule {
 	id {
 		id
 		status
@@ -256,7 +256,7 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 	ip {
 		siteId
 	}
-							host {
+							hostInternetFirewallSource: host {
 		id {
 			id
 			status
@@ -372,7 +372,7 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 		}
 								name
 							}
-							site {
+							siteInternetFirewallSource: site {
 		id {
 			id
 			status
@@ -492,7 +492,7 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 		id
 		name
 	}
-							ipRange {
+							ipRangeInternetFirewallSource: ipRange {
 		from {
 			container {
 				id
@@ -526,7 +526,7 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 			}
 		}
 							}
-							globalIpRange {
+							globalIpRangeInternetFirewallSource: globalIpRange {
 		id {
 			id
 			status
@@ -642,7 +642,7 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 		}
 								name
 							}
-							networkInterface {
+							networkInterfaceInternetFirewallSource: networkInterface {
 		id {
 			id
 			status
@@ -758,7 +758,7 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 		}
 								name
 							}
-							siteNetworkSubnet {
+							siteNetworkSubnetInternetFirewallSource: siteNetworkSubnet {
 		id {
 			id
 			status
@@ -874,7 +874,7 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 		}
 								name
 							}
-							floatingSubnet {
+							floatingSubnetInternetFirewallSource: floatingSubnet {
 		id {
 			id
 			status
@@ -990,7 +990,7 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 		}
 								name
 							}
-							user {
+							userInternetFirewallSource: user {
 		id {
 			id
 			status
@@ -1106,7 +1106,7 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 		}
 								name
 							}
-							usersGroup {
+							usersGroupInternetFirewallSource: usersGroup {
 		id {
 			id
 			status
@@ -1222,7 +1222,7 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 		}
 								name
 							}
-							group {
+							groupInternetFirewallSource: group {
 		id {
 			id
 			status
@@ -1338,7 +1338,7 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 		}
 								name
 							}
-							systemGroup {
+							systemGroupInternetFirewallSource: systemGroup {
 		id {
 			id
 			status
@@ -1723,7 +1723,7 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 							osVersion
 						}
 						destination {
-							application {
+							applicationInternetFirewallDestination: application {
 		id {
 			id
 			status
@@ -1839,7 +1839,7 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 		}
 								name
 							}
-							customApp {
+							customAppInternetFirewallDestination: customApp {
 		id {
 			id
 			status
@@ -1955,7 +1955,7 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 		}
 								name
 							}
-							appCategory {
+							appCategoryInternetFirewallDestination: appCategory {
 		id {
 			id
 			status
@@ -2071,7 +2071,7 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 		}
 								name
 							}
-							customCategory {
+							customCategoryInternetFirewallDestination: customCategory {
 		id {
 			id
 			status
@@ -2187,7 +2187,7 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 		}
 								name
 							}
-							sanctionedAppsCategory {
+							sanctionedAppsCategoryInternetFirewallDestination: sanctionedAppsCategory {
 		id {
 			id
 			status
@@ -2303,7 +2303,7 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 		}
 								name
 							}
-							country {
+							countryInternetFirewallDestination: country {
 		id {
 			id
 			status
@@ -2490,7 +2490,7 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 		id
 		name
 	}
-							ipRange {
+							ipRangeInternetFirewallDestination: ipRange {
 		from {
 			container {
 				id
@@ -2524,7 +2524,7 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 			}
 		}
 							}
-							globalIpRange {
+							globalIpRangeInternetFirewallDestination: globalIpRange {
 		id {
 			id
 			status
@@ -2641,7 +2641,7 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 								name
 							}
 							remoteAsn
-							containers {
+							containersInternetFirewallDestination: containers {
 								fqdnContainer {
 		id {
 			id
@@ -2877,7 +2877,7 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 							}
 						}
 						service {
-							standard {
+							standardInternetFirewallServiceType: standard {
 		id {
 			id
 			status
@@ -2993,7 +2993,7 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 		}
 								name
 							}
-							custom {
+							customInternetFirewallServiceType: custom {
 		port {
 			id
 			from
@@ -3058,10 +3058,10 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 						}
 						action
 						tracking {
-							event {
+							eventPolicyTracking: event {
 								enabled
 							}
-							alert {
+							alertPolicyTracking: alert {
 								enabled
 								frequency
 								subscriptionGroup {
@@ -3415,8 +3415,8 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 							}
 						}
 						schedule {
-							activeOn
-							customTimeframe {
+							activeOnPolicySchedule: activeOn
+							customTimeframePolicySchedule: customTimeframe {
 		from {
 			container {
 				id
@@ -3450,7 +3450,7 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 			}
 		}
 							}
-							customRecurring {
+							customRecurringPolicySchedule: customRecurring {
 		from {
 			container {
 				id
@@ -3494,7 +3494,7 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 						}
 						exceptions {
 							name
-							source {
+							sourceInternetFirewallRuleException: source {
 		ip {
 			siteId
 		}
@@ -4697,12 +4697,12 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 									name
 								}
 							}
-	deviceOS {
+	deviceOSInternetFirewallRuleException: deviceOS {
 		product
 		vendor
 		version
 	}
-							country {
+							countryInternetFirewallRuleException: country {
 		id {
 			id
 			status
@@ -4818,7 +4818,7 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 		}
 								name
 							}
-							device {
+							deviceInternetFirewallRuleException: device {
 		id {
 			id
 			status
@@ -4934,7 +4934,7 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 		}
 								name
 							}
-							deviceAttributes {
+							deviceAttributesInternetFirewallRuleException: deviceAttributes {
 		category {
 			id
 			name
@@ -4963,7 +4963,7 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 		}
 								osVersion
 							}
-							destination {
+							destinationInternetFirewallRuleException: destination {
 								application {
 		id {
 			id
@@ -5883,7 +5883,7 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 								}
 								remoteAsn
 								containers {
-									fqdnContainer {
+									fqdnContainerInternetFirewallContainer: fqdnContainer {
 		id {
 			id
 			status
@@ -5999,7 +5999,7 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 		}
 										name
 									}
-									ipAddressRangeContainer {
+									ipAddressRangeContainerInternetFirewallContainer: ipAddressRangeContainer {
 		id {
 			id
 			status
@@ -6117,7 +6117,7 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 									}
 								}
 							}
-							service {
+							serviceInternetFirewallRuleException: service {
 								standard {
 		id {
 			id
@@ -6260,7 +6260,7 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 				}
 			}
 		}
-									portRange {
+									portRangeCustomService: portRange {
 		from {
 			container {
 				id
@@ -6294,16 +6294,16 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 			}
 		}
 									}
-									protocol
+									protocolCustomService: protocol
 								}
 							}
-							connectionOrigin
+							connectionOriginInternetFirewallRuleException: connectionOrigin
 						}
 					}
-					properties
+					propertiesInternetFirewallRulePayload: properties
 				}
 				sections {
-					audit {
+					auditPolicySectionPayload: audit {
 						updatedTime
 	updatedBy {
 		__typename
@@ -6317,7 +6317,7 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 		}
 	}
 					}
-					section {
+					sectionPolicySectionPayload: section {
 	id {
 		id
 		status
@@ -6433,7 +6433,7 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 	}
 						name
 					}
-					properties
+					propertiesPolicySectionPayload: properties
 				}
 				audit {
 					publishedTime

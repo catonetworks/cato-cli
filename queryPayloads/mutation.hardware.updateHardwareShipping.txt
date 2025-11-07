@@ -1,7 +1,7 @@
 mutation hardwareUpdateHardwareShipping ( $accountId:ID! $updateHardwareShippingInput:UpdateHardwareShippingInput!) {
 	hardware ( accountId:$accountId ) {
 		updateHardwareShipping ( input:$updateHardwareShippingInput  )  {
-			items {
+			itemsHardwarePayload: items {
 	id {
 		id
 		status
@@ -368,7 +368,7 @@ mutation hardwareUpdateHardwareShipping ( $accountId:ID! $updateHardwareShipping
 		}
 	}
 				shippingTracking {
-					shippingStatus
+					shippingStatusShippingTracking: shippingStatus
 					shippingDate
 					trackingUrl
 					trackingNumber
@@ -384,7 +384,7 @@ mutation hardwareUpdateHardwareShipping ( $accountId:ID! $updateHardwareShipping
 					incoterms
 					instruction
 					vatId
-					contact {
+					contactShippingDetails: contact {
 						name
 						phone
 						email
@@ -397,7 +397,7 @@ mutation hardwareUpdateHardwareShipping ( $accountId:ID! $updateHardwareShipping
 				validation {
 					completed
 					incompleteReason
-					addressValidationStatus
+					addressValidationStatusHardwareValidation: addressValidationStatus
 				}
 				lastModified
 	locationId {
@@ -448,7 +448,7 @@ mutation hardwareUpdateHardwareShipping ( $accountId:ID! $updateHardwareShipping
 		}
 	}
 			}
-			pageInfo {
+			pageInfoHardwarePayload: pageInfo {
 				total
 			}
 		}

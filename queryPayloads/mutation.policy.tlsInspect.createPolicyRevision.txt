@@ -1,10 +1,10 @@
 mutation policyTlsInspectCreatePolicyRevision ( $accountId:ID! $tlsInspectPolicyMutationInput:TlsInspectPolicyMutationInput $policyCreateRevisionInput:PolicyCreateRevisionInput!) {
 	policy ( accountId:$accountId ) {
 		tlsInspect ( input:$tlsInspectPolicyMutationInput  )  {
-			createPolicyRevision ( input:$policyCreateRevisionInput   ) {
+			createPolicyRevisionTlsInspectPolicyMutations: createPolicyRevision ( input:$policyCreateRevisionInput   ) {
 				policy {
 					enabled
-					rules {
+					rulesTlsInspectPolicy: rules {
 						audit {
 							updatedTime
 	updatedBy {
@@ -136,7 +136,7 @@ mutation policyTlsInspectCreatePolicyRevision ( $accountId:ID! $tlsInspectPolicy
 							name
 							description
 							index
-							section {
+							sectionTlsInspectRule: section {
 		id {
 			id
 			status
@@ -253,7 +253,7 @@ mutation policyTlsInspectCreatePolicyRevision ( $accountId:ID! $tlsInspectPolicy
 								name
 							}
 							enabled
-							source {
+							sourceTlsInspectRule: source {
 								user {
 		id {
 			id
@@ -1456,11 +1456,11 @@ mutation policyTlsInspectCreatePolicyRevision ( $accountId:ID! $tlsInspectPolicy
 									name
 								}
 							}
-	platform {
+	platformTlsInspectRule: platform {
 		platform
 		versions
 	}
-							country {
+							countryTlsInspectRule: country {
 		id {
 			id
 			status
@@ -1576,7 +1576,7 @@ mutation policyTlsInspectCreatePolicyRevision ( $accountId:ID! $tlsInspectPolicy
 		}
 								name
 							}
-							devicePostureProfile {
+							devicePostureProfileTlsInspectRule: devicePostureProfile {
 		id {
 			id
 			status
@@ -1692,8 +1692,8 @@ mutation policyTlsInspectCreatePolicyRevision ( $accountId:ID! $tlsInspectPolicy
 		}
 								name
 							}
-							connectionOrigin
-							application {
+							connectionOriginTlsInspectRule: connectionOrigin
+							applicationTlsInspectRule: application {
 								application {
 		id {
 			id
@@ -2279,7 +2279,7 @@ mutation policyTlsInspectCreatePolicyRevision ( $accountId:ID! $tlsInspectPolicy
 		ip {
 			siteId
 		}
-									ipRange {
+									ipRangeCustomServiceIp: ipRange {
 		from {
 			container {
 				id
@@ -2561,7 +2561,7 @@ mutation policyTlsInspectCreatePolicyRevision ( $accountId:ID! $tlsInspectPolicy
 				}
 			}
 		}
-									portRange {
+									portRangeCustomService: portRange {
 		from {
 			container {
 				id
@@ -2595,7 +2595,7 @@ mutation policyTlsInspectCreatePolicyRevision ( $accountId:ID! $tlsInspectPolicy
 			}
 		}
 									}
-									protocol
+									protocolCustomService: protocol
 								}
 								remoteAsn
 								service {
@@ -2716,12 +2716,12 @@ mutation policyTlsInspectCreatePolicyRevision ( $accountId:ID! $tlsInspectPolicy
 								}
 								tlsInspectCategory
 							}
-							action
-							untrustedCertificateAction
+							actionTlsInspectRule: action
+							untrustedCertificateActionTlsInspectRule: untrustedCertificateAction
 						}
 						properties
 					}
-					sections {
+					sectionsTlsInspectPolicy: sections {
 						audit {
 							updatedTime
 	updatedBy {
@@ -2854,11 +2854,11 @@ mutation policyTlsInspectCreatePolicyRevision ( $accountId:ID! $tlsInspectPolicy
 						}
 						properties
 					}
-					audit {
+					auditTlsInspectPolicy: audit {
 						publishedTime
 						publishedBy
 					}
-					revision {
+					revisionTlsInspectPolicy: revision {
 	id {
 		id
 		status
@@ -2978,7 +2978,7 @@ mutation policyTlsInspectCreatePolicyRevision ( $accountId:ID! $tlsInspectPolicy
 						createdTime
 						updatedTime
 					}
-					additionalAttributes {
+					additionalAttributesTlsInspectPolicy: additionalAttributes {
 						defaultRuleAction
 						defaultRuleUntrustedCertificateAction
 					}

@@ -1,7 +1,7 @@
 query siteSiteBgpStatus ( $accountId:ID! $siteBgpStatusInput:SiteBgpStatusInput!) {
 	site ( accountId:$accountId ) {
 		siteBgpStatus ( input:$siteBgpStatusInput  )  {
-			status {
+			statusSiteBgpStatus: status {
 	remoteIp {
 		ip
 		subnet
@@ -37,7 +37,7 @@ query siteSiteBgpStatus ( $accountId:ID! $siteBgpStatusInput:SiteBgpStatusInput!
 		recommendedAction
 		details
 	}
-					community {
+					communityBgpRejectedRoutesFromPeer: community {
 	from {
 		container {
 			id

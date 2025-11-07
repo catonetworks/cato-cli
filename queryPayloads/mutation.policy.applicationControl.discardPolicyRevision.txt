@@ -1,10 +1,10 @@
 mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applicationControlPolicyMutationInput:ApplicationControlPolicyMutationInput $policyDiscardRevisionInput:PolicyDiscardRevisionInput) {
 	policy ( accountId:$accountId ) {
 		applicationControl ( input:$applicationControlPolicyMutationInput  )  {
-			discardPolicyRevision ( input:$policyDiscardRevisionInput   ) {
+			discardPolicyRevisionApplicationControlPolicyMutations: discardPolicyRevision ( input:$policyDiscardRevisionInput   ) {
 				policy {
 					enabled
-					rules {
+					rulesApplicationControlPolicy: rules {
 						audit {
 							updatedTime
 	updatedBy {
@@ -136,7 +136,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 							name
 							description
 							index
-							section {
+							sectionApplicationControlRule: section {
 		id {
 			id
 			status
@@ -253,10 +253,10 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 								name
 							}
 							enabled
-							ruleType
-							applicationRule {
+							ruleTypeApplicationControlRule: ruleType
+							applicationRuleApplicationControlRule: applicationRule {
 								application {
-									application {
+									applicationApplicationControlApplication: application {
 		id {
 			id
 			status
@@ -372,7 +372,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									customApp {
+									customAppApplicationControlApplication: customApp {
 		id {
 			id
 			status
@@ -488,7 +488,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									appCategory {
+									appCategoryApplicationControlApplication: appCategory {
 		id {
 			id
 			status
@@ -604,7 +604,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									customCategory {
+									customCategoryApplicationControlApplication: customCategory {
 		id {
 			id
 			status
@@ -720,7 +720,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									sanctionedAppsCategory {
+									sanctionedAppsCategoryApplicationControlApplication: sanctionedAppsCategory {
 		id {
 			id
 			status
@@ -836,11 +836,11 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									applicationType
+									applicationTypeApplicationControlApplication: applicationType
 								}
 								applicationActivitySatisfy
 								applicationActivity {
-									activity {
+									activityApplicationControlActivity: activity {
 		id {
 			id
 			status
@@ -956,7 +956,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									field {
+									fieldApplicationControlActivity: field {
 		id {
 			id
 			status
@@ -1072,7 +1072,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									operator
+									operatorApplicationControlActivity: operator
 		value {
 			__typename
 			... on StringValue {
@@ -1087,7 +1087,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 				type
 			}
 		}
-									valueSet {
+									valueSetApplicationControlActivity: valueSet {
 		id {
 			id
 			status
@@ -1205,7 +1205,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 									}
 								}
 								applicationContext {
-									applicationTenant {
+									applicationTenantApplicationControlContext: applicationTenant {
 										operator
 		value {
 			__typename
@@ -1340,7 +1340,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 									}
 								}
 								accessMethod {
-		accessMethod {
+		accessMethodApplicationControlAccessMethod: accessMethod {
 			value
 			accessMethod
 			operator
@@ -1349,7 +1349,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 				name
 			}
 		}
-									operator
+									operatorApplicationControlAccessMethod: operator
 		value {
 			__typename
 			... on StringValue {
@@ -1364,7 +1364,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 				type
 			}
 		}
-									valueSet {
+									valueSetApplicationControlAccessMethod: valueSet {
 		id {
 			id
 			status
@@ -1482,7 +1482,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 									}
 								}
 								source {
-									country {
+									countryApplicationControlSource: country {
 		id {
 			id
 			status
@@ -1598,7 +1598,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									host {
+									hostApplicationControlSource: host {
 		id {
 			id
 			status
@@ -1714,7 +1714,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									site {
+									siteApplicationControlSource: site {
 		id {
 			id
 			status
@@ -1837,7 +1837,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		ip {
 			siteId
 		}
-									ipRange {
+									ipRangeApplicationControlSource: ipRange {
 		from {
 			container {
 				id
@@ -1871,7 +1871,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 			}
 		}
 									}
-									globalIpRange {
+									globalIpRangeApplicationControlSource: globalIpRange {
 		id {
 			id
 			status
@@ -1987,7 +1987,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									networkInterface {
+									networkInterfaceApplicationControlSource: networkInterface {
 		id {
 			id
 			status
@@ -2103,7 +2103,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									siteNetworkSubnet {
+									siteNetworkSubnetApplicationControlSource: siteNetworkSubnet {
 		id {
 			id
 			status
@@ -2219,7 +2219,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									floatingSubnet {
+									floatingSubnetApplicationControlSource: floatingSubnet {
 		id {
 			id
 			status
@@ -2335,7 +2335,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									user {
+									userApplicationControlSource: user {
 		id {
 			id
 			status
@@ -2451,7 +2451,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									usersGroup {
+									usersGroupApplicationControlSource: usersGroup {
 		id {
 			id
 			status
@@ -2567,7 +2567,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									group {
+									groupApplicationControlSource: group {
 		id {
 			id
 			status
@@ -2683,7 +2683,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									systemGroup {
+									systemGroupApplicationControlSource: systemGroup {
 		id {
 			id
 			status
@@ -2918,10 +2918,10 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 								}
 								action
 								tracking {
-									event {
+									eventPolicyTracking: event {
 										enabled
 									}
-									alert {
+									alertPolicyTracking: alert {
 										enabled
 										frequency
 										subscriptionGroup {
@@ -3275,8 +3275,8 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 									}
 								}
 								schedule {
-									activeOn
-									customTimeframe {
+									activeOnPolicySchedule: activeOn
+									customTimeframePolicySchedule: customTimeframe {
 		from {
 			container {
 				id
@@ -3310,7 +3310,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 			}
 		}
 									}
-									customRecurring {
+									customRecurringPolicySchedule: customRecurring {
 		from {
 			container {
 				id
@@ -3349,33 +3349,33 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 								severity
 								applicationCriteriaSatisfy
 								applicationCriteria {
-									attributes {
+									attributesApplicationControlCriteria: attributes {
 										complianceAttributes {
-											iso27001
-											sox
-											hippa
-											soc1
-											soc2
-											soc3
-											isae3402
-											pciDss
+											iso27001ApplicationControlComplianceAttributes: iso27001
+											soxApplicationControlComplianceAttributes: sox
+											hippaApplicationControlComplianceAttributes: hippa
+											soc1ApplicationControlComplianceAttributes: soc1
+											soc2ApplicationControlComplianceAttributes: soc2
+											soc3ApplicationControlComplianceAttributes: soc3
+											isae3402ApplicationControlComplianceAttributes: isae3402
+											pciDssApplicationControlComplianceAttributes: pciDss
 										}
 										securityAttributes {
-											mfa
-											encryptionAtRest
-											auditTrail
-		rbac {
+											mfaApplicationControlSecurityAttributes: mfa
+											encryptionAtRestApplicationControlSecurityAttributes: encryptionAtRest
+											auditTrailApplicationControlSecurityAttributes: auditTrail
+		rbacApplicationControlSecurityAttributes: rbac {
 			id
 			name
 		}
-											rememberPassword
-											sso
-											trustedCertificate
-											tlsEnforcement
-											httpSecurityHeaders
+											rememberPasswordApplicationControlSecurityAttributes: rememberPassword
+											ssoApplicationControlSecurityAttributes: sso
+											trustedCertificateApplicationControlSecurityAttributes: trustedCertificate
+											tlsEnforcementApplicationControlSecurityAttributes: tlsEnforcement
+											httpSecurityHeadersApplicationControlSecurityAttributes: httpSecurityHeaders
 										}
 									}
-									originCountry {
+									originCountryApplicationControlCriteria: originCountry {
 		id {
 			id
 			status
@@ -3491,7 +3491,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									risk {
+									riskApplicationControlCriteria: risk {
 		risk {
 			risk
 			riskOperator
@@ -3500,9 +3500,9 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 									}
 								}
 							}
-							dataRule {
+							dataRuleApplicationControlRule: dataRule {
 								application {
-									application {
+									applicationApplicationControlApplication: application {
 		id {
 			id
 			status
@@ -3618,7 +3618,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									customApp {
+									customAppApplicationControlApplication: customApp {
 		id {
 			id
 			status
@@ -3734,7 +3734,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									appCategory {
+									appCategoryApplicationControlApplication: appCategory {
 		id {
 			id
 			status
@@ -3850,7 +3850,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									customCategory {
+									customCategoryApplicationControlApplication: customCategory {
 		id {
 			id
 			status
@@ -3966,7 +3966,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									sanctionedAppsCategory {
+									sanctionedAppsCategoryApplicationControlApplication: sanctionedAppsCategory {
 		id {
 			id
 			status
@@ -4082,10 +4082,10 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									applicationType
+									applicationTypeApplicationControlApplication: applicationType
 								}
 								applicationContext {
-									applicationTenant {
+									applicationTenantApplicationControlContext: applicationTenant {
 										operator
 		value {
 			__typename
@@ -4221,7 +4221,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 								}
 								applicationActivitySatisfy
 								applicationActivity {
-									activity {
+									activityApplicationControlActivity: activity {
 		id {
 			id
 			status
@@ -4337,7 +4337,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									field {
+									fieldApplicationControlActivity: field {
 		id {
 			id
 			status
@@ -4453,7 +4453,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									operator
+									operatorApplicationControlActivity: operator
 		value {
 			__typename
 			... on StringValue {
@@ -4468,7 +4468,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 				type
 			}
 		}
-									valueSet {
+									valueSetApplicationControlActivity: valueSet {
 		id {
 			id
 			status
@@ -4586,7 +4586,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 									}
 								}
 								accessMethod {
-		accessMethod {
+		accessMethodApplicationControlAccessMethod: accessMethod {
 			value
 			accessMethod
 			operator
@@ -4595,7 +4595,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 				name
 			}
 		}
-									operator
+									operatorApplicationControlAccessMethod: operator
 		value {
 			__typename
 			... on StringValue {
@@ -4610,7 +4610,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 				type
 			}
 		}
-									valueSet {
+									valueSetApplicationControlAccessMethod: valueSet {
 		id {
 			id
 			status
@@ -4728,7 +4728,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 									}
 								}
 								source {
-									country {
+									countryApplicationControlSource: country {
 		id {
 			id
 			status
@@ -4844,7 +4844,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									host {
+									hostApplicationControlSource: host {
 		id {
 			id
 			status
@@ -4960,7 +4960,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									site {
+									siteApplicationControlSource: site {
 		id {
 			id
 			status
@@ -5083,7 +5083,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		ip {
 			siteId
 		}
-									ipRange {
+									ipRangeApplicationControlSource: ipRange {
 		from {
 			container {
 				id
@@ -5117,7 +5117,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 			}
 		}
 									}
-									globalIpRange {
+									globalIpRangeApplicationControlSource: globalIpRange {
 		id {
 			id
 			status
@@ -5233,7 +5233,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									networkInterface {
+									networkInterfaceApplicationControlSource: networkInterface {
 		id {
 			id
 			status
@@ -5349,7 +5349,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									siteNetworkSubnet {
+									siteNetworkSubnetApplicationControlSource: siteNetworkSubnet {
 		id {
 			id
 			status
@@ -5465,7 +5465,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									floatingSubnet {
+									floatingSubnetApplicationControlSource: floatingSubnet {
 		id {
 			id
 			status
@@ -5581,7 +5581,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									user {
+									userApplicationControlSource: user {
 		id {
 			id
 			status
@@ -5697,7 +5697,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									usersGroup {
+									usersGroupApplicationControlSource: usersGroup {
 		id {
 			id
 			status
@@ -5813,7 +5813,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									group {
+									groupApplicationControlSource: group {
 		id {
 			id
 			status
@@ -5929,7 +5929,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									systemGroup {
+									systemGroupApplicationControlSource: systemGroup {
 		id {
 			id
 			status
@@ -6164,10 +6164,10 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 								}
 								action
 								tracking {
-									event {
+									eventPolicyTracking: event {
 										enabled
 									}
-									alert {
+									alertPolicyTracking: alert {
 										enabled
 										frequency
 										subscriptionGroup {
@@ -6521,8 +6521,8 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 									}
 								}
 								schedule {
-									activeOn
-									customTimeframe {
+									activeOnPolicySchedule: activeOn
+									customTimeframePolicySchedule: customTimeframe {
 		from {
 			container {
 				id
@@ -6556,7 +6556,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 			}
 		}
 									}
-									customRecurring {
+									customRecurringPolicySchedule: customRecurring {
 		from {
 			container {
 				id
@@ -6595,7 +6595,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 								severity
 								fileAttributeSatisfy
 								fileAttribute {
-		fileAttribute {
+		fileAttributeApplicationControlFileAttribute: fileAttribute {
 			value
 			fileAttribute
 			operator
@@ -6608,7 +6608,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 				name
 			}
 		}
-									operator
+									operatorApplicationControlFileAttribute: operator
 		value {
 			__typename
 			... on StringValue {
@@ -6623,7 +6623,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 				type
 			}
 		}
-									contentTypeValues {
+									contentTypeValuesApplicationControlFileAttribute: contentTypeValues {
 		id {
 			id
 			status
@@ -6739,7 +6739,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									contentTypeGroupValues {
+									contentTypeGroupValuesApplicationControlFileAttribute: contentTypeGroupValues {
 		id {
 			id
 			status
@@ -6857,7 +6857,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 									}
 								}
 								dlpProfile {
-									contentProfile {
+									contentProfileApplicationControlDlpProfile: contentProfile {
 		id {
 			id
 			status
@@ -6973,7 +6973,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									edmProfile {
+									edmProfileApplicationControlDlpProfile: edmProfile {
 		id {
 			id
 			status
@@ -7091,9 +7091,9 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 									}
 								}
 							}
-							fileRule {
+							fileRuleApplicationControlRule: fileRule {
 								application {
-									application {
+									applicationApplicationControlApplication: application {
 		id {
 			id
 			status
@@ -7209,7 +7209,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									customApp {
+									customAppApplicationControlApplication: customApp {
 		id {
 			id
 			status
@@ -7325,7 +7325,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									appCategory {
+									appCategoryApplicationControlApplication: appCategory {
 		id {
 			id
 			status
@@ -7441,7 +7441,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									customCategory {
+									customCategoryApplicationControlApplication: customCategory {
 		id {
 			id
 			status
@@ -7557,7 +7557,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									sanctionedAppsCategory {
+									sanctionedAppsCategoryApplicationControlApplication: sanctionedAppsCategory {
 		id {
 			id
 			status
@@ -7673,11 +7673,11 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									applicationType
+									applicationTypeApplicationControlApplication: applicationType
 								}
 								applicationActivitySatisfy
 								applicationActivity {
-									activity {
+									activityApplicationControlActivity: activity {
 		id {
 			id
 			status
@@ -7793,7 +7793,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									field {
+									fieldApplicationControlActivity: field {
 		id {
 			id
 			status
@@ -7909,7 +7909,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									operator
+									operatorApplicationControlActivity: operator
 		value {
 			__typename
 			... on StringValue {
@@ -7924,7 +7924,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 				type
 			}
 		}
-									valueSet {
+									valueSetApplicationControlActivity: valueSet {
 		id {
 			id
 			status
@@ -8042,7 +8042,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 									}
 								}
 								accessMethod {
-		accessMethod {
+		accessMethodApplicationControlAccessMethod: accessMethod {
 			value
 			accessMethod
 			operator
@@ -8051,7 +8051,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 				name
 			}
 		}
-									operator
+									operatorApplicationControlAccessMethod: operator
 		value {
 			__typename
 			... on StringValue {
@@ -8066,7 +8066,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 				type
 			}
 		}
-									valueSet {
+									valueSetApplicationControlAccessMethod: valueSet {
 		id {
 			id
 			status
@@ -8184,7 +8184,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 									}
 								}
 								source {
-									country {
+									countryApplicationControlSource: country {
 		id {
 			id
 			status
@@ -8300,7 +8300,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									host {
+									hostApplicationControlSource: host {
 		id {
 			id
 			status
@@ -8416,7 +8416,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									site {
+									siteApplicationControlSource: site {
 		id {
 			id
 			status
@@ -8539,7 +8539,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		ip {
 			siteId
 		}
-									ipRange {
+									ipRangeApplicationControlSource: ipRange {
 		from {
 			container {
 				id
@@ -8573,7 +8573,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 			}
 		}
 									}
-									globalIpRange {
+									globalIpRangeApplicationControlSource: globalIpRange {
 		id {
 			id
 			status
@@ -8689,7 +8689,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									networkInterface {
+									networkInterfaceApplicationControlSource: networkInterface {
 		id {
 			id
 			status
@@ -8805,7 +8805,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									siteNetworkSubnet {
+									siteNetworkSubnetApplicationControlSource: siteNetworkSubnet {
 		id {
 			id
 			status
@@ -8921,7 +8921,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									floatingSubnet {
+									floatingSubnetApplicationControlSource: floatingSubnet {
 		id {
 			id
 			status
@@ -9037,7 +9037,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									user {
+									userApplicationControlSource: user {
 		id {
 			id
 			status
@@ -9153,7 +9153,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									usersGroup {
+									usersGroupApplicationControlSource: usersGroup {
 		id {
 			id
 			status
@@ -9269,7 +9269,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									group {
+									groupApplicationControlSource: group {
 		id {
 			id
 			status
@@ -9385,7 +9385,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									systemGroup {
+									systemGroupApplicationControlSource: systemGroup {
 		id {
 			id
 			status
@@ -9620,10 +9620,10 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 								}
 								action
 								tracking {
-									event {
+									eventPolicyTracking: event {
 										enabled
 									}
-									alert {
+									alertPolicyTracking: alert {
 										enabled
 										frequency
 										subscriptionGroup {
@@ -9977,8 +9977,8 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 									}
 								}
 								schedule {
-									activeOn
-									customTimeframe {
+									activeOnPolicySchedule: activeOn
+									customTimeframePolicySchedule: customTimeframe {
 		from {
 			container {
 				id
@@ -10012,7 +10012,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 			}
 		}
 									}
-									customRecurring {
+									customRecurringPolicySchedule: customRecurring {
 		from {
 			container {
 				id
@@ -10051,7 +10051,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 								severity
 								fileAttributeSatisfy
 								fileAttribute {
-		fileAttribute {
+		fileAttributeApplicationControlFileAttribute: fileAttribute {
 			value
 			fileAttribute
 			operator
@@ -10064,7 +10064,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 				name
 			}
 		}
-									operator
+									operatorApplicationControlFileAttribute: operator
 		value {
 			__typename
 			... on StringValue {
@@ -10079,7 +10079,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 				type
 			}
 		}
-									contentTypeValues {
+									contentTypeValuesApplicationControlFileAttribute: contentTypeValues {
 		id {
 			id
 			status
@@ -10195,7 +10195,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 		}
 										name
 									}
-									contentTypeGroupValues {
+									contentTypeGroupValuesApplicationControlFileAttribute: contentTypeGroupValues {
 		id {
 			id
 			status
@@ -10316,7 +10316,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 						}
 						properties
 					}
-					sections {
+					sectionsApplicationControlPolicy: sections {
 						audit {
 							updatedTime
 	updatedBy {
@@ -10449,11 +10449,11 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 						}
 						properties
 					}
-					audit {
+					auditApplicationControlPolicy: audit {
 						publishedTime
 						publishedBy
 					}
-					revision {
+					revisionApplicationControlPolicy: revision {
 	id {
 		id
 		status
@@ -10573,7 +10573,7 @@ mutation policyApplicationControlDiscardPolicyRevision ( $accountId:ID! $applica
 						createdTime
 						updatedTime
 					}
-					additionalAttributes {
+					additionalAttributesApplicationControlPolicy: additionalAttributes {
 						dataControlEnabled
 					}
 				}

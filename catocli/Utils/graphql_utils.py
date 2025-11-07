@@ -338,14 +338,14 @@ def generateGraphqlPayload(variables_obj, operation, operation_name, renderArgsA
     
     # Pre-process variables - handle cases like XDR stories where we need field name mappings
     # This could be expanded for other operations as needed
-    if operation_name == "query.xdr.stories" and "storyInput" in variables_obj:
-        story_input = variables_obj["storyInput"]
-        # Map storyFilterInput to filter if needed 
-        if "storyFilterInput" in story_input:
-            story_input["filter"] = story_input.pop("storyFilterInput")
-        # Map pagingInput to paging if needed
-        if "pagingInput" in story_input:
-            story_input["paging"] = story_input.pop("pagingInput")
+    # if operation_name == "query.xdr.stories" and "storyInput" in variables_obj:
+    #     story_input = variables_obj["storyInput"]
+    #     # Map storyFilterInput to filter if needed 
+    #     if "storyFilterInput" in story_input:
+    #         story_input["filter"] = story_input.pop("storyFilterInput")
+    #     # Map pagingInput to paging if needed
+    #     if "pagingInput" in story_input:
+    #         story_input["paging"] = story_input.pop("pagingInput")
     
     # Initialize dynamic operationArgs collection (like JavaScript curOperation.operationArgs)
     dynamic_operation_args = operation.get("operationArgs", {}).copy()
@@ -819,12 +819,18 @@ def renderArgsAndFields(response_arg_str, variables_obj, cur_operation, definiti
     if not definition or not isinstance(definition, dict) or 'fields' not in definition:
         return response_arg_str
     
+    # Handle fields as both list (from raw introspection) and dict (from processed schema)
+    fields_dict = definition['fields']
+    if isinstance(fields_dict, list):
+        # Convert list format to dict format for consistency
+        fields_dict = {field['name']: field for field in fields_dict}
+    
     # For debugging severe issues
     # import sys
-    # print(f"DEBUG: renderArgsAndFields - operation_name={operation_name}, fields={list(definition['fields'].keys())}", file=sys.stderr)
+    # print(f"DEBUG: renderArgsAndFields - operation_name={operation_name}, fields={list(fields_dict.keys())}", file=sys.stderr)
         
-    for field_name in definition['fields']:
-        field = definition['fields'][field_name]
+    for field_name in fields_dict:
+        field = fields_dict[field_name]
         # Force use of plain field name instead of alias to match API response structure
         # The API returns simple field names like "audit" not "auditWanFirewallRulePayload: audit"
         field_display_name = field['name']
@@ -918,7 +924,10 @@ def renderArgsAndFields(response_arg_str, variables_obj, cur_operation, definiti
             introspection_types = loadIntrospectionTypes()
             if field_type_name_for_expansion in introspection_types:
                 type_def = introspection_types[field_type_name_for_expansion]
-                if type_def.get('kind') in ['OBJECT', 'INTERFACE', 'UNION']:
+                # CRITICAL: Never expand SCALAR or ENUM types - they have no subfields
+                if type_def.get('kind') == 'SCALAR' or type_def.get('kind') == 'ENUM':
+                    field_needs_introspection_expansion = False
+                elif type_def.get('kind') in ['OBJECT', 'INTERFACE', 'UNION']:
                     # This field represents a complex type that needs subfield selections
                     # Check if we already have proper definitions for it
                     has_proper_definition = (
@@ -954,9 +963,23 @@ def renderArgsAndFields(response_arg_str, variables_obj, cur_operation, definiti
             response_arg_str += " {\n"
             for subfield_index in field['type']['definition']['fields']:
                 subfield = field['type']['definition']['fields'][subfield_index]
-                # Force use of plain field name instead of alias to match API response structure
-                # The API returns simple field names like "audit" not "auditWanFirewallRulePayload: audit"
-                subfield_name = subfield['name']
+                # Explorer line 1033: Implement field aliasing for duplicate types
+                # var subfieldName = (curOperationObj.fieldTypes[subfield.type.name] && !subfield.type.kind.includes("SCALAR")) 
+                #                    ? (subfield.name + field.type.definition.name + ": " + subfield.name) : subfield.name;
+                subfield_type_name = subfield.get('type', {}).get('name')
+                subfield_type_kind = subfield.get('type', {}).get('kind', [])
+                is_scalar = 'SCALAR' in subfield_type_kind if isinstance(subfield_type_kind, list) else subfield_type_kind == 'SCALAR'
+                
+                # Check if this field type appears elsewhere in the schema (via fieldTypes) and is not a scalar
+                field_types = cur_operation.get('fieldTypes', {})
+                type_in_field_types = subfield_type_name in field_types if field_types else False
+                parent_type_name = field.get('type', {}).get('definition', {}).get('name')
+                
+                if (type_in_field_types and not is_scalar and parent_type_name):
+                    # Create alias: {subfieldName}{ParentTypeName}: {subfieldName}
+                    subfield_name = f"{subfield['name']}{parent_type_name}: {subfield['name']}"
+                else:
+                    subfield_name = subfield['name']
                 
                 # JAVASCRIPT COMPATIBILITY: Skip problematic 'fields' subfield in 'records' for socketPortMetrics
                 # The JavaScript implementation strategically excludes the 'fields' object within 'records'

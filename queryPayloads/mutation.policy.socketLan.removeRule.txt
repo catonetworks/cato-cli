@@ -1,9 +1,9 @@
 mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInput:SocketLanPolicyMutationInput $socketLanRemoveRuleInput:SocketLanRemoveRuleInput!) {
 	policy ( accountId:$accountId ) {
 		socketLan ( input:$socketLanPolicyMutationInput  )  {
-			removeRule ( input:$socketLanRemoveRuleInput   ) {
+			removeRuleSocketLanPolicyMutations: removeRule ( input:$socketLanRemoveRuleInput   ) {
 				rule {
-					audit {
+					auditSocketLanRulePayload: audit {
 						updatedTime
 	updatedBy {
 		__typename
@@ -17,7 +17,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 		}
 	}
 					}
-					rule {
+					ruleSocketLanRulePayload: rule {
 	id {
 		id
 		status
@@ -252,7 +252,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 						}
 						enabled
 						firewall {
-							audit {
+							auditSocketLanFirewallRulePayload: audit {
 								updatedTime
 		updatedBy {
 			__typename
@@ -266,7 +266,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 			}
 		}
 							}
-							rule {
+							ruleSocketLanFirewallRulePayload: rule {
 		id {
 			id
 			status
@@ -503,7 +503,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 								source {
 									vlan
 									mac
-									ipRange {
+									ipRangeSocketLanFirewallSource: ipRange {
 		from {
 			container {
 				id
@@ -537,7 +537,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 			}
 		}
 									}
-									group {
+									groupSocketLanFirewallSource: group {
 		id {
 			id
 			status
@@ -657,7 +657,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 			id
 			name
 		}
-									site {
+									siteSocketLanFirewallSource: site {
 		id {
 			id
 			status
@@ -773,7 +773,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 		}
 										name
 									}
-									networkInterface {
+									networkInterfaceSocketLanFirewallSource: networkInterface {
 		id {
 			id
 			status
@@ -889,7 +889,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 		}
 										name
 									}
-									systemGroup {
+									systemGroupSocketLanFirewallSource: systemGroup {
 		id {
 			id
 			status
@@ -1005,7 +1005,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 		}
 										name
 									}
-									host {
+									hostSocketLanFirewallSource: host {
 		id {
 			id
 			status
@@ -1124,7 +1124,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 		ip {
 			siteId
 		}
-									globalIpRange {
+									globalIpRangeSocketLanFirewallSource: globalIpRange {
 		id {
 			id
 			status
@@ -1240,7 +1240,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 		}
 										name
 									}
-									floatingSubnet {
+									floatingSubnetSocketLanFirewallSource: floatingSubnet {
 		id {
 			id
 			status
@@ -1356,7 +1356,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 		}
 										name
 									}
-									siteNetworkSubnet {
+									siteNetworkSubnetSocketLanFirewallSource: siteNetworkSubnet {
 		id {
 			id
 			status
@@ -1475,7 +1475,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 								}
 								destination {
 									vlan
-									ipRange {
+									ipRangeSocketLanFirewallDestination: ipRange {
 		from {
 			container {
 				id
@@ -1513,7 +1513,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 			id
 			name
 		}
-									site {
+									siteSocketLanFirewallDestination: site {
 		id {
 			id
 			status
@@ -1629,7 +1629,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 		}
 										name
 									}
-									networkInterface {
+									networkInterfaceSocketLanFirewallDestination: networkInterface {
 		id {
 			id
 			status
@@ -1745,7 +1745,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 		}
 										name
 									}
-									systemGroup {
+									systemGroupSocketLanFirewallDestination: systemGroup {
 		id {
 			id
 			status
@@ -1861,7 +1861,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 		}
 										name
 									}
-									host {
+									hostSocketLanFirewallDestination: host {
 		id {
 			id
 			status
@@ -1980,7 +1980,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 		ip {
 			siteId
 		}
-									globalIpRange {
+									globalIpRangeSocketLanFirewallDestination: globalIpRange {
 		id {
 			id
 			status
@@ -2096,7 +2096,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 		}
 										name
 									}
-									group {
+									groupSocketLanFirewallDestination: group {
 		id {
 			id
 			status
@@ -2212,7 +2212,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 		}
 										name
 									}
-									floatingSubnet {
+									floatingSubnetSocketLanFirewallDestination: floatingSubnet {
 		id {
 			id
 			status
@@ -2328,7 +2328,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 		}
 										name
 									}
-									siteNetworkSubnet {
+									siteNetworkSubnetSocketLanFirewallDestination: siteNetworkSubnet {
 		id {
 			id
 			status
@@ -2447,7 +2447,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 								}
 								direction
 								application {
-									application {
+									applicationSocketLanFirewallApplication: application {
 		id {
 			id
 			status
@@ -2563,7 +2563,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 		}
 										name
 									}
-									customApp {
+									customAppSocketLanFirewallApplication: customApp {
 		id {
 			id
 			status
@@ -2750,7 +2750,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 			id
 			name
 		}
-									ipRange {
+									ipRangeSocketLanFirewallApplication: ipRange {
 		from {
 			container {
 				id
@@ -2784,7 +2784,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 			}
 		}
 									}
-									globalIpRange {
+									globalIpRangeSocketLanFirewallApplication: globalIpRange {
 		id {
 			id
 			status
@@ -2902,10 +2902,10 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 									}
 								}
 								service {
-									simple {
+									simpleSocketLanFirewallServiceType: simple {
 										name
 									}
-									standard {
+									standardSocketLanFirewallServiceType: standard {
 		id {
 			id
 			status
@@ -3021,7 +3021,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 		}
 										name
 									}
-									custom {
+									customSocketLanFirewallServiceType: custom {
 		port {
 			id
 			from
@@ -3086,10 +3086,10 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 								}
 								action
 								tracking {
-									event {
+									eventPolicyTracking: event {
 										enabled
 									}
-									alert {
+									alertPolicyTracking: alert {
 										enabled
 										frequency
 										subscriptionGroup {
@@ -3443,10 +3443,10 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 									}
 								}
 							}
-							properties
+							propertiesSocketLanFirewallRulePayload: properties
 						}
 						site {
-							site {
+							siteSocketLanSite: site {
 		id {
 			id
 			status
@@ -3562,7 +3562,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 		}
 								name
 							}
-							group {
+							groupSocketLanSite: group {
 		id {
 			id
 			status
@@ -3681,7 +3681,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 						}
 						source {
 							vlan
-							ipRange {
+							ipRangeSocketLanSource: ipRange {
 		from {
 			container {
 				id
@@ -3715,7 +3715,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 			}
 		}
 							}
-							group {
+							groupSocketLanSource: group {
 		id {
 			id
 			status
@@ -3835,7 +3835,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 		id
 		name
 	}
-							networkInterface {
+							networkInterfaceSocketLanSource: networkInterface {
 		id {
 			id
 			status
@@ -3951,7 +3951,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 		}
 								name
 							}
-							systemGroup {
+							systemGroupSocketLanSource: systemGroup {
 		id {
 			id
 			status
@@ -4067,7 +4067,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 		}
 								name
 							}
-							host {
+							hostSocketLanSource: host {
 		id {
 			id
 			status
@@ -4186,7 +4186,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 	ip {
 		siteId
 	}
-							globalIpRange {
+							globalIpRangeSocketLanSource: globalIpRange {
 		id {
 			id
 			status
@@ -4302,7 +4302,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 		}
 								name
 							}
-							floatingSubnet {
+							floatingSubnetSocketLanSource: floatingSubnet {
 		id {
 			id
 			status
@@ -4418,7 +4418,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 		}
 								name
 							}
-							siteNetworkSubnet {
+							siteNetworkSubnetSocketLanSource: siteNetworkSubnet {
 		id {
 			id
 			status
@@ -4537,7 +4537,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 						}
 						destination {
 							vlan
-							ipRange {
+							ipRangeSocketLanDestination: ipRange {
 		from {
 			container {
 				id
@@ -4575,7 +4575,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 		id
 		name
 	}
-							networkInterface {
+							networkInterfaceSocketLanDestination: networkInterface {
 		id {
 			id
 			status
@@ -4691,7 +4691,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 		}
 								name
 							}
-							systemGroup {
+							systemGroupSocketLanDestination: systemGroup {
 		id {
 			id
 			status
@@ -4807,7 +4807,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 		}
 								name
 							}
-							host {
+							hostSocketLanDestination: host {
 		id {
 			id
 			status
@@ -4926,7 +4926,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 	ip {
 		siteId
 	}
-							globalIpRange {
+							globalIpRangeSocketLanDestination: globalIpRange {
 		id {
 			id
 			status
@@ -5042,7 +5042,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 		}
 								name
 							}
-							group {
+							groupSocketLanDestination: group {
 		id {
 			id
 			status
@@ -5158,7 +5158,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 		}
 								name
 							}
-							floatingSubnet {
+							floatingSubnetSocketLanDestination: floatingSubnet {
 		id {
 			id
 			status
@@ -5274,7 +5274,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 		}
 								name
 							}
-							siteNetworkSubnet {
+							siteNetworkSubnetSocketLanDestination: siteNetworkSubnet {
 		id {
 			id
 			status
@@ -5393,10 +5393,10 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 						}
 						direction
 						service {
-							simple {
+							simpleSocketLanService: simple {
 								name
 							}
-							custom {
+							customSocketLanService: custom {
 		port {
 			id
 			from
@@ -5461,7 +5461,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 						}
 						nat {
 							enabled
-							natType
+							natTypeSocketLanNatSettings: natType
 						}
 	transport {
 		transportType
@@ -5469,7 +5469,7 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 		secondaryInterfaceRole
 	}
 					}
-					properties
+					propertiesSocketLanRulePayload: properties
 				}
 	status {
 		rawStatus

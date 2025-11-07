@@ -431,6 +431,34 @@
             "eventsTimeSeries"
         ]
     },
+    "query.siteLocation": {
+        "name": "siteLocation",
+        "description": "Site Location query for city, state, timezone",
+        "operation": "query.siteLocation",
+        "payload": {
+            "filters": [
+                {
+                    "search": "San Diego",
+                    "field": "city",
+                    "operation": "startsWith"
+                },
+                {
+                    "search": "nia",
+                    "field": "stateName",
+                    "operation": "endsWith"
+                },
+                {
+                    "search": "United",
+                    "field": "countryName",
+                    "operation": "contains"
+                }
+            ]
+        },
+        "timeout": 30,
+        "assertions": [
+            "data"
+        ]
+    },
     "query.socketPortMetrics.daily_bw_by_interface": {
         "name": "socketPortMetrics - Daily BW by Interface",
         "description": "Daily BW by Interface",

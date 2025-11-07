@@ -1,10 +1,10 @@
 query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyInput:ApplicationControlPolicyInput) {
 	policy ( accountId:$accountId ) {
 		applicationControl {
-			policy ( input:$applicationControlPolicyInput   ) {
+			policyApplicationControlPolicyQueries: policy ( input:$applicationControlPolicyInput   ) {
 				enabled
 				rules {
-					audit {
+					auditApplicationControlRulePayload: audit {
 						updatedTime
 	updatedBy {
 		__typename
@@ -18,7 +18,7 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 		}
 	}
 					}
-					rule {
+					ruleApplicationControlRulePayload: rule {
 	id {
 		id
 		status
@@ -254,7 +254,7 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 						enabled
 						ruleType
 						applicationRule {
-							application {
+							applicationApplicationControlApplicationRule: application {
 								application {
 		id {
 			id
@@ -837,8 +837,8 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 								}
 								applicationType
 							}
-							applicationActivitySatisfy
-							applicationActivity {
+							applicationActivitySatisfyApplicationControlApplicationRule: applicationActivitySatisfy
+							applicationActivityApplicationControlApplicationRule: applicationActivity {
 								activity {
 		id {
 			id
@@ -1203,9 +1203,9 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 									name
 								}
 							}
-							applicationContext {
+							applicationContextApplicationControlApplicationRule: applicationContext {
 								applicationTenant {
-									operator
+									operatorApplicationControlTenant: operator
 		value {
 			__typename
 			... on StringValue {
@@ -1220,7 +1220,7 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 				type
 			}
 		}
-									valueSet {
+									valueSetApplicationControlTenant: valueSet {
 		id {
 			id
 			status
@@ -1338,7 +1338,7 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 									}
 								}
 							}
-							accessMethod {
+							accessMethodApplicationControlApplicationRule: accessMethod {
 		accessMethod {
 			value
 			accessMethod
@@ -1480,7 +1480,7 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 									name
 								}
 							}
-							source {
+							sourceApplicationControlApplicationRule: source {
 								country {
 		id {
 			id
@@ -2799,7 +2799,7 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 									name
 								}
 							}
-							device {
+							deviceApplicationControlApplicationRule: device {
 		id {
 			id
 			status
@@ -2915,15 +2915,15 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 		}
 								name
 							}
-							action
-							tracking {
+							actionApplicationControlApplicationRule: action
+							trackingApplicationControlApplicationRule: tracking {
 								event {
 									enabled
 								}
 								alert {
 									enabled
-									frequency
-									subscriptionGroup {
+									frequencyPolicyRuleTrackingAlert: frequency
+									subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
 		id {
 			id
 			status
@@ -3039,7 +3039,7 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 		}
 										name
 									}
-									webhook {
+									webhookPolicyRuleTrackingAlert: webhook {
 		id {
 			id
 			status
@@ -3155,7 +3155,7 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 		}
 										name
 									}
-									mailingList {
+									mailingListPolicyRuleTrackingAlert: mailingList {
 		id {
 			id
 			status
@@ -3273,7 +3273,7 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 									}
 								}
 							}
-							schedule {
+							scheduleApplicationControlApplicationRule: schedule {
 								activeOn
 								customTimeframe {
 		from {
@@ -3342,14 +3342,14 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 				}
 			}
 		}
-									days
+									daysPolicyCustomRecurring: days
 								}
 							}
-							severity
-							applicationCriteriaSatisfy
-							applicationCriteria {
+							severityApplicationControlApplicationRule: severity
+							applicationCriteriaSatisfyApplicationControlApplicationRule: applicationCriteriaSatisfy
+							applicationCriteriaApplicationControlApplicationRule: applicationCriteria {
 								attributes {
-									complianceAttributes {
+									complianceAttributesApplicationControlAttributes: complianceAttributes {
 										iso27001
 										sox
 										hippa
@@ -3359,7 +3359,7 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 										isae3402
 										pciDss
 									}
-									securityAttributes {
+									securityAttributesApplicationControlAttributes: securityAttributes {
 										mfa
 										encryptionAtRest
 										auditTrail
@@ -3495,12 +3495,12 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 			risk
 			riskOperator
 		}
-									riskOperator
+									riskOperatorApplicationControlRiskCriteria: riskOperator
 								}
 							}
 						}
 						dataRule {
-							application {
+							applicationApplicationControlDataRule: application {
 								application {
 		id {
 			id
@@ -4083,9 +4083,9 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 								}
 								applicationType
 							}
-							applicationContext {
+							applicationContextApplicationControlDataRule: applicationContext {
 								applicationTenant {
-									operator
+									operatorApplicationControlTenant: operator
 		value {
 			__typename
 			... on StringValue {
@@ -4100,7 +4100,7 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 				type
 			}
 		}
-									valueSet {
+									valueSetApplicationControlTenant: valueSet {
 		id {
 			id
 			status
@@ -4218,8 +4218,8 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 									}
 								}
 							}
-							applicationActivitySatisfy
-							applicationActivity {
+							applicationActivitySatisfyApplicationControlDataRule: applicationActivitySatisfy
+							applicationActivityApplicationControlDataRule: applicationActivity {
 								activity {
 		id {
 			id
@@ -4584,7 +4584,7 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 									name
 								}
 							}
-							accessMethod {
+							accessMethodApplicationControlDataRule: accessMethod {
 		accessMethod {
 			value
 			accessMethod
@@ -4726,7 +4726,7 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 									name
 								}
 							}
-							source {
+							sourceApplicationControlDataRule: source {
 								country {
 		id {
 			id
@@ -6045,7 +6045,7 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 									name
 								}
 							}
-							device {
+							deviceApplicationControlDataRule: device {
 		id {
 			id
 			status
@@ -6161,15 +6161,15 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 		}
 								name
 							}
-							action
-							tracking {
+							actionApplicationControlDataRule: action
+							trackingApplicationControlDataRule: tracking {
 								event {
 									enabled
 								}
 								alert {
 									enabled
-									frequency
-									subscriptionGroup {
+									frequencyPolicyRuleTrackingAlert: frequency
+									subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
 		id {
 			id
 			status
@@ -6285,7 +6285,7 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 		}
 										name
 									}
-									webhook {
+									webhookPolicyRuleTrackingAlert: webhook {
 		id {
 			id
 			status
@@ -6401,7 +6401,7 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 		}
 										name
 									}
-									mailingList {
+									mailingListPolicyRuleTrackingAlert: mailingList {
 		id {
 			id
 			status
@@ -6519,7 +6519,7 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 									}
 								}
 							}
-							schedule {
+							scheduleApplicationControlDataRule: schedule {
 								activeOn
 								customTimeframe {
 		from {
@@ -6588,12 +6588,12 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 				}
 			}
 		}
-									days
+									daysPolicyCustomRecurring: days
 								}
 							}
-							severity
-							fileAttributeSatisfy
-							fileAttribute {
+							severityApplicationControlDataRule: severity
+							fileAttributeSatisfyApplicationControlDataRule: fileAttributeSatisfy
+							fileAttributeApplicationControlDataRule: fileAttribute {
 		fileAttribute {
 			value
 			fileAttribute
@@ -6855,7 +6855,7 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 									name
 								}
 							}
-							dlpProfile {
+							dlpProfileApplicationControlDataRule: dlpProfile {
 								contentProfile {
 		id {
 			id
@@ -7091,7 +7091,7 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 							}
 						}
 						fileRule {
-							application {
+							applicationApplicationControlFileRule: application {
 								application {
 		id {
 			id
@@ -7674,8 +7674,8 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 								}
 								applicationType
 							}
-							applicationActivitySatisfy
-							applicationActivity {
+							applicationActivitySatisfyApplicationControlFileRule: applicationActivitySatisfy
+							applicationActivityApplicationControlFileRule: applicationActivity {
 								activity {
 		id {
 			id
@@ -8040,7 +8040,7 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 									name
 								}
 							}
-							accessMethod {
+							accessMethodApplicationControlFileRule: accessMethod {
 		accessMethod {
 			value
 			accessMethod
@@ -8182,7 +8182,7 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 									name
 								}
 							}
-							source {
+							sourceApplicationControlFileRule: source {
 								country {
 		id {
 			id
@@ -9501,7 +9501,7 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 									name
 								}
 							}
-							device {
+							deviceApplicationControlFileRule: device {
 		id {
 			id
 			status
@@ -9617,15 +9617,15 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 		}
 								name
 							}
-							action
-							tracking {
+							actionApplicationControlFileRule: action
+							trackingApplicationControlFileRule: tracking {
 								event {
 									enabled
 								}
 								alert {
 									enabled
-									frequency
-									subscriptionGroup {
+									frequencyPolicyRuleTrackingAlert: frequency
+									subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
 		id {
 			id
 			status
@@ -9741,7 +9741,7 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 		}
 										name
 									}
-									webhook {
+									webhookPolicyRuleTrackingAlert: webhook {
 		id {
 			id
 			status
@@ -9857,7 +9857,7 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 		}
 										name
 									}
-									mailingList {
+									mailingListPolicyRuleTrackingAlert: mailingList {
 		id {
 			id
 			status
@@ -9975,7 +9975,7 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 									}
 								}
 							}
-							schedule {
+							scheduleApplicationControlFileRule: schedule {
 								activeOn
 								customTimeframe {
 		from {
@@ -10044,12 +10044,12 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 				}
 			}
 		}
-									days
+									daysPolicyCustomRecurring: days
 								}
 							}
-							severity
-							fileAttributeSatisfy
-							fileAttribute {
+							severityApplicationControlFileRule: severity
+							fileAttributeSatisfyApplicationControlFileRule: fileAttributeSatisfy
+							fileAttributeApplicationControlFileRule: fileAttribute {
 		fileAttribute {
 			value
 			fileAttribute
@@ -10313,10 +10313,10 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 							}
 						}
 					}
-					properties
+					propertiesApplicationControlRulePayload: properties
 				}
 				sections {
-					audit {
+					auditPolicySectionPayload: audit {
 						updatedTime
 	updatedBy {
 		__typename
@@ -10330,7 +10330,7 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 		}
 	}
 					}
-					section {
+					sectionPolicySectionPayload: section {
 	id {
 		id
 		status
@@ -10446,7 +10446,7 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 	}
 						name
 					}
-					properties
+					propertiesPolicySectionPayload: properties
 				}
 				audit {
 					publishedTime
@@ -10573,7 +10573,7 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 					updatedTime
 				}
 				additionalAttributes {
-					dataControlEnabled
+					dataControlEnabledApplicationControlConfig: dataControlEnabled
 				}
 			}
 		}

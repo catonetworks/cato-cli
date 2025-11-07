@@ -1,9 +1,9 @@
 mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPolicyMutationInput:ApplicationControlPolicyMutationInput $policyMoveRuleInput:PolicyMoveRuleInput!) {
 	policy ( accountId:$accountId ) {
 		applicationControl ( input:$applicationControlPolicyMutationInput  )  {
-			moveRule ( input:$policyMoveRuleInput   ) {
+			moveRuleApplicationControlPolicyMutations: moveRule ( input:$policyMoveRuleInput   ) {
 				rule {
-					audit {
+					auditApplicationControlRulePayload: audit {
 						updatedTime
 	updatedBy {
 		__typename
@@ -17,7 +17,7 @@ mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPo
 		}
 	}
 					}
-					rule {
+					ruleApplicationControlRulePayload: rule {
 	id {
 		id
 		status
@@ -253,7 +253,7 @@ mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPo
 						enabled
 						ruleType
 						applicationRule {
-							application {
+							applicationApplicationControlApplicationRule: application {
 								application {
 		id {
 			id
@@ -836,8 +836,8 @@ mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPo
 								}
 								applicationType
 							}
-							applicationActivitySatisfy
-							applicationActivity {
+							applicationActivitySatisfyApplicationControlApplicationRule: applicationActivitySatisfy
+							applicationActivityApplicationControlApplicationRule: applicationActivity {
 								activity {
 		id {
 			id
@@ -1202,9 +1202,9 @@ mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPo
 									name
 								}
 							}
-							applicationContext {
+							applicationContextApplicationControlApplicationRule: applicationContext {
 								applicationTenant {
-									operator
+									operatorApplicationControlTenant: operator
 		value {
 			__typename
 			... on StringValue {
@@ -1219,7 +1219,7 @@ mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPo
 				type
 			}
 		}
-									valueSet {
+									valueSetApplicationControlTenant: valueSet {
 		id {
 			id
 			status
@@ -1337,7 +1337,7 @@ mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPo
 									}
 								}
 							}
-							accessMethod {
+							accessMethodApplicationControlApplicationRule: accessMethod {
 		accessMethod {
 			value
 			accessMethod
@@ -1479,7 +1479,7 @@ mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPo
 									name
 								}
 							}
-							source {
+							sourceApplicationControlApplicationRule: source {
 								country {
 		id {
 			id
@@ -2798,7 +2798,7 @@ mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPo
 									name
 								}
 							}
-							device {
+							deviceApplicationControlApplicationRule: device {
 		id {
 			id
 			status
@@ -2914,15 +2914,15 @@ mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPo
 		}
 								name
 							}
-							action
-							tracking {
+							actionApplicationControlApplicationRule: action
+							trackingApplicationControlApplicationRule: tracking {
 								event {
 									enabled
 								}
 								alert {
 									enabled
-									frequency
-									subscriptionGroup {
+									frequencyPolicyRuleTrackingAlert: frequency
+									subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
 		id {
 			id
 			status
@@ -3038,7 +3038,7 @@ mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPo
 		}
 										name
 									}
-									webhook {
+									webhookPolicyRuleTrackingAlert: webhook {
 		id {
 			id
 			status
@@ -3154,7 +3154,7 @@ mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPo
 		}
 										name
 									}
-									mailingList {
+									mailingListPolicyRuleTrackingAlert: mailingList {
 		id {
 			id
 			status
@@ -3272,7 +3272,7 @@ mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPo
 									}
 								}
 							}
-							schedule {
+							scheduleApplicationControlApplicationRule: schedule {
 								activeOn
 								customTimeframe {
 		from {
@@ -3341,14 +3341,14 @@ mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPo
 				}
 			}
 		}
-									days
+									daysPolicyCustomRecurring: days
 								}
 							}
-							severity
-							applicationCriteriaSatisfy
-							applicationCriteria {
+							severityApplicationControlApplicationRule: severity
+							applicationCriteriaSatisfyApplicationControlApplicationRule: applicationCriteriaSatisfy
+							applicationCriteriaApplicationControlApplicationRule: applicationCriteria {
 								attributes {
-									complianceAttributes {
+									complianceAttributesApplicationControlAttributes: complianceAttributes {
 										iso27001
 										sox
 										hippa
@@ -3358,7 +3358,7 @@ mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPo
 										isae3402
 										pciDss
 									}
-									securityAttributes {
+									securityAttributesApplicationControlAttributes: securityAttributes {
 										mfa
 										encryptionAtRest
 										auditTrail
@@ -3494,12 +3494,12 @@ mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPo
 			risk
 			riskOperator
 		}
-									riskOperator
+									riskOperatorApplicationControlRiskCriteria: riskOperator
 								}
 							}
 						}
 						dataRule {
-							application {
+							applicationApplicationControlDataRule: application {
 								application {
 		id {
 			id
@@ -4082,9 +4082,9 @@ mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPo
 								}
 								applicationType
 							}
-							applicationContext {
+							applicationContextApplicationControlDataRule: applicationContext {
 								applicationTenant {
-									operator
+									operatorApplicationControlTenant: operator
 		value {
 			__typename
 			... on StringValue {
@@ -4099,7 +4099,7 @@ mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPo
 				type
 			}
 		}
-									valueSet {
+									valueSetApplicationControlTenant: valueSet {
 		id {
 			id
 			status
@@ -4217,8 +4217,8 @@ mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPo
 									}
 								}
 							}
-							applicationActivitySatisfy
-							applicationActivity {
+							applicationActivitySatisfyApplicationControlDataRule: applicationActivitySatisfy
+							applicationActivityApplicationControlDataRule: applicationActivity {
 								activity {
 		id {
 			id
@@ -4583,7 +4583,7 @@ mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPo
 									name
 								}
 							}
-							accessMethod {
+							accessMethodApplicationControlDataRule: accessMethod {
 		accessMethod {
 			value
 			accessMethod
@@ -4725,7 +4725,7 @@ mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPo
 									name
 								}
 							}
-							source {
+							sourceApplicationControlDataRule: source {
 								country {
 		id {
 			id
@@ -6044,7 +6044,7 @@ mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPo
 									name
 								}
 							}
-							device {
+							deviceApplicationControlDataRule: device {
 		id {
 			id
 			status
@@ -6160,15 +6160,15 @@ mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPo
 		}
 								name
 							}
-							action
-							tracking {
+							actionApplicationControlDataRule: action
+							trackingApplicationControlDataRule: tracking {
 								event {
 									enabled
 								}
 								alert {
 									enabled
-									frequency
-									subscriptionGroup {
+									frequencyPolicyRuleTrackingAlert: frequency
+									subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
 		id {
 			id
 			status
@@ -6284,7 +6284,7 @@ mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPo
 		}
 										name
 									}
-									webhook {
+									webhookPolicyRuleTrackingAlert: webhook {
 		id {
 			id
 			status
@@ -6400,7 +6400,7 @@ mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPo
 		}
 										name
 									}
-									mailingList {
+									mailingListPolicyRuleTrackingAlert: mailingList {
 		id {
 			id
 			status
@@ -6518,7 +6518,7 @@ mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPo
 									}
 								}
 							}
-							schedule {
+							scheduleApplicationControlDataRule: schedule {
 								activeOn
 								customTimeframe {
 		from {
@@ -6587,12 +6587,12 @@ mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPo
 				}
 			}
 		}
-									days
+									daysPolicyCustomRecurring: days
 								}
 							}
-							severity
-							fileAttributeSatisfy
-							fileAttribute {
+							severityApplicationControlDataRule: severity
+							fileAttributeSatisfyApplicationControlDataRule: fileAttributeSatisfy
+							fileAttributeApplicationControlDataRule: fileAttribute {
 		fileAttribute {
 			value
 			fileAttribute
@@ -6854,7 +6854,7 @@ mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPo
 									name
 								}
 							}
-							dlpProfile {
+							dlpProfileApplicationControlDataRule: dlpProfile {
 								contentProfile {
 		id {
 			id
@@ -7090,7 +7090,7 @@ mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPo
 							}
 						}
 						fileRule {
-							application {
+							applicationApplicationControlFileRule: application {
 								application {
 		id {
 			id
@@ -7673,8 +7673,8 @@ mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPo
 								}
 								applicationType
 							}
-							applicationActivitySatisfy
-							applicationActivity {
+							applicationActivitySatisfyApplicationControlFileRule: applicationActivitySatisfy
+							applicationActivityApplicationControlFileRule: applicationActivity {
 								activity {
 		id {
 			id
@@ -8039,7 +8039,7 @@ mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPo
 									name
 								}
 							}
-							accessMethod {
+							accessMethodApplicationControlFileRule: accessMethod {
 		accessMethod {
 			value
 			accessMethod
@@ -8181,7 +8181,7 @@ mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPo
 									name
 								}
 							}
-							source {
+							sourceApplicationControlFileRule: source {
 								country {
 		id {
 			id
@@ -9500,7 +9500,7 @@ mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPo
 									name
 								}
 							}
-							device {
+							deviceApplicationControlFileRule: device {
 		id {
 			id
 			status
@@ -9616,15 +9616,15 @@ mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPo
 		}
 								name
 							}
-							action
-							tracking {
+							actionApplicationControlFileRule: action
+							trackingApplicationControlFileRule: tracking {
 								event {
 									enabled
 								}
 								alert {
 									enabled
-									frequency
-									subscriptionGroup {
+									frequencyPolicyRuleTrackingAlert: frequency
+									subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
 		id {
 			id
 			status
@@ -9740,7 +9740,7 @@ mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPo
 		}
 										name
 									}
-									webhook {
+									webhookPolicyRuleTrackingAlert: webhook {
 		id {
 			id
 			status
@@ -9856,7 +9856,7 @@ mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPo
 		}
 										name
 									}
-									mailingList {
+									mailingListPolicyRuleTrackingAlert: mailingList {
 		id {
 			id
 			status
@@ -9974,7 +9974,7 @@ mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPo
 									}
 								}
 							}
-							schedule {
+							scheduleApplicationControlFileRule: schedule {
 								activeOn
 								customTimeframe {
 		from {
@@ -10043,12 +10043,12 @@ mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPo
 				}
 			}
 		}
-									days
+									daysPolicyCustomRecurring: days
 								}
 							}
-							severity
-							fileAttributeSatisfy
-							fileAttribute {
+							severityApplicationControlFileRule: severity
+							fileAttributeSatisfyApplicationControlFileRule: fileAttributeSatisfy
+							fileAttributeApplicationControlFileRule: fileAttribute {
 		fileAttribute {
 			value
 			fileAttribute
@@ -10312,7 +10312,7 @@ mutation policyApplicationControlMoveRule ( $accountId:ID! $applicationControlPo
 							}
 						}
 					}
-					properties
+					propertiesApplicationControlRulePayload: properties
 				}
 	status {
 		rawStatus

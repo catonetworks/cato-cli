@@ -1,10 +1,10 @@
 mutation policySocketLanUpdatePolicy ( $accountId:ID! $socketLanPolicyMutationInput:SocketLanPolicyMutationInput $socketLanPolicyUpdateInput:SocketLanPolicyUpdateInput!) {
 	policy ( accountId:$accountId ) {
 		socketLan ( input:$socketLanPolicyMutationInput  )  {
-			updatePolicy ( input:$socketLanPolicyUpdateInput   ) {
+			updatePolicySocketLanPolicyMutations: updatePolicy ( input:$socketLanPolicyUpdateInput   ) {
 				policy {
 					enabled
-					rules {
+					rulesSocketLanPolicy: rules {
 						audit {
 							updatedTime
 	updatedBy {
@@ -136,7 +136,7 @@ mutation policySocketLanUpdatePolicy ( $accountId:ID! $socketLanPolicyMutationIn
 							name
 							description
 							index
-							section {
+							sectionSocketLanRule: section {
 		id {
 			id
 			status
@@ -253,7 +253,7 @@ mutation policySocketLanUpdatePolicy ( $accountId:ID! $socketLanPolicyMutationIn
 								name
 							}
 							enabled
-							firewall {
+							firewallSocketLanRule: firewall {
 								audit {
 									updatedTime
 		updatedBy {
@@ -385,7 +385,7 @@ mutation policySocketLanUpdatePolicy ( $accountId:ID! $socketLanPolicyMutationIn
 									name
 									description
 									index
-									section {
+									sectionSocketLanFirewallRule: section {
 		id {
 			id
 			status
@@ -502,7 +502,7 @@ mutation policySocketLanUpdatePolicy ( $accountId:ID! $socketLanPolicyMutationIn
 										name
 									}
 									enabled
-									source {
+									sourceSocketLanFirewallRule: source {
 										vlan
 										mac
 										ipRange {
@@ -1475,7 +1475,7 @@ mutation policySocketLanUpdatePolicy ( $accountId:ID! $socketLanPolicyMutationIn
 											name
 										}
 									}
-									destination {
+									destinationSocketLanFirewallRule: destination {
 										vlan
 										ipRange {
 		from {
@@ -2447,8 +2447,8 @@ mutation policySocketLanUpdatePolicy ( $accountId:ID! $socketLanPolicyMutationIn
 											name
 										}
 									}
-									direction
-									application {
+									directionSocketLanFirewallRule: direction
+									applicationSocketLanFirewallRule: application {
 										application {
 		id {
 			id
@@ -2903,9 +2903,9 @@ mutation policySocketLanUpdatePolicy ( $accountId:ID! $socketLanPolicyMutationIn
 											name
 										}
 									}
-									service {
+									serviceSocketLanFirewallRule: service {
 										simple {
-											name
+											nameSimpleService: name
 										}
 										standard {
 		id {
@@ -3049,7 +3049,7 @@ mutation policySocketLanUpdatePolicy ( $accountId:ID! $socketLanPolicyMutationIn
 				}
 			}
 		}
-											portRange {
+											portRangeCustomService: portRange {
 			from {
 				container {
 					id
@@ -3083,18 +3083,18 @@ mutation policySocketLanUpdatePolicy ( $accountId:ID! $socketLanPolicyMutationIn
 				}
 			}
 											}
-											protocol
+											protocolCustomService: protocol
 										}
 									}
-									action
-									tracking {
+									actionSocketLanFirewallRule: action
+									trackingSocketLanFirewallRule: tracking {
 										event {
 											enabled
 										}
 										alert {
 											enabled
-											frequency
-											subscriptionGroup {
+											frequencyPolicyRuleTrackingAlert: frequency
+											subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
 			id {
 				id
 				status
@@ -3210,7 +3210,7 @@ mutation policySocketLanUpdatePolicy ( $accountId:ID! $socketLanPolicyMutationIn
 			}
 												name
 											}
-											webhook {
+											webhookPolicyRuleTrackingAlert: webhook {
 			id {
 				id
 				status
@@ -3326,7 +3326,7 @@ mutation policySocketLanUpdatePolicy ( $accountId:ID! $socketLanPolicyMutationIn
 			}
 												name
 											}
-											mailingList {
+											mailingListPolicyRuleTrackingAlert: mailingList {
 			id {
 				id
 				status
@@ -3447,7 +3447,7 @@ mutation policySocketLanUpdatePolicy ( $accountId:ID! $socketLanPolicyMutationIn
 								}
 								properties
 							}
-							site {
+							siteSocketLanRule: site {
 								site {
 		id {
 			id
@@ -3681,7 +3681,7 @@ mutation policySocketLanUpdatePolicy ( $accountId:ID! $socketLanPolicyMutationIn
 									name
 								}
 							}
-							source {
+							sourceSocketLanRule: source {
 								vlan
 								ipRange {
 		from {
@@ -4537,7 +4537,7 @@ mutation policySocketLanUpdatePolicy ( $accountId:ID! $socketLanPolicyMutationIn
 									name
 								}
 							}
-							destination {
+							destinationSocketLanRule: destination {
 								vlan
 								ipRange {
 		from {
@@ -5393,10 +5393,10 @@ mutation policySocketLanUpdatePolicy ( $accountId:ID! $socketLanPolicyMutationIn
 									name
 								}
 							}
-							direction
-							service {
+							directionSocketLanRule: direction
+							serviceSocketLanRule: service {
 								simple {
-									name
+									nameSimpleService: name
 								}
 								custom {
 		port {
@@ -5424,7 +5424,7 @@ mutation policySocketLanUpdatePolicy ( $accountId:ID! $socketLanPolicyMutationIn
 				}
 			}
 		}
-									portRange {
+									portRangeCustomService: portRange {
 		from {
 			container {
 				id
@@ -5458,14 +5458,14 @@ mutation policySocketLanUpdatePolicy ( $accountId:ID! $socketLanPolicyMutationIn
 			}
 		}
 									}
-									protocol
+									protocolCustomService: protocol
 								}
 							}
-							nat {
+							natSocketLanRule: nat {
 								enabled
 								natType
 							}
-	transport {
+	transportSocketLanRule: transport {
 		transportType
 		primaryInterfaceRole
 		secondaryInterfaceRole
@@ -5473,7 +5473,7 @@ mutation policySocketLanUpdatePolicy ( $accountId:ID! $socketLanPolicyMutationIn
 						}
 						properties
 					}
-					sections {
+					sectionsSocketLanPolicy: sections {
 						audit {
 							updatedTime
 	updatedBy {
@@ -5606,11 +5606,11 @@ mutation policySocketLanUpdatePolicy ( $accountId:ID! $socketLanPolicyMutationIn
 						}
 						properties
 					}
-					audit {
+					auditSocketLanPolicy: audit {
 						publishedTime
 						publishedBy
 					}
-					revision {
+					revisionSocketLanPolicy: revision {
 	id {
 		id
 		status

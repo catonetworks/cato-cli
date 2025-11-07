@@ -1,10 +1,10 @@
 query policyDynamicIpAllocationPolicy ( $accountId:ID! $dynamicIpAllocationPolicyInput:DynamicIpAllocationPolicyInput) {
 	policy ( accountId:$accountId ) {
 		dynamicIpAllocation {
-			policy ( input:$dynamicIpAllocationPolicyInput   ) {
+			policyDynamicIpAllocationPolicyQueries: policy ( input:$dynamicIpAllocationPolicyInput   ) {
 				enabled
 				rules {
-					audit {
+					auditDynamicIpAllocationRulePayload: audit {
 						updatedTime
 	updatedBy {
 		__typename
@@ -18,7 +18,7 @@ query policyDynamicIpAllocationPolicy ( $accountId:ID! $dynamicIpAllocationPolic
 		}
 	}
 					}
-					rule {
+					ruleDynamicIpAllocationRulePayload: rule {
 	id {
 		id
 		status
@@ -253,7 +253,7 @@ query policyDynamicIpAllocationPolicy ( $accountId:ID! $dynamicIpAllocationPolic
 						}
 						enabled
 						source {
-							user {
+							userDynamicIpAllocationSource: user {
 		id {
 			id
 			status
@@ -369,7 +369,7 @@ query policyDynamicIpAllocationPolicy ( $accountId:ID! $dynamicIpAllocationPolic
 		}
 								name
 							}
-							usersGroup {
+							usersGroupDynamicIpAllocationSource: usersGroup {
 		id {
 			id
 			status
@@ -607,7 +607,7 @@ query policyDynamicIpAllocationPolicy ( $accountId:ID! $dynamicIpAllocationPolic
 							name
 						}
 						range {
-							globalIpRange {
+							globalIpRangeDynamicIpAllocationRange: globalIpRange {
 		id {
 			id
 			status
@@ -725,10 +725,10 @@ query policyDynamicIpAllocationPolicy ( $accountId:ID! $dynamicIpAllocationPolic
 							}
 						}
 					}
-					properties
+					propertiesDynamicIpAllocationRulePayload: properties
 				}
 				sections {
-					audit {
+					auditPolicySectionPayload: audit {
 						updatedTime
 	updatedBy {
 		__typename
@@ -742,7 +742,7 @@ query policyDynamicIpAllocationPolicy ( $accountId:ID! $dynamicIpAllocationPolic
 		}
 	}
 					}
-					section {
+					sectionPolicySectionPayload: section {
 	id {
 		id
 		status
@@ -858,7 +858,7 @@ query policyDynamicIpAllocationPolicy ( $accountId:ID! $dynamicIpAllocationPolic
 	}
 						name
 					}
-					properties
+					propertiesPolicySectionPayload: properties
 				}
 				audit {
 					publishedTime

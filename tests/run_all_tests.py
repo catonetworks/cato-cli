@@ -83,9 +83,9 @@ class AllTestsRunner:
     
     def run_generated_tests(self, operation_filter: str = None):
         """Run auto-generated tests from payloads_generated.json"""
-        print(f"\n{Colors.BOLD}{'='*70}", Colors.CYAN)
+        print(f"{Colors.CYAN}{'='*70}{Colors.NC}", Colors.CYAN)
         print(f"Running Generated Tests - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}", Colors.NC)
-        print(f"{'='*70}{Colors.NC}", Colors.CYAN)
+        print(f"{Colors.CYAN}{'='*70}{Colors.NC}", Colors.CYAN)
         
         # Load test settings
         test_settings = load_test_settings(self.verbose)
@@ -132,7 +132,7 @@ class AllTestsRunner:
                 suite_failed += 1
                 print(f"{Colors.RED}✗ {test_config.get('name', operation)}{Colors.NC}")
                 if result.get('command'):
-                    print(f"{Colors.YELLOW}    Command: \n{result['command']}{Colors.NC}")
+                    print(f"{Colors.YELLOW}Command: \n{result['command']}{Colors.NC}")
                 if result.get('error'):
                     print(f"{Colors.RED}    Error: {result['error']}{Colors.NC}")
                 if result.get('failures'):
@@ -145,7 +145,7 @@ class AllTestsRunner:
                 suite_failed += 1
                 print(f"{Colors.RED}✗ {test_config.get('name', operation)} (error){Colors.NC}")
                 if result.get('command'):
-                    print(f"{Colors.YELLOW}    Command: \n{result['command']}{Colors.NC}")
+                    print(f"{Colors.YELLOW}Command: \n{result['command']}{Colors.NC}")
                 if result.get('error'):
                     print(f"{Colors.RED}    {result['error']}{Colors.NC}")
         
@@ -161,7 +161,7 @@ class AllTestsRunner:
     
     def run_custom_tests(self, test_filter: str = None):
         """Run custom tests from payloads_custom.json"""
-        print(f"\n{Colors.BOLD}{'='*70}", Colors.CYAN)
+        print(f"{'='*70}{Colors.NC}", Colors.CYAN)
         print(f"Running Custom Tests - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}", Colors.NC)
         print(f"{'='*70}{Colors.NC}", Colors.CYAN)
         
@@ -231,9 +231,9 @@ class AllTestsRunner:
     def run_all_suites(self, skip_validation: bool = False, skip_generated: bool = False, 
                       skip_custom: bool = False, operation_filter: str = None, test_filter: str = None):
         """Run all test suites in order: validation, generated, custom"""
-        print(f"\n{Colors.BOLD}{'='*70}", Colors.BLUE)
+        print(f"{'='*70}{Colors.NC}", Colors.CYAN)
         print(f"CLI Test Suite Runner - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}", Colors.BLUE)
-        print(f"{'='*70}{Colors.NC}", Colors.BLUE)
+        print(f"{'='*70}{Colors.NC}", Colors.CYAN)
         
         all_passed = True
         
@@ -267,7 +267,7 @@ class AllTestsRunner:
     
     def print_overall_summary(self):
         """Print overall test summary"""
-        print(f"\n{Colors.BOLD}{'='*70}", Colors.BLUE)
+        print(f"{'='*70}{Colors.NC}", Colors.CYAN)
         print("Overall Test Summary", Colors.BLUE)
         print(f"{'='*70}{Colors.NC}", Colors.BLUE)
         

@@ -1,9 +1,9 @@
 mutation policyTerminalServerUpdateSection ( $accountId:ID! $terminalServerPolicyMutationInput:TerminalServerPolicyMutationInput $policyUpdateSectionInput:PolicyUpdateSectionInput!) {
 	policy ( accountId:$accountId ) {
 		terminalServer ( input:$terminalServerPolicyMutationInput  )  {
-			updateSection ( input:$policyUpdateSectionInput   ) {
+			updateSectionTerminalServerPolicyMutations: updateSection ( input:$policyUpdateSectionInput   ) {
 				section {
-					audit {
+					auditPolicySectionPayload: audit {
 						updatedTime
 	updatedBy {
 		__typename
@@ -17,7 +17,7 @@ mutation policyTerminalServerUpdateSection ( $accountId:ID! $terminalServerPolic
 		}
 	}
 					}
-					section {
+					sectionPolicySectionPayload: section {
 	id {
 		id
 		status
@@ -133,7 +133,7 @@ mutation policyTerminalServerUpdateSection ( $accountId:ID! $terminalServerPolic
 	}
 						name
 					}
-					properties
+					propertiesPolicySectionPayload: properties
 				}
 	status {
 		rawStatus

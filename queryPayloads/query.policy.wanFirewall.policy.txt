@@ -1,10 +1,10 @@
 query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewallPolicyInput) {
 	policy ( accountId:$accountId ) {
 		wanFirewall {
-			policy ( input:$wanFirewallPolicyInput   ) {
+			policyWanFirewallPolicyQueries: policy ( input:$wanFirewallPolicyInput   ) {
 				enabled
 				rules {
-					audit {
+					auditWanFirewallRulePayload: audit {
 						updatedTime
 	updatedBy {
 		__typename
@@ -18,7 +18,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 		}
 	}
 					}
-					rule {
+					ruleWanFirewallRulePayload: rule {
 	id {
 		id
 		status
@@ -253,7 +253,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 						}
 						enabled
 						source {
-							host {
+							hostWanFirewallSource: host {
 		id {
 			id
 			status
@@ -369,7 +369,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 		}
 								name
 							}
-							site {
+							siteWanFirewallSource: site {
 		id {
 			id
 			status
@@ -492,7 +492,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 	ip {
 		siteId
 	}
-							ipRange {
+							ipRangeWanFirewallSource: ipRange {
 		from {
 			container {
 				id
@@ -526,7 +526,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 			}
 		}
 							}
-							globalIpRange {
+							globalIpRangeWanFirewallSource: globalIpRange {
 		id {
 			id
 			status
@@ -642,7 +642,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 		}
 								name
 							}
-							networkInterface {
+							networkInterfaceWanFirewallSource: networkInterface {
 		id {
 			id
 			status
@@ -758,7 +758,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 		}
 								name
 							}
-							siteNetworkSubnet {
+							siteNetworkSubnetWanFirewallSource: siteNetworkSubnet {
 		id {
 			id
 			status
@@ -874,7 +874,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 		}
 								name
 							}
-							floatingSubnet {
+							floatingSubnetWanFirewallSource: floatingSubnet {
 		id {
 			id
 			status
@@ -990,7 +990,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 		}
 								name
 							}
-							user {
+							userWanFirewallSource: user {
 		id {
 			id
 			status
@@ -1106,7 +1106,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 		}
 								name
 							}
-							usersGroup {
+							usersGroupWanFirewallSource: usersGroup {
 		id {
 			id
 			status
@@ -1222,7 +1222,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 		}
 								name
 							}
-							group {
+							groupWanFirewallSource: group {
 		id {
 			id
 			status
@@ -1338,7 +1338,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 		}
 								name
 							}
-							systemGroup {
+							systemGroupWanFirewallSource: systemGroup {
 		id {
 			id
 			status
@@ -1723,7 +1723,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 							osVersion
 						}
 						destination {
-							host {
+							hostWanFirewallDestination: host {
 		id {
 			id
 			status
@@ -1839,7 +1839,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 		}
 								name
 							}
-							site {
+							siteWanFirewallDestination: site {
 		id {
 			id
 			status
@@ -1962,7 +1962,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 	ip {
 		siteId
 	}
-							ipRange {
+							ipRangeWanFirewallDestination: ipRange {
 		from {
 			container {
 				id
@@ -1996,7 +1996,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 			}
 		}
 							}
-							globalIpRange {
+							globalIpRangeWanFirewallDestination: globalIpRange {
 		id {
 			id
 			status
@@ -2112,7 +2112,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 		}
 								name
 							}
-							networkInterface {
+							networkInterfaceWanFirewallDestination: networkInterface {
 		id {
 			id
 			status
@@ -2228,7 +2228,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 		}
 								name
 							}
-							siteNetworkSubnet {
+							siteNetworkSubnetWanFirewallDestination: siteNetworkSubnet {
 		id {
 			id
 			status
@@ -2344,7 +2344,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 		}
 								name
 							}
-							floatingSubnet {
+							floatingSubnetWanFirewallDestination: floatingSubnet {
 		id {
 			id
 			status
@@ -2460,7 +2460,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 		}
 								name
 							}
-							user {
+							userWanFirewallDestination: user {
 		id {
 			id
 			status
@@ -2576,7 +2576,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 		}
 								name
 							}
-							usersGroup {
+							usersGroupWanFirewallDestination: usersGroup {
 		id {
 			id
 			status
@@ -2692,7 +2692,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 		}
 								name
 							}
-							group {
+							groupWanFirewallDestination: group {
 		id {
 			id
 			status
@@ -2808,7 +2808,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 		}
 								name
 							}
-							systemGroup {
+							systemGroupWanFirewallDestination: systemGroup {
 		id {
 			id
 			status
@@ -2926,7 +2926,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 							}
 						}
 						application {
-							application {
+							applicationWanFirewallApplication: application {
 		id {
 			id
 			status
@@ -3042,7 +3042,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 		}
 								name
 							}
-							appCategory {
+							appCategoryWanFirewallApplication: appCategory {
 		id {
 			id
 			status
@@ -3158,7 +3158,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 		}
 								name
 							}
-							customApp {
+							customAppWanFirewallApplication: customApp {
 		id {
 			id
 			status
@@ -3274,7 +3274,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 		}
 								name
 							}
-							customCategory {
+							customCategoryWanFirewallApplication: customCategory {
 		id {
 			id
 			status
@@ -3390,7 +3390,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 		}
 								name
 							}
-							sanctionedAppsCategory {
+							sanctionedAppsCategoryWanFirewallApplication: sanctionedAppsCategory {
 		id {
 			id
 			status
@@ -3577,7 +3577,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 		id
 		name
 	}
-							ipRange {
+							ipRangeWanFirewallApplication: ipRange {
 		from {
 			container {
 				id
@@ -3611,7 +3611,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 			}
 		}
 							}
-							globalIpRange {
+							globalIpRangeWanFirewallApplication: globalIpRange {
 		id {
 			id
 			status
@@ -3729,7 +3729,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 							}
 						}
 						service {
-							standard {
+							standardWanFirewallServiceType: standard {
 		id {
 			id
 			status
@@ -3845,7 +3845,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 		}
 								name
 							}
-							custom {
+							customWanFirewallServiceType: custom {
 		port {
 			id
 			from
@@ -3910,10 +3910,10 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 						}
 						action
 						tracking {
-							event {
+							eventPolicyTracking: event {
 								enabled
 							}
-							alert {
+							alertPolicyTracking: alert {
 								enabled
 								frequency
 								subscriptionGroup {
@@ -4267,8 +4267,8 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 							}
 						}
 						schedule {
-							activeOn
-							customTimeframe {
+							activeOnPolicySchedule: activeOn
+							customTimeframePolicySchedule: customTimeframe {
 		from {
 			container {
 				id
@@ -4302,7 +4302,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 			}
 		}
 							}
-							customRecurring {
+							customRecurringPolicySchedule: customRecurring {
 		from {
 			container {
 				id
@@ -4347,7 +4347,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 						direction
 						exceptions {
 							name
-							source {
+							sourceWanFirewallRuleException: source {
 								host {
 		id {
 			id
@@ -5550,12 +5550,12 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 									name
 								}
 							}
-	deviceOS {
+	deviceOSWanFirewallRuleException: deviceOS {
 		product
 		vendor
 		version
 	}
-							destination {
+							destinationWanFirewallRuleException: destination {
 								host {
 		id {
 			id
@@ -6758,7 +6758,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 									name
 								}
 							}
-							country {
+							countryWanFirewallRuleException: country {
 		id {
 			id
 			status
@@ -6874,7 +6874,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 		}
 								name
 							}
-							device {
+							deviceWanFirewallRuleException: device {
 		id {
 			id
 			status
@@ -6990,7 +6990,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 		}
 								name
 							}
-							deviceAttributes {
+							deviceAttributesWanFirewallRuleException: deviceAttributes {
 		category {
 			id
 			name
@@ -7019,7 +7019,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 		}
 								osVersion
 							}
-							application {
+							applicationWanFirewallRuleException: application {
 								application {
 		id {
 			id
@@ -7822,7 +7822,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 									name
 								}
 							}
-							service {
+							serviceWanFirewallRuleException: service {
 								standard {
 		id {
 			id
@@ -7965,7 +7965,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 				}
 			}
 		}
-									portRange {
+									portRangeCustomService: portRange {
 		from {
 			container {
 				id
@@ -7999,17 +7999,17 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 			}
 		}
 									}
-									protocol
+									protocolCustomService: protocol
 								}
 							}
-							connectionOrigin
-							direction
+							connectionOriginWanFirewallRuleException: connectionOrigin
+							directionWanFirewallRuleException: direction
 						}
 					}
-					properties
+					propertiesWanFirewallRulePayload: properties
 				}
 				sections {
-					audit {
+					auditPolicySectionPayload: audit {
 						updatedTime
 	updatedBy {
 		__typename
@@ -8023,7 +8023,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 		}
 	}
 					}
-					section {
+					sectionPolicySectionPayload: section {
 	id {
 		id
 		status
@@ -8139,7 +8139,7 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 	}
 						name
 					}
-					properties
+					propertiesPolicySectionPayload: properties
 				}
 				audit {
 					publishedTime

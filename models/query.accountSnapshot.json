@@ -21,7 +21,42 @@
     },
     "deprecationReason": null,
     "description": "Current snapshot-based metrics that show near real\u2011time data for the account.\nProvides analytics that are similar to the Topology page for the account.",
-    "fieldTypes": {},
+    "fieldTypes": {
+        "ApnMethod": true,
+        "BgpState": true,
+        "Boolean": true,
+        "CellularDisconnectionReason": true,
+        "CellularInterface": true,
+        "CellularModemStatus": true,
+        "CellularNetworkType": true,
+        "ConnectivityStatus": true,
+        "DateTime": true,
+        "DeviceSnapshot": true,
+        "Float": true,
+        "HaReadiness": true,
+        "HaStatus": true,
+        "HaSubStatus": true,
+        "ID": true,
+        "IPInfo": true,
+        "IPSecInfo": true,
+        "Int": true,
+        "InterfaceInfo": true,
+        "InterfaceLinkState": true,
+        "InterfaceSnapshot": true,
+        "OperationalStatus": true,
+        "ProtoType": true,
+        "RecentConnection": true,
+        "SiteInfo": true,
+        "SiteSnapshot": true,
+        "SiteType": true,
+        "SocketInfo": true,
+        "SocketInterfaceWanRole": true,
+        "SocketPlatform": true,
+        "String": true,
+        "TunnelConfig": true,
+        "UserInfo": true,
+        "UserSnapshot": true
+    },
     "isDeprecated": false,
     "name": "accountSnapshot",
     "operationArgs": {
@@ -188,6 +223,7 @@
                                     "varName": "connectedSince"
                                 },
                                 "connectivityStatus": {
+                                    "alias": "connectivityStatusSiteSnapshot: connectivityStatus",
                                     "args": {},
                                     "deprecationReason": null,
                                     "description": "Connectivity to the Cato Cloud",
@@ -232,6 +268,7 @@
                                     "varName": "connectivityStatus"
                                 },
                                 "devices": {
+                                    "alias": "devicesSiteSnapshot: devices",
                                     "args": {},
                                     "deprecationReason": null,
                                     "description": "Data related to the Sockets for a site",
@@ -368,6 +405,7 @@
                                                     "varName": "identifier"
                                                 },
                                                 "interfaces": {
+                                                    "alias": "interfacesDeviceSnapshot: interfaces",
                                                     "args": {},
                                                     "deprecationReason": null,
                                                     "description": "Snapshot data for outbound facing interfaces",
@@ -384,6 +422,7 @@
                                                             "enumValues": null,
                                                             "fields": {
                                                                 "bgpState": {
+                                                                    "alias": "bgpStateInterfaceSnapshot: bgpState",
                                                                     "args": {},
                                                                     "deprecationReason": null,
                                                                     "description": "State of the BGP tunnel to the Cato Cloud",
@@ -458,6 +497,7 @@
                                                                     "varName": "bgpState"
                                                                 },
                                                                 "cellularInterfaceInfo": {
+                                                                    "alias": "cellularInterfaceInfoInterfaceSnapshot: cellularInterfaceInfo",
                                                                     "args": {},
                                                                     "deprecationReason": null,
                                                                     "description": "Information about cellular (LTE) interface",
@@ -920,7 +960,7 @@
                                                                                 }
                                                                             },
                                                                             "inputFields": null,
-                                                                            "interfaces": [],
+                                                                            "interfaces": {},
                                                                             "kind": "OBJECT",
                                                                             "name": "CellularInterface",
                                                                             "possibleTypes": null
@@ -975,6 +1015,7 @@
                                                                     "varName": "id"
                                                                 },
                                                                 "info": {
+                                                                    "alias": "infoInterfaceSnapshot: info",
                                                                     "args": {},
                                                                     "deprecationReason": null,
                                                                     "description": "data about the WAN link that is configured in the Socket Configuration window for the site",
@@ -1195,7 +1236,7 @@
                                                                                 }
                                                                             },
                                                                             "inputFields": null,
-                                                                            "interfaces": [],
+                                                                            "interfaces": {},
                                                                             "kind": "OBJECT",
                                                                             "name": "InterfaceInfo",
                                                                             "possibleTypes": null
@@ -1370,6 +1411,7 @@
                                                                     "varName": "tunnelRemoteIP"
                                                                 },
                                                                 "tunnelRemoteIPInfo": {
+                                                                    "alias": "tunnelRemoteIPInfoInterfaceSnapshot: tunnelRemoteIPInfo",
                                                                     "args": {},
                                                                     "deprecationReason": null,
                                                                     "description": "IP address, ISP, and geographical information related to the WAN ISP",
@@ -1547,7 +1589,7 @@
                                                                                 }
                                                                             },
                                                                             "inputFields": null,
-                                                                            "interfaces": [],
+                                                                            "interfaces": {},
                                                                             "kind": "OBJECT",
                                                                             "name": "IPInfo",
                                                                             "possibleTypes": null
@@ -1603,7 +1645,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": [],
+                                                            "interfaces": {},
                                                             "kind": "OBJECT",
                                                             "name": "InterfaceSnapshot",
                                                             "possibleTypes": null
@@ -1620,6 +1662,7 @@
                                                     "varName": "interfaceSnapshot"
                                                 },
                                                 "interfacesLinkState": {
+                                                    "alias": "interfacesLinkStateDeviceSnapshot: interfacesLinkState",
                                                     "args": {},
                                                     "deprecationReason": null,
                                                     "description": "Information of the link state of various interfaces in the devices. Unlike the `interfacess` field, it contains\nall links of the device, not just the outbound facing ones",
@@ -1797,7 +1840,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": [],
+                                                            "interfaces": {},
                                                             "kind": "OBJECT",
                                                             "name": "InterfaceLinkState",
                                                             "possibleTypes": null
@@ -2014,6 +2057,7 @@
                                                     "varName": "osVersion"
                                                 },
                                                 "recentConnections": {
+                                                    "alias": "recentConnectionsDeviceSnapshot: recentConnections",
                                                     "args": {},
                                                     "deprecationReason": null,
                                                     "description": "Data related to the most recent completed traffic flows",
@@ -2150,6 +2194,7 @@
                                                                     "varName": "remoteIP"
                                                                 },
                                                                 "remoteIPInfo": {
+                                                                    "alias": "remoteIPInfoRecentConnection: remoteIPInfo",
                                                                     "args": {},
                                                                     "deprecationReason": null,
                                                                     "description": "IP address, ISP, and geographical information related to the PoP that the traffic flow was connected to",
@@ -2327,7 +2372,7 @@
                                                                                 }
                                                                             },
                                                                             "inputFields": null,
-                                                                            "interfaces": [],
+                                                                            "interfaces": {},
                                                                             "kind": "OBJECT",
                                                                             "name": "IPInfo",
                                                                             "possibleTypes": null
@@ -2343,7 +2388,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": [],
+                                                            "interfaces": {},
                                                             "kind": "OBJECT",
                                                             "name": "RecentConnection",
                                                             "possibleTypes": null
@@ -2380,6 +2425,7 @@
                                                     "varName": "releaseGroup"
                                                 },
                                                 "socketInfo": {
+                                                    "alias": "socketInfoDeviceSnapshot: socketInfo",
                                                     "args": {},
                                                     "deprecationReason": null,
                                                     "description": "Shows data related to the Socket, such as version and serial number",
@@ -2595,7 +2641,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": [],
+                                                            "interfaces": {},
                                                             "kind": "OBJECT",
                                                             "name": "SocketInfo",
                                                             "possibleTypes": null
@@ -2671,7 +2717,7 @@
                                                 }
                                             },
                                             "inputFields": null,
-                                            "interfaces": [],
+                                            "interfaces": {},
                                             "kind": "OBJECT",
                                             "name": "DeviceSnapshot",
                                             "possibleTypes": null
@@ -2688,6 +2734,7 @@
                                     "varName": "deviceSnapshot"
                                 },
                                 "haStatus": {
+                                    "alias": "haStatusSiteSnapshot: haStatus",
                                     "args": {},
                                     "deprecationReason": null,
                                     "description": "Site HA readiness information",
@@ -2881,7 +2928,7 @@
                                                 }
                                             },
                                             "inputFields": null,
-                                            "interfaces": [],
+                                            "interfaces": {},
                                             "kind": "OBJECT",
                                             "name": "HaStatus",
                                             "possibleTypes": null
@@ -2936,6 +2983,7 @@
                                     "varName": "id"
                                 },
                                 "info": {
+                                    "alias": "infoSiteSnapshot: info",
                                     "args": {},
                                     "deprecationReason": null,
                                     "description": "General real-time information about the site",
@@ -3377,6 +3425,7 @@
                                                                     "varName": "upstreamBandwidthMbpsPrecision"
                                                                 },
                                                                 "wanRole": {
+                                                                    "alias": "wanRoleInterfaceInfo: wanRole",
                                                                     "args": {},
                                                                     "deprecationReason": null,
                                                                     "description": "Role for the WAN interface",
@@ -3440,7 +3489,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": [],
+                                                            "interfaces": {},
                                                             "kind": "OBJECT",
                                                             "name": "InterfaceInfo",
                                                             "possibleTypes": null
@@ -3553,6 +3602,7 @@
                                                                     "varName": "remoteIP"
                                                                 },
                                                                 "tunnelConfig": {
+                                                                    "alias": "tunnelConfigIPSecInfo: tunnelConfig",
                                                                     "args": {},
                                                                     "deprecationReason": null,
                                                                     "description": "List of tunnels configured on the device",
@@ -3630,7 +3680,7 @@
                                                                                 }
                                                                             },
                                                                             "inputFields": null,
-                                                                            "interfaces": [],
+                                                                            "interfaces": {},
                                                                             "kind": "OBJECT",
                                                                             "name": "TunnelConfig",
                                                                             "possibleTypes": null
@@ -3649,7 +3699,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": [],
+                                                            "interfaces": {},
                                                             "kind": "OBJECT",
                                                             "name": "IPSecInfo",
                                                             "possibleTypes": null
@@ -3782,6 +3832,7 @@
                                                                     "varName": "isPrimary"
                                                                 },
                                                                 "platform": {
+                                                                    "alias": "platformSocketInfo: platform",
                                                                     "args": {},
                                                                     "deprecationReason": null,
                                                                     "description": "Shows Socket type",
@@ -3941,7 +3992,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": [],
+                                                            "interfaces": {},
                                                             "kind": "OBJECT",
                                                             "name": "SocketInfo",
                                                             "possibleTypes": null
@@ -4015,7 +4066,7 @@
                                                 }
                                             },
                                             "inputFields": null,
-                                            "interfaces": [],
+                                            "interfaces": {},
                                             "kind": "OBJECT",
                                             "name": "SiteInfo",
                                             "possibleTypes": null
@@ -4050,6 +4101,7 @@
                                     "varName": "lastConnected"
                                 },
                                 "operationalStatus": {
+                                    "alias": "operationalStatusSiteSnapshot: operationalStatus",
                                     "args": {},
                                     "deprecationReason": null,
                                     "description": "Status for a site or VPN user",
@@ -4165,7 +4217,7 @@
                                 }
                             },
                             "inputFields": null,
-                            "interfaces": [],
+                            "interfaces": {},
                             "kind": "OBJECT",
                             "name": "SiteSnapshot",
                             "possibleTypes": null
@@ -4259,6 +4311,7 @@
                                     "varName": "connectedInOffice"
                                 },
                                 "connectivityStatus": {
+                                    "alias": "connectivityStatusUserSnapshot: connectivityStatus",
                                     "args": {},
                                     "deprecationReason": null,
                                     "description": "Connectivity to the Cato Cloud",
@@ -4323,6 +4376,7 @@
                                     "varName": "deviceName"
                                 },
                                 "devices": {
+                                    "alias": "devicesUserSnapshot: devices",
                                     "args": {},
                                     "deprecationReason": null,
                                     "description": "Data related to the Client",
@@ -4459,6 +4513,7 @@
                                                     "varName": "identifier"
                                                 },
                                                 "interfaces": {
+                                                    "alias": "interfacesDeviceSnapshot: interfaces",
                                                     "args": {},
                                                     "deprecationReason": null,
                                                     "description": "Snapshot data for outbound facing interfaces",
@@ -4475,6 +4530,7 @@
                                                             "enumValues": null,
                                                             "fields": {
                                                                 "bgpState": {
+                                                                    "alias": "bgpStateInterfaceSnapshot: bgpState",
                                                                     "args": {},
                                                                     "deprecationReason": null,
                                                                     "description": "State of the BGP tunnel to the Cato Cloud",
@@ -4549,6 +4605,7 @@
                                                                     "varName": "bgpState"
                                                                 },
                                                                 "cellularInterfaceInfo": {
+                                                                    "alias": "cellularInterfaceInfoInterfaceSnapshot: cellularInterfaceInfo",
                                                                     "args": {},
                                                                     "deprecationReason": null,
                                                                     "description": "Information about cellular (LTE) interface",
@@ -5011,7 +5068,7 @@
                                                                                 }
                                                                             },
                                                                             "inputFields": null,
-                                                                            "interfaces": [],
+                                                                            "interfaces": {},
                                                                             "kind": "OBJECT",
                                                                             "name": "CellularInterface",
                                                                             "possibleTypes": null
@@ -5066,6 +5123,7 @@
                                                                     "varName": "id"
                                                                 },
                                                                 "info": {
+                                                                    "alias": "infoInterfaceSnapshot: info",
                                                                     "args": {},
                                                                     "deprecationReason": null,
                                                                     "description": "data about the WAN link that is configured in the Socket Configuration window for the site",
@@ -5286,7 +5344,7 @@
                                                                                 }
                                                                             },
                                                                             "inputFields": null,
-                                                                            "interfaces": [],
+                                                                            "interfaces": {},
                                                                             "kind": "OBJECT",
                                                                             "name": "InterfaceInfo",
                                                                             "possibleTypes": null
@@ -5461,6 +5519,7 @@
                                                                     "varName": "tunnelRemoteIP"
                                                                 },
                                                                 "tunnelRemoteIPInfo": {
+                                                                    "alias": "tunnelRemoteIPInfoInterfaceSnapshot: tunnelRemoteIPInfo",
                                                                     "args": {},
                                                                     "deprecationReason": null,
                                                                     "description": "IP address, ISP, and geographical information related to the WAN ISP",
@@ -5638,7 +5697,7 @@
                                                                                 }
                                                                             },
                                                                             "inputFields": null,
-                                                                            "interfaces": [],
+                                                                            "interfaces": {},
                                                                             "kind": "OBJECT",
                                                                             "name": "IPInfo",
                                                                             "possibleTypes": null
@@ -5694,7 +5753,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": [],
+                                                            "interfaces": {},
                                                             "kind": "OBJECT",
                                                             "name": "InterfaceSnapshot",
                                                             "possibleTypes": null
@@ -5711,6 +5770,7 @@
                                                     "varName": "interfaceSnapshot"
                                                 },
                                                 "interfacesLinkState": {
+                                                    "alias": "interfacesLinkStateDeviceSnapshot: interfacesLinkState",
                                                     "args": {},
                                                     "deprecationReason": null,
                                                     "description": "Information of the link state of various interfaces in the devices. Unlike the `interfacess` field, it contains\nall links of the device, not just the outbound facing ones",
@@ -5888,7 +5948,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": [],
+                                                            "interfaces": {},
                                                             "kind": "OBJECT",
                                                             "name": "InterfaceLinkState",
                                                             "possibleTypes": null
@@ -6105,6 +6165,7 @@
                                                     "varName": "osVersion"
                                                 },
                                                 "recentConnections": {
+                                                    "alias": "recentConnectionsDeviceSnapshot: recentConnections",
                                                     "args": {},
                                                     "deprecationReason": null,
                                                     "description": "Data related to the most recent completed traffic flows",
@@ -6241,6 +6302,7 @@
                                                                     "varName": "remoteIP"
                                                                 },
                                                                 "remoteIPInfo": {
+                                                                    "alias": "remoteIPInfoRecentConnection: remoteIPInfo",
                                                                     "args": {},
                                                                     "deprecationReason": null,
                                                                     "description": "IP address, ISP, and geographical information related to the PoP that the traffic flow was connected to",
@@ -6418,7 +6480,7 @@
                                                                                 }
                                                                             },
                                                                             "inputFields": null,
-                                                                            "interfaces": [],
+                                                                            "interfaces": {},
                                                                             "kind": "OBJECT",
                                                                             "name": "IPInfo",
                                                                             "possibleTypes": null
@@ -6434,7 +6496,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": [],
+                                                            "interfaces": {},
                                                             "kind": "OBJECT",
                                                             "name": "RecentConnection",
                                                             "possibleTypes": null
@@ -6471,6 +6533,7 @@
                                                     "varName": "releaseGroup"
                                                 },
                                                 "socketInfo": {
+                                                    "alias": "socketInfoDeviceSnapshot: socketInfo",
                                                     "args": {},
                                                     "deprecationReason": null,
                                                     "description": "Shows data related to the Socket, such as version and serial number",
@@ -6686,7 +6749,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": [],
+                                                            "interfaces": {},
                                                             "kind": "OBJECT",
                                                             "name": "SocketInfo",
                                                             "possibleTypes": null
@@ -6762,7 +6825,7 @@
                                                 }
                                             },
                                             "inputFields": null,
-                                            "interfaces": [],
+                                            "interfaces": {},
                                             "kind": "OBJECT",
                                             "name": "DeviceSnapshot",
                                             "possibleTypes": null
@@ -6799,6 +6862,7 @@
                                     "varName": "id"
                                 },
                                 "info": {
+                                    "alias": "infoUserSnapshot: info",
                                     "args": {},
                                     "deprecationReason": null,
                                     "description": "General information about the VPN user",
@@ -7010,7 +7074,7 @@
                                                 }
                                             },
                                             "inputFields": null,
-                                            "interfaces": [],
+                                            "interfaces": {},
                                             "kind": "OBJECT",
                                             "name": "UserInfo",
                                             "possibleTypes": null
@@ -7085,6 +7149,7 @@
                                     "varName": "name"
                                 },
                                 "operationalStatus": {
+                                    "alias": "operationalStatusUserSnapshot: operationalStatus",
                                     "args": {},
                                     "deprecationReason": null,
                                     "description": "Status for a site or VPN user",
@@ -7239,6 +7304,7 @@
                                     "varName": "popName"
                                 },
                                 "recentConnections": {
+                                    "alias": "recentConnectionsUserSnapshot: recentConnections",
                                     "args": {},
                                     "deprecationReason": null,
                                     "description": "Data related to the most recent completed VPN connections",
@@ -7375,6 +7441,7 @@
                                                     "varName": "remoteIP"
                                                 },
                                                 "remoteIPInfo": {
+                                                    "alias": "remoteIPInfoRecentConnection: remoteIPInfo",
                                                     "args": {},
                                                     "deprecationReason": null,
                                                     "description": "IP address, ISP, and geographical information related to the PoP that the traffic flow was connected to",
@@ -7552,7 +7619,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": [],
+                                                            "interfaces": {},
                                                             "kind": "OBJECT",
                                                             "name": "IPInfo",
                                                             "possibleTypes": null
@@ -7568,7 +7635,7 @@
                                                 }
                                             },
                                             "inputFields": null,
-                                            "interfaces": [],
+                                            "interfaces": {},
                                             "kind": "OBJECT",
                                             "name": "RecentConnection",
                                             "possibleTypes": null
@@ -7605,6 +7672,7 @@
                                     "varName": "remoteIP"
                                 },
                                 "remoteIPInfo": {
+                                    "alias": "remoteIPInfoUserSnapshot: remoteIPInfo",
                                     "args": {},
                                     "deprecationReason": null,
                                     "description": "IP address, ISP, and geographical information related to the Client",
@@ -7782,7 +7850,7 @@
                                                 }
                                             },
                                             "inputFields": null,
-                                            "interfaces": [],
+                                            "interfaces": {},
                                             "kind": "OBJECT",
                                             "name": "IPInfo",
                                             "possibleTypes": null
@@ -7858,7 +7926,7 @@
                                 }
                             },
                             "inputFields": null,
-                            "interfaces": [],
+                            "interfaces": {},
                             "kind": "OBJECT",
                             "name": "UserSnapshot",
                             "possibleTypes": null

@@ -212,7 +212,18 @@
     },
     "deprecationReason": null,
     "description": null,
-    "fieldTypes": {},
+    "fieldTypes": {
+        "Container": true,
+        "ContainerAudit": true,
+        "ContainerRefInput": true,
+        "ContainerSearchPayload": true,
+        "ContainerType": true,
+        "DateTime": true,
+        "ID": true,
+        "Int": true,
+        "ObjectRefBy": true,
+        "String": true
+    },
     "isDeprecated": false,
     "name": "container",
     "operationArgs": {
@@ -602,6 +613,7 @@
                             "enumValues": null,
                             "fields": {
                                 "containers": {
+                                    "alias": "containersContainerSearchPayload: containers",
                                     "args": {},
                                     "deprecationReason": null,
                                     "description": "A list of matched containers",
@@ -618,6 +630,7 @@
                                             "enumValues": null,
                                             "fields": {
                                                 "audit": {
+                                                    "alias": "auditContainer: audit",
                                                     "args": {},
                                                     "deprecationReason": null,
                                                     "description": "Audit metadata about the container",
@@ -719,7 +732,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": [],
+                                                            "interfaces": {},
                                                             "kind": "OBJECT",
                                                             "name": "ContainerAudit",
                                                             "possibleTypes": null
@@ -822,444 +835,28 @@
                                             "interfaces": [],
                                             "kind": "INTERFACE",
                                             "name": "Container",
-                                            "possibleTypes": [
-                                                {
+                                            "possibleTypes": {
+                                                "FqdnContainer": {
                                                     "description": "A group with members of FQDN type",
                                                     "enumValues": null,
-                                                    "fields": {
-                                                        "audit": {
-                                                            "args": {},
-                                                            "deprecationReason": null,
-                                                            "description": "Audit metadata about the container",
-                                                            "id_str": "list___containers___audit",
-                                                            "isDeprecated": false,
-                                                            "name": "audit",
-                                                            "path": "list.containers.audit",
-                                                            "requestStr": "$containerAudit:ContainerAudit! ",
-                                                            "required": true,
-                                                            "responseStr": "audit:$containerAudit ",
-                                                            "type": {
-                                                                "definition": {
-                                                                    "description": "Audit metadata about the container",
-                                                                    "enumValues": null,
-                                                                    "fields": {
-                                                                        "createdAt": {
-                                                                            "args": {},
-                                                                            "deprecationReason": null,
-                                                                            "description": "Indicates when the container was created",
-                                                                            "id_str": "list___containers___audit___createdAt",
-                                                                            "isDeprecated": false,
-                                                                            "name": "createdAt",
-                                                                            "path": "list.containers.audit.createdAt",
-                                                                            "requestStr": "$createdAt:DateTime! ",
-                                                                            "required": true,
-                                                                            "responseStr": "createdAt:$createdAt ",
-                                                                            "type": {
-                                                                                "kind": [
-                                                                                    "NON_NULL",
-                                                                                    "SCALAR"
-                                                                                ],
-                                                                                "name": "DateTime",
-                                                                                "non_null": false
-                                                                            },
-                                                                            "varName": "createdAt"
-                                                                        },
-                                                                        "createdBy": {
-                                                                            "args": {},
-                                                                            "deprecationReason": null,
-                                                                            "description": "Indicates who created the container",
-                                                                            "id_str": "list___containers___audit___createdBy",
-                                                                            "isDeprecated": false,
-                                                                            "name": "createdBy",
-                                                                            "path": "list.containers.audit.createdBy",
-                                                                            "requestStr": "$createdBy:String! ",
-                                                                            "required": true,
-                                                                            "responseStr": "createdBy:$createdBy ",
-                                                                            "type": {
-                                                                                "kind": [
-                                                                                    "NON_NULL",
-                                                                                    "SCALAR"
-                                                                                ],
-                                                                                "name": "String",
-                                                                                "non_null": false
-                                                                            },
-                                                                            "varName": "createdBy"
-                                                                        },
-                                                                        "lastModifiedAt": {
-                                                                            "args": {},
-                                                                            "deprecationReason": null,
-                                                                            "description": "Indicated when the container was last updated",
-                                                                            "id_str": "list___containers___audit___lastModifiedAt",
-                                                                            "isDeprecated": false,
-                                                                            "name": "lastModifiedAt",
-                                                                            "path": "list.containers.audit.lastModifiedAt",
-                                                                            "requestStr": "$lastModifiedAt:DateTime! ",
-                                                                            "required": true,
-                                                                            "responseStr": "lastModifiedAt:$lastModifiedAt ",
-                                                                            "type": {
-                                                                                "kind": [
-                                                                                    "NON_NULL",
-                                                                                    "SCALAR"
-                                                                                ],
-                                                                                "name": "DateTime",
-                                                                                "non_null": false
-                                                                            },
-                                                                            "varName": "lastModifiedAt"
-                                                                        },
-                                                                        "lastModifiedBy": {
-                                                                            "args": {},
-                                                                            "deprecationReason": null,
-                                                                            "description": "Indicates who was the last to update the container",
-                                                                            "id_str": "list___containers___audit___lastModifiedBy",
-                                                                            "isDeprecated": false,
-                                                                            "name": "lastModifiedBy",
-                                                                            "path": "list.containers.audit.lastModifiedBy",
-                                                                            "requestStr": "$lastModifiedBy:String! ",
-                                                                            "required": true,
-                                                                            "responseStr": "lastModifiedBy:$lastModifiedBy ",
-                                                                            "type": {
-                                                                                "kind": [
-                                                                                    "NON_NULL",
-                                                                                    "SCALAR"
-                                                                                ],
-                                                                                "name": "String",
-                                                                                "non_null": false
-                                                                            },
-                                                                            "varName": "lastModifiedBy"
-                                                                        }
-                                                                    },
-                                                                    "inputFields": null,
-                                                                    "interfaces": [],
-                                                                    "kind": "OBJECT",
-                                                                    "name": "ContainerAudit",
-                                                                    "possibleTypes": null
-                                                                },
-                                                                "indexType": "object",
-                                                                "kind": [
-                                                                    "NON_NULL",
-                                                                    "OBJECT"
-                                                                ],
-                                                                "name": "ContainerAudit",
-                                                                "non_null": false
-                                                            },
-                                                            "varName": "containerAudit"
-                                                        },
-                                                        "description": {
-                                                            "args": {},
-                                                            "deprecationReason": null,
-                                                            "description": "Description for the container",
-                                                            "id_str": "list___containers___description",
-                                                            "isDeprecated": false,
-                                                            "name": "description",
-                                                            "path": "list.containers.description",
-                                                            "requestStr": "$description:String ",
-                                                            "required": false,
-                                                            "responseStr": "description:$description ",
-                                                            "type": {
-                                                                "kind": [
-                                                                    "SCALAR"
-                                                                ],
-                                                                "name": "String",
-                                                                "non_null": false
-                                                            },
-                                                            "varName": "description"
-                                                        },
-                                                        "id": {
-                                                            "args": {},
-                                                            "deprecationReason": null,
-                                                            "description": "Unique container ID",
-                                                            "id_str": "list___containers___id",
-                                                            "isDeprecated": false,
-                                                            "name": "id",
-                                                            "path": "list.containers.id",
-                                                            "requestStr": "$id:ID! ",
-                                                            "required": true,
-                                                            "responseStr": "id:$id ",
-                                                            "type": {
-                                                                "kind": [
-                                                                    "NON_NULL",
-                                                                    "SCALAR"
-                                                                ],
-                                                                "name": "ID",
-                                                                "non_null": false
-                                                            },
-                                                            "varName": "id"
-                                                        },
-                                                        "name": {
-                                                            "args": {},
-                                                            "deprecationReason": null,
-                                                            "description": "Name for the container",
-                                                            "id_str": "list___containers___name",
-                                                            "isDeprecated": false,
-                                                            "name": "name",
-                                                            "path": "list.containers.name",
-                                                            "requestStr": "$name:String! ",
-                                                            "required": true,
-                                                            "responseStr": "name:$name ",
-                                                            "type": {
-                                                                "kind": [
-                                                                    "NON_NULL",
-                                                                    "SCALAR"
-                                                                ],
-                                                                "name": "String",
-                                                                "non_null": false
-                                                            },
-                                                            "varName": "name"
-                                                        },
-                                                        "size": {
-                                                            "args": {},
-                                                            "deprecationReason": null,
-                                                            "description": "Number of items in the container",
-                                                            "id_str": "list___containers___size",
-                                                            "isDeprecated": false,
-                                                            "name": "size",
-                                                            "path": "list.containers.size",
-                                                            "requestStr": "$size:Int! ",
-                                                            "required": true,
-                                                            "responseStr": "size:$size ",
-                                                            "type": {
-                                                                "kind": [
-                                                                    "NON_NULL",
-                                                                    "SCALAR"
-                                                                ],
-                                                                "name": "Int",
-                                                                "non_null": false
-                                                            },
-                                                            "varName": "size"
-                                                        }
-                                                    },
+                                                    "fields": {},
                                                     "inputFields": null,
-                                                    "interfaces": [
-                                                        {
-                                                            "kind": "INTERFACE",
-                                                            "name": "Container",
-                                                            "ofType": null
-                                                        }
-                                                    ],
+                                                    "interfaces": {},
                                                     "kind": "OBJECT",
                                                     "name": "FqdnContainer",
-                                                    "ofType": null,
                                                     "possibleTypes": null
                                                 },
-                                                {
+                                                "IpAddressRangeContainer": {
                                                     "description": "A group with members of IPAddressRange type",
                                                     "enumValues": null,
-                                                    "fields": {
-                                                        "audit": {
-                                                            "args": {},
-                                                            "deprecationReason": null,
-                                                            "description": "Audit metadata about the container",
-                                                            "id_str": "list___containers___audit",
-                                                            "isDeprecated": false,
-                                                            "name": "audit",
-                                                            "path": "list.containers.audit",
-                                                            "requestStr": "$containerAudit:ContainerAudit! ",
-                                                            "required": true,
-                                                            "responseStr": "audit:$containerAudit ",
-                                                            "type": {
-                                                                "definition": {
-                                                                    "description": "Audit metadata about the container",
-                                                                    "enumValues": null,
-                                                                    "fields": {
-                                                                        "createdAt": {
-                                                                            "args": {},
-                                                                            "deprecationReason": null,
-                                                                            "description": "Indicates when the container was created",
-                                                                            "id_str": "list___containers___audit___createdAt",
-                                                                            "isDeprecated": false,
-                                                                            "name": "createdAt",
-                                                                            "path": "list.containers.audit.createdAt",
-                                                                            "requestStr": "$createdAt:DateTime! ",
-                                                                            "required": true,
-                                                                            "responseStr": "createdAt:$createdAt ",
-                                                                            "type": {
-                                                                                "kind": [
-                                                                                    "NON_NULL",
-                                                                                    "SCALAR"
-                                                                                ],
-                                                                                "name": "DateTime",
-                                                                                "non_null": false
-                                                                            },
-                                                                            "varName": "createdAt"
-                                                                        },
-                                                                        "createdBy": {
-                                                                            "args": {},
-                                                                            "deprecationReason": null,
-                                                                            "description": "Indicates who created the container",
-                                                                            "id_str": "list___containers___audit___createdBy",
-                                                                            "isDeprecated": false,
-                                                                            "name": "createdBy",
-                                                                            "path": "list.containers.audit.createdBy",
-                                                                            "requestStr": "$createdBy:String! ",
-                                                                            "required": true,
-                                                                            "responseStr": "createdBy:$createdBy ",
-                                                                            "type": {
-                                                                                "kind": [
-                                                                                    "NON_NULL",
-                                                                                    "SCALAR"
-                                                                                ],
-                                                                                "name": "String",
-                                                                                "non_null": false
-                                                                            },
-                                                                            "varName": "createdBy"
-                                                                        },
-                                                                        "lastModifiedAt": {
-                                                                            "args": {},
-                                                                            "deprecationReason": null,
-                                                                            "description": "Indicated when the container was last updated",
-                                                                            "id_str": "list___containers___audit___lastModifiedAt",
-                                                                            "isDeprecated": false,
-                                                                            "name": "lastModifiedAt",
-                                                                            "path": "list.containers.audit.lastModifiedAt",
-                                                                            "requestStr": "$lastModifiedAt:DateTime! ",
-                                                                            "required": true,
-                                                                            "responseStr": "lastModifiedAt:$lastModifiedAt ",
-                                                                            "type": {
-                                                                                "kind": [
-                                                                                    "NON_NULL",
-                                                                                    "SCALAR"
-                                                                                ],
-                                                                                "name": "DateTime",
-                                                                                "non_null": false
-                                                                            },
-                                                                            "varName": "lastModifiedAt"
-                                                                        },
-                                                                        "lastModifiedBy": {
-                                                                            "args": {},
-                                                                            "deprecationReason": null,
-                                                                            "description": "Indicates who was the last to update the container",
-                                                                            "id_str": "list___containers___audit___lastModifiedBy",
-                                                                            "isDeprecated": false,
-                                                                            "name": "lastModifiedBy",
-                                                                            "path": "list.containers.audit.lastModifiedBy",
-                                                                            "requestStr": "$lastModifiedBy:String! ",
-                                                                            "required": true,
-                                                                            "responseStr": "lastModifiedBy:$lastModifiedBy ",
-                                                                            "type": {
-                                                                                "kind": [
-                                                                                    "NON_NULL",
-                                                                                    "SCALAR"
-                                                                                ],
-                                                                                "name": "String",
-                                                                                "non_null": false
-                                                                            },
-                                                                            "varName": "lastModifiedBy"
-                                                                        }
-                                                                    },
-                                                                    "inputFields": null,
-                                                                    "interfaces": [],
-                                                                    "kind": "OBJECT",
-                                                                    "name": "ContainerAudit",
-                                                                    "possibleTypes": null
-                                                                },
-                                                                "indexType": "object",
-                                                                "kind": [
-                                                                    "NON_NULL",
-                                                                    "OBJECT"
-                                                                ],
-                                                                "name": "ContainerAudit",
-                                                                "non_null": false
-                                                            },
-                                                            "varName": "containerAudit"
-                                                        },
-                                                        "description": {
-                                                            "args": {},
-                                                            "deprecationReason": null,
-                                                            "description": "Description for the container",
-                                                            "id_str": "list___containers___description",
-                                                            "isDeprecated": false,
-                                                            "name": "description",
-                                                            "path": "list.containers.description",
-                                                            "requestStr": "$description:String ",
-                                                            "required": false,
-                                                            "responseStr": "description:$description ",
-                                                            "type": {
-                                                                "kind": [
-                                                                    "SCALAR"
-                                                                ],
-                                                                "name": "String",
-                                                                "non_null": false
-                                                            },
-                                                            "varName": "description"
-                                                        },
-                                                        "id": {
-                                                            "args": {},
-                                                            "deprecationReason": null,
-                                                            "description": "Unique container ID",
-                                                            "id_str": "list___containers___id",
-                                                            "isDeprecated": false,
-                                                            "name": "id",
-                                                            "path": "list.containers.id",
-                                                            "requestStr": "$id:ID! ",
-                                                            "required": true,
-                                                            "responseStr": "id:$id ",
-                                                            "type": {
-                                                                "kind": [
-                                                                    "NON_NULL",
-                                                                    "SCALAR"
-                                                                ],
-                                                                "name": "ID",
-                                                                "non_null": false
-                                                            },
-                                                            "varName": "id"
-                                                        },
-                                                        "name": {
-                                                            "args": {},
-                                                            "deprecationReason": null,
-                                                            "description": "Name for the container",
-                                                            "id_str": "list___containers___name",
-                                                            "isDeprecated": false,
-                                                            "name": "name",
-                                                            "path": "list.containers.name",
-                                                            "requestStr": "$name:String! ",
-                                                            "required": true,
-                                                            "responseStr": "name:$name ",
-                                                            "type": {
-                                                                "kind": [
-                                                                    "NON_NULL",
-                                                                    "SCALAR"
-                                                                ],
-                                                                "name": "String",
-                                                                "non_null": false
-                                                            },
-                                                            "varName": "name"
-                                                        },
-                                                        "size": {
-                                                            "args": {},
-                                                            "deprecationReason": null,
-                                                            "description": "Number of items in the container",
-                                                            "id_str": "list___containers___size",
-                                                            "isDeprecated": false,
-                                                            "name": "size",
-                                                            "path": "list.containers.size",
-                                                            "requestStr": "$size:Int! ",
-                                                            "required": true,
-                                                            "responseStr": "size:$size ",
-                                                            "type": {
-                                                                "kind": [
-                                                                    "NON_NULL",
-                                                                    "SCALAR"
-                                                                ],
-                                                                "name": "Int",
-                                                                "non_null": false
-                                                            },
-                                                            "varName": "size"
-                                                        }
-                                                    },
+                                                    "fields": {},
                                                     "inputFields": null,
-                                                    "interfaces": [
-                                                        {
-                                                            "kind": "INTERFACE",
-                                                            "name": "Container",
-                                                            "ofType": null
-                                                        }
-                                                    ],
+                                                    "interfaces": {},
                                                     "kind": "OBJECT",
                                                     "name": "IpAddressRangeContainer",
-                                                    "ofType": null,
                                                     "possibleTypes": null
                                                 }
-                                            ]
+                                            }
                                         },
                                         "indexType": "interface",
                                         "kind": [
@@ -1275,7 +872,7 @@
                                 }
                             },
                             "inputFields": null,
-                            "interfaces": [],
+                            "interfaces": {},
                             "kind": "OBJECT",
                             "name": "ContainerSearchPayload",
                             "possibleTypes": null

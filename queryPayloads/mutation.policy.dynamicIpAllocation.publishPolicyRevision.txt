@@ -1,10 +1,10 @@
 mutation policyDynamicIpAllocationPublishPolicyRevision ( $accountId:ID! $dynamicIpAllocationPolicyMutationInput:DynamicIpAllocationPolicyMutationInput $policyPublishRevisionInput:PolicyPublishRevisionInput) {
 	policy ( accountId:$accountId ) {
 		dynamicIpAllocation ( input:$dynamicIpAllocationPolicyMutationInput  )  {
-			publishPolicyRevision ( input:$policyPublishRevisionInput   ) {
+			publishPolicyRevisionDynamicIpAllocationPolicyMutations: publishPolicyRevision ( input:$policyPublishRevisionInput   ) {
 				policy {
 					enabled
-					rules {
+					rulesDynamicIpAllocationPolicy: rules {
 						audit {
 							updatedTime
 	updatedBy {
@@ -136,7 +136,7 @@ mutation policyDynamicIpAllocationPublishPolicyRevision ( $accountId:ID! $dynami
 							name
 							description
 							index
-							section {
+							sectionDynamicIpAllocationRule: section {
 		id {
 			id
 			status
@@ -253,7 +253,7 @@ mutation policyDynamicIpAllocationPublishPolicyRevision ( $accountId:ID! $dynami
 								name
 							}
 							enabled
-							source {
+							sourceDynamicIpAllocationRule: source {
 								user {
 		id {
 			id
@@ -487,11 +487,11 @@ mutation policyDynamicIpAllocationPublishPolicyRevision ( $accountId:ID! $dynami
 									name
 								}
 							}
-	platform {
+	platformDynamicIpAllocationRule: platform {
 		platform
 		versions
 	}
-							country {
+							countryDynamicIpAllocationRule: country {
 		id {
 			id
 			status
@@ -607,7 +607,7 @@ mutation policyDynamicIpAllocationPublishPolicyRevision ( $accountId:ID! $dynami
 		}
 								name
 							}
-							range {
+							rangeDynamicIpAllocationRule: range {
 								globalIpRange {
 		id {
 			id
@@ -728,7 +728,7 @@ mutation policyDynamicIpAllocationPublishPolicyRevision ( $accountId:ID! $dynami
 						}
 						properties
 					}
-					sections {
+					sectionsDynamicIpAllocationPolicy: sections {
 						audit {
 							updatedTime
 	updatedBy {
@@ -861,11 +861,11 @@ mutation policyDynamicIpAllocationPublishPolicyRevision ( $accountId:ID! $dynami
 						}
 						properties
 					}
-					audit {
+					auditDynamicIpAllocationPolicy: audit {
 						publishedTime
 						publishedBy
 					}
-					revision {
+					revisionDynamicIpAllocationPolicy: revision {
 	id {
 		id
 		status

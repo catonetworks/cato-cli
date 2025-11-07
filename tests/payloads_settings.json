@@ -9,7 +9,7 @@
         // The following queries need investigation
         "query.devices": {},
         "query.groups.groupList": {},
-        "query.groups.group.members":{},
+        "query.groups.group.members": {},
         "query.policy.socketLan.policy": {},
         "query.catalogs.catalogApplication": {},
         "query.catalogs.catalogApplicationList": {}
@@ -82,7 +82,9 @@
                     }
                 }
             },
-            "assertions": []
+            "assertions": [
+                "container.ipAddressRange.searchIpAddressRange.containers"
+            ]
         },
         "query.container.ipAddressRange.search": {
             "payload": {
@@ -93,7 +95,9 @@
                     }
                 }
             },
-            "assertions": []
+            "assertions": [
+                "container.ipAddressRange.search"
+            ]
         },
         "query.container.fqdn.search": {
             "payload": {
@@ -104,7 +108,9 @@
                     }
                 }
             },
-            "assertions": []
+            "assertions": [
+                "container.fqdn.search"
+            ]
         },
         "query.events": {
             "payload": {
@@ -158,7 +164,9 @@
                     }
                 }
             },
-            "assertions": []
+            "assertions": [
+                "catalogs.contentTypeGroupList.contentTypeGroup"
+            ]
         },
         "query.groups.whereUsed": {
             "payload": {
@@ -167,7 +175,9 @@
                     "input": "Advanced Group"
                 }
             },
-            "assertions": []
+            "assertions": [
+                "groups.whereUsed"
+            ]
         },
         "query.sandbox": {
             "payload": {
@@ -178,7 +188,9 @@
                     }
                 }
             },
-            "assertions": []
+            "assertions": [
+                "sandbox.reports.report"
+            ]
         },
         "query.site.bgpPeerList": {
             "payload": {
@@ -190,31 +202,7 @@
                 }
             },
             "assertions": [
-                "container.list.containers"
-            ]
-        },
-        "query.site.cloudInterconnectPhysicalConnectionId": {
-            "payload": {
-                "cloudInterconnectPhysicalConnectionIdInput": {
-                    "haRole": "PRIMARY",
-                    "site": {
-                        "by": "NAME",
-                        "input": "Interconnect"
-                    }
-                }
-            },
-            "assertions": []
-        },
-        "query.site.availableVersionList": {
-            "payload": {
-                "availableVersionListInput": {
-                    "platforms": [
-                        "OSX"
-                    ]
-                }
-            },
-            "assertions": [
-                "site.availableVersionList"
+                "data.site.bgpPeerList.bgpPeer"
             ]
         },
         "query.site.siteBgpStatus": {
@@ -228,6 +216,32 @@
             },
             "assertions": [
                 "site.siteBgpStatus"
+            ]
+        },
+        "query.site.cloudInterconnectPhysicalConnectionId": {
+            "payload": {
+                "cloudInterconnectPhysicalConnectionIdInput": {
+                    "haRole": "PRIMARY",
+                    "site": {
+                        "by": "NAME",
+                        "input": "Interconnect"
+                    }
+                }
+            },
+            "assertions": [
+                "site.cloudInterconnectPhysicalConnectionId"
+            ]
+        },
+        "query.site.availableVersionList": {
+            "payload": {
+                "availableVersionListInput": {
+                    "platforms": [
+                        "OSX"
+                    ]
+                }
+            },
+            "assertions": [
+                "site.availableVersionList"
             ]
         },
         "query.xdr.stories": {
@@ -248,7 +262,9 @@
                     "sort": []
                 }
             },
-            "assertions": []
+            "assertions": [
+                "xdr.stories"
+            ]
         },
         "query.xdr.story": {
             "payload": {

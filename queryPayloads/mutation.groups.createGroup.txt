@@ -1,7 +1,7 @@
 mutation groupsCreateGroup ( $accountId:ID! $createGroupInput:CreateGroupInput! $groupMembersListInput:GroupMembersListInput!) {
 	groups ( accountId:$accountId ) {
 		createGroup ( input:$createGroupInput  )  {
-			group {
+			groupCreateGroupPayload: group {
 	id {
 		id
 		status
@@ -119,7 +119,7 @@ mutation groupsCreateGroup ( $accountId:ID! $createGroupInput:CreateGroupInput! 
 				description
 				audit {
 					updatedTime
-					updatedBy {
+					updatedByAuditingMetadata: updatedBy {
 	id {
 		id
 		status
@@ -234,242 +234,10 @@ mutation groupsCreateGroup ( $accountId:ID! $createGroupInput:CreateGroupInput! 
 		}
 	}
 						name
-						... on AdminRef {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
-							name
-						}
-						... on ApiKeyRef {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
-							name
-						}
 					}
 				}
 				members ( input:$groupMembersListInput  )  {
-					items {
+					itemsGroupMembersListPayload: items {
 	id {
 		id
 		status
@@ -590,13 +358,13 @@ mutation groupsCreateGroup ( $accountId:ID! $createGroupInput:CreateGroupInput! 
 		details
 	}
 					}
-					paging {
+					pagingGroupMembersListPayload: paging {
 						total
 					}
 				}
 				membersCount
 				membersCountPerType {
-	type {
+	typeGroupMemberTypeCount: type {
 		name
 		recommendedAction
 		details

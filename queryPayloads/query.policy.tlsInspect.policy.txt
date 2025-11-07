@@ -1,10 +1,10 @@
 query policyTlsInspectPolicy ( $accountId:ID! $tlsInspectPolicyInput:TlsInspectPolicyInput) {
 	policy ( accountId:$accountId ) {
 		tlsInspect {
-			policy ( input:$tlsInspectPolicyInput   ) {
+			policyTlsInspectPolicyQueries: policy ( input:$tlsInspectPolicyInput   ) {
 				enabled
 				rules {
-					audit {
+					auditTlsInspectRulePayload: audit {
 						updatedTime
 	updatedBy {
 		__typename
@@ -18,7 +18,7 @@ query policyTlsInspectPolicy ( $accountId:ID! $tlsInspectPolicyInput:TlsInspectP
 		}
 	}
 					}
-					rule {
+					ruleTlsInspectRulePayload: rule {
 	id {
 		id
 		status
@@ -253,7 +253,7 @@ query policyTlsInspectPolicy ( $accountId:ID! $tlsInspectPolicyInput:TlsInspectP
 						}
 						enabled
 						source {
-							user {
+							userTlsInspectSource: user {
 		id {
 			id
 			status
@@ -369,7 +369,7 @@ query policyTlsInspectPolicy ( $accountId:ID! $tlsInspectPolicyInput:TlsInspectP
 		}
 								name
 							}
-							floatingSubnet {
+							floatingSubnetTlsInspectSource: floatingSubnet {
 		id {
 			id
 			status
@@ -485,7 +485,7 @@ query policyTlsInspectPolicy ( $accountId:ID! $tlsInspectPolicyInput:TlsInspectP
 		}
 								name
 							}
-							globalIpRange {
+							globalIpRangeTlsInspectSource: globalIpRange {
 		id {
 			id
 			status
@@ -601,7 +601,7 @@ query policyTlsInspectPolicy ( $accountId:ID! $tlsInspectPolicyInput:TlsInspectP
 		}
 								name
 							}
-							group {
+							groupTlsInspectSource: group {
 		id {
 			id
 			status
@@ -717,7 +717,7 @@ query policyTlsInspectPolicy ( $accountId:ID! $tlsInspectPolicyInput:TlsInspectP
 		}
 								name
 							}
-							host {
+							hostTlsInspectSource: host {
 		id {
 			id
 			status
@@ -837,7 +837,7 @@ query policyTlsInspectPolicy ( $accountId:ID! $tlsInspectPolicyInput:TlsInspectP
 		id
 		name
 	}
-							ipRange {
+							ipRangeTlsInspectSource: ipRange {
 		from {
 			container {
 				id
@@ -871,7 +871,7 @@ query policyTlsInspectPolicy ( $accountId:ID! $tlsInspectPolicyInput:TlsInspectP
 			}
 		}
 							}
-							networkInterface {
+							networkInterfaceTlsInspectSource: networkInterface {
 		id {
 			id
 			status
@@ -987,7 +987,7 @@ query policyTlsInspectPolicy ( $accountId:ID! $tlsInspectPolicyInput:TlsInspectP
 		}
 								name
 							}
-							site {
+							siteTlsInspectSource: site {
 		id {
 			id
 			status
@@ -1103,7 +1103,7 @@ query policyTlsInspectPolicy ( $accountId:ID! $tlsInspectPolicyInput:TlsInspectP
 		}
 								name
 							}
-							systemGroup {
+							systemGroupTlsInspectSource: systemGroup {
 		id {
 			id
 			status
@@ -1219,7 +1219,7 @@ query policyTlsInspectPolicy ( $accountId:ID! $tlsInspectPolicyInput:TlsInspectP
 		}
 								name
 							}
-							usersGroup {
+							usersGroupTlsInspectSource: usersGroup {
 		id {
 			id
 			status
@@ -1338,7 +1338,7 @@ query policyTlsInspectPolicy ( $accountId:ID! $tlsInspectPolicyInput:TlsInspectP
 	ip {
 		siteId
 	}
-							siteNetworkSubnet {
+							siteNetworkSubnetTlsInspectSource: siteNetworkSubnet {
 		id {
 			id
 			status
@@ -1693,7 +1693,7 @@ query policyTlsInspectPolicy ( $accountId:ID! $tlsInspectPolicyInput:TlsInspectP
 						}
 						connectionOrigin
 						application {
-							application {
+							applicationTlsInspectApplication: application {
 		id {
 			id
 			status
@@ -1809,7 +1809,7 @@ query policyTlsInspectPolicy ( $accountId:ID! $tlsInspectPolicyInput:TlsInspectP
 		}
 								name
 							}
-							appCategory {
+							appCategoryTlsInspectApplication: appCategory {
 		id {
 			id
 			status
@@ -1925,7 +1925,7 @@ query policyTlsInspectPolicy ( $accountId:ID! $tlsInspectPolicyInput:TlsInspectP
 		}
 								name
 							}
-							country {
+							countryTlsInspectApplication: country {
 		id {
 			id
 			status
@@ -2041,7 +2041,7 @@ query policyTlsInspectPolicy ( $accountId:ID! $tlsInspectPolicyInput:TlsInspectP
 		}
 								name
 							}
-							customApp {
+							customAppTlsInspectApplication: customApp {
 		id {
 			id
 			status
@@ -2157,7 +2157,7 @@ query policyTlsInspectPolicy ( $accountId:ID! $tlsInspectPolicyInput:TlsInspectP
 		}
 								name
 							}
-							customCategory {
+							customCategoryTlsInspectApplication: customCategory {
 		id {
 			id
 			status
@@ -2273,7 +2273,7 @@ query policyTlsInspectPolicy ( $accountId:ID! $tlsInspectPolicyInput:TlsInspectP
 		}
 								name
 							}
-							customServiceIp {
+							customServiceIpTlsInspectApplication: customServiceIp {
 								name
 		ip {
 			siteId
@@ -2384,7 +2384,7 @@ query policyTlsInspectPolicy ( $accountId:ID! $tlsInspectPolicyInput:TlsInspectP
 	ip {
 		siteId
 	}
-							ipRange {
+							ipRangeTlsInspectApplication: ipRange {
 		from {
 			container {
 				id
@@ -2418,7 +2418,7 @@ query policyTlsInspectPolicy ( $accountId:ID! $tlsInspectPolicyInput:TlsInspectP
 			}
 		}
 							}
-							globalIpRange {
+							globalIpRangeTlsInspectApplication: globalIpRange {
 		id {
 			id
 			status
@@ -2534,7 +2534,7 @@ query policyTlsInspectPolicy ( $accountId:ID! $tlsInspectPolicyInput:TlsInspectP
 		}
 								name
 							}
-							customService {
+							customServiceTlsInspectApplication: customService {
 		port {
 			id
 			from
@@ -2597,7 +2597,7 @@ query policyTlsInspectPolicy ( $accountId:ID! $tlsInspectPolicyInput:TlsInspectP
 								protocol
 							}
 							remoteAsn
-							service {
+							serviceTlsInspectApplication: service {
 		id {
 			id
 			status
@@ -2713,15 +2713,15 @@ query policyTlsInspectPolicy ( $accountId:ID! $tlsInspectPolicyInput:TlsInspectP
 		}
 								name
 							}
-							tlsInspectCategory
+							tlsInspectCategoryTlsInspectApplication: tlsInspectCategory
 						}
 						action
 						untrustedCertificateAction
 					}
-					properties
+					propertiesTlsInspectRulePayload: properties
 				}
 				sections {
-					audit {
+					auditPolicySectionPayload: audit {
 						updatedTime
 	updatedBy {
 		__typename
@@ -2735,7 +2735,7 @@ query policyTlsInspectPolicy ( $accountId:ID! $tlsInspectPolicyInput:TlsInspectP
 		}
 	}
 					}
-					section {
+					sectionPolicySectionPayload: section {
 	id {
 		id
 		status
@@ -2851,7 +2851,7 @@ query policyTlsInspectPolicy ( $accountId:ID! $tlsInspectPolicyInput:TlsInspectP
 	}
 						name
 					}
-					properties
+					propertiesPolicySectionPayload: properties
 				}
 				audit {
 					publishedTime
@@ -2978,8 +2978,8 @@ query policyTlsInspectPolicy ( $accountId:ID! $tlsInspectPolicyInput:TlsInspectP
 					updatedTime
 				}
 				additionalAttributes {
-					defaultRuleAction
-					defaultRuleUntrustedCertificateAction
+					defaultRuleActionTlsInspectConfig: defaultRuleAction
+					defaultRuleUntrustedCertificateActionTlsInspectConfig: defaultRuleUntrustedCertificateAction
 				}
 			}
 		}

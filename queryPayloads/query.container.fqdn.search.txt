@@ -1,7 +1,7 @@
 query containerFqdnSearch ( $accountId:ID! $fqdnContainerSearchInput:FqdnContainerSearchInput!) {
 	container ( accountId:$accountId ) {
 		fqdn {
-			search ( input:$fqdnContainerSearchInput   ) {
+			searchFqdnContainerQueries: search ( input:$fqdnContainerSearchInput   ) {
 				container {
 	id {
 		id
@@ -119,7 +119,7 @@ query containerFqdnSearch ( $accountId:ID! $fqdnContainerSearchInput:FqdnContain
 					name
 					description
 					size
-					audit {
+					auditFqdnContainer: audit {
 						createdBy
 						lastModifiedBy
 						lastModifiedAt

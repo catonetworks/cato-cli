@@ -16,6 +16,9 @@ sys.setrecursionlimit(5000)
 def run():
     print("Starting continuous multi-threaded schema processing...")
     
+    # Cleanup previous build artifacts
+    catolib.cleanupBuildArtifacts()
+    
     ######################### CONTINUOUS BUILD PROCESS ##############################
     ## Single continuous process - download, parse, and generate all in one flow
     print("Downloading and processing GraphQL schema...")

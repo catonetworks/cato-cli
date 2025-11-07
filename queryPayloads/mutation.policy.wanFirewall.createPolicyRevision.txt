@@ -1,10 +1,10 @@
 mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPolicyMutationInput:WanFirewallPolicyMutationInput $policyCreateRevisionInput:PolicyCreateRevisionInput!) {
 	policy ( accountId:$accountId ) {
 		wanFirewall ( input:$wanFirewallPolicyMutationInput  )  {
-			createPolicyRevision ( input:$policyCreateRevisionInput   ) {
+			createPolicyRevisionWanFirewallPolicyMutations: createPolicyRevision ( input:$policyCreateRevisionInput   ) {
 				policy {
 					enabled
-					rules {
+					rulesWanFirewallPolicy: rules {
 						audit {
 							updatedTime
 	updatedBy {
@@ -136,7 +136,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 							name
 							description
 							index
-							section {
+							sectionWanFirewallRule: section {
 		id {
 			id
 			status
@@ -253,7 +253,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 								name
 							}
 							enabled
-							source {
+							sourceWanFirewallRule: source {
 								host {
 		id {
 			id
@@ -1456,8 +1456,8 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 									name
 								}
 							}
-							connectionOrigin
-							country {
+							connectionOriginWanFirewallRule: connectionOrigin
+							countryWanFirewallRule: country {
 		id {
 			id
 			status
@@ -1573,7 +1573,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 		}
 								name
 							}
-							device {
+							deviceWanFirewallRule: device {
 		id {
 			id
 			status
@@ -1689,12 +1689,12 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 		}
 								name
 							}
-	deviceOS {
+	deviceOSWanFirewallRule: deviceOS {
 		product
 		vendor
 		version
 	}
-							deviceAttributes {
+							deviceAttributesWanFirewallRule: deviceAttributes {
 		category {
 			id
 			name
@@ -1723,7 +1723,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 		}
 								osVersion
 							}
-							destination {
+							destinationWanFirewallRule: destination {
 								host {
 		id {
 			id
@@ -2926,7 +2926,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 									name
 								}
 							}
-							application {
+							applicationWanFirewallRule: application {
 								application {
 		id {
 			id
@@ -3729,7 +3729,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 									name
 								}
 							}
-							service {
+							serviceWanFirewallRule: service {
 								standard {
 		id {
 			id
@@ -3872,7 +3872,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 				}
 			}
 		}
-									portRange {
+									portRangeCustomService: portRange {
 		from {
 			container {
 				id
@@ -3906,18 +3906,18 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 			}
 		}
 									}
-									protocol
+									protocolCustomService: protocol
 								}
 							}
-							action
-							tracking {
+							actionWanFirewallRule: action
+							trackingWanFirewallRule: tracking {
 								event {
 									enabled
 								}
 								alert {
 									enabled
-									frequency
-									subscriptionGroup {
+									frequencyPolicyRuleTrackingAlert: frequency
+									subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
 		id {
 			id
 			status
@@ -4033,7 +4033,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 		}
 										name
 									}
-									webhook {
+									webhookPolicyRuleTrackingAlert: webhook {
 		id {
 			id
 			status
@@ -4149,7 +4149,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 		}
 										name
 									}
-									mailingList {
+									mailingListPolicyRuleTrackingAlert: mailingList {
 		id {
 			id
 			status
@@ -4267,7 +4267,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 									}
 								}
 							}
-							schedule {
+							scheduleWanFirewallRule: schedule {
 								activeOn
 								customTimeframe {
 		from {
@@ -4336,20 +4336,20 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 				}
 			}
 		}
-									days
+									daysPolicyCustomRecurring: days
 								}
 							}
-							activePeriod {
+							activePeriodWanFirewallRule: activePeriod {
 								useEffectiveFrom
 								effectiveFrom
 								useExpiresAt
 								expiresAt
 							}
-							direction
-							exceptions {
+							directionWanFirewallRule: direction
+							exceptionsWanFirewallRule: exceptions {
 								name
 								source {
-									host {
+									hostWanFirewallSource: host {
 		id {
 			id
 			status
@@ -4465,7 +4465,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 		}
 										name
 									}
-									site {
+									siteWanFirewallSource: site {
 		id {
 			id
 			status
@@ -4588,7 +4588,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 		ip {
 			siteId
 		}
-									ipRange {
+									ipRangeWanFirewallSource: ipRange {
 		from {
 			container {
 				id
@@ -4622,7 +4622,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 			}
 		}
 									}
-									globalIpRange {
+									globalIpRangeWanFirewallSource: globalIpRange {
 		id {
 			id
 			status
@@ -4738,7 +4738,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 		}
 										name
 									}
-									networkInterface {
+									networkInterfaceWanFirewallSource: networkInterface {
 		id {
 			id
 			status
@@ -4854,7 +4854,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 		}
 										name
 									}
-									siteNetworkSubnet {
+									siteNetworkSubnetWanFirewallSource: siteNetworkSubnet {
 		id {
 			id
 			status
@@ -4970,7 +4970,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 		}
 										name
 									}
-									floatingSubnet {
+									floatingSubnetWanFirewallSource: floatingSubnet {
 		id {
 			id
 			status
@@ -5086,7 +5086,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 		}
 										name
 									}
-									user {
+									userWanFirewallSource: user {
 		id {
 			id
 			status
@@ -5202,7 +5202,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 		}
 										name
 									}
-									usersGroup {
+									usersGroupWanFirewallSource: usersGroup {
 		id {
 			id
 			status
@@ -5318,7 +5318,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 		}
 										name
 									}
-									group {
+									groupWanFirewallSource: group {
 		id {
 			id
 			status
@@ -5434,7 +5434,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 		}
 										name
 									}
-									systemGroup {
+									systemGroupWanFirewallSource: systemGroup {
 		id {
 			id
 			status
@@ -5557,7 +5557,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 			version
 		}
 								destination {
-									host {
+									hostWanFirewallDestination: host {
 		id {
 			id
 			status
@@ -5673,7 +5673,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 		}
 										name
 									}
-									site {
+									siteWanFirewallDestination: site {
 		id {
 			id
 			status
@@ -5796,7 +5796,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 		ip {
 			siteId
 		}
-									ipRange {
+									ipRangeWanFirewallDestination: ipRange {
 		from {
 			container {
 				id
@@ -5830,7 +5830,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 			}
 		}
 									}
-									globalIpRange {
+									globalIpRangeWanFirewallDestination: globalIpRange {
 		id {
 			id
 			status
@@ -5946,7 +5946,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 		}
 										name
 									}
-									networkInterface {
+									networkInterfaceWanFirewallDestination: networkInterface {
 		id {
 			id
 			status
@@ -6062,7 +6062,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 		}
 										name
 									}
-									siteNetworkSubnet {
+									siteNetworkSubnetWanFirewallDestination: siteNetworkSubnet {
 		id {
 			id
 			status
@@ -6178,7 +6178,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 		}
 										name
 									}
-									floatingSubnet {
+									floatingSubnetWanFirewallDestination: floatingSubnet {
 		id {
 			id
 			status
@@ -6294,7 +6294,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 		}
 										name
 									}
-									user {
+									userWanFirewallDestination: user {
 		id {
 			id
 			status
@@ -6410,7 +6410,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 		}
 										name
 									}
-									usersGroup {
+									usersGroupWanFirewallDestination: usersGroup {
 		id {
 			id
 			status
@@ -6526,7 +6526,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 		}
 										name
 									}
-									group {
+									groupWanFirewallDestination: group {
 		id {
 			id
 			status
@@ -6642,7 +6642,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 		}
 										name
 									}
-									systemGroup {
+									systemGroupWanFirewallDestination: systemGroup {
 		id {
 			id
 			status
@@ -7021,7 +7021,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 									osVersion
 								}
 								application {
-									application {
+									applicationWanFirewallApplication: application {
 		id {
 			id
 			status
@@ -7137,7 +7137,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 		}
 										name
 									}
-									appCategory {
+									appCategoryWanFirewallApplication: appCategory {
 		id {
 			id
 			status
@@ -7253,7 +7253,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 		}
 										name
 									}
-									customApp {
+									customAppWanFirewallApplication: customApp {
 		id {
 			id
 			status
@@ -7369,7 +7369,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 		}
 										name
 									}
-									customCategory {
+									customCategoryWanFirewallApplication: customCategory {
 		id {
 			id
 			status
@@ -7485,7 +7485,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 		}
 										name
 									}
-									sanctionedAppsCategory {
+									sanctionedAppsCategoryWanFirewallApplication: sanctionedAppsCategory {
 		id {
 			id
 			status
@@ -7672,7 +7672,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 			id
 			name
 		}
-									ipRange {
+									ipRangeWanFirewallApplication: ipRange {
 		from {
 			container {
 				id
@@ -7706,7 +7706,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 			}
 		}
 									}
-									globalIpRange {
+									globalIpRangeWanFirewallApplication: globalIpRange {
 		id {
 			id
 			status
@@ -7824,7 +7824,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 									}
 								}
 								service {
-									standard {
+									standardWanFirewallServiceType: standard {
 		id {
 			id
 			status
@@ -7940,7 +7940,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 		}
 										name
 									}
-									custom {
+									customWanFirewallServiceType: custom {
 		port {
 			id
 			from
@@ -8009,7 +8009,7 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 						}
 						properties
 					}
-					sections {
+					sectionsWanFirewallPolicy: sections {
 						audit {
 							updatedTime
 	updatedBy {
@@ -8142,11 +8142,11 @@ mutation policyWanFirewallCreatePolicyRevision ( $accountId:ID! $wanFirewallPoli
 						}
 						properties
 					}
-					audit {
+					auditWanFirewallPolicy: audit {
 						publishedTime
 						publishedBy
 					}
-					revision {
+					revisionWanFirewallPolicy: revision {
 	id {
 		id
 		status

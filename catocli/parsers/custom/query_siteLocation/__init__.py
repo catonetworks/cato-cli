@@ -1,5 +1,5 @@
 
-from ..customParserApiClient import querySiteLocation, get_help
+from ...customParserApiClient import querySiteLocation, get_help
 
 def query_siteLocation_parse(query_subparsers):
     query_siteLocation_parser = query_subparsers.add_parser('siteLocation', 

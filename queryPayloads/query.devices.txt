@@ -1,7 +1,7 @@
 query devices ( $accountId:ID! $deviceV2Input:DeviceV2Input $sortOrderInput:SortOrderInput $deviceAttributeCatalogInput:DeviceAttributeCatalogInput $deviceCsvExportInput:DeviceCsvExportInput $jobId:ID!) {
 	devices ( accountId:$accountId ) {
 		list ( input:$deviceV2Input  )  {
-			device {
+			deviceDevicesPayload: device {
 	id {
 		id
 		status
@@ -702,12 +702,12 @@ query devices ( $accountId:ID! $deviceV2Input:DeviceV2Input $sortOrderInput:Sort
 				confidence
 				complianceState
 			}
-			paging {
+			pagingDevicesPayload: paging {
 				total
 			}
 		}
 		attributesCatalog {
-			category ( sort:$sortOrderInput   ) {
+			categoryDeviceAttributesCatalogQueries: category ( sort:$sortOrderInput   ) {
 	items {
 		createdAt
 		description
@@ -725,7 +725,7 @@ query devices ( $accountId:ID! $deviceV2Input:DeviceV2Input $sortOrderInput:Sort
 					total
 				}
 			}
-			type ( input:$deviceAttributeCatalogInput   ) {
+			typeDeviceAttributesCatalogQueries: type ( input:$deviceAttributeCatalogInput   ) {
 	items {
 		createdAt
 		description
@@ -743,7 +743,7 @@ query devices ( $accountId:ID! $deviceV2Input:DeviceV2Input $sortOrderInput:Sort
 					total
 				}
 			}
-			model ( input:$deviceAttributeCatalogInput   ) {
+			modelDeviceAttributesCatalogQueries: model ( input:$deviceAttributeCatalogInput   ) {
 	items {
 		createdAt
 		description
@@ -761,7 +761,7 @@ query devices ( $accountId:ID! $deviceV2Input:DeviceV2Input $sortOrderInput:Sort
 					total
 				}
 			}
-			manufacturer ( input:$deviceAttributeCatalogInput   ) {
+			manufacturerDeviceAttributesCatalogQueries: manufacturer ( input:$deviceAttributeCatalogInput   ) {
 	items {
 		createdAt
 		description
@@ -779,7 +779,7 @@ query devices ( $accountId:ID! $deviceV2Input:DeviceV2Input $sortOrderInput:Sort
 					total
 				}
 			}
-			os ( input:$deviceAttributeCatalogInput   ) {
+			osDeviceAttributesCatalogQueries: os ( input:$deviceAttributeCatalogInput   ) {
 	items {
 		createdAt
 		description
@@ -804,7 +804,7 @@ query devices ( $accountId:ID! $deviceV2Input:DeviceV2Input $sortOrderInput:Sort
 		}
 		csvExportStatus ( jobId:$jobId  )  {
 			jobId
-status {
+statusExportStatusResponse: status {
 	rawStatus
 	status
 }

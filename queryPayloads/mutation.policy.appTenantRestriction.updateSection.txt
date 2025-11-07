@@ -1,9 +1,9 @@
 mutation policyAppTenantRestrictionUpdateSection ( $accountId:ID! $appTenantRestrictionPolicyMutationInput:AppTenantRestrictionPolicyMutationInput $policyUpdateSectionInput:PolicyUpdateSectionInput!) {
 	policy ( accountId:$accountId ) {
 		appTenantRestriction ( input:$appTenantRestrictionPolicyMutationInput  )  {
-			updateSection ( input:$policyUpdateSectionInput   ) {
+			updateSectionAppTenantRestrictionPolicyMutations: updateSection ( input:$policyUpdateSectionInput   ) {
 				section {
-					audit {
+					auditPolicySectionPayload: audit {
 						updatedTime
 	updatedBy {
 		__typename
@@ -17,7 +17,7 @@ mutation policyAppTenantRestrictionUpdateSection ( $accountId:ID! $appTenantRest
 		}
 	}
 					}
-					section {
+					sectionPolicySectionPayload: section {
 	id {
 		id
 		status
@@ -133,7 +133,7 @@ mutation policyAppTenantRestrictionUpdateSection ( $accountId:ID! $appTenantRest
 	}
 						name
 					}
-					properties
+					propertiesPolicySectionPayload: properties
 				}
 	status {
 		rawStatus

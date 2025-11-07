@@ -1,10 +1,10 @@
 query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkPolicyInput) {
 	policy ( accountId:$accountId ) {
 		wanNetwork {
-			policy ( input:$wanNetworkPolicyInput   ) {
+			policyWanNetworkPolicyQueries: policy ( input:$wanNetworkPolicyInput   ) {
 				enabled
 				rules {
-					audit {
+					auditWanNetworkRulePayload: audit {
 						updatedTime
 	updatedBy {
 		__typename
@@ -18,7 +18,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 		}
 	}
 					}
-					rule {
+					ruleWanNetworkRulePayload: rule {
 	id {
 		id
 		status
@@ -255,7 +255,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 						ruleType
 						routeType
 						source {
-							user {
+							userWanNetworkRuleSource: user {
 		id {
 			id
 			status
@@ -371,7 +371,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 		}
 								name
 							}
-							floatingSubnet {
+							floatingSubnetWanNetworkRuleSource: floatingSubnet {
 		id {
 			id
 			status
@@ -487,7 +487,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 		}
 								name
 							}
-							globalIpRange {
+							globalIpRangeWanNetworkRuleSource: globalIpRange {
 		id {
 			id
 			status
@@ -603,7 +603,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 		}
 								name
 							}
-							group {
+							groupWanNetworkRuleSource: group {
 		id {
 			id
 			status
@@ -719,7 +719,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 		}
 								name
 							}
-							host {
+							hostWanNetworkRuleSource: host {
 		id {
 			id
 			status
@@ -838,7 +838,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 	ip {
 		siteId
 	}
-							ipRange {
+							ipRangeWanNetworkRuleSource: ipRange {
 		from {
 			container {
 				id
@@ -872,7 +872,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 			}
 		}
 							}
-							networkInterface {
+							networkInterfaceWanNetworkRuleSource: networkInterface {
 		id {
 			id
 			status
@@ -992,7 +992,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 		id
 		name
 	}
-							site {
+							siteWanNetworkRuleSource: site {
 		id {
 			id
 			status
@@ -1108,7 +1108,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 		}
 								name
 							}
-							siteNetworkSubnet {
+							siteNetworkSubnetWanNetworkRuleSource: siteNetworkSubnet {
 		id {
 			id
 			status
@@ -1224,7 +1224,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 		}
 								name
 							}
-							systemGroup {
+							systemGroupWanNetworkRuleSource: systemGroup {
 		id {
 			id
 			status
@@ -1340,7 +1340,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 		}
 								name
 							}
-							usersGroup {
+							usersGroupWanNetworkRuleSource: usersGroup {
 		id {
 			id
 			status
@@ -1458,7 +1458,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 							}
 						}
 						destination {
-							user {
+							userWanNetworkRuleDestination: user {
 		id {
 			id
 			status
@@ -1574,7 +1574,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 		}
 								name
 							}
-							floatingSubnet {
+							floatingSubnetWanNetworkRuleDestination: floatingSubnet {
 		id {
 			id
 			status
@@ -1690,7 +1690,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 		}
 								name
 							}
-							globalIpRange {
+							globalIpRangeWanNetworkRuleDestination: globalIpRange {
 		id {
 			id
 			status
@@ -1806,7 +1806,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 		}
 								name
 							}
-							group {
+							groupWanNetworkRuleDestination: group {
 		id {
 			id
 			status
@@ -1922,7 +1922,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 		}
 								name
 							}
-							host {
+							hostWanNetworkRuleDestination: host {
 		id {
 			id
 			status
@@ -2041,7 +2041,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 	ip {
 		siteId
 	}
-							ipRange {
+							ipRangeWanNetworkRuleDestination: ipRange {
 		from {
 			container {
 				id
@@ -2075,7 +2075,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 			}
 		}
 							}
-							networkInterface {
+							networkInterfaceWanNetworkRuleDestination: networkInterface {
 		id {
 			id
 			status
@@ -2195,7 +2195,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 		id
 		name
 	}
-							site {
+							siteWanNetworkRuleDestination: site {
 		id {
 			id
 			status
@@ -2311,7 +2311,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 		}
 								name
 							}
-							siteNetworkSubnet {
+							siteNetworkSubnetWanNetworkRuleDestination: siteNetworkSubnet {
 		id {
 			id
 			status
@@ -2427,7 +2427,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 		}
 								name
 							}
-							systemGroup {
+							systemGroupWanNetworkRuleDestination: systemGroup {
 		id {
 			id
 			status
@@ -2543,7 +2543,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 		}
 								name
 							}
-							usersGroup {
+							usersGroupWanNetworkRuleDestination: usersGroup {
 		id {
 			id
 			status
@@ -2661,7 +2661,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 							}
 						}
 						application {
-							application {
+							applicationWanNetworkRuleApplication: application {
 		id {
 			id
 			status
@@ -2777,7 +2777,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 		}
 								name
 							}
-							appCategory {
+							appCategoryWanNetworkRuleApplication: appCategory {
 		id {
 			id
 			status
@@ -2893,7 +2893,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 		}
 								name
 							}
-							customApp {
+							customAppWanNetworkRuleApplication: customApp {
 		id {
 			id
 			status
@@ -3009,7 +3009,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 		}
 								name
 							}
-							customCategory {
+							customCategoryWanNetworkRuleApplication: customCategory {
 		id {
 			id
 			status
@@ -3125,7 +3125,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 		}
 								name
 							}
-							customServiceIp {
+							customServiceIpWanNetworkRuleApplication: customServiceIp {
 								name
 		ip {
 			siteId
@@ -3165,7 +3165,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 		}
 								}
 							}
-							customService {
+							customServiceWanNetworkRuleApplication: customService {
 		port {
 			id
 			from
@@ -3291,7 +3291,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 			}
 		}
 	}
-							service {
+							serviceWanNetworkRuleApplication: service {
 		id {
 			id
 			status
@@ -3412,17 +3412,17 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 							activeTcpAcceleration
 							packetLossMitigation
 							preserveSourcePort
-							primaryTransport {
+							primaryTransportWanNetworkRuleConfiguration: primaryTransport {
 								transportType
 								primaryInterfaceRole
 								secondaryInterfaceRole
 							}
-							secondaryTransport {
+							secondaryTransportWanNetworkRuleConfiguration: secondaryTransport {
 								transportType
 								primaryInterfaceRole
 								secondaryInterfaceRole
 							}
-							allocationIp {
+							allocationIpWanNetworkRuleConfiguration: allocationIp {
 		id {
 			id
 			status
@@ -3538,7 +3538,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 		}
 								name
 							}
-							popLocation {
+							popLocationWanNetworkRuleConfiguration: popLocation {
 		id {
 			id
 			status
@@ -3654,7 +3654,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 		}
 								name
 							}
-							backhaulingSite {
+							backhaulingSiteWanNetworkRuleConfiguration: backhaulingSite {
 		id {
 			id
 			status
@@ -3889,7 +3889,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 						}
 						exceptions {
 							name
-							source {
+							sourceWanNetworkRuleException: source {
 								user {
 		id {
 			id
@@ -5092,7 +5092,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 									name
 								}
 							}
-							destination {
+							destinationWanNetworkRuleException: destination {
 								user {
 		id {
 			id
@@ -6295,7 +6295,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 									name
 								}
 							}
-							application {
+							applicationWanNetworkRuleException: application {
 								application {
 		id {
 			id
@@ -6765,7 +6765,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 		ip {
 			siteId
 		}
-									ipRange {
+									ipRangeCustomServiceIp: ipRange {
 		from {
 			container {
 				id
@@ -6826,7 +6826,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 				}
 			}
 		}
-									portRange {
+									portRangeCustomService: portRange {
 		from {
 			container {
 				id
@@ -6860,7 +6860,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 			}
 		}
 									}
-									protocol
+									protocolCustomService: protocol
 								}
 		domain {
 			accountId
@@ -7045,10 +7045,10 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 							}
 						}
 					}
-					properties
+					propertiesWanNetworkRulePayload: properties
 				}
 				sections {
-					audit {
+					auditPolicySectionPayload: audit {
 						updatedTime
 	updatedBy {
 		__typename
@@ -7062,7 +7062,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 		}
 	}
 					}
-					section {
+					sectionPolicySectionPayload: section {
 	id {
 		id
 		status
@@ -7178,7 +7178,7 @@ query policyWanNetworkPolicy ( $accountId:ID! $wanNetworkPolicyInput:WanNetworkP
 	}
 						name
 					}
-					properties
+					propertiesPolicySectionPayload: properties
 				}
 				audit {
 					publishedTime

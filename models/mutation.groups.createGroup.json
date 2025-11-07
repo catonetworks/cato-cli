@@ -266,7 +266,30 @@
     },
     "deprecationReason": null,
     "description": "Mutations for creating, updating, or deleting groups",
-    "fieldTypes": {},
+    "fieldTypes": {
+        "ActorRef": true,
+        "AdvancedStringFilterInput": true,
+        "AuditingMetadata": true,
+        "CreateGroupPayload": true,
+        "DateTime": true,
+        "Group": true,
+        "GroupMemberRefType": true,
+        "GroupMemberRefTypeFilterInput": true,
+        "GroupMemberRefTyped": true,
+        "GroupMemberRefTypedInput": true,
+        "GroupMemberTypeCount": true,
+        "GroupMembersListFilterInput": true,
+        "GroupMembersListPayload": true,
+        "GroupMembersListSortInput": true,
+        "ID": true,
+        "Int": true,
+        "ObjectRefBy": true,
+        "PageInfo": true,
+        "PagingInput": true,
+        "SortOrder": true,
+        "SortOrderInput": true,
+        "String": true
+    },
     "isDeprecated": false,
     "name": "groups",
     "operationArgs": {
@@ -1561,6 +1584,7 @@
                                             "enumValues": null,
                                             "fields": {
                                                 "audit": {
+                                                    "alias": "auditGroup: audit",
                                                     "args": {},
                                                     "deprecationReason": null,
                                                     "description": "Contains creation and modification metadata for the group",
@@ -1577,6 +1601,7 @@
                                                             "enumValues": null,
                                                             "fields": {
                                                                 "updatedBy": {
+                                                                    "alias": "updatedByAuditingMetadata: updatedBy",
                                                                     "args": {},
                                                                     "deprecationReason": null,
                                                                     "description": null,
@@ -1645,138 +1670,28 @@
                                                                             ],
                                                                             "kind": "INTERFACE",
                                                                             "name": "ActorRef",
-                                                                            "possibleTypes": [
-                                                                                {
+                                                                            "possibleTypes": {
+                                                                                "AdminRef": {
                                                                                     "description": "A reference identifying the Admin object. ID: Unique Admin Identifier, Name: The Admin Name",
                                                                                     "enumValues": null,
-                                                                                    "fields": {
-                                                                                        "id": {
-                                                                                            "args": {},
-                                                                                            "deprecationReason": null,
-                                                                                            "description": null,
-                                                                                            "id_str": "createGroup___group___audit___updatedBy___id",
-                                                                                            "isDeprecated": false,
-                                                                                            "name": "id",
-                                                                                            "path": "createGroup.group.audit.updatedBy.id",
-                                                                                            "requestStr": "$id:ID! ",
-                                                                                            "required": true,
-                                                                                            "responseStr": "id:$id ",
-                                                                                            "type": {
-                                                                                                "kind": [
-                                                                                                    "NON_NULL",
-                                                                                                    "SCALAR"
-                                                                                                ],
-                                                                                                "name": "ID",
-                                                                                                "non_null": false
-                                                                                            },
-                                                                                            "varName": "id"
-                                                                                        },
-                                                                                        "name": {
-                                                                                            "args": {},
-                                                                                            "deprecationReason": null,
-                                                                                            "description": null,
-                                                                                            "id_str": "createGroup___group___audit___updatedBy___name",
-                                                                                            "isDeprecated": false,
-                                                                                            "name": "name",
-                                                                                            "path": "createGroup.group.audit.updatedBy.name",
-                                                                                            "requestStr": "$name:String! ",
-                                                                                            "required": true,
-                                                                                            "responseStr": "name:$name ",
-                                                                                            "type": {
-                                                                                                "kind": [
-                                                                                                    "NON_NULL",
-                                                                                                    "SCALAR"
-                                                                                                ],
-                                                                                                "name": "String",
-                                                                                                "non_null": false
-                                                                                            },
-                                                                                            "varName": "name"
-                                                                                        }
-                                                                                    },
+                                                                                    "fields": {},
                                                                                     "inputFields": null,
-                                                                                    "interfaces": [
-                                                                                        {
-                                                                                            "kind": "INTERFACE",
-                                                                                            "name": "ActorRef",
-                                                                                            "ofType": null
-                                                                                        },
-                                                                                        {
-                                                                                            "kind": "INTERFACE",
-                                                                                            "name": "ObjectRef",
-                                                                                            "ofType": null
-                                                                                        }
-                                                                                    ],
+                                                                                    "interfaces": {},
                                                                                     "kind": "OBJECT",
                                                                                     "name": "AdminRef",
-                                                                                    "ofType": null,
                                                                                     "possibleTypes": null
                                                                                 },
-                                                                                {
+                                                                                "ApiKeyRef": {
                                                                                     "description": "A reference identifying the ApiKey object. ID: Unique ApiKey Identifier, Name: The ApiKey Name",
                                                                                     "enumValues": null,
-                                                                                    "fields": {
-                                                                                        "id": {
-                                                                                            "args": {},
-                                                                                            "deprecationReason": null,
-                                                                                            "description": null,
-                                                                                            "id_str": "createGroup___group___audit___updatedBy___id",
-                                                                                            "isDeprecated": false,
-                                                                                            "name": "id",
-                                                                                            "path": "createGroup.group.audit.updatedBy.id",
-                                                                                            "requestStr": "$id:ID! ",
-                                                                                            "required": true,
-                                                                                            "responseStr": "id:$id ",
-                                                                                            "type": {
-                                                                                                "kind": [
-                                                                                                    "NON_NULL",
-                                                                                                    "SCALAR"
-                                                                                                ],
-                                                                                                "name": "ID",
-                                                                                                "non_null": false
-                                                                                            },
-                                                                                            "varName": "id"
-                                                                                        },
-                                                                                        "name": {
-                                                                                            "args": {},
-                                                                                            "deprecationReason": null,
-                                                                                            "description": null,
-                                                                                            "id_str": "createGroup___group___audit___updatedBy___name",
-                                                                                            "isDeprecated": false,
-                                                                                            "name": "name",
-                                                                                            "path": "createGroup.group.audit.updatedBy.name",
-                                                                                            "requestStr": "$name:String! ",
-                                                                                            "required": true,
-                                                                                            "responseStr": "name:$name ",
-                                                                                            "type": {
-                                                                                                "kind": [
-                                                                                                    "NON_NULL",
-                                                                                                    "SCALAR"
-                                                                                                ],
-                                                                                                "name": "String",
-                                                                                                "non_null": false
-                                                                                            },
-                                                                                            "varName": "name"
-                                                                                        }
-                                                                                    },
+                                                                                    "fields": {},
                                                                                     "inputFields": null,
-                                                                                    "interfaces": [
-                                                                                        {
-                                                                                            "kind": "INTERFACE",
-                                                                                            "name": "ActorRef",
-                                                                                            "ofType": null
-                                                                                        },
-                                                                                        {
-                                                                                            "kind": "INTERFACE",
-                                                                                            "name": "ObjectRef",
-                                                                                            "ofType": null
-                                                                                        }
-                                                                                    ],
+                                                                                    "interfaces": {},
                                                                                     "kind": "OBJECT",
                                                                                     "name": "ApiKeyRef",
-                                                                                    "ofType": null,
                                                                                     "possibleTypes": null
                                                                                 }
-                                                                            ]
+                                                                            }
                                                                         },
                                                                         "indexType": "interface",
                                                                         "kind": [
@@ -1811,7 +1726,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": [],
+                                                            "interfaces": {},
                                                             "kind": "OBJECT",
                                                             "name": "AuditingMetadata",
                                                             "possibleTypes": null
@@ -1868,6 +1783,7 @@
                                                     "varName": "id"
                                                 },
                                                 "members": {
+                                                    "alias": "membersGroup: members",
                                                     "args": {
                                                         "members___input": {
                                                             "defaultValue": "{paging: {limit: 100, from: 0}, sort: {name: {direction: ASC, priority: 2}, type: {direction: ASC, priority: 1}}}",
@@ -2658,6 +2574,7 @@
                                                             "enumValues": null,
                                                             "fields": {
                                                                 "items": {
+                                                                    "alias": "itemsGroupMembersListPayload: items",
                                                                     "args": {},
                                                                     "deprecationReason": null,
                                                                     "description": "List of members that matched the query (including filtering, sorting, and paging).",
@@ -2716,6 +2633,7 @@
                                                                                     "varName": "name"
                                                                                 },
                                                                                 "type": {
+                                                                                    "alias": "typeGroupMemberRefTyped: type",
                                                                                     "args": {},
                                                                                     "deprecationReason": null,
                                                                                     "description": null,
@@ -2786,13 +2704,7 @@
                                                                                 }
                                                                             },
                                                                             "inputFields": null,
-                                                                            "interfaces": [
-                                                                                {
-                                                                                    "kind": "INTERFACE",
-                                                                                    "name": "ObjectRef",
-                                                                                    "ofType": null
-                                                                                }
-                                                                            ],
+                                                                            "interfaces": {},
                                                                             "kind": "OBJECT",
                                                                             "name": "GroupMemberRefTyped",
                                                                             "possibleTypes": null
@@ -2810,6 +2722,7 @@
                                                                     "varName": "groupMemberRefTyped"
                                                                 },
                                                                 "paging": {
+                                                                    "alias": "pagingGroupMembersListPayload: paging",
                                                                     "args": {},
                                                                     "deprecationReason": null,
                                                                     "description": "Pagination information for the result set (e.g., offset, total count).",
@@ -2848,7 +2761,7 @@
                                                                                 }
                                                                             },
                                                                             "inputFields": null,
-                                                                            "interfaces": [],
+                                                                            "interfaces": {},
                                                                             "kind": "OBJECT",
                                                                             "name": "PageInfo",
                                                                             "possibleTypes": null
@@ -2865,7 +2778,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": [],
+                                                            "interfaces": {},
                                                             "kind": "OBJECT",
                                                             "name": "GroupMembersListPayload",
                                                             "possibleTypes": null
@@ -2902,6 +2815,7 @@
                                                     "varName": "membersCount"
                                                 },
                                                 "membersCountPerType": {
+                                                    "alias": "membersCountPerTypeGroup: membersCountPerType",
                                                     "args": {},
                                                     "deprecationReason": null,
                                                     "description": "Breakdown of member count by type (e.g., number of sites, hosts, etc.).",
@@ -2939,6 +2853,7 @@
                                                                     "varName": "membersCount"
                                                                 },
                                                                 "type": {
+                                                                    "alias": "typeGroupMemberTypeCount: type",
                                                                     "args": {},
                                                                     "deprecationReason": null,
                                                                     "description": "The member type (e.g., SITE, HOST)",
@@ -3009,7 +2924,7 @@
                                                                 }
                                                             },
                                                             "inputFields": null,
-                                                            "interfaces": [],
+                                                            "interfaces": {},
                                                             "kind": "OBJECT",
                                                             "name": "GroupMemberTypeCount",
                                                             "possibleTypes": null
@@ -3049,7 +2964,7 @@
                                                 }
                                             },
                                             "inputFields": null,
-                                            "interfaces": [],
+                                            "interfaces": {},
                                             "kind": "OBJECT",
                                             "name": "Group",
                                             "possibleTypes": null
@@ -3066,7 +2981,7 @@
                                 }
                             },
                             "inputFields": null,
-                            "interfaces": [],
+                            "interfaces": {},
                             "kind": "OBJECT",
                             "name": "CreateGroupPayload",
                             "possibleTypes": null

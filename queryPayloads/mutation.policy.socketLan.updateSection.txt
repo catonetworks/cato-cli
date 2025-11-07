@@ -1,9 +1,9 @@
 mutation policySocketLanUpdateSection ( $accountId:ID! $socketLanPolicyMutationInput:SocketLanPolicyMutationInput $policyUpdateSectionInput:PolicyUpdateSectionInput!) {
 	policy ( accountId:$accountId ) {
 		socketLan ( input:$socketLanPolicyMutationInput  )  {
-			updateSection ( input:$policyUpdateSectionInput   ) {
+			updateSectionSocketLanPolicyMutations: updateSection ( input:$policyUpdateSectionInput   ) {
 				section {
-					audit {
+					auditPolicySectionPayload: audit {
 						updatedTime
 	updatedBy {
 		__typename
@@ -17,7 +17,7 @@ mutation policySocketLanUpdateSection ( $accountId:ID! $socketLanPolicyMutationI
 		}
 	}
 					}
-					section {
+					sectionPolicySectionPayload: section {
 	id {
 		id
 		status
@@ -133,7 +133,7 @@ mutation policySocketLanUpdateSection ( $accountId:ID! $socketLanPolicyMutationI
 	}
 						name
 					}
-					properties
+					propertiesPolicySectionPayload: properties
 				}
 	status {
 		rawStatus

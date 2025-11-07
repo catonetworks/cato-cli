@@ -1,10 +1,10 @@
 mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetFirewallPolicyMutationInput:InternetFirewallPolicyMutationInput $policyDiscardRevisionInput:PolicyDiscardRevisionInput) {
 	policy ( accountId:$accountId ) {
 		internetFirewall ( input:$internetFirewallPolicyMutationInput  )  {
-			discardPolicyRevision ( input:$policyDiscardRevisionInput   ) {
+			discardPolicyRevisionInternetFirewallPolicyMutations: discardPolicyRevision ( input:$policyDiscardRevisionInput   ) {
 				policy {
 					enabled
-					rules {
+					rulesInternetFirewallPolicy: rules {
 						audit {
 							updatedTime
 	updatedBy {
@@ -136,7 +136,7 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 							name
 							description
 							index
-							section {
+							sectionInternetFirewallRule: section {
 		id {
 			id
 			status
@@ -253,7 +253,7 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 								name
 							}
 							enabled
-							source {
+							sourceInternetFirewallRule: source {
 		ip {
 			siteId
 		}
@@ -1456,8 +1456,8 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 									name
 								}
 							}
-							connectionOrigin
-							country {
+							connectionOriginInternetFirewallRule: connectionOrigin
+							countryInternetFirewallRule: country {
 		id {
 			id
 			status
@@ -1573,7 +1573,7 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 		}
 								name
 							}
-							device {
+							deviceInternetFirewallRule: device {
 		id {
 			id
 			status
@@ -1689,12 +1689,12 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 		}
 								name
 							}
-	deviceOS {
+	deviceOSInternetFirewallRule: deviceOS {
 		product
 		vendor
 		version
 	}
-							deviceAttributes {
+							deviceAttributesInternetFirewallRule: deviceAttributes {
 		category {
 			id
 			name
@@ -1723,7 +1723,7 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 		}
 								osVersion
 							}
-							destination {
+							destinationInternetFirewallRule: destination {
 								application {
 		id {
 			id
@@ -2643,7 +2643,7 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 								}
 								remoteAsn
 								containers {
-									fqdnContainer {
+									fqdnContainerInternetFirewallContainer: fqdnContainer {
 		id {
 			id
 			status
@@ -2759,7 +2759,7 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 		}
 										name
 									}
-									ipAddressRangeContainer {
+									ipAddressRangeContainerInternetFirewallContainer: ipAddressRangeContainer {
 		id {
 			id
 			status
@@ -2877,7 +2877,7 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 									}
 								}
 							}
-							service {
+							serviceInternetFirewallRule: service {
 								standard {
 		id {
 			id
@@ -3020,7 +3020,7 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 				}
 			}
 		}
-									portRange {
+									portRangeCustomService: portRange {
 		from {
 			container {
 				id
@@ -3054,18 +3054,18 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 			}
 		}
 									}
-									protocol
+									protocolCustomService: protocol
 								}
 							}
-							action
-							tracking {
+							actionInternetFirewallRule: action
+							trackingInternetFirewallRule: tracking {
 								event {
 									enabled
 								}
 								alert {
 									enabled
-									frequency
-									subscriptionGroup {
+									frequencyPolicyRuleTrackingAlert: frequency
+									subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
 		id {
 			id
 			status
@@ -3181,7 +3181,7 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 		}
 										name
 									}
-									webhook {
+									webhookPolicyRuleTrackingAlert: webhook {
 		id {
 			id
 			status
@@ -3297,7 +3297,7 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 		}
 										name
 									}
-									mailingList {
+									mailingListPolicyRuleTrackingAlert: mailingList {
 		id {
 			id
 			status
@@ -3415,7 +3415,7 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 									}
 								}
 							}
-							schedule {
+							scheduleInternetFirewallRule: schedule {
 								activeOn
 								customTimeframe {
 		from {
@@ -3484,22 +3484,22 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 				}
 			}
 		}
-									days
+									daysPolicyCustomRecurring: days
 								}
 							}
-							activePeriod {
+							activePeriodInternetFirewallRule: activePeriod {
 								useEffectiveFrom
 								effectiveFrom
 								useExpiresAt
 								expiresAt
 							}
-							exceptions {
+							exceptionsInternetFirewallRule: exceptions {
 								name
 								source {
 		ip {
 			siteId
 		}
-									host {
+									hostInternetFirewallSource: host {
 		id {
 			id
 			status
@@ -3615,7 +3615,7 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 		}
 										name
 									}
-									site {
+									siteInternetFirewallSource: site {
 		id {
 			id
 			status
@@ -3735,7 +3735,7 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 			id
 			name
 		}
-									ipRange {
+									ipRangeInternetFirewallSource: ipRange {
 		from {
 			container {
 				id
@@ -3769,7 +3769,7 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 			}
 		}
 									}
-									globalIpRange {
+									globalIpRangeInternetFirewallSource: globalIpRange {
 		id {
 			id
 			status
@@ -3885,7 +3885,7 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 		}
 										name
 									}
-									networkInterface {
+									networkInterfaceInternetFirewallSource: networkInterface {
 		id {
 			id
 			status
@@ -4001,7 +4001,7 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 		}
 										name
 									}
-									siteNetworkSubnet {
+									siteNetworkSubnetInternetFirewallSource: siteNetworkSubnet {
 		id {
 			id
 			status
@@ -4117,7 +4117,7 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 		}
 										name
 									}
-									floatingSubnet {
+									floatingSubnetInternetFirewallSource: floatingSubnet {
 		id {
 			id
 			status
@@ -4233,7 +4233,7 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 		}
 										name
 									}
-									user {
+									userInternetFirewallSource: user {
 		id {
 			id
 			status
@@ -4349,7 +4349,7 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 		}
 										name
 									}
-									usersGroup {
+									usersGroupInternetFirewallSource: usersGroup {
 		id {
 			id
 			status
@@ -4465,7 +4465,7 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 		}
 										name
 									}
-									group {
+									groupInternetFirewallSource: group {
 		id {
 			id
 			status
@@ -4581,7 +4581,7 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 		}
 										name
 									}
-									systemGroup {
+									systemGroupInternetFirewallSource: systemGroup {
 		id {
 			id
 			status
@@ -4965,7 +4965,7 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 									osVersion
 								}
 								destination {
-									application {
+									applicationInternetFirewallDestination: application {
 		id {
 			id
 			status
@@ -5081,7 +5081,7 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 		}
 										name
 									}
-									customApp {
+									customAppInternetFirewallDestination: customApp {
 		id {
 			id
 			status
@@ -5197,7 +5197,7 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 		}
 										name
 									}
-									appCategory {
+									appCategoryInternetFirewallDestination: appCategory {
 		id {
 			id
 			status
@@ -5313,7 +5313,7 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 		}
 										name
 									}
-									customCategory {
+									customCategoryInternetFirewallDestination: customCategory {
 		id {
 			id
 			status
@@ -5429,7 +5429,7 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 		}
 										name
 									}
-									sanctionedAppsCategory {
+									sanctionedAppsCategoryInternetFirewallDestination: sanctionedAppsCategory {
 		id {
 			id
 			status
@@ -5545,7 +5545,7 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 		}
 										name
 									}
-									country {
+									countryInternetFirewallDestination: country {
 		id {
 			id
 			status
@@ -5732,7 +5732,7 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 			id
 			name
 		}
-									ipRange {
+									ipRangeInternetFirewallDestination: ipRange {
 		from {
 			container {
 				id
@@ -5766,7 +5766,7 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 			}
 		}
 									}
-									globalIpRange {
+									globalIpRangeInternetFirewallDestination: globalIpRange {
 		id {
 			id
 			status
@@ -5883,7 +5883,7 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 										name
 									}
 									remoteAsn
-									containers {
+									containersInternetFirewallDestination: containers {
 										fqdnContainer {
 		id {
 			id
@@ -6119,7 +6119,7 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 									}
 								}
 								service {
-									standard {
+									standardInternetFirewallServiceType: standard {
 		id {
 			id
 			status
@@ -6235,7 +6235,7 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 		}
 										name
 									}
-									custom {
+									customInternetFirewallServiceType: custom {
 		port {
 			id
 			from
@@ -6303,7 +6303,7 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 						}
 						properties
 					}
-					sections {
+					sectionsInternetFirewallPolicy: sections {
 						audit {
 							updatedTime
 	updatedBy {
@@ -6436,11 +6436,11 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 						}
 						properties
 					}
-					audit {
+					auditInternetFirewallPolicy: audit {
 						publishedTime
 						publishedBy
 					}
-					revision {
+					revisionInternetFirewallPolicy: revision {
 	id {
 		id
 		status

@@ -1,9 +1,9 @@
 mutation policyDynamicIpAllocationAddRule ( $accountId:ID! $dynamicIpAllocationPolicyMutationInput:DynamicIpAllocationPolicyMutationInput $dynamicIpAllocationAddRuleInput:DynamicIpAllocationAddRuleInput!) {
 	policy ( accountId:$accountId ) {
 		dynamicIpAllocation ( input:$dynamicIpAllocationPolicyMutationInput  )  {
-			addRule ( input:$dynamicIpAllocationAddRuleInput   ) {
+			addRuleDynamicIpAllocationPolicyMutations: addRule ( input:$dynamicIpAllocationAddRuleInput   ) {
 				rule {
-					audit {
+					auditDynamicIpAllocationRulePayload: audit {
 						updatedTime
 	updatedBy {
 		__typename
@@ -17,7 +17,7 @@ mutation policyDynamicIpAllocationAddRule ( $accountId:ID! $dynamicIpAllocationP
 		}
 	}
 					}
-					rule {
+					ruleDynamicIpAllocationRulePayload: rule {
 	id {
 		id
 		status
@@ -252,7 +252,7 @@ mutation policyDynamicIpAllocationAddRule ( $accountId:ID! $dynamicIpAllocationP
 						}
 						enabled
 						source {
-							user {
+							userDynamicIpAllocationSource: user {
 		id {
 			id
 			status
@@ -368,7 +368,7 @@ mutation policyDynamicIpAllocationAddRule ( $accountId:ID! $dynamicIpAllocationP
 		}
 								name
 							}
-							usersGroup {
+							usersGroupDynamicIpAllocationSource: usersGroup {
 		id {
 			id
 			status
@@ -606,7 +606,7 @@ mutation policyDynamicIpAllocationAddRule ( $accountId:ID! $dynamicIpAllocationP
 							name
 						}
 						range {
-							globalIpRange {
+							globalIpRangeDynamicIpAllocationRange: globalIpRange {
 		id {
 			id
 			status
@@ -724,7 +724,7 @@ mutation policyDynamicIpAllocationAddRule ( $accountId:ID! $dynamicIpAllocationP
 							}
 						}
 					}
-					properties
+					propertiesDynamicIpAllocationRulePayload: properties
 				}
 	status {
 		rawStatus

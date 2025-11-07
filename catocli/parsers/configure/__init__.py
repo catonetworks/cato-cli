@@ -14,6 +14,20 @@ from .configure import (
 )
 
 
+def _show_configure_help(args, configuration=None):
+    """Show help when configure is called without subcommand"""
+    print("Usage: catocli configure <subcommand> [options]")
+    print("\nAvailable subcommands:")
+    print("  set      Configure a profile with credentials")
+    print("  list     List all configured profiles")
+    print("  use      Set the active profile")
+    print("  show     Show current profile configuration")
+    print("  delete   Delete a profile")
+    print("\nFor help on a specific subcommand:")
+    print("  catocli configure <subcommand> -h")
+    return None
+
+
 def configure_parse(subparsers):
     """Create configure command parsers"""
     
@@ -27,6 +41,9 @@ def configure_parse(subparsers):
         description='Configure operations', 
         help='Profile management operations'
     )
+    
+    # Set default function to show help when no subcommand provided
+    configure_parser.set_defaults(func=_show_configure_help)
     
     # Configure profile command
     config_parser = configure_subparsers.add_parser(

@@ -7,7 +7,17 @@ def mutation_xdr_parse(mutation_subparsers):
             help='xdr() mutation operation', 
             usage=get_help("mutation_xdr"), formatter_class=CustomSubparserHelpFormatter)
 
+    def _show_mutation_xdr_help(args, configuration=None):
+        """Show help when mutation_xdr is called without subcommand"""
+        print("Usage: catocli mutation xdr <subcommand> [options]")
+        print("\nAvailable subcommands:")
+        print("  analystFeedback                analystFeedback operation\n  addStoryComment                addStoryComment operation\n  deleteStoryComment             deleteStoryComment operation")
+        print("\nFor help on a specific subcommand:")
+        print("  catocli mutation xdr <subcommand> -h")
+        return None
+
     mutation_xdr_subparsers = mutation_xdr_parser.add_subparsers()
+    mutation_xdr_parser.set_defaults(func=_show_mutation_xdr_help)
 
     mutation_xdr_analystFeedback_parser = mutation_xdr_subparsers.add_parser('analystFeedback', 
             help='analystFeedback() xdr operation', 

@@ -1,9 +1,9 @@
 mutation policyDynamicIpAllocationAddSection ( $accountId:ID! $dynamicIpAllocationPolicyMutationInput:DynamicIpAllocationPolicyMutationInput $policyAddSectionInput:PolicyAddSectionInput!) {
 	policy ( accountId:$accountId ) {
 		dynamicIpAllocation ( input:$dynamicIpAllocationPolicyMutationInput  )  {
-			addSectionDynamicIpAllocationPolicyMutations: addSection ( input:$policyAddSectionInput   ) {
+			addSection ( input:$policyAddSectionInput   ) {
 				section {
-					auditPolicySectionPayload: audit {
+					audit {
 						updatedTime
 	updatedBy {
 		__typename
@@ -17,7 +17,7 @@ mutation policyDynamicIpAllocationAddSection ( $accountId:ID! $dynamicIpAllocati
 		}
 	}
 					}
-					sectionPolicySectionPayload: section {
+					section {
 	id {
 		id
 		status
@@ -133,7 +133,7 @@ mutation policyDynamicIpAllocationAddSection ( $accountId:ID! $dynamicIpAllocati
 	}
 						name
 					}
-					propertiesPolicySectionPayload: properties
+					properties
 				}
 	status {
 		rawStatus

@@ -1,7 +1,7 @@
 mutation groupsDeleteGroup ( $accountId:ID! $groupRefInput:GroupRefInput! $groupMembersListInput:GroupMembersListInput!) {
 	groups ( accountId:$accountId ) {
 		deleteGroup ( input:$groupRefInput  )  {
-			groupDeleteGroupPayload: group {
+			group {
 	id {
 		id
 		status
@@ -119,7 +119,7 @@ mutation groupsDeleteGroup ( $accountId:ID! $groupRefInput:GroupRefInput! $group
 				description
 				audit {
 					updatedTime
-					updatedByAuditingMetadata: updatedBy {
+					updatedBy {
 	id {
 		id
 		status
@@ -237,7 +237,7 @@ mutation groupsDeleteGroup ( $accountId:ID! $groupRefInput:GroupRefInput! $group
 					}
 				}
 				members ( input:$groupMembersListInput  )  {
-					itemsGroupMembersListPayload: items {
+					items {
 	id {
 		id
 		status
@@ -358,13 +358,13 @@ mutation groupsDeleteGroup ( $accountId:ID! $groupRefInput:GroupRefInput! $group
 		details
 	}
 					}
-					pagingGroupMembersListPayload: paging {
+					paging {
 						total
 					}
 				}
 				membersCount
 				membersCountPerType {
-	typeGroupMemberTypeCount: type {
+	type {
 		name
 		recommendedAction
 		details

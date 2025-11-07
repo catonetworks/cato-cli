@@ -7,7 +7,17 @@ def mutation_enterpriseDirectory_parse(mutation_subparsers):
             help='enterpriseDirectory() mutation operation', 
             usage=get_help("mutation_enterpriseDirectory"), formatter_class=CustomSubparserHelpFormatter)
 
+    def _show_mutation_enterpriseDirectory_help(args, configuration=None):
+        """Show help when mutation_enterpriseDirectory is called without subcommand"""
+        print("Usage: catocli mutation enterpriseDirectory <subcommand> [options]")
+        print("\nAvailable subcommands:")
+        print("  createLocation                 createLocation operation\n  updateLocation                 updateLocation operation\n  archiveLocation                archiveLocation operation\n  restoreLocation                restoreLocation operation")
+        print("\nFor help on a specific subcommand:")
+        print("  catocli mutation enterpriseDirectory <subcommand> -h")
+        return None
+
     mutation_enterpriseDirectory_subparsers = mutation_enterpriseDirectory_parser.add_subparsers()
+    mutation_enterpriseDirectory_parser.set_defaults(func=_show_mutation_enterpriseDirectory_help)
 
     mutation_enterpriseDirectory_createLocation_parser = mutation_enterpriseDirectory_subparsers.add_parser('createLocation', 
             help='createLocation() enterpriseDirectory operation', 

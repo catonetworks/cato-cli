@@ -397,6 +397,43 @@
             "appStatsTimeSeries"
         ]
     },
+    // Testing augmented cli operation that is not a part of API schema
+    "entity.site.list": {
+        "name": "EntityLookup site list",
+        "description": "EntityLookup site list - tests array operations",
+        "operation": "entity.site.list",
+        "payload": {},
+        "timeout": 30,
+        "assertions": [
+            // Check that result is an array with elements
+            {
+                "path": "",
+                "operator": "type",
+                "value": "array"
+            },
+            // Check that there are more than one element
+            {
+                "path": "",
+                "operator": "length_gt",
+                "value": 0
+            },
+            // Check first element has expected fields (note: entity list returns {site: {...}, description: ...})
+            "[0].site.id",
+            "[0].site.name",
+            "[0].description"
+        ]
+    },
+    "scim.get_users": {
+        "name": "SCIM Get Users",
+        "description": "SCIM API get users test",
+        "operation": "scim.get_users",
+        "payload": {},
+        "timeout": 30,
+        "assertions": [
+            "total_users",
+            "users"
+        ]
+    },
     "query.eventsTimeSeries.by_subType": {
         "name": "EventsTimeSeries -  Internet Firewall Events Analysis",
         "description": "Weekly break down by hour of Internet Firewall events by rule_name",

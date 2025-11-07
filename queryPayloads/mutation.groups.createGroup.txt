@@ -1,7 +1,7 @@
 mutation groupsCreateGroup ( $accountId:ID! $createGroupInput:CreateGroupInput! $groupMembersListInput:GroupMembersListInput!) {
 	groups ( accountId:$accountId ) {
 		createGroup ( input:$createGroupInput  )  {
-			groupCreateGroupPayload: group {
+			group {
 	id {
 		id
 		status
@@ -119,7 +119,7 @@ mutation groupsCreateGroup ( $accountId:ID! $createGroupInput:CreateGroupInput! 
 				description
 				audit {
 					updatedTime
-					updatedByAuditingMetadata: updatedBy {
+					updatedBy {
 	id {
 		id
 		status
@@ -237,7 +237,7 @@ mutation groupsCreateGroup ( $accountId:ID! $createGroupInput:CreateGroupInput! 
 					}
 				}
 				members ( input:$groupMembersListInput  )  {
-					itemsGroupMembersListPayload: items {
+					items {
 	id {
 		id
 		status
@@ -358,13 +358,13 @@ mutation groupsCreateGroup ( $accountId:ID! $createGroupInput:CreateGroupInput! 
 		details
 	}
 					}
-					pagingGroupMembersListPayload: paging {
+					paging {
 						total
 					}
 				}
 				membersCount
 				membersCountPerType {
-	typeGroupMemberTypeCount: type {
+	type {
 		name
 		recommendedAction
 		details

@@ -7,7 +7,17 @@ def mutation_site_parse(mutation_subparsers):
             help='site() mutation operation', 
             usage=get_help("mutation_site"), formatter_class=CustomSubparserHelpFormatter)
 
+    def _show_mutation_site_help(args, configuration=None):
+        """Show help when mutation_site is called without subcommand"""
+        print("Usage: catocli mutation site <subcommand> [options]")
+        print("\nAvailable subcommands:")
+        print("  addSecondaryAwsVSocket         addSecondaryAwsVSocket operation\n  addSecondaryAzureVSocket       addSecondaryAzureVSocket operation\n  removeSecondaryAzureVSocket    removeSecondaryAzureVSocket operation\n  removeSecondaryAwsVSocket      removeSecondaryAwsVSocket operation\n  updateSecondaryAzureVSocket    updateSecondaryAzureVSocket operation\n  updateSecondaryAwsVSocket      updateSecondaryAwsVSocket operation\n  addSocketSite                  addSocketSite operation\n  removeSite                     removeSite operation\n  updateSocketInterface          updateSocketInterface operation\n  addNetworkRange                addNetworkRange operation\n  ... and 26 more")
+        print("\nFor help on a specific subcommand:")
+        print("  catocli mutation site <subcommand> -h")
+        return None
+
     mutation_site_subparsers = mutation_site_parser.add_subparsers()
+    mutation_site_parser.set_defaults(func=_show_mutation_site_help)
 
     mutation_site_addSecondaryAwsVSocket_parser = mutation_site_subparsers.add_parser('addSecondaryAwsVSocket', 
             help='addSecondaryAwsVSocket() site operation', 

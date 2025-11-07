@@ -1,7 +1,7 @@
 query licensing ( $accountId:ID!) {
 	licensing ( accountId:$accountId ) {
 		licensingInfo {
-			licensesLicensingInfo: licenses {
+			licenses {
 	id {
 		id
 		status
@@ -618,7 +618,7 @@ query licensing ( $accountId:ID!) {
 					total
 				}
 			}
-			dataLakeLicensingInfo: dataLake {
+			dataLake {
 	id {
 		id
 		status
@@ -746,7 +746,7 @@ query licensing ( $accountId:ID!) {
 				retentionPeriod
 				total
 			}
-			publicIpsLicensingInfo: publicIps {
+			publicIps {
 	id {
 		id
 		status
@@ -872,7 +872,7 @@ query licensing ( $accountId:ID!) {
 				lastUpdated
 				total
 			}
-			siteLicensingInfo: site {
+			site {
 	id {
 		id
 		status
@@ -1150,7 +1150,7 @@ query licensing ( $accountId:ID!) {
 					name
 				}
 			}
-			pooledBandwidthLicensingInfo: pooledBandwidth {
+			pooledBandwidth {
 	id {
 		id
 		status
@@ -1312,7 +1312,7 @@ query licensing ( $accountId:ID!) {
 				total
 				allocatedBandwidth
 				sites {
-					sitePooledBandwidthLicenseSite: site {
+					site {
 	id {
 		id
 		status
@@ -1431,7 +1431,7 @@ query licensing ( $accountId:ID!) {
 					allocatedBandwidth
 				}
 				accounts {
-					accountPartnerPooledBandwidthLicenseAccount: account {
+					account {
 	id {
 		id
 		status
@@ -1550,7 +1550,7 @@ query licensing ( $accountId:ID!) {
 					allocatedBandwidth
 				}
 			}
-			ztnaUsersLicensingInfo: ztnaUsers {
+			ztnaUsers {
 	id {
 		id
 		status
@@ -1710,7 +1710,7 @@ query licensing ( $accountId:ID!) {
 	}
 				total
 			}
-			endpointProtectionLicensingInfo: endpointProtection {
+			endpointProtection {
 	id {
 		id
 		status
@@ -1836,7 +1836,7 @@ query licensing ( $accountId:ID!) {
 				lastUpdated
 				total
 			}
-			ilmmLicensingInfo: ilmm {
+			ilmm {
 	id {
 		id
 		status
@@ -1962,7 +1962,7 @@ query licensing ( $accountId:ID!) {
 				lastUpdated
 				total
 			}
-			ipsLicensingInfo: ips {
+			ips {
 	id {
 		id
 		status
@@ -2087,7 +2087,7 @@ query licensing ( $accountId:ID!) {
 				expirationDate
 				lastUpdated
 			}
-			malwareProtectionLicensingInfo: malwareProtection {
+			malwareProtection {
 	id {
 		id
 		status
@@ -2212,7 +2212,7 @@ query licensing ( $accountId:ID!) {
 				expirationDate
 				lastUpdated
 			}
-			nextGenMalwareProtectionLicensingInfo: nextGenMalwareProtection {
+			nextGenMalwareProtection {
 	id {
 		id
 		status
@@ -2337,7 +2337,7 @@ query licensing ( $accountId:ID!) {
 				expirationDate
 				lastUpdated
 			}
-			threatPreventionLicensingInfo: threatPrevention {
+			threatPrevention {
 	id {
 		id
 		status
@@ -2462,7 +2462,7 @@ query licensing ( $accountId:ID!) {
 				expirationDate
 				lastUpdated
 			}
-			nocaasLicensingInfo: nocaas {
+			nocaas {
 	id {
 		id
 		status
@@ -2587,7 +2587,7 @@ query licensing ( $accountId:ID!) {
 				expirationDate
 				lastUpdated
 			}
-			casbLicensingInfo: casb {
+			casb {
 	id {
 		id
 		status
@@ -2712,7 +2712,7 @@ query licensing ( $accountId:ID!) {
 				expirationDate
 				lastUpdated
 			}
-			dlpLicensingInfo: dlp {
+			dlp {
 	id {
 		id
 		status
@@ -2837,7 +2837,7 @@ query licensing ( $accountId:ID!) {
 				expirationDate
 				lastUpdated
 			}
-			mdrLicensingInfo: mdr {
+			mdr {
 	id {
 		id
 		status
@@ -2962,7 +2962,7 @@ query licensing ( $accountId:ID!) {
 				expirationDate
 				lastUpdated
 			}
-			managedXdrLicensingInfo: managedXdr {
+			managedXdr {
 	id {
 		id
 		status
@@ -3087,7 +3087,7 @@ query licensing ( $accountId:ID!) {
 				expirationDate
 				lastUpdated
 			}
-			rbiLicensingInfo: rbi {
+			rbi {
 	id {
 		id
 		status
@@ -3212,133 +3212,7 @@ query licensing ( $accountId:ID!) {
 				expirationDate
 				lastUpdated
 			}
-			saasSecurityApiLicensingInfo: saasSecurityApi {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
-				description
-				plan
-				sku
-	status {
-		rawStatus
-		status
-	}
-				startDate
-				expirationDate
-				lastUpdated
-				total
-			}
-			xdrProLicensingInfo: xdrPro {
+			saasSecurityApi {
 	id {
 		id
 		status
@@ -3464,7 +3338,7 @@ query licensing ( $accountId:ID!) {
 				lastUpdated
 				total
 			}
-			demLicensingInfo: dem {
+			xdrPro {
 	id {
 		id
 		status
@@ -3590,7 +3464,133 @@ query licensing ( $accountId:ID!) {
 				lastUpdated
 				total
 			}
-			iotOtLicensingInfo: iotOt {
+			dem {
+	id {
+		id
+		status
+		description
+		firstSignal
+		lastSignal
+		engineType
+		vendor
+		producer
+		producerName
+		connectionType
+		indication
+		queryName
+		source
+		criticality
+		ticket
+		research
+		siteName
+		storyDuration
+		analystFeedback {
+			verdict
+			severity
+			threatClassification
+			additionalInfo
+			threatType {
+				name
+				recommendedAction
+				details
+			}
+		}
+		site {
+			id
+			name
+		}
+		user {
+			id
+			name
+		}
+		similarStoriesData {
+			storyId
+			threatTypeName
+			verdict
+			threatClassification
+			similarityPercentage
+			indication
+		}
+		networkIncidentTimeline {
+			description
+			created
+			validated
+			eventType
+			incidentId
+			networkEventSource
+			eventIds
+			acknowledged
+			linkId
+			linkName
+			linkConfigPrecedence
+			linkStatus
+			linkConfigBandwidth
+			deviceConfigHaRole
+			deviceHaRoleState
+			socketSerialId
+			bgpConnection {
+				connectionName
+				peerIp
+				peerAsn
+				catoIp
+				catoAsn
+			}
+			linkQualityIssue {
+				issueType
+				direction
+				current
+				threshold
+			}
+		}
+		bgpConnection {
+			connectionName
+			peerIp
+			peerAsn
+			catoIp
+			catoAsn
+		}
+		ilmmDetails {
+			linkDetails {
+				description
+				linkId
+				ispLinkId
+				comments
+				onboardingStatus
+				activeLicense
+			}
+			ispDetails {
+				name
+				description
+				ispAccountId
+				supportEmail
+				supportPhone
+				countryCode
+				loaFile {
+					fileName
+					fileHash
+					uploadedAt
+				}
+			}
+			contacts {
+				name
+				phone
+				email
+			}
+		}
+	}
+				description
+				plan
+				sku
+	status {
+		rawStatus
+		status
+	}
+				startDate
+				expirationDate
+				lastUpdated
+				total
+			}
+			iotOt {
 	id {
 		id
 		status
@@ -3715,7 +3715,7 @@ query licensing ( $accountId:ID!) {
 				expirationDate
 				lastUpdated
 			}
-			atpLicensingInfo: atp {
+			atp {
 	id {
 		id
 		status
@@ -3840,7 +3840,7 @@ query licensing ( $accountId:ID!) {
 				expirationDate
 				lastUpdated
 			}
-			xOpsLicensingInfo: xOps {
+			xOps {
 	id {
 		id
 		status
@@ -3965,7 +3965,7 @@ query licensing ( $accountId:ID!) {
 				expirationDate
 				lastUpdated
 			}
-			globalLicenseAllocationsLicensingInfo: globalLicenseAllocations {
+			globalLicenseAllocations {
 				publicIps {
 					total
 	allocated {

@@ -10,8 +10,124 @@
         "adminID": "0"
     },
     "query.admins": {},
+    "query.appStats": {
+        "timeFrame": "last.P1D"
+    },
+    "query.appStatsTimeSeries": {
+        "buckets": 1,
+        "timeFrame": "last.P1D"
+    },
     "query.auditFeed": {
         "timeFrame": "last.P1D"
+    },
+    "query.catalogs.catalogApplication": {
+        "applicationRefInput": {
+            "by": "ID",
+            "input": "string"
+        }
+    },
+    "query.catalogs.catalogApplicationList": {
+        "catalogApplicationListInput": {
+            "catalogApplicationFilterInput": {
+                "activity": {
+                    "hasAny": {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                },
+                "capability": {
+                    "hasAny": "APP_CONTROL_INLINE"
+                },
+                "category": {
+                    "hasAny": {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                },
+                "id": {
+                    "eq": "id",
+                    "in": [
+                        "id1",
+                        "id2"
+                    ],
+                    "neq": "id",
+                    "nin": [
+                        "id1",
+                        "id2"
+                    ]
+                },
+                "name": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "recentlyAdded": {
+                    "eq": true,
+                    "neq": true
+                },
+                "risk": {
+                    "between": [
+                        1,
+                        2
+                    ],
+                    "eq": 1,
+                    "gt": 1,
+                    "gte": 1,
+                    "in": [
+                        1,
+                        2
+                    ],
+                    "lt": 1,
+                    "lte": 1,
+                    "neq": 1,
+                    "nin": [
+                        1,
+                        2
+                    ]
+                },
+                "type": {
+                    "eq": "APPLICATION",
+                    "in": "APPLICATION",
+                    "neq": "APPLICATION",
+                    "nin": "APPLICATION"
+                }
+            },
+            "catalogApplicationSortInput": {
+                "category": {
+                    "name": {
+                        "direction": "ASC",
+                        "priority": 1
+                    }
+                },
+                "description": {
+                    "direction": "ASC",
+                    "priority": 1
+                },
+                "name": {
+                    "direction": "ASC",
+                    "priority": 1
+                },
+                "risk": {
+                    "direction": "ASC",
+                    "priority": 1
+                },
+                "type": {
+                    "direction": "ASC",
+                    "priority": 1
+                }
+            },
+            "pagingInput": {
+                "from": 1,
+                "limit": 1
+            }
+        }
     },
     "query.catalogs.contentTypeGroupList": {},
     "query.container.fqdn.downloadFile": {},
@@ -21,12 +137,59 @@
     "query.container.ipAddressRange.search": {},
     "query.container.ipAddressRange.searchIpAddressRange": {},
     "query.container.list": {},
+    "query.devices": {
+        "jobId": "id"
+    },
     "query.enterpriseDirectory": {},
     "query.entityLookup": {
         "type": "account"
     },
     "query.events": {},
     "query.eventsFeed": {},
+    "query.eventsTimeSeries": {
+        "buckets": 1,
+        "timeFrame": "last.P1D"
+    },
+    "query.groups.group.members": {},
+    "query.groups.groupList": {
+        "groupMembersListInput": {
+            "groupMembersListFilterInput": {
+                "name": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ],
+                    "regex": "string"
+                },
+                "type": {
+                    "eq": "SITE",
+                    "in": "SITE",
+                    "neq": "SITE",
+                    "nin": "SITE"
+                }
+            },
+            "groupMembersListSortInput": {
+                "name": {
+                    "direction": "ASC",
+                    "priority": 1
+                },
+                "type": {
+                    "direction": "ASC",
+                    "priority": 1
+                }
+            },
+            "pagingInput": {
+                "from": 1,
+                "limit": 1
+            }
+        }
+    },
     "query.groups.whereUsed": {},
     "query.hardware": {},
     "query.hardwareManagement": {},
@@ -37,6 +200,7 @@
     "query.policy.dynamicIpAllocation.policy": {},
     "query.policy.internetFirewall.policy": {},
     "query.policy.remotePortFwd.policy": {},
+    "query.policy.socketLan.policy": {},
     "query.policy.terminalServer.policy": {},
     "query.policy.tlsInspect.policy": {},
     "query.policy.wanFirewall.policy": {},
@@ -77,6 +241,13 @@
             "by": "ID",
             "input": "string"
         }
+    },
+    "query.socketPortMetrics": {
+        "timeFrame": "last.P1D"
+    },
+    "query.socketPortMetricsTimeSeries": {
+        "buckets": 1,
+        "timeFrame": "last.P1D"
     },
     "query.subDomains": {},
     "query.xdr.stories": {},

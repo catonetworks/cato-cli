@@ -1,9 +1,9 @@
 mutation policyInternetFirewallRemoveSection ( $accountId:ID! $internetFirewallPolicyMutationInput:InternetFirewallPolicyMutationInput $policyRemoveSectionInput:PolicyRemoveSectionInput!) {
 	policy ( accountId:$accountId ) {
 		internetFirewall ( input:$internetFirewallPolicyMutationInput  )  {
-			removeSectionInternetFirewallPolicyMutations: removeSection ( input:$policyRemoveSectionInput   ) {
+			removeSection ( input:$policyRemoveSectionInput   ) {
 				section {
-					auditPolicySectionPayload: audit {
+					audit {
 						updatedTime
 	updatedBy {
 		__typename
@@ -17,7 +17,7 @@ mutation policyInternetFirewallRemoveSection ( $accountId:ID! $internetFirewallP
 		}
 	}
 					}
-					sectionPolicySectionPayload: section {
+					section {
 	id {
 		id
 		status
@@ -133,7 +133,7 @@ mutation policyInternetFirewallRemoveSection ( $accountId:ID! $internetFirewallP
 	}
 						name
 					}
-					propertiesPolicySectionPayload: properties
+					properties
 				}
 	status {
 		rawStatus

@@ -7,7 +7,17 @@ def mutation_hardware_parse(mutation_subparsers):
             help='hardware() mutation operation', 
             usage=get_help("mutation_hardware"), formatter_class=CustomSubparserHelpFormatter)
 
+    def _show_mutation_hardware_help(args, configuration=None):
+        """Show help when mutation_hardware is called without subcommand"""
+        print("Usage: catocli mutation hardware <subcommand> [options]")
+        print("\nAvailable subcommands:")
+        print("  updateHardwareShipping         updateHardwareShipping operation")
+        print("\nFor help on a specific subcommand:")
+        print("  catocli mutation hardware <subcommand> -h")
+        return None
+
     mutation_hardware_subparsers = mutation_hardware_parser.add_subparsers()
+    mutation_hardware_parser.set_defaults(func=_show_mutation_hardware_help)
 
     mutation_hardware_updateHardwareShipping_parser = mutation_hardware_subparsers.add_parser('updateHardwareShipping', 
             help='updateHardwareShipping() hardware operation', 

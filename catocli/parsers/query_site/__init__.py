@@ -7,7 +7,17 @@ def query_site_parse(query_subparsers):
             help='site() query operation', 
             usage=get_help("query_site"), formatter_class=CustomSubparserHelpFormatter)
 
+    def _show_query_site_help(args, configuration=None):
+        """Show help when query_site is called without subcommand"""
+        print("Usage: catocli query site <subcommand> [options]")
+        print("\nAvailable subcommands:")
+        print("  secondaryAwsVSocket            secondaryAwsVSocket operation\n  secondaryAzureVSocket          secondaryAzureVSocket operation\n  cloudInterconnectPhysicalConnection cloudInterconnectPhysicalConnection operation\n  cloudInterconnectPhysicalConnectionId cloudInterconnectPhysicalConnectionId operation\n  cloudInterconnectConnectionConnectivity cloudInterconnectConnectionConnectivity operation\n  bgpPeer                        bgpPeer operation\n  bgpPeerList                    bgpPeerList operation\n  siteBgpStatus                  siteBgpStatus operation\n  availableVersionList           availableVersionList operation\n  siteGeneralDetails             siteGeneralDetails operation")
+        print("\nFor help on a specific subcommand:")
+        print("  catocli query site <subcommand> -h")
+        return None
+
     query_site_subparsers = query_site_parser.add_subparsers()
+    query_site_parser.set_defaults(func=_show_query_site_help)
 
     query_site_secondaryAwsVSocket_parser = query_site_subparsers.add_parser('secondaryAwsVSocket', 
             help='secondaryAwsVSocket() site operation', 

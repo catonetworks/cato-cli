@@ -129,3 +129,8 @@
 
 ## 3.0.33 (2025-11-04)
 - Added queryPaylaods to manifest file to fix windows, and added tests to main package.
+
+## 3.0.34 (2025-11-04)
+- Refactored schema ingestion process to remove specific nested aliases fixing a few complex queries
+- Refactored schema ingestion process to purge and regenerate all models, sample queryPayloads, and parsers
+- Embedded complete API/CLI testing suite in the cato-cli repo

@@ -7,7 +7,17 @@ def query_xdr_parse(query_subparsers):
             help='xdr() query operation', 
             usage=get_help("query_xdr"), formatter_class=CustomSubparserHelpFormatter)
 
+    def _show_query_xdr_help(args, configuration=None):
+        """Show help when query_xdr is called without subcommand"""
+        print("Usage: catocli query xdr <subcommand> [options]")
+        print("\nAvailable subcommands:")
+        print("  stories                        stories operation\n  story                          story operation")
+        print("\nFor help on a specific subcommand:")
+        print("  catocli query xdr <subcommand> -h")
+        return None
+
     query_xdr_subparsers = query_xdr_parser.add_subparsers()
+    query_xdr_parser.set_defaults(func=_show_query_xdr_help)
 
     query_xdr_stories_parser = query_xdr_subparsers.add_parser('stories', 
             help='stories() xdr operation', 

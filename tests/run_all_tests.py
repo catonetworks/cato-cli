@@ -54,9 +54,9 @@ class AllTestsRunner:
     
     def run_validation_tests(self):
         """Run pytest-based validation tests"""
-        print(f"\n{Colors.BOLD}{'='*70}", Colors.CYAN)
-        print(f"Running Validation Tests (pytest) - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}", Colors.CYAN)
-        print(f"{'='*70}{Colors.NC}", Colors.CYAN)
+        print(f"\n{Colors.BLUE}{'='*70}{Colors.NC}")
+        print(f"Running Validation Tests (pytest) - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+        print(f"{Colors.BLUE}{'='*70}{Colors.NC}")
         
         pytest_args = ['-v', '--tb=short', str(TESTS_DIR / 'run_all_tests.py::TestCLIStructure'),
                       str(TESTS_DIR / 'run_all_tests.py::TestModelFiles'),
@@ -83,9 +83,9 @@ class AllTestsRunner:
     
     def run_generated_tests(self, operation_filter: str = None):
         """Run auto-generated tests from payloads_generated.json"""
-        print(f"{Colors.CYAN}{'='*70}{Colors.NC}", Colors.CYAN)
-        print(f"Running Generated Tests - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}", Colors.NC)
-        print(f"{Colors.CYAN}{'='*70}{Colors.NC}", Colors.CYAN)
+        print(f"{Colors.BLUE}{'='*70}{Colors.NC}")
+        print(f"Running Generated Tests - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+        print(f"{Colors.BLUE}{'='*70}{Colors.NC}")
         
         # Load test settings
         test_settings = load_test_settings(self.verbose)
@@ -120,8 +120,15 @@ class AllTestsRunner:
         
         suite_passed = 0
         suite_failed = 0
+        suite_ignored = 0
         
         for operation, test_config in filtered_generated.items():
+            # Check if test is marked as ignored
+            if test_config.get('ignored', False):
+                suite_ignored += 1
+                print(f"{Colors.YELLOW}⊘ {test_config.get('name', operation)} (ignored){Colors.NC}")
+                continue
+            
             result = run_test_from_config(operation, test_config, self.verbose, "Generated Test")
             
             status = result['status']
@@ -151,19 +158,20 @@ class AllTestsRunner:
         
         # Print suite summary
         print(f"\n{Colors.BOLD}Generated Tests Summary:{Colors.NC}")
-        print(f"Passed: {suite_passed}, Failed: {suite_failed}")
+        print(f"Passed: {suite_passed}, Failed: {suite_failed}, Ignored: {suite_ignored}")
         
         self.passed += suite_passed
         self.failed += suite_failed
+        self.skipped += suite_ignored
         self.generated_passed = (suite_failed == 0)
         
         return suite_failed == 0
     
     def run_custom_tests(self, test_filter: str = None):
         """Run custom tests from payloads_custom.json"""
-        print(f"{'='*70}{Colors.NC}", Colors.CYAN)
-        print(f"Running Custom Tests - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}", Colors.NC)
-        print(f"{'='*70}{Colors.NC}", Colors.CYAN)
+        print(f"{Colors.BLUE}{'='*70}{Colors.NC}")
+        print(f"Running Custom Tests - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+        print(f"{Colors.BLUE}{'='*70}{Colors.NC}")
         
         custom_tests_dict = load_custom_tests(self.verbose)
         
@@ -189,8 +197,15 @@ class AllTestsRunner:
         
         suite_passed = 0
         suite_failed = 0
+        suite_ignored = 0
         
         for test_key, test_config in filtered_custom.items():
+            # Check if test is marked as ignored
+            if test_config.get('ignored', False):
+                suite_ignored += 1
+                print(f"{Colors.YELLOW}⊘ {test_config.get('name', test_key)} (ignored){Colors.NC}")
+                continue
+            
             result = run_test_from_config(test_key, test_config, self.verbose, "Custom Test")
             
             status = result['status']
@@ -220,10 +235,11 @@ class AllTestsRunner:
         
         # Print suite summary
         print(f"\n{Colors.BOLD}Custom Tests Summary:{Colors.NC}")
-        print(f"Passed: {suite_passed}, Failed: {suite_failed}")
+        print(f"Passed: {suite_passed}, Failed: {suite_failed}, Ignored: {suite_ignored}")
         
         self.passed += suite_passed
         self.failed += suite_failed
+        self.skipped += suite_ignored
         self.custom_passed = (suite_failed == 0)
         
         return suite_failed == 0
@@ -231,9 +247,9 @@ class AllTestsRunner:
     def run_all_suites(self, skip_validation: bool = False, skip_generated: bool = False, 
                       skip_custom: bool = False, operation_filter: str = None, test_filter: str = None):
         """Run all test suites in order: validation, generated, custom"""
-        print(f"{'='*70}{Colors.NC}", Colors.CYAN)
-        print(f"CLI Test Suite Runner - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}", Colors.BLUE)
-        print(f"{'='*70}{Colors.NC}", Colors.CYAN)
+        print(f"{Colors.BLUE}{'='*70}{Colors.NC}")
+        print(f"CLI Test Suite Runner - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+        print(f"{Colors.BLUE}{'='*70}{Colors.NC}")
         
         all_passed = True
         
@@ -267,9 +283,9 @@ class AllTestsRunner:
     
     def print_overall_summary(self):
         """Print overall test summary"""
-        print(f"{'='*70}{Colors.NC}", Colors.CYAN)
-        print("Overall Test Summary", Colors.BLUE)
-        print(f"{'='*70}{Colors.NC}", Colors.BLUE)
+        print(f"{Colors.BLUE}{'='*70}{Colors.NC}")
+        print("Overall Test Summary")
+        print(f"{Colors.BLUE}{'='*70}{Colors.NC}")
         
         print(f"\nTotal Payload Tests:")
         print(f"{Colors.GREEN if self.passed else Colors.NC}Passed:  {self.passed}{Colors.NC}")

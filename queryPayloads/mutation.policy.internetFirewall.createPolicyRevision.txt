@@ -1,10 +1,10 @@
 mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFirewallPolicyMutationInput:InternetFirewallPolicyMutationInput $policyCreateRevisionInput:PolicyCreateRevisionInput!) {
 	policy ( accountId:$accountId ) {
 		internetFirewall ( input:$internetFirewallPolicyMutationInput  )  {
-			createPolicyRevisionInternetFirewallPolicyMutations: createPolicyRevision ( input:$policyCreateRevisionInput   ) {
+			createPolicyRevision ( input:$policyCreateRevisionInput   ) {
 				policy {
 					enabled
-					rulesInternetFirewallPolicy: rules {
+					rules {
 						audit {
 							updatedTime
 	updatedBy {
@@ -136,7 +136,7 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 							name
 							description
 							index
-							sectionInternetFirewallRule: section {
+							section {
 		id {
 			id
 			status
@@ -253,7 +253,7 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 								name
 							}
 							enabled
-							sourceInternetFirewallRule: source {
+							source {
 		ip {
 			siteId
 		}
@@ -1456,8 +1456,8 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 									name
 								}
 							}
-							connectionOriginInternetFirewallRule: connectionOrigin
-							countryInternetFirewallRule: country {
+							connectionOrigin
+							country {
 		id {
 			id
 			status
@@ -1573,7 +1573,7 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 		}
 								name
 							}
-							deviceInternetFirewallRule: device {
+							device {
 		id {
 			id
 			status
@@ -1689,12 +1689,12 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 		}
 								name
 							}
-	deviceOSInternetFirewallRule: deviceOS {
+	deviceOS {
 		product
 		vendor
 		version
 	}
-							deviceAttributesInternetFirewallRule: deviceAttributes {
+							deviceAttributes {
 		category {
 			id
 			name
@@ -1723,7 +1723,7 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 		}
 								osVersion
 							}
-							destinationInternetFirewallRule: destination {
+							destination {
 								application {
 		id {
 			id
@@ -2643,7 +2643,7 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 								}
 								remoteAsn
 								containers {
-									fqdnContainerInternetFirewallContainer: fqdnContainer {
+									fqdnContainer {
 		id {
 			id
 			status
@@ -2759,7 +2759,7 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 		}
 										name
 									}
-									ipAddressRangeContainerInternetFirewallContainer: ipAddressRangeContainer {
+									ipAddressRangeContainer {
 		id {
 			id
 			status
@@ -2877,7 +2877,7 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 									}
 								}
 							}
-							serviceInternetFirewallRule: service {
+							service {
 								standard {
 		id {
 			id
@@ -3020,7 +3020,7 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 				}
 			}
 		}
-									portRangeCustomService: portRange {
+									portRange {
 		from {
 			container {
 				id
@@ -3054,18 +3054,18 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 			}
 		}
 									}
-									protocolCustomService: protocol
+									protocol
 								}
 							}
-							actionInternetFirewallRule: action
-							trackingInternetFirewallRule: tracking {
+							action
+							tracking {
 								event {
 									enabled
 								}
 								alert {
 									enabled
-									frequencyPolicyRuleTrackingAlert: frequency
-									subscriptionGroupPolicyRuleTrackingAlert: subscriptionGroup {
+									frequency
+									subscriptionGroup {
 		id {
 			id
 			status
@@ -3181,7 +3181,7 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 		}
 										name
 									}
-									webhookPolicyRuleTrackingAlert: webhook {
+									webhook {
 		id {
 			id
 			status
@@ -3297,7 +3297,7 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 		}
 										name
 									}
-									mailingListPolicyRuleTrackingAlert: mailingList {
+									mailingList {
 		id {
 			id
 			status
@@ -3415,7 +3415,7 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 									}
 								}
 							}
-							scheduleInternetFirewallRule: schedule {
+							schedule {
 								activeOn
 								customTimeframe {
 		from {
@@ -3484,22 +3484,22 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 				}
 			}
 		}
-									daysPolicyCustomRecurring: days
+									days
 								}
 							}
-							activePeriodInternetFirewallRule: activePeriod {
+							activePeriod {
 								useEffectiveFrom
 								effectiveFrom
 								useExpiresAt
 								expiresAt
 							}
-							exceptionsInternetFirewallRule: exceptions {
+							exceptions {
 								name
 								source {
 		ip {
 			siteId
 		}
-									hostInternetFirewallSource: host {
+									host {
 		id {
 			id
 			status
@@ -3615,7 +3615,7 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 		}
 										name
 									}
-									siteInternetFirewallSource: site {
+									site {
 		id {
 			id
 			status
@@ -3735,7 +3735,7 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 			id
 			name
 		}
-									ipRangeInternetFirewallSource: ipRange {
+									ipRange {
 		from {
 			container {
 				id
@@ -3769,7 +3769,7 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 			}
 		}
 									}
-									globalIpRangeInternetFirewallSource: globalIpRange {
+									globalIpRange {
 		id {
 			id
 			status
@@ -3885,7 +3885,7 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 		}
 										name
 									}
-									networkInterfaceInternetFirewallSource: networkInterface {
+									networkInterface {
 		id {
 			id
 			status
@@ -4001,7 +4001,7 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 		}
 										name
 									}
-									siteNetworkSubnetInternetFirewallSource: siteNetworkSubnet {
+									siteNetworkSubnet {
 		id {
 			id
 			status
@@ -4117,7 +4117,7 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 		}
 										name
 									}
-									floatingSubnetInternetFirewallSource: floatingSubnet {
+									floatingSubnet {
 		id {
 			id
 			status
@@ -4233,7 +4233,7 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 		}
 										name
 									}
-									userInternetFirewallSource: user {
+									user {
 		id {
 			id
 			status
@@ -4349,7 +4349,7 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 		}
 										name
 									}
-									usersGroupInternetFirewallSource: usersGroup {
+									usersGroup {
 		id {
 			id
 			status
@@ -4465,7 +4465,7 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 		}
 										name
 									}
-									groupInternetFirewallSource: group {
+									group {
 		id {
 			id
 			status
@@ -4581,7 +4581,7 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 		}
 										name
 									}
-									systemGroupInternetFirewallSource: systemGroup {
+									systemGroup {
 		id {
 			id
 			status
@@ -4965,7 +4965,7 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 									osVersion
 								}
 								destination {
-									applicationInternetFirewallDestination: application {
+									application {
 		id {
 			id
 			status
@@ -5081,7 +5081,7 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 		}
 										name
 									}
-									customAppInternetFirewallDestination: customApp {
+									customApp {
 		id {
 			id
 			status
@@ -5197,7 +5197,7 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 		}
 										name
 									}
-									appCategoryInternetFirewallDestination: appCategory {
+									appCategory {
 		id {
 			id
 			status
@@ -5313,7 +5313,7 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 		}
 										name
 									}
-									customCategoryInternetFirewallDestination: customCategory {
+									customCategory {
 		id {
 			id
 			status
@@ -5429,7 +5429,7 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 		}
 										name
 									}
-									sanctionedAppsCategoryInternetFirewallDestination: sanctionedAppsCategory {
+									sanctionedAppsCategory {
 		id {
 			id
 			status
@@ -5545,7 +5545,7 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 		}
 										name
 									}
-									countryInternetFirewallDestination: country {
+									country {
 		id {
 			id
 			status
@@ -5732,7 +5732,7 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 			id
 			name
 		}
-									ipRangeInternetFirewallDestination: ipRange {
+									ipRange {
 		from {
 			container {
 				id
@@ -5766,7 +5766,7 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 			}
 		}
 									}
-									globalIpRangeInternetFirewallDestination: globalIpRange {
+									globalIpRange {
 		id {
 			id
 			status
@@ -5883,7 +5883,7 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 										name
 									}
 									remoteAsn
-									containersInternetFirewallDestination: containers {
+									containers {
 										fqdnContainer {
 		id {
 			id
@@ -6119,7 +6119,7 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 									}
 								}
 								service {
-									standardInternetFirewallServiceType: standard {
+									standard {
 		id {
 			id
 			status
@@ -6235,7 +6235,7 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 		}
 										name
 									}
-									customInternetFirewallServiceType: custom {
+									custom {
 		port {
 			id
 			from
@@ -6303,7 +6303,7 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 						}
 						properties
 					}
-					sectionsInternetFirewallPolicy: sections {
+					sections {
 						audit {
 							updatedTime
 	updatedBy {
@@ -6436,11 +6436,11 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 						}
 						properties
 					}
-					auditInternetFirewallPolicy: audit {
+					audit {
 						publishedTime
 						publishedBy
 					}
-					revisionInternetFirewallPolicy: revision {
+					revision {
 	id {
 		id
 		status

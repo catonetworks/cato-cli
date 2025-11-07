@@ -22,7 +22,7 @@ def custom_parse(subparsers):
 
 		item_list_parser.add_argument('-accountID', help='The Account ID (optional - defaults to profile setting).')
 		item_list_parser.add_argument('-s', help='Search string', default='', nargs='?')
-		item_list_parser.add_argument('-f', default="csv", choices=["json","csv"], nargs='?', 
+		item_list_parser.add_argument('-f', default="json", choices=["json","csv"], nargs='?', 
 			help='Specify format for output')
 		item_list_parser.add_argument('-t', const=True, default=False, nargs='?', 
 			help='Print test request preview without sending api call')

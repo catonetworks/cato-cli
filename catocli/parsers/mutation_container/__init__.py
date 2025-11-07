@@ -7,13 +7,33 @@ def mutation_container_parse(mutation_subparsers):
             help='container() mutation operation', 
             usage=get_help("mutation_container"), formatter_class=CustomSubparserHelpFormatter)
 
+    def _show_mutation_container_help(args, configuration=None):
+        """Show help when mutation_container is called without subcommand"""
+        print("Usage: catocli mutation container <subcommand> [options]")
+        print("\nAvailable subcommands:")
+        print("  ipAddressRange                 ipAddressRange operation\n  fqdn                           fqdn operation\n  delete                         delete operation")
+        print("\nFor help on a specific subcommand:")
+        print("  catocli mutation container <subcommand> -h")
+        return None
+
     mutation_container_subparsers = mutation_container_parser.add_subparsers()
+    mutation_container_parser.set_defaults(func=_show_mutation_container_help)
 
     mutation_container_ipAddressRange_parser = mutation_container_subparsers.add_parser('ipAddressRange', 
             help='ipAddressRange() container operation', 
             usage=get_help("mutation_container_ipAddressRange"))
 
+    def _show_mutation_container_ipAddressRange_help(args, configuration=None):
+        """Show help when mutation_container_ipAddressRange is called without subcommand"""
+        print("Usage: catocli mutation container ipAddressRange <subcommand> [options]")
+        print("\nAvailable subcommands:")
+        print("  createFromFile                 createFromFile operation\n  updateFromFile                 updateFromFile operation\n  addValues                      addValues operation\n  removeValues                   removeValues operation")
+        print("\nFor help on a specific subcommand:")
+        print("  catocli mutation container ipAddressRange <subcommand> -h")
+        return None
+
     mutation_container_ipAddressRange_subparsers = mutation_container_ipAddressRange_parser.add_subparsers()
+    mutation_container_ipAddressRange_parser.set_defaults(func=_show_mutation_container_ipAddressRange_help)
 
     mutation_container_ipAddressRange_createFromFile_parser = mutation_container_ipAddressRange_subparsers.add_parser('createFromFile', 
             help='createFromFile() ipAddressRange operation', 
@@ -83,7 +103,17 @@ def mutation_container_parse(mutation_subparsers):
             help='fqdn() container operation', 
             usage=get_help("mutation_container_fqdn"))
 
+    def _show_mutation_container_fqdn_help(args, configuration=None):
+        """Show help when mutation_container_fqdn is called without subcommand"""
+        print("Usage: catocli mutation container fqdn <subcommand> [options]")
+        print("\nAvailable subcommands:")
+        print("  createFromFile                 createFromFile operation\n  updateFromFile                 updateFromFile operation\n  addValues                      addValues operation\n  removeValues                   removeValues operation")
+        print("\nFor help on a specific subcommand:")
+        print("  catocli mutation container fqdn <subcommand> -h")
+        return None
+
     mutation_container_fqdn_subparsers = mutation_container_fqdn_parser.add_subparsers()
+    mutation_container_fqdn_parser.set_defaults(func=_show_mutation_container_fqdn_help)
 
     mutation_container_fqdn_createFromFile_parser = mutation_container_fqdn_subparsers.add_parser('createFromFile', 
             help='createFromFile() fqdn operation', 

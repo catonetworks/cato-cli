@@ -273,6 +273,11 @@ def createRequest(args, configuration):
                         # Extract just the data portion from the response tuple
                         # to avoid HTTPHeaderDict serialization issues
                         response = response[0]
+                else:
+                    # Always extract data portion from response tuple for non-trace_id calls
+                    # to avoid HTTPHeaderDict serialization issues
+                    if isinstance(response, (list, tuple)) and len(response) >= 3:
+                        response = response[0]
                 
                 # Handle output routing if network or sentinel options are specified
                 if (network_config or sentinel_config) and response:

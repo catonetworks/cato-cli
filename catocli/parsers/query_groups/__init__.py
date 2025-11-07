@@ -7,13 +7,33 @@ def query_groups_parse(query_subparsers):
             help='groups() query operation', 
             usage=get_help("query_groups"), formatter_class=CustomSubparserHelpFormatter)
 
+    def _show_query_groups_help(args, configuration=None):
+        """Show help when query_groups is called without subcommand"""
+        print("Usage: catocli query groups <subcommand> [options]")
+        print("\nAvailable subcommands:")
+        print("  group                          group operation\n  whereUsed                      whereUsed operation\n  groupList                      groupList operation")
+        print("\nFor help on a specific subcommand:")
+        print("  catocli query groups <subcommand> -h")
+        return None
+
     query_groups_subparsers = query_groups_parser.add_subparsers()
+    query_groups_parser.set_defaults(func=_show_query_groups_help)
 
     query_groups_group_parser = query_groups_subparsers.add_parser('group', 
             help='group() groups operation', 
             usage=get_help("query_groups_group"))
 
+    def _show_query_groups_group_help(args, configuration=None):
+        """Show help when query_groups_group is called without subcommand"""
+        print("Usage: catocli query groups group <subcommand> [options]")
+        print("\nAvailable subcommands:")
+        print("  members                        members operation")
+        print("\nFor help on a specific subcommand:")
+        print("  catocli query groups group <subcommand> -h")
+        return None
+
     query_groups_group_subparsers = query_groups_group_parser.add_subparsers()
+    query_groups_group_parser.set_defaults(func=_show_query_groups_group_help)
 
     query_groups_group_members_parser = query_groups_group_subparsers.add_parser('members', 
             help='members() group operation', 

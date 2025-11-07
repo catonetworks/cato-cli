@@ -7,7 +7,17 @@ def mutation_groups_parse(mutation_subparsers):
             help='groups() mutation operation', 
             usage=get_help("mutation_groups"), formatter_class=CustomSubparserHelpFormatter)
 
+    def _show_mutation_groups_help(args, configuration=None):
+        """Show help when mutation_groups is called without subcommand"""
+        print("Usage: catocli mutation groups <subcommand> [options]")
+        print("\nAvailable subcommands:")
+        print("  createGroup                    createGroup operation\n  updateGroup                    updateGroup operation\n  deleteGroup                    deleteGroup operation")
+        print("\nFor help on a specific subcommand:")
+        print("  catocli mutation groups <subcommand> -h")
+        return None
+
     mutation_groups_subparsers = mutation_groups_parser.add_subparsers()
+    mutation_groups_parser.set_defaults(func=_show_mutation_groups_help)
 
     mutation_groups_createGroup_parser = mutation_groups_subparsers.add_parser('createGroup', 
             help='createGroup() groups operation', 

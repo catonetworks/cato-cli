@@ -259,10 +259,12 @@ def run_cli_command(operation: str, payload: Dict, timeout: int = 30, verbose: b
     except ValueError:
         return False, None, f"Invalid operation format: {operation}. Expected format: <type>.<name>", ""
     
-    # Convert payload dict to JSON string
-    json_payload = json.dumps(payload)
-    
-    cmd = [PYTHON_CMD, '-m', 'catocli', op_type] + cli_op_parts + [json_payload]
+    # Convert payload dict to JSON string (skip if empty)
+    if payload:
+        json_payload = json.dumps(payload)
+        cmd = [PYTHON_CMD, '-m', 'catocli', op_type] + cli_op_parts + [json_payload]
+    else:
+        cmd = [PYTHON_CMD, '-m', 'catocli', op_type] + cli_op_parts
     
     # Build readable command string for display
     payload_str = json.dumps(payload, indent=2) if payload else '{}'
@@ -507,11 +509,8 @@ def load_test_payloads_tests(ignore_operations: set, override_payloads: Dict, ve
     generated_tests = {}
     
     for operation, args in test_payloads.items():
-        # Skip if operation is in ignoreOperations
-        if operation in ignore_operations:
-            if verbose:
-                print(f"{Colors.CYAN}Skipping {operation} (in ignoreOperations){Colors.NC}")
-            continue
+        # Mark test as ignored if in ignoreOperations (but still include it)
+        is_ignored = operation in ignore_operations
         
         # Check if there's an override config for this operation
         payload = args
@@ -552,7 +551,8 @@ def load_test_payloads_tests(ignore_operations: set, override_payloads: Dict, ve
             "operation": operation,
             "payload": payload if payload else {},
             "timeout": 30,
-            "assertions": assertion_list
+            "assertions": assertion_list,
+            "ignored": is_ignored  # Mark if this test should be skipped
         }
         
         generated_tests[operation] = test_config

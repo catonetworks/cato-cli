@@ -7,7 +7,17 @@ def mutation_accountManagement_parse(mutation_subparsers):
             help='accountManagement() mutation operation', 
             usage=get_help("mutation_accountManagement"), formatter_class=CustomSubparserHelpFormatter)
 
+    def _show_mutation_accountManagement_help(args, configuration=None):
+        """Show help when mutation_accountManagement is called without subcommand"""
+        print("Usage: catocli mutation accountManagement <subcommand> [options]")
+        print("\nAvailable subcommands:")
+        print("  addAccount                     addAccount operation\n  updateAccount                  updateAccount operation\n  removeAccount                  removeAccount operation\n  disableAccount                 disableAccount operation")
+        print("\nFor help on a specific subcommand:")
+        print("  catocli mutation accountManagement <subcommand> -h")
+        return None
+
     mutation_accountManagement_subparsers = mutation_accountManagement_parser.add_subparsers()
+    mutation_accountManagement_parser.set_defaults(func=_show_mutation_accountManagement_help)
 
     mutation_accountManagement_addAccount_parser = mutation_accountManagement_subparsers.add_parser('addAccount', 
             help='addAccount() accountManagement operation', 

@@ -7,7 +7,17 @@ def query_catalogs_parse(query_subparsers):
             help='catalogs() query operation', 
             usage=get_help("query_catalogs"), formatter_class=CustomSubparserHelpFormatter)
 
+    def _show_query_catalogs_help(args, configuration=None):
+        """Show help when query_catalogs is called without subcommand"""
+        print("Usage: catocli query catalogs <subcommand> [options]")
+        print("\nAvailable subcommands:")
+        print("  catalogApplication             catalogApplication operation\n  catalogApplicationList         catalogApplicationList operation\n  contentTypeGroupList           contentTypeGroupList operation")
+        print("\nFor help on a specific subcommand:")
+        print("  catocli query catalogs <subcommand> -h")
+        return None
+
     query_catalogs_subparsers = query_catalogs_parser.add_subparsers()
+    query_catalogs_parser.set_defaults(func=_show_query_catalogs_help)
 
     query_catalogs_catalogApplication_parser = query_catalogs_subparsers.add_parser('catalogApplication', 
             help='catalogApplication() catalogs operation', 

@@ -7,13 +7,33 @@ def mutation_policy_parse(mutation_subparsers):
             help='policy() mutation operation', 
             usage=get_help("mutation_policy"), formatter_class=CustomSubparserHelpFormatter)
 
+    def _show_mutation_policy_help(args, configuration=None):
+        """Show help when mutation_policy is called without subcommand"""
+        print("Usage: catocli mutation policy <subcommand> [options]")
+        print("\nAvailable subcommands:")
+        print("  antiMalwareFileHash            antiMalwareFileHash operation\n  socketLan                      socketLan operation\n  wanNetwork                     wanNetwork operation\n  internetFirewall               internetFirewall operation\n  remotePortFwd                  remotePortFwd operation\n  wanFirewall                    wanFirewall operation\n  appTenantRestriction           appTenantRestriction operation\n  applicationControl             applicationControl operation\n  tlsInspect                     tlsInspect operation\n  dynamicIpAllocation            dynamicIpAllocation operation\n  ... and 1 more")
+        print("\nFor help on a specific subcommand:")
+        print("  catocli mutation policy <subcommand> -h")
+        return None
+
     mutation_policy_subparsers = mutation_policy_parser.add_subparsers()
+    mutation_policy_parser.set_defaults(func=_show_mutation_policy_help)
 
     mutation_policy_antiMalwareFileHash_parser = mutation_policy_subparsers.add_parser('antiMalwareFileHash', 
             help='antiMalwareFileHash() policy operation', 
             usage=get_help("mutation_policy_antiMalwareFileHash"))
 
+    def _show_mutation_policy_antiMalwareFileHash_help(args, configuration=None):
+        """Show help when mutation_policy_antiMalwareFileHash is called without subcommand"""
+        print("Usage: catocli mutation policy antiMalwareFileHash <subcommand> [options]")
+        print("\nAvailable subcommands:")
+        print("  addRule                        addRule operation\n  updateRule                     updateRule operation\n  removeRule                     removeRule operation\n  moveRule                       moveRule operation\n  addSection                     addSection operation\n  updateSection                  updateSection operation\n  removeSection                  removeSection operation\n  moveSection                    moveSection operation\n  createPolicyRevision           createPolicyRevision operation\n  publishPolicyRevision          publishPolicyRevision operation\n  ... and 2 more")
+        print("\nFor help on a specific subcommand:")
+        print("  catocli mutation policy antiMalwareFileHash <subcommand> -h")
+        return None
+
     mutation_policy_antiMalwareFileHash_subparsers = mutation_policy_antiMalwareFileHash_parser.add_subparsers()
+    mutation_policy_antiMalwareFileHash_parser.set_defaults(func=_show_mutation_policy_antiMalwareFileHash_help)
 
     mutation_policy_antiMalwareFileHash_addRule_parser = mutation_policy_antiMalwareFileHash_subparsers.add_parser('addRule', 
             help='addRule() antiMalwareFileHash operation', 
@@ -211,7 +231,17 @@ def mutation_policy_parse(mutation_subparsers):
             help='socketLan() policy operation', 
             usage=get_help("mutation_policy_socketLan"))
 
+    def _show_mutation_policy_socketLan_help(args, configuration=None):
+        """Show help when mutation_policy_socketLan is called without subcommand"""
+        print("Usage: catocli mutation policy socketLan <subcommand> [options]")
+        print("\nAvailable subcommands:")
+        print("  addRule                        addRule operation\n  updateRule                     updateRule operation\n  removeRule                     removeRule operation\n  moveRule                       moveRule operation\n  addSection                     addSection operation\n  updateSection                  updateSection operation\n  removeSection                  removeSection operation\n  moveSection                    moveSection operation\n  createPolicyRevision           createPolicyRevision operation\n  publishPolicyRevision          publishPolicyRevision operation\n  ... and 2 more")
+        print("\nFor help on a specific subcommand:")
+        print("  catocli mutation policy socketLan <subcommand> -h")
+        return None
+
     mutation_policy_socketLan_subparsers = mutation_policy_socketLan_parser.add_subparsers()
+    mutation_policy_socketLan_parser.set_defaults(func=_show_mutation_policy_socketLan_help)
 
     mutation_policy_socketLan_addRule_parser = mutation_policy_socketLan_subparsers.add_parser('addRule', 
             help='addRule() socketLan operation', 
@@ -409,7 +439,17 @@ def mutation_policy_parse(mutation_subparsers):
             help='wanNetwork() policy operation', 
             usage=get_help("mutation_policy_wanNetwork"))
 
+    def _show_mutation_policy_wanNetwork_help(args, configuration=None):
+        """Show help when mutation_policy_wanNetwork is called without subcommand"""
+        print("Usage: catocli mutation policy wanNetwork <subcommand> [options]")
+        print("\nAvailable subcommands:")
+        print("  addRule                        addRule operation\n  updateRule                     updateRule operation\n  removeRule                     removeRule operation\n  moveRule                       moveRule operation\n  addSection                     addSection operation\n  updateSection                  updateSection operation\n  removeSection                  removeSection operation\n  moveSection                    moveSection operation\n  createPolicyRevision           createPolicyRevision operation\n  publishPolicyRevision          publishPolicyRevision operation\n  ... and 2 more")
+        print("\nFor help on a specific subcommand:")
+        print("  catocli mutation policy wanNetwork <subcommand> -h")
+        return None
+
     mutation_policy_wanNetwork_subparsers = mutation_policy_wanNetwork_parser.add_subparsers()
+    mutation_policy_wanNetwork_parser.set_defaults(func=_show_mutation_policy_wanNetwork_help)
 
     mutation_policy_wanNetwork_addRule_parser = mutation_policy_wanNetwork_subparsers.add_parser('addRule', 
             help='addRule() wanNetwork operation', 
@@ -607,7 +647,17 @@ def mutation_policy_parse(mutation_subparsers):
             help='internetFirewall() policy operation', 
             usage=get_help("mutation_policy_internetFirewall"))
 
+    def _show_mutation_policy_internetFirewall_help(args, configuration=None):
+        """Show help when mutation_policy_internetFirewall is called without subcommand"""
+        print("Usage: catocli mutation policy internetFirewall <subcommand> [options]")
+        print("\nAvailable subcommands:")
+        print("  addRule                        addRule operation\n  updateRule                     updateRule operation\n  removeRule                     removeRule operation\n  moveRule                       moveRule operation\n  addSection                     addSection operation\n  updateSection                  updateSection operation\n  removeSection                  removeSection operation\n  moveSection                    moveSection operation\n  createPolicyRevision           createPolicyRevision operation\n  publishPolicyRevision          publishPolicyRevision operation\n  ... and 2 more")
+        print("\nFor help on a specific subcommand:")
+        print("  catocli mutation policy internetFirewall <subcommand> -h")
+        return None
+
     mutation_policy_internetFirewall_subparsers = mutation_policy_internetFirewall_parser.add_subparsers()
+    mutation_policy_internetFirewall_parser.set_defaults(func=_show_mutation_policy_internetFirewall_help)
 
     mutation_policy_internetFirewall_addRule_parser = mutation_policy_internetFirewall_subparsers.add_parser('addRule', 
             help='addRule() internetFirewall operation', 
@@ -805,7 +855,17 @@ def mutation_policy_parse(mutation_subparsers):
             help='remotePortFwd() policy operation', 
             usage=get_help("mutation_policy_remotePortFwd"))
 
+    def _show_mutation_policy_remotePortFwd_help(args, configuration=None):
+        """Show help when mutation_policy_remotePortFwd is called without subcommand"""
+        print("Usage: catocli mutation policy remotePortFwd <subcommand> [options]")
+        print("\nAvailable subcommands:")
+        print("  addRule                        addRule operation\n  updateRule                     updateRule operation\n  removeRule                     removeRule operation\n  moveRule                       moveRule operation\n  addSection                     addSection operation\n  updateSection                  updateSection operation\n  removeSection                  removeSection operation\n  moveSection                    moveSection operation\n  createPolicyRevision           createPolicyRevision operation\n  publishPolicyRevision          publishPolicyRevision operation\n  ... and 2 more")
+        print("\nFor help on a specific subcommand:")
+        print("  catocli mutation policy remotePortFwd <subcommand> -h")
+        return None
+
     mutation_policy_remotePortFwd_subparsers = mutation_policy_remotePortFwd_parser.add_subparsers()
+    mutation_policy_remotePortFwd_parser.set_defaults(func=_show_mutation_policy_remotePortFwd_help)
 
     mutation_policy_remotePortFwd_addRule_parser = mutation_policy_remotePortFwd_subparsers.add_parser('addRule', 
             help='addRule() remotePortFwd operation', 
@@ -1003,7 +1063,17 @@ def mutation_policy_parse(mutation_subparsers):
             help='wanFirewall() policy operation', 
             usage=get_help("mutation_policy_wanFirewall"))
 
+    def _show_mutation_policy_wanFirewall_help(args, configuration=None):
+        """Show help when mutation_policy_wanFirewall is called without subcommand"""
+        print("Usage: catocli mutation policy wanFirewall <subcommand> [options]")
+        print("\nAvailable subcommands:")
+        print("  addRule                        addRule operation\n  updateRule                     updateRule operation\n  removeRule                     removeRule operation\n  moveRule                       moveRule operation\n  addSection                     addSection operation\n  updateSection                  updateSection operation\n  removeSection                  removeSection operation\n  moveSection                    moveSection operation\n  createPolicyRevision           createPolicyRevision operation\n  publishPolicyRevision          publishPolicyRevision operation\n  ... and 2 more")
+        print("\nFor help on a specific subcommand:")
+        print("  catocli mutation policy wanFirewall <subcommand> -h")
+        return None
+
     mutation_policy_wanFirewall_subparsers = mutation_policy_wanFirewall_parser.add_subparsers()
+    mutation_policy_wanFirewall_parser.set_defaults(func=_show_mutation_policy_wanFirewall_help)
 
     mutation_policy_wanFirewall_addRule_parser = mutation_policy_wanFirewall_subparsers.add_parser('addRule', 
             help='addRule() wanFirewall operation', 
@@ -1201,7 +1271,17 @@ def mutation_policy_parse(mutation_subparsers):
             help='appTenantRestriction() policy operation', 
             usage=get_help("mutation_policy_appTenantRestriction"))
 
+    def _show_mutation_policy_appTenantRestriction_help(args, configuration=None):
+        """Show help when mutation_policy_appTenantRestriction is called without subcommand"""
+        print("Usage: catocli mutation policy appTenantRestriction <subcommand> [options]")
+        print("\nAvailable subcommands:")
+        print("  addRule                        addRule operation\n  updateRule                     updateRule operation\n  removeRule                     removeRule operation\n  moveRule                       moveRule operation\n  addSection                     addSection operation\n  updateSection                  updateSection operation\n  removeSection                  removeSection operation\n  moveSection                    moveSection operation\n  createPolicyRevision           createPolicyRevision operation\n  publishPolicyRevision          publishPolicyRevision operation\n  ... and 2 more")
+        print("\nFor help on a specific subcommand:")
+        print("  catocli mutation policy appTenantRestriction <subcommand> -h")
+        return None
+
     mutation_policy_appTenantRestriction_subparsers = mutation_policy_appTenantRestriction_parser.add_subparsers()
+    mutation_policy_appTenantRestriction_parser.set_defaults(func=_show_mutation_policy_appTenantRestriction_help)
 
     mutation_policy_appTenantRestriction_addRule_parser = mutation_policy_appTenantRestriction_subparsers.add_parser('addRule', 
             help='addRule() appTenantRestriction operation', 
@@ -1399,7 +1479,17 @@ def mutation_policy_parse(mutation_subparsers):
             help='applicationControl() policy operation', 
             usage=get_help("mutation_policy_applicationControl"))
 
+    def _show_mutation_policy_applicationControl_help(args, configuration=None):
+        """Show help when mutation_policy_applicationControl is called without subcommand"""
+        print("Usage: catocli mutation policy applicationControl <subcommand> [options]")
+        print("\nAvailable subcommands:")
+        print("  addRule                        addRule operation\n  updateRule                     updateRule operation\n  removeRule                     removeRule operation\n  moveRule                       moveRule operation\n  addSection                     addSection operation\n  updateSection                  updateSection operation\n  removeSection                  removeSection operation\n  moveSection                    moveSection operation\n  createPolicyRevision           createPolicyRevision operation\n  publishPolicyRevision          publishPolicyRevision operation\n  ... and 2 more")
+        print("\nFor help on a specific subcommand:")
+        print("  catocli mutation policy applicationControl <subcommand> -h")
+        return None
+
     mutation_policy_applicationControl_subparsers = mutation_policy_applicationControl_parser.add_subparsers()
+    mutation_policy_applicationControl_parser.set_defaults(func=_show_mutation_policy_applicationControl_help)
 
     mutation_policy_applicationControl_addRule_parser = mutation_policy_applicationControl_subparsers.add_parser('addRule', 
             help='addRule() applicationControl operation', 
@@ -1597,7 +1687,17 @@ def mutation_policy_parse(mutation_subparsers):
             help='tlsInspect() policy operation', 
             usage=get_help("mutation_policy_tlsInspect"))
 
+    def _show_mutation_policy_tlsInspect_help(args, configuration=None):
+        """Show help when mutation_policy_tlsInspect is called without subcommand"""
+        print("Usage: catocli mutation policy tlsInspect <subcommand> [options]")
+        print("\nAvailable subcommands:")
+        print("  addRule                        addRule operation\n  updateRule                     updateRule operation\n  removeRule                     removeRule operation\n  moveRule                       moveRule operation\n  addSection                     addSection operation\n  updateSection                  updateSection operation\n  removeSection                  removeSection operation\n  moveSection                    moveSection operation\n  createPolicyRevision           createPolicyRevision operation\n  publishPolicyRevision          publishPolicyRevision operation\n  ... and 2 more")
+        print("\nFor help on a specific subcommand:")
+        print("  catocli mutation policy tlsInspect <subcommand> -h")
+        return None
+
     mutation_policy_tlsInspect_subparsers = mutation_policy_tlsInspect_parser.add_subparsers()
+    mutation_policy_tlsInspect_parser.set_defaults(func=_show_mutation_policy_tlsInspect_help)
 
     mutation_policy_tlsInspect_addRule_parser = mutation_policy_tlsInspect_subparsers.add_parser('addRule', 
             help='addRule() tlsInspect operation', 
@@ -1795,7 +1895,17 @@ def mutation_policy_parse(mutation_subparsers):
             help='dynamicIpAllocation() policy operation', 
             usage=get_help("mutation_policy_dynamicIpAllocation"))
 
+    def _show_mutation_policy_dynamicIpAllocation_help(args, configuration=None):
+        """Show help when mutation_policy_dynamicIpAllocation is called without subcommand"""
+        print("Usage: catocli mutation policy dynamicIpAllocation <subcommand> [options]")
+        print("\nAvailable subcommands:")
+        print("  addRule                        addRule operation\n  updateRule                     updateRule operation\n  removeRule                     removeRule operation\n  moveRule                       moveRule operation\n  addSection                     addSection operation\n  updateSection                  updateSection operation\n  removeSection                  removeSection operation\n  moveSection                    moveSection operation\n  createPolicyRevision           createPolicyRevision operation\n  publishPolicyRevision          publishPolicyRevision operation\n  ... and 2 more")
+        print("\nFor help on a specific subcommand:")
+        print("  catocli mutation policy dynamicIpAllocation <subcommand> -h")
+        return None
+
     mutation_policy_dynamicIpAllocation_subparsers = mutation_policy_dynamicIpAllocation_parser.add_subparsers()
+    mutation_policy_dynamicIpAllocation_parser.set_defaults(func=_show_mutation_policy_dynamicIpAllocation_help)
 
     mutation_policy_dynamicIpAllocation_addRule_parser = mutation_policy_dynamicIpAllocation_subparsers.add_parser('addRule', 
             help='addRule() dynamicIpAllocation operation', 
@@ -1993,7 +2103,17 @@ def mutation_policy_parse(mutation_subparsers):
             help='terminalServer() policy operation', 
             usage=get_help("mutation_policy_terminalServer"))
 
+    def _show_mutation_policy_terminalServer_help(args, configuration=None):
+        """Show help when mutation_policy_terminalServer is called without subcommand"""
+        print("Usage: catocli mutation policy terminalServer <subcommand> [options]")
+        print("\nAvailable subcommands:")
+        print("  addRule                        addRule operation\n  updateRule                     updateRule operation\n  removeRule                     removeRule operation\n  moveRule                       moveRule operation\n  addSection                     addSection operation\n  updateSection                  updateSection operation\n  removeSection                  removeSection operation\n  moveSection                    moveSection operation\n  createPolicyRevision           createPolicyRevision operation\n  publishPolicyRevision          publishPolicyRevision operation\n  ... and 2 more")
+        print("\nFor help on a specific subcommand:")
+        print("  catocli mutation policy terminalServer <subcommand> -h")
+        return None
+
     mutation_policy_terminalServer_subparsers = mutation_policy_terminalServer_parser.add_subparsers()
+    mutation_policy_terminalServer_parser.set_defaults(func=_show_mutation_policy_terminalServer_help)
 
     mutation_policy_terminalServer_addRule_parser = mutation_policy_terminalServer_subparsers.add_parser('addRule', 
             help='addRule() terminalServer operation', 

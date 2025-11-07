@@ -7,7 +7,17 @@ def mutation_licensing_parse(mutation_subparsers):
             help='licensing() mutation operation', 
             usage=get_help("mutation_licensing"), formatter_class=CustomSubparserHelpFormatter)
 
+    def _show_mutation_licensing_help(args, configuration=None):
+        """Show help when mutation_licensing is called without subcommand"""
+        print("Usage: catocli mutation licensing <subcommand> [options]")
+        print("\nAvailable subcommands:")
+        print("  updateCommercialLicense        updateCommercialLicense operation")
+        print("\nFor help on a specific subcommand:")
+        print("  catocli mutation licensing <subcommand> -h")
+        return None
+
     mutation_licensing_subparsers = mutation_licensing_parser.add_subparsers()
+    mutation_licensing_parser.set_defaults(func=_show_mutation_licensing_help)
 
     mutation_licensing_updateCommercialLicense_parser = mutation_licensing_subparsers.add_parser('updateCommercialLicense', 
             help='updateCommercialLicense() licensing operation', 

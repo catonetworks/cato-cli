@@ -7,7 +7,17 @@ def mutation_admin_parse(mutation_subparsers):
             help='admin() mutation operation', 
             usage=get_help("mutation_admin"), formatter_class=CustomSubparserHelpFormatter)
 
+    def _show_mutation_admin_help(args, configuration=None):
+        """Show help when mutation_admin is called without subcommand"""
+        print("Usage: catocli mutation admin <subcommand> [options]")
+        print("\nAvailable subcommands:")
+        print("  addAdmin                       addAdmin operation\n  addServicePrincipalAdmin       addServicePrincipalAdmin operation\n  removeAdmin                    removeAdmin operation\n  removeServicePrincipalAdmin    removeServicePrincipalAdmin operation\n  updateAdmin                    updateAdmin operation\n  updateServicePrincipalAdmin    updateServicePrincipalAdmin operation")
+        print("\nFor help on a specific subcommand:")
+        print("  catocli mutation admin <subcommand> -h")
+        return None
+
     mutation_admin_subparsers = mutation_admin_parser.add_subparsers()
+    mutation_admin_parser.set_defaults(func=_show_mutation_admin_help)
 
     mutation_admin_addAdmin_parser = mutation_admin_subparsers.add_parser('addAdmin', 
             help='addAdmin() admin operation', 

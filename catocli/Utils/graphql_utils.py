@@ -790,7 +790,7 @@ def expandFieldWithIntrospection(field_name, field_type_name, indent, already_ex
         return ""
 
 
-def renderArgsAndFields(response_arg_str, variables_obj, cur_operation, definition, operation_name, indent, dynamic_operation_args=None, custom_client=None):
+def renderArgsAndFields(response_arg_str, variables_obj, cur_operation, definition, operation_name, indent, dynamic_operation_args=None, custom_client=None, is_fragment_context=False):
     """
     ENHANCED field rendering with custom field expansion support, introspection-based field expansion,
     and dynamic argument collection.
@@ -799,7 +799,7 @@ def renderArgsAndFields(response_arg_str, variables_obj, cur_operation, definiti
     Key improvements:
     1. Uses introspection to fully expand complex types at all levels of nesting
     2. Properly handles union types and inline fragments
-    3. Implements aliasing for fields to avoid naming conflicts
+    3. Implements aliasing for fields to avoid naming conflicts ONLY within fragments
     4. Supports dynamic argument collection
     5. Automatically detects and expands fields with complex types
     
@@ -812,6 +812,7 @@ def renderArgsAndFields(response_arg_str, variables_obj, cur_operation, definiti
         indent: Current indentation level
         dynamic_operation_args: Dictionary to collect operation arguments dynamically (like JavaScript)
         custom_client: Custom client instance for custom field expansions (optional)
+        is_fragment_context: True if we're rendering fields inside a union/interface fragment
         
     Returns:
         Complete field selection string
@@ -963,22 +964,24 @@ def renderArgsAndFields(response_arg_str, variables_obj, cur_operation, definiti
             response_arg_str += " {\n"
             for subfield_index in field['type']['definition']['fields']:
                 subfield = field['type']['definition']['fields'][subfield_index]
-                # Explorer line 1033: Implement field aliasing for duplicate types
-                # var subfieldName = (curOperationObj.fieldTypes[subfield.type.name] && !subfield.type.kind.includes("SCALAR")) 
-                #                    ? (subfield.name + field.type.definition.name + ": " + subfield.name) : subfield.name;
+                # Explorer line 1033: Implement field aliasing for duplicate types - EXACT MATCH
+                # JavaScript: var subfieldName = (curOperationObj.fieldTypes[subfield.type.name] && !subfield.type.kind.includes("SCALAR")) 
+                #                               ? (subfield.name + field.type.definition.name + ": " + subfield.name) : subfield.name;
+                
+                # Get the subfield type information
                 subfield_type_name = subfield.get('type', {}).get('name')
                 subfield_type_kind = subfield.get('type', {}).get('kind', [])
                 is_scalar = 'SCALAR' in subfield_type_kind if isinstance(subfield_type_kind, list) else subfield_type_kind == 'SCALAR'
-                
-                # Check if this field type appears elsewhere in the schema (via fieldTypes) and is not a scalar
-                field_types = cur_operation.get('fieldTypes', {})
-                type_in_field_types = subfield_type_name in field_types if field_types else False
                 parent_type_name = field.get('type', {}).get('definition', {}).get('name')
                 
-                if (type_in_field_types and not is_scalar and parent_type_name):
-                    # Create alias: {subfieldName}{ParentTypeName}: {subfieldName}
+                # Apply aliasing ONLY inside fragments (union/interface types), matching Explorer line 1033
+                # Aliasing format: {fieldName}{ParentTypeName}: {fieldName}
+                # This prevents field conflicts when same field name has different types in different fragments
+                if is_fragment_context and not is_scalar and parent_type_name and subfield_type_name:
+                    # Inside a fragment - create alias to prevent type conflicts
                     subfield_name = f"{subfield['name']}{parent_type_name}: {subfield['name']}"
                 else:
+                    # Regular field - no alias
                     subfield_name = subfield['name']
                 
                 # JAVASCRIPT COMPATIBILITY: Skip problematic 'fields' subfield in 'records' for socketPortMetrics
@@ -1015,7 +1018,7 @@ def renderArgsAndFields(response_arg_str, variables_obj, cur_operation, definiti
                 
                 if subfield.get("type") and subfield['type'].get("definition") and (subfield['type']['definition'].get("fields") or subfield['type']['definition'].get('inputFields')):
                     response_arg_str += " {\n"
-                    response_arg_str = renderArgsAndFields(response_arg_str, variables_obj, cur_operation, subfield['type']['definition'], operation_name, indent + "\t\t", dynamic_operation_args, custom_client)
+                    response_arg_str = renderArgsAndFields(response_arg_str, variables_obj, cur_operation, subfield['type']['definition'], operation_name, indent + "\t\t", dynamic_operation_args, custom_client, False)
                     if subfield['type']['definition'].get('possibleTypes'):
                         possible_types = subfield['type']['definition']['possibleTypes']
                         # Handle both list and dict formats for possibleTypes
@@ -1025,7 +1028,7 @@ def renderArgsAndFields(response_arg_str, variables_obj, cur_operation, definiti
                                     # Only create fragment if there are actually fields to render
                                     if possible_type.get('fields') or possible_type.get('inputFields'):
                                         response_arg_str += f"{indent}\t\t... on {possible_type['name']} {{\n"
-                                        response_arg_str = renderArgsAndFields(response_arg_str, variables_obj, cur_operation, possible_type, operation_name, indent + "\t\t\t", dynamic_operation_args, custom_client)
+                                        response_arg_str = renderArgsAndFields(response_arg_str, variables_obj, cur_operation, possible_type, operation_name, indent + "\t\t\t", dynamic_operation_args, custom_client, True)
                                         
                                         # ENHANCED: Apply introspection expansion within fragments for fields without definitions
                                         if possible_type.get('fields'):
@@ -1064,7 +1067,7 @@ def renderArgsAndFields(response_arg_str, variables_obj, cur_operation, definiti
                                 # Only create fragment if there are actually fields to render
                                 if possible_type.get('fields') or possible_type.get('inputFields'):
                                     response_arg_str += f"{indent}\t\t... on {possible_type['name']} {{\n"
-                                    response_arg_str = renderArgsAndFields(response_arg_str, variables_obj, cur_operation, possible_type, operation_name, indent + "\t\t\t", dynamic_operation_args, custom_client)
+                                    response_arg_str = renderArgsAndFields(response_arg_str, variables_obj, cur_operation, possible_type, operation_name, indent + "\t\t\t", dynamic_operation_args, custom_client, True)
                                     response_arg_str += f"{indent}\t\t}}\n"
                     response_arg_str += f"{indent}\t}}"
                 elif subfield.get('type') and subfield['type'].get('definition') and subfield['type']['definition'].get('possibleTypes'):
@@ -1078,7 +1081,7 @@ def renderArgsAndFields(response_arg_str, variables_obj, cur_operation, definiti
                                 # Only create fragment if there are actually fields to render
                                 if possible_type.get('fields') or possible_type.get('inputFields'):
                                     response_arg_str += f"{indent}\t\t... on {possible_type['name']} {{\n"
-                                    response_arg_str = renderArgsAndFields(response_arg_str, variables_obj, cur_operation, possible_type, operation_name, indent + "\t\t\t", dynamic_operation_args, custom_client)
+                                    response_arg_str = renderArgsAndFields(response_arg_str, variables_obj, cur_operation, possible_type, operation_name, indent + "\t\t\t", dynamic_operation_args, custom_client, True)
                                     response_arg_str += f"{indent}\t\t}}\n"
                     elif isinstance(possible_types, dict):
                         for possible_type_name in possible_types:
@@ -1086,7 +1089,7 @@ def renderArgsAndFields(response_arg_str, variables_obj, cur_operation, definiti
                             # Only create fragment if there are actually fields to render
                             if possible_type.get('fields') or possible_type.get('inputFields'):
                                 response_arg_str += f"{indent}\t\t... on {possible_type['name']} {{\n"
-                                response_arg_str = renderArgsAndFields(response_arg_str, variables_obj, cur_operation, possible_type, operation_name, indent + "\t\t\t", dynamic_operation_args, custom_client)
+                                response_arg_str = renderArgsAndFields(response_arg_str, variables_obj, cur_operation, possible_type, operation_name, indent + "\t\t\t", dynamic_operation_args, custom_client, True)
                                 response_arg_str += f"{indent}\t\t}}\n"
                     response_arg_str += f"{indent}\t}}\n"
                 # ENHANCED: Check if subfield needs introspection expansion even if it has basic definition
@@ -1189,14 +1192,14 @@ def renderArgsAndFields(response_arg_str, variables_obj, cur_operation, definiti
                         if isinstance(possible_type, dict) and 'name' in possible_type:
                             response_arg_str += f"{indent}... on {possible_type['name']} {{\n"
                             if possible_type.get('fields') or possible_type.get('inputFields'):
-                                response_arg_str = renderArgsAndFields(response_arg_str, variables_obj, cur_operation, possible_type, operation_name, indent + "\t\t", dynamic_operation_args, custom_client)
+                                response_arg_str = renderArgsAndFields(response_arg_str, variables_obj, cur_operation, possible_type, operation_name, indent + "\t\t", dynamic_operation_args, custom_client, True)
                             response_arg_str += f"{indent}\t}}\n"
                 elif isinstance(possible_types, dict):
                     for possible_type_name in possible_types:
                         possible_type = possible_types[possible_type_name]
                         response_arg_str += f"{indent}... on {possible_type['name']} {{\n"
                         if possible_type.get('fields') or possible_type.get('inputFields'):
-                            response_arg_str = renderArgsAndFields(response_arg_str, variables_obj, cur_operation, possible_type, operation_name, indent + "\t\t", dynamic_operation_args, custom_client)
+                            response_arg_str = renderArgsAndFields(response_arg_str, variables_obj, cur_operation, possible_type, operation_name, indent + "\t\t", dynamic_operation_args, custom_client, True)
                         response_arg_str += f"{indent}\t}}\n"
             response_arg_str += f"{indent}}}\n"
         

@@ -23,10 +23,19 @@ jobs:
         pip install -r tests/requirements.txt
         pip install -e .
     
-    - name: Run regression tests
+    - name: Configure test profile
       env:
         CATO_ACCOUNT_ID: ${{ secrets.CATO_ACCOUNT_ID }}
         CATO_API_KEY: ${{ secrets.CATO_API_KEY }}
         CATO_BASE_URL: ${{ secrets.CATO_BASE_URL }}
       run: |
-        pytest tests/ -v
+        catocli configure set --profile ci \
+          --account-id "$CATO_ACCOUNT_ID" \
+          --cato-token "$CATO_API_KEY" \
+          --endpoint "$CATO_BASE_URL" \
+          --skip-validation
+        catocli configure use ci
+    
+    - name: Run all test suites
+      run: |
+        python3 tests/run_all_tests.py --verbose

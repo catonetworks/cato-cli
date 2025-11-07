@@ -303,10 +303,10 @@ def main(args=None):
     except Exception as e:
         if isinstance(e, AttributeError):
             print('Missing arguments. Usage: catocli <operation> -h')
-            if args.v==True:
+            if hasattr(args, 'v') and args.v:
                 print('ERROR: ',e)
                 traceback.print_exc()
         else:
             print('ERROR: ',e)
             traceback.print_exc()
-    exit(1)
+        exit(1)

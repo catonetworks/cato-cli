@@ -138,3 +138,6 @@
 ## 3.0.36 (2025-11-09)
 - Added minor fix for top level commands typed without -h to display help menu properly
 - Updated custom test for xdr.stories to look for last 30 days fimrFrame
+
+## 3.0.37 (2025-11-14)
+- Added csv export option for popLocations and for license queries

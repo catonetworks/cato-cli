@@ -1467,13 +1467,13 @@ def get_private_help(command_name, command_config):
     """Generate comprehensive help text for a private command"""
     usage = f"catocli private {command_name}"
     
-    # Create comprehensive JSON example with all arguments (excluding accountId)
+    # Create comprehensive JSON example with all arguments (excluding accountId and version)
     if 'arguments' in command_config:
         json_example = {}
         for arg in command_config['arguments']:
             arg_name = arg.get('name')
-            # Skip accountId since it's handled by standard -accountID CLI argument
-            if arg_name and arg_name.lower() != 'accountid':
+            # Skip accountId (from profile) and version (auto-fetched)
+            if arg_name and arg_name.lower() not in ['accountid', 'version']:
                 if 'example' in arg:
                     # Use explicit example if provided
                     json_example[arg_name] = arg['example']
@@ -1497,14 +1497,20 @@ def get_private_help(command_name, command_config):
         if json_example:
             # Format JSON nicely for readability in help
             json_str = json.dumps(json_example, indent=2)
-            usage += f" '{json_str}'"
+            usage += f" -accountID=12345 '{json_str}'"
+        else:
+            # No custom arguments, just show accountID
+            usage += " -accountID=12345"
+    else:
+        # No arguments at all, just show accountID
+        usage += " -accountID=12345"
     
     # Add common options
     usage += " [-t] [-v] [-p]"
     
-    # Add command-specific arguments with descriptions (excluding accountId)
+    # Add command-specific arguments with descriptions (excluding accountId and version)
     if 'arguments' in command_config:
-        filtered_args = [arg for arg in command_config['arguments'] if arg.get('name', '').lower() != 'accountid']
+        filtered_args = [arg for arg in command_config['arguments'] if arg.get('name', '').lower() not in ['accountid', 'version']]
         if filtered_args:
             usage += "\n\nArguments:"
             for arg in filtered_args:
@@ -1520,9 +1526,10 @@ def get_private_help(command_name, command_config):
                     if arg_example is not None and arg_example != arg_default:
                         usage += f" (example: {json.dumps(arg_example) if isinstance(arg_example, (dict, list)) else arg_example})"
     
-    # Add standard accountID information
-    usage += "\n\nStandard Arguments:"
-    usage += "\n  -accountID: Account ID (taken from profile, can be overridden)"
+    # Add standard auto-populated arguments information
+    usage += "\n\nAuto-Populated Arguments:"
+    usage += "\n  -accountID: Account ID (from profile, can be overridden)"
+    usage += "\n  version:    Account version (auto-fetched for optimistic locking, can be overridden in JSON)"
     
     # Add payload file info if available
     if 'payloadFilePath' in command_config:
@@ -1698,6 +1705,48 @@ def apply_template_variables(template, variables, private_config):
     return result
 
 
+def fetch_current_version(configuration, private_settings):
+    """
+    Fetch current account version for optimistic locking.
+    Calls the private 'version' command to get the current version value.
+    
+    Returns:
+        str: Current version value or None if fetch fails
+    """
+    try:
+        # Load version payload template
+        version_config = private_settings.get('privateCommands', {}).get('version', {})
+        if not version_config:
+            return None
+        
+        payload_template = load_payload_template(version_config)
+        
+        # Build minimal variables for version query
+        version_vars = {
+            'accountID': configuration.accountID if hasattr(configuration, 'accountID') else None,
+            'accountId': configuration.accountID if hasattr(configuration, 'accountID') else None
+        }
+        
+        # Apply variables to template
+        body = apply_template_variables(payload_template, version_vars, version_config)
+        
+        # Execute request
+        response = sendPrivateGraphQLRequest(configuration, body, {'v': False, 'p': False})
+        
+        # Extract version from response
+        if response and isinstance(response, (list, tuple)) and len(response) > 0:
+            data = response[0]
+            # Navigate to data.account.version
+            if isinstance(data, dict) and 'data' in data:
+                account_data = data['data'].get('account', {})
+                if 'version' in account_data:
+                    return account_data['version']
+        
+        return None
+    except Exception:
+        return None
+
+
 def createPrivateRequest(args, configuration):
     """Handle private command execution using GraphQL payload templates"""
     params = vars(args)
@@ -1781,6 +1830,29 @@ def createPrivateRequest(args, configuration):
                             variables[arg_name] = [arg_value]
                         else:
                             variables[arg_name] = arg_value
+    
+    # Auto-fetch version if needed (for optimistic locking)
+    # Check if auto-fetch is enabled (default: true) and version arg exists without a value
+    auto_fetch_version = private_settings.get('autoFetchVersion', True)
+    needs_version_fetch = False
+    
+    if auto_fetch_version:
+        for arg in private_config.get('arguments', []):
+            if arg.get('name') == 'version' and 'version' not in variables:
+                needs_version_fetch = True
+                break
+    
+    if needs_version_fetch:
+        try:
+            # Fetch current version using private version command
+            version_value = fetch_current_version(configuration, private_settings)
+            if version_value:
+                variables['version'] = version_value
+                if params.get('v'):
+                    print(f"Auto-fetched version: {version_value}")
+        except Exception as e:
+            if params.get('v'):
+                print(f"WARNING: Could not auto-fetch version: {e}")
     
     # Load the payload template
     try:

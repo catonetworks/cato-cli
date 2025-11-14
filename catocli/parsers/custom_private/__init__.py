@@ -9,6 +9,35 @@ from ..customParserApiClient import createPrivateRequest, get_private_help
 from ...Utils.cliutils import load_private_settings
 
 
+class PrivateCommandHelpFormatter(argparse.RawDescriptionHelpFormatter):
+    """Custom formatter for private commands with wider spacing"""
+    def __init__(self, prog):
+        super().__init__(prog, max_help_position=35, width=100)
+
+
+def _show_private_help(args, configuration=None):
+    """Show formatted help when private is called without subcommand"""
+    private_commands = load_private_settings()
+    
+    print("Usage: catocli private <command> -accountID=12345 [options]")
+    print("\nAvailable private commands:")
+    
+    # Show commands with their descriptions
+    for cmd_name, cmd_config in sorted(private_commands.items()):
+        if cmd_name == 'version':
+            continue  # Skip internal version command
+        desc = cmd_config.get('description', 'No description available')
+        # Truncate long descriptions
+        if len(desc) > 70:
+            desc = desc[:67] + '...'
+        print(f"  {cmd_name:25} {desc}")
+    
+    print("\nFor detailed help on a specific command:")
+    print("  catocli private <command> -h")
+    print("\nNote: accountID and version are auto-populated from profile and API")
+    return None
+
+
 def private_parse(subparsers):
     """Check for private settings and create private parser if found"""
     private_commands = load_private_settings()
@@ -20,16 +49,27 @@ def private_parse(subparsers):
     private_parser = subparsers.add_parser(
         'private', 
         help='Private custom commands (configured in ~/.cato/settings.json)',
-        usage='catocli private <command> [options]'
+        usage='catocli private <command> -accountID=12345 [options]',
+        formatter_class=PrivateCommandHelpFormatter
     )
     
     private_subparsers = private_parser.add_subparsers(
-        description='Available private commands',
-        help='Private command help'
+        title='Available private commands',
+        description='Custom GraphQL operations defined in ~/.cato/settings.json',
+        metavar='<command>',
+        parser_class=argparse.ArgumentParser
     )
     
+    # Set default help function
+    private_parser.set_defaults(func=_show_private_help)
+    
     # Dynamically create subparsers for each private command
+    # Exclude 'version' command as it's auto-fetched internally for optimistic locking
     for command_name, command_config in private_commands.items():
+        # Skip version command (used internally for auto-fetch)
+        if command_name == 'version':
+            continue
+            
         create_private_command_parser(
             private_subparsers, 
             command_name, 
@@ -42,10 +82,14 @@ def private_parse(subparsers):
 def create_private_command_parser(subparsers, command_name, command_config):
     """Create a parser for a specific private command"""
     
+    # Get description from config, truncate if too long for help display
+    description = command_config.get('description', f'{command_name} operation')
+    help_text = description if len(description) <= 50 else description[:47] + '...'
+    
     # Create the command parser
     cmd_parser = subparsers.add_parser(
         command_name,
-        help=f'Execute private command: {command_name}',
+        help=help_text,
         usage=get_private_help(command_name, command_config)
     )
     
@@ -113,12 +157,12 @@ def create_private_command_parser(subparsers, command_name, command_config):
             help='Append timestamp to the CSV file name'
         )
     
-    # Add dynamic arguments based on command configuration (excluding accountId since it's handled above)
+    # Add dynamic arguments based on command configuration (excluding accountId and version)
     if 'arguments' in command_config:
         for arg in command_config['arguments']:
             arg_name = arg.get('name')
-            # Skip accountId since it's handled by the standard -accountID argument
-            if arg_name and arg_name.lower() != 'accountid':
+            # Skip accountId (from profile) and version (auto-fetched)
+            if arg_name and arg_name.lower() not in ['accountid', 'version']:
                 arg_type = arg.get('type', 'string')
                 arg_default = arg.get('default')
                 arg_help = f"Argument: {arg_name}"

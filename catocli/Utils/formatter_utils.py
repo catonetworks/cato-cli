@@ -236,6 +236,26 @@ def format_to_csv(response_data: Dict[str, Any], operation_name: str) -> str:
             except ImportError:
                 from formatter_socket_port_metrics import format_socket_port_metrics
         return format_socket_port_metrics(response_data, output_format='csv')
+    elif operation_name == 'query.licensing':
+        # Dynamic import to avoid circular imports
+        try:
+            from .formatter_licensing import format_licensing
+        except ImportError:
+            try:
+                from catocli.Utils.formatter_licensing import format_licensing
+            except ImportError:
+                from formatter_licensing import format_licensing
+        return format_licensing(response_data, output_format='csv')
+    elif operation_name == 'query.popLocations':
+        # Dynamic import to avoid circular imports
+        try:
+            from .formatter_pop_locations import format_pop_locations
+        except ImportError:
+            try:
+                from catocli.Utils.formatter_pop_locations import format_pop_locations
+            except ImportError:
+                from formatter_pop_locations import format_pop_locations
+        return format_pop_locations(response_data, output_format='csv')
     else:
         # Default: try to convert any JSON response to simple CSV
         return json.dumps(response_data, indent=2)

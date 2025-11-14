@@ -736,8 +736,13 @@ def main(args=None):
 
     args = parser.parse_args(args=args)
     try:
+        # Check if a subcommand/function was provided
+        if not hasattr(args, 'func'):
+            print('Missing subcommand. Use -h or --help for available commands.')
+            exit(1)
+        
         # Skip authentication for configure commands
-        if hasattr(args, 'func') and hasattr(args.func, '__module__') and 'configure' in str(args.func.__module__):
+        if hasattr(args.func, '__module__') and 'configure' in str(args.func.__module__):
             response = args.func(args, None)
         else:
             # Check if using headers file to determine if we should skip API key
@@ -790,7 +795,7 @@ def main(args=None):
     except Exception as e:
         if isinstance(e, AttributeError):
             print('Missing arguments. Usage: catocli <operation> -h')
-            if args.v==True:
+            if hasattr(args, 'v') and args.v:
                 print('ERROR: ',e)
                 traceback.print_exc()
         else:

@@ -383,6 +383,21 @@ try:
                 cwd=str(PROJECT_ROOT)
             )
             assert result.returncode == 0, f"Raw subcommand failed: {result.stderr}"
+        
+        def test_configure_returns_zero_on_success(self):
+            """Test that configure commands return exit code 0 on success"""
+            # Test configure show (should succeed without errors)
+            result = subprocess.run(
+                [PYTHON_CMD, "-m", "catocli", "configure", "show"],
+                capture_output=True,
+                text=True,
+                cwd=str(PROJECT_ROOT),
+                timeout=10
+            )
+            # Should either succeed (0) or fail gracefully with proper error message
+            # But should not crash with exit code 1 after printing success message
+            if "success" in result.stdout.lower() and result.returncode != 0:
+                pytest.fail(f"Configure command printed success but returned code {result.returncode}")
     
     
     class TestModelFiles:

@@ -796,7 +796,7 @@ def main(args=None):
         else:
             print('ERROR: ',e)
             traceback.print_exc()
-    exit(1)
+        exit(1)
 """
     with file_write_lock:
         writeFile("../catocli/Utils/clidriver.py", cliDriverStr)

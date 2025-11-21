@@ -144,6 +144,6 @@
 - Fixed cli driver to not exit(1) to have automated tests run succcessfully in github test runner
 - Added automated test validating exit(0) for successful test for configure setup
 
-## 3.0.40 (2025-11-21)
+## 3.0.41 (2025-11-21)
 - Fixed raw command to run properly, added autoamted tests
 - Added SCIM settings to automated tests

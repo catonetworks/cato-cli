@@ -28,11 +28,15 @@ jobs:
         CATO_ACCOUNT_ID: ${{ secrets.CATO_ACCOUNT_ID }}
         CATO_API_KEY: ${{ secrets.CATO_API_KEY }}
         CATO_BASE_URL: ${{ secrets.CATO_BASE_URL }}
+        CATO_SCIM_URL: ${{ secrets.CATO_SCIM_URL }}
+        CATO_SCIM_TOKEN: ${{ secrets.CATO_SCIM_TOKEN }}
       run: |
         catocli configure set --profile ci \
           --account-id "$CATO_ACCOUNT_ID" \
           --cato-token "$CATO_API_KEY" \
           --endpoint "$CATO_BASE_URL" \
+          --scim-url "$CATO_SCIM_URL" \
+          --scim-token "$CATO_SCIM_TOKEN" \
           --skip-validation
         catocli configure use ci
     

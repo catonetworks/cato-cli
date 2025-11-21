@@ -146,3 +146,4 @@
 
 ## 3.0.40 (2025-11-21)
 - Fixed raw command to run properly, added autoamted tests
+- Added SCIM settings to automated tests

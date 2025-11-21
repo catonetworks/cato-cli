@@ -558,5 +558,42 @@
             "socketPortMetricsTimeSeries.summary",
             "socketPortMetricsTimeSeries.series"
         ]
+    },
+    "raw.auditFeed": {
+        "name": "AuditFeed - RAW",
+        "description": "Audit fee using raw query",
+        "operation": "raw",
+        "payload": {
+            "query": "query auditFeed ( $accountIDs:[ID!] $timeFrame:TimeFrame! $auditFieldFilterInput:[AuditFieldFilterInput!] ) { auditFeed ( accountIDs:$accountIDs timeFrame:$timeFrame filters:$auditFieldFilterInput ) { accounts { id records{ fieldsMap } } } }",
+            "variables": {
+                "accountIDs": [
+                    15412
+                ],
+                "auditFieldFilterInput": [],
+                "timeFrame": "last.P14D"
+            }
+        },
+        "timeout": 30,
+        "assertions": [
+            "data.auditFeed.accounts[0].id",
+            "data.auditFeed.accounts[0].records"
+        ]
+    },
+    "raw.accountSnapshot": {
+        "name": "Account Snapshot - RAW",
+        "description": "Account Snapshot using raw query",
+        "operation": "raw",
+        "payload": {
+            "query": "query accountSnapshot ( $accountID:ID ) { accountSnapshot ( accountID:$accountID ) { id timestamp } }",
+            "variables": {
+                "accountID": "15412"
+            },
+            "operationName": "accountSnapshot"
+        },
+        "timeout": 30,
+        "assertions": [
+            "data.accountSnapshot.id",
+            "data.accountSnapshot.timestamp"
+        ]
     }
 }

@@ -121,7 +121,10 @@ query hardwareManagement ( $accountId:ID! $socketInventoryInput:SocketInventoryI
 	}
 				serialNumber
 				socketMac
-				socketVersion
+	socketVersion {
+		primaryVersion
+		secondaryVersion
+	}
 				site {
 	id {
 		id
@@ -361,6 +364,54 @@ query hardwareManagement ( $accountId:ID! $socketInventoryInput:SocketInventoryI
 				shippingCompany
 				deliverySiteName
 				description
+	hardwareVersion {
+		id
+		siteCountryName
+		productType
+		model
+		serialNumber
+		macAddress
+		poNumber
+		quoteId
+		licenseId
+		licenseStartDate
+		lastModified
+		locationId
+		account {
+			id
+			name
+		}
+		shippingTracking {
+			shippingStatus
+			shippingDate
+			trackingUrl
+			trackingNumber
+			carrier
+		}
+		shippingDetail {
+			companyName
+			street
+			cityName
+			countryName
+			stateName
+			zipCode
+			incoterms
+			instruction
+			vatId
+			comment
+			powerCable
+			contact {
+				name
+				phone
+				email
+			}
+		}
+		validation {
+			completed
+			incompleteReason
+			addressValidationStatus
+		}
+	}
 				isPrimary
 				registrationStatus
 				availableUpgradeVersions

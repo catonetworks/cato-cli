@@ -72,10 +72,19 @@ query siteSiteBgpStatus ( $accountId:ID! $siteBgpStatusInput:SiteBgpStatusInput!
 	}
 					}
 	rule {
-		useEffectiveFrom
-		effectiveFrom
-		useExpiresAt
-		expiresAt
+		id
+		networkSubnet
+		networkSubnetException
+		le
+		ge
+		globalIpRange {
+			id
+			name
+		}
+		globalIpRangeException {
+			id
+			name
+		}
 	}
 					lastPublishAttempt
 				}

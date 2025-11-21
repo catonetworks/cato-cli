@@ -233,10 +233,15 @@ id {
 				readiness
 				wanConnectivity
 				keepalive
-				socketVersion
+	socketVersion {
+		primaryVersion
+		secondaryVersion
+	}
 			}
 			operationalStatus
-			lastConnected
+lastConnected {
+	lastConnectedDate
+}
 			connectedSince
 			popName
 			devices {
@@ -355,10 +360,14 @@ id {
 	}
 				name
 				identifier
-				connected
+	connected {
+		lastConnectedDate
+	}
 				haRole
 				interfaces {
-					connected
+	connected {
+		lastConnectedDate
+	}
 	id {
 		id
 		status
@@ -649,7 +658,9 @@ id {
 					}
 					bgpState
 				}
-				lastConnected
+	lastConnected {
+		lastConnectedDate
+	}
 				lastDuration
 				connectedSince
 				lastPopID
@@ -658,7 +669,9 @@ id {
 					duration
 					interfaceName
 					deviceName
-					lastConnected
+	lastConnected {
+		lastConnectedDate
+	}
 					popName
 	remoteIP {
 		ip
@@ -1070,6 +1083,34 @@ id {
 				}
 			}
 		}
+		createFromList {
+			container {
+				id
+				name
+				description
+				size
+				audit {
+					createdAt
+					createdBy
+					lastModifiedBy
+					lastModifiedAt
+				}
+			}
+		}
+		updateFromList {
+			container {
+				id
+				name
+				description
+				size
+				audit {
+					createdAt
+					createdBy
+					lastModifiedBy
+					lastModifiedAt
+				}
+			}
+		}
 	}
 				isHA
 				connType
@@ -1366,6 +1407,64 @@ hostCount {
 	}
 }
 			altWanStatus
+			degradedStatus {
+				isDegraded
+				degradedDetails {
+					reason
+					args {
+						__typename
+						... on DegradedStatusSocketVersionsArgs {
+							primaryVersion
+							secondaryVersion
+						}
+						... on DegradedStatusBasicDataArgs {
+							deviceName
+							lastConnectedDate
+						}
+						... on DegradedStatusSocketArgs {
+							deviceName
+							portID
+							portName
+							lastConnectedDate
+						}
+						... on DegradedStatusLastConnectedArgs {
+							lastConnectedDate
+						}
+						... on DegradedStatusMultiTunnelArgs {
+							deviceName
+							tunnelID
+							tunnelName
+							lastConnectedDate
+						}
+					}
+ {
+						__typename
+						... on DegradedStatusSocketVersionsArgs {
+							primaryVersion
+							secondaryVersion
+						}
+						... on DegradedStatusBasicDataArgs {
+							deviceName
+							lastConnectedDate
+						}
+						... on DegradedStatusSocketArgs {
+							deviceName
+							portID
+							portName
+							lastConnectedDate
+						}
+						... on DegradedStatusLastConnectedArgs {
+							lastConnectedDate
+						}
+						... on DegradedStatusMultiTunnelArgs {
+							deviceName
+							tunnelID
+							tunnelName
+							lastConnectedDate
+						}
+					}
+				}
+			}
 		}
 		users ( userIDs:$userIDs  )  {
 id {
@@ -1486,7 +1585,9 @@ id {
 			name
 			deviceName
 			uptime
-			lastConnected
+lastConnected {
+	lastConnectedDate
+}
 version {
 	items {
 		platform
@@ -1648,10 +1749,14 @@ remoteIP {
 	}
 				name
 				identifier
-				connected
+	connected {
+		lastConnectedDate
+	}
 				haRole
 				interfaces {
-					connected
+	connected {
+		lastConnectedDate
+	}
 	id {
 		id
 		status
@@ -1942,7 +2047,9 @@ remoteIP {
 					}
 					bgpState
 				}
-				lastConnected
+	lastConnected {
+		lastConnectedDate
+	}
 				lastDuration
 				connectedSince
 				lastPopID
@@ -1951,7 +2058,9 @@ remoteIP {
 					duration
 					interfaceName
 					deviceName
-					lastConnected
+	lastConnected {
+		lastConnectedDate
+	}
 					popName
 	remoteIP {
 		ip
@@ -2310,7 +2419,9 @@ remoteIP {
 				duration
 				interfaceName
 				deviceName
-				lastConnected
+	lastConnected {
+		lastConnectedDate
+	}
 				popName
 	remoteIP {
 		ip

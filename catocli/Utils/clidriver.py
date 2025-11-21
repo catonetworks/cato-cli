@@ -48,10 +48,10 @@ from ..parsers.query_devices import query_devices_parse
 from ..parsers.query_accountSnapshot import query_accountSnapshot_parse
 from ..parsers.query_site import query_site_parse
 from ..parsers.query_xdr import query_xdr_parse
-from ..parsers.query_catalogs import query_catalogs_parse
 from ..parsers.query_policy import query_policy_parse
-from ..parsers.query_groups import query_groups_parse
 from ..parsers.query_container import query_container_parse
+from ..parsers.query_groups import query_groups_parse
+from ..parsers.query_catalogs import query_catalogs_parse
 from ..parsers.mutation_xdr import mutation_xdr_parse
 from ..parsers.mutation_site import mutation_site_parse
 from ..parsers.mutation_sites import mutation_sites_parse
@@ -183,10 +183,10 @@ query_devices_parser = query_devices_parse(query_subparsers)
 query_accountSnapshot_parser = query_accountSnapshot_parse(query_subparsers)
 query_site_parser = query_site_parse(query_subparsers)
 query_xdr_parser = query_xdr_parse(query_subparsers)
-query_catalogs_parser = query_catalogs_parse(query_subparsers)
 query_policy_parser = query_policy_parse(query_subparsers)
-query_groups_parser = query_groups_parse(query_subparsers)
 query_container_parser = query_container_parse(query_subparsers)
+query_groups_parser = query_groups_parse(query_subparsers)
+query_catalogs_parser = query_catalogs_parse(query_subparsers)
 mutation_xdr_parser = mutation_xdr_parse(mutation_subparsers)
 mutation_site_parser = mutation_site_parse(mutation_subparsers)
 mutation_sites_parser = mutation_sites_parse(mutation_subparsers)
@@ -295,13 +295,24 @@ def main(args=None):
                     # Handle different response formats more robustly
                     if isinstance(response, list) and len(response) > 0:
                         # Standard format: [data, status, headers]
-                        print(json.dumps(response[0], sort_keys=True, indent=4))
+                        # Ensure headers (if present) are serializable
+                        response_copy = list(response)
+                        if len(response_copy) > 2 and hasattr(response_copy[2], 'items'):
+                            # Convert HTTPHeaderDict to dict
+                            response_copy[2] = dict(response_copy[2].items())
+                        print(json.dumps(response_copy[0], sort_keys=True, indent=4))
                     elif isinstance(response, dict):
                         # Direct dict response
                         print(json.dumps(response, sort_keys=True, indent=4))
                     else:
                         # Fallback: print as-is
-                        print(json.dumps(response, sort_keys=True, indent=4))
+                        # Check if response is a tuple/list with headers (like from raw command)
+                        if isinstance(response, (list, tuple)) and len(response) > 2:
+                            # Just print the data part if it's a raw response tuple
+                            print(json.dumps(response[0], sort_keys=True, indent=4))
+                        else:
+                            print(json.dumps(response, sort_keys=True, indent=4))
+            return 0
     except KeyboardInterrupt:
         print('Operation cancelled by user (Ctrl+C).')
         exit(130)  # Standard exit code for SIGINT

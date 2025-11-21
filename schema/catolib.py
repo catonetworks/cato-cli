@@ -782,13 +782,24 @@ def main(args=None):
                     # Handle different response formats more robustly
                     if isinstance(response, list) and len(response) > 0:
                         # Standard format: [data, status, headers]
-                        print(json.dumps(response[0], sort_keys=True, indent=4))
+                        # Ensure headers (if present) are serializable
+                        response_copy = list(response)
+                        if len(response_copy) > 2 and hasattr(response_copy[2], 'items'):
+                            # Convert HTTPHeaderDict to dict
+                            response_copy[2] = dict(response_copy[2].items())
+                        print(json.dumps(response_copy[0], sort_keys=True, indent=4))
                     elif isinstance(response, dict):
                         # Direct dict response
                         print(json.dumps(response, sort_keys=True, indent=4))
                     else:
                         # Fallback: print as-is
-                        print(json.dumps(response, sort_keys=True, indent=4))
+                        # Check if response is a tuple/list with headers (like from raw command)
+                        if isinstance(response, (list, tuple)) and len(response) > 2:
+                            # Just print the data part if it's a raw response tuple
+                            print(json.dumps(response[0], sort_keys=True, indent=4))
+                        else:
+                            print(json.dumps(response, sort_keys=True, indent=4))
+            return 0
     except KeyboardInterrupt:
         print('Operation cancelled by user (Ctrl+C).')
         exit(130)  # Standard exit code for SIGINT

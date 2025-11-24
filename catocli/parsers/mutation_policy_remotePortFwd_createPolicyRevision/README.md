@@ -9,7 +9,7 @@ catocli mutation policy remotePortFwd createPolicyRevision -h
 
 catocli mutation policy remotePortFwd createPolicyRevision <json>
 
-catocli mutation policy remotePortFwd createPolicyRevision "$(cat < mutation.policy.remotePortFwd.createPolicyRevision.json)"
+catocli mutation policy remotePortFwd createPolicyRevision --json-file mutation.policy.remotePortFwd.createPolicyRevision.json
 
 catocli mutation policy remotePortFwd createPolicyRevision '{"policyCreateRevisionInput":{"description":"string","name":"string"},"remotePortFwdPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 

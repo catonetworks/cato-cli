@@ -9,7 +9,7 @@ catocli query auditFeed -h
 
 catocli query auditFeed <json>
 
-catocli query auditFeed "$(cat < query.auditFeed.json)"
+catocli query auditFeed --json-file query.auditFeed.json
 
 catocli query auditFeed '{"accountIDs":["id1","id2"],"auditFieldFilterInput":{"fieldNameInput":{"AuditFieldName":"admin"},"operator":"is","values":["string1","string2"]},"fieldNames":"admin","marker":"string","timeFrame":"example_value"}'
 

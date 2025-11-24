@@ -9,7 +9,7 @@ catocli mutation policy terminalServer updatePolicy -h
 
 catocli mutation policy terminalServer updatePolicy <json>
 
-catocli mutation policy terminalServer updatePolicy "$(cat < mutation.policy.terminalServer.updatePolicy.json)"
+catocli mutation policy terminalServer updatePolicy --json-file mutation.policy.terminalServer.updatePolicy.json
 
 catocli mutation policy terminalServer updatePolicy '{"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"terminalServerPolicyUpdateInput":{"state":"ENABLED"}}'
 

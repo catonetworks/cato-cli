@@ -9,7 +9,7 @@ catocli mutation container fqdn removeValues -h
 
 catocli mutation container fqdn removeValues <json>
 
-catocli mutation container fqdn removeValues "$(cat < mutation.container.fqdn.removeValues.json)"
+catocli mutation container fqdn removeValues --json-file mutation.container.fqdn.removeValues.json
 
 catocli mutation container fqdn removeValues '{"fqdnContainerRemoveValuesInput":{"containerRefInput":{"by":"ID","input":"string"},"values":["example1","example2"]}}'
 

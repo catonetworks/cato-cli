@@ -9,7 +9,7 @@ catocli mutation container fqdn createFromList -h
 
 catocli mutation container fqdn createFromList <json>
 
-catocli mutation container fqdn createFromList "$(cat < mutation.container.fqdn.createFromList.json)"
+catocli mutation container fqdn createFromList --json-file mutation.container.fqdn.createFromList.json
 
 catocli mutation container fqdn createFromList '{"createFqdnContainerFromListInput":{"description":"string","name":"string","values":["example1","example2"]}}'
 

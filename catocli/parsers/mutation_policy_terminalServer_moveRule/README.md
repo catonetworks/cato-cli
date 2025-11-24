@@ -9,7 +9,7 @@ catocli mutation policy terminalServer moveRule -h
 
 catocli mutation policy terminalServer moveRule <json>
 
-catocli mutation policy terminalServer moveRule "$(cat < mutation.policy.terminalServer.moveRule.json)"
+catocli mutation policy terminalServer moveRule --json-file mutation.policy.terminalServer.moveRule.json
 
 catocli mutation policy terminalServer moveRule '{"policyMoveRuleInput":{"id":"id","policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"}},"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 

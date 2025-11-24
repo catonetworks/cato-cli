@@ -9,7 +9,7 @@ catocli mutation policy terminalServer updateRule -h
 
 catocli mutation policy terminalServer updateRule <json>
 
-catocli mutation policy terminalServer updateRule "$(cat < mutation.policy.terminalServer.updateRule.json)"
+catocli mutation policy terminalServer updateRule --json-file mutation.policy.terminalServer.updateRule.json
 
 catocli mutation policy terminalServer updateRule '{"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"terminalServerUpdateRuleInput":{"id":"id","terminalServerUpdateRuleDataInput":{"allowedHostIP":{"by":"ID","input":"string"},"description":"string","enabled":true,"excludeTraffic":{"by":"ID","input":"string"},"name":"string"}}}'
 

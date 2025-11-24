@@ -9,7 +9,7 @@ catocli mutation policy dynamicIpAllocation addRule -h
 
 catocli mutation policy dynamicIpAllocation addRule <json>
 
-catocli mutation policy dynamicIpAllocation addRule "$(cat < mutation.policy.dynamicIpAllocation.addRule.json)"
+catocli mutation policy dynamicIpAllocation addRule --json-file mutation.policy.dynamicIpAllocation.addRule.json
 
 catocli mutation policy dynamicIpAllocation addRule '{"dynamicIpAllocationAddRuleInput":{"dynamicIpAllocationAddRuleDataInput":{"country":{"by":"ID","input":"string"},"description":"string","enabled":true,"name":"string","platform":"WINDOWS","range":{"globalIpRange":{"by":"ID","input":"string"}},"source":{"user":{"by":"ID","input":"string"},"usersGroup":{"by":"ID","input":"string"}}},"policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"}},"dynamicIpAllocationPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 

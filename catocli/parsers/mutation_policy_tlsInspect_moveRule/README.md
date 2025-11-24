@@ -9,7 +9,7 @@ catocli mutation policy tlsInspect moveRule -h
 
 catocli mutation policy tlsInspect moveRule <json>
 
-catocli mutation policy tlsInspect moveRule "$(cat < mutation.policy.tlsInspect.moveRule.json)"
+catocli mutation policy tlsInspect moveRule --json-file mutation.policy.tlsInspect.moveRule.json
 
 catocli mutation policy tlsInspect moveRule '{"policyMoveRuleInput":{"id":"id","policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"}},"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 

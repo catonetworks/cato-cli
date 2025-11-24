@@ -9,7 +9,7 @@ catocli mutation policy tlsInspect updateSection -h
 
 catocli mutation policy tlsInspect updateSection <json>
 
-catocli mutation policy tlsInspect updateSection "$(cat < mutation.policy.tlsInspect.updateSection.json)"
+catocli mutation policy tlsInspect updateSection --json-file mutation.policy.tlsInspect.updateSection.json
 
 catocli mutation policy tlsInspect updateSection '{"policyUpdateSectionInput":{"id":"id","policyUpdateSectionInfoInput":{"name":"string"}},"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 

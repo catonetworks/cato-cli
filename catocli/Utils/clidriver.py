@@ -3,6 +3,11 @@ import os
 import argparse
 import json
 import catocli
+try:
+    import argcomplete
+    ARGCOMPLETE_AVAILABLE = True
+except ImportError:
+    ARGCOMPLETE_AVAILABLE = False
 from graphql_client import Configuration
 from graphql_client.api_client import ApiException
 from ..parsers.customParserApiClient import get_help
@@ -58,13 +63,13 @@ from ..parsers.mutation_site import mutation_site_parse
 from ..parsers.mutation_sites import mutation_sites_parse
 from ..parsers.mutation_policy import mutation_policy_parse
 from ..parsers.mutation_container import mutation_container_parse
-from ..parsers.mutation_admin import mutation_admin_parse
 from ..parsers.mutation_accountManagement import mutation_accountManagement_parse
 from ..parsers.mutation_sandbox import mutation_sandbox_parse
 from ..parsers.mutation_licensing import mutation_licensing_parse
-from ..parsers.mutation_hardware import mutation_hardware_parse
 from ..parsers.mutation_groups import mutation_groups_parse
 from ..parsers.mutation_enterpriseDirectory import mutation_enterpriseDirectory_parse
+from ..parsers.mutation_hardware import mutation_hardware_parse
+from ..parsers.mutation_admin import mutation_admin_parse
 
 def show_version_info(args, configuration=None):
     print(f"catocli version {catocli.__version__}")
@@ -194,14 +199,18 @@ mutation_site_parser = mutation_site_parse(mutation_subparsers)
 mutation_sites_parser = mutation_sites_parse(mutation_subparsers)
 mutation_policy_parser = mutation_policy_parse(mutation_subparsers)
 mutation_container_parser = mutation_container_parse(mutation_subparsers)
-mutation_admin_parser = mutation_admin_parse(mutation_subparsers)
 mutation_accountManagement_parser = mutation_accountManagement_parse(mutation_subparsers)
 mutation_sandbox_parser = mutation_sandbox_parse(mutation_subparsers)
 mutation_licensing_parser = mutation_licensing_parse(mutation_subparsers)
-mutation_hardware_parser = mutation_hardware_parse(mutation_subparsers)
 mutation_groups_parser = mutation_groups_parse(mutation_subparsers)
 mutation_enterpriseDirectory_parser = mutation_enterpriseDirectory_parse(mutation_subparsers)
+mutation_hardware_parser = mutation_hardware_parse(mutation_subparsers)
+mutation_admin_parser = mutation_admin_parse(mutation_subparsers)
 
+
+# Enable argcomplete for tab completion at module level
+if ARGCOMPLETE_AVAILABLE:
+    argcomplete.autocomplete(parser) 
 
 def parse_headers(header_strings):
     headers = {}

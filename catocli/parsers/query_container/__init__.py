@@ -24,6 +24,7 @@ def query_container_parse(query_subparsers):
             usage=get_help("query_container_list"))
 
     query_container_list_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    query_container_list_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     query_container_list_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     query_container_list_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     query_container_list_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -56,6 +57,7 @@ def query_container_parse(query_subparsers):
             usage=get_help("query_container_ipAddressRange_search"))
 
     query_container_ipAddressRange_search_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    query_container_ipAddressRange_search_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     query_container_ipAddressRange_search_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     query_container_ipAddressRange_search_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     query_container_ipAddressRange_search_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -72,6 +74,7 @@ def query_container_parse(query_subparsers):
             usage=get_help("query_container_ipAddressRange_searchIpAddressRange"))
 
     query_container_ipAddressRange_searchIpAddressRange_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    query_container_ipAddressRange_searchIpAddressRange_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     query_container_ipAddressRange_searchIpAddressRange_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     query_container_ipAddressRange_searchIpAddressRange_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     query_container_ipAddressRange_searchIpAddressRange_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -88,6 +91,7 @@ def query_container_parse(query_subparsers):
             usage=get_help("query_container_ipAddressRange_downloadFile"))
 
     query_container_ipAddressRange_downloadFile_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    query_container_ipAddressRange_downloadFile_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     query_container_ipAddressRange_downloadFile_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     query_container_ipAddressRange_downloadFile_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     query_container_ipAddressRange_downloadFile_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -120,6 +124,7 @@ def query_container_parse(query_subparsers):
             usage=get_help("query_container_fqdn_search"))
 
     query_container_fqdn_search_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    query_container_fqdn_search_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     query_container_fqdn_search_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     query_container_fqdn_search_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     query_container_fqdn_search_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -136,6 +141,7 @@ def query_container_parse(query_subparsers):
             usage=get_help("query_container_fqdn_searchFqdn"))
 
     query_container_fqdn_searchFqdn_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    query_container_fqdn_searchFqdn_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     query_container_fqdn_searchFqdn_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     query_container_fqdn_searchFqdn_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     query_container_fqdn_searchFqdn_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -152,6 +158,7 @@ def query_container_parse(query_subparsers):
             usage=get_help("query_container_fqdn_downloadFile"))
 
     query_container_fqdn_downloadFile_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    query_container_fqdn_downloadFile_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     query_container_fqdn_downloadFile_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     query_container_fqdn_downloadFile_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     query_container_fqdn_downloadFile_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')

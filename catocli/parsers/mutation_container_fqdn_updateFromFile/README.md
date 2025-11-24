@@ -9,7 +9,7 @@ catocli mutation container fqdn updateFromFile -h
 
 catocli mutation container fqdn updateFromFile <json>
 
-catocli mutation container fqdn updateFromFile "$(cat < mutation.container.fqdn.updateFromFile.json)"
+catocli mutation container fqdn updateFromFile --json-file mutation.container.fqdn.updateFromFile.json
 
 catocli mutation container fqdn updateFromFile '{"updateFqdnContainerFromFileInput":{"containerRefInput":{"by":"ID","input":"string"},"description":"string","fileType":"STIX","uploadFile":"example_value"}}'
 

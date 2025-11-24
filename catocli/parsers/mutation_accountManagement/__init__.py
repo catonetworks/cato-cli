@@ -24,6 +24,7 @@ def mutation_accountManagement_parse(mutation_subparsers):
             usage=get_help("mutation_accountManagement_addAccount"))
 
     mutation_accountManagement_addAccount_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_accountManagement_addAccount_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_accountManagement_addAccount_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_accountManagement_addAccount_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_accountManagement_addAccount_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -40,6 +41,7 @@ def mutation_accountManagement_parse(mutation_subparsers):
             usage=get_help("mutation_accountManagement_updateAccount"))
 
     mutation_accountManagement_updateAccount_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_accountManagement_updateAccount_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_accountManagement_updateAccount_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_accountManagement_updateAccount_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_accountManagement_updateAccount_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -56,6 +58,7 @@ def mutation_accountManagement_parse(mutation_subparsers):
             usage=get_help("mutation_accountManagement_removeAccount"))
 
     mutation_accountManagement_removeAccount_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_accountManagement_removeAccount_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_accountManagement_removeAccount_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_accountManagement_removeAccount_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_accountManagement_removeAccount_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -72,6 +75,7 @@ def mutation_accountManagement_parse(mutation_subparsers):
             usage=get_help("mutation_accountManagement_disableAccount"))
 
     mutation_accountManagement_disableAccount_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_accountManagement_disableAccount_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_accountManagement_disableAccount_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_accountManagement_disableAccount_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_accountManagement_disableAccount_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')

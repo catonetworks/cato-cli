@@ -9,7 +9,7 @@ catocli mutation sandbox uploadFile -h
 
 catocli mutation sandbox uploadFile <json>
 
-catocli mutation sandbox uploadFile "$(cat < mutation.sandbox.uploadFile.json)"
+catocli mutation sandbox uploadFile --json-file mutation.sandbox.uploadFile.json
 
 catocli mutation sandbox uploadFile '{"uploadFileInput":{"fileName":"string"}}'
 

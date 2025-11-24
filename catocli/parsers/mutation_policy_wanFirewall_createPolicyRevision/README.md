@@ -9,7 +9,7 @@ catocli mutation policy wanFirewall createPolicyRevision -h
 
 catocli mutation policy wanFirewall createPolicyRevision <json>
 
-catocli mutation policy wanFirewall createPolicyRevision "$(cat < mutation.policy.wanFirewall.createPolicyRevision.json)"
+catocli mutation policy wanFirewall createPolicyRevision --json-file mutation.policy.wanFirewall.createPolicyRevision.json
 
 catocli mutation policy wanFirewall createPolicyRevision '{"policyCreateRevisionInput":{"description":"string","name":"string"},"wanFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 

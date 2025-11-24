@@ -9,7 +9,7 @@ catocli query policy socketLan policy -h
 
 catocli query policy socketLan policy <json>
 
-catocli query policy socketLan policy "$(cat < query.policy.socketLan.policy.json)"
+catocli query policy socketLan policy --json-file query.policy.socketLan.policy.json
 
 catocli query policy socketLan policy '{"socketLanPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'
 

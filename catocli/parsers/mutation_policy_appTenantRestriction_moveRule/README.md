@@ -9,7 +9,7 @@ catocli mutation policy appTenantRestriction moveRule -h
 
 catocli mutation policy appTenantRestriction moveRule <json>
 
-catocli mutation policy appTenantRestriction moveRule "$(cat < mutation.policy.appTenantRestriction.moveRule.json)"
+catocli mutation policy appTenantRestriction moveRule --json-file mutation.policy.appTenantRestriction.moveRule.json
 
 catocli mutation policy appTenantRestriction moveRule '{"appTenantRestrictionPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyMoveRuleInput":{"id":"id","policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"}}}'
 

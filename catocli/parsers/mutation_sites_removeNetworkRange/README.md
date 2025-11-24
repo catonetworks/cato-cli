@@ -9,7 +9,7 @@ catocli mutation sites removeNetworkRange -h
 
 catocli mutation sites removeNetworkRange <json>
 
-catocli mutation sites removeNetworkRange "$(cat < mutation.sites.removeNetworkRange.json)"
+catocli mutation sites removeNetworkRange --json-file mutation.sites.removeNetworkRange.json
 
 catocli mutation sites removeNetworkRange '{"networkRangeId":"id"}'
 

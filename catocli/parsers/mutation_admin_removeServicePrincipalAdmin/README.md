@@ -9,7 +9,7 @@ catocli mutation admin removeServicePrincipalAdmin -h
 
 catocli mutation admin removeServicePrincipalAdmin <json>
 
-catocli mutation admin removeServicePrincipalAdmin "$(cat < mutation.admin.removeServicePrincipalAdmin.json)"
+catocli mutation admin removeServicePrincipalAdmin --json-file mutation.admin.removeServicePrincipalAdmin.json
 
 catocli mutation admin removeServicePrincipalAdmin '{"adminID":"id"}'
 

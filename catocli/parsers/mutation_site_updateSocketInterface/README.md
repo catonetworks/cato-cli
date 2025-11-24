@@ -9,7 +9,7 @@ catocli mutation site updateSocketInterface -h
 
 catocli mutation site updateSocketInterface <json>
 
-catocli mutation site updateSocketInterface "$(cat < mutation.site.updateSocketInterface.json)"
+catocli mutation site updateSocketInterface --json-file mutation.site.updateSocketInterface.json
 
 catocli mutation site updateSocketInterface '{"siteId":"id","socketInterfaceId":"LAN1","updateSocketInterfaceInput":{"destType":"CATO","name":"string","socketInterfaceAltWanInput":{"privateGatewayIp":"example_value","privateInterfaceIp":"example_value","privateNetwork":"example_value","privateVlanTag":1,"publicGatewayIp":"example_value","publicInterfaceIp":"example_value","publicNetwork":"example_value","publicVlanTag":1},"socketInterfaceBandwidthInput":{"downstreamBandwidth":1,"downstreamBandwidthMbpsPrecision":1.5,"upstreamBandwidth":1,"upstreamBandwidthMbpsPrecision":1.5},"socketInterfaceLagInput":{"minLinks":1},"socketInterfaceLanInput":{"localIp":"example_value","subnet":"example_value","translatedSubnet":"example_value"},"socketInterfaceOffCloudInput":{"enabled":true,"publicIp":"example_value","publicStaticPort":1},"socketInterfaceVrrpInput":{"vrrpType":"VIA_SWITCH"},"socketInterfaceWanInput":{"precedence":"ACTIVE","role":"wan_1"}}}'
 

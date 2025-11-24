@@ -9,7 +9,7 @@ catocli mutation site removeCloudInterconnectPhysicalConnection -h
 
 catocli mutation site removeCloudInterconnectPhysicalConnection <json>
 
-catocli mutation site removeCloudInterconnectPhysicalConnection "$(cat < mutation.site.removeCloudInterconnectPhysicalConnection.json)"
+catocli mutation site removeCloudInterconnectPhysicalConnection --json-file mutation.site.removeCloudInterconnectPhysicalConnection.json
 
 catocli mutation site removeCloudInterconnectPhysicalConnection '{"removeCloudInterconnectPhysicalConnectionInput":{"id":"id"}}'
 

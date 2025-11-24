@@ -9,7 +9,7 @@ catocli mutation groups updateGroup -h
 
 catocli mutation groups updateGroup <json>
 
-catocli mutation groups updateGroup "$(cat < mutation.groups.updateGroup.json)"
+catocli mutation groups updateGroup --json-file mutation.groups.updateGroup.json
 
 catocli mutation groups updateGroup '{"groupMembersListInput":{"groupMembersListFilterInput":{"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"],"regex":"string"},"type":{"eq":"SITE","in":"SITE","neq":"SITE","nin":"SITE"}},"groupMembersListSortInput":{"name":{"direction":"ASC","priority":1},"type":{"direction":"ASC","priority":1}},"pagingInput":{"from":1,"limit":1}},"updateGroupInput":{"description":"string","groupMemberRefTypedInput":{"by":"ID","input":"string","type":"SITE"},"groupRefInput":{"by":"ID","input":"string"},"name":"string"}}'
 

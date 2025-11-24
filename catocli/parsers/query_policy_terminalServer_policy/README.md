@@ -9,7 +9,7 @@ catocli query policy terminalServer policy -h
 
 catocli query policy terminalServer policy <json>
 
-catocli query policy terminalServer policy "$(cat < query.policy.terminalServer.policy.json)"
+catocli query policy terminalServer policy --json-file query.policy.terminalServer.policy.json
 
 catocli query policy terminalServer policy '{"terminalServerPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'
 

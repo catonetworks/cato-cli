@@ -9,7 +9,7 @@ catocli mutation site addIpsecIkeV2Site -h
 
 catocli mutation site addIpsecIkeV2Site <json>
 
-catocli mutation site addIpsecIkeV2Site "$(cat < mutation.site.addIpsecIkeV2Site.json)"
+catocli mutation site addIpsecIkeV2Site --json-file mutation.site.addIpsecIkeV2Site.json
 
 catocli mutation site addIpsecIkeV2Site '{"addIpsecIkeV2SiteInput":{"addSiteLocationInput":{"address":"string","city":"string","countryCode":"string","stateCode":"string","timezone":"string"},"description":"string","name":"string","nativeNetworkRange":"example_value","siteType":"BRANCH","vlan":"example_value"}}'
 

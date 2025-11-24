@@ -9,7 +9,7 @@ catocli query socketPortMetricsTimeSeries -h
 
 catocli query socketPortMetricsTimeSeries <json>
 
-catocli query socketPortMetricsTimeSeries "$(cat < query.socketPortMetricsTimeSeries.json)"
+catocli query socketPortMetricsTimeSeries --json-file query.socketPortMetricsTimeSeries.json
 
 catocli query socketPortMetricsTimeSeries '{"buckets":1,"perSecond":true,"socketPortMetricsDimension":{"fieldName":"account_id"},"socketPortMetricsFilter":{"fieldName":"account_id","operator":"is","values":["string1","string2"]},"socketPortMetricsMeasure":{"aggType":"sum","fieldName":"account_id","trend":true},"timeFrame":"example_value","useDefaultSizeBucket":true,"withMissingData":true}'
 

@@ -101,6 +101,10 @@ def create_private_command_parser(subparsers, command_name, command_config):
         help='Variables in JSON format (defaults to empty object if not provided).'
     )
     cmd_parser.add_argument(
+        '--json-file',
+        help='Path to a file containing JSON input variables.'
+    )
+    cmd_parser.add_argument(
         '-t', 
         const=True, 
         default=False, 

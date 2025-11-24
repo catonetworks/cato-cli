@@ -9,9 +9,9 @@ catocli raw -h
 
 catocli raw <json>
 
-catocli raw "$(cat < rawGraphqQL.json)"
+catocli raw --json-file rawGraphqQL.json
 
-catocli raw '{ "query": "query operationNameHere($yourArgument:String!) { field1 field2 }", "variables": { "yourArgument": "string", "accountID": "10949" }, "operationName": "operationNameHere" } '
+catocli raw '{ "query": "query operationNameHere($yourArgument:String!) { field1 field2 }", "variables": { "yourArgument": "string", "accountID": "12345" }, "operationName": "operationNameHere" } '
 
 catocli raw '{
     "query": "mutation operationNameHere($yourArgument:String!) { field1 field2 }",

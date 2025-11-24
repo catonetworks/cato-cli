@@ -9,7 +9,7 @@ catocli mutation sites updateHa -h
 
 catocli mutation sites updateHa <json>
 
-catocli mutation sites updateHa "$(cat < mutation.sites.updateHa.json)"
+catocli mutation sites updateHa --json-file mutation.sites.updateHa.json
 
 catocli mutation sites updateHa '{"siteId":"id","updateHaInput":{"primaryManagementIp":"example_value","secondaryManagementIp":"example_value","vrid":1}}'
 

@@ -9,7 +9,7 @@ catocli query site availableVersionList -h
 
 catocli query site availableVersionList <json>
 
-catocli query site availableVersionList "$(cat < query.site.availableVersionList.json)"
+catocli query site availableVersionList --json-file query.site.availableVersionList.json
 
 catocli query site availableVersionList '{"availableVersionListInput":{"platforms":["string1","string2"]}}'
 

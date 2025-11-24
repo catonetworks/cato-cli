@@ -9,7 +9,7 @@ catocli query policy tlsInspect policy -h
 
 catocli query policy tlsInspect policy <json>
 
-catocli query policy tlsInspect policy "$(cat < query.policy.tlsInspect.policy.json)"
+catocli query policy tlsInspect policy --json-file query.policy.tlsInspect.policy.json
 
 catocli query policy tlsInspect policy '{"tlsInspectPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'
 

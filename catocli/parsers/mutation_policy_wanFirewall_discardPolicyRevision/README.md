@@ -9,7 +9,7 @@ catocli mutation policy wanFirewall discardPolicyRevision -h
 
 catocli mutation policy wanFirewall discardPolicyRevision <json>
 
-catocli mutation policy wanFirewall discardPolicyRevision "$(cat < mutation.policy.wanFirewall.discardPolicyRevision.json)"
+catocli mutation policy wanFirewall discardPolicyRevision --json-file mutation.policy.wanFirewall.discardPolicyRevision.json
 
 catocli mutation policy wanFirewall discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"wanFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 

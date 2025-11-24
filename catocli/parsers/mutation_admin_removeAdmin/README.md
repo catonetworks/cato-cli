@@ -9,7 +9,7 @@ catocli mutation admin removeAdmin -h
 
 catocli mutation admin removeAdmin <json>
 
-catocli mutation admin removeAdmin "$(cat < mutation.admin.removeAdmin.json)"
+catocli mutation admin removeAdmin --json-file mutation.admin.removeAdmin.json
 
 catocli mutation admin removeAdmin '{"adminID":"id"}'
 

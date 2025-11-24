@@ -9,7 +9,7 @@ catocli mutation policy socketLan moveRule -h
 
 catocli mutation policy socketLan moveRule <json>
 
-catocli mutation policy socketLan moveRule "$(cat < mutation.policy.socketLan.moveRule.json)"
+catocli mutation policy socketLan moveRule --json-file mutation.policy.socketLan.moveRule.json
 
 catocli mutation policy socketLan moveRule '{"policyMoveRuleInput":{"id":"id","policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"}},"socketLanPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 

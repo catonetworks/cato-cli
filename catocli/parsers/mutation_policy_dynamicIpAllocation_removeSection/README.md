@@ -9,7 +9,7 @@ catocli mutation policy dynamicIpAllocation removeSection -h
 
 catocli mutation policy dynamicIpAllocation removeSection <json>
 
-catocli mutation policy dynamicIpAllocation removeSection "$(cat < mutation.policy.dynamicIpAllocation.removeSection.json)"
+catocli mutation policy dynamicIpAllocation removeSection --json-file mutation.policy.dynamicIpAllocation.removeSection.json
 
 catocli mutation policy dynamicIpAllocation removeSection '{"dynamicIpAllocationPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyRemoveSectionInput":{"id":"id"}}'
 

@@ -9,7 +9,7 @@ catocli mutation site startSiteUpgrade -h
 
 catocli mutation site startSiteUpgrade <json>
 
-catocli mutation site startSiteUpgrade "$(cat < mutation.site.startSiteUpgrade.json)"
+catocli mutation site startSiteUpgrade --json-file mutation.site.startSiteUpgrade.json
 
 catocli mutation site startSiteUpgrade '{"startSiteUpgradeInput":{"siteUpgradeRequest":{"site":{"by":"ID","input":"string"},"targetVersion":"string"}}}'
 

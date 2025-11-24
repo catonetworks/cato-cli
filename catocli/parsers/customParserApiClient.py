@@ -177,24 +177,36 @@ def createRequest(args, configuration):
         
     variables_obj = {}
     
+    # Handle JSON input from file or command line
+    json_input = params.get("json")
+    json_file = params.get("json_file")
+    
+    if json_file:
+        try:
+            with open(json_file, 'r', encoding='utf-8') as f:
+                json_input = f.read()
+        except Exception as e:
+            print(f"ERROR: Failed to read JSON file '{json_file}': {e}")
+            return None
+            
     # Parse JSON input with robust preprocessing and error handling
-    if params["json"]:
+    if json_input:
         try:
             # Preprocess JSON to handle formatting issues from different shells
-            preprocessed_json = preprocess_json_input(params["json"])
+            preprocessed_json = preprocess_json_input(json_input)
             variables_obj = json.loads(preprocessed_json)
             if not isinstance(variables_obj, dict):
                 print("ERROR: JSON input must be an object/dictionary")
                 return None
         except ValueError as e:
             print(f"ERROR: Invalid JSON syntax: {e}")
-            print(f"Raw input received (first 200 chars): {repr(params['json'][:200])}")
+            print(f"Raw input received (first 200 chars): {repr(json_input[:200])}")
             print(f"After preprocessing (first 200 chars): {repr(preprocessed_json[:200])}")
             print("Example: '{\"yourKey\":\"yourValue\"}'")
             return None
         except Exception as e:
             print(f"ERROR: Unexpected error parsing JSON: {e}")
-            print(f"Input received: {params['json'][:100]}{'...' if len(params['json']) > 100 else ''}")
+            print(f"Input received: {json_input[:100]}{'...' if len(json_input) > 100 else ''}")
             return None
     else:
         # Default to empty object if no json provided
@@ -531,9 +543,21 @@ def queryAppCategory(args, configuration):
         print(f"ERROR: Failed to load app category data: {e}")
         return None
         
+    # Handle JSON input from file or command line
+    json_input = params.get("json")
+    json_file = params.get("json_file")
+    
+    if json_file:
+        try:
+            with open(json_file, 'r', encoding='utf-8') as f:
+                json_input = f.read()
+        except Exception as e:
+            print(f"ERROR: Failed to read JSON file '{json_file}': {e}")
+            return None
+            
     try:
         # Use the same robust JSON preprocessing
-        preprocessed_json = preprocess_json_input(params["json"])
+        preprocessed_json = preprocess_json_input(json_input)
         variables_obj = json.loads(preprocessed_json)
     except ValueError as e:
         print(f"ERROR: Invalid JSON syntax: {e}")
@@ -604,13 +628,25 @@ def querySiteLocation(args, configuration):
         print(f"ERROR: Failed to load site location data: {e}")
         return None
         
+    # Handle JSON input from file or command line
+    json_input = params.get("json")
+    json_file = params.get("json_file")
+    
+    if json_file:
+        try:
+            with open(json_file, 'r', encoding='utf-8') as f:
+                json_input = f.read()
+        except Exception as e:
+            print(f"ERROR: Failed to read JSON file '{json_file}': {e}")
+            return None
+            
     try:
         # Use the same robust JSON preprocessing as other functions
-        preprocessed_json = preprocess_json_input(params["json"])
+        preprocessed_json = preprocess_json_input(json_input)
         variables_obj = json.loads(preprocessed_json)
     except ValueError as e:
         print(f"ERROR: Invalid JSON syntax: {e}")
-        print(f"Raw input received (first 200 chars): {repr(params['json'][:200])}")
+        print(f"Raw input received (first 200 chars): {repr(json_input[:200])}")
         print(f"After preprocessing (first 200 chars): {repr(preprocessed_json[:200])}")
         pretty_example = {
             "filters": [
@@ -866,9 +902,21 @@ def createRawRequest(args, configuration):
         
     instance = CallApi(ApiClient(configuration))
     
+    # Handle JSON input from file or command line
+    json_input = params.get("json")
+    json_file = params.get("json_file")
+    
+    if json_file:
+        try:
+            with open(json_file, 'r', encoding='utf-8') as f:
+                json_input = f.read()
+        except Exception as e:
+            print(f"ERROR: Failed to read JSON file '{json_file}': {e}")
+            return None
+            
     try:
         # Use the same robust JSON preprocessing as other functions
-        preprocessed_json = preprocess_json_input(params["json"])
+        preprocessed_json = preprocess_json_input(json_input)
         body = json.loads(preprocessed_json)
         
         # Validate GraphQL request structure
@@ -882,11 +930,11 @@ def createRawRequest(args, configuration):
             
     except ValueError as e:
         print(f"ERROR: Invalid JSON syntax: {e}")
-        print(f"Attempted to parse: {params['json'][:100]}{'...' if len(params['json']) > 100 else ''}")
+        print(f"Attempted to parse: {json_input[:100]}{'...' if len(json_input) > 100 else ''}")
         return None
     except Exception as e:
         print(f"ERROR: Unexpected error parsing request: {e}")
-        print(f"Input received: {params['json'][:100]}{'...' if len(params['json']) > 100 else ''}")
+        print(f"Input received: {json_input[:100]}{'...' if len(json_input) > 100 else ''}")
         return None
     
     if params["t"]:
@@ -1844,13 +1892,22 @@ def createPrivateRequest(args, configuration):
             configuration.custom_headers[key] = value
     
     # Parse input JSON variables with robust preprocessing
+    json_input = params.get('json', '{}')
+    json_file = params.get('json_file')
+    
+    if json_file:
+        try:
+            with open(json_file, 'r', encoding='utf-8') as f:
+                json_input = f.read()
+        except Exception as e:
+            print(f"ERROR: Failed to read JSON file '{json_file}': {e}")
+            return None
+            
     try:
-        json_input = params.get('json', '{}')
         preprocessed_json = preprocess_json_input(json_input)
         variables = json.loads(preprocessed_json)
     except ValueError as e:
         print(f"ERROR: Invalid JSON input: {e}")
-        json_input = params.get('json', '{}')
         print(f"Attempted to parse: {json_input[:100]}{'...' if len(json_input) > 100 else ''}")
         return None
     

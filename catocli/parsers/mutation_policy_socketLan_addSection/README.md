@@ -9,7 +9,7 @@ catocli mutation policy socketLan addSection -h
 
 catocli mutation policy socketLan addSection <json>
 
-catocli mutation policy socketLan addSection "$(cat < mutation.policy.socketLan.addSection.json)"
+catocli mutation policy socketLan addSection --json-file mutation.policy.socketLan.addSection.json
 
 catocli mutation policy socketLan addSection '{"policyAddSectionInput":{"policyAddSectionInfoInput":{"name":"string"},"policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}},"socketLanPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 

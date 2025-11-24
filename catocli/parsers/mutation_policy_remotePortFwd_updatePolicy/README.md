@@ -9,7 +9,7 @@ catocli mutation policy remotePortFwd updatePolicy -h
 
 catocli mutation policy remotePortFwd updatePolicy <json>
 
-catocli mutation policy remotePortFwd updatePolicy "$(cat < mutation.policy.remotePortFwd.updatePolicy.json)"
+catocli mutation policy remotePortFwd updatePolicy --json-file mutation.policy.remotePortFwd.updatePolicy.json
 
 catocli mutation policy remotePortFwd updatePolicy '{"remotePortFwdPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"remotePortFwdPolicyUpdateInput":{"state":"ENABLED"}}'
 

@@ -9,7 +9,7 @@ catocli mutation policy remotePortFwd discardPolicyRevision -h
 
 catocli mutation policy remotePortFwd discardPolicyRevision <json>
 
-catocli mutation policy remotePortFwd discardPolicyRevision "$(cat < mutation.policy.remotePortFwd.discardPolicyRevision.json)"
+catocli mutation policy remotePortFwd discardPolicyRevision --json-file mutation.policy.remotePortFwd.discardPolicyRevision.json
 
 catocli mutation policy remotePortFwd discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"remotePortFwdPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 

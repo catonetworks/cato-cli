@@ -9,7 +9,7 @@ catocli mutation policy internetFirewall updateSection -h
 
 catocli mutation policy internetFirewall updateSection <json>
 
-catocli mutation policy internetFirewall updateSection "$(cat < mutation.policy.internetFirewall.updateSection.json)"
+catocli mutation policy internetFirewall updateSection --json-file mutation.policy.internetFirewall.updateSection.json
 
 catocli mutation policy internetFirewall updateSection '{"internetFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyUpdateSectionInput":{"id":"id","policyUpdateSectionInfoInput":{"name":"string"}}}'
 

@@ -9,7 +9,7 @@ catocli mutation licensing updateCommercialLicense -h
 
 catocli mutation licensing updateCommercialLicense <json>
 
-catocli mutation licensing updateCommercialLicense "$(cat < mutation.licensing.updateCommercialLicense.json)"
+catocli mutation licensing updateCommercialLicense --json-file mutation.licensing.updateCommercialLicense.json
 
 catocli mutation licensing updateCommercialLicense '{"updateCommercialLicenseInput":{"licenseId":"id","startDate":"example_value"}}'
 

@@ -9,7 +9,7 @@ catocli mutation policy appTenantRestriction removeSection -h
 
 catocli mutation policy appTenantRestriction removeSection <json>
 
-catocli mutation policy appTenantRestriction removeSection "$(cat < mutation.policy.appTenantRestriction.removeSection.json)"
+catocli mutation policy appTenantRestriction removeSection --json-file mutation.policy.appTenantRestriction.removeSection.json
 
 catocli mutation policy appTenantRestriction removeSection '{"appTenantRestrictionPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyRemoveSectionInput":{"id":"id"}}'
 

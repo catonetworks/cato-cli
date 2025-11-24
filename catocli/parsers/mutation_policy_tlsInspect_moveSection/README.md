@@ -9,7 +9,7 @@ catocli mutation policy tlsInspect moveSection -h
 
 catocli mutation policy tlsInspect moveSection <json>
 
-catocli mutation policy tlsInspect moveSection "$(cat < mutation.policy.tlsInspect.moveSection.json)"
+catocli mutation policy tlsInspect moveSection --json-file mutation.policy.tlsInspect.moveSection.json
 
 catocli mutation policy tlsInspect moveSection '{"policyMoveSectionInput":{"id":"id","policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}},"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 

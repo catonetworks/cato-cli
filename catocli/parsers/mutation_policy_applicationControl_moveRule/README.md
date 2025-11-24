@@ -9,7 +9,7 @@ catocli mutation policy applicationControl moveRule -h
 
 catocli mutation policy applicationControl moveRule <json>
 
-catocli mutation policy applicationControl moveRule "$(cat < mutation.policy.applicationControl.moveRule.json)"
+catocli mutation policy applicationControl moveRule --json-file mutation.policy.applicationControl.moveRule.json
 
 catocli mutation policy applicationControl moveRule '{"applicationControlPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyMoveRuleInput":{"id":"id","policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"}}}'
 

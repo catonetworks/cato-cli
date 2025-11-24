@@ -9,7 +9,7 @@ catocli mutation policy terminalServer publishPolicyRevision -h
 
 catocli mutation policy terminalServer publishPolicyRevision <json>
 
-catocli mutation policy terminalServer publishPolicyRevision "$(cat < mutation.policy.terminalServer.publishPolicyRevision.json)"
+catocli mutation policy terminalServer publishPolicyRevision --json-file mutation.policy.terminalServer.publishPolicyRevision.json
 
 catocli mutation policy terminalServer publishPolicyRevision '{"policyPublishRevisionInput":{"description":"string","name":"string"},"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 

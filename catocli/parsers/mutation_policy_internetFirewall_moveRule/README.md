@@ -9,7 +9,7 @@ catocli mutation policy internetFirewall moveRule -h
 
 catocli mutation policy internetFirewall moveRule <json>
 
-catocli mutation policy internetFirewall moveRule "$(cat < mutation.policy.internetFirewall.moveRule.json)"
+catocli mutation policy internetFirewall moveRule --json-file mutation.policy.internetFirewall.moveRule.json
 
 catocli mutation policy internetFirewall moveRule '{"internetFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyMoveRuleInput":{"id":"id","policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"}}}'
 

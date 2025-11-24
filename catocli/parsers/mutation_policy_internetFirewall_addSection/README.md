@@ -9,7 +9,7 @@ catocli mutation policy internetFirewall addSection -h
 
 catocli mutation policy internetFirewall addSection <json>
 
-catocli mutation policy internetFirewall addSection "$(cat < mutation.policy.internetFirewall.addSection.json)"
+catocli mutation policy internetFirewall addSection --json-file mutation.policy.internetFirewall.addSection.json
 
 catocli mutation policy internetFirewall addSection '{"internetFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyAddSectionInput":{"policyAddSectionInfoInput":{"name":"string"},"policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}}}'
 

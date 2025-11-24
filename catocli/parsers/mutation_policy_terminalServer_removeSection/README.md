@@ -9,7 +9,7 @@ catocli mutation policy terminalServer removeSection -h
 
 catocli mutation policy terminalServer removeSection <json>
 
-catocli mutation policy terminalServer removeSection "$(cat < mutation.policy.terminalServer.removeSection.json)"
+catocli mutation policy terminalServer removeSection --json-file mutation.policy.terminalServer.removeSection.json
 
 catocli mutation policy terminalServer removeSection '{"policyRemoveSectionInput":{"id":"id"},"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 

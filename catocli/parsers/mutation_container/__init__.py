@@ -40,6 +40,7 @@ def mutation_container_parse(mutation_subparsers):
             usage=get_help("mutation_container_ipAddressRange_createFromFile"))
 
     mutation_container_ipAddressRange_createFromFile_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_container_ipAddressRange_createFromFile_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_container_ipAddressRange_createFromFile_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_container_ipAddressRange_createFromFile_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_container_ipAddressRange_createFromFile_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -56,6 +57,7 @@ def mutation_container_parse(mutation_subparsers):
             usage=get_help("mutation_container_ipAddressRange_updateFromFile"))
 
     mutation_container_ipAddressRange_updateFromFile_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_container_ipAddressRange_updateFromFile_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_container_ipAddressRange_updateFromFile_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_container_ipAddressRange_updateFromFile_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_container_ipAddressRange_updateFromFile_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -72,6 +74,7 @@ def mutation_container_parse(mutation_subparsers):
             usage=get_help("mutation_container_ipAddressRange_addValues"))
 
     mutation_container_ipAddressRange_addValues_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_container_ipAddressRange_addValues_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_container_ipAddressRange_addValues_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_container_ipAddressRange_addValues_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_container_ipAddressRange_addValues_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -88,6 +91,7 @@ def mutation_container_parse(mutation_subparsers):
             usage=get_help("mutation_container_ipAddressRange_removeValues"))
 
     mutation_container_ipAddressRange_removeValues_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_container_ipAddressRange_removeValues_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_container_ipAddressRange_removeValues_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_container_ipAddressRange_removeValues_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_container_ipAddressRange_removeValues_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -104,6 +108,7 @@ def mutation_container_parse(mutation_subparsers):
             usage=get_help("mutation_container_ipAddressRange_createFromList"))
 
     mutation_container_ipAddressRange_createFromList_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_container_ipAddressRange_createFromList_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_container_ipAddressRange_createFromList_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_container_ipAddressRange_createFromList_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_container_ipAddressRange_createFromList_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -120,6 +125,7 @@ def mutation_container_parse(mutation_subparsers):
             usage=get_help("mutation_container_ipAddressRange_updateFromList"))
 
     mutation_container_ipAddressRange_updateFromList_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_container_ipAddressRange_updateFromList_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_container_ipAddressRange_updateFromList_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_container_ipAddressRange_updateFromList_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_container_ipAddressRange_updateFromList_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -152,6 +158,7 @@ def mutation_container_parse(mutation_subparsers):
             usage=get_help("mutation_container_fqdn_createFromFile"))
 
     mutation_container_fqdn_createFromFile_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_container_fqdn_createFromFile_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_container_fqdn_createFromFile_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_container_fqdn_createFromFile_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_container_fqdn_createFromFile_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -168,6 +175,7 @@ def mutation_container_parse(mutation_subparsers):
             usage=get_help("mutation_container_fqdn_updateFromFile"))
 
     mutation_container_fqdn_updateFromFile_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_container_fqdn_updateFromFile_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_container_fqdn_updateFromFile_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_container_fqdn_updateFromFile_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_container_fqdn_updateFromFile_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -184,6 +192,7 @@ def mutation_container_parse(mutation_subparsers):
             usage=get_help("mutation_container_fqdn_addValues"))
 
     mutation_container_fqdn_addValues_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_container_fqdn_addValues_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_container_fqdn_addValues_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_container_fqdn_addValues_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_container_fqdn_addValues_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -200,6 +209,7 @@ def mutation_container_parse(mutation_subparsers):
             usage=get_help("mutation_container_fqdn_removeValues"))
 
     mutation_container_fqdn_removeValues_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_container_fqdn_removeValues_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_container_fqdn_removeValues_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_container_fqdn_removeValues_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_container_fqdn_removeValues_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -216,6 +226,7 @@ def mutation_container_parse(mutation_subparsers):
             usage=get_help("mutation_container_fqdn_createFromList"))
 
     mutation_container_fqdn_createFromList_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_container_fqdn_createFromList_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_container_fqdn_createFromList_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_container_fqdn_createFromList_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_container_fqdn_createFromList_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -232,6 +243,7 @@ def mutation_container_parse(mutation_subparsers):
             usage=get_help("mutation_container_fqdn_updateFromList"))
 
     mutation_container_fqdn_updateFromList_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_container_fqdn_updateFromList_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_container_fqdn_updateFromList_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_container_fqdn_updateFromList_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_container_fqdn_updateFromList_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -248,6 +260,7 @@ def mutation_container_parse(mutation_subparsers):
             usage=get_help("mutation_container_delete"))
 
     mutation_container_delete_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_container_delete_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_container_delete_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_container_delete_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_container_delete_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')

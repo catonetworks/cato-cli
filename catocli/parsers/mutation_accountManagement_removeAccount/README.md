@@ -9,7 +9,7 @@ catocli mutation accountManagement removeAccount -h
 
 catocli mutation accountManagement removeAccount <json>
 
-catocli mutation accountManagement removeAccount "$(cat < mutation.accountManagement.removeAccount.json)"
+catocli mutation accountManagement removeAccount --json-file mutation.accountManagement.removeAccount.json
 
 #### Operation Arguments for mutation.accountManagement.removeAccount ####
 

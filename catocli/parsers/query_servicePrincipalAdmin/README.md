@@ -9,7 +9,7 @@ catocli query servicePrincipalAdmin -h
 
 catocli query servicePrincipalAdmin <json>
 
-catocli query servicePrincipalAdmin "$(cat < query.servicePrincipalAdmin.json)"
+catocli query servicePrincipalAdmin --json-file query.servicePrincipalAdmin.json
 
 catocli query servicePrincipalAdmin '{"adminID":"id"}'
 

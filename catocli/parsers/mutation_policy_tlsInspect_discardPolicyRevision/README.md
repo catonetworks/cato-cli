@@ -9,7 +9,7 @@ catocli mutation policy tlsInspect discardPolicyRevision -h
 
 catocli mutation policy tlsInspect discardPolicyRevision <json>
 
-catocli mutation policy tlsInspect discardPolicyRevision "$(cat < mutation.policy.tlsInspect.discardPolicyRevision.json)"
+catocli mutation policy tlsInspect discardPolicyRevision --json-file mutation.policy.tlsInspect.discardPolicyRevision.json
 
 catocli mutation policy tlsInspect discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 

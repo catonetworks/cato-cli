@@ -9,7 +9,7 @@ catocli query container list -h
 
 catocli query container list <json>
 
-catocli query container list "$(cat < query.container.list.json)"
+catocli query container list --json-file query.container.list.json
 
 catocli query container list '{"containerSearchInput":{"containerRefInput":{"by":"ID","input":"string"},"types":"IP_RANGE"}}'
 

@@ -9,7 +9,7 @@ catocli query accountManagement -h
 
 catocli query accountManagement <json>
 
-catocli query accountManagement "$(cat < query.accountManagement.json)"
+catocli query accountManagement --json-file query.accountManagement.json
 
 #### Operation Arguments for query.accountManagement ####
 

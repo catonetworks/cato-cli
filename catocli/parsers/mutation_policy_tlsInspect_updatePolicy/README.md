@@ -9,7 +9,7 @@ catocli mutation policy tlsInspect updatePolicy -h
 
 catocli mutation policy tlsInspect updatePolicy <json>
 
-catocli mutation policy tlsInspect updatePolicy "$(cat < mutation.policy.tlsInspect.updatePolicy.json)"
+catocli mutation policy tlsInspect updatePolicy --json-file mutation.policy.tlsInspect.updatePolicy.json
 
 catocli mutation policy tlsInspect updatePolicy '{"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"tlsInspectPolicyUpdateInput":{"state":"ENABLED","tlsInspectConfigInput":{"defaultRuleAction":"INSPECT","defaultRuleUntrustedCertificateAction":"ALLOW"}}}'
 

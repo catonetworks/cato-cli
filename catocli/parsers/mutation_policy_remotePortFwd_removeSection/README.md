@@ -9,7 +9,7 @@ catocli mutation policy remotePortFwd removeSection -h
 
 catocli mutation policy remotePortFwd removeSection <json>
 
-catocli mutation policy remotePortFwd removeSection "$(cat < mutation.policy.remotePortFwd.removeSection.json)"
+catocli mutation policy remotePortFwd removeSection --json-file mutation.policy.remotePortFwd.removeSection.json
 
 catocli mutation policy remotePortFwd removeSection '{"policyRemoveSectionInput":{"id":"id"},"remotePortFwdPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 

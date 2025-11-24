@@ -9,7 +9,7 @@ catocli mutation container ipAddressRange createFromList -h
 
 catocli mutation container ipAddressRange createFromList <json>
 
-catocli mutation container ipAddressRange createFromList "$(cat < mutation.container.ipAddressRange.createFromList.json)"
+catocli mutation container ipAddressRange createFromList --json-file mutation.container.ipAddressRange.createFromList.json
 
 catocli mutation container ipAddressRange createFromList '{"createIpAddressRangeContainerFromListInput":{"description":"string","ipAddressRangeInput":{"from":"example_value","to":"example_value"},"name":"string"}}'
 

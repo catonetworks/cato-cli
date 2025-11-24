@@ -9,7 +9,7 @@ catocli mutation policy wanNetwork publishPolicyRevision -h
 
 catocli mutation policy wanNetwork publishPolicyRevision <json>
 
-catocli mutation policy wanNetwork publishPolicyRevision "$(cat < mutation.policy.wanNetwork.publishPolicyRevision.json)"
+catocli mutation policy wanNetwork publishPolicyRevision --json-file mutation.policy.wanNetwork.publishPolicyRevision.json
 
 catocli mutation policy wanNetwork publishPolicyRevision '{"policyPublishRevisionInput":{"description":"string","name":"string"},"wanNetworkPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 

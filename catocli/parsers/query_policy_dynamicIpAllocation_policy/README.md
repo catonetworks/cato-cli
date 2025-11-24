@@ -9,7 +9,7 @@ catocli query policy dynamicIpAllocation policy -h
 
 catocli query policy dynamicIpAllocation policy <json>
 
-catocli query policy dynamicIpAllocation policy "$(cat < query.policy.dynamicIpAllocation.policy.json)"
+catocli query policy dynamicIpAllocation policy --json-file query.policy.dynamicIpAllocation.policy.json
 
 catocli query policy dynamicIpAllocation policy '{"dynamicIpAllocationPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'
 

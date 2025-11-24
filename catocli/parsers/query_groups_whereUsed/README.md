@@ -9,7 +9,7 @@ catocli query groups whereUsed -h
 
 catocli query groups whereUsed <json>
 
-catocli query groups whereUsed "$(cat < query.groups.whereUsed.json)"
+catocli query groups whereUsed --json-file query.groups.whereUsed.json
 
 catocli query groups whereUsed '{"groupRefInput":{"by":"ID","input":"string"}}'
 

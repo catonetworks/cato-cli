@@ -9,7 +9,7 @@ catocli query policy wanFirewall policy -h
 
 catocli query policy wanFirewall policy <json>
 
-catocli query policy wanFirewall policy "$(cat < query.policy.wanFirewall.policy.json)"
+catocli query policy wanFirewall policy --json-file query.policy.wanFirewall.policy.json
 
 catocli query policy wanFirewall policy '{"wanFirewallPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'
 

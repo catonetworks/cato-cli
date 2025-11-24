@@ -9,7 +9,7 @@ catocli mutation enterpriseDirectory restoreLocation -h
 
 catocli mutation enterpriseDirectory restoreLocation <json>
 
-catocli mutation enterpriseDirectory restoreLocation "$(cat < mutation.enterpriseDirectory.restoreLocation.json)"
+catocli mutation enterpriseDirectory restoreLocation --json-file mutation.enterpriseDirectory.restoreLocation.json
 
 catocli mutation enterpriseDirectory restoreLocation '{"locationId":"id"}'
 

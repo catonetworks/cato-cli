@@ -9,7 +9,7 @@ catocli mutation policy appTenantRestriction updateSection -h
 
 catocli mutation policy appTenantRestriction updateSection <json>
 
-catocli mutation policy appTenantRestriction updateSection "$(cat < mutation.policy.appTenantRestriction.updateSection.json)"
+catocli mutation policy appTenantRestriction updateSection --json-file mutation.policy.appTenantRestriction.updateSection.json
 
 catocli mutation policy appTenantRestriction updateSection '{"appTenantRestrictionPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyUpdateSectionInput":{"id":"id","policyUpdateSectionInfoInput":{"name":"string"}}}'
 

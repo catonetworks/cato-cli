@@ -9,7 +9,7 @@ catocli mutation policy applicationControl removeSection -h
 
 catocli mutation policy applicationControl removeSection <json>
 
-catocli mutation policy applicationControl removeSection "$(cat < mutation.policy.applicationControl.removeSection.json)"
+catocli mutation policy applicationControl removeSection --json-file mutation.policy.applicationControl.removeSection.json
 
 catocli mutation policy applicationControl removeSection '{"applicationControlPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyRemoveSectionInput":{"id":"id"}}'
 

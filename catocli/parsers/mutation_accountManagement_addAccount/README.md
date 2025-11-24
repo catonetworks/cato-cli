@@ -9,7 +9,7 @@ catocli mutation accountManagement addAccount -h
 
 catocli mutation accountManagement addAccount <json>
 
-catocli mutation accountManagement addAccount "$(cat < mutation.accountManagement.addAccount.json)"
+catocli mutation accountManagement addAccount --json-file mutation.accountManagement.addAccount.json
 
 catocli mutation accountManagement addAccount '{"addAccountInput":{"description":"string","name":"string","tenancy":"SINGLE_TENANT","timezone":"example_value","type":"CUSTOMER"}}'
 

@@ -9,7 +9,7 @@ catocli mutation policy tlsInspect publishPolicyRevision -h
 
 catocli mutation policy tlsInspect publishPolicyRevision <json>
 
-catocli mutation policy tlsInspect publishPolicyRevision "$(cat < mutation.policy.tlsInspect.publishPolicyRevision.json)"
+catocli mutation policy tlsInspect publishPolicyRevision --json-file mutation.policy.tlsInspect.publishPolicyRevision.json
 
 catocli mutation policy tlsInspect publishPolicyRevision '{"policyPublishRevisionInput":{"description":"string","name":"string"},"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 

@@ -9,7 +9,7 @@ catocli mutation policy wanNetwork createPolicyRevision -h
 
 catocli mutation policy wanNetwork createPolicyRevision <json>
 
-catocli mutation policy wanNetwork createPolicyRevision "$(cat < mutation.policy.wanNetwork.createPolicyRevision.json)"
+catocli mutation policy wanNetwork createPolicyRevision --json-file mutation.policy.wanNetwork.createPolicyRevision.json
 
 catocli mutation policy wanNetwork createPolicyRevision '{"policyCreateRevisionInput":{"description":"string","name":"string"},"wanNetworkPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 

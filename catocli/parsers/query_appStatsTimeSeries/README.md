@@ -9,7 +9,7 @@ catocli query appStatsTimeSeries -h
 
 catocli query appStatsTimeSeries <json>
 
-catocli query appStatsTimeSeries "$(cat < query.appStatsTimeSeries.json)"
+catocli query appStatsTimeSeries --json-file query.appStatsTimeSeries.json
 
 catocli query appStatsTimeSeries '{"appStatsFilter":{"fieldName":"ad_name","operator":"is","values":["string1","string2"]},"buckets":1,"dimension":{"fieldName":"ad_name"},"measure":{"aggType":"sum","fieldName":"ad_name","trend":true},"perSecond":true,"timeFrame":"example_value","useDefaultSizeBucket":true,"withMissingData":true}'
 

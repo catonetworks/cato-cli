@@ -9,7 +9,7 @@ catocli mutation policy wanFirewall moveSection -h
 
 catocli mutation policy wanFirewall moveSection <json>
 
-catocli mutation policy wanFirewall moveSection "$(cat < mutation.policy.wanFirewall.moveSection.json)"
+catocli mutation policy wanFirewall moveSection --json-file mutation.policy.wanFirewall.moveSection.json
 
 catocli mutation policy wanFirewall moveSection '{"policyMoveSectionInput":{"id":"id","policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}},"wanFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 

@@ -9,7 +9,7 @@ catocli query container fqdn downloadFile -h
 
 catocli query container fqdn downloadFile <json>
 
-catocli query container fqdn downloadFile "$(cat < query.container.fqdn.downloadFile.json)"
+catocli query container fqdn downloadFile --json-file query.container.fqdn.downloadFile.json
 
 catocli query container fqdn downloadFile '{"downloadFqdnContainerFileInput":{"by":"ID","input":"string"}}'
 

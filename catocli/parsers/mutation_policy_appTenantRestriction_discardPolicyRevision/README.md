@@ -9,7 +9,7 @@ catocli mutation policy appTenantRestriction discardPolicyRevision -h
 
 catocli mutation policy appTenantRestriction discardPolicyRevision <json>
 
-catocli mutation policy appTenantRestriction discardPolicyRevision "$(cat < mutation.policy.appTenantRestriction.discardPolicyRevision.json)"
+catocli mutation policy appTenantRestriction discardPolicyRevision --json-file mutation.policy.appTenantRestriction.discardPolicyRevision.json
 
 catocli mutation policy appTenantRestriction discardPolicyRevision '{"appTenantRestrictionPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyDiscardRevisionInput":{"id":"id"}}'
 

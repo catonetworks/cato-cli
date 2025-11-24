@@ -9,7 +9,7 @@ catocli query eventsTimeSeries -h
 
 catocli query eventsTimeSeries <json>
 
-catocli query eventsTimeSeries "$(cat < query.eventsTimeSeries.json)"
+catocli query eventsTimeSeries --json-file query.eventsTimeSeries.json
 
 catocli query eventsTimeSeries '{"buckets":1,"eventsDimension":{"fieldName":"access_method"},"eventsFilter":{"fieldName":"access_method","operator":"is","values":["string1","string2"]},"eventsMeasure":{"aggType":"sum","fieldName":"access_method","trend":true},"perSecond":true,"timeFrame":"example_value","useDefaultSizeBucket":true,"withMissingData":true}'
 

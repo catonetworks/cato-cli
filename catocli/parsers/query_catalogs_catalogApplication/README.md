@@ -9,7 +9,7 @@ catocli query catalogs catalogApplication -h
 
 catocli query catalogs catalogApplication <json>
 
-catocli query catalogs catalogApplication "$(cat < query.catalogs.catalogApplication.json)"
+catocli query catalogs catalogApplication --json-file query.catalogs.catalogApplication.json
 
 catocli query catalogs catalogApplication '{"applicationRefInput":{"by":"ID","input":"string"}}'
 

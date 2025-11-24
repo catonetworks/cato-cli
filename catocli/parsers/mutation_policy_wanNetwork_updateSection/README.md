@@ -9,7 +9,7 @@ catocli mutation policy wanNetwork updateSection -h
 
 catocli mutation policy wanNetwork updateSection <json>
 
-catocli mutation policy wanNetwork updateSection "$(cat < mutation.policy.wanNetwork.updateSection.json)"
+catocli mutation policy wanNetwork updateSection --json-file mutation.policy.wanNetwork.updateSection.json
 
 catocli mutation policy wanNetwork updateSection '{"policyUpdateSectionInput":{"id":"id","policyUpdateSectionInfoInput":{"name":"string"}},"wanNetworkPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 

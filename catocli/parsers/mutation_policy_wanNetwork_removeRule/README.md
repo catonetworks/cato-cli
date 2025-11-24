@@ -9,7 +9,7 @@ catocli mutation policy wanNetwork removeRule -h
 
 catocli mutation policy wanNetwork removeRule <json>
 
-catocli mutation policy wanNetwork removeRule "$(cat < mutation.policy.wanNetwork.removeRule.json)"
+catocli mutation policy wanNetwork removeRule --json-file mutation.policy.wanNetwork.removeRule.json
 
 catocli mutation policy wanNetwork removeRule '{"wanNetworkPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"wanNetworkRemoveRuleInput":{"id":"id"}}'
 

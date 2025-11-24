@@ -147,3 +147,8 @@
 ## 3.0.41 (2025-11-21)
 - Fixed raw command to run properly, added autoamted tests
 - Added SCIM settings to automated tests
+
+## 3.0.42 (2025-11-24)
+- Update parsers to support --json-file for json payload to support larger input payloads
+- Added custom command for categories, added automated tests
+- Added support for tab auto-complete

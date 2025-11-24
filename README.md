@@ -40,6 +40,11 @@ catocli configure list
 catocli configure show
 ```
 
+### Enable cli tab auto-completion
+
+For detailed information about enabling tab completion, see [TAB_COMPLETION.md](TAB_COMPLETION.md).
+
+
 ### Documentation
 
 For detailed information about profile management, see [PROFILES.md](PROFILES.md).

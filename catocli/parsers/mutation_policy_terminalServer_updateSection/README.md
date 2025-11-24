@@ -9,7 +9,7 @@ catocli mutation policy terminalServer updateSection -h
 
 catocli mutation policy terminalServer updateSection <json>
 
-catocli mutation policy terminalServer updateSection "$(cat < mutation.policy.terminalServer.updateSection.json)"
+catocli mutation policy terminalServer updateSection --json-file mutation.policy.terminalServer.updateSection.json
 
 catocli mutation policy terminalServer updateSection '{"policyUpdateSectionInput":{"id":"id","policyUpdateSectionInfoInput":{"name":"string"}},"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 

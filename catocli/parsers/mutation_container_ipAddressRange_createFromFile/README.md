@@ -9,7 +9,7 @@ catocli mutation container ipAddressRange createFromFile -h
 
 catocli mutation container ipAddressRange createFromFile <json>
 
-catocli mutation container ipAddressRange createFromFile "$(cat < mutation.container.ipAddressRange.createFromFile.json)"
+catocli mutation container ipAddressRange createFromFile --json-file mutation.container.ipAddressRange.createFromFile.json
 
 catocli mutation container ipAddressRange createFromFile '{"createIpAddressRangeContainerFromFileInput":{"description":"string","fileType":"STIX","name":"string","uploadFile":"example_value"}}'
 

@@ -9,7 +9,7 @@ catocli query admin -h
 
 catocli query admin <json>
 
-catocli query admin "$(cat < query.admin.json)"
+catocli query admin --json-file query.admin.json
 
 catocli query admin '{"adminID":"id"}'
 

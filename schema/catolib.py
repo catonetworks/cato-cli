@@ -570,6 +570,11 @@ import os
 import argparse
 import json
 import catocli
+try:
+    import argcomplete
+    ARGCOMPLETE_AVAILABLE = True
+except ImportError:
+    ARGCOMPLETE_AVAILABLE = False
 from graphql_client import Configuration
 from graphql_client.api_client import ApiException
 from ..parsers.customParserApiClient import get_help
@@ -689,6 +694,10 @@ mutation_subparsers = mutation_parser.add_subparsers(description='Available muta
         cliDriverStr += parserName+"_parser = "+parserName+"_parse("+parserName.split("_")[0]+"_subparsers)\n"
 
     cliDriverStr += """
+
+# Enable argcomplete for tab completion at module level
+if ARGCOMPLETE_AVAILABLE:
+    argcomplete.autocomplete(parser) 
 
 def parse_headers(header_strings):
     headers = {}

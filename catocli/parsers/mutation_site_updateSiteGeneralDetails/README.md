@@ -9,7 +9,7 @@ catocli mutation site updateSiteGeneralDetails -h
 
 catocli mutation site updateSiteGeneralDetails <json>
 
-catocli mutation site updateSiteGeneralDetails "$(cat < mutation.site.updateSiteGeneralDetails.json)"
+catocli mutation site updateSiteGeneralDetails --json-file mutation.site.updateSiteGeneralDetails.json
 
 catocli mutation site updateSiteGeneralDetails '{"siteId":"id","updateSiteGeneralDetailsInput":{"description":"string","name":"string","siteType":"BRANCH","updateSiteLocationInput":{"address":"string","cityName":"string","countryCode":"string","stateCode":"string","timezone":"string"},"updateSitePreferredPopLocationInput":{"preferredOnly":true,"primary":{"by":"ID","input":"string"},"secondary":{"by":"ID","input":"string"}}}}'
 

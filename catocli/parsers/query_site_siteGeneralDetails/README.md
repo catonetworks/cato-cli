@@ -9,7 +9,7 @@ catocli query site siteGeneralDetails -h
 
 catocli query site siteGeneralDetails <json>
 
-catocli query site siteGeneralDetails "$(cat < query.site.siteGeneralDetails.json)"
+catocli query site siteGeneralDetails --json-file query.site.siteGeneralDetails.json
 
 catocli query site siteGeneralDetails '{"siteRefInput":{"by":"ID","input":"string"}}'
 

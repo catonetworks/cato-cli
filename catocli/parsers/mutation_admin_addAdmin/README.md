@@ -9,7 +9,7 @@ catocli mutation admin addAdmin -h
 
 catocli mutation admin addAdmin <json>
 
-catocli mutation admin addAdmin "$(cat < mutation.admin.addAdmin.json)"
+catocli mutation admin addAdmin --json-file mutation.admin.addAdmin.json
 
 catocli mutation admin addAdmin '{"addAdminInput":{"adminType":"LOGIN","email":"string","firstName":"string","lastName":"string","passwordNeverExpires":true,"updateAdminRoleInput":{"allowedAccounts":["id1","id2"],"allowedEntities":{"id":"id","name":"string","type":"account"},"role":{"id":"id","name":"string"}}}}'
 

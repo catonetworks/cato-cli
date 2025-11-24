@@ -9,7 +9,7 @@ catocli mutation policy tlsInspect removeSection -h
 
 catocli mutation policy tlsInspect removeSection <json>
 
-catocli mutation policy tlsInspect removeSection "$(cat < mutation.policy.tlsInspect.removeSection.json)"
+catocli mutation policy tlsInspect removeSection --json-file mutation.policy.tlsInspect.removeSection.json
 
 catocli mutation policy tlsInspect removeSection '{"policyRemoveSectionInput":{"id":"id"},"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 

@@ -9,7 +9,7 @@ catocli mutation container ipAddressRange addValues -h
 
 catocli mutation container ipAddressRange addValues <json>
 
-catocli mutation container ipAddressRange addValues "$(cat < mutation.container.ipAddressRange.addValues.json)"
+catocli mutation container ipAddressRange addValues --json-file mutation.container.ipAddressRange.addValues.json
 
 catocli mutation container ipAddressRange addValues '{"ipAddressRangeContainerAddValuesInput":{"containerRefInput":{"by":"ID","input":"string"},"ipAddressRangeInput":{"from":"example_value","to":"example_value"}}}'
 

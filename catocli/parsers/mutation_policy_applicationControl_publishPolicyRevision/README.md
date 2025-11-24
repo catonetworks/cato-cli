@@ -9,7 +9,7 @@ catocli mutation policy applicationControl publishPolicyRevision -h
 
 catocli mutation policy applicationControl publishPolicyRevision <json>
 
-catocli mutation policy applicationControl publishPolicyRevision "$(cat < mutation.policy.applicationControl.publishPolicyRevision.json)"
+catocli mutation policy applicationControl publishPolicyRevision --json-file mutation.policy.applicationControl.publishPolicyRevision.json
 
 catocli mutation policy applicationControl publishPolicyRevision '{"applicationControlPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyPublishRevisionInput":{"description":"string","name":"string"}}'
 

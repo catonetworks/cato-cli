@@ -9,7 +9,7 @@ catocli query site cloudInterconnectConnectionConnectivity -h
 
 catocli query site cloudInterconnectConnectionConnectivity <json>
 
-catocli query site cloudInterconnectConnectionConnectivity "$(cat < query.site.cloudInterconnectConnectionConnectivity.json)"
+catocli query site cloudInterconnectConnectionConnectivity --json-file query.site.cloudInterconnectConnectionConnectivity.json
 
 catocli query site cloudInterconnectConnectionConnectivity '{"cloudInterconnectConnectionConnectivityInput":{"id":"id"}}'
 

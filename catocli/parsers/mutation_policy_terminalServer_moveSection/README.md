@@ -9,7 +9,7 @@ catocli mutation policy terminalServer moveSection -h
 
 catocli mutation policy terminalServer moveSection <json>
 
-catocli mutation policy terminalServer moveSection "$(cat < mutation.policy.terminalServer.moveSection.json)"
+catocli mutation policy terminalServer moveSection --json-file mutation.policy.terminalServer.moveSection.json
 
 catocli mutation policy terminalServer moveSection '{"policyMoveSectionInput":{"id":"id","policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}},"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 

@@ -9,7 +9,7 @@ catocli mutation policy dynamicIpAllocation addSection -h
 
 catocli mutation policy dynamicIpAllocation addSection <json>
 
-catocli mutation policy dynamicIpAllocation addSection "$(cat < mutation.policy.dynamicIpAllocation.addSection.json)"
+catocli mutation policy dynamicIpAllocation addSection --json-file mutation.policy.dynamicIpAllocation.addSection.json
 
 catocli mutation policy dynamicIpAllocation addSection '{"dynamicIpAllocationPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyAddSectionInput":{"policyAddSectionInfoInput":{"name":"string"},"policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}}}'
 

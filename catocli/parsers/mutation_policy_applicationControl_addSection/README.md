@@ -9,7 +9,7 @@ catocli mutation policy applicationControl addSection -h
 
 catocli mutation policy applicationControl addSection <json>
 
-catocli mutation policy applicationControl addSection "$(cat < mutation.policy.applicationControl.addSection.json)"
+catocli mutation policy applicationControl addSection --json-file mutation.policy.applicationControl.addSection.json
 
 catocli mutation policy applicationControl addSection '{"applicationControlPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyAddSectionInput":{"policyAddSectionInfoInput":{"name":"string"},"policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}}}'
 

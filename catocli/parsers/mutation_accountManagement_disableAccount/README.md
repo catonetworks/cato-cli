@@ -9,7 +9,7 @@ catocli mutation accountManagement disableAccount -h
 
 catocli mutation accountManagement disableAccount <json>
 
-catocli mutation accountManagement disableAccount "$(cat < mutation.accountManagement.disableAccount.json)"
+catocli mutation accountManagement disableAccount --json-file mutation.accountManagement.disableAccount.json
 
 #### Operation Arguments for mutation.accountManagement.disableAccount ####
 

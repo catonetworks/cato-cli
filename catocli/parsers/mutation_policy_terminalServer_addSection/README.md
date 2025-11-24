@@ -9,7 +9,7 @@ catocli mutation policy terminalServer addSection -h
 
 catocli mutation policy terminalServer addSection <json>
 
-catocli mutation policy terminalServer addSection "$(cat < mutation.policy.terminalServer.addSection.json)"
+catocli mutation policy terminalServer addSection --json-file mutation.policy.terminalServer.addSection.json
 
 catocli mutation policy terminalServer addSection '{"policyAddSectionInput":{"policyAddSectionInfoInput":{"name":"string"},"policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}},"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 

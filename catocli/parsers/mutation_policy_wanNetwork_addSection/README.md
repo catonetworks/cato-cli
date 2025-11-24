@@ -9,7 +9,7 @@ catocli mutation policy wanNetwork addSection -h
 
 catocli mutation policy wanNetwork addSection <json>
 
-catocli mutation policy wanNetwork addSection "$(cat < mutation.policy.wanNetwork.addSection.json)"
+catocli mutation policy wanNetwork addSection --json-file mutation.policy.wanNetwork.addSection.json
 
 catocli mutation policy wanNetwork addSection '{"policyAddSectionInput":{"policyAddSectionInfoInput":{"name":"string"},"policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}},"wanNetworkPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 

@@ -9,7 +9,7 @@ catocli mutation site addSocketSite -h
 
 catocli mutation site addSocketSite <json>
 
-catocli mutation site addSocketSite "$(cat < mutation.site.addSocketSite.json)"
+catocli mutation site addSocketSite --json-file mutation.site.addSocketSite.json
 
 catocli mutation site addSocketSite '{"addSocketSiteInput":{"addSiteLocationInput":{"address":"string","city":"string","countryCode":"string","stateCode":"string","timezone":"string"},"connectionType":"SOCKET_X1500","description":"string","name":"string","nativeNetworkRange":"example_value","siteType":"BRANCH","translatedSubnet":"example_value","vlan":"example_value"}}'
 

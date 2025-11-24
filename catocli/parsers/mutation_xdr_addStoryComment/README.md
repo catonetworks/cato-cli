@@ -9,7 +9,7 @@ catocli mutation xdr addStoryComment -h
 
 catocli mutation xdr addStoryComment <json>
 
-catocli mutation xdr addStoryComment "$(cat < mutation.xdr.addStoryComment.json)"
+catocli mutation xdr addStoryComment --json-file mutation.xdr.addStoryComment.json
 
 catocli mutation xdr addStoryComment '{"addStoryCommentInput":{"storyId":"id","text":"string"}}'
 

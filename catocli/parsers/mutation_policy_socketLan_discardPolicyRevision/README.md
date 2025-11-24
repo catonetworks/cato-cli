@@ -9,7 +9,7 @@ catocli mutation policy socketLan discardPolicyRevision -h
 
 catocli mutation policy socketLan discardPolicyRevision <json>
 
-catocli mutation policy socketLan discardPolicyRevision "$(cat < mutation.policy.socketLan.discardPolicyRevision.json)"
+catocli mutation policy socketLan discardPolicyRevision --json-file mutation.policy.socketLan.discardPolicyRevision.json
 
 catocli mutation policy socketLan discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"socketLanPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 

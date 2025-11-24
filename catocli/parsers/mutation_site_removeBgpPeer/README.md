@@ -9,7 +9,7 @@ catocli mutation site removeBgpPeer -h
 
 catocli mutation site removeBgpPeer <json>
 
-catocli mutation site removeBgpPeer "$(cat < mutation.site.removeBgpPeer.json)"
+catocli mutation site removeBgpPeer --json-file mutation.site.removeBgpPeer.json
 
 catocli mutation site removeBgpPeer '{"removeBgpPeerInput":{"id":"id"}}'
 

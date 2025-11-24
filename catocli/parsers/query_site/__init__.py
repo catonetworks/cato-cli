@@ -24,6 +24,7 @@ def query_site_parse(query_subparsers):
             usage=get_help("query_site_secondaryAwsVSocket"))
 
     query_site_secondaryAwsVSocket_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    query_site_secondaryAwsVSocket_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     query_site_secondaryAwsVSocket_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     query_site_secondaryAwsVSocket_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     query_site_secondaryAwsVSocket_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -40,6 +41,7 @@ def query_site_parse(query_subparsers):
             usage=get_help("query_site_secondaryAzureVSocket"))
 
     query_site_secondaryAzureVSocket_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    query_site_secondaryAzureVSocket_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     query_site_secondaryAzureVSocket_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     query_site_secondaryAzureVSocket_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     query_site_secondaryAzureVSocket_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -56,6 +58,7 @@ def query_site_parse(query_subparsers):
             usage=get_help("query_site_cloudInterconnectPhysicalConnection"))
 
     query_site_cloudInterconnectPhysicalConnection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    query_site_cloudInterconnectPhysicalConnection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     query_site_cloudInterconnectPhysicalConnection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     query_site_cloudInterconnectPhysicalConnection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     query_site_cloudInterconnectPhysicalConnection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -72,6 +75,7 @@ def query_site_parse(query_subparsers):
             usage=get_help("query_site_cloudInterconnectPhysicalConnectionId"))
 
     query_site_cloudInterconnectPhysicalConnectionId_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    query_site_cloudInterconnectPhysicalConnectionId_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     query_site_cloudInterconnectPhysicalConnectionId_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     query_site_cloudInterconnectPhysicalConnectionId_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     query_site_cloudInterconnectPhysicalConnectionId_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -88,6 +92,7 @@ def query_site_parse(query_subparsers):
             usage=get_help("query_site_cloudInterconnectConnectionConnectivity"))
 
     query_site_cloudInterconnectConnectionConnectivity_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    query_site_cloudInterconnectConnectionConnectivity_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     query_site_cloudInterconnectConnectionConnectivity_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     query_site_cloudInterconnectConnectionConnectivity_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     query_site_cloudInterconnectConnectionConnectivity_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -104,6 +109,7 @@ def query_site_parse(query_subparsers):
             usage=get_help("query_site_bgpPeer"))
 
     query_site_bgpPeer_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    query_site_bgpPeer_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     query_site_bgpPeer_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     query_site_bgpPeer_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     query_site_bgpPeer_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -120,6 +126,7 @@ def query_site_parse(query_subparsers):
             usage=get_help("query_site_bgpPeerList"))
 
     query_site_bgpPeerList_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    query_site_bgpPeerList_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     query_site_bgpPeerList_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     query_site_bgpPeerList_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     query_site_bgpPeerList_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -136,6 +143,7 @@ def query_site_parse(query_subparsers):
             usage=get_help("query_site_siteBgpStatus"))
 
     query_site_siteBgpStatus_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    query_site_siteBgpStatus_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     query_site_siteBgpStatus_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     query_site_siteBgpStatus_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     query_site_siteBgpStatus_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -152,6 +160,7 @@ def query_site_parse(query_subparsers):
             usage=get_help("query_site_availableVersionList"))
 
     query_site_availableVersionList_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    query_site_availableVersionList_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     query_site_availableVersionList_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     query_site_availableVersionList_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     query_site_availableVersionList_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -168,6 +177,7 @@ def query_site_parse(query_subparsers):
             usage=get_help("query_site_siteGeneralDetails"))
 
     query_site_siteGeneralDetails_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    query_site_siteGeneralDetails_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     query_site_siteGeneralDetails_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     query_site_siteGeneralDetails_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     query_site_siteGeneralDetails_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')

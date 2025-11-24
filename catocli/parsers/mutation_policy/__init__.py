@@ -40,6 +40,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_antiMalwareFileHash_addRule"))
 
     mutation_policy_antiMalwareFileHash_addRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_antiMalwareFileHash_addRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_antiMalwareFileHash_addRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_antiMalwareFileHash_addRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_antiMalwareFileHash_addRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -56,6 +57,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_antiMalwareFileHash_updateRule"))
 
     mutation_policy_antiMalwareFileHash_updateRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_antiMalwareFileHash_updateRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_antiMalwareFileHash_updateRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_antiMalwareFileHash_updateRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_antiMalwareFileHash_updateRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -72,6 +74,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_antiMalwareFileHash_removeRule"))
 
     mutation_policy_antiMalwareFileHash_removeRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_antiMalwareFileHash_removeRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_antiMalwareFileHash_removeRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_antiMalwareFileHash_removeRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_antiMalwareFileHash_removeRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -88,6 +91,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_antiMalwareFileHash_moveRule"))
 
     mutation_policy_antiMalwareFileHash_moveRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_antiMalwareFileHash_moveRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_antiMalwareFileHash_moveRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_antiMalwareFileHash_moveRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_antiMalwareFileHash_moveRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -104,6 +108,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_antiMalwareFileHash_addSection"))
 
     mutation_policy_antiMalwareFileHash_addSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_antiMalwareFileHash_addSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_antiMalwareFileHash_addSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_antiMalwareFileHash_addSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_antiMalwareFileHash_addSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -120,6 +125,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_antiMalwareFileHash_updateSection"))
 
     mutation_policy_antiMalwareFileHash_updateSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_antiMalwareFileHash_updateSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_antiMalwareFileHash_updateSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_antiMalwareFileHash_updateSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_antiMalwareFileHash_updateSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -136,6 +142,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_antiMalwareFileHash_removeSection"))
 
     mutation_policy_antiMalwareFileHash_removeSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_antiMalwareFileHash_removeSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_antiMalwareFileHash_removeSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_antiMalwareFileHash_removeSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_antiMalwareFileHash_removeSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -152,6 +159,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_antiMalwareFileHash_moveSection"))
 
     mutation_policy_antiMalwareFileHash_moveSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_antiMalwareFileHash_moveSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_antiMalwareFileHash_moveSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_antiMalwareFileHash_moveSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_antiMalwareFileHash_moveSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -168,6 +176,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_antiMalwareFileHash_createPolicyRevision"))
 
     mutation_policy_antiMalwareFileHash_createPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_antiMalwareFileHash_createPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_antiMalwareFileHash_createPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_antiMalwareFileHash_createPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_antiMalwareFileHash_createPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -184,6 +193,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_antiMalwareFileHash_publishPolicyRevision"))
 
     mutation_policy_antiMalwareFileHash_publishPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_antiMalwareFileHash_publishPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_antiMalwareFileHash_publishPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_antiMalwareFileHash_publishPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_antiMalwareFileHash_publishPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -200,6 +210,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_antiMalwareFileHash_discardPolicyRevision"))
 
     mutation_policy_antiMalwareFileHash_discardPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_antiMalwareFileHash_discardPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_antiMalwareFileHash_discardPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_antiMalwareFileHash_discardPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_antiMalwareFileHash_discardPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -216,6 +227,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_antiMalwareFileHash_updatePolicy"))
 
     mutation_policy_antiMalwareFileHash_updatePolicy_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_antiMalwareFileHash_updatePolicy_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_antiMalwareFileHash_updatePolicy_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_antiMalwareFileHash_updatePolicy_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_antiMalwareFileHash_updatePolicy_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -248,6 +260,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_socketLan_addRule"))
 
     mutation_policy_socketLan_addRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_socketLan_addRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_socketLan_addRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_socketLan_addRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_socketLan_addRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -264,6 +277,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_socketLan_updateRule"))
 
     mutation_policy_socketLan_updateRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_socketLan_updateRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_socketLan_updateRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_socketLan_updateRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_socketLan_updateRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -280,6 +294,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_socketLan_removeRule"))
 
     mutation_policy_socketLan_removeRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_socketLan_removeRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_socketLan_removeRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_socketLan_removeRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_socketLan_removeRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -296,6 +311,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_socketLan_moveRule"))
 
     mutation_policy_socketLan_moveRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_socketLan_moveRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_socketLan_moveRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_socketLan_moveRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_socketLan_moveRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -312,6 +328,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_socketLan_addSection"))
 
     mutation_policy_socketLan_addSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_socketLan_addSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_socketLan_addSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_socketLan_addSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_socketLan_addSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -328,6 +345,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_socketLan_updateSection"))
 
     mutation_policy_socketLan_updateSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_socketLan_updateSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_socketLan_updateSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_socketLan_updateSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_socketLan_updateSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -344,6 +362,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_socketLan_removeSection"))
 
     mutation_policy_socketLan_removeSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_socketLan_removeSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_socketLan_removeSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_socketLan_removeSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_socketLan_removeSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -360,6 +379,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_socketLan_moveSection"))
 
     mutation_policy_socketLan_moveSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_socketLan_moveSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_socketLan_moveSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_socketLan_moveSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_socketLan_moveSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -376,6 +396,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_socketLan_createPolicyRevision"))
 
     mutation_policy_socketLan_createPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_socketLan_createPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_socketLan_createPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_socketLan_createPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_socketLan_createPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -392,6 +413,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_socketLan_publishPolicyRevision"))
 
     mutation_policy_socketLan_publishPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_socketLan_publishPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_socketLan_publishPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_socketLan_publishPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_socketLan_publishPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -408,6 +430,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_socketLan_discardPolicyRevision"))
 
     mutation_policy_socketLan_discardPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_socketLan_discardPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_socketLan_discardPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_socketLan_discardPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_socketLan_discardPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -424,6 +447,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_socketLan_updatePolicy"))
 
     mutation_policy_socketLan_updatePolicy_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_socketLan_updatePolicy_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_socketLan_updatePolicy_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_socketLan_updatePolicy_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_socketLan_updatePolicy_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -456,6 +480,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_wanNetwork_addRule"))
 
     mutation_policy_wanNetwork_addRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_wanNetwork_addRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_wanNetwork_addRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_wanNetwork_addRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_wanNetwork_addRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -472,6 +497,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_wanNetwork_updateRule"))
 
     mutation_policy_wanNetwork_updateRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_wanNetwork_updateRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_wanNetwork_updateRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_wanNetwork_updateRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_wanNetwork_updateRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -488,6 +514,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_wanNetwork_removeRule"))
 
     mutation_policy_wanNetwork_removeRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_wanNetwork_removeRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_wanNetwork_removeRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_wanNetwork_removeRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_wanNetwork_removeRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -504,6 +531,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_wanNetwork_moveRule"))
 
     mutation_policy_wanNetwork_moveRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_wanNetwork_moveRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_wanNetwork_moveRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_wanNetwork_moveRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_wanNetwork_moveRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -520,6 +548,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_wanNetwork_addSection"))
 
     mutation_policy_wanNetwork_addSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_wanNetwork_addSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_wanNetwork_addSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_wanNetwork_addSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_wanNetwork_addSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -536,6 +565,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_wanNetwork_updateSection"))
 
     mutation_policy_wanNetwork_updateSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_wanNetwork_updateSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_wanNetwork_updateSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_wanNetwork_updateSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_wanNetwork_updateSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -552,6 +582,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_wanNetwork_removeSection"))
 
     mutation_policy_wanNetwork_removeSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_wanNetwork_removeSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_wanNetwork_removeSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_wanNetwork_removeSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_wanNetwork_removeSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -568,6 +599,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_wanNetwork_moveSection"))
 
     mutation_policy_wanNetwork_moveSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_wanNetwork_moveSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_wanNetwork_moveSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_wanNetwork_moveSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_wanNetwork_moveSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -584,6 +616,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_wanNetwork_createPolicyRevision"))
 
     mutation_policy_wanNetwork_createPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_wanNetwork_createPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_wanNetwork_createPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_wanNetwork_createPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_wanNetwork_createPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -600,6 +633,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_wanNetwork_publishPolicyRevision"))
 
     mutation_policy_wanNetwork_publishPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_wanNetwork_publishPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_wanNetwork_publishPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_wanNetwork_publishPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_wanNetwork_publishPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -616,6 +650,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_wanNetwork_discardPolicyRevision"))
 
     mutation_policy_wanNetwork_discardPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_wanNetwork_discardPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_wanNetwork_discardPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_wanNetwork_discardPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_wanNetwork_discardPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -632,6 +667,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_wanNetwork_updatePolicy"))
 
     mutation_policy_wanNetwork_updatePolicy_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_wanNetwork_updatePolicy_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_wanNetwork_updatePolicy_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_wanNetwork_updatePolicy_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_wanNetwork_updatePolicy_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -664,6 +700,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_internetFirewall_addRule"))
 
     mutation_policy_internetFirewall_addRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_internetFirewall_addRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_internetFirewall_addRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_internetFirewall_addRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_internetFirewall_addRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -680,6 +717,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_internetFirewall_updateRule"))
 
     mutation_policy_internetFirewall_updateRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_internetFirewall_updateRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_internetFirewall_updateRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_internetFirewall_updateRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_internetFirewall_updateRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -696,6 +734,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_internetFirewall_removeRule"))
 
     mutation_policy_internetFirewall_removeRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_internetFirewall_removeRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_internetFirewall_removeRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_internetFirewall_removeRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_internetFirewall_removeRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -712,6 +751,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_internetFirewall_moveRule"))
 
     mutation_policy_internetFirewall_moveRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_internetFirewall_moveRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_internetFirewall_moveRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_internetFirewall_moveRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_internetFirewall_moveRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -728,6 +768,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_internetFirewall_addSection"))
 
     mutation_policy_internetFirewall_addSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_internetFirewall_addSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_internetFirewall_addSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_internetFirewall_addSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_internetFirewall_addSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -744,6 +785,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_internetFirewall_updateSection"))
 
     mutation_policy_internetFirewall_updateSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_internetFirewall_updateSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_internetFirewall_updateSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_internetFirewall_updateSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_internetFirewall_updateSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -760,6 +802,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_internetFirewall_removeSection"))
 
     mutation_policy_internetFirewall_removeSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_internetFirewall_removeSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_internetFirewall_removeSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_internetFirewall_removeSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_internetFirewall_removeSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -776,6 +819,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_internetFirewall_moveSection"))
 
     mutation_policy_internetFirewall_moveSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_internetFirewall_moveSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_internetFirewall_moveSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_internetFirewall_moveSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_internetFirewall_moveSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -792,6 +836,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_internetFirewall_createPolicyRevision"))
 
     mutation_policy_internetFirewall_createPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_internetFirewall_createPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_internetFirewall_createPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_internetFirewall_createPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_internetFirewall_createPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -808,6 +853,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_internetFirewall_publishPolicyRevision"))
 
     mutation_policy_internetFirewall_publishPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_internetFirewall_publishPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_internetFirewall_publishPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_internetFirewall_publishPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_internetFirewall_publishPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -824,6 +870,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_internetFirewall_discardPolicyRevision"))
 
     mutation_policy_internetFirewall_discardPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_internetFirewall_discardPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_internetFirewall_discardPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_internetFirewall_discardPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_internetFirewall_discardPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -840,6 +887,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_internetFirewall_updatePolicy"))
 
     mutation_policy_internetFirewall_updatePolicy_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_internetFirewall_updatePolicy_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_internetFirewall_updatePolicy_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_internetFirewall_updatePolicy_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_internetFirewall_updatePolicy_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -872,6 +920,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_remotePortFwd_addRule"))
 
     mutation_policy_remotePortFwd_addRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_remotePortFwd_addRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_remotePortFwd_addRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_remotePortFwd_addRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_remotePortFwd_addRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -888,6 +937,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_remotePortFwd_updateRule"))
 
     mutation_policy_remotePortFwd_updateRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_remotePortFwd_updateRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_remotePortFwd_updateRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_remotePortFwd_updateRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_remotePortFwd_updateRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -904,6 +954,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_remotePortFwd_removeRule"))
 
     mutation_policy_remotePortFwd_removeRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_remotePortFwd_removeRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_remotePortFwd_removeRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_remotePortFwd_removeRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_remotePortFwd_removeRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -920,6 +971,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_remotePortFwd_moveRule"))
 
     mutation_policy_remotePortFwd_moveRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_remotePortFwd_moveRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_remotePortFwd_moveRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_remotePortFwd_moveRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_remotePortFwd_moveRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -936,6 +988,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_remotePortFwd_addSection"))
 
     mutation_policy_remotePortFwd_addSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_remotePortFwd_addSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_remotePortFwd_addSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_remotePortFwd_addSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_remotePortFwd_addSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -952,6 +1005,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_remotePortFwd_updateSection"))
 
     mutation_policy_remotePortFwd_updateSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_remotePortFwd_updateSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_remotePortFwd_updateSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_remotePortFwd_updateSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_remotePortFwd_updateSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -968,6 +1022,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_remotePortFwd_removeSection"))
 
     mutation_policy_remotePortFwd_removeSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_remotePortFwd_removeSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_remotePortFwd_removeSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_remotePortFwd_removeSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_remotePortFwd_removeSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -984,6 +1039,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_remotePortFwd_moveSection"))
 
     mutation_policy_remotePortFwd_moveSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_remotePortFwd_moveSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_remotePortFwd_moveSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_remotePortFwd_moveSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_remotePortFwd_moveSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1000,6 +1056,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_remotePortFwd_createPolicyRevision"))
 
     mutation_policy_remotePortFwd_createPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_remotePortFwd_createPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_remotePortFwd_createPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_remotePortFwd_createPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_remotePortFwd_createPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1016,6 +1073,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_remotePortFwd_publishPolicyRevision"))
 
     mutation_policy_remotePortFwd_publishPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_remotePortFwd_publishPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_remotePortFwd_publishPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_remotePortFwd_publishPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_remotePortFwd_publishPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1032,6 +1090,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_remotePortFwd_discardPolicyRevision"))
 
     mutation_policy_remotePortFwd_discardPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_remotePortFwd_discardPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_remotePortFwd_discardPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_remotePortFwd_discardPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_remotePortFwd_discardPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1048,6 +1107,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_remotePortFwd_updatePolicy"))
 
     mutation_policy_remotePortFwd_updatePolicy_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_remotePortFwd_updatePolicy_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_remotePortFwd_updatePolicy_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_remotePortFwd_updatePolicy_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_remotePortFwd_updatePolicy_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1080,6 +1140,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_wanFirewall_addRule"))
 
     mutation_policy_wanFirewall_addRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_wanFirewall_addRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_wanFirewall_addRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_wanFirewall_addRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_wanFirewall_addRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1096,6 +1157,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_wanFirewall_updateRule"))
 
     mutation_policy_wanFirewall_updateRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_wanFirewall_updateRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_wanFirewall_updateRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_wanFirewall_updateRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_wanFirewall_updateRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1112,6 +1174,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_wanFirewall_removeRule"))
 
     mutation_policy_wanFirewall_removeRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_wanFirewall_removeRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_wanFirewall_removeRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_wanFirewall_removeRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_wanFirewall_removeRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1128,6 +1191,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_wanFirewall_moveRule"))
 
     mutation_policy_wanFirewall_moveRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_wanFirewall_moveRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_wanFirewall_moveRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_wanFirewall_moveRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_wanFirewall_moveRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1144,6 +1208,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_wanFirewall_addSection"))
 
     mutation_policy_wanFirewall_addSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_wanFirewall_addSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_wanFirewall_addSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_wanFirewall_addSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_wanFirewall_addSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1160,6 +1225,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_wanFirewall_updateSection"))
 
     mutation_policy_wanFirewall_updateSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_wanFirewall_updateSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_wanFirewall_updateSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_wanFirewall_updateSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_wanFirewall_updateSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1176,6 +1242,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_wanFirewall_removeSection"))
 
     mutation_policy_wanFirewall_removeSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_wanFirewall_removeSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_wanFirewall_removeSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_wanFirewall_removeSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_wanFirewall_removeSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1192,6 +1259,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_wanFirewall_moveSection"))
 
     mutation_policy_wanFirewall_moveSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_wanFirewall_moveSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_wanFirewall_moveSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_wanFirewall_moveSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_wanFirewall_moveSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1208,6 +1276,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_wanFirewall_createPolicyRevision"))
 
     mutation_policy_wanFirewall_createPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_wanFirewall_createPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_wanFirewall_createPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_wanFirewall_createPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_wanFirewall_createPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1224,6 +1293,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_wanFirewall_publishPolicyRevision"))
 
     mutation_policy_wanFirewall_publishPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_wanFirewall_publishPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_wanFirewall_publishPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_wanFirewall_publishPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_wanFirewall_publishPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1240,6 +1310,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_wanFirewall_discardPolicyRevision"))
 
     mutation_policy_wanFirewall_discardPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_wanFirewall_discardPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_wanFirewall_discardPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_wanFirewall_discardPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_wanFirewall_discardPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1256,6 +1327,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_wanFirewall_updatePolicy"))
 
     mutation_policy_wanFirewall_updatePolicy_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_wanFirewall_updatePolicy_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_wanFirewall_updatePolicy_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_wanFirewall_updatePolicy_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_wanFirewall_updatePolicy_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1288,6 +1360,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_appTenantRestriction_addRule"))
 
     mutation_policy_appTenantRestriction_addRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_appTenantRestriction_addRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_appTenantRestriction_addRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_appTenantRestriction_addRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_appTenantRestriction_addRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1304,6 +1377,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_appTenantRestriction_updateRule"))
 
     mutation_policy_appTenantRestriction_updateRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_appTenantRestriction_updateRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_appTenantRestriction_updateRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_appTenantRestriction_updateRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_appTenantRestriction_updateRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1320,6 +1394,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_appTenantRestriction_removeRule"))
 
     mutation_policy_appTenantRestriction_removeRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_appTenantRestriction_removeRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_appTenantRestriction_removeRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_appTenantRestriction_removeRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_appTenantRestriction_removeRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1336,6 +1411,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_appTenantRestriction_moveRule"))
 
     mutation_policy_appTenantRestriction_moveRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_appTenantRestriction_moveRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_appTenantRestriction_moveRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_appTenantRestriction_moveRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_appTenantRestriction_moveRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1352,6 +1428,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_appTenantRestriction_addSection"))
 
     mutation_policy_appTenantRestriction_addSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_appTenantRestriction_addSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_appTenantRestriction_addSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_appTenantRestriction_addSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_appTenantRestriction_addSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1368,6 +1445,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_appTenantRestriction_updateSection"))
 
     mutation_policy_appTenantRestriction_updateSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_appTenantRestriction_updateSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_appTenantRestriction_updateSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_appTenantRestriction_updateSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_appTenantRestriction_updateSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1384,6 +1462,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_appTenantRestriction_removeSection"))
 
     mutation_policy_appTenantRestriction_removeSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_appTenantRestriction_removeSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_appTenantRestriction_removeSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_appTenantRestriction_removeSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_appTenantRestriction_removeSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1400,6 +1479,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_appTenantRestriction_moveSection"))
 
     mutation_policy_appTenantRestriction_moveSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_appTenantRestriction_moveSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_appTenantRestriction_moveSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_appTenantRestriction_moveSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_appTenantRestriction_moveSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1416,6 +1496,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_appTenantRestriction_createPolicyRevision"))
 
     mutation_policy_appTenantRestriction_createPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_appTenantRestriction_createPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_appTenantRestriction_createPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_appTenantRestriction_createPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_appTenantRestriction_createPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1432,6 +1513,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_appTenantRestriction_publishPolicyRevision"))
 
     mutation_policy_appTenantRestriction_publishPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_appTenantRestriction_publishPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_appTenantRestriction_publishPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_appTenantRestriction_publishPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_appTenantRestriction_publishPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1448,6 +1530,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_appTenantRestriction_discardPolicyRevision"))
 
     mutation_policy_appTenantRestriction_discardPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_appTenantRestriction_discardPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_appTenantRestriction_discardPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_appTenantRestriction_discardPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_appTenantRestriction_discardPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1464,6 +1547,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_appTenantRestriction_updatePolicy"))
 
     mutation_policy_appTenantRestriction_updatePolicy_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_appTenantRestriction_updatePolicy_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_appTenantRestriction_updatePolicy_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_appTenantRestriction_updatePolicy_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_appTenantRestriction_updatePolicy_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1496,6 +1580,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_applicationControl_addRule"))
 
     mutation_policy_applicationControl_addRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_applicationControl_addRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_applicationControl_addRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_applicationControl_addRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_applicationControl_addRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1512,6 +1597,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_applicationControl_updateRule"))
 
     mutation_policy_applicationControl_updateRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_applicationControl_updateRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_applicationControl_updateRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_applicationControl_updateRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_applicationControl_updateRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1528,6 +1614,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_applicationControl_removeRule"))
 
     mutation_policy_applicationControl_removeRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_applicationControl_removeRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_applicationControl_removeRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_applicationControl_removeRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_applicationControl_removeRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1544,6 +1631,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_applicationControl_moveRule"))
 
     mutation_policy_applicationControl_moveRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_applicationControl_moveRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_applicationControl_moveRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_applicationControl_moveRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_applicationControl_moveRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1560,6 +1648,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_applicationControl_addSection"))
 
     mutation_policy_applicationControl_addSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_applicationControl_addSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_applicationControl_addSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_applicationControl_addSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_applicationControl_addSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1576,6 +1665,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_applicationControl_updateSection"))
 
     mutation_policy_applicationControl_updateSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_applicationControl_updateSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_applicationControl_updateSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_applicationControl_updateSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_applicationControl_updateSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1592,6 +1682,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_applicationControl_removeSection"))
 
     mutation_policy_applicationControl_removeSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_applicationControl_removeSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_applicationControl_removeSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_applicationControl_removeSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_applicationControl_removeSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1608,6 +1699,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_applicationControl_moveSection"))
 
     mutation_policy_applicationControl_moveSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_applicationControl_moveSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_applicationControl_moveSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_applicationControl_moveSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_applicationControl_moveSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1624,6 +1716,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_applicationControl_createPolicyRevision"))
 
     mutation_policy_applicationControl_createPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_applicationControl_createPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_applicationControl_createPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_applicationControl_createPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_applicationControl_createPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1640,6 +1733,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_applicationControl_publishPolicyRevision"))
 
     mutation_policy_applicationControl_publishPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_applicationControl_publishPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_applicationControl_publishPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_applicationControl_publishPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_applicationControl_publishPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1656,6 +1750,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_applicationControl_discardPolicyRevision"))
 
     mutation_policy_applicationControl_discardPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_applicationControl_discardPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_applicationControl_discardPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_applicationControl_discardPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_applicationControl_discardPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1672,6 +1767,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_applicationControl_updatePolicy"))
 
     mutation_policy_applicationControl_updatePolicy_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_applicationControl_updatePolicy_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_applicationControl_updatePolicy_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_applicationControl_updatePolicy_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_applicationControl_updatePolicy_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1704,6 +1800,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_tlsInspect_addRule"))
 
     mutation_policy_tlsInspect_addRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_tlsInspect_addRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_tlsInspect_addRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_tlsInspect_addRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_tlsInspect_addRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1720,6 +1817,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_tlsInspect_updateRule"))
 
     mutation_policy_tlsInspect_updateRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_tlsInspect_updateRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_tlsInspect_updateRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_tlsInspect_updateRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_tlsInspect_updateRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1736,6 +1834,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_tlsInspect_removeRule"))
 
     mutation_policy_tlsInspect_removeRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_tlsInspect_removeRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_tlsInspect_removeRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_tlsInspect_removeRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_tlsInspect_removeRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1752,6 +1851,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_tlsInspect_moveRule"))
 
     mutation_policy_tlsInspect_moveRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_tlsInspect_moveRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_tlsInspect_moveRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_tlsInspect_moveRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_tlsInspect_moveRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1768,6 +1868,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_tlsInspect_addSection"))
 
     mutation_policy_tlsInspect_addSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_tlsInspect_addSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_tlsInspect_addSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_tlsInspect_addSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_tlsInspect_addSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1784,6 +1885,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_tlsInspect_updateSection"))
 
     mutation_policy_tlsInspect_updateSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_tlsInspect_updateSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_tlsInspect_updateSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_tlsInspect_updateSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_tlsInspect_updateSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1800,6 +1902,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_tlsInspect_removeSection"))
 
     mutation_policy_tlsInspect_removeSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_tlsInspect_removeSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_tlsInspect_removeSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_tlsInspect_removeSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_tlsInspect_removeSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1816,6 +1919,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_tlsInspect_moveSection"))
 
     mutation_policy_tlsInspect_moveSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_tlsInspect_moveSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_tlsInspect_moveSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_tlsInspect_moveSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_tlsInspect_moveSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1832,6 +1936,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_tlsInspect_createPolicyRevision"))
 
     mutation_policy_tlsInspect_createPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_tlsInspect_createPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_tlsInspect_createPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_tlsInspect_createPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_tlsInspect_createPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1848,6 +1953,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_tlsInspect_publishPolicyRevision"))
 
     mutation_policy_tlsInspect_publishPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_tlsInspect_publishPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_tlsInspect_publishPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_tlsInspect_publishPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_tlsInspect_publishPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1864,6 +1970,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_tlsInspect_discardPolicyRevision"))
 
     mutation_policy_tlsInspect_discardPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_tlsInspect_discardPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_tlsInspect_discardPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_tlsInspect_discardPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_tlsInspect_discardPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1880,6 +1987,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_tlsInspect_updatePolicy"))
 
     mutation_policy_tlsInspect_updatePolicy_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_tlsInspect_updatePolicy_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_tlsInspect_updatePolicy_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_tlsInspect_updatePolicy_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_tlsInspect_updatePolicy_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1912,6 +2020,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_dynamicIpAllocation_addRule"))
 
     mutation_policy_dynamicIpAllocation_addRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_dynamicIpAllocation_addRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_dynamicIpAllocation_addRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_dynamicIpAllocation_addRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_dynamicIpAllocation_addRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1928,6 +2037,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_dynamicIpAllocation_updateRule"))
 
     mutation_policy_dynamicIpAllocation_updateRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_dynamicIpAllocation_updateRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_dynamicIpAllocation_updateRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_dynamicIpAllocation_updateRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_dynamicIpAllocation_updateRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1944,6 +2054,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_dynamicIpAllocation_removeRule"))
 
     mutation_policy_dynamicIpAllocation_removeRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_dynamicIpAllocation_removeRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_dynamicIpAllocation_removeRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_dynamicIpAllocation_removeRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_dynamicIpAllocation_removeRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1960,6 +2071,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_dynamicIpAllocation_moveRule"))
 
     mutation_policy_dynamicIpAllocation_moveRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_dynamicIpAllocation_moveRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_dynamicIpAllocation_moveRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_dynamicIpAllocation_moveRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_dynamicIpAllocation_moveRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1976,6 +2088,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_dynamicIpAllocation_addSection"))
 
     mutation_policy_dynamicIpAllocation_addSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_dynamicIpAllocation_addSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_dynamicIpAllocation_addSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_dynamicIpAllocation_addSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_dynamicIpAllocation_addSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1992,6 +2105,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_dynamicIpAllocation_updateSection"))
 
     mutation_policy_dynamicIpAllocation_updateSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_dynamicIpAllocation_updateSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_dynamicIpAllocation_updateSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_dynamicIpAllocation_updateSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_dynamicIpAllocation_updateSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -2008,6 +2122,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_dynamicIpAllocation_removeSection"))
 
     mutation_policy_dynamicIpAllocation_removeSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_dynamicIpAllocation_removeSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_dynamicIpAllocation_removeSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_dynamicIpAllocation_removeSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_dynamicIpAllocation_removeSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -2024,6 +2139,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_dynamicIpAllocation_moveSection"))
 
     mutation_policy_dynamicIpAllocation_moveSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_dynamicIpAllocation_moveSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_dynamicIpAllocation_moveSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_dynamicIpAllocation_moveSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_dynamicIpAllocation_moveSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -2040,6 +2156,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_dynamicIpAllocation_createPolicyRevision"))
 
     mutation_policy_dynamicIpAllocation_createPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_dynamicIpAllocation_createPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_dynamicIpAllocation_createPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_dynamicIpAllocation_createPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_dynamicIpAllocation_createPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -2056,6 +2173,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_dynamicIpAllocation_publishPolicyRevision"))
 
     mutation_policy_dynamicIpAllocation_publishPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_dynamicIpAllocation_publishPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_dynamicIpAllocation_publishPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_dynamicIpAllocation_publishPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_dynamicIpAllocation_publishPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -2072,6 +2190,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_dynamicIpAllocation_discardPolicyRevision"))
 
     mutation_policy_dynamicIpAllocation_discardPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_dynamicIpAllocation_discardPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_dynamicIpAllocation_discardPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_dynamicIpAllocation_discardPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_dynamicIpAllocation_discardPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -2088,6 +2207,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_dynamicIpAllocation_updatePolicy"))
 
     mutation_policy_dynamicIpAllocation_updatePolicy_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_dynamicIpAllocation_updatePolicy_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_dynamicIpAllocation_updatePolicy_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_dynamicIpAllocation_updatePolicy_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_dynamicIpAllocation_updatePolicy_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -2120,6 +2240,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_terminalServer_addRule"))
 
     mutation_policy_terminalServer_addRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_terminalServer_addRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_terminalServer_addRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_terminalServer_addRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_terminalServer_addRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -2136,6 +2257,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_terminalServer_updateRule"))
 
     mutation_policy_terminalServer_updateRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_terminalServer_updateRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_terminalServer_updateRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_terminalServer_updateRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_terminalServer_updateRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -2152,6 +2274,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_terminalServer_removeRule"))
 
     mutation_policy_terminalServer_removeRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_terminalServer_removeRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_terminalServer_removeRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_terminalServer_removeRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_terminalServer_removeRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -2168,6 +2291,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_terminalServer_moveRule"))
 
     mutation_policy_terminalServer_moveRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_terminalServer_moveRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_terminalServer_moveRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_terminalServer_moveRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_terminalServer_moveRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -2184,6 +2308,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_terminalServer_addSection"))
 
     mutation_policy_terminalServer_addSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_terminalServer_addSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_terminalServer_addSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_terminalServer_addSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_terminalServer_addSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -2200,6 +2325,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_terminalServer_updateSection"))
 
     mutation_policy_terminalServer_updateSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_terminalServer_updateSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_terminalServer_updateSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_terminalServer_updateSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_terminalServer_updateSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -2216,6 +2342,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_terminalServer_removeSection"))
 
     mutation_policy_terminalServer_removeSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_terminalServer_removeSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_terminalServer_removeSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_terminalServer_removeSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_terminalServer_removeSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -2232,6 +2359,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_terminalServer_moveSection"))
 
     mutation_policy_terminalServer_moveSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_terminalServer_moveSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_terminalServer_moveSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_terminalServer_moveSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_terminalServer_moveSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -2248,6 +2376,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_terminalServer_createPolicyRevision"))
 
     mutation_policy_terminalServer_createPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_terminalServer_createPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_terminalServer_createPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_terminalServer_createPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_terminalServer_createPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -2264,6 +2393,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_terminalServer_publishPolicyRevision"))
 
     mutation_policy_terminalServer_publishPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_terminalServer_publishPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_terminalServer_publishPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_terminalServer_publishPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_terminalServer_publishPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -2280,6 +2410,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_terminalServer_discardPolicyRevision"))
 
     mutation_policy_terminalServer_discardPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_terminalServer_discardPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_terminalServer_discardPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_terminalServer_discardPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_terminalServer_discardPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -2296,6 +2427,7 @@ def mutation_policy_parse(mutation_subparsers):
             usage=get_help("mutation_policy_terminalServer_updatePolicy"))
 
     mutation_policy_terminalServer_updatePolicy_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_terminalServer_updatePolicy_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_policy_terminalServer_updatePolicy_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_policy_terminalServer_updatePolicy_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_policy_terminalServer_updatePolicy_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')

@@ -9,7 +9,7 @@ catocli mutation policy wanNetwork moveRule -h
 
 catocli mutation policy wanNetwork moveRule <json>
 
-catocli mutation policy wanNetwork moveRule "$(cat < mutation.policy.wanNetwork.moveRule.json)"
+catocli mutation policy wanNetwork moveRule --json-file mutation.policy.wanNetwork.moveRule.json
 
 catocli mutation policy wanNetwork moveRule '{"policyMoveRuleInput":{"id":"id","policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"}},"wanNetworkPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 

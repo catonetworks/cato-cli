@@ -9,7 +9,7 @@ catocli mutation policy remotePortFwd moveRule -h
 
 catocli mutation policy remotePortFwd moveRule <json>
 
-catocli mutation policy remotePortFwd moveRule "$(cat < mutation.policy.remotePortFwd.moveRule.json)"
+catocli mutation policy remotePortFwd moveRule --json-file mutation.policy.remotePortFwd.moveRule.json
 
 catocli mutation policy remotePortFwd moveRule '{"policyMoveRuleInput":{"id":"id","policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"}},"remotePortFwdPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
 

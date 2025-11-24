@@ -9,7 +9,7 @@ catocli query policy remotePortFwd policy -h
 
 catocli query policy remotePortFwd policy <json>
 
-catocli query policy remotePortFwd policy "$(cat < query.policy.remotePortFwd.policy.json)"
+catocli query policy remotePortFwd policy --json-file query.policy.remotePortFwd.policy.json
 
 catocli query policy remotePortFwd policy '{"remotePortFwdPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'
 

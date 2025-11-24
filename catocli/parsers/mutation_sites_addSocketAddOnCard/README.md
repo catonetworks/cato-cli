@@ -9,7 +9,7 @@ catocli mutation sites addSocketAddOnCard -h
 
 catocli mutation sites addSocketAddOnCard <json>
 
-catocli mutation sites addSocketAddOnCard "$(cat < mutation.sites.addSocketAddOnCard.json)"
+catocli mutation sites addSocketAddOnCard --json-file mutation.sites.addSocketAddOnCard.json
 
 catocli mutation sites addSocketAddOnCard '{"addSocketAddOnCardInput":{"siteRefInput":{"by":"ID","input":"string"},"socketAddOnCardInput":{"expansionSlotNumber":"SLOT_1","type":"FOUR_1G_COPPER"}}}'
 

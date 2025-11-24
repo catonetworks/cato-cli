@@ -9,7 +9,7 @@ catocli query policy internetFirewall policy -h
 
 catocli query policy internetFirewall policy <json>
 
-catocli query policy internetFirewall policy "$(cat < query.policy.internetFirewall.policy.json)"
+catocli query policy internetFirewall policy --json-file query.policy.internetFirewall.policy.json
 
 catocli query policy internetFirewall policy '{"internetFirewallPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'
 

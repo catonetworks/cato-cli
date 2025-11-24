@@ -9,7 +9,7 @@ catocli mutation site removeIpsecIkeV2SiteTunnels -h
 
 catocli mutation site removeIpsecIkeV2SiteTunnels <json>
 
-catocli mutation site removeIpsecIkeV2SiteTunnels "$(cat < mutation.site.removeIpsecIkeV2SiteTunnels.json)"
+catocli mutation site removeIpsecIkeV2SiteTunnels --json-file mutation.site.removeIpsecIkeV2SiteTunnels.json
 
 catocli mutation site removeIpsecIkeV2SiteTunnels '{"removeIpsecIkeV2SiteTunnelsInput":{"tunnelId":"PRIMARY1"},"siteId":"id"}'
 

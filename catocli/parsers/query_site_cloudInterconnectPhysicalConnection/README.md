@@ -9,7 +9,7 @@ catocli query site cloudInterconnectPhysicalConnection -h
 
 catocli query site cloudInterconnectPhysicalConnection <json>
 
-catocli query site cloudInterconnectPhysicalConnection "$(cat < query.site.cloudInterconnectPhysicalConnection.json)"
+catocli query site cloudInterconnectPhysicalConnection --json-file query.site.cloudInterconnectPhysicalConnection.json
 
 catocli query site cloudInterconnectPhysicalConnection '{"cloudInterconnectPhysicalConnectionInput":{"id":"id"}}'
 

@@ -9,7 +9,7 @@ catocli mutation xdr deleteStoryComment -h
 
 catocli mutation xdr deleteStoryComment <json>
 
-catocli mutation xdr deleteStoryComment "$(cat < mutation.xdr.deleteStoryComment.json)"
+catocli mutation xdr deleteStoryComment --json-file mutation.xdr.deleteStoryComment.json
 
 catocli mutation xdr deleteStoryComment '{"deleteStoryCommentInput":{"commentId":"id","storyId":"id"}}'
 

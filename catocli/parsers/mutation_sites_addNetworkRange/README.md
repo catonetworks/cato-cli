@@ -9,7 +9,7 @@ catocli mutation sites addNetworkRange -h
 
 catocli mutation sites addNetworkRange <json>
 
-catocli mutation sites addNetworkRange "$(cat < mutation.sites.addNetworkRange.json)"
+catocli mutation sites addNetworkRange --json-file mutation.sites.addNetworkRange.json
 
 catocli mutation sites addNetworkRange '{"addNetworkRangeInput":{"azureFloatingIp":"example_value","gateway":"example_value","internetOnly":true,"localIp":"example_value","mdnsReflector":true,"name":"string","networkDhcpSettingsInput":{"dhcpMicrosegmentation":true,"dhcpType":"DHCP_RELAY","ipRange":"example_value","relayGroupId":"id"},"rangeType":"Routed","subnet":"example_value","translatedSubnet":"example_value","vlan":1},"lanSocketInterfaceId":"id"}'
 

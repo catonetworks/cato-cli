@@ -9,7 +9,7 @@ catocli mutation site addCloudInterconnectPhysicalConnection -h
 
 catocli mutation site addCloudInterconnectPhysicalConnection <json>
 
-catocli mutation site addCloudInterconnectPhysicalConnection "$(cat < mutation.site.addCloudInterconnectPhysicalConnection.json)"
+catocli mutation site addCloudInterconnectPhysicalConnection --json-file mutation.site.addCloudInterconnectPhysicalConnection.json
 
 catocli mutation site addCloudInterconnectPhysicalConnection '{"addCloudInterconnectPhysicalConnectionInput":{"downstreamBwLimit":"example_value","encapsulationMethod":"DOT1Q","haRole":"PRIMARY","popLocationRefInput":{"by":"ID","input":"string"},"privateCatoIp":"example_value","privateSiteIp":"example_value","serviceProviderName":"string","siteRefInput":{"by":"ID","input":"string"},"subnet":"example_value","upstreamBwLimit":"example_value"}}'
 

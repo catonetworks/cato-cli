@@ -9,7 +9,7 @@ catocli mutation sandbox deleteReport -h
 
 catocli mutation sandbox deleteReport <json>
 
-catocli mutation sandbox deleteReport "$(cat < mutation.sandbox.deleteReport.json)"
+catocli mutation sandbox deleteReport --json-file mutation.sandbox.deleteReport.json
 
 catocli mutation sandbox deleteReport '{"deleteReportInput":{"fileHash":"string"}}'
 

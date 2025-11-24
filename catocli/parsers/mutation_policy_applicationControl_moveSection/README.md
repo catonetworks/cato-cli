@@ -9,7 +9,7 @@ catocli mutation policy applicationControl moveSection -h
 
 catocli mutation policy applicationControl moveSection <json>
 
-catocli mutation policy applicationControl moveSection "$(cat < mutation.policy.applicationControl.moveSection.json)"
+catocli mutation policy applicationControl moveSection --json-file mutation.policy.applicationControl.moveSection.json
 
 catocli mutation policy applicationControl moveSection '{"applicationControlPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyMoveSectionInput":{"id":"id","policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}}}'
 

@@ -9,7 +9,7 @@ catocli mutation site assignSiteBwLicense -h
 
 catocli mutation site assignSiteBwLicense <json>
 
-catocli mutation site assignSiteBwLicense "$(cat < mutation.site.assignSiteBwLicense.json)"
+catocli mutation site assignSiteBwLicense --json-file mutation.site.assignSiteBwLicense.json
 
 catocli mutation site assignSiteBwLicense '{"assignSiteBwLicenseInput":{"bw":1,"licenseId":"id","siteRefInput":{"by":"ID","input":"string"}}}'
 

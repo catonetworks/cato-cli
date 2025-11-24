@@ -9,7 +9,7 @@ catocli mutation policy internetFirewall discardPolicyRevision -h
 
 catocli mutation policy internetFirewall discardPolicyRevision <json>
 
-catocli mutation policy internetFirewall discardPolicyRevision "$(cat < mutation.policy.internetFirewall.discardPolicyRevision.json)"
+catocli mutation policy internetFirewall discardPolicyRevision --json-file mutation.policy.internetFirewall.discardPolicyRevision.json
 
 catocli mutation policy internetFirewall discardPolicyRevision '{"internetFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyDiscardRevisionInput":{"id":"id"}}'
 

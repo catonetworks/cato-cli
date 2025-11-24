@@ -24,6 +24,7 @@ def mutation_sites_parse(mutation_subparsers):
             usage=get_help("mutation_sites_addSecondaryAwsVSocket"))
 
     mutation_sites_addSecondaryAwsVSocket_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_sites_addSecondaryAwsVSocket_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_sites_addSecondaryAwsVSocket_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_sites_addSecondaryAwsVSocket_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_sites_addSecondaryAwsVSocket_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -40,6 +41,7 @@ def mutation_sites_parse(mutation_subparsers):
             usage=get_help("mutation_sites_addSecondaryAzureVSocket"))
 
     mutation_sites_addSecondaryAzureVSocket_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_sites_addSecondaryAzureVSocket_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_sites_addSecondaryAzureVSocket_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_sites_addSecondaryAzureVSocket_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_sites_addSecondaryAzureVSocket_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -56,6 +58,7 @@ def mutation_sites_parse(mutation_subparsers):
             usage=get_help("mutation_sites_removeSecondaryAzureVSocket"))
 
     mutation_sites_removeSecondaryAzureVSocket_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_sites_removeSecondaryAzureVSocket_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_sites_removeSecondaryAzureVSocket_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_sites_removeSecondaryAzureVSocket_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_sites_removeSecondaryAzureVSocket_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -72,6 +75,7 @@ def mutation_sites_parse(mutation_subparsers):
             usage=get_help("mutation_sites_removeSecondaryAwsVSocket"))
 
     mutation_sites_removeSecondaryAwsVSocket_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_sites_removeSecondaryAwsVSocket_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_sites_removeSecondaryAwsVSocket_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_sites_removeSecondaryAwsVSocket_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_sites_removeSecondaryAwsVSocket_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -88,6 +92,7 @@ def mutation_sites_parse(mutation_subparsers):
             usage=get_help("mutation_sites_updateSecondaryAzureVSocket"))
 
     mutation_sites_updateSecondaryAzureVSocket_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_sites_updateSecondaryAzureVSocket_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_sites_updateSecondaryAzureVSocket_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_sites_updateSecondaryAzureVSocket_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_sites_updateSecondaryAzureVSocket_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -104,6 +109,7 @@ def mutation_sites_parse(mutation_subparsers):
             usage=get_help("mutation_sites_updateSecondaryAwsVSocket"))
 
     mutation_sites_updateSecondaryAwsVSocket_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_sites_updateSecondaryAwsVSocket_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_sites_updateSecondaryAwsVSocket_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_sites_updateSecondaryAwsVSocket_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_sites_updateSecondaryAwsVSocket_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -120,6 +126,7 @@ def mutation_sites_parse(mutation_subparsers):
             usage=get_help("mutation_sites_addSocketSite"))
 
     mutation_sites_addSocketSite_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_sites_addSocketSite_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_sites_addSocketSite_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_sites_addSocketSite_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_sites_addSocketSite_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -136,6 +143,7 @@ def mutation_sites_parse(mutation_subparsers):
             usage=get_help("mutation_sites_removeSite"))
 
     mutation_sites_removeSite_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_sites_removeSite_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_sites_removeSite_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_sites_removeSite_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_sites_removeSite_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -152,6 +160,7 @@ def mutation_sites_parse(mutation_subparsers):
             usage=get_help("mutation_sites_updateSocketInterface"))
 
     mutation_sites_updateSocketInterface_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_sites_updateSocketInterface_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_sites_updateSocketInterface_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_sites_updateSocketInterface_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_sites_updateSocketInterface_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -168,6 +177,7 @@ def mutation_sites_parse(mutation_subparsers):
             usage=get_help("mutation_sites_addNetworkRange"))
 
     mutation_sites_addNetworkRange_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_sites_addNetworkRange_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_sites_addNetworkRange_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_sites_addNetworkRange_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_sites_addNetworkRange_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -184,6 +194,7 @@ def mutation_sites_parse(mutation_subparsers):
             usage=get_help("mutation_sites_updateNetworkRange"))
 
     mutation_sites_updateNetworkRange_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_sites_updateNetworkRange_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_sites_updateNetworkRange_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_sites_updateNetworkRange_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_sites_updateNetworkRange_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -200,6 +211,7 @@ def mutation_sites_parse(mutation_subparsers):
             usage=get_help("mutation_sites_removeNetworkRange"))
 
     mutation_sites_removeNetworkRange_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_sites_removeNetworkRange_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_sites_removeNetworkRange_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_sites_removeNetworkRange_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_sites_removeNetworkRange_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -216,6 +228,7 @@ def mutation_sites_parse(mutation_subparsers):
             usage=get_help("mutation_sites_updateHa"))
 
     mutation_sites_updateHa_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_sites_updateHa_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_sites_updateHa_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_sites_updateHa_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_sites_updateHa_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -232,6 +245,7 @@ def mutation_sites_parse(mutation_subparsers):
             usage=get_help("mutation_sites_addStaticHost"))
 
     mutation_sites_addStaticHost_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_sites_addStaticHost_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_sites_addStaticHost_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_sites_addStaticHost_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_sites_addStaticHost_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -248,6 +262,7 @@ def mutation_sites_parse(mutation_subparsers):
             usage=get_help("mutation_sites_updateStaticHost"))
 
     mutation_sites_updateStaticHost_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_sites_updateStaticHost_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_sites_updateStaticHost_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_sites_updateStaticHost_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_sites_updateStaticHost_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -264,6 +279,7 @@ def mutation_sites_parse(mutation_subparsers):
             usage=get_help("mutation_sites_removeStaticHost"))
 
     mutation_sites_removeStaticHost_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_sites_removeStaticHost_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_sites_removeStaticHost_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_sites_removeStaticHost_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_sites_removeStaticHost_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -280,6 +296,7 @@ def mutation_sites_parse(mutation_subparsers):
             usage=get_help("mutation_sites_addIpsecIkeV2Site"))
 
     mutation_sites_addIpsecIkeV2Site_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_sites_addIpsecIkeV2Site_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_sites_addIpsecIkeV2Site_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_sites_addIpsecIkeV2Site_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_sites_addIpsecIkeV2Site_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -296,6 +313,7 @@ def mutation_sites_parse(mutation_subparsers):
             usage=get_help("mutation_sites_updateIpsecIkeV2SiteGeneralDetails"))
 
     mutation_sites_updateIpsecIkeV2SiteGeneralDetails_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_sites_updateIpsecIkeV2SiteGeneralDetails_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_sites_updateIpsecIkeV2SiteGeneralDetails_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_sites_updateIpsecIkeV2SiteGeneralDetails_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_sites_updateIpsecIkeV2SiteGeneralDetails_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -312,6 +330,7 @@ def mutation_sites_parse(mutation_subparsers):
             usage=get_help("mutation_sites_addIpsecIkeV2SiteTunnels"))
 
     mutation_sites_addIpsecIkeV2SiteTunnels_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_sites_addIpsecIkeV2SiteTunnels_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_sites_addIpsecIkeV2SiteTunnels_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_sites_addIpsecIkeV2SiteTunnels_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_sites_addIpsecIkeV2SiteTunnels_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -328,6 +347,7 @@ def mutation_sites_parse(mutation_subparsers):
             usage=get_help("mutation_sites_updateIpsecIkeV2SiteTunnels"))
 
     mutation_sites_updateIpsecIkeV2SiteTunnels_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_sites_updateIpsecIkeV2SiteTunnels_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_sites_updateIpsecIkeV2SiteTunnels_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_sites_updateIpsecIkeV2SiteTunnels_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_sites_updateIpsecIkeV2SiteTunnels_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -344,6 +364,7 @@ def mutation_sites_parse(mutation_subparsers):
             usage=get_help("mutation_sites_removeIpsecIkeV2SiteTunnels"))
 
     mutation_sites_removeIpsecIkeV2SiteTunnels_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_sites_removeIpsecIkeV2SiteTunnels_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_sites_removeIpsecIkeV2SiteTunnels_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_sites_removeIpsecIkeV2SiteTunnels_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_sites_removeIpsecIkeV2SiteTunnels_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -360,6 +381,7 @@ def mutation_sites_parse(mutation_subparsers):
             usage=get_help("mutation_sites_addCloudInterconnectSite"))
 
     mutation_sites_addCloudInterconnectSite_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_sites_addCloudInterconnectSite_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_sites_addCloudInterconnectSite_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_sites_addCloudInterconnectSite_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_sites_addCloudInterconnectSite_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -376,6 +398,7 @@ def mutation_sites_parse(mutation_subparsers):
             usage=get_help("mutation_sites_addCloudInterconnectPhysicalConnection"))
 
     mutation_sites_addCloudInterconnectPhysicalConnection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_sites_addCloudInterconnectPhysicalConnection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_sites_addCloudInterconnectPhysicalConnection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_sites_addCloudInterconnectPhysicalConnection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_sites_addCloudInterconnectPhysicalConnection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -392,6 +415,7 @@ def mutation_sites_parse(mutation_subparsers):
             usage=get_help("mutation_sites_updateCloudInterconnectPhysicalConnection"))
 
     mutation_sites_updateCloudInterconnectPhysicalConnection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_sites_updateCloudInterconnectPhysicalConnection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_sites_updateCloudInterconnectPhysicalConnection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_sites_updateCloudInterconnectPhysicalConnection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_sites_updateCloudInterconnectPhysicalConnection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -408,6 +432,7 @@ def mutation_sites_parse(mutation_subparsers):
             usage=get_help("mutation_sites_removeCloudInterconnectPhysicalConnection"))
 
     mutation_sites_removeCloudInterconnectPhysicalConnection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_sites_removeCloudInterconnectPhysicalConnection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_sites_removeCloudInterconnectPhysicalConnection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_sites_removeCloudInterconnectPhysicalConnection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_sites_removeCloudInterconnectPhysicalConnection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -424,6 +449,7 @@ def mutation_sites_parse(mutation_subparsers):
             usage=get_help("mutation_sites_addBgpPeer"))
 
     mutation_sites_addBgpPeer_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_sites_addBgpPeer_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_sites_addBgpPeer_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_sites_addBgpPeer_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_sites_addBgpPeer_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -440,6 +466,7 @@ def mutation_sites_parse(mutation_subparsers):
             usage=get_help("mutation_sites_updateBgpPeer"))
 
     mutation_sites_updateBgpPeer_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_sites_updateBgpPeer_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_sites_updateBgpPeer_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_sites_updateBgpPeer_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_sites_updateBgpPeer_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -456,6 +483,7 @@ def mutation_sites_parse(mutation_subparsers):
             usage=get_help("mutation_sites_removeBgpPeer"))
 
     mutation_sites_removeBgpPeer_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_sites_removeBgpPeer_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_sites_removeBgpPeer_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_sites_removeBgpPeer_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_sites_removeBgpPeer_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -472,6 +500,7 @@ def mutation_sites_parse(mutation_subparsers):
             usage=get_help("mutation_sites_startSiteUpgrade"))
 
     mutation_sites_startSiteUpgrade_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_sites_startSiteUpgrade_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_sites_startSiteUpgrade_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_sites_startSiteUpgrade_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_sites_startSiteUpgrade_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -488,6 +517,7 @@ def mutation_sites_parse(mutation_subparsers):
             usage=get_help("mutation_sites_assignSiteBwLicense"))
 
     mutation_sites_assignSiteBwLicense_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_sites_assignSiteBwLicense_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_sites_assignSiteBwLicense_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_sites_assignSiteBwLicense_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_sites_assignSiteBwLicense_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -504,6 +534,7 @@ def mutation_sites_parse(mutation_subparsers):
             usage=get_help("mutation_sites_updateSiteBwLicense"))
 
     mutation_sites_updateSiteBwLicense_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_sites_updateSiteBwLicense_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_sites_updateSiteBwLicense_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_sites_updateSiteBwLicense_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_sites_updateSiteBwLicense_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -520,6 +551,7 @@ def mutation_sites_parse(mutation_subparsers):
             usage=get_help("mutation_sites_replaceSiteBwLicense"))
 
     mutation_sites_replaceSiteBwLicense_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_sites_replaceSiteBwLicense_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_sites_replaceSiteBwLicense_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_sites_replaceSiteBwLicense_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_sites_replaceSiteBwLicense_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -536,6 +568,7 @@ def mutation_sites_parse(mutation_subparsers):
             usage=get_help("mutation_sites_removeSiteBwLicense"))
 
     mutation_sites_removeSiteBwLicense_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_sites_removeSiteBwLicense_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_sites_removeSiteBwLicense_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_sites_removeSiteBwLicense_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_sites_removeSiteBwLicense_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -552,6 +585,7 @@ def mutation_sites_parse(mutation_subparsers):
             usage=get_help("mutation_sites_updateSiteGeneralDetails"))
 
     mutation_sites_updateSiteGeneralDetails_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_sites_updateSiteGeneralDetails_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_sites_updateSiteGeneralDetails_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_sites_updateSiteGeneralDetails_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_sites_updateSiteGeneralDetails_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -568,6 +602,7 @@ def mutation_sites_parse(mutation_subparsers):
             usage=get_help("mutation_sites_addSocketAddOnCard"))
 
     mutation_sites_addSocketAddOnCard_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_sites_addSocketAddOnCard_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_sites_addSocketAddOnCard_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_sites_addSocketAddOnCard_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_sites_addSocketAddOnCard_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -584,6 +619,7 @@ def mutation_sites_parse(mutation_subparsers):
             usage=get_help("mutation_sites_removeSocketAddOnCard"))
 
     mutation_sites_removeSocketAddOnCard_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_sites_removeSocketAddOnCard_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     mutation_sites_removeSocketAddOnCard_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     mutation_sites_removeSocketAddOnCard_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     mutation_sites_removeSocketAddOnCard_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')

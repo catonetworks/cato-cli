@@ -40,6 +40,7 @@ def query_policy_parse(query_subparsers):
             usage=get_help("query_policy_antiMalwareFileHash_policy"))
 
     query_policy_antiMalwareFileHash_policy_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    query_policy_antiMalwareFileHash_policy_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     query_policy_antiMalwareFileHash_policy_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     query_policy_antiMalwareFileHash_policy_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     query_policy_antiMalwareFileHash_policy_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -72,6 +73,7 @@ def query_policy_parse(query_subparsers):
             usage=get_help("query_policy_socketLan_policy"))
 
     query_policy_socketLan_policy_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    query_policy_socketLan_policy_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     query_policy_socketLan_policy_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     query_policy_socketLan_policy_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     query_policy_socketLan_policy_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -104,6 +106,7 @@ def query_policy_parse(query_subparsers):
             usage=get_help("query_policy_wanNetwork_policy"))
 
     query_policy_wanNetwork_policy_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    query_policy_wanNetwork_policy_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     query_policy_wanNetwork_policy_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     query_policy_wanNetwork_policy_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     query_policy_wanNetwork_policy_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -136,6 +139,7 @@ def query_policy_parse(query_subparsers):
             usage=get_help("query_policy_internetFirewall_policy"))
 
     query_policy_internetFirewall_policy_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    query_policy_internetFirewall_policy_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     query_policy_internetFirewall_policy_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     query_policy_internetFirewall_policy_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     query_policy_internetFirewall_policy_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -168,6 +172,7 @@ def query_policy_parse(query_subparsers):
             usage=get_help("query_policy_remotePortFwd_policy"))
 
     query_policy_remotePortFwd_policy_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    query_policy_remotePortFwd_policy_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     query_policy_remotePortFwd_policy_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     query_policy_remotePortFwd_policy_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     query_policy_remotePortFwd_policy_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -200,6 +205,7 @@ def query_policy_parse(query_subparsers):
             usage=get_help("query_policy_wanFirewall_policy"))
 
     query_policy_wanFirewall_policy_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    query_policy_wanFirewall_policy_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     query_policy_wanFirewall_policy_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     query_policy_wanFirewall_policy_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     query_policy_wanFirewall_policy_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -232,6 +238,7 @@ def query_policy_parse(query_subparsers):
             usage=get_help("query_policy_appTenantRestriction_policy"))
 
     query_policy_appTenantRestriction_policy_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    query_policy_appTenantRestriction_policy_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     query_policy_appTenantRestriction_policy_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     query_policy_appTenantRestriction_policy_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     query_policy_appTenantRestriction_policy_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -264,6 +271,7 @@ def query_policy_parse(query_subparsers):
             usage=get_help("query_policy_applicationControl_policy"))
 
     query_policy_applicationControl_policy_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    query_policy_applicationControl_policy_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     query_policy_applicationControl_policy_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     query_policy_applicationControl_policy_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     query_policy_applicationControl_policy_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -296,6 +304,7 @@ def query_policy_parse(query_subparsers):
             usage=get_help("query_policy_tlsInspect_policy"))
 
     query_policy_tlsInspect_policy_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    query_policy_tlsInspect_policy_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     query_policy_tlsInspect_policy_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     query_policy_tlsInspect_policy_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     query_policy_tlsInspect_policy_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -328,6 +337,7 @@ def query_policy_parse(query_subparsers):
             usage=get_help("query_policy_dynamicIpAllocation_policy"))
 
     query_policy_dynamicIpAllocation_policy_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    query_policy_dynamicIpAllocation_policy_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     query_policy_dynamicIpAllocation_policy_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     query_policy_dynamicIpAllocation_policy_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     query_policy_dynamicIpAllocation_policy_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -360,6 +370,7 @@ def query_policy_parse(query_subparsers):
             usage=get_help("query_policy_terminalServer_policy"))
 
     query_policy_terminalServer_policy_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    query_policy_terminalServer_policy_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     query_policy_terminalServer_policy_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     query_policy_terminalServer_policy_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     query_policy_terminalServer_policy_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')

@@ -9,7 +9,7 @@ catocli mutation container delete -h
 
 catocli mutation container delete <json>
 
-catocli mutation container delete "$(cat < mutation.container.delete.json)"
+catocli mutation container delete --json-file mutation.container.delete.json
 
 catocli mutation container delete '{"deleteContainerInput":{"containerRefInput":{"by":"ID","input":"string"}}}'
 

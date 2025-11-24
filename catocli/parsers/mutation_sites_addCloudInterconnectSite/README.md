@@ -9,7 +9,7 @@ catocli mutation sites addCloudInterconnectSite -h
 
 catocli mutation sites addCloudInterconnectSite <json>
 
-catocli mutation sites addCloudInterconnectSite "$(cat < mutation.sites.addCloudInterconnectSite.json)"
+catocli mutation sites addCloudInterconnectSite --json-file mutation.sites.addCloudInterconnectSite.json
 
 catocli mutation sites addCloudInterconnectSite '{"addCloudInterconnectSiteInput":{"addSiteLocationInput":{"address":"string","city":"string","countryCode":"string","stateCode":"string","timezone":"string"},"description":"string","name":"string","siteType":"BRANCH"}}'
 

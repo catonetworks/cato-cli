@@ -9,7 +9,7 @@ catocli query catalogs contentTypeGroupList -h
 
 catocli query catalogs contentTypeGroupList <json>
 
-catocli query catalogs contentTypeGroupList "$(cat < query.catalogs.contentTypeGroupList.json)"
+catocli query catalogs contentTypeGroupList --json-file query.catalogs.contentTypeGroupList.json
 
 catocli query catalogs contentTypeGroupList '{"catalogApplicationContentTypeGroupListInput":{"catalogApplicationContentTypeGroupFilterInput":{"contentType":{"id":{"eq":"id","in":["id1","id2"],"neq":"id","nin":["id1","id2"]},"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}},"id":{"eq":"id","in":["id1","id2"],"neq":"id","nin":["id1","id2"]},"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}},"catalogApplicationContentTypeGroupSortInput":{"name":{"direction":"ASC","priority":1}},"pagingInput":{"from":1,"limit":1}}}'
 

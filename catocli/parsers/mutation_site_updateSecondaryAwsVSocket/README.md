@@ -9,7 +9,7 @@ catocli mutation site updateSecondaryAwsVSocket -h
 
 catocli mutation site updateSecondaryAwsVSocket <json>
 
-catocli mutation site updateSecondaryAwsVSocket "$(cat < mutation.site.updateSecondaryAwsVSocket.json)"
+catocli mutation site updateSecondaryAwsVSocket --json-file mutation.site.updateSecondaryAwsVSocket.json
 
 catocli mutation site updateSecondaryAwsVSocket '{"updateSecondaryAwsVSocketInput":{"id":"id","ipAddress":"example_value","routeTableId":"string","subnet":"example_value"}}'
 

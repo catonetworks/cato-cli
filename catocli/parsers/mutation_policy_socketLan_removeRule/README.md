@@ -9,7 +9,7 @@ catocli mutation policy socketLan removeRule -h
 
 catocli mutation policy socketLan removeRule <json>
 
-catocli mutation policy socketLan removeRule "$(cat < mutation.policy.socketLan.removeRule.json)"
+catocli mutation policy socketLan removeRule --json-file mutation.policy.socketLan.removeRule.json
 
 catocli mutation policy socketLan removeRule '{"socketLanPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"socketLanRemoveRuleInput":{"id":"id"}}'
 

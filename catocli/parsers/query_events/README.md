@@ -9,7 +9,7 @@ catocli query events -h
 
 catocli query events <json>
 
-catocli query events "$(cat < query.events.json)"
+catocli query events --json-file query.events.json
 
 catocli query events '{"eventsDimension":{"fieldName":"access_method"},"eventsFilter":{"fieldName":"access_method","operator":"is","values":["string1","string2"]},"eventsMeasure":{"aggType":"sum","fieldName":"access_method","trend":true},"eventsSort":{"fieldName":"access_method","order":"asc"},"from":1,"limit":1,"timeFrame":"example_value"}'
 

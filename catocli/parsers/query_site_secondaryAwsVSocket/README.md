@@ -9,7 +9,7 @@ catocli query site secondaryAwsVSocket -h
 
 catocli query site secondaryAwsVSocket <json>
 
-catocli query site secondaryAwsVSocket "$(cat < query.site.secondaryAwsVSocket.json)"
+catocli query site secondaryAwsVSocket --json-file query.site.secondaryAwsVSocket.json
 
 catocli query site secondaryAwsVSocket '{"socketId":"id"}'
 

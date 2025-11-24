@@ -9,7 +9,7 @@ catocli query site bgpPeer -h
 
 catocli query site bgpPeer <json>
 
-catocli query site bgpPeer "$(cat < query.site.bgpPeer.json)"
+catocli query site bgpPeer --json-file query.site.bgpPeer.json
 
 catocli query site bgpPeer '{"bgpPeerRefInput":{"by":"ID","input":"string"}}'
 

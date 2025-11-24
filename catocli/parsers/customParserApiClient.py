@@ -510,6 +510,71 @@ def createRequest(args, configuration):
             print(f"ERROR: Could not load query example: {e}")
 
 
+def queryAppCategory(args, configuration):
+    """
+    Query app categories from local JSON file
+    """
+    params = vars(args)
+    operation_name = params.get("operation_name", "query.appCategory")
+    
+    # Load the app category data
+    try:
+        import os
+        import json
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        models_file = os.path.join(current_dir, "custom", "query_appCategory", "query.appCategory.json")
+        
+        # Load with explicit UTF-8 encoding
+        with open(models_file, 'r', encoding='utf-8') as f:
+            category_data = json.load(f)
+    except Exception as e:
+        print(f"ERROR: Failed to load app category data: {e}")
+        return None
+        
+    try:
+        # Use the same robust JSON preprocessing
+        preprocessed_json = preprocess_json_input(params["json"])
+        variables_obj = json.loads(preprocessed_json)
+    except ValueError as e:
+        print(f"ERROR: Invalid JSON syntax: {e}")
+        print(f"Example: catocli query appCategory '{{\"names\": [\"google\", \"amazon\"]}}'")
+        return None
+        
+    response = {"data": []}
+    
+    # Filter logic
+    names = variables_obj.get("names")
+    
+    # If names not provided or empty, return all
+    if not names:
+        for key, item in category_data.items():
+            response["data"].append(item)
+    else:
+        if not isinstance(names, list):
+            print("ERROR: 'names' must be an array of strings")
+            return None
+            
+        # Search for matches
+        for key, item in category_data.items():
+            name = item.get("entity", {}).get("name", "").lower()
+            description = item.get("description", "").lower()
+            
+            is_match = False
+            for search_term in names:
+                if not isinstance(search_term, str):
+                    continue
+                    
+                term = search_term.lower()
+                if term in name or term in description:
+                    is_match = True
+                    break
+            
+            if is_match:
+                response["data"].append(item)
+                
+    return [response]
+
+
 def querySiteLocation(args, configuration):
     """
     Enhanced site location query with better validation

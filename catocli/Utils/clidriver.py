@@ -20,6 +20,7 @@ from ..parsers.raw import raw_parse
 from ..parsers.custom import custom_parse
 from ..parsers.custom_private import private_parse
 from ..parsers.custom.query_siteLocation import query_siteLocation_parse
+from ..parsers.custom.query_appCategory import query_appCategory_parse
 from ..parsers.custom.query_eventsFeed import query_eventsFeed_parse
 from .help_formatter import CustomSubparserHelpFormatter
 from ..parsers.query_socketPortMetrics import query_socketPortMetrics_parse
@@ -153,6 +154,7 @@ raw_parser = raw_parse(raw_parsers)
 query_parser = subparsers.add_parser('query', help='Query', usage='catocli query <operationName> [options]', formatter_class=CustomSubparserHelpFormatter)
 query_subparsers = query_parser.add_subparsers(description='Available query operations:', help='Use catocli query <operation> -h for detailed help on each operation')
 query_siteLocation_parser = query_siteLocation_parse(query_subparsers)
+query_appCategory_parser = query_appCategory_parse(query_subparsers)
 query_eventsFeed_parser = query_eventsFeed_parse(query_subparsers)
 mutation_parser = subparsers.add_parser('mutation', help='Mutation', usage='catocli mutation <operationName> [options]', formatter_class=CustomSubparserHelpFormatter)
 mutation_subparsers = mutation_parser.add_subparsers(description='Available mutation operations:', help='Use catocli mutation <operation> -h for detailed help on each operation')

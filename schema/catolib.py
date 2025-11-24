@@ -587,6 +587,7 @@ from ..parsers.raw import raw_parse
 from ..parsers.custom import custom_parse
 from ..parsers.custom_private import private_parse
 from ..parsers.custom.query_siteLocation import query_siteLocation_parse
+from ..parsers.custom.query_appCategory import query_appCategory_parse
 from ..parsers.custom.query_eventsFeed import query_eventsFeed_parse
 from .help_formatter import CustomSubparserHelpFormatter
 """
@@ -678,6 +679,7 @@ raw_parser = raw_parse(raw_parsers)
 query_parser = subparsers.add_parser('query', help='Query', usage='catocli query <operationName> [options]', formatter_class=CustomSubparserHelpFormatter)
 query_subparsers = query_parser.add_subparsers(description='Available query operations:', help='Use catocli query <operation> -h for detailed help on each operation')
 query_siteLocation_parser = query_siteLocation_parse(query_subparsers)
+query_appCategory_parser = query_appCategory_parse(query_subparsers)
 query_eventsFeed_parser = query_eventsFeed_parse(query_subparsers)
 mutation_parser = subparsers.add_parser('mutation', help='Mutation', usage='catocli mutation <operationName> [options]', formatter_class=CustomSubparserHelpFormatter)
 mutation_subparsers = mutation_parser.add_subparsers(description='Available mutation operations:', help='Use catocli mutation <operation> -h for detailed help on each operation')
@@ -859,6 +861,7 @@ def query_siteLocation_parse(query_subparsers):
             help='siteLocation local cli query', 
             usage=get_help("query_siteLocation"))
     query_siteLocation_parser.add_argument('json', nargs='?', default='{{}}', help='Variables in JSON format (defaults to empty object if not provided).')
+    query_siteLocation_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     query_siteLocation_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     query_siteLocation_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     query_siteLocation_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -906,6 +909,7 @@ def {parserName}_parse({operationType}_subparsers):
                 
                 cliDriverStr += f"""
     {parserName}_parser.add_argument('json', nargs='?', default='{{}}', help='Variables in JSON format (defaults to empty object if not provided).')
+    {parserName}_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     {parserName}_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     {parserName}_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     {parserName}_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -999,9 +1003,9 @@ catocli raw -h
 
 catocli raw <json>
 
-catocli raw "$(cat < rawGraphqQL.json)"
+catocli raw --json-file rawGraphqQL.json
 
-catocli raw '{ "query": "query operationNameHere($yourArgument:String!) { field1 field2 }", "variables": { "yourArgument": "string", "accountID": "10949" }, "operationName": "operationNameHere" } '
+catocli raw '{ "query": "query operationNameHere($yourArgument:String!) { field1 field2 }", "variables": { "yourArgument": "string", "accountID": "12345" }, "operationName": "operationNameHere" } '
 
 catocli raw '{
     "query": "mutation operationNameHere($yourArgument:String!) { field1 field2 }",
@@ -1021,76 +1025,6 @@ catocli raw --endpoint https://custom-api.example.com/graphql '<json>'
 
 """
     parserPath = "../catocli/parsers/raw"
-    if not os.path.exists(parserPath):
-        os.makedirs(parserPath)
-    with file_write_lock:
-        writeFile(parserPath+"/README.md",readmeStr)
-    
-    ## Write the query.siteLocation readme ##
-    readmeStr = """
-
-## CATO-CLI - query.siteLocation:
-
-### Usage for query.siteLocation:
-
-```bash
-catocli query siteLocation -h
-
-catocli query siteLocation <json>`
-
-catocli query siteLocation "$(cat < siteLocation.json)"`
-
-catocli query siteLocation '{"filters":[{"search": "Your city here","field":"city","operation":"exact"}]}'
-
-catocli query siteLocation '{
-    "filters": [
-        {
-            "search": "Your Country here",
-            "field": "countryName",
-            "operation": "startsWith"
-        }
-    ]
-}'
-
-catocli query siteLocation '{
-    "filters": [
-        {
-            "search": "Your stateName here",
-            "field": "stateName",
-            "operation": "endsWith"
-        }
-    ]
-}'
-
-catocli query siteLocation '{
-    "filters": [
-        {
-            "search": "Your City here",
-            "field": "city",
-            "operation": "startsWith"
-        },
-        {
-            "search": "Your StateName here",
-            "field": "stateName",
-            "operation": "endsWith"
-        },
-        {
-            "search": "Your Country here",
-            "field": "countryName",
-            "operation": "contains"
-        }
-    ]
-}'
-```
-
-#### Operation Arguments for query.siteLocation ####
-`accountID` [ID] - (required) Unique Identifier of Account. 
-`filters[]` [Array] - (optional) Array of objects consisting of `search`, `field` and `operation` attributes.
-`filters[].search` [String] - (required) String to match countryName, stateName, or city specificed in `filters[].field`.
-`filters[].field` [String] - (required) Specify field to match query against, defaults to look for any.  Possible values: `countryName`, `stateName`, or `city`.
-`filters[].operation` [string] - (required) If a field is specified, operation to match the field value.  Possible values: `startsWith`,`endsWith`,`exact`, `contains`.
-"""
-    parserPath = "../catocli/parsers/custom/query_siteLocation"
     if not os.path.exists(parserPath):
         os.makedirs(parserPath)
     with file_write_lock:
@@ -1184,7 +1118,7 @@ catocli {operationCmd} -h
                 readmeStr += f"""
 catocli {operationCmd} <json>
 
-catocli {operationCmd} "$(cat < {operationName}.json)"
+catocli {operationCmd} --json-file {operationName}.json
 """
                 # Add realistic JSON example if available
                 if "example" in parser and parser["example"]:
@@ -1822,6 +1756,7 @@ def renderSubParser(subParser, parentParserPath):
             supports_csv = operation_path_csv in csv_supported_operations
             cliDriverStr += f"""
     {subParserPath}_parser.add_argument('json', nargs='?', default='{{}}', help='Variables in JSON format (defaults to empty object if not provided).')
+    {subParserPath}_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
     {subParserPath}_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
     {subParserPath}_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
     {subParserPath}_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
@@ -1874,7 +1809,7 @@ catocli {subOperationCmd} -h
             readmeStr += f"""
 catocli {subOperationCmd} <json>
 
-catocli {subOperationCmd} "$(cat < {subOperationName}.json)"
+catocli {subOperationCmd} --json-file {subOperationName}.json
 
 """
 

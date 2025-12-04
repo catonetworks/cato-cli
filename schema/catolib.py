@@ -943,7 +943,7 @@ def {parserName}_parse({operationType}_subparsers):
     {parserName}_parser.add_argument('--append-timestamp', dest='append_timestamp', action='store_true', help='Append timestamp to the CSV file name')
 """
                 
-                cliDriverStr += f"    {parserName}_parser.set_defaults(func=createRequest,operation_name='{parserName.replace("_",".")}')"
+                cliDriverStr += f"    {parserName}_parser.set_defaults(func=createRequest,operation_name='{parserName.replace('_','.')}')"
                 cliDriverStr += "\n"
             else:
                 cliDriverStr += renderSubParser(parser,operationType+"_"+operationName)

@@ -269,16 +269,16 @@ def evaluate_assertion(data: Dict, assertion) -> Tuple[bool, str]:
         return False, f"Unknown operator: {operator}"
 
 
-def run_cli_command(operation: str, payload: Dict, timeout: int = 30, verbose: bool = False, enable_trace_id: bool = False) -> Tuple[bool, Optional[Dict], str, str, Optional[str]]:
+def run_cli_command(operation: str, payload: Dict, timeout: int = 30, verbose: bool = False, enable_trace_id: bool = False) -> Tuple[bool, Optional[Dict], str, str, Optional[str], Optional[str]]:
     """
-    Execute CLI command using payload dict and return (success, json_response, error_message, command_str, trace_id).
+    Execute CLI command using payload dict and return (success, json_response, error_message, command_str, trace_id, query).
     operation is in the form 'query.appStats' (operationType.operationName).
     """
     # Parse operation (e.g., "query.appStats" -> "query", "appStats")
     try:
         op_type, *cli_op_parts = operation.split('.')
     except ValueError:
-        return False, None, f"Invalid operation format: {operation}. Expected format: <type>.<name>", "", None
+        return False, None, f"Invalid operation format: {operation}. Expected format: <type>.<name>", "", None, None
     
     # Operations that don't support --trace-id flag (custom parsers)
     operations_without_trace_id = {
@@ -326,6 +326,26 @@ def run_cli_command(operation: str, payload: Dict, timeout: int = 30, verbose: b
     trace_flag = '--trace-id ' if (enable_trace_id and operation not in operations_without_trace_id) else ''
     cmd_display = f"catocli {op_type} {' '.join(cli_op_parts)} {trace_flag}'{payload_str}'"
     
+    # Get the GraphQL query using -t flag (for error reporting)
+    query_output = None
+    try:
+        query_cmd = [PYTHON_CMD, '-m', 'catocli', op_type] + cli_op_parts + ['-t']
+        if payload:
+            query_cmd.append(json.dumps(payload))
+        
+        query_result = subprocess.run(
+            query_cmd,
+            capture_output=True,
+            text=True,
+            timeout=10,
+            cwd=str(PROJECT_ROOT)
+        )
+        if query_result.returncode == 0 and query_result.stdout:
+            query_output = query_result.stdout.strip()
+    except Exception:
+        # If we can't get the query, just continue without it
+        pass
+    
     if verbose:
         print(f"{Colors.CYAN}Executing: {' '.join(cmd[:5])} <payload> ...{Colors.NC}")
     
@@ -354,12 +374,12 @@ def run_cli_command(operation: str, payload: Dict, timeout: int = 30, verbose: b
         # (CLI might return non-zero for warnings but still have valid output)
         try:
             response = json.loads(stdout_to_parse)
-            return True, response, "", cmd_display, trace_id
+            return True, response, "", cmd_display, trace_id, query_output
         except json.JSONDecodeError:
             # If we can't parse JSON and command failed, report error
             if result.returncode != 0:
                 error_msg = f"Command failed with code {result.returncode}: {result.stderr or result.stdout[:500]}"
-                return False, None, error_msg, cmd_display, trace_id
+                return False, None, error_msg, cmd_display, trace_id, query_output
             
             # Non-JSON output (e.g., CSV); wrap minimal structure
             response = {
@@ -367,12 +387,12 @@ def run_cli_command(operation: str, payload: Dict, timeout: int = 30, verbose: b
                 'lines': result.stdout.strip().split('\n'),
                 'line_count': len(result.stdout.strip().split('\n'))
             }
-            return True, response, "", cmd_display, trace_id
+            return True, response, "", cmd_display, trace_id, query_output
         
     except subprocess.TimeoutExpired:
-        return False, None, f"Command timed out after {timeout}s", cmd_display, None
+        return False, None, f"Command timed out after {timeout}s", cmd_display, None, None
     except Exception as e:
-        return False, None, f"Unexpected error: {str(e)}", cmd_display, None
+        return False, None, f"Unexpected error: {str(e)}", cmd_display, None, None
 
 
 def run_test(test_file: Path, verbose: bool = False, test_label: str = "Test", enable_trace_id: bool = False) -> Dict[str, Any]:
@@ -430,7 +450,7 @@ def run_test(test_file: Path, verbose: bool = False, test_label: str = "Test", e
         print(f"{Colors.CYAN}Operation: {operation}{Colors.NC}")
     
     # Run CLI command
-    success, response, error, command, trace_id = run_cli_command(operation, payload, timeout, verbose, enable_trace_id)
+    success, response, error, command, trace_id, query = run_cli_command(operation, payload, timeout, verbose, enable_trace_id)
     
     if not success:
         result = {
@@ -442,6 +462,8 @@ def run_test(test_file: Path, verbose: bool = False, test_label: str = "Test", e
         }
         if trace_id:
             result['trace_id'] = trace_id
+        if query:
+            result['query'] = query
         return result
     
     # Check for GraphQL errors in response (top-level "errors" field)
@@ -465,6 +487,8 @@ def run_test(test_file: Path, verbose: bool = False, test_label: str = "Test", e
             }
             if trace_id:
                 result['trace_id'] = trace_id
+            if query:
+                result['query'] = query
             return result
     
     # Run assertions
@@ -501,6 +525,8 @@ def run_test(test_file: Path, verbose: bool = False, test_label: str = "Test", e
     }
     if trace_id:
         result['trace_id'] = trace_id
+    if status == 'failed' and query:
+        result['query'] = query
     
     return result
 
@@ -541,7 +567,7 @@ def run_test_from_config(test_key: str, test_config: Dict, verbose: bool = False
         print(f"{Colors.CYAN}Operation: {operation}{Colors.NC}")
     
     # Run CLI command
-    success, response, error, command, trace_id = run_cli_command(operation, payload, timeout, verbose, enable_trace_id)
+    success, response, error, command, trace_id, query = run_cli_command(operation, payload, timeout, verbose, enable_trace_id)
     
     if not success:
         result = {
@@ -553,6 +579,8 @@ def run_test_from_config(test_key: str, test_config: Dict, verbose: bool = False
         }
         if trace_id:
             result['trace_id'] = trace_id
+        if query:
+            result['query'] = query
         return result
     
     # Check for GraphQL errors in response (top-level "errors" field)
@@ -576,6 +604,8 @@ def run_test_from_config(test_key: str, test_config: Dict, verbose: bool = False
             }
             if trace_id:
                 result['trace_id'] = trace_id
+            if query:
+                result['query'] = query
             return result
     
     # Run assertions
@@ -612,6 +642,8 @@ def run_test_from_config(test_key: str, test_config: Dict, verbose: bool = False
     }
     if trace_id:
         result['trace_id'] = trace_id
+    if status == 'failed' and query:
+        result['query'] = query
     
     return result
 

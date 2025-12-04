@@ -151,6 +151,8 @@ class AllTestsRunner:
                     print(f"{Colors.RED}    Error: {result['error']}{Colors.NC}")
                 if result.get('trace_id'):
                     print(f"{Colors.CYAN}    Trace ID: {result['trace_id']}{Colors.NC}")
+                if result.get('query'):
+                    print(f"{Colors.CYAN}    Query:\n{result['query']}{Colors.NC}")
                 if result.get('failures'):
                     for failure in result['failures']:
                         print(f"{Colors.RED}    {failure}{Colors.NC}")
@@ -166,6 +168,8 @@ class AllTestsRunner:
                     print(f"{Colors.RED}    {result['error']}{Colors.NC}")
                 if result.get('trace_id'):
                     print(f"{Colors.CYAN}    Trace ID: {result['trace_id']}{Colors.NC}")
+                if result.get('query'):
+                    print(f"{Colors.CYAN}    Query:\n{result['query']}{Colors.NC}")
         
         # Print suite summary
         print(f"\n{Colors.BOLD}Generated Tests Summary:{Colors.NC}")
@@ -236,6 +240,8 @@ class AllTestsRunner:
                     print(f"{Colors.RED}    Error: {result['error']}{Colors.NC}")
                 if result.get('trace_id'):
                     print(f"{Colors.CYAN}    Trace ID: {result['trace_id']}{Colors.NC}")
+                if result.get('query'):
+                    print(f"{Colors.CYAN}    Query:\n{result['query']}{Colors.NC}")
                 if result.get('failures'):
                     for failure in result['failures']:
                         print(f"{Colors.RED}    {failure}{Colors.NC}")
@@ -251,6 +257,8 @@ class AllTestsRunner:
                     print(f"{Colors.RED}    {result['error']}{Colors.NC}")
                 if result.get('trace_id'):
                     print(f"{Colors.CYAN}    Trace ID: {result['trace_id']}{Colors.NC}")
+                if result.get('query'):
+                    print(f"{Colors.CYAN}    Query:\n{result['query']}{Colors.NC}")
         
         # Print suite summary
         print(f"\n{Colors.BOLD}Custom Tests Summary:{Colors.NC}")

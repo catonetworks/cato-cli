@@ -33,10 +33,22 @@ from test_utils import (
     print_test_summary
 )
 
-# Get project paths
+# Get project paths (can be overridden via --dir)
 PROJECT_ROOT = Path(__file__).parent.parent.absolute()
 TESTS_DIR = Path(__file__).parent.absolute()
 PYTHON_CMD = "python3" if sys.platform != "win32" else "python"
+
+
+def set_tests_directory(directory: Path):
+    """Update global paths to use specified test directory"""
+    global PROJECT_ROOT, TESTS_DIR
+    TESTS_DIR = directory.absolute()
+    PROJECT_ROOT = TESTS_DIR.parent.absolute()
+    
+    # Also update test_utils module paths
+    import test_utils
+    test_utils.PROJECT_ROOT = PROJECT_ROOT
+    test_utils.TESTS_DIR = TESTS_DIR
 
 
 class AllTestsRunner:
@@ -58,14 +70,8 @@ class AllTestsRunner:
         print(f"Running Validation Tests (pytest) - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
         print(f"{Colors.BLUE}{'='*70}{Colors.NC}")
         
-        pytest_args = ['-v', '--tb=short', str(TESTS_DIR / 'run_all_tests.py::TestCLIStructure'),
-                      str(TESTS_DIR / 'run_all_tests.py::TestModelFiles'),
-                      str(TESTS_DIR / 'run_all_tests.py::TestQueryPayloads'),
-                      str(TESTS_DIR / 'run_all_tests.py::TestQueryOperations'),
-                      str(TESTS_DIR / 'run_all_tests.py::TestMutationOperations'),
-                      str(TESTS_DIR / 'run_all_tests.py::TestDataIntegrity'),
-                      str(TESTS_DIR / 'run_all_tests.py::TestErrorHandling'),
-                      str(TESTS_DIR / 'run_all_tests.py::TestPackaging')]
+        # Run tests from this module - pytest will discover the test classes
+        pytest_args = ['-v', '--tb=short', __file__]
         
         if self.verbose:
             pytest_args.append('-vv')
@@ -91,6 +97,7 @@ class AllTestsRunner:
         test_settings = load_test_settings(self.verbose)
         override_payloads = test_settings.get('overrideOperationPayload', {})
         ignore_operations = set(test_settings.get('ignoreOperations', {}).keys())
+        enable_trace_id = test_settings.get('enableTraceId', False)
         
         # Load test configs (in-memory)
         generated_tests = load_test_payloads_tests(
@@ -129,7 +136,7 @@ class AllTestsRunner:
                 print(f"{Colors.YELLOW}⊘ {test_config.get('name', operation)} (ignored){Colors.NC}")
                 continue
             
-            result = run_test_from_config(operation, test_config, self.verbose, "Generated Test")
+            result = run_test_from_config(operation, test_config, self.verbose, "Generated Test", enable_trace_id)
             
             status = result['status']
             if status == 'passed':
@@ -142,6 +149,8 @@ class AllTestsRunner:
                     print(f"{Colors.YELLOW}Command: \n{result['command']}{Colors.NC}")
                 if result.get('error'):
                     print(f"{Colors.RED}    Error: {result['error']}{Colors.NC}")
+                if result.get('trace_id'):
+                    print(f"{Colors.CYAN}    Trace ID: {result['trace_id']}{Colors.NC}")
                 if result.get('failures'):
                     for failure in result['failures']:
                         print(f"{Colors.RED}    {failure}{Colors.NC}")
@@ -155,6 +164,8 @@ class AllTestsRunner:
                     print(f"{Colors.YELLOW}Command: \n{result['command']}{Colors.NC}")
                 if result.get('error'):
                     print(f"{Colors.RED}    {result['error']}{Colors.NC}")
+                if result.get('trace_id'):
+                    print(f"{Colors.CYAN}    Trace ID: {result['trace_id']}{Colors.NC}")
         
         # Print suite summary
         print(f"\n{Colors.BOLD}Generated Tests Summary:{Colors.NC}")
@@ -172,6 +183,10 @@ class AllTestsRunner:
         print(f"{Colors.BLUE}{'='*70}{Colors.NC}")
         print(f"Running Custom Tests - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
         print(f"{Colors.BLUE}{'='*70}{Colors.NC}")
+        
+        # Load test settings to get trace-id setting
+        test_settings = load_test_settings(self.verbose)
+        enable_trace_id = test_settings.get('enableTraceId', False)
         
         custom_tests_dict = load_custom_tests(self.verbose)
         
@@ -206,7 +221,7 @@ class AllTestsRunner:
                 print(f"{Colors.YELLOW}⊘ {test_config.get('name', test_key)} (ignored){Colors.NC}")
                 continue
             
-            result = run_test_from_config(test_key, test_config, self.verbose, "Custom Test")
+            result = run_test_from_config(test_key, test_config, self.verbose, "Custom Test", enable_trace_id)
             
             status = result['status']
             if status == 'passed':
@@ -219,6 +234,8 @@ class AllTestsRunner:
                     print(f"{Colors.YELLOW}    Command: \n{result['command']}{Colors.NC}")
                 if result.get('error'):
                     print(f"{Colors.RED}    Error: {result['error']}{Colors.NC}")
+                if result.get('trace_id'):
+                    print(f"{Colors.CYAN}    Trace ID: {result['trace_id']}{Colors.NC}")
                 if result.get('failures'):
                     for failure in result['failures']:
                         print(f"{Colors.RED}    {failure}{Colors.NC}")
@@ -232,6 +249,8 @@ class AllTestsRunner:
                     print(f"{Colors.YELLOW}    Command: \n{result['command']}{Colors.NC}")
                 if result.get('error'):
                     print(f"{Colors.RED}    {result['error']}{Colors.NC}")
+                if result.get('trace_id'):
+                    print(f"{Colors.CYAN}    Trace ID: {result['trace_id']}{Colors.NC}")
         
         # Print suite summary
         print(f"\n{Colors.BOLD}Custom Tests Summary:{Colors.NC}")
@@ -741,13 +760,40 @@ Test Suites (run in order):
   3. Custom Tests       - Custom tests from payloads_custom.json
 
 Examples:
-  %(prog)s                        Run all test suites
-  %(prog)s --skip-validation      Skip validation tests
-  %(prog)s --verbose              Run with verbose output
-  %(prog)s --stop-on-fail         Stop on first failure
+  # Run all test suites from current directory
+  %(prog)s
+
+  # Run tests from a specific test directory
+  %(prog)s --dir /path/to/cato-cli/tests
+  %(prog)s -d ~/projects/cato-cli/tests
+  %(prog)s --dir ../other-branch/tests
+
+  # Skip specific test suites
+  %(prog)s --skip-validation
+  %(prog)s --skip-generated --skip-custom
+
+  # Filter tests by name/operation
+  %(prog)s --operation appStats
+  %(prog)s --test "custom test name"
+  %(prog)s -o devices -v
+
+  # Control output and execution
+  %(prog)s --verbose
+  %(prog)s --stop-on-fail
+  %(prog)s -x -v
+
+  # Combine options
+  %(prog)s --dir ../other-branch/tests --skip-validation --verbose
+  %(prog)s -d ~/cato-cli/tests -o accountSnapshot -x
         """
     )
     
+    parser.add_argument(
+        '--dir', '-d',
+        type=Path,
+        help='Specify the test files directory (default: current tests directory)',
+        metavar='PATH'
+    )
     parser.add_argument(
         '--skip-validation',
         action='store_true',
@@ -785,6 +831,21 @@ Examples:
     )
     
     args = parser.parse_args()
+    
+    # Set test directory if specified
+    if args.dir:
+        if not args.dir.exists():
+            print(f"{Colors.RED}Error: Directory does not exist: {args.dir}{Colors.NC}")
+            sys.exit(1)
+        if not args.dir.is_dir():
+            print(f"{Colors.RED}Error: Path is not a directory: {args.dir}{Colors.NC}")
+            sys.exit(1)
+        
+        set_tests_directory(args.dir)
+        
+        if args.verbose:
+            print(f"{Colors.CYAN}Using test directory: {TESTS_DIR}{Colors.NC}")
+            print(f"{Colors.CYAN}Using project directory: {PROJECT_ROOT}{Colors.NC}")
     
     # Check if all suites are skipped
     if args.skip_validation and args.skip_generated and args.skip_custom:

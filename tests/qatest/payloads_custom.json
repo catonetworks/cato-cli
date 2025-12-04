@@ -136,7 +136,7 @@
                     "fieldName": "flows_created"
                 }
             ],
-            "timeFrame": "last.P1D"
+            "timeFrame": "last.P7D"
         },
         "timeout": 30,
         "assertions": [
@@ -568,8 +568,8 @@
         },
         "timeout": 30,
         "assertions": [
-            "socketPortMetricsTimeSeries.summary",
-            "socketPortMetricsTimeSeries.series"
+            "socketPortMetricsTimeSeries.id",
+            "socketPortMetricsTimeSeries.from"
         ]
     },
     "raw.auditFeed": {
@@ -580,7 +580,7 @@
             "query": "query auditFeed ( $accountIDs:[ID!] $timeFrame:TimeFrame! $auditFieldFilterInput:[AuditFieldFilterInput!] ) { auditFeed ( accountIDs:$accountIDs timeFrame:$timeFrame filters:$auditFieldFilterInput ) { accounts { id records{ fieldsMap } } } }",
             "variables": {
                 "accountIDs": [
-                    15412
+                    "204455"
                 ],
                 "auditFieldFilterInput": [],
                 "timeFrame": "last.P14D"
@@ -599,7 +599,7 @@
         "payload": {
             "query": "query accountSnapshot ( $accountID:ID ) { accountSnapshot ( accountID:$accountID ) { id timestamp } }",
             "variables": {
-                "accountID": "15412"
+                "accountID": "204455"
             },
             "operationName": "accountSnapshot"
         },

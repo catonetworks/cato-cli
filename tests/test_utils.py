@@ -25,10 +25,27 @@ class Colors:
 # Get project paths
 PROJECT_ROOT = Path(__file__).parent.parent.absolute()
 TESTS_DIR = Path(__file__).parent.absolute()
-TEST_PAYLOADS_FILE = TESTS_DIR / "payloads_generated.json"
-PAYLOADS_CUSTOM_FILE = TESTS_DIR / "payloads_custom.json"
-TEST_SETTINGS_FILE = TESTS_DIR / "payloads_settings.json"
 PYTHON_CMD = "python3" if sys.platform != "win32" else "python"
+
+
+def get_test_file_path(filename: str) -> Path:
+    """Get path to test file, using current TESTS_DIR"""
+    return TESTS_DIR / filename
+
+
+def get_test_payloads_file() -> Path:
+    """Get path to payloads_generated.json"""
+    return get_test_file_path("payloads_generated.json")
+
+
+def get_custom_payloads_file() -> Path:
+    """Get path to payloads_custom.json"""
+    return get_test_file_path("payloads_custom.json")
+
+
+def get_settings_file() -> Path:
+    """Get path to payloads_settings.json"""
+    return get_test_file_path("payloads_settings.json")
 
 
 def load_json_with_comments(file_path: Path) -> Any:
@@ -70,20 +87,24 @@ def load_test_settings(verbose: bool = False) -> Dict:
     Supports JavaScript-style // comments in the JSON file.
     Returns the settings dict.
     """
-    if not TEST_SETTINGS_FILE.exists():
+    settings_file = get_settings_file()
+    if not settings_file.exists():
         return {}
     
     try:
-        settings = load_json_with_comments(TEST_SETTINGS_FILE)
+        settings = load_json_with_comments(settings_file)
         
         ignore_ops = settings.get('ignoreOperations', {})
         override_ops = settings.get('overrideOperationPayload', {})
+        enable_trace_id = settings.get('enableTraceId', False)
         
         if verbose:
             if ignore_ops:
                 print(f"{Colors.CYAN}Loaded {len(ignore_ops)} operation(s) to ignore from test_settings.json{Colors.NC}")
             if override_ops:
                 print(f"{Colors.CYAN}Loaded {len(override_ops)} payload override(s) from test_settings.json{Colors.NC}")
+            if enable_trace_id:
+                print(f"{Colors.CYAN}Trace ID enabled for CLI commands{Colors.NC}")
         
         return settings
     except json.JSONDecodeError as e:
@@ -248,27 +269,39 @@ def evaluate_assertion(data: Dict, assertion) -> Tuple[bool, str]:
         return False, f"Unknown operator: {operator}"
 
 
-def run_cli_command(operation: str, payload: Dict, timeout: int = 30, verbose: bool = False) -> Tuple[bool, Optional[Dict], str, str]:
+def run_cli_command(operation: str, payload: Dict, timeout: int = 30, verbose: bool = False, enable_trace_id: bool = False) -> Tuple[bool, Optional[Dict], str, str, Optional[str]]:
     """
-    Execute CLI command using payload dict and return (success, json_response, error_message, command_str).
+    Execute CLI command using payload dict and return (success, json_response, error_message, command_str, trace_id).
     operation is in the form 'query.appStats' (operationType.operationName).
     """
     # Parse operation (e.g., "query.appStats" -> "query", "appStats")
     try:
         op_type, *cli_op_parts = operation.split('.')
     except ValueError:
-        return False, None, f"Invalid operation format: {operation}. Expected format: <type>.<name>", ""
+        return False, None, f"Invalid operation format: {operation}. Expected format: <type>.<name>", "", None
     
-    # Convert payload dict to JSON string (skip if empty)
+    # Operations that don't support --trace-id flag (custom parsers)
+    operations_without_trace_id = {
+        'query.eventsFeed',
+        'query.auditFeed'
+    }
+    
+    # Build command with optional --trace-id flag
+    cmd = [PYTHON_CMD, '-m', 'catocli', op_type] + cli_op_parts
+    
+    # Add --trace-id flag if enabled and operation supports it
+    if enable_trace_id and operation not in operations_without_trace_id:
+        cmd.append('--trace-id')
+    
+    # Add payload if provided
     if payload:
         json_payload = json.dumps(payload)
-        cmd = [PYTHON_CMD, '-m', 'catocli', op_type] + cli_op_parts + [json_payload]
-    else:
-        cmd = [PYTHON_CMD, '-m', 'catocli', op_type] + cli_op_parts
+        cmd.append(json_payload)
     
     # Build readable command string for display
     payload_str = json.dumps(payload, indent=2) if payload else '{}'
-    cmd_display = f"catocli {op_type} {' '.join(cli_op_parts)} '{payload_str}'"
+    trace_flag = '--trace-id ' if (enable_trace_id and operation not in operations_without_trace_id) else ''
+    cmd_display = f"catocli {op_type} {' '.join(cli_op_parts)} {trace_flag}'{payload_str}'"
     
     if verbose:
         print(f"{Colors.CYAN}Executing: {' '.join(cmd[:5])} <payload> ...{Colors.NC}")
@@ -282,15 +315,28 @@ def run_cli_command(operation: str, payload: Dict, timeout: int = 30, verbose: b
             cwd=str(PROJECT_ROOT)
         )
         
+        # Extract trace-id from stdout if present (printed by CLI when --trace-id is used)
+        trace_id = None
+        stdout_to_parse = result.stdout
+        
+        if enable_trace_id and result.stdout:
+            # Check if stdout starts with "Trace-ID:" line
+            lines = result.stdout.split('\n')
+            if lines and lines[0].startswith('Trace-ID:'):
+                trace_id = lines[0].split(':', 1)[1].strip()
+                # Remove the trace-id line and empty line from stdout for JSON parsing
+                stdout_to_parse = '\n'.join(lines[2:]) if len(lines) > 2 else ''
+        
         # Try to parse JSON first, regardless of exit code
         # (CLI might return non-zero for warnings but still have valid output)
         try:
-            response = json.loads(result.stdout)
-            return True, response, "", cmd_display
+            response = json.loads(stdout_to_parse)
+            return True, response, "", cmd_display, trace_id
         except json.JSONDecodeError:
             # If we can't parse JSON and command failed, report error
             if result.returncode != 0:
-                return False, None, f"Command failed with code {result.returncode}: {result.stderr or result.stdout[:500]}", cmd_display
+                error_msg = f"Command failed with code {result.returncode}: {result.stderr or result.stdout[:500]}"
+                return False, None, error_msg, cmd_display, trace_id
             
             # Non-JSON output (e.g., CSV); wrap minimal structure
             response = {
@@ -298,15 +344,15 @@ def run_cli_command(operation: str, payload: Dict, timeout: int = 30, verbose: b
                 'lines': result.stdout.strip().split('\n'),
                 'line_count': len(result.stdout.strip().split('\n'))
             }
-            return True, response, "", cmd_display
+            return True, response, "", cmd_display, trace_id
         
     except subprocess.TimeoutExpired:
-        return False, None, f"Command timed out after {timeout}s", cmd_display
+        return False, None, f"Command timed out after {timeout}s", cmd_display, None
     except Exception as e:
-        return False, None, f"Unexpected error: {str(e)}", cmd_display
+        return False, None, f"Unexpected error: {str(e)}", cmd_display, None
 
 
-def run_test(test_file: Path, verbose: bool = False, test_label: str = "Test") -> Dict[str, Any]:
+def run_test(test_file: Path, verbose: bool = False, test_label: str = "Test", enable_trace_id: bool = False) -> Dict[str, Any]:
     """
     Run a single test from JSON file and return results.
     test_label is used to distinguish between generated/custom tests in output.
@@ -361,16 +407,42 @@ def run_test(test_file: Path, verbose: bool = False, test_label: str = "Test") -
         print(f"{Colors.CYAN}Operation: {operation}{Colors.NC}")
     
     # Run CLI command
-    success, response, error, command = run_cli_command(operation, payload, timeout, verbose)
+    success, response, error, command, trace_id = run_cli_command(operation, payload, timeout, verbose, enable_trace_id)
     
     if not success:
-        return {
+        result = {
             'name': name,
             'description': description,
             'status': 'failed',
             'error': error,
             'command': command
         }
+        if trace_id:
+            result['trace_id'] = trace_id
+        return result
+    
+    # Check for GraphQL errors in response (top-level "errors" field)
+    if isinstance(response, dict) and 'errors' in response:
+        errors = response['errors']
+        if errors and len(errors) > 0:
+            # Format error messages
+            error_messages = []
+            for err in errors:
+                msg = err.get('message', 'Unknown error')
+                path = '.'.join(err.get('path', [])) if err.get('path') else 'N/A'
+                error_messages.append(f"GraphQL Error at path '{path}': {msg}")
+            
+            result = {
+                'name': name,
+                'description': description,
+                'status': 'failed',
+                'error': 'GraphQL errors detected in response',
+                'failures': error_messages,
+                'command': command
+            }
+            if trace_id:
+                result['trace_id'] = trace_id
+            return result
     
     # Run assertions
     assertions = test_config.get('assertions', [])
@@ -404,11 +476,13 @@ def run_test(test_file: Path, verbose: bool = False, test_label: str = "Test") -
         'response_sample': str(response)[:200] if verbose else None,
         'command': command
     }
+    if trace_id:
+        result['trace_id'] = trace_id
     
     return result
 
 
-def run_test_from_config(test_key: str, test_config: Dict, verbose: bool = False, test_label: str = "Test") -> Dict[str, Any]:
+def run_test_from_config(test_key: str, test_config: Dict, verbose: bool = False, test_label: str = "Test", enable_trace_id: bool = False) -> Dict[str, Any]:
     """
     Run a single test from config dict and return results.
     test_label is used to distinguish between generated/custom tests in output.
@@ -444,16 +518,42 @@ def run_test_from_config(test_key: str, test_config: Dict, verbose: bool = False
         print(f"{Colors.CYAN}Operation: {operation}{Colors.NC}")
     
     # Run CLI command
-    success, response, error, command = run_cli_command(operation, payload, timeout, verbose)
+    success, response, error, command, trace_id = run_cli_command(operation, payload, timeout, verbose, enable_trace_id)
     
     if not success:
-        return {
+        result = {
             'name': name,
             'description': description,
             'status': 'failed',
             'error': error,
             'command': command
         }
+        if trace_id:
+            result['trace_id'] = trace_id
+        return result
+    
+    # Check for GraphQL errors in response (top-level "errors" field)
+    if isinstance(response, dict) and 'errors' in response:
+        errors = response['errors']
+        if errors and len(errors) > 0:
+            # Format error messages
+            error_messages = []
+            for err in errors:
+                msg = err.get('message', 'Unknown error')
+                path = '.'.join(err.get('path', [])) if err.get('path') else 'N/A'
+                error_messages.append(f"GraphQL Error at path '{path}': {msg}")
+            
+            result = {
+                'name': name,
+                'description': description,
+                'status': 'failed',
+                'error': 'GraphQL errors detected in response',
+                'failures': error_messages,
+                'command': command
+            }
+            if trace_id:
+                result['trace_id'] = trace_id
+            return result
     
     # Run assertions
     assertions = test_config.get('assertions', [])
@@ -487,6 +587,8 @@ def run_test_from_config(test_key: str, test_config: Dict, verbose: bool = False
         'response_sample': str(response)[:200] if verbose else None,
         'command': command
     }
+    if trace_id:
+        result['trace_id'] = trace_id
     
     return result
 
@@ -497,13 +599,14 @@ def load_test_payloads_tests(ignore_operations: set, override_payloads: Dict, ve
     Supports JavaScript-style // comments in the JSON file.
     Returns dict of test configs indexed by operation name.
     """
-    if not TEST_PAYLOADS_FILE.exists():
+    payloads_file = get_test_payloads_file()
+    if not payloads_file.exists():
         return {}
     
     try:
-        test_payloads = load_json_with_comments(TEST_PAYLOADS_FILE)
+        test_payloads = load_json_with_comments(payloads_file)
     except Exception as e:
-        print(f"{Colors.YELLOW}Error loading {TEST_PAYLOADS_FILE.name}: {str(e)}{Colors.NC}")
+        print(f"{Colors.YELLOW}Error loading {payloads_file.name}: {str(e)}{Colors.NC}")
         return {}
     
     generated_tests = {}
@@ -566,16 +669,17 @@ def load_custom_tests(verbose: bool = False) -> Dict[str, Dict]:
     Supports JavaScript-style // comments in the JSON file.
     Returns a dict of test configs indexed by test key.
     """
-    if not PAYLOADS_CUSTOM_FILE.exists():
+    custom_file = get_custom_payloads_file()
+    if not custom_file.exists():
         return {}
     
     try:
-        custom_tests = load_json_with_comments(PAYLOADS_CUSTOM_FILE)
+        custom_tests = load_json_with_comments(custom_file)
         if verbose:
-            print(f"{Colors.CYAN}Loaded {len(custom_tests)} custom test(s) from {PAYLOADS_CUSTOM_FILE.name}{Colors.NC}")
+            print(f"{Colors.CYAN}Loaded {len(custom_tests)} custom test(s) from {custom_file.name}{Colors.NC}")
         return custom_tests
     except Exception as e:
-        print(f"{Colors.YELLOW}Error loading {PAYLOADS_CUSTOM_FILE.name}: {str(e)}{Colors.NC}")
+        print(f"{Colors.YELLOW}Error loading {custom_file.name}: {str(e)}{Colors.NC}")
         return {}
 
 

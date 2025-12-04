@@ -83,6 +83,7 @@ Central configuration for test behavior:
 
 ```json
 {
+    "enableTraceId": true,
     "ignoreOperations": {
         "query.devices": {},
         "query.catalogs.catalogApplication": {}
@@ -104,6 +105,7 @@ Central configuration for test behavior:
 - `ignoreOperations`: Tests are generated but skipped during execution (marked as ignored)
 - `defaultValues`: Default values to use when generating test payloads
 - `overrideOperationPayload`: Custom payloads and assertions for specific operations
+- `enableTraceId`: When set to `true`, adds `--trace-id` flag to all CLI commands and prints trace ID on errors for debugging
 
 ### `payloads_custom.json`
 Custom test cases with advanced scenarios:

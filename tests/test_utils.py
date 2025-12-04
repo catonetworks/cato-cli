@@ -283,7 +283,30 @@ def run_cli_command(operation: str, payload: Dict, timeout: int = 30, verbose: b
     # Operations that don't support --trace-id flag (custom parsers)
     operations_without_trace_id = {
         'query.eventsFeed',
-        'query.auditFeed'
+        'query.auditFeed',
+        'scim.add_members',
+        'scim.create_group',
+        'scim.create_user',
+        'scim.delete_group',
+        'scim.delete_user',
+        'scim.disable_group',
+        'scim.disable_user',
+        'scim.export',
+        'scim.find_group',
+        'scim.find_users',
+        'scim.get_group',
+        'scim.get_groups',
+        'scim.get_user',
+        'scim.get_users',
+        'scim.import',
+        'scim.patch_group',
+        'scim.patch_user',
+        'scim.purge',
+        'scim.remove_members',
+        'scim.rename_group',
+        'scim.update_group',
+        'scim.update_user',
+        'entity.site.list'
     }
     
     # Build command with optional --trace-id flag

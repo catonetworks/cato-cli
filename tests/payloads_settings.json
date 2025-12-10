@@ -2,23 +2,28 @@
     "ignoreOperations": {
         // Skipping query operations covered in custom payloads used in MCP
         "query.appStats": {},
-        "query.appStatsTimeSeries": {},        
+        "query.accountMetrics": {},
+        "query.auditFeed": {},
+        "query.eventsFeed": {},
+        "query.appStatsTimeSeries": {},
         "query.eventsTimeSeries": {},
         "query.socketPortMetricsTimeSeries": {},
         "query.socketPortMetrics": {},
         // The following queries need investigation
         "query.devices": {},
-        "query.container.ipAddressRange.search":{},
-        "query.container.ipAddressRange.searchIpAddressRange":{},
+        "query.container.ipAddressRange.search": {},
+        "query.container.ipAddressRange.searchIpAddressRange": {},
         "query.groups.groupList": {},
         "query.groups.group.members": {},
         "query.policy.socketLan.policy": {},
         "query.catalogs.catalogApplication": {},
-        "query.catalogs.catalogApplicationList": {}
+        "query.catalogs.catalogApplicationList": {},
+        "query.site.secondaryAzureVSocket": {},
+        "query.site.secondaryAwsVSocket": {}
     },
     "defaultValues": {
         "timeFrame": "last.P1D",
-        "adminID": "0",
+        "adminID": "230745",
         "platforms": [
             "OSX"
         ]
@@ -197,6 +202,37 @@
                 "sandbox.reports.report"
             ]
         },
+        "query.servicePrincipalAdmin": {
+            "payload": {
+                "adminID": "230746"
+            },
+            "assertions": [
+                "data.servicePrincipalAdmin.id"
+            ]
+        },
+        "query.site.availableVersionList": {
+            "payload": {
+                "availableVersionListInput": {
+                    "platforms": [
+                        "OSX"
+                    ]
+                }
+            },
+            "assertions": [
+                "site.availableVersionList"
+            ]
+        },
+        "query.site.bgpPeer": {
+            "payload": {
+                "bgpPeerRefInput": {
+                    "by": "ID",
+                    "input": "27936"
+                }
+            },
+            "assertions": [
+                "data.site.bgpPeer"
+            ]
+        },
         "query.site.bgpPeerList": {
             "payload": {
                 "bgpPeerListInput": {
@@ -210,17 +246,14 @@
                 "data.site.bgpPeerList.bgpPeer"
             ]
         },
-        "query.site.siteBgpStatus": {
+        "query.site.cloudInterconnectPhysicalConnection": {
             "payload": {
-                "siteBgpStatusInput": {
-                    "site": {
-                        "by": "NAME",
-                        "input": "PM demo branch"
-                    }
+                "cloudInterconnectPhysicalConnectionInput": {
+                    "id": "NTg4NjI5LVBSSU1BUlk="
                 }
             },
             "assertions": [
-                "site.siteBgpStatus"
+                "site.cloudInterconnectPhysicalConnection"
             ]
         },
         "query.site.cloudInterconnectPhysicalConnectionId": {
@@ -237,16 +270,28 @@
                 "site.cloudInterconnectPhysicalConnectionId"
             ]
         },
-        "query.site.availableVersionList": {
+        "query.site.siteBgpStatus": {
             "payload": {
-                "availableVersionListInput": {
-                    "platforms": [
-                        "OSX"
-                    ]
+                "siteBgpStatusInput": {
+                    "site": {
+                        "by": "NAME",
+                        "input": "PM demo branch"
+                    }
                 }
             },
             "assertions": [
-                "site.availableVersionList"
+                "site.siteBgpStatus"
+            ]
+        },
+        "query.site.siteGeneralDetails": {
+            "payload": {
+                "siteRefInput": {
+                    "by": "NAME",
+                    "input": "Interconnect"
+                }
+            },
+            "assertions": [
+                "site.siteGeneralDetails"
             ]
         },
         "query.xdr.stories": {

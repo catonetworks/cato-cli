@@ -207,11 +207,23 @@
                 "data.servicePrincipalAdmin"
             ]
         },
+        "query.site.availableVersionList": {
+            "payload": {
+                "availableVersionListInput": {
+                    "platforms": [
+                        "OSX"
+                    ]
+                }
+            },
+            "assertions": [
+                "site.availableVersionList"
+            ]
+        },
         "query.site.bgpPeer": {
             "payload": {
                 "bgpPeerRefInput": {
                     "by": "ID",
-                    "input": "27711"
+                    "input": "27936"
                 }
             },
             "assertions": [
@@ -223,11 +235,12 @@
                 "bgpPeerListInput": {
                     "site": {
                         "by": "NAME",
-                        "input": "PM demo branch"
+                        "input": "Interconnect"
                     }
                 }
             },
             "assertions": [
+                "data.site.bgpPeerList",
                 "data.site.bgpPeerList.bgpPeer"
             ]
         },
@@ -244,6 +257,16 @@
                 "site.siteBgpStatus"
             ]
         },
+        "query.site.cloudInterconnectPhysicalConnection": {
+            "payload": {
+                "cloudInterconnectPhysicalConnectionInput": {
+                    "id": "NTg4NjI5LVBSSU1BUlk="
+                }
+            },
+            "assertions": [
+                "site.cloudInterconnectPhysicalConnection"
+            ]
+        },
         "query.site.cloudInterconnectPhysicalConnectionId": {
             "payload": {
                 "cloudInterconnectPhysicalConnectionIdInput": {
@@ -254,19 +277,8 @@
                     }
                 }
             },
-            "timeout": 30,
             "assertions": [
-                "data.site"
-            ]
-        },
-        "query.site.cloudInterconnectPhysicalConnection": {
-            "payload": {
-                "cloudInterconnectPhysicalConnectionInput": {
-                    "id": "NTg4NjI5LVBSSU1BUlk="
-                }
-            },
-            "assertions": [
-                "data.site"
+                "site.cloudInterconnectPhysicalConnectionId"
             ]
         },
         "query.site.cloudInterconnectConnectionConnectivity": {
@@ -277,18 +289,6 @@
             },
             "assertions": [
                 "data.site"
-            ]
-        },
-        "query.site.availableVersionList": {
-            "payload": {
-                "availableVersionListInput": {
-                    "platforms": [
-                        "OSX"
-                    ]
-                }
-            },
-            "assertions": [
-                "site.availableVersionList"
             ]
         },
         "query.site.siteGeneralDetails": {

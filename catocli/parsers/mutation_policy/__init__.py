@@ -11,7 +11,7 @@ def mutation_policy_parse(mutation_subparsers):
         """Show help when mutation_policy is called without subcommand"""
         print("Usage: catocli mutation policy <subcommand> [options]")
         print("\nAvailable subcommands:")
-        print("  antiMalwareFileHash            antiMalwareFileHash operation\n  socketLan                      socketLan operation\n  wanNetwork                     wanNetwork operation\n  internetFirewall               internetFirewall operation\n  remotePortFwd                  remotePortFwd operation\n  wanFirewall                    wanFirewall operation\n  appTenantRestriction           appTenantRestriction operation\n  applicationControl             applicationControl operation\n  tlsInspect                     tlsInspect operation\n  dynamicIpAllocation            dynamicIpAllocation operation\n  ... and 1 more")
+        print("  antiMalwareFileHash            antiMalwareFileHash operation\n  socketLan                      socketLan operation\n  wanNetwork                     wanNetwork operation\n  internetFirewall               internetFirewall operation\n  remotePortFwd                  remotePortFwd operation\n  wanFirewall                    wanFirewall operation\n  appTenantRestriction           appTenantRestriction operation\n  applicationControl             applicationControl operation\n  tlsInspect                     tlsInspect operation\n  clientConnectivity             clientConnectivity operation\n  ... and 3 more")
         print("\nFor help on a specific subcommand:")
         print("  catocli mutation policy <subcommand> -h")
         return None
@@ -1999,6 +1999,226 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_tlsInspect_updatePolicy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_tlsInspect_updatePolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.tlsInspect.updatePolicy')
 
+    mutation_policy_clientConnectivity_parser = mutation_policy_subparsers.add_parser('clientConnectivity', 
+            help='clientConnectivity() policy operation', 
+            usage=get_help("mutation_policy_clientConnectivity"))
+
+    def _show_mutation_policy_clientConnectivity_help(args, configuration=None):
+        """Show help when mutation_policy_clientConnectivity is called without subcommand"""
+        print("Usage: catocli mutation policy clientConnectivity <subcommand> [options]")
+        print("\nAvailable subcommands:")
+        print("  addRule                        addRule operation\n  updateRule                     updateRule operation\n  removeRule                     removeRule operation\n  moveRule                       moveRule operation\n  addSection                     addSection operation\n  updateSection                  updateSection operation\n  removeSection                  removeSection operation\n  moveSection                    moveSection operation\n  createPolicyRevision           createPolicyRevision operation\n  publishPolicyRevision          publishPolicyRevision operation\n  ... and 2 more")
+        print("\nFor help on a specific subcommand:")
+        print("  catocli mutation policy clientConnectivity <subcommand> -h")
+        return None
+
+    mutation_policy_clientConnectivity_subparsers = mutation_policy_clientConnectivity_parser.add_subparsers()
+    mutation_policy_clientConnectivity_parser.set_defaults(func=_show_mutation_policy_clientConnectivity_help)
+
+    mutation_policy_clientConnectivity_addRule_parser = mutation_policy_clientConnectivity_subparsers.add_parser('addRule', 
+            help='addRule() clientConnectivity operation', 
+            usage=get_help("mutation_policy_clientConnectivity_addRule"))
+
+    mutation_policy_clientConnectivity_addRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_clientConnectivity_addRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_clientConnectivity_addRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_clientConnectivity_addRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_clientConnectivity_addRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_clientConnectivity_addRule_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_clientConnectivity_addRule_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_clientConnectivity_addRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_clientConnectivity_addRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_clientConnectivity_addRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_clientConnectivity_addRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_clientConnectivity_addRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.clientConnectivity.addRule')
+
+    mutation_policy_clientConnectivity_updateRule_parser = mutation_policy_clientConnectivity_subparsers.add_parser('updateRule', 
+            help='updateRule() clientConnectivity operation', 
+            usage=get_help("mutation_policy_clientConnectivity_updateRule"))
+
+    mutation_policy_clientConnectivity_updateRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_clientConnectivity_updateRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_clientConnectivity_updateRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_clientConnectivity_updateRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_clientConnectivity_updateRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_clientConnectivity_updateRule_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_clientConnectivity_updateRule_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_clientConnectivity_updateRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_clientConnectivity_updateRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_clientConnectivity_updateRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_clientConnectivity_updateRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_clientConnectivity_updateRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.clientConnectivity.updateRule')
+
+    mutation_policy_clientConnectivity_removeRule_parser = mutation_policy_clientConnectivity_subparsers.add_parser('removeRule', 
+            help='removeRule() clientConnectivity operation', 
+            usage=get_help("mutation_policy_clientConnectivity_removeRule"))
+
+    mutation_policy_clientConnectivity_removeRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_clientConnectivity_removeRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_clientConnectivity_removeRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_clientConnectivity_removeRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_clientConnectivity_removeRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_clientConnectivity_removeRule_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_clientConnectivity_removeRule_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_clientConnectivity_removeRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_clientConnectivity_removeRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_clientConnectivity_removeRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_clientConnectivity_removeRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_clientConnectivity_removeRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.clientConnectivity.removeRule')
+
+    mutation_policy_clientConnectivity_moveRule_parser = mutation_policy_clientConnectivity_subparsers.add_parser('moveRule', 
+            help='moveRule() clientConnectivity operation', 
+            usage=get_help("mutation_policy_clientConnectivity_moveRule"))
+
+    mutation_policy_clientConnectivity_moveRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_clientConnectivity_moveRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_clientConnectivity_moveRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_clientConnectivity_moveRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_clientConnectivity_moveRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_clientConnectivity_moveRule_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_clientConnectivity_moveRule_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_clientConnectivity_moveRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_clientConnectivity_moveRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_clientConnectivity_moveRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_clientConnectivity_moveRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_clientConnectivity_moveRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.clientConnectivity.moveRule')
+
+    mutation_policy_clientConnectivity_addSection_parser = mutation_policy_clientConnectivity_subparsers.add_parser('addSection', 
+            help='addSection() clientConnectivity operation', 
+            usage=get_help("mutation_policy_clientConnectivity_addSection"))
+
+    mutation_policy_clientConnectivity_addSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_clientConnectivity_addSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_clientConnectivity_addSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_clientConnectivity_addSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_clientConnectivity_addSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_clientConnectivity_addSection_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_clientConnectivity_addSection_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_clientConnectivity_addSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_clientConnectivity_addSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_clientConnectivity_addSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_clientConnectivity_addSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_clientConnectivity_addSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.clientConnectivity.addSection')
+
+    mutation_policy_clientConnectivity_updateSection_parser = mutation_policy_clientConnectivity_subparsers.add_parser('updateSection', 
+            help='updateSection() clientConnectivity operation', 
+            usage=get_help("mutation_policy_clientConnectivity_updateSection"))
+
+    mutation_policy_clientConnectivity_updateSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_clientConnectivity_updateSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_clientConnectivity_updateSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_clientConnectivity_updateSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_clientConnectivity_updateSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_clientConnectivity_updateSection_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_clientConnectivity_updateSection_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_clientConnectivity_updateSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_clientConnectivity_updateSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_clientConnectivity_updateSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_clientConnectivity_updateSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_clientConnectivity_updateSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.clientConnectivity.updateSection')
+
+    mutation_policy_clientConnectivity_removeSection_parser = mutation_policy_clientConnectivity_subparsers.add_parser('removeSection', 
+            help='removeSection() clientConnectivity operation', 
+            usage=get_help("mutation_policy_clientConnectivity_removeSection"))
+
+    mutation_policy_clientConnectivity_removeSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_clientConnectivity_removeSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_clientConnectivity_removeSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_clientConnectivity_removeSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_clientConnectivity_removeSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_clientConnectivity_removeSection_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_clientConnectivity_removeSection_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_clientConnectivity_removeSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_clientConnectivity_removeSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_clientConnectivity_removeSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_clientConnectivity_removeSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_clientConnectivity_removeSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.clientConnectivity.removeSection')
+
+    mutation_policy_clientConnectivity_moveSection_parser = mutation_policy_clientConnectivity_subparsers.add_parser('moveSection', 
+            help='moveSection() clientConnectivity operation', 
+            usage=get_help("mutation_policy_clientConnectivity_moveSection"))
+
+    mutation_policy_clientConnectivity_moveSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_clientConnectivity_moveSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_clientConnectivity_moveSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_clientConnectivity_moveSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_clientConnectivity_moveSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_clientConnectivity_moveSection_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_clientConnectivity_moveSection_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_clientConnectivity_moveSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_clientConnectivity_moveSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_clientConnectivity_moveSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_clientConnectivity_moveSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_clientConnectivity_moveSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.clientConnectivity.moveSection')
+
+    mutation_policy_clientConnectivity_createPolicyRevision_parser = mutation_policy_clientConnectivity_subparsers.add_parser('createPolicyRevision', 
+            help='createPolicyRevision() clientConnectivity operation', 
+            usage=get_help("mutation_policy_clientConnectivity_createPolicyRevision"))
+
+    mutation_policy_clientConnectivity_createPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_clientConnectivity_createPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_clientConnectivity_createPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_clientConnectivity_createPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_clientConnectivity_createPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_clientConnectivity_createPolicyRevision_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_clientConnectivity_createPolicyRevision_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_clientConnectivity_createPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_clientConnectivity_createPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_clientConnectivity_createPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_clientConnectivity_createPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_clientConnectivity_createPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.clientConnectivity.createPolicyRevision')
+
+    mutation_policy_clientConnectivity_publishPolicyRevision_parser = mutation_policy_clientConnectivity_subparsers.add_parser('publishPolicyRevision', 
+            help='publishPolicyRevision() clientConnectivity operation', 
+            usage=get_help("mutation_policy_clientConnectivity_publishPolicyRevision"))
+
+    mutation_policy_clientConnectivity_publishPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_clientConnectivity_publishPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_clientConnectivity_publishPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_clientConnectivity_publishPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_clientConnectivity_publishPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_clientConnectivity_publishPolicyRevision_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_clientConnectivity_publishPolicyRevision_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_clientConnectivity_publishPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_clientConnectivity_publishPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_clientConnectivity_publishPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_clientConnectivity_publishPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_clientConnectivity_publishPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.clientConnectivity.publishPolicyRevision')
+
+    mutation_policy_clientConnectivity_discardPolicyRevision_parser = mutation_policy_clientConnectivity_subparsers.add_parser('discardPolicyRevision', 
+            help='discardPolicyRevision() clientConnectivity operation', 
+            usage=get_help("mutation_policy_clientConnectivity_discardPolicyRevision"))
+
+    mutation_policy_clientConnectivity_discardPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_clientConnectivity_discardPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_clientConnectivity_discardPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_clientConnectivity_discardPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_clientConnectivity_discardPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_clientConnectivity_discardPolicyRevision_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_clientConnectivity_discardPolicyRevision_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_clientConnectivity_discardPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_clientConnectivity_discardPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_clientConnectivity_discardPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_clientConnectivity_discardPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_clientConnectivity_discardPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.clientConnectivity.discardPolicyRevision')
+
+    mutation_policy_clientConnectivity_updatePolicy_parser = mutation_policy_clientConnectivity_subparsers.add_parser('updatePolicy', 
+            help='updatePolicy() clientConnectivity operation', 
+            usage=get_help("mutation_policy_clientConnectivity_updatePolicy"))
+
+    mutation_policy_clientConnectivity_updatePolicy_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_clientConnectivity_updatePolicy_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_clientConnectivity_updatePolicy_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_clientConnectivity_updatePolicy_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_clientConnectivity_updatePolicy_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_clientConnectivity_updatePolicy_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_clientConnectivity_updatePolicy_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_clientConnectivity_updatePolicy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_clientConnectivity_updatePolicy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_clientConnectivity_updatePolicy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_clientConnectivity_updatePolicy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_clientConnectivity_updatePolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.clientConnectivity.updatePolicy')
+
     mutation_policy_dynamicIpAllocation_parser = mutation_policy_subparsers.add_parser('dynamicIpAllocation', 
             help='dynamicIpAllocation() policy operation', 
             usage=get_help("mutation_policy_dynamicIpAllocation"))
@@ -2438,3 +2658,223 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_terminalServer_updatePolicy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
     mutation_policy_terminalServer_updatePolicy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_terminalServer_updatePolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.terminalServer.updatePolicy')
+
+    mutation_policy_ztnaAlwaysOn_parser = mutation_policy_subparsers.add_parser('ztnaAlwaysOn', 
+            help='ztnaAlwaysOn() policy operation', 
+            usage=get_help("mutation_policy_ztnaAlwaysOn"))
+
+    def _show_mutation_policy_ztnaAlwaysOn_help(args, configuration=None):
+        """Show help when mutation_policy_ztnaAlwaysOn is called without subcommand"""
+        print("Usage: catocli mutation policy ztnaAlwaysOn <subcommand> [options]")
+        print("\nAvailable subcommands:")
+        print("  addRule                        addRule operation\n  updateRule                     updateRule operation\n  removeRule                     removeRule operation\n  moveRule                       moveRule operation\n  addSection                     addSection operation\n  updateSection                  updateSection operation\n  removeSection                  removeSection operation\n  moveSection                    moveSection operation\n  createPolicyRevision           createPolicyRevision operation\n  publishPolicyRevision          publishPolicyRevision operation\n  ... and 2 more")
+        print("\nFor help on a specific subcommand:")
+        print("  catocli mutation policy ztnaAlwaysOn <subcommand> -h")
+        return None
+
+    mutation_policy_ztnaAlwaysOn_subparsers = mutation_policy_ztnaAlwaysOn_parser.add_subparsers()
+    mutation_policy_ztnaAlwaysOn_parser.set_defaults(func=_show_mutation_policy_ztnaAlwaysOn_help)
+
+    mutation_policy_ztnaAlwaysOn_addRule_parser = mutation_policy_ztnaAlwaysOn_subparsers.add_parser('addRule', 
+            help='addRule() ztnaAlwaysOn operation', 
+            usage=get_help("mutation_policy_ztnaAlwaysOn_addRule"))
+
+    mutation_policy_ztnaAlwaysOn_addRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_ztnaAlwaysOn_addRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_ztnaAlwaysOn_addRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_ztnaAlwaysOn_addRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_ztnaAlwaysOn_addRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_ztnaAlwaysOn_addRule_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_ztnaAlwaysOn_addRule_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_ztnaAlwaysOn_addRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_ztnaAlwaysOn_addRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_ztnaAlwaysOn_addRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_ztnaAlwaysOn_addRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_ztnaAlwaysOn_addRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.ztnaAlwaysOn.addRule')
+
+    mutation_policy_ztnaAlwaysOn_updateRule_parser = mutation_policy_ztnaAlwaysOn_subparsers.add_parser('updateRule', 
+            help='updateRule() ztnaAlwaysOn operation', 
+            usage=get_help("mutation_policy_ztnaAlwaysOn_updateRule"))
+
+    mutation_policy_ztnaAlwaysOn_updateRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_ztnaAlwaysOn_updateRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_ztnaAlwaysOn_updateRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_ztnaAlwaysOn_updateRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_ztnaAlwaysOn_updateRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_ztnaAlwaysOn_updateRule_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_ztnaAlwaysOn_updateRule_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_ztnaAlwaysOn_updateRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_ztnaAlwaysOn_updateRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_ztnaAlwaysOn_updateRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_ztnaAlwaysOn_updateRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_ztnaAlwaysOn_updateRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.ztnaAlwaysOn.updateRule')
+
+    mutation_policy_ztnaAlwaysOn_removeRule_parser = mutation_policy_ztnaAlwaysOn_subparsers.add_parser('removeRule', 
+            help='removeRule() ztnaAlwaysOn operation', 
+            usage=get_help("mutation_policy_ztnaAlwaysOn_removeRule"))
+
+    mutation_policy_ztnaAlwaysOn_removeRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_ztnaAlwaysOn_removeRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_ztnaAlwaysOn_removeRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_ztnaAlwaysOn_removeRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_ztnaAlwaysOn_removeRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_ztnaAlwaysOn_removeRule_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_ztnaAlwaysOn_removeRule_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_ztnaAlwaysOn_removeRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_ztnaAlwaysOn_removeRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_ztnaAlwaysOn_removeRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_ztnaAlwaysOn_removeRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_ztnaAlwaysOn_removeRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.ztnaAlwaysOn.removeRule')
+
+    mutation_policy_ztnaAlwaysOn_moveRule_parser = mutation_policy_ztnaAlwaysOn_subparsers.add_parser('moveRule', 
+            help='moveRule() ztnaAlwaysOn operation', 
+            usage=get_help("mutation_policy_ztnaAlwaysOn_moveRule"))
+
+    mutation_policy_ztnaAlwaysOn_moveRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_ztnaAlwaysOn_moveRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_ztnaAlwaysOn_moveRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_ztnaAlwaysOn_moveRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_ztnaAlwaysOn_moveRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_ztnaAlwaysOn_moveRule_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_ztnaAlwaysOn_moveRule_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_ztnaAlwaysOn_moveRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_ztnaAlwaysOn_moveRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_ztnaAlwaysOn_moveRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_ztnaAlwaysOn_moveRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_ztnaAlwaysOn_moveRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.ztnaAlwaysOn.moveRule')
+
+    mutation_policy_ztnaAlwaysOn_addSection_parser = mutation_policy_ztnaAlwaysOn_subparsers.add_parser('addSection', 
+            help='addSection() ztnaAlwaysOn operation', 
+            usage=get_help("mutation_policy_ztnaAlwaysOn_addSection"))
+
+    mutation_policy_ztnaAlwaysOn_addSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_ztnaAlwaysOn_addSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_ztnaAlwaysOn_addSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_ztnaAlwaysOn_addSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_ztnaAlwaysOn_addSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_ztnaAlwaysOn_addSection_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_ztnaAlwaysOn_addSection_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_ztnaAlwaysOn_addSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_ztnaAlwaysOn_addSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_ztnaAlwaysOn_addSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_ztnaAlwaysOn_addSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_ztnaAlwaysOn_addSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.ztnaAlwaysOn.addSection')
+
+    mutation_policy_ztnaAlwaysOn_updateSection_parser = mutation_policy_ztnaAlwaysOn_subparsers.add_parser('updateSection', 
+            help='updateSection() ztnaAlwaysOn operation', 
+            usage=get_help("mutation_policy_ztnaAlwaysOn_updateSection"))
+
+    mutation_policy_ztnaAlwaysOn_updateSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_ztnaAlwaysOn_updateSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_ztnaAlwaysOn_updateSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_ztnaAlwaysOn_updateSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_ztnaAlwaysOn_updateSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_ztnaAlwaysOn_updateSection_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_ztnaAlwaysOn_updateSection_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_ztnaAlwaysOn_updateSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_ztnaAlwaysOn_updateSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_ztnaAlwaysOn_updateSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_ztnaAlwaysOn_updateSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_ztnaAlwaysOn_updateSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.ztnaAlwaysOn.updateSection')
+
+    mutation_policy_ztnaAlwaysOn_removeSection_parser = mutation_policy_ztnaAlwaysOn_subparsers.add_parser('removeSection', 
+            help='removeSection() ztnaAlwaysOn operation', 
+            usage=get_help("mutation_policy_ztnaAlwaysOn_removeSection"))
+
+    mutation_policy_ztnaAlwaysOn_removeSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_ztnaAlwaysOn_removeSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_ztnaAlwaysOn_removeSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_ztnaAlwaysOn_removeSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_ztnaAlwaysOn_removeSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_ztnaAlwaysOn_removeSection_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_ztnaAlwaysOn_removeSection_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_ztnaAlwaysOn_removeSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_ztnaAlwaysOn_removeSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_ztnaAlwaysOn_removeSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_ztnaAlwaysOn_removeSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_ztnaAlwaysOn_removeSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.ztnaAlwaysOn.removeSection')
+
+    mutation_policy_ztnaAlwaysOn_moveSection_parser = mutation_policy_ztnaAlwaysOn_subparsers.add_parser('moveSection', 
+            help='moveSection() ztnaAlwaysOn operation', 
+            usage=get_help("mutation_policy_ztnaAlwaysOn_moveSection"))
+
+    mutation_policy_ztnaAlwaysOn_moveSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_ztnaAlwaysOn_moveSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_ztnaAlwaysOn_moveSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_ztnaAlwaysOn_moveSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_ztnaAlwaysOn_moveSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_ztnaAlwaysOn_moveSection_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_ztnaAlwaysOn_moveSection_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_ztnaAlwaysOn_moveSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_ztnaAlwaysOn_moveSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_ztnaAlwaysOn_moveSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_ztnaAlwaysOn_moveSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_ztnaAlwaysOn_moveSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.ztnaAlwaysOn.moveSection')
+
+    mutation_policy_ztnaAlwaysOn_createPolicyRevision_parser = mutation_policy_ztnaAlwaysOn_subparsers.add_parser('createPolicyRevision', 
+            help='createPolicyRevision() ztnaAlwaysOn operation', 
+            usage=get_help("mutation_policy_ztnaAlwaysOn_createPolicyRevision"))
+
+    mutation_policy_ztnaAlwaysOn_createPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_ztnaAlwaysOn_createPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_ztnaAlwaysOn_createPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_ztnaAlwaysOn_createPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_ztnaAlwaysOn_createPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_ztnaAlwaysOn_createPolicyRevision_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_ztnaAlwaysOn_createPolicyRevision_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_ztnaAlwaysOn_createPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_ztnaAlwaysOn_createPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_ztnaAlwaysOn_createPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_ztnaAlwaysOn_createPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_ztnaAlwaysOn_createPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.ztnaAlwaysOn.createPolicyRevision')
+
+    mutation_policy_ztnaAlwaysOn_publishPolicyRevision_parser = mutation_policy_ztnaAlwaysOn_subparsers.add_parser('publishPolicyRevision', 
+            help='publishPolicyRevision() ztnaAlwaysOn operation', 
+            usage=get_help("mutation_policy_ztnaAlwaysOn_publishPolicyRevision"))
+
+    mutation_policy_ztnaAlwaysOn_publishPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_ztnaAlwaysOn_publishPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_ztnaAlwaysOn_publishPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_ztnaAlwaysOn_publishPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_ztnaAlwaysOn_publishPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_ztnaAlwaysOn_publishPolicyRevision_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_ztnaAlwaysOn_publishPolicyRevision_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_ztnaAlwaysOn_publishPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_ztnaAlwaysOn_publishPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_ztnaAlwaysOn_publishPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_ztnaAlwaysOn_publishPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_ztnaAlwaysOn_publishPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.ztnaAlwaysOn.publishPolicyRevision')
+
+    mutation_policy_ztnaAlwaysOn_discardPolicyRevision_parser = mutation_policy_ztnaAlwaysOn_subparsers.add_parser('discardPolicyRevision', 
+            help='discardPolicyRevision() ztnaAlwaysOn operation', 
+            usage=get_help("mutation_policy_ztnaAlwaysOn_discardPolicyRevision"))
+
+    mutation_policy_ztnaAlwaysOn_discardPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_ztnaAlwaysOn_discardPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_ztnaAlwaysOn_discardPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_ztnaAlwaysOn_discardPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_ztnaAlwaysOn_discardPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_ztnaAlwaysOn_discardPolicyRevision_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_ztnaAlwaysOn_discardPolicyRevision_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_ztnaAlwaysOn_discardPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_ztnaAlwaysOn_discardPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_ztnaAlwaysOn_discardPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_ztnaAlwaysOn_discardPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_ztnaAlwaysOn_discardPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.ztnaAlwaysOn.discardPolicyRevision')
+
+    mutation_policy_ztnaAlwaysOn_updatePolicy_parser = mutation_policy_ztnaAlwaysOn_subparsers.add_parser('updatePolicy', 
+            help='updatePolicy() ztnaAlwaysOn operation', 
+            usage=get_help("mutation_policy_ztnaAlwaysOn_updatePolicy"))
+
+    mutation_policy_ztnaAlwaysOn_updatePolicy_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_ztnaAlwaysOn_updatePolicy_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_ztnaAlwaysOn_updatePolicy_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_ztnaAlwaysOn_updatePolicy_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_ztnaAlwaysOn_updatePolicy_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_ztnaAlwaysOn_updatePolicy_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_ztnaAlwaysOn_updatePolicy_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_ztnaAlwaysOn_updatePolicy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_ztnaAlwaysOn_updatePolicy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_ztnaAlwaysOn_updatePolicy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_ztnaAlwaysOn_updatePolicy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_ztnaAlwaysOn_updatePolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.ztnaAlwaysOn.updatePolicy')

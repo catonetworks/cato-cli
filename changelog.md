@@ -152,3 +152,7 @@
 - Update parsers to support --json-file for json payload to support larger input payloads
 - Added custom command for categories, added automated tests
 - Added support for tab auto-complete
+
+## 3.0.43 (2025-12-10)
+- Updated to latest schema adding support for clientConnectivity, ztnaAlwaysOn, and remotePortFoward.  Updated test suite.
+

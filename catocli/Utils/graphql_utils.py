@@ -431,189 +431,56 @@ def generateGraphqlPayload(variables_obj, operation, operation_name, renderArgsA
 def postProcessBareComplexFields(field_selection_str, base_indent):
     """Post-process the generated field selection to expand any bare complex fields.
     
-    ENHANCED VERSION: Uses dynamic introspection discovery instead of hardcoded field lists.
-    This function scans the field selection string for fields that appear as bare fields
-    but actually need subfield selections based on introspection data.
+    DISABLED: This function was causing query corruption by incorrectly matching scalar fields
+    (like 'id', 'name', 'site') to complex types (like 'Story') that happen to have fields
+    with the same name. This resulted in malformed queries with incorrect nested structures.
     
-    This new approach:
-    1. Dynamically discovers all available GraphQL types from introspection
-    2. Attempts to match bare fields to their corresponding types
-    3. Expands any fields that need subfield selections
-    4. Works like the JavaScript version without hardcoded limitations
+    The proper approach is to rely on the schema-based field expansion in renderArgsAndFields,
+    which has accurate type information from the parsed schema, rather than heuristic matching
+    against introspection data.
     
     Args:
         field_selection_str: The generated field selection string
         base_indent: The base indentation level
     
     Returns:
-        Field selection string with all complex fields properly expanded
+        Field selection string unchanged (post-processing disabled)
     """
-    try:
-        introspection_types = loadIntrospectionTypes()
-    except:
-        return field_selection_str  # Return unchanged if introspection fails
-    
-    if not introspection_types:
-        return field_selection_str
-    
-    lines = field_selection_str.split('\n')
-    processed_lines = []
-    i = 0
-    
-    while i < len(lines):
-        line = lines[i]
-        line_expanded = False
-        
-        # Extract the field name from the line (handle aliases too)
-        stripped_line = line.strip()
-        if stripped_line and not stripped_line.startswith('#') and not stripped_line.startswith('...') and '{' not in stripped_line and '}' not in stripped_line:
-            # Extract field name (handle aliases like "fieldAlias: fieldName")
-            field_name = stripped_line
-            if ':' in stripped_line:
-                # This is an alias, get the actual field name after the colon
-                field_name = stripped_line.split(':', 1)[1].strip()
-            
-            # Only process if this looks like a bare field (no opening brace)
-            if field_name and not field_name.endswith(':'):
-                # Try to find a matching type in introspection data
-                candidate_types = findCandidateTypesForField(field_name, introspection_types)
-                
-                # Determine indentation
-                indent_match = len(line) - len(line.lstrip())
-                current_indent = '\t' * (indent_match // 4)  # Convert spaces to tabs
-                
-                # Try each candidate type
-                expansion = ""
-                for candidate_type in candidate_types:
-                    if candidate_type in introspection_types:
-                        type_def = introspection_types[candidate_type]
-                        if type_def.get('kind') in ['OBJECT', 'INTERFACE', 'UNION']:
-                            expansion = expandFieldWithIntrospection(field_name, candidate_type, current_indent)
-                            if expansion:
-                                break
-                
-                # If we found an expansion, replace the bare field
-                if expansion:
-                    # Create the expanded field (preserve any alias)
-                    if ':' in stripped_line:
-                        # Preserve the alias format
-                        alias_part = stripped_line.split(':', 1)[0].strip()
-                        expanded_field = f"{current_indent}{alias_part}: {field_name} {{\n{expansion}{current_indent}}}\n"
-                    else:
-                        expanded_field = f"{current_indent}{field_name} {{\n{expansion}{current_indent}}}\n"
-                    processed_lines.append(expanded_field)
-                    line_expanded = True
-        
-        # If line wasn't expanded, keep it as is
-        if not line_expanded:
-            processed_lines.append(line + '\n' if not line.endswith('\n') else line)
-        
-        i += 1
-    
-    return ''.join(processed_lines).rstrip() + ('\n' if field_selection_str.endswith('\n') else '')
+    # DISABLED: Return the field selection unchanged to prevent query corruption
+    # The heuristic type matching in findCandidateTypesForField was incorrectly
+    # expanding scalar fields like 'id' with complex type definitions from unrelated types
+    return field_selection_str
 
 
 def findCandidateTypesForField(field_name, introspection_types):
-    """Dynamically find candidate GraphQL types for a given field name.
+    """Find candidate GraphQL types for a given field name.
     
-    This function searches through all available GraphQL types to find potential
-    matches for a field name, using various heuristics similar to how the JavaScript
-    version dynamically discovers types.
+    SIMPLIFIED VERSION: This function was causing query corruption by being too aggressive
+    in matching field names to types. For example, it would match the scalar field 'id' 
+    to any type that has an 'id' field (like Story), then expand 'id' with Story's fields.
+    
+    The proper type information should come from the parsed schema in renderArgsAndFields,
+    not from heuristic matching. This function is now simplified to only do safe, exact matches.
     
     Args:
         field_name: The field name to find types for
         introspection_types: Dictionary of all GraphQL types from introspection
     
     Returns:
-        List of candidate type names that could match this field
+        List of candidate type names that could match this field (now returns empty to be safe)
     """
-    candidates = []
-    
-    # Strategy 1: Exact type name match (e.g., field "user" -> type "User")
-    exact_match = field_name.capitalize()
-    if exact_match in introspection_types:
-        candidates.append(exact_match)
-    
-    # Strategy 2: Common suffixes for field-to-type mapping
-    suffixes = ['Ref', 'Details', 'Data', 'Info', 'Type', 'Event', 'Alert', 'Connection']
-    for suffix in suffixes:
-        candidate = field_name.capitalize() + suffix
-        if candidate in introspection_types:
-            candidates.append(candidate)
-    
-    # Strategy 3: Search for types that contain the field name
-    for type_name in introspection_types:
-        if field_name.lower() in type_name.lower() and type_name not in candidates:
-            # Check if this type actually makes sense (has fields)
-            type_def = introspection_types[type_name]
-            if type_def.get('kind') in ['OBJECT', 'INTERFACE'] and type_def.get('fields'):
-                candidates.append(type_name)
-    
-    # Strategy 4: Handle plurals (e.g., "events" -> "Event")
-    if field_name.endswith('s') and len(field_name) > 1:
-        singular = field_name[:-1]
-        singular_candidates = findCandidateTypesForField(singular, introspection_types)
-        candidates.extend(singular_candidates)
-    
-    # Strategy 5: Handle camelCase to PascalCase (e.g., "osDetails" -> "OsDetails")
-    if any(c.isupper() for c in field_name[1:]):
-        pascal_case = field_name[0].upper() + field_name[1:]
-        if pascal_case in introspection_types:
-            candidates.append(pascal_case)
-    
-    # Strategy 6: Advanced pattern matching based on field name structure
-    # Handle compound field names (e.g., "incidentTimeline" -> "IncidentTimeline", "TimelineEvent", etc.)
-    if len(field_name) > 3:  # Only for meaningful field names
-        # Try breaking compound words and creating type names
-        import re
-        # Split on capital letters to handle camelCase
-        words = re.findall(r'[A-Z]?[a-z]+|[A-Z]+(?=[A-Z][a-z]|\b)', field_name)
-        if len(words) > 1:
-            # Try different combinations
-            # Full compound (e.g., "incidentTimeline" -> "IncidentTimeline")
-            compound = ''.join(word.capitalize() for word in words)
-            if compound not in candidates and compound in introspection_types:
-                candidates.append(compound)
-            
-            # Last word as type (e.g., "networkTimeline" -> "Timeline")
-            last_word = words[-1].capitalize()
-            if last_word not in candidates and last_word in introspection_types:
-                candidates.append(last_word)
-            
-            # First word as type (e.g., "incidentFlow" -> "Incident")
-            first_word = words[0].capitalize()
-            if first_word not in candidates and first_word in introspection_types:
-                candidates.append(first_word)
-    
-    # Strategy 7: JavaScript-like dynamic discovery - search all types for fields that return this field name
-    # This mimics how the JavaScript version dynamically discovers field relationships
-    for type_name, type_def in introspection_types.items():
-        if type_def.get('kind') in ['OBJECT', 'INTERFACE'] and type_def.get('fields'):
-            for field_def in type_def['fields']:
-                if field_def['name'] == field_name:
-                    # Found a type that has a field with this name, get the field's type
-                    field_type = field_def.get('type', {})
-                    
-                    # Navigate through type wrappers to find the core type
-                    current_type = field_type
-                    while current_type and current_type.get('ofType'):
-                        current_type = current_type['ofType']
-                    
-                    if current_type and current_type.get('name'):
-                        candidate_type = current_type['name']
-                        if candidate_type not in candidates and candidate_type in introspection_types:
-                            # Verify this type has complex fields (like JavaScript logic)
-                            candidate_def = introspection_types[candidate_type]
-                            if candidate_def.get('kind') in ['OBJECT', 'INTERFACE', 'UNION']:
-                                candidates.append(candidate_type)
-    
-    # Remove duplicates while preserving order
-    unique_candidates = []
-    for candidate in candidates:
-        if candidate not in unique_candidates:
-            unique_candidates.append(candidate)
-    
-    return unique_candidates
+    # DISABLED: Return empty list to prevent incorrect type matching
+    # The heuristic strategies were causing query corruption by matching
+    # scalar fields to unrelated complex types
+    #
+    # Examples of problems this caused:
+    # - 'id' field matched to Story type (which has an 'id' field)
+    # - 'site' field matched to SiteRef type incorrectly
+    # - 'community' field matched to unrelated types with 'from' and 'to' fields
+    #
+    # The correct approach is to use the type information from the schema definition
+    # passed to renderArgsAndFields, not heuristic matching against introspection data.
+    return []
 
 
 def expandFieldWithIntrospection(field_name, field_type_name, indent, already_expanded_fields=None, max_depth=4):

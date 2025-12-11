@@ -1,486 +1,29 @@
 query accountSnapshot ( $siteIDs:[ID!] $userIDs:[ID!]) {
 	accountSnapshot ( ) {
-id {
-	id
-	status
-	description
-	firstSignal
-	lastSignal
-	engineType
-	vendor
-	producer
-	producerName
-	connectionType
-	indication
-	queryName
-	source
-	criticality
-	ticket
-	research
-	siteName
-	storyDuration
-	analystFeedback {
-		verdict
-		severity
-		threatClassification
-		additionalInfo
-		threatType {
-			name
-			recommendedAction
-			details
-		}
-	}
-	site {
 		id
-		name
-	}
-	user {
-		id
-		name
-	}
-	similarStoriesData {
-		storyId
-		threatTypeName
-		verdict
-		threatClassification
-		similarityPercentage
-		indication
-	}
-	networkIncidentTimeline {
-		description
-		created
-		validated
-		eventType
-		incidentId
-		networkEventSource
-		eventIds
-		acknowledged
-		linkId
-		linkName
-		linkConfigPrecedence
-		linkStatus
-		linkConfigBandwidth
-		deviceConfigHaRole
-		deviceHaRoleState
-		socketSerialId
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		linkQualityIssue {
-			issueType
-			direction
-			current
-			threshold
-		}
-	}
-	bgpConnection {
-		connectionName
-		peerIp
-		peerAsn
-		catoIp
-		catoAsn
-	}
-	ilmmDetails {
-		linkDetails {
-			description
-			linkId
-			ispLinkId
-			comments
-			onboardingStatus
-			activeLicense
-		}
-		ispDetails {
-			name
-			description
-			ispAccountId
-			supportEmail
-			supportPhone
-			countryCode
-			loaFile {
-				fileName
-				fileHash
-				uploadedAt
-			}
-		}
-		contacts {
-			name
-			phone
-			email
-		}
-	}
-}
 		sites ( siteIDs:$siteIDs  )  {
-id {
-	id
-	status
-	description
-	firstSignal
-	lastSignal
-	engineType
-	vendor
-	producer
-	producerName
-	connectionType
-	indication
-	queryName
-	source
-	criticality
-	ticket
-	research
-	siteName
-	storyDuration
-	analystFeedback {
-		verdict
-		severity
-		threatClassification
-		additionalInfo
-		threatType {
-			name
-			recommendedAction
-			details
-		}
-	}
-	site {
-		id
-		name
-	}
-	user {
-		id
-		name
-	}
-	similarStoriesData {
-		storyId
-		threatTypeName
-		verdict
-		threatClassification
-		similarityPercentage
-		indication
-	}
-	networkIncidentTimeline {
-		description
-		created
-		validated
-		eventType
-		incidentId
-		networkEventSource
-		eventIds
-		acknowledged
-		linkId
-		linkName
-		linkConfigPrecedence
-		linkStatus
-		linkConfigBandwidth
-		deviceConfigHaRole
-		deviceHaRoleState
-		socketSerialId
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		linkQualityIssue {
-			issueType
-			direction
-			current
-			threshold
-		}
-	}
-	bgpConnection {
-		connectionName
-		peerIp
-		peerAsn
-		catoIp
-		catoAsn
-	}
-	ilmmDetails {
-		linkDetails {
-			description
-			linkId
-			ispLinkId
-			comments
-			onboardingStatus
-			activeLicense
-		}
-		ispDetails {
-			name
-			description
-			ispAccountId
-			supportEmail
-			supportPhone
-			countryCode
-			loaFile {
-				fileName
-				fileHash
-				uploadedAt
-			}
-		}
-		contacts {
-			name
-			phone
-			email
-		}
-	}
-}
+			id
 			protoId
 			connectivityStatus
 			haStatus {
 				readiness
 				wanConnectivity
 				keepalive
-	socketVersion {
-		primaryVersion
-		secondaryVersion
-	}
+				socketVersion
 			}
 			operationalStatus
-lastConnected {
-	lastConnectedDate
-}
+			lastConnected
 			connectedSince
 			popName
 			devices {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
+				id
 				name
 				identifier
-	connected {
-		lastConnectedDate
-	}
+				connected
 				haRole
 				interfaces {
-	connected {
-		lastConnectedDate
-	}
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
+					connected
+					id
 					name
 					physicalPort
 					naturalOrder
@@ -491,145 +34,18 @@ lastConnected {
 					tunnelUptime
 					tunnelRemoteIP
 					tunnelRemoteIPInfo {
-	ip {
-		siteId
-	}
+						ip
 						countryCode
 						countryName
 						city
-	state {
-		id
-		up
-		mediaIn
-		linkSpeed
-		duplex
-		hasAddress
-		hasInternet
-		hasTunnel
-	}
+						state
 						provider
 						latitude
 						longitude
 					}
-	type {
-		name
-		recommendedAction
-		details
-	}
+					type
 					info {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
+						id
 						name
 						upstreamBandwidth
 						downstreamBandwidth
@@ -658,9 +74,7 @@ lastConnected {
 					}
 					bgpState
 				}
-	lastConnected {
-		lastConnectedDate
-	}
+				lastConnected
 				lastDuration
 				connectedSince
 				lastPopID
@@ -669,296 +83,33 @@ lastConnected {
 					duration
 					interfaceName
 					deviceName
-	lastConnected {
-		lastConnectedDate
-	}
+					lastConnected
 					popName
-	remoteIP {
-		ip
-		subnet
-		ipRange {
-			from
-			to
-		}
-		globalIpRange {
-			id
-			name
-		}
-	}
+					remoteIP
 					remoteIPInfo {
-	ip {
-		siteId
-	}
+						ip
 						countryCode
 						countryName
 						city
-	state {
-		id
-		up
-		mediaIn
-		linkSpeed
-		duplex
-		hasAddress
-		hasInternet
-		hasTunnel
-	}
+						state
 						provider
 						latitude
 						longitude
 					}
 				}
-	type {
-		name
-		recommendedAction
-		details
-	}
+				type
 				deviceUptime
 				socketInfo {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
+					id
 					serial
 					isPrimary
-	platform {
-		platform
-		versions
-	}
-	version {
-		items {
-			platform
-			versions
-		}
-	}
+					platform
+					version
 					versionUpdateTime
 				}
 				interfacesLinkState {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
-	up {
-		id
-		name
-	}
+					id
+					up
 					mediaIn
 					linkSpeed
 					duplex
@@ -968,267 +119,28 @@ lastConnected {
 				}
 				osType
 				osVersion
-	version {
-		items {
-			platform
-			versions
-		}
-	}
+				version
 				versionNumber
-	releaseGroup {
-		id
-		name
-		description
-		membersCount
-		audit {
-			updatedTime
-			updatedBy {
-				__typename
-				... on AdminRef {
-					id
-					name
-				}
-				... on ApiKeyRef {
-					id
-					name
-				}
-			}
-		}
-		members {
-			items {
-				id
-				name
-				type
-			}
-			paging {
-				total
-			}
-		}
-		membersCountPerType {
-			type
-			membersCount
-		}
-	}
+				releaseGroup
 				mfaExpirationTime
 				mfaCreationTime
 				internalIP
 			}
 			info {
 				name
-	type {
-		name
-		recommendedAction
-		details
-	}
+				type
 				description
 				countryCode
 				region
 				countryName
 				countryStateName
 				cityName
-	address {
-		createFromFile {
-			container {
-				id
-				name
-				description
-				size
-				audit {
-					createdAt
-					createdBy
-					lastModifiedBy
-					lastModifiedAt
-				}
-			}
-		}
-		updateFromFile {
-			container {
-				id
-				name
-				description
-				size
-				audit {
-					createdAt
-					createdBy
-					lastModifiedBy
-					lastModifiedAt
-				}
-			}
-		}
-		addValues {
-			container {
-				id
-				name
-				description
-				size
-				audit {
-					createdAt
-					createdBy
-					lastModifiedBy
-					lastModifiedAt
-				}
-			}
-		}
-		removeValues {
-			container {
-				id
-				name
-				description
-				size
-				audit {
-					createdAt
-					createdBy
-					lastModifiedBy
-					lastModifiedAt
-				}
-			}
-		}
-		createFromList {
-			container {
-				id
-				name
-				description
-				size
-				audit {
-					createdAt
-					createdBy
-					lastModifiedBy
-					lastModifiedAt
-				}
-			}
-		}
-		updateFromList {
-			container {
-				id
-				name
-				description
-				size
-				audit {
-					createdAt
-					createdBy
-					lastModifiedBy
-					lastModifiedAt
-				}
-			}
-		}
-	}
+				address
 				isHA
 				connType
 				creationTime
 				interfaces {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
+					id
 					name
 					upstreamBandwidth
 					downstreamBandwidth
@@ -1238,148 +150,17 @@ lastConnected {
 					wanRole
 				}
 				sockets {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
+					id
 					serial
 					isPrimary
-	platform {
-		platform
-		versions
-	}
-	version {
-		items {
-			platform
-			versions
-		}
-	}
+					platform
+					version
 					versionUpdateTime
 				}
 				ipsec {
 					isPrimary
 					catoIP
-	remoteIP {
-		ip
-		subnet
-		ipRange {
-			from
-			to
-		}
-		globalIpRange {
-			id
-			name
-		}
-	}
+					remoteIP
 					ikeVersion
 					tunnelConfig {
 						tunnelId
@@ -1388,24 +169,7 @@ lastConnected {
 					}
 				}
 			}
-hostCount {
-	data
-	label
-	sum
-	units
-	info
-	dimensions {
-		value
-		label
-	}
-	key {
-		measureFieldName
-		dimensions {
-			value
-			fieldName
-		}
-	}
-}
+			hostCount
 			altWanStatus
 			degradedStatus {
 				isDegraded
@@ -1467,165 +231,24 @@ hostCount {
 			}
 		}
 		users ( userIDs:$userIDs  )  {
-id {
-	id
-	status
-	description
-	firstSignal
-	lastSignal
-	engineType
-	vendor
-	producer
-	producerName
-	connectionType
-	indication
-	queryName
-	source
-	criticality
-	ticket
-	research
-	siteName
-	storyDuration
-	analystFeedback {
-		verdict
-		severity
-		threatClassification
-		additionalInfo
-		threatType {
-			name
-			recommendedAction
-			details
-		}
-	}
-	site {
-		id
-		name
-	}
-	user {
-		id
-		name
-	}
-	similarStoriesData {
-		storyId
-		threatTypeName
-		verdict
-		threatClassification
-		similarityPercentage
-		indication
-	}
-	networkIncidentTimeline {
-		description
-		created
-		validated
-		eventType
-		incidentId
-		networkEventSource
-		eventIds
-		acknowledged
-		linkId
-		linkName
-		linkConfigPrecedence
-		linkStatus
-		linkConfigBandwidth
-		deviceConfigHaRole
-		deviceHaRoleState
-		socketSerialId
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		linkQualityIssue {
-			issueType
-			direction
-			current
-			threshold
-		}
-	}
-	bgpConnection {
-		connectionName
-		peerIp
-		peerAsn
-		catoIp
-		catoAsn
-	}
-	ilmmDetails {
-		linkDetails {
-			description
-			linkId
-			ispLinkId
-			comments
-			onboardingStatus
-			activeLicense
-		}
-		ispDetails {
-			name
-			description
-			ispAccountId
-			supportEmail
-			supportPhone
-			countryCode
-			loaFile {
-				fileName
-				fileHash
-				uploadedAt
-			}
-		}
-		contacts {
-			name
-			phone
-			email
-		}
-	}
-}
+			id
 			connectivityStatus
 			operationalStatus
 			name
 			deviceName
 			uptime
-lastConnected {
-	lastConnectedDate
-}
-version {
-	items {
-		platform
-		versions
-	}
-}
+			lastConnected
+			version
 			versionNumber
 			popID
 			popName
-remoteIP {
-	ip
-	subnet
-	ipRange {
-		from
-		to
-	}
-	globalIpRange {
-		id
-		name
-	}
-}
+			remoteIP
 			remoteIPInfo {
-	ip {
-		siteId
-	}
+				ip
 				countryCode
 				countryName
 				city
-	state {
-		id
-		up
-		mediaIn
-		linkSpeed
-		duplex
-		hasAddress
-		hasInternet
-		hasTunnel
-	}
+				state
 				provider
 				latitude
 				longitude
@@ -1634,242 +257,14 @@ remoteIP {
 			osType
 			osVersion
 			devices {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
+				id
 				name
 				identifier
-	connected {
-		lastConnectedDate
-	}
+				connected
 				haRole
 				interfaces {
-	connected {
-		lastConnectedDate
-	}
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
+					connected
+					id
 					name
 					physicalPort
 					naturalOrder
@@ -1880,145 +275,18 @@ remoteIP {
 					tunnelUptime
 					tunnelRemoteIP
 					tunnelRemoteIPInfo {
-	ip {
-		siteId
-	}
+						ip
 						countryCode
 						countryName
 						city
-	state {
-		id
-		up
-		mediaIn
-		linkSpeed
-		duplex
-		hasAddress
-		hasInternet
-		hasTunnel
-	}
+						state
 						provider
 						latitude
 						longitude
 					}
-	type {
-		name
-		recommendedAction
-		details
-	}
+					type
 					info {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
+						id
 						name
 						upstreamBandwidth
 						downstreamBandwidth
@@ -2047,9 +315,7 @@ remoteIP {
 					}
 					bgpState
 				}
-	lastConnected {
-		lastConnectedDate
-	}
+				lastConnected
 				lastDuration
 				connectedSince
 				lastPopID
@@ -2058,296 +324,33 @@ remoteIP {
 					duration
 					interfaceName
 					deviceName
-	lastConnected {
-		lastConnectedDate
-	}
+					lastConnected
 					popName
-	remoteIP {
-		ip
-		subnet
-		ipRange {
-			from
-			to
-		}
-		globalIpRange {
-			id
-			name
-		}
-	}
+					remoteIP
 					remoteIPInfo {
-	ip {
-		siteId
-	}
+						ip
 						countryCode
 						countryName
 						city
-	state {
-		id
-		up
-		mediaIn
-		linkSpeed
-		duplex
-		hasAddress
-		hasInternet
-		hasTunnel
-	}
+						state
 						provider
 						latitude
 						longitude
 					}
 				}
-	type {
-		name
-		recommendedAction
-		details
-	}
+				type
 				deviceUptime
 				socketInfo {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
+					id
 					serial
 					isPrimary
-	platform {
-		platform
-		versions
-	}
-	version {
-		items {
-			platform
-			versions
-		}
-	}
+					platform
+					version
 					versionUpdateTime
 				}
 				interfacesLinkState {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
-	up {
-		id
-		name
-	}
+					id
+					up
 					mediaIn
 					linkSpeed
 					duplex
@@ -2357,47 +360,9 @@ remoteIP {
 				}
 				osType
 				osVersion
-	version {
-		items {
-			platform
-			versions
-		}
-	}
+				version
 				versionNumber
-	releaseGroup {
-		id
-		name
-		description
-		membersCount
-		audit {
-			updatedTime
-			updatedBy {
-				__typename
-				... on AdminRef {
-					id
-					name
-				}
-				... on ApiKeyRef {
-					id
-					name
-				}
-			}
-		}
-		members {
-			items {
-				id
-				name
-				type
-			}
-			paging {
-				total
-			}
-		}
-		membersCountPerType {
-			type
-			membersCount
-		}
-	}
+				releaseGroup
 				mfaExpirationTime
 				mfaCreationTime
 				internalIP
@@ -2405,10 +370,7 @@ remoteIP {
 			connectedInOffice
 			info {
 				name
-	status {
-		rawStatus
-		status
-	}
+				status
 				email
 				creationTime
 				phoneNumber
@@ -2419,39 +381,15 @@ remoteIP {
 				duration
 				interfaceName
 				deviceName
-	lastConnected {
-		lastConnectedDate
-	}
+				lastConnected
 				popName
-	remoteIP {
-		ip
-		subnet
-		ipRange {
-			from
-			to
-		}
-		globalIpRange {
-			id
-			name
-		}
-	}
+				remoteIP
 				remoteIPInfo {
-	ip {
-		siteId
-	}
+					ip
 					countryCode
 					countryName
 					city
-	state {
-		id
-		up
-		mediaIn
-		linkSpeed
-		duplex
-		hasAddress
-		hasInternet
-		hasTunnel
-	}
+					state
 					provider
 					latitude
 					longitude

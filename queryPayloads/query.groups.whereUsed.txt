@@ -1,73 +1,16 @@
 query groupsWhereUsed ( $accountId:ID! $groupRefInput:GroupRefInput!) {
 	groups ( accountId:$accountId ) {
 		whereUsed ( input:$groupRefInput  )  {
-used {
-	used
-	usage {
-		type
-		field
-	}
-	invalidMemberTypes {
-		type
-		scope {
-			type
-			field
-		}
-	}
-}
+			used
 			usage {
-	type {
-		name
-		recommendedAction
-		details
-	}
-	field {
-		name
-		value {
-			__typename
-			... on StringValue {
-				string
-			}
-			... on DateValue {
-				date
-			}
-			... on Entity {
-				id
-				name
 				type
-			}
-		}
-	}
+				field
 			}
 			invalidMemberTypes {
-	type {
-		name
-		recommendedAction
-		details
-	}
-				scope {
-	type {
-		name
-		recommendedAction
-		details
-	}
-	field {
-		name
-		value {
-			__typename
-			... on StringValue {
-				string
-			}
-			... on DateValue {
-				date
-			}
-			... on Entity {
-				id
-				name
 				type
-			}
-		}
-	}
+				scope {
+					type
+					field
 				}
 			}
 		}

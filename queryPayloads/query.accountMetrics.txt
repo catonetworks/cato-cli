@@ -1,265 +1,11 @@
 query accountMetrics ( $timeFrame:TimeFrame! $groupInterfaces:Boolean $groupDevices:Boolean $siteIDs:[ID!] $toRate:Boolean $buckets:Int $labels:[TimeseriesMetricType!] $perSecond:Boolean $withMissingData:Boolean $useDefaultSizeBucket:Boolean $types:[String!] $userIDs:[ID!]) {
 	accountMetrics ( timeFrame:$timeFrame groupInterfaces:$groupInterfaces groupDevices:$groupDevices ) {
-id {
-	id
-	status
-	description
-	firstSignal
-	lastSignal
-	engineType
-	vendor
-	producer
-	producerName
-	connectionType
-	indication
-	queryName
-	source
-	criticality
-	ticket
-	research
-	siteName
-	storyDuration
-	analystFeedback {
-		verdict
-		severity
-		threatClassification
-		additionalInfo
-		threatType {
-			name
-			recommendedAction
-			details
-		}
-	}
-	site {
 		id
-		name
-	}
-	user {
-		id
-		name
-	}
-	similarStoriesData {
-		storyId
-		threatTypeName
-		verdict
-		threatClassification
-		similarityPercentage
-		indication
-	}
-	networkIncidentTimeline {
-		description
-		created
-		validated
-		eventType
-		incidentId
-		networkEventSource
-		eventIds
-		acknowledged
-		linkId
-		linkName
-		linkConfigPrecedence
-		linkStatus
-		linkConfigBandwidth
-		deviceConfigHaRole
-		deviceHaRoleState
-		socketSerialId
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		linkQualityIssue {
-			issueType
-			direction
-			current
-			threshold
-		}
-	}
-	bgpConnection {
-		connectionName
-		peerIp
-		peerAsn
-		catoIp
-		catoAsn
-	}
-	ilmmDetails {
-		linkDetails {
-			description
-			linkId
-			ispLinkId
-			comments
-			onboardingStatus
-			activeLicense
-		}
-		ispDetails {
-			name
-			description
-			ispAccountId
-			supportEmail
-			supportPhone
-			countryCode
-			loaFile {
-				fileName
-				fileHash
-				uploadedAt
-			}
-		}
-		contacts {
-			name
-			phone
-			email
-		}
-	}
-}
-from {
-	container {
-		id
-		name
-		description
-		size
-		audit {
-			createdAt
-			createdBy
-			lastModifiedBy
-			lastModifiedAt
-		}
-	}
-}
-to {
-	comment {
-		id
-		createdAt
-		text
-		actor {
-			__typename
-			... on AdminRef {
-				id
-				name
-			}
-			... on ApiKeyRef {
-				id
-				name
-			}
-		}
-	}
-}
+		from
+		to
 		granularity
 		sites ( siteIDs:$siteIDs  )  {
-id {
-	id
-	status
-	description
-	firstSignal
-	lastSignal
-	engineType
-	vendor
-	producer
-	producerName
-	connectionType
-	indication
-	queryName
-	source
-	criticality
-	ticket
-	research
-	siteName
-	storyDuration
-	analystFeedback {
-		verdict
-		severity
-		threatClassification
-		additionalInfo
-		threatType {
-			name
-			recommendedAction
-			details
-		}
-	}
-	site {
-		id
-		name
-	}
-	user {
-		id
-		name
-	}
-	similarStoriesData {
-		storyId
-		threatTypeName
-		verdict
-		threatClassification
-		similarityPercentage
-		indication
-	}
-	networkIncidentTimeline {
-		description
-		created
-		validated
-		eventType
-		incidentId
-		networkEventSource
-		eventIds
-		acknowledged
-		linkId
-		linkName
-		linkConfigPrecedence
-		linkStatus
-		linkConfigBandwidth
-		deviceConfigHaRole
-		deviceHaRoleState
-		socketSerialId
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		linkQualityIssue {
-			issueType
-			direction
-			current
-			threshold
-		}
-	}
-	bgpConnection {
-		connectionName
-		peerIp
-		peerAsn
-		catoIp
-		catoAsn
-	}
-	ilmmDetails {
-		linkDetails {
-			description
-			linkId
-			ispLinkId
-			comments
-			onboardingStatus
-			activeLicense
-		}
-		ispDetails {
-			name
-			description
-			ispAccountId
-			supportEmail
-			supportPhone
-			countryCode
-			loaFile {
-				fileName
-				fileHash
-				uploadedAt
-			}
-		}
-		contacts {
-			name
-			phone
-			email
-		}
-	}
-}
+			id
 			interfaces {
 				metrics ( toRate:$toRate  )  {
 					duration
@@ -278,60 +24,9 @@ id {
 					packetsDiscardedDownstream
 					packetsDiscardedUpstream
 					rtt
-	hostCount {
-		data
-		label
-		sum
-		units
-		info
-		dimensions {
-			value
-			label
-		}
-		key {
-			measureFieldName
-			dimensions {
-				value
-				fieldName
-			}
-		}
-	}
-	hostLimit {
-		data
-		label
-		sum
-		units
-		info
-		dimensions {
-			value
-			label
-		}
-		key {
-			measureFieldName
-			dimensions {
-				value
-				fieldName
-			}
-		}
-	}
-	flowCount {
-		data
-		label
-		sum
-		units
-		info
-		dimensions {
-			value
-			label
-		}
-		key {
-			measureFieldName
-			dimensions {
-				value
-				fieldName
-			}
-		}
-	}
+					hostCount
+					hostLimit
+					flowCount
 				}
 				name
 				timeseries ( buckets:$buckets  labels:$labels  )  {
@@ -339,269 +34,53 @@ id {
 					label
 					dimensions {
 						label
-	value {
-		__typename
-		... on StringValue {
-			string
-		}
-		... on DateValue {
-			date
-		}
-		... on Entity {
-			id
-			name
-			type
-		}
-	}
+						value
 					}
 					key {
 						measureFieldName
 						dimensions {
 							fieldName
-	value {
-		__typename
-		... on StringValue {
-			string
-		}
-		... on DateValue {
-			date
-		}
-		... on Entity {
-			id
-			name
-			type
-		}
-	}
+							value
 						}
 					}
-	sum {
-		id
-		route
-		community {
-			from
-			to
-		}
-	}
-	units {
-		id
-		predicate
-		community {
-			from
-			to
-		}
-	}
-	info {
-		name
-		email
-	}
+					sum
+					units
+					info
 				}
 				annotations ( types:$types  )  {
-	time {
-		createdAt
-		description
-		type
-		context
-		descriptions
-		category
-		additionalInfo
-		analystInfo {
-			name
-			email
-		}
-	}
+					time
 					label
 					shortLabel
-	type {
-		name
-		recommendedAction
-		details
-	}
+					type
 				}
 				periods {
 					duration
 					title
-	type {
-		name
-		recommendedAction
-		details
-	}
+					type
 				}
 				remoteIPInfo {
-	ip {
-		siteId
-	}
+					ip
 					countryCode
 					countryName
 					city
-	state {
-		id
-		up
-		mediaIn
-		linkSpeed
-		duplex
-		hasAddress
-		hasInternet
-		hasTunnel
-	}
+					state
 					provider
 					latitude
 					longitude
 				}
-	remoteIP {
-		ip
-		subnet
-		ipRange {
-			from
-			to
-		}
-		globalIpRange {
-			id
-			name
-		}
-	}
+				remoteIP
 				socketInfo {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
+					id
 					serial
 					isPrimary
-	platform {
-		platform
-		versions
-	}
-	version {
-		items {
-			platform
-			versions
-		}
-	}
+					platform
+					version
 					versionUpdateTime
 				}
 				ipsecInfo {
 					isPrimary
 					catoIP
-	remoteIP {
-		ip
-		subnet
-		ipRange {
-			from
-			to
-		}
-		globalIpRange {
-			id
-			name
-		}
-	}
+					remoteIP
 					ikeVersion
 					tunnelConfig {
 						tunnelId
@@ -610,119 +89,7 @@ id {
 					}
 				}
 				interfaceInfo {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
+					id
 					name
 					upstreamBandwidth
 					downstreamBandwidth
@@ -749,278 +116,26 @@ id {
 				packetsDiscardedDownstream
 				packetsDiscardedUpstream
 				rtt
-	hostCount {
-		data
-		label
-		sum
-		units
-		info
-		dimensions {
-			value
-			label
-		}
-		key {
-			measureFieldName
-			dimensions {
-				value
-				fieldName
-			}
-		}
-	}
-	hostLimit {
-		data
-		label
-		sum
-		units
-		info
-		dimensions {
-			value
-			label
-		}
-		key {
-			measureFieldName
-			dimensions {
-				value
-				fieldName
-			}
-		}
-	}
-	flowCount {
-		data
-		label
-		sum
-		units
-		info
-		dimensions {
-			value
-			label
-		}
-		key {
-			measureFieldName
-			dimensions {
-				value
-				fieldName
-			}
-		}
-	}
+				hostCount
+				hostLimit
+				flowCount
 			}
 			name
 			info {
 				name
-	type {
-		name
-		recommendedAction
-		details
-	}
+				type
 				description
 				countryCode
 				region
 				countryName
 				countryStateName
 				cityName
-	address {
-		createFromFile {
-			container {
-				id
-				name
-				description
-				size
-				audit {
-					createdAt
-					createdBy
-					lastModifiedBy
-					lastModifiedAt
-				}
-			}
-		}
-		updateFromFile {
-			container {
-				id
-				name
-				description
-				size
-				audit {
-					createdAt
-					createdBy
-					lastModifiedBy
-					lastModifiedAt
-				}
-			}
-		}
-		addValues {
-			container {
-				id
-				name
-				description
-				size
-				audit {
-					createdAt
-					createdBy
-					lastModifiedBy
-					lastModifiedAt
-				}
-			}
-		}
-		removeValues {
-			container {
-				id
-				name
-				description
-				size
-				audit {
-					createdAt
-					createdBy
-					lastModifiedBy
-					lastModifiedAt
-				}
-			}
-		}
-		createFromList {
-			container {
-				id
-				name
-				description
-				size
-				audit {
-					createdAt
-					createdBy
-					lastModifiedBy
-					lastModifiedAt
-				}
-			}
-		}
-		updateFromList {
-			container {
-				id
-				name
-				description
-				size
-				audit {
-					createdAt
-					createdBy
-					lastModifiedBy
-					lastModifiedAt
-				}
-			}
-		}
-	}
+				address
 				isHA
 				connType
 				creationTime
 				interfaces {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
+					id
 					name
 					upstreamBandwidth
 					downstreamBandwidth
@@ -1030,148 +145,17 @@ id {
 					wanRole
 				}
 				sockets {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
+					id
 					serial
 					isPrimary
-	platform {
-		platform
-		versions
-	}
-	version {
-		items {
-			platform
-			versions
-		}
-	}
+					platform
+					version
 					versionUpdateTime
 				}
 				ipsec {
 					isPrimary
 					catoIP
-	remoteIP {
-		ip
-		subnet
-		ipRange {
-			from
-			to
-		}
-		globalIpRange {
-			id
-			name
-		}
-	}
+					remoteIP
 					ikeVersion
 					tunnelConfig {
 						tunnelId
@@ -1185,300 +169,59 @@ id {
 				label
 				dimensions {
 					label
-	value {
-		__typename
-		... on StringValue {
-			string
-		}
-		... on DateValue {
-			date
-		}
-		... on Entity {
-			id
-			name
-			type
-		}
-	}
+					value
 				}
 				key {
 					measureFieldName
 					dimensions {
 						fieldName
-	value {
-		__typename
-		... on StringValue {
-			string
-		}
-		... on DateValue {
-			date
-		}
-		... on Entity {
-			id
-			name
-			type
-		}
-	}
+						value
 					}
 				}
-	sum {
-		id
-		route
-		community {
-			from
-			to
-		}
-	}
-	units {
-		id
-		predicate
-		community {
-			from
-			to
-		}
-	}
-	info {
-		name
-		email
-	}
+				sum
+				units
+				info
 			}
 			flowCount {
 				data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket  ) 
 				label
 				dimensions {
 					label
-	value {
-		__typename
-		... on StringValue {
-			string
-		}
-		... on DateValue {
-			date
-		}
-		... on Entity {
-			id
-			name
-			type
-		}
-	}
+					value
 				}
 				key {
 					measureFieldName
 					dimensions {
 						fieldName
-	value {
-		__typename
-		... on StringValue {
-			string
-		}
-		... on DateValue {
-			date
-		}
-		... on Entity {
-			id
-			name
-			type
-		}
-	}
+						value
 					}
 				}
-	sum {
-		id
-		route
-		community {
-			from
-			to
-		}
-	}
-	units {
-		id
-		predicate
-		community {
-			from
-			to
-		}
-	}
-	info {
-		name
-		email
-	}
+				sum
+				units
+				info
 			}
 			hostLimit {
 				data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket  ) 
 				label
 				dimensions {
 					label
-	value {
-		__typename
-		... on StringValue {
-			string
-		}
-		... on DateValue {
-			date
-		}
-		... on Entity {
-			id
-			name
-			type
-		}
-	}
+					value
 				}
 				key {
 					measureFieldName
 					dimensions {
 						fieldName
-	value {
-		__typename
-		... on StringValue {
-			string
-		}
-		... on DateValue {
-			date
-		}
-		... on Entity {
-			id
-			name
-			type
-		}
-	}
+						value
 					}
 				}
-	sum {
-		id
-		route
-		community {
-			from
-			to
-		}
-	}
-	units {
-		id
-		predicate
-		community {
-			from
-			to
-		}
-	}
-	info {
-		name
-		email
-	}
+				sum
+				units
+				info
 			}
 			samples
 		}
 		users ( userIDs:$userIDs  )  {
-id {
-	id
-	status
-	description
-	firstSignal
-	lastSignal
-	engineType
-	vendor
-	producer
-	producerName
-	connectionType
-	indication
-	queryName
-	source
-	criticality
-	ticket
-	research
-	siteName
-	storyDuration
-	analystFeedback {
-		verdict
-		severity
-		threatClassification
-		additionalInfo
-		threatType {
-			name
-			recommendedAction
-			details
-		}
-	}
-	site {
-		id
-		name
-	}
-	user {
-		id
-		name
-	}
-	similarStoriesData {
-		storyId
-		threatTypeName
-		verdict
-		threatClassification
-		similarityPercentage
-		indication
-	}
-	networkIncidentTimeline {
-		description
-		created
-		validated
-		eventType
-		incidentId
-		networkEventSource
-		eventIds
-		acknowledged
-		linkId
-		linkName
-		linkConfigPrecedence
-		linkStatus
-		linkConfigBandwidth
-		deviceConfigHaRole
-		deviceHaRoleState
-		socketSerialId
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		linkQualityIssue {
-			issueType
-			direction
-			current
-			threshold
-		}
-	}
-	bgpConnection {
-		connectionName
-		peerIp
-		peerAsn
-		catoIp
-		catoAsn
-	}
-	ilmmDetails {
-		linkDetails {
-			description
-			linkId
-			ispLinkId
-			comments
-			onboardingStatus
-			activeLicense
-		}
-		ispDetails {
-			name
-			description
-			ispAccountId
-			supportEmail
-			supportPhone
-			countryCode
-			loaFile {
-				fileName
-				fileHash
-				uploadedAt
-			}
-		}
-		contacts {
-			name
-			phone
-			email
-		}
-	}
-}
+			id
 			interfaces {
 				metrics ( toRate:$toRate  )  {
 					duration
@@ -1497,60 +240,9 @@ id {
 					packetsDiscardedDownstream
 					packetsDiscardedUpstream
 					rtt
-	hostCount {
-		data
-		label
-		sum
-		units
-		info
-		dimensions {
-			value
-			label
-		}
-		key {
-			measureFieldName
-			dimensions {
-				value
-				fieldName
-			}
-		}
-	}
-	hostLimit {
-		data
-		label
-		sum
-		units
-		info
-		dimensions {
-			value
-			label
-		}
-		key {
-			measureFieldName
-			dimensions {
-				value
-				fieldName
-			}
-		}
-	}
-	flowCount {
-		data
-		label
-		sum
-		units
-		info
-		dimensions {
-			value
-			label
-		}
-		key {
-			measureFieldName
-			dimensions {
-				value
-				fieldName
-			}
-		}
-	}
+					hostCount
+					hostLimit
+					flowCount
 				}
 				name
 				timeseries ( buckets:$buckets  labels:$labels  )  {
@@ -1558,269 +250,53 @@ id {
 					label
 					dimensions {
 						label
-	value {
-		__typename
-		... on StringValue {
-			string
-		}
-		... on DateValue {
-			date
-		}
-		... on Entity {
-			id
-			name
-			type
-		}
-	}
+						value
 					}
 					key {
 						measureFieldName
 						dimensions {
 							fieldName
-	value {
-		__typename
-		... on StringValue {
-			string
-		}
-		... on DateValue {
-			date
-		}
-		... on Entity {
-			id
-			name
-			type
-		}
-	}
+							value
 						}
 					}
-	sum {
-		id
-		route
-		community {
-			from
-			to
-		}
-	}
-	units {
-		id
-		predicate
-		community {
-			from
-			to
-		}
-	}
-	info {
-		name
-		email
-	}
+					sum
+					units
+					info
 				}
 				annotations ( types:$types  )  {
-	time {
-		createdAt
-		description
-		type
-		context
-		descriptions
-		category
-		additionalInfo
-		analystInfo {
-			name
-			email
-		}
-	}
+					time
 					label
 					shortLabel
-	type {
-		name
-		recommendedAction
-		details
-	}
+					type
 				}
 				periods {
 					duration
 					title
-	type {
-		name
-		recommendedAction
-		details
-	}
+					type
 				}
 				remoteIPInfo {
-	ip {
-		siteId
-	}
+					ip
 					countryCode
 					countryName
 					city
-	state {
-		id
-		up
-		mediaIn
-		linkSpeed
-		duplex
-		hasAddress
-		hasInternet
-		hasTunnel
-	}
+					state
 					provider
 					latitude
 					longitude
 				}
-	remoteIP {
-		ip
-		subnet
-		ipRange {
-			from
-			to
-		}
-		globalIpRange {
-			id
-			name
-		}
-	}
+				remoteIP
 				socketInfo {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
+					id
 					serial
 					isPrimary
-	platform {
-		platform
-		versions
-	}
-	version {
-		items {
-			platform
-			versions
-		}
-	}
+					platform
+					version
 					versionUpdateTime
 				}
 				ipsecInfo {
 					isPrimary
 					catoIP
-	remoteIP {
-		ip
-		subnet
-		ipRange {
-			from
-			to
-		}
-		globalIpRange {
-			id
-			name
-		}
-	}
+					remoteIP
 					ikeVersion
 					tunnelConfig {
 						tunnelId
@@ -1829,119 +305,7 @@ id {
 					}
 				}
 				interfaceInfo {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
+					id
 					name
 					upstreamBandwidth
 					downstreamBandwidth
@@ -1968,278 +332,26 @@ id {
 				packetsDiscardedDownstream
 				packetsDiscardedUpstream
 				rtt
-	hostCount {
-		data
-		label
-		sum
-		units
-		info
-		dimensions {
-			value
-			label
-		}
-		key {
-			measureFieldName
-			dimensions {
-				value
-				fieldName
-			}
-		}
-	}
-	hostLimit {
-		data
-		label
-		sum
-		units
-		info
-		dimensions {
-			value
-			label
-		}
-		key {
-			measureFieldName
-			dimensions {
-				value
-				fieldName
-			}
-		}
-	}
-	flowCount {
-		data
-		label
-		sum
-		units
-		info
-		dimensions {
-			value
-			label
-		}
-		key {
-			measureFieldName
-			dimensions {
-				value
-				fieldName
-			}
-		}
-	}
+				hostCount
+				hostLimit
+				flowCount
 			}
 			name
 			info {
 				name
-	type {
-		name
-		recommendedAction
-		details
-	}
+				type
 				description
 				countryCode
 				region
 				countryName
 				countryStateName
 				cityName
-	address {
-		createFromFile {
-			container {
-				id
-				name
-				description
-				size
-				audit {
-					createdAt
-					createdBy
-					lastModifiedBy
-					lastModifiedAt
-				}
-			}
-		}
-		updateFromFile {
-			container {
-				id
-				name
-				description
-				size
-				audit {
-					createdAt
-					createdBy
-					lastModifiedBy
-					lastModifiedAt
-				}
-			}
-		}
-		addValues {
-			container {
-				id
-				name
-				description
-				size
-				audit {
-					createdAt
-					createdBy
-					lastModifiedBy
-					lastModifiedAt
-				}
-			}
-		}
-		removeValues {
-			container {
-				id
-				name
-				description
-				size
-				audit {
-					createdAt
-					createdBy
-					lastModifiedBy
-					lastModifiedAt
-				}
-			}
-		}
-		createFromList {
-			container {
-				id
-				name
-				description
-				size
-				audit {
-					createdAt
-					createdBy
-					lastModifiedBy
-					lastModifiedAt
-				}
-			}
-		}
-		updateFromList {
-			container {
-				id
-				name
-				description
-				size
-				audit {
-					createdAt
-					createdBy
-					lastModifiedBy
-					lastModifiedAt
-				}
-			}
-		}
-	}
+				address
 				isHA
 				connType
 				creationTime
 				interfaces {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
+					id
 					name
 					upstreamBandwidth
 					downstreamBandwidth
@@ -2249,148 +361,17 @@ id {
 					wanRole
 				}
 				sockets {
-	id {
-		id
-		status
-		description
-		firstSignal
-		lastSignal
-		engineType
-		vendor
-		producer
-		producerName
-		connectionType
-		indication
-		queryName
-		source
-		criticality
-		ticket
-		research
-		siteName
-		storyDuration
-		analystFeedback {
-			verdict
-			severity
-			threatClassification
-			additionalInfo
-			threatType {
-				name
-				recommendedAction
-				details
-			}
-		}
-		site {
-			id
-			name
-		}
-		user {
-			id
-			name
-		}
-		similarStoriesData {
-			storyId
-			threatTypeName
-			verdict
-			threatClassification
-			similarityPercentage
-			indication
-		}
-		networkIncidentTimeline {
-			description
-			created
-			validated
-			eventType
-			incidentId
-			networkEventSource
-			eventIds
-			acknowledged
-			linkId
-			linkName
-			linkConfigPrecedence
-			linkStatus
-			linkConfigBandwidth
-			deviceConfigHaRole
-			deviceHaRoleState
-			socketSerialId
-			bgpConnection {
-				connectionName
-				peerIp
-				peerAsn
-				catoIp
-				catoAsn
-			}
-			linkQualityIssue {
-				issueType
-				direction
-				current
-				threshold
-			}
-		}
-		bgpConnection {
-			connectionName
-			peerIp
-			peerAsn
-			catoIp
-			catoAsn
-		}
-		ilmmDetails {
-			linkDetails {
-				description
-				linkId
-				ispLinkId
-				comments
-				onboardingStatus
-				activeLicense
-			}
-			ispDetails {
-				name
-				description
-				ispAccountId
-				supportEmail
-				supportPhone
-				countryCode
-				loaFile {
-					fileName
-					fileHash
-					uploadedAt
-				}
-			}
-			contacts {
-				name
-				phone
-				email
-			}
-		}
-	}
+					id
 					serial
 					isPrimary
-	platform {
-		platform
-		versions
-	}
-	version {
-		items {
-			platform
-			versions
-		}
-	}
+					platform
+					version
 					versionUpdateTime
 				}
 				ipsec {
 					isPrimary
 					catoIP
-	remoteIP {
-		ip
-		subnet
-		ipRange {
-			from
-			to
-		}
-		globalIpRange {
-			id
-			name
-		}
-	}
+					remoteIP
 					ikeVersion
 					tunnelConfig {
 						tunnelId
@@ -2404,183 +385,54 @@ id {
 				label
 				dimensions {
 					label
-	value {
-		__typename
-		... on StringValue {
-			string
-		}
-		... on DateValue {
-			date
-		}
-		... on Entity {
-			id
-			name
-			type
-		}
-	}
+					value
 				}
 				key {
 					measureFieldName
 					dimensions {
 						fieldName
-	value {
-		__typename
-		... on StringValue {
-			string
-		}
-		... on DateValue {
-			date
-		}
-		... on Entity {
-			id
-			name
-			type
-		}
-	}
+						value
 					}
 				}
-	sum {
-		id
-		route
-		community {
-			from
-			to
-		}
-	}
-	units {
-		id
-		predicate
-		community {
-			from
-			to
-		}
-	}
-	info {
-		name
-		email
-	}
+				sum
+				units
+				info
 			}
 			flowCount {
 				data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket  ) 
 				label
 				dimensions {
 					label
-	value {
-		__typename
-		... on StringValue {
-			string
-		}
-		... on DateValue {
-			date
-		}
-		... on Entity {
-			id
-			name
-			type
-		}
-	}
+					value
 				}
 				key {
 					measureFieldName
 					dimensions {
 						fieldName
-	value {
-		__typename
-		... on StringValue {
-			string
-		}
-		... on DateValue {
-			date
-		}
-		... on Entity {
-			id
-			name
-			type
-		}
-	}
+						value
 					}
 				}
-	sum {
-		id
-		route
-		community {
-			from
-			to
-		}
-	}
-	units {
-		id
-		predicate
-		community {
-			from
-			to
-		}
-	}
-	info {
-		name
-		email
-	}
+				sum
+				units
+				info
 			}
 			hostLimit {
 				data ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket  ) 
 				label
 				dimensions {
 					label
-	value {
-		__typename
-		... on StringValue {
-			string
-		}
-		... on DateValue {
-			date
-		}
-		... on Entity {
-			id
-			name
-			type
-		}
-	}
+					value
 				}
 				key {
 					measureFieldName
 					dimensions {
 						fieldName
-	value {
-		__typename
-		... on StringValue {
-			string
-		}
-		... on DateValue {
-			date
-		}
-		... on Entity {
-			id
-			name
-			type
-		}
-	}
+						value
 					}
 				}
-	sum {
-		id
-		route
-		community {
-			from
-			to
-		}
-	}
-	units {
-		id
-		predicate
-		community {
-			from
-			to
-		}
-	}
-	info {
-		name
-		email
-	}
+				sum
+				units
+				info
 			}
 			samples
 		}
@@ -2589,61 +441,18 @@ id {
 			label
 			dimensions {
 				label
-	value {
-		__typename
-		... on StringValue {
-			string
-		}
-		... on DateValue {
-			date
-		}
-		... on Entity {
-			id
-			name
-			type
-		}
-	}
+				value
 			}
 			key {
 				measureFieldName
 				dimensions {
 					fieldName
-	value {
-		__typename
-		... on StringValue {
-			string
-		}
-		... on DateValue {
-			date
-		}
-		... on Entity {
-			id
-			name
-			type
-		}
-	}
+					value
 				}
 			}
-sum {
-	id
-	route
-	community {
-		from
-		to
-	}
-}
-units {
-	id
-	predicate
-	community {
-		from
-		to
-	}
-}
-info {
-	name
-	email
-}
+			sum
+			units
+			info
 		}
 	}	
 }

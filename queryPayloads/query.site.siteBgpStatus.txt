@@ -2,90 +2,19 @@ query siteSiteBgpStatus ( $accountId:ID! $siteBgpStatusInput:SiteBgpStatusInput!
 	site ( accountId:$accountId ) {
 		siteBgpStatus ( input:$siteBgpStatusInput  )  {
 			status {
-	remoteIp {
-		ip
-		subnet
-		ipRange {
-			from
-			to
-		}
-		globalIpRange {
-			id
-			name
-		}
-	}
+				remoteIp
 				bgpSession
 				bfdSession
-	routesFromPeer {
-		type
-		subnet
-		rule
-		lastPublishAttempt
-		community {
-			from
-			to
-		}
-	}
+				routesFromPeer
 				routesToPeer
 				rejectedRoutesFromPeer {
-	subnet {
-		id
-		name
-	}
-	type {
-		name
-		recommendedAction
-		details
-	}
+					subnet
+					type
 					community {
-	from {
-		container {
-			id
-			name
-			description
-			size
-			audit {
-				createdAt
-				createdBy
-				lastModifiedBy
-				lastModifiedAt
-			}
-		}
-	}
-	to {
-		comment {
-			id
-			createdAt
-			text
-			actor {
-				__typename
-				... on AdminRef {
-					id
-					name
-				}
-				... on ApiKeyRef {
-					id
-					name
-				}
-			}
-		}
-	}
+						from
+						to
 					}
-	rule {
-		id
-		networkSubnet
-		networkSubnetException
-		le
-		ge
-		globalIpRange {
-			id
-			name
-		}
-		globalIpRangeException {
-			id
-			name
-		}
-	}
+					rule
 					lastPublishAttempt
 				}
 			}

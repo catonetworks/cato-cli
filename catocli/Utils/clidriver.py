@@ -28,6 +28,7 @@ from ..parsers.custom.query_siteLocation import query_siteLocation_parse
 from ..parsers.custom.query_appCategory import query_appCategory_parse
 from ..parsers.custom.query_eventsFeed import query_eventsFeed_parse
 from .help_formatter import CustomSubparserHelpFormatter
+from .cliutils import load_cli_settings
 from ..parsers.query_socketPortMetrics import query_socketPortMetrics_parse
 from ..parsers.query_socketPortMetricsTimeSeries import query_socketPortMetricsTimeSeries_parse
 from ..parsers.query_accountMetrics import query_accountMetrics_parse
@@ -244,10 +245,34 @@ def parse_headers_from_file(file_path):
         exit(1)
     return headers
 
+def is_mutation_command(args_list):
+    """Check if the command is a mutation command"""
+    if not args_list:
+        return False
+    # Check if 'mutation' is in the command arguments
+    return 'mutation' in args_list
+
+def check_read_only_mode(args_list):
+    """Check if read-only mode is enabled and block mutation commands"""
+    # Check clisettings.json
+    try:
+        settings = load_cli_settings()
+        read_only = settings.get('read_only', False)
+        
+        if read_only and is_mutation_command(args_list):
+            print("ERROR: Mutation commands are disabled.")
+            exit(1)
+    except Exception as e:
+        # If we can't load settings, default to allowing mutations
+        pass
+
 def main(args=None):
     # Check if no arguments provided or help is requested
     if args is None:
         args = sys.argv[1:]
+    
+    # Check read-only mode before processing
+    check_read_only_mode(args)
 
     # Show version check when displaying help or when no command specified
     if not args or '-h' in args or '--help' in args:

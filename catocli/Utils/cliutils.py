@@ -47,6 +47,7 @@ def load_cli_settings():
     """
     # Embedded default settings as final fallback
     default_settings = {
+        "read_only": False,
         "export_by_socket_type": {
             "SOCKET_X1500": True,
             "SOCKET_X1600": True,
@@ -168,9 +169,83 @@ def save_json_file(data, file_path, encoding='utf-8', indent=2):
         return False
 
 
+def strip_json_comments(json_string):
+    """
+    Remove JavaScript-style comments from JSON string.
+    Supports both single-line (//) and multi-line (/* */) comments.
+    
+    Args:
+        json_string: JSON string potentially containing comments
+        
+    Returns:
+        JSON string with comments removed
+    """
+    if not json_string:
+        return json_string
+    
+    result = []
+    i = 0
+    in_string = False
+    escape_next = False
+    
+    while i < len(json_string):
+        char = json_string[i]
+        
+        # Handle escape sequences in strings
+        if escape_next:
+            result.append(char)
+            escape_next = False
+            i += 1
+            continue
+        
+        if char == '\\' and in_string:
+            result.append(char)
+            escape_next = True
+            i += 1
+            continue
+        
+        # Toggle string state on unescaped quotes
+        if char == '"':
+            in_string = not in_string
+            result.append(char)
+            i += 1
+            continue
+        
+        # Don't process comments inside strings
+        if in_string:
+            result.append(char)
+            i += 1
+            continue
+        
+        # Check for single-line comment
+        if char == '/' and i + 1 < len(json_string) and json_string[i + 1] == '/':
+            # Skip until end of line
+            while i < len(json_string) and json_string[i] not in ('\n', '\r'):
+                i += 1
+            continue
+        
+        # Check for multi-line comment
+        if char == '/' and i + 1 < len(json_string) and json_string[i + 1] == '*':
+            # Skip until end of comment
+            i += 2
+            while i < len(json_string) - 1:
+                if json_string[i] == '*' and json_string[i + 1] == '/':
+                    i += 2
+                    break
+                i += 1
+            continue
+        
+        # Regular character
+        result.append(char)
+        i += 1
+    
+    return ''.join(result)
+
+
 def load_private_settings():
     """
     Load private settings from ~/.cato/settings.json in an OS-compatible way.
+    Supports JavaScript-style comments (//, /* */) in the JSON file.
     
     This function constructs the path to ~/.cato/settings.json using os.path methods
     for cross-platform compatibility (Windows, Mac, Linux).
@@ -184,7 +259,10 @@ def load_private_settings():
     
     try:
         with open(settings_file, 'r', encoding='utf-8') as f:
-            settings = json.load(f)
+            json_content = f.read()
+            # Strip JavaScript-style comments before parsing
+            json_content = strip_json_comments(json_content)
+            settings = json.loads(json_content)
             return settings.get('privateCommands', {})
     except (FileNotFoundError, json.JSONDecodeError, KeyError, OSError):
         return {}

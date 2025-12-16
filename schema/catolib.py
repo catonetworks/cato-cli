@@ -1735,7 +1735,7 @@ def renderSubParser(subParser, parentParserPath):
     cliDriverStr = f"""
     def _show_{parentParserPath}_help(args, configuration=None):
         \"\"\"Show help when {parentParserPath} is called without subcommand\"\"\"
-        print("Usage: catocli {usage_cmd} <subcommand> [options]")
+        print("\ncatocli {usage_cmd} <subcommand> [options]")
         print("\\nAvailable subcommands:")
         print("{subcommands_help_text}{more_text}")
         print("\\nFor help on a specific subcommand:")

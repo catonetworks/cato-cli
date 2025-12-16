@@ -19,7 +19,8 @@ def _show_private_help(args, configuration=None):
     """Show formatted help when private is called without subcommand"""
     private_commands = load_private_settings()
     
-    print("Usage: catocli private <command> -accountID=12345 [options]")
+    print("Usage: catocli private <command> [options]")
+    print("\nNote: accountID is auto-loaded from ~/.cato/settings.json")
     print("\nAvailable private commands:")
     
     # Show commands with their descriptions
@@ -34,7 +35,8 @@ def _show_private_help(args, configuration=None):
     
     print("\nFor detailed help on a specific command:")
     print("  catocli private <command> -h")
-    print("\nNote: accountID and version are auto-populated from profile and API")
+    print("\nNote: accountID is auto-loaded from ~/.cato/settings.json")
+    print("      version is auto-fetched from API when needed")
     return None
 
 
@@ -49,7 +51,7 @@ def private_parse(subparsers):
     private_parser = subparsers.add_parser(
         'private', 
         help='Private custom commands (configured in ~/.cato/settings.json)',
-        usage='catocli private <command> -accountID=12345 [options]',
+        usage='catocli private <command> [options]',
         formatter_class=PrivateCommandHelpFormatter
     )
     
@@ -67,8 +69,8 @@ def private_parse(subparsers):
     # Exclude 'version' command as it's auto-fetched internally for optimistic locking
     for command_name, command_config in private_commands.items():
         # Skip version command (used internally for auto-fetch)
-        if command_name == 'version':
-            continue
+        # if command_name == 'version':
+        #     continue
             
         create_private_command_parser(
             private_subparsers, 
@@ -137,10 +139,12 @@ def create_private_command_parser(subparsers, command_name, command_config):
         help='Load headers from a file. Each line should contain a header in "Key: Value" format.'
     )
     
-    # Add standard accountID argument (like other commands)
+    # Note: accountID is read from ~/.cato/settings.json automatically
+    # This argument is kept for compatibility but the settings file value takes priority
     cmd_parser.add_argument(
-        '-accountID', 
-        help='Override the account ID from profile with this value.'
+        '-accountID',
+        required=False,
+        help='Account ID (auto-loaded from ~/.cato/settings.json)'
     )
     
     # Add CSV output arguments (if the command supports CSV)

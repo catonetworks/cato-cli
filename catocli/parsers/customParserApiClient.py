@@ -73,6 +73,79 @@ class CustomAPIClient:
 # Global instance for field mappings
 custom_client = CustomAPIClient()
 
+def strip_json_comments(json_string):
+    """
+    Remove JavaScript-style comments from JSON string.
+    Supports both single-line (//) and multi-line (/* */) comments.
+    
+    Args:
+        json_string: JSON string potentially containing comments
+        
+    Returns:
+        JSON string with comments removed
+    """
+    if not json_string:
+        return json_string
+    
+    result = []
+    i = 0
+    in_string = False
+    escape_next = False
+    
+    while i < len(json_string):
+        char = json_string[i]
+        
+        # Handle escape sequences in strings
+        if escape_next:
+            result.append(char)
+            escape_next = False
+            i += 1
+            continue
+        
+        if char == '\\' and in_string:
+            result.append(char)
+            escape_next = True
+            i += 1
+            continue
+        
+        # Toggle string state on unescaped quotes
+        if char == '"':
+            in_string = not in_string
+            result.append(char)
+            i += 1
+            continue
+        
+        # Don't process comments inside strings
+        if in_string:
+            result.append(char)
+            i += 1
+            continue
+        
+        # Check for single-line comment
+        if char == '/' and i + 1 < len(json_string) and json_string[i + 1] == '/':
+            # Skip until end of line
+            while i < len(json_string) and json_string[i] not in ('\n', '\r'):
+                i += 1
+            continue
+        
+        # Check for multi-line comment
+        if char == '/' and i + 1 < len(json_string) and json_string[i + 1] == '*':
+            # Skip until end of comment
+            i += 2
+            while i < len(json_string) - 1:
+                if json_string[i] == '*' and json_string[i + 1] == '/':
+                    i += 2
+                    break
+                i += 1
+            continue
+        
+        # Regular character
+        result.append(char)
+        i += 1
+    
+    return ''.join(result)
+
+
 def preprocess_json_input(json_string):
     """
     Preprocess JSON input to handle common formatting issues from different shells
@@ -1092,12 +1165,12 @@ def get_help_enhanced(path):
                 return result
             else:
                 # No examples found at all
-                return f"\nUsage: {match_cmd} <json> [options]\nUse {match_cmd} -h for detailed help.\n"
+                return f"\nUsage:\n{match_cmd} <json> [options]\nUse {match_cmd} -h for detailed help.\n"
             
     except FileNotFoundError:
-        return f"\nUsage: {match_cmd} <json> [options]\nUse {match_cmd} -h for detailed help.\n"
+        return f"\nUsage:\n{match_cmd} <json> [options]\nUse {match_cmd} -h for detailed help.\n"
     except Exception as e:
-        return f"\nError loading help: {e}\nUsage: {match_cmd} <json> [options]\n"
+        return f"\nError loading help: {e}\nUsage:\n{match_cmd} <json> [options]\n"
 
 def expandUnionFragment(union_type_name, introspection_types, indent):
     """Expand a union type into its full field structure"""
@@ -1578,7 +1651,7 @@ def createRawBinaryRequest(args, configuration):
 
 def get_private_help(command_name, command_config):
     """Generate comprehensive help text for a private command"""
-    usage = f"catocli private {command_name}"
+    usage = f"\ncatocli private {command_name}"
     
     # Create comprehensive JSON example with all arguments (excluding accountId and version)
     if 'arguments' in command_config:
@@ -1610,13 +1683,11 @@ def get_private_help(command_name, command_config):
         if json_example:
             # Format JSON nicely for readability in help
             json_str = json.dumps(json_example, indent=2)
-            usage += f" -accountID=12345 '{json_str}'"
+            usage += f" '{json_str}'"
         else:
-            # No custom arguments, just show accountID
-            usage += " -accountID=12345"
-    else:
-        # No arguments at all, just show accountID
-        usage += " -accountID=12345"
+            # No custom arguments needed
+            pass
+    # If no arguments or no json_example, just show the command name
     
     # Add common options
     usage += " [-t] [-v] [-p]"
@@ -1641,8 +1712,8 @@ def get_private_help(command_name, command_config):
     
     # Add standard auto-populated arguments information
     usage += "\n\nAuto-Populated Arguments:"
-    usage += "\n  -accountID: Account ID (from profile, can be overridden)"
-    usage += "\n  version:    Account version (auto-fetched for optimistic locking, can be overridden in JSON)"
+    usage += "\n  accountID:  Account ID (auto-loaded from ~/.cato/settings.json)"
+    usage += "\n  version:    Account version (auto-fetched from API for optimistic locking)"
     
     # Add payload file info if available
     if 'payloadFilePath' in command_config:
@@ -1872,13 +1943,35 @@ def createPrivateRequest(args, configuration):
         print("ERROR: Missing private command configuration")
         return None
     
-    # Load private settings and apply ONLY for private commands
+    # Load private settings FIRST before accessing any values
     try:
         settings_file = os.path.expanduser("~/.cato/settings.json")
-        with open(settings_file, 'r') as f:
-            private_settings = json.load(f)
-    except (FileNotFoundError, json.JSONDecodeError):
+        with open(settings_file, 'r', encoding='utf-8') as f:
+            json_content = f.read()
+            # Strip JavaScript-style comments before parsing
+            json_content = strip_json_comments(json_content)
+            private_settings = json.loads(json_content)
+    except (FileNotFoundError, json.JSONDecodeError) as e:
+        if params.get('v'):
+            print(f"WARNING: Could not load settings file: {e}")
         private_settings = {}
+    
+    # Use accountID from settings file (highest priority for private commands)
+    settings_account_id = private_settings.get('accountID')
+    
+    # Check if accountID is available from settings file
+    if not settings_account_id:
+        print(f"ERROR: accountID is required for private command '{private_command}'")
+        print(f"\nPlease add accountID to your settings file:")
+        print(f"  File: ~/.cato/settings.json")
+        print(f"  Add: \"accountID\": \"12345\" at the root level")
+        print(f"\nFor detailed help:")
+        print(f"  catocli private {private_command} -h")
+        return None
+    
+    # Override configuration accountID with settings file accountID
+    if configuration:
+        configuration.accountID = settings_account_id
     
     # Override endpoint if specified in private settings
     if 'baseUrl' in private_settings:
@@ -1917,15 +2010,12 @@ def createPrivateRequest(args, configuration):
         if arg_name and 'default' in arg:
             variables[arg_name] = arg['default']
     
-    # Apply profile account ID as fallback (lower priority than settings defaults)
-    if configuration and hasattr(configuration, 'accountID'):
-        if 'accountID' not in variables and 'accountId' not in variables:
-            variables['accountID'] = configuration.accountID
-            variables['accountId'] = configuration.accountID
-        elif 'accountID' in variables and 'accountId' not in variables:
-            variables['accountId'] = variables['accountID']
-        elif 'accountId' in variables and 'accountID' not in variables:
-            variables['accountID'] = variables['accountId']
+    # Always use settings file accountID (already set in configuration above)
+    # This ensures private commands always use the settings file accountID
+    if 'accountID' not in variables or not variables['accountID']:
+        variables['accountID'] = settings_account_id
+    if 'accountId' not in variables or not variables['accountId']:
+        variables['accountId'] = settings_account_id
     
     # Apply CLI argument values (highest priority)
     for arg in private_config.get('arguments', []):

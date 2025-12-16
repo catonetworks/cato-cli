@@ -9,7 +9,7 @@ def mutation_sandbox_parse(mutation_subparsers):
 
     def _show_mutation_sandbox_help(args, configuration=None):
         """Show help when mutation_sandbox is called without subcommand"""
-        print("Usage: catocli mutation sandbox <subcommand> [options]")
+        print("\ncatocli mutation sandbox <subcommand> [options]")
         print("\nAvailable subcommands:")
         print("  uploadFile                     uploadFile operation\n  deleteReport                   deleteReport operation")
         print("\nFor help on a specific subcommand:")

@@ -9,7 +9,7 @@ def query_catalogs_parse(query_subparsers):
 
     def _show_query_catalogs_help(args, configuration=None):
         """Show help when query_catalogs is called without subcommand"""
-        print("Usage: catocli query catalogs <subcommand> [options]")
+        print("\ncatocli query catalogs <subcommand> [options]")
         print("\nAvailable subcommands:")
         print("  catalogApplication             catalogApplication operation\n  catalogApplicationList         catalogApplicationList operation\n  contentTypeGroupList           contentTypeGroupList operation")
         print("\nFor help on a specific subcommand:")

@@ -595,6 +595,7 @@ from ..parsers.custom.query_siteLocation import query_siteLocation_parse
 from ..parsers.custom.query_appCategory import query_appCategory_parse
 from ..parsers.custom.query_eventsFeed import query_eventsFeed_parse
 from .help_formatter import CustomSubparserHelpFormatter
+from .cliutils import load_cli_settings
 """
     for parserName in parsers:
         cliDriverStr += "from ..parsers."+parserName+" import "+parserName+"_parse\n"
@@ -731,6 +732,11 @@ def parse_headers_from_file(file_path):
         exit(1)
     return headers
 
+def is_mutation_command(args_list):
+    # Check if the command is a mutation command
+    if not args_list:
+        return False
+    
 def main(args=None):
     # Check if no arguments provided or help is requested
     if args is None:
@@ -1735,7 +1741,7 @@ def renderSubParser(subParser, parentParserPath):
     cliDriverStr = f"""
     def _show_{parentParserPath}_help(args, configuration=None):
         \"\"\"Show help when {parentParserPath} is called without subcommand\"\"\"
-        print("\ncatocli {usage_cmd} <subcommand> [options]")
+        print("\\ncatocli {usage_cmd} <subcommand> [options]")
         print("\\nAvailable subcommands:")
         print("{subcommands_help_text}{more_text}")
         print("\\nFor help on a specific subcommand:")

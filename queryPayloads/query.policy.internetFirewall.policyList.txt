@@ -1,0 +1,22 @@
+query policyInternetFirewallPolicyList ( $accountId:ID! $internetFirewallPolicyListInput:InternetFirewallPolicyListInput!) {
+	policy ( accountId:$accountId ) {
+		internetFirewall {
+			policyList ( input:$internetFirewallPolicyListInput   ) {
+				items {
+					id
+					name
+					description
+					enabled
+					policyLevel
+					audit {
+						publishedTime
+						publishedBy
+					}
+				}
+				paging {
+					total
+				}
+			}
+		}
+	}	
+}

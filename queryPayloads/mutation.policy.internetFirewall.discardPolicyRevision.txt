@@ -3,6 +3,9 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 		internetFirewall ( input:$internetFirewallPolicyMutationInput  )  {
 			discardPolicyRevision ( input:$policyDiscardRevisionInput   ) {
 				policy {
+					id
+					name
+					description
 					enabled
 					rules {
 						audit {
@@ -322,6 +325,14 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 							}
 						}
 						properties
+						ruleType
+						subPolicy {
+							id
+							name
+						}
+						access {
+							action
+						}
 					}
 					sections {
 						audit {
@@ -345,6 +356,26 @@ mutation policyInternetFirewallDiscardPolicyRevision ( $accountId:ID! $internetF
 						changes
 						createdTime
 						updatedTime
+					}
+					subPolicies {
+						policy {
+							id
+							name
+							description
+							enabled
+							policyLevel
+							audit {
+								publishedTime
+								publishedBy
+							}
+						}
+						properties
+						access {
+							action
+						}
+					}
+					access {
+						action
 					}
 				}
 				status

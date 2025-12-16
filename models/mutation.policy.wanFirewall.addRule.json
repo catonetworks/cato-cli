@@ -26624,6 +26624,90 @@
                                                             "description": "Wan Firewall policy information for a specific revision",
                                                             "enumValues": null,
                                                             "fields": {
+                                                                "access": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Holds the complete set of access capabilities and limitations associated with the entity.",
+                                                                    "id_str": "wanFirewall___addRule___rule___access",
+                                                                    "isDeprecated": false,
+                                                                    "name": "access",
+                                                                    "path": "wanFirewall.addRule.rule.access",
+                                                                    "requestStr": "$entityAccess:EntityAccess! ",
+                                                                    "required": true,
+                                                                    "responseStr": "access:$entityAccess ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": null,
+                                                                            "enumValues": null,
+                                                                            "fields": {
+                                                                                "action": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "id_str": "wanFirewall___addRule___rule___access___action",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "action",
+                                                                                    "path": "wanFirewall.addRule.rule.access.action",
+                                                                                    "requestStr": "$action:RBACAction! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "action:$action ",
+                                                                                    "type": {
+                                                                                        "definition": {
+                                                                                            "description": null,
+                                                                                            "enumValues": [
+                                                                                                {
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": null,
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "NONE"
+                                                                                                },
+                                                                                                {
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": null,
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "VIEW"
+                                                                                                },
+                                                                                                {
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": null,
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "EDIT"
+                                                                                                }
+                                                                                            ],
+                                                                                            "fields": null,
+                                                                                            "inputFields": null,
+                                                                                            "interfaces": null,
+                                                                                            "kind": "ENUM",
+                                                                                            "name": "RBACAction",
+                                                                                            "possibleTypes": null
+                                                                                        },
+                                                                                        "indexType": "enum",
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "ENUM"
+                                                                                        ],
+                                                                                        "name": "RBACAction",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "action"
+                                                                                }
+                                                                            },
+                                                                            "inputFields": null,
+                                                                            "interfaces": {},
+                                                                            "kind": "OBJECT",
+                                                                            "name": "EntityAccess",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "object",
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "OBJECT"
+                                                                        ],
+                                                                        "name": "EntityAccess",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "entityAccess"
+                                                                },
                                                                 "audit": {
                                                                     "args": {},
                                                                     "deprecationReason": null,
@@ -34578,6 +34662,125 @@
                                                                         "non_null": false
                                                                     },
                                                                     "varName": "wanFirewallRule"
+                                                                },
+                                                                "ruleType": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "POLICY_RULE = Rule is a regular policy rule \n SUB_POLICY_SCOPE = Rule is a scoping rule wrapping a sub-policy and predicate apply to all sub-policy rules",
+                                                                    "id_str": "wanFirewall___addRule___rule___ruleType",
+                                                                    "isDeprecated": false,
+                                                                    "name": "ruleType",
+                                                                    "path": "wanFirewall.addRule.rule.ruleType",
+                                                                    "requestStr": "$ruleType:PolicyRuleTypeEnum! ",
+                                                                    "required": true,
+                                                                    "responseStr": "ruleType:$ruleType ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": null,
+                                                                            "enumValues": [
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Indicate rule is a regular policy rule",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "POLICY_RULE"
+                                                                                },
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Indicate the rule is a scoping context for sub policy",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "SUB_POLICY_SCOPE"
+                                                                                }
+                                                                            ],
+                                                                            "fields": null,
+                                                                            "inputFields": null,
+                                                                            "interfaces": null,
+                                                                            "kind": "ENUM",
+                                                                            "name": "PolicyRuleTypeEnum",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "enum",
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "ENUM"
+                                                                        ],
+                                                                        "name": "PolicyRuleTypeEnum",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "ruleType"
+                                                                },
+                                                                "subPolicy": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "A reference to the sub-policy the entity is referring to",
+                                                                    "id_str": "wanFirewall___addRule___rule___subPolicy",
+                                                                    "isDeprecated": false,
+                                                                    "name": "subPolicy",
+                                                                    "path": "wanFirewall.addRule.rule.subPolicy",
+                                                                    "requestStr": "$wanFirewallPolicyRef:WanFirewallPolicyRef ",
+                                                                    "required": false,
+                                                                    "responseStr": "subPolicy:$wanFirewallPolicyRef ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": null,
+                                                                            "enumValues": null,
+                                                                            "fields": {
+                                                                                "id": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "id_str": "wanFirewall___addRule___rule___subPolicy___id",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "id",
+                                                                                    "path": "wanFirewall.addRule.rule.subPolicy.id",
+                                                                                    "requestStr": "$id:ID! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "id:$id ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "ID",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "id"
+                                                                                },
+                                                                                "name": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "id_str": "wanFirewall___addRule___rule___subPolicy___name",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "name",
+                                                                                    "path": "wanFirewall.addRule.rule.subPolicy.name",
+                                                                                    "requestStr": "$name:String! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "name:$name ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "String",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "name"
+                                                                                }
+                                                                            },
+                                                                            "inputFields": null,
+                                                                            "interfaces": {},
+                                                                            "kind": "OBJECT",
+                                                                            "name": "WanFirewallPolicyRef",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "object",
+                                                                        "kind": [
+                                                                            "OBJECT"
+                                                                        ],
+                                                                        "name": "WanFirewallPolicyRef",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "wanFirewallPolicyRef"
                                                                 }
                                                             },
                                                             "inputFields": null,

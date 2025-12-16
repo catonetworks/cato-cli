@@ -9,9 +9,9 @@ def mutation_policy_parse(mutation_subparsers):
 
     def _show_mutation_policy_help(args, configuration=None):
         """Show help when mutation_policy is called without subcommand"""
-        print("Usage: catocli mutation policy <subcommand> [options]")
+        print("\ncatocli mutation policy <subcommand> [options]")
         print("\nAvailable subcommands:")
-        print("  antiMalwareFileHash            antiMalwareFileHash operation\n  socketLan                      socketLan operation\n  wanNetwork                     wanNetwork operation\n  internetFirewall               internetFirewall operation\n  remotePortFwd                  remotePortFwd operation\n  wanFirewall                    wanFirewall operation\n  appTenantRestriction           appTenantRestriction operation\n  applicationControl             applicationControl operation\n  tlsInspect                     tlsInspect operation\n  clientConnectivity             clientConnectivity operation\n  ... and 3 more")
+        print("  antiMalwareFileHash            antiMalwareFileHash operation\n  socketLan                      socketLan operation\n  wanNetwork                     wanNetwork operation\n  internetFirewall               internetFirewall operation\n  remotePortFwd                  remotePortFwd operation\n  wanFirewall                    wanFirewall operation\n  appTenantRestriction           appTenantRestriction operation\n  applicationControl             applicationControl operation\n  tlsInspect                     tlsInspect operation\n  clientConnectivity             clientConnectivity operation\n  ... and 4 more")
         print("\nFor help on a specific subcommand:")
         print("  catocli mutation policy <subcommand> -h")
         return None
@@ -25,7 +25,7 @@ def mutation_policy_parse(mutation_subparsers):
 
     def _show_mutation_policy_antiMalwareFileHash_help(args, configuration=None):
         """Show help when mutation_policy_antiMalwareFileHash is called without subcommand"""
-        print("Usage: catocli mutation policy antiMalwareFileHash <subcommand> [options]")
+        print("\ncatocli mutation policy antiMalwareFileHash <subcommand> [options]")
         print("\nAvailable subcommands:")
         print("  addRule                        addRule operation\n  updateRule                     updateRule operation\n  removeRule                     removeRule operation\n  moveRule                       moveRule operation\n  addSection                     addSection operation\n  updateSection                  updateSection operation\n  removeSection                  removeSection operation\n  moveSection                    moveSection operation\n  createPolicyRevision           createPolicyRevision operation\n  publishPolicyRevision          publishPolicyRevision operation\n  ... and 2 more")
         print("\nFor help on a specific subcommand:")
@@ -245,7 +245,7 @@ def mutation_policy_parse(mutation_subparsers):
 
     def _show_mutation_policy_socketLan_help(args, configuration=None):
         """Show help when mutation_policy_socketLan is called without subcommand"""
-        print("Usage: catocli mutation policy socketLan <subcommand> [options]")
+        print("\ncatocli mutation policy socketLan <subcommand> [options]")
         print("\nAvailable subcommands:")
         print("  addRule                        addRule operation\n  updateRule                     updateRule operation\n  removeRule                     removeRule operation\n  moveRule                       moveRule operation\n  addSection                     addSection operation\n  updateSection                  updateSection operation\n  removeSection                  removeSection operation\n  moveSection                    moveSection operation\n  createPolicyRevision           createPolicyRevision operation\n  publishPolicyRevision          publishPolicyRevision operation\n  ... and 2 more")
         print("\nFor help on a specific subcommand:")
@@ -465,7 +465,7 @@ def mutation_policy_parse(mutation_subparsers):
 
     def _show_mutation_policy_wanNetwork_help(args, configuration=None):
         """Show help when mutation_policy_wanNetwork is called without subcommand"""
-        print("Usage: catocli mutation policy wanNetwork <subcommand> [options]")
+        print("\ncatocli mutation policy wanNetwork <subcommand> [options]")
         print("\nAvailable subcommands:")
         print("  addRule                        addRule operation\n  updateRule                     updateRule operation\n  removeRule                     removeRule operation\n  moveRule                       moveRule operation\n  addSection                     addSection operation\n  updateSection                  updateSection operation\n  removeSection                  removeSection operation\n  moveSection                    moveSection operation\n  createPolicyRevision           createPolicyRevision operation\n  publishPolicyRevision          publishPolicyRevision operation\n  ... and 2 more")
         print("\nFor help on a specific subcommand:")
@@ -685,9 +685,9 @@ def mutation_policy_parse(mutation_subparsers):
 
     def _show_mutation_policy_internetFirewall_help(args, configuration=None):
         """Show help when mutation_policy_internetFirewall is called without subcommand"""
-        print("Usage: catocli mutation policy internetFirewall <subcommand> [options]")
+        print("\ncatocli mutation policy internetFirewall <subcommand> [options]")
         print("\nAvailable subcommands:")
-        print("  addRule                        addRule operation\n  updateRule                     updateRule operation\n  removeRule                     removeRule operation\n  moveRule                       moveRule operation\n  addSection                     addSection operation\n  updateSection                  updateSection operation\n  removeSection                  removeSection operation\n  moveSection                    moveSection operation\n  createPolicyRevision           createPolicyRevision operation\n  publishPolicyRevision          publishPolicyRevision operation\n  ... and 2 more")
+        print("  addRule                        addRule operation\n  updateRule                     updateRule operation\n  removeRule                     removeRule operation\n  moveRule                       moveRule operation\n  addSection                     addSection operation\n  updateSection                  updateSection operation\n  removeSection                  removeSection operation\n  moveSection                    moveSection operation\n  createPolicyRevision           createPolicyRevision operation\n  publishPolicyRevision          publishPolicyRevision operation\n  ... and 4 more")
         print("\nFor help on a specific subcommand:")
         print("  catocli mutation policy internetFirewall <subcommand> -h")
         return None
@@ -899,13 +899,47 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_internetFirewall_updatePolicy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_internetFirewall_updatePolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.internetFirewall.updatePolicy')
 
+    mutation_policy_internetFirewall_addSubPolicy_parser = mutation_policy_internetFirewall_subparsers.add_parser('addSubPolicy', 
+            help='addSubPolicy() internetFirewall operation', 
+            usage=get_help("mutation_policy_internetFirewall_addSubPolicy"))
+
+    mutation_policy_internetFirewall_addSubPolicy_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_internetFirewall_addSubPolicy_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_internetFirewall_addSubPolicy_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_internetFirewall_addSubPolicy_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_internetFirewall_addSubPolicy_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_internetFirewall_addSubPolicy_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_internetFirewall_addSubPolicy_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_internetFirewall_addSubPolicy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_internetFirewall_addSubPolicy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_internetFirewall_addSubPolicy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_internetFirewall_addSubPolicy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_internetFirewall_addSubPolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.internetFirewall.addSubPolicy')
+
+    mutation_policy_internetFirewall_removeSubPolicy_parser = mutation_policy_internetFirewall_subparsers.add_parser('removeSubPolicy', 
+            help='removeSubPolicy() internetFirewall operation', 
+            usage=get_help("mutation_policy_internetFirewall_removeSubPolicy"))
+
+    mutation_policy_internetFirewall_removeSubPolicy_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_internetFirewall_removeSubPolicy_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_internetFirewall_removeSubPolicy_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_internetFirewall_removeSubPolicy_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_internetFirewall_removeSubPolicy_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_internetFirewall_removeSubPolicy_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_internetFirewall_removeSubPolicy_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_internetFirewall_removeSubPolicy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_internetFirewall_removeSubPolicy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_internetFirewall_removeSubPolicy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_internetFirewall_removeSubPolicy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_internetFirewall_removeSubPolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.internetFirewall.removeSubPolicy')
+
     mutation_policy_remotePortFwd_parser = mutation_policy_subparsers.add_parser('remotePortFwd', 
             help='remotePortFwd() policy operation', 
             usage=get_help("mutation_policy_remotePortFwd"))
 
     def _show_mutation_policy_remotePortFwd_help(args, configuration=None):
         """Show help when mutation_policy_remotePortFwd is called without subcommand"""
-        print("Usage: catocli mutation policy remotePortFwd <subcommand> [options]")
+        print("\ncatocli mutation policy remotePortFwd <subcommand> [options]")
         print("\nAvailable subcommands:")
         print("  addRule                        addRule operation\n  updateRule                     updateRule operation\n  removeRule                     removeRule operation\n  moveRule                       moveRule operation\n  addSection                     addSection operation\n  updateSection                  updateSection operation\n  removeSection                  removeSection operation\n  moveSection                    moveSection operation\n  createPolicyRevision           createPolicyRevision operation\n  publishPolicyRevision          publishPolicyRevision operation\n  ... and 2 more")
         print("\nFor help on a specific subcommand:")
@@ -1125,9 +1159,9 @@ def mutation_policy_parse(mutation_subparsers):
 
     def _show_mutation_policy_wanFirewall_help(args, configuration=None):
         """Show help when mutation_policy_wanFirewall is called without subcommand"""
-        print("Usage: catocli mutation policy wanFirewall <subcommand> [options]")
+        print("\ncatocli mutation policy wanFirewall <subcommand> [options]")
         print("\nAvailable subcommands:")
-        print("  addRule                        addRule operation\n  updateRule                     updateRule operation\n  removeRule                     removeRule operation\n  moveRule                       moveRule operation\n  addSection                     addSection operation\n  updateSection                  updateSection operation\n  removeSection                  removeSection operation\n  moveSection                    moveSection operation\n  createPolicyRevision           createPolicyRevision operation\n  publishPolicyRevision          publishPolicyRevision operation\n  ... and 2 more")
+        print("  addRule                        addRule operation\n  updateRule                     updateRule operation\n  removeRule                     removeRule operation\n  moveRule                       moveRule operation\n  addSection                     addSection operation\n  updateSection                  updateSection operation\n  removeSection                  removeSection operation\n  moveSection                    moveSection operation\n  createPolicyRevision           createPolicyRevision operation\n  publishPolicyRevision          publishPolicyRevision operation\n  ... and 4 more")
         print("\nFor help on a specific subcommand:")
         print("  catocli mutation policy wanFirewall <subcommand> -h")
         return None
@@ -1339,13 +1373,47 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_wanFirewall_updatePolicy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_wanFirewall_updatePolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanFirewall.updatePolicy')
 
+    mutation_policy_wanFirewall_addSubPolicy_parser = mutation_policy_wanFirewall_subparsers.add_parser('addSubPolicy', 
+            help='addSubPolicy() wanFirewall operation', 
+            usage=get_help("mutation_policy_wanFirewall_addSubPolicy"))
+
+    mutation_policy_wanFirewall_addSubPolicy_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_wanFirewall_addSubPolicy_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_wanFirewall_addSubPolicy_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_wanFirewall_addSubPolicy_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_wanFirewall_addSubPolicy_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_wanFirewall_addSubPolicy_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_wanFirewall_addSubPolicy_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_wanFirewall_addSubPolicy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_wanFirewall_addSubPolicy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_wanFirewall_addSubPolicy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_wanFirewall_addSubPolicy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_wanFirewall_addSubPolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanFirewall.addSubPolicy')
+
+    mutation_policy_wanFirewall_removeSubPolicy_parser = mutation_policy_wanFirewall_subparsers.add_parser('removeSubPolicy', 
+            help='removeSubPolicy() wanFirewall operation', 
+            usage=get_help("mutation_policy_wanFirewall_removeSubPolicy"))
+
+    mutation_policy_wanFirewall_removeSubPolicy_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_wanFirewall_removeSubPolicy_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_wanFirewall_removeSubPolicy_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_wanFirewall_removeSubPolicy_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_wanFirewall_removeSubPolicy_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_wanFirewall_removeSubPolicy_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_wanFirewall_removeSubPolicy_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_wanFirewall_removeSubPolicy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_wanFirewall_removeSubPolicy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_wanFirewall_removeSubPolicy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_wanFirewall_removeSubPolicy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_wanFirewall_removeSubPolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanFirewall.removeSubPolicy')
+
     mutation_policy_appTenantRestriction_parser = mutation_policy_subparsers.add_parser('appTenantRestriction', 
             help='appTenantRestriction() policy operation', 
             usage=get_help("mutation_policy_appTenantRestriction"))
 
     def _show_mutation_policy_appTenantRestriction_help(args, configuration=None):
         """Show help when mutation_policy_appTenantRestriction is called without subcommand"""
-        print("Usage: catocli mutation policy appTenantRestriction <subcommand> [options]")
+        print("\ncatocli mutation policy appTenantRestriction <subcommand> [options]")
         print("\nAvailable subcommands:")
         print("  addRule                        addRule operation\n  updateRule                     updateRule operation\n  removeRule                     removeRule operation\n  moveRule                       moveRule operation\n  addSection                     addSection operation\n  updateSection                  updateSection operation\n  removeSection                  removeSection operation\n  moveSection                    moveSection operation\n  createPolicyRevision           createPolicyRevision operation\n  publishPolicyRevision          publishPolicyRevision operation\n  ... and 2 more")
         print("\nFor help on a specific subcommand:")
@@ -1565,7 +1633,7 @@ def mutation_policy_parse(mutation_subparsers):
 
     def _show_mutation_policy_applicationControl_help(args, configuration=None):
         """Show help when mutation_policy_applicationControl is called without subcommand"""
-        print("Usage: catocli mutation policy applicationControl <subcommand> [options]")
+        print("\ncatocli mutation policy applicationControl <subcommand> [options]")
         print("\nAvailable subcommands:")
         print("  addRule                        addRule operation\n  updateRule                     updateRule operation\n  removeRule                     removeRule operation\n  moveRule                       moveRule operation\n  addSection                     addSection operation\n  updateSection                  updateSection operation\n  removeSection                  removeSection operation\n  moveSection                    moveSection operation\n  createPolicyRevision           createPolicyRevision operation\n  publishPolicyRevision          publishPolicyRevision operation\n  ... and 2 more")
         print("\nFor help on a specific subcommand:")
@@ -1785,7 +1853,7 @@ def mutation_policy_parse(mutation_subparsers):
 
     def _show_mutation_policy_tlsInspect_help(args, configuration=None):
         """Show help when mutation_policy_tlsInspect is called without subcommand"""
-        print("Usage: catocli mutation policy tlsInspect <subcommand> [options]")
+        print("\ncatocli mutation policy tlsInspect <subcommand> [options]")
         print("\nAvailable subcommands:")
         print("  addRule                        addRule operation\n  updateRule                     updateRule operation\n  removeRule                     removeRule operation\n  moveRule                       moveRule operation\n  addSection                     addSection operation\n  updateSection                  updateSection operation\n  removeSection                  removeSection operation\n  moveSection                    moveSection operation\n  createPolicyRevision           createPolicyRevision operation\n  publishPolicyRevision          publishPolicyRevision operation\n  ... and 2 more")
         print("\nFor help on a specific subcommand:")
@@ -2005,7 +2073,7 @@ def mutation_policy_parse(mutation_subparsers):
 
     def _show_mutation_policy_clientConnectivity_help(args, configuration=None):
         """Show help when mutation_policy_clientConnectivity is called without subcommand"""
-        print("Usage: catocli mutation policy clientConnectivity <subcommand> [options]")
+        print("\ncatocli mutation policy clientConnectivity <subcommand> [options]")
         print("\nAvailable subcommands:")
         print("  addRule                        addRule operation\n  updateRule                     updateRule operation\n  removeRule                     removeRule operation\n  moveRule                       moveRule operation\n  addSection                     addSection operation\n  updateSection                  updateSection operation\n  removeSection                  removeSection operation\n  moveSection                    moveSection operation\n  createPolicyRevision           createPolicyRevision operation\n  publishPolicyRevision          publishPolicyRevision operation\n  ... and 2 more")
         print("\nFor help on a specific subcommand:")
@@ -2225,7 +2293,7 @@ def mutation_policy_parse(mutation_subparsers):
 
     def _show_mutation_policy_dynamicIpAllocation_help(args, configuration=None):
         """Show help when mutation_policy_dynamicIpAllocation is called without subcommand"""
-        print("Usage: catocli mutation policy dynamicIpAllocation <subcommand> [options]")
+        print("\ncatocli mutation policy dynamicIpAllocation <subcommand> [options]")
         print("\nAvailable subcommands:")
         print("  addRule                        addRule operation\n  updateRule                     updateRule operation\n  removeRule                     removeRule operation\n  moveRule                       moveRule operation\n  addSection                     addSection operation\n  updateSection                  updateSection operation\n  removeSection                  removeSection operation\n  moveSection                    moveSection operation\n  createPolicyRevision           createPolicyRevision operation\n  publishPolicyRevision          publishPolicyRevision operation\n  ... and 2 more")
         print("\nFor help on a specific subcommand:")
@@ -2439,13 +2507,233 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_dynamicIpAllocation_updatePolicy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_dynamicIpAllocation_updatePolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.dynamicIpAllocation.updatePolicy')
 
+    mutation_policy_splitTunnel_parser = mutation_policy_subparsers.add_parser('splitTunnel', 
+            help='splitTunnel() policy operation', 
+            usage=get_help("mutation_policy_splitTunnel"))
+
+    def _show_mutation_policy_splitTunnel_help(args, configuration=None):
+        """Show help when mutation_policy_splitTunnel is called without subcommand"""
+        print("\ncatocli mutation policy splitTunnel <subcommand> [options]")
+        print("\nAvailable subcommands:")
+        print("  addRule                        addRule operation\n  updateRule                     updateRule operation\n  removeRule                     removeRule operation\n  moveRule                       moveRule operation\n  addSection                     addSection operation\n  updateSection                  updateSection operation\n  removeSection                  removeSection operation\n  moveSection                    moveSection operation\n  createPolicyRevision           createPolicyRevision operation\n  publishPolicyRevision          publishPolicyRevision operation\n  ... and 2 more")
+        print("\nFor help on a specific subcommand:")
+        print("  catocli mutation policy splitTunnel <subcommand> -h")
+        return None
+
+    mutation_policy_splitTunnel_subparsers = mutation_policy_splitTunnel_parser.add_subparsers()
+    mutation_policy_splitTunnel_parser.set_defaults(func=_show_mutation_policy_splitTunnel_help)
+
+    mutation_policy_splitTunnel_addRule_parser = mutation_policy_splitTunnel_subparsers.add_parser('addRule', 
+            help='addRule() splitTunnel operation', 
+            usage=get_help("mutation_policy_splitTunnel_addRule"))
+
+    mutation_policy_splitTunnel_addRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_splitTunnel_addRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_splitTunnel_addRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_splitTunnel_addRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_splitTunnel_addRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_splitTunnel_addRule_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_splitTunnel_addRule_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_splitTunnel_addRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_splitTunnel_addRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_splitTunnel_addRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_splitTunnel_addRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_splitTunnel_addRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.splitTunnel.addRule')
+
+    mutation_policy_splitTunnel_updateRule_parser = mutation_policy_splitTunnel_subparsers.add_parser('updateRule', 
+            help='updateRule() splitTunnel operation', 
+            usage=get_help("mutation_policy_splitTunnel_updateRule"))
+
+    mutation_policy_splitTunnel_updateRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_splitTunnel_updateRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_splitTunnel_updateRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_splitTunnel_updateRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_splitTunnel_updateRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_splitTunnel_updateRule_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_splitTunnel_updateRule_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_splitTunnel_updateRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_splitTunnel_updateRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_splitTunnel_updateRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_splitTunnel_updateRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_splitTunnel_updateRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.splitTunnel.updateRule')
+
+    mutation_policy_splitTunnel_removeRule_parser = mutation_policy_splitTunnel_subparsers.add_parser('removeRule', 
+            help='removeRule() splitTunnel operation', 
+            usage=get_help("mutation_policy_splitTunnel_removeRule"))
+
+    mutation_policy_splitTunnel_removeRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_splitTunnel_removeRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_splitTunnel_removeRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_splitTunnel_removeRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_splitTunnel_removeRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_splitTunnel_removeRule_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_splitTunnel_removeRule_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_splitTunnel_removeRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_splitTunnel_removeRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_splitTunnel_removeRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_splitTunnel_removeRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_splitTunnel_removeRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.splitTunnel.removeRule')
+
+    mutation_policy_splitTunnel_moveRule_parser = mutation_policy_splitTunnel_subparsers.add_parser('moveRule', 
+            help='moveRule() splitTunnel operation', 
+            usage=get_help("mutation_policy_splitTunnel_moveRule"))
+
+    mutation_policy_splitTunnel_moveRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_splitTunnel_moveRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_splitTunnel_moveRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_splitTunnel_moveRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_splitTunnel_moveRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_splitTunnel_moveRule_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_splitTunnel_moveRule_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_splitTunnel_moveRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_splitTunnel_moveRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_splitTunnel_moveRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_splitTunnel_moveRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_splitTunnel_moveRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.splitTunnel.moveRule')
+
+    mutation_policy_splitTunnel_addSection_parser = mutation_policy_splitTunnel_subparsers.add_parser('addSection', 
+            help='addSection() splitTunnel operation', 
+            usage=get_help("mutation_policy_splitTunnel_addSection"))
+
+    mutation_policy_splitTunnel_addSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_splitTunnel_addSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_splitTunnel_addSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_splitTunnel_addSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_splitTunnel_addSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_splitTunnel_addSection_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_splitTunnel_addSection_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_splitTunnel_addSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_splitTunnel_addSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_splitTunnel_addSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_splitTunnel_addSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_splitTunnel_addSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.splitTunnel.addSection')
+
+    mutation_policy_splitTunnel_updateSection_parser = mutation_policy_splitTunnel_subparsers.add_parser('updateSection', 
+            help='updateSection() splitTunnel operation', 
+            usage=get_help("mutation_policy_splitTunnel_updateSection"))
+
+    mutation_policy_splitTunnel_updateSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_splitTunnel_updateSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_splitTunnel_updateSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_splitTunnel_updateSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_splitTunnel_updateSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_splitTunnel_updateSection_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_splitTunnel_updateSection_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_splitTunnel_updateSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_splitTunnel_updateSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_splitTunnel_updateSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_splitTunnel_updateSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_splitTunnel_updateSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.splitTunnel.updateSection')
+
+    mutation_policy_splitTunnel_removeSection_parser = mutation_policy_splitTunnel_subparsers.add_parser('removeSection', 
+            help='removeSection() splitTunnel operation', 
+            usage=get_help("mutation_policy_splitTunnel_removeSection"))
+
+    mutation_policy_splitTunnel_removeSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_splitTunnel_removeSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_splitTunnel_removeSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_splitTunnel_removeSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_splitTunnel_removeSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_splitTunnel_removeSection_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_splitTunnel_removeSection_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_splitTunnel_removeSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_splitTunnel_removeSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_splitTunnel_removeSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_splitTunnel_removeSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_splitTunnel_removeSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.splitTunnel.removeSection')
+
+    mutation_policy_splitTunnel_moveSection_parser = mutation_policy_splitTunnel_subparsers.add_parser('moveSection', 
+            help='moveSection() splitTunnel operation', 
+            usage=get_help("mutation_policy_splitTunnel_moveSection"))
+
+    mutation_policy_splitTunnel_moveSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_splitTunnel_moveSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_splitTunnel_moveSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_splitTunnel_moveSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_splitTunnel_moveSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_splitTunnel_moveSection_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_splitTunnel_moveSection_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_splitTunnel_moveSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_splitTunnel_moveSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_splitTunnel_moveSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_splitTunnel_moveSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_splitTunnel_moveSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.splitTunnel.moveSection')
+
+    mutation_policy_splitTunnel_createPolicyRevision_parser = mutation_policy_splitTunnel_subparsers.add_parser('createPolicyRevision', 
+            help='createPolicyRevision() splitTunnel operation', 
+            usage=get_help("mutation_policy_splitTunnel_createPolicyRevision"))
+
+    mutation_policy_splitTunnel_createPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_splitTunnel_createPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_splitTunnel_createPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_splitTunnel_createPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_splitTunnel_createPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_splitTunnel_createPolicyRevision_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_splitTunnel_createPolicyRevision_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_splitTunnel_createPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_splitTunnel_createPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_splitTunnel_createPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_splitTunnel_createPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_splitTunnel_createPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.splitTunnel.createPolicyRevision')
+
+    mutation_policy_splitTunnel_publishPolicyRevision_parser = mutation_policy_splitTunnel_subparsers.add_parser('publishPolicyRevision', 
+            help='publishPolicyRevision() splitTunnel operation', 
+            usage=get_help("mutation_policy_splitTunnel_publishPolicyRevision"))
+
+    mutation_policy_splitTunnel_publishPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_splitTunnel_publishPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_splitTunnel_publishPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_splitTunnel_publishPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_splitTunnel_publishPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_splitTunnel_publishPolicyRevision_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_splitTunnel_publishPolicyRevision_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_splitTunnel_publishPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_splitTunnel_publishPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_splitTunnel_publishPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_splitTunnel_publishPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_splitTunnel_publishPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.splitTunnel.publishPolicyRevision')
+
+    mutation_policy_splitTunnel_discardPolicyRevision_parser = mutation_policy_splitTunnel_subparsers.add_parser('discardPolicyRevision', 
+            help='discardPolicyRevision() splitTunnel operation', 
+            usage=get_help("mutation_policy_splitTunnel_discardPolicyRevision"))
+
+    mutation_policy_splitTunnel_discardPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_splitTunnel_discardPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_splitTunnel_discardPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_splitTunnel_discardPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_splitTunnel_discardPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_splitTunnel_discardPolicyRevision_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_splitTunnel_discardPolicyRevision_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_splitTunnel_discardPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_splitTunnel_discardPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_splitTunnel_discardPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_splitTunnel_discardPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_splitTunnel_discardPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.splitTunnel.discardPolicyRevision')
+
+    mutation_policy_splitTunnel_updatePolicy_parser = mutation_policy_splitTunnel_subparsers.add_parser('updatePolicy', 
+            help='updatePolicy() splitTunnel operation', 
+            usage=get_help("mutation_policy_splitTunnel_updatePolicy"))
+
+    mutation_policy_splitTunnel_updatePolicy_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_splitTunnel_updatePolicy_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_splitTunnel_updatePolicy_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_splitTunnel_updatePolicy_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_splitTunnel_updatePolicy_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_splitTunnel_updatePolicy_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_splitTunnel_updatePolicy_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_splitTunnel_updatePolicy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_splitTunnel_updatePolicy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_splitTunnel_updatePolicy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_splitTunnel_updatePolicy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_splitTunnel_updatePolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.splitTunnel.updatePolicy')
+
     mutation_policy_terminalServer_parser = mutation_policy_subparsers.add_parser('terminalServer', 
             help='terminalServer() policy operation', 
             usage=get_help("mutation_policy_terminalServer"))
 
     def _show_mutation_policy_terminalServer_help(args, configuration=None):
         """Show help when mutation_policy_terminalServer is called without subcommand"""
-        print("Usage: catocli mutation policy terminalServer <subcommand> [options]")
+        print("\ncatocli mutation policy terminalServer <subcommand> [options]")
         print("\nAvailable subcommands:")
         print("  addRule                        addRule operation\n  updateRule                     updateRule operation\n  removeRule                     removeRule operation\n  moveRule                       moveRule operation\n  addSection                     addSection operation\n  updateSection                  updateSection operation\n  removeSection                  removeSection operation\n  moveSection                    moveSection operation\n  createPolicyRevision           createPolicyRevision operation\n  publishPolicyRevision          publishPolicyRevision operation\n  ... and 2 more")
         print("\nFor help on a specific subcommand:")
@@ -2665,7 +2953,7 @@ def mutation_policy_parse(mutation_subparsers):
 
     def _show_mutation_policy_ztnaAlwaysOn_help(args, configuration=None):
         """Show help when mutation_policy_ztnaAlwaysOn is called without subcommand"""
-        print("Usage: catocli mutation policy ztnaAlwaysOn <subcommand> [options]")
+        print("\ncatocli mutation policy ztnaAlwaysOn <subcommand> [options]")
         print("\nAvailable subcommands:")
         print("  addRule                        addRule operation\n  updateRule                     updateRule operation\n  removeRule                     removeRule operation\n  moveRule                       moveRule operation\n  addSection                     addSection operation\n  updateSection                  updateSection operation\n  removeSection                  removeSection operation\n  moveSection                    moveSection operation\n  createPolicyRevision           createPolicyRevision operation\n  publishPolicyRevision          publishPolicyRevision operation\n  ... and 2 more")
         print("\nFor help on a specific subcommand:")

@@ -1,0 +1,24 @@
+mutation policySplitTunnelUpdateSection ( $accountId:ID! $splitTunnelPolicyMutationInput:SplitTunnelPolicyMutationInput $policyUpdateSectionInput:PolicyUpdateSectionInput!) {
+	policy ( accountId:$accountId ) {
+		splitTunnel ( input:$splitTunnelPolicyMutationInput  )  {
+			updateSection ( input:$policyUpdateSectionInput   ) {
+				section {
+					audit {
+						updatedTime
+						updatedBy
+					}
+					section {
+						id
+						name
+					}
+					properties
+				}
+				status
+				errors {
+					errorMessage
+					errorCode
+				}
+			}
+		}
+	}	
+}

@@ -1,0 +1,389 @@
+mutation policyInternetFirewallRemoveSubPolicy ( $accountId:ID! $internetFirewallPolicyMutationInput:InternetFirewallPolicyMutationInput $internetFirewallRemoveSubPolicyInput:InternetFirewallRemoveSubPolicyInput!) {
+	policy ( accountId:$accountId ) {
+		internetFirewall ( input:$internetFirewallPolicyMutationInput  )  {
+			removeSubPolicy ( input:$internetFirewallRemoveSubPolicyInput   ) {
+				policy {
+					id
+					name
+					description
+					enabled
+					rules {
+						audit {
+							updatedTime
+							updatedBy
+						}
+						rule {
+							id
+							name
+							description
+							index
+							section {
+								id
+								name
+							}
+							enabled
+							source {
+								ip
+								host {
+									id
+									name
+								}
+								site {
+									id
+									name
+								}
+								subnet
+								ipRange {
+									from
+									to
+								}
+								globalIpRange {
+									id
+									name
+								}
+								networkInterface {
+									id
+									name
+								}
+								siteNetworkSubnet {
+									id
+									name
+								}
+								floatingSubnet {
+									id
+									name
+								}
+								user {
+									id
+									name
+								}
+								usersGroup {
+									id
+									name
+								}
+								group {
+									id
+									name
+								}
+								systemGroup {
+									id
+									name
+								}
+							}
+							connectionOrigin
+							country {
+								id
+								name
+							}
+							device {
+								id
+								name
+							}
+							deviceOS
+							deviceAttributes {
+								category
+								type
+								model
+								manufacturer
+								os
+								osVersion
+							}
+							destination {
+								application {
+									id
+									name
+								}
+								customApp {
+									id
+									name
+								}
+								appCategory {
+									id
+									name
+								}
+								customCategory {
+									id
+									name
+								}
+								sanctionedAppsCategory {
+									id
+									name
+								}
+								country {
+									id
+									name
+								}
+								domain
+								fqdn
+								ip
+								subnet
+								ipRange {
+									from
+									to
+								}
+								globalIpRange {
+									id
+									name
+								}
+								remoteAsn
+								containers {
+									fqdnContainer {
+										id
+										name
+									}
+									ipAddressRangeContainer {
+										id
+										name
+									}
+								}
+							}
+							service {
+								standard {
+									id
+									name
+								}
+								custom {
+									port
+									portRange {
+										from
+										to
+									}
+									protocol
+								}
+							}
+							action
+							tracking {
+								event {
+									enabled
+								}
+								alert {
+									enabled
+									frequency
+									subscriptionGroup {
+										id
+										name
+									}
+									webhook {
+										id
+										name
+									}
+									mailingList {
+										id
+										name
+									}
+								}
+							}
+							schedule {
+								activeOn
+								customTimeframe {
+									from
+									to
+								}
+								customRecurring {
+									from
+									to
+									days
+								}
+							}
+							activePeriod {
+								useEffectiveFrom
+								effectiveFrom
+								useExpiresAt
+								expiresAt
+							}
+							exceptions {
+								name
+								source {
+									ip
+									host {
+										id
+										name
+									}
+									site {
+										id
+										name
+									}
+									subnet
+									ipRange {
+										from
+										to
+									}
+									globalIpRange {
+										id
+										name
+									}
+									networkInterface {
+										id
+										name
+									}
+									siteNetworkSubnet {
+										id
+										name
+									}
+									floatingSubnet {
+										id
+										name
+									}
+									user {
+										id
+										name
+									}
+									usersGroup {
+										id
+										name
+									}
+									group {
+										id
+										name
+									}
+									systemGroup {
+										id
+										name
+									}
+								}
+								deviceOS
+								country {
+									id
+									name
+								}
+								device {
+									id
+									name
+								}
+								deviceAttributes {
+									category
+									type
+									model
+									manufacturer
+									os
+									osVersion
+								}
+								destination {
+									application {
+										id
+										name
+									}
+									customApp {
+										id
+										name
+									}
+									appCategory {
+										id
+										name
+									}
+									customCategory {
+										id
+										name
+									}
+									sanctionedAppsCategory {
+										id
+										name
+									}
+									country {
+										id
+										name
+									}
+									domain
+									fqdn
+									ip
+									subnet
+									ipRange {
+										from
+										to
+									}
+									globalIpRange {
+										id
+										name
+									}
+									remoteAsn
+									containers {
+										fqdnContainer {
+											id
+											name
+										}
+										ipAddressRangeContainer {
+											id
+											name
+										}
+									}
+								}
+								service {
+									standard {
+										id
+										name
+									}
+									custom {
+										port
+										portRange {
+											from
+											to
+										}
+										protocol
+									}
+								}
+								connectionOrigin
+							}
+						}
+						properties
+						ruleType
+						subPolicy {
+							id
+							name
+						}
+						access {
+							action
+						}
+					}
+					sections {
+						audit {
+							updatedTime
+							updatedBy
+						}
+						section {
+							id
+							name
+						}
+						properties
+					}
+					audit {
+						publishedTime
+						publishedBy
+					}
+					revision {
+						id
+						name
+						description
+						changes
+						createdTime
+						updatedTime
+					}
+					subPolicies {
+						policy {
+							id
+							name
+							description
+							enabled
+							policyLevel
+							audit {
+								publishedTime
+								publishedBy
+							}
+						}
+						properties
+						access {
+							action
+						}
+					}
+					access {
+						action
+					}
+				}
+				status
+				errors {
+					errorMessage
+					errorCode
+				}
+			}
+		}
+	}	
+}

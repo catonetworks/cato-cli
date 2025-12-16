@@ -3,6 +3,9 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 		internetFirewall ( input:$internetFirewallPolicyMutationInput  )  {
 			createPolicyRevision ( input:$policyCreateRevisionInput   ) {
 				policy {
+					id
+					name
+					description
 					enabled
 					rules {
 						audit {
@@ -322,6 +325,14 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 							}
 						}
 						properties
+						ruleType
+						subPolicy {
+							id
+							name
+						}
+						access {
+							action
+						}
 					}
 					sections {
 						audit {
@@ -345,6 +356,26 @@ mutation policyInternetFirewallCreatePolicyRevision ( $accountId:ID! $internetFi
 						changes
 						createdTime
 						updatedTime
+					}
+					subPolicies {
+						policy {
+							id
+							name
+							description
+							enabled
+							policyLevel
+							audit {
+								publishedTime
+								publishedBy
+							}
+						}
+						properties
+						access {
+							action
+						}
+					}
+					access {
+						action
 					}
 				}
 				status

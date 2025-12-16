@@ -1,0 +1,22 @@
+query policyWanFirewallPolicyList ( $accountId:ID! $wanFirewallPolicyListInput:WanFirewallPolicyListInput!) {
+	policy ( accountId:$accountId ) {
+		wanFirewall {
+			policyList ( input:$wanFirewallPolicyListInput   ) {
+				items {
+					id
+					name
+					description
+					enabled
+					policyLevel
+					audit {
+						publishedTime
+						publishedBy
+					}
+				}
+				paging {
+					total
+				}
+			}
+		}
+	}	
+}

@@ -3,6 +3,9 @@ mutation policyInternetFirewallUpdatePolicy ( $accountId:ID! $internetFirewallPo
 		internetFirewall ( input:$internetFirewallPolicyMutationInput  )  {
 			updatePolicy ( input:$internetFirewallPolicyUpdateInput   ) {
 				policy {
+					id
+					name
+					description
 					enabled
 					rules {
 						audit {
@@ -322,6 +325,14 @@ mutation policyInternetFirewallUpdatePolicy ( $accountId:ID! $internetFirewallPo
 							}
 						}
 						properties
+						ruleType
+						subPolicy {
+							id
+							name
+						}
+						access {
+							action
+						}
 					}
 					sections {
 						audit {
@@ -345,6 +356,26 @@ mutation policyInternetFirewallUpdatePolicy ( $accountId:ID! $internetFirewallPo
 						changes
 						createdTime
 						updatedTime
+					}
+					subPolicies {
+						policy {
+							id
+							name
+							description
+							enabled
+							policyLevel
+							audit {
+								publishedTime
+								publishedBy
+							}
+						}
+						properties
+						access {
+							action
+						}
+					}
+					access {
+						action
 					}
 				}
 				status

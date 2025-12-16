@@ -9,7 +9,7 @@ def query_xdr_parse(query_subparsers):
 
     def _show_query_xdr_help(args, configuration=None):
         """Show help when query_xdr is called without subcommand"""
-        print("Usage: catocli query xdr <subcommand> [options]")
+        print("\ncatocli query xdr <subcommand> [options]")
         print("\nAvailable subcommands:")
         print("  stories                        stories operation\n  story                          story operation")
         print("\nFor help on a specific subcommand:")

@@ -9,7 +9,7 @@ def mutation_sites_parse(mutation_subparsers):
 
     def _show_mutation_sites_help(args, configuration=None):
         """Show help when mutation_sites is called without subcommand"""
-        print("Usage: catocli mutation sites <subcommand> [options]")
+        print("\ncatocli mutation sites <subcommand> [options]")
         print("\nAvailable subcommands:")
         print("  addSecondaryAwsVSocket         addSecondaryAwsVSocket operation\n  addSecondaryAzureVSocket       addSecondaryAzureVSocket operation\n  removeSecondaryAzureVSocket    removeSecondaryAzureVSocket operation\n  removeSecondaryAwsVSocket      removeSecondaryAwsVSocket operation\n  updateSecondaryAzureVSocket    updateSecondaryAzureVSocket operation\n  updateSecondaryAwsVSocket      updateSecondaryAwsVSocket operation\n  addSocketSite                  addSocketSite operation\n  removeSite                     removeSite operation\n  updateSocketInterface          updateSocketInterface operation\n  addNetworkRange                addNetworkRange operation\n  ... and 26 more")
         print("\nFor help on a specific subcommand:")

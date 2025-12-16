@@ -9,7 +9,7 @@ def mutation_container_parse(mutation_subparsers):
 
     def _show_mutation_container_help(args, configuration=None):
         """Show help when mutation_container is called without subcommand"""
-        print("Usage: catocli mutation container <subcommand> [options]")
+        print("\ncatocli mutation container <subcommand> [options]")
         print("\nAvailable subcommands:")
         print("  ipAddressRange                 ipAddressRange operation\n  fqdn                           fqdn operation\n  delete                         delete operation")
         print("\nFor help on a specific subcommand:")
@@ -25,7 +25,7 @@ def mutation_container_parse(mutation_subparsers):
 
     def _show_mutation_container_ipAddressRange_help(args, configuration=None):
         """Show help when mutation_container_ipAddressRange is called without subcommand"""
-        print("Usage: catocli mutation container ipAddressRange <subcommand> [options]")
+        print("\ncatocli mutation container ipAddressRange <subcommand> [options]")
         print("\nAvailable subcommands:")
         print("  createFromFile                 createFromFile operation\n  updateFromFile                 updateFromFile operation\n  addValues                      addValues operation\n  removeValues                   removeValues operation\n  createFromList                 createFromList operation\n  updateFromList                 updateFromList operation")
         print("\nFor help on a specific subcommand:")
@@ -143,7 +143,7 @@ def mutation_container_parse(mutation_subparsers):
 
     def _show_mutation_container_fqdn_help(args, configuration=None):
         """Show help when mutation_container_fqdn is called without subcommand"""
-        print("Usage: catocli mutation container fqdn <subcommand> [options]")
+        print("\ncatocli mutation container fqdn <subcommand> [options]")
         print("\nAvailable subcommands:")
         print("  createFromFile                 createFromFile operation\n  updateFromFile                 updateFromFile operation\n  addValues                      addValues operation\n  removeValues                   removeValues operation\n  createFromList                 createFromList operation\n  updateFromList                 updateFromList operation")
         print("\nFor help on a specific subcommand:")

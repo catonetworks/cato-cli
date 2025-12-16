@@ -2,6 +2,9 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 	policy ( accountId:$accountId ) {
 		internetFirewall {
 			policy ( input:$internetFirewallPolicyInput   ) {
+				id
+				name
+				description
 				enabled
 				rules {
 					audit {
@@ -321,6 +324,14 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 						}
 					}
 					properties
+					ruleType
+					subPolicy {
+						id
+						name
+					}
+					access {
+						action
+					}
 				}
 				sections {
 					audit {
@@ -344,6 +355,22 @@ query policyInternetFirewallPolicy ( $accountId:ID! $internetFirewallPolicyInput
 					changes
 					createdTime
 					updatedTime
+				}
+				subPolicies {
+					policy {
+						id
+						name
+						description
+						enabled
+						policyLevel
+						audit {
+							publishedTime
+							publishedBy
+						}
+					}
+				}
+				access {
+					action
 				}
 			}
 		}

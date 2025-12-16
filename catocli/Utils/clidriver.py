@@ -55,18 +55,18 @@ from ..parsers.query_devices import query_devices_parse
 from ..parsers.query_accountSnapshot import query_accountSnapshot_parse
 from ..parsers.query_site import query_site_parse
 from ..parsers.query_xdr import query_xdr_parse
-from ..parsers.query_container import query_container_parse
 from ..parsers.query_policy import query_policy_parse
-from ..parsers.query_catalogs import query_catalogs_parse
+from ..parsers.query_container import query_container_parse
 from ..parsers.query_groups import query_groups_parse
+from ..parsers.query_catalogs import query_catalogs_parse
 from ..parsers.mutation_site import mutation_site_parse
 from ..parsers.mutation_xdr import mutation_xdr_parse
-from ..parsers.mutation_policy import mutation_policy_parse
 from ..parsers.mutation_sites import mutation_sites_parse
+from ..parsers.mutation_policy import mutation_policy_parse
 from ..parsers.mutation_container import mutation_container_parse
+from ..parsers.mutation_admin import mutation_admin_parse
 from ..parsers.mutation_accountManagement import mutation_accountManagement_parse
 from ..parsers.mutation_sandbox import mutation_sandbox_parse
-from ..parsers.mutation_admin import mutation_admin_parse
 from ..parsers.mutation_licensing import mutation_licensing_parse
 from ..parsers.mutation_hardware import mutation_hardware_parse
 from ..parsers.mutation_groups import mutation_groups_parse
@@ -191,18 +191,18 @@ query_devices_parser = query_devices_parse(query_subparsers)
 query_accountSnapshot_parser = query_accountSnapshot_parse(query_subparsers)
 query_site_parser = query_site_parse(query_subparsers)
 query_xdr_parser = query_xdr_parse(query_subparsers)
-query_container_parser = query_container_parse(query_subparsers)
 query_policy_parser = query_policy_parse(query_subparsers)
-query_catalogs_parser = query_catalogs_parse(query_subparsers)
+query_container_parser = query_container_parse(query_subparsers)
 query_groups_parser = query_groups_parse(query_subparsers)
+query_catalogs_parser = query_catalogs_parse(query_subparsers)
 mutation_site_parser = mutation_site_parse(mutation_subparsers)
 mutation_xdr_parser = mutation_xdr_parse(mutation_subparsers)
-mutation_policy_parser = mutation_policy_parse(mutation_subparsers)
 mutation_sites_parser = mutation_sites_parse(mutation_subparsers)
+mutation_policy_parser = mutation_policy_parse(mutation_subparsers)
 mutation_container_parser = mutation_container_parse(mutation_subparsers)
+mutation_admin_parser = mutation_admin_parse(mutation_subparsers)
 mutation_accountManagement_parser = mutation_accountManagement_parse(mutation_subparsers)
 mutation_sandbox_parser = mutation_sandbox_parse(mutation_subparsers)
-mutation_admin_parser = mutation_admin_parse(mutation_subparsers)
 mutation_licensing_parser = mutation_licensing_parse(mutation_subparsers)
 mutation_hardware_parser = mutation_hardware_parse(mutation_subparsers)
 mutation_groups_parser = mutation_groups_parse(mutation_subparsers)
@@ -246,33 +246,14 @@ def parse_headers_from_file(file_path):
     return headers
 
 def is_mutation_command(args_list):
-    """Check if the command is a mutation command"""
+    # Check if the command is a mutation command
     if not args_list:
         return False
-    # Check if 'mutation' is in the command arguments
-    return 'mutation' in args_list
-
-def check_read_only_mode(args_list):
-    """Check if read-only mode is enabled and block mutation commands"""
-    # Check clisettings.json
-    try:
-        settings = load_cli_settings()
-        read_only = settings.get('read_only', False)
-        
-        if read_only and is_mutation_command(args_list):
-            print("ERROR: Mutation commands are disabled.")
-            exit(1)
-    except Exception as e:
-        # If we can't load settings, default to allowing mutations
-        pass
-
+    
 def main(args=None):
     # Check if no arguments provided or help is requested
     if args is None:
         args = sys.argv[1:]
-    
-    # Check read-only mode before processing
-    check_read_only_mode(args)
 
     # Show version check when displaying help or when no command specified
     if not args or '-h' in args or '--help' in args:

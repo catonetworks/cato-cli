@@ -1,0 +1,411 @@
+{
+    "operationName": "policyInternetFirewallAddSubPolicy",
+    "query": "mutation policyInternetFirewallAddSubPolicy ( $accountId:ID! $internetFirewallPolicyMutationInput:InternetFirewallPolicyMutationInput $internetFirewallAddSubPolicyInput:InternetFirewallAddSubPolicyInput!) {\n\tpolicy ( accountId:$accountId ) {\n\t\tinternetFirewall ( input:$internetFirewallPolicyMutationInput  )  {\n\t\t\taddSubPolicy ( input:$internetFirewallAddSubPolicyInput   ) {\n\t\t\t\tpolicy {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t\tdescription\n\t\t\t\t\tenabled\n\t\t\t\t\trules {\n\t\t\t\t\t\taudit {\n\t\t\t\t\t\t\tupdatedTime\n\t\t\t\t\t\t\tupdatedBy\n\t\t\t\t\t\t}\n\t\t\t\t\t\trule {\n\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\tdescription\n\t\t\t\t\t\t\tindex\n\t\t\t\t\t\t\tsection {\n\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tenabled\n\t\t\t\t\t\t\tsource {\n\t\t\t\t\t\t\t\tip\n\t\t\t\t\t\t\t\thost {\n\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\tsite {\n\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\tsubnet\n\t\t\t\t\t\t\t\tipRange {\n\t\t\t\t\t\t\t\t\tfrom\n\t\t\t\t\t\t\t\t\tto\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\tglobalIpRange {\n\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\tnetworkInterface {\n\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\tsiteNetworkSubnet {\n\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\tfloatingSubnet {\n\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\tuser {\n\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\tusersGroup {\n\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\tgroup {\n\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\tsystemGroup {\n\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tconnectionOrigin\n\t\t\t\t\t\t\tcountry {\n\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tdevice {\n\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tdeviceOS\n\t\t\t\t\t\t\tdeviceAttributes {\n\t\t\t\t\t\t\t\tcategory\n\t\t\t\t\t\t\t\ttype\n\t\t\t\t\t\t\t\tmodel\n\t\t\t\t\t\t\t\tmanufacturer\n\t\t\t\t\t\t\t\tos\n\t\t\t\t\t\t\t\tosVersion\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tdestination {\n\t\t\t\t\t\t\t\tapplication {\n\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\tcustomApp {\n\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\tappCategory {\n\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\tcustomCategory {\n\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\tsanctionedAppsCategory {\n\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\tcountry {\n\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\tdomain\n\t\t\t\t\t\t\t\tfqdn\n\t\t\t\t\t\t\t\tip\n\t\t\t\t\t\t\t\tsubnet\n\t\t\t\t\t\t\t\tipRange {\n\t\t\t\t\t\t\t\t\tfrom\n\t\t\t\t\t\t\t\t\tto\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\tglobalIpRange {\n\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\tremoteAsn\n\t\t\t\t\t\t\t\tcontainers {\n\t\t\t\t\t\t\t\t\tfqdnContainer {\n\t\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\tipAddressRangeContainer {\n\t\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tservice {\n\t\t\t\t\t\t\t\tstandard {\n\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\tcustom {\n\t\t\t\t\t\t\t\t\tport\n\t\t\t\t\t\t\t\t\tportRange {\n\t\t\t\t\t\t\t\t\t\tfrom\n\t\t\t\t\t\t\t\t\t\tto\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\tprotocol\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\taction\n\t\t\t\t\t\t\ttracking {\n\t\t\t\t\t\t\t\tevent {\n\t\t\t\t\t\t\t\t\tenabled\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\talert {\n\t\t\t\t\t\t\t\t\tenabled\n\t\t\t\t\t\t\t\t\tfrequency\n\t\t\t\t\t\t\t\t\tsubscriptionGroup {\n\t\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\twebhook {\n\t\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\tmailingList {\n\t\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tschedule {\n\t\t\t\t\t\t\t\tactiveOn\n\t\t\t\t\t\t\t\tcustomTimeframe {\n\t\t\t\t\t\t\t\t\tfrom\n\t\t\t\t\t\t\t\t\tto\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\tcustomRecurring {\n\t\t\t\t\t\t\t\t\tfrom\n\t\t\t\t\t\t\t\t\tto\n\t\t\t\t\t\t\t\t\tdays\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tactivePeriod {\n\t\t\t\t\t\t\t\tuseEffectiveFrom\n\t\t\t\t\t\t\t\teffectiveFrom\n\t\t\t\t\t\t\t\tuseExpiresAt\n\t\t\t\t\t\t\t\texpiresAt\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\texceptions {\n\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\tsource {\n\t\t\t\t\t\t\t\t\tip\n\t\t\t\t\t\t\t\t\thost {\n\t\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\tsite {\n\t\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\tsubnet\n\t\t\t\t\t\t\t\t\tipRange {\n\t\t\t\t\t\t\t\t\t\tfrom\n\t\t\t\t\t\t\t\t\t\tto\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\tglobalIpRange {\n\t\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\tnetworkInterface {\n\t\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\tsiteNetworkSubnet {\n\t\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\tfloatingSubnet {\n\t\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\tuser {\n\t\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\tusersGroup {\n\t\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\tgroup {\n\t\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\tsystemGroup {\n\t\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\tdeviceOS\n\t\t\t\t\t\t\t\tcountry {\n\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\tdevice {\n\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\tdeviceAttributes {\n\t\t\t\t\t\t\t\t\tcategory\n\t\t\t\t\t\t\t\t\ttype\n\t\t\t\t\t\t\t\t\tmodel\n\t\t\t\t\t\t\t\t\tmanufacturer\n\t\t\t\t\t\t\t\t\tos\n\t\t\t\t\t\t\t\t\tosVersion\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\tdestination {\n\t\t\t\t\t\t\t\t\tapplication {\n\t\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\tcustomApp {\n\t\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\tappCategory {\n\t\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\tcustomCategory {\n\t\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\tsanctionedAppsCategory {\n\t\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\tcountry {\n\t\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\tdomain\n\t\t\t\t\t\t\t\t\tfqdn\n\t\t\t\t\t\t\t\t\tip\n\t\t\t\t\t\t\t\t\tsubnet\n\t\t\t\t\t\t\t\t\tipRange {\n\t\t\t\t\t\t\t\t\t\tfrom\n\t\t\t\t\t\t\t\t\t\tto\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\tglobalIpRange {\n\t\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\tremoteAsn\n\t\t\t\t\t\t\t\t\tcontainers {\n\t\t\t\t\t\t\t\t\t\tfqdnContainer {\n\t\t\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\t\tipAddressRangeContainer {\n\t\t\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\tservice {\n\t\t\t\t\t\t\t\t\tstandard {\n\t\t\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\tcustom {\n\t\t\t\t\t\t\t\t\t\tport\n\t\t\t\t\t\t\t\t\t\tportRange {\n\t\t\t\t\t\t\t\t\t\t\tfrom\n\t\t\t\t\t\t\t\t\t\t\tto\n\t\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\t\tprotocol\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\tconnectionOrigin\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t\tproperties\n\t\t\t\t\t\truleType\n\t\t\t\t\t\tsubPolicy {\n\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\tname\n\t\t\t\t\t\t}\n\t\t\t\t\t\taccess {\n\t\t\t\t\t\t\taction\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\tsections {\n\t\t\t\t\t\taudit {\n\t\t\t\t\t\t\tupdatedTime\n\t\t\t\t\t\t\tupdatedBy\n\t\t\t\t\t\t}\n\t\t\t\t\t\tsection {\n\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\tname\n\t\t\t\t\t\t}\n\t\t\t\t\t\tproperties\n\t\t\t\t\t}\n\t\t\t\t\taudit {\n\t\t\t\t\t\tpublishedTime\n\t\t\t\t\t\tpublishedBy\n\t\t\t\t\t}\n\t\t\t\t\trevision {\n\t\t\t\t\t\tid\n\t\t\t\t\t\tname\n\t\t\t\t\t\tdescription\n\t\t\t\t\t\tchanges\n\t\t\t\t\t\tcreatedTime\n\t\t\t\t\t\tupdatedTime\n\t\t\t\t\t}\n\t\t\t\t\tsubPolicies {\n\t\t\t\t\t\tpolicy {\n\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\tdescription\n\t\t\t\t\t\t\tenabled\n\t\t\t\t\t\t\tpolicyLevel\n\t\t\t\t\t\t\taudit {\n\t\t\t\t\t\t\t\tpublishedTime\n\t\t\t\t\t\t\t\tpublishedBy\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t\tproperties\n\t\t\t\t\t\taccess {\n\t\t\t\t\t\t\taction\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\taccess {\n\t\t\t\t\t\taction\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tstatus\n\t\t\t\terrors {\n\t\t\t\t\terrorMessage\n\t\t\t\t\terrorCode\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "internetFirewallAddSubPolicyInput": {
+            "internetFirewallAddRuleDataInput": {
+                "action": "BLOCK",
+                "activePeriod": {
+                    "effectiveFrom": "example_value",
+                    "expiresAt": "example_value",
+                    "useEffectiveFrom": true,
+                    "useExpiresAt": true
+                },
+                "connectionOrigin": "ANY",
+                "country": {
+                    "by": "ID",
+                    "input": "string"
+                },
+                "description": "string",
+                "destination": {
+                    "appCategory": {
+                        "by": "ID",
+                        "input": "string"
+                    },
+                    "application": {
+                        "by": "ID",
+                        "input": "string"
+                    },
+                    "containers": {
+                        "fqdnContainer": {
+                            "by": "ID",
+                            "input": "string"
+                        },
+                        "ipAddressRangeContainer": {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    },
+                    "country": {
+                        "by": "ID",
+                        "input": "string"
+                    },
+                    "customApp": {
+                        "by": "ID",
+                        "input": "string"
+                    },
+                    "customCategory": {
+                        "by": "ID",
+                        "input": "string"
+                    },
+                    "domain": [
+                        "example1",
+                        "example2"
+                    ],
+                    "fqdn": [
+                        "example1",
+                        "example2"
+                    ],
+                    "globalIpRange": {
+                        "by": "ID",
+                        "input": "string"
+                    },
+                    "ip": [
+                        "example1",
+                        "example2"
+                    ],
+                    "ipRange": {
+                        "from": "example_value",
+                        "to": "example_value"
+                    },
+                    "remoteAsn": [
+                        "example1",
+                        "example2"
+                    ],
+                    "sanctionedAppsCategory": {
+                        "by": "ID",
+                        "input": "string"
+                    },
+                    "subnet": [
+                        "example1",
+                        "example2"
+                    ]
+                },
+                "device": {
+                    "by": "ID",
+                    "input": "string"
+                },
+                "deviceAttributes": {
+                    "category": [
+                        "string1",
+                        "string2"
+                    ],
+                    "manufacturer": [
+                        "string1",
+                        "string2"
+                    ],
+                    "model": [
+                        "string1",
+                        "string2"
+                    ],
+                    "os": [
+                        "string1",
+                        "string2"
+                    ],
+                    "osVersion": [
+                        "string1",
+                        "string2"
+                    ],
+                    "type": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "deviceOS": "WINDOWS",
+                "enabled": true,
+                "exceptions": {
+                    "connectionOrigin": "ANY",
+                    "country": {
+                        "by": "ID",
+                        "input": "string"
+                    },
+                    "destination": {
+                        "appCategory": {
+                            "by": "ID",
+                            "input": "string"
+                        },
+                        "application": {
+                            "by": "ID",
+                            "input": "string"
+                        },
+                        "containers": {
+                            "fqdnContainer": {
+                                "by": "ID",
+                                "input": "string"
+                            },
+                            "ipAddressRangeContainer": {
+                                "by": "ID",
+                                "input": "string"
+                            }
+                        },
+                        "country": {
+                            "by": "ID",
+                            "input": "string"
+                        },
+                        "customApp": {
+                            "by": "ID",
+                            "input": "string"
+                        },
+                        "customCategory": {
+                            "by": "ID",
+                            "input": "string"
+                        },
+                        "domain": [
+                            "example1",
+                            "example2"
+                        ],
+                        "fqdn": [
+                            "example1",
+                            "example2"
+                        ],
+                        "globalIpRange": {
+                            "by": "ID",
+                            "input": "string"
+                        },
+                        "ip": [
+                            "example1",
+                            "example2"
+                        ],
+                        "ipRange": {
+                            "from": "example_value",
+                            "to": "example_value"
+                        },
+                        "remoteAsn": [
+                            "example1",
+                            "example2"
+                        ],
+                        "sanctionedAppsCategory": {
+                            "by": "ID",
+                            "input": "string"
+                        },
+                        "subnet": [
+                            "example1",
+                            "example2"
+                        ]
+                    },
+                    "device": {
+                        "by": "ID",
+                        "input": "string"
+                    },
+                    "deviceAttributes": {
+                        "category": [
+                            "string1",
+                            "string2"
+                        ],
+                        "manufacturer": [
+                            "string1",
+                            "string2"
+                        ],
+                        "model": [
+                            "string1",
+                            "string2"
+                        ],
+                        "os": [
+                            "string1",
+                            "string2"
+                        ],
+                        "osVersion": [
+                            "string1",
+                            "string2"
+                        ],
+                        "type": [
+                            "string1",
+                            "string2"
+                        ]
+                    },
+                    "deviceOS": "WINDOWS",
+                    "name": "string",
+                    "service": {
+                        "custom": {
+                            "port": [
+                                "example1",
+                                "example2"
+                            ],
+                            "portRange": {
+                                "from": "example_value",
+                                "to": "example_value"
+                            },
+                            "protocol": "ANY"
+                        },
+                        "standard": {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    },
+                    "source": {
+                        "floatingSubnet": {
+                            "by": "ID",
+                            "input": "string"
+                        },
+                        "globalIpRange": {
+                            "by": "ID",
+                            "input": "string"
+                        },
+                        "group": {
+                            "by": "ID",
+                            "input": "string"
+                        },
+                        "host": {
+                            "by": "ID",
+                            "input": "string"
+                        },
+                        "ip": [
+                            "example1",
+                            "example2"
+                        ],
+                        "ipRange": {
+                            "from": "example_value",
+                            "to": "example_value"
+                        },
+                        "networkInterface": {
+                            "by": "ID",
+                            "input": "string"
+                        },
+                        "site": {
+                            "by": "ID",
+                            "input": "string"
+                        },
+                        "siteNetworkSubnet": {
+                            "by": "ID",
+                            "input": "string"
+                        },
+                        "subnet": [
+                            "example1",
+                            "example2"
+                        ],
+                        "systemGroup": {
+                            "by": "ID",
+                            "input": "string"
+                        },
+                        "user": {
+                            "by": "ID",
+                            "input": "string"
+                        },
+                        "usersGroup": {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    }
+                },
+                "name": "string",
+                "schedule": {
+                    "activeOn": "ALWAYS",
+                    "customRecurring": {
+                        "days": "SUNDAY",
+                        "from": "example_value",
+                        "to": "example_value"
+                    },
+                    "customTimeframe": {
+                        "from": "example_value",
+                        "to": "example_value"
+                    }
+                },
+                "service": {
+                    "custom": {
+                        "port": [
+                            "example1",
+                            "example2"
+                        ],
+                        "portRange": {
+                            "from": "example_value",
+                            "to": "example_value"
+                        },
+                        "protocol": "ANY"
+                    },
+                    "standard": {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                },
+                "source": {
+                    "floatingSubnet": {
+                        "by": "ID",
+                        "input": "string"
+                    },
+                    "globalIpRange": {
+                        "by": "ID",
+                        "input": "string"
+                    },
+                    "group": {
+                        "by": "ID",
+                        "input": "string"
+                    },
+                    "host": {
+                        "by": "ID",
+                        "input": "string"
+                    },
+                    "ip": [
+                        "example1",
+                        "example2"
+                    ],
+                    "ipRange": {
+                        "from": "example_value",
+                        "to": "example_value"
+                    },
+                    "networkInterface": {
+                        "by": "ID",
+                        "input": "string"
+                    },
+                    "site": {
+                        "by": "ID",
+                        "input": "string"
+                    },
+                    "siteNetworkSubnet": {
+                        "by": "ID",
+                        "input": "string"
+                    },
+                    "subnet": [
+                        "example1",
+                        "example2"
+                    ],
+                    "systemGroup": {
+                        "by": "ID",
+                        "input": "string"
+                    },
+                    "user": {
+                        "by": "ID",
+                        "input": "string"
+                    },
+                    "usersGroup": {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                },
+                "tracking": {
+                    "alert": {
+                        "enabled": true,
+                        "frequency": "HOURLY",
+                        "mailingList": {
+                            "by": "ID",
+                            "input": "string"
+                        },
+                        "subscriptionGroup": {
+                            "by": "ID",
+                            "input": "string"
+                        },
+                        "webhook": {
+                            "by": "ID",
+                            "input": "string"
+                        }
+                    },
+                    "event": {
+                        "enabled": true
+                    }
+                }
+            },
+            "internetFirewallAddSubPolicyDataInput": {
+                "description": "string",
+                "name": "string"
+            },
+            "policyRulePositionInput": {
+                "position": "AFTER_RULE",
+                "ref": "id"
+            }
+        },
+        "internetFirewallPolicyMutationInput": {
+            "policyMutationRevisionInput": {
+                "id": "id"
+            }
+        }
+    }
+}

@@ -9,7 +9,7 @@ def mutation_groups_parse(mutation_subparsers):
 
     def _show_mutation_groups_help(args, configuration=None):
         """Show help when mutation_groups is called without subcommand"""
-        print("Usage: catocli mutation groups <subcommand> [options]")
+        print("\ncatocli mutation groups <subcommand> [options]")
         print("\nAvailable subcommands:")
         print("  createGroup                    createGroup operation\n  updateGroup                    updateGroup operation\n  deleteGroup                    deleteGroup operation")
         print("\nFor help on a specific subcommand:")

@@ -1,0 +1,84 @@
+query policySplitTunnelPolicy ( $accountId:ID! $splitTunnelPolicyInput:SplitTunnelPolicyInput) {
+	policy ( accountId:$accountId ) {
+		splitTunnel {
+			policy ( input:$splitTunnelPolicyInput   ) {
+				enabled
+				rules {
+					audit {
+						updatedTime
+						updatedBy
+					}
+					rule {
+						id
+						name
+						description
+						index
+						section {
+							id
+							name
+						}
+						enabled
+						source {
+							user {
+								id
+								name
+							}
+							usersGroup {
+								id
+								name
+							}
+						}
+						platform
+						country {
+							id
+							name
+						}
+						action
+						destination {
+							application {
+								id
+								name
+							}
+							globalIpRange {
+								id
+								name
+							}
+						}
+						sourceNetwork {
+							sourceNetworkType
+						}
+						coverage
+						dnsExclusion {
+							domain
+						}
+						routingPriority
+					}
+					properties
+				}
+				sections {
+					audit {
+						updatedTime
+						updatedBy
+					}
+					section {
+						id
+						name
+					}
+					properties
+				}
+				audit {
+					publishedTime
+					publishedBy
+				}
+				revision {
+					id
+					name
+					description
+					changes
+					createdTime
+					updatedTime
+				}
+			}
+		}
+	}	
+}

@@ -9,7 +9,7 @@ def query_container_parse(query_subparsers):
 
     def _show_query_container_help(args, configuration=None):
         """Show help when query_container is called without subcommand"""
-        print("Usage: catocli query container <subcommand> [options]")
+        print("\ncatocli query container <subcommand> [options]")
         print("\nAvailable subcommands:")
         print("  list                           list operation\n  ipAddressRange                 ipAddressRange operation\n  fqdn                           fqdn operation")
         print("\nFor help on a specific subcommand:")
@@ -42,7 +42,7 @@ def query_container_parse(query_subparsers):
 
     def _show_query_container_ipAddressRange_help(args, configuration=None):
         """Show help when query_container_ipAddressRange is called without subcommand"""
-        print("Usage: catocli query container ipAddressRange <subcommand> [options]")
+        print("\ncatocli query container ipAddressRange <subcommand> [options]")
         print("\nAvailable subcommands:")
         print("  search                         search operation\n  searchIpAddressRange           searchIpAddressRange operation\n  downloadFile                   downloadFile operation")
         print("\nFor help on a specific subcommand:")
@@ -109,7 +109,7 @@ def query_container_parse(query_subparsers):
 
     def _show_query_container_fqdn_help(args, configuration=None):
         """Show help when query_container_fqdn is called without subcommand"""
-        print("Usage: catocli query container fqdn <subcommand> [options]")
+        print("\ncatocli query container fqdn <subcommand> [options]")
         print("\nAvailable subcommands:")
         print("  search                         search operation\n  searchFqdn                     searchFqdn operation\n  downloadFile                   downloadFile operation")
         print("\nFor help on a specific subcommand:")

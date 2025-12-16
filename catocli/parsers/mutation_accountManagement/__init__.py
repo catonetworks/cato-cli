@@ -9,7 +9,7 @@ def mutation_accountManagement_parse(mutation_subparsers):
 
     def _show_mutation_accountManagement_help(args, configuration=None):
         """Show help when mutation_accountManagement is called without subcommand"""
-        print("Usage: catocli mutation accountManagement <subcommand> [options]")
+        print("\ncatocli mutation accountManagement <subcommand> [options]")
         print("\nAvailable subcommands:")
         print("  addAccount                     addAccount operation\n  updateAccount                  updateAccount operation\n  removeAccount                  removeAccount operation\n  disableAccount                 disableAccount operation")
         print("\nFor help on a specific subcommand:")

@@ -9,7 +9,7 @@ def mutation_admin_parse(mutation_subparsers):
 
     def _show_mutation_admin_help(args, configuration=None):
         """Show help when mutation_admin is called without subcommand"""
-        print("Usage: catocli mutation admin <subcommand> [options]")
+        print("\ncatocli mutation admin <subcommand> [options]")
         print("\nAvailable subcommands:")
         print("  addAdmin                       addAdmin operation\n  addServicePrincipalAdmin       addServicePrincipalAdmin operation\n  removeAdmin                    removeAdmin operation\n  removeServicePrincipalAdmin    removeServicePrincipalAdmin operation\n  updateAdmin                    updateAdmin operation\n  updateServicePrincipalAdmin    updateServicePrincipalAdmin operation")
         print("\nFor help on a specific subcommand:")

@@ -9,7 +9,7 @@ def mutation_xdr_parse(mutation_subparsers):
 
     def _show_mutation_xdr_help(args, configuration=None):
         """Show help when mutation_xdr is called without subcommand"""
-        print("Usage: catocli mutation xdr <subcommand> [options]")
+        print("\ncatocli mutation xdr <subcommand> [options]")
         print("\nAvailable subcommands:")
         print("  analystFeedback                analystFeedback operation\n  addStoryComment                addStoryComment operation\n  deleteStoryComment             deleteStoryComment operation")
         print("\nFor help on a specific subcommand:")

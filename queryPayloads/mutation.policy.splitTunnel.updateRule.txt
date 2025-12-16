@@ -1,0 +1,65 @@
+mutation policySplitTunnelUpdateRule ( $accountId:ID! $splitTunnelPolicyMutationInput:SplitTunnelPolicyMutationInput $splitTunnelUpdateRuleInput:SplitTunnelUpdateRuleInput!) {
+	policy ( accountId:$accountId ) {
+		splitTunnel ( input:$splitTunnelPolicyMutationInput  )  {
+			updateRule ( input:$splitTunnelUpdateRuleInput   ) {
+				rule {
+					audit {
+						updatedTime
+						updatedBy
+					}
+					rule {
+						id
+						name
+						description
+						index
+						section {
+							id
+							name
+						}
+						enabled
+						source {
+							user {
+								id
+								name
+							}
+							usersGroup {
+								id
+								name
+							}
+						}
+						platform
+						country {
+							id
+							name
+						}
+						action
+						destination {
+							application {
+								id
+								name
+							}
+							globalIpRange {
+								id
+								name
+							}
+						}
+						sourceNetwork {
+							sourceNetworkType
+						}
+						coverage
+						dnsExclusion {
+							domain
+						}
+						routingPriority
+					}
+					properties
+				}
+				status
+				errors {
+					errorMessage
+					errorCode
+				}
+			}
+		}
+	}	
+}

@@ -9,7 +9,7 @@ def query_groups_parse(query_subparsers):
 
     def _show_query_groups_help(args, configuration=None):
         """Show help when query_groups is called without subcommand"""
-        print("Usage: catocli query groups <subcommand> [options]")
+        print("\ncatocli query groups <subcommand> [options]")
         print("\nAvailable subcommands:")
         print("  group                          group operation\n  whereUsed                      whereUsed operation\n  groupList                      groupList operation")
         print("\nFor help on a specific subcommand:")
@@ -25,7 +25,7 @@ def query_groups_parse(query_subparsers):
 
     def _show_query_groups_group_help(args, configuration=None):
         """Show help when query_groups_group is called without subcommand"""
-        print("Usage: catocli query groups group <subcommand> [options]")
+        print("\ncatocli query groups group <subcommand> [options]")
         print("\nAvailable subcommands:")
         print("  members                        members operation")
         print("\nFor help on a specific subcommand:")

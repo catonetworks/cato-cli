@@ -3,6 +3,9 @@ mutation policyWanFirewallDiscardPolicyRevision ( $accountId:ID! $wanFirewallPol
 		wanFirewall ( input:$wanFirewallPolicyMutationInput  )  {
 			discardPolicyRevision ( input:$policyDiscardRevisionInput   ) {
 				policy {
+					id
+					name
+					description
 					enabled
 					rules {
 						audit {
@@ -390,6 +393,14 @@ mutation policyWanFirewallDiscardPolicyRevision ( $accountId:ID! $wanFirewallPol
 							}
 						}
 						properties
+						ruleType
+						subPolicy {
+							id
+							name
+						}
+						access {
+							action
+						}
 					}
 					sections {
 						audit {
@@ -413,6 +424,26 @@ mutation policyWanFirewallDiscardPolicyRevision ( $accountId:ID! $wanFirewallPol
 						changes
 						createdTime
 						updatedTime
+					}
+					subPolicies {
+						policy {
+							id
+							name
+							description
+							enabled
+							policyLevel
+							audit {
+								publishedTime
+								publishedBy
+							}
+						}
+						properties
+						access {
+							action
+						}
+					}
+					access {
+						action
 					}
 				}
 				status

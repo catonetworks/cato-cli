@@ -9,7 +9,7 @@ def mutation_licensing_parse(mutation_subparsers):
 
     def _show_mutation_licensing_help(args, configuration=None):
         """Show help when mutation_licensing is called without subcommand"""
-        print("Usage: catocli mutation licensing <subcommand> [options]")
+        print("\ncatocli mutation licensing <subcommand> [options]")
         print("\nAvailable subcommands:")
         print("  updateCommercialLicense        updateCommercialLicense operation")
         print("\nFor help on a specific subcommand:")

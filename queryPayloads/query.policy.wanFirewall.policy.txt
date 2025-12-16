@@ -2,6 +2,9 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 	policy ( accountId:$accountId ) {
 		wanFirewall {
 			policy ( input:$wanFirewallPolicyInput   ) {
+				id
+				name
+				description
 				enabled
 				rules {
 					audit {
@@ -389,6 +392,14 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 						}
 					}
 					properties
+					ruleType
+					subPolicy {
+						id
+						name
+					}
+					access {
+						action
+					}
 				}
 				sections {
 					audit {
@@ -412,6 +423,22 @@ query policyWanFirewallPolicy ( $accountId:ID! $wanFirewallPolicyInput:WanFirewa
 					changes
 					createdTime
 					updatedTime
+				}
+				subPolicies {
+					policy {
+						id
+						name
+						description
+						enabled
+						policyLevel
+						audit {
+							publishedTime
+							publishedBy
+						}
+					}
+				}
+				access {
+					action
 				}
 			}
 		}

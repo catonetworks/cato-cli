@@ -9,7 +9,7 @@ def mutation_hardware_parse(mutation_subparsers):
 
     def _show_mutation_hardware_help(args, configuration=None):
         """Show help when mutation_hardware is called without subcommand"""
-        print("Usage: catocli mutation hardware <subcommand> [options]")
+        print("\ncatocli mutation hardware <subcommand> [options]")
         print("\nAvailable subcommands:")
         print("  updateHardwareShipping         updateHardwareShipping operation")
         print("\nFor help on a specific subcommand:")

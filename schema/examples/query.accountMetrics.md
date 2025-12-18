@@ -123,3 +123,8 @@ catocli query accountMetrics '{
     "timeFrame":"last.PT1H"
 }'
 ```
+
+## Field Name Reference
+
+### Valid values for labels
+Valid values: `bytesDownstream`, `bytesDownstreamMax`, `bytesTotal`, `bytesUpstream`, `bytesUpstreamMax`, `health`, `jitterDownstream`, `jitterUpstream`, `lastMileLatency`, `lastMilePacketLoss`, `lostDownstream`, `lostDownstreamPcnt`, `lostUpstream`, `lostUpstreamPcnt`, `packetsDiscardedDownstream`, `packetsDiscardedDownstreamPcnt`, `packetsDiscardedUpstream`, `packetsDiscardedUpstreamPcnt`, `packetsDownstream`, `packetsUpstream`, `rtt`, `tunnelAge`

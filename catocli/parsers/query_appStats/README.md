@@ -234,6 +234,11 @@ catocli query appStats '{
 }' -f csv --csv-filename=appstats_by_country.csv
 ```
 
+## Field Name Reference
+
+### Valid values for appStatsFilter, dimension and measure
+Valid values: `ISP_name`, `ad_name`, `application_description`, `application_id`, `application_name`, `application_risk_level`, `application_risk_score`, `categories`, `configured_host_name`, `dest_ip`, `dest_is_site_or_vpn`, `dest_site`, `dest_site_id`, `dest_site_name`, `device_name`, `discovered_app`, `downstream`, `flows_created`, `hq_location`, `ip`, `is_cloud_app`, `is_sanctioned_app`, `new_app`, `site_country`, `site_state`, `socket_interface`, `src_country`, `src_country_code`, `src_ip`, `src_is_site_or_vpn`, `src_isp_ip`, `src_site_country_code`, `src_site_id`, `src_site_name`, `src_site_state`, `subnet_name`, `tld`, `traffic_direction`, `upstream`, `user_id`, `user_name`
+
 
 
 

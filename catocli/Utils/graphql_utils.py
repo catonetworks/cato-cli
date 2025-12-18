@@ -48,6 +48,9 @@ def loadJSON(file, calling_module_path=None):
         module_dir = os.path.dirname(__file__)
     
     # Special handling for different file types
+    # Debug: log the file being requested
+    logging.debug(f"loadJSON called with file={file}, module_dir={module_dir}")
+    
     if file == "clisettings.json":
         # clisettings.json is in catocli/ directory
         # Navigate from Utils/ to catocli/
@@ -62,11 +65,26 @@ def loadJSON(file, calling_module_path=None):
         # Query payloads are in the root directory  
         root_dir = os.path.dirname(os.path.dirname(module_dir))
         file_path = os.path.join(root_dir, file)
+    elif file.startswith("tests/") or file.startswith("../tests/"):
+        # Tests directory is in the root directory
+        # Navigate from catocli/Utils/ to root
+        root_dir = os.path.dirname(os.path.dirname(module_dir))
+        # Remove ../ prefix if present
+        clean_file = file.replace("../", "")
+        file_path = os.path.join(root_dir, clean_file)
+        logging.debug(f"Matched tests/ pattern: root_dir={root_dir}, clean_file={clean_file}, file_path={file_path}")
+    elif file.startswith("../models/"):
+        # Handle ../models/ pattern from schema directory
+        root_dir = os.path.dirname(os.path.dirname(module_dir))
+        clean_file = file.replace("../", "")
+        file_path = os.path.join(root_dir, clean_file)
+        logging.debug(f"Matched ../models/ pattern: file_path={file_path}")
     elif os.path.isabs(file):
         # Absolute path - use as is
         file_path = file
     else:
         # Relative path - try multiple locations
+        logging.debug(f"No pattern matched, trying multiple locations for: {file}")
         possible_paths = [
             os.path.join(module_dir, file),  # Same directory as calling module
             os.path.join(os.path.dirname(module_dir), file),  # Parent directory

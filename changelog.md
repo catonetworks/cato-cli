@@ -157,3 +157,6 @@
 - Updated to latest schema adding support for clientConnectivity, ztnaAlwaysOn, and remotePortFoward.  Updated test suite.
 - Updated queryPayload processer to output proper query payloads wellformatted consistent with -t command dynamically generated
 
+## 3.0.45 (2025-12-17)
+- Added readme ENUM values for queries params for accountMetrics, appStats, appStatsTimeSeries, eventsTimeSeries, socketPortMetrics, and socketPortMetricsTimeSeries
+

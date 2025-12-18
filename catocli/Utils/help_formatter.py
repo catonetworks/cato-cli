@@ -565,7 +565,7 @@ class UniversalHelpFormatter:
         return None
     
     def _extract_additional_sections(self, command_path: str) -> List[str]:
-        """Extract timeFrame examples and Operation Arguments sections from README"""
+        """Extract timeFrame examples, Field Name Reference, and Operation Arguments sections from README"""
         sections = []
         
         # Find README.md file
@@ -583,6 +583,12 @@ class UniversalHelpFormatter:
         try:
             with open(readme_path, "r", encoding='utf-8') as f:
                 content = f.read()
+            
+            # Extract Field Name Reference section (if it exists)
+            field_name_ref_pattern = r'## Field Name Reference.*?(?=\n####|\Z)'
+            field_name_ref_match = re.search(field_name_ref_pattern, content, re.DOTALL)
+            if field_name_ref_match:
+                sections.append(field_name_ref_match.group(0).strip())
             
             # Extract TimeFrame Parameter Examples section
             timeframe_section_pattern = r'#### TimeFrame Parameter Examples.*?(?=\n####|\Z)'

@@ -55,12 +55,12 @@ from ..parsers.query_devices import query_devices_parse
 from ..parsers.query_accountSnapshot import query_accountSnapshot_parse
 from ..parsers.query_site import query_site_parse
 from ..parsers.query_xdr import query_xdr_parse
+from ..parsers.query_catalogs import query_catalogs_parse
 from ..parsers.query_policy import query_policy_parse
 from ..parsers.query_container import query_container_parse
 from ..parsers.query_groups import query_groups_parse
-from ..parsers.query_catalogs import query_catalogs_parse
-from ..parsers.mutation_site import mutation_site_parse
 from ..parsers.mutation_xdr import mutation_xdr_parse
+from ..parsers.mutation_site import mutation_site_parse
 from ..parsers.mutation_sites import mutation_sites_parse
 from ..parsers.mutation_policy import mutation_policy_parse
 from ..parsers.mutation_container import mutation_container_parse
@@ -191,12 +191,12 @@ query_devices_parser = query_devices_parse(query_subparsers)
 query_accountSnapshot_parser = query_accountSnapshot_parse(query_subparsers)
 query_site_parser = query_site_parse(query_subparsers)
 query_xdr_parser = query_xdr_parse(query_subparsers)
+query_catalogs_parser = query_catalogs_parse(query_subparsers)
 query_policy_parser = query_policy_parse(query_subparsers)
 query_container_parser = query_container_parse(query_subparsers)
 query_groups_parser = query_groups_parse(query_subparsers)
-query_catalogs_parser = query_catalogs_parse(query_subparsers)
-mutation_site_parser = mutation_site_parse(mutation_subparsers)
 mutation_xdr_parser = mutation_xdr_parse(mutation_subparsers)
+mutation_site_parser = mutation_site_parse(mutation_subparsers)
 mutation_sites_parser = mutation_sites_parse(mutation_subparsers)
 mutation_policy_parser = mutation_policy_parse(mutation_subparsers)
 mutation_container_parser = mutation_container_parse(mutation_subparsers)

@@ -222,3 +222,8 @@ catocli query socketPortMetricsTimeSeries '{
     "timeFrame": "last.P7D"
 }' -f csv --csv-filename socketPortMetricsTimeSeries_executive_dashboard.csv --append-timestamp
 ```
+
+## Field Name Reference
+
+### Valid values for socketPortMetricsDimension, and socketPortMetricsMeasure
+Valid values: `account_id`, `bytes_downstream`, `bytes_total`, `bytes_upstream`, `cellular_rsrp`, `cellular_rsrq`, `cellular_rssi`, `cellular_signal_strength`, `cellular_sinr`, `device_id`, `ha_role`, `physical_interface_type`, `sim_num`, `site_id`, `site_name`, `socket_interface`, `socket_interface_role`, `throughput_downstream`, `throughput_upstream`, `transport_type`

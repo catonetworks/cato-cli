@@ -33,6 +33,9 @@ def mutation_accountManagement_parse(mutation_subparsers):
     mutation_accountManagement_addAccount_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_accountManagement_addAccount_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_accountManagement_addAccount_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_accountManagement_addAccount_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_accountManagement_addAccount_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_accountManagement_addAccount_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_accountManagement_addAccount_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_accountManagement_addAccount_parser.set_defaults(func=createRequest,operation_name='mutation.accountManagement.addAccount')
 
@@ -50,6 +53,9 @@ def mutation_accountManagement_parse(mutation_subparsers):
     mutation_accountManagement_updateAccount_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_accountManagement_updateAccount_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_accountManagement_updateAccount_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_accountManagement_updateAccount_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_accountManagement_updateAccount_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_accountManagement_updateAccount_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_accountManagement_updateAccount_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_accountManagement_updateAccount_parser.set_defaults(func=createRequest,operation_name='mutation.accountManagement.updateAccount')
 
@@ -67,6 +73,9 @@ def mutation_accountManagement_parse(mutation_subparsers):
     mutation_accountManagement_removeAccount_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_accountManagement_removeAccount_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_accountManagement_removeAccount_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_accountManagement_removeAccount_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_accountManagement_removeAccount_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_accountManagement_removeAccount_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_accountManagement_removeAccount_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_accountManagement_removeAccount_parser.set_defaults(func=createRequest,operation_name='mutation.accountManagement.removeAccount')
 
@@ -84,5 +93,8 @@ def mutation_accountManagement_parse(mutation_subparsers):
     mutation_accountManagement_disableAccount_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_accountManagement_disableAccount_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_accountManagement_disableAccount_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_accountManagement_disableAccount_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_accountManagement_disableAccount_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_accountManagement_disableAccount_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_accountManagement_disableAccount_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_accountManagement_disableAccount_parser.set_defaults(func=createRequest,operation_name='mutation.accountManagement.disableAccount')

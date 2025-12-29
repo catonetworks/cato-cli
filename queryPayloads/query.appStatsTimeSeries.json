@@ -3,7 +3,7 @@
     "query": "query appStatsTimeSeries ( $accountID:ID! $timeFrame:TimeFrame! $measure:[Measure] $dimension:[Dimension] $appStatsFilter:[AppStatsFilter!] $buckets:Int! $perSecond:Boolean $withMissingData:Boolean $useDefaultSizeBucket:Boolean) {\n\tappStatsTimeSeries ( accountID:$accountID timeFrame:$timeFrame measures:$measure dimensions:$dimension filters:$appStatsFilter ) {\n\t\tid\n\t\tfrom\n\t\tto\n\t\tgranularity\n\t\ttimeseries ( buckets:$buckets  )  {\n\t\t\tdata ( perSecond:$perSecond  withMissingData:$withMissingData  useDefaultSizeBucket:$useDefaultSizeBucket   )\n\t\t\tlabel\n\t\t\tdimensions {\n\t\t\t\tlabel\n\t\t\t\tvalue\n\t\t\t}\n\t\t\tkey {\n\t\t\t\tmeasureFieldName\n\t\t\t\tdimensions {\n\t\t\t\t\tfieldName\n\t\t\t\t\tvalue\n\t\t\t\t}\n\t\t\t}\n\t\t\tsum\n\t\t\tunits\n\t\t\tinfo\n\t\t}\n\t}\t\n}",
     "variables": {
         "appStatsFilter": {
-            "fieldName": "ad_name",
+            "fieldName": "account_id",
             "operator": "is",
             "values": [
                 "string1",
@@ -12,11 +12,11 @@
         },
         "buckets": 1,
         "dimension": {
-            "fieldName": "ad_name"
+            "fieldName": "account_id"
         },
         "measure": {
             "aggType": "sum",
-            "fieldName": "ad_name",
+            "fieldName": "account_id",
             "trend": true
         },
         "perSecond": true,

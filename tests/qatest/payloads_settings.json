@@ -36,6 +36,20 @@
                 "AnalystDemo"
             ]
         },
+        "query.catalogs.contentTypeGroupList": {
+            "payload": {
+                "catalogApplicationContentTypeGroupListInput": {
+                    "filter": [],
+                    "paging": {
+                        "from": 0,
+                        "limit": 100
+                    }
+                }
+            },
+            "assertions": [
+                "catalogs.contentTypeGroupList.contentTypeGroup"
+            ]
+        },
         "query.container.fqdn.downloadFile": {
             "payload": {
                 "downloadFqdnContainerFileInput": {
@@ -47,6 +61,19 @@
                 "container.fqdn.downloadFile"
             ]
         },
+        "query.container.ipAddressRange.search": {
+            "payload": {
+                "ipAddressRangeContainerSearchInput": {
+                    "ref": {
+                        "by": "NAME",
+                        "input": "ip_container"
+                    }
+                }
+            },
+            "assertions": [
+                "container.ipAddressRange.search"
+            ]
+        },
         "query.container.fqdn.searchFqdn": {
             "payload": {
                 "fqdnContainerSearchFqdnInput": {
@@ -55,6 +82,17 @@
             },
             "assertions": [
                 "container.fqdn.searchFqdn.containers"
+            ]
+        },
+        "query.container.fqdn.testFromURL": {
+            "payload": {
+                "testContainerFromUrlInput": {
+                    "fileType": "CSV",
+                    "url": "https://raw.githubusercontent.com/aptnotes/data/master/APTnotes.csv"
+                }
+            },
+            "assertions": [
+                "container.fqdn.testFromURL"
             ]
         },
         "query.container.list": {
@@ -95,19 +133,6 @@
                 "container.ipAddressRange.searchIpAddressRange.containers"
             ]
         },
-        "query.container.ipAddressRange.search": {
-            "payload": {
-                "ipAddressRangeContainerSearchInput": {
-                    "ref": {
-                        "by": "NAME",
-                        "input": "ip_container"
-                    }
-                }
-            },
-            "assertions": [
-                "container.ipAddressRange.search"
-            ]
-        },
         "query.container.fqdn.search": {
             "payload": {
                 "fqdnContainerSearchInput": {
@@ -119,6 +144,17 @@
             },
             "assertions": [
                 "container.fqdn.search"
+            ]
+        },
+        "query.container.ipAddressRange.testFromURL": {
+            "payload": {
+                "testContainerFromUrlInput": {
+                    "fileType": "CSV",
+                    "url": "https://binarydefense.com/banlist.txt"
+                }
+            },
+            "assertions": [
+                "container.ipAddressRange.testFromURL"
             ]
         },
         "query.events": {
@@ -163,20 +199,6 @@
         //     },
         //     "assertions": []
         // },
-        "query.catalogs.contentTypeGroupList": {
-            "payload": {
-                "catalogApplicationContentTypeGroupListInput": {
-                    "filter": [],
-                    "paging": {
-                        "from": 0,
-                        "limit": 100
-                    }
-                }
-            },
-            "assertions": [
-                "catalogs.contentTypeGroupList.contentTypeGroup"
-            ]
-        },
         "query.groups.whereUsed": {
             "payload": {
                 "groupRefInput": {
@@ -186,6 +208,44 @@
             },
             "assertions": [
                 "groups.whereUsed"
+            ]
+        },
+        "query.policy.internetFirewall.policyList": {
+            "payload": {
+                "internetFirewallPolicyListInput": {
+                    "paging": {
+                        "from": 0,
+                        "limit": 100
+                    },
+                    "sort": {
+                        "policyLevel": {
+                            "direction": "ASC",
+                            "priority": 1
+                        }
+                    }
+                }
+            },
+            "assertions": [
+                "policy.internetFirewall.policyList.items"
+            ]
+        },
+        "query.policy.wanFirewall.policyList": {
+            "payload": {
+                "wanFirewallPolicyListInput": {
+                    "paging": {
+                        "from": 0,
+                        "limit": 100
+                    },
+                    "sort": {
+                        "policyLevel": {
+                            "direction": "ASC",
+                            "priority": 1
+                        }
+                    }
+                }
+            },
+            "assertions": [
+                "policy.wanFirewall.policyList.items"
             ]
         },
         "query.sandbox": {

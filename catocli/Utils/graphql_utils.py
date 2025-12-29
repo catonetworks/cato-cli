@@ -65,20 +65,25 @@ def loadJSON(file, calling_module_path=None):
         # Query payloads are in the root directory  
         root_dir = os.path.dirname(os.path.dirname(module_dir))
         file_path = os.path.join(root_dir, file)
-    elif file.startswith("tests/") or file.startswith("../tests/"):
+    elif file.startswith("tests/"):
         # Tests directory is in the root directory
         # Navigate from catocli/Utils/ to root
         root_dir = os.path.dirname(os.path.dirname(module_dir))
-        # Remove ../ prefix if present
+        file_path = os.path.join(root_dir, file)
+        logging.debug(f"Matched tests/ pattern: root_dir={root_dir}, file_path={file_path}")
+    elif file.startswith("../models/") or file.startswith("../tests/"):
+        # Handle ../models/ and ../tests/ patterns from schema directory
+        # When called from schema/, module_dir will be schema/
+        # We need to go up one level to get to root, then add the path
+        if "schema" in module_dir:
+            # Called from schema directory
+            root_dir = os.path.dirname(module_dir)
+        else:
+            # Called from elsewhere, need to go up two levels from catocli/Utils/
+            root_dir = os.path.dirname(os.path.dirname(module_dir))
         clean_file = file.replace("../", "")
         file_path = os.path.join(root_dir, clean_file)
-        logging.debug(f"Matched tests/ pattern: root_dir={root_dir}, clean_file={clean_file}, file_path={file_path}")
-    elif file.startswith("../models/"):
-        # Handle ../models/ pattern from schema directory
-        root_dir = os.path.dirname(os.path.dirname(module_dir))
-        clean_file = file.replace("../", "")
-        file_path = os.path.join(root_dir, clean_file)
-        logging.debug(f"Matched ../models/ pattern: file_path={file_path}")
+        logging.debug(f"Matched ../ pattern: module_dir={module_dir}, root_dir={root_dir}, file_path={file_path}")
     elif os.path.isabs(file):
         # Absolute path - use as is
         file_path = file

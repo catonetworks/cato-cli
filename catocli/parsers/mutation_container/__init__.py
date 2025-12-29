@@ -27,7 +27,7 @@ def mutation_container_parse(mutation_subparsers):
         """Show help when mutation_container_ipAddressRange is called without subcommand"""
         print("\ncatocli mutation container ipAddressRange <subcommand> [options]")
         print("\nAvailable subcommands:")
-        print("  createFromFile                 createFromFile operation\n  updateFromFile                 updateFromFile operation\n  addValues                      addValues operation\n  removeValues                   removeValues operation\n  createFromList                 createFromList operation\n  updateFromList                 updateFromList operation")
+        print("  createFromFile                 createFromFile operation\n  updateFromFile                 updateFromFile operation\n  addValues                      addValues operation\n  removeValues                   removeValues operation\n  createFromList                 createFromList operation\n  updateFromList                 updateFromList operation\n  createFromURL                  createFromURL operation\n  updateFromURL                  updateFromURL operation\n  syncFromURL                    syncFromURL operation")
         print("\nFor help on a specific subcommand:")
         print("  catocli mutation container ipAddressRange <subcommand> -h")
         return None
@@ -49,6 +49,9 @@ def mutation_container_parse(mutation_subparsers):
     mutation_container_ipAddressRange_createFromFile_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_container_ipAddressRange_createFromFile_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_container_ipAddressRange_createFromFile_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_container_ipAddressRange_createFromFile_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_container_ipAddressRange_createFromFile_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_container_ipAddressRange_createFromFile_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_container_ipAddressRange_createFromFile_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_container_ipAddressRange_createFromFile_parser.set_defaults(func=createRequest,operation_name='mutation.container.ipAddressRange.createFromFile')
 
@@ -66,6 +69,9 @@ def mutation_container_parse(mutation_subparsers):
     mutation_container_ipAddressRange_updateFromFile_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_container_ipAddressRange_updateFromFile_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_container_ipAddressRange_updateFromFile_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_container_ipAddressRange_updateFromFile_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_container_ipAddressRange_updateFromFile_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_container_ipAddressRange_updateFromFile_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_container_ipAddressRange_updateFromFile_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_container_ipAddressRange_updateFromFile_parser.set_defaults(func=createRequest,operation_name='mutation.container.ipAddressRange.updateFromFile')
 
@@ -83,6 +89,9 @@ def mutation_container_parse(mutation_subparsers):
     mutation_container_ipAddressRange_addValues_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_container_ipAddressRange_addValues_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_container_ipAddressRange_addValues_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_container_ipAddressRange_addValues_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_container_ipAddressRange_addValues_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_container_ipAddressRange_addValues_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_container_ipAddressRange_addValues_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_container_ipAddressRange_addValues_parser.set_defaults(func=createRequest,operation_name='mutation.container.ipAddressRange.addValues')
 
@@ -100,6 +109,9 @@ def mutation_container_parse(mutation_subparsers):
     mutation_container_ipAddressRange_removeValues_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_container_ipAddressRange_removeValues_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_container_ipAddressRange_removeValues_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_container_ipAddressRange_removeValues_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_container_ipAddressRange_removeValues_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_container_ipAddressRange_removeValues_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_container_ipAddressRange_removeValues_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_container_ipAddressRange_removeValues_parser.set_defaults(func=createRequest,operation_name='mutation.container.ipAddressRange.removeValues')
 
@@ -117,6 +129,9 @@ def mutation_container_parse(mutation_subparsers):
     mutation_container_ipAddressRange_createFromList_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_container_ipAddressRange_createFromList_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_container_ipAddressRange_createFromList_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_container_ipAddressRange_createFromList_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_container_ipAddressRange_createFromList_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_container_ipAddressRange_createFromList_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_container_ipAddressRange_createFromList_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_container_ipAddressRange_createFromList_parser.set_defaults(func=createRequest,operation_name='mutation.container.ipAddressRange.createFromList')
 
@@ -134,8 +149,71 @@ def mutation_container_parse(mutation_subparsers):
     mutation_container_ipAddressRange_updateFromList_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_container_ipAddressRange_updateFromList_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_container_ipAddressRange_updateFromList_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_container_ipAddressRange_updateFromList_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_container_ipAddressRange_updateFromList_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_container_ipAddressRange_updateFromList_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_container_ipAddressRange_updateFromList_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_container_ipAddressRange_updateFromList_parser.set_defaults(func=createRequest,operation_name='mutation.container.ipAddressRange.updateFromList')
+
+    mutation_container_ipAddressRange_createFromURL_parser = mutation_container_ipAddressRange_subparsers.add_parser('createFromURL', 
+            help='createFromURL() ipAddressRange operation', 
+            usage=get_help("mutation_container_ipAddressRange_createFromURL"))
+
+    mutation_container_ipAddressRange_createFromURL_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_container_ipAddressRange_createFromURL_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_container_ipAddressRange_createFromURL_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_container_ipAddressRange_createFromURL_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_container_ipAddressRange_createFromURL_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_container_ipAddressRange_createFromURL_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_container_ipAddressRange_createFromURL_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_container_ipAddressRange_createFromURL_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_container_ipAddressRange_createFromURL_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_container_ipAddressRange_createFromURL_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_container_ipAddressRange_createFromURL_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_container_ipAddressRange_createFromURL_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_container_ipAddressRange_createFromURL_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_container_ipAddressRange_createFromURL_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_container_ipAddressRange_createFromURL_parser.set_defaults(func=createRequest,operation_name='mutation.container.ipAddressRange.createFromURL')
+
+    mutation_container_ipAddressRange_updateFromURL_parser = mutation_container_ipAddressRange_subparsers.add_parser('updateFromURL', 
+            help='updateFromURL() ipAddressRange operation', 
+            usage=get_help("mutation_container_ipAddressRange_updateFromURL"))
+
+    mutation_container_ipAddressRange_updateFromURL_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_container_ipAddressRange_updateFromURL_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_container_ipAddressRange_updateFromURL_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_container_ipAddressRange_updateFromURL_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_container_ipAddressRange_updateFromURL_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_container_ipAddressRange_updateFromURL_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_container_ipAddressRange_updateFromURL_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_container_ipAddressRange_updateFromURL_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_container_ipAddressRange_updateFromURL_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_container_ipAddressRange_updateFromURL_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_container_ipAddressRange_updateFromURL_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_container_ipAddressRange_updateFromURL_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_container_ipAddressRange_updateFromURL_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_container_ipAddressRange_updateFromURL_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_container_ipAddressRange_updateFromURL_parser.set_defaults(func=createRequest,operation_name='mutation.container.ipAddressRange.updateFromURL')
+
+    mutation_container_ipAddressRange_syncFromURL_parser = mutation_container_ipAddressRange_subparsers.add_parser('syncFromURL', 
+            help='syncFromURL() ipAddressRange operation', 
+            usage=get_help("mutation_container_ipAddressRange_syncFromURL"))
+
+    mutation_container_ipAddressRange_syncFromURL_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_container_ipAddressRange_syncFromURL_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_container_ipAddressRange_syncFromURL_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_container_ipAddressRange_syncFromURL_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_container_ipAddressRange_syncFromURL_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_container_ipAddressRange_syncFromURL_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_container_ipAddressRange_syncFromURL_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_container_ipAddressRange_syncFromURL_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_container_ipAddressRange_syncFromURL_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_container_ipAddressRange_syncFromURL_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_container_ipAddressRange_syncFromURL_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_container_ipAddressRange_syncFromURL_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_container_ipAddressRange_syncFromURL_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_container_ipAddressRange_syncFromURL_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_container_ipAddressRange_syncFromURL_parser.set_defaults(func=createRequest,operation_name='mutation.container.ipAddressRange.syncFromURL')
 
     mutation_container_fqdn_parser = mutation_container_subparsers.add_parser('fqdn', 
             help='fqdn() container operation', 
@@ -145,7 +223,7 @@ def mutation_container_parse(mutation_subparsers):
         """Show help when mutation_container_fqdn is called without subcommand"""
         print("\ncatocli mutation container fqdn <subcommand> [options]")
         print("\nAvailable subcommands:")
-        print("  createFromFile                 createFromFile operation\n  updateFromFile                 updateFromFile operation\n  addValues                      addValues operation\n  removeValues                   removeValues operation\n  createFromList                 createFromList operation\n  updateFromList                 updateFromList operation")
+        print("  createFromFile                 createFromFile operation\n  updateFromFile                 updateFromFile operation\n  addValues                      addValues operation\n  removeValues                   removeValues operation\n  createFromList                 createFromList operation\n  updateFromList                 updateFromList operation\n  createFromURL                  createFromURL operation\n  updateFromURL                  updateFromURL operation\n  syncFromURL                    syncFromURL operation")
         print("\nFor help on a specific subcommand:")
         print("  catocli mutation container fqdn <subcommand> -h")
         return None
@@ -167,6 +245,9 @@ def mutation_container_parse(mutation_subparsers):
     mutation_container_fqdn_createFromFile_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_container_fqdn_createFromFile_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_container_fqdn_createFromFile_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_container_fqdn_createFromFile_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_container_fqdn_createFromFile_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_container_fqdn_createFromFile_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_container_fqdn_createFromFile_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_container_fqdn_createFromFile_parser.set_defaults(func=createRequest,operation_name='mutation.container.fqdn.createFromFile')
 
@@ -184,6 +265,9 @@ def mutation_container_parse(mutation_subparsers):
     mutation_container_fqdn_updateFromFile_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_container_fqdn_updateFromFile_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_container_fqdn_updateFromFile_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_container_fqdn_updateFromFile_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_container_fqdn_updateFromFile_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_container_fqdn_updateFromFile_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_container_fqdn_updateFromFile_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_container_fqdn_updateFromFile_parser.set_defaults(func=createRequest,operation_name='mutation.container.fqdn.updateFromFile')
 
@@ -201,6 +285,9 @@ def mutation_container_parse(mutation_subparsers):
     mutation_container_fqdn_addValues_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_container_fqdn_addValues_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_container_fqdn_addValues_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_container_fqdn_addValues_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_container_fqdn_addValues_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_container_fqdn_addValues_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_container_fqdn_addValues_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_container_fqdn_addValues_parser.set_defaults(func=createRequest,operation_name='mutation.container.fqdn.addValues')
 
@@ -218,6 +305,9 @@ def mutation_container_parse(mutation_subparsers):
     mutation_container_fqdn_removeValues_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_container_fqdn_removeValues_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_container_fqdn_removeValues_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_container_fqdn_removeValues_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_container_fqdn_removeValues_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_container_fqdn_removeValues_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_container_fqdn_removeValues_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_container_fqdn_removeValues_parser.set_defaults(func=createRequest,operation_name='mutation.container.fqdn.removeValues')
 
@@ -235,6 +325,9 @@ def mutation_container_parse(mutation_subparsers):
     mutation_container_fqdn_createFromList_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_container_fqdn_createFromList_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_container_fqdn_createFromList_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_container_fqdn_createFromList_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_container_fqdn_createFromList_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_container_fqdn_createFromList_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_container_fqdn_createFromList_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_container_fqdn_createFromList_parser.set_defaults(func=createRequest,operation_name='mutation.container.fqdn.createFromList')
 
@@ -252,8 +345,71 @@ def mutation_container_parse(mutation_subparsers):
     mutation_container_fqdn_updateFromList_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_container_fqdn_updateFromList_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_container_fqdn_updateFromList_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_container_fqdn_updateFromList_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_container_fqdn_updateFromList_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_container_fqdn_updateFromList_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_container_fqdn_updateFromList_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_container_fqdn_updateFromList_parser.set_defaults(func=createRequest,operation_name='mutation.container.fqdn.updateFromList')
+
+    mutation_container_fqdn_createFromURL_parser = mutation_container_fqdn_subparsers.add_parser('createFromURL', 
+            help='createFromURL() fqdn operation', 
+            usage=get_help("mutation_container_fqdn_createFromURL"))
+
+    mutation_container_fqdn_createFromURL_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_container_fqdn_createFromURL_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_container_fqdn_createFromURL_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_container_fqdn_createFromURL_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_container_fqdn_createFromURL_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_container_fqdn_createFromURL_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_container_fqdn_createFromURL_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_container_fqdn_createFromURL_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_container_fqdn_createFromURL_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_container_fqdn_createFromURL_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_container_fqdn_createFromURL_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_container_fqdn_createFromURL_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_container_fqdn_createFromURL_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_container_fqdn_createFromURL_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_container_fqdn_createFromURL_parser.set_defaults(func=createRequest,operation_name='mutation.container.fqdn.createFromURL')
+
+    mutation_container_fqdn_updateFromURL_parser = mutation_container_fqdn_subparsers.add_parser('updateFromURL', 
+            help='updateFromURL() fqdn operation', 
+            usage=get_help("mutation_container_fqdn_updateFromURL"))
+
+    mutation_container_fqdn_updateFromURL_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_container_fqdn_updateFromURL_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_container_fqdn_updateFromURL_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_container_fqdn_updateFromURL_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_container_fqdn_updateFromURL_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_container_fqdn_updateFromURL_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_container_fqdn_updateFromURL_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_container_fqdn_updateFromURL_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_container_fqdn_updateFromURL_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_container_fqdn_updateFromURL_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_container_fqdn_updateFromURL_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_container_fqdn_updateFromURL_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_container_fqdn_updateFromURL_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_container_fqdn_updateFromURL_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_container_fqdn_updateFromURL_parser.set_defaults(func=createRequest,operation_name='mutation.container.fqdn.updateFromURL')
+
+    mutation_container_fqdn_syncFromURL_parser = mutation_container_fqdn_subparsers.add_parser('syncFromURL', 
+            help='syncFromURL() fqdn operation', 
+            usage=get_help("mutation_container_fqdn_syncFromURL"))
+
+    mutation_container_fqdn_syncFromURL_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_container_fqdn_syncFromURL_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_container_fqdn_syncFromURL_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_container_fqdn_syncFromURL_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_container_fqdn_syncFromURL_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_container_fqdn_syncFromURL_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_container_fqdn_syncFromURL_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_container_fqdn_syncFromURL_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_container_fqdn_syncFromURL_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_container_fqdn_syncFromURL_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_container_fqdn_syncFromURL_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_container_fqdn_syncFromURL_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_container_fqdn_syncFromURL_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_container_fqdn_syncFromURL_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_container_fqdn_syncFromURL_parser.set_defaults(func=createRequest,operation_name='mutation.container.fqdn.syncFromURL')
 
     mutation_container_delete_parser = mutation_container_subparsers.add_parser('delete', 
             help='delete() container operation', 
@@ -269,5 +425,8 @@ def mutation_container_parse(mutation_subparsers):
     mutation_container_delete_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_container_delete_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_container_delete_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_container_delete_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_container_delete_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_container_delete_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_container_delete_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_container_delete_parser.set_defaults(func=createRequest,operation_name='mutation.container.delete')

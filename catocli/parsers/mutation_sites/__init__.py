@@ -33,6 +33,9 @@ def mutation_sites_parse(mutation_subparsers):
     mutation_sites_addSecondaryAwsVSocket_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_sites_addSecondaryAwsVSocket_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_sites_addSecondaryAwsVSocket_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_sites_addSecondaryAwsVSocket_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_sites_addSecondaryAwsVSocket_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_sites_addSecondaryAwsVSocket_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_sites_addSecondaryAwsVSocket_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_sites_addSecondaryAwsVSocket_parser.set_defaults(func=createRequest,operation_name='mutation.sites.addSecondaryAwsVSocket')
 
@@ -50,6 +53,9 @@ def mutation_sites_parse(mutation_subparsers):
     mutation_sites_addSecondaryAzureVSocket_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_sites_addSecondaryAzureVSocket_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_sites_addSecondaryAzureVSocket_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_sites_addSecondaryAzureVSocket_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_sites_addSecondaryAzureVSocket_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_sites_addSecondaryAzureVSocket_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_sites_addSecondaryAzureVSocket_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_sites_addSecondaryAzureVSocket_parser.set_defaults(func=createRequest,operation_name='mutation.sites.addSecondaryAzureVSocket')
 
@@ -67,6 +73,9 @@ def mutation_sites_parse(mutation_subparsers):
     mutation_sites_removeSecondaryAzureVSocket_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_sites_removeSecondaryAzureVSocket_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_sites_removeSecondaryAzureVSocket_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_sites_removeSecondaryAzureVSocket_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_sites_removeSecondaryAzureVSocket_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_sites_removeSecondaryAzureVSocket_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_sites_removeSecondaryAzureVSocket_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_sites_removeSecondaryAzureVSocket_parser.set_defaults(func=createRequest,operation_name='mutation.sites.removeSecondaryAzureVSocket')
 
@@ -84,6 +93,9 @@ def mutation_sites_parse(mutation_subparsers):
     mutation_sites_removeSecondaryAwsVSocket_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_sites_removeSecondaryAwsVSocket_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_sites_removeSecondaryAwsVSocket_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_sites_removeSecondaryAwsVSocket_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_sites_removeSecondaryAwsVSocket_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_sites_removeSecondaryAwsVSocket_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_sites_removeSecondaryAwsVSocket_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_sites_removeSecondaryAwsVSocket_parser.set_defaults(func=createRequest,operation_name='mutation.sites.removeSecondaryAwsVSocket')
 
@@ -101,6 +113,9 @@ def mutation_sites_parse(mutation_subparsers):
     mutation_sites_updateSecondaryAzureVSocket_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_sites_updateSecondaryAzureVSocket_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_sites_updateSecondaryAzureVSocket_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_sites_updateSecondaryAzureVSocket_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_sites_updateSecondaryAzureVSocket_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_sites_updateSecondaryAzureVSocket_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_sites_updateSecondaryAzureVSocket_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_sites_updateSecondaryAzureVSocket_parser.set_defaults(func=createRequest,operation_name='mutation.sites.updateSecondaryAzureVSocket')
 
@@ -118,6 +133,9 @@ def mutation_sites_parse(mutation_subparsers):
     mutation_sites_updateSecondaryAwsVSocket_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_sites_updateSecondaryAwsVSocket_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_sites_updateSecondaryAwsVSocket_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_sites_updateSecondaryAwsVSocket_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_sites_updateSecondaryAwsVSocket_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_sites_updateSecondaryAwsVSocket_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_sites_updateSecondaryAwsVSocket_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_sites_updateSecondaryAwsVSocket_parser.set_defaults(func=createRequest,operation_name='mutation.sites.updateSecondaryAwsVSocket')
 
@@ -135,6 +153,9 @@ def mutation_sites_parse(mutation_subparsers):
     mutation_sites_addSocketSite_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_sites_addSocketSite_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_sites_addSocketSite_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_sites_addSocketSite_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_sites_addSocketSite_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_sites_addSocketSite_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_sites_addSocketSite_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_sites_addSocketSite_parser.set_defaults(func=createRequest,operation_name='mutation.sites.addSocketSite')
 
@@ -152,6 +173,9 @@ def mutation_sites_parse(mutation_subparsers):
     mutation_sites_removeSite_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_sites_removeSite_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_sites_removeSite_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_sites_removeSite_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_sites_removeSite_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_sites_removeSite_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_sites_removeSite_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_sites_removeSite_parser.set_defaults(func=createRequest,operation_name='mutation.sites.removeSite')
 
@@ -169,6 +193,9 @@ def mutation_sites_parse(mutation_subparsers):
     mutation_sites_updateSocketInterface_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_sites_updateSocketInterface_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_sites_updateSocketInterface_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_sites_updateSocketInterface_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_sites_updateSocketInterface_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_sites_updateSocketInterface_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_sites_updateSocketInterface_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_sites_updateSocketInterface_parser.set_defaults(func=createRequest,operation_name='mutation.sites.updateSocketInterface')
 
@@ -186,6 +213,9 @@ def mutation_sites_parse(mutation_subparsers):
     mutation_sites_addNetworkRange_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_sites_addNetworkRange_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_sites_addNetworkRange_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_sites_addNetworkRange_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_sites_addNetworkRange_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_sites_addNetworkRange_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_sites_addNetworkRange_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_sites_addNetworkRange_parser.set_defaults(func=createRequest,operation_name='mutation.sites.addNetworkRange')
 
@@ -203,6 +233,9 @@ def mutation_sites_parse(mutation_subparsers):
     mutation_sites_updateNetworkRange_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_sites_updateNetworkRange_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_sites_updateNetworkRange_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_sites_updateNetworkRange_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_sites_updateNetworkRange_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_sites_updateNetworkRange_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_sites_updateNetworkRange_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_sites_updateNetworkRange_parser.set_defaults(func=createRequest,operation_name='mutation.sites.updateNetworkRange')
 
@@ -220,6 +253,9 @@ def mutation_sites_parse(mutation_subparsers):
     mutation_sites_removeNetworkRange_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_sites_removeNetworkRange_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_sites_removeNetworkRange_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_sites_removeNetworkRange_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_sites_removeNetworkRange_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_sites_removeNetworkRange_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_sites_removeNetworkRange_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_sites_removeNetworkRange_parser.set_defaults(func=createRequest,operation_name='mutation.sites.removeNetworkRange')
 
@@ -237,6 +273,9 @@ def mutation_sites_parse(mutation_subparsers):
     mutation_sites_updateHa_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_sites_updateHa_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_sites_updateHa_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_sites_updateHa_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_sites_updateHa_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_sites_updateHa_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_sites_updateHa_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_sites_updateHa_parser.set_defaults(func=createRequest,operation_name='mutation.sites.updateHa')
 
@@ -254,6 +293,9 @@ def mutation_sites_parse(mutation_subparsers):
     mutation_sites_addStaticHost_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_sites_addStaticHost_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_sites_addStaticHost_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_sites_addStaticHost_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_sites_addStaticHost_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_sites_addStaticHost_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_sites_addStaticHost_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_sites_addStaticHost_parser.set_defaults(func=createRequest,operation_name='mutation.sites.addStaticHost')
 
@@ -271,6 +313,9 @@ def mutation_sites_parse(mutation_subparsers):
     mutation_sites_updateStaticHost_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_sites_updateStaticHost_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_sites_updateStaticHost_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_sites_updateStaticHost_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_sites_updateStaticHost_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_sites_updateStaticHost_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_sites_updateStaticHost_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_sites_updateStaticHost_parser.set_defaults(func=createRequest,operation_name='mutation.sites.updateStaticHost')
 
@@ -288,6 +333,9 @@ def mutation_sites_parse(mutation_subparsers):
     mutation_sites_removeStaticHost_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_sites_removeStaticHost_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_sites_removeStaticHost_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_sites_removeStaticHost_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_sites_removeStaticHost_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_sites_removeStaticHost_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_sites_removeStaticHost_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_sites_removeStaticHost_parser.set_defaults(func=createRequest,operation_name='mutation.sites.removeStaticHost')
 
@@ -305,6 +353,9 @@ def mutation_sites_parse(mutation_subparsers):
     mutation_sites_addIpsecIkeV2Site_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_sites_addIpsecIkeV2Site_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_sites_addIpsecIkeV2Site_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_sites_addIpsecIkeV2Site_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_sites_addIpsecIkeV2Site_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_sites_addIpsecIkeV2Site_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_sites_addIpsecIkeV2Site_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_sites_addIpsecIkeV2Site_parser.set_defaults(func=createRequest,operation_name='mutation.sites.addIpsecIkeV2Site')
 
@@ -322,6 +373,9 @@ def mutation_sites_parse(mutation_subparsers):
     mutation_sites_updateIpsecIkeV2SiteGeneralDetails_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_sites_updateIpsecIkeV2SiteGeneralDetails_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_sites_updateIpsecIkeV2SiteGeneralDetails_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_sites_updateIpsecIkeV2SiteGeneralDetails_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_sites_updateIpsecIkeV2SiteGeneralDetails_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_sites_updateIpsecIkeV2SiteGeneralDetails_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_sites_updateIpsecIkeV2SiteGeneralDetails_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_sites_updateIpsecIkeV2SiteGeneralDetails_parser.set_defaults(func=createRequest,operation_name='mutation.sites.updateIpsecIkeV2SiteGeneralDetails')
 
@@ -339,6 +393,9 @@ def mutation_sites_parse(mutation_subparsers):
     mutation_sites_addIpsecIkeV2SiteTunnels_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_sites_addIpsecIkeV2SiteTunnels_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_sites_addIpsecIkeV2SiteTunnels_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_sites_addIpsecIkeV2SiteTunnels_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_sites_addIpsecIkeV2SiteTunnels_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_sites_addIpsecIkeV2SiteTunnels_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_sites_addIpsecIkeV2SiteTunnels_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_sites_addIpsecIkeV2SiteTunnels_parser.set_defaults(func=createRequest,operation_name='mutation.sites.addIpsecIkeV2SiteTunnels')
 
@@ -356,6 +413,9 @@ def mutation_sites_parse(mutation_subparsers):
     mutation_sites_updateIpsecIkeV2SiteTunnels_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_sites_updateIpsecIkeV2SiteTunnels_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_sites_updateIpsecIkeV2SiteTunnels_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_sites_updateIpsecIkeV2SiteTunnels_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_sites_updateIpsecIkeV2SiteTunnels_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_sites_updateIpsecIkeV2SiteTunnels_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_sites_updateIpsecIkeV2SiteTunnels_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_sites_updateIpsecIkeV2SiteTunnels_parser.set_defaults(func=createRequest,operation_name='mutation.sites.updateIpsecIkeV2SiteTunnels')
 
@@ -373,6 +433,9 @@ def mutation_sites_parse(mutation_subparsers):
     mutation_sites_removeIpsecIkeV2SiteTunnels_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_sites_removeIpsecIkeV2SiteTunnels_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_sites_removeIpsecIkeV2SiteTunnels_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_sites_removeIpsecIkeV2SiteTunnels_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_sites_removeIpsecIkeV2SiteTunnels_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_sites_removeIpsecIkeV2SiteTunnels_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_sites_removeIpsecIkeV2SiteTunnels_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_sites_removeIpsecIkeV2SiteTunnels_parser.set_defaults(func=createRequest,operation_name='mutation.sites.removeIpsecIkeV2SiteTunnels')
 
@@ -390,6 +453,9 @@ def mutation_sites_parse(mutation_subparsers):
     mutation_sites_addCloudInterconnectSite_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_sites_addCloudInterconnectSite_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_sites_addCloudInterconnectSite_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_sites_addCloudInterconnectSite_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_sites_addCloudInterconnectSite_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_sites_addCloudInterconnectSite_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_sites_addCloudInterconnectSite_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_sites_addCloudInterconnectSite_parser.set_defaults(func=createRequest,operation_name='mutation.sites.addCloudInterconnectSite')
 
@@ -407,6 +473,9 @@ def mutation_sites_parse(mutation_subparsers):
     mutation_sites_addCloudInterconnectPhysicalConnection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_sites_addCloudInterconnectPhysicalConnection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_sites_addCloudInterconnectPhysicalConnection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_sites_addCloudInterconnectPhysicalConnection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_sites_addCloudInterconnectPhysicalConnection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_sites_addCloudInterconnectPhysicalConnection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_sites_addCloudInterconnectPhysicalConnection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_sites_addCloudInterconnectPhysicalConnection_parser.set_defaults(func=createRequest,operation_name='mutation.sites.addCloudInterconnectPhysicalConnection')
 
@@ -424,6 +493,9 @@ def mutation_sites_parse(mutation_subparsers):
     mutation_sites_updateCloudInterconnectPhysicalConnection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_sites_updateCloudInterconnectPhysicalConnection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_sites_updateCloudInterconnectPhysicalConnection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_sites_updateCloudInterconnectPhysicalConnection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_sites_updateCloudInterconnectPhysicalConnection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_sites_updateCloudInterconnectPhysicalConnection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_sites_updateCloudInterconnectPhysicalConnection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_sites_updateCloudInterconnectPhysicalConnection_parser.set_defaults(func=createRequest,operation_name='mutation.sites.updateCloudInterconnectPhysicalConnection')
 
@@ -441,6 +513,9 @@ def mutation_sites_parse(mutation_subparsers):
     mutation_sites_removeCloudInterconnectPhysicalConnection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_sites_removeCloudInterconnectPhysicalConnection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_sites_removeCloudInterconnectPhysicalConnection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_sites_removeCloudInterconnectPhysicalConnection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_sites_removeCloudInterconnectPhysicalConnection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_sites_removeCloudInterconnectPhysicalConnection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_sites_removeCloudInterconnectPhysicalConnection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_sites_removeCloudInterconnectPhysicalConnection_parser.set_defaults(func=createRequest,operation_name='mutation.sites.removeCloudInterconnectPhysicalConnection')
 
@@ -458,6 +533,9 @@ def mutation_sites_parse(mutation_subparsers):
     mutation_sites_addBgpPeer_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_sites_addBgpPeer_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_sites_addBgpPeer_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_sites_addBgpPeer_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_sites_addBgpPeer_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_sites_addBgpPeer_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_sites_addBgpPeer_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_sites_addBgpPeer_parser.set_defaults(func=createRequest,operation_name='mutation.sites.addBgpPeer')
 
@@ -475,6 +553,9 @@ def mutation_sites_parse(mutation_subparsers):
     mutation_sites_updateBgpPeer_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_sites_updateBgpPeer_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_sites_updateBgpPeer_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_sites_updateBgpPeer_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_sites_updateBgpPeer_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_sites_updateBgpPeer_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_sites_updateBgpPeer_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_sites_updateBgpPeer_parser.set_defaults(func=createRequest,operation_name='mutation.sites.updateBgpPeer')
 
@@ -492,6 +573,9 @@ def mutation_sites_parse(mutation_subparsers):
     mutation_sites_removeBgpPeer_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_sites_removeBgpPeer_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_sites_removeBgpPeer_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_sites_removeBgpPeer_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_sites_removeBgpPeer_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_sites_removeBgpPeer_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_sites_removeBgpPeer_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_sites_removeBgpPeer_parser.set_defaults(func=createRequest,operation_name='mutation.sites.removeBgpPeer')
 
@@ -509,6 +593,9 @@ def mutation_sites_parse(mutation_subparsers):
     mutation_sites_startSiteUpgrade_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_sites_startSiteUpgrade_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_sites_startSiteUpgrade_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_sites_startSiteUpgrade_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_sites_startSiteUpgrade_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_sites_startSiteUpgrade_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_sites_startSiteUpgrade_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_sites_startSiteUpgrade_parser.set_defaults(func=createRequest,operation_name='mutation.sites.startSiteUpgrade')
 
@@ -526,6 +613,9 @@ def mutation_sites_parse(mutation_subparsers):
     mutation_sites_assignSiteBwLicense_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_sites_assignSiteBwLicense_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_sites_assignSiteBwLicense_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_sites_assignSiteBwLicense_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_sites_assignSiteBwLicense_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_sites_assignSiteBwLicense_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_sites_assignSiteBwLicense_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_sites_assignSiteBwLicense_parser.set_defaults(func=createRequest,operation_name='mutation.sites.assignSiteBwLicense')
 
@@ -543,6 +633,9 @@ def mutation_sites_parse(mutation_subparsers):
     mutation_sites_updateSiteBwLicense_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_sites_updateSiteBwLicense_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_sites_updateSiteBwLicense_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_sites_updateSiteBwLicense_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_sites_updateSiteBwLicense_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_sites_updateSiteBwLicense_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_sites_updateSiteBwLicense_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_sites_updateSiteBwLicense_parser.set_defaults(func=createRequest,operation_name='mutation.sites.updateSiteBwLicense')
 
@@ -560,6 +653,9 @@ def mutation_sites_parse(mutation_subparsers):
     mutation_sites_replaceSiteBwLicense_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_sites_replaceSiteBwLicense_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_sites_replaceSiteBwLicense_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_sites_replaceSiteBwLicense_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_sites_replaceSiteBwLicense_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_sites_replaceSiteBwLicense_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_sites_replaceSiteBwLicense_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_sites_replaceSiteBwLicense_parser.set_defaults(func=createRequest,operation_name='mutation.sites.replaceSiteBwLicense')
 
@@ -577,6 +673,9 @@ def mutation_sites_parse(mutation_subparsers):
     mutation_sites_removeSiteBwLicense_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_sites_removeSiteBwLicense_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_sites_removeSiteBwLicense_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_sites_removeSiteBwLicense_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_sites_removeSiteBwLicense_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_sites_removeSiteBwLicense_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_sites_removeSiteBwLicense_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_sites_removeSiteBwLicense_parser.set_defaults(func=createRequest,operation_name='mutation.sites.removeSiteBwLicense')
 
@@ -594,6 +693,9 @@ def mutation_sites_parse(mutation_subparsers):
     mutation_sites_updateSiteGeneralDetails_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_sites_updateSiteGeneralDetails_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_sites_updateSiteGeneralDetails_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_sites_updateSiteGeneralDetails_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_sites_updateSiteGeneralDetails_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_sites_updateSiteGeneralDetails_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_sites_updateSiteGeneralDetails_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_sites_updateSiteGeneralDetails_parser.set_defaults(func=createRequest,operation_name='mutation.sites.updateSiteGeneralDetails')
 
@@ -611,6 +713,9 @@ def mutation_sites_parse(mutation_subparsers):
     mutation_sites_addSocketAddOnCard_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_sites_addSocketAddOnCard_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_sites_addSocketAddOnCard_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_sites_addSocketAddOnCard_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_sites_addSocketAddOnCard_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_sites_addSocketAddOnCard_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_sites_addSocketAddOnCard_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_sites_addSocketAddOnCard_parser.set_defaults(func=createRequest,operation_name='mutation.sites.addSocketAddOnCard')
 
@@ -628,5 +733,8 @@ def mutation_sites_parse(mutation_subparsers):
     mutation_sites_removeSocketAddOnCard_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_sites_removeSocketAddOnCard_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_sites_removeSocketAddOnCard_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_sites_removeSocketAddOnCard_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_sites_removeSocketAddOnCard_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_sites_removeSocketAddOnCard_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_sites_removeSocketAddOnCard_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_sites_removeSocketAddOnCard_parser.set_defaults(func=createRequest,operation_name='mutation.sites.removeSocketAddOnCard')

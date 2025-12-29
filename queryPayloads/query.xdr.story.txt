@@ -51,6 +51,22 @@ query xdrStory ( $accountID:ID! $storyId:ID $producer:StoryProducerEnum $inciden
 				}
 				predictedVerdict
 				predictedThreatType
+				categories
+				entities {
+					ref {
+						id
+						name
+						... on GroupMemberRefTyped {
+							type
+						}
+					}
+					role
+					kind
+					data {
+						fieldName
+						values
+					}
+				}
 				... on MicrosoftEndpoint {
 					similarStoriesData {
 						storyId
@@ -764,6 +780,57 @@ query xdrStory ( $accountID:ID! $storyId:ID $producer:StoryProducerEnum $inciden
 							description
 							link
 						}
+					}
+				}
+				... on GenericIncident {
+					similarStoriesData {
+						storyId
+						threatTypeName
+						verdict
+						threatClassification
+						similarityPercentage
+						indication
+					}
+					producerInfo {
+						product
+						typeGenericIncidentProducerInfo: type
+					}
+					vendorInfo {
+						name
+						status
+						engineType
+						incidentUrl
+					}
+					statusInfo {
+						verdictGenericIncidentStatusInfo: verdict
+						classification
+						incidentStatus
+					}
+					evidences {
+						typeGenericIncidentEvidence: type
+						dataGenericIncidentEvidence: data {
+							fieldName
+							values
+						}
+					}
+					queries {
+						dataSourceDataQuery: dataSource
+						measuresDataQuery: measures {
+							fieldName
+							aggType
+							unitType
+						}
+						filtersDataQuery: filters {
+							name
+							operator
+							value
+							values
+						}
+						buckets
+					}
+					mitres {
+						id
+						name
 					}
 				}
 				... on CatoEndpoint {

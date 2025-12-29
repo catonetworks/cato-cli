@@ -1,0 +1,45 @@
+mutation containerFqdnSyncFromURL ( $accountId:ID! $syncFqdnContainerFromUrlInput:SyncFqdnContainerFromUrlInput!) {
+	container ( accountId:$accountId ) {
+		fqdn {
+			syncFromURL ( input:$syncFqdnContainerFromUrlInput   ) {
+				container {
+					id
+					name
+					description
+					size
+					audit {
+						createdBy
+						lastModifiedBy
+						lastModifiedAt
+						createdAt
+					}
+					syncData {
+						fileType
+						url
+						timeInterval
+						timeUnit
+						notifications {
+							subscriptionGroup {
+								id
+								name
+							}
+							webhook {
+								id
+								name
+							}
+							mailingList {
+								id
+								name
+							}
+						}
+					}
+					syncDataAudit {
+						lastSynced
+						lastSyncAttempt
+						errorMsg
+					}
+				}
+			}
+		}
+	}	
+}

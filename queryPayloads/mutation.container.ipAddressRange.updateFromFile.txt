@@ -13,6 +13,31 @@ mutation containerIpAddressRangeUpdateFromFile ( $accountId:ID! $updateIpAddress
 						lastModifiedAt
 						createdAt
 					}
+					syncData {
+						fileType
+						url
+						timeInterval
+						timeUnit
+						notifications {
+							subscriptionGroup {
+								id
+								name
+							}
+							webhook {
+								id
+								name
+							}
+							mailingList {
+								id
+								name
+							}
+						}
+					}
+					syncDataAudit {
+						lastSynced
+						lastSyncAttempt
+						errorMsg
+					}
 				}
 			}
 		}

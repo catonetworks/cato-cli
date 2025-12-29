@@ -49,6 +49,9 @@ def query_policy_parse(query_subparsers):
     query_policy_antiMalwareFileHash_policy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_policy_antiMalwareFileHash_policy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_policy_antiMalwareFileHash_policy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_policy_antiMalwareFileHash_policy_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    query_policy_antiMalwareFileHash_policy_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    query_policy_antiMalwareFileHash_policy_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     query_policy_antiMalwareFileHash_policy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_policy_antiMalwareFileHash_policy_parser.set_defaults(func=createRequest,operation_name='query.policy.antiMalwareFileHash.policy')
 
@@ -82,6 +85,9 @@ def query_policy_parse(query_subparsers):
     query_policy_socketLan_policy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_policy_socketLan_policy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_policy_socketLan_policy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_policy_socketLan_policy_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    query_policy_socketLan_policy_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    query_policy_socketLan_policy_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     query_policy_socketLan_policy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_policy_socketLan_policy_parser.set_defaults(func=createRequest,operation_name='query.policy.socketLan.policy')
 
@@ -115,6 +121,9 @@ def query_policy_parse(query_subparsers):
     query_policy_wanNetwork_policy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_policy_wanNetwork_policy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_policy_wanNetwork_policy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_policy_wanNetwork_policy_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    query_policy_wanNetwork_policy_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    query_policy_wanNetwork_policy_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     query_policy_wanNetwork_policy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_policy_wanNetwork_policy_parser.set_defaults(func=createRequest,operation_name='query.policy.wanNetwork.policy')
 
@@ -148,6 +157,9 @@ def query_policy_parse(query_subparsers):
     query_policy_internetFirewall_policy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_policy_internetFirewall_policy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_policy_internetFirewall_policy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_policy_internetFirewall_policy_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    query_policy_internetFirewall_policy_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    query_policy_internetFirewall_policy_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     query_policy_internetFirewall_policy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_policy_internetFirewall_policy_parser.set_defaults(func=createRequest,operation_name='query.policy.internetFirewall.policy')
 
@@ -165,6 +177,9 @@ def query_policy_parse(query_subparsers):
     query_policy_internetFirewall_policyList_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_policy_internetFirewall_policyList_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_policy_internetFirewall_policyList_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_policy_internetFirewall_policyList_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    query_policy_internetFirewall_policyList_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    query_policy_internetFirewall_policyList_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     query_policy_internetFirewall_policyList_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_policy_internetFirewall_policyList_parser.set_defaults(func=createRequest,operation_name='query.policy.internetFirewall.policyList')
 
@@ -198,6 +213,9 @@ def query_policy_parse(query_subparsers):
     query_policy_remotePortFwd_policy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_policy_remotePortFwd_policy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_policy_remotePortFwd_policy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_policy_remotePortFwd_policy_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    query_policy_remotePortFwd_policy_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    query_policy_remotePortFwd_policy_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     query_policy_remotePortFwd_policy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_policy_remotePortFwd_policy_parser.set_defaults(func=createRequest,operation_name='query.policy.remotePortFwd.policy')
 
@@ -231,6 +249,9 @@ def query_policy_parse(query_subparsers):
     query_policy_wanFirewall_policy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_policy_wanFirewall_policy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_policy_wanFirewall_policy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_policy_wanFirewall_policy_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    query_policy_wanFirewall_policy_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    query_policy_wanFirewall_policy_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     query_policy_wanFirewall_policy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_policy_wanFirewall_policy_parser.set_defaults(func=createRequest,operation_name='query.policy.wanFirewall.policy')
 
@@ -248,6 +269,9 @@ def query_policy_parse(query_subparsers):
     query_policy_wanFirewall_policyList_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_policy_wanFirewall_policyList_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_policy_wanFirewall_policyList_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_policy_wanFirewall_policyList_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    query_policy_wanFirewall_policyList_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    query_policy_wanFirewall_policyList_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     query_policy_wanFirewall_policyList_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_policy_wanFirewall_policyList_parser.set_defaults(func=createRequest,operation_name='query.policy.wanFirewall.policyList')
 
@@ -281,6 +305,9 @@ def query_policy_parse(query_subparsers):
     query_policy_appTenantRestriction_policy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_policy_appTenantRestriction_policy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_policy_appTenantRestriction_policy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_policy_appTenantRestriction_policy_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    query_policy_appTenantRestriction_policy_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    query_policy_appTenantRestriction_policy_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     query_policy_appTenantRestriction_policy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_policy_appTenantRestriction_policy_parser.set_defaults(func=createRequest,operation_name='query.policy.appTenantRestriction.policy')
 
@@ -314,6 +341,9 @@ def query_policy_parse(query_subparsers):
     query_policy_applicationControl_policy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_policy_applicationControl_policy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_policy_applicationControl_policy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_policy_applicationControl_policy_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    query_policy_applicationControl_policy_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    query_policy_applicationControl_policy_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     query_policy_applicationControl_policy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_policy_applicationControl_policy_parser.set_defaults(func=createRequest,operation_name='query.policy.applicationControl.policy')
 
@@ -347,6 +377,9 @@ def query_policy_parse(query_subparsers):
     query_policy_tlsInspect_policy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_policy_tlsInspect_policy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_policy_tlsInspect_policy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_policy_tlsInspect_policy_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    query_policy_tlsInspect_policy_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    query_policy_tlsInspect_policy_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     query_policy_tlsInspect_policy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_policy_tlsInspect_policy_parser.set_defaults(func=createRequest,operation_name='query.policy.tlsInspect.policy')
 
@@ -380,6 +413,9 @@ def query_policy_parse(query_subparsers):
     query_policy_clientConnectivity_policy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_policy_clientConnectivity_policy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_policy_clientConnectivity_policy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_policy_clientConnectivity_policy_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    query_policy_clientConnectivity_policy_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    query_policy_clientConnectivity_policy_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     query_policy_clientConnectivity_policy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_policy_clientConnectivity_policy_parser.set_defaults(func=createRequest,operation_name='query.policy.clientConnectivity.policy')
 
@@ -413,6 +449,9 @@ def query_policy_parse(query_subparsers):
     query_policy_dynamicIpAllocation_policy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_policy_dynamicIpAllocation_policy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_policy_dynamicIpAllocation_policy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_policy_dynamicIpAllocation_policy_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    query_policy_dynamicIpAllocation_policy_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    query_policy_dynamicIpAllocation_policy_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     query_policy_dynamicIpAllocation_policy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_policy_dynamicIpAllocation_policy_parser.set_defaults(func=createRequest,operation_name='query.policy.dynamicIpAllocation.policy')
 
@@ -446,6 +485,9 @@ def query_policy_parse(query_subparsers):
     query_policy_splitTunnel_policy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_policy_splitTunnel_policy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_policy_splitTunnel_policy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_policy_splitTunnel_policy_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    query_policy_splitTunnel_policy_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    query_policy_splitTunnel_policy_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     query_policy_splitTunnel_policy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_policy_splitTunnel_policy_parser.set_defaults(func=createRequest,operation_name='query.policy.splitTunnel.policy')
 
@@ -479,6 +521,9 @@ def query_policy_parse(query_subparsers):
     query_policy_terminalServer_policy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_policy_terminalServer_policy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_policy_terminalServer_policy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_policy_terminalServer_policy_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    query_policy_terminalServer_policy_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    query_policy_terminalServer_policy_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     query_policy_terminalServer_policy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_policy_terminalServer_policy_parser.set_defaults(func=createRequest,operation_name='query.policy.terminalServer.policy')
 
@@ -512,5 +557,8 @@ def query_policy_parse(query_subparsers):
     query_policy_ztnaAlwaysOn_policy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_policy_ztnaAlwaysOn_policy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_policy_ztnaAlwaysOn_policy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_policy_ztnaAlwaysOn_policy_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    query_policy_ztnaAlwaysOn_policy_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    query_policy_ztnaAlwaysOn_policy_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     query_policy_ztnaAlwaysOn_policy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_policy_ztnaAlwaysOn_policy_parser.set_defaults(func=createRequest,operation_name='query.policy.ztnaAlwaysOn.policy')

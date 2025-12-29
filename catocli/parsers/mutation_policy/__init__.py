@@ -49,6 +49,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_antiMalwareFileHash_addRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_antiMalwareFileHash_addRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_antiMalwareFileHash_addRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_antiMalwareFileHash_addRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_antiMalwareFileHash_addRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_antiMalwareFileHash_addRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_antiMalwareFileHash_addRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_antiMalwareFileHash_addRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.antiMalwareFileHash.addRule')
 
@@ -66,6 +69,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_antiMalwareFileHash_updateRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_antiMalwareFileHash_updateRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_antiMalwareFileHash_updateRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_antiMalwareFileHash_updateRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_antiMalwareFileHash_updateRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_antiMalwareFileHash_updateRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_antiMalwareFileHash_updateRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_antiMalwareFileHash_updateRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.antiMalwareFileHash.updateRule')
 
@@ -83,6 +89,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_antiMalwareFileHash_removeRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_antiMalwareFileHash_removeRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_antiMalwareFileHash_removeRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_antiMalwareFileHash_removeRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_antiMalwareFileHash_removeRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_antiMalwareFileHash_removeRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_antiMalwareFileHash_removeRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_antiMalwareFileHash_removeRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.antiMalwareFileHash.removeRule')
 
@@ -100,6 +109,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_antiMalwareFileHash_moveRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_antiMalwareFileHash_moveRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_antiMalwareFileHash_moveRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_antiMalwareFileHash_moveRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_antiMalwareFileHash_moveRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_antiMalwareFileHash_moveRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_antiMalwareFileHash_moveRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_antiMalwareFileHash_moveRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.antiMalwareFileHash.moveRule')
 
@@ -117,6 +129,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_antiMalwareFileHash_addSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_antiMalwareFileHash_addSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_antiMalwareFileHash_addSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_antiMalwareFileHash_addSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_antiMalwareFileHash_addSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_antiMalwareFileHash_addSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_antiMalwareFileHash_addSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_antiMalwareFileHash_addSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.antiMalwareFileHash.addSection')
 
@@ -134,6 +149,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_antiMalwareFileHash_updateSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_antiMalwareFileHash_updateSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_antiMalwareFileHash_updateSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_antiMalwareFileHash_updateSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_antiMalwareFileHash_updateSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_antiMalwareFileHash_updateSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_antiMalwareFileHash_updateSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_antiMalwareFileHash_updateSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.antiMalwareFileHash.updateSection')
 
@@ -151,6 +169,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_antiMalwareFileHash_removeSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_antiMalwareFileHash_removeSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_antiMalwareFileHash_removeSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_antiMalwareFileHash_removeSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_antiMalwareFileHash_removeSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_antiMalwareFileHash_removeSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_antiMalwareFileHash_removeSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_antiMalwareFileHash_removeSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.antiMalwareFileHash.removeSection')
 
@@ -168,6 +189,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_antiMalwareFileHash_moveSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_antiMalwareFileHash_moveSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_antiMalwareFileHash_moveSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_antiMalwareFileHash_moveSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_antiMalwareFileHash_moveSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_antiMalwareFileHash_moveSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_antiMalwareFileHash_moveSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_antiMalwareFileHash_moveSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.antiMalwareFileHash.moveSection')
 
@@ -185,6 +209,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_antiMalwareFileHash_createPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_antiMalwareFileHash_createPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_antiMalwareFileHash_createPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_antiMalwareFileHash_createPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_antiMalwareFileHash_createPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_antiMalwareFileHash_createPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_antiMalwareFileHash_createPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_antiMalwareFileHash_createPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.antiMalwareFileHash.createPolicyRevision')
 
@@ -202,6 +229,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_antiMalwareFileHash_publishPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_antiMalwareFileHash_publishPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_antiMalwareFileHash_publishPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_antiMalwareFileHash_publishPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_antiMalwareFileHash_publishPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_antiMalwareFileHash_publishPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_antiMalwareFileHash_publishPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_antiMalwareFileHash_publishPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.antiMalwareFileHash.publishPolicyRevision')
 
@@ -219,6 +249,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_antiMalwareFileHash_discardPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_antiMalwareFileHash_discardPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_antiMalwareFileHash_discardPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_antiMalwareFileHash_discardPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_antiMalwareFileHash_discardPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_antiMalwareFileHash_discardPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_antiMalwareFileHash_discardPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_antiMalwareFileHash_discardPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.antiMalwareFileHash.discardPolicyRevision')
 
@@ -236,6 +269,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_antiMalwareFileHash_updatePolicy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_antiMalwareFileHash_updatePolicy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_antiMalwareFileHash_updatePolicy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_antiMalwareFileHash_updatePolicy_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_antiMalwareFileHash_updatePolicy_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_antiMalwareFileHash_updatePolicy_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_antiMalwareFileHash_updatePolicy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_antiMalwareFileHash_updatePolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.antiMalwareFileHash.updatePolicy')
 
@@ -269,6 +305,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_socketLan_addRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_socketLan_addRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_socketLan_addRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_socketLan_addRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_socketLan_addRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_socketLan_addRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_socketLan_addRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_socketLan_addRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.socketLan.addRule')
 
@@ -286,6 +325,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_socketLan_updateRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_socketLan_updateRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_socketLan_updateRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_socketLan_updateRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_socketLan_updateRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_socketLan_updateRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_socketLan_updateRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_socketLan_updateRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.socketLan.updateRule')
 
@@ -303,6 +345,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_socketLan_removeRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_socketLan_removeRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_socketLan_removeRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_socketLan_removeRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_socketLan_removeRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_socketLan_removeRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_socketLan_removeRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_socketLan_removeRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.socketLan.removeRule')
 
@@ -320,6 +365,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_socketLan_moveRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_socketLan_moveRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_socketLan_moveRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_socketLan_moveRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_socketLan_moveRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_socketLan_moveRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_socketLan_moveRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_socketLan_moveRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.socketLan.moveRule')
 
@@ -337,6 +385,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_socketLan_addSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_socketLan_addSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_socketLan_addSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_socketLan_addSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_socketLan_addSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_socketLan_addSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_socketLan_addSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_socketLan_addSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.socketLan.addSection')
 
@@ -354,6 +405,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_socketLan_updateSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_socketLan_updateSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_socketLan_updateSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_socketLan_updateSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_socketLan_updateSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_socketLan_updateSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_socketLan_updateSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_socketLan_updateSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.socketLan.updateSection')
 
@@ -371,6 +425,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_socketLan_removeSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_socketLan_removeSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_socketLan_removeSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_socketLan_removeSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_socketLan_removeSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_socketLan_removeSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_socketLan_removeSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_socketLan_removeSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.socketLan.removeSection')
 
@@ -388,6 +445,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_socketLan_moveSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_socketLan_moveSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_socketLan_moveSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_socketLan_moveSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_socketLan_moveSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_socketLan_moveSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_socketLan_moveSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_socketLan_moveSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.socketLan.moveSection')
 
@@ -405,6 +465,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_socketLan_createPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_socketLan_createPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_socketLan_createPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_socketLan_createPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_socketLan_createPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_socketLan_createPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_socketLan_createPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_socketLan_createPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.socketLan.createPolicyRevision')
 
@@ -422,6 +485,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_socketLan_publishPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_socketLan_publishPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_socketLan_publishPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_socketLan_publishPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_socketLan_publishPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_socketLan_publishPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_socketLan_publishPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_socketLan_publishPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.socketLan.publishPolicyRevision')
 
@@ -439,6 +505,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_socketLan_discardPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_socketLan_discardPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_socketLan_discardPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_socketLan_discardPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_socketLan_discardPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_socketLan_discardPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_socketLan_discardPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_socketLan_discardPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.socketLan.discardPolicyRevision')
 
@@ -456,6 +525,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_socketLan_updatePolicy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_socketLan_updatePolicy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_socketLan_updatePolicy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_socketLan_updatePolicy_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_socketLan_updatePolicy_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_socketLan_updatePolicy_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_socketLan_updatePolicy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_socketLan_updatePolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.socketLan.updatePolicy')
 
@@ -489,6 +561,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_wanNetwork_addRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_wanNetwork_addRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_wanNetwork_addRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_wanNetwork_addRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_wanNetwork_addRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_wanNetwork_addRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_wanNetwork_addRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_wanNetwork_addRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanNetwork.addRule')
 
@@ -506,6 +581,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_wanNetwork_updateRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_wanNetwork_updateRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_wanNetwork_updateRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_wanNetwork_updateRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_wanNetwork_updateRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_wanNetwork_updateRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_wanNetwork_updateRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_wanNetwork_updateRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanNetwork.updateRule')
 
@@ -523,6 +601,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_wanNetwork_removeRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_wanNetwork_removeRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_wanNetwork_removeRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_wanNetwork_removeRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_wanNetwork_removeRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_wanNetwork_removeRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_wanNetwork_removeRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_wanNetwork_removeRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanNetwork.removeRule')
 
@@ -540,6 +621,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_wanNetwork_moveRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_wanNetwork_moveRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_wanNetwork_moveRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_wanNetwork_moveRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_wanNetwork_moveRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_wanNetwork_moveRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_wanNetwork_moveRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_wanNetwork_moveRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanNetwork.moveRule')
 
@@ -557,6 +641,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_wanNetwork_addSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_wanNetwork_addSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_wanNetwork_addSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_wanNetwork_addSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_wanNetwork_addSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_wanNetwork_addSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_wanNetwork_addSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_wanNetwork_addSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanNetwork.addSection')
 
@@ -574,6 +661,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_wanNetwork_updateSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_wanNetwork_updateSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_wanNetwork_updateSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_wanNetwork_updateSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_wanNetwork_updateSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_wanNetwork_updateSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_wanNetwork_updateSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_wanNetwork_updateSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanNetwork.updateSection')
 
@@ -591,6 +681,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_wanNetwork_removeSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_wanNetwork_removeSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_wanNetwork_removeSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_wanNetwork_removeSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_wanNetwork_removeSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_wanNetwork_removeSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_wanNetwork_removeSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_wanNetwork_removeSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanNetwork.removeSection')
 
@@ -608,6 +701,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_wanNetwork_moveSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_wanNetwork_moveSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_wanNetwork_moveSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_wanNetwork_moveSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_wanNetwork_moveSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_wanNetwork_moveSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_wanNetwork_moveSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_wanNetwork_moveSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanNetwork.moveSection')
 
@@ -625,6 +721,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_wanNetwork_createPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_wanNetwork_createPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_wanNetwork_createPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_wanNetwork_createPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_wanNetwork_createPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_wanNetwork_createPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_wanNetwork_createPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_wanNetwork_createPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanNetwork.createPolicyRevision')
 
@@ -642,6 +741,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_wanNetwork_publishPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_wanNetwork_publishPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_wanNetwork_publishPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_wanNetwork_publishPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_wanNetwork_publishPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_wanNetwork_publishPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_wanNetwork_publishPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_wanNetwork_publishPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanNetwork.publishPolicyRevision')
 
@@ -659,6 +761,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_wanNetwork_discardPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_wanNetwork_discardPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_wanNetwork_discardPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_wanNetwork_discardPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_wanNetwork_discardPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_wanNetwork_discardPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_wanNetwork_discardPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_wanNetwork_discardPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanNetwork.discardPolicyRevision')
 
@@ -676,6 +781,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_wanNetwork_updatePolicy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_wanNetwork_updatePolicy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_wanNetwork_updatePolicy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_wanNetwork_updatePolicy_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_wanNetwork_updatePolicy_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_wanNetwork_updatePolicy_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_wanNetwork_updatePolicy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_wanNetwork_updatePolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanNetwork.updatePolicy')
 
@@ -709,6 +817,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_internetFirewall_addRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_internetFirewall_addRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_internetFirewall_addRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_internetFirewall_addRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_internetFirewall_addRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_internetFirewall_addRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_internetFirewall_addRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_internetFirewall_addRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.internetFirewall.addRule')
 
@@ -726,6 +837,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_internetFirewall_updateRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_internetFirewall_updateRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_internetFirewall_updateRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_internetFirewall_updateRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_internetFirewall_updateRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_internetFirewall_updateRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_internetFirewall_updateRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_internetFirewall_updateRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.internetFirewall.updateRule')
 
@@ -743,6 +857,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_internetFirewall_removeRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_internetFirewall_removeRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_internetFirewall_removeRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_internetFirewall_removeRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_internetFirewall_removeRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_internetFirewall_removeRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_internetFirewall_removeRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_internetFirewall_removeRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.internetFirewall.removeRule')
 
@@ -760,6 +877,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_internetFirewall_moveRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_internetFirewall_moveRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_internetFirewall_moveRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_internetFirewall_moveRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_internetFirewall_moveRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_internetFirewall_moveRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_internetFirewall_moveRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_internetFirewall_moveRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.internetFirewall.moveRule')
 
@@ -777,6 +897,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_internetFirewall_addSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_internetFirewall_addSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_internetFirewall_addSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_internetFirewall_addSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_internetFirewall_addSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_internetFirewall_addSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_internetFirewall_addSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_internetFirewall_addSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.internetFirewall.addSection')
 
@@ -794,6 +917,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_internetFirewall_updateSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_internetFirewall_updateSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_internetFirewall_updateSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_internetFirewall_updateSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_internetFirewall_updateSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_internetFirewall_updateSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_internetFirewall_updateSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_internetFirewall_updateSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.internetFirewall.updateSection')
 
@@ -811,6 +937,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_internetFirewall_removeSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_internetFirewall_removeSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_internetFirewall_removeSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_internetFirewall_removeSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_internetFirewall_removeSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_internetFirewall_removeSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_internetFirewall_removeSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_internetFirewall_removeSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.internetFirewall.removeSection')
 
@@ -828,6 +957,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_internetFirewall_moveSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_internetFirewall_moveSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_internetFirewall_moveSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_internetFirewall_moveSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_internetFirewall_moveSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_internetFirewall_moveSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_internetFirewall_moveSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_internetFirewall_moveSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.internetFirewall.moveSection')
 
@@ -845,6 +977,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_internetFirewall_createPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_internetFirewall_createPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_internetFirewall_createPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_internetFirewall_createPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_internetFirewall_createPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_internetFirewall_createPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_internetFirewall_createPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_internetFirewall_createPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.internetFirewall.createPolicyRevision')
 
@@ -862,6 +997,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_internetFirewall_publishPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_internetFirewall_publishPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_internetFirewall_publishPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_internetFirewall_publishPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_internetFirewall_publishPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_internetFirewall_publishPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_internetFirewall_publishPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_internetFirewall_publishPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.internetFirewall.publishPolicyRevision')
 
@@ -879,6 +1017,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_internetFirewall_discardPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_internetFirewall_discardPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_internetFirewall_discardPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_internetFirewall_discardPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_internetFirewall_discardPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_internetFirewall_discardPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_internetFirewall_discardPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_internetFirewall_discardPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.internetFirewall.discardPolicyRevision')
 
@@ -896,6 +1037,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_internetFirewall_updatePolicy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_internetFirewall_updatePolicy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_internetFirewall_updatePolicy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_internetFirewall_updatePolicy_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_internetFirewall_updatePolicy_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_internetFirewall_updatePolicy_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_internetFirewall_updatePolicy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_internetFirewall_updatePolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.internetFirewall.updatePolicy')
 
@@ -913,6 +1057,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_internetFirewall_addSubPolicy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_internetFirewall_addSubPolicy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_internetFirewall_addSubPolicy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_internetFirewall_addSubPolicy_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_internetFirewall_addSubPolicy_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_internetFirewall_addSubPolicy_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_internetFirewall_addSubPolicy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_internetFirewall_addSubPolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.internetFirewall.addSubPolicy')
 
@@ -930,6 +1077,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_internetFirewall_removeSubPolicy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_internetFirewall_removeSubPolicy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_internetFirewall_removeSubPolicy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_internetFirewall_removeSubPolicy_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_internetFirewall_removeSubPolicy_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_internetFirewall_removeSubPolicy_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_internetFirewall_removeSubPolicy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_internetFirewall_removeSubPolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.internetFirewall.removeSubPolicy')
 
@@ -963,6 +1113,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_remotePortFwd_addRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_remotePortFwd_addRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_remotePortFwd_addRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_remotePortFwd_addRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_remotePortFwd_addRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_remotePortFwd_addRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_remotePortFwd_addRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_remotePortFwd_addRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.remotePortFwd.addRule')
 
@@ -980,6 +1133,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_remotePortFwd_updateRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_remotePortFwd_updateRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_remotePortFwd_updateRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_remotePortFwd_updateRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_remotePortFwd_updateRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_remotePortFwd_updateRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_remotePortFwd_updateRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_remotePortFwd_updateRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.remotePortFwd.updateRule')
 
@@ -997,6 +1153,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_remotePortFwd_removeRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_remotePortFwd_removeRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_remotePortFwd_removeRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_remotePortFwd_removeRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_remotePortFwd_removeRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_remotePortFwd_removeRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_remotePortFwd_removeRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_remotePortFwd_removeRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.remotePortFwd.removeRule')
 
@@ -1014,6 +1173,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_remotePortFwd_moveRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_remotePortFwd_moveRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_remotePortFwd_moveRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_remotePortFwd_moveRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_remotePortFwd_moveRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_remotePortFwd_moveRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_remotePortFwd_moveRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_remotePortFwd_moveRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.remotePortFwd.moveRule')
 
@@ -1031,6 +1193,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_remotePortFwd_addSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_remotePortFwd_addSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_remotePortFwd_addSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_remotePortFwd_addSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_remotePortFwd_addSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_remotePortFwd_addSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_remotePortFwd_addSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_remotePortFwd_addSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.remotePortFwd.addSection')
 
@@ -1048,6 +1213,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_remotePortFwd_updateSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_remotePortFwd_updateSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_remotePortFwd_updateSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_remotePortFwd_updateSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_remotePortFwd_updateSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_remotePortFwd_updateSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_remotePortFwd_updateSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_remotePortFwd_updateSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.remotePortFwd.updateSection')
 
@@ -1065,6 +1233,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_remotePortFwd_removeSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_remotePortFwd_removeSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_remotePortFwd_removeSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_remotePortFwd_removeSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_remotePortFwd_removeSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_remotePortFwd_removeSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_remotePortFwd_removeSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_remotePortFwd_removeSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.remotePortFwd.removeSection')
 
@@ -1082,6 +1253,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_remotePortFwd_moveSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_remotePortFwd_moveSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_remotePortFwd_moveSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_remotePortFwd_moveSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_remotePortFwd_moveSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_remotePortFwd_moveSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_remotePortFwd_moveSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_remotePortFwd_moveSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.remotePortFwd.moveSection')
 
@@ -1099,6 +1273,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_remotePortFwd_createPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_remotePortFwd_createPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_remotePortFwd_createPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_remotePortFwd_createPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_remotePortFwd_createPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_remotePortFwd_createPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_remotePortFwd_createPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_remotePortFwd_createPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.remotePortFwd.createPolicyRevision')
 
@@ -1116,6 +1293,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_remotePortFwd_publishPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_remotePortFwd_publishPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_remotePortFwd_publishPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_remotePortFwd_publishPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_remotePortFwd_publishPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_remotePortFwd_publishPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_remotePortFwd_publishPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_remotePortFwd_publishPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.remotePortFwd.publishPolicyRevision')
 
@@ -1133,6 +1313,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_remotePortFwd_discardPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_remotePortFwd_discardPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_remotePortFwd_discardPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_remotePortFwd_discardPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_remotePortFwd_discardPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_remotePortFwd_discardPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_remotePortFwd_discardPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_remotePortFwd_discardPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.remotePortFwd.discardPolicyRevision')
 
@@ -1150,6 +1333,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_remotePortFwd_updatePolicy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_remotePortFwd_updatePolicy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_remotePortFwd_updatePolicy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_remotePortFwd_updatePolicy_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_remotePortFwd_updatePolicy_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_remotePortFwd_updatePolicy_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_remotePortFwd_updatePolicy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_remotePortFwd_updatePolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.remotePortFwd.updatePolicy')
 
@@ -1183,6 +1369,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_wanFirewall_addRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_wanFirewall_addRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_wanFirewall_addRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_wanFirewall_addRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_wanFirewall_addRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_wanFirewall_addRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_wanFirewall_addRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_wanFirewall_addRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanFirewall.addRule')
 
@@ -1200,6 +1389,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_wanFirewall_updateRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_wanFirewall_updateRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_wanFirewall_updateRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_wanFirewall_updateRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_wanFirewall_updateRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_wanFirewall_updateRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_wanFirewall_updateRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_wanFirewall_updateRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanFirewall.updateRule')
 
@@ -1217,6 +1409,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_wanFirewall_removeRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_wanFirewall_removeRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_wanFirewall_removeRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_wanFirewall_removeRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_wanFirewall_removeRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_wanFirewall_removeRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_wanFirewall_removeRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_wanFirewall_removeRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanFirewall.removeRule')
 
@@ -1234,6 +1429,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_wanFirewall_moveRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_wanFirewall_moveRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_wanFirewall_moveRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_wanFirewall_moveRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_wanFirewall_moveRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_wanFirewall_moveRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_wanFirewall_moveRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_wanFirewall_moveRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanFirewall.moveRule')
 
@@ -1251,6 +1449,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_wanFirewall_addSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_wanFirewall_addSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_wanFirewall_addSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_wanFirewall_addSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_wanFirewall_addSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_wanFirewall_addSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_wanFirewall_addSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_wanFirewall_addSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanFirewall.addSection')
 
@@ -1268,6 +1469,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_wanFirewall_updateSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_wanFirewall_updateSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_wanFirewall_updateSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_wanFirewall_updateSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_wanFirewall_updateSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_wanFirewall_updateSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_wanFirewall_updateSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_wanFirewall_updateSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanFirewall.updateSection')
 
@@ -1285,6 +1489,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_wanFirewall_removeSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_wanFirewall_removeSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_wanFirewall_removeSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_wanFirewall_removeSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_wanFirewall_removeSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_wanFirewall_removeSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_wanFirewall_removeSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_wanFirewall_removeSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanFirewall.removeSection')
 
@@ -1302,6 +1509,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_wanFirewall_moveSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_wanFirewall_moveSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_wanFirewall_moveSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_wanFirewall_moveSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_wanFirewall_moveSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_wanFirewall_moveSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_wanFirewall_moveSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_wanFirewall_moveSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanFirewall.moveSection')
 
@@ -1319,6 +1529,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_wanFirewall_createPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_wanFirewall_createPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_wanFirewall_createPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_wanFirewall_createPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_wanFirewall_createPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_wanFirewall_createPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_wanFirewall_createPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_wanFirewall_createPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanFirewall.createPolicyRevision')
 
@@ -1336,6 +1549,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_wanFirewall_publishPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_wanFirewall_publishPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_wanFirewall_publishPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_wanFirewall_publishPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_wanFirewall_publishPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_wanFirewall_publishPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_wanFirewall_publishPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_wanFirewall_publishPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanFirewall.publishPolicyRevision')
 
@@ -1353,6 +1569,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_wanFirewall_discardPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_wanFirewall_discardPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_wanFirewall_discardPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_wanFirewall_discardPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_wanFirewall_discardPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_wanFirewall_discardPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_wanFirewall_discardPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_wanFirewall_discardPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanFirewall.discardPolicyRevision')
 
@@ -1370,6 +1589,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_wanFirewall_updatePolicy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_wanFirewall_updatePolicy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_wanFirewall_updatePolicy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_wanFirewall_updatePolicy_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_wanFirewall_updatePolicy_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_wanFirewall_updatePolicy_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_wanFirewall_updatePolicy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_wanFirewall_updatePolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanFirewall.updatePolicy')
 
@@ -1387,6 +1609,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_wanFirewall_addSubPolicy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_wanFirewall_addSubPolicy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_wanFirewall_addSubPolicy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_wanFirewall_addSubPolicy_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_wanFirewall_addSubPolicy_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_wanFirewall_addSubPolicy_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_wanFirewall_addSubPolicy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_wanFirewall_addSubPolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanFirewall.addSubPolicy')
 
@@ -1404,6 +1629,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_wanFirewall_removeSubPolicy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_wanFirewall_removeSubPolicy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_wanFirewall_removeSubPolicy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_wanFirewall_removeSubPolicy_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_wanFirewall_removeSubPolicy_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_wanFirewall_removeSubPolicy_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_wanFirewall_removeSubPolicy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_wanFirewall_removeSubPolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.wanFirewall.removeSubPolicy')
 
@@ -1437,6 +1665,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_appTenantRestriction_addRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_appTenantRestriction_addRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_appTenantRestriction_addRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_appTenantRestriction_addRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_appTenantRestriction_addRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_appTenantRestriction_addRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_appTenantRestriction_addRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_appTenantRestriction_addRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.appTenantRestriction.addRule')
 
@@ -1454,6 +1685,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_appTenantRestriction_updateRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_appTenantRestriction_updateRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_appTenantRestriction_updateRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_appTenantRestriction_updateRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_appTenantRestriction_updateRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_appTenantRestriction_updateRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_appTenantRestriction_updateRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_appTenantRestriction_updateRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.appTenantRestriction.updateRule')
 
@@ -1471,6 +1705,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_appTenantRestriction_removeRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_appTenantRestriction_removeRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_appTenantRestriction_removeRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_appTenantRestriction_removeRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_appTenantRestriction_removeRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_appTenantRestriction_removeRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_appTenantRestriction_removeRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_appTenantRestriction_removeRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.appTenantRestriction.removeRule')
 
@@ -1488,6 +1725,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_appTenantRestriction_moveRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_appTenantRestriction_moveRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_appTenantRestriction_moveRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_appTenantRestriction_moveRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_appTenantRestriction_moveRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_appTenantRestriction_moveRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_appTenantRestriction_moveRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_appTenantRestriction_moveRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.appTenantRestriction.moveRule')
 
@@ -1505,6 +1745,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_appTenantRestriction_addSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_appTenantRestriction_addSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_appTenantRestriction_addSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_appTenantRestriction_addSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_appTenantRestriction_addSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_appTenantRestriction_addSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_appTenantRestriction_addSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_appTenantRestriction_addSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.appTenantRestriction.addSection')
 
@@ -1522,6 +1765,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_appTenantRestriction_updateSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_appTenantRestriction_updateSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_appTenantRestriction_updateSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_appTenantRestriction_updateSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_appTenantRestriction_updateSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_appTenantRestriction_updateSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_appTenantRestriction_updateSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_appTenantRestriction_updateSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.appTenantRestriction.updateSection')
 
@@ -1539,6 +1785,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_appTenantRestriction_removeSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_appTenantRestriction_removeSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_appTenantRestriction_removeSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_appTenantRestriction_removeSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_appTenantRestriction_removeSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_appTenantRestriction_removeSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_appTenantRestriction_removeSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_appTenantRestriction_removeSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.appTenantRestriction.removeSection')
 
@@ -1556,6 +1805,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_appTenantRestriction_moveSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_appTenantRestriction_moveSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_appTenantRestriction_moveSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_appTenantRestriction_moveSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_appTenantRestriction_moveSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_appTenantRestriction_moveSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_appTenantRestriction_moveSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_appTenantRestriction_moveSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.appTenantRestriction.moveSection')
 
@@ -1573,6 +1825,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_appTenantRestriction_createPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_appTenantRestriction_createPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_appTenantRestriction_createPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_appTenantRestriction_createPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_appTenantRestriction_createPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_appTenantRestriction_createPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_appTenantRestriction_createPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_appTenantRestriction_createPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.appTenantRestriction.createPolicyRevision')
 
@@ -1590,6 +1845,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_appTenantRestriction_publishPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_appTenantRestriction_publishPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_appTenantRestriction_publishPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_appTenantRestriction_publishPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_appTenantRestriction_publishPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_appTenantRestriction_publishPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_appTenantRestriction_publishPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_appTenantRestriction_publishPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.appTenantRestriction.publishPolicyRevision')
 
@@ -1607,6 +1865,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_appTenantRestriction_discardPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_appTenantRestriction_discardPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_appTenantRestriction_discardPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_appTenantRestriction_discardPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_appTenantRestriction_discardPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_appTenantRestriction_discardPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_appTenantRestriction_discardPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_appTenantRestriction_discardPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.appTenantRestriction.discardPolicyRevision')
 
@@ -1624,6 +1885,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_appTenantRestriction_updatePolicy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_appTenantRestriction_updatePolicy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_appTenantRestriction_updatePolicy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_appTenantRestriction_updatePolicy_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_appTenantRestriction_updatePolicy_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_appTenantRestriction_updatePolicy_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_appTenantRestriction_updatePolicy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_appTenantRestriction_updatePolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.appTenantRestriction.updatePolicy')
 
@@ -1657,6 +1921,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_applicationControl_addRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_applicationControl_addRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_applicationControl_addRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_applicationControl_addRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_applicationControl_addRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_applicationControl_addRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_applicationControl_addRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_applicationControl_addRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.applicationControl.addRule')
 
@@ -1674,6 +1941,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_applicationControl_updateRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_applicationControl_updateRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_applicationControl_updateRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_applicationControl_updateRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_applicationControl_updateRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_applicationControl_updateRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_applicationControl_updateRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_applicationControl_updateRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.applicationControl.updateRule')
 
@@ -1691,6 +1961,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_applicationControl_removeRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_applicationControl_removeRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_applicationControl_removeRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_applicationControl_removeRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_applicationControl_removeRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_applicationControl_removeRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_applicationControl_removeRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_applicationControl_removeRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.applicationControl.removeRule')
 
@@ -1708,6 +1981,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_applicationControl_moveRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_applicationControl_moveRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_applicationControl_moveRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_applicationControl_moveRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_applicationControl_moveRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_applicationControl_moveRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_applicationControl_moveRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_applicationControl_moveRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.applicationControl.moveRule')
 
@@ -1725,6 +2001,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_applicationControl_addSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_applicationControl_addSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_applicationControl_addSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_applicationControl_addSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_applicationControl_addSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_applicationControl_addSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_applicationControl_addSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_applicationControl_addSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.applicationControl.addSection')
 
@@ -1742,6 +2021,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_applicationControl_updateSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_applicationControl_updateSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_applicationControl_updateSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_applicationControl_updateSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_applicationControl_updateSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_applicationControl_updateSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_applicationControl_updateSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_applicationControl_updateSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.applicationControl.updateSection')
 
@@ -1759,6 +2041,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_applicationControl_removeSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_applicationControl_removeSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_applicationControl_removeSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_applicationControl_removeSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_applicationControl_removeSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_applicationControl_removeSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_applicationControl_removeSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_applicationControl_removeSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.applicationControl.removeSection')
 
@@ -1776,6 +2061,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_applicationControl_moveSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_applicationControl_moveSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_applicationControl_moveSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_applicationControl_moveSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_applicationControl_moveSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_applicationControl_moveSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_applicationControl_moveSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_applicationControl_moveSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.applicationControl.moveSection')
 
@@ -1793,6 +2081,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_applicationControl_createPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_applicationControl_createPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_applicationControl_createPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_applicationControl_createPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_applicationControl_createPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_applicationControl_createPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_applicationControl_createPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_applicationControl_createPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.applicationControl.createPolicyRevision')
 
@@ -1810,6 +2101,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_applicationControl_publishPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_applicationControl_publishPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_applicationControl_publishPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_applicationControl_publishPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_applicationControl_publishPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_applicationControl_publishPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_applicationControl_publishPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_applicationControl_publishPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.applicationControl.publishPolicyRevision')
 
@@ -1827,6 +2121,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_applicationControl_discardPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_applicationControl_discardPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_applicationControl_discardPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_applicationControl_discardPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_applicationControl_discardPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_applicationControl_discardPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_applicationControl_discardPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_applicationControl_discardPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.applicationControl.discardPolicyRevision')
 
@@ -1844,6 +2141,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_applicationControl_updatePolicy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_applicationControl_updatePolicy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_applicationControl_updatePolicy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_applicationControl_updatePolicy_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_applicationControl_updatePolicy_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_applicationControl_updatePolicy_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_applicationControl_updatePolicy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_applicationControl_updatePolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.applicationControl.updatePolicy')
 
@@ -1877,6 +2177,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_tlsInspect_addRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_tlsInspect_addRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_tlsInspect_addRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_tlsInspect_addRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_tlsInspect_addRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_tlsInspect_addRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_tlsInspect_addRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_tlsInspect_addRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.tlsInspect.addRule')
 
@@ -1894,6 +2197,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_tlsInspect_updateRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_tlsInspect_updateRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_tlsInspect_updateRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_tlsInspect_updateRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_tlsInspect_updateRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_tlsInspect_updateRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_tlsInspect_updateRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_tlsInspect_updateRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.tlsInspect.updateRule')
 
@@ -1911,6 +2217,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_tlsInspect_removeRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_tlsInspect_removeRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_tlsInspect_removeRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_tlsInspect_removeRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_tlsInspect_removeRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_tlsInspect_removeRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_tlsInspect_removeRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_tlsInspect_removeRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.tlsInspect.removeRule')
 
@@ -1928,6 +2237,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_tlsInspect_moveRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_tlsInspect_moveRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_tlsInspect_moveRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_tlsInspect_moveRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_tlsInspect_moveRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_tlsInspect_moveRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_tlsInspect_moveRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_tlsInspect_moveRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.tlsInspect.moveRule')
 
@@ -1945,6 +2257,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_tlsInspect_addSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_tlsInspect_addSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_tlsInspect_addSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_tlsInspect_addSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_tlsInspect_addSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_tlsInspect_addSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_tlsInspect_addSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_tlsInspect_addSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.tlsInspect.addSection')
 
@@ -1962,6 +2277,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_tlsInspect_updateSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_tlsInspect_updateSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_tlsInspect_updateSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_tlsInspect_updateSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_tlsInspect_updateSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_tlsInspect_updateSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_tlsInspect_updateSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_tlsInspect_updateSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.tlsInspect.updateSection')
 
@@ -1979,6 +2297,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_tlsInspect_removeSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_tlsInspect_removeSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_tlsInspect_removeSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_tlsInspect_removeSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_tlsInspect_removeSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_tlsInspect_removeSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_tlsInspect_removeSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_tlsInspect_removeSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.tlsInspect.removeSection')
 
@@ -1996,6 +2317,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_tlsInspect_moveSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_tlsInspect_moveSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_tlsInspect_moveSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_tlsInspect_moveSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_tlsInspect_moveSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_tlsInspect_moveSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_tlsInspect_moveSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_tlsInspect_moveSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.tlsInspect.moveSection')
 
@@ -2013,6 +2337,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_tlsInspect_createPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_tlsInspect_createPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_tlsInspect_createPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_tlsInspect_createPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_tlsInspect_createPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_tlsInspect_createPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_tlsInspect_createPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_tlsInspect_createPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.tlsInspect.createPolicyRevision')
 
@@ -2030,6 +2357,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_tlsInspect_publishPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_tlsInspect_publishPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_tlsInspect_publishPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_tlsInspect_publishPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_tlsInspect_publishPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_tlsInspect_publishPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_tlsInspect_publishPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_tlsInspect_publishPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.tlsInspect.publishPolicyRevision')
 
@@ -2047,6 +2377,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_tlsInspect_discardPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_tlsInspect_discardPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_tlsInspect_discardPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_tlsInspect_discardPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_tlsInspect_discardPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_tlsInspect_discardPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_tlsInspect_discardPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_tlsInspect_discardPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.tlsInspect.discardPolicyRevision')
 
@@ -2064,6 +2397,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_tlsInspect_updatePolicy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_tlsInspect_updatePolicy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_tlsInspect_updatePolicy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_tlsInspect_updatePolicy_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_tlsInspect_updatePolicy_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_tlsInspect_updatePolicy_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_tlsInspect_updatePolicy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_tlsInspect_updatePolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.tlsInspect.updatePolicy')
 
@@ -2097,6 +2433,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_clientConnectivity_addRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_clientConnectivity_addRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_clientConnectivity_addRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_clientConnectivity_addRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_clientConnectivity_addRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_clientConnectivity_addRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_clientConnectivity_addRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_clientConnectivity_addRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.clientConnectivity.addRule')
 
@@ -2114,6 +2453,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_clientConnectivity_updateRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_clientConnectivity_updateRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_clientConnectivity_updateRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_clientConnectivity_updateRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_clientConnectivity_updateRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_clientConnectivity_updateRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_clientConnectivity_updateRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_clientConnectivity_updateRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.clientConnectivity.updateRule')
 
@@ -2131,6 +2473,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_clientConnectivity_removeRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_clientConnectivity_removeRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_clientConnectivity_removeRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_clientConnectivity_removeRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_clientConnectivity_removeRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_clientConnectivity_removeRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_clientConnectivity_removeRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_clientConnectivity_removeRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.clientConnectivity.removeRule')
 
@@ -2148,6 +2493,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_clientConnectivity_moveRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_clientConnectivity_moveRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_clientConnectivity_moveRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_clientConnectivity_moveRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_clientConnectivity_moveRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_clientConnectivity_moveRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_clientConnectivity_moveRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_clientConnectivity_moveRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.clientConnectivity.moveRule')
 
@@ -2165,6 +2513,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_clientConnectivity_addSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_clientConnectivity_addSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_clientConnectivity_addSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_clientConnectivity_addSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_clientConnectivity_addSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_clientConnectivity_addSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_clientConnectivity_addSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_clientConnectivity_addSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.clientConnectivity.addSection')
 
@@ -2182,6 +2533,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_clientConnectivity_updateSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_clientConnectivity_updateSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_clientConnectivity_updateSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_clientConnectivity_updateSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_clientConnectivity_updateSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_clientConnectivity_updateSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_clientConnectivity_updateSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_clientConnectivity_updateSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.clientConnectivity.updateSection')
 
@@ -2199,6 +2553,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_clientConnectivity_removeSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_clientConnectivity_removeSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_clientConnectivity_removeSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_clientConnectivity_removeSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_clientConnectivity_removeSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_clientConnectivity_removeSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_clientConnectivity_removeSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_clientConnectivity_removeSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.clientConnectivity.removeSection')
 
@@ -2216,6 +2573,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_clientConnectivity_moveSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_clientConnectivity_moveSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_clientConnectivity_moveSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_clientConnectivity_moveSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_clientConnectivity_moveSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_clientConnectivity_moveSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_clientConnectivity_moveSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_clientConnectivity_moveSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.clientConnectivity.moveSection')
 
@@ -2233,6 +2593,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_clientConnectivity_createPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_clientConnectivity_createPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_clientConnectivity_createPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_clientConnectivity_createPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_clientConnectivity_createPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_clientConnectivity_createPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_clientConnectivity_createPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_clientConnectivity_createPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.clientConnectivity.createPolicyRevision')
 
@@ -2250,6 +2613,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_clientConnectivity_publishPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_clientConnectivity_publishPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_clientConnectivity_publishPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_clientConnectivity_publishPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_clientConnectivity_publishPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_clientConnectivity_publishPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_clientConnectivity_publishPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_clientConnectivity_publishPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.clientConnectivity.publishPolicyRevision')
 
@@ -2267,6 +2633,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_clientConnectivity_discardPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_clientConnectivity_discardPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_clientConnectivity_discardPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_clientConnectivity_discardPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_clientConnectivity_discardPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_clientConnectivity_discardPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_clientConnectivity_discardPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_clientConnectivity_discardPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.clientConnectivity.discardPolicyRevision')
 
@@ -2284,6 +2653,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_clientConnectivity_updatePolicy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_clientConnectivity_updatePolicy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_clientConnectivity_updatePolicy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_clientConnectivity_updatePolicy_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_clientConnectivity_updatePolicy_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_clientConnectivity_updatePolicy_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_clientConnectivity_updatePolicy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_clientConnectivity_updatePolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.clientConnectivity.updatePolicy')
 
@@ -2317,6 +2689,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_dynamicIpAllocation_addRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_dynamicIpAllocation_addRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_dynamicIpAllocation_addRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_dynamicIpAllocation_addRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_dynamicIpAllocation_addRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_dynamicIpAllocation_addRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_dynamicIpAllocation_addRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_dynamicIpAllocation_addRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.dynamicIpAllocation.addRule')
 
@@ -2334,6 +2709,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_dynamicIpAllocation_updateRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_dynamicIpAllocation_updateRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_dynamicIpAllocation_updateRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_dynamicIpAllocation_updateRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_dynamicIpAllocation_updateRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_dynamicIpAllocation_updateRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_dynamicIpAllocation_updateRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_dynamicIpAllocation_updateRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.dynamicIpAllocation.updateRule')
 
@@ -2351,6 +2729,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_dynamicIpAllocation_removeRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_dynamicIpAllocation_removeRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_dynamicIpAllocation_removeRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_dynamicIpAllocation_removeRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_dynamicIpAllocation_removeRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_dynamicIpAllocation_removeRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_dynamicIpAllocation_removeRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_dynamicIpAllocation_removeRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.dynamicIpAllocation.removeRule')
 
@@ -2368,6 +2749,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_dynamicIpAllocation_moveRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_dynamicIpAllocation_moveRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_dynamicIpAllocation_moveRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_dynamicIpAllocation_moveRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_dynamicIpAllocation_moveRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_dynamicIpAllocation_moveRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_dynamicIpAllocation_moveRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_dynamicIpAllocation_moveRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.dynamicIpAllocation.moveRule')
 
@@ -2385,6 +2769,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_dynamicIpAllocation_addSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_dynamicIpAllocation_addSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_dynamicIpAllocation_addSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_dynamicIpAllocation_addSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_dynamicIpAllocation_addSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_dynamicIpAllocation_addSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_dynamicIpAllocation_addSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_dynamicIpAllocation_addSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.dynamicIpAllocation.addSection')
 
@@ -2402,6 +2789,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_dynamicIpAllocation_updateSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_dynamicIpAllocation_updateSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_dynamicIpAllocation_updateSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_dynamicIpAllocation_updateSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_dynamicIpAllocation_updateSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_dynamicIpAllocation_updateSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_dynamicIpAllocation_updateSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_dynamicIpAllocation_updateSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.dynamicIpAllocation.updateSection')
 
@@ -2419,6 +2809,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_dynamicIpAllocation_removeSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_dynamicIpAllocation_removeSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_dynamicIpAllocation_removeSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_dynamicIpAllocation_removeSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_dynamicIpAllocation_removeSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_dynamicIpAllocation_removeSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_dynamicIpAllocation_removeSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_dynamicIpAllocation_removeSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.dynamicIpAllocation.removeSection')
 
@@ -2436,6 +2829,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_dynamicIpAllocation_moveSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_dynamicIpAllocation_moveSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_dynamicIpAllocation_moveSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_dynamicIpAllocation_moveSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_dynamicIpAllocation_moveSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_dynamicIpAllocation_moveSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_dynamicIpAllocation_moveSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_dynamicIpAllocation_moveSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.dynamicIpAllocation.moveSection')
 
@@ -2453,6 +2849,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_dynamicIpAllocation_createPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_dynamicIpAllocation_createPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_dynamicIpAllocation_createPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_dynamicIpAllocation_createPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_dynamicIpAllocation_createPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_dynamicIpAllocation_createPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_dynamicIpAllocation_createPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_dynamicIpAllocation_createPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.dynamicIpAllocation.createPolicyRevision')
 
@@ -2470,6 +2869,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_dynamicIpAllocation_publishPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_dynamicIpAllocation_publishPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_dynamicIpAllocation_publishPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_dynamicIpAllocation_publishPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_dynamicIpAllocation_publishPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_dynamicIpAllocation_publishPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_dynamicIpAllocation_publishPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_dynamicIpAllocation_publishPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.dynamicIpAllocation.publishPolicyRevision')
 
@@ -2487,6 +2889,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_dynamicIpAllocation_discardPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_dynamicIpAllocation_discardPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_dynamicIpAllocation_discardPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_dynamicIpAllocation_discardPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_dynamicIpAllocation_discardPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_dynamicIpAllocation_discardPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_dynamicIpAllocation_discardPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_dynamicIpAllocation_discardPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.dynamicIpAllocation.discardPolicyRevision')
 
@@ -2504,6 +2909,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_dynamicIpAllocation_updatePolicy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_dynamicIpAllocation_updatePolicy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_dynamicIpAllocation_updatePolicy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_dynamicIpAllocation_updatePolicy_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_dynamicIpAllocation_updatePolicy_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_dynamicIpAllocation_updatePolicy_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_dynamicIpAllocation_updatePolicy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_dynamicIpAllocation_updatePolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.dynamicIpAllocation.updatePolicy')
 
@@ -2537,6 +2945,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_splitTunnel_addRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_splitTunnel_addRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_splitTunnel_addRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_splitTunnel_addRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_splitTunnel_addRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_splitTunnel_addRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_splitTunnel_addRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_splitTunnel_addRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.splitTunnel.addRule')
 
@@ -2554,6 +2965,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_splitTunnel_updateRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_splitTunnel_updateRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_splitTunnel_updateRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_splitTunnel_updateRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_splitTunnel_updateRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_splitTunnel_updateRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_splitTunnel_updateRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_splitTunnel_updateRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.splitTunnel.updateRule')
 
@@ -2571,6 +2985,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_splitTunnel_removeRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_splitTunnel_removeRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_splitTunnel_removeRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_splitTunnel_removeRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_splitTunnel_removeRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_splitTunnel_removeRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_splitTunnel_removeRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_splitTunnel_removeRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.splitTunnel.removeRule')
 
@@ -2588,6 +3005,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_splitTunnel_moveRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_splitTunnel_moveRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_splitTunnel_moveRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_splitTunnel_moveRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_splitTunnel_moveRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_splitTunnel_moveRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_splitTunnel_moveRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_splitTunnel_moveRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.splitTunnel.moveRule')
 
@@ -2605,6 +3025,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_splitTunnel_addSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_splitTunnel_addSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_splitTunnel_addSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_splitTunnel_addSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_splitTunnel_addSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_splitTunnel_addSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_splitTunnel_addSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_splitTunnel_addSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.splitTunnel.addSection')
 
@@ -2622,6 +3045,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_splitTunnel_updateSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_splitTunnel_updateSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_splitTunnel_updateSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_splitTunnel_updateSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_splitTunnel_updateSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_splitTunnel_updateSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_splitTunnel_updateSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_splitTunnel_updateSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.splitTunnel.updateSection')
 
@@ -2639,6 +3065,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_splitTunnel_removeSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_splitTunnel_removeSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_splitTunnel_removeSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_splitTunnel_removeSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_splitTunnel_removeSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_splitTunnel_removeSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_splitTunnel_removeSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_splitTunnel_removeSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.splitTunnel.removeSection')
 
@@ -2656,6 +3085,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_splitTunnel_moveSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_splitTunnel_moveSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_splitTunnel_moveSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_splitTunnel_moveSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_splitTunnel_moveSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_splitTunnel_moveSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_splitTunnel_moveSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_splitTunnel_moveSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.splitTunnel.moveSection')
 
@@ -2673,6 +3105,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_splitTunnel_createPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_splitTunnel_createPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_splitTunnel_createPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_splitTunnel_createPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_splitTunnel_createPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_splitTunnel_createPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_splitTunnel_createPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_splitTunnel_createPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.splitTunnel.createPolicyRevision')
 
@@ -2690,6 +3125,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_splitTunnel_publishPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_splitTunnel_publishPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_splitTunnel_publishPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_splitTunnel_publishPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_splitTunnel_publishPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_splitTunnel_publishPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_splitTunnel_publishPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_splitTunnel_publishPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.splitTunnel.publishPolicyRevision')
 
@@ -2707,6 +3145,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_splitTunnel_discardPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_splitTunnel_discardPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_splitTunnel_discardPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_splitTunnel_discardPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_splitTunnel_discardPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_splitTunnel_discardPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_splitTunnel_discardPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_splitTunnel_discardPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.splitTunnel.discardPolicyRevision')
 
@@ -2724,6 +3165,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_splitTunnel_updatePolicy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_splitTunnel_updatePolicy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_splitTunnel_updatePolicy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_splitTunnel_updatePolicy_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_splitTunnel_updatePolicy_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_splitTunnel_updatePolicy_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_splitTunnel_updatePolicy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_splitTunnel_updatePolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.splitTunnel.updatePolicy')
 
@@ -2757,6 +3201,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_terminalServer_addRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_terminalServer_addRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_terminalServer_addRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_terminalServer_addRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_terminalServer_addRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_terminalServer_addRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_terminalServer_addRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_terminalServer_addRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.terminalServer.addRule')
 
@@ -2774,6 +3221,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_terminalServer_updateRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_terminalServer_updateRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_terminalServer_updateRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_terminalServer_updateRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_terminalServer_updateRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_terminalServer_updateRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_terminalServer_updateRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_terminalServer_updateRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.terminalServer.updateRule')
 
@@ -2791,6 +3241,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_terminalServer_removeRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_terminalServer_removeRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_terminalServer_removeRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_terminalServer_removeRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_terminalServer_removeRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_terminalServer_removeRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_terminalServer_removeRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_terminalServer_removeRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.terminalServer.removeRule')
 
@@ -2808,6 +3261,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_terminalServer_moveRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_terminalServer_moveRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_terminalServer_moveRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_terminalServer_moveRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_terminalServer_moveRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_terminalServer_moveRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_terminalServer_moveRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_terminalServer_moveRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.terminalServer.moveRule')
 
@@ -2825,6 +3281,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_terminalServer_addSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_terminalServer_addSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_terminalServer_addSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_terminalServer_addSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_terminalServer_addSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_terminalServer_addSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_terminalServer_addSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_terminalServer_addSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.terminalServer.addSection')
 
@@ -2842,6 +3301,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_terminalServer_updateSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_terminalServer_updateSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_terminalServer_updateSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_terminalServer_updateSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_terminalServer_updateSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_terminalServer_updateSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_terminalServer_updateSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_terminalServer_updateSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.terminalServer.updateSection')
 
@@ -2859,6 +3321,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_terminalServer_removeSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_terminalServer_removeSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_terminalServer_removeSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_terminalServer_removeSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_terminalServer_removeSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_terminalServer_removeSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_terminalServer_removeSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_terminalServer_removeSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.terminalServer.removeSection')
 
@@ -2876,6 +3341,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_terminalServer_moveSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_terminalServer_moveSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_terminalServer_moveSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_terminalServer_moveSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_terminalServer_moveSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_terminalServer_moveSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_terminalServer_moveSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_terminalServer_moveSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.terminalServer.moveSection')
 
@@ -2893,6 +3361,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_terminalServer_createPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_terminalServer_createPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_terminalServer_createPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_terminalServer_createPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_terminalServer_createPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_terminalServer_createPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_terminalServer_createPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_terminalServer_createPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.terminalServer.createPolicyRevision')
 
@@ -2910,6 +3381,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_terminalServer_publishPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_terminalServer_publishPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_terminalServer_publishPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_terminalServer_publishPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_terminalServer_publishPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_terminalServer_publishPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_terminalServer_publishPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_terminalServer_publishPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.terminalServer.publishPolicyRevision')
 
@@ -2927,6 +3401,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_terminalServer_discardPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_terminalServer_discardPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_terminalServer_discardPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_terminalServer_discardPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_terminalServer_discardPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_terminalServer_discardPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_terminalServer_discardPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_terminalServer_discardPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.terminalServer.discardPolicyRevision')
 
@@ -2944,6 +3421,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_terminalServer_updatePolicy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_terminalServer_updatePolicy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_terminalServer_updatePolicy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_terminalServer_updatePolicy_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_terminalServer_updatePolicy_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_terminalServer_updatePolicy_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_terminalServer_updatePolicy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_terminalServer_updatePolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.terminalServer.updatePolicy')
 
@@ -2977,6 +3457,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_ztnaAlwaysOn_addRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_ztnaAlwaysOn_addRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_ztnaAlwaysOn_addRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_ztnaAlwaysOn_addRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_ztnaAlwaysOn_addRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_ztnaAlwaysOn_addRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_ztnaAlwaysOn_addRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_ztnaAlwaysOn_addRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.ztnaAlwaysOn.addRule')
 
@@ -2994,6 +3477,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_ztnaAlwaysOn_updateRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_ztnaAlwaysOn_updateRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_ztnaAlwaysOn_updateRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_ztnaAlwaysOn_updateRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_ztnaAlwaysOn_updateRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_ztnaAlwaysOn_updateRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_ztnaAlwaysOn_updateRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_ztnaAlwaysOn_updateRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.ztnaAlwaysOn.updateRule')
 
@@ -3011,6 +3497,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_ztnaAlwaysOn_removeRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_ztnaAlwaysOn_removeRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_ztnaAlwaysOn_removeRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_ztnaAlwaysOn_removeRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_ztnaAlwaysOn_removeRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_ztnaAlwaysOn_removeRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_ztnaAlwaysOn_removeRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_ztnaAlwaysOn_removeRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.ztnaAlwaysOn.removeRule')
 
@@ -3028,6 +3517,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_ztnaAlwaysOn_moveRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_ztnaAlwaysOn_moveRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_ztnaAlwaysOn_moveRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_ztnaAlwaysOn_moveRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_ztnaAlwaysOn_moveRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_ztnaAlwaysOn_moveRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_ztnaAlwaysOn_moveRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_ztnaAlwaysOn_moveRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.ztnaAlwaysOn.moveRule')
 
@@ -3045,6 +3537,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_ztnaAlwaysOn_addSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_ztnaAlwaysOn_addSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_ztnaAlwaysOn_addSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_ztnaAlwaysOn_addSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_ztnaAlwaysOn_addSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_ztnaAlwaysOn_addSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_ztnaAlwaysOn_addSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_ztnaAlwaysOn_addSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.ztnaAlwaysOn.addSection')
 
@@ -3062,6 +3557,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_ztnaAlwaysOn_updateSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_ztnaAlwaysOn_updateSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_ztnaAlwaysOn_updateSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_ztnaAlwaysOn_updateSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_ztnaAlwaysOn_updateSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_ztnaAlwaysOn_updateSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_ztnaAlwaysOn_updateSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_ztnaAlwaysOn_updateSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.ztnaAlwaysOn.updateSection')
 
@@ -3079,6 +3577,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_ztnaAlwaysOn_removeSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_ztnaAlwaysOn_removeSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_ztnaAlwaysOn_removeSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_ztnaAlwaysOn_removeSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_ztnaAlwaysOn_removeSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_ztnaAlwaysOn_removeSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_ztnaAlwaysOn_removeSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_ztnaAlwaysOn_removeSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.ztnaAlwaysOn.removeSection')
 
@@ -3096,6 +3597,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_ztnaAlwaysOn_moveSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_ztnaAlwaysOn_moveSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_ztnaAlwaysOn_moveSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_ztnaAlwaysOn_moveSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_ztnaAlwaysOn_moveSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_ztnaAlwaysOn_moveSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_ztnaAlwaysOn_moveSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_ztnaAlwaysOn_moveSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.ztnaAlwaysOn.moveSection')
 
@@ -3113,6 +3617,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_ztnaAlwaysOn_createPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_ztnaAlwaysOn_createPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_ztnaAlwaysOn_createPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_ztnaAlwaysOn_createPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_ztnaAlwaysOn_createPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_ztnaAlwaysOn_createPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_ztnaAlwaysOn_createPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_ztnaAlwaysOn_createPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.ztnaAlwaysOn.createPolicyRevision')
 
@@ -3130,6 +3637,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_ztnaAlwaysOn_publishPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_ztnaAlwaysOn_publishPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_ztnaAlwaysOn_publishPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_ztnaAlwaysOn_publishPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_ztnaAlwaysOn_publishPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_ztnaAlwaysOn_publishPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_ztnaAlwaysOn_publishPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_ztnaAlwaysOn_publishPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.ztnaAlwaysOn.publishPolicyRevision')
 
@@ -3147,6 +3657,9 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_ztnaAlwaysOn_discardPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_ztnaAlwaysOn_discardPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_ztnaAlwaysOn_discardPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_ztnaAlwaysOn_discardPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_ztnaAlwaysOn_discardPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_ztnaAlwaysOn_discardPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_ztnaAlwaysOn_discardPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_ztnaAlwaysOn_discardPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.ztnaAlwaysOn.discardPolicyRevision')
 
@@ -3164,5 +3677,8 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_ztnaAlwaysOn_updatePolicy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     mutation_policy_ztnaAlwaysOn_updatePolicy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     mutation_policy_ztnaAlwaysOn_updatePolicy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_ztnaAlwaysOn_updatePolicy_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_ztnaAlwaysOn_updatePolicy_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_ztnaAlwaysOn_updatePolicy_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_ztnaAlwaysOn_updatePolicy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_ztnaAlwaysOn_updatePolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.ztnaAlwaysOn.updatePolicy')

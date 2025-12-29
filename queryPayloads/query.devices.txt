@@ -1,4 +1,4 @@
-query devices ( $accountId:ID! $deviceV2Input:DeviceV2Input $sortOrderInput:SortOrderInput $deviceAttributeCatalogInput:DeviceAttributeCatalogInput $deviceCsvExportInput:DeviceCsvExportInput $jobId:ID!) {
+query devices ( $accountId:ID! $deviceV2Input:DeviceV2Input $sortOrderInput:SortOrderInput $deviceAttributeCatalogInput:DeviceAttributeCatalogInput $deviceComplianceCatalogInput:DeviceComplianceCatalogInput $deviceCsvExportInput:DeviceCsvExportInput $jobId:ID!) {
 	devices ( accountId:$accountId ) {
 		list ( input:$deviceV2Input  )  {
 			device {
@@ -97,6 +97,18 @@ query devices ( $accountId:ID! $deviceV2Input:DeviceV2Input $sortOrderInput:Sort
 			}
 			os ( input:$deviceAttributeCatalogInput   ) {
 				items
+				pageInfo {
+					total
+				}
+			}
+			compliance ( input:$deviceComplianceCatalogInput   ) {
+				items {
+					applicationConnector {
+						id
+						name
+					}
+					state
+				}
 				pageInfo {
 					total
 				}

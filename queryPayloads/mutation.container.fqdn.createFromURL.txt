@@ -1,0 +1,45 @@
+mutation containerFqdnCreateFromURL ( $accountId:ID! $createFqdnContainerFromUrlInput:CreateFqdnContainerFromUrlInput!) {
+	container ( accountId:$accountId ) {
+		fqdn {
+			createFromURL ( input:$createFqdnContainerFromUrlInput   ) {
+				container {
+					id
+					name
+					description
+					size
+					audit {
+						createdBy
+						lastModifiedBy
+						lastModifiedAt
+						createdAt
+					}
+					syncData {
+						fileType
+						url
+						timeInterval
+						timeUnit
+						notifications {
+							subscriptionGroup {
+								id
+								name
+							}
+							webhook {
+								id
+								name
+							}
+							mailingList {
+								id
+								name
+							}
+						}
+					}
+					syncDataAudit {
+						lastSynced
+						lastSyncAttempt
+						errorMsg
+					}
+				}
+			}
+		}
+	}	
+}

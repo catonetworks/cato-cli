@@ -3,7 +3,7 @@
     "query": "query appStats ( $accountID:ID! $timeFrame:TimeFrame! $measure:[Measure] $dimension:[Dimension] $appStatsFilter:[AppStatsFilter!] $appStatsSort:[AppStatsSort!] $limit:Int $from:Int) {\n\tappStats ( accountID:$accountID timeFrame:$timeFrame measures:$measure dimensions:$dimension filters:$appStatsFilter sort:$appStatsSort ) {\n\t\tid\n\t\tfrom\n\t\tto\n\t\ttotal\n\t\ttotals\n\t\trecords ( limit:$limit  from:$from  )  {\n\t\t\tfieldsUnitTypes\n\t\t\tfieldsMap\n\t\t\ttrends\n\t\t\tprevTimeFrame\n\t\t\tflatFields\n\t\t}\n\t}\t\n}",
     "variables": {
         "appStatsFilter": {
-            "fieldName": "ad_name",
+            "fieldName": "account_id",
             "operator": "is",
             "values": [
                 "string1",
@@ -11,17 +11,17 @@
             ]
         },
         "appStatsSort": {
-            "fieldName": "ad_name",
+            "fieldName": "account_id",
             "order": "asc"
         },
         "dimension": {
-            "fieldName": "ad_name"
+            "fieldName": "account_id"
         },
         "from": 1,
         "limit": 1,
         "measure": {
             "aggType": "sum",
-            "fieldName": "ad_name",
+            "fieldName": "account_id",
             "trend": true
         },
         "timeFrame": "example_value"

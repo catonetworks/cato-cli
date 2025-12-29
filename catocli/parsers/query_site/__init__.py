@@ -33,6 +33,9 @@ def query_site_parse(query_subparsers):
     query_site_secondaryAwsVSocket_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_site_secondaryAwsVSocket_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_site_secondaryAwsVSocket_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_site_secondaryAwsVSocket_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    query_site_secondaryAwsVSocket_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    query_site_secondaryAwsVSocket_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     query_site_secondaryAwsVSocket_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_site_secondaryAwsVSocket_parser.set_defaults(func=createRequest,operation_name='query.site.secondaryAwsVSocket')
 
@@ -50,6 +53,9 @@ def query_site_parse(query_subparsers):
     query_site_secondaryAzureVSocket_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_site_secondaryAzureVSocket_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_site_secondaryAzureVSocket_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_site_secondaryAzureVSocket_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    query_site_secondaryAzureVSocket_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    query_site_secondaryAzureVSocket_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     query_site_secondaryAzureVSocket_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_site_secondaryAzureVSocket_parser.set_defaults(func=createRequest,operation_name='query.site.secondaryAzureVSocket')
 
@@ -67,6 +73,9 @@ def query_site_parse(query_subparsers):
     query_site_cloudInterconnectPhysicalConnection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_site_cloudInterconnectPhysicalConnection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_site_cloudInterconnectPhysicalConnection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_site_cloudInterconnectPhysicalConnection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    query_site_cloudInterconnectPhysicalConnection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    query_site_cloudInterconnectPhysicalConnection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     query_site_cloudInterconnectPhysicalConnection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_site_cloudInterconnectPhysicalConnection_parser.set_defaults(func=createRequest,operation_name='query.site.cloudInterconnectPhysicalConnection')
 
@@ -84,6 +93,9 @@ def query_site_parse(query_subparsers):
     query_site_cloudInterconnectPhysicalConnectionId_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_site_cloudInterconnectPhysicalConnectionId_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_site_cloudInterconnectPhysicalConnectionId_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_site_cloudInterconnectPhysicalConnectionId_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    query_site_cloudInterconnectPhysicalConnectionId_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    query_site_cloudInterconnectPhysicalConnectionId_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     query_site_cloudInterconnectPhysicalConnectionId_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_site_cloudInterconnectPhysicalConnectionId_parser.set_defaults(func=createRequest,operation_name='query.site.cloudInterconnectPhysicalConnectionId')
 
@@ -101,6 +113,9 @@ def query_site_parse(query_subparsers):
     query_site_cloudInterconnectConnectionConnectivity_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_site_cloudInterconnectConnectionConnectivity_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_site_cloudInterconnectConnectionConnectivity_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_site_cloudInterconnectConnectionConnectivity_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    query_site_cloudInterconnectConnectionConnectivity_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    query_site_cloudInterconnectConnectionConnectivity_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     query_site_cloudInterconnectConnectionConnectivity_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_site_cloudInterconnectConnectionConnectivity_parser.set_defaults(func=createRequest,operation_name='query.site.cloudInterconnectConnectionConnectivity')
 
@@ -118,6 +133,9 @@ def query_site_parse(query_subparsers):
     query_site_bgpPeer_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_site_bgpPeer_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_site_bgpPeer_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_site_bgpPeer_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    query_site_bgpPeer_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    query_site_bgpPeer_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     query_site_bgpPeer_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_site_bgpPeer_parser.set_defaults(func=createRequest,operation_name='query.site.bgpPeer')
 
@@ -135,6 +153,9 @@ def query_site_parse(query_subparsers):
     query_site_bgpPeerList_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_site_bgpPeerList_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_site_bgpPeerList_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_site_bgpPeerList_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    query_site_bgpPeerList_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    query_site_bgpPeerList_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     query_site_bgpPeerList_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_site_bgpPeerList_parser.set_defaults(func=createRequest,operation_name='query.site.bgpPeerList')
 
@@ -152,6 +173,9 @@ def query_site_parse(query_subparsers):
     query_site_siteBgpStatus_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_site_siteBgpStatus_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_site_siteBgpStatus_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_site_siteBgpStatus_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    query_site_siteBgpStatus_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    query_site_siteBgpStatus_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     query_site_siteBgpStatus_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_site_siteBgpStatus_parser.set_defaults(func=createRequest,operation_name='query.site.siteBgpStatus')
 
@@ -169,6 +193,9 @@ def query_site_parse(query_subparsers):
     query_site_availableVersionList_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_site_availableVersionList_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_site_availableVersionList_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_site_availableVersionList_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    query_site_availableVersionList_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    query_site_availableVersionList_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     query_site_availableVersionList_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_site_availableVersionList_parser.set_defaults(func=createRequest,operation_name='query.site.availableVersionList')
 
@@ -186,5 +213,8 @@ def query_site_parse(query_subparsers):
     query_site_siteGeneralDetails_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_site_siteGeneralDetails_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_site_siteGeneralDetails_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_site_siteGeneralDetails_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    query_site_siteGeneralDetails_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    query_site_siteGeneralDetails_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     query_site_siteGeneralDetails_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_site_siteGeneralDetails_parser.set_defaults(func=createRequest,operation_name='query.site.siteGeneralDetails')

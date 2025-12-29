@@ -52,6 +52,268 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 					}
 					predictedVerdict
 					predictedThreatType
+					categories
+					entities {
+						ref {
+							id
+							name
+							... on ThreatClassificationRef {
+								id
+								name
+							}
+							... on ThreatTypeRef {
+								id
+								name
+							}
+							... on AllowlistRuleRef {
+								id
+								name
+							}
+							... on ResponsePolicyRuleRef {
+								id
+								name
+							}
+							... on UnknownEntityRef {
+								id
+								name
+							}
+							... on UserRef {
+								id
+								name
+							}
+							... on UsersGroupRef {
+								id
+								name
+							}
+							... on DeviceProfileRef {
+								id
+								name
+							}
+							... on PrivateApplicationRef {
+								id
+								name
+							}
+							... on AdminRef {
+								id
+								name
+							}
+							... on ApiKeyRef {
+								id
+								name
+							}
+							... on CustomCategoryRef {
+								id
+								name
+							}
+							... on GroupRef {
+								id
+								name
+							}
+							... on RbacRoleRef {
+								id
+								name
+							}
+							... on AccessTokenRef {
+								id
+								name
+							}
+							... on AllocatedIpRef {
+								id
+								name
+							}
+							... on DhcpRelayGroupRef {
+								id
+								name
+							}
+							... on FloatingSubnetRef {
+								id
+								name
+							}
+							... on GlobalRangeRef {
+								id
+								name
+							}
+							... on HostRef {
+								id
+								name
+							}
+							... on NetworkInterfaceRef {
+								id
+								name
+							}
+							... on SiteRef {
+								id
+								name
+							}
+							... on AccountRef {
+								id
+								name
+							}
+							... on SiteNetworkSubnetRef {
+								id
+								name
+							}
+							... on ApplicationRef {
+								id
+								name
+							}
+							... on ApplicationCategoryRef {
+								id
+								name
+							}
+							... on SanctionedAppsCategoryRef {
+								id
+								name
+							}
+							... on CloudApplicationRef {
+								id
+								name
+							}
+							... on CustomApplicationRef {
+								id
+								name
+							}
+							... on ServiceRef {
+								id
+								name
+							}
+							... on SimpleServiceRef {
+								id
+								name
+							}
+							... on CountryRef {
+								id
+								name
+							}
+							... on InterfaceSubnetRef {
+								id
+								name
+							}
+							... on SubscriptionGroupRef {
+								id
+								name
+							}
+							... on SubscriptionWebhookRef {
+								id
+								name
+							}
+							... on SubscriptionMailingListRef {
+								id
+								name
+							}
+							... on SystemGroupRef {
+								id
+								name
+							}
+							... on GlobalIpRangeRef {
+								id
+								name
+							}
+							... on StringValueSetRef {
+								id
+								name
+							}
+							... on ApplicationControlActivityRef {
+								id
+								name
+							}
+							... on ApplicationControlActivityFieldRef {
+								id
+								name
+							}
+							... on ApplicationControlCriterionRef {
+								id
+								name
+							}
+							... on ApplicationControlContentTypeRef {
+								id
+								name
+							}
+							... on ApplicationControlContentTypeGroupRef {
+								id
+								name
+							}
+							... on DlpContentProfileRef {
+								id
+								name
+							}
+							... on DlpEdmProfileRef {
+								id
+								name
+							}
+							... on BandwidthManagementRef {
+								id
+								name
+							}
+							... on PopLocationRef {
+								id
+								name
+							}
+							... on FqdnContainerRef {
+								id
+								name
+							}
+							... on IpAddressRangeContainerRef {
+								id
+								name
+							}
+							... on ContainerRef {
+								id
+								name
+							}
+							... on LocationRef {
+								id
+								name
+							}
+							... on InvoiceRef {
+								id
+								name
+							}
+							... on UserNotificationTemplateRef {
+								id
+								name
+							}
+							... on ApplicationConnectorCatalogEntityRef {
+								id
+								name
+							}
+							... on ZtnaAppConnectorRef {
+								id
+								name
+							}
+							... on PopLocationMachineRef {
+								id
+								name
+							}
+							... on PopLocationServiceUnitRef {
+								id
+								name
+							}
+							... on GroupMemberRefTyped {
+								id
+								name
+								type
+							}
+							... on InternetFirewallPolicyRef {
+								id
+								name
+							}
+							... on WanFirewallPolicyRef {
+								id
+								name
+							}
+							... on AiSecurityDataProfileRef {
+								id
+								name
+							}
+						}
+						role
+						kind
+						data {
+							fieldName
+							values
+						}
+					}
 					... on MicrosoftEndpoint {
 						id
 						firstSignal
@@ -78,6 +340,8 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 						similarStoriesData
 						predictedVerdict
 						predictedThreatType
+						categories
+						entities
 						device
 						alerts
 					}
@@ -107,6 +371,8 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 						similarStoriesData
 						predictedVerdict
 						predictedThreatType
+						categories
+						entities
 						srcSiteId
 						os
 						deviceName
@@ -152,6 +418,8 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 						similarStoriesData
 						predictedVerdict
 						predictedThreatType
+						categories
+						entities
 						srcSiteId
 						os
 						deviceName
@@ -196,6 +464,8 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 						similarStoriesData
 						predictedVerdict
 						predictedThreatType
+						categories
+						entities
 						srcSiteId
 						flowsCardinality
 						riskLevel
@@ -237,6 +507,8 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 						similarStoriesData
 						predictedVerdict
 						predictedThreatType
+						categories
+						entities
 						srcSiteId
 						flowsCardinality
 						riskLevel
@@ -279,6 +551,8 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 						similarStoriesData
 						predictedVerdict
 						predictedThreatType
+						categories
+						entities
 						networkIncidentTimeline
 						storyType
 						occurrences
@@ -329,10 +603,47 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 						riskScore
 						sourceIp
 						siteName
+						categories
+						entities
 						type
 						occurrences
 						eventsGraphQuery
 						accountOperationIncident
+					}
+					... on GenericIncident {
+						id
+						firstSignal
+						lastSignal
+						engineType
+						vendor
+						producer
+						producerName
+						connectionType
+						indication
+						queryName
+						criticality
+						source
+						ticket
+						status
+						research
+						siteName
+						storyDuration
+						description
+						sourceIp
+						analystFeedback
+						site
+						user
+						similarStoriesData
+						predictedVerdict
+						predictedThreatType
+						categories
+						entities
+						producerInfo
+						vendorInfo
+						statusInfo
+						evidences
+						queries
+						mitres
 					}
 					... on CatoEndpoint {
 						id
@@ -360,6 +671,8 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 						similarStoriesData
 						predictedVerdict
 						predictedThreatType
+						categories
+						entities
 						device
 						alerts
 					}

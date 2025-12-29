@@ -12,6 +12,31 @@ mutation containerDelete ( $accountId:ID! $deleteContainerInput:DeleteContainerI
 					lastModifiedAt
 					createdAt
 				}
+				syncData {
+					fileType
+					url
+					timeInterval
+					timeUnit
+					notifications {
+						subscriptionGroup {
+							id
+							name
+						}
+						webhook {
+							id
+							name
+						}
+						mailingList {
+							id
+							name
+						}
+					}
+				}
+				syncDataAudit {
+					lastSynced
+					lastSyncAttempt
+					errorMsg
+				}
 			}
 		}
 	}	

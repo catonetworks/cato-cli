@@ -175,7 +175,7 @@ def parseSchema(schema):
     print("  - Loading settings and initializing...")
     
     # Load settings to get childOperationParent and childOperationObjects configuration
-    settings = loadJSON("../catocli/clisettings.json")
+    settings = loadJSON("../catocli/clisettings.json", __file__)
     childOperationParent = settings.get("childOperationParent", {})
     childOperationObjects = settings.get("childOperationObjects", {})
     
@@ -624,36 +624,78 @@ def show_version_info(args, configuration=None):
             print("Unable to check for updates (check your internet connection)")
     return [{"success": True, "current_version": catocli.__version__, "latest_version": latest_version if not args.current_only else None}]
         
-def get_configuration(skip_api_key=False):
+def get_configuration(skip_api_key=False, endpoint_override=None, api_token_override=None, account_id_override=None):
     configuration = Configuration()
     configuration.verify_ssl = False
     configuration.debug = CATO_DEBUG
     configuration.version = "{}".format(catocli.__version__)
     
-    # Try to migrate from environment variables first
-    profile_manager.migrate_from_environment()
-    
-    # Get credentials from profile
-    credentials = profile_manager.get_credentials()
-    if not credentials:
-        print("No Cato CLI profile configured.")
-        print("Run 'catocli configure set' to set up your credentials.")
-        exit(1)
-
-    if not credentials.get('cato_token') or not credentials.get('account_id'):
-        profile_name = profile_manager.get_current_profile()
-        print(f"Profile '{profile_name}' is missing required credentials.")
-        print(f"Run 'catocli configure set --profile {profile_name}' to update your credentials.")
-        exit(1)
-    
-    # Use standard endpoint from profile for regular API calls
-    configuration.host = credentials['endpoint']
+    # Check if override parameters are provided
+    if api_token_override or endpoint_override or account_id_override:
+        # Validate that if endpoint or api_token is provided, all three must be provided
+        if (endpoint_override or api_token_override) and not (endpoint_override and api_token_override and account_id_override):
+            print("ERROR: When using --endpoint or --api-token, you must provide all three: --endpoint, --api-token, and --accountID.")
+            exit(1)
         
-    # Only set API key if not using custom headers file
-    # (Private settings are handled separately in createPrivateRequest)
-    if not skip_api_key:
-        configuration.api_key["x-api-key"] = credentials['cato_token']
-    configuration.accountID = credentials['account_id']
+        # If only accountID is provided (MSP/reseller scenario) or all three are provided
+        if account_id_override:
+            # Use overrides if provided
+            configuration.host = endpoint_override if endpoint_override else None
+            configuration.accountID = account_id_override if account_id_override else None
+            
+            # If api_token is provided, use it; otherwise we'll try to get it from profile
+            if api_token_override and not skip_api_key:
+                configuration.api_key["x-api-key"] = api_token_override
+            
+            # If any override is partial, try to fill in from profile
+            if not configuration.host or not configuration.accountID or (not api_token_override and not skip_api_key):
+                # Try to migrate from environment variables first
+                profile_manager.migrate_from_environment()
+                
+                # Get credentials from profile to fill in missing values
+                credentials = profile_manager.get_credentials()
+                if not credentials:
+                    print("No Cato CLI profile configured and not all override parameters provided.")
+                    print("Run 'catocli configure set' to set up your credentials or provide all required overrides.")
+                    exit(1)
+                
+                # Fill in missing values from profile
+                if not configuration.host:
+                    configuration.host = credentials['endpoint']
+                if not configuration.accountID:
+                    configuration.accountID = credentials['account_id']
+                if not api_token_override and not skip_api_key:
+                    configuration.api_key["x-api-key"] = credentials['cato_token']
+        else:
+            # Should not reach here, but handle gracefully
+            print("ERROR: Invalid combination of override parameters.")
+            exit(1)
+    else:
+        # No overrides, use profile credentials as before
+        # Try to migrate from environment variables first
+        profile_manager.migrate_from_environment()
+        
+        # Get credentials from profile
+        credentials = profile_manager.get_credentials()
+        if not credentials:
+            print("No Cato CLI profile configured.")
+            print("Run 'catocli configure set' to set up your credentials.")
+            exit(1)
+
+        if not credentials.get('cato_token') or not credentials.get('account_id'):
+            profile_name = profile_manager.get_current_profile()
+            print(f"Profile '{profile_name}' is missing required credentials.")
+            print(f"Run 'catocli configure set --profile {profile_name}' to update your credentials.")
+            exit(1)
+        
+        # Use standard endpoint from profile for regular API calls
+        configuration.host = credentials['endpoint']
+            
+        # Only set API key if not using custom headers file
+        # (Private settings are handled separately in createPrivateRequest)
+        if not skip_api_key:
+            configuration.api_key["x-api-key"] = credentials['cato_token']
+        configuration.accountID = credentials['account_id']
     
     return configuration
 
@@ -670,6 +712,9 @@ parser.add_argument('-H', '--header', action='append', dest='headers', help='Add
 parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
 parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
 parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Required if --api-token is provided.')
+parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Required if --api-token is provided.')
 subparsers = parser.add_subparsers()
 
 # Version command - enhanced with update checking
@@ -766,8 +811,18 @@ def main(args=None):
             # Note: Private settings should NOT affect regular API calls - only private commands
             using_headers_file = hasattr(args, 'headers_file') and args.headers_file
             
-            # Get configuration from profiles
-            configuration = get_configuration(skip_api_key=using_headers_file)
+            # Get override parameters from command line arguments
+            endpoint_override = getattr(args, 'endpoint', None)
+            api_token_override = getattr(args, 'api_token', None)
+            account_id_override = getattr(args, 'accountID_override', None)
+            
+            # Get configuration from profiles with overrides
+            configuration = get_configuration(
+                skip_api_key=using_headers_file,
+                endpoint_override=endpoint_override,
+                api_token_override=api_token_override,
+                account_id_override=account_id_override
+            )
             
             # Parse custom headers if provided
             custom_headers = {}
@@ -778,11 +833,12 @@ def main(args=None):
             if custom_headers:
                 configuration.custom_headers.update(custom_headers)
             # Handle account ID override (applies to all commands except raw)
+            # Note: This handles the legacy -accountID argument that some commands have
             if args.func.__name__ not in ["createRawRequest"]:
                 if hasattr(args, 'accountID') and args.accountID is not None:
                     # Command line override takes precedence
                     configuration.accountID = args.accountID
-                # Otherwise use the account ID from the profile (already set in get_configuration)
+                # Otherwise use the account ID from the profile or --account-id override (already set in get_configuration)
             response = args.func(args, configuration)
 
         if type(response) == ApiException:
@@ -1780,6 +1836,9 @@ def renderSubParser(subParser, parentParserPath):
     {subParserPath}_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     {subParserPath}_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     {subParserPath}_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    {subParserPath}_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    {subParserPath}_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    {subParserPath}_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     {subParserPath}_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     {subParserPath}_parser.set_defaults(func=createRequest,operation_name='{operation_path}')
 """
@@ -1886,7 +1945,7 @@ def writePayloadsJson(schema):
     payloads_settings_path = "../tests/payloads_settings.json"
     payloads_settings = {}
     try:
-        payloads_settings = loadJSON(payloads_settings_path)
+        payloads_settings = loadJSON(payloads_settings_path, __file__)
     except Exception as e:
         print(f"  - Warning: Could not load payloads_settings.json: {e}")
         payloads_settings = {"ignoreOperations": {}, "defaultValues": {}}
@@ -1915,7 +1974,7 @@ def writePayloadsJson(schema):
         # Load the model file to get operationArgs and variablesPayload
         model_file_path = f"../models/{operation_name}.json"
         try:
-            model_data = loadJSON(model_file_path)
+            model_data = loadJSON(model_file_path, __file__)
             
             # Extract ONLY required arguments (excluding accountID which is handled by CLI)
             required_args = {}

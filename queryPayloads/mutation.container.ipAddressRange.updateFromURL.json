@@ -1,0 +1,33 @@
+{
+    "operationName": "containerIpAddressRangeUpdateFromURL",
+    "query": "mutation containerIpAddressRangeUpdateFromURL ( $accountId:ID! $updateIpAddressRangeContainerFromUrlInput:UpdateIpAddressRangeContainerFromUrlInput!) {\n\tcontainer ( accountId:$accountId ) {\n\t\tipAddressRange {\n\t\t\tupdateFromURL ( input:$updateIpAddressRangeContainerFromUrlInput   ) {\n\t\t\t\tcontainer {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t\tdescription\n\t\t\t\t\tsize\n\t\t\t\t\taudit {\n\t\t\t\t\t\tcreatedBy\n\t\t\t\t\t\tlastModifiedBy\n\t\t\t\t\t\tlastModifiedAt\n\t\t\t\t\t\tcreatedAt\n\t\t\t\t\t}\n\t\t\t\t\tsyncData {\n\t\t\t\t\t\tfileType\n\t\t\t\t\t\turl\n\t\t\t\t\t\ttimeInterval\n\t\t\t\t\t\ttimeUnit\n\t\t\t\t\t\tnotifications {\n\t\t\t\t\t\t\tsubscriptionGroup {\n\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\twebhook {\n\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tmailingList {\n\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\tsyncDataAudit {\n\t\t\t\t\t\tlastSynced\n\t\t\t\t\t\tlastSyncAttempt\n\t\t\t\t\t\terrorMsg\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "updateIpAddressRangeContainerFromUrlInput": {
+            "containerRefInput": {
+                "by": "ID",
+                "input": "string"
+            },
+            "description": "string",
+            "fileType": "STIX",
+            "updateContainerSyncDataInput": {
+                "notifications": {
+                    "mailingList": {
+                        "by": "ID",
+                        "input": "string"
+                    },
+                    "subscriptionGroup": {
+                        "by": "ID",
+                        "input": "string"
+                    },
+                    "webhook": {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                },
+                "timeInterval": 1,
+                "timeUnit": "HOUR",
+                "url": "example_value"
+            }
+        }
+    }
+}

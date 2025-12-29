@@ -33,6 +33,9 @@ def query_catalogs_parse(query_subparsers):
     query_catalogs_catalogApplication_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_catalogs_catalogApplication_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_catalogs_catalogApplication_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_catalogs_catalogApplication_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    query_catalogs_catalogApplication_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    query_catalogs_catalogApplication_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     query_catalogs_catalogApplication_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_catalogs_catalogApplication_parser.set_defaults(func=createRequest,operation_name='query.catalogs.catalogApplication')
 
@@ -50,6 +53,9 @@ def query_catalogs_parse(query_subparsers):
     query_catalogs_catalogApplicationList_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_catalogs_catalogApplicationList_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_catalogs_catalogApplicationList_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_catalogs_catalogApplicationList_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    query_catalogs_catalogApplicationList_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    query_catalogs_catalogApplicationList_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     query_catalogs_catalogApplicationList_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_catalogs_catalogApplicationList_parser.set_defaults(func=createRequest,operation_name='query.catalogs.catalogApplicationList')
 
@@ -67,5 +73,8 @@ def query_catalogs_parse(query_subparsers):
     query_catalogs_contentTypeGroupList_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
     query_catalogs_contentTypeGroupList_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
     query_catalogs_contentTypeGroupList_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    query_catalogs_contentTypeGroupList_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    query_catalogs_contentTypeGroupList_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    query_catalogs_contentTypeGroupList_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     query_catalogs_contentTypeGroupList_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     query_catalogs_contentTypeGroupList_parser.set_defaults(func=createRequest,operation_name='query.catalogs.contentTypeGroupList')

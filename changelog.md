@@ -160,5 +160,5 @@
 ## 3.0.45 (2025-12-17)
 - Added readme ENUM values for queries params for accountMetrics, appStats, appStatsTimeSeries, eventsTimeSeries, socketPortMetrics, and socketPortMetricsTimeSeries
 
-## 3.0.46 (2025-12-29)
+## 3.0.47 (2025-12-29)
 - Added support to override endpoint, accountID and api-token per cli operation, and updated CLI with latest schema operations 

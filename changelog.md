@@ -162,3 +162,7 @@
 
 ## 3.0.47 (2025-12-29)
 - Added support to override endpoint, accountID and api-token per cli operation, and updated CLI with latest schema operations 
+
+## 3.0.48 (2026-01-03)
+- Updated the schema generation to write the introspection locally to track schema changes per build
+- Alphabatize parsers output in the clidriver from catolib for each build

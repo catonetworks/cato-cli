@@ -31,6 +31,10 @@ def run():
         print("ERROR: Failed to download schema")
         return
     
+    # Write introspection response to file
+    with open('introspection.json', 'w') as f:
+        json.dump(introspection, f, indent=2)
+
     print("• Schema downloaded successfully")
     print("• Parsing schema with enhanced dynamic field expansion...")
     catolib.parseSchema(introspection)

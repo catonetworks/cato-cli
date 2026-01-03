@@ -563,7 +563,7 @@ def writeCliDriver(catoApiSchema):
             if operationNameAry[1] == "eventsFeed":
                 continue
             parsersIndex[operationNameAry[0]+"_"+operationNameAry[1]] = True
-    parsers = list(parsersIndex.keys())
+    parsers = sorted(list(parsersIndex.keys()))
 
     cliDriverStr = """
 import os

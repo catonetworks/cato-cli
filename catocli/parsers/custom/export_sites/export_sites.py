@@ -11,36 +11,36 @@ from graphql_client.api_client import ApiException
 from ..customLib import writeDataToFile, makeCall, getAccountID
 from ....Utils.cliutils import load_cli_settings
 
-def calculateLocalIp(subnet):
-    """
-    Calculate the first usable IP address from a subnet/CIDR notation.
-    Returns the network address + 1 (first host IP).
+# def calculateLocalIp(subnet):
+#     """
+#     Calculate the first usable IP address from a subnet/CIDR notation.
+#     Returns the network address + 1 (first host IP).
     
-    Args:
-        subnet (str): Subnet in CIDR notation (e.g., "192.168.1.0/24")
+#     Args:
+#         subnet (str): Subnet in CIDR notation (e.g., "192.168.1.0/24")
     
-    Returns:
-        str: First usable IP address, or None if invalid subnet
-    """
-    if not subnet or subnet == "":
-        return None
+#     Returns:
+#         str: First usable IP address, or None if invalid subnet
+#     """
+#     if not subnet or subnet == "":
+#         return None
         
-    try:
-        # Parse the subnet
-        network = ipaddress.IPv4Network(subnet, strict=False)
+#     try:
+#         # Parse the subnet
+#         network = ipaddress.IPv4Network(subnet, strict=False)
         
-        # Get the first usable IP (network address + 1)
-        # For /31 and /32 networks, return the network address itself
-        if network.prefixlen >= 31:
-            return str(network.network_address)
-        else:
-            # Return network + 1 (first host address)
-            first_host = network.network_address + 1
-            return str(first_host)
+#         # Get the first usable IP (network address + 1)
+#         # For /31 and /32 networks, return the network address itself
+#         if network.prefixlen >= 31:
+#             return str(network.network_address)
+#         else:
+#             # Return network + 1 (first host address)
+#             first_host = network.network_address + 1
+#             return str(first_host)
             
-    except (ipaddress.AddressValueError, ipaddress.NetmaskValueError, ValueError) as e:
-        # Invalid subnet format
-        return None
+#     except (ipaddress.AddressValueError, ipaddress.NetmaskValueError, ValueError) as e:
+#         # Invalid subnet format
+#         return None
 
 def generate_template(args):
     """
@@ -164,23 +164,26 @@ def export_socket_site_to_json(args, configuration):
         # Note: load_cli_settings() now returns embedded defaults if file cannot be loaded
         
         account_id = getAccountID(args, configuration)
-        # Get account snapshot with siteIDs if provided
-        # Get siteIDs from args if provided (comma-separated string)
+
+        # Get siteIDs from args if provided
         site_ids = []
         if hasattr(args, 'siteIDs') and args.siteIDs:
-            # Parse comma-separated string into list, removing whitespace
             site_ids = [site_id.strip() for site_id in args.siteIDs.split(',') if site_id.strip()]
-            if hasattr(args, 'verbose') and args.verbose:
-                print(f"Filtering snapshot for site IDs: {site_ids}")
         
+        if hasattr(args, 'verbose') and args.verbose:
+            if site_ids:
+                print(f"Found {len(site_ids)} site(s) matching the provided site IDs")
+            else:
+                print(f"Found {len(site_ids)} site(s) in account")
+
+        if not site_ids:
+            site_ids = None
+
         ###############################################################
         ## Call APIs to retrieve sites, interface and network ranges ##
         ###############################################################
-        snapshot_sites = getAccountSnapshot(args, configuration, account_id, site_ids)
-        
-        # Check if no sites were found and handle gracefully
-        sites_list = snapshot_sites['data']['accountSnapshot']['sites']
-        if not sites_list or len(sites_list) == 0:
+        entity_sites = getEntityLookup(args, configuration, account_id, "site", site_ids, None)
+        if not entity_sites or len(entity_sites) == 0:
             if site_ids:
                 # User provided specific site IDs but none were found
                 print(f"No sites found matching the provided site IDs: {', '.join(site_ids)}")
@@ -191,29 +194,17 @@ def export_socket_site_to_json(args, configuration):
                 print("No sites found in this account.")
                 return [{"success": False, "message": "No sites found in account", "account_id": account_id}]
         
-        if hasattr(args, 'verbose') and args.verbose:
-            if site_ids:
-                print(f"Found {len(sites_list)} site(s) matching the provided site IDs")
-            else:
-                print(f"Found {len(sites_list)} site(s) in account")
         
-        entity_network_interfaces = getEntityLookup(args, configuration, account_id, "networkInterface")
-        entity_network_ranges = getEntityLookup(args, configuration, account_id, "siteRange")
-        entity_sites = getEntityLookup(args, configuration, account_id, "site")
-        
-        ##################################################################
-        ## Create processed_data object indexed by siteId with location ##
-        ##################################################################
-        for snapshot_site in snapshot_sites['data']['accountSnapshot']['sites']:
-            site_id = snapshot_site.get('id')
+        for entity_site in entity_sites:
+            site_id = entity_site["entity"]["id"]
+            entity_input = {"id":site_id,"type":"site"}
+            snapshot_response = getAccountSnapshot(args, configuration, account_id, [site_id])
+            snapshot_sites = snapshot_response['data']['accountSnapshot']['sites']
+            snapshot_site = snapshot_sites[0] if snapshot_sites else {}
+            entity_network_interfaces = getEntityLookup(args, configuration, account_id, "networkInterface",None, entity_input)
+            entity_network_ranges = getEntityLookup(args, configuration, account_id, "siteRange",None, entity_input)
+
             connectionType = snapshot_site.get('infoSiteSnapshot', {}).get('connType', "")
-            # # Placeholder code to rename what the API returns if export should support cloud deployments 
-            # if connectionType=="VSOCKET_VGX_AWS":
-            #     connectionType = "SOCKET_AWS1500"
-            # elif connectionType=="VSOCKET_VGX_AZURE":
-            #     connectionType = "SOCKET_AZ1500"
-            # elif connectionType=="VSOCKET_VGX_ESX":
-            #     connectionType = "SOCKET_ESX1500"            
 
             cur_site = {
                 'wan_interfaces': [],
@@ -228,15 +219,15 @@ def export_socket_site_to_json(args, configuration):
                 cur_site['connection_type'] = connectionType
                 cur_site['type'] = snapshot_site.get('infoSiteSnapshot', {}).get('type')
                 cur_site = populateSiteLocationData(args, snapshot_site, cur_site)
-                # print("connectionType={connectionType} site_id={site_id} site_name={site_name}".format(connectionType=connectionType, site_id=site_id, site_name=cur_site['name']))
-                # if connectionType in settings["default_socket_interface_map"]:
-                #     print("default_interface__index="+settings["default_socket_interface_map"][connectionType])
                 
                 # Create a map of interfaces from account snapshot for native range lookup
                 site_interfaces = snapshot_site.get('infoSiteSnapshot', {}).get('interfaces', [])
                 interface_lookup = {}  # Map interface ID to interface data
                 lan_lag_member_count = 0  # Count LAN_LAG_MEMBER interfaces for lag calculation
                 
+                if hasattr(args, 'verbose') and args.verbose:        
+                    print(f"DEBUG: Processing site {site_id} ({cur_site['name']}) with {len(site_interfaces)} interfaces")
+
                 for interface in site_interfaces:
                     role = interface.get('wanRoleInterfaceInfo', "")
                     dest_type = interface.get('destType', "")
@@ -277,11 +268,13 @@ def export_socket_site_to_json(args, configuration):
                     
                     # Process LAN_LAG_MEMBER interfaces
                     elif dest_type == "LAN_LAG_MEMBER":
+                        if hasattr(args, 'verbose') and args.verbose:            
+                            print(f"DEBUG: Processing LAN_LAG_MEMBER interface for site {site_id}: {interface.get('name', '')} (id: {interface.get('id', '')})")
                         cur_lan_interface = {
                             'network_ranges': []
                         }
                         # LAN_LAG_MEMBER interfaces don't have a numeric ID, only index and name
-                        cur_lan_interface['id'] = None  # Set to null for LAN_LAG_MEMBER
+                        cur_lan_interface['id'] = ''  # No ID for LAN_LAG_MEMBER
                         cur_lan_interface['name'] = interface.get('name', "")
                         # Format interface index: INT_X for numeric values, keep as-is for non-numeric
                         interface_id = interface.get('id', "")
@@ -291,6 +284,8 @@ def export_socket_site_to_json(args, configuration):
                             cur_lan_interface['index'] = interface_id
                         cur_lan_interface['dest_type'] = dest_type
                         cur_site['lan_interfaces'].append(cur_lan_interface)
+                        if hasattr(args, 'verbose') and args.verbose:
+                            print(f"DEBUG: Added LAN_LAG_MEMBER interface: {cur_lan_interface}")
                 
                 # Store the interface lookup and LAN_LAG_MEMBER count for later use
                 cur_site['_interface_lookup'] = interface_lookup
@@ -298,115 +293,154 @@ def export_socket_site_to_json(args, configuration):
 
                 if site_id:
                     processed_data['sites'].append(cur_site)
+                    if hasattr(args, 'verbose') and args.verbose:        
+                        print(f"DEBUG: Added site {site_id} ({cur_site['name']}) with {len(cur_site['lan_interfaces'])} LAN interfaces (including {lan_lag_member_count} LAN_LAG_MEMBER interfaces)")
 
-        ##################################################################################
-        ## Process entity lookup LAN network interfaces adding to site object by site_id##
-        ##################################################################################
-        for lan_ni in entity_network_interfaces:
-            # Only add interface if the site exists in processed_data
-            lan_ni_helper_fields = lan_ni.get("helperFields", {})
-            lan_ni_entity_data = lan_ni.get('entity', {})
-            lan_ni_site_id = str(lan_ni_helper_fields.get('siteId', ""))
-            cur_site_entry = next((site for site in processed_data['sites'] if site['id'] == lan_ni_site_id), None)
-            if cur_site_entry:
-                cur_lan_interface = {
-                    'network_ranges': []
-                }
-                ni_interface_id = lan_ni_entity_data.get('id', "")
-                ni_interface_name = lan_ni_helper_fields.get('interfaceName', "")
-                lan_ni_subnet = str(lan_ni_helper_fields.get('subnet', ""))
-                ni_index = lan_ni_helper_fields.get('interfaceId', "")
-                ni_index = f"INT_{ni_index}" if isinstance(ni_index, (int, str)) and str(ni_index).isdigit() else ni_index
-                if cur_site_entry["connection_type"] in settings["default_socket_interface_map"] and ni_index in settings["default_socket_interface_map"][cur_site_entry["connection_type"]]:
-                    cur_native_range = cur_site_entry["native_range"]
-                    cur_site_entry["native_range"]["interface_id"] = ni_interface_id
-                    cur_site_entry["native_range"]["interface_name"] = ni_interface_name
-                    cur_site_entry["native_range"]["subnet"] = lan_ni_subnet
-                    cur_site_entry["native_range"]["index"] = ni_index
-                    
-                    # Get interface details from the stored lookup data
-                    interface_lookup = cur_site_entry.get('_interface_lookup', {})
-                    interface_details = interface_lookup.get(str(lan_ni_helper_fields.get('interfaceId', '')), {})
-                    native_range_dest_type = interface_details.get('dest_type', '')
-                    cur_site_entry["native_range"]["dest_type"] = native_range_dest_type
-                    
-                    # Calculate lag_min_links for native range interface if it's LAN_LAG_MASTER
-                    lag_min_links = ''
-                    if native_range_dest_type == 'LAN_LAG_MASTER':
-                        lan_lag_member_count = cur_site_entry.get('_lan_lag_member_count', 0)
-                        lag_min_links = str(lan_lag_member_count) if lan_lag_member_count > 0 else ''
-                    cur_site_entry["native_range"]["lag_min_links"] = lag_min_links
-                    
-                    # Add entry to lan interfaces for default_lan
-                    cur_site_entry['lan_interfaces'].append({"network_ranges": [],"default_lan":True})
-                else:
-                    cur_lan_interface['id'] = ni_interface_id
-                    cur_lan_interface['name'] = ni_interface_name
-                    cur_lan_interface['index'] = ni_index
-                    cur_lan_interface['dest_type'] = lan_ni_helper_fields.get('destType', "")
-                    # temporarily add subnet to interface to be used later to flas native range_range
-                    cur_lan_interface['subnet'] = lan_ni_subnet
-                    cur_site_entry['lan_interfaces'].append(cur_lan_interface)
-            else:
-                if hasattr(args, 'verbose') and args.verbose:
-                    ni_interface_name = lan_ni_helper_fields.get('interfaceName', "")
+            ##################################################################################
+            ## Process entity lookup LAN network interfaces adding to site object by site_id##
+            ##################################################################################
+            for lan_ni in entity_network_interfaces:
+                # Only add interface if the site exists in processed_data
+                lan_ni_helper_fields = lan_ni.get("helperFields", {})
+                lan_ni_entity_data = lan_ni.get('entity', {})
+                lan_ni_site_id = str(lan_ni_helper_fields.get('siteId', ""))
+                cur_site_entry = next((site for site in processed_data['sites'] if site['id'] == lan_ni_site_id), None)
+                if cur_site_entry:
+                    cur_lan_interface = {'network_ranges': []}
                     ni_interface_id = lan_ni_entity_data.get('id', "")
-                    print(f"WARNING: Site {lan_ni_site_id} not found in snapshot data, skipping interface {ni_interface_name} ({ni_interface_id})")
+                    ni_interface_name = lan_ni_helper_fields.get('interfaceName', "")
+                    lan_ni_subnet = str(lan_ni_helper_fields.get('subnet', ""))
+                    ni_index = lan_ni_helper_fields.get('interfaceId', "")
+                    ni_index = f"INT_{ni_index}" if isinstance(ni_index, (int, str)) and str(ni_index).isdigit() else ni_index
 
-        #############################################################################
-        ## Process entity lookup network ranges populating by network interface id ##
-        #############################################################################
-        for range in entity_network_ranges:
-            if hasattr(args, 'verbose') and args.verbose:
-                print(f"Processing network range: {type(range)} - {range}")
-            nr_helper_fields = range.get("helperFields", {})
-            nr_entity_data = range.get('entity', {})
-            nr_interface_name = str(nr_helper_fields.get('interfaceName', ""))
-            nr_site_id = str(nr_helper_fields.get('siteId', ""))
-            range_id = nr_entity_data.get('id', "")
+                    if cur_site_entry["connection_type"] in settings["default_socket_interface_map"] and ni_index in settings["default_socket_interface_map"][cur_site_entry["connection_type"]]:
+                        cur_site_entry["native_range"]["interface_id"] = ni_interface_id
+                        cur_site_entry["native_range"]["interface_name"] = ni_interface_name
+                        cur_site_entry["native_range"]["subnet"] = lan_ni_subnet
+                        cur_site_entry["native_range"]["index"] = ni_index
                         
-            nr_site_entry = next((site for site in processed_data['sites'] if site['id'] == nr_site_id), None)
-            if nr_site_entry:
-                nr_subnet = nr_helper_fields.get('subnet', None)
-                nr_vlan = nr_helper_fields.get('vlanTag', None)
-                nr_mdns_reflector = nr_helper_fields.get('mdnsReflector', False)
-                nr_dhcp_microsegmentation = nr_helper_fields.get('microsegmentation', False)
-                nr_interface_name = str(nr_helper_fields.get('interfaceName', ""))
-                range_name = nr_entity_data.get('name', nr_interface_name)
-                if range_name and " \\ " in range_name:
-                    range_name = range_name.split(" \\ ").pop()
-                range_id = nr_entity_data.get('id', "")
-
-                # the following fields are missing from the schema, populating blank fields in the interim
-                nr_dhcp_type = nr_helper_fields.get('XXXXX', "DHCP_DISABLED")
-                nr_ip_range = nr_helper_fields.get('XXXXX', None)
-                # nr_relay_group_id = nr_helper_fields.get('XXXXX', None)
-                nr_relay_group_name = nr_helper_fields.get('XXXXX', None)
-                nr_gateway = nr_helper_fields.get('XXXXX', None)
-                nr_translated_subnet = nr_helper_fields.get('XXXXX', None)
-                nr_internet_only = nr_helper_fields.get('XXXXX', None)  # Default to None for JSON
-                nr_local_ip = nr_helper_fields.get('XXXXX', None)
-                nr_range_type = nr_helper_fields.get('XXXXX', None)
-                # Adding logic to pre-populate with default value
-                if nr_vlan!=None:
-                    nr_range_type="VLAN"
+                        # Get interface details from the stored lookup data
+                        interface_lookup = cur_site_entry.get('_interface_lookup', {})
+                        interface_details = interface_lookup.get(str(lan_ni_helper_fields.get('interfaceId', '')), {})
+                        native_range_dest_type = interface_details.get('dest_type', '')
+                        cur_site_entry["native_range"]["dest_type"] = native_range_dest_type
+                        
+                        # Calculate lag_min_links for native range interface if it's LAN_LAG_MASTER
+                        lag_min_links = ''
+                        if native_range_dest_type == 'LAN_LAG_MASTER':
+                            lan_lag_member_count = cur_site_entry.get('_lan_lag_member_count', 0)
+                            lag_min_links = str(lan_lag_member_count) if lan_lag_member_count > 0 else ''
+                        cur_site_entry["native_range"]["lag_min_links"] = lag_min_links
+                        
+                        cur_site_entry['lan_interfaces'].append({"network_ranges": [],"default_lan":True})
+                    else:
+                        cur_lan_interface['id'] = ni_interface_id
+                        cur_lan_interface['name'] = ni_interface_name
+                        cur_lan_interface['index'] = ni_index
+                        cur_lan_interface['dest_type'] = lan_ni_helper_fields.get('destType', "")
+                        # temporarily add subnet to interface to be used later to flag native range_range
+                        cur_lan_interface['subnet'] = lan_ni_subnet
+                        cur_site_entry['lan_interfaces'].append(cur_lan_interface)
                 else:
-                    nr_range_type="Direct"
+                    if hasattr(args, 'verbose') and args.verbose:
+                        ni_interface_name = lan_ni_helper_fields.get('interfaceName', "")
+                        ni_interface_id = lan_ni_entity_data.get('id', "")
+                        print(f"WARNING: Site {lan_ni_site_id} not found in snapshot data, skipping interface {ni_interface_name} ({ni_interface_id})")
 
-                # Calculate local IP from subnet if --calculate-local-ip flag is set
-                if hasattr(args, 'calculate_local_ip') and args.calculate_local_ip and nr_subnet:
-                    calculated_ip = calculateLocalIp(nr_subnet)
-                    if calculated_ip:
-                        nr_local_ip = calculated_ip
-                        if hasattr(args, 'verbose') and args.verbose:
-                            print(f"  Calculated local IP for subnet {nr_subnet}: {calculated_ip}")
+            #############################################################################
+            ## Process entity lookup network ranges populating by network interface id ##
+            #############################################################################
+            for range in entity_network_ranges:
+                if hasattr(args, 'verbose') and args.verbose:
+                    print(f"Processing network range: {type(range)} - {range}")
+                nr_helper_fields = range.get("helperFields", {})
+                nr_entity_data = range.get('entity', {})
+                nr_interface_name = str(nr_helper_fields.get('interfaceName', ""))
+                nr_site_id = str(nr_helper_fields.get('siteId', ""))
+                range_id = nr_entity_data.get('id', "")
+                            
+                nr_site_entry = next((site for site in processed_data['sites'] if site['id'] == nr_site_id), None)
+                if nr_site_entry:
+                    nr_subnet = nr_helper_fields.get('subnet', None)
+                    nr_vlan = nr_helper_fields.get('vlanTag', None)
+                    nr_mdns_reflector = nr_helper_fields.get('mdnsReflector', False)
+                    nr_dhcp_microsegmentation = nr_helper_fields.get('microsegmentation', False)
+                    nr_interface_name = str(nr_helper_fields.get('interfaceName', ""))
+                    range_name = nr_entity_data.get('name', nr_interface_name)
+                    if range_name and " \\ " in range_name:
+                        range_name = range_name.split(" \\ ").pop()
+                    range_id = nr_entity_data.get('id', "")
 
-                site_native_range = nr_site_entry.get('native_range', {}) if nr_site_entry else {}
-                
-                if site_native_range.get("interface_name", "") == nr_interface_name:
-                    if range_name!="Native Range":
-                        nr_lan_interface_entry = next((lan_nic for lan_nic in nr_site_entry["lan_interfaces"] if 'default_lan' in lan_nic and lan_nic['default_lan']), None)
-                        # print(f"checking range: {network_range_site_id} - {network_range_interface_name}")
+                    # Only populate one or the other depending on range_type
+                    nr_gateway = None
+                    nr_local_ip = None
+
+                    cur_range_type = nr_helper_fields.get('rangeType', None)
+                    if cur_range_type=="ROUTED_ROUTE":
+                        nr_gateway = nr_helper_fields.get('gateway', None)
+                        nr_range_type="Routed"
+                    elif cur_range_type=="DIRECT_ROUTE":
+                        nr_range_type="Direct"
+                        nr_local_ip = nr_helper_fields.get('gateway', None)
+                    else:
+                        nr_range_type="VLAN"
+                        nr_local_ip = nr_helper_fields.get('gateway', None)
+                    
+                    nr_dhcp_type = nr_helper_fields.get('dhcpType', None)
+                    nr_ip_range = nr_helper_fields.get('dhcpRange', None)
+                    nr_relay_group_id = nr_helper_fields.get('dhcpRelayGroupId', None)
+                    nr_relay_group_name = nr_helper_fields.get('dhcpRelayGroupName', None)
+                    nr_translated_subnet = nr_helper_fields.get('translatedSubnet', None)
+                    nr_internet_only = nr_helper_fields.get('internetOnly', None)  # Default to None for JSON
+
+                    site_native_range = nr_site_entry.get('native_range', {})                
+                    if site_native_range.get("interface_name", "") == nr_interface_name:
+                        if range_name!="Native Range":
+                            nr_lan_interface_entry = next((lan_nic for lan_nic in nr_site_entry["lan_interfaces"] if 'default_lan' in lan_nic and lan_nic['default_lan']), None)
+                            # print(f"checking range: {network_range_site_id} - {network_range_interface_name}")
+                            if nr_lan_interface_entry:
+                                cur_range = {}
+                                cur_range['id'] = range_id
+                                cur_range['name'] = range_name
+                                cur_range['subnet'] = nr_subnet
+                                cur_range['vlan'] = nr_vlan
+                                cur_range['mdns_reflector'] = nr_mdns_reflector
+                                ## The folliowing fields are missing from the schema, populating blank fields in the interim
+                                cur_range['gateway'] = nr_gateway
+                                cur_range['range_type'] = nr_range_type
+                                cur_range['translated_subnet'] = None if nr_translated_subnet == cur_range['subnet'] else nr_translated_subnet, 
+                                cur_range['internet_only'] = nr_internet_only
+                                cur_range['local_ip'] = nr_local_ip
+                                cur_range['dhcp_settings'] = {
+                                    'dhcp_type': nr_dhcp_type,
+                                    'ip_range': nr_ip_range,
+                                    # 'relay_group_id': nr_relay_group_id,
+                                    'relay_group_id': None, # Leave none and use the name
+                                    'relay_group_name': nr_relay_group_name,
+                                    'dhcp_microsegmentation': nr_dhcp_microsegmentation
+                                }
+                                nr_lan_interface_entry["network_ranges"].append(cur_range)
+                        else:
+                            site_native_range['range_name'] = range_name
+                            site_native_range['range_id'] = range_id
+                            site_native_range['vlan'] = nr_vlan
+                            site_native_range['mdns_reflector'] = nr_mdns_reflector
+                            # site_native_range['dhcp_microsegmentation'] = nr_dhcp_microsegmentation
+                            # site_native_range['gateway'] = nr_gateway
+                            site_native_range['range_type'] = nr_range_type
+                            site_native_range['translated_subnet'] = None if nr_translated_subnet == site_native_range['subnet'] else nr_translated_subnet
+                            # site_native_range['internet_only'] = nr_internet_only
+                            site_native_range['local_ip'] = nr_local_ip
+                            site_native_range['dhcp_settings'] = {
+                                'dhcp_type': nr_dhcp_type,
+                                'ip_range': nr_ip_range,
+                                # 'relay_group_id': nr_relay_group_id,
+                                'relay_group_id': None,
+                                'relay_group_name': nr_relay_group_name,
+                                'dhcp_microsegmentation': nr_dhcp_microsegmentation
+                            }
+                    else:
+                        nr_lan_interface_entry = next((lan_nic for lan_nic in nr_site_entry["lan_interfaces"] if ('default_lan' not in lan_nic or not lan_nic['default_lan']) and lan_nic['name'] == nr_interface_name), None)                    
                         if nr_lan_interface_entry:
                             cur_range = {}
                             cur_range['id'] = range_id
@@ -417,70 +451,29 @@ def export_socket_site_to_json(args, configuration):
                             ## The folliowing fields are missing from the schema, populating blank fields in the interim
                             cur_range['gateway'] = nr_gateway
                             cur_range['range_type'] = nr_range_type
-                            cur_range['translated_subnet'] = nr_translated_subnet
+                            cur_range['translated_subnet'] = None if nr_translated_subnet == cur_range['subnet'] else nr_translated_subnet
                             cur_range['internet_only'] = nr_internet_only
                             cur_range['local_ip'] = nr_local_ip  # Use the calculated or original value
                             cur_range['dhcp_settings'] = {
                                 'dhcp_type': nr_dhcp_type,
                                 'ip_range': nr_ip_range,
-                                'relay_group_id': None,
+                                'relay_group_id': nr_relay_group_id,
                                 'relay_group_name': nr_relay_group_name,
                                 'dhcp_microsegmentation': nr_dhcp_microsegmentation
                             }
-                            nr_lan_interface_entry["network_ranges"].append(cur_range)
-                    else:
-                        site_native_range['range_name'] = range_name
-                        site_native_range['range_id'] = range_id
-                        site_native_range['vlan'] = nr_vlan
-                        site_native_range['mdns_reflector'] = nr_mdns_reflector
-                        # site_native_range['dhcp_microsegmentation'] = nr_dhcp_microsegmentation
-                        site_native_range['gateway'] = nr_gateway
-                        site_native_range['range_type'] = nr_range_type
-                        site_native_range['translated_subnet'] = nr_translated_subnet
-                        site_native_range['internet_only'] = nr_internet_only
-                        site_native_range['local_ip'] = nr_local_ip
-                        site_native_range['dhcp_settings'] = {
-                            'dhcp_type': nr_dhcp_type,
-                            'ip_range': nr_ip_range,
-                            'relay_group_id': None,
-                            'relay_group_name': nr_relay_group_name,
-                            'dhcp_microsegmentation': nr_dhcp_microsegmentation
-                        }
-                else:
-                    nr_lan_interface_entry = next((lan_nic for lan_nic in nr_site_entry["lan_interfaces"] if ('default_lan' not in lan_nic or not lan_nic['default_lan']) and lan_nic['name'] == nr_interface_name), None)                    
-                    if nr_lan_interface_entry:
-                        cur_range = {}
-                        cur_range['id'] = range_id
-                        cur_range['name'] = range_name
-                        cur_range['subnet'] = nr_subnet
-                        cur_range['vlan'] = nr_vlan
-                        cur_range['mdns_reflector'] = nr_mdns_reflector
-                        ## The folliowing fields are missing from the schema, populating blank fields in the interim
-                        cur_range['gateway'] = nr_gateway
-                        cur_range['range_type'] = nr_range_type
-                        cur_range['translated_subnet'] = nr_translated_subnet
-                        cur_range['internet_only'] = nr_internet_only
-                        cur_range['local_ip'] = nr_local_ip  # Use the calculated or original value
-                        cur_range['dhcp_settings'] = {
-                            'dhcp_type': nr_dhcp_type,
-                            'ip_range': nr_ip_range,
-                            'relay_group_id': None,
-                            'relay_group_name': nr_relay_group_name,
-                            'dhcp_microsegmentation': nr_dhcp_microsegmentation
-                        }
-                        # DEBUG
-                        # print(json.dumps(nr_lan_interface_entry,indent=4,sort_keys=True))
-                        # print("nr_subnet",nr_subnet)
-                        # print('nr_lan_interface_entry["subnet"]='+nr_lan_interface_entry["subnet"])
-                        # print(json.dumps(nr_lan_interface_entry,indent=4,sort_keys=True))
-                        if "subnet" in nr_lan_interface_entry and nr_subnet==nr_lan_interface_entry["subnet"]:
-                            cur_range['native_range'] = True
-                            del nr_lan_interface_entry["subnet"]
+                            # DEBUG
+                            # print(json.dumps(nr_lan_interface_entry,indent=4,sort_keys=True))
+                            # print("nr_subnet",nr_subnet)
+                            # print('nr_lan_interface_entry["subnet"]='+nr_lan_interface_entry["subnet"])
+                            # print(json.dumps(nr_lan_interface_entry,indent=4,sort_keys=True))
+                            if "subnet" in nr_lan_interface_entry and nr_subnet==nr_lan_interface_entry["subnet"]:
+                                cur_range['native_range'] = True
+                                del nr_lan_interface_entry["subnet"]
 
-                        nr_lan_interface_entry["network_ranges"].append(cur_range)
-                    else:
-                        if hasattr(args, 'verbose') and args.verbose:
-                            print(f"Skipping range {nr_entity_data.get('id', '')}: site_id {nr_site_id} and {nr_interface_name} not found in ")
+                            nr_lan_interface_entry["network_ranges"].append(cur_range)
+                        else:
+                            if hasattr(args, 'verbose') and args.verbose:
+                                print(f"Skipping range {nr_entity_data.get('id', '')}: site_id {nr_site_id} and {nr_interface_name} not found in ")
             else:
                 if hasattr(args, 'verbose') and args.verbose:
                     print(f"Skipping range, site_id is unsupported for export {nr_site_id}")
@@ -564,7 +557,10 @@ def export_socket_site_to_csv(args, configuration):
         
         if not processed_data or not processed_data.get('sites'):
             return [{"success": False, "error": "No sites data found to export"}]
-        
+        if hasattr(args, 'verbose') and args.verbose:
+            print(f"DEBUG: processed_data "+json.dumps(processed_data, indent=4,sort_keys=True))
+
+
         account_id = getAccountID(args, configuration)
         output_files = []
         
@@ -621,20 +617,39 @@ def get_processed_site_data(args, configuration):
     if hasattr(args, 'siteIDs') and args.siteIDs:
         site_ids = [site_id.strip() for site_id in args.siteIDs.split(',') if site_id.strip()]
     
-    # Call APIs to retrieve sites, interface and network ranges
-    snapshot_sites = getAccountSnapshot(args, configuration, account_id, site_ids)
-    sites_list = snapshot_sites['data']['accountSnapshot']['sites']
+    if hasattr(args, 'verbose') and args.verbose:
+        if site_ids:
+            print(f"Found {len(site_ids)} site(s) matching the provided site IDs")
+        else:
+            print(f"Found {len(site_ids)} site(s) in account")
+
+    if not site_ids:
+        site_ids = None
     
-    if not sites_list or len(sites_list) == 0:
-        return processed_data
+    ###############################################################
+    ## Call APIs to retrieve sites, interface and network ranges ##
+    ###############################################################
+    entity_sites = getEntityLookup(args, configuration, account_id, "site", site_ids, None)
+    if not entity_sites or len(entity_sites) == 0:
+        if site_ids:
+            # User provided specific site IDs but none were found
+            print(f"No sites found matching the provided site IDs: {', '.join(site_ids)}")
+            print("Please verify the site IDs are correct and that they exist in this account.")
+            return [{"success": False, "message": f"No sites found for the specified site IDs: {', '.join(site_ids)}", "sites_requested": site_ids}]
+        else:
+            # No site filter was provided but no sites exist at all
+            print("No sites found in this account.")
+            return [{"success": False, "message": "No sites found in account", "account_id": account_id}]
     
-    entity_network_interfaces = getEntityLookup(args, configuration, account_id, "networkInterface")
-    entity_network_ranges = getEntityLookup(args, configuration, account_id, "siteRange")
-    entity_sites = getEntityLookup(args, configuration, account_id, "site")
-    
-    # Process sites (reuse existing logic)
-    for snapshot_site in snapshot_sites['data']['accountSnapshot']['sites']:
-        site_id = snapshot_site.get('id')
+    for entity_site in entity_sites:
+        site_id = entity_site["entity"]["id"]
+        entity_input = {"id":site_id,"type":"site"}
+        snapshot_response = getAccountSnapshot(args, configuration, account_id, [site_id])
+        snapshot_sites = snapshot_response['data']['accountSnapshot']['sites']
+        snapshot_site = snapshot_sites[0] if snapshot_sites else {}
+        entity_network_interfaces = getEntityLookup(args, configuration, account_id, "networkInterface",None, entity_input)
+        entity_network_ranges = getEntityLookup(args, configuration, account_id, "siteRange",None, entity_input)
+
         connectionType = snapshot_site.get('infoSiteSnapshot', {}).get('connType', "")
         
         cur_site = {
@@ -725,136 +740,219 @@ def get_processed_site_data(args, configuration):
                 processed_data['sites'].append(cur_site)
                 if hasattr(args, 'verbose') and args.verbose:        
                     print(f"DEBUG: Added site {site_id} ({cur_site['name']}) with {len(cur_site['lan_interfaces'])} LAN interfaces (including {lan_lag_member_count} LAN_LAG_MEMBER interfaces)")
-    
-    # Print summary of LAN_LAG_MEMBER interfaces found
-    total_lag_members = sum(len([intf for intf in site['lan_interfaces'] if intf.get('dest_type') == 'LAN_LAG_MEMBER']) for site in processed_data['sites'])
-    if hasattr(args, 'verbose') and args.verbose:
-        print(f"DEBUG: Total LAN_LAG_MEMBER interfaces found across all sites: {total_lag_members}")
-    
-    # Process LAN interfaces (reuse existing logic)
-    for lan_ni in entity_network_interfaces:
-        lan_ni_helper_fields = lan_ni.get("helperFields", {})
-        lan_ni_entity_data = lan_ni.get('entity', {})
-        lan_ni_site_id = str(lan_ni_helper_fields.get('siteId', ""))
-        cur_site_entry = next((site for site in processed_data['sites'] if site['id'] == lan_ni_site_id), None)
-        if cur_site_entry:
-            cur_lan_interface = {'network_ranges': []}
-            ni_interface_id = lan_ni_entity_data.get('id', "")
-            ni_interface_name = lan_ni_helper_fields.get('interfaceName', "")
-            lan_ni_subnet = str(lan_ni_helper_fields.get('subnet', ""))
-            ni_index = lan_ni_helper_fields.get('interfaceId', "")
-            ni_index = f"INT_{ni_index}" if isinstance(ni_index, (int, str)) and str(ni_index).isdigit() else ni_index
-            
-            if cur_site_entry["connection_type"] in settings["default_socket_interface_map"] and ni_index in settings["default_socket_interface_map"][cur_site_entry["connection_type"]]:
-                cur_site_entry["native_range"]["interface_id"] = ni_interface_id
-                cur_site_entry["native_range"]["interface_name"] = ni_interface_name
-                cur_site_entry["native_range"]["subnet"] = lan_ni_subnet
-                cur_site_entry["native_range"]["index"] = ni_index
-                
-                # Get interface details from the stored lookup data
-                interface_lookup = cur_site_entry.get('_interface_lookup', {})
-                interface_details = interface_lookup.get(str(lan_ni_helper_fields.get('interfaceId', '')), {})
-                native_range_dest_type = interface_details.get('dest_type', '')
-                cur_site_entry["native_range"]["dest_type"] = native_range_dest_type
-                
-                # Calculate lag_min_links for native range interface if it's LAN_LAG_MASTER
-                lag_min_links = ''
-                if native_range_dest_type == 'LAN_LAG_MASTER':
-                    lan_lag_member_count = cur_site_entry.get('_lan_lag_member_count', 0)
-                    lag_min_links = str(lan_lag_member_count) if lan_lag_member_count > 0 else ''
-                cur_site_entry["native_range"]["lag_min_links"] = lag_min_links
-                
-                cur_site_entry['lan_interfaces'].append({"network_ranges": [], "default_lan": True})
-            else:
-                cur_lan_interface['id'] = ni_interface_id
-                cur_lan_interface['name'] = ni_interface_name
-                cur_lan_interface['index'] = ni_index
-                cur_lan_interface['dest_type'] = lan_ni_helper_fields.get('destType', "")
-                cur_lan_interface['subnet'] = lan_ni_subnet
-                cur_site_entry['lan_interfaces'].append(cur_lan_interface)
-    
-    # Process network ranges (reuse existing logic)
-    for range in entity_network_ranges:
-        nr_helper_fields = range.get("helperFields", {})
-        nr_entity_data = range.get('entity', {})
-        nr_interface_name = str(nr_helper_fields.get('interfaceName', ""))
-        nr_site_id = str(nr_helper_fields.get('siteId', ""))
-        range_id = nr_entity_data.get('id', "")
         
-        nr_site_entry = next((site for site in processed_data['sites'] if site['id'] == nr_site_id), None)
-        if nr_site_entry:
-            nr_subnet = nr_helper_fields.get('subnet', None)
-            nr_vlan = nr_helper_fields.get('vlanTag', None)
-            nr_mdns_reflector = nr_helper_fields.get('mdnsReflector', False)
-            nr_dhcp_microsegmentation = nr_helper_fields.get('microsegmentation', False)
-            range_name = nr_entity_data.get('name', nr_interface_name)
-            if range_name and " \\ " in range_name:
-                range_name = range_name.split(" \\ ").pop()
+        ##################################################################################
+        ## Process entity lookup LAN network interfaces adding to site object by site_id##
+        ##################################################################################
+        for lan_ni in entity_network_interfaces:
+            lan_ni_helper_fields = lan_ni.get("helperFields", {})
+            lan_ni_entity_data = lan_ni.get('entity', {})
+            lan_ni_site_id = str(lan_ni_helper_fields.get('siteId', ""))
+            cur_site_entry = next((site for site in processed_data['sites'] if site['id'] == lan_ni_site_id), None)
+            if cur_site_entry:
+                cur_lan_interface = {'network_ranges': []}
+                ni_interface_id = lan_ni_entity_data.get('id', "")
+                ni_interface_name = lan_ni_helper_fields.get('interfaceName', "")
+                lan_ni_subnet = str(lan_ni_helper_fields.get('subnet', ""))
+                ni_index = lan_ni_helper_fields.get('interfaceId', "")
+                ni_index = f"INT_{ni_index}" if isinstance(ni_index, (int, str)) and str(ni_index).isdigit() else ni_index
+                
+                if cur_site_entry["connection_type"] in settings["default_socket_interface_map"] and ni_index in settings["default_socket_interface_map"][cur_site_entry["connection_type"]]:
+                    cur_site_entry["native_range"]["interface_id"] = ni_interface_id
+                    cur_site_entry["native_range"]["interface_name"] = ni_interface_name
+                    cur_site_entry["native_range"]["subnet"] = lan_ni_subnet
+                    cur_site_entry["native_range"]["index"] = ni_index
+                    
+                    # Get interface details from the stored lookup data
+                    interface_lookup = cur_site_entry.get('_interface_lookup', {})
+                    interface_details = interface_lookup.get(str(lan_ni_helper_fields.get('interfaceId', '')), {})
+                    native_range_dest_type = interface_details.get('dest_type', '')
+                    cur_site_entry["native_range"]["dest_type"] = native_range_dest_type
+                    
+                    # Calculate lag_min_links for native range interface if it's LAN_LAG_MASTER
+                    lag_min_links = ''
+                    if native_range_dest_type == 'LAN_LAG_MASTER':
+                        lan_lag_member_count = cur_site_entry.get('_lan_lag_member_count', 0)
+                        lag_min_links = str(lan_lag_member_count) if lan_lag_member_count > 0 else ''
+                    cur_site_entry["native_range"]["lag_min_links"] = lag_min_links
+                    
+                    cur_site_entry['lan_interfaces'].append({"network_ranges": [], "default_lan": True})
+                else:
+                    cur_lan_interface['id'] = ni_interface_id
+                    cur_lan_interface['name'] = ni_interface_name
+                    cur_lan_interface['index'] = ni_index
+                    cur_lan_interface['dest_type'] = lan_ni_helper_fields.get('destType', "")
+                    # temporarily add subnet to interface to be used later to flag native range_range
+                    cur_lan_interface['subnet'] = lan_ni_subnet
+                    cur_site_entry['lan_interfaces'].append(cur_lan_interface)
+            else:
+                if hasattr(args, 'verbose') and args.verbose:
+                    ni_interface_name = lan_ni_helper_fields.get('interfaceName', "")
+                    ni_interface_id = lan_ni_entity_data.get('id', "")
+                    print(f"WARNING: Site {lan_ni_site_id} not found in snapshot data, skipping interface {ni_interface_name} ({ni_interface_id})")
+        
+        #############################################################################
+        ## Process entity lookup network ranges populating by network interface id ##
+        #############################################################################
+        for range in entity_network_ranges:
+            nr_helper_fields = range.get("helperFields", {})
+            nr_entity_data = range.get('entity', {})
+            nr_interface_name = str(nr_helper_fields.get('interfaceName', ""))
+            nr_site_id = str(nr_helper_fields.get('siteId', ""))
+            range_id = nr_entity_data.get('id', "")
             
-            # Set defaults for missing fields
-            nr_dhcp_type = "DHCP_DISABLED"
-            nr_ip_range = None
-            nr_relay_group_name = None
-            nr_gateway = None
-            nr_translated_subnet = None
-            nr_internet_only = None  # Default to None for JSON
-            nr_local_ip = None
-            nr_range_type = "VLAN" if nr_vlan != None else "Direct"
-            
-            # Calculate local IP if requested
-            if hasattr(args, 'calculate_local_ip') and args.calculate_local_ip and nr_subnet:
-                calculated_ip = calculateLocalIp(nr_subnet)
-                if calculated_ip:
-                    nr_local_ip = calculated_ip
-            
-            site_native_range = nr_site_entry.get('native_range', {})
-            
-            if site_native_range.get("interface_name", "") == nr_interface_name:
-                if range_name != "Native Range":
-                    nr_lan_interface_entry = next((lan_nic for lan_nic in nr_site_entry["lan_interfaces"] if 'default_lan' in lan_nic and lan_nic['default_lan']), None)
+            nr_site_entry = next((site for site in processed_data['sites'] if site['id'] == nr_site_id), None)
+                        
+            if nr_site_entry:
+                if hasattr(args, 'verbose') and args.verbose:
+                    print(f"DEBUG: nr_site_entry[native_range] "+json.dumps(nr_site_entry["native_range"],indent=2))
+                    print(f"DEBUG: range {json.dumps(range,indent=2)}")
+                nr_subnet = nr_helper_fields.get('subnet', None)
+                nr_vlan = nr_helper_fields.get('vlanTag', None)
+                nr_mdns_reflector = nr_helper_fields.get('mdnsReflector', False)
+                nr_dhcp_microsegmentation = nr_helper_fields.get('microsegmentation', False)
+                range_name = nr_entity_data.get('name', nr_interface_name)
+                if range_name and " \\ " in range_name:
+                    range_name = range_name.split(" \\ ").pop()
+                
+                # Only populate one or the other depending on range_type
+                nr_gateway = None
+                nr_local_ip = None
+
+                cur_range_type = nr_helper_fields.get('rangeType', None)
+                if cur_range_type=="ROUTED_ROUTE":
+                    nr_gateway = nr_helper_fields.get('gateway', None)
+                    nr_range_type="Routed"
+                elif cur_range_type=="DIRECT_ROUTE":
+                    nr_range_type="Direct"
+                    nr_local_ip = nr_helper_fields.get('gateway', None)
+                else:
+                    nr_range_type="VLAN"
+                    nr_local_ip = nr_helper_fields.get('gateway', None)
+                
+                nr_dhcp_type = nr_helper_fields.get('dhcpType', None)
+                nr_ip_range = nr_helper_fields.get('dhcpRange', None)
+                # nr_relay_group_id = nr_helper_fields.get('dhcpRelayGroupId', None)
+                nr_relay_group_id = None # Leave as None only exporting the name
+                nr_relay_group_name = nr_helper_fields.get('dhcpRelayGroupName', None)
+                nr_translated_subnet = nr_helper_fields.get('translatedSubnet', None)
+                nr_internet_only = nr_helper_fields.get('internetOnly', None)  # Default to None for JSON
+
+                site_native_range = nr_site_entry.get('native_range', {})
+                if hasattr(args, 'verbose') and args.verbose:        
+                    print(f"DEBUG: nr_subnet={nr_subnet}, nr_interface_name={nr_interface_name}, range_name={range_name}")
+                    print(f"DEBUG: nr_subnet={nr_subnet}, nr_interface_name={nr_interface_name}, range_name={range_name}")
+                    print(f"DEBUG: entity_network_ranges.nr_helper_fields="+json.dumps(nr_helper_fields,indent=2))
+                    print(f"DEBUG: dhcpType=",nr_helper_fields.get('dhcpType',None))
+                    print(f"DEBUG: dhcpRange=",nr_helper_fields.get('dhcpRange',None))
+                    print(f"DEBUG: dhcpRelayGroupName=",nr_helper_fields.get('dhcpRelayGroupName',None))
+                    print(f"DEBUG: translatedSubnet=",nr_helper_fields.get('translatedSubnet',None))
+
+                if site_native_range.get("interface_name", "") == nr_interface_name:
+                    # site_native_range["vlan"] = "vlantest111"
+                    if range_name != "Native Range":
+                        # nr_site_entry["native_range"]["vlan"] = "vlantest12"
+                        if hasattr(args, 'verbose') and args.verbose:
+                            print(f"DEBUG: Processing nr_subnet==subnet")
+                            # print(f"DEBUG: Processing interface_name==nr_interface_name - '{range_name}' on interface '{nr_interface_name}'")
+                            # print(f"DEBUG: Range subnet: {nr_subnet}, Native range subnet: {site_native_range.get('subnet', '')}")
+                            # print(f"DEBUG: Native range interface_name: '{site_native_range.get('interface_name', '')}'")
+                            # print(f"DEBUG: Match: {site_native_range.get('interface_name', '') == nr_interface_name}")
+                        nr_lan_interface_entry = next((lan_nic for lan_nic in nr_site_entry["lan_interfaces"] if 'default_lan' in lan_nic and lan_nic['default_lan']), None)
+                        if hasattr(args, 'verbose') and args.verbose:
+                            print("DEBUG: nr_lan_interface_entry ",nr_lan_interface_entry)
+                        if nr_lan_interface_entry:
+                            cur_range = {
+                                'id': range_id, 
+                                'name': range_name, 
+                                'subnet': nr_subnet, 
+                                'vlan': nr_vlan,
+                                'mdns_reflector': nr_mdns_reflector, 
+                                'gateway': nr_gateway, 
+                                'range_type': nr_range_type,
+                                'translated_subnet': None if nr_translated_subnet == nr_subnet else nr_translated_subnet, 
+                                'internet_only': nr_internet_only, 
+                                'local_ip': nr_local_ip,
+                                'dhcp_settings': {
+                                    'dhcp_type': nr_dhcp_type, 
+                                    'ip_range': nr_ip_range, 
+                                    'relay_group_id': nr_relay_group_id,
+                                    'relay_group_name': nr_relay_group_name, 
+                                    'dhcp_microsegmentation': nr_dhcp_microsegmentation
+                                }
+                            }
+                            nr_lan_interface_entry["network_ranges"].append(cur_range)
+                    else:
+                        if hasattr(args, 'verbose') and args.verbose:
+                            print(f"DEBUG: Processing ELSE.nr_subnet==subnet")
+                            print(f"DEBUG: Populating native_range for site {nr_site_entry.get('name', '')}")
+                            print(f"DEBUG: vlan={nr_vlan}, gateway={nr_gateway}, range_type={nr_range_type}")
+                            print(f"DEBUG: translated_subnet={nr_translated_subnet}, mdns_reflector={nr_mdns_reflector}")
+                        
+                        site_native_range['range_name'] = range_name
+                        site_native_range['range_id'] = range_id
+                        site_native_range['vlan'] = nr_vlan
+                        site_native_range['mdns_reflector'] = nr_mdns_reflector
+                        # site_native_range['gateway'] = nr_gateway
+                        site_native_range['range_type'] = nr_range_type
+                        site_native_range['translated_subnet'] = None if nr_translated_subnet == site_native_range['subnet'] else nr_translated_subnet
+                        # site_native_range['internet_only'] = nr_internet_only
+                        site_native_range['local_ip'] = nr_local_ip
+                        site_native_range['dhcp_settings'] = {
+                            'dhcp_type': nr_dhcp_type, 
+                            'ip_range': nr_ip_range, 
+                            'relay_group_id': nr_relay_group_id,
+                            'relay_group_name': nr_relay_group_name, 
+                            'dhcp_microsegmentation': nr_dhcp_microsegmentation
+                        }
+                        
+                        if hasattr(args, 'verbose') and args.verbose:
+                            print(f"DEBUG: After setting, site native_range keys: {list(nr_site_entry['native_range'].keys())}")
+                            print(f"DEBUG: site native_range vlan: {nr_site_entry['native_range'].get('vlan', 'NOT SET')}")
+                            print(f"DEBUG: site_native_range {json.dumps(site_native_range,indent=2)}")
+                else:
+                    if hasattr(args, 'verbose') and args.verbose:
+                        print(f"DEBUG: Processing ELSE.interface_name==nr_interface_name - '{range_name}' on interface '{nr_interface_name}'")
+
+                    nr_lan_interface_entry = next((lan_nic for lan_nic in nr_site_entry["lan_interfaces"] if ('default_lan' not in lan_nic or not lan_nic['default_lan']) and lan_nic['name'] == nr_interface_name), None)
                     if nr_lan_interface_entry:
                         cur_range = {
-                            'id': range_id, 'name': range_name, 'subnet': nr_subnet, 'vlan': nr_vlan,
-                            'mdns_reflector': nr_mdns_reflector, 'gateway': nr_gateway, 'range_type': nr_range_type,
-                            'translated_subnet': nr_translated_subnet, 'internet_only': nr_internet_only, 'local_ip': nr_local_ip,
+                            'id': range_id, 
+                            'name': range_name, 
+                            'subnet': nr_subnet, 
+                            'vlan': nr_vlan,
+                            'mdns_reflector': nr_mdns_reflector, 
+                            'gateway': nr_gateway, 
+                            'range_type': nr_range_type,
+                            'translated_subnet': None if nr_translated_subnet == nr_subnet else nr_translated_subnet, 
+                            'internet_only': nr_internet_only, 
+                            'local_ip': nr_local_ip,
                             'dhcp_settings': {
-                                'dhcp_type': nr_dhcp_type, 'ip_range': nr_ip_range, 'relay_group_id': None,
-                                'relay_group_name': nr_relay_group_name, 'dhcp_microsegmentation': nr_dhcp_microsegmentation
+                                'dhcp_type': nr_dhcp_type, 
+                                'ip_range': nr_ip_range, 
+                                'relay_group_id': nr_relay_group_id,
+                                'relay_group_name': nr_relay_group_name, 
+                                'dhcp_microsegmentation': nr_dhcp_microsegmentation
                             }
                         }
+                        
+                        if "subnet" in nr_lan_interface_entry and nr_subnet == nr_lan_interface_entry["subnet"]:
+                            cur_range['native_range'] = True
+                            del nr_lan_interface_entry["subnet"]
+
+                        if hasattr(args, 'verbose') and args.verbose:
+                            print(f"DEBUG: nr_lan_interface_entry=True")
+                            print(f"DEBUG: nr_helper_fields: {json.dumps(nr_helper_fields, indent=2, sort_keys=True)}")
+                            print(f"DEBUG: nr_entity_data: {json.dumps(nr_entity_data, indent=2, sort_keys=True)}")
+                            print(f"DEBUG: nr_vlan: {nr_vlan}")
+                            print(f"DEBUG: cur_range: {json.dumps(cur_range, indent=2, sort_keys=True)}")        
+                            print(f"DEBUG: Range subnet: {nr_subnet}, Native range subnet: {site_native_range.get('subnet', '')}")
+                            print(f"DEBUG: Native range interface_name: '{site_native_range.get('interface_name', '')}'")
+                            print(f"DEBUG: Match: {site_native_range.get('interface_name', '') == nr_interface_name}")
+                            print(f"DEBUG: nr_helper_fields "+json.dumps(nr_helper_fields,indent=2,sort_keys=True))
+                            print(f"DEBUG: nr_entity_data "+json.dumps(nr_entity_data,indent=2,sort_keys=True))        
+
                         nr_lan_interface_entry["network_ranges"].append(cur_range)
-                else:
-                    site_native_range['range_name'] = range_name
-                    site_native_range['range_id'] = range_id
-                    site_native_range['vlan'] = nr_vlan
-                    site_native_range['mdns_reflector'] = nr_mdns_reflector
-                    site_native_range['gateway'] = nr_gateway
-                    site_native_range['range_type'] = nr_range_type
-                    site_native_range['translated_subnet'] = nr_translated_subnet
-                    site_native_range['internet_only'] = nr_internet_only
-                    site_native_range['local_ip'] = nr_local_ip
-                    site_native_range['dhcp_settings'] = {
-                        'dhcp_type': nr_dhcp_type, 'ip_range': nr_ip_range, 'relay_group_id': None,
-                        'relay_group_name': nr_relay_group_name, 'dhcp_microsegmentation': nr_dhcp_microsegmentation
-                    }
-            else:
-                nr_lan_interface_entry = next((lan_nic for lan_nic in nr_site_entry["lan_interfaces"] if ('default_lan' not in lan_nic or not lan_nic['default_lan']) and lan_nic['name'] == nr_interface_name), None)
-                if nr_lan_interface_entry:
-                    cur_range = {
-                        'id': range_id, 'name': range_name, 'subnet': nr_subnet, 'vlan': nr_vlan,
-                        'mdns_reflector': nr_mdns_reflector, 'gateway': nr_gateway, 'range_type': nr_range_type,
-                        'translated_subnet': nr_translated_subnet, 'internet_only': nr_internet_only, 'local_ip': nr_local_ip,
-                        'dhcp_settings': {
-                            'dhcp_type': nr_dhcp_type, 'ip_range': nr_ip_range, 'relay_group_id': None,
-                            'relay_group_name': nr_relay_group_name, 'dhcp_microsegmentation': nr_dhcp_microsegmentation
-                        }
-                    }
-                    
-                    if "subnet" in nr_lan_interface_entry and nr_subnet == nr_lan_interface_entry["subnet"]:
-                        cur_range['native_range'] = True
-                        del nr_lan_interface_entry["subnet"]
-                    
-                    nr_lan_interface_entry["network_ranges"].append(cur_range)
     
     return processed_data
 
@@ -908,11 +1006,11 @@ def export_sites_to_csv(sites, args, account_id):
         'wan_precedence',
         'site_description',
         'native_range_subnet',
-        'native_range_name',
+        # 'native_range_name',
         'native_range_id',
         'native_range_vlan',
         'native_range_mdns_reflector',
-        'native_range_gateway',
+        # 'native_range_gateway',
         'native_range_type',
         'native_range_translated_subnet',
         'native_range_interface_id',
@@ -970,13 +1068,14 @@ def export_sites_to_csv(sites, args, account_id):
             # Calculate local IP from native range subnet if available
             native_range = site.get('native_range', {})
             native_subnet = native_range.get('subnet', '')
-            local_ip = ''
-            if native_subnet and hasattr(args, 'calculate_local_ip') and args.calculate_local_ip:
-                calculated_ip = calculateLocalIp(native_subnet)
-                if calculated_ip:
-                    local_ip = calculated_ip
-            elif native_range.get('local_ip'):
-                local_ip = native_range.get('local_ip', '')
+            
+            if hasattr(args, 'verbose') and args.verbose and is_first_interface:
+                print(f"\nDEBUG CSV: Site '{site_name}' native_range keys: {list(native_range.keys())}")
+                print(f"DEBUG CSV: vlan={native_range.get('vlan', 'NOT SET')}")
+                print(f"DEBUG CSV: gateway={native_range.get('gateway', 'NOT SET')}")
+                print(f"DEBUG CSV: range_type={native_range.get('range_type', 'NOT SET')}")
+                print(f"DEBUG CSV: translated_subnet={native_range.get('translated_subnet', 'NOT SET')}")
+                print(f"DEBUG CSV: mdns_reflector={native_range.get('mdns_reflector', 'NOT SET')}")
             
             row = {
                 'site_id': site.get('id', '') if is_first_interface else '',
@@ -992,11 +1091,11 @@ def export_sites_to_csv(sites, args, account_id):
                 # Site attributes - only populate on first interface row
                 'site_description': site.get('description', '') if is_first_interface else '',
                 'native_range_subnet': native_subnet if is_first_interface else '',
-                'native_range_name': native_range.get('range_name', '') if is_first_interface else '',
+                # 'native_range_name': native_range.get('range_name', '') if is_first_interface else '',
                 'native_range_id': native_range.get('range_id', '') if is_first_interface else '',
                 'native_range_vlan': native_range.get('vlan', '') if is_first_interface else '',
                 'native_range_mdns_reflector': str(native_range.get('mdns_reflector', '')).upper() if is_first_interface and native_range.get('mdns_reflector') != '' else '' if is_first_interface else '',
-                'native_range_gateway': native_range.get('gateway', '') if is_first_interface else '',
+                # 'native_range_gateway': native_range.get('gateway', '') if is_first_interface else '',
                 'native_range_type': native_range.get('range_type', '') if is_first_interface else '',
                 'native_range_translated_subnet': native_range.get('translated_subnet', '') if is_first_interface else '',
                 'native_range_interface_id': native_range.get('interface_id', '') if is_first_interface else '',
@@ -1009,7 +1108,7 @@ def export_sites_to_csv(sites, args, account_id):
                 'native_range_dhcp_relay_group_id': native_range.get('dhcp_settings', {}).get('relay_group_id', '') if is_first_interface else '',
                 'native_range_dhcp_relay_group_name': native_range.get('dhcp_settings', {}).get('relay_group_name', '') if is_first_interface else '',
                 'native_range_dhcp_microsegmentation': str(native_range.get('dhcp_settings', {}).get('dhcp_microsegmentation', '')).upper() if is_first_interface and native_range.get('dhcp_settings', {}).get('dhcp_microsegmentation') != '' else '' if is_first_interface else '',
-                'native_range_local_ip': local_ip if is_first_interface else '',
+                'native_range_local_ip': native_range.get('local_ip', '') if is_first_interface else '',
                 'site_type': site.get('type', '') if is_first_interface else '',
                 'connection_type': site.get('connection_type', '') if is_first_interface else '',
                 'site_location_address': site.get('site_location', {}).get('address', '') if is_first_interface else '',
@@ -1305,18 +1404,19 @@ def populateSiteLocationData(args, site_data, cur_site):
     # Load site location data for timezone and state code lookups
     site_location_data = {}
     try:
-        script_dir = os.path.dirname(os.path.abspath(__file__))
-        models_dir = os.path.join(script_dir, '..', '..', '..', '..', 'models')
-        location_file = os.path.join(models_dir, 'query.siteLocation.json')
+        # Use package resource to load location data
+        try:
+            from importlib.resources import files
+            location_data_str = files('catocli.parsers.custom.query_siteLocation').joinpath('query.siteLocation.json').read_text(encoding='utf-8')
+            site_location_data = json.loads(location_data_str)
+        except (ImportError, AttributeError):
+            # Fallback for Python 3.7-3.8
+            from importlib.resources import read_text
+            location_data_str = read_text('catocli.parsers.custom.query_siteLocation', 'query.siteLocation.json', encoding='utf-8')
+            site_location_data = json.loads(location_data_str)
         
-        if os.path.exists(location_file):
-            with open(location_file, 'r', encoding='utf-8') as f:
-                site_location_data = json.load(f)
-            if hasattr(args, 'verbose') and args.verbose:
-                print(f"Loaded {len(site_location_data)} location entries from {location_file}")
-        else:
-            if hasattr(args, 'verbose') and args.verbose:
-                print(f"Warning: Site location file not found at {location_file}")
+        if hasattr(args, 'verbose') and args.verbose:
+            print(f"Loaded {len(site_location_data)} location entries from package resource")
     except Exception as e:
         if hasattr(args, 'verbose') and args.verbose:
             print(f"Warning: Could not load site location data: {e}")
@@ -1369,7 +1469,7 @@ def populateSiteLocationData(args, site_data, cur_site):
     cur_site['site_location']['timezone'] = timezones[0] if timezones else None
     return cur_site
 
-def getEntityLookup(args, configuration, account_id, entity_type):
+def getEntityLookup(args, configuration, account_id, entity_type, entity_ids=[], entity_input=[]):
     """
     Helper function to get entity lookup data for a specific entity type
     """
@@ -1377,15 +1477,16 @@ def getEntityLookup(args, configuration, account_id, entity_type):
     ## Get entity lookup for sites ##
     #################################
     entity_query = {
-        "query": "query entityLookup ( $accountID:ID! $type:EntityType! $sortInput:[SortInput] $lookupFilterInput:[LookupFilterInput] ) { entityLookup ( accountID:$accountID type:$type sort:$sortInput filters:$lookupFilterInput ) { items { entity { id name type } description helperFields } total } }",
+        "query": "query entityLookup ( $accountID:ID! $type:EntityType! $entityInput:EntityInput $entityIDs:[ID!] ) { entityLookup ( accountID:$accountID type:$type parent:$entityInput entityIDs:$entityIDs ) { items { entity { id  name  type  } description helperFields } total  }  }",
         "variables": {
             "accountID": account_id,
-            "type": entity_type
+            "type": entity_type,
+            "entityIDs": entity_ids,
+            "entityInput": entity_input
         },
         "operationName": "entityLookup"
     }
     response = makeCall(args, configuration, entity_query)
-
     # Check for GraphQL errors in snapshot response
     if 'errors' in response:
         error_messages = [error.get('message', 'Unknown error') for error in response['errors']]

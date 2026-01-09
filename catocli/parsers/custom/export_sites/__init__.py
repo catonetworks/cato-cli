@@ -37,7 +37,6 @@ Examples:
     
     socket_sites_parser.add_argument('-accountID', help='Account ID to export data from (uses CATO_ACCOUNT_ID environment variable if not specified)', required=False)
     socket_sites_parser.add_argument('--site-ids', '-siteIDs', dest='siteIDs', help='Comma-separated list of site IDs to filter and export (e.g., "1234,1235,1236"). If not specified, exports all sites.', required=False)
-    socket_sites_parser.add_argument('-clip', '--calculate-local-ip', action='store_true', help='Calculate local IP addresses from subnet ranges (first usable IP)')
     
     # Format selection
     socket_sites_parser.add_argument('-f', '--format', dest='export_format', choices=['json', 'csv'], default='json', 

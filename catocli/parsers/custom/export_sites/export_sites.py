@@ -81,28 +81,47 @@ def generate_template(args):
         # Determine output directory
         output_dir = getattr(args, 'output_directory', None)
         if output_dir is None:
-            output_dir = '.'
-        if not os.path.isabs(output_dir):
+            output_dir = os.getcwd()
+        elif not os.path.isabs(output_dir):
             output_dir = os.path.join(os.getcwd(), output_dir)
         
         os.makedirs(output_dir, exist_ok=True)
         
         copied_files = []
+        current_dir = os.getcwd()
         
         if template_format == 'csv':
-            # Copy CSV template files
-            template_files = ['socket_sites.csv', 'Test_network_ranges.csv']
-            for template_file in template_files:
-                src_path = os.path.join(templates_dir, template_file)
-                dst_path = os.path.join(output_dir, template_file)
+            # Copy main socket_sites.csv template
+            main_template = 'socket_sites.csv'
+            src_path = os.path.join(templates_dir, main_template)
+            dst_path = os.path.join(output_dir, main_template)
+            
+            if os.path.exists(src_path):
+                shutil.copy2(src_path, dst_path)
+                copied_files.append(dst_path)
+                if hasattr(args, 'verbose') and args.verbose:
+                    print(f"Copied template: {src_path} -> {dst_path}")
+            else:
+                print(f"Warning: Template file not found: {src_path}")
+            
+            # Copy network_ranges template files from sites_config subdirectory
+            sites_config_dir = os.path.join(templates_dir, 'sites_config')
+            if os.path.exists(sites_config_dir) and os.path.isdir(sites_config_dir):
+                # Create sites_config subdirectory in output
+                output_sites_config = os.path.join(output_dir, 'sites_config')
+                os.makedirs(output_sites_config, exist_ok=True)
                 
-                if os.path.exists(src_path):
-                    shutil.copy2(src_path, dst_path)
-                    copied_files.append(dst_path)
-                    if hasattr(args, 'verbose') and args.verbose:
-                        print(f"Copied template: {src_path} -> {dst_path}")
-                else:
-                    print(f"Warning: Template file not found: {src_path}")
+                # Copy all network_ranges CSV files
+                for filename in os.listdir(sites_config_dir):
+                    if filename.endswith('_network_ranges.csv'):
+                        src_file = os.path.join(sites_config_dir, filename)
+                        dst_file = os.path.join(output_sites_config, filename)
+                        shutil.copy2(src_file, dst_file)
+                        copied_files.append(dst_file)
+                        if hasattr(args, 'verbose') and args.verbose:
+                            print(f"Copied template: {src_file} -> {dst_file}")
+            else:
+                print(f"Warning: sites_config directory not found: {sites_config_dir}")
         
         elif template_format == 'json':
             # Copy JSON template file
@@ -120,8 +139,18 @@ def generate_template(args):
         
         if copied_files:
             print(f"Successfully generated {template_format.upper()} template files:")
+            # Display relative paths if files are in current directory, otherwise absolute
             for file_path in copied_files:
-                print(f"  {file_path}")
+                try:
+                    rel_path = os.path.relpath(file_path, current_dir)
+                    # If relative path doesn't go up directories, use it; otherwise use absolute
+                    if not rel_path.startswith('..'):
+                        print(f"  {rel_path}")
+                    else:
+                        print(f"  {file_path}")
+                except ValueError:
+                    # On Windows, relpath can fail if paths are on different drives
+                    print(f"  {file_path}")
             return [{"success": True, "template_format": template_format, "copied_files": copied_files}]
         else:
             return [{"success": False, "error": f"No template files found for format: {template_format}"}]

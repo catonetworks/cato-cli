@@ -167,5 +167,6 @@
 - Updated the schema generation to write the introspection locally to track schema changes per build
 - Alphabatize parsers output in the clidriver from catolib for each build
 
-## 3.0.49 (2026-01-08)
+## 3.0.50 (2026-01-08)
 - Updated site export to add all new params in API for site, network range, and interface for csv and json 
+- Updated the generated templates for json and csv socket_site exports

@@ -218,6 +218,8 @@ def export_socket_site_to_json(args, configuration):
                 cur_site['description'] = snapshot_site.get('infoSiteSnapshot', {}).get('description')
                 cur_site['connection_type'] = connectionType
                 cur_site['type'] = snapshot_site.get('infoSiteSnapshot', {}).get('type')
+                cur_site['license_id'] = ""
+                cur_site['license_bw'] = ""
                 cur_site = populateSiteLocationData(args, snapshot_site, cur_site)
                 
                 # Create a map of interfaces from account snapshot for native range lookup
@@ -329,7 +331,7 @@ def export_socket_site_to_json(args, configuration):
                         lag_min_links = ''
                         if native_range_dest_type == 'LAN_LAG_MASTER':
                             lan_lag_member_count = cur_site_entry.get('_lan_lag_member_count', 0)
-                            lag_min_links = str(lan_lag_member_count) if lan_lag_member_count > 0 else ''
+                            lag_min_links = str(lan_lag_member_count+1) if lan_lag_member_count > 0 else ''
                         cur_site_entry["native_range"]["lag_min_links"] = lag_min_links
                         
                         cur_site_entry['lan_interfaces'].append({"network_ranges": [],"default_lan":True})
@@ -408,14 +410,13 @@ def export_socket_site_to_json(args, configuration):
                                 ## The folliowing fields are missing from the schema, populating blank fields in the interim
                                 cur_range['gateway'] = nr_gateway
                                 cur_range['range_type'] = nr_range_type
-                                cur_range['translated_subnet'] = None if nr_translated_subnet == cur_range['subnet'] else nr_translated_subnet, 
+                                cur_range['translated_subnet'] = None if nr_translated_subnet == cur_range['subnet'] else nr_translated_subnet
                                 cur_range['internet_only'] = nr_internet_only
                                 cur_range['local_ip'] = nr_local_ip
                                 cur_range['dhcp_settings'] = {
                                     'dhcp_type': nr_dhcp_type,
                                     'ip_range': nr_ip_range,
-                                    # 'relay_group_id': nr_relay_group_id,
-                                    'relay_group_id': None, # Leave none and use the name
+                                    'relay_group_id': nr_relay_group_id,
                                     'relay_group_name': nr_relay_group_name,
                                     'dhcp_microsegmentation': nr_dhcp_microsegmentation
                                 }
@@ -426,16 +427,15 @@ def export_socket_site_to_json(args, configuration):
                             site_native_range['vlan'] = nr_vlan
                             site_native_range['mdns_reflector'] = nr_mdns_reflector
                             # site_native_range['dhcp_microsegmentation'] = nr_dhcp_microsegmentation
-                            # site_native_range['gateway'] = nr_gateway
+                            site_native_range['gateway'] = nr_gateway
                             site_native_range['range_type'] = nr_range_type
                             site_native_range['translated_subnet'] = None if nr_translated_subnet == site_native_range['subnet'] else nr_translated_subnet
-                            # site_native_range['internet_only'] = nr_internet_only
+                            site_native_range['internet_only'] = nr_internet_only
                             site_native_range['local_ip'] = nr_local_ip
                             site_native_range['dhcp_settings'] = {
                                 'dhcp_type': nr_dhcp_type,
                                 'ip_range': nr_ip_range,
-                                # 'relay_group_id': nr_relay_group_id,
-                                'relay_group_id': None,
+                                'relay_group_id': nr_relay_group_id,
                                 'relay_group_name': nr_relay_group_name,
                                 'dhcp_microsegmentation': nr_dhcp_microsegmentation
                             }
@@ -478,6 +478,13 @@ def export_socket_site_to_json(args, configuration):
                 if hasattr(args, 'verbose') and args.verbose:
                     print(f"Skipping range, site_id is unsupported for export {nr_site_id}")
         
+        # Prune attributes from json        
+        for site in processed_data['sites']:
+            if '_interface_lookup' in site:
+                del site['_interface_lookup']
+            if '_lan_lag_member_count' in site:
+                del site['_lan_lag_member_count']
+
         # Handle custom filename and timestamp
         if hasattr(args, 'json_filename') and args.json_filename:
             # User provided custom filename
@@ -773,7 +780,7 @@ def get_processed_site_data(args, configuration):
                     lag_min_links = ''
                     if native_range_dest_type == 'LAN_LAG_MASTER':
                         lan_lag_member_count = cur_site_entry.get('_lan_lag_member_count', 0)
-                        lag_min_links = str(lan_lag_member_count) if lan_lag_member_count > 0 else ''
+                        lag_min_links = str(lan_lag_member_count+1) if lan_lag_member_count > 0 else ''
                     cur_site_entry["native_range"]["lag_min_links"] = lag_min_links
                     
                     cur_site_entry['lan_interfaces'].append({"network_ranges": [], "default_lan": True})
@@ -875,8 +882,9 @@ def get_processed_site_data(args, configuration):
                                 'local_ip': nr_local_ip,
                                 'dhcp_settings': {
                                     'dhcp_type': nr_dhcp_type, 
-                                    'ip_range': nr_ip_range, 
-                                    'relay_group_id': nr_relay_group_id,
+                                    'ip_range': nr_ip_range,
+                                     # 'relay_group_id': nr_relay_group_id,
+                                     'relay_group_id': None, # Leave none and use the name
                                     'relay_group_name': nr_relay_group_name, 
                                     'dhcp_microsegmentation': nr_dhcp_microsegmentation
                                 }
@@ -953,7 +961,7 @@ def get_processed_site_data(args, configuration):
                             print(f"DEBUG: nr_entity_data "+json.dumps(nr_entity_data,indent=2,sort_keys=True))        
 
                         nr_lan_interface_entry["network_ranges"].append(cur_range)
-    
+        
     return processed_data
 
 
@@ -1030,7 +1038,9 @@ def export_sites_to_csv(sites, args, account_id):
         'site_location_city',
         'site_location_country_code',
         'site_location_state_code',
-        'site_location_timezone'
+        'site_location_timezone',
+        'license_id',
+        'license_bw'
     ]
     
     rows = []
@@ -1115,7 +1125,9 @@ def export_sites_to_csv(sites, args, account_id):
                 'site_location_city': site.get('site_location', {}).get('city', '') if is_first_interface else '',
                 'site_location_country_code': site.get('site_location', {}).get('countryCode', '') if is_first_interface else '',
                 'site_location_state_code': site.get('site_location', {}).get('stateCode', '') if is_first_interface else '',
-                'site_location_timezone': site.get('site_location', {}).get('timezone', '') if is_first_interface else ''
+                'site_location_timezone': site.get('site_location', {}).get('timezone', '') if is_first_interface else '',
+                'license_id': '',
+                'license_bw': ''
             }
             
             rows.append(row)

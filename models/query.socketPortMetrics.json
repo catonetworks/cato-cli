@@ -799,6 +799,435 @@
             },
             "varName": "socketPortMetricsMeasure"
         },
+        "postAggFilters": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "postAggFilters",
+            "name": "postAggFilters",
+            "path": "postAggFilters",
+            "requestStr": "$socketPortMetricsPostAggFilter:[SocketPortMetricsPostAggFilter!] ",
+            "required": false,
+            "responseStr": "postAggFilters:$socketPortMetricsPostAggFilter ",
+            "type": {
+                "definition": {
+                    "description": null,
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "aggType": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "postAggFilters___aggType",
+                            "name": "aggType",
+                            "path": "postAggFilters.aggType",
+                            "requestStr": "$aggType:AggregationType! ",
+                            "required": true,
+                            "responseStr": "aggType:$aggType ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": [
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "sum"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "count"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "count_distinct"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "distinct"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "avg"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "max"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "min"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "any"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "changes"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "uniq_set"
+                                        }
+                                    ],
+                                    "fields": null,
+                                    "inputFields": null,
+                                    "interfaces": null,
+                                    "kind": "ENUM",
+                                    "name": "AggregationType",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "enum",
+                                "kind": [
+                                    "NON_NULL",
+                                    "ENUM"
+                                ],
+                                "name": "AggregationType",
+                                "non_null": false
+                            },
+                            "varName": "aggType"
+                        },
+                        "filter": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "postAggFilters___filter",
+                            "name": "filter",
+                            "path": "postAggFilters.filter",
+                            "requestStr": "$socketPortMetricsFilter:SocketPortMetricsFilter! ",
+                            "required": true,
+                            "responseStr": "filter:$socketPortMetricsFilter ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "fieldName": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "postAggFilters___filter___fieldName",
+                                            "name": "fieldName",
+                                            "path": "postAggFilters.filter.fieldName",
+                                            "requestStr": "$fieldName:SocketPortMetricsFieldName! ",
+                                            "required": true,
+                                            "responseStr": "fieldName:$fieldName ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Unique identifier of the account that owns the site.",
+                                                            "isDeprecated": false,
+                                                            "name": "account_id"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Unique identifier of the site where the socket is deployed.",
+                                                            "isDeprecated": false,
+                                                            "name": "site_id"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Unique identifier of the Socket (Cato edge device).",
+                                                            "isDeprecated": false,
+                                                            "name": "device_id"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "The name or ID of the physical or logical interface on the Socket device (e.g., eth0, cell1).",
+                                                            "isDeprecated": false,
+                                                            "name": "socket_interface"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Describes the interface role such as primary, backup, cellular, or none.",
+                                                            "isDeprecated": false,
+                                                            "name": "socket_interface_role"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Indicates the high-availability (HA) role of the device (e.g., active, standby).",
+                                                            "isDeprecated": false,
+                                                            "name": "ha_role"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Type of physical interface (e.g., ethernet, cellular).",
+                                                            "isDeprecated": false,
+                                                            "name": "physical_interface_type"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Type of transport used by the interface (e.g., wired, lte, 5g, wifi).",
+                                                            "isDeprecated": false,
+                                                            "name": "transport_type"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "SIM card number (for cellular interfaces).",
+                                                            "isDeprecated": false,
+                                                            "name": "sim_num"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Total bytes sent upstream (from the device to the network).",
+                                                            "isDeprecated": false,
+                                                            "name": "bytes_upstream"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Total bytes received downstream (from the network to the device).",
+                                                            "isDeprecated": false,
+                                                            "name": "bytes_downstream"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Combined total of upstream and downstream bytes.",
+                                                            "isDeprecated": false,
+                                                            "name": "bytes_total"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Current upload throughput in Mbps.",
+                                                            "isDeprecated": false,
+                                                            "name": "throughput_upstream"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Current download throughput in Mbps.",
+                                                            "isDeprecated": false,
+                                                            "name": "throughput_downstream"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Human-readable name of the site.",
+                                                            "isDeprecated": false,
+                                                            "name": "site_name"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Generic signal strength indicator (often maps to bars or percentage).",
+                                                            "isDeprecated": false,
+                                                            "name": "cellular_signal_strength"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Reference Signal Received Quality \u2013 a key LTE/5G metric for link quality (dB).",
+                                                            "isDeprecated": false,
+                                                            "name": "cellular_rsrq"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Reference Signal Received Power \u2013 measures LTE/5G signal strength (dBm).",
+                                                            "isDeprecated": false,
+                                                            "name": "cellular_rsrp"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Received Signal Strength Indicator \u2013 legacy strength metric (dBm).",
+                                                            "isDeprecated": false,
+                                                            "name": "cellular_rssi"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Signal to Interference + Noise Ratio \u2013 LTE/5G metric for signal clarity (dB).",
+                                                            "isDeprecated": false,
+                                                            "name": "cellular_sinr"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "SocketPortMetricsFieldName",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "ENUM"
+                                                ],
+                                                "name": "SocketPortMetricsFieldName",
+                                                "non_null": false
+                                            },
+                                            "varName": "fieldName"
+                                        },
+                                        "operator": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "postAggFilters___filter___operator",
+                                            "name": "operator",
+                                            "path": "postAggFilters.filter.operator",
+                                            "requestStr": "$operator:FilterOperator! ",
+                                            "required": true,
+                                            "responseStr": "operator:$operator ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "is"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "is_not"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "in"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "not_in"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "exists"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "not_exists"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "between"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "not_between"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "gt"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "gte"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "lt"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "lte"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "FilterOperator",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "ENUM"
+                                                ],
+                                                "name": "FilterOperator",
+                                                "non_null": false
+                                            },
+                                            "varName": "operator"
+                                        },
+                                        "values": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "postAggFilters___filter___values",
+                                            "name": "values",
+                                            "path": "postAggFilters.filter.values",
+                                            "requestStr": "$values:[String]! ",
+                                            "required": true,
+                                            "responseStr": "values:$values ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "LIST",
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "String",
+                                                "non_null": false
+                                            },
+                                            "varName": "values"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "SocketPortMetricsFilter",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "NON_NULL",
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "SocketPortMetricsFilter",
+                                "non_null": false
+                            },
+                            "varName": "socketPortMetricsFilter"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "SocketPortMetricsPostAggFilter",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "LIST",
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "SocketPortMetricsPostAggFilter",
+                "non_null": false
+            },
+            "varName": "socketPortMetricsPostAggFilter"
+        },
         "sort": {
             "defaultValue": null,
             "description": null,
@@ -1886,6 +2315,435 @@
             },
             "varName": "socketPortMetricsMeasure"
         },
+        "socketPortMetricsPostAggFilter": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "postAggFilters",
+            "name": "postAggFilters",
+            "path": "postAggFilters",
+            "requestStr": "$socketPortMetricsPostAggFilter:[SocketPortMetricsPostAggFilter!] ",
+            "required": false,
+            "responseStr": "postAggFilters:$socketPortMetricsPostAggFilter ",
+            "type": {
+                "definition": {
+                    "description": null,
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "aggType": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "postAggFilters___aggType",
+                            "name": "aggType",
+                            "path": "postAggFilters.aggType",
+                            "requestStr": "$aggType:AggregationType! ",
+                            "required": true,
+                            "responseStr": "aggType:$aggType ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": [
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "sum"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "count"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "count_distinct"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "distinct"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "avg"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "max"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "min"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "any"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "changes"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "uniq_set"
+                                        }
+                                    ],
+                                    "fields": null,
+                                    "inputFields": null,
+                                    "interfaces": null,
+                                    "kind": "ENUM",
+                                    "name": "AggregationType",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "enum",
+                                "kind": [
+                                    "NON_NULL",
+                                    "ENUM"
+                                ],
+                                "name": "AggregationType",
+                                "non_null": false
+                            },
+                            "varName": "aggType"
+                        },
+                        "filter": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "postAggFilters___filter",
+                            "name": "filter",
+                            "path": "postAggFilters.filter",
+                            "requestStr": "$socketPortMetricsFilter:SocketPortMetricsFilter! ",
+                            "required": true,
+                            "responseStr": "filter:$socketPortMetricsFilter ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "fieldName": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "postAggFilters___filter___fieldName",
+                                            "name": "fieldName",
+                                            "path": "postAggFilters.filter.fieldName",
+                                            "requestStr": "$fieldName:SocketPortMetricsFieldName! ",
+                                            "required": true,
+                                            "responseStr": "fieldName:$fieldName ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Unique identifier of the account that owns the site.",
+                                                            "isDeprecated": false,
+                                                            "name": "account_id"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Unique identifier of the site where the socket is deployed.",
+                                                            "isDeprecated": false,
+                                                            "name": "site_id"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Unique identifier of the Socket (Cato edge device).",
+                                                            "isDeprecated": false,
+                                                            "name": "device_id"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "The name or ID of the physical or logical interface on the Socket device (e.g., eth0, cell1).",
+                                                            "isDeprecated": false,
+                                                            "name": "socket_interface"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Describes the interface role such as primary, backup, cellular, or none.",
+                                                            "isDeprecated": false,
+                                                            "name": "socket_interface_role"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Indicates the high-availability (HA) role of the device (e.g., active, standby).",
+                                                            "isDeprecated": false,
+                                                            "name": "ha_role"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Type of physical interface (e.g., ethernet, cellular).",
+                                                            "isDeprecated": false,
+                                                            "name": "physical_interface_type"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Type of transport used by the interface (e.g., wired, lte, 5g, wifi).",
+                                                            "isDeprecated": false,
+                                                            "name": "transport_type"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "SIM card number (for cellular interfaces).",
+                                                            "isDeprecated": false,
+                                                            "name": "sim_num"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Total bytes sent upstream (from the device to the network).",
+                                                            "isDeprecated": false,
+                                                            "name": "bytes_upstream"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Total bytes received downstream (from the network to the device).",
+                                                            "isDeprecated": false,
+                                                            "name": "bytes_downstream"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Combined total of upstream and downstream bytes.",
+                                                            "isDeprecated": false,
+                                                            "name": "bytes_total"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Current upload throughput in Mbps.",
+                                                            "isDeprecated": false,
+                                                            "name": "throughput_upstream"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Current download throughput in Mbps.",
+                                                            "isDeprecated": false,
+                                                            "name": "throughput_downstream"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Human-readable name of the site.",
+                                                            "isDeprecated": false,
+                                                            "name": "site_name"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Generic signal strength indicator (often maps to bars or percentage).",
+                                                            "isDeprecated": false,
+                                                            "name": "cellular_signal_strength"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Reference Signal Received Quality \u2013 a key LTE/5G metric for link quality (dB).",
+                                                            "isDeprecated": false,
+                                                            "name": "cellular_rsrq"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Reference Signal Received Power \u2013 measures LTE/5G signal strength (dBm).",
+                                                            "isDeprecated": false,
+                                                            "name": "cellular_rsrp"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Received Signal Strength Indicator \u2013 legacy strength metric (dBm).",
+                                                            "isDeprecated": false,
+                                                            "name": "cellular_rssi"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Signal to Interference + Noise Ratio \u2013 LTE/5G metric for signal clarity (dB).",
+                                                            "isDeprecated": false,
+                                                            "name": "cellular_sinr"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "SocketPortMetricsFieldName",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "ENUM"
+                                                ],
+                                                "name": "SocketPortMetricsFieldName",
+                                                "non_null": false
+                                            },
+                                            "varName": "fieldName"
+                                        },
+                                        "operator": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "postAggFilters___filter___operator",
+                                            "name": "operator",
+                                            "path": "postAggFilters.filter.operator",
+                                            "requestStr": "$operator:FilterOperator! ",
+                                            "required": true,
+                                            "responseStr": "operator:$operator ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "is"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "is_not"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "in"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "not_in"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "exists"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "not_exists"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "between"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "not_between"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "gt"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "gte"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "lt"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "lte"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "FilterOperator",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "ENUM"
+                                                ],
+                                                "name": "FilterOperator",
+                                                "non_null": false
+                                            },
+                                            "varName": "operator"
+                                        },
+                                        "values": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "postAggFilters___filter___values",
+                                            "name": "values",
+                                            "path": "postAggFilters.filter.values",
+                                            "requestStr": "$values:[String]! ",
+                                            "required": true,
+                                            "responseStr": "values:$values ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "LIST",
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "String",
+                                                "non_null": false
+                                            },
+                                            "varName": "values"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "SocketPortMetricsFilter",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "NON_NULL",
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "SocketPortMetricsFilter",
+                                "non_null": false
+                            },
+                            "varName": "socketPortMetricsFilter"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "SocketPortMetricsPostAggFilter",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "LIST",
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "SocketPortMetricsPostAggFilter",
+                "non_null": false
+            },
+            "varName": "socketPortMetricsPostAggFilter"
+        },
         "socketPortMetricsSort": {
             "defaultValue": null,
             "description": null,
@@ -2501,6 +3359,17 @@
             "aggType": "sum",
             "fieldName": "account_id",
             "trend": true
+        },
+        "socketPortMetricsPostAggFilter": {
+            "aggType": "sum",
+            "socketPortMetricsFilter": {
+                "fieldName": "account_id",
+                "operator": "is",
+                "values": [
+                    "string1",
+                    "string2"
+                ]
+            }
         },
         "socketPortMetricsSort": {
             "fieldName": "account_id",

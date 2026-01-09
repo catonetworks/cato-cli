@@ -11,7 +11,7 @@ catocli query appStats <json>
 
 catocli query appStats --json-file query.appStats.json
 
-catocli query appStats '{"appStatsFilter":{"fieldName":"account_id","operator":"is","values":["string1","string2"]},"appStatsSort":{"fieldName":"account_id","order":"asc"},"dimension":{"fieldName":"account_id"},"from":1,"limit":1,"measure":{"aggType":"sum","fieldName":"account_id","trend":true},"timeFrame":"example_value"}'
+catocli query appStats '{"appStatsFilter":{"fieldName":"account_id","operator":"is","values":["string1","string2"]},"appStatsPostAggFilter":{"aggType":"sum","appStatsFilter":{"fieldName":"account_id","operator":"is","values":["string1","string2"]}},"appStatsSort":{"fieldName":"account_id","order":"asc"},"dimension":{"fieldName":"account_id"},"from":1,"limit":1,"measure":{"aggType":"sum","fieldName":"account_id","trend":true},"timeFrame":"example_value"}'
 
 catocli query appStats '{
     "appStatsFilter": {
@@ -21,6 +21,17 @@ catocli query appStats '{
             "string1",
             "string2"
         ]
+    },
+    "appStatsPostAggFilter": {
+        "aggType": "sum",
+        "appStatsFilter": {
+            "fieldName": "account_id",
+            "operator": "is",
+            "values": [
+                "string1",
+                "string2"
+            ]
+        }
     },
     "appStatsSort": {
         "fieldName": "account_id",
@@ -266,6 +277,7 @@ Format: `"utc.YYYY-MM-{DD/HH:MM:SS--DD/HH:MM:SS}"`
 
 `accountID` [ID] - (required) Account ID    
 `appStatsFilter` [AppStatsFilter[]] - (required) N/A    
+`appStatsPostAggFilter` [AppStatsPostAggFilter[]] - (required) N/A    
 `appStatsSort` [AppStatsSort[]] - (required) N/A    
 `dimension` [Dimension[]] - (required) N/A    
 `from` [Int] - (required) N/A    

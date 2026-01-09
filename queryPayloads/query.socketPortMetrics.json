@@ -1,6 +1,6 @@
 {
     "operationName": "socketPortMetrics",
-    "query": "query socketPortMetrics ( $accountID:ID! $timeFrame:TimeFrame! $socketPortMetricsMeasure:[SocketPortMetricsMeasure] $socketPortMetricsDimension:[SocketPortMetricsDimension] $socketPortMetricsFilter:[SocketPortMetricsFilter!] $socketPortMetricsSort:[SocketPortMetricsSort!] $limit:Int $from:Int) {\n\tsocketPortMetrics ( accountID:$accountID timeFrame:$timeFrame measures:$socketPortMetricsMeasure dimensions:$socketPortMetricsDimension filters:$socketPortMetricsFilter sort:$socketPortMetricsSort ) {\n\t\tid\n\t\tfrom\n\t\tto\n\t\ttotal\n\t\ttotals\n\t\trecords ( limit:$limit  from:$from  )  {\n\t\t\tfieldsUnitTypes\n\t\t\tfieldsMap\n\t\t\ttrends\n\t\t\tprevTimeFrame\n\t\t}\n\t}\t\n}",
+    "query": "query socketPortMetrics ( $accountID:ID! $timeFrame:TimeFrame! $socketPortMetricsMeasure:[SocketPortMetricsMeasure] $socketPortMetricsDimension:[SocketPortMetricsDimension] $socketPortMetricsFilter:[SocketPortMetricsFilter!] $socketPortMetricsPostAggFilter:[SocketPortMetricsPostAggFilter!] $socketPortMetricsSort:[SocketPortMetricsSort!] $limit:Int $from:Int) {\n\tsocketPortMetrics ( accountID:$accountID timeFrame:$timeFrame measures:$socketPortMetricsMeasure dimensions:$socketPortMetricsDimension filters:$socketPortMetricsFilter postAggFilters:$socketPortMetricsPostAggFilter sort:$socketPortMetricsSort ) {\n\t\tid\n\t\tfrom\n\t\tto\n\t\ttotal\n\t\ttotals\n\t\trecords ( limit:$limit  from:$from  )  {\n\t\t\tfieldsUnitTypes\n\t\t\tfieldsMap\n\t\t\ttrends\n\t\t\tprevTimeFrame\n\t\t}\n\t}\t\n}",
     "variables": {
         "from": 1,
         "limit": 1,
@@ -19,6 +19,17 @@
             "aggType": "sum",
             "fieldName": "account_id",
             "trend": true
+        },
+        "socketPortMetricsPostAggFilter": {
+            "aggType": "sum",
+            "socketPortMetricsFilter": {
+                "fieldName": "account_id",
+                "operator": "is",
+                "values": [
+                    "string1",
+                    "string2"
+                ]
+            }
         },
         "socketPortMetricsSort": {
             "fieldName": "account_id",

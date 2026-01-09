@@ -1286,13 +1286,23 @@
                                                                                     "possibleTypes": null
                                                                                 },
                                                                                 "AiSecurityDataProfileRef": {
-                                                                                    "description": "A reference identifying the AiSecurityDataProfile object. ID: Unique AiSecurityDataProfile Identifier, Name: The AiSecurityDataProfile Name",
+                                                                                    "description": "A reference identifying the AiSecurityDataProfile object. ID: Unique AiSecurityDataProfile Identifier, Name: The AiSecurityDataProfile Name\nTODO: rename data to Content",
                                                                                     "enumValues": null,
                                                                                     "fields": {},
                                                                                     "inputFields": null,
                                                                                     "interfaces": {},
                                                                                     "kind": "OBJECT",
                                                                                     "name": "AiSecurityDataProfileRef",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "AiSecurityGuardRef": {
+                                                                                    "description": "A reference identifying the Guard object. ID: Unique Guard Identifier, Name: The Guard Name",
+                                                                                    "enumValues": null,
+                                                                                    "fields": {},
+                                                                                    "inputFields": null,
+                                                                                    "interfaces": {},
+                                                                                    "kind": "OBJECT",
+                                                                                    "name": "AiSecurityGuardRef",
                                                                                     "possibleTypes": null
                                                                                 },
                                                                                 "AllocatedIpRef": {
@@ -1736,7 +1746,7 @@
                                                                                     "possibleTypes": null
                                                                                 },
                                                                                 "PrivateApplicationRef": {
-                                                                                    "description": "A reference identifying the PrivateApplication object. ID: Unique PrivateApplication Identifier, Name: The PrivateApplication Name",
+                                                                                    "description": "A reference identifying of the PrivateApplication object. ID: Unique PrivateApplication Identifier, Name: The PrivateApplication Name",
                                                                                     "enumValues": null,
                                                                                     "fields": {},
                                                                                     "inputFields": null,
@@ -2531,6 +2541,29 @@
                                                         "non_null": false
                                                     },
                                                     "varName": "storyDuration"
+                                                },
+                                                "tags": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "id_str": "story___incident___tags",
+                                                    "isDeprecated": false,
+                                                    "name": "tags",
+                                                    "path": "story.incident.tags",
+                                                    "requestStr": "$tags:[String]! ",
+                                                    "required": true,
+                                                    "responseStr": "tags:$tags ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "LIST",
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "tags"
                                                 },
                                                 "ticket": {
                                                     "args": {},
@@ -10278,114 +10311,6 @@
                                                             },
                                                             "varName": "mitre"
                                                         },
-                                                        "producerInfo": {
-                                                            "args": {},
-                                                            "deprecationReason": null,
-                                                            "description": null,
-                                                            "id_str": "story___incident___GenericIncident___producerInfo",
-                                                            "isDeprecated": false,
-                                                            "name": "producerInfo",
-                                                            "path": "story.incident.GenericIncident.producerInfo",
-                                                            "requestStr": "$genericIncidentProducerInfo:GenericIncidentProducerInfo ",
-                                                            "required": false,
-                                                            "responseStr": "producerInfo:$genericIncidentProducerInfo ",
-                                                            "type": {
-                                                                "definition": {
-                                                                    "description": null,
-                                                                    "enumValues": null,
-                                                                    "fields": {
-                                                                        "product": {
-                                                                            "args": {},
-                                                                            "deprecationReason": null,
-                                                                            "description": null,
-                                                                            "id_str": "story___incident___GenericIncident___producerInfo___product",
-                                                                            "isDeprecated": false,
-                                                                            "name": "product",
-                                                                            "path": "story.incident.GenericIncident.producerInfo.product",
-                                                                            "requestStr": "$product:String ",
-                                                                            "required": false,
-                                                                            "responseStr": "product:$product ",
-                                                                            "type": {
-                                                                                "kind": [
-                                                                                    "SCALAR"
-                                                                                ],
-                                                                                "name": "String",
-                                                                                "non_null": false
-                                                                            },
-                                                                            "varName": "product"
-                                                                        },
-                                                                        "type": {
-                                                                            "args": {},
-                                                                            "deprecationReason": null,
-                                                                            "description": null,
-                                                                            "id_str": "story___incident___GenericIncident___producerInfo___type",
-                                                                            "isDeprecated": false,
-                                                                            "name": "type",
-                                                                            "path": "story.incident.GenericIncident.producerInfo.type",
-                                                                            "requestStr": "$type:GenericIncidentProducerType ",
-                                                                            "required": false,
-                                                                            "responseStr": "type:$type ",
-                                                                            "type": {
-                                                                                "definition": {
-                                                                                    "description": null,
-                                                                                    "enumValues": [
-                                                                                        {
-                                                                                            "deprecationReason": null,
-                                                                                            "description": null,
-                                                                                            "isDeprecated": false,
-                                                                                            "name": "CASB"
-                                                                                        },
-                                                                                        {
-                                                                                            "deprecationReason": null,
-                                                                                            "description": null,
-                                                                                            "isDeprecated": false,
-                                                                                            "name": "IT_INSIGHTS"
-                                                                                        },
-                                                                                        {
-                                                                                            "deprecationReason": null,
-                                                                                            "description": null,
-                                                                                            "isDeprecated": false,
-                                                                                            "name": "EMAIL_SECURITY"
-                                                                                        },
-                                                                                        {
-                                                                                            "deprecationReason": null,
-                                                                                            "description": null,
-                                                                                            "isDeprecated": false,
-                                                                                            "name": "OTHER"
-                                                                                        }
-                                                                                    ],
-                                                                                    "fields": null,
-                                                                                    "inputFields": null,
-                                                                                    "interfaces": null,
-                                                                                    "kind": "ENUM",
-                                                                                    "name": "GenericIncidentProducerType",
-                                                                                    "possibleTypes": null
-                                                                                },
-                                                                                "indexType": "enum",
-                                                                                "kind": [
-                                                                                    "ENUM"
-                                                                                ],
-                                                                                "name": "GenericIncidentProducerType",
-                                                                                "non_null": false
-                                                                            },
-                                                                            "varName": "type"
-                                                                        }
-                                                                    },
-                                                                    "inputFields": null,
-                                                                    "interfaces": {},
-                                                                    "kind": "OBJECT",
-                                                                    "name": "GenericIncidentProducerInfo",
-                                                                    "possibleTypes": null
-                                                                },
-                                                                "indexType": "object",
-                                                                "kind": [
-                                                                    "OBJECT"
-                                                                ],
-                                                                "name": "GenericIncidentProducerInfo",
-                                                                "non_null": false
-                                                            },
-                                                            "varName": "genericIncidentProducerInfo"
-                                                        },
                                                         "queries": {
                                                             "args": {},
                                                             "deprecationReason": null,
@@ -11140,6 +11065,26 @@
                                                                                 "non_null": false
                                                                             },
                                                                             "varName": "name"
+                                                                        },
+                                                                        "product": {
+                                                                            "args": {},
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "id_str": "story___incident___GenericIncident___vendorInfo___product",
+                                                                            "isDeprecated": false,
+                                                                            "name": "product",
+                                                                            "path": "story.incident.GenericIncident.vendorInfo.product",
+                                                                            "requestStr": "$product:String ",
+                                                                            "required": false,
+                                                                            "responseStr": "product:$product ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "String",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "product"
                                                                         },
                                                                         "status": {
                                                                             "args": {},

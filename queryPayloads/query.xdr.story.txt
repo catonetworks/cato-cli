@@ -67,6 +67,7 @@ query xdrStory ( $accountID:ID! $storyId:ID $producer:StoryProducerEnum $inciden
 						values
 					}
 				}
+				tags
 				... on MicrosoftEndpoint {
 					similarStoriesData {
 						storyId
@@ -791,12 +792,9 @@ query xdrStory ( $accountID:ID! $storyId:ID $producer:StoryProducerEnum $inciden
 						similarityPercentage
 						indication
 					}
-					producerInfo {
-						product
-						typeGenericIncidentProducerInfo: type
-					}
 					vendorInfo {
 						name
+						product
 						status
 						engineType
 						incidentUrl

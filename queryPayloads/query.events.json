@@ -1,6 +1,6 @@
 {
     "operationName": "events",
-    "query": "query events ( $accountID:ID! $timeFrame:TimeFrame! $eventsMeasure:[EventsMeasure] $eventsDimension:[EventsDimension] $eventsFilter:[EventsFilter!] $eventsSort:[EventsSort!] $limit:Int $from:Int) {\n\tevents ( accountID:$accountID timeFrame:$timeFrame measures:$eventsMeasure dimensions:$eventsDimension filters:$eventsFilter sort:$eventsSort ) {\n\t\tid\n\t\tfrom\n\t\tto\n\t\ttotal\n\t\ttotals\n\t\trecords ( limit:$limit  from:$from  )  {\n\t\t\tfieldsUnitTypes\n\t\t\tfieldsMap\n\t\t\ttrends\n\t\t\tprevTimeFrame\n\t\t\tflatFields\n\t\t}\n\t}\t\n}",
+    "query": "query events ( $accountID:ID! $timeFrame:TimeFrame! $eventsMeasure:[EventsMeasure] $eventsDimension:[EventsDimension] $eventsFilter:[EventsFilter!] $eventsPostAggFilter:[EventsPostAggFilter!] $eventsSort:[EventsSort!] $limit:Int $from:Int) {\n\tevents ( accountID:$accountID timeFrame:$timeFrame measures:$eventsMeasure dimensions:$eventsDimension filters:$eventsFilter postAggFilters:$eventsPostAggFilter sort:$eventsSort ) {\n\t\tid\n\t\tfrom\n\t\tto\n\t\ttotal\n\t\ttotals\n\t\trecords ( limit:$limit  from:$from  )  {\n\t\t\tfieldsUnitTypes\n\t\t\tfieldsMap\n\t\t\ttrends\n\t\t\tprevTimeFrame\n\t\t\tflatFields\n\t\t}\n\t}\t\n}",
     "variables": {
         "eventsDimension": {
             "fieldName": "access_method"
@@ -17,6 +17,17 @@
             "aggType": "sum",
             "fieldName": "access_method",
             "trend": true
+        },
+        "eventsPostAggFilter": {
+            "aggType": "sum",
+            "eventsFilter": {
+                "fieldName": "access_method",
+                "operator": "is",
+                "values": [
+                    "string1",
+                    "string2"
+                ]
+            }
         },
         "eventsSort": {
             "fieldName": "access_method",

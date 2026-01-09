@@ -11,7 +11,7 @@ catocli query events <json>
 
 catocli query events --json-file query.events.json
 
-catocli query events '{"eventsDimension":{"fieldName":"access_method"},"eventsFilter":{"fieldName":"access_method","operator":"is","values":["string1","string2"]},"eventsMeasure":{"aggType":"sum","fieldName":"access_method","trend":true},"eventsSort":{"fieldName":"access_method","order":"asc"},"from":1,"limit":1,"timeFrame":"example_value"}'
+catocli query events '{"eventsDimension":{"fieldName":"access_method"},"eventsFilter":{"fieldName":"access_method","operator":"is","values":["string1","string2"]},"eventsMeasure":{"aggType":"sum","fieldName":"access_method","trend":true},"eventsPostAggFilter":{"aggType":"sum","eventsFilter":{"fieldName":"access_method","operator":"is","values":["string1","string2"]}},"eventsSort":{"fieldName":"access_method","order":"asc"},"from":1,"limit":1,"timeFrame":"example_value"}'
 
 catocli query events '{
     "eventsDimension": {
@@ -29,6 +29,17 @@ catocli query events '{
         "aggType": "sum",
         "fieldName": "access_method",
         "trend": true
+    },
+    "eventsPostAggFilter": {
+        "aggType": "sum",
+        "eventsFilter": {
+            "fieldName": "access_method",
+            "operator": "is",
+            "values": [
+                "string1",
+                "string2"
+            ]
+        }
     },
     "eventsSort": {
         "fieldName": "access_method",
@@ -67,6 +78,7 @@ Format: `"utc.YYYY-MM-{DD/HH:MM:SS--DD/HH:MM:SS}"`
 `eventsDimension` [EventsDimension[]] - (required) N/A    
 `eventsFilter` [EventsFilter[]] - (required) N/A    
 `eventsMeasure` [EventsMeasure[]] - (required) N/A    
+`eventsPostAggFilter` [EventsPostAggFilter[]] - (required) N/A    
 `eventsSort` [EventsSort[]] - (required) N/A    
 `from` [Int] - (required) N/A    
 `limit` [Int] - (required) N/A    

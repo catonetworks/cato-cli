@@ -24,11 +24,11 @@ def site_import_parse(subparsers, import_parser):
         usage='''catocli import socket_sites_to_tf [options]
 
 JSON Import Examples:
-  catocli import socket_sites_to_tf --data-type json --json-file sites.json --module-name module.sites
+  catocli import socket_sites_to_tf --data-type json --json-file sites.json --module-name module.sites --auto-approve
   catocli import socket_sites_to_tf sites.json --module-name module.sites  # Legacy format (auto-detects JSON)
 
 CSV Import Examples:
-  catocli import socket_sites_to_tf --data-type csv --csv-file sites.csv --module-name module.sites
+  catocli import socket_sites_to_tf --data-type csv --csv-file sites.csv --module-name module.sites --auto-approve
   catocli import socket_sites_to_tf --data-type csv --csv-file sites.csv --csv-folder sites_config --module-name module.sites''',
         formatter_class=import_sites_to_tf.argparse.RawDescriptionHelpFormatter
     )

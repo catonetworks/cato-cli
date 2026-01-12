@@ -3,6 +3,7 @@ import catocli.parsers.custom.customLib as customLib
 from catocli.parsers.custom.export_rules import export_rules_parse
 from catocli.parsers.custom.import_rules_to_tf import rule_import_parse
 from catocli.parsers.custom.import_sites_to_tf import site_import_parse
+from catocli.parsers.custom.import_validate_site_location import validate_site_location_parse
 from catocli.parsers.configure import configure_parse
 from catocli.parsers.custom.export_sites import export_sites_parse
 from catocli.parsers.custom.scim import scim_parse
@@ -37,6 +38,7 @@ def custom_parse(subparsers):
 	export_rules_parse(subparsers)
 	import_parser = rule_import_parse(subparsers)
 	site_import_parse(subparsers, import_parser)
+	validate_site_location_parse(subparsers, import_parser)
 	configure_parse(subparsers)
 	scim_parse(subparsers)
 

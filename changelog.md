@@ -170,3 +170,6 @@
 ## 3.0.50 (2026-01-08)
 - Updated site export to add all new params in API for site, network range, and interface for csv and json 
 - Updated the generated templates for json and csv socket_site exports
+
+## 3.0.51 (2026-01-12)
+- Added bulk site location validator for csv or json

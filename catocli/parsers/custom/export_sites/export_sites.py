@@ -223,8 +223,8 @@ def export_socket_site_to_json(args, configuration):
                 cur_site['description'] = snapshot_site.get('infoSiteSnapshot', {}).get('description')
                 cur_site['connection_type'] = connectionType
                 cur_site['type'] = snapshot_site.get('infoSiteSnapshot', {}).get('type')
-                cur_site['license_id'] = ""
-                cur_site['license_bw'] = ""
+                cur_site['license_id'] = None
+                cur_site['license_bw'] = None
                 cur_site = populateSiteLocationData(args, snapshot_site, cur_site)
                 
                 # Create a map of interfaces from account snapshot for native range lookup
@@ -439,6 +439,7 @@ def export_socket_site_to_json(args, configuration):
                                 cur_range['translated_subnet'] = None if nr_translated_subnet == cur_range['subnet'] else nr_translated_subnet
                                 cur_range['internet_only'] = nr_internet_only
                                 cur_range['local_ip'] = nr_local_ip
+                                cur_range['interface_index'] = nr_lan_interface_entry.get('index', '')  # Add interface_index for proper association
                                 cur_range['dhcp_settings'] = {
                                     'dhcp_type': nr_dhcp_type,
                                     'ip_range': nr_ip_range,
@@ -466,7 +467,7 @@ def export_socket_site_to_json(args, configuration):
                                 'dhcp_microsegmentation': nr_dhcp_microsegmentation
                             }
                     else:
-                        nr_lan_interface_entry = next((lan_nic for lan_nic in nr_site_entry["lan_interfaces"] if ('default_lan' not in lan_nic or not lan_nic['default_lan']) and lan_nic['name'] == nr_interface_name), None)                    
+                        nr_lan_interface_entry = next((lan_nic for lan_nic in nr_site_entry["lan_interfaces"] if ('default_lan' not in lan_nic or not lan_nic['default_lan']) and lan_nic['name'] == nr_interface_name), None)
                         if nr_lan_interface_entry:
                             cur_range = {}
                             cur_range['id'] = range_id
@@ -480,6 +481,7 @@ def export_socket_site_to_json(args, configuration):
                             cur_range['translated_subnet'] = None if nr_translated_subnet == cur_range['subnet'] else nr_translated_subnet
                             cur_range['internet_only'] = nr_internet_only
                             cur_range['local_ip'] = nr_local_ip  # Use the calculated or original value
+                            cur_range['interface_index'] = nr_lan_interface_entry.get('index', '')  # Add interface_index for proper association
                             cur_range['dhcp_settings'] = {
                                 'dhcp_type': nr_dhcp_type,
                                 'ip_range': nr_ip_range,

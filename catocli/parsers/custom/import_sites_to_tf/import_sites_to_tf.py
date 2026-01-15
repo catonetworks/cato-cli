@@ -426,10 +426,12 @@ def import_lan_lag_members(lan_lag_members, module_name, verbose=False,
         site_key = site_id
 
         # LAN LAG member addressing pattern from state file:
-        # module.sites_from_csv.module.socket-site["site_id"].cato_lan_interface_lag_member.lag_lan_members["INT_6"]
-        resource_address = f'{module_name}.module.socket-site["{site_key}"].cato_lan_interface_lag_member.lag_lan_members["{formatted_index}"]'
+        # module.sites_from_csv.module.socket-site["site_id"].cato_lan_interface_lag_member.lag_lan_members["interface_id"]
+        # Use interface_id for keying (if available), otherwise interface_index
+        lag_key = interface_id if interface_id else formatted_index
+        resource_address = f'{module_name}.module.socket-site["{site_key}"].cato_lan_interface_lag_member.lag_lan_members["{lag_key}"]'
 
-        print(f"\n[{i+1}/{total_interfaces}] LAN LAG Member: {interface_name} on {site_name} (Index: {interface_index})")
+        print(f"\n[{i+1}/{total_interfaces}] LAN LAG Member: {interface_name} on {site_name} (Index: {interface_index}, ID: {interface_id})")
 
         # For LAN LAG members, the import ID format is site_id:interface_index
         import_id = f"{site_id}:{formatted_index}"
@@ -487,8 +489,10 @@ def import_lan_interfaces(lan_interfaces, module_name, verbose=False,
         # Use site_id as the site key for consistency
         site_key = site_id
 
-        # The resource address uses interface_index for both the module key and the for_each key
-        resource_address = f'{module_name}.module.socket-site["{site_key}"].module.lan_interfaces["{formatted_index}"].cato_lan_interface.interface["{formatted_index}"]'
+        # The resource address uses interface_id for keying (if available), otherwise interface_index
+        # This matches the Terraform module logic: (interface.id != null && interface.id != "" ? interface.id : interface.interface_index)
+        lan_key = interface_id if interface_id else formatted_index
+        resource_address = f'{module_name}.module.socket-site["{site_key}"].module.lan_interfaces["{lan_key}"].cato_lan_interface.interface["{formatted_index}"]'
 
         print(f"\n[{i+1}/{total_interfaces}] LAN Interface: {interface_name} on {site_name} (Index: {interface_index}, ID: {interface_id})")
 
@@ -560,13 +564,14 @@ def import_network_ranges(network_ranges, lan_interfaces, module_name, verbose=F
         # Determine if this is a default interface range (connected to native/default interface)
         # Check if this network range has a corresponding LAN interface resource that was extracted
         # If no LAN interface was created for this interface_index, it's a default interface range
-        lan_interface_exists = any(
-            lan['index'] == interface_index for lan in lan_interfaces 
-            if lan['site_name'] == site_name
-        )
-        
-        is_default_interface = not lan_interface_exists
-        
+        matching_lan_interface = None
+        for lan in lan_interfaces:
+            if lan['site_name'] == site_name and lan['index'] == interface_index:
+                matching_lan_interface = lan
+                break
+
+        is_default_interface = matching_lan_interface is None
+
         # Generate the correct key format based on whether this is a default interface range
         # Use the network range ID as the key for uniqueness and stability across imports
         # This matches the Terraform module logic which uses range.id when available
@@ -577,7 +582,7 @@ def import_network_ranges(network_ranges, lan_interfaces, module_name, verbose=F
         dhcp_type = (network_range.get('dhcp_type') or '').strip()
         has_dhcp = dhcp_type != '' and dhcp_type is not None
         dhcp_resource = 'with_dhcp' if has_dhcp else 'no_dhcp'
-        
+
         # Use site_id as the site key for consistency
         site_key = site_id
 
@@ -587,8 +592,11 @@ def import_network_ranges(network_ranges, lan_interfaces, module_name, verbose=F
             resource_address = f'{module_name}.module.socket-site["{site_key}"].cato_network_range.default_interface_ranges["{range_key}"]'
         else:
             # Regular interface network ranges go through the lan_interfaces module
+            # Use interface ID for LAN interface key (matching Terraform module logic)
+            lan_interface_id = matching_lan_interface['id']
+            lan_key = lan_interface_id if lan_interface_id else formatted_index
             # Use with_dhcp[0] or no_dhcp[0] based on whether DHCP settings exist
-            resource_address = f'{module_name}.module.socket-site["{site_key}"].module.lan_interfaces["{formatted_index}"].module.network_ranges.module.network_range["{range_key}"].cato_network_range.{dhcp_resource}[0]'
+            resource_address = f'{module_name}.module.socket-site["{site_key}"].module.lan_interfaces["{lan_key}"].module.network_ranges.module.network_range["{range_key}"].cato_network_range.{dhcp_resource}[0]'
         
         print(f"\n[{i+1}/{total_ranges}] Network Range: {range_name} - {subnet} ({network_range_id}) on {site_name}")
         print(f"  Resource Address: {resource_address}")

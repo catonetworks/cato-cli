@@ -255,9 +255,27 @@ def export_socket_site_to_json(args, configuration):
                 site_interfaces = snapshot_site.get('infoSiteSnapshot', {}).get('interfaces', [])
                 interface_lookup = {}  # Map interface ID to interface data
                 lan_lag_member_count = 0  # Count LAN_LAG_MEMBER interfaces for lag calculation
-                
-                if hasattr(args, 'verbose') and args.verbose:        
+
+                # Build precedence map from devices.interfaces.naturalOrder
+                # naturalOrder: 1 = ACTIVE, 2 = PASSIVE, 3 = LAST_RESORT
+                precedence_map = {}  # Map interface ID to precedence string
+                site_devices = snapshot_site.get('devices') or []
+                for device in site_devices:
+                    device_interfaces = device.get('interfaces', [])
+                    for device_iface in device_interfaces:
+                        iface_id = device_iface.get('id')
+                        natural_order = device_iface.get('naturalOrder')
+                        if iface_id and natural_order:
+                            if natural_order == 1:
+                                precedence_map[iface_id] = "ACTIVE"
+                            elif natural_order == 2:
+                                precedence_map[iface_id] = "PASSIVE"
+                            elif natural_order == 3:
+                                precedence_map[iface_id] = "LAST_RESORT"
+
+                if hasattr(args, 'verbose') and args.verbose:
                     print(f"DEBUG: Processing site {site_id} ({cur_site['name']}) with {len(site_interfaces)} interfaces")
+                    print(f"DEBUG: Built precedence map with {len(precedence_map)} entries: {precedence_map}")
 
                 for interface in site_interfaces:
                     role = interface.get('wanRoleInterfaceInfo', "")
@@ -293,8 +311,8 @@ def export_socket_site_to_json(args, configuration):
                         cur_wan_interface['downstream_bandwidth'] = interface.get('downstreamBandwidth', 0)
                         cur_wan_interface['dest_type'] = dest_type
                         cur_wan_interface['role'] = role
-                        # Not supported via API to be populated later when available
-                        cur_wan_interface['precedence'] = "ACTIVE"
+                        # Get precedence from naturalOrder mapping, default to ACTIVE if not found
+                        cur_wan_interface['precedence'] = precedence_map.get(wan_interface_id, "ACTIVE")
                         cur_site['wan_interfaces'].append(cur_wan_interface)
                     
                     # Process LAN_LAG_MEMBER interfaces
@@ -708,10 +726,28 @@ def get_processed_site_data(args, configuration):
             site_interfaces = snapshot_site.get('infoSiteSnapshot', {}).get('interfaces', [])
             interface_lookup = {}  # Map interface ID to interface data
             lan_lag_member_count = 0  # Count LAN_LAG_MEMBER interfaces for lag calculation
-            
-            if hasattr(args, 'verbose') and args.verbose:        
+
+            # Build precedence map from devices.interfaces.naturalOrder
+            # naturalOrder: 1 = ACTIVE, 2 = PASSIVE, 3 = LAST_RESORT
+            precedence_map = {}  # Map interface ID to precedence string
+            site_devices = snapshot_site.get('devices') or []
+            for device in site_devices:
+                device_interfaces = device.get('interfaces', [])
+                for device_iface in device_interfaces:
+                    iface_id = device_iface.get('id')
+                    natural_order = device_iface.get('naturalOrder')
+                    if iface_id and natural_order:
+                        if natural_order == 1:
+                            precedence_map[iface_id] = "ACTIVE"
+                        elif natural_order == 2:
+                            precedence_map[iface_id] = "PASSIVE"
+                        elif natural_order == 3:
+                            precedence_map[iface_id] = "LAST_RESORT"
+
+            if hasattr(args, 'verbose') and args.verbose:
                 print(f"DEBUG: Processing site {site_id} ({cur_site['name']}) with {len(site_interfaces)} interfaces")
-            
+                print(f"DEBUG: Built precedence map with {len(precedence_map)} entries: {precedence_map}")
+
             for interface in site_interfaces:
                 role = interface.get('wanRoleInterfaceInfo', "")
                 dest_type = interface.get('destType', "")
@@ -746,7 +782,8 @@ def get_processed_site_data(args, configuration):
                     cur_wan_interface['downstream_bandwidth'] = interface.get('downstreamBandwidth', 0)
                     cur_wan_interface['dest_type'] = dest_type
                     cur_wan_interface['role'] = role
-                    cur_wan_interface['precedence'] = "ACTIVE"
+                    # Get precedence from naturalOrder mapping, default to ACTIVE if not found
+                    cur_wan_interface['precedence'] = precedence_map.get(wan_interface_id, "ACTIVE")
                     cur_site['wan_interfaces'].append(cur_wan_interface)
                 
                 # Process LAN_LAG_MEMBER interfaces

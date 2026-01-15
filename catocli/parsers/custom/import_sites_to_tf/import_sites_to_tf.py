@@ -224,9 +224,9 @@ def extract_socket_sites_data(sites_data):
                             range_interface_index = native_range.get('index')
                         
                         # print(f"Processing Network Range subnet={subnet}, interface_index={range_interface_index}, network_range_id={network_range['id']}, will_create_interface={will_create_interface}")
-                        # Extract DHCP type from network_range (now stored as flat field)
-                        dhcp_type = network_range.get('dhcp_type', '')
-                        
+                        # Extract DHCP settings from network_range (stored in dhcp_settings object)
+                        dhcp_settings = network_range.get('dhcp_settings')
+
                         network_ranges.append({
                             'site_id': site['id'],
                             'site_name': site['name'],
@@ -239,7 +239,7 @@ def extract_socket_sites_data(sites_data):
                             'vlan_tag': network_range.get('vlanTag', network_range.get('vlan', '')),
                             'range_type': 'VLAN' if (network_range.get('vlanTag') or network_range.get('vlan')) else 'Native',
                             'microsegmentation': network_range.get('microsegmentation', False),
-                            'dhcp_type': dhcp_type  # Add dhcp_type for import resource determination
+                            'dhcp_settings': dhcp_settings  # Pass full dhcp_settings object for import resource determination
                         })
     
     return sites, wan_interfaces, lan_interfaces, network_ranges, lan_lag_members

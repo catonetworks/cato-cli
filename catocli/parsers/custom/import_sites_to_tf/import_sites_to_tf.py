@@ -224,6 +224,9 @@ def extract_socket_sites_data(sites_data):
                             range_interface_index = native_range.get('index')
                         
                         # print(f"Processing Network Range subnet={subnet}, interface_index={range_interface_index}, network_range_id={network_range['id']}, will_create_interface={will_create_interface}")
+                        # Extract DHCP type from network_range (now stored as flat field)
+                        dhcp_type = network_range.get('dhcp_type', '')
+                        
                         network_ranges.append({
                             'site_id': site['id'],
                             'site_name': site['name'],
@@ -235,7 +238,8 @@ def extract_socket_sites_data(sites_data):
                             'subnet': subnet,
                             'vlan_tag': network_range.get('vlanTag', network_range.get('vlan', '')),
                             'range_type': 'VLAN' if (network_range.get('vlanTag') or network_range.get('vlan')) else 'Native',
-                            'microsegmentation': network_range.get('microsegmentation', False)
+                            'microsegmentation': network_range.get('microsegmentation', False),
+                            'dhcp_type': dhcp_type  # Add dhcp_type for import resource determination
                         })
     
     return sites, wan_interfaces, lan_interfaces, network_ranges, lan_lag_members
@@ -299,14 +303,17 @@ def import_socket_sites(sites, module_name, verbose=False,
     for i, site in enumerate(sites):
         site_id = site['id']
         site_name = site['name']
-        terraform_key = sanitize_name_for_terraform(site_name)
-        
+
         # Add module. prefix if not present
         if not module_name.startswith('module.'):
             module_name = f'module.{module_name}'
-        
+
+        # Use site_id as the key for uniqueness and stability across imports
+        # This matches the Terraform module logic which uses site.id when available
+        site_key = site_id
+
         # Use correct resource addressing for nested module
-        resource_address = f'{module_name}.module.socket-site["{site_name}"].cato_socket_site.site'
+        resource_address = f'{module_name}.module.socket-site["{site_key}"].cato_socket_site.site'
         print(f"\n[{i+1}/{total_sites}] Site: {site_name} (ID: {site_id})")
         
         success, stdout, stderr = run_terraform_import(resource_address, site_id, verbose=verbose)
@@ -351,10 +358,13 @@ def import_wan_interfaces(wan_interfaces, module_name, verbose=False,
         if not module_name.startswith('module.'):
             module_name = f'module.{module_name}'
         
+        # Use site_id as the site key for consistency
+        site_key = site_id
+
         # In the module, cato_wan_interface.wan is now keyed by interface_index, which we
         # format from the JSON "index" field. Use interface_index as the key.
         wan_key = interface.get('interface_index', interface_id)  # Use formatted index, fallback to ID
-        resource_address = f'{module_name}.module.socket-site["{site_name}"].cato_wan_interface.wan["{wan_key}"]'
+        resource_address = f'{module_name}.module.socket-site["{site_key}"].cato_wan_interface.wan["{wan_key}"]'
         
         # WAN import id must be "site_id:interface_part"
         if ':' in interface_id:
@@ -412,9 +422,12 @@ def import_lan_lag_members(lan_lag_members, module_name, verbose=False,
             # If not a number or None, use as-is
             formatted_index = interface_index if interface_index else interface_id
         
+        # Use site_id as the site key for consistency
+        site_key = site_id
+
         # LAN LAG member addressing pattern from state file:
-        # module.sites_from_csv.module.socket-site["Test"].cato_lan_interface_lag_member.lag_lan_members["INT_6"]
-        resource_address = f'{module_name}.module.socket-site["{site_name}"].cato_lan_interface_lag_member.lag_lan_members["{formatted_index}"]'
+        # module.sites_from_csv.module.socket-site["site_id"].cato_lan_interface_lag_member.lag_lan_members["INT_6"]
+        resource_address = f'{module_name}.module.socket-site["{site_key}"].cato_lan_interface_lag_member.lag_lan_members["{formatted_index}"]'
 
         print(f"\n[{i+1}/{total_interfaces}] LAN LAG Member: {interface_name} on {site_name} (Index: {interface_index})")
 
@@ -471,8 +484,11 @@ def import_lan_interfaces(lan_interfaces, module_name, verbose=False,
             # If not a number or None, use as-is
             formatted_index = interface_index if interface_index else interface_id
         
+        # Use site_id as the site key for consistency
+        site_key = site_id
+
         # The resource address uses interface_index for both the module key and the for_each key
-        resource_address = f'{module_name}.module.socket-site["{site_name}"].module.lan_interfaces["{formatted_index}"].cato_lan_interface.interface["{formatted_index}"]'
+        resource_address = f'{module_name}.module.socket-site["{site_key}"].module.lan_interfaces["{formatted_index}"].cato_lan_interface.interface["{formatted_index}"]'
 
         print(f"\n[{i+1}/{total_interfaces}] LAN Interface: {interface_name} on {site_name} (Index: {interface_index}, ID: {interface_id})")
 
@@ -523,6 +539,7 @@ def import_network_ranges(network_ranges, lan_interfaces, module_name, verbose=F
         network_range_id = network_range['network_range_id']
         range_name = network_range['name']
         site_name = network_range['site_name']
+        site_id = network_range['site_id']
         subnet = network_range['subnet']
         interface_index = network_range['interface_index']
         calculated_index = network_range['calculated_index']
@@ -551,23 +568,27 @@ def import_network_ranges(network_ranges, lan_interfaces, module_name, verbose=F
         is_default_interface = not lan_interface_exists
         
         # Generate the correct key format based on whether this is a default interface range
-        sanitized_range_name = range_name.replace(" ", "_")
-        if is_default_interface:
-            # For default interface ranges, use "DEFAULT" as the prefix to match socket module logic
-            # Include the calculated index to match Terraform module key generation
-            range_key = f"DEFAULT-{sanitized_range_name}-{calculated_index}"
-        else:
-            # For regular LAN interface ranges, use the formatted interface index with calculated index
-            # This matches the Terraform module pattern: "${interface_index}-${name}-${idx}"
-            range_key = f"{formatted_index}-{sanitized_range_name}-{calculated_index}"
+        # Use the network range ID as the key for uniqueness and stability across imports
+        # This matches the Terraform module logic which uses range.id when available
+        range_key = network_range_id
+
+        # Determine if this network range has DHCP settings
+        # Check if dhcp_type field exists and is not empty
+        dhcp_type = (network_range.get('dhcp_type') or '').strip()
+        has_dhcp = dhcp_type != '' and dhcp_type is not None
+        dhcp_resource = 'with_dhcp' if has_dhcp else 'no_dhcp'
         
+        # Use site_id as the site key for consistency
+        site_key = site_id
+
         # Determine the correct resource addressing based on whether this is a default interface
         if is_default_interface:
             # Default interface network ranges are addressed directly under the socket-site module
-            resource_address = f'{module_name}.module.socket-site["{site_name}"].cato_network_range.default_interface_ranges["{range_key}"]'
+            resource_address = f'{module_name}.module.socket-site["{site_key}"].cato_network_range.default_interface_ranges["{range_key}"]'
         else:
             # Regular interface network ranges go through the lan_interfaces module
-            resource_address = f'{module_name}.module.socket-site["{site_name}"].module.lan_interfaces["{formatted_index}"].module.network_ranges.module.network_range["{range_key}"].cato_network_range.no_dhcp[0]'
+            # Use with_dhcp[0] or no_dhcp[0] based on whether DHCP settings exist
+            resource_address = f'{module_name}.module.socket-site["{site_key}"].module.lan_interfaces["{formatted_index}"].module.network_ranges.module.network_range["{range_key}"].cato_network_range.{dhcp_resource}[0]'
         
         print(f"\n[{i+1}/{total_ranges}] Network Range: {range_name} - {subnet} ({network_range_id}) on {site_name}")
         print(f"  Resource Address: {resource_address}")
@@ -958,7 +979,7 @@ def load_csv_data(csv_file, sites_config_dir=None):
                             'range_id': row.get('native_range_id', ''),
                             'vlan': row.get('native_range_vlan', None),
                             'mdns_reflector': row['native_range_mdns_reflector'].upper() == 'TRUE' if row['native_range_mdns_reflector'] else False,
-                            'gateway': row['native_range_gateway'] or None,
+                            # 'gateway': row['native_range_gateway'] or None,
                             'range_type': row['native_range_type'],
                             'translated_subnet': row['native_range_translated_subnet'] or None,
                             'local_ip': row['native_range_local_ip'],
@@ -1189,13 +1210,12 @@ def load_site_network_ranges_csv(site, ranges_csv_file):
                         'translated_subnet': row.get('translated_subnet') or None,
                         'local_ip': row.get('local_ip', ''),
                         'native_range': row.get('is_native_range', '').upper() == 'TRUE', # update this to support json native_range=true
-                        'dhcp_settings': {
-                            'dhcp_type': row.get('dhcp_type', '') or 'DHCP_DISABLED',
-                            'ip_range': row.get('dhcp_ip_range') or None,
-                            'relay_group_id': row.get('dhcp_relay_group_id') or None,
-                            'relay_group_name': row.get('dhcp_relay_group_name') or None,
-                            'dhcp_microsegmentation': row.get('dhcp_microsegmentation', '').upper() == 'TRUE'
-                        }
+                        # Keep DHCP fields flat instead of nested object to match bulk-sites module expectations
+                        'dhcp_type': row.get('dhcp_type', '') or None,
+                        'dhcp_ip_range': row.get('dhcp_ip_range') or None,
+                        'dhcp_relay_group_id': row.get('dhcp_relay_group_id') or None,
+                        'dhcp_relay_group_name': row.get('dhcp_relay_group_name') or None,
+                        'dhcp_microsegmentation': row.get('dhcp_microsegmentation', '').upper() == 'TRUE'
                     }
                     
                     # Add network range to current interface

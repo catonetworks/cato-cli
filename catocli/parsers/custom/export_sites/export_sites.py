@@ -410,14 +410,16 @@ def export_socket_site_to_json(args, configuration):
                     if cur_range_type=="ROUTED_ROUTE":
                         nr_gateway = nr_helper_fields.get('gateway', None)
                         nr_range_type="Routed"
+                        nr_dhcp_type = None
                     elif cur_range_type=="DIRECT_ROUTE":
                         nr_range_type="Direct"
                         nr_local_ip = nr_helper_fields.get('gateway', None)
+                        nr_dhcp_type = None
                     else:
                         nr_range_type="VLAN"
                         nr_local_ip = nr_helper_fields.get('gateway', None)
+                        nr_dhcp_type = nr_helper_fields.get('dhcpType', None)
                     
-                    nr_dhcp_type = nr_helper_fields.get('dhcpType', None)
                     nr_ip_range = nr_helper_fields.get('dhcpRange', None)
                     nr_relay_group_id = nr_helper_fields.get('dhcpRelayGroupId', None)
                     nr_relay_group_name = nr_helper_fields.get('dhcpRelayGroupName', None)
@@ -859,14 +861,16 @@ def get_processed_site_data(args, configuration):
                 if cur_range_type=="ROUTED_ROUTE":
                     nr_gateway = nr_helper_fields.get('gateway', None)
                     nr_range_type="Routed"
+                    nr_dhcp_type = None
                 elif cur_range_type=="DIRECT_ROUTE":
                     nr_range_type="Direct"
                     nr_local_ip = nr_helper_fields.get('gateway', None)
+                    nr_dhcp_type = None
                 else:
                     nr_range_type="VLAN"
                     nr_local_ip = nr_helper_fields.get('gateway', None)
+                    nr_dhcp_type = nr_helper_fields.get('dhcpType', None)
                 
-                nr_dhcp_type = nr_helper_fields.get('dhcpType', None)
                 nr_ip_range = nr_helper_fields.get('dhcpRange', None)
                 # nr_relay_group_id = nr_helper_fields.get('dhcpRelayGroupId', None)
                 nr_relay_group_id = None # Leave as None only exporting the name
@@ -1041,15 +1045,16 @@ def export_sites_to_csv(sites, args, account_id):
         'wan_downstream_bw',
         'wan_role',
         'wan_precedence',
+        'site_type',
+        'connection_type',
         'site_description',
-        'native_range_subnet',
-        # 'native_range_name',
         'native_range_id',
+        'native_range_subnet',
+        'native_range_local_ip',
+        'native_range_translated_subnet',
         'native_range_vlan',
         'native_range_mdns_reflector',
-        # 'native_range_gateway',
         'native_range_type',
-        'native_range_translated_subnet',
         'native_range_interface_id',
         'native_range_interface_index',
         'native_range_interface_name',
@@ -1060,9 +1065,6 @@ def export_sites_to_csv(sites, args, account_id):
         'native_range_dhcp_relay_group_id',
         'native_range_dhcp_relay_group_name',
         'native_range_dhcp_microsegmentation',
-        'native_range_local_ip',
-        'site_type',
-        'connection_type',
         'site_location_address',
         'site_location_city',
         'site_location_country_code',
@@ -1128,15 +1130,16 @@ def export_sites_to_csv(sites, args, account_id):
                 'wan_precedence': wan_interface.get('precedence', '') if wan_interface else '',
                 
                 # Site attributes - only populate on first interface row
+                'site_type': site.get('type', '') if is_first_interface else '',
+                'connection_type': site.get('connection_type', '') if is_first_interface else '',
                 'site_description': site.get('description', '') if is_first_interface else '',
-                'native_range_subnet': native_subnet if is_first_interface else '',
-                # 'native_range_name': native_range.get('range_name', '') if is_first_interface else '',
                 'native_range_id': native_range.get('range_id', '') if is_first_interface else '',
+                'native_range_subnet': native_subnet if is_first_interface else '',
+                'native_range_local_ip': native_range.get('local_ip', '') if is_first_interface else '',
+                'native_range_translated_subnet': native_range.get('translated_subnet', '') if is_first_interface else '',
                 'native_range_vlan': native_range.get('vlan', '') if is_first_interface else '',
                 'native_range_mdns_reflector': str(native_range.get('mdns_reflector', '')).upper() if is_first_interface and native_range.get('mdns_reflector') != '' else '' if is_first_interface else '',
-                # 'native_range_gateway': native_range.get('gateway', '') if is_first_interface else '',
                 'native_range_type': native_range.get('range_type', '') if is_first_interface else '',
-                'native_range_translated_subnet': native_range.get('translated_subnet', '') if is_first_interface else '',
                 'native_range_interface_id': native_range.get('interface_id', '') if is_first_interface else '',
                 'native_range_interface_index': native_range.get('index', '') if is_first_interface else '',
                 'native_range_interface_name': native_range.get('interface_name', '') if is_first_interface else '',
@@ -1147,9 +1150,6 @@ def export_sites_to_csv(sites, args, account_id):
                 'native_range_dhcp_relay_group_id': native_range.get('dhcp_settings', {}).get('relay_group_id', '') if is_first_interface else '',
                 'native_range_dhcp_relay_group_name': native_range.get('dhcp_settings', {}).get('relay_group_name', '') if is_first_interface else '',
                 'native_range_dhcp_microsegmentation': str(native_range.get('dhcp_settings', {}).get('dhcp_microsegmentation', '')).upper() if is_first_interface and native_range.get('dhcp_settings', {}).get('dhcp_microsegmentation') != '' else '' if is_first_interface else '',
-                'native_range_local_ip': native_range.get('local_ip', '') if is_first_interface else '',
-                'site_type': site.get('type', '') if is_first_interface else '',
-                'connection_type': site.get('connection_type', '') if is_first_interface else '',
                 'site_location_address': site.get('site_location', {}).get('address', '') if is_first_interface else '',
                 'site_location_city': site.get('site_location', {}).get('city', '') if is_first_interface else '',
                 'site_location_country_code': site.get('site_location', {}).get('countryCode', '') if is_first_interface else '',
@@ -1203,11 +1203,28 @@ def export_network_ranges_to_csv(site, args, account_id):
     # Define CSV headers - Reordered LAN interface columns first, then network range columns
     headers = [
         # LAN Interface columns (first 3 columns, lag_min_links 4th, is_native_range 5th, lan_interface_index 6th)
-        'lan_interface_id', 'lan_interface_name', 'lan_interface_dest_type', 'lag_min_links', 'is_native_range', 'lan_interface_index',
+        'lan_interface_id', 
+        'lan_interface_name', 
+        'lan_interface_dest_type', 
+        'lag_min_links', 
+        'is_native_range', 
+        'lan_interface_index',
         # Network Range columns (populated on all rows)
-        'network_range_id', 'network_range_name', 'subnet', 'vlan', 'mdns_reflector', 
-        'gateway', 'range_type', 'translated_subnet', 'internet_only', 'local_ip', 
-        'dhcp_type', 'dhcp_ip_range', 'dhcp_relay_group_id', 'dhcp_relay_group_name', 'dhcp_microsegmentation'
+        'network_range_id', 
+        'network_range_name', 
+        'subnet', 
+        'local_ip', 
+        'gateway', 
+        'translated_subnet', 
+        'vlan', 
+        'mdns_reflector', 
+        'range_type', 
+        'internet_only', 
+        'dhcp_type', 
+        'dhcp_ip_range', 
+        'dhcp_relay_group_id', 
+        'dhcp_relay_group_name', 
+        'dhcp_microsegmentation'
     ]
     
     rows = []
@@ -1263,13 +1280,13 @@ def export_network_ranges_to_csv(site, args, account_id):
                         'network_range_id': network_range.get('id', ''),
                         'network_range_name': network_range.get('name', ''),
                         'subnet': network_range.get('subnet', ''),
+                        'local_ip': network_range.get('local_ip', ''),
+                        'gateway': network_range.get('gateway', ''),
+                        'translated_subnet': network_range.get('translated_subnet', ''),
                         'vlan': network_range.get('vlan', ''),
                         'mdns_reflector': str(network_range.get('mdns_reflector', False)).upper(),
-                        'gateway': network_range.get('gateway', ''),
                         'range_type': network_range.get('range_type', ''),
-                        'translated_subnet': network_range.get('translated_subnet', ''),
                         'internet_only': network_range.get('internet_only', ''),
-                        'local_ip': network_range.get('local_ip', ''),
                         'dhcp_type': network_range.get('dhcp_settings', {}).get('dhcp_type', ''),
                         'dhcp_ip_range': network_range.get('dhcp_settings', {}).get('ip_range', ''),
                         'dhcp_relay_group_id': network_range.get('dhcp_settings', {}).get('relay_group_id', ''),
@@ -1305,18 +1322,17 @@ def export_network_ranges_to_csv(site, args, account_id):
                 'lag_min_links': '',  # Empty for LAN_LAG_MEMBER
                 'is_native_range': '',  # Empty - LAN_LAG_MEMBER should NOT have is_native_range=TRUE
                 'lan_interface_index': interface_index,
-                
                 # Network Range details (all empty for LAN_LAG_MEMBER)
                 'network_range_id': '',
                 'network_range_name': '',
                 'subnet': '',
+                'local_ip': '',
+                'gateway': '',
+                'translated_subnet': '',
                 'vlan': '',
                 'mdns_reflector': '',
-                'gateway': '',
                 'range_type': '',
-                'translated_subnet': '',
                 'internet_only': '',
-                'local_ip': '',
                 'dhcp_type': '',
                 'dhcp_ip_range': '',
                 'dhcp_relay_group_id': '',
@@ -1352,13 +1368,13 @@ def export_network_ranges_to_csv(site, args, account_id):
                 'network_range_id': '',
                 'network_range_name': '',
                 'subnet': '',
+                'local_ip': '',
+                'gateway': '',
+                'translated_subnet': '',
                 'vlan': '',
                 'mdns_reflector': '',
-                'gateway': '',
                 'range_type': '',
-                'translated_subnet': '',
                 'internet_only': '',
-                'local_ip': '',
                 'dhcp_type': '',
                 'dhcp_ip_range': '',
                 'dhcp_relay_group_id': '',
@@ -1403,13 +1419,13 @@ def export_network_ranges_to_csv(site, args, account_id):
                     'network_range_id': network_range.get('id', ''),
                     'network_range_name': network_range.get('name', ''),
                     'subnet': network_range.get('subnet', ''),
+                    'local_ip': network_range.get('local_ip', ''),
+                    'gateway': network_range.get('gateway', ''),
+                    'translated_subnet': network_range.get('translated_subnet', ''),
                     'vlan': network_range.get('vlan', ''),
                     'mdns_reflector': str(network_range.get('mdns_reflector', False)).upper(),
-                    'gateway': network_range.get('gateway', ''),
                     'range_type': network_range.get('range_type', ''),
-                    'translated_subnet': network_range.get('translated_subnet', ''),
                     'internet_only': network_range.get('internet_only', ''),
-                    'local_ip': network_range.get('local_ip', ''),
                     'dhcp_type': network_range.get('dhcp_settings', {}).get('dhcp_type', ''),
                     'dhcp_ip_range': network_range.get('dhcp_settings', {}).get('ip_range', ''),
                     'dhcp_relay_group_id': network_range.get('dhcp_settings', {}).get('relay_group_id', ''),

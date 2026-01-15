@@ -173,39 +173,61 @@ def validate_location(site: Dict, location_db: Dict, verbose: bool = False) -> T
 
 def validate_site_location(args, configuration=None):
     """Main validation function called by CLI"""
-    
+
     # Extract arguments
     file_path = args.file_path
     file_format = args.format
     verbose = args.verbose
     show_valid = args.show_valid
     output_file = args.output if hasattr(args, 'output') else None
-    
+
     # Load site location database
     print("Loading Cato location database...")
     location_db = load_site_location_data()
     print(f"Loaded {len(location_db)} locations from database\n")
-    
+
     # Load site data from file
     print(f"Loading site data from {file_path}...")
     if file_format == 'csv':
         sites = load_csv_data(file_path)
     else:  # json
         sites = load_json_data(file_path)
-    
+
     print(f"Loaded {len(sites)} sites\n")
-    
+
     # Validate each site
     print("=" * 80)
     print("VALIDATION RESULTS")
     print("=" * 80)
-    
+
     valid_sites = []
     invalid_sites = []
-    
+    skipped_sites = []
+
     for idx, site in enumerate(sites, 1):
+        # Check if all location fields are empty
+        city = site.get('city', '').strip()
+        country_code = site.get('country_code', '').strip()
+        state_code = site.get('state_code', '').strip()
+        timezone = site.get('timezone', '').strip()
+
+        if not city and not country_code and not state_code and not timezone:
+            # Skip this row - all location fields are empty
+            skipped_sites.append(site)
+            if verbose:
+                # Format line reference based on source type
+                if site.get('source_type') == 'csv':
+                    line_ref = f" (CSV line {site.get('line_number', 'unknown')})"
+                elif site.get('source_type') == 'json':
+                    line_ref = f" (JSON index {site.get('line_number', 'unknown')})"
+                else:
+                    line_ref = ""
+                print(f"\n[-] Site {idx}: {site.get('name', 'Unnamed')}{line_ref}")
+                print("    Status: SKIPPED (all location fields empty)")
+            continue
+
         is_valid, errors = validate_location(site, location_db, verbose)
-        
+
         # Format line reference based on source type
         if site.get('source_type') == 'csv':
             line_ref = f" (CSV line {site.get('line_number', 'unknown')})"
@@ -213,19 +235,19 @@ def validate_site_location(args, configuration=None):
             line_ref = f" (JSON index {site.get('line_number', 'unknown')})"
         else:
             line_ref = ""
-        
+
         if is_valid:
             valid_sites.append(site)
             if show_valid or verbose:
                 print(f"\n[✓] Site {idx}: {site.get('name', 'Unnamed')}{line_ref}")
-                print(f"    Location: {site['city']}, {site['country_code']}" + 
+                print(f"    Location: {site['city']}, {site['country_code']}" +
                       (f", {site['state_code']}" if site.get('state_code') else ""))
                 print(f"    Timezone: {site['timezone']}")
                 print("    Status: VALID")
         else:
             invalid_sites.append({'site': site, 'errors': errors})
             print(f"\n[✗] Site {idx}: {site.get('name', 'Unnamed')}{line_ref}")
-            print(f"    Location: {site['city']}, {site['country_code']}" + 
+            print(f"    Location: {site['city']}, {site['country_code']}" +
                   (f", {site['state_code']}" if site.get('state_code') else ""))
             print(f"    Timezone: {site['timezone']}")
             print("    Status: INVALID")
@@ -239,15 +261,32 @@ def validate_site_location(args, configuration=None):
     print(f"Total sites processed: {len(sites)}")
     print(f"Valid sites: {len(valid_sites)} ({len(valid_sites)/len(sites)*100:.1f}%)")
     print(f"Invalid sites: {len(invalid_sites)} ({len(invalid_sites)/len(sites)*100:.1f}%)")
+    if skipped_sites:
+        print(f"Skipped sites: {len(skipped_sites)} ({len(skipped_sites)/len(sites)*100:.1f}%)")
+
+    # Show skipped sites section if there are any
+    if skipped_sites:
+        print("\n" + "=" * 80)
+        print("SKIPPED SITES (all location fields empty)")
+        print("=" * 80)
+        for site in skipped_sites:
+            # Format line reference based on source type
+            if site.get('source_type') == 'csv':
+                line_ref = f" (CSV line {site.get('line_number', 'unknown')})"
+            elif site.get('source_type') == 'json':
+                line_ref = f" (JSON index {site.get('line_number', 'unknown')})"
+            else:
+                line_ref = ""
+            print(f"  - {site.get('name', 'Unnamed')}{line_ref}")
     
     # Write output file if requested
     if output_file:
         try:
             with open(output_file, 'w', newline='', encoding='utf-8') as f:
                 writer = csv.writer(f)
-                writer.writerow(['Line/Index', 'Site Name', 'City', 'Country Code', 'State Code', 
+                writer.writerow(['Line/Index', 'Site Name', 'City', 'Country Code', 'State Code',
                                'Timezone', 'Status', 'Errors'])
-                
+
                 for site in valid_sites:
                     writer.writerow([
                         site.get('line_number', ''),
@@ -259,7 +298,7 @@ def validate_site_location(args, configuration=None):
                         'VALID',
                         ''
                     ])
-                
+
                 for item in invalid_sites:
                     site = item['site']
                     errors = item['errors']
@@ -273,7 +312,19 @@ def validate_site_location(args, configuration=None):
                         'INVALID',
                         '; '.join(errors)
                     ])
-            
+
+                for site in skipped_sites:
+                    writer.writerow([
+                        site.get('line_number', ''),
+                        site.get('name', ''),
+                        site.get('city', ''),
+                        site.get('country_code', ''),
+                        site.get('state_code', ''),
+                        site.get('timezone', ''),
+                        'SKIPPED',
+                        'All location fields empty'
+                    ])
+
             print(f"\nValidation results written to: {output_file}")
         except Exception as e:
             print(f"\nWARNING: Failed to write output file: {e}")

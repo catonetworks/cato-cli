@@ -303,6 +303,11 @@ def import_socket_sites(sites, module_name, verbose=False,
     for i, site in enumerate(sites):
         site_id = site['id']
         site_name = site['name']
+        
+        # Check if site_id is empty or blank
+        if not site_id or not str(site_id).strip():
+            print(f"\n[{i+1}/{total_sites}] Skipping site '{site_name}' - ID is empty or blank")
+            continue
 
         # Add module. prefix if not present
         if not module_name.startswith('module.'):
@@ -353,6 +358,11 @@ def import_wan_interfaces(wan_interfaces, module_name, verbose=False,
         interface_id = interface['interface_id']
         interface_name = interface['name']
         site_name = interface['site_name']
+        
+        # Check if interface_id is empty or blank
+        if not interface_id or not str(interface_id).strip():
+            print(f"\n[{i+1}/{total_interfaces}] Skipping WAN interface '{interface_name}' on {site_name} - ID is empty or blank")
+            continue
         
         # Add module. prefix if not present
         if not module_name.startswith('module.'):
@@ -408,6 +418,11 @@ def import_lan_lag_members(lan_lag_members, module_name, verbose=False,
         interface_index = interface['index']
         interface_name = interface['name']
         site_name = interface['site_name']
+        
+        # Check if interface_index is empty or blank (LAG members use index for import)
+        if not interface_index or not str(interface_index).strip():
+            print(f"\n[{i+1}/{total_interfaces}] Skipping LAN LAG member '{interface_name}' on {site_name} - Index is empty or blank")
+            continue
         
         # Add module. prefix if not present
         if not module_name.startswith('module.'):
@@ -470,6 +485,11 @@ def import_lan_interfaces(lan_interfaces, module_name, verbose=False,
         interface_index = interface['index']
         interface_name = interface['name']
         site_name = interface['site_name']
+        
+        # Check if interface_id is empty or blank
+        if not interface_id or not str(interface_id).strip():
+            print(f"\n[{i+1}/{total_interfaces}] Skipping LAN interface '{interface_name}' on {site_name} - ID is empty or blank")
+            continue
         
         # Add module. prefix if not present
         if not module_name.startswith('module.'):
@@ -547,6 +567,11 @@ def import_network_ranges(network_ranges, lan_interfaces, module_name, verbose=F
         subnet = network_range['subnet']
         interface_index = network_range['interface_index']
         calculated_index = network_range['calculated_index']
+        
+        # Check if network_range_id is empty or blank
+        if not network_range_id or not str(network_range_id).strip():
+            print(f"\n[{i+1}/{total_ranges}] Skipping network range '{range_name}' ({subnet}) on {site_name} - ID is empty or blank")
+            continue
         
         # Add module. prefix if not present
         if not module_name.startswith('module.'):

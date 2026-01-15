@@ -173,3 +173,8 @@
 
 ## 3.0.51 (2026-01-12)
 - Added bulk site location validator for csv or json
+
+## 3.0.52 (2026-01-14)
+- Updated site export and import_site_to_tf process to accommmodate new read operations for site, network range, and interface
+- Added validate_site_location site location validation
+- Updated templates for csv and json to align with new format

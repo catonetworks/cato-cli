@@ -11,37 +11,6 @@ from graphql_client.api_client import ApiException
 from ..customLib import writeDataToFile, makeCall, getAccountID
 from ....Utils.cliutils import load_cli_settings
 
-# def calculateLocalIp(subnet):
-#     """
-#     Calculate the first usable IP address from a subnet/CIDR notation.
-#     Returns the network address + 1 (first host IP).
-    
-#     Args:
-#         subnet (str): Subnet in CIDR notation (e.g., "192.168.1.0/24")
-    
-#     Returns:
-#         str: First usable IP address, or None if invalid subnet
-#     """
-#     if not subnet or subnet == "":
-#         return None
-        
-#     try:
-#         # Parse the subnet
-#         network = ipaddress.IPv4Network(subnet, strict=False)
-        
-#         # Get the first usable IP (network address + 1)
-#         # For /31 and /32 networks, return the network address itself
-#         if network.prefixlen >= 31:
-#             return str(network.network_address)
-#         else:
-#             # Return network + 1 (first host address)
-#             first_host = network.network_address + 1
-#             return str(first_host)
-            
-#     except (ipaddress.AddressValueError, ipaddress.NetmaskValueError, ValueError) as e:
-#         # Invalid subnet format
-#         return None
-
 def generate_template(args):
     """
     Generate template files from embedded templates directory
@@ -223,8 +192,11 @@ def export_socket_site_to_json(args, configuration):
                 print("No sites found in this account.")
                 return [{"success": False, "message": "No sites found in account", "account_id": account_id}]
         
+        total_sites = len(entity_sites)
+        print(f"\nExporting Cato physical socket sites:\n")
+        print(f"{total_sites} site(s) found...\n")
         
-        for entity_site in entity_sites:
+        for idx, entity_site in enumerate(entity_sites, 1):
             site_id = entity_site["entity"]["id"]
             entity_input = {"id":site_id,"type":"site"}
             snapshot_response = getAccountSnapshot(args, configuration, account_id, [site_id])
@@ -234,6 +206,7 @@ def export_socket_site_to_json(args, configuration):
             entity_network_ranges = getEntityLookup(args, configuration, account_id, "siteRange",None, entity_input)
 
             connectionType = snapshot_site.get('infoSiteSnapshot', {}).get('connType', "")
+            site_name = snapshot_site.get('infoSiteSnapshot', {}).get('name', 'Unknown')
 
             cur_site = {
                 'wan_interfaces': [],
@@ -241,7 +214,10 @@ def export_socket_site_to_json(args, configuration):
                 'native_range': {}
             }
 
-            if connectionType in settings["export_by_socket_type"]:
+            if connectionType not in settings["export_by_socket_type"]:
+                print(f"[{idx}/{total_sites}] Ignoring cloud site: {site_name} (ID: {site_id})")
+            else:
+                print(f"[{idx}/{total_sites}] Processing physical socket site: {site_name} (ID: {site_id})")
                 cur_site['id'] = site_id
                 cur_site['name'] = snapshot_site.get('infoSiteSnapshot', {}).get('name')
                 cur_site['description'] = snapshot_site.get('infoSiteSnapshot', {}).get('description')
@@ -439,7 +415,8 @@ def export_socket_site_to_json(args, configuration):
                         nr_dhcp_type = nr_helper_fields.get('dhcpType', None)
                     
                     nr_ip_range = nr_helper_fields.get('dhcpRange', None)
-                    nr_relay_group_id = nr_helper_fields.get('dhcpRelayGroupId', None)
+                    # For JSON export, only export relay_group_name (not ID) to avoid conflicts in provider
+                    nr_relay_group_id = None
                     nr_relay_group_name = nr_helper_fields.get('dhcpRelayGroupName', None)
                     nr_translated_subnet = nr_helper_fields.get('translatedSubnet', None)
                     nr_internet_only = nr_helper_fields.get('internetOnly', None)  # Default to None for JSON
@@ -562,6 +539,7 @@ def export_socket_site_to_json(args, configuration):
                 print(f"Using default filename template: {filename_template}")
             
         # Write the processed data to file using the general-purpose function
+        print(f"\nWriting data to file...")
         output_file = writeDataToFile(
             data=processed_data,
             args=args,
@@ -569,6 +547,10 @@ def export_socket_site_to_json(args, configuration):
             default_filename_template=filename_template,
             default_directory="config_data"
         )
+        
+        print(f"\n Export completed successfully!")
+        print(f"  Output file: {output_file}")
+        print(f"  Total sites exported: {len(processed_data['sites'])}")
         
         return [{"success": True, "output_file": output_file, "account_id": account_id}]
             
@@ -621,14 +603,22 @@ def export_socket_site_to_csv(args, configuration):
         output_files = []
         
         # Export main sites CSV
+        print(f"\nExporting main sites CSV...")
         sites_csv_file = export_sites_to_csv(processed_data['sites'], args, account_id)
         output_files.append(sites_csv_file)
         
         # Export individual network ranges CSV files for each site
-        for site in processed_data['sites']:
+        total_sites = len(processed_data['sites'])
+        print(f"\nExporting network ranges CSV files for {total_sites} Cato physical socket site(s)...")
+        for idx, site in enumerate(processed_data['sites'], 1):
+            site_name = site.get('name', 'Unknown')
+            print(f"[{idx}/{total_sites}] Exporting network ranges CSV for: {site_name}")
             ranges_csv_file = export_network_ranges_to_csv(site, args, account_id)
             if ranges_csv_file:
                 output_files.append(ranges_csv_file)
+        
+        print(f"\n CSV export completed successfully!")
+        print(f"  Total files created: {len(output_files)}")
         
         return [{"success": True, "output_files": output_files, "account_id": account_id}]
         
@@ -697,7 +687,11 @@ def get_processed_site_data(args, configuration):
             print("No sites found in this account.")
             return [{"success": False, "message": "No sites found in account", "account_id": account_id}]
     
-    for entity_site in entity_sites:
+    total_sites = len(entity_sites)
+    print(f"\nExporting Cato physical socket sites:\n")
+    print(f"{total_sites} site(s) found...\n")
+
+    for idx, entity_site in enumerate(entity_sites, 1):
         site_id = entity_site["entity"]["id"]
         entity_input = {"id":site_id,"type":"site"}
         snapshot_response = getAccountSnapshot(args, configuration, account_id, [site_id])
@@ -707,14 +701,19 @@ def get_processed_site_data(args, configuration):
         entity_network_ranges = getEntityLookup(args, configuration, account_id, "siteRange",None, entity_input)
 
         connectionType = snapshot_site.get('infoSiteSnapshot', {}).get('connType', "")
-        
+        site_name = snapshot_site.get('infoSiteSnapshot', {}).get('name', 'Unknown')
+                
         cur_site = {
             'wan_interfaces': [],
             'lan_interfaces': [],
             'native_range': {}
         }
         
-        if connectionType in settings["export_by_socket_type"]:
+        if connectionType not in settings["export_by_socket_type"]:
+            print(f"[{idx}/{total_sites}] Ignoring cloud site: {site_name} (ID: {site_id})")
+        else:
+            print(f"[{idx}/{total_sites}] Processing physical socket site: {site_name} (ID: {site_id})")
+
             cur_site['id'] = site_id
             cur_site['name'] = snapshot_site.get('infoSiteSnapshot', {}).get('name')
             cur_site['description'] = snapshot_site.get('infoSiteSnapshot', {}).get('description')
@@ -1560,7 +1559,30 @@ def populateSiteLocationData(args, site_data, cur_site):
     
     # Get timezone - always use the 0 element in the timezones array
     timezones = location_data.get('timezone', [])
-    cur_site['site_location']['timezone'] = timezones[0] if timezones else None
+    timezone = timezones[0] if timezones else None
+    
+    # If timezone is still None, set a sensible default based on country
+    if not timezone:
+        # Default timezones for countries without city lookup
+        country_default_timezones = {
+            'FR': 'Europe/Paris',
+            'US': 'America/New_York',
+            'GB': 'Europe/London',
+            'DE': 'Europe/Berlin',
+            'JP': 'Asia/Tokyo',
+            'AU': 'Australia/Sydney',
+            'CA': 'America/Toronto',
+            'IN': 'Asia/Kolkata',
+            'CN': 'Asia/Shanghai',
+            'BR': 'America/Sao_Paulo',
+        }
+        country_code = cur_site['site_location']['countryCode']
+        timezone = country_default_timezones.get(country_code, 'UTC')
+        
+        if hasattr(args, 'verbose') and args.verbose:
+            print(f"  No timezone found in location data, using default: {timezone}")
+    
+    cur_site['site_location']['timezone'] = timezone
     return cur_site
 
 def getEntityLookup(args, configuration, account_id, entity_type, entity_ids=[], entity_input=[]):

@@ -578,9 +578,14 @@ def import_network_ranges(network_ranges, lan_interfaces, module_name, verbose=F
         range_key = network_range_id
 
         # Determine if this network range has DHCP settings
-        # Check if dhcp_type field exists and is not empty
-        dhcp_type = (network_range.get('dhcp_type') or '').strip()
-        has_dhcp = dhcp_type != '' and dhcp_type is not None
+        # Check if dhcp_settings object exists and has a dhcp_type field
+        # The module creates with_dhcp[0] if dhcp_settings != null, no_dhcp[0] if dhcp_settings == null
+        dhcp_settings = network_range.get('dhcp_settings')
+        has_dhcp = (
+            dhcp_settings is not None and 
+            isinstance(dhcp_settings, dict) and 
+            dhcp_settings.get('dhcp_type') is not None
+        )
         dhcp_resource = 'with_dhcp' if has_dhcp else 'no_dhcp'
 
         # Use site_id as the site key for consistency

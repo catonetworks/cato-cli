@@ -1223,12 +1223,20 @@ def load_site_network_ranges_csv(site, ranges_csv_file):
                         'translated_subnet': row.get('translated_subnet') or None,
                         'local_ip': row.get('local_ip', ''),
                         'native_range': row.get('is_native_range', '').upper() == 'TRUE', # update this to support json native_range=true
-                        # Keep DHCP fields flat instead of nested object to match bulk-sites module expectations
+                        # Keep DHCP fields flat for bulk-sites module compatibility
                         'dhcp_type': row.get('dhcp_type', '') or None,
                         'dhcp_ip_range': row.get('dhcp_ip_range') or None,
                         'dhcp_relay_group_id': row.get('dhcp_relay_group_id') or None,
                         'dhcp_relay_group_name': row.get('dhcp_relay_group_name') or None,
-                        'dhcp_microsegmentation': row.get('dhcp_microsegmentation', '').upper() == 'TRUE'
+                        'dhcp_microsegmentation': row.get('dhcp_microsegmentation', '').upper() == 'TRUE',
+                        # Also create dhcp_settings object for import script compatibility
+                        'dhcp_settings': {
+                            'dhcp_type': row.get('dhcp_type', '') or None,
+                            'ip_range': row.get('dhcp_ip_range') or None,
+                            'relay_group_id': row.get('dhcp_relay_group_id') or None,
+                            'relay_group_name': row.get('dhcp_relay_group_name') or None,
+                            'dhcp_microsegmentation': row.get('dhcp_microsegmentation', '').upper() == 'TRUE'
+                        } if row.get('dhcp_type', '').strip() else None
                     }
                     
                     # Add network range to current interface

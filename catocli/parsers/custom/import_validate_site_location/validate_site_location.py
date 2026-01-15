@@ -267,7 +267,7 @@ def validate_site_location(args, configuration=None):
     # Show skipped sites section if there are any
     if skipped_sites:
         print("\n" + "=" * 80)
-        print("SKIPPED SITES (all location fields empty)")
+        print("SKIPPED ROWS (all location fields empty)")
         print("=" * 80)
         for site in skipped_sites:
             # Format line reference based on source type

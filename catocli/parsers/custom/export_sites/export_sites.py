@@ -439,7 +439,8 @@ def export_socket_site_to_json(args, configuration):
                                 cur_range['translated_subnet'] = None if nr_translated_subnet == cur_range['subnet'] else nr_translated_subnet
                                 cur_range['internet_only'] = nr_internet_only
                                 cur_range['local_ip'] = nr_local_ip
-                                cur_range['interface_index'] = nr_lan_interface_entry.get('index', '')  # Add interface_index for proper association
+                                # For default_lan, use the native range's index instead of the lan_interface entry
+                                cur_range['interface_index'] = site_native_range.get('index', '')  # Add interface_index for proper association
                                 cur_range['dhcp_settings'] = {
                                     'dhcp_type': nr_dhcp_type,
                                     'ip_range': nr_ip_range,
@@ -481,6 +482,7 @@ def export_socket_site_to_json(args, configuration):
                             cur_range['translated_subnet'] = None if nr_translated_subnet == cur_range['subnet'] else nr_translated_subnet
                             cur_range['internet_only'] = nr_internet_only
                             cur_range['local_ip'] = nr_local_ip  # Use the calculated or original value
+                            # For regular LAN interfaces, use the LAN interface's own index
                             cur_range['interface_index'] = nr_lan_interface_entry.get('index', '')  # Add interface_index for proper association
                             cur_range['dhcp_settings'] = {
                                 'dhcp_type': nr_dhcp_type,

@@ -1607,6 +1607,8 @@ def getEntityLookup(args, configuration, account_id, entity_type, entity_ids=[],
         "variables": {
             "accountID": account_id,
             "type": entity_type,
+            "from": 0,
+            "limit": 1000,
             "entityIDs": entity_ids,
             "entityInput": entity_input
         },

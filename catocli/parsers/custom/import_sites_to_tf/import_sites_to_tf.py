@@ -1485,39 +1485,95 @@ def validate_json_file(json_file, verbose=False):
                 else:
                     # Check for required native_range fields
                     if not native_range.get('subnet'):
-                        warnings.append(f"Site '{site_name}': native_range missing 'subnet'")
+                        errors.append(f"Site '{site_name}': native_range missing 'subnet'")
                     if not native_range.get('local_ip'):
-                        warnings.append(f"Site '{site_name}': native_range missing 'local_ip'")
+                        errors.append(f"Site '{site_name}': native_range missing 'local_ip'")
+                    
+                    # Validate DHCP-related fields for native range
+                    dhcp_settings = native_range.get('dhcp_settings')
+                    if dhcp_settings and isinstance(dhcp_settings, dict):
+                        dhcp_type = dhcp_settings.get('dhcp_type')
+                        if dhcp_type == 'DHCP_RANGE':
+                            if not dhcp_settings.get('ip_range'):
+                                errors.append(f"Site '{site_name}': native_range dhcp_type is DHCP_RANGE but missing 'ip_range'")
+                        elif dhcp_type == 'DHCP_RELAY':
+                            relay_id = dhcp_settings.get('relay_group_id')
+                            relay_name = dhcp_settings.get('relay_group_name')
+                            if not relay_id and not relay_name:
+                                errors.append(f"Site '{site_name}': native_range dhcp_type is DHCP_RELAY but missing relay_group_id or relay_group_name")
+                            if relay_id and relay_name:
+                                warnings.append(f"Site '{site_name}': native_range has both relay_group_id and relay_group_name (should use only one)")
             else:
                 warnings.append(f"Site '{site_name}': Missing 'native_range' object")
             
-            # Check interfaces
+            # Check WAN interfaces
             wan_interfaces = site.get('wan_interfaces', [])
-            lan_interfaces = site.get('lan_interfaces', [])
-            
             if not wan_interfaces:
                 warnings.append(f"Site '{site_name}': No WAN interfaces defined")
             
-            for wan in wan_interfaces:
+            for wan_idx, wan in enumerate(wan_interfaces):
                 if not wan.get('id'):
-                    warnings.append(f"Site '{site_name}': WAN interface missing 'id'")
+                    errors.append(f"Site '{site_name}' WAN #{wan_idx+1}: Missing 'id'")
                 if not wan.get('index'):
-                    warnings.append(f"Site '{site_name}': WAN interface missing 'index'")
+                    errors.append(f"Site '{site_name}' WAN #{wan_idx+1}: Missing 'index'")
+                if not wan.get('name'):
+                    if verbose:
+                        warnings.append(f"Site '{site_name}' WAN #{wan_idx+1}: Missing 'name'")
             
-            for lan in lan_interfaces:
+            # Check LAN interfaces and network ranges
+            lan_interfaces = site.get('lan_interfaces', [])
+            for lan_idx, lan in enumerate(lan_interfaces):
                 is_default = lan.get('default_lan', False)
-                if not is_default and not lan.get('id'):
-                    warnings.append(f"Site '{site_name}': LAN interface missing 'id'")
+                lan_index = lan.get('index', f'#{lan_idx+1}')
                 
-                # Check network ranges
+                # Validate network ranges within this LAN interface
                 network_ranges = lan.get('network_ranges', [])
-                for nr in network_ranges:
-                    if not nr.get('id'):
-                        warnings.append(f"Site '{site_name}': Network range missing 'id'")
-                    if not nr.get('name'):
-                        warnings.append(f"Site '{site_name}': Network range missing 'name'")
+                for nr_idx, nr in enumerate(network_ranges):
+                    range_name = nr.get('name', f'Range #{nr_idx+1}')
+                    range_type = nr.get('range_type', '')
+                    
+                    # Required fields for network ranges
                     if not nr.get('subnet'):
-                        errors.append(f"Site '{site_name}': Network range missing 'subnet' (required)")
+                        errors.append(f"Site '{site_name}' LAN {lan_index} range '{range_name}': Missing 'subnet'")
+                    if not nr.get('range_type'):
+                        errors.append(f"Site '{site_name}' LAN {lan_index} range '{range_name}': Missing 'range_type'")
+                    if not nr.get('name'):
+                        errors.append(f"Site '{site_name}' LAN {lan_index} range #{nr_idx+1}: Missing 'name'")
+                    
+                    # Conditional local_ip validation
+                    if range_type not in ['Direct', 'Native', 'Routed']:
+                        if not nr.get('local_ip'):
+                            if verbose:
+                                errors.append(f"Site '{site_name}' LAN {lan_index} range '{range_name}': Missing 'local_ip' (required for {range_type})")
+                    
+                    # Range type specific validations
+                    if range_type == 'Routed':
+                        if not nr.get('gateway'):
+                            if verbose:
+                                errors.append(f"Site '{site_name}' LAN {lan_index} range '{range_name}': range_type is Routed but missing 'gateway'")
+                    elif range_type == 'VLAN':
+                        # VLAN not required for default_lan interfaces
+                        if not is_default and not nr.get('vlan'):
+                            if verbose:
+                                errors.append(f"Site '{site_name}' LAN {lan_index} range '{range_name}': range_type is VLAN but missing 'vlan'")
+                    
+                    # DHCP validations
+                    dhcp_settings = nr.get('dhcp_settings')
+                    if dhcp_settings and isinstance(dhcp_settings, dict):
+                        dhcp_type = dhcp_settings.get('dhcp_type')
+                        if dhcp_type == 'DHCP_RANGE':
+                            if not dhcp_settings.get('ip_range'):
+                                if verbose:
+                                    errors.append(f"Site '{site_name}' LAN {lan_index} range '{range_name}': dhcp_type is DHCP_RANGE but missing 'ip_range'")
+                        elif dhcp_type == 'DHCP_RELAY':
+                            relay_id = dhcp_settings.get('relay_group_id')
+                            relay_name = dhcp_settings.get('relay_group_name')
+                            if not relay_id and not relay_name:
+                                if verbose:
+                                    errors.append(f"Site '{site_name}' LAN {lan_index} range '{range_name}': dhcp_type is DHCP_RELAY but missing relay_group_id or relay_group_name")
+                            if relay_id and relay_name:
+                                if verbose:
+                                    warnings.append(f"Site '{site_name}' LAN {lan_index} range '{range_name}': Both relay_group_id and relay_group_name specified (should use only one)")
         
         if verbose:
             print(f"\n  Detailed validation:")

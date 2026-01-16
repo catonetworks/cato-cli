@@ -179,6 +179,9 @@
 - Added validate_site_location site location validation
 - Updated templates for csv and json to align with new format
 
-## 3.0.52 (2026-01-14)
+## 3.0.53 (2026-01-16)
 - Migrated export/import for sites to use names instead of ids to accommodate both existing imports as well as new creation for bulk site management.  Added csv formatting logic to clean csv for malformed data and carriage returns.
-- Added 
+- Added input validation for csv and for json 
+
+## 3.0.54 (2026-01-16)
+- Updated export with entityLookup to retrieve 1000 records as opposed to limit of 50 which is default API behavior.

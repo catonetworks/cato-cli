@@ -236,6 +236,166 @@ catocli query appStatsTimeSeries '{
 }' -f csv --csv-filename appStatsTimeSeries_user_by_category.csv
 ```
 
+## Post-Aggregation Filter Examples (postAggFilters)
+
+### 1. High-Bandwidth Users Over Time (>500MB per hour)
+
+Track users whose traffic exceeds 500MB per hour bucket over the last day:
+
+```bash
+catocli query appStatsTimeSeries '{
+    "buckets": 24,
+    "dimension": [
+        {"fieldName": "user_name"}
+    ],
+    "perSecond": false,
+    "measure": [
+        {"aggType": "sum", "fieldName": "traffic"},
+        {"aggType": "sum", "fieldName": "flows_created"}
+    ],
+    "appStatsPostAggFilter": [
+        {
+            "aggType": "sum",
+            "filter": {
+                "fieldName": "traffic",
+                "operator": "gt",
+                "values": ["524288000"]
+            }
+        }
+    ],
+    "timeFrame": "last.P1D"
+}' -f csv --csv-filename=appStatsTimeSeries_high_traffic_users.csv
+```
+
+### 2. Applications with Minimum Flow Count Threshold
+
+Identify applications creating at least 50 flows per time bucket over a week:
+
+```bash
+catocli query appStatsTimeSeries '{
+    "buckets": 168,
+    "dimension": [
+        {"fieldName": "application_name"},
+        {"fieldName": "category"}
+    ],
+    "perSecond": false,
+    "measure": [
+        {"aggType": "sum", "fieldName": "flows_created"},
+        {"aggType": "sum", "fieldName": "traffic"}
+    ],
+    "appStatsPostAggFilter": [
+        {
+            "aggType": "sum",
+            "filter": {
+                "fieldName": "flows_created",
+                "operator": "gte",
+                "values": ["50"]
+            }
+        }
+    ],
+    "timeFrame": "last.P7D"
+}' -f csv --csv-filename=appStatsTimeSeries_high_flow_apps.csv
+```
+
+### 3. Peak Upstream Traffic Analysis
+
+Show time series where maximum upstream traffic exceeds 100MB in any 15-minute interval:
+
+```bash
+catocli query appStatsTimeSeries '{
+    "buckets": 96,
+    "dimension": [
+        {"fieldName": "src_site_name"},
+        {"fieldName": "application_name"}
+    ],
+    "perSecond": false,
+    "measure": [
+        {"aggType": "max", "fieldName": "upstream"},
+        {"aggType": "sum", "fieldName": "upstream"},
+        {"aggType": "sum", "fieldName": "traffic"}
+    ],
+    "appStatsPostAggFilter": [
+        {
+            "aggType": "max",
+            "filter": {
+                "fieldName": "upstream",
+                "operator": "gt",
+                "values": ["104857600"]
+            }
+        }
+    ],
+    "timeFrame": "last.P1D"
+}' -f csv --csv-filename=appStatsTimeSeries_peak_upstream.csv
+```
+
+### 4. Monitoring Users with Traffic Between Thresholds
+
+Track users with traffic between 100MB and 500MB per bucket over 2 days:
+
+```bash
+catocli query appStatsTimeSeries '{
+    "buckets": 48,
+    "dimension": [
+        {"fieldName": "user_name"},
+        {"fieldName": "src_site_name"}
+    ],
+    "perSecond": false,
+    "measure": [
+        {"aggType": "sum", "fieldName": "traffic"},
+        {"aggType": "sum", "fieldName": "upstream"},
+        {"aggType": "sum", "fieldName": "downstream"}
+    ],
+    "appStatsPostAggFilter": [
+        {
+            "aggType": "sum",
+            "filter": {
+                "fieldName": "traffic",
+                "operator": "between",
+                "values": ["104857600", "524288000"]
+            }
+        }
+    ],
+    "timeFrame": "last.P2D"
+}' -f csv --csv-filename=appStatsTimeSeries_moderate_traffic_users.csv
+```
+
+### 5. High-Activity Periods for Cloud Applications
+
+Analyze cloud applications with average traffic exceeding 50MB per bucket during business hours:
+
+```bash
+catocli query appStatsTimeSeries '{
+    "buckets": 32,
+    "dimension": [
+        {"fieldName": "application_name"}
+    ],
+    "perSecond": false,
+    "measure": [
+        {"aggType": "avg", "fieldName": "traffic"},
+        {"aggType": "sum", "fieldName": "traffic"},
+        {"aggType": "count", "fieldName": "flows_created"}
+    ],
+    "appStatsFilter": [
+        {
+            "fieldName": "is_cloud_app",
+            "operator": "is",
+            "values": ["true"]
+        }
+    ],
+    "appStatsPostAggFilter": [
+        {
+            "aggType": "avg",
+            "filter": {
+                "fieldName": "traffic",
+                "operator": "gte",
+                "values": ["52428800"]
+            }
+        }
+    ],
+    "timeFrame": "utc.2025-10-{15/08:00:00--15/16:00:00}"
+}' -f csv --csv-filename=appStatsTimeSeries_cloud_app_peaks.csv
+```
+
 ## Advanced Filtering
 
 ### Traffic Direction Filtering

@@ -178,3 +178,7 @@
 - Updated site export and import_site_to_tf process to accommmodate new read operations for site, network range, and interface
 - Added validate_site_location site location validation
 - Updated templates for csv and json to align with new format
+
+## 3.0.52 (2026-01-14)
+- Migrated export/import for sites to use names instead of ids to accommodate both existing imports as well as new creation for bulk site management.  Added csv formatting logic to clean csv for malformed data and carriage returns.
+- Added 

@@ -16,7 +16,9 @@ import csv
 import os
 import argparse
 from pathlib import Path
-from ..customLib import validate_terraform_environment
+from ..customLib import validate_terraform_environment, clean_csv_file
+from graphql_client.api.call_api import ApiClient, CallApi
+from graphql_client.api_client import ApiException
 
 def load_json_data(json_file):
     """Load socket sites data from JSON file"""
@@ -44,6 +46,79 @@ def sanitize_name_for_terraform(name):
     # Remove leading/trailing underscores
     sanitized = sanitized.strip('_')
     return sanitized
+
+
+def validate_cato_api_auth(configuration, verbose=False):
+    """
+    Validate Cato API authentication by making a test entityLookup query
+    
+    Args:
+        configuration: API configuration object with credentials
+        verbose: Whether to show verbose output
+    
+    Returns:
+        tuple: (success: bool, error_message: str)
+    """
+    try:
+        if verbose:
+            print("\nValidating Cato API authentication...")
+        
+        # Create API client instance
+        api_client = ApiClient(configuration)
+        instance = CallApi(api_client)
+        
+        # Prepare entityLookup query (simple query to test auth)
+        query = {
+            "query": "query entityLookup ( $accountID:ID! $type:EntityType! ) { entityLookup ( accountID:$accountID type:$type ) { items { entity { id name type } } total } }",
+            "operationName": "entityLookup",
+            "variables": {
+                "accountID": configuration.accountID,
+                "type": "account"
+            }
+        }
+        
+        # Call the API
+        params = {
+            'v': False,  # verbose mode off for validation
+            'f': 'json',
+            'p': False,
+            't': False
+        }
+        
+        response = instance.call_api(query, params)
+        
+        # Check response structure
+        if not response or len(response) == 0:
+            return False, "Empty response from API"
+        
+        response_data = response[0]
+        
+        # Check for authentication errors
+        if 'errors' in response_data:
+            error_messages = [error.get('message', 'Unknown error') for error in response_data['errors']]
+            return False, f"API authentication failed: {', '.join(error_messages)}"
+        
+        # Check for valid data structure
+        if 'data' not in response_data:
+            return False, "Invalid response structure from API"
+        
+        if 'entityLookup' not in response_data['data']:
+            return False, "Invalid response structure: missing entityLookup"
+        
+        entity_lookup = response_data['data']['entityLookup']
+        if 'items' not in entity_lookup or 'total' not in entity_lookup:
+            return False, "Invalid response structure: missing items or total"
+        
+        if verbose:
+            print("✓ Cato API authentication validated successfully")
+            print(f"  Account ID: {configuration.accountID}")
+        
+        return True, None
+        
+    except ApiException as e:
+        return False, f"API Exception: {str(e)}"
+    except Exception as e:
+        return False, f"Unexpected error during authentication validation: {str(e)}"
 
 
 def extract_socket_sites_data(sites_data):
@@ -263,7 +338,7 @@ def run_terraform_import(resource_address, resource_id, timeout=60, verbose=Fals
         print(f"Command: {' '.join(cmd)}")
     
     try:
-        print(f"Importing: {resource_address} <- {resource_id}")
+        print(f"terraform import '{resource_address}' {resource_id}")
         
         result = subprocess.run(
             cmd,
@@ -313,9 +388,9 @@ def import_socket_sites(sites, module_name, verbose=False,
         if not module_name.startswith('module.'):
             module_name = f'module.{module_name}'
 
-        # Use site_id as the key for uniqueness and stability across imports
-        # This matches the Terraform module logic which uses site.id when available
-        site_key = site_id
+        # Use site_name as the key for readability in state
+        # This matches the updated Terraform module logic which uses site.name for indexing
+        site_key = site_name
 
         # Use correct resource addressing for nested module
         resource_address = f'{module_name}.module.socket-site["{site_key}"].cato_socket_site.site'
@@ -367,9 +442,9 @@ def import_wan_interfaces(wan_interfaces, module_name, verbose=False,
         # Add module. prefix if not present
         if not module_name.startswith('module.'):
             module_name = f'module.{module_name}'
-        
-        # Use site_id as the site key for consistency
-        site_key = site_id
+
+        # Use site_name as the site key for readability in state
+        site_key = site_name
 
         # In the module, cato_wan_interface.wan is now keyed by interface_index, which we
         # format from the JSON "index" field. Use interface_index as the key.
@@ -427,7 +502,7 @@ def import_lan_lag_members(lan_lag_members, module_name, verbose=False,
         # Add module. prefix if not present
         if not module_name.startswith('module.'):
             module_name = f'module.{module_name}'
-        
+
         # Apply the same index formatting logic as the Terraform module
         try:
             # If index is a number, format as INT_X
@@ -436,14 +511,14 @@ def import_lan_lag_members(lan_lag_members, module_name, verbose=False,
         except (ValueError, TypeError):
             # If not a number or None, use as-is
             formatted_index = interface_index if interface_index else interface_id
-        
-        # Use site_id as the site key for consistency
-        site_key = site_id
+
+        # Use site_name as the site key for readability in state
+        site_key = site_name
 
         # LAN LAG member addressing pattern from state file:
-        # module.sites_from_csv.module.socket-site["site_id"].cato_lan_interface_lag_member.lag_lan_members["interface_id"]
-        # Use interface_id for keying (if available), otherwise interface_index
-        lag_key = interface_id if interface_id else formatted_index
+        # module.sites_from_csv.module.socket-site["site_name"].cato_lan_interface_lag_member.lag_lan_members["interface_index"]
+        # Use formatted interface_index for keying
+        lag_key = formatted_index
         resource_address = f'{module_name}.module.socket-site["{site_key}"].cato_lan_interface_lag_member.lag_lan_members["{lag_key}"]'
 
         print(f"\n[{i+1}/{total_interfaces}] LAN LAG Member: {interface_name} on {site_name} (Index: {interface_index}, ID: {interface_id})")
@@ -494,9 +569,9 @@ def import_lan_interfaces(lan_interfaces, module_name, verbose=False,
         # Add module. prefix if not present
         if not module_name.startswith('module.'):
             module_name = f'module.{module_name}'
-        
+
         # Updated addressing to use interface_index-based indexing for resource addressing:
-        # module.sites.module.socket-site[site].module.lan_interfaces[interface_index].cato_lan_interface.interface[0]
+        # module.sites.module.socket-site[site_name].module.lan_interfaces[interface_index].cato_lan_interface.interface[interface_index]
         # Apply the same index formatting logic as the Terraform module
         try:
             # If index is a number, format as INT_X
@@ -505,13 +580,13 @@ def import_lan_interfaces(lan_interfaces, module_name, verbose=False,
         except (ValueError, TypeError):
             # If not a number or None, use as-is
             formatted_index = interface_index if interface_index else interface_id
-        
-        # Use site_id as the site key for consistency
-        site_key = site_id
 
-        # The resource address uses interface_id for keying (if available), otherwise interface_index
-        # This matches the Terraform module logic: (interface.id != null && interface.id != "" ? interface.id : interface.interface_index)
-        lan_key = interface_id if interface_id else formatted_index
+        # Use site_name as the site key for readability in state
+        site_key = site_name
+
+        # The resource address uses interface_index for keying
+        # This matches the updated Terraform module logic: interface.interface_index
+        lan_key = formatted_index
         resource_address = f'{module_name}.module.socket-site["{site_key}"].module.lan_interfaces["{lan_key}"].cato_lan_interface.interface["{formatted_index}"]'
 
         print(f"\n[{i+1}/{total_interfaces}] LAN Interface: {interface_name} on {site_name} (Index: {interface_index}, ID: {interface_id})")
@@ -597,10 +672,10 @@ def import_network_ranges(network_ranges, lan_interfaces, module_name, verbose=F
 
         is_default_interface = matching_lan_interface is None
 
-        # Generate the correct key format based on whether this is a default interface range
-        # Use the network range ID as the key for uniqueness and stability across imports
-        # This matches the Terraform module logic which uses range.id when available
-        range_key = network_range_id
+        # Generate the correct key format to match the Terraform module logic
+        # The module uses "${network_range.name}_${idx}" as the key
+        # Use the range name and calculated index to create a consistent key
+        range_key = f"{range_name}_{calculated_index}"
 
         # Determine if this network range has DHCP settings
         # Check if dhcp_settings object exists and has a dhcp_type field
@@ -613,8 +688,8 @@ def import_network_ranges(network_ranges, lan_interfaces, module_name, verbose=F
         )
         dhcp_resource = 'with_dhcp' if has_dhcp else 'no_dhcp'
 
-        # Use site_id as the site key for consistency
-        site_key = site_id
+        # Use site_name as the site key to match Terraform module logic (module indexes by site.name)
+        site_key = site_name
 
         # Determine the correct resource addressing based on whether this is a default interface
         if is_default_interface:
@@ -622,14 +697,13 @@ def import_network_ranges(network_ranges, lan_interfaces, module_name, verbose=F
             resource_address = f'{module_name}.module.socket-site["{site_key}"].cato_network_range.default_interface_ranges["{range_key}"]'
         else:
             # Regular interface network ranges go through the lan_interfaces module
-            # Use interface ID for LAN interface key (matching Terraform module logic)
-            lan_interface_id = matching_lan_interface['id']
-            lan_key = lan_interface_id if lan_interface_id else formatted_index
+            # Use interface_index (formatted) for LAN interface key to match Terraform module logic
+            lan_key = formatted_index
             # Use with_dhcp[0] or no_dhcp[0] based on whether DHCP settings exist
             resource_address = f'{module_name}.module.socket-site["{site_key}"].module.lan_interfaces["{lan_key}"].module.network_ranges.module.network_range["{range_key}"].cato_network_range.{dhcp_resource}[0]'
         
         print(f"\n[{i+1}/{total_ranges}] Network Range: {range_name} - {subnet} ({network_range_id}) on {site_name}")
-        print(f"  Resource Address: {resource_address}")
+        print(f"  'terraform import {resource_address}' {network_range_id}")
         
         success, stdout, stderr = run_terraform_import(resource_address, network_range_id, verbose=verbose)
         
@@ -763,6 +837,7 @@ def import_socket_sites_to_tf(args, configuration):
         json_file = getattr(args, 'json_file', None) or getattr(args, 'json_file_legacy', None)
         csv_file = getattr(args, 'csv_file', None)
         csv_folder = getattr(args, 'csv_folder', None)
+        validate_only = getattr(args, 'validate', False)
         
         # Validate input arguments
         if data_type:
@@ -798,6 +873,45 @@ def import_socket_sites_to_tf(args, configuration):
                 print("  CSV:  --csv-file <file> [--csv-folder <folder>]\n")
                 print("Use 'catocli import socket_sites_to_tf -h' for detailed help and examples.")
                 raise ValueError("No input file provided")
+        
+        # If validation mode, run validation and exit
+        if validate_only:
+            if data_type == 'json':
+                if not json_file:
+                    raise ValueError("JSON validation requires --json-file argument")
+                success, errors, warnings = validate_json_file(json_file, verbose=getattr(args, 'verbose', False))
+            elif data_type == 'csv':
+                if not csv_file:
+                    raise ValueError("CSV validation requires --csv-file argument")
+                success, errors, warnings = validate_csv_files(csv_file, csv_folder, verbose=getattr(args, 'verbose', False))
+            else:
+                raise ValueError(f"Unsupported data type for validation: {data_type}")
+            
+            # Return validation results
+            if success:
+                print("\n✓ Validation completed successfully. Files are ready for import.")
+                return [{
+                    "success": True,
+                    "validation_passed": True,
+                    "errors": errors,
+                    "warnings": warnings
+                }]
+            else:
+                print("\n❌ Validation failed. Please fix the errors above before importing.")
+                return [{
+                    "success": False,
+                    "validation_passed": False,
+                    "errors": errors,
+                    "warnings": warnings
+                }]
+        
+        # Validate Cato API authentication (skip if validation-only mode)
+        auth_success, auth_error = validate_cato_api_auth(configuration, verbose=getattr(args, 'verbose', False))
+        if not auth_success:
+            print(f"\nERROR: Cato API authentication failed")
+            print(f"  {auth_error}")
+            print("\nPlease check your API credentials and try again.")
+            return [{"success": False, "error": f"Authentication failed: {auth_error}"}]
         
         # Validate inputs based on data type
         if data_type == 'json':
@@ -970,6 +1084,476 @@ def import_socket_sites_to_tf(args, configuration):
         return [{"success": False, "error": str(e)}]
 
 
+def validate_csv_files(csv_file, sites_config_dir=None, verbose=False):
+    """
+    Validate CSV files for import processing
+    
+    Args:
+        csv_file: Main sites CSV file
+        sites_config_dir: Directory containing network ranges CSV files
+        verbose: Show detailed validation output
+    
+    Returns:
+        tuple: (success: bool, errors: list, warnings: list)
+    """
+    errors = []
+    warnings = []
+    
+    print("\n" + "=" * 80)
+    print(" CSV VALIDATION")
+    print("=" * 80)
+    
+    # Validate main CSV file
+    print(f"\nValidating main CSV file: {csv_file}")
+    if not os.path.exists(csv_file):
+        errors.append(f"Main CSV file not found: {csv_file}")
+        return False, errors, warnings
+    
+    try:
+        # Check file encoding
+        with open(csv_file, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        # Check for trailing newlines
+        if content.endswith('\r\n'):
+            warnings.append(f"Main CSV has trailing newline (will be cleaned automatically)")
+        
+        # Check for empty lines
+        lines = content.splitlines()
+        empty_lines = 0
+        for idx, line in enumerate(lines, 1):
+            test_line = line.replace(',', '').strip()
+            if not test_line:
+                empty_lines += 1
+                if verbose:
+                    warnings.append(f"Empty line found at line {idx} (will be cleaned automatically)")
+        
+        if empty_lines > 0:
+            warnings.append(f"Found {empty_lines} empty line(s) in main CSV (will be cleaned automatically)")
+        
+        # Parse CSV and validate required fields
+        # Base required fields that all rows must have
+        base_required_fields = [
+            'site_name',
+            'wan_interface_index',
+            'wan_interface_name',
+            'wan_upstream_bw',
+            'wan_downstream_bw',
+            'wan_role',
+            'wan_precedence'
+        ]
+        
+        # Additional fields required when site_type is specified (full site record)
+        site_type_required_fields = [
+            'site_type',
+            'connection_type',
+            'native_range_subnet',
+            'native_range_local_ip',
+            'native_range_type',
+            'native_range_interface_index',
+            'native_range_interface_name',
+            'native_range_interface_dest_type',
+            'native_range_dhcp_type',
+            'site_location_city',
+            'site_location_country_code',
+            'site_location_timezone'
+        ]
+        
+        with open(csv_file, 'r', newline='', encoding='utf-8') as f:
+            reader = csv.DictReader(f)
+            headers = reader.fieldnames
+            
+            if not headers:
+                errors.append("CSV file has no headers")
+                return False, errors, warnings
+            
+            # Check for base required fields in headers
+            missing_base = [field for field in base_required_fields if field not in headers]
+            if missing_base:
+                errors.append(f"Missing required fields in main CSV: {', '.join(missing_base)}")
+            
+            # Check if site_type fields are in headers (to determine what kind of CSV this is)
+            has_site_type_fields = 'site_type' in headers
+            if has_site_type_fields:
+                missing_site_type = [field for field in site_type_required_fields if field not in headers]
+                if missing_site_type:
+                    warnings.append(f"CSV appears to have site_type but missing some site fields: {', '.join(missing_site_type)}")
+            
+            # Validate data rows
+            row_count = 0
+            for row_idx, row in enumerate(reader, 2):  # Start at 2 (header is row 1)
+                row_count += 1
+                
+                # Check for empty site_name (critical field)
+                if not row.get('site_name', '').strip():
+                    if verbose:
+                        warnings.append(f"Row {row_idx}: Empty site_name (will be skipped)")
+                    continue
+                
+                # Validate based on whether this row has site_type
+                has_site_type = row.get('site_type', '').strip() != ''
+                
+                # Check base required fields
+                for field in base_required_fields:
+                    if not row.get(field, '').strip():
+                        errors.append(f"Row {row_idx} ({row.get('site_name', 'unknown')}): Missing required field '{field}'")
+                
+                # If row has site_type, check additional site fields
+                if has_site_type:
+                    for field in site_type_required_fields:
+                        if field in headers and not row.get(field, '').strip():
+                            errors.append(f"Row {row_idx} ({row.get('site_name', 'unknown')}): Missing required site field '{field}'")
+                    
+                    # Validate DHCP-related fields for native range
+                    native_dhcp_type = row.get('native_range_dhcp_type', '').strip()
+                    if native_dhcp_type == 'DHCP_RANGE':
+                        if not row.get('native_range_dhcp_ip_range', '').strip():
+                            errors.append(f"Row {row_idx} ({row.get('site_name', 'unknown')}): native_range_dhcp_type is DHCP_RANGE but missing native_range_dhcp_ip_range")
+                    elif native_dhcp_type == 'DHCP_RELAY':
+                        relay_id = row.get('native_range_dhcp_relay_group_id', '').strip()
+                        relay_name = row.get('native_range_dhcp_relay_group_name', '').strip()
+                        if not relay_id and not relay_name:
+                            errors.append(f"Row {row_idx} ({row.get('site_name', 'unknown')}): native_range_dhcp_type is DHCP_RELAY but missing native_range_dhcp_relay_group_id or native_range_dhcp_relay_group_name")
+                        if relay_id and relay_name:
+                            warnings.append(f"Row {row_idx} ({row.get('site_name', 'unknown')}): Both native_range_dhcp_relay_group_id and native_range_dhcp_relay_group_name are specified (should use only one)")
+        
+        print(f"  ✓ Main CSV validated: {row_count} data rows found")
+        
+    except UnicodeDecodeError as e:
+        errors.append(f"Main CSV encoding error: {str(e)}")
+    except csv.Error as e:
+        errors.append(f"Main CSV parsing error: {str(e)}")
+    except Exception as e:
+        errors.append(f"Main CSV validation error: {str(e)}")
+    
+    # Validate network ranges CSV files if directory provided
+    if sites_config_dir:
+        print(f"\nValidating network ranges CSV files in: {sites_config_dir}")
+        
+        if not os.path.exists(sites_config_dir):
+            warnings.append(f"Network ranges directory not found: {sites_config_dir}")
+        else:
+            csv_files = [f for f in os.listdir(sites_config_dir) if f.endswith('_network_ranges.csv')]
+            
+            if not csv_files:
+                warnings.append(f"No network ranges CSV files found in {sites_config_dir}")
+            else:
+                print(f"  Found {len(csv_files)} network ranges CSV file(s)")
+                
+                for csv_filename in csv_files:
+                    csv_filepath = os.path.join(sites_config_dir, csv_filename)
+                    
+                    try:
+                        with open(csv_filepath, 'r', encoding='utf-8') as f:
+                            content = f.read()
+                        
+                        # Check for trailing newlines and empty lines
+                        if content.endswith('\r\n'):
+                            if verbose:
+                                warnings.append(f"{csv_filename}: Has trailing newline (will be cleaned)")
+                        
+                        lines = content.splitlines()
+                        empty_lines = sum(1 for line in lines if not line.replace(',', '').strip())
+                        if empty_lines > 0 and verbose:
+                            warnings.append(f"{csv_filename}: {empty_lines} empty line(s) (will be cleaned)")
+                        
+                        # Parse and validate structure
+                        with open(csv_filepath, 'r', newline='', encoding='utf-8') as f:
+                            reader = csv.DictReader(f)
+                            headers = reader.fieldnames
+                            
+                            if not headers:
+                                errors.append(f"{csv_filename}: No headers found")
+                                continue
+                            
+                            # Check if this is a LAN interface + native range file or just network ranges
+                            has_lan_interface_dest_type = 'lan_interface_dest_type' in headers
+                            
+                            # Base required fields for all network range files
+                            base_range_fields = [
+                                'lan_interface_index',
+                                'subnet',
+                                'local_ip',
+                                'range_type'
+                            ]
+                            # Support both 'name' and 'network_range_name' for the name field
+                            has_name_field = 'name' in headers or 'network_range_name' in headers
+                            
+                            # Additional fields required when lan_interface_dest_type is present (LAN interface + native range)
+                            lan_interface_fields = [
+                                'lan_interface_name',
+                                'lan_interface_dest_type',
+                                'is_native_range',
+                                'lan_interface_index'
+                            ]
+                            
+                            # Check base required fields
+                            missing = [field for field in base_range_fields if field not in headers]
+                            if missing:
+                                errors.append(f"{csv_filename}: Missing required fields: {', '.join(missing)}")
+                            
+                            if not has_name_field:
+                                errors.append(f"{csv_filename}: Missing required field: 'name' or 'network_range_name'")
+                            
+                            # If LAN interface fields are present, check them too
+                            if has_lan_interface_dest_type:
+                                missing_lan = [field for field in lan_interface_fields if field not in headers]
+                                if missing_lan:
+                                    errors.append(f"{csv_filename}: Has lan_interface_dest_type but missing LAN interface fields: {', '.join(missing_lan)}")
+                            
+                            # Validate data rows
+                            for row_idx, row in enumerate(reader, 2):
+                                # Check if row has any data at all
+                                has_data = any(row.get(field, '').strip() for field in row.keys())
+                                if not has_data:
+                                    continue  # Skip completely empty rows
+                                
+                                # Determine record type based on lan_interface_dest_type
+                                has_lan_dest_type = row.get('lan_interface_dest_type', '').strip() != ''
+                                lan_dest_type_value = row.get('lan_interface_dest_type', '').strip()
+                                range_type = row.get('range_type', '').strip()
+                                range_name = row.get('network_range_name', '') or row.get('name', '')
+                                lan_interface_idx = row.get('lan_interface_index', '').strip()
+                                
+                                # If this is a LAN interface record (has lan_interface_dest_type)
+                                if has_lan_dest_type:
+                                    # Special handling for LAN_LAG_MEMBER - only requires 3 fields
+                                    if lan_dest_type_value == 'LAN_LAG_MEMBER':
+                                        lag_required_fields = ['lan_interface_name', 'lan_interface_dest_type', 'lan_interface_index']
+                                        for field in lag_required_fields:
+                                            if not row.get(field, '').strip():
+                                                if verbose:
+                                                    errors.append(f"{csv_filename} row {row_idx}: LAN_LAG_MEMBER missing required field '{field}'")
+                                        # Skip remaining validation for LAG members
+                                        continue
+                                    
+                                    # For other LAN interface records, validate LAN interface fields
+                                    for field in lan_interface_fields:
+                                        if field in headers and not row.get(field, '').strip():
+                                            if verbose:
+                                                errors.append(f"{csv_filename} row {row_idx}: LAN interface record missing required field '{field}'")
+                                    # Skip network range validation for LAN interface records
+                                    continue
+                                
+                                # Check required fields (except local_ip which is conditional)
+                                for field in base_range_fields:
+                                    if field == 'local_ip':
+                                        # local_ip is required for VLAN ranges, NOT for Direct, Native, or Routed
+                                        if range_type not in ['Direct', 'Native', 'Routed'] and not row.get('local_ip', '').strip():
+                                            if verbose:
+                                                errors.append(f"{csv_filename} row {row_idx} ({range_name}): Missing required field 'local_ip' (required for {range_type} ranges)")
+                                    else:
+                                        if not row.get(field, '').strip():
+                                            if verbose:
+                                                errors.append(f"{csv_filename} row {row_idx} ({range_name}): Missing required field '{field}'")
+                                
+                                # Conditional validations based on range_type
+                                if range_type == 'Routed':
+                                    if not row.get('gateway', '').strip():
+                                        if verbose:
+                                            errors.append(f"{csv_filename} row {row_idx} ({range_name}): range_type is Routed but missing 'gateway'")
+                                elif range_type == 'VLAN':
+                                    # VLAN is NOT required for native range records (those with lan_interface_dest_type)
+                                    # but IS required for regular network ranges
+                                    if not has_lan_dest_type and not row.get('vlan', '').strip():
+                                        if verbose:
+                                            errors.append(f"{csv_filename} row {row_idx} ({range_name}): range_type is VLAN but missing 'vlan' (not required for native ranges)")
+                                
+                                # Validate DHCP-related fields
+                                dhcp_type = row.get('dhcp_type', '').strip()
+                                if dhcp_type == 'DHCP_RANGE':
+                                    if not row.get('dhcp_ip_range', '').strip():
+                                        if verbose:
+                                            errors.append(f"{csv_filename} row {row_idx} ({range_name}): dhcp_type is DHCP_RANGE but missing 'dhcp_ip_range'")
+                                elif dhcp_type == 'DHCP_RELAY':
+                                    relay_id = row.get('dhcp_relay_group_id', '').strip()
+                                    relay_name = row.get('dhcp_relay_group_name', '').strip()
+                                    if not relay_id and not relay_name:
+                                        if verbose:
+                                            errors.append(f"{csv_filename} row {row_idx} ({range_name}): dhcp_type is DHCP_RELAY but missing dhcp_relay_group_id or dhcp_relay_group_name")
+                                    if relay_id and relay_name:
+                                        if verbose:
+                                            warnings.append(f"{csv_filename} row {row_idx} ({range_name}): Both dhcp_relay_group_id and dhcp_relay_group_name are specified (should use only one)")
+                                
+                                # Check name field
+                                if not range_name.strip():
+                                    if verbose:
+                                        errors.append(f"{csv_filename} row {row_idx}: Missing network range name")
+                        
+                        if verbose:
+                            print(f"    ✓ {csv_filename}")
+                    
+                    except Exception as e:
+                        errors.append(f"{csv_filename}: Validation error: {str(e)}")
+                
+                if not verbose:
+                    print(f"  ✓ All network ranges CSV files validated")
+    
+    # Summary
+    print("\n" + "=" * 80)
+    print(" VALIDATION SUMMARY")
+    print("=" * 80)
+    
+    if errors:
+        print(f"\n❌ VALIDATION FAILED: {len(errors)} error(s) found")
+        for error in errors:
+            print(f"  ERROR: {error}")
+    else:
+        print(f"\n✓ VALIDATION PASSED")
+    
+    if warnings:
+        print(f"\n⚠  {len(warnings)} warning(s):")
+        for warning in warnings:
+            print(f"  WARNING: {warning}")
+    
+    print("=" * 80 + "\n")
+    
+    return len(errors) == 0, errors, warnings
+
+
+def validate_json_file(json_file, verbose=False):
+    """
+    Validate JSON file for import processing
+    
+    Args:
+        json_file: Path to JSON file
+        verbose: Show detailed validation output
+    
+    Returns:
+        tuple: (success: bool, errors: list, warnings: list)
+    """
+    errors = []
+    warnings = []
+    
+    print("\n" + "=" * 80)
+    print(" JSON VALIDATION")
+    print("=" * 80)
+    
+    print(f"\nValidating JSON file: {json_file}")
+    
+    if not os.path.exists(json_file):
+        errors.append(f"JSON file not found: {json_file}")
+        return False, errors, warnings
+    
+    try:
+        # Check file encoding and read content
+        with open(json_file, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        # Parse JSON
+        try:
+            data = json.loads(content)
+        except json.JSONDecodeError as e:
+            errors.append(f"Invalid JSON format: {str(e)}")
+            return False, errors, warnings
+        
+        print(f"  ✓ JSON file is well-formed")
+        
+        # Validate structure
+        if not isinstance(data, dict):
+            errors.append("JSON root must be an object/dict")
+            return False, errors, warnings
+        
+        if 'sites' not in data:
+            errors.append("JSON must contain 'sites' key")
+            return False, errors, warnings
+        
+        sites = data['sites']
+        if not isinstance(sites, list):
+            errors.append("'sites' must be an array/list")
+            return False, errors, warnings
+        
+        print(f"  ✓ JSON structure is valid")
+        print(f"  ✓ Found {len(sites)} site(s) in JSON")
+        
+        # Validate each site
+        required_site_fields = ['id', 'name', 'connection_type', 'type']
+        
+        for idx, site in enumerate(sites):
+            site_name = site.get('name', f'Site #{idx+1}')
+            
+            # Check required fields
+            missing_fields = [field for field in required_site_fields if not site.get(field)]
+            if missing_fields:
+                errors.append(f"Site '{site_name}': Missing required fields: {', '.join(missing_fields)}")
+            
+            # Check native_range structure
+            if 'native_range' in site:
+                native_range = site['native_range']
+                if not isinstance(native_range, dict):
+                    errors.append(f"Site '{site_name}': native_range must be an object")
+                else:
+                    # Check for required native_range fields
+                    if not native_range.get('subnet'):
+                        warnings.append(f"Site '{site_name}': native_range missing 'subnet'")
+                    if not native_range.get('local_ip'):
+                        warnings.append(f"Site '{site_name}': native_range missing 'local_ip'")
+            else:
+                warnings.append(f"Site '{site_name}': Missing 'native_range' object")
+            
+            # Check interfaces
+            wan_interfaces = site.get('wan_interfaces', [])
+            lan_interfaces = site.get('lan_interfaces', [])
+            
+            if not wan_interfaces:
+                warnings.append(f"Site '{site_name}': No WAN interfaces defined")
+            
+            for wan in wan_interfaces:
+                if not wan.get('id'):
+                    warnings.append(f"Site '{site_name}': WAN interface missing 'id'")
+                if not wan.get('index'):
+                    warnings.append(f"Site '{site_name}': WAN interface missing 'index'")
+            
+            for lan in lan_interfaces:
+                is_default = lan.get('default_lan', False)
+                if not is_default and not lan.get('id'):
+                    warnings.append(f"Site '{site_name}': LAN interface missing 'id'")
+                
+                # Check network ranges
+                network_ranges = lan.get('network_ranges', [])
+                for nr in network_ranges:
+                    if not nr.get('id'):
+                        warnings.append(f"Site '{site_name}': Network range missing 'id'")
+                    if not nr.get('name'):
+                        warnings.append(f"Site '{site_name}': Network range missing 'name'")
+                    if not nr.get('subnet'):
+                        errors.append(f"Site '{site_name}': Network range missing 'subnet' (required)")
+        
+        if verbose:
+            print(f"\n  Detailed validation:")
+            print(f"    - Sites validated: {len(sites)}")
+            total_wan = sum(len(site.get('wan_interfaces', [])) for site in sites)
+            total_lan = sum(len(site.get('lan_interfaces', [])) for site in sites)
+            print(f"    - Total WAN interfaces: {total_wan}")
+            print(f"    - Total LAN interfaces: {total_lan}")
+    
+    except UnicodeDecodeError as e:
+        errors.append(f"File encoding error: {str(e)}")
+    except Exception as e:
+        errors.append(f"Validation error: {str(e)}")
+    
+    # Summary
+    print("\n" + "=" * 80)
+    print(" VALIDATION SUMMARY")
+    print("=" * 80)
+    
+    if errors:
+        print(f"\n❌ VALIDATION FAILED: {len(errors)} error(s) found")
+        for error in errors:
+            print(f"  ERROR: {error}")
+    else:
+        print(f"\n✓ VALIDATION PASSED")
+    
+    if warnings:
+        print(f"\n⚠  {len(warnings)} warning(s):")
+        for warning in warnings:
+            print(f"  WARNING: {warning}")
+    
+    print("=" * 80 + "\n")
+    
+    return len(errors) == 0, errors, warnings
+
+
 def load_csv_data(csv_file, sites_config_dir=None):
     """
     Load socket sites data from CSV files
@@ -982,6 +1566,18 @@ def load_csv_data(csv_file, sites_config_dir=None):
         List of sites in JSON format compatible with existing functions
     """
     try:
+        # Clean the main CSV file before loading
+        print(f"Cleaning CSV file: {csv_file}")
+        clean_csv_file(csv_file)
+        
+        # Clean all network ranges CSV files if directory provided
+        if sites_config_dir and os.path.exists(sites_config_dir):
+            print(f"Cleaning network ranges CSV files in: {sites_config_dir}")
+            for csv_filename in os.listdir(sites_config_dir):
+                if csv_filename.endswith('.csv'):
+                    csv_filepath = os.path.join(sites_config_dir, csv_filename)
+                    clean_csv_file(csv_filepath)
+        
         # Load main sites CSV and group by site
         sites_dict = {}
         with open(csv_file, 'r', newline='', encoding='utf-8') as f:
@@ -1099,8 +1695,7 @@ def load_csv_data(csv_file, sites_config_dir=None):
                 if ranges_file_found:
                     load_site_network_ranges_csv(site, ranges_file_found)
                 else:
-                    print(f"Warning: Network ranges file not found for site '{site_name}'. Tried: {[f'{name}_network_ranges.csv' for name in potential_names]}")
-                    print(f"  Available files: {available_files}")
+                    print(f"  - Warning: Network ranges file not found for site '{site_name}'.")
         
         return sites
         
@@ -1346,6 +1941,14 @@ def import_socket_sites_from_csv(args, configuration):
     try:
         print(" Terraform Import Tool - Cato Socket Sites from CSV")
         print("=" * 70)
+        
+        # Validate Cato API authentication
+        auth_success, auth_error = validate_cato_api_auth(configuration, verbose=getattr(args, 'verbose', False))
+        if not auth_success:
+            print(f"\nERROR: Cato API authentication failed")
+            print(f"  {auth_error}")
+            print("\nPlease check your API credentials and try again.")
+            return [{"success": False, "error": f"Authentication failed: {auth_error}"}]
         
         # Determine sites config directory
         sites_config_dir = None

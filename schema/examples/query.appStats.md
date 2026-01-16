@@ -181,7 +181,173 @@ catocli query appStats '{
 }' -f csv --csv-filename=appstats_by_country.csv
 ```
 
+## Post-Aggregation Filter Examples (postAggFilters)
+
+### 1. High-Traffic Users (>1GB Total Traffic)
+
+Find users whose total traffic exceeds 1GB over the last 2 days:
+
+```bash
+catocli query appStats '{
+    "dimension": [
+        {"fieldName": "user_name"}
+    ],
+    "measure": [
+        {"aggType": "sum", "fieldName": "traffic"},
+        {"aggType": "sum", "fieldName": "flows_created"}
+    ],
+    "appStatsPostAggFilter": [
+        {
+            "aggType": "sum",
+            "filter": {
+                "fieldName": "traffic",
+                "operator": "gt",
+                "values": ["1073741824"]
+            }
+        }
+    ],
+    "appStatsSort": [
+        {"fieldName": "traffic", "order": "desc"}
+    ],
+    "timeFrame": "last.P2D"
+}' -f csv --csv-filename=appstats_high_traffic_users.csv
+```
+
+### 2. Applications with Average Traffic Above Threshold
+
+Identify applications where average traffic per flow exceeds 10MB:
+
+```bash
+catocli query appStats '{
+    "dimension": [
+        {"fieldName": "application_name"}
+    ],
+    "measure": [
+        {"aggType": "avg", "fieldName": "traffic"},
+        {"aggType": "count", "fieldName": "flows_created"},
+        {"aggType": "sum", "fieldName": "traffic"}
+    ],
+    "appStatsPostAggFilter": [
+        {
+            "aggType": "avg",
+            "filter": {
+                "fieldName": "traffic",
+                "operator": "gte",
+                "values": ["10485760"]
+            }
+        }
+    ],
+    "appStatsSort": [
+        {"fieldName": "traffic", "order": "desc"}
+    ],
+    "timeFrame": "last.P7D"
+}' -f csv --csv-filename=appstats_high_avg_traffic_apps.csv
+```
+
+### 3. Active Users with Flow Count Range
+
+Find users who created between 100 and 1000 flows in the last day:
+
+```bash
+catocli query appStats '{
+    "dimension": [
+        {"fieldName": "user_name"},
+        {"fieldName": "src_site_name"}
+    ],
+    "measure": [
+        {"aggType": "sum", "fieldName": "flows_created"},
+        {"aggType": "sum", "fieldName": "traffic"}
+    ],
+    "appStatsPostAggFilter": [
+        {
+            "aggType": "sum",
+            "filter": {
+                "fieldName": "flows_created",
+                "operator": "between",
+                "values": ["100", "1000"]
+            }
+        }
+    ],
+    "appStatsSort": [
+        {"fieldName": "flows_created", "order": "desc"}
+    ],
+    "timeFrame": "last.P1D"
+}' -f csv --csv-filename=appstats_active_users_flow_range.csv
+```
+
+### 4. Top Applications by Maximum Downstream Traffic
+
+Show applications where maximum downstream traffic in a single flow exceeds 500MB:
+
+```bash
+catocli query appStats '{
+    "dimension": [
+        {"fieldName": "application_name"},
+        {"fieldName": "category"}
+    ],
+    "measure": [
+        {"aggType": "max", "fieldName": "downstream"},
+        {"aggType": "sum", "fieldName": "downstream"},
+        {"aggType": "count", "fieldName": "flows_created"}
+    ],
+    "appStatsPostAggFilter": [
+        {
+            "aggType": "max",
+            "filter": {
+                "fieldName": "downstream",
+                "operator": "gt",
+                "values": ["524288000"]
+            }
+        }
+    ],
+    "appStatsSort": [
+        {"fieldName": "downstream", "order": "desc"}
+    ],
+    "timeFrame": "last.P7D"
+}' -f csv --csv-filename=appstats_high_max_downstream.csv
+```
+
+### 5. Sites with Multiple Active Users and High Traffic
+
+Find sites with more than 5 distinct users and total traffic exceeding 5GB:
+
+```bash
+catocli query appStats '{
+    "dimension": [
+        {"fieldName": "src_site_name"},
+        {"fieldName": "site_country"}
+    ],
+    "measure": [
+        {"aggType": "count_distinct", "fieldName": "user_name"},
+        {"aggType": "sum", "fieldName": "traffic"},
+        {"aggType": "sum", "fieldName": "flows_created"}
+    ],
+    "appStatsPostAggFilter": [
+        {
+            "aggType": "count_distinct",
+            "filter": {
+                "fieldName": "user_name",
+                "operator": "gt",
+                "values": ["5"]
+            }
+        },
+        {
+            "aggType": "sum",
+            "filter": {
+                "fieldName": "traffic",
+                "operator": "gte",
+                "values": ["5368709120"]
+            }
+        }
+    ],
+    "appStatsSort": [
+        {"fieldName": "traffic", "order": "desc"}
+    ],
+    "timeFrame": "last.P7D"
+}' -f csv --csv-filename=appstats_active_sites.csv
+```
+
 ## Field Name Reference
 
-### Valid values for appStatsFilter, dimension and measure
+### Valid values for appStatsPostAggFilter, appStatsFilter, dimension and measure
 Valid values: `ad_name`, `app`, `application`, `application_description`, `application_id`, `application_name`, `application_risk_level`, `application_risk_score`, `categories`, `category`, `configured_host_name`, `description`, `dest_ip`, `dest_is_site_or_vpn`, `dest_site`, `dest_site_id`, `dest_site_name`, `device_name`, `discovered_app`, `domain`, `downstream`, `flows_created`, `hq_location`, `ip`, `is_cloud_app`, `is_sanctioned_app`, `ISP_name`, `new_app`, `risk_level`, `risk_score`, `sanctioned`, `site_country`, `site_state`, `socket_interface`, `src_country`, `src_country_code`, `src_ip`, `src_is_site_or_vpn`, `src_isp_ip`, `src_site_country_code`, `src_site_id`, `src_site_name`, `src_site_state`, `subnet`, `subnet_name`, `tld`, `traffic`, `traffic_direction`, `upstream`, `user_id`, `user_name`, `vpn_user_id`

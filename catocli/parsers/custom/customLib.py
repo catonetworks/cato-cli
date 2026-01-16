@@ -568,3 +568,53 @@ def check_module_exists(module_name):
             
     except Exception as e:
         return False, f"Error checking module existence: {e}"
+
+
+def clean_csv_file(filepath, verbose=False):
+    """
+    Clean up CSV file by:
+    1. Removing any completely empty lines (lines with only commas or whitespace)
+    2. Ensuring file ends without trailing newline (no \r\n at end)
+    3. Preserving Windows line endings (\r\n) for all non-final lines
+    
+    This prevents issues with Terraform's csvdecode() function treating trailing
+    newlines as empty rows, which can cause module validation failures.
+    
+    Args:
+        filepath: Path to the CSV file to clean
+        verbose: Whether to print debug information
+    """
+    try:
+        # Read the entire file
+        with open(filepath, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        # Split into lines while preserving line ending info
+        lines = content.splitlines(keepends=False)  # Get lines without endings
+        
+        # Filter out empty lines (lines that are empty or only contain commas/whitespace)
+        cleaned_lines = []
+        for line in lines:
+            # Remove all commas and whitespace to check if truly empty
+            test_line = line.replace(',', '').strip()
+            if test_line:  # If there's any content besides commas/whitespace
+                cleaned_lines.append(line)
+        
+        # Write back with proper line endings
+        # All lines except the last get \r\n, last line gets no trailing newline
+        with open(filepath, 'w', encoding='utf-8', newline='') as f:
+            for idx, line in enumerate(cleaned_lines):
+                f.write(line)
+                # Add \r\n to all lines except the last one
+                if idx < len(cleaned_lines) - 1:
+                    f.write('\r\n')
+        
+        if verbose:
+            removed_count = len(lines) - len(cleaned_lines)
+            if removed_count > 0:
+                print(f"DEBUG: Cleaned CSV {filepath}: removed {removed_count} empty line(s)")
+            print(f"DEBUG: CSV file ends without trailing newline")
+                
+    except Exception as e:
+        if verbose:
+            print(f"Warning: Could not clean CSV file {filepath}: {e}")

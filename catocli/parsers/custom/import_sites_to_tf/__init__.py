@@ -23,6 +23,10 @@ def site_import_parse(subparsers, import_parser):
         description='Import Cato socket sites, WAN interfaces, and network ranges to Terraform state from JSON or CSV data sources.',
         usage='''catocli import socket_sites_to_tf [options]
 
+Validation Examples:
+  catocli import socket_sites_to_tf --data-type json --json-file sites.json --module-name module.sites --validate
+  catocli import socket_sites_to_tf --data-type csv --csv-file sites.csv --csv-folder sites_config --module-name module.sites --validate -v
+
 JSON Import Examples:
   catocli import socket_sites_to_tf --data-type json --json-file sites.json --module-name module.sites --auto-approve
   catocli import socket_sites_to_tf sites.json --module-name module.sites  # Legacy format (auto-detects JSON)
@@ -69,6 +73,8 @@ CSV Import Examples:
                              help='Import only network ranges, skip sites and interfaces')
     import_group.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
     import_group.add_argument('--auto-approve', action='store_true', help='Skip confirmation prompt and proceed automatically')
+    import_group.add_argument('--validate', action='store_true', 
+                             help='Validate CSV/JSON files only without performing import. Checks for proper formatting, required fields, and data integrity.')
     
     socket_sites_parser.set_defaults(func=import_sites_to_tf.import_socket_sites_to_tf)
         

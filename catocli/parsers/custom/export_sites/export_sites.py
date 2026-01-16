@@ -8,7 +8,7 @@ import shutil
 from datetime import datetime
 from graphql_client.api.call_api import ApiClient, CallApi
 from graphql_client.api_client import ApiException
-from ..customLib import writeDataToFile, makeCall, getAccountID
+from ..customLib import writeDataToFile, makeCall, getAccountID, clean_csv_file
 from ....Utils.cliutils import load_cli_settings
 
 def generate_template(args):
@@ -1207,6 +1207,9 @@ def export_sites_to_csv(sites, args, account_id):
         writer.writeheader()
         writer.writerows(rows)
     
+    # Clean up CSV: remove empty lines and ensure proper line endings
+    clean_csv_file(filepath, verbose=hasattr(args, 'verbose') and args.verbose)
+    
     if hasattr(args, 'verbose') and args.verbose:
         print(f"Exported {len(sites)} sites with {total_interfaces} WAN interfaces to {filepath}")
     
@@ -1486,6 +1489,9 @@ def export_network_ranges_to_csv(site, args, account_id):
         writer = csv.DictWriter(csvfile, fieldnames=headers)
         writer.writeheader()
         writer.writerows(rows)
+    
+    # Clean up CSV: remove empty lines and ensure proper line endings
+    clean_csv_file(filepath, verbose=hasattr(args, 'verbose') and args.verbose)
     
     if hasattr(args, 'verbose') and args.verbose:
         print(f"Exported {len(rows)} network ranges for site '{site_name}' to {filepath}")

@@ -189,3 +189,6 @@
 ## 3.0.55 (2026-01-19)
 - Update export function to use increments of 50 to paginate for large exports of sites, interfaces and ranges.
 
+## 3.0.56 (2026-01-19)
+- Updated request librtary to retry if api gateway response with timeout, 0, 15, and 30 seconds before failing. 
+

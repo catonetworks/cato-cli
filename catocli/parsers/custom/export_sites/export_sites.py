@@ -1598,37 +1598,59 @@ def populateSiteLocationData(args, site_data, cur_site):
 def getEntityLookup(args, configuration, account_id, entity_type, entity_ids=[], entity_input=[]):
     """
     Helper function to get entity lookup data for a specific entity type
+    Implements pagination with increments of 50 records
     """
     #################################
     ## Get entity lookup for sites ##
     #################################
-    entity_query = {
-        "query": "query entityLookup ( $accountID:ID! $type:EntityType! $entityInput:EntityInput $entityIDs:[ID!] ) { entityLookup ( accountID:$accountID type:$type parent:$entityInput entityIDs:$entityIDs ) { items { entity { id  name  type  } description helperFields } total  }  }",
-        "variables": {
-            "accountID": account_id,
-            "type": entity_type,
-            "from": 0,
-            "limit": 1000,
-            "entityIDs": entity_ids,
-            "entityInput": entity_input
-        },
-        "operationName": "entityLookup"
-    }
-    response = makeCall(args, configuration, entity_query)
-    # Check for GraphQL errors in snapshot response
-    if 'errors' in response:
-        error_messages = [error.get('message', 'Unknown error') for error in response['errors']]
-        raise Exception(f"Snapshot API returned errors: {', '.join(error_messages)}")
-    
-    if not response or 'data' not in response or 'entityLookup' not in response['data']:
-        raise ValueError("Failed to retrieve snapshot data from API")
-    
-    items = response['data']['entityLookup']['items']
-    if items is None:
-        items = []
+    all_items = []
+    from_offset = 0
+    limit = 50
+
+    while True:
+        entity_query = {
+            "query": "query entityLookup ( $accountID:ID! $type:EntityType! $entityInput:EntityInput $entityIDs:[ID!] $from:Int $limit:Int ) { entityLookup ( accountID:$accountID type:$type parent:$entityInput entityIDs:$entityIDs from:$from limit:$limit ) { items { entity { id  name  type  } description helperFields } total  }  }",
+            "variables": {
+                "accountID": account_id,
+                "type": entity_type,
+                "from": from_offset,
+                "limit": limit,
+                "entityIDs": entity_ids,
+                "entityInput": entity_input
+            },
+            "operationName": "entityLookup"
+        }
+        response = makeCall(args, configuration, entity_query)
+        # Check for GraphQL errors in snapshot response
+        if 'errors' in response:
+            error_messages = [error.get('message', 'Unknown error') for error in response['errors']]
+            raise Exception(f"Snapshot API returned errors: {', '.join(error_messages)}")
+
+        if not response or 'data' not in response or 'entityLookup' not in response['data']:
+            raise ValueError("Failed to retrieve snapshot data from API")
+
+        items = response['data']['entityLookup']['items']
+        if items is None:
+            items = []
+
+        # Append items from this page to all_items
+        all_items.extend(items)
+
+        items_count = len(items)
         if hasattr(args, 'verbose') and args.verbose:
-            print("No items found in entity lookup - "+ entity_type)
-    return items
+            print(f"Retrieved {items_count} items for entity lookup - {entity_type} (offset: {from_offset})")
+
+        # Stop if we received fewer items than the limit (last page)
+        if items_count < limit:
+            break
+
+        # Increment offset for next page
+        from_offset += limit
+
+    if not all_items and hasattr(args, 'verbose') and args.verbose:
+        print("No items found in entity lookup - "+ entity_type)
+
+    return all_items
 
 def getAccountSnapshot(args, configuration, account_id, site_ids=None):
     snapshot_query = {

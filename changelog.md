@@ -185,3 +185,7 @@
 
 ## 3.0.54 (2026-01-16)
 - Updated export with entityLookup to retrieve 1000 records as opposed to limit of 50 which is default API behavior.
+
+## 3.0.55 (2026-01-19)
+- Update export function to use increments of 50 to paginate for large exports of sites, interfaces and ranges.
+

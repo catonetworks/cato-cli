@@ -192,3 +192,5 @@
 ## 3.0.56 (2026-01-19)
 - Updated request librtary to retry if api gateway response with timeout, 0, 15, and 30 seconds before failing. 
 
+## 3.0.57 (2026-01-20)
+- Added logic to retry API after rate limit, and added logic to populate stateCode when city is missing in api response.

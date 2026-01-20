@@ -337,8 +337,10 @@ def export_socket_site_to_json(args, configuration):
                     lan_ni_subnet = str(lan_ni_helper_fields.get('subnet', ""))
                     ni_index = lan_ni_helper_fields.get('interfaceId', "")
                     ni_index = f"INT_{ni_index}" if isinstance(ni_index, (int, str)) and str(ni_index).isdigit() else ni_index
+                    # Use isDefault flag from API instead of hardcoded map
+                    is_default_interface = lan_ni_helper_fields.get('isDefault', False)
 
-                    if cur_site_entry["connection_type"] in settings["default_socket_interface_map"] and ni_index in settings["default_socket_interface_map"][cur_site_entry["connection_type"]]:
+                    if is_default_interface:
                         cur_site_entry["native_range"]["interface_id"] = ni_interface_id
                         cur_site_entry["native_range"]["interface_name"] = ni_interface_name
                         cur_site_entry["native_range"]["subnet"] = lan_ni_subnet
@@ -834,8 +836,10 @@ def get_processed_site_data(args, configuration):
                 lan_ni_subnet = str(lan_ni_helper_fields.get('subnet', ""))
                 ni_index = lan_ni_helper_fields.get('interfaceId', "")
                 ni_index = f"INT_{ni_index}" if isinstance(ni_index, (int, str)) and str(ni_index).isdigit() else ni_index
+                # Use isDefault flag from API instead of hardcoded map
+                is_default_interface = lan_ni_helper_fields.get('isDefault', False)
                 
-                if cur_site_entry["connection_type"] in settings["default_socket_interface_map"] and ni_index in settings["default_socket_interface_map"][cur_site_entry["connection_type"]]:
+                if is_default_interface:
                     cur_site_entry["native_range"]["interface_id"] = ni_interface_id
                     cur_site_entry["native_range"]["interface_name"] = ni_interface_name
                     cur_site_entry["native_range"]["subnet"] = lan_ni_subnet

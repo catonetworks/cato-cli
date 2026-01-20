@@ -192,6 +192,6 @@
 ## 3.0.56 (2026-01-19)
 - Updated request librtary to retry if api gateway response with timeout, 0, 15, and 30 seconds before failing. 
 
-## 3.0.58 (2026-01-20)
+## 3.0.59 (2026-01-20)
 - Added logic to retry API after rate limit, and added logic to populate stateCode when city is missing in api response.
-- Added hard coded value for lag_min_links as 1, as this is not available in API and is a best practice value.
+- Added hard coded value for lag_min_links as 1, only for LAN_LAG_MASTER interfaces as this is not available in API and is a best practice value.

@@ -346,8 +346,11 @@ def export_socket_site_to_json(args, configuration):
                         native_range_dest_type = interface_details.get('dest_type', '')
                         cur_site_entry["native_range"]["dest_type"] = native_range_dest_type
                         
-                        # Set lag_min_links to hardcoded value of 1
-                        cur_site_entry["native_range"]["lag_min_links"] = '1'
+                        # Set lag_min_links to 1 only for LAN_LAG_MASTER interfaces
+                        lag_min_links = None
+                        if 'LAN_LAG_MASTER' in native_range_dest_type:
+                            lag_min_links = '1'
+                        cur_site_entry["native_range"]["lag_min_links"] = lag_min_links
                         
                         cur_site_entry['lan_interfaces'].append({"network_ranges": [],"default_lan":True})
                     else:
@@ -833,8 +836,11 @@ def get_processed_site_data(args, configuration):
                     native_range_dest_type = interface_details.get('dest_type', '')
                     cur_site_entry["native_range"]["dest_type"] = native_range_dest_type
                     
-                    # Set lag_min_links to hardcoded value of 1
-                    cur_site_entry["native_range"]["lag_min_links"] = '1'
+                    # Set lag_min_links to 1 only for LAN_LAG_MASTER interfaces
+                    lag_min_links = ''
+                    if 'LAN_LAG_MASTER' in native_range_dest_type:
+                        lag_min_links = '1'
+                    cur_site_entry["native_range"]["lag_min_links"] = lag_min_links
                     
                     cur_site_entry['lan_interfaces'].append({"network_ranges": [], "default_lan": True})
                 else:
@@ -1373,8 +1379,10 @@ def export_network_ranges_to_csv(site, args, account_id):
         # If no network ranges at all, create at least one row with just the LAN interface info  
         # For regular LAN interfaces, mark as native range if this is the first/only interface
         if not network_ranges:
-            # Set lag_min_links to hardcoded value of 1
-            lag_min_links_value = '1'
+            # Set lag_min_links to 1 only for LAN_LAG_MASTER interfaces
+            lag_min_links_value = ''
+            if 'LAN_LAG_MASTER' in interface_dest_type:
+                lag_min_links_value = '1'
             
             row = {
                 # LAN Interface details - first 3 columns reordered, lag_min_links 4th, is_native_range 5th, lan_interface_index 6th
@@ -1422,8 +1430,10 @@ def export_network_ranges_to_csv(site, args, account_id):
                 current_range_name = network_range.get('name', '')
                 is_native_range = (current_range_name == 'Native Range')
                 
-                # Set lag_min_links to hardcoded value of 1 (only on first row)
-                lag_min_links_value = '1' if is_first_range else ''
+                # Set lag_min_links to 1 only for LAN_LAG_MASTER interfaces (only on first row)
+                lag_min_links_value = ''
+                if is_first_range and 'LAN_LAG_MASTER' in interface_dest_type:
+                    lag_min_links_value = '1'
                 
                 row = {
                     # LAN Interface details - first 3 columns reordered, lag_min_links 4th, is_native_range 5th, lan_interface_index 6th

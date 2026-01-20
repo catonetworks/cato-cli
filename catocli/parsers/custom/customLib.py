@@ -143,12 +143,13 @@ def makeCall(args, configuration, query):
             last_exception = e
             error_msg = str(e)
 
-            # Check if it's a timeout or 502/503 error that should be retried
+            # Check if it's a timeout, 502/503, or rate limit error that should be retried
             is_retryable = (
                 '502 Bad Gateway' in error_msg or
                 '503 Service Unavailable' in error_msg or
                 'timeout' in error_msg.lower() or
-                'timed out' in error_msg.lower()
+                'timed out' in error_msg.lower() or
+                'rate limit' in error_msg.lower()
             )
 
             if is_retryable and attempt < max_attempts - 1:
@@ -161,8 +162,18 @@ def makeCall(args, configuration, query):
 
         except Exception as e:
             last_exception = e
-            # For other exceptions, don't retry
-            raise Exception(f"Unexpected error during API call - {e}")
+            error_msg = str(e)
+            
+            # Check if it's a rate limit error that should be retried
+            is_retryable = 'rate limit' in error_msg.lower()
+            
+            if is_retryable and attempt < max_attempts - 1:
+                if hasattr(args, 'verbose') and args.verbose:
+                    print(f"API call failed with retryable error (attempt {attempt + 1}/{max_attempts}): {error_msg}")
+                continue  # Retry
+            else:
+                # Non-retryable error or final attempt
+                raise Exception(f"Unexpected error during API call - {e}")
 
     # If we exhausted all retries
     raise Exception(f"API call failed after {max_attempts} attempts - {last_exception}")

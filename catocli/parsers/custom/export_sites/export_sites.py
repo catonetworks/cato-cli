@@ -1541,19 +1541,39 @@ def populateSiteLocationData(args, site_data, cur_site):
     city = cur_site['site_location']['city']
 
     # Create lookup key based on available data
-    if state_name:
-        lookup_key = f"{country_name}___{state_name}___{city}"
-    else:
-        lookup_key = f"{country_name}___{city}"
+    location_data = {}
     
-    # Debug output for lookup
-    if hasattr(args, 'verbose') and args.verbose:
-        print(f"Site {cur_site['name']}: Looking up '{lookup_key}'")
-
-    # Look up location details
-    location_data = site_location_data.get(lookup_key, {})
+    if city:  # City is provided
+        if state_name:
+            lookup_key = f"{country_name}___{state_name}___{city}"
+        else:
+            lookup_key = f"{country_name}___{city}"
+        
+        # Debug output for lookup
+        if hasattr(args, 'verbose') and args.verbose:
+            print(f"Site {cur_site['name']}: Looking up '{lookup_key}'")
+        
+        # Look up location details
+        location_data = site_location_data.get(lookup_key, {})
+    
+    elif state_name:  # No city, but state is provided - find any city in that state
+        # Search for any entry matching country + state to get stateCode
+        lookup_prefix = f"{country_name}___{state_name}___"
+        
+        if hasattr(args, 'verbose') and args.verbose:
+            print(f"Site {cur_site['name']}: No city provided, searching for state '{state_name}' in '{country_name}'")
+        
+        # Find first matching entry for this state
+        for key, data in site_location_data.items():
+            if key.startswith(lookup_prefix):
+                location_data = data
+                if hasattr(args, 'verbose') and args.verbose:
+                    print(f"  Found matching state entry: {key}")
+                break
     
     # Now that location_data is defined, we can set stateCode
+    if hasattr(args, 'verbose') and args.verbose:
+        print("location_data:", json.dumps(location_data, indent=2))
     cur_site['site_location']['stateCode'] = location_data.get('stateCode', None)
     
     if hasattr(args, 'verbose') and args.verbose:
@@ -1566,7 +1586,7 @@ def populateSiteLocationData(args, site_data, cur_site):
             if similar_keys:
                 print(f"  Similar keys found: {similar_keys}")
 
-    
+
     # Get timezone - always use the 0 element in the timezones array
     timezones = location_data.get('timezone', [])
     timezone = timezones[0] if timezones else None

@@ -22,11 +22,12 @@ def run():
     ######################### CONTINUOUS BUILD PROCESS ##############################
     ## Single continuous process - download, parse, and generate all in one flow
     print("Downloading and processing GraphQL schema...")
+    print(f"Using endpoint: {options.endpoint}")
     query = {
         'query': 'query IntrospectionQuery { __schema { queryType { name } mutationType { name } subscriptionType { name } types { ...FullType } directives { name description locations args { ...InputValue } } } }  fragment FullType on __Type { kind name description fields(includeDeprecated: true) { name description args { ...InputValue } type { ...TypeRef } isDeprecated deprecationReason } inputFields { ...InputValue } interfaces { ...TypeRef } enumValues(includeDeprecated: true) { name description isDeprecated deprecationReason } possibleTypes { ...TypeRef } }  fragment InputValue on __InputValue { name description type { ...TypeRef } defaultValue }  fragment TypeRef on __Type { kind name ofType { kind name ofType { kind name ofType { kind name ofType { kind name ofType { kind name ofType { kind name ofType { kind name } } } } } } } }',
         'operationName': 'IntrospectionQuery'
     }
-    success, introspection = catolib.send(options.api_key, query)
+    success, introspection = catolib.send(options.api_key, query, endpoint=options.endpoint)
     if not success:
         print("ERROR: Failed to download schema")
         return

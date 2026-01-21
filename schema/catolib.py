@@ -55,20 +55,37 @@ schema_lock = threading.RLock()
 file_write_lock = threading.RLock()
 
 def initParser():
-    if "CATO_TOKEN" not in os.environ:
-        print("Missing authentication, please set the CATO_TOKEN environment variable with your api key.")
-        exit()
-    if "CATO_ACCOUNT_ID" not in os.environ:
-        print("Missing authentication, please set the CATO_ACCOUNT_ID environment variable with your api key.")
-        exit()
-    
     # Process options
     parser = OptionParser()
     parser.add_option("-P", dest="prettify", action="store_true", help="Prettify output")
     parser.add_option("-p", dest="print_entities", action="store_true", help="Print entity records")
     parser.add_option("-v", dest="verbose", action="store_true", help="Print debug info")
     (options, args) = parser.parse_args()
-    options.api_key = os.getenv("CATO_TOKEN")
+    
+    # Get credentials from profile
+    sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+    from catocli.Utils.profile_manager import ProfileManager
+    profile_manager = ProfileManager()
+    
+    # Try to migrate from environment variables first
+    profile_manager.migrate_from_environment()
+    
+    credentials = profile_manager.get_credentials()
+    if not credentials:
+        print("No Cato CLI profile configured.")
+        print("Run 'catocli configure set' to set up your credentials.")
+        exit(1)
+    
+    if not credentials.get('cato_token') or not credentials.get('account_id'):
+        profile_name = profile_manager.get_current_profile()
+        print(f"Profile '{profile_name}' is missing required credentials.")
+        print(f"Run 'catocli configure set --profile {profile_name}' to update your credentials.")
+        exit(1)
+    
+    options.api_key = credentials['cato_token']
+    options.account_id = credentials['account_id']
+    options.endpoint = credentials.get('endpoint', 'https://api.catonetworks.com/api/v1/graphql2')
+    
     if options.verbose:
         logging.getLogger().setLevel(logging.DEBUG)
     else:
@@ -1455,10 +1472,19 @@ def getNestedFieldDefinitions(fieldsAry, parentParamPath, childOperations, paren
 
 # renderCamelCase is imported from shared utilities
 
-def send(api_key, query, variables={}, operationName=None):
+def send(api_key, query, variables={}, operationName=None, endpoint='https://api.catonetworks.com/api/v1/graphql2'):
+    # Load settings to check if endpoint is a development server
+    settings = loadJSON("../catocli/clisettings.json", __file__)
+    developmentServers = settings.get("developmentServers", {})
+    
+    # Append ?with_undocumented=true if this is a development server
+    url = endpoint
+    if endpoint in developmentServers and developmentServers[endpoint]:
+        url = endpoint + "?with_undocumented=true"
+    
     headers = { 'x-api-key': api_key,'Content-Type':'application/json'}
     no_verify = ssl._create_unverified_context()
-    request = urllib.request.Request(url='https://api.catonetworks.com/api/v1/graphql2',
+    request = urllib.request.Request(url=url,
         data=json.dumps(query).encode("ascii"), headers=headers)
     response = urllib.request.urlopen(request, context=no_verify, timeout=60)
     result_data = response.read()

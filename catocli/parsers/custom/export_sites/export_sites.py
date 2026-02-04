@@ -591,7 +591,8 @@ def export_socket_site_to_csv(args, configuration):
         processed_data = get_processed_site_data(args, configuration)
         
         if not processed_data or not processed_data.get('sites'):
-            return [{"success": False, "error": "No sites data found to export"}]
+            account_id = getAccountID(args, configuration)
+            return [{"success": False, "error": "No sites data found to export", "account_id": account_id}]
         if hasattr(args, 'verbose') and args.verbose:
             print(f"DEBUG: processed_data "+json.dumps(processed_data, indent=4,sort_keys=True))
 
@@ -678,11 +679,10 @@ def get_processed_site_data(args, configuration):
             # User provided specific site IDs but none were found
             print(f"No sites found matching the provided site IDs: {', '.join(site_ids)}")
             print("Please verify the site IDs are correct and that they exist in this account.")
-            return [{"success": False, "message": f"No sites found for the specified site IDs: {', '.join(site_ids)}", "sites_requested": site_ids}]
         else:
             # No site filter was provided but no sites exist at all
             print("No sites found in this account.")
-            return [{"success": False, "message": "No sites found in account", "account_id": account_id}]
+        return None
     
     total_sites = len(entity_sites)
     print(f"\nExporting Cato physical socket sites:\n")

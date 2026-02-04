@@ -41742,6 +41742,12 @@
               "deprecationReason": null
             },
             {
+              "name": "application_type",
+              "description": "Application type (CUSTOM or ORDINARY)",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "categories",
               "description": "Cato system categories of the application",
               "isDeprecated": false,
@@ -44342,6 +44348,12 @@
               "deprecationReason": null
             },
             {
+              "name": "CATO_SDWN",
+              "description": "SD-WAN Network, Pool Bandwidth",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "MOBILE_USERS",
               "description": "ZTNA remote users SKU",
               "isDeprecated": true,
@@ -44512,6 +44524,18 @@
             {
               "name": "CATO_DATALAKE_12M",
               "description": "12 months data retention SKU",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "CATO_AI_SEC_U",
+              "description": "Cato AI Security Users SKU",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "CATO_AI_SEC_APP_U",
+              "description": "Cato AI Security Applications SKU",
               "isDeprecated": false,
               "deprecationReason": null
             }
@@ -63617,6 +63641,54 @@
               "deprecationReason": null
             },
             {
+              "name": "aiSecurityUsers",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "AISecurityUsersLicense",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "aiSecurityApplications",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "AISecurityApplicationsLicense",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "globalLicenseAllocations",
               "description": "License usage and allocation across the managed accounts",
               "args": [],
@@ -64120,6 +64192,16 @@
               "kind": "OBJECT",
               "name": "XOpsLicense",
               "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "AISecurityUsersLicense",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "AISecurityApplicationsLicense",
+              "ofType": null
             }
           ]
         },
@@ -64315,6 +64397,16 @@
             {
               "kind": "OBJECT",
               "name": "DemLicense",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "AISecurityUsersLicense",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "AISecurityApplicationsLicense",
               "ofType": null
             }
           ]
@@ -67983,6 +68075,306 @@
             {
               "kind": "INTERFACE",
               "name": "License",
+              "ofType": null
+            }
+          ],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "AISecurityUsersLicense",
+          "description": "AI Security Users service license details",
+          "fields": [
+            {
+              "name": "id",
+              "description": "The unique identifier for the license. If this value is not available, you can contact Cato Support, who may be able to assist in retrieving it.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "description",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "plan",
+              "description": "License plan type",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "LicensePlan",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "sku",
+              "description": "The license SKU",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "LicenseSku",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "status",
+              "description": "License activation status",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "LicenseStatus",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "startDate",
+              "description": "License start date",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "expirationDate",
+              "description": "License expiration date",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "DateTime",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "lastUpdated",
+              "description": "The date of the last update to the license",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "total",
+              "description": "License quantity",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [
+            {
+              "kind": "INTERFACE",
+              "name": "License",
+              "ofType": null
+            },
+            {
+              "kind": "INTERFACE",
+              "name": "QuantifiableLicense",
+              "ofType": null
+            }
+          ],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "AISecurityApplicationsLicense",
+          "description": "AI Security Applications service license details",
+          "fields": [
+            {
+              "name": "id",
+              "description": "The unique identifier for the license. If this value is not available, you can contact Cato Support, who may be able to assist in retrieving it.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "description",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "plan",
+              "description": "License plan type",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "LicensePlan",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "sku",
+              "description": "The license SKU",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "LicenseSku",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "status",
+              "description": "License activation status",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "LicenseStatus",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "startDate",
+              "description": "License start date",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "expirationDate",
+              "description": "License expiration date",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "DateTime",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "lastUpdated",
+              "description": "The date of the last update to the license",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "total",
+              "description": "License quantity",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [
+            {
+              "kind": "INTERFACE",
+              "name": "License",
+              "ofType": null
+            },
+            {
+              "kind": "INTERFACE",
+              "name": "QuantifiableLicense",
               "ofType": null
             }
           ],
@@ -84247,6 +84639,12 @@
               "deprecationReason": null
             },
             {
+              "name": "access_point_name",
+              "description": "Access Point Name",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "account_id",
               "description": "Account ID",
               "isDeprecated": false,
@@ -84283,32 +84681,14 @@
               "deprecationReason": null
             },
             {
-              "name": "adaptive_rule_ids",
-              "description": "Adaptive rule IDs applied in the event",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "adaptive_rule_names",
-              "description": "Adaptive rule names applied in the event",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "adaptive_rule_scope",
-              "description": "The scope of the adaptive rule applied in the event",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "adaptive_rule_threat_categories",
-              "description": "Adaptive rule threat categories applied in the event",
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "ai_app_risk_level",
               "description": "The estimated risk level of the AI threat",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ai_proxy_rule_name",
+              "description": "AI Proxy rule name",
               "isDeprecated": false,
               "deprecationReason": null
             },
@@ -84381,6 +84761,12 @@
             {
               "name": "application_risk",
               "description": "Application risk score",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "application_type",
+              "description": "Application type (Custom or System)",
               "isDeprecated": false,
               "deprecationReason": null
             },
@@ -84591,6 +84977,12 @@
             {
               "name": "correlation_id",
               "description": "An external system identifier used for correlation between related Cato entities. Example: external ticket id that correlates Cato XDR stories.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "cpu_core_id",
+              "description": "CPU Core ID",
               "isDeprecated": false,
               "deprecationReason": null
             },
@@ -84823,8 +85215,8 @@
               "deprecationReason": null
             },
             {
-              "name": "dns_request_type",
-              "description": "Type of query (ie. DNS query: A, AAAA, MX, or PTR)",
+              "name": "dns_record_type",
+              "description": "Type of record (ie. DNS record: A, AAAA, MX, or PTR)",
               "isDeprecated": false,
               "deprecationReason": null
             },
@@ -84837,6 +85229,30 @@
             {
               "name": "duration_ms",
               "description": "Duration in milliseconds between the start and end of a transaction or operation. For example, in DNS or HTTP events, this reflects the time between the request and the corresponding response.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "dynamic_control_ids",
+              "description": "Dynamic Control IDs applied in the event",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "dynamic_control_names",
+              "description": "Dynamic control names applied in the event",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "dynamic_control_scope",
+              "description": "The scope of the dynamic control Applied in the event",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "dynamic_control_threat_categories",
+              "description": "Dynamic control threat categories applied in the event",
               "isDeprecated": false,
               "deprecationReason": null
             },
@@ -84985,6 +85401,24 @@
               "deprecationReason": null
             },
             {
+              "name": "guard_id",
+              "description": "A unique identifier for the AI Security Guard associated with the event",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "guard_name",
+              "description": "The name of the AI Security Guard associated with the event",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "guard_type",
+              "description": "The type of AI Security Guard associated with the event",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "guest_user",
               "description": "An identifier for a guest user using Cato through a Captive Portal",
               "isDeprecated": false,
@@ -85111,6 +85545,12 @@
               "deprecationReason": null
             },
             {
+              "name": "last_turn_role",
+              "description": "Role of the conversation participant for the analyzed turn (user, assistant, or tool call)",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "link_health_is_congested",
               "description": "Data that measures the congestion for a specific link",
               "isDeprecated": false,
@@ -85155,6 +85595,12 @@
             {
               "name": "matched_data_types",
               "description": "Matched DLP data types related to the event",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "message_id",
+              "description": "Unique identifier used to correlate request and response events for the same message",
               "isDeprecated": false,
               "deprecationReason": null
             },
@@ -85245,6 +85691,12 @@
             {
               "name": "out_of_band_access",
               "description": "Indicate if the Access to the 3rd Party SaaS App occurs without passing through Cato Cloud (direct access to saas App)",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "outpost_environment_name",
+              "description": "Name of the on-prem deployment  environment where the event originated from",
               "isDeprecated": false,
               "deprecationReason": null
             },
@@ -85431,6 +85883,12 @@
             {
               "name": "service_name",
               "description": "Indicates the internal vendor service or module that produced the data reported in this event",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "session_id",
+              "description": "Unique identifier for grouping multiple messages within the same session",
               "isDeprecated": false,
               "deprecationReason": null
             },
@@ -85741,6 +86199,12 @@
               "deprecationReason": null
             },
             {
+              "name": "total_tokens",
+              "description": "Total number of tokens processed",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "traffic_direction",
               "description": "Direction of network traffic for this event, values are inbound or outbound",
               "isDeprecated": false,
@@ -85891,6 +86355,12 @@
               "deprecationReason": null
             },
             {
+              "name": "vendor_org_id",
+              "description": "Identifies the organization in the vendor\u2019s system",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "vendor_policy_description",
               "description": "Third party vendor policy description",
               "isDeprecated": false,
@@ -85905,6 +86375,12 @@
             {
               "name": "vendor_policy_name",
               "description": "Third party vendor policy name",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "vendor_site_id",
+              "description": "Identifies the site in the vendor\u2019s system",
               "isDeprecated": false,
               "deprecationReason": null
             },
@@ -85939,6 +86415,12 @@
               "deprecationReason": null
             },
             {
+              "name": "wifi_bssid",
+              "description": "WiFi BSSID (Basic Service Set Identifier)",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "wifi_channel",
               "description": "WiFi channel",
               "isDeprecated": false,
@@ -85951,8 +86433,38 @@
               "deprecationReason": null
             },
             {
+              "name": "wifi_event_reason_code",
+              "description": "Wifi Event Reason Code",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "wifi_event_type",
+              "description": "Wifi Event Type",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "wifi_event_type_code",
+              "description": "Wifi Event Type Code",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "wifi_protocol",
+              "description": "Wifi  Protocol",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "wifi_radio_band",
               "description": "WiFi radio band",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "wifi_security",
+              "description": "Wifi Security Protocols",
               "isDeprecated": false,
               "deprecationReason": null
             },
@@ -85965,6 +86477,12 @@
             {
               "name": "wifi_ssid",
               "description": "WiFi SSID (Service Set Identifier)",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "wifi_time_since_assoc_ms",
+              "description": "Wifi milliseconds since association to the Access Point",
               "isDeprecated": false,
               "deprecationReason": null
             },
@@ -98677,11 +99195,599 @@
               },
               "isDeprecated": false,
               "deprecationReason": null
+            },
+            {
+              "name": "c5Attestation",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CatalogApplicationAttribute",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "cyberEssentialsPlusUk",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CatalogApplicationAttribute",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "cjis",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CatalogApplicationAttribute",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "cobit",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CatalogApplicationAttribute",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "coppa",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CatalogApplicationAttribute",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "csaStar",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CatalogApplicationAttribute",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "fedRamp",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CatalogApplicationAttribute",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ferpa",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CatalogApplicationAttribute",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ffiec",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CatalogApplicationAttribute",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "finra",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CatalogApplicationAttribute",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "fisma",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CatalogApplicationAttribute",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "gapp",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CatalogApplicationAttribute",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "gdpr",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CatalogApplicationAttribute",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "glba",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CatalogApplicationAttribute",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "hitrustCsf",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CatalogApplicationAttribute",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "iso27002",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CatalogApplicationAttribute",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "iso27017",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CatalogApplicationAttribute",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "iso27018",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CatalogApplicationAttribute",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "iso9000",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CatalogApplicationAttribute",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "iso9001",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CatalogApplicationAttribute",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "itar",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CatalogApplicationAttribute",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "jerichoForumCommandments",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CatalogApplicationAttribute",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "nistSp80053",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CatalogApplicationAttribute",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "euUsDataPrivacyFramework",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CatalogApplicationAttribute",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "japanPrivacyMark",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CatalogApplicationAttribute",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "trustArcPrivacy",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CatalogApplicationAttribute",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
             }
           ],
           "inputFields": null,
           "interfaces": [],
           "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "CatalogApplicationDataRetentionPolicy",
+          "description": null,
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "DAYS_1_30",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "MONTHS_1_12",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "MORE_THAN_1_YEAR",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "DELETION_UPON_REQUEST",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "WHILE_ACCOUNT_IS_ACTIVE",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "CONFIGURABLE_BY_USER",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "UNKNOWN",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "CatalogApplicationDataDeletionPolicy",
+          "description": null,
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "IMMEDIATE_ON_REQUEST",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "WITHIN_30_DAYS",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "WITHIN_90_DAYS",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "AFTER_ACCOUNT_DELETION",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "NOT_OFFERED",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "UNKNOWN",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "CatalogApplicationDataOwnership",
+          "description": null,
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "CUSTOMER_OWNS_DATA",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "VENDOR_OWNS_DATA",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "SHARED_OWNERSHIP",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "UNKNOWN",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "CatalogApplicationEncryptionStrengthAtRest",
+          "description": null,
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "ENCRYPTION_128_BIT",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ENCRYPTION_192_BIT",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ENCRYPTION_256_BIT",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ENCRYPTION_GT_256_BIT",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ENCRYPTION_NOT_DISCLOSED",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ENCRYPTION_UNKNOWN",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "CatalogApplicationWeakCipherSupport",
+          "description": null,
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "NONE",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "TLS_1_0_1_1",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "SHA_1",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "RC4",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "DES_3",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "MULTIPLE_WEAK_CIPHERS",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "UNKNOWN",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "CatalogApplicationTlsVersionSupport",
+          "description": null,
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "TLS_1_3",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "TLS_1_2",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "TLS_1_2_PLUS",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "TLS_1_1_OR_OLDER",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "UNKNOWN",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
           "possibleTypes": null
         },
         {
@@ -98829,6 +99935,197 @@
                   "name": "CatalogApplicationAttribute",
                   "ofType": null
                 }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "dataRetentionPolicy",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CatalogApplicationDataRetentionPolicy",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "dataDeletionPolicy",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CatalogApplicationDataDeletionPolicy",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "dataOwnership",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CatalogApplicationDataOwnership",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "encryptionStrengthAtRest",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CatalogApplicationEncryptionStrengthAtRest",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "weakCipherSupport",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CatalogApplicationWeakCipherSupport",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "tlsVersionSupport",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CatalogApplicationTlsVersionSupport",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "termsOfUseCustomerProtectionUrl",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "privacyPolicyUrl",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "physicalDataCenterSecurity",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CatalogApplicationAttribute",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "disasterRecovery",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CatalogApplicationAttribute",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "encryptionInTransit",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CatalogApplicationAttribute",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "dataSegregatedByTenant",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CatalogApplicationAttribute",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "CatalogApplicationIdentityAccessManagementAttributes",
+          "description": null,
+          "fields": [
+            {
+              "name": "accessControlEnforcement",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CatalogApplicationAttribute",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ipBasedAccessRestrictions",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CatalogApplicationAttribute",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "samlAuthentication",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CatalogApplicationAttribute",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -99228,6 +100525,18 @@
                   "name": "CatalogApplicationSecurityAttributes",
                   "ofType": null
                 }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "identityAccessManagementAttributes",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "CatalogApplicationIdentityAccessManagementAttributes",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null

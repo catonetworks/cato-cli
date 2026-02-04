@@ -67,6 +67,12 @@ query licensing ( $accountId:ID!) {
 				... on DemLicense {
 					total
 				}
+				... on AISecurityUsersLicense {
+					total
+				}
+				... on AISecurityApplicationsLicense {
+					total
+				}
 			}
 			dataLake {
 				id
@@ -334,6 +340,28 @@ query licensing ( $accountId:ID!) {
 				startDate
 				expirationDate
 				lastUpdated
+			}
+			aiSecurityUsers {
+				id
+				description
+				plan
+				sku
+				status
+				startDate
+				expirationDate
+				lastUpdated
+				total
+			}
+			aiSecurityApplications {
+				id
+				description
+				plan
+				sku
+				status
+				startDate
+				expirationDate
+				lastUpdated
+				total
 			}
 			globalLicenseAllocations {
 				publicIps {

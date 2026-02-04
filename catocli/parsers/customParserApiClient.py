@@ -1931,17 +1931,80 @@ def fetch_current_version(configuration, private_settings):
         return None
 
 
-def createPrivateRequest(args, configuration):
-    """Handle private command execution using GraphQL payload templates"""
+def executePrivateScript(args, private_config):
+    """Execute a custom Python script for script-based private commands"""
+    import subprocess
+
     params = vars(args)
-    
+    script_path = private_config.get('scriptPath')
+
+    if not script_path:
+        print("ERROR: scriptPath not found in command configuration")
+        return None
+
+    # Resolve script path relative to ~/.cato/
+    cato_dir = os.path.expanduser("~/.cato")
+    full_script_path = os.path.join(cato_dir, script_path)
+
+    if not os.path.exists(full_script_path):
+        print(f"ERROR: Script not found: {full_script_path}")
+        return None
+
+    # Check if script is executable
+    if not os.access(full_script_path, os.X_OK):
+        print(f"ERROR: Script is not executable: {full_script_path}")
+        print(f"Run: chmod +x {full_script_path}")
+        return None
+
+    # Get the JSON argument (config file path) if provided
+    json_arg = params.get('json', '')
+    verbose = params.get('v', False)
+
+    # Build command
+    cmd = [sys.executable, full_script_path]
+
+    # Add verbose flag if specified
+    if verbose:
+        cmd.append('-v')
+
+    # Add config file path if provided
+    if json_arg and json_arg != '{}':
+        cmd.append(json_arg)
+
+    # Execute the script
+    try:
+        result = subprocess.run(
+            cmd,
+            check=False,
+            text=True,
+            capture_output=False  # Let script output go directly to stdout/stderr
+        )
+
+        # Return exit code (0 for success, non-zero for failure)
+        return result.returncode
+
+    except Exception as e:
+        print(f"ERROR: Failed to execute script: {e}")
+        return None
+
+
+def createPrivateRequest(args, configuration):
+    """Handle private command execution using GraphQL payload templates or custom scripts"""
+    params = vars(args)
+
     # Get the private command configuration
     private_command = params.get('private_command')
     private_config = params.get('private_config')
-    
+
     if not private_command or not private_config:
         print("ERROR: Missing private command configuration")
         return None
+
+    # Check if this is a script-based command
+    if 'scriptPath' in private_config:
+        return executePrivateScript(args, private_config)
+
+    # Otherwise, proceed with normal GraphQL execution
     
     # Load private settings FIRST before accessing any values
     try:

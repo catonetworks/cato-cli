@@ -1,0 +1,38 @@
+mutation externalAccessCancelPartnerAccess ( $accountId:ID! $cancelPartnerAccessInput:CancelPartnerAccessInput!) {
+	externalAccess ( accountId:$accountId ) {
+		cancelPartnerAccess ( input:$cancelPartnerAccessInput  )  {
+			invitation {
+				id
+				partner {
+					id
+					name
+				}
+				requestedDate
+				expirationDate
+				activeDate
+				status
+				reason
+				partnerNote
+				account {
+					id
+					name
+				}
+				admins {
+					id
+					name
+				}
+				roles {
+					id
+					name
+					description
+					isPredefined
+				}
+				groups {
+					id
+					name
+				}
+				isAppliedOnAllFullyManagedAccounts
+			}
+		}
+	}	
+}

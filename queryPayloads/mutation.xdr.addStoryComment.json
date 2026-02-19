@@ -1,10 +1,12 @@
 {
     "operationName": "xdrAddStoryComment",
-    "query": "mutation xdrAddStoryComment ( $accountId:ID! $addStoryCommentInput:AddStoryCommentInput!) {\n\txdr ( accountId:$accountId ) {\n\t\taddStoryComment ( input:$addStoryCommentInput  )  {\n\t\t\tcomment {\n\t\t\t\tid\n\t\t\t\tcreatedAt\n\t\t\t\ttext\n\t\t\t\tactor {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t\t... on AdminRef {\n\t\t\t\t\t\tid\n\t\t\t\t\t\tname\n\t\t\t\t\t}\n\t\t\t\t\t... on ApiKeyRef {\n\t\t\t\t\t\tid\n\t\t\t\t\t\tname\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\t\n}",
+    "query": "mutation xdrAddStoryComment ( $accountId:ID! $addStoryCommentInput:AddStoryCommentInput!) {\n\txdr ( accountId:$accountId ) {\n\t\taddStoryComment ( input:$addStoryCommentInput  )  {\n\t\t\tcomment {\n\t\t\t\tid\n\t\t\t\tcreatedAt\n\t\t\t\ttext\n\t\t\t\tactor {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t\t... on AdminRef {\n\t\t\t\t\t\tid\n\t\t\t\t\t\tname\n\t\t\t\t\t}\n\t\t\t\t\t... on ApiKeyRef {\n\t\t\t\t\t\tid\n\t\t\t\t\t\tname\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\ttype\n\t\t\t\tauthor\n\t\t\t}\n\t\t}\n\t}\t\n}",
     "variables": {
         "addStoryCommentInput": {
+            "author": "string",
             "storyId": "id",
-            "text": "string"
+            "text": "string",
+            "type": "USER"
         }
     }
 }

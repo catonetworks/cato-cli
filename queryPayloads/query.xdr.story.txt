@@ -17,6 +17,7 @@ query xdrStory ( $accountID:ID! $storyId:ID $producer:StoryProducerEnum $inciden
 				engineType
 				vendor
 				producer
+				producerType
 				producerName
 				connectionType
 				indication
@@ -68,7 +69,6 @@ query xdrStory ( $accountID:ID! $storyId:ID $producer:StoryProducerEnum $inciden
 						values
 					}
 				}
-				tags
 				... on MicrosoftEndpoint {
 					similarStoriesData {
 						storyId
@@ -229,6 +229,8 @@ query xdrStory ( $accountID:ID! $storyId:ID $producer:StoryProducerEnum $inciden
 						detectionSourceMicrosoftDefenderEndpointAlert: detectionSource
 						classificationMicrosoftDefenderEndpointAlert: classification
 					}
+					url
+					vendorStatus
 				}
 				... on AnomalyStats {
 					similarStoriesData {
@@ -958,6 +960,32 @@ query xdrStory ( $accountID:ID! $storyId:ID $producer:StoryProducerEnum $inciden
 				analystInfo {
 					name
 					email
+				}
+			}
+			investigationDetails {
+				investigationStatus
+				managedServiceTicketLink
+				lastUserComment {
+					id
+					createdAt
+					text
+					actor {
+						id
+						name
+					}
+					type
+					author
+				}
+				lastManagedComment {
+					id
+					createdAt
+					text
+					actor {
+						id
+						name
+					}
+					type
+					author
 				}
 			}
 		}

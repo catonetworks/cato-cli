@@ -23,6 +23,7 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 					engineType
 					vendor
 					producer
+					producerType
 					producerName
 					connectionType
 					indication
@@ -246,6 +247,10 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 								id
 								name
 							}
+							... on RbiProfileRef {
+								id
+								name
+							}
 							... on BandwidthManagementRef {
 								id
 								name
@@ -275,6 +280,10 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 								name
 							}
 							... on UserNotificationTemplateRef {
+								id
+								name
+							}
+							... on UserNotificationAiSecurityTemplateRef {
 								id
 								name
 							}
@@ -324,7 +333,6 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 							values
 						}
 					}
-					tags
 					... on MicrosoftEndpoint {
 						id
 						firstSignal
@@ -332,6 +340,7 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 						engineType
 						vendor
 						producer
+						producerType
 						producerName
 						connectionType
 						indication
@@ -353,9 +362,10 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 						predictedThreatType
 						categories
 						entities
-						tags
 						device
 						alerts
+						url
+						vendorStatus
 					}
 					... on AnomalyStats {
 						id
@@ -364,6 +374,7 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 						engineType
 						vendor
 						producer
+						producerType
 						producerName
 						connectionType
 						indication
@@ -385,7 +396,6 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 						predictedThreatType
 						categories
 						entities
-						tags
 						srcSiteId
 						os
 						deviceName
@@ -412,6 +422,7 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 						engineType
 						vendor
 						producer
+						producerType
 						producerName
 						connectionType
 						indication
@@ -433,7 +444,6 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 						predictedThreatType
 						categories
 						entities
-						tags
 						srcSiteId
 						os
 						deviceName
@@ -460,6 +470,7 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 						engineType
 						vendor
 						producer
+						producerType
 						producerName
 						connectionType
 						indication
@@ -480,7 +491,6 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 						predictedThreatType
 						categories
 						entities
-						tags
 						srcSiteId
 						flowsCardinality
 						riskLevel
@@ -504,6 +514,7 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 						engineType
 						vendor
 						producer
+						producerType
 						producerName
 						connectionType
 						indication
@@ -524,7 +535,6 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 						predictedThreatType
 						categories
 						entities
-						tags
 						srcSiteId
 						flowsCardinality
 						riskLevel
@@ -548,6 +558,7 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 						engineType
 						vendor
 						producer
+						producerType
 						producerName
 						connectionType
 						indication
@@ -569,7 +580,6 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 						predictedThreatType
 						categories
 						entities
-						tags
 						networkIncidentTimeline
 						storyType
 						occurrences
@@ -597,6 +607,7 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 						engineType
 						vendor
 						producer
+						producerType
 						producerName
 						connectionType
 						indication
@@ -622,7 +633,6 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 						siteName
 						categories
 						entities
-						tags
 						type
 						occurrences
 						eventsGraphQuery
@@ -635,6 +645,7 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 						engineType
 						vendor
 						producer
+						producerType
 						producerName
 						connectionType
 						indication
@@ -656,7 +667,6 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 						predictedThreatType
 						categories
 						entities
-						tags
 						vendorInfo
 						statusInfo
 						evidences
@@ -670,6 +680,7 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 						engineType
 						vendor
 						producer
+						producerType
 						producerName
 						connectionType
 						indication
@@ -691,7 +702,6 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 						predictedThreatType
 						categories
 						entities
-						tags
 						device
 						alerts
 					}
@@ -707,6 +717,48 @@ query xdrStories ( $accountID:ID! $storyInput:StoryInput!) {
 					analystInfo {
 						name
 						email
+					}
+				}
+				investigationDetails {
+					investigationStatus
+					managedServiceTicketLink
+					lastUserComment {
+						id
+						createdAt
+						text
+						actor {
+							id
+							name
+							... on AdminRef {
+								id
+								name
+							}
+							... on ApiKeyRef {
+								id
+								name
+							}
+						}
+						type
+						author
+					}
+					lastManagedComment {
+						id
+						createdAt
+						text
+						actor {
+							id
+							name
+							... on AdminRef {
+								id
+								name
+							}
+							... on ApiKeyRef {
+								id
+								name
+							}
+						}
+						type
+						author
 					}
 				}
 			}

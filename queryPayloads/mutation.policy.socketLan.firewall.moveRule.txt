@@ -1,0 +1,178 @@
+mutation policySocketLanFirewallMoveRule ( $accountId:ID! $socketLanPolicyMutationInput:SocketLanPolicyMutationInput $policyMoveSubRuleInput:PolicyMoveSubRuleInput!) {
+	policy ( accountId:$accountId ) {
+		socketLan ( input:$socketLanPolicyMutationInput  )  {
+			firewall {
+				moveRule ( input:$policyMoveSubRuleInput  )  {
+					rule {
+						audit {
+							updatedTime
+							updatedBy
+						}
+						rule {
+							id
+							name
+							description
+							index
+							section {
+								id
+								name
+							}
+							enabled
+							source {
+								vlan
+								mac
+								ipRange {
+									from
+									to
+								}
+								group {
+									id
+									name
+								}
+								subnet
+								site {
+									id
+									name
+								}
+								networkInterface {
+									id
+									name
+								}
+								systemGroup {
+									id
+									name
+								}
+								host {
+									id
+									name
+								}
+								ip
+								globalIpRange {
+									id
+									name
+								}
+								floatingSubnet {
+									id
+									name
+								}
+								siteNetworkSubnet {
+									id
+									name
+								}
+							}
+							destination {
+								vlan
+								ipRange {
+									from
+									to
+								}
+								subnet
+								site {
+									id
+									name
+								}
+								networkInterface {
+									id
+									name
+								}
+								systemGroup {
+									id
+									name
+								}
+								host {
+									id
+									name
+								}
+								ip
+								globalIpRange {
+									id
+									name
+								}
+								group {
+									id
+									name
+								}
+								floatingSubnet {
+									id
+									name
+								}
+								siteNetworkSubnet {
+									id
+									name
+								}
+							}
+							direction
+							application {
+								application {
+									id
+									name
+								}
+								customApp {
+									id
+									name
+								}
+								domain
+								fqdn
+								ip
+								subnet
+								ipRange {
+									from
+									to
+								}
+								globalIpRange {
+									id
+									name
+								}
+							}
+							service {
+								simple {
+									name
+								}
+								standard {
+									id
+									name
+								}
+								custom {
+									port
+									portRange {
+										from
+										to
+									}
+									protocol
+								}
+							}
+							action
+							tracking {
+								event {
+									enabled
+								}
+								alert {
+									enabled
+									frequency
+									subscriptionGroup {
+										id
+										name
+									}
+									webhook {
+										id
+										name
+									}
+									mailingList {
+										id
+										name
+									}
+								}
+							}
+						}
+						properties
+					}
+					status
+					errors {
+						errorMessage
+						errorCode
+					}
+				}
+			}
+		}
+	}	
+}

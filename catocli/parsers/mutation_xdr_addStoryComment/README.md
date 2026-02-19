@@ -11,12 +11,14 @@ catocli mutation xdr addStoryComment <json>
 
 catocli mutation xdr addStoryComment --json-file mutation.xdr.addStoryComment.json
 
-catocli mutation xdr addStoryComment '{"addStoryCommentInput":{"storyId":"id","text":"string"}}'
+catocli mutation xdr addStoryComment '{"addStoryCommentInput":{"author":"string","storyId":"id","text":"string","type":"USER"}}'
 
 catocli mutation xdr addStoryComment '{
     "addStoryCommentInput": {
+        "author": "string",
         "storyId": "id",
-        "text": "string"
+        "text": "string",
+        "type": "USER"
     }
 }'
 ```

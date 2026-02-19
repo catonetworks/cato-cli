@@ -1526,13 +1526,23 @@ def parseOperation(curOperation, childOperations, operation_path=None):
 def checkForChildOperation(fieldsAry, childOperations):
     newFieldList = {}
     subOperation = False
-    for i, field in enumerate(fieldsAry):
-        if field["name"] in childOperations:
-            subOperation = field
-        newFieldList[field["name"]] = copy.deepcopy(field)
+    # fieldsAry can be a list or dict depending on context
+    fields_to_iterate = fieldsAry if isinstance(fieldsAry, list) else list(fieldsAry.values()) if isinstance(fieldsAry, dict) else []
+
+    for i, field in enumerate(fields_to_iterate):
+        field_name = field["name"] if isinstance(field, dict) else field
+        if field_name in childOperations:
+            # Keep the FIRST matching field (represents next path segment)
+            if subOperation == False:
+                subOperation = field
+        if isinstance(fieldsAry, dict):
+            newFieldList[field_name] = copy.deepcopy(field)
+        else:
+            newFieldList[field_name] = copy.deepcopy(field)
     if subOperation != False:
         newFieldList = {}
-        newFieldList[subOperation["name"]] = subOperation
+        subOperation_name = subOperation["name"] if isinstance(subOperation, dict) else subOperation
+        newFieldList[subOperation_name] = subOperation
     return newFieldList
 
 def getOperationArgs(curType, curOperation):

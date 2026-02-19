@@ -33,6 +33,7 @@ from ..parsers.mutation_accountManagement import mutation_accountManagement_pars
 from ..parsers.mutation_admin import mutation_admin_parse
 from ..parsers.mutation_container import mutation_container_parse
 from ..parsers.mutation_enterpriseDirectory import mutation_enterpriseDirectory_parse
+from ..parsers.mutation_externalAccess import mutation_externalAccess_parse
 from ..parsers.mutation_groups import mutation_groups_parse
 from ..parsers.mutation_hardware import mutation_hardware_parse
 from ..parsers.mutation_licensing import mutation_licensing_parse
@@ -58,6 +59,7 @@ from ..parsers.query_enterpriseDirectory import query_enterpriseDirectory_parse
 from ..parsers.query_entityLookup import query_entityLookup_parse
 from ..parsers.query_events import query_events_parse
 from ..parsers.query_eventsTimeSeries import query_eventsTimeSeries_parse
+from ..parsers.query_externalAccess import query_externalAccess_parse
 from ..parsers.query_groups import query_groups_parse
 from ..parsers.query_hardware import query_hardware_parse
 from ..parsers.query_hardwareManagement import query_hardwareManagement_parse
@@ -214,6 +216,7 @@ mutation_accountManagement_parser = mutation_accountManagement_parse(mutation_su
 mutation_admin_parser = mutation_admin_parse(mutation_subparsers)
 mutation_container_parser = mutation_container_parse(mutation_subparsers)
 mutation_enterpriseDirectory_parser = mutation_enterpriseDirectory_parse(mutation_subparsers)
+mutation_externalAccess_parser = mutation_externalAccess_parse(mutation_subparsers)
 mutation_groups_parser = mutation_groups_parse(mutation_subparsers)
 mutation_hardware_parser = mutation_hardware_parse(mutation_subparsers)
 mutation_licensing_parser = mutation_licensing_parse(mutation_subparsers)
@@ -239,6 +242,7 @@ query_enterpriseDirectory_parser = query_enterpriseDirectory_parse(query_subpars
 query_entityLookup_parser = query_entityLookup_parse(query_subparsers)
 query_events_parser = query_events_parse(query_subparsers)
 query_eventsTimeSeries_parser = query_eventsTimeSeries_parse(query_subparsers)
+query_externalAccess_parser = query_externalAccess_parse(query_subparsers)
 query_groups_parser = query_groups_parse(query_subparsers)
 query_hardware_parser = query_hardware_parse(query_subparsers)
 query_hardwareManagement_parser = query_hardwareManagement_parse(query_subparsers)

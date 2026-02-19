@@ -1,0 +1,196 @@
+{
+    "operationName": "externalAccess",
+    "query": "query externalAccess ( $accountId:ID! $partnerAccessRequestListInput:PartnerAccessRequestListInput $incomingAccessRequestListInput:IncomingAccessRequestListInput) {\n\texternalAccess ( accountId:$accountId ) {\n\t\tpartnerAccessRequestList ( input:$partnerAccessRequestListInput  )  {\n\t\t\titems {\n\t\t\t\tid\n\t\t\t\tpartner {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t\trequestedDate\n\t\t\t\texpirationDate\n\t\t\t\tactiveDate\n\t\t\t\tstatus\n\t\t\t\treason\n\t\t\t\tpartnerNote\n\t\t\t\taccount {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t\tadmins {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t\troles {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t\tdescription\n\t\t\t\t\tisPredefined\n\t\t\t\t}\n\t\t\t\tgroups {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t\tisAppliedOnAllFullyManagedAccounts\n\t\t\t}\n\t\t\tpaging {\n\t\t\t\ttotal\n\t\t\t}\n\t\t}\n\t\tincomingAccessRequestList ( input:$incomingAccessRequestListInput  )  {\n\t\t\titems {\n\t\t\t\tid\n\t\t\t\tpartner {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t\trequestedDate\n\t\t\t\texpirationDate\n\t\t\t\tactiveDate\n\t\t\t\tstatus\n\t\t\t\treason\n\t\t\t\tnote\n\t\t\t\tpermissions {\n\t\t\t\t\tpermissions {\n\t\t\t\t\t\tresource\n\t\t\t\t\t\taction\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tisAppliedOnAllFullyManagedAccounts\n\t\t\t}\n\t\t\tpaging {\n\t\t\t\ttotal\n\t\t\t}\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "incomingAccessRequestListInput": {
+            "accessRequestSortInput": {
+                "activeDate": {
+                    "direction": "ASC",
+                    "priority": 1
+                },
+                "expirationDate": {
+                    "direction": "ASC",
+                    "priority": 1
+                },
+                "id": {
+                    "direction": "ASC",
+                    "priority": 1
+                },
+                "requestedDate": {
+                    "direction": "ASC",
+                    "priority": 1
+                },
+                "status": {
+                    "direction": "ASC",
+                    "priority": 1
+                }
+            },
+            "incomingAccessRequestFilterInput": {
+                "expirationDate": {
+                    "between": [
+                        "example1",
+                        "example2"
+                    ],
+                    "eq": "example_value",
+                    "gt": "example_value",
+                    "gte": "example_value",
+                    "in": [
+                        "example1",
+                        "example2"
+                    ],
+                    "lt": "example_value",
+                    "lte": "example_value",
+                    "neq": "example_value",
+                    "nin": [
+                        "example1",
+                        "example2"
+                    ]
+                },
+                "requestedDate": {
+                    "between": [
+                        "example1",
+                        "example2"
+                    ],
+                    "eq": "example_value",
+                    "gt": "example_value",
+                    "gte": "example_value",
+                    "in": [
+                        "example1",
+                        "example2"
+                    ],
+                    "lt": "example_value",
+                    "lte": "example_value",
+                    "neq": "example_value",
+                    "nin": [
+                        "example1",
+                        "example2"
+                    ]
+                },
+                "search": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "status": {
+                    "eq": "PENDING",
+                    "in": "PENDING",
+                    "neq": "PENDING",
+                    "nin": "PENDING"
+                }
+            },
+            "pagingInput": {
+                "from": 1,
+                "limit": 1
+            }
+        },
+        "partnerAccessRequestListInput": {
+            "pagingInput": {
+                "from": 1,
+                "limit": 1
+            },
+            "partnerAccessRequestFilterInput": {
+                "expirationDate": {
+                    "between": [
+                        "example1",
+                        "example2"
+                    ],
+                    "eq": "example_value",
+                    "gt": "example_value",
+                    "gte": "example_value",
+                    "in": [
+                        "example1",
+                        "example2"
+                    ],
+                    "lt": "example_value",
+                    "lte": "example_value",
+                    "neq": "example_value",
+                    "nin": [
+                        "example1",
+                        "example2"
+                    ]
+                },
+                "requestedDate": {
+                    "between": [
+                        "example1",
+                        "example2"
+                    ],
+                    "eq": "example_value",
+                    "gt": "example_value",
+                    "gte": "example_value",
+                    "in": [
+                        "example1",
+                        "example2"
+                    ],
+                    "lt": "example_value",
+                    "lte": "example_value",
+                    "neq": "example_value",
+                    "nin": [
+                        "example1",
+                        "example2"
+                    ]
+                },
+                "search": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "status": {
+                    "eq": "PENDING",
+                    "in": "PENDING",
+                    "neq": "PENDING",
+                    "nin": "PENDING"
+                },
+                "type": {
+                    "eq": "STANDARD",
+                    "in": "STANDARD",
+                    "neq": "STANDARD",
+                    "nin": "STANDARD"
+                }
+            },
+            "partnerAccessRequestSortInput": {
+                "accountName": {
+                    "direction": "ASC",
+                    "priority": 1
+                },
+                "activeDate": {
+                    "direction": "ASC",
+                    "priority": 1
+                },
+                "expirationDate": {
+                    "direction": "ASC",
+                    "priority": 1
+                },
+                "id": {
+                    "direction": "ASC",
+                    "priority": 1
+                },
+                "requestedDate": {
+                    "direction": "ASC",
+                    "priority": 1
+                },
+                "status": {
+                    "direction": "ASC",
+                    "priority": 1
+                },
+                "type": {
+                    "direction": "ASC",
+                    "priority": 1
+                }
+            }
+        }
+    }
+}

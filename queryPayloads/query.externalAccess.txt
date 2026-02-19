@@ -1,0 +1,66 @@
+query externalAccess ( $accountId:ID! $partnerAccessRequestListInput:PartnerAccessRequestListInput $incomingAccessRequestListInput:IncomingAccessRequestListInput) {
+	externalAccess ( accountId:$accountId ) {
+		partnerAccessRequestList ( input:$partnerAccessRequestListInput  )  {
+			items {
+				id
+				partner {
+					id
+					name
+				}
+				requestedDate
+				expirationDate
+				activeDate
+				status
+				reason
+				partnerNote
+				account {
+					id
+					name
+				}
+				admins {
+					id
+					name
+				}
+				roles {
+					id
+					name
+					description
+					isPredefined
+				}
+				groups {
+					id
+					name
+				}
+				isAppliedOnAllFullyManagedAccounts
+			}
+			paging {
+				total
+			}
+		}
+		incomingAccessRequestList ( input:$incomingAccessRequestListInput  )  {
+			items {
+				id
+				partner {
+					id
+					name
+				}
+				requestedDate
+				expirationDate
+				activeDate
+				status
+				reason
+				note
+				permissions {
+					permissions {
+						resource
+						action
+					}
+				}
+				isAppliedOnAllFullyManagedAccounts
+			}
+			paging {
+				total
+			}
+		}
+	}	
+}

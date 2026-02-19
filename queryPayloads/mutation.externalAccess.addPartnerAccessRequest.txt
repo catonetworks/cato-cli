@@ -1,0 +1,38 @@
+mutation externalAccessAddPartnerAccessRequest ( $accountId:ID! $addPartnerAccessRequestInput:AddPartnerAccessRequestInput!) {
+	externalAccess ( accountId:$accountId ) {
+		addPartnerAccessRequest ( input:$addPartnerAccessRequestInput  )  {
+			invitation {
+				id
+				partner {
+					id
+					name
+				}
+				requestedDate
+				expirationDate
+				activeDate
+				status
+				reason
+				partnerNote
+				account {
+					id
+					name
+				}
+				admins {
+					id
+					name
+				}
+				roles {
+					id
+					name
+					description
+					isPredefined
+				}
+				groups {
+					id
+					name
+				}
+				isAppliedOnAllFullyManagedAccounts
+			}
+		}
+	}	
+}

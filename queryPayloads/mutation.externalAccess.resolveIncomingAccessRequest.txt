@@ -1,0 +1,26 @@
+mutation externalAccessResolveIncomingAccessRequest ( $accountId:ID! $resolveIncomingAccessRequestInput:ResolveIncomingAccessRequestInput!) {
+	externalAccess ( accountId:$accountId ) {
+		resolveIncomingAccessRequest ( input:$resolveIncomingAccessRequestInput  )  {
+			request {
+				id
+				partner {
+					id
+					name
+				}
+				requestedDate
+				expirationDate
+				activeDate
+				status
+				reason
+				note
+				permissions {
+					permissions {
+						resource
+						action
+					}
+				}
+				isAppliedOnAllFullyManagedAccounts
+			}
+		}
+	}	
+}

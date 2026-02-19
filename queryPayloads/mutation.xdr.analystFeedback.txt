@@ -18,6 +18,7 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 					engineType
 					vendor
 					producer
+					producerType
 					producerName
 					connectionType
 					indication
@@ -241,6 +242,10 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 								id
 								name
 							}
+							... on RbiProfileRef {
+								id
+								name
+							}
 							... on BandwidthManagementRef {
 								id
 								name
@@ -270,6 +275,10 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 								name
 							}
 							... on UserNotificationTemplateRef {
+								id
+								name
+							}
+							... on UserNotificationAiSecurityTemplateRef {
 								id
 								name
 							}
@@ -319,7 +328,6 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 							values
 						}
 					}
-					tags
 					... on MicrosoftEndpoint {
 						id
 						firstSignal
@@ -327,6 +335,7 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 						engineType
 						vendor
 						producer
+						producerType
 						producerName
 						connectionType
 						indication
@@ -348,9 +357,10 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 						predictedThreatType
 						categories
 						entities
-						tags
 						device
 						alerts
+						url
+						vendorStatus
 					}
 					... on AnomalyStats {
 						id
@@ -359,6 +369,7 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 						engineType
 						vendor
 						producer
+						producerType
 						producerName
 						connectionType
 						indication
@@ -380,7 +391,6 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 						predictedThreatType
 						categories
 						entities
-						tags
 						srcSiteId
 						os
 						deviceName
@@ -407,6 +417,7 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 						engineType
 						vendor
 						producer
+						producerType
 						producerName
 						connectionType
 						indication
@@ -428,7 +439,6 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 						predictedThreatType
 						categories
 						entities
-						tags
 						srcSiteId
 						os
 						deviceName
@@ -455,6 +465,7 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 						engineType
 						vendor
 						producer
+						producerType
 						producerName
 						connectionType
 						indication
@@ -475,7 +486,6 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 						predictedThreatType
 						categories
 						entities
-						tags
 						srcSiteId
 						flowsCardinality
 						riskLevel
@@ -499,6 +509,7 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 						engineType
 						vendor
 						producer
+						producerType
 						producerName
 						connectionType
 						indication
@@ -519,7 +530,6 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 						predictedThreatType
 						categories
 						entities
-						tags
 						srcSiteId
 						flowsCardinality
 						riskLevel
@@ -543,6 +553,7 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 						engineType
 						vendor
 						producer
+						producerType
 						producerName
 						connectionType
 						indication
@@ -564,7 +575,6 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 						predictedThreatType
 						categories
 						entities
-						tags
 						networkIncidentTimeline
 						storyType
 						occurrences
@@ -592,6 +602,7 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 						engineType
 						vendor
 						producer
+						producerType
 						producerName
 						connectionType
 						indication
@@ -617,7 +628,6 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 						siteName
 						categories
 						entities
-						tags
 						type
 						occurrences
 						eventsGraphQuery
@@ -630,6 +640,7 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 						engineType
 						vendor
 						producer
+						producerType
 						producerName
 						connectionType
 						indication
@@ -651,7 +662,6 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 						predictedThreatType
 						categories
 						entities
-						tags
 						vendorInfo
 						statusInfo
 						evidences
@@ -665,6 +675,7 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 						engineType
 						vendor
 						producer
+						producerType
 						producerName
 						connectionType
 						indication
@@ -686,7 +697,6 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 						predictedThreatType
 						categories
 						entities
-						tags
 						device
 						alerts
 					}
@@ -702,6 +712,48 @@ mutation xdrAnalystFeedback ( $accountId:ID! $analystFeedbackInput:AnalystFeedba
 					analystInfo {
 						name
 						email
+					}
+				}
+				investigationDetails {
+					investigationStatus
+					managedServiceTicketLink
+					lastUserComment {
+						id
+						createdAt
+						text
+						actor {
+							id
+							name
+							... on AdminRef {
+								id
+								name
+							}
+							... on ApiKeyRef {
+								id
+								name
+							}
+						}
+						type
+						author
+					}
+					lastManagedComment {
+						id
+						createdAt
+						text
+						actor {
+							id
+							name
+							... on AdminRef {
+								id
+								name
+							}
+							... on ApiKeyRef {
+								id
+								name
+							}
+						}
+						type
+						author
 					}
 				}
 			}

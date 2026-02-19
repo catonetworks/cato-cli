@@ -1,0 +1,32 @@
+mutation xdrUpdateInvestigationDetails ( $accountId:ID! $updateInvestigationDetailsInput:UpdateInvestigationDetailsInput!) {
+	xdr ( accountId:$accountId ) {
+		updateInvestigationDetails ( input:$updateInvestigationDetailsInput  )  {
+			investigationDetails {
+				investigationStatus
+				managedServiceTicketLink
+				lastUserComment {
+					id
+					createdAt
+					text
+					actor {
+						id
+						name
+					}
+					type
+					author
+				}
+				lastManagedComment {
+					id
+					createdAt
+					text
+					actor {
+						id
+						name
+					}
+					type
+					author
+				}
+			}
+		}
+	}	
+}

@@ -1,0 +1,26 @@
+mutation externalAccessRevokePartnerAccess ( $accountId:ID! $revokePartnerAccessInput:RevokePartnerAccessInput!) {
+	externalAccess ( accountId:$accountId ) {
+		revokePartnerAccess ( input:$revokePartnerAccessInput  )  {
+			invitation {
+				id
+				partner {
+					id
+					name
+				}
+				requestedDate
+				expirationDate
+				activeDate
+				status
+				reason
+				note
+				permissions {
+					permissions {
+						resource
+						action
+					}
+				}
+				isAppliedOnAllFullyManagedAccounts
+			}
+		}
+	}	
+}

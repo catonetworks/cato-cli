@@ -52,11 +52,36 @@ catocli query siteLocation '{
         }
     ]
 }'
+
+catocli query siteLocation '{
+    "filters": [
+        {
+            "search": "US",
+            "field": "countryCode",
+            "operation": "exact"
+        },
+        {
+            "search": "US-CA",
+            "field": "stateCode",
+            "operation": "exact"
+        }
+    ]
+}'
 ```
 
 #### Operation Arguments for query.siteLocation ####
-`accountID` [ID] - (required) Unique Identifier of Account. 
+`accountID` [ID] - (required) Unique Identifier of Account.
 `filters[]` [Array] - (optional) Array of objects consisting of `search`, `field` and `operation` attributes.
-`filters[].search` [String] - (required) String to match countryName, stateName, or city specificed in `filters[].field`.
-`filters[].field` [String] - (required) Specify field to match query against, defaults to look for any.  Possible values: `countryName`, `stateName`, or `city`.
+`filters[].search` [String] - (required) String to match the field specified in `filters[].field`.
+`filters[].field` [String] - (required) Specify field to match query against.  Possible values: `countryCode`, `countryName`, `stateCode`, `stateName`, or `city`.
 `filters[].operation` [string] - (required) If a field is specified, operation to match the field value.  Possible values: `startsWith`,`endsWith`,`exact`, `contains`.
+
+#### Mutually Exclusive Fields ####
+- `countryCode` and `countryName` cannot be used in the same query
+- `stateCode` and `stateName` cannot be used in the same query
+
+#### State Codes ####
+State codes use ISO 3166-2 format (e.g., `US-CA` for California, `IN-KL` for Kerala).
+
+#### Data Source ####
+Location data is sourced from [GeoNames](https://www.geonames.org/) (cities with population > 1000) and stored in a SQLite database. The database is rebuilt when running `importSchema.py` from the schema directory.

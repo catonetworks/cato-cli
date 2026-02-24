@@ -674,33 +674,22 @@ def queryAppCategory(args, configuration):
 
 def querySiteLocation(args, configuration):
     """
-    Enhanced site location query with better validation
+    Enhanced site location query with SQLite backend for fast indexed searches
     """
+    import os
+    import json
+    import sqlite3
+
     params = vars(args)
-    operation_name = params["operation_name"]
-    
-    # Load the site location data (not the model definition) with proper UTF-8 encoding
-    try:
-        import os
-        import json
-        # Find the full path - for query.siteLocation, use custom parser directory
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        
-        if operation_name == "query.siteLocation":
-            # Custom parser location
-            models_file = os.path.join(current_dir, "custom", "query_siteLocation", f"{operation_name}.json")
-        else:
-            # Standard models directory
-            root_dir = os.path.dirname(os.path.dirname(current_dir))
-            models_file = os.path.join(root_dir, "models", f"{operation_name}.json")
-        
-        # Load with explicit UTF-8 encoding to fix Windows charmap issues
-        with open(models_file, 'r', encoding='utf-8') as f:
-            site_data = json.load(f)
-    except Exception as e:
-        print(f"ERROR: Failed to load site location data: {e}")
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    db_path = os.path.join(current_dir, "custom", "query_siteLocation", "siteLocation.db")
+
+    # Check if database exists
+    if not os.path.exists(db_path):
+        print(f"ERROR: Site location database not found: {db_path}")
+        print("Run 'python importSchema.py' from the schema directory to build the database.")
         return None
-        
+
     # Handle JSON input from file or command line
     json_input = params.get("json")
     json_file = params.get("json_file")
@@ -754,9 +743,18 @@ def querySiteLocation(args, configuration):
     
     # Validate each filter
     required_fields = ["search", "field", "operation"]
-    valid_fields = ['countryName', 'stateName', 'city']
+    valid_fields = ['countryCode', 'countryName', 'stateCode', 'stateName', 'city']
     valid_operations = ['startsWith', 'endsWith', 'exact', 'contains']
-    
+
+    # Check for mutually exclusive fields
+    filter_fields = [f.get("field") for f in variables_obj["filters"] if isinstance(f, dict)]
+    if 'countryCode' in filter_fields and 'countryName' in filter_fields:
+        print("ERROR: 'countryCode' and 'countryName' cannot be used in the same query")
+        return None
+    if 'stateCode' in filter_fields and 'stateName' in filter_fields:
+        print("ERROR: 'stateCode' and 'stateName' cannot be used in the same query")
+        return None
+
     for i, filter_obj in enumerate(variables_obj["filters"]):
         if not isinstance(filter_obj, dict):
             print(f"ERROR: Filter {i} must be an object with 'search', 'field', and 'operation' properties")
@@ -772,11 +770,13 @@ def querySiteLocation(args, configuration):
         search = filter_obj.get("search")
         field = filter_obj.get("field")
         operation = filter_obj.get("operation")
-        
-        if not isinstance(search, str) or len(search) < 3:
-            print(f"ERROR: Filter {i} 'search' must be a string with at least 3 characters")
+
+        # countryCode and stateCode allow 2 character minimum, others require 3
+        min_length = 2 if field in ['countryCode', 'stateCode'] else 3
+        if not isinstance(search, str) or len(search) < min_length:
+            print(f"ERROR: Filter {i} 'search' must be a string with at least {min_length} characters")
             return None
-            
+
         if field not in valid_fields:
             print(f"ERROR: Filter {i} 'field' must be one of: {', '.join(valid_fields)}")
             return None
@@ -785,38 +785,56 @@ def querySiteLocation(args, configuration):
             print(f"ERROR: Filter {i} 'operation' must be one of: {', '.join(valid_operations)}")
             return None
     
-    # Process results using the site location data
-    response = {"data": []}
-    
-    # Search through the site location data
-    for key, site_obj in site_data.items():
-        is_match = True
-        for filter_obj in variables_obj["filters"]:
-            search = filter_obj.get("search")
-            field = filter_obj.get("field") 
-            operation_type = filter_obj.get("operation")
-            
-            if field in site_obj:
-                field_value = str(site_obj[field])
-                if operation_type == "startsWith" and not field_value.startswith(search):
-                    is_match = False
-                    break
-                elif operation_type == "endsWith" and not field_value.endswith(search):
-                    is_match = False
-                    break
-                elif operation_type == "exact" and field_value != search:
-                    is_match = False
-                    break
-                elif operation_type == "contains" and search not in field_value:
-                    is_match = False
-                    break
-            else:
-                is_match = False
-                break
-                
-        if is_match:
-            response["data"].append(site_obj)
-    
+    # Build SQL query from filters
+    conditions = []
+    sql_params = []
+
+    for filter_obj in variables_obj["filters"]:
+        field = filter_obj["field"]
+        search = filter_obj["search"]
+        operation = filter_obj["operation"]
+
+        if operation == "exact":
+            conditions.append(f"{field} = ?")
+            sql_params.append(search)
+        elif operation == "startsWith":
+            conditions.append(f"{field} LIKE ?")
+            sql_params.append(f"{search}%")
+        elif operation == "endsWith":
+            conditions.append(f"{field} LIKE ?")
+            sql_params.append(f"%{search}")
+        elif operation == "contains":
+            conditions.append(f"{field} LIKE ?")
+            sql_params.append(f"%{search}%")
+
+    # Execute query
+    try:
+        conn = sqlite3.connect(db_path)
+        conn.row_factory = sqlite3.Row
+        cursor = conn.cursor()
+
+        query = "SELECT city, countryCode, countryName, stateCode, stateName, timezone FROM locations"
+        if conditions:
+            query += " WHERE " + " AND ".join(conditions)
+
+        cursor.execute(query, sql_params)
+        rows = cursor.fetchall()
+        conn.close()
+
+        # Convert rows to list of dicts and format timezone as array
+        results = []
+        for row in rows:
+            record = dict(row)
+            # Format timezone as array to match existing format
+            record["timezone"] = [record["timezone"]] if record["timezone"] else []
+            results.append(record)
+
+        response = {"data": results}
+
+    except sqlite3.Error as e:
+        print(f"ERROR: Database query failed: {e}")
+        return None
+
     # Return response in the format expected by CLI driver (as a list)
     # The CLI driver expects response[0] to contain the actual data
     return [response]

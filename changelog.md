@@ -195,3 +195,7 @@
 ## 3.0.59 (2026-01-20)
 - Added logic to retry API after rate limit, and added logic to populate stateCode when city is missing in api response.
 - Added hard coded value for lag_min_links as 1, only for LAN_LAG_MASTER interfaces as this is not available in API and is a best practice value.
+
+## 3.0.62 (2026-02-24)
+- Update CLI to support importing siteLocation dataset from source converting to SQL Lite
+- Imported new apis from schema

@@ -1095,13 +1095,13 @@
                                                                                                             "enumValues": [
                                                                                                                 {
                                                                                                                     "deprecationReason": null,
-                                                                                                                    "description": "Route all traffic to Cato",
+                                                                                                                    "description": "Route all traffic to Cato - Will be Deprecated by ROUTE_ALL_TO_CATO_EXCEPT",
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "EXCLUDE"
                                                                                                                 },
                                                                                                                 {
                                                                                                                     "deprecationReason": null,
-                                                                                                                    "description": "Route all traffic Out-of-Tunnel",
+                                                                                                                    "description": "Route all traffic Out-of-Tunnel - Will be Deprecated by ROUTE_ONLY_SELECTED",
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "INCLUDE"
                                                                                                                 },
@@ -1116,6 +1116,18 @@
                                                                                                                     "description": null,
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "OFF"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "deprecationReason": null,
+                                                                                                                    "description": "Route all traffic to Cato - Not yet supported",
+                                                                                                                    "isDeprecated": false,
+                                                                                                                    "name": "ROUTE_ALL_TO_CATO_EXCEPT"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "deprecationReason": null,
+                                                                                                                    "description": "Route all traffic Out-of-Tunnel - Not yet supported",
+                                                                                                                    "isDeprecated": false,
+                                                                                                                    "name": "ROUTE_ONLY_SELECTED"
                                                                                                                 }
                                                                                                             ],
                                                                                                             "fields": null,
@@ -1220,8 +1232,8 @@
                                                                                                     "isDeprecated": false,
                                                                                                     "name": "coverage",
                                                                                                     "path": "splitTunnel.publishPolicyRevision.policy.rules.rule.coverage",
-                                                                                                    "requestStr": "$coverage:SplitTunnelCoverageEnum! ",
-                                                                                                    "required": true,
+                                                                                                    "requestStr": "$coverage:SplitTunnelCoverageEnum ",
+                                                                                                    "required": false,
                                                                                                     "responseStr": "coverage:$coverage ",
                                                                                                     "type": {
                                                                                                         "definition": {
@@ -1249,7 +1261,6 @@
                                                                                                         },
                                                                                                         "indexType": "enum",
                                                                                                         "kind": [
-                                                                                                            "NON_NULL",
                                                                                                             "ENUM"
                                                                                                         ],
                                                                                                         "name": "SplitTunnelCoverageEnum",
@@ -1473,8 +1484,8 @@
                                                                                                     "isDeprecated": false,
                                                                                                     "name": "dnsExclusion",
                                                                                                     "path": "splitTunnel.publishPolicyRevision.policy.rules.rule.dnsExclusion",
-                                                                                                    "requestStr": "$splitTunnelDnsExclusion:SplitTunnelDnsExclusion! ",
-                                                                                                    "required": true,
+                                                                                                    "requestStr": "$splitTunnelDnsExclusion:SplitTunnelDnsExclusion ",
+                                                                                                    "required": false,
                                                                                                     "responseStr": "dnsExclusion:$splitTunnelDnsExclusion ",
                                                                                                     "type": {
                                                                                                         "definition": {
@@ -1513,7 +1524,6 @@
                                                                                                         },
                                                                                                         "indexType": "object",
                                                                                                         "kind": [
-                                                                                                            "NON_NULL",
                                                                                                             "OBJECT"
                                                                                                         ],
                                                                                                         "name": "SplitTunnelDnsExclusion",

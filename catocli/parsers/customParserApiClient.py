@@ -45,6 +45,8 @@ from catocli.Utils.graphql_utils import (
     expandFieldWithIntrospection,
     renderArgsAndFields
 )
+from catocli.Utils.cliutils import strip_json_comments
+from catocli.Utils.profile_manager import get_profile_manager
 
 class CustomAPIClient:
     """Enhanced API Client with custom query generation capabilities"""
@@ -1730,7 +1732,7 @@ def get_private_help(command_name, command_config):
     
     # Add standard auto-populated arguments information
     usage += "\n\nAuto-Populated Arguments:"
-    usage += "\n  accountID:  Account ID (auto-loaded from ~/.cato/settings.json)"
+    usage += "\n  accountID:  Account ID (from ~/.cato/credentials profile)"
     usage += "\n  version:    Account version (auto-fetched from API for optimistic locking)"
     
     # Add payload file info if available
@@ -1974,20 +1976,33 @@ def executePrivateScript(args, private_config):
         print(f"Run: chmod +x {full_script_path}")
         return None
 
-    # Get the JSON argument (config file path) if provided
+    # Get arguments
     json_arg = params.get('json', '')
-    verbose = params.get('v', False)
+    verbose = params.get('v', False) or params.get('verbose', False)
+    debug = params.get('debug', False)
+    generate_template = params.get('generate_template') or params.get('generate-template', False)
+    config_file = params.get('config_file') or params.get('config-file')
 
     # Build command
     cmd = [sys.executable, full_script_path]
+
+    # Handle generate-template flag first (it doesn't need a config file)
+    if generate_template:
+        cmd.append('-gt')
+    else:
+        # Add config file path (from --config-file argument or json positional arg)
+        if config_file:
+            cmd.append(config_file)
+        elif json_arg and json_arg != '{}':
+            cmd.append(json_arg)
 
     # Add verbose flag if specified
     if verbose:
         cmd.append('-v')
 
-    # Add config file path if provided
-    if json_arg and json_arg != '{}':
-        cmd.append(json_arg)
+    # Add debug flag if specified
+    if debug:
+        cmd.append('-d')
 
     # Execute the script
     try:
@@ -2020,11 +2035,26 @@ def createPrivateRequest(args, configuration):
 
     # Check if this is a script-based command
     if 'scriptPath' in private_config:
-        return executePrivateScript(args, private_config)
+        executePrivateScript(args, private_config)
+        return None  # Don't return exit code to avoid printing it
 
     # Otherwise, proceed with normal GraphQL execution
-    
-    # Load private settings FIRST before accessing any values
+
+    # Get credentials from profile for private API
+    profile_manager = get_profile_manager()
+    is_valid, error_msg = profile_manager.validate_private_credentials()
+
+    if not is_valid:
+        print(f"ERROR: {error_msg}")
+        return None
+
+    credentials = profile_manager.get_credentials()
+    settings_account_id = credentials.get('account_id')
+    # Strip quotes from private_endpoint and cookie values
+    private_endpoint = credentials.get('private_endpoint', '').strip('"').strip("'")
+    cookie = credentials.get('cookie', '').strip('"').strip("'")
+
+    # Load private settings for autoFetchVersion and other settings
     try:
         settings_file = os.path.expanduser("~/.cato/settings.json")
         with open(settings_file, 'r', encoding='utf-8') as f:
@@ -2036,34 +2066,17 @@ def createPrivateRequest(args, configuration):
         if params.get('v'):
             print(f"WARNING: Could not load settings file: {e}")
         private_settings = {}
-    
-    # Use accountID from settings file (highest priority for private commands)
-    settings_account_id = private_settings.get('accountID')
-    
-    # Check if accountID is available from settings file
-    if not settings_account_id:
-        print(f"ERROR: accountID is required for private command '{private_command}'")
-        print(f"\nPlease add accountID to your settings file:")
-        print(f"  File: ~/.cato/settings.json")
-        print(f"  Add: \"accountID\": \"12345\" at the root level")
-        print(f"\nFor detailed help:")
-        print(f"  catocli private {private_command} -h")
-        return None
-    
-    # Override configuration accountID with settings file accountID
+
+    # Override configuration with profile credentials
     if configuration:
         configuration.accountID = settings_account_id
-    
-    # Override endpoint if specified in private settings
-    if 'baseUrl' in private_settings:
-        configuration.host = private_settings['baseUrl']
-    
-    # Add custom headers from private settings
-    if 'headers' in private_settings and isinstance(private_settings['headers'], dict):
-        if not hasattr(configuration, 'custom_headers'):
-            configuration.custom_headers = {}
-        for key, value in private_settings['headers'].items():
-            configuration.custom_headers[key] = value
+        configuration.host = private_endpoint
+
+    # Add cookie header from profile
+    if not hasattr(configuration, 'custom_headers'):
+        configuration.custom_headers = {}
+    if cookie:
+        configuration.custom_headers['Cookie'] = cookie
     
     # Parse input JSON variables with robust preprocessing
     json_input = params.get('json', '{}')
@@ -2121,6 +2134,13 @@ def createPrivateRequest(args, configuration):
                         if arg_type == 'array' and not isinstance(arg_value, list):
                             # Convert string to single-element array
                             variables[arg_name] = [arg_value]
+                        elif arg_type == 'object' and isinstance(arg_value, str):
+                            # Parse JSON string into object
+                            try:
+                                variables[arg_name] = json.loads(arg_value)
+                            except json.JSONDecodeError as e:
+                                print(f"WARNING: Could not parse '{arg_name}' as JSON: {e}")
+                                variables[arg_name] = arg_value
                         else:
                             variables[arg_name] = arg_value
     

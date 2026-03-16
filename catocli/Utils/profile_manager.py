@@ -27,8 +27,9 @@ class ProfileManager:
         """Get configuration for a specific profile"""
         if not self.credentials_file.exists():
             return None
-            
-        config = configparser.ConfigParser()
+
+        # Use RawConfigParser to avoid % interpolation issues with cookies
+        config = configparser.RawConfigParser()
         config.read(self.credentials_file)
         
         if profile_name not in config:
@@ -46,16 +47,16 @@ class ProfileManager:
         """List all available profiles"""
         if not self.credentials_file.exists():
             return []
-            
-        config = configparser.ConfigParser()
+
+        config = configparser.RawConfigParser()
         config.read(self.credentials_file)
         return list(config.sections())
     
     def create_profile(self, profile_name, endpoint=None, cato_token=None, account_id=None, scim_url=None, scim_token=None):
         """Create or update a profile"""
         self.ensure_cato_directory()
-        
-        config = configparser.ConfigParser()
+
+        config = configparser.RawConfigParser()
         if self.credentials_file.exists():
             config.read(self.credentials_file)
         
@@ -91,8 +92,8 @@ class ProfileManager:
         """Delete a profile"""
         if not self.credentials_file.exists():
             return False
-            
-        config = configparser.ConfigParser()
+
+        config = configparser.RawConfigParser()
         config.read(self.credentials_file)
         
         if profile_name not in config:
@@ -143,18 +144,52 @@ class ProfileManager:
         """Get credentials for the specified or current profile"""
         if profile_name is None:
             profile_name = self.get_current_profile()
-            
+
         profile_config = self.get_profile_config(profile_name)
         if not profile_config:
             return None
-            
+
         return {
             'endpoint': profile_config.get('endpoint', self.default_endpoint),
             'cato_token': profile_config.get('cato_token'),
             'account_id': profile_config.get('account_id'),
             'scim_url': profile_config.get('scim_url'),
-            'scim_token': profile_config.get('scim_token')
+            'scim_token': profile_config.get('scim_token'),
+            'cookie': profile_config.get('cookie'),
+            'private_endpoint': profile_config.get('private_endpoint')
         }
+
+    def validate_private_credentials(self, profile_name=None):
+        """Validate that a profile has all required private API credentials"""
+        credentials = self.get_credentials(profile_name)
+        current_profile = profile_name or self.get_current_profile()
+
+        if not credentials:
+            return False, f"Profile '{current_profile}' not found"
+
+        missing = []
+        if not credentials.get('account_id'):
+            missing.append('account_id')
+        if not credentials.get('cookie'):
+            missing.append('cookie')
+        if not credentials.get('private_endpoint'):
+            missing.append('private_endpoint')
+
+        if missing:
+            error_msg = (
+                f"Missing authentication for private api, please add your current active cookie "
+                f"and cma endpoint to the current cli profile in ~/.cato/credentials as shown below\n"
+                f"example:\n\n"
+                f"[{current_profile}]\n"
+                f"endpoint = https://api.catonetworks.com/api/v1/graphql2\n"
+                f"cato_token = yourapikeyhere\n"
+                f"account_id = 12345\n"
+                f'cookie = X-Cato-Session-Id=abcde12345\n'
+                f'private_endpoint = https://yourcmainstance.cc.catonetworks.com/api/v1/graphql'
+            )
+            return False, error_msg
+
+        return True, "Private credentials are valid"
     
     def validate_profile(self, profile_name=None):
         """Validate that a profile has all required credentials"""

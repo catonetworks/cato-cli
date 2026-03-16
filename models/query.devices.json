@@ -24922,7 +24922,7 @@
                                                 },
                                                 "ip": {
                                                     "args": {},
-                                                    "deprecationReason": "Use ipAddress instead",
+                                                    "deprecationReason": "Use nics.ip instead",
                                                     "description": null,
                                                     "id_str": "list___device___ip",
                                                     "isDeprecated": true,
@@ -24942,10 +24942,10 @@
                                                 },
                                                 "ipAddress": {
                                                     "args": {},
-                                                    "deprecationReason": null,
+                                                    "deprecationReason": "Use nics.ip instead",
                                                     "description": "Current or last known IP address of the device",
                                                     "id_str": "list___device___ipAddress",
-                                                    "isDeprecated": false,
+                                                    "isDeprecated": true,
                                                     "name": "ipAddress",
                                                     "path": "list.device.ipAddress",
                                                     "requestStr": "$ipAddress:IPAddress ",
@@ -25023,10 +25023,10 @@
                                                 },
                                                 "network": {
                                                     "args": {},
-                                                    "deprecationReason": null,
+                                                    "deprecationReason": "Use nics.network instead",
                                                     "description": "Information about the network environment the device connects to",
                                                     "id_str": "list___device___network",
-                                                    "isDeprecated": false,
+                                                    "isDeprecated": true,
                                                     "name": "network",
                                                     "path": "list.device.network",
                                                     "requestStr": "$deviceNetwork:DeviceNetwork ",
@@ -25095,10 +25095,10 @@
                                                 },
                                                 "networkInfo": {
                                                     "args": {},
-                                                    "deprecationReason": null,
+                                                    "deprecationReason": "Use nics.network instead",
                                                     "description": "Reference to the device's network (Rename to 'network' after fe is aligned)",
                                                     "id_str": "list___device___networkInfo",
-                                                    "isDeprecated": false,
+                                                    "isDeprecated": true,
                                                     "name": "networkInfo",
                                                     "path": "list.device.networkInfo",
                                                     "requestStr": "$deviceNetworkRef:DeviceNetworkRef ",
@@ -25339,10 +25339,10 @@
                                                 },
                                                 "nic": {
                                                     "args": {},
-                                                    "deprecationReason": null,
+                                                    "deprecationReason": "Use nics instead",
                                                     "description": "Network interface card details for the device",
                                                     "id_str": "list___device___nic",
-                                                    "isDeprecated": false,
+                                                    "isDeprecated": true,
                                                     "name": "nic",
                                                     "path": "list.device.nic",
                                                     "requestStr": "$deviceNic:DeviceNic ",
@@ -25350,9 +25350,29 @@
                                                     "responseStr": "nic:$deviceNic ",
                                                     "type": {
                                                         "definition": {
-                                                            "description": null,
+                                                            "description": "Represents a single network interface card (NIC) associated with a device",
                                                             "enumValues": null,
                                                             "fields": {
+                                                                "ip": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "The IP address currently or last associated with this interface",
+                                                                    "id_str": "list___device___nic___ip",
+                                                                    "isDeprecated": false,
+                                                                    "name": "ip",
+                                                                    "path": "list.device.nic.ip",
+                                                                    "requestStr": "$ip:IPAddress ",
+                                                                    "required": false,
+                                                                    "responseStr": "ip:$ip ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "IPAddress",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "ip"
+                                                                },
                                                                 "macAddress": {
                                                                     "args": {},
                                                                     "deprecationReason": null,
@@ -25372,6 +25392,324 @@
                                                                         "non_null": false
                                                                     },
                                                                     "varName": "macAddress"
+                                                                },
+                                                                "network": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Reference to the network context (e.g., site subnet, floating subnet, or global IP range) associated with this interface",
+                                                                    "id_str": "list___device___nic___network",
+                                                                    "isDeprecated": false,
+                                                                    "name": "network",
+                                                                    "path": "list.device.nic.network",
+                                                                    "requestStr": "$deviceNetworkRef:DeviceNetworkRef ",
+                                                                    "required": false,
+                                                                    "responseStr": "network:$deviceNetworkRef ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": null,
+                                                                            "enumValues": null,
+                                                                            "fields": null,
+                                                                            "inputFields": null,
+                                                                            "interfaces": null,
+                                                                            "kind": "UNION",
+                                                                            "name": "DeviceNetworkRef",
+                                                                            "possibleTypes": {
+                                                                                "FloatingSubnetRef": {
+                                                                                    "description": "Returns data for the Floating Subnet object. Floating Subnets (ie. Floating Ranges) are used to identify traffic exactly matched\nto the route advertised by BGP. They are not associated with a specific site.\nThis is useful in scenarios such as active-standby high availability routed via BGP.",
+                                                                                    "enumValues": null,
+                                                                                    "fields": {
+                                                                                        "id": {
+                                                                                            "args": {},
+                                                                                            "deprecationReason": null,
+                                                                                            "description": "Unique Floating Subnet ID",
+                                                                                            "id_str": "list___device___nic___network___FloatingSubnetRef___id",
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "id",
+                                                                                            "path": "list.device.nic.network.FloatingSubnetRef.id",
+                                                                                            "requestStr": "$id:ID! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "id:$id ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "ID",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "id"
+                                                                                        },
+                                                                                        "name": {
+                                                                                            "args": {},
+                                                                                            "deprecationReason": null,
+                                                                                            "description": "Name for the Floating Subnet",
+                                                                                            "id_str": "list___device___nic___network___FloatingSubnetRef___name",
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "name",
+                                                                                            "path": "list.device.nic.network.FloatingSubnetRef.name",
+                                                                                            "requestStr": "$name:String! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "name:$name ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "String",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "name"
+                                                                                        }
+                                                                                    },
+                                                                                    "inputFields": null,
+                                                                                    "interfaces": {},
+                                                                                    "kind": "OBJECT",
+                                                                                    "name": "FloatingSubnetRef",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "GlobalIpRangeRef": {
+                                                                                    "description": "A reference identifying the GlobalIpRange object. ID: Unique GlobalIpRange Identifier, Name: The GlobalIpRange Name",
+                                                                                    "enumValues": null,
+                                                                                    "fields": {
+                                                                                        "id": {
+                                                                                            "args": {},
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "id_str": "list___device___nic___network___GlobalIpRangeRef___id",
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "id",
+                                                                                            "path": "list.device.nic.network.GlobalIpRangeRef.id",
+                                                                                            "requestStr": "$id:ID! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "id:$id ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "ID",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "id"
+                                                                                        },
+                                                                                        "name": {
+                                                                                            "args": {},
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "id_str": "list___device___nic___network___GlobalIpRangeRef___name",
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "name",
+                                                                                            "path": "list.device.nic.network.GlobalIpRangeRef.name",
+                                                                                            "requestStr": "$name:String! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "name:$name ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "String",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "name"
+                                                                                        }
+                                                                                    },
+                                                                                    "inputFields": null,
+                                                                                    "interfaces": {},
+                                                                                    "kind": "OBJECT",
+                                                                                    "name": "GlobalIpRangeRef",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "GlobalRangeRef": {
+                                                                                    "description": null,
+                                                                                    "enumValues": null,
+                                                                                    "fields": {
+                                                                                        "id": {
+                                                                                            "args": {},
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "id_str": "list___device___nic___network___GlobalRangeRef___id",
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "id",
+                                                                                            "path": "list.device.nic.network.GlobalRangeRef.id",
+                                                                                            "requestStr": "$id:ID! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "id:$id ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "ID",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "id"
+                                                                                        },
+                                                                                        "name": {
+                                                                                            "args": {},
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "id_str": "list___device___nic___network___GlobalRangeRef___name",
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "name",
+                                                                                            "path": "list.device.nic.network.GlobalRangeRef.name",
+                                                                                            "requestStr": "$name:String! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "name:$name ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "String",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "name"
+                                                                                        }
+                                                                                    },
+                                                                                    "inputFields": null,
+                                                                                    "interfaces": {},
+                                                                                    "kind": "OBJECT",
+                                                                                    "name": "GlobalRangeRef",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "SiteNetworkSubnetRef": {
+                                                                                    "description": "A reference identifying the SiteNetworkSubnet object. ID: Unique SiteNetworkSubnet Identifier, Name: The SiteNetworkSubnet Name",
+                                                                                    "enumValues": null,
+                                                                                    "fields": {
+                                                                                        "id": {
+                                                                                            "args": {},
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "id_str": "list___device___nic___network___SiteNetworkSubnetRef___id",
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "id",
+                                                                                            "path": "list.device.nic.network.SiteNetworkSubnetRef.id",
+                                                                                            "requestStr": "$id:ID! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "id:$id ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "ID",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "id"
+                                                                                        },
+                                                                                        "name": {
+                                                                                            "args": {},
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "id_str": "list___device___nic___network___SiteNetworkSubnetRef___name",
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "name",
+                                                                                            "path": "list.device.nic.network.SiteNetworkSubnetRef.name",
+                                                                                            "requestStr": "$name:String! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "name:$name ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "String",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "name"
+                                                                                        }
+                                                                                    },
+                                                                                    "inputFields": null,
+                                                                                    "interfaces": {},
+                                                                                    "kind": "OBJECT",
+                                                                                    "name": "SiteNetworkSubnetRef",
+                                                                                    "possibleTypes": null
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        "indexType": "interface",
+                                                                        "kind": [
+                                                                            "UNION"
+                                                                        ],
+                                                                        "name": "DeviceNetworkRef",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "deviceNetworkRef"
+                                                                },
+                                                                "site": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Reference to the site where this interface was observed",
+                                                                    "id_str": "list___device___nic___site",
+                                                                    "isDeprecated": false,
+                                                                    "name": "site",
+                                                                    "path": "list.device.nic.site",
+                                                                    "requestStr": "$siteRef:SiteRef ",
+                                                                    "required": false,
+                                                                    "responseStr": "site:$siteRef ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": "A reference identifying the Site object. ID: Unique Site Identifier, Name: The Site Name",
+                                                                            "enumValues": null,
+                                                                            "fields": {
+                                                                                "id": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "id_str": "list___device___nic___site___id",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "id",
+                                                                                    "path": "list.device.nic.site.id",
+                                                                                    "requestStr": "$id:ID! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "id:$id ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "ID",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "id"
+                                                                                },
+                                                                                "name": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "id_str": "list___device___nic___site___name",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "name",
+                                                                                    "path": "list.device.nic.site.name",
+                                                                                    "requestStr": "$name:String! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "name:$name ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "String",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "name"
+                                                                                }
+                                                                            },
+                                                                            "inputFields": null,
+                                                                            "interfaces": {},
+                                                                            "kind": "OBJECT",
+                                                                            "name": "SiteRef",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "object",
+                                                                        "kind": [
+                                                                            "OBJECT"
+                                                                        ],
+                                                                        "name": "SiteRef",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "siteRef"
                                                                 },
                                                                 "vendor": {
                                                                     "args": {},
@@ -25402,6 +25740,419 @@
                                                         },
                                                         "indexType": "object",
                                                         "kind": [
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "DeviceNic",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "deviceNic"
+                                                },
+                                                "nics": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "List of network interface cards (NICs) associated with the device. Each entry represents a distinct interface",
+                                                    "id_str": "list___device___nics",
+                                                    "isDeprecated": false,
+                                                    "name": "nics",
+                                                    "path": "list.device.nics",
+                                                    "requestStr": "$deviceNic:[DeviceNic]! ",
+                                                    "required": true,
+                                                    "responseStr": "nics:$deviceNic ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "Represents a single network interface card (NIC) associated with a device",
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "ip": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "The IP address currently or last associated with this interface",
+                                                                    "id_str": "list___device___nics___ip",
+                                                                    "isDeprecated": false,
+                                                                    "name": "ip",
+                                                                    "path": "list.device.nics.ip",
+                                                                    "requestStr": "$ip:IPAddress ",
+                                                                    "required": false,
+                                                                    "responseStr": "ip:$ip ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "IPAddress",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "ip"
+                                                                },
+                                                                "macAddress": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "The unique MAC address of the device's network interface card",
+                                                                    "id_str": "list___device___nics___macAddress",
+                                                                    "isDeprecated": false,
+                                                                    "name": "macAddress",
+                                                                    "path": "list.device.nics.macAddress",
+                                                                    "requestStr": "$macAddress:MacAddress ",
+                                                                    "required": false,
+                                                                    "responseStr": "macAddress:$macAddress ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "MacAddress",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "macAddress"
+                                                                },
+                                                                "network": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Reference to the network context (e.g., site subnet, floating subnet, or global IP range) associated with this interface",
+                                                                    "id_str": "list___device___nics___network",
+                                                                    "isDeprecated": false,
+                                                                    "name": "network",
+                                                                    "path": "list.device.nics.network",
+                                                                    "requestStr": "$deviceNetworkRef:DeviceNetworkRef ",
+                                                                    "required": false,
+                                                                    "responseStr": "network:$deviceNetworkRef ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": null,
+                                                                            "enumValues": null,
+                                                                            "fields": null,
+                                                                            "inputFields": null,
+                                                                            "interfaces": null,
+                                                                            "kind": "UNION",
+                                                                            "name": "DeviceNetworkRef",
+                                                                            "possibleTypes": {
+                                                                                "FloatingSubnetRef": {
+                                                                                    "description": "Returns data for the Floating Subnet object. Floating Subnets (ie. Floating Ranges) are used to identify traffic exactly matched\nto the route advertised by BGP. They are not associated with a specific site.\nThis is useful in scenarios such as active-standby high availability routed via BGP.",
+                                                                                    "enumValues": null,
+                                                                                    "fields": {
+                                                                                        "id": {
+                                                                                            "args": {},
+                                                                                            "deprecationReason": null,
+                                                                                            "description": "Unique Floating Subnet ID",
+                                                                                            "id_str": "list___device___nics___network___FloatingSubnetRef___id",
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "id",
+                                                                                            "path": "list.device.nics.network.FloatingSubnetRef.id",
+                                                                                            "requestStr": "$id:ID! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "id:$id ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "ID",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "id"
+                                                                                        },
+                                                                                        "name": {
+                                                                                            "args": {},
+                                                                                            "deprecationReason": null,
+                                                                                            "description": "Name for the Floating Subnet",
+                                                                                            "id_str": "list___device___nics___network___FloatingSubnetRef___name",
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "name",
+                                                                                            "path": "list.device.nics.network.FloatingSubnetRef.name",
+                                                                                            "requestStr": "$name:String! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "name:$name ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "String",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "name"
+                                                                                        }
+                                                                                    },
+                                                                                    "inputFields": null,
+                                                                                    "interfaces": {},
+                                                                                    "kind": "OBJECT",
+                                                                                    "name": "FloatingSubnetRef",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "GlobalIpRangeRef": {
+                                                                                    "description": "A reference identifying the GlobalIpRange object. ID: Unique GlobalIpRange Identifier, Name: The GlobalIpRange Name",
+                                                                                    "enumValues": null,
+                                                                                    "fields": {
+                                                                                        "id": {
+                                                                                            "args": {},
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "id_str": "list___device___nics___network___GlobalIpRangeRef___id",
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "id",
+                                                                                            "path": "list.device.nics.network.GlobalIpRangeRef.id",
+                                                                                            "requestStr": "$id:ID! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "id:$id ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "ID",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "id"
+                                                                                        },
+                                                                                        "name": {
+                                                                                            "args": {},
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "id_str": "list___device___nics___network___GlobalIpRangeRef___name",
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "name",
+                                                                                            "path": "list.device.nics.network.GlobalIpRangeRef.name",
+                                                                                            "requestStr": "$name:String! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "name:$name ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "String",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "name"
+                                                                                        }
+                                                                                    },
+                                                                                    "inputFields": null,
+                                                                                    "interfaces": {},
+                                                                                    "kind": "OBJECT",
+                                                                                    "name": "GlobalIpRangeRef",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "GlobalRangeRef": {
+                                                                                    "description": null,
+                                                                                    "enumValues": null,
+                                                                                    "fields": {
+                                                                                        "id": {
+                                                                                            "args": {},
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "id_str": "list___device___nics___network___GlobalRangeRef___id",
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "id",
+                                                                                            "path": "list.device.nics.network.GlobalRangeRef.id",
+                                                                                            "requestStr": "$id:ID! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "id:$id ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "ID",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "id"
+                                                                                        },
+                                                                                        "name": {
+                                                                                            "args": {},
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "id_str": "list___device___nics___network___GlobalRangeRef___name",
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "name",
+                                                                                            "path": "list.device.nics.network.GlobalRangeRef.name",
+                                                                                            "requestStr": "$name:String! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "name:$name ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "String",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "name"
+                                                                                        }
+                                                                                    },
+                                                                                    "inputFields": null,
+                                                                                    "interfaces": {},
+                                                                                    "kind": "OBJECT",
+                                                                                    "name": "GlobalRangeRef",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "SiteNetworkSubnetRef": {
+                                                                                    "description": "A reference identifying the SiteNetworkSubnet object. ID: Unique SiteNetworkSubnet Identifier, Name: The SiteNetworkSubnet Name",
+                                                                                    "enumValues": null,
+                                                                                    "fields": {
+                                                                                        "id": {
+                                                                                            "args": {},
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "id_str": "list___device___nics___network___SiteNetworkSubnetRef___id",
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "id",
+                                                                                            "path": "list.device.nics.network.SiteNetworkSubnetRef.id",
+                                                                                            "requestStr": "$id:ID! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "id:$id ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "ID",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "id"
+                                                                                        },
+                                                                                        "name": {
+                                                                                            "args": {},
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "id_str": "list___device___nics___network___SiteNetworkSubnetRef___name",
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "name",
+                                                                                            "path": "list.device.nics.network.SiteNetworkSubnetRef.name",
+                                                                                            "requestStr": "$name:String! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "name:$name ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "String",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "name"
+                                                                                        }
+                                                                                    },
+                                                                                    "inputFields": null,
+                                                                                    "interfaces": {},
+                                                                                    "kind": "OBJECT",
+                                                                                    "name": "SiteNetworkSubnetRef",
+                                                                                    "possibleTypes": null
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        "indexType": "interface",
+                                                                        "kind": [
+                                                                            "UNION"
+                                                                        ],
+                                                                        "name": "DeviceNetworkRef",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "deviceNetworkRef"
+                                                                },
+                                                                "site": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Reference to the site where this interface was observed",
+                                                                    "id_str": "list___device___nics___site",
+                                                                    "isDeprecated": false,
+                                                                    "name": "site",
+                                                                    "path": "list.device.nics.site",
+                                                                    "requestStr": "$siteRef:SiteRef ",
+                                                                    "required": false,
+                                                                    "responseStr": "site:$siteRef ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": "A reference identifying the Site object. ID: Unique Site Identifier, Name: The Site Name",
+                                                                            "enumValues": null,
+                                                                            "fields": {
+                                                                                "id": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "id_str": "list___device___nics___site___id",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "id",
+                                                                                    "path": "list.device.nics.site.id",
+                                                                                    "requestStr": "$id:ID! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "id:$id ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "ID",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "id"
+                                                                                },
+                                                                                "name": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "id_str": "list___device___nics___site___name",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "name",
+                                                                                    "path": "list.device.nics.site.name",
+                                                                                    "requestStr": "$name:String! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "name:$name ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "String",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "name"
+                                                                                }
+                                                                            },
+                                                                            "inputFields": null,
+                                                                            "interfaces": {},
+                                                                            "kind": "OBJECT",
+                                                                            "name": "SiteRef",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "object",
+                                                                        "kind": [
+                                                                            "OBJECT"
+                                                                        ],
+                                                                        "name": "SiteRef",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "siteRef"
+                                                                },
+                                                                "vendor": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Manufacturer of the network interface (e.g., Intel, Broadcom)",
+                                                                    "id_str": "list___device___nics___vendor",
+                                                                    "isDeprecated": false,
+                                                                    "name": "vendor",
+                                                                    "path": "list.device.nics.vendor",
+                                                                    "requestStr": "$vendor:String ",
+                                                                    "required": false,
+                                                                    "responseStr": "vendor:$vendor ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "vendor"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "DeviceNic",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "LIST",
+                                                            "NON_NULL",
                                                             "OBJECT"
                                                         ],
                                                         "name": "DeviceNic",
@@ -25618,10 +26369,10 @@
                                                 },
                                                 "site": {
                                                     "args": {},
-                                                    "deprecationReason": null,
+                                                    "deprecationReason": "Use nics.site instead",
                                                     "description": "Reference to the site where the device is located",
                                                     "id_str": "list___device___site",
-                                                    "isDeprecated": false,
+                                                    "isDeprecated": true,
                                                     "name": "site",
                                                     "path": "list.device.site",
                                                     "requestStr": "$siteRef:SiteRef ",

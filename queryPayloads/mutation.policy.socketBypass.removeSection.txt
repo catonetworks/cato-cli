@@ -1,0 +1,24 @@
+mutation policySocketBypassRemoveSection ( $accountId:ID! $socketBypassPolicyMutationInput:SocketBypassPolicyMutationInput $policyRemoveSectionInput:PolicyRemoveSectionInput!) {
+	policy ( accountId:$accountId ) {
+		socketBypass ( input:$socketBypassPolicyMutationInput  )  {
+			removeSection ( input:$policyRemoveSectionInput   ) {
+				section {
+					audit {
+						updatedTime
+						updatedBy
+					}
+					section {
+						id
+						name
+					}
+					properties
+				}
+				status
+				errors {
+					errorMessage
+					errorCode
+				}
+			}
+		}
+	}	
+}

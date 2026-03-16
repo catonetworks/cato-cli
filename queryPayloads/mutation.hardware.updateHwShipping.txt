@@ -1,0 +1,57 @@
+mutation hardwareUpdateHwShipping ( $accountId:ID! $updateHwShippingInput:UpdateHwShippingInput!) {
+	hardware ( accountId:$accountId ) {
+		updateHwShipping ( input:$updateHwShippingInput  )  {
+			items {
+				id
+				account {
+					id
+					name
+				}
+				siteCountryName
+				productType
+				model
+				serialNumber
+				macAddress
+				poNumber
+				quoteId
+				licenseId
+				licenseStartDate
+				shippingTracking {
+					shippingStatus
+					shippingDate
+					trackingUrl
+					trackingNumber
+					carrier
+				}
+				shippingDetail {
+					companyName
+					street
+					cityName
+					countryName
+					stateName
+					zipCode
+					incoterms
+					instruction
+					vatId
+					contact {
+						name
+						phone
+						email
+					}
+					comment
+					powerCable
+				}
+				validation {
+					completed
+					incompleteReason
+					addressValidationStatus
+				}
+				lastModified
+				locationId
+			}
+			pageInfo {
+				total
+			}
+		}
+	}	
+}

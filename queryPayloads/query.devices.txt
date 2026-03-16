@@ -20,6 +20,49 @@ query devices ( $accountId:ID! $deviceV2Input:DeviceV2Input $sortOrderInput:Sort
 				riskScore
 				nic {
 					macAddress
+					ip
+					site {
+						id
+						name
+					}
+					network {
+						__typename
+						... on SiteNetworkSubnetRef {
+							id
+							name
+						}
+						... on GlobalRangeRef {
+							id
+							name
+						}
+						... on GlobalIpRangeRef {
+							id
+							name
+						}
+						... on FloatingSubnetRef {
+							id
+							name
+						}
+					}
+ {
+						__typename
+						... on SiteNetworkSubnetRef {
+							id
+							name
+						}
+						... on GlobalRangeRef {
+							id
+							name
+						}
+						... on GlobalIpRangeRef {
+							id
+							name
+						}
+						... on FloatingSubnetRef {
+							id
+							name
+						}
+					}
 					vendor
 				}
 				os {
@@ -65,6 +108,53 @@ query devices ( $accountId:ID! $deviceV2Input:DeviceV2Input $sortOrderInput:Sort
 				}
 				confidence
 				complianceState
+				nics {
+					macAddress
+					ip
+					site {
+						id
+						name
+					}
+					network {
+						__typename
+						... on SiteNetworkSubnetRef {
+							id
+							name
+						}
+						... on GlobalRangeRef {
+							id
+							name
+						}
+						... on GlobalIpRangeRef {
+							id
+							name
+						}
+						... on FloatingSubnetRef {
+							id
+							name
+						}
+					}
+ {
+						__typename
+						... on SiteNetworkSubnetRef {
+							id
+							name
+						}
+						... on GlobalRangeRef {
+							id
+							name
+						}
+						... on GlobalIpRangeRef {
+							id
+							name
+						}
+						... on FloatingSubnetRef {
+							id
+							name
+						}
+					}
+					vendor
+				}
 			}
 			paging {
 				total

@@ -1,0 +1,222 @@
+mutation policySocketBypassUpdatePolicy ( $accountId:ID! $socketBypassPolicyMutationInput:SocketBypassPolicyMutationInput $socketBypassPolicyUpdateInput:SocketBypassPolicyUpdateInput!) {
+	policy ( accountId:$accountId ) {
+		socketBypass ( input:$socketBypassPolicyMutationInput  )  {
+			updatePolicy ( input:$socketBypassPolicyUpdateInput   ) {
+				policy {
+					enabled
+					rules {
+						audit {
+							updatedTime
+							updatedBy
+						}
+						rule {
+							id
+							name
+							description
+							index
+							section {
+								id
+								name
+							}
+							enabled
+							site {
+								site {
+									id
+									name
+								}
+								group {
+									id
+									name
+								}
+							}
+							source {
+								ipRange {
+									from
+									to
+								}
+								group {
+									id
+									name
+								}
+								subnet
+								ip
+								floatingSubnet {
+									id
+									name
+								}
+								globalIpRange {
+									id
+									name
+								}
+								vlan
+								networkInterface {
+									id
+									name
+								}
+								host {
+									id
+									name
+								}
+								siteNetworkSubnet {
+									id
+									name
+								}
+							}
+							destination {
+								application {
+									id
+									name
+								}
+								customApp {
+									id
+									name
+								}
+								domain
+								fqdn
+								ipRange {
+									from
+									to
+								}
+								subnet
+								ip
+								globalIpRange {
+									id
+									name
+								}
+							}
+							service {
+								simple {
+									name
+								}
+								custom {
+									port
+									portRange {
+										from
+										to
+									}
+									protocol
+								}
+							}
+							action {
+								port
+								event {
+									enabled
+								}
+							}
+							exception {
+								name
+								site {
+									site {
+										id
+										name
+									}
+									group {
+										id
+										name
+									}
+								}
+								source {
+									ipRange {
+										from
+										to
+									}
+									group {
+										id
+										name
+									}
+									subnet
+									ip
+									floatingSubnet {
+										id
+										name
+									}
+									globalIpRange {
+										id
+										name
+									}
+									vlan
+									networkInterface {
+										id
+										name
+									}
+									host {
+										id
+										name
+									}
+									siteNetworkSubnet {
+										id
+										name
+									}
+								}
+								destination {
+									application {
+										id
+										name
+									}
+									customApp {
+										id
+										name
+									}
+									domain
+									fqdn
+									ipRange {
+										from
+										to
+									}
+									subnet
+									ip
+									globalIpRange {
+										id
+										name
+									}
+								}
+								service {
+									simple {
+										name
+									}
+									custom {
+										port
+										portRange {
+											from
+											to
+										}
+										protocol
+									}
+								}
+							}
+						}
+						properties
+					}
+					sections {
+						audit {
+							updatedTime
+							updatedBy
+						}
+						section {
+							id
+							name
+						}
+						properties
+					}
+					audit {
+						publishedTime
+						publishedBy
+					}
+					revision {
+						id
+						name
+						description
+						changes
+						createdTime
+						updatedTime
+					}
+				}
+				status
+				errors {
+					errorMessage
+					errorCode
+				}
+			}
+		}
+	}	
+}

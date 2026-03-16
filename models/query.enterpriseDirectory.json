@@ -2487,8 +2487,8 @@
                     "isDeprecated": false,
                     "name": "locationList",
                     "path": "locationList",
-                    "requestStr": "$enterpriseDirectoryLocationListPayload:EnterpriseDirectoryLocationListPayload! ",
-                    "required": true,
+                    "requestStr": "$enterpriseDirectoryLocationListPayload:EnterpriseDirectoryLocationListPayload ",
+                    "required": false,
                     "responseStr": "locationList:$enterpriseDirectoryLocationListPayload ",
                     "type": {
                         "definition": {
@@ -2947,6 +2947,46 @@
                                                                             "description": null,
                                                                             "enumValues": null,
                                                                             "fields": {
+                                                                                "address1": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Primary address",
+                                                                                    "id_str": "locationList___items___details___postalAddress___address1",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "address1",
+                                                                                    "path": "locationList.items.details.postalAddress.address1",
+                                                                                    "requestStr": "$address1:String ",
+                                                                                    "required": false,
+                                                                                    "responseStr": "address1:$address1 ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "String",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "address1"
+                                                                                },
+                                                                                "address2": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Secondary address (unit number)",
+                                                                                    "id_str": "locationList___items___details___postalAddress___address2",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "address2",
+                                                                                    "path": "locationList.items.details.postalAddress.address2",
+                                                                                    "requestStr": "$address2:String ",
+                                                                                    "required": false,
+                                                                                    "responseStr": "address2:$address2 ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "String",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "address2"
+                                                                                },
                                                                                 "addressValidated": {
                                                                                     "args": {},
                                                                                     "deprecationReason": null,
@@ -3115,10 +3155,10 @@
                                                                                 },
                                                                                 "street": {
                                                                                     "args": {},
-                                                                                    "deprecationReason": null,
+                                                                                    "deprecationReason": "replaced by address1 and address2",
                                                                                     "description": "Street name and number",
                                                                                     "id_str": "locationList___items___details___postalAddress___street",
-                                                                                    "isDeprecated": false,
+                                                                                    "isDeprecated": true,
                                                                                     "name": "street",
                                                                                     "path": "locationList.items.details.postalAddress.street",
                                                                                     "requestStr": "$street:String ",
@@ -3414,7 +3454,6 @@
                         },
                         "indexType": "object",
                         "kind": [
-                            "NON_NULL",
                             "OBJECT"
                         ],
                         "name": "EnterpriseDirectoryLocationListPayload",

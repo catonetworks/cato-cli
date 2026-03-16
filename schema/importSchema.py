@@ -201,6 +201,45 @@ def build_site_location_db():
         print(f"    Total cities: {row_count}")
         print(f"    Database size: {db_size:.2f} MB")
 
+        # Also generate JSON file for backward compatibility
+        json_output_path = db_output_path.replace('.db', '.json')
+        print("  - Generating JSON file...")
+
+        conn = sqlite3.connect(db_output_path)
+        conn.row_factory = sqlite3.Row
+        cursor = conn.cursor()
+        cursor.execute('SELECT city, countryCode, countryName, stateCode, stateName, timezone FROM locations')
+
+        json_data = {}
+        for row in cursor.fetchall():
+            # Build key: Country___State___City or Country___City
+            if row['stateName']:
+                key = f"{row['countryName']}___{row['stateName']}___{row['city']}"
+            else:
+                key = f"{row['countryName']}___{row['city']}"
+
+            record = {
+                "city": row['city'],
+                "countryCode": row['countryCode'],
+                "countryName": row['countryName'],
+                "timezone": [row['timezone']] if row['timezone'] else []
+            }
+            if row['stateCode']:
+                record["stateCode"] = row['stateCode']
+            if row['stateName']:
+                record["stateName"] = row['stateName']
+
+            json_data[key] = record
+
+        conn.close()
+
+        with open(json_output_path, 'w', encoding='utf-8') as f:
+            json.dump(json_data, f, indent=4, ensure_ascii=False)
+
+        json_size = os.path.getsize(json_output_path) / (1024 * 1024)
+        print(f"  - JSON file created: {json_output_path}")
+        print(f"    JSON size: {json_size:.2f} MB")
+
     finally:
         # Cleanup downloaded files
         print("  - Cleaning up temporary files...")

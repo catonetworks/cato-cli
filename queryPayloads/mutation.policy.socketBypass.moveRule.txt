@@ -1,0 +1,196 @@
+mutation policySocketBypassMoveRule ( $accountId:ID! $socketBypassPolicyMutationInput:SocketBypassPolicyMutationInput $policyMoveRuleInput:PolicyMoveRuleInput!) {
+	policy ( accountId:$accountId ) {
+		socketBypass ( input:$socketBypassPolicyMutationInput  )  {
+			moveRule ( input:$policyMoveRuleInput   ) {
+				rule {
+					audit {
+						updatedTime
+						updatedBy
+					}
+					rule {
+						id
+						name
+						description
+						index
+						section {
+							id
+							name
+						}
+						enabled
+						site {
+							site {
+								id
+								name
+							}
+							group {
+								id
+								name
+							}
+						}
+						source {
+							ipRange {
+								from
+								to
+							}
+							group {
+								id
+								name
+							}
+							subnet
+							ip
+							floatingSubnet {
+								id
+								name
+							}
+							globalIpRange {
+								id
+								name
+							}
+							vlan
+							networkInterface {
+								id
+								name
+							}
+							host {
+								id
+								name
+							}
+							siteNetworkSubnet {
+								id
+								name
+							}
+						}
+						destination {
+							application {
+								id
+								name
+							}
+							customApp {
+								id
+								name
+							}
+							domain
+							fqdn
+							ipRange {
+								from
+								to
+							}
+							subnet
+							ip
+							globalIpRange {
+								id
+								name
+							}
+						}
+						service {
+							simple {
+								name
+							}
+							custom {
+								port
+								portRange {
+									from
+									to
+								}
+								protocol
+							}
+						}
+						action {
+							port
+							event {
+								enabled
+							}
+						}
+						exception {
+							name
+							site {
+								site {
+									id
+									name
+								}
+								group {
+									id
+									name
+								}
+							}
+							source {
+								ipRange {
+									from
+									to
+								}
+								group {
+									id
+									name
+								}
+								subnet
+								ip
+								floatingSubnet {
+									id
+									name
+								}
+								globalIpRange {
+									id
+									name
+								}
+								vlan
+								networkInterface {
+									id
+									name
+								}
+								host {
+									id
+									name
+								}
+								siteNetworkSubnet {
+									id
+									name
+								}
+							}
+							destination {
+								application {
+									id
+									name
+								}
+								customApp {
+									id
+									name
+								}
+								domain
+								fqdn
+								ipRange {
+									from
+									to
+								}
+								subnet
+								ip
+								globalIpRange {
+									id
+									name
+								}
+							}
+							service {
+								simple {
+									name
+								}
+								custom {
+									port
+									portRange {
+										from
+										to
+									}
+									protocol
+								}
+							}
+						}
+					}
+					properties
+				}
+				status
+				errors {
+					errorMessage
+					errorCode
+				}
+			}
+		}
+	}	
+}

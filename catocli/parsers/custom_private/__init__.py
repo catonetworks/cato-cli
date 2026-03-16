@@ -20,7 +20,8 @@ def _show_private_help(args, configuration=None):
     private_commands = load_private_settings()
     
     print("Usage: catocli private <command> [options]")
-    print("\nNote: accountID is auto-loaded from ~/.cato/settings.json")
+    print("\nNote: Private commands require account_id, cookie, and private_endpoint")
+    print("      in your ~/.cato/credentials profile")
     print("\nAvailable private commands:")
     
     # Show commands with their descriptions
@@ -35,8 +36,7 @@ def _show_private_help(args, configuration=None):
     
     print("\nFor detailed help on a specific command:")
     print("  catocli private <command> -h")
-    print("\nNote: accountID is auto-loaded from ~/.cato/settings.json")
-    print("      version is auto-fetched from API when needed")
+    print("\nNote: version is auto-fetched from API when needed")
     return None
 
 
@@ -139,12 +139,12 @@ def create_private_command_parser(subparsers, command_name, command_config):
         help='Load headers from a file. Each line should contain a header in "Key: Value" format.'
     )
     
-    # Note: accountID is read from ~/.cato/settings.json automatically
-    # This argument is kept for compatibility but the settings file value takes priority
+    # Note: accountID is read from ~/.cato/credentials profile automatically
+    # This argument is kept for compatibility but the profile value takes priority
     cmd_parser.add_argument(
         '-accountID',
         required=False,
-        help='Account ID (auto-loaded from ~/.cato/settings.json)'
+        help='Account ID (auto-loaded from ~/.cato/credentials profile)'
     )
     
     # Add CSV output arguments (if the command supports CSV)

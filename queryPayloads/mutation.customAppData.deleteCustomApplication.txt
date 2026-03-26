@@ -1,0 +1,35 @@
+mutation customAppDataDeleteCustomApplication ( $accountId:ID! $deleteCustomApplicationInput:DeleteCustomApplicationInput!) {
+	customAppData ( accountId:$accountId ) {
+		deleteCustomApplication ( input:$deleteCustomApplicationInput  )  {
+			customApplication {
+				id
+				name
+				description
+				category {
+					id
+					name
+				}
+				criteria {
+					protocol
+					port
+					portRange {
+						from
+						to
+					}
+					destination {
+						domain
+						fqdn
+						destinationIp {
+							ip
+							subnet
+							ipRange {
+								from
+								to
+							}
+						}
+					}
+				}
+			}
+		}
+	}	
+}

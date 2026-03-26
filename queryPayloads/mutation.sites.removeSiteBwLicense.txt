@@ -50,6 +50,13 @@ mutation sitesRemoveSiteBwLicense ( $accountId:ID! $removeSiteBwLicenseInput:Rem
 				}
 				... on ZtnaUsersLicense {
 					ztnaUsersLicenseGroup
+					accounts {
+						accountPartnerZtnaUsersLicenseAccount: account {
+							id
+							name
+						}
+						allocatedUsers
+					}
 					total
 				}
 				... on EndpointProtectionLicense {

@@ -1,0 +1,22 @@
+mutation popLocationMutationsUpdateAllocatedIpDescription ( $accountId:ID! $popLocationUpdateAllocatedIpDescriptionInput:PopLocationUpdateAllocatedIpDescriptionInput!) {
+	popLocationMutations ( accountId:$accountId ) {
+		updateAllocatedIpDescription ( input:$popLocationUpdateAllocatedIpDescriptionInput  )  {
+			allocatedIp {
+				id
+				account {
+					id
+					name
+				}
+				ip
+				popLocation {
+					id
+					name
+				}
+				allocationType
+				description
+				subnet
+				state
+			}
+		}
+	}	
+}

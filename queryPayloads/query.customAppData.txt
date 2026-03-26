@@ -1,0 +1,67 @@
+query customAppData ( $accountId:ID! $customApplicationRefInput:CustomApplicationRefInput! $customApplicationListInput:CustomApplicationListInput!) {
+	customAppData ( accountId:$accountId ) {
+		customApplication ( input:$customApplicationRefInput  )  {
+			id
+			name
+			description
+			category {
+				id
+				name
+			}
+			criteria {
+				protocol
+				port
+				portRange {
+					from
+					to
+				}
+				destination {
+					domain
+					fqdn
+					destinationIp {
+						ip
+						subnet
+						ipRange {
+							from
+							to
+						}
+					}
+				}
+			}
+		}
+		customApplicationList ( input:$customApplicationListInput  )  {
+			items {
+				id
+				name
+				description
+				category {
+					id
+					name
+				}
+				criteria {
+					protocol
+					port
+					portRange {
+						from
+						to
+					}
+					destination {
+						domain
+						fqdn
+						destinationIp {
+							ip
+							subnet
+							ipRange {
+								from
+								to
+							}
+						}
+					}
+				}
+			}
+			paging {
+				total
+			}
+		}
+	}	
+}

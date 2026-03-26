@@ -11,7 +11,7 @@ catocli mutation sites updateCloudInterconnectPhysicalConnection <json>
 
 catocli mutation sites updateCloudInterconnectPhysicalConnection --json-file mutation.sites.updateCloudInterconnectPhysicalConnection.json
 
-catocli mutation sites updateCloudInterconnectPhysicalConnection '{"updateCloudInterconnectPhysicalConnectionInput":{"downstreamBwLimit":"example_value","encapsulationMethod":"DOT1Q","id":"id","popLocationRefInput":{"by":"ID","input":"string"},"privateCatoIp":"example_value","privateSiteIp":"example_value","serviceProviderName":"string","subnet":"example_value","upstreamBwLimit":"example_value"}}'
+catocli mutation sites updateCloudInterconnectPhysicalConnection '{"updateCloudInterconnectPhysicalConnectionInput":{"downstreamBwLimit":"example_value","encapsulationMethod":"DOT1Q","id":"id","popLocationRefInput":{"by":"ID","input":"string"},"privateCatoIp":"example_value","privateSiteIp":"example_value","qinQVlanConfiguration":{"cVlan":"example_value","sVlan":"example_value"},"serviceProviderName":"string","subnet":"example_value","upstreamBwLimit":"example_value","vlan":"example_value"}}'
 
 catocli mutation sites updateCloudInterconnectPhysicalConnection '{
     "updateCloudInterconnectPhysicalConnectionInput": {
@@ -24,9 +24,14 @@ catocli mutation sites updateCloudInterconnectPhysicalConnection '{
         },
         "privateCatoIp": "example_value",
         "privateSiteIp": "example_value",
+        "qinQVlanConfiguration": {
+            "cVlan": "example_value",
+            "sVlan": "example_value"
+        },
         "serviceProviderName": "string",
         "subnet": "example_value",
-        "upstreamBwLimit": "example_value"
+        "upstreamBwLimit": "example_value",
+        "vlan": "example_value"
     }
 }'
 ```

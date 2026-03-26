@@ -1,0 +1,15 @@
+mutation siteRemoveSecondaryGcpVSocket ( $accountId:ID! $removeSecondaryGcpVSocketInput:RemoveSecondaryGcpVSocketInput!) {
+	site ( accountId:$accountId ) {
+		removeSecondaryGcpVSocket ( input:$removeSecondaryGcpVSocketInput  )  {
+			socketInfo {
+				site {
+					id
+					name
+				}
+				id
+				interfaceIp
+				loadBalancerIp
+			}
+		}
+	}	
+}

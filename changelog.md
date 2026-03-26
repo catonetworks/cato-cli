@@ -199,3 +199,7 @@
 ## 3.0.62 (2026-02-24)
 - Update CLI to support importing siteLocation dataset from source converting to SQL Lite
 - Imported new apis from schema
+
+## 3.0.64 (2026-03-26)
+- Addeded new operations  
+

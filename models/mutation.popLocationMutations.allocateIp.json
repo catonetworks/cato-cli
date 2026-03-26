@@ -1,0 +1,1093 @@
+{
+    "args": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        }
+    },
+    "childOperations": {
+        "allocateIp": {
+            "args": {
+                "allocateIp___input": {
+                    "defaultValue": null,
+                    "description": null,
+                    "id_str": "allocateIp___input",
+                    "name": "input",
+                    "path": "allocateIp.input",
+                    "requestStr": "$popLocationAllocateIpInput:PopLocationAllocateIpInput! ",
+                    "required": true,
+                    "responseStr": "input:$popLocationAllocateIpInput ",
+                    "type": {
+                        "definition": {
+                            "description": "Input for allocating an IP address for a PoP location.",
+                            "enumValues": null,
+                            "fields": null,
+                            "inputFields": {
+                                "description": {
+                                    "defaultValue": null,
+                                    "description": "Optional description for the allocated IP address.",
+                                    "id_str": "allocateIp___input___description",
+                                    "name": "description",
+                                    "path": "allocateIp.input.description",
+                                    "requestStr": "$description:String ",
+                                    "required": false,
+                                    "responseStr": "description:$description ",
+                                    "type": {
+                                        "kind": [
+                                            "SCALAR"
+                                        ],
+                                        "name": "String",
+                                        "non_null": false
+                                    },
+                                    "varName": "description"
+                                },
+                                "popLocation": {
+                                    "defaultValue": null,
+                                    "description": "Target PoP location for the allocation, when required by the allocation workflow.",
+                                    "id_str": "allocateIp___input___popLocation",
+                                    "name": "popLocation",
+                                    "path": "allocateIp.input.popLocation",
+                                    "requestStr": "$popLocationRefInput:PopLocationRefInput ",
+                                    "required": false,
+                                    "responseStr": "popLocation:$popLocationRefInput ",
+                                    "type": {
+                                        "definition": {
+                                            "description": null,
+                                            "enumValues": null,
+                                            "fields": null,
+                                            "inputFields": {
+                                                "by": {
+                                                    "defaultValue": "ID",
+                                                    "description": null,
+                                                    "id_str": "allocateIp___input___popLocation___by",
+                                                    "name": "by",
+                                                    "path": "allocateIp.input.popLocation.by",
+                                                    "requestStr": "$by:ObjectRefBy! ",
+                                                    "required": true,
+                                                    "responseStr": "by:$by ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": null,
+                                                            "enumValues": [
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "ID"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "NAME"
+                                                                }
+                                                            ],
+                                                            "fields": null,
+                                                            "inputFields": null,
+                                                            "interfaces": null,
+                                                            "kind": "ENUM",
+                                                            "name": "ObjectRefBy",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "enum",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "ENUM"
+                                                        ],
+                                                        "name": "ObjectRefBy",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "by"
+                                                },
+                                                "input": {
+                                                    "defaultValue": null,
+                                                    "description": null,
+                                                    "id_str": "allocateIp___input___popLocation___input",
+                                                    "name": "input",
+                                                    "path": "allocateIp.input.popLocation.input",
+                                                    "requestStr": "$input:String! ",
+                                                    "required": true,
+                                                    "responseStr": "input:$input ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "input"
+                                                }
+                                            },
+                                            "interfaces": null,
+                                            "kind": "INPUT_OBJECT",
+                                            "name": "PopLocationRefInput",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "input_object",
+                                        "kind": [
+                                            "INPUT_OBJECT"
+                                        ],
+                                        "name": "PopLocationRefInput",
+                                        "non_null": false
+                                    },
+                                    "varName": "popLocationRefInput"
+                                },
+                                "type": {
+                                    "defaultValue": "BYOIP",
+                                    "description": "Allocation type.",
+                                    "id_str": "allocateIp___input___type",
+                                    "name": "type",
+                                    "path": "allocateIp.input.type",
+                                    "requestStr": "$type:PopLocationAllocatedIpType! ",
+                                    "required": true,
+                                    "responseStr": "type:$type ",
+                                    "type": {
+                                        "definition": {
+                                            "description": null,
+                                            "enumValues": [
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "isDeprecated": false,
+                                                    "name": "SYSTEM"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "isDeprecated": false,
+                                                    "name": "BYOIP"
+                                                }
+                                            ],
+                                            "fields": null,
+                                            "inputFields": null,
+                                            "interfaces": null,
+                                            "kind": "ENUM",
+                                            "name": "PopLocationAllocatedIpType",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "enum",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "ENUM"
+                                        ],
+                                        "name": "PopLocationAllocatedIpType",
+                                        "non_null": false
+                                    },
+                                    "varName": "type"
+                                }
+                            },
+                            "interfaces": null,
+                            "kind": "INPUT_OBJECT",
+                            "name": "PopLocationAllocateIpInput",
+                            "possibleTypes": null
+                        },
+                        "indexType": "input_object",
+                        "kind": [
+                            "NON_NULL",
+                            "INPUT_OBJECT"
+                        ],
+                        "name": "PopLocationAllocateIpInput",
+                        "non_null": false
+                    },
+                    "varName": "popLocationAllocateIpInput"
+                }
+            },
+            "deprecationReason": null,
+            "description": "Allocates an IP address for a PoP location.",
+            "isDeprecated": false,
+            "name": "allocateIp",
+            "type": {
+                "kind": "OBJECT",
+                "name": "PopLocationAllocateIpPayload",
+                "ofType": null
+            }
+        }
+    },
+    "deprecationReason": null,
+    "description": null,
+    "fieldTypes": {},
+    "isDeprecated": false,
+    "name": "popLocationMutations",
+    "operationArgs": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        },
+        "popLocationAllocateIpInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "allocateIp___input",
+            "name": "input",
+            "path": "allocateIp.input",
+            "requestStr": "$popLocationAllocateIpInput:PopLocationAllocateIpInput! ",
+            "required": true,
+            "responseStr": "input:$popLocationAllocateIpInput ",
+            "type": {
+                "definition": {
+                    "description": "Input for allocating an IP address for a PoP location.",
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "description": {
+                            "defaultValue": null,
+                            "description": "Optional description for the allocated IP address.",
+                            "id_str": "allocateIp___input___description",
+                            "name": "description",
+                            "path": "allocateIp.input.description",
+                            "requestStr": "$description:String ",
+                            "required": false,
+                            "responseStr": "description:$description ",
+                            "type": {
+                                "kind": [
+                                    "SCALAR"
+                                ],
+                                "name": "String",
+                                "non_null": false
+                            },
+                            "varName": "description"
+                        },
+                        "popLocation": {
+                            "defaultValue": null,
+                            "description": "Target PoP location for the allocation, when required by the allocation workflow.",
+                            "id_str": "allocateIp___input___popLocation",
+                            "name": "popLocation",
+                            "path": "allocateIp.input.popLocation",
+                            "requestStr": "$popLocationRefInput:PopLocationRefInput ",
+                            "required": false,
+                            "responseStr": "popLocation:$popLocationRefInput ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "by": {
+                                            "defaultValue": "ID",
+                                            "description": null,
+                                            "id_str": "allocateIp___input___popLocation___by",
+                                            "name": "by",
+                                            "path": "allocateIp.input.popLocation.by",
+                                            "requestStr": "$by:ObjectRefBy! ",
+                                            "required": true,
+                                            "responseStr": "by:$by ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "ID"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "NAME"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "ObjectRefBy",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "ENUM"
+                                                ],
+                                                "name": "ObjectRefBy",
+                                                "non_null": false
+                                            },
+                                            "varName": "by"
+                                        },
+                                        "input": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "allocateIp___input___popLocation___input",
+                                            "name": "input",
+                                            "path": "allocateIp.input.popLocation.input",
+                                            "requestStr": "$input:String! ",
+                                            "required": true,
+                                            "responseStr": "input:$input ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "String",
+                                                "non_null": false
+                                            },
+                                            "varName": "input"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "PopLocationRefInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "PopLocationRefInput",
+                                "non_null": false
+                            },
+                            "varName": "popLocationRefInput"
+                        },
+                        "type": {
+                            "defaultValue": "BYOIP",
+                            "description": "Allocation type.",
+                            "id_str": "allocateIp___input___type",
+                            "name": "type",
+                            "path": "allocateIp.input.type",
+                            "requestStr": "$type:PopLocationAllocatedIpType! ",
+                            "required": true,
+                            "responseStr": "type:$type ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": [
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "SYSTEM"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "BYOIP"
+                                        }
+                                    ],
+                                    "fields": null,
+                                    "inputFields": null,
+                                    "interfaces": null,
+                                    "kind": "ENUM",
+                                    "name": "PopLocationAllocatedIpType",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "enum",
+                                "kind": [
+                                    "NON_NULL",
+                                    "ENUM"
+                                ],
+                                "name": "PopLocationAllocatedIpType",
+                                "non_null": false
+                            },
+                            "varName": "type"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "PopLocationAllocateIpInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "PopLocationAllocateIpInput",
+                "non_null": false
+            },
+            "varName": "popLocationAllocateIpInput"
+        }
+    },
+    "path": "mutation.popLocationMutations.allocateIp",
+    "type": {
+        "definition": {
+            "description": null,
+            "enumValues": null,
+            "fields": {
+                "allocateIp": {
+                    "args": {
+                        "allocateIp___input": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "allocateIp___input",
+                            "name": "input",
+                            "path": "allocateIp.input",
+                            "requestStr": "$popLocationAllocateIpInput:PopLocationAllocateIpInput! ",
+                            "required": true,
+                            "responseStr": "input:$popLocationAllocateIpInput ",
+                            "type": {
+                                "definition": {
+                                    "description": "Input for allocating an IP address for a PoP location.",
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "description": {
+                                            "defaultValue": null,
+                                            "description": "Optional description for the allocated IP address.",
+                                            "id_str": "allocateIp___input___description",
+                                            "name": "description",
+                                            "path": "allocateIp.input.description",
+                                            "requestStr": "$description:String ",
+                                            "required": false,
+                                            "responseStr": "description:$description ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "String",
+                                                "non_null": false
+                                            },
+                                            "varName": "description"
+                                        },
+                                        "popLocation": {
+                                            "defaultValue": null,
+                                            "description": "Target PoP location for the allocation, when required by the allocation workflow.",
+                                            "id_str": "allocateIp___input___popLocation",
+                                            "name": "popLocation",
+                                            "path": "allocateIp.input.popLocation",
+                                            "requestStr": "$popLocationRefInput:PopLocationRefInput ",
+                                            "required": false,
+                                            "responseStr": "popLocation:$popLocationRefInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "by": {
+                                                            "defaultValue": "ID",
+                                                            "description": null,
+                                                            "id_str": "allocateIp___input___popLocation___by",
+                                                            "name": "by",
+                                                            "path": "allocateIp.input.popLocation.by",
+                                                            "requestStr": "$by:ObjectRefBy! ",
+                                                            "required": true,
+                                                            "responseStr": "by:$by ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "ID"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "NAME"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "ObjectRefBy",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "ObjectRefBy",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "by"
+                                                        },
+                                                        "input": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "allocateIp___input___popLocation___input",
+                                                            "name": "input",
+                                                            "path": "allocateIp.input.popLocation.input",
+                                                            "requestStr": "$input:String! ",
+                                                            "required": true,
+                                                            "responseStr": "input:$input ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "input"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "PopLocationRefInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "PopLocationRefInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "popLocationRefInput"
+                                        },
+                                        "type": {
+                                            "defaultValue": "BYOIP",
+                                            "description": "Allocation type.",
+                                            "id_str": "allocateIp___input___type",
+                                            "name": "type",
+                                            "path": "allocateIp.input.type",
+                                            "requestStr": "$type:PopLocationAllocatedIpType! ",
+                                            "required": true,
+                                            "responseStr": "type:$type ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "SYSTEM"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "BYOIP"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "PopLocationAllocatedIpType",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "ENUM"
+                                                ],
+                                                "name": "PopLocationAllocatedIpType",
+                                                "non_null": false
+                                            },
+                                            "varName": "type"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "PopLocationAllocateIpInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "NON_NULL",
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "PopLocationAllocateIpInput",
+                                "non_null": false
+                            },
+                            "varName": "popLocationAllocateIpInput"
+                        }
+                    },
+                    "deprecationReason": null,
+                    "description": "Allocates an IP address for a PoP location.",
+                    "id_str": "allocateIp",
+                    "isDeprecated": false,
+                    "name": "allocateIp",
+                    "path": "allocateIp",
+                    "requestStr": "$popLocationAllocateIpPayload:PopLocationAllocateIpPayload ",
+                    "required": false,
+                    "responseStr": "allocateIp:$popLocationAllocateIpPayload ",
+                    "type": {
+                        "definition": {
+                            "description": "Response payload for the allocate IP mutation.",
+                            "enumValues": null,
+                            "fields": {
+                                "allocatedIp": {
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": "The allocated IP record.",
+                                    "id_str": "allocateIp___allocatedIp",
+                                    "isDeprecated": false,
+                                    "name": "allocatedIp",
+                                    "path": "allocateIp.allocatedIp",
+                                    "requestStr": "$popLocationAllocatedIp:PopLocationAllocatedIp! ",
+                                    "required": true,
+                                    "responseStr": "allocatedIp:$popLocationAllocatedIp ",
+                                    "type": {
+                                        "definition": {
+                                            "description": null,
+                                            "enumValues": null,
+                                            "fields": {
+                                                "account": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "id_str": "allocateIp___allocatedIp___account",
+                                                    "isDeprecated": false,
+                                                    "name": "account",
+                                                    "path": "allocateIp.allocatedIp.account",
+                                                    "requestStr": "$accountRef:AccountRef! ",
+                                                    "required": true,
+                                                    "responseStr": "account:$accountRef ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "A reference identifying the Account object. ID: Unique Account Identifier, Name: The Account Name",
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "id": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "id_str": "allocateIp___allocatedIp___account___id",
+                                                                    "isDeprecated": false,
+                                                                    "name": "id",
+                                                                    "path": "allocateIp.allocatedIp.account.id",
+                                                                    "requestStr": "$id:ID! ",
+                                                                    "required": true,
+                                                                    "responseStr": "id:$id ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "ID",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "id"
+                                                                },
+                                                                "name": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "id_str": "allocateIp___allocatedIp___account___name",
+                                                                    "isDeprecated": false,
+                                                                    "name": "name",
+                                                                    "path": "allocateIp.allocatedIp.account.name",
+                                                                    "requestStr": "$name:String! ",
+                                                                    "required": true,
+                                                                    "responseStr": "name:$name ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "name"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "AccountRef",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "AccountRef",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "accountRef"
+                                                },
+                                                "allocationType": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "id_str": "allocateIp___allocatedIp___allocationType",
+                                                    "isDeprecated": false,
+                                                    "name": "allocationType",
+                                                    "path": "allocateIp.allocatedIp.allocationType",
+                                                    "requestStr": "$allocationType:PopLocationAllocatedIpType! ",
+                                                    "required": true,
+                                                    "responseStr": "allocationType:$allocationType ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": null,
+                                                            "enumValues": [
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "SYSTEM"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "BYOIP"
+                                                                }
+                                                            ],
+                                                            "fields": null,
+                                                            "inputFields": null,
+                                                            "interfaces": null,
+                                                            "kind": "ENUM",
+                                                            "name": "PopLocationAllocatedIpType",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "enum",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "ENUM"
+                                                        ],
+                                                        "name": "PopLocationAllocatedIpType",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "allocationType"
+                                                },
+                                                "description": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "id_str": "allocateIp___allocatedIp___description",
+                                                    "isDeprecated": false,
+                                                    "name": "description",
+                                                    "path": "allocateIp.allocatedIp.description",
+                                                    "requestStr": "$description:String ",
+                                                    "required": false,
+                                                    "responseStr": "description:$description ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "description"
+                                                },
+                                                "id": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "id_str": "allocateIp___allocatedIp___id",
+                                                    "isDeprecated": false,
+                                                    "name": "id",
+                                                    "path": "allocateIp.allocatedIp.id",
+                                                    "requestStr": "$id:ID! ",
+                                                    "required": true,
+                                                    "responseStr": "id:$id ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "ID",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "id"
+                                                },
+                                                "ip": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "id_str": "allocateIp___allocatedIp___ip",
+                                                    "isDeprecated": false,
+                                                    "name": "ip",
+                                                    "path": "allocateIp.allocatedIp.ip",
+                                                    "requestStr": "$ip:IPAddress! ",
+                                                    "required": true,
+                                                    "responseStr": "ip:$ip ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "IPAddress",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "ip"
+                                                },
+                                                "popLocation": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "id_str": "allocateIp___allocatedIp___popLocation",
+                                                    "isDeprecated": false,
+                                                    "name": "popLocation",
+                                                    "path": "allocateIp.allocatedIp.popLocation",
+                                                    "requestStr": "$popLocationRef:PopLocationRef! ",
+                                                    "required": true,
+                                                    "responseStr": "popLocation:$popLocationRef ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "A reference identifying the PopLocation object. ID: Unique PopLocation Identifier, Name: The PopLocation Name",
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "id": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "id_str": "allocateIp___allocatedIp___popLocation___id",
+                                                                    "isDeprecated": false,
+                                                                    "name": "id",
+                                                                    "path": "allocateIp.allocatedIp.popLocation.id",
+                                                                    "requestStr": "$id:ID! ",
+                                                                    "required": true,
+                                                                    "responseStr": "id:$id ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "ID",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "id"
+                                                                },
+                                                                "name": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "id_str": "allocateIp___allocatedIp___popLocation___name",
+                                                                    "isDeprecated": false,
+                                                                    "name": "name",
+                                                                    "path": "allocateIp.allocatedIp.popLocation.name",
+                                                                    "requestStr": "$name:String! ",
+                                                                    "required": true,
+                                                                    "responseStr": "name:$name ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "name"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "PopLocationRef",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "PopLocationRef",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "popLocationRef"
+                                                },
+                                                "state": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "id_str": "allocateIp___allocatedIp___state",
+                                                    "isDeprecated": false,
+                                                    "name": "state",
+                                                    "path": "allocateIp.allocatedIp.state",
+                                                    "requestStr": "$state:PopLocationByoipSubnetState ",
+                                                    "required": false,
+                                                    "responseStr": "state:$state ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": null,
+                                                            "enumValues": [
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "PROVISIONED"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "PENDING_PROVISIONING"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "FAILED_PROVISIONING"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "DEPROVISIONED"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "PENDING_DEPROVISIONING"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "FAILED_DEPROVISIONING"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "ADVERTISED"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "PENDING_ADVERTAISED"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "FAILED_ADVERTAISED"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "WITHDRAW"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "PENDING_WITHDRAW"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "FAILED_WITHDRAW"
+                                                                }
+                                                            ],
+                                                            "fields": null,
+                                                            "inputFields": null,
+                                                            "interfaces": null,
+                                                            "kind": "ENUM",
+                                                            "name": "PopLocationByoipSubnetState",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "enum",
+                                                        "kind": [
+                                                            "ENUM"
+                                                        ],
+                                                        "name": "PopLocationByoipSubnetState",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "state"
+                                                },
+                                                "subnet": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "id_str": "allocateIp___allocatedIp___subnet",
+                                                    "isDeprecated": false,
+                                                    "name": "subnet",
+                                                    "path": "allocateIp.allocatedIp.subnet",
+                                                    "requestStr": "$subnet:String ",
+                                                    "required": false,
+                                                    "responseStr": "subnet:$subnet ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "subnet"
+                                                }
+                                            },
+                                            "inputFields": null,
+                                            "interfaces": {},
+                                            "kind": "OBJECT",
+                                            "name": "PopLocationAllocatedIp",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "object",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "OBJECT"
+                                        ],
+                                        "name": "PopLocationAllocatedIp",
+                                        "non_null": false
+                                    },
+                                    "varName": "popLocationAllocatedIp"
+                                }
+                            },
+                            "inputFields": null,
+                            "interfaces": {},
+                            "kind": "OBJECT",
+                            "name": "PopLocationAllocateIpPayload",
+                            "possibleTypes": null
+                        },
+                        "indexType": "object",
+                        "kind": [
+                            "OBJECT"
+                        ],
+                        "name": "PopLocationAllocateIpPayload",
+                        "non_null": false
+                    },
+                    "varName": "popLocationAllocateIpPayload"
+                }
+            },
+            "inputFields": null,
+            "interfaces": [],
+            "kind": "OBJECT",
+            "name": "PopLocationMutations",
+            "possibleTypes": null
+        },
+        "indexType": "object",
+        "kind": [
+            "OBJECT"
+        ],
+        "name": "PopLocationMutations",
+        "non_null": false
+    },
+    "variablesPayload": {
+        "popLocationAllocateIpInput": {
+            "description": "string",
+            "popLocationRefInput": {
+                "by": "ID",
+                "input": "string"
+            },
+            "type": "SYSTEM"
+        }
+    }
+}

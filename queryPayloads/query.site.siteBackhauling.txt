@@ -1,0 +1,14 @@
+query siteSiteBackhauling ( $accountId:ID! $siteRefInput:SiteRefInput!) {
+	site ( accountId:$accountId ) {
+		siteBackhauling ( site:$siteRefInput  )  {
+			site {
+				id
+				name
+			}
+			useAsBackhaulingGW
+			destination
+			nextHopIP
+			preferredSocketPort
+		}
+	}	
+}

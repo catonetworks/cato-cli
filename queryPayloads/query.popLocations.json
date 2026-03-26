@@ -1,7 +1,98 @@
 {
     "operationName": "popLocations",
-    "query": "query popLocations ( $accountId:ID! $popLocationFilterInput:PopLocationFilterInput) {\n\tpopLocations ( accountId:$accountId ) {\n\t\tpopLocationList ( input:$popLocationFilterInput  )  {\n\t\t\titems {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t\tdisplayName\n\t\t\t\tcountry {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t\tisPrivate\n\t\t\t\tcloudInterconnect {\n\t\t\t\t\ttaggingMethod\n\t\t\t\t\tproviderName\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\t\n}",
+    "query": "query popLocations ( $accountId:ID! $popLocationFilterInput:PopLocationFilterInput $popLocationAllocatedIpInput:PopLocationAllocatedIpInput) {\n\tpopLocations ( accountId:$accountId ) {\n\t\tpopLocationList ( input:$popLocationFilterInput  )  {\n\t\t\titems {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t\tdisplayName\n\t\t\t\tcountry {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t\tisPrivate\n\t\t\t\tcloudInterconnect {\n\t\t\t\t\ttaggingMethod\n\t\t\t\t\tproviderName\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tallocatedIpList ( input:$popLocationAllocatedIpInput  )  {\n\t\t\tallocatedIp {\n\t\t\t\tid\n\t\t\t\taccount {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t\tip\n\t\t\t\tpopLocation {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t\tallocationType\n\t\t\t\tdescription\n\t\t\t\tsubnet\n\t\t\t\tstate\n\t\t\t}\n\t\t\tpaging {\n\t\t\t\ttotal\n\t\t\t}\n\t\t}\n\t}\t\n}",
     "variables": {
+        "popLocationAllocatedIpInput": {
+            "popLocationAllocatedIpFilterInput": {
+                "account": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "allocatedIp": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "allocationType": {
+                    "eq": "SYSTEM",
+                    "in": "SYSTEM",
+                    "neq": "SYSTEM",
+                    "nin": "SYSTEM"
+                },
+                "description": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "global": {
+                    "search": "string"
+                },
+                "id": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "popLocation": {
+                    "eq": {
+                        "by": "ID",
+                        "input": "string"
+                    },
+                    "in": {
+                        "by": "ID",
+                        "input": "string"
+                    },
+                    "neq": {
+                        "by": "ID",
+                        "input": "string"
+                    },
+                    "nin": {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                },
+                "subnet": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                }
+            }
+        },
         "popLocationFilterInput": {
             "booleanFilterInput": {
                 "eq": true,

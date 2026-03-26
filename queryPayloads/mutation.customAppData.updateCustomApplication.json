@@ -1,0 +1,50 @@
+{
+    "operationName": "customAppDataUpdateCustomApplication",
+    "query": "mutation customAppDataUpdateCustomApplication ( $accountId:ID! $updateCustomApplicationInput:UpdateCustomApplicationInput!) {\n\tcustomAppData ( accountId:$accountId ) {\n\t\tupdateCustomApplication ( input:$updateCustomApplicationInput  )  {\n\t\t\tcustomApplication {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t\tdescription\n\t\t\t\tcategory {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t\tcriteria {\n\t\t\t\t\tprotocol\n\t\t\t\t\tport\n\t\t\t\t\tportRange {\n\t\t\t\t\t\tfrom\n\t\t\t\t\t\tto\n\t\t\t\t\t}\n\t\t\t\t\tdestination {\n\t\t\t\t\t\tdomain\n\t\t\t\t\t\tfqdn\n\t\t\t\t\t\tdestinationIp {\n\t\t\t\t\t\t\tip\n\t\t\t\t\t\t\tsubnet\n\t\t\t\t\t\t\tipRange {\n\t\t\t\t\t\t\t\tfrom\n\t\t\t\t\t\t\t\tto\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "updateCustomApplicationInput": {
+            "applicationCategoryRefInput": {
+                "by": "ID",
+                "input": "string"
+            },
+            "customApplicationCriteriaInput": {
+                "destination": {
+                    "destinationIp": {
+                        "ip": [
+                            "example1",
+                            "example2"
+                        ],
+                        "ipRange": {
+                            "from": "example_value",
+                            "to": "example_value"
+                        },
+                        "subnet": [
+                            "example1",
+                            "example2"
+                        ]
+                    },
+                    "domain": [
+                        "example1",
+                        "example2"
+                    ],
+                    "fqdn": [
+                        "example1",
+                        "example2"
+                    ]
+                },
+                "port": [
+                    "example1",
+                    "example2"
+                ],
+                "portRange": {
+                    "from": "example_value",
+                    "to": "example_value"
+                },
+                "protocol": "ANY"
+            },
+            "description": "string",
+            "id": "id",
+            "name": "string"
+        }
+    }
+}

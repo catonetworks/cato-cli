@@ -1,0 +1,14 @@
+{
+    "operationName": "siteRetrieveUsedVlanIDs",
+    "query": "query siteRetrieveUsedVlanIDs ( $accountId:ID! $retrieveUsedVlanIDsInput:RetrieveUsedVlanIDsInput!) {\n\tsite ( accountId:$accountId ) {\n\t\tretrieveUsedVlanIDs ( input:$retrieveUsedVlanIDsInput  )  {\n\t\t\treservedDot1QVlans {\n\t\t\t\tvlan\n\t\t\t\taccountId\n\t\t\t\tsiteId\n\t\t\t}\n\t\t\treservedQinQVlans {\n\t\t\t\tqinqVlan {\n\t\t\t\t\tsVlan\n\t\t\t\t\tcVlan\n\t\t\t\t}\n\t\t\t\taccountId\n\t\t\t\tsiteId\n\t\t\t}\n\t\t\tranges {\n\t\t\t\tfrom\n\t\t\t\tto\n\t\t\t}\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "retrieveUsedVlanIDsInput": {
+            "encapsulationMethod": "DOT1Q",
+            "popLocationRefInput": {
+                "by": "ID",
+                "input": "string"
+            },
+            "serviceProviderName": "string"
+        }
+    }
+}

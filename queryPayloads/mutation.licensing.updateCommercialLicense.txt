@@ -50,6 +50,13 @@ mutation licensingUpdateCommercialLicense ( $accountId:ID! $updateCommercialLice
 				}
 				... on ZtnaUsersLicense {
 					ztnaUsersLicenseGroup
+					accounts {
+						accountPartnerZtnaUsersLicenseAccount: account {
+							id
+							name
+						}
+						allocatedUsers
+					}
 					total
 				}
 				... on EndpointProtectionLicense {

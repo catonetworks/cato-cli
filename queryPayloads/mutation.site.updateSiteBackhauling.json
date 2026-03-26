@@ -1,0 +1,16 @@
+{
+    "operationName": "siteUpdateSiteBackhauling",
+    "query": "mutation siteUpdateSiteBackhauling ( $accountId:ID! $updateSiteBackhaulingInput:UpdateSiteBackhaulingInput!) {\n\tsite ( accountId:$accountId ) {\n\t\tupdateSiteBackhauling ( input:$updateSiteBackhaulingInput  )  {\n\t\t\tsite {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t}\n\t\t\tuseAsBackhaulingGW\n\t\t\tdestination\n\t\t\tnextHopIP\n\t\t\tpreferredSocketPort\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "updateSiteBackhaulingInput": {
+            "destination": "LOCAL_GATEWAY_IP",
+            "nextHopIP": "example_value",
+            "preferredSocketPort": "string",
+            "siteRefInput": {
+                "by": "ID",
+                "input": "string"
+            },
+            "useAsBackhaulingGW": true
+        }
+    }
+}

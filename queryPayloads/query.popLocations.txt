@@ -1,4 +1,4 @@
-query popLocations ( $accountId:ID! $popLocationFilterInput:PopLocationFilterInput) {
+query popLocations ( $accountId:ID! $popLocationFilterInput:PopLocationFilterInput $popLocationAllocatedIpInput:PopLocationAllocatedIpInput) {
 	popLocations ( accountId:$accountId ) {
 		popLocationList ( input:$popLocationFilterInput  )  {
 			items {
@@ -14,6 +14,27 @@ query popLocations ( $accountId:ID! $popLocationFilterInput:PopLocationFilterInp
 					taggingMethod
 					providerName
 				}
+			}
+		}
+		allocatedIpList ( input:$popLocationAllocatedIpInput  )  {
+			allocatedIp {
+				id
+				account {
+					id
+					name
+				}
+				ip
+				popLocation {
+					id
+					name
+				}
+				allocationType
+				description
+				subnet
+				state
+			}
+			paging {
+				total
 			}
 		}
 	}	

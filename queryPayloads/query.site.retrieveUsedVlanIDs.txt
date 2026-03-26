@@ -1,0 +1,23 @@
+query siteRetrieveUsedVlanIDs ( $accountId:ID! $retrieveUsedVlanIDsInput:RetrieveUsedVlanIDsInput!) {
+	site ( accountId:$accountId ) {
+		retrieveUsedVlanIDs ( input:$retrieveUsedVlanIDsInput  )  {
+			reservedDot1QVlans {
+				vlan
+				accountId
+				siteId
+			}
+			reservedQinQVlans {
+				qinqVlan {
+					sVlan
+					cVlan
+				}
+				accountId
+				siteId
+			}
+			ranges {
+				from
+				to
+			}
+		}
+	}	
+}

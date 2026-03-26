@@ -1,0 +1,35 @@
+mutation customAppDataAddCustomApplication ( $accountId:ID! $addCustomApplicationInput:AddCustomApplicationInput!) {
+	customAppData ( accountId:$accountId ) {
+		addCustomApplication ( input:$addCustomApplicationInput  )  {
+			customApplication {
+				id
+				name
+				description
+				category {
+					id
+					name
+				}
+				criteria {
+					protocol
+					port
+					portRange {
+						from
+						to
+					}
+					destination {
+						domain
+						fqdn
+						destinationIp {
+							ip
+							subnet
+							ipRange {
+								from
+								to
+							}
+						}
+					}
+				}
+			}
+		}
+	}	
+}

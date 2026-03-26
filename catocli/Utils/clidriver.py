@@ -32,12 +32,14 @@ from .cliutils import load_cli_settings
 from ..parsers.mutation_accountManagement import mutation_accountManagement_parse
 from ..parsers.mutation_admin import mutation_admin_parse
 from ..parsers.mutation_container import mutation_container_parse
+from ..parsers.mutation_customAppData import mutation_customAppData_parse
 from ..parsers.mutation_enterpriseDirectory import mutation_enterpriseDirectory_parse
 from ..parsers.mutation_externalAccess import mutation_externalAccess_parse
 from ..parsers.mutation_groups import mutation_groups_parse
 from ..parsers.mutation_hardware import mutation_hardware_parse
 from ..parsers.mutation_licensing import mutation_licensing_parse
 from ..parsers.mutation_policy import mutation_policy_parse
+from ..parsers.mutation_popLocationMutations import mutation_popLocationMutations_parse
 from ..parsers.mutation_sandbox import mutation_sandbox_parse
 from ..parsers.mutation_site import mutation_site_parse
 from ..parsers.mutation_sites import mutation_sites_parse
@@ -54,6 +56,7 @@ from ..parsers.query_appStatsTimeSeries import query_appStatsTimeSeries_parse
 from ..parsers.query_auditFeed import query_auditFeed_parse
 from ..parsers.query_catalogs import query_catalogs_parse
 from ..parsers.query_container import query_container_parse
+from ..parsers.query_customAppData import query_customAppData_parse
 from ..parsers.query_devices import query_devices_parse
 from ..parsers.query_enterpriseDirectory import query_enterpriseDirectory_parse
 from ..parsers.query_entityLookup import query_entityLookup_parse
@@ -215,12 +218,14 @@ mutation_subparsers = mutation_parser.add_subparsers(description='Available muta
 mutation_accountManagement_parser = mutation_accountManagement_parse(mutation_subparsers)
 mutation_admin_parser = mutation_admin_parse(mutation_subparsers)
 mutation_container_parser = mutation_container_parse(mutation_subparsers)
+mutation_customAppData_parser = mutation_customAppData_parse(mutation_subparsers)
 mutation_enterpriseDirectory_parser = mutation_enterpriseDirectory_parse(mutation_subparsers)
 mutation_externalAccess_parser = mutation_externalAccess_parse(mutation_subparsers)
 mutation_groups_parser = mutation_groups_parse(mutation_subparsers)
 mutation_hardware_parser = mutation_hardware_parse(mutation_subparsers)
 mutation_licensing_parser = mutation_licensing_parse(mutation_subparsers)
 mutation_policy_parser = mutation_policy_parse(mutation_subparsers)
+mutation_popLocationMutations_parser = mutation_popLocationMutations_parse(mutation_subparsers)
 mutation_sandbox_parser = mutation_sandbox_parse(mutation_subparsers)
 mutation_site_parser = mutation_site_parse(mutation_subparsers)
 mutation_sites_parser = mutation_sites_parse(mutation_subparsers)
@@ -237,6 +242,7 @@ query_appStatsTimeSeries_parser = query_appStatsTimeSeries_parse(query_subparser
 query_auditFeed_parser = query_auditFeed_parse(query_subparsers)
 query_catalogs_parser = query_catalogs_parse(query_subparsers)
 query_container_parser = query_container_parse(query_subparsers)
+query_customAppData_parser = query_customAppData_parse(query_subparsers)
 query_devices_parser = query_devices_parse(query_subparsers)
 query_enterpriseDirectory_parser = query_enterpriseDirectory_parse(query_subparsers)
 query_entityLookup_parser = query_entityLookup_parse(query_subparsers)

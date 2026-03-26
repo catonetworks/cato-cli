@@ -50,6 +50,13 @@ query licensing ( $accountId:ID!) {
 				}
 				... on ZtnaUsersLicense {
 					ztnaUsersLicenseGroup
+					accounts {
+						accountPartnerZtnaUsersLicenseAccount: account {
+							id
+							name
+						}
+						allocatedUsers
+					}
 					total
 				}
 				... on EndpointProtectionLicense {
@@ -154,6 +161,13 @@ query licensing ( $accountId:ID!) {
 				expirationDate
 				lastUpdated
 				ztnaUsersLicenseGroup
+				accounts {
+					account {
+						id
+						name
+					}
+					allocatedUsers
+				}
 				total
 			}
 			endpointProtection {

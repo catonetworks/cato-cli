@@ -1,0 +1,67 @@
+{
+    "operationName": "customAppData",
+    "query": "query customAppData ( $accountId:ID! $customApplicationRefInput:CustomApplicationRefInput! $customApplicationListInput:CustomApplicationListInput!) {\n\tcustomAppData ( accountId:$accountId ) {\n\t\tcustomApplication ( input:$customApplicationRefInput  )  {\n\t\t\tid\n\t\t\tname\n\t\t\tdescription\n\t\t\tcategory {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t}\n\t\t\tcriteria {\n\t\t\t\tprotocol\n\t\t\t\tport\n\t\t\t\tportRange {\n\t\t\t\t\tfrom\n\t\t\t\t\tto\n\t\t\t\t}\n\t\t\t\tdestination {\n\t\t\t\t\tdomain\n\t\t\t\t\tfqdn\n\t\t\t\t\tdestinationIp {\n\t\t\t\t\t\tip\n\t\t\t\t\t\tsubnet\n\t\t\t\t\t\tipRange {\n\t\t\t\t\t\t\tfrom\n\t\t\t\t\t\t\tto\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tcustomApplicationList ( input:$customApplicationListInput  )  {\n\t\t\titems {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t\tdescription\n\t\t\t\tcategory {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t\tcriteria {\n\t\t\t\t\tprotocol\n\t\t\t\t\tport\n\t\t\t\t\tportRange {\n\t\t\t\t\t\tfrom\n\t\t\t\t\t\tto\n\t\t\t\t\t}\n\t\t\t\t\tdestination {\n\t\t\t\t\t\tdomain\n\t\t\t\t\t\tfqdn\n\t\t\t\t\t\tdestinationIp {\n\t\t\t\t\t\t\tip\n\t\t\t\t\t\t\tsubnet\n\t\t\t\t\t\t\tipRange {\n\t\t\t\t\t\t\t\tfrom\n\t\t\t\t\t\t\t\tto\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t\tpaging {\n\t\t\t\ttotal\n\t\t\t}\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "customApplicationListInput": {
+            "customApplicationFilterInput": {
+                "category": {
+                    "hasAny": {
+                        "by": "ID",
+                        "input": "string"
+                    }
+                },
+                "freeText": {
+                    "search": "string"
+                },
+                "id": {
+                    "eq": "id",
+                    "in": [
+                        "id1",
+                        "id2"
+                    ],
+                    "neq": "id",
+                    "nin": [
+                        "id1",
+                        "id2"
+                    ]
+                },
+                "name": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                }
+            },
+            "customApplicationSortInput": {
+                "category": {
+                    "name": {
+                        "direction": "ASC",
+                        "priority": 1
+                    }
+                },
+                "description": {
+                    "direction": "ASC",
+                    "priority": 1
+                },
+                "name": {
+                    "direction": "ASC",
+                    "priority": 1
+                }
+            },
+            "pagingInput": {
+                "from": 1,
+                "limit": 1
+            }
+        },
+        "customApplicationRefInput": {
+            "by": "ID",
+            "input": "string"
+        }
+    }
+}

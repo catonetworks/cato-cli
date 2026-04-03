@@ -1,0 +1,71 @@
+mutation notificationUpdateSubscriptionGroup ( $accountId:ID! $updateSubscriptionGroupInput:UpdateSubscriptionGroupInput!) {
+	notification ( accountId:$accountId ) {
+		updateSubscriptionGroup ( input:$updateSubscriptionGroupInput  )  {
+			subscriptionGroup {
+				id
+				name
+				mailingList {
+					id
+					name
+					type
+					address
+					admin {
+						id
+						name
+					}
+					audit {
+						updatedTime
+						updatedBy {
+							id
+							name
+							... on AdminRef {
+								id
+								name
+							}
+							... on ApiKeyRef {
+								id
+								name
+							}
+						}
+					}
+				}
+				integration {
+					webhookList {
+						id
+						name
+						enabled
+						url
+						requestMethod
+						auth {
+							authType
+							... on BearerTokenAuth {
+								authType
+							}
+							... on BasicAuth {
+								authType
+								username
+							}
+							... on CustomHeaderAuth {
+								authType
+								name
+							}
+							... on NoAuth {
+								authType
+							}
+						}
+						header {
+							name
+							value
+						}
+						body
+						responseMapping {
+							key
+							value
+						}
+						relatedWebhookId
+					}
+				}
+			}
+		}
+	}	
+}

@@ -1,0 +1,23 @@
+mutation notificationUpdateMailingList ( $accountId:ID! $updateMailingListInput:UpdateMailingListInput!) {
+	notification ( accountId:$accountId ) {
+		updateMailingList ( input:$updateMailingListInput  )  {
+			mailingList {
+				id
+				name
+				type
+				address
+				admin {
+					id
+					name
+				}
+				audit {
+					updatedTime
+					updatedBy {
+						id
+						name
+					}
+				}
+			}
+		}
+	}	
+}

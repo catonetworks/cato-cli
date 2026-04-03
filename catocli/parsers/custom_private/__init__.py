@@ -107,24 +107,18 @@ def create_private_command_parser(subparsers, command_name, command_config):
         help='Path to a file containing JSON input variables.'
     )
     cmd_parser.add_argument(
-        '-t', 
-        const=True, 
-        default=False, 
-        nargs='?', 
+        '-t',
+        action='store_true',
         help='Print GraphQL query without sending API call'
     )
     cmd_parser.add_argument(
-        '-v', 
-        const=True, 
-        default=False, 
-        nargs='?', 
+        '-v',
+        action='store_true',
         help='Verbose output'
     )
     cmd_parser.add_argument(
-        '-p', 
-        const=True, 
-        default=False, 
-        nargs='?', 
+        '-p',
+        action='store_true',
         help='Pretty print'
     )
     cmd_parser.add_argument(

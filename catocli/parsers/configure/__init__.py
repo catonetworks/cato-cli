@@ -6,12 +6,13 @@ Handles profile creation, listing, and switching
 
 import argparse
 from .configure import (
-    configure_profile, 
-    list_profiles, 
-    set_profile, 
+    configure_profile,
+    list_profiles,
+    set_profile,
     delete_profile,
     show_profile
 )
+from ...Utils.cliutils import load_private_settings
 
 
 def _show_configure_help(args, configuration=None):
@@ -86,6 +87,19 @@ def configure_parse(subparsers):
         action='store_true',
         help='Skip credential validation (save without testing)'
     )
+
+    # Add private API credential options only if ~/.cato/settings.json exists
+    private_commands = load_private_settings()
+    if private_commands:
+        config_parser.add_argument(
+            '--cookie',
+            help='Session cookie for private API operations'
+        )
+        config_parser.add_argument(
+            '--private-endpoint',
+            help='Private API endpoint URL (e.g., https://yourcma.cc.catonetworks.com/api/v1/graphql)'
+        )
+
     config_parser.set_defaults(func=configure_profile)
     
     # List profiles command

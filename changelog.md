@@ -203,3 +203,5 @@
 ## 3.0.64 (2026-03-26)
 - Addeded new operations  
 
+## 3.0.65 (2026-04-03)
+- Addeded new operations, and added private settings for managing session

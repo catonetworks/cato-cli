@@ -52,40 +52,47 @@ class ProfileManager:
         config.read(self.credentials_file)
         return list(config.sections())
     
-    def create_profile(self, profile_name, endpoint=None, cato_token=None, account_id=None, scim_url=None, scim_token=None):
+    def create_profile(self, profile_name, endpoint=None, cato_token=None, account_id=None,
+                       scim_url=None, scim_token=None, cookie=None, private_endpoint=None):
         """Create or update a profile"""
         self.ensure_cato_directory()
 
         config = configparser.RawConfigParser()
         if self.credentials_file.exists():
             config.read(self.credentials_file)
-        
+
         if profile_name not in config:
             config.add_section(profile_name)
-        
+
         if endpoint:
             config[profile_name]['endpoint'] = endpoint
         elif 'endpoint' not in config[profile_name]:
             config[profile_name]['endpoint'] = self.default_endpoint
-            
+
         if cato_token:
             config[profile_name]['cato_token'] = cato_token
-            
+
         if account_id:
             config[profile_name]['account_id'] = account_id
-        
+
         if scim_url:
             config[profile_name]['scim_url'] = scim_url
-            
+
         if scim_token:
             config[profile_name]['scim_token'] = scim_token
-        
+
+        if cookie:
+            config[profile_name]['cookie'] = cookie
+
+        if private_endpoint:
+            config[profile_name]['private_endpoint'] = private_endpoint
+
         with open(self.credentials_file, 'w') as f:
             config.write(f)
-        
+
         # Set secure permissions
         os.chmod(self.credentials_file, 0o600)
-        
+
         return True
     
     def delete_profile(self, profile_name):
@@ -177,9 +184,10 @@ class ProfileManager:
 
         if missing:
             error_msg = (
-                f"Missing authentication for private api, please add your current active cookie "
-                f"and cma endpoint to the current cli profile in ~/.cato/credentials as shown below\n"
-                f"example:\n\n"
+                f"Missing authentication for private api: {', '.join(missing)}\n\n"
+                f"To configure these credentials, run:\n"
+                f"  catocli configure set --cookie \"your-session-cookie\" --private-endpoint \"https://yourcma.cc.catonetworks.com/api/v1/graphql\"\n\n"
+                f"Or manually add them to ~/.cato/credentials:\n\n"
                 f"[{current_profile}]\n"
                 f"endpoint = https://api.catonetworks.com/api/v1/graphql2\n"
                 f"cato_token = yourapikeyhere\n"

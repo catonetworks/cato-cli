@@ -11,6 +11,7 @@ from graphql_client import Configuration
 from graphql_client.api_client import ApiException
 from graphql_client.api.call_api import ApiClient, CallApi
 from ...Utils.profile_manager import get_profile_manager
+from ...Utils.cliutils import load_private_settings
 
 
 def test_credentials(endpoint, cato_token, account_id):
@@ -63,21 +64,31 @@ def configure_profile(args, configuration=None):
     pm = get_profile_manager()
     profile_name = args.profile
     
+    # Check if private settings exist (for cookie and private_endpoint options)
+    private_settings_exist = bool(load_private_settings())
+
     try:
+        # Check if any credential arguments were provided
+        has_credential_args = (
+            args.cato_token or args.account_id or args.endpoint or
+            args.scim_url or args.scim_token or
+            (private_settings_exist and (getattr(args, 'cookie', None) or getattr(args, 'private_endpoint', None)))
+        )
+
         # Interactive mode
-        if args.interactive or (not args.cato_token and not args.account_id and not args.endpoint and not args.scim_url and not args.scim_token):
+        if args.interactive or not has_credential_args:
             print(f"Configuring profile '{profile_name}'")
             print("Leave blank to keep existing values (if any)")
             print()
-            
+
             # Get current values if profile exists
             current_config = pm.get_profile_config(profile_name) or {}
-            
+
             # Get endpoint
             current_endpoint = current_config.get('endpoint', pm.default_endpoint)
             endpoint_input = input(f"Cato API Endpoint [{current_endpoint}]: ").strip()
             endpoint = endpoint_input if endpoint_input else current_endpoint
-            
+
             # Get token
             current_token = current_config.get('cato_token', '')
             if current_token:
@@ -86,17 +97,17 @@ def configure_profile(args, configuration=None):
                 token_prompt = "Cato API Token: "
             token_input = getpass.getpass(token_prompt).strip()
             cato_token = token_input if token_input else current_token
-            
+
             # Get account ID
             current_account = current_config.get('account_id', '')
             account_input = input(f"Account ID [{current_account}]: ").strip()
             account_id = account_input if account_input else current_account
-            
+
             # SCIM credentials (optional)
             print()
             print("SCIM Credentials (optional - for SCIM API operations):")
             print("For SCIM setup guide: https://support.catonetworks.com/hc/en-us/articles/29492743031581-Using-the-Cato-SCIM-API-for-Custom-SCIM-Apps")
-            
+
             # Get SCIM URL
             current_scim_url = current_config.get('scim_url', '')
             if current_scim_url:
@@ -104,7 +115,7 @@ def configure_profile(args, configuration=None):
             else:
                 scim_url_input = input("SCIM URL (e.g., https://scimservice.catonetworks.com:4443/scim/v2/accountId/sourceId): ").strip()
             scim_url = scim_url_input if scim_url_input else current_scim_url
-            
+
             # Get SCIM token
             current_scim_token = current_config.get('scim_token', '')
             if current_scim_token:
@@ -113,7 +124,30 @@ def configure_profile(args, configuration=None):
                 scim_token_prompt = "SCIM Bearer Token: "
             scim_token_input = getpass.getpass(scim_token_prompt).strip()
             scim_token = scim_token_input if scim_token_input else current_scim_token
-            
+
+            # Private API credentials (only if settings.json exists)
+            cookie = None
+            private_endpoint = None
+            if private_settings_exist:
+                print()
+                print("Private API Credentials (optional - for private API operations):")
+
+                # Get cookie
+                current_cookie = current_config.get('cookie', '')
+                if current_cookie:
+                    cookie_input = input(f"Session Cookie [****{current_cookie[-20:]}]: ").strip()
+                else:
+                    cookie_input = input("Session Cookie (e.g., X-Cato-Session-Id=...): ").strip()
+                cookie = cookie_input if cookie_input else current_cookie
+
+                # Get private endpoint
+                current_private_endpoint = current_config.get('private_endpoint', '')
+                if current_private_endpoint:
+                    pe_input = input(f"Private Endpoint [****{current_private_endpoint[-30:]}]: ").strip()
+                else:
+                    pe_input = input("Private Endpoint (e.g., https://yourcma.cc.catonetworks.com/api/v1/graphql): ").strip()
+                private_endpoint = pe_input if pe_input else current_private_endpoint
+
         else:
             # Non-interactive mode
             endpoint = args.endpoint
@@ -121,46 +155,63 @@ def configure_profile(args, configuration=None):
             account_id = getattr(args, 'account_id', None)
             scim_url = getattr(args, 'scim_url', None)
             scim_token = getattr(args, 'scim_token', None)
+            cookie = getattr(args, 'cookie', None) if private_settings_exist else None
+            private_endpoint = getattr(args, 'private_endpoint', None) if private_settings_exist else None
         
-        # Validate required fields
-        if not cato_token or not account_id:
-            current_config = pm.get_profile_config(profile_name) or {}
-            if not cato_token:
-                cato_token = current_config.get('cato_token')
-            if not account_id:
-                account_id = current_config.get('account_id')
-        
+        # Get current config to fill in missing values
+        current_config = pm.get_profile_config(profile_name) or {}
+
+        # Fill in missing values from current config
         if not cato_token:
-            print("ERROR: Cato API token is required")
-            return [{"success": False, "error": "Missing cato_token"}]
-            
+            cato_token = current_config.get('cato_token')
         if not account_id:
-            print("ERROR: Account ID is required")
-            return [{"success": False, "error": "Missing account_id"}]
-        
-        # Set default endpoint if not provided
+            account_id = current_config.get('account_id')
         if not endpoint:
-            endpoint = pm.default_endpoint
-        
-        # Test credentials before saving (unless validation is skipped)
-        if hasattr(args, 'skip_validation') and args.skip_validation:
-            print("⚠️  Skipping credential validation")
-        else:
-            is_valid, error_message = test_credentials(endpoint, cato_token, account_id)
-            if not is_valid:
-                print(f"ERROR: {error_message}")
-                print("Profile not saved. Please check your credentials and try again.")
-                print("(Use --skip-validation to save without testing)")
-                return [{"success": False, "error": f"Credential validation failed: {error_message}"}]
-        
-        # Create the profile
+            endpoint = current_config.get('endpoint', pm.default_endpoint)
+        if 'cookie' in locals() and not cookie:
+            cookie = current_config.get('cookie')
+        if 'private_endpoint' in locals() and not private_endpoint:
+            private_endpoint = current_config.get('private_endpoint')
+
+        # Check if we're only updating cookie/private_endpoint (no validation needed)
+        only_updating_private = (
+            private_settings_exist and
+            (getattr(args, 'cookie', None) or getattr(args, 'private_endpoint', None)) and
+            not args.cato_token and not args.account_id and not args.endpoint and
+            not args.scim_url and not args.scim_token and not args.interactive
+        )
+
+        # Validate required fields for regular API operations (unless only updating private credentials)
+        if not only_updating_private:
+            if not cato_token:
+                print("ERROR: Cato API token is required")
+                return [{"success": False, "error": "Missing cato_token"}]
+
+            if not account_id:
+                print("ERROR: Account ID is required")
+                return [{"success": False, "error": "Missing account_id"}]
+
+            # Test credentials before saving (unless validation is skipped)
+            if hasattr(args, 'skip_validation') and args.skip_validation:
+                print("⚠️  Skipping credential validation")
+            else:
+                is_valid, error_message = test_credentials(endpoint, cato_token, account_id)
+                if not is_valid:
+                    print(f"ERROR: {error_message}")
+                    print("Profile not saved. Please check your credentials and try again.")
+                    print("(Use --skip-validation to save without testing)")
+                    return [{"success": False, "error": f"Credential validation failed: {error_message}"}]
+
+        # Create/update the profile
         success = pm.create_profile(
             profile_name=profile_name,
-            endpoint=endpoint,
-            cato_token=cato_token,
-            account_id=account_id,
-            scim_url=scim_url if 'scim_url' in locals() else None,
-            scim_token=scim_token if 'scim_token' in locals() else None
+            endpoint=endpoint if endpoint else None,
+            cato_token=cato_token if cato_token else None,
+            account_id=account_id if account_id else None,
+            scim_url=scim_url if 'scim_url' in locals() and scim_url else None,
+            scim_token=scim_token if 'scim_token' in locals() and scim_token else None,
+            cookie=cookie if 'cookie' in locals() and cookie else None,
+            private_endpoint=private_endpoint if 'private_endpoint' in locals() and private_endpoint else None
         )
         
         if success:
@@ -282,13 +333,28 @@ def show_profile(args, configuration=None):
             print(f"SCIM URL:   ****{scim_url[-20:]} (configured)")
         else:
             print("SCIM URL:   (not configured)")
-            
+
         scim_token = config.get('scim_token', '')
         if scim_token:
             print(f"SCIM Token: ****{scim_token[-4:]} (configured)")
         else:
             print("SCIM Token: (not configured)")
-        
+
+        # Show Private API credentials status
+        print()
+        print("Private API Credentials:")
+        cookie = config.get('cookie', '')
+        if cookie:
+            print(f"Cookie:           ****{cookie[-20:]} (configured)")
+        else:
+            print("Cookie:           (not configured)")
+
+        private_endpoint = config.get('private_endpoint', '')
+        if private_endpoint:
+            print(f"Private Endpoint: {private_endpoint}")
+        else:
+            print("Private Endpoint: (not configured)")
+
         # Show if this is the current profile
         current_profile = pm.get_current_profile()
         if profile_name == current_profile:

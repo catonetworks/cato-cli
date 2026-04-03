@@ -1,0 +1,302 @@
+query notification ( $accountId:ID! $mailingListRefInput:MailingListRefInput! $webhookIntegrationRefInput:WebhookIntegrationRefInput! $webhookTemplateRefInput:WebhookTemplateRefInput! $subscriptionGroupRefInput:SubscriptionGroupRefInput!) {
+	notification ( accountId:$accountId ) {
+		mailingListList {
+			items {
+				id
+				name
+				type
+				address
+				admin {
+					id
+					name
+				}
+				audit {
+					updatedTime
+					updatedBy {
+						id
+						name
+					}
+				}
+			}
+			paging {
+				total
+			}
+		}
+		mailingList ( input:$mailingListRefInput  )  {
+			id
+			name
+			type
+			address
+			admin {
+				id
+				name
+			}
+			audit {
+				updatedTime
+				updatedBy {
+					id
+					name
+					... on AdminRef {
+						id
+						name
+					}
+					... on ApiKeyRef {
+						id
+						name
+					}
+				}
+			}
+		}
+		integration {
+			webhookList {
+				items {
+					id
+					name
+					enabled
+					url
+					requestMethod
+					auth {
+						authType
+						... on BasicAuth {
+							username
+						}
+						... on CustomHeaderAuth {
+							name
+						}
+					}
+					header {
+						name
+						value
+					}
+					body
+					responseMapping {
+						key
+						value
+					}
+					relatedWebhookId
+				}
+				paging {
+					total
+				}
+			}
+			webhook ( input:$webhookIntegrationRefInput   ) {
+				id
+				name
+				enabled
+				url
+				requestMethod
+				auth {
+					authType
+					... on BearerTokenAuth {
+						authType
+					}
+					... on BasicAuth {
+						authType
+						username
+					}
+					... on CustomHeaderAuth {
+						authType
+						name
+					}
+					... on NoAuth {
+						authType
+					}
+				}
+				header {
+					name
+					value
+				}
+				body
+				responseMapping {
+					key
+					value
+				}
+				relatedWebhookId
+			}
+			referenceBodyTemplateList {
+				items {
+					id
+					name
+					bodyTemplate
+					url
+					requestMethod
+					auth {
+						authType
+						... on BasicAuth {
+							username
+						}
+						... on CustomHeaderAuth {
+							name
+						}
+					}
+					header {
+						name
+						value
+					}
+					responseMapping {
+						key
+						value
+					}
+					webhookRelationType
+				}
+			}
+			referenceBodyTemplate ( input:$webhookTemplateRefInput   ) {
+				id
+				name
+				bodyTemplate
+				url
+				requestMethod
+				auth {
+					authType
+					... on BearerTokenAuth {
+						authType
+					}
+					... on BasicAuth {
+						authType
+						username
+					}
+					... on CustomHeaderAuth {
+						authType
+						name
+					}
+					... on NoAuth {
+						authType
+					}
+				}
+				header {
+					name
+					value
+				}
+				responseMapping {
+					key
+					value
+				}
+				webhookRelationType
+			}
+			webhookFields {
+				bodyFields
+				urlFields
+				headerFields
+			}
+		}
+		subscriptionGroupList {
+			items {
+				id
+				name
+				mailingList {
+					id
+					name
+					type
+					address
+					admin {
+						id
+						name
+					}
+					audit {
+						updatedTime
+						updatedBy {
+							id
+							name
+							... on AdminRef {
+								id
+								name
+							}
+							... on ApiKeyRef {
+								id
+								name
+							}
+						}
+					}
+				}
+				integration {
+					webhookList {
+						id
+						name
+						enabled
+						url
+						requestMethod
+						auth {
+							authType
+							... on BearerTokenAuth {
+								authType
+							}
+							... on BasicAuth {
+								authType
+								username
+							}
+							... on CustomHeaderAuth {
+								authType
+								name
+							}
+							... on NoAuth {
+								authType
+							}
+						}
+						header {
+							name
+							value
+						}
+						body
+						responseMapping {
+							key
+							value
+						}
+						relatedWebhookId
+					}
+				}
+			}
+			paging {
+				total
+			}
+		}
+		subscriptionGroup ( input:$subscriptionGroupRefInput  )  {
+			id
+			name
+			mailingList {
+				id
+				name
+				type
+				address
+				admin {
+					id
+					name
+				}
+				audit {
+					updatedTime
+					updatedBy {
+						id
+						name
+					}
+				}
+			}
+			integration {
+				webhookList {
+					id
+					name
+					enabled
+					url
+					requestMethod
+					auth {
+						authType
+						... on BasicAuth {
+							username
+						}
+						... on CustomHeaderAuth {
+							name
+						}
+					}
+					header {
+						name
+						value
+					}
+					body
+					responseMapping {
+						key
+						value
+					}
+					relatedWebhookId
+				}
+			}
+		}
+	}	
+}

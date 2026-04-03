@@ -1751,13 +1751,24 @@ def get_private_help(command_name, command_config):
         for i, example in enumerate(command_config['examples']):
             description = example.get('description', '')
             command = example.get('command', '')
-            
-            if description and command:
-                usage += f"{description}:\n{command}\n"
+            payload = example.get('payload')
+
+            if description:
+                usage += f"{description}:\n"
+
+                # If payload is provided as JSON object, pretty-print it with the command
+                if payload is not None and command:
+                    # Format the payload with indentation, wrapping in single quotes for bash
+                    formatted_payload = json.dumps(payload, indent=2)
+                    usage += f"{command} '{formatted_payload}'\n"
+                elif command:
+                    # Use the command as-is (backward compatible)
+                    usage += f"{command}\n"
+
                 # Add a blank line between examples (except for the last one)
                 if i < len(command_config['examples']) - 1:
                     usage += "\n"
-    
+
     return usage
 
 
@@ -1871,16 +1882,20 @@ def apply_template_variables(template, variables, private_config):
     if private_config and 'arguments' in private_config:
         for arg in private_config['arguments']:
             arg_name = arg.get('name')
-            arg_paths = arg.get('path', [])
-            
-            if arg_name and arg_name in variables and arg_paths:
-                # Insert the variable value at each specified path
-                for path in arg_paths:
-                    try:
-                        set_nested_value(result, path, variables[arg_name])
-                    except Exception as e:
-                        # If path insertion fails, continue to template replacement
-                        pass
+            arg_path = arg.get('path')
+
+            if arg_name and arg_name in variables and arg_path:
+                try:
+                    # Convert array path to dot-notation string if needed
+                    # e.g., ["variables", "accountId"] -> "variables.accountId"
+                    if isinstance(arg_path, list):
+                        path_str = '.'.join(str(p) for p in arg_path)
+                    else:
+                        path_str = arg_path
+                    set_nested_value(result, path_str, variables[arg_name])
+                except Exception:
+                    # If path insertion fails, continue to template replacement
+                    pass
     
     # Second, handle traditional template variable replacement as fallback
     def traverse_and_replace(obj, path=""):
@@ -2167,27 +2182,52 @@ def createPrivateRequest(args, configuration):
             if params.get('v'):
                 print(f"WARNING: Could not auto-fetch version: {e}")
     
-    # Load the payload template
-    try:
-        payload_template = load_payload_template(private_config)
-    except ValueError as e:
-        print(f"ERROR: {e}")
-        return None
-    
-    # Apply variables to the template
-    body = apply_template_variables(payload_template, variables, private_config)
-    
+    # Get HTTP method (default to POST for backward compatibility)
+    http_method = private_config.get('method', 'POST').upper()
+
+    # Only load payload template for methods that need a body
+    if http_method in ('POST', 'PUT', 'PATCH'):
+        try:
+            payload_template = load_payload_template(private_config)
+        except ValueError as e:
+            print(f"ERROR: {e}")
+            return None
+        # Apply variables to the template
+        body = apply_template_variables(payload_template, variables, private_config)
+    else:
+        # GET, DELETE, etc. don't need a body
+        body = None
+
     # Test mode - just print the request
     if params.get('t'):
-        if params.get('p'):
-            print(json.dumps(body, indent=2, sort_keys=True))
+        custom_url = private_config.get('url')
+        # Substitute variables in URL for display
+        if custom_url and '${' in custom_url:
+            import re
+            def replace_var(match):
+                var_name = match.group(1)
+                if var_name in variables:
+                    return str(variables[var_name])
+                if var_name.lower() == 'accountid':
+                    return str(variables.get('accountID', match.group(0)))
+                return match.group(0)
+            custom_url = re.sub(r'\$\{(\w+)\}', replace_var, custom_url)
+        if body:
+            if params.get('p'):
+                print(json.dumps(body, indent=2, sort_keys=True))
+            else:
+                print(json.dumps(body))
         else:
-            print(json.dumps(body))
+            print(f"[{http_method} request to {custom_url or 'GraphQL endpoint'} with no body]")
         return None
-    
-    # Execute the GraphQL request
+
+    # Execute the request
     try:
-        response = sendPrivateGraphQLRequest(configuration, body, params)
+        response = sendPrivateRequest(configuration, body, params,
+                                      method=http_method,
+                                      custom_url=private_config.get('url'),
+                                      operation_headers=private_config.get('headers'),
+                                      variables=variables)
         
         # Handle CSV output if requested and configured
         output_format = getattr(args, 'format', 'json')  # Default to json if -f not provided
@@ -2371,29 +2411,98 @@ def sendMultipartRequest(configuration, form_fields, files, params):
         return None
 
 
-def sendPrivateGraphQLRequest(configuration, body, params):
-    """Send a GraphQL request for private commands without User-Agent header"""
+def sendPrivateRequest(configuration, body, params, method='POST', custom_url=None, operation_headers=None, variables=None):
+    """Send HTTP request for private commands supporting various methods and URLs
+
+    Args:
+        configuration: The API configuration object
+        body: Request body (None for GET/DELETE)
+        params: CLI parameters dict
+        method: HTTP method (GET, POST, DELETE, PUT, PATCH)
+        custom_url: Custom URL path to use instead of GraphQL endpoint
+        operation_headers: List of header configs from settings, each with:
+            - name: Header name
+            - value: Static header value with optional ${var} substitution
+        variables: Dict of variables for URL/header substitution (e.g., {"id": "abc123"})
+    """
     import urllib3
-    
+    import re
+
     # Create pool manager
     pool_manager = urllib3.PoolManager(
         cert_reqs='CERT_NONE' if not getattr(configuration, 'verify_ssl', False) else 'CERT_REQUIRED'
     )
-    
+
+    # Helper function to substitute ${variable} patterns
+    def substitute_variables(text, vars_dict, config):
+        if not text or '${' not in text:
+            return text
+        def replace_var(match):
+            var_name = match.group(1)
+            # Check variables dict first
+            if vars_dict and var_name in vars_dict:
+                return str(vars_dict[var_name])
+            # Check for accountID in configuration
+            if var_name.lower() == 'accountid':
+                account_id = getattr(config, 'accountID', None)
+                if account_id:
+                    return str(account_id)
+            # Check configuration attributes
+            value = getattr(config, var_name, None)
+            if value:
+                return str(value)
+            return match.group(0)  # Keep original if not found
+        return re.sub(r'\$\{(\w+)\}', replace_var, text)
+
+    # Build URL - configuration.host is the private_endpoint from profile
+    base_host = getattr(configuration, 'host', 'https://api.catonetworks.com/api/v1/graphql')
+    if custom_url:
+        # Substitute variables in custom_url (e.g., ${id})
+        custom_url = substitute_variables(custom_url, variables, configuration)
+        # Use custom URL path appended to base host
+        if custom_url.startswith('http'):
+            url = custom_url
+        else:
+            # Strip /api/v1/graphql or similar from base and append custom path
+            base_url = base_host.split('/api/')[0] if '/api/' in base_host else base_host.rstrip('/')
+            url = base_url + custom_url
+    else:
+        url = base_host
+
     # Prepare headers WITHOUT User-Agent
-    headers = {
-        'Content-Type': 'application/json'
-    }
-    
+    headers = {}
+
+    # Only include Content-Type for methods with body
+    if method in ('POST', 'PUT', 'PATCH') and body is not None:
+        headers['Content-Type'] = 'application/json'
+
     # Add API key if not using custom headers
     using_custom_headers = hasattr(configuration, 'custom_headers') and configuration.custom_headers
     if not using_custom_headers and hasattr(configuration, 'api_key') and configuration.api_key and 'x-api-key' in configuration.api_key:
         headers['x-api-key'] = configuration.api_key['x-api-key']
-    
-    # Add custom headers
+
+    # Add custom headers from configuration (profile-level)
     if using_custom_headers:
         headers.update(configuration.custom_headers)
-    
+
+    # Add operation-specific headers from settings
+    if operation_headers:
+        for header_config in operation_headers:
+            header_name = header_config.get('name')
+            if not header_name:
+                continue
+
+            header_value = header_config.get('value')
+            if header_value is None:
+                continue
+
+            # Substitute ${variable} patterns in header value
+            resolved_value = substitute_variables(str(header_value), variables, configuration)
+            if resolved_value and '${' not in resolved_value:
+                headers[header_name] = resolved_value
+            elif params.get('v') and '${' in resolved_value:
+                print(f"WARNING: Could not fully resolve header '{header_name}' - unresolved variables in '{resolved_value}'")
+
     # Encode headers to handle Unicode characters properly
     encoded_headers = {}
     for key, value in headers.items():
@@ -2403,30 +2512,37 @@ def sendPrivateGraphQLRequest(configuration, body, params):
             value = value.encode('utf-8', errors='replace').decode('latin-1', errors='replace')
         encoded_headers[key] = value
     headers = encoded_headers
-    
+
     # Verbose output
     if params.get("v"):
-        print(f"Host: {getattr(configuration, 'host', 'unknown')}")
+        print(f"Method: {method}")
+        print(f"URL: {url}")
         masked_headers = headers.copy()
         if 'x-api-key' in masked_headers:
             masked_headers['x-api-key'] = '***MASKED***'
         if 'Cookie' in masked_headers:
             masked_headers['Cookie'] = '***MASKED***'
         print(f"Request Headers: {json.dumps(masked_headers, indent=4, sort_keys=True)}")
-        print(f"Request Data: {json.dumps(body, indent=4, sort_keys=True)}\n")
-    
-    # Prepare request body
-    body_data = json.dumps(body).encode('utf-8')
-    
+        if body is not None:
+            print(f"Request Data: {json.dumps(body, indent=4, sort_keys=True)}\n")
+        else:
+            print("Request Data: None\n")
+
+    # Prepare request body (only for methods that need it)
+    if method in ('POST', 'PUT', 'PATCH') and body is not None:
+        body_data = json.dumps(body).encode('utf-8')
+    else:
+        body_data = None
+
     try:
         # Make the request
         resp = pool_manager.request(
-            'POST',
-            getattr(configuration, 'host', 'https://api.catonetworks.com/api/v1/graphql'),
+            method,
+            url,
             body=body_data,
             headers=headers
         )
-        
+
         # Parse response
         if resp.status < 200 or resp.status >= 300:
             reason = resp.reason if resp.reason is not None else "Unknown Error"
@@ -2438,15 +2554,15 @@ def sendPrivateGraphQLRequest(configuration, body, params):
                     error_msg += f"\n{resp.data}"
             print(f"ERROR: {error_msg}")
             return None
-        
+
         try:
             response_data = json.loads(resp.data.decode('utf-8'))
         except json.JSONDecodeError:
             response_data = resp.data.decode('utf-8')
-        
+
         # Return in the same format as the regular API client
         return [response_data]
-        
+
     except Exception as e:
         # Safely handle exception string conversion
         try:
@@ -2455,3 +2571,8 @@ def sendPrivateGraphQLRequest(configuration, body, params):
             error_str = f"Exception of type {type(e).__name__}"
         print(f"ERROR: Network/request error: {error_str}")
         return None
+
+
+def sendPrivateGraphQLRequest(configuration, body, params):
+    """Send a GraphQL request for private commands (legacy wrapper for sendPrivateRequest)"""
+    return sendPrivateRequest(configuration, body, params, method='POST', custom_url=None)

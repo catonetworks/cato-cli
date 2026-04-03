@@ -1,0 +1,17 @@
+{
+    "operationName": "notificationCreateSubscriptionGroup",
+    "query": "mutation notificationCreateSubscriptionGroup ( $accountId:ID! $createSubscriptionGroupInput:CreateSubscriptionGroupInput!) {\n\tnotification ( accountId:$accountId ) {\n\t\tcreateSubscriptionGroup ( input:$createSubscriptionGroupInput  )  {\n\t\t\tsubscriptionGroup {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t\tmailingList {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t\ttype\n\t\t\t\t\taddress\n\t\t\t\t\tadmin {\n\t\t\t\t\t\tid\n\t\t\t\t\t\tname\n\t\t\t\t\t}\n\t\t\t\t\taudit {\n\t\t\t\t\t\tupdatedTime\n\t\t\t\t\t\tupdatedBy {\n\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t... on AdminRef {\n\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t... on ApiKeyRef {\n\t\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tintegration {\n\t\t\t\t\twebhookList {\n\t\t\t\t\t\tid\n\t\t\t\t\t\tname\n\t\t\t\t\t\tenabled\n\t\t\t\t\t\turl\n\t\t\t\t\t\trequestMethod\n\t\t\t\t\t\tauth {\n\t\t\t\t\t\t\tauthType\n\t\t\t\t\t\t\t... on BearerTokenAuth {\n\t\t\t\t\t\t\t\tauthType\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t... on BasicAuth {\n\t\t\t\t\t\t\t\tauthType\n\t\t\t\t\t\t\t\tusername\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t... on CustomHeaderAuth {\n\t\t\t\t\t\t\t\tauthType\n\t\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t... on NoAuth {\n\t\t\t\t\t\t\t\tauthType\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t\theader {\n\t\t\t\t\t\t\tname\n\t\t\t\t\t\t\tvalue\n\t\t\t\t\t\t}\n\t\t\t\t\t\tbody\n\t\t\t\t\t\tresponseMapping {\n\t\t\t\t\t\t\tkey\n\t\t\t\t\t\t\tvalue\n\t\t\t\t\t\t}\n\t\t\t\t\t\trelatedWebhookId\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "createSubscriptionGroupInput": {
+            "integrationRefInput": {
+                "by": "ID",
+                "input": "string"
+            },
+            "mailingListRefInput": {
+                "by": "ID",
+                "input": "string"
+            },
+            "name": "string"
+        }
+    }
+}

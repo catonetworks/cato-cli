@@ -160,23 +160,48 @@ def create_private_command_parser(subparsers, command_name, command_config):
         )
     
     # Add dynamic arguments based on command configuration (excluding accountId and version)
+    # Also skip arguments that are already defined in the base parser
+    # Note: 'debug' is NOT a builtin - it's passed from settings.json for script commands
+    builtin_args = ['accountid', 'version', 'verbose']
+    builtin_flags = ['-v', '-t', '-p', '-H']
+
     if 'arguments' in command_config:
         for arg in command_config['arguments']:
             arg_name = arg.get('name')
-            # Skip accountId (from profile) and version (auto-fetched)
-            if arg_name and arg_name.lower() not in ['accountid', 'version']:
+            arg_flag = arg.get('flag')  # Short flag like "-c"
+
+            # Skip arguments that are already handled by built-in flags
+            if arg_name and arg_name.lower() not in builtin_args:
+                # Also skip if the short flag conflicts with built-in flags
+                if arg_flag and arg_flag in builtin_flags:
+                    continue
+
                 arg_type = arg.get('type', 'string')
                 arg_default = arg.get('default')
                 arg_help = f"Argument: {arg_name}"
-                
+
                 if arg_default:
                     arg_help += f" (default: {arg_default})"
-                
-                cmd_parser.add_argument(
-                    f'--{arg_name}',
-                    help=arg_help,
-                    default=arg_default
-                )
+
+                # Build argument names list (short flag + long flag)
+                arg_names = []
+                if arg_flag:
+                    arg_names.append(arg_flag)
+                arg_names.append(f'--{arg_name}')
+
+                # Handle boolean arguments specially - use store_true action
+                if arg_type == 'boolean':
+                    cmd_parser.add_argument(
+                        *arg_names,
+                        action='store_true',
+                        help=arg_help
+                    )
+                else:
+                    cmd_parser.add_argument(
+                        *arg_names,
+                        help=arg_help,
+                        default=arg_default
+                    )
     
     # Set the function to handle this command
     cmd_parser.set_defaults(

@@ -1,7 +1,18 @@
 {
     "operationName": "hardwareManagement",
-    "query": "query hardwareManagement ( $accountId:ID! $socketInventoryInput:SocketInventoryInput) {\n\thardwareManagement ( accountId:$accountId ) {\n\t\tsocketInventory ( input:$socketInventoryInput  )  {\n\t\t\titems {\n\t\t\t\tid\n\t\t\t\tstatus\n\t\t\t\tserialNumber\n\t\t\t\tsocketMac\n\t\t\t\tsocketVersion\n\t\t\t\tsite {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t\taccount {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t\tshippingDate\n\t\t\t\tsocketType\n\t\t\t\ttrackingUrl\n\t\t\t\ttrackingNumber\n\t\t\t\tshippingCompany\n\t\t\t\tdeliverySiteName\n\t\t\t\tdescription\n\t\t\t\thardwareVersion\n\t\t\t\tisPrimary\n\t\t\t\tregistrationStatus\n\t\t\t\tavailableUpgradeVersions\n\t\t\t\tupgradeStatus\n\t\t\t\tupgradesPaused\n\t\t\t}\n\t\t\tpageInfo {\n\t\t\t\ttotal\n\t\t\t}\n\t\t}\n\t}\t\n}",
+    "query": "query hardwareManagement ( $accountId:ID! $socketInventoryInput:SocketInventoryInput $socketInventoryDistributionInput:SocketInventoryDistributionInput) {\n\thardwareManagement ( accountId:$accountId ) {\n\t\tsocketInventory ( input:$socketInventoryInput  )  {\n\t\t\titems {\n\t\t\t\tid\n\t\t\t\tstatus\n\t\t\t\tserialNumber\n\t\t\t\tsocketMac\n\t\t\t\tsocketVersion\n\t\t\t\tsite {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t\taccount {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t\tshippingDate\n\t\t\t\tsocketType\n\t\t\t\torderType\n\t\t\t\ttrackingUrl\n\t\t\t\ttrackingNumber\n\t\t\t\tshippingCompany\n\t\t\t\tdeliverySiteName\n\t\t\t\tdescription\n\t\t\t\thardwareVersion\n\t\t\t\tisPrimary\n\t\t\t\tregistrationStatus\n\t\t\t\tavailableUpgradeVersions\n\t\t\t\tupgradeStatus\n\t\t\t\tupgradesPaused\n\t\t\t}\n\t\t\tpageInfo {\n\t\t\t\ttotal\n\t\t\t}\n\t\t}\n\t\tsocketInventoryDistribution ( input:$socketInventoryDistributionInput  )  {\n\t\t\titems {\n\t\t\t\tsocketType\n\t\t\t\thardwareVersion\n\t\t\t\tcount\n\t\t\t}\n\t\t}\n\t}\t\n}",
     "variables": {
+        "socketInventoryDistributionInput": {
+            "socketInventoryFilterInput": {
+                "freeText": {
+                    "search": "string"
+                },
+                "hardwareVersion": "X1500A",
+                "orderType": "PURCHASE",
+                "socketType": "X1500",
+                "status": "ORDERED"
+            }
+        },
         "socketInventoryInput": {
             "pagingInput": {
                 "from": 1,
@@ -10,7 +21,11 @@
             "socketInventoryFilterInput": {
                 "freeText": {
                     "search": "string"
-                }
+                },
+                "hardwareVersion": "X1500A",
+                "orderType": "PURCHASE",
+                "socketType": "X1500",
+                "status": "ORDERED"
             },
             "socketInventoryOrderInput": {
                 "accountName": {

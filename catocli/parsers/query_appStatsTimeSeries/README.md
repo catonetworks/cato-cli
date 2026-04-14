@@ -11,7 +11,7 @@ catocli query appStatsTimeSeries <json>
 
 catocli query appStatsTimeSeries --json-file query.appStatsTimeSeries.json
 
-catocli query appStatsTimeSeries '{"appStatsFilter":{"fieldName":"account_id","operator":"is","values":["string1","string2"]},"buckets":1,"dimension":{"fieldName":"account_id"},"measure":{"aggType":"sum","fieldName":"account_id","trend":true},"perSecond":true,"timeFrame":"example_value","useDefaultSizeBucket":true,"withMissingData":true}'
+catocli query appStatsTimeSeries '{"appStatsFilter":{"fieldName":"account_id","operator":"is","values":["string1","string2"]},"buckets":1,"dimension":{"fieldName":"account_id"},"measure":{"aggType":"sum","alias":"string","fieldName":"account_id","trend":true},"perSecond":true,"timeFrame":"example_value","useDefaultSizeBucket":true,"withMissingData":true}'
 
 catocli query appStatsTimeSeries '{
     "appStatsFilter": {
@@ -28,6 +28,7 @@ catocli query appStatsTimeSeries '{
     },
     "measure": {
         "aggType": "sum",
+        "alias": "string",
         "fieldName": "account_id",
         "trend": true
     },

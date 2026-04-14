@@ -2019,6 +2019,32 @@ def executePrivateScript(args, private_config):
     if debug:
         cmd.append('-d')
 
+    # Pass through all other arguments defined in the command configuration
+    config_arguments = private_config.get('arguments', [])
+    for arg_def in config_arguments:
+        arg_name = arg_def.get('name', '')
+        # Skip already handled arguments
+        if arg_name.lower() in ['config-file', 'debug', 'verbose', 'generate-template']:
+            continue
+
+        # Get value from params (convert hyphens to underscores for argparse)
+        param_key = arg_name.replace('-', '_')
+        arg_value = params.get(param_key) or params.get(arg_name)
+
+        if arg_value is not None and arg_value not in [False, '', None]:
+            arg_type = arg_def.get('type', 'string')
+            flag = arg_def.get('flag', f'--{arg_name}')
+
+            if arg_type == 'boolean':
+                # For boolean flags, just add the flag if value is truthy
+                # Handle both boolean True and string 'true'
+                if arg_value is True or str(arg_value).lower() in ('true', '1', 'yes'):
+                    cmd.append(flag)
+            else:
+                # For other types, add flag and value
+                cmd.append(flag)
+                cmd.append(str(arg_value))
+
     # Execute the script
     try:
         result = subprocess.run(

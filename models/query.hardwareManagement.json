@@ -45,6 +45,405 @@
             },
             "varName": "accountId"
         },
+        "socketInventoryDistributionInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "socketInventoryDistribution___input",
+            "name": "input",
+            "path": "socketInventoryDistribution.input",
+            "requestStr": "$socketInventoryDistributionInput:SocketInventoryDistributionInput ",
+            "required": false,
+            "responseStr": "input:$socketInventoryDistributionInput ",
+            "type": {
+                "definition": {
+                    "description": null,
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "filter": {
+                            "defaultValue": null,
+                            "description": "Filters \u2014 same fields as socketInventory filter for full parity (D10)",
+                            "id_str": "socketInventoryDistribution___input___filter",
+                            "name": "filter",
+                            "path": "socketInventoryDistribution.input.filter",
+                            "requestStr": "$socketInventoryFilterInput:SocketInventoryFilterInput ",
+                            "required": false,
+                            "responseStr": "filter:$socketInventoryFilterInput ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "freeText": {
+                                            "defaultValue": null,
+                                            "description": "Will run contains operation for the provided text on the following fields serialNumber,socketMac,socketVersion,installedSite,\nshippingCompany,trackingNumber,deliverySiteName,description,hardwareVersion with OR between them",
+                                            "id_str": "socketInventoryDistribution___input___filter___freeText",
+                                            "name": "freeText",
+                                            "path": "socketInventoryDistribution.input.filter.freeText",
+                                            "requestStr": "$freeTextFilterInput:FreeTextFilterInput ",
+                                            "required": false,
+                                            "responseStr": "freeText:$freeTextFilterInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "search": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "socketInventoryDistribution___input___filter___freeText___search",
+                                                            "name": "search",
+                                                            "path": "socketInventoryDistribution.input.filter.freeText.search",
+                                                            "requestStr": "$search:String! ",
+                                                            "required": true,
+                                                            "responseStr": "search:$search ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "search"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "FreeTextFilterInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "FreeTextFilterInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "freeTextFilterInput"
+                                        },
+                                        "hardwareVersion": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "socketInventoryDistribution___input___filter___hardwareVersion",
+                                            "name": "hardwareVersion",
+                                            "path": "socketInventoryDistribution.input.filter.hardwareVersion",
+                                            "requestStr": "$hardwareVersion:[SocketHardwareVersion] ",
+                                            "required": false,
+                                            "responseStr": "hardwareVersion:$hardwareVersion ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "Socket hardware version. Values sourced from Salesforce Hardware__c sync.\nIf a new hardware version appears in production, add it here and redeploy.",
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "X1500A"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "X1500B"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "X1500C"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "X1500"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "X1700A"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "X1700B"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "X1700C"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "X1700"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "X1600"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "X1600_LTE"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "X16005G"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "SocketHardwareVersion",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "LIST",
+                                                    "NON_NULL",
+                                                    "ENUM"
+                                                ],
+                                                "name": "SocketHardwareVersion",
+                                                "non_null": false
+                                            },
+                                            "varName": "hardwareVersion"
+                                        },
+                                        "orderType": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "socketInventoryDistribution___input___filter___orderType",
+                                            "name": "orderType",
+                                            "path": "socketInventoryDistribution.input.filter.orderType",
+                                            "requestStr": "$orderType:[SocketOrderType] ",
+                                            "required": false,
+                                            "responseStr": "orderType:$orderType ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "Order type - PURCHASE for standard orders, REFRESH for socket refresh, REPLACEMENT for RMA replacements",
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "PURCHASE"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "REFRESH"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "REPLACEMENT"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "SocketOrderType",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "LIST",
+                                                    "NON_NULL",
+                                                    "ENUM"
+                                                ],
+                                                "name": "SocketOrderType",
+                                                "non_null": false
+                                            },
+                                            "varName": "orderType"
+                                        },
+                                        "socketType": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "socketInventoryDistribution___input___filter___socketType",
+                                            "name": "socketType",
+                                            "path": "socketInventoryDistribution.input.filter.socketType",
+                                            "requestStr": "$socketType:[SocketModelTypeConfigurationValue] ",
+                                            "required": false,
+                                            "responseStr": "socketType:$socketType ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "X1500"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "X1600"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "X1700"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "ESX"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "AWS"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "AZURE"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "GCP"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "X1600_LTE"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "SocketModelTypeConfigurationValue",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "LIST",
+                                                    "NON_NULL",
+                                                    "ENUM"
+                                                ],
+                                                "name": "SocketModelTypeConfigurationValue",
+                                                "non_null": false
+                                            },
+                                            "varName": "socketType"
+                                        },
+                                        "status": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "socketInventoryDistribution___input___filter___status",
+                                            "name": "status",
+                                            "path": "socketInventoryDistribution.input.filter.status",
+                                            "requestStr": "$status:[SocketInventoryItemStatus] ",
+                                            "required": false,
+                                            "responseStr": "status:$status ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "ORDERED"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "SHIPPED"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "DELIVERED"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "INSTALLED"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "CONNECTED"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "SocketInventoryItemStatus",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "LIST",
+                                                    "NON_NULL",
+                                                    "ENUM"
+                                                ],
+                                                "name": "SocketInventoryItemStatus",
+                                                "non_null": false
+                                            },
+                                            "varName": "status"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "SocketInventoryFilterInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "SocketInventoryFilterInput",
+                                "non_null": false
+                            },
+                            "varName": "socketInventoryFilterInput"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "SocketInventoryDistributionInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "INPUT_OBJECT"
+                ],
+                "name": "SocketInventoryDistributionInput",
+                "non_null": false
+            },
+            "varName": "socketInventoryDistributionInput"
+        },
         "socketInventoryInput": {
             "defaultValue": null,
             "description": null,
@@ -123,6 +522,296 @@
                                                 "non_null": false
                                             },
                                             "varName": "freeTextFilterInput"
+                                        },
+                                        "hardwareVersion": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "socketInventory___input___filter___hardwareVersion",
+                                            "name": "hardwareVersion",
+                                            "path": "socketInventory.input.filter.hardwareVersion",
+                                            "requestStr": "$hardwareVersion:[SocketHardwareVersion] ",
+                                            "required": false,
+                                            "responseStr": "hardwareVersion:$hardwareVersion ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "Socket hardware version. Values sourced from Salesforce Hardware__c sync.\nIf a new hardware version appears in production, add it here and redeploy.",
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "X1500A"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "X1500B"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "X1500C"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "X1500"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "X1700A"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "X1700B"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "X1700C"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "X1700"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "X1600"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "X1600_LTE"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "X16005G"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "SocketHardwareVersion",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "LIST",
+                                                    "NON_NULL",
+                                                    "ENUM"
+                                                ],
+                                                "name": "SocketHardwareVersion",
+                                                "non_null": false
+                                            },
+                                            "varName": "hardwareVersion"
+                                        },
+                                        "orderType": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "socketInventory___input___filter___orderType",
+                                            "name": "orderType",
+                                            "path": "socketInventory.input.filter.orderType",
+                                            "requestStr": "$orderType:[SocketOrderType] ",
+                                            "required": false,
+                                            "responseStr": "orderType:$orderType ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "Order type - PURCHASE for standard orders, REFRESH for socket refresh, REPLACEMENT for RMA replacements",
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "PURCHASE"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "REFRESH"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "REPLACEMENT"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "SocketOrderType",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "LIST",
+                                                    "NON_NULL",
+                                                    "ENUM"
+                                                ],
+                                                "name": "SocketOrderType",
+                                                "non_null": false
+                                            },
+                                            "varName": "orderType"
+                                        },
+                                        "socketType": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "socketInventory___input___filter___socketType",
+                                            "name": "socketType",
+                                            "path": "socketInventory.input.filter.socketType",
+                                            "requestStr": "$socketType:[SocketModelTypeConfigurationValue] ",
+                                            "required": false,
+                                            "responseStr": "socketType:$socketType ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "X1500"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "X1600"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "X1700"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "ESX"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "AWS"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "AZURE"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "GCP"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "X1600_LTE"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "SocketModelTypeConfigurationValue",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "LIST",
+                                                    "NON_NULL",
+                                                    "ENUM"
+                                                ],
+                                                "name": "SocketModelTypeConfigurationValue",
+                                                "non_null": false
+                                            },
+                                            "varName": "socketType"
+                                        },
+                                        "status": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "socketInventory___input___filter___status",
+                                            "name": "status",
+                                            "path": "socketInventory.input.filter.status",
+                                            "requestStr": "$status:[SocketInventoryItemStatus] ",
+                                            "required": false,
+                                            "responseStr": "status:$status ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "ORDERED"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "SHIPPED"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "DELIVERED"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "INSTALLED"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "CONNECTED"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "SocketInventoryItemStatus",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "LIST",
+                                                    "NON_NULL",
+                                                    "ENUM"
+                                                ],
+                                                "name": "SocketInventoryItemStatus",
+                                                "non_null": false
+                                            },
+                                            "varName": "status"
                                         }
                                     },
                                     "interfaces": null,
@@ -1259,6 +1948,296 @@
                                                                 "non_null": false
                                                             },
                                                             "varName": "freeTextFilterInput"
+                                                        },
+                                                        "hardwareVersion": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "socketInventory___input___filter___hardwareVersion",
+                                                            "name": "hardwareVersion",
+                                                            "path": "socketInventory.input.filter.hardwareVersion",
+                                                            "requestStr": "$hardwareVersion:[SocketHardwareVersion] ",
+                                                            "required": false,
+                                                            "responseStr": "hardwareVersion:$hardwareVersion ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": "Socket hardware version. Values sourced from Salesforce Hardware__c sync.\nIf a new hardware version appears in production, add it here and redeploy.",
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "X1500A"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "X1500B"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "X1500C"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "X1500"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "X1700A"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "X1700B"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "X1700C"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "X1700"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "X1600"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "X1600_LTE"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "X16005G"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "SocketHardwareVersion",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "LIST",
+                                                                    "NON_NULL",
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "SocketHardwareVersion",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "hardwareVersion"
+                                                        },
+                                                        "orderType": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "socketInventory___input___filter___orderType",
+                                                            "name": "orderType",
+                                                            "path": "socketInventory.input.filter.orderType",
+                                                            "requestStr": "$orderType:[SocketOrderType] ",
+                                                            "required": false,
+                                                            "responseStr": "orderType:$orderType ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": "Order type - PURCHASE for standard orders, REFRESH for socket refresh, REPLACEMENT for RMA replacements",
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "PURCHASE"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "REFRESH"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "REPLACEMENT"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "SocketOrderType",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "LIST",
+                                                                    "NON_NULL",
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "SocketOrderType",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "orderType"
+                                                        },
+                                                        "socketType": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "socketInventory___input___filter___socketType",
+                                                            "name": "socketType",
+                                                            "path": "socketInventory.input.filter.socketType",
+                                                            "requestStr": "$socketType:[SocketModelTypeConfigurationValue] ",
+                                                            "required": false,
+                                                            "responseStr": "socketType:$socketType ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "X1500"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "X1600"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "X1700"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "ESX"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "AWS"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "AZURE"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "GCP"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "X1600_LTE"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "SocketModelTypeConfigurationValue",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "LIST",
+                                                                    "NON_NULL",
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "SocketModelTypeConfigurationValue",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "socketType"
+                                                        },
+                                                        "status": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "socketInventory___input___filter___status",
+                                                            "name": "status",
+                                                            "path": "socketInventory.input.filter.status",
+                                                            "requestStr": "$status:[SocketInventoryItemStatus] ",
+                                                            "required": false,
+                                                            "responseStr": "status:$status ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "ORDERED"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "SHIPPED"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "DELIVERED"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "INSTALLED"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "CONNECTED"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "SocketInventoryItemStatus",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "LIST",
+                                                                    "NON_NULL",
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "SocketInventoryItemStatus",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "status"
                                                         }
                                                     },
                                                     "interfaces": null,
@@ -2539,6 +3518,56 @@
                                                     },
                                                     "varName": "isPrimary"
                                                 },
+                                                "orderType": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Order type (Purchase, Refresh, or Replacement)",
+                                                    "id_str": "socketInventory___items___orderType",
+                                                    "isDeprecated": false,
+                                                    "name": "orderType",
+                                                    "path": "socketInventory.items.orderType",
+                                                    "requestStr": "$orderType:SocketOrderType ",
+                                                    "required": false,
+                                                    "responseStr": "orderType:$orderType ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "Order type - PURCHASE for standard orders, REFRESH for socket refresh, REPLACEMENT for RMA replacements",
+                                                            "enumValues": [
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "PURCHASE"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "REFRESH"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "REPLACEMENT"
+                                                                }
+                                                            ],
+                                                            "fields": null,
+                                                            "inputFields": null,
+                                                            "interfaces": null,
+                                                            "kind": "ENUM",
+                                                            "name": "SocketOrderType",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "enum",
+                                                        "kind": [
+                                                            "ENUM"
+                                                        ],
+                                                        "name": "SocketOrderType",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "orderType"
+                                                },
                                                 "registrationStatus": {
                                                     "args": {},
                                                     "deprecationReason": null,
@@ -3195,6 +4224,673 @@
                         "non_null": false
                     },
                     "varName": "socketInventoryPayload"
+                },
+                "socketInventoryDistribution": {
+                    "args": {
+                        "socketInventoryDistribution___input": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "socketInventoryDistribution___input",
+                            "name": "input",
+                            "path": "socketInventoryDistribution.input",
+                            "requestStr": "$socketInventoryDistributionInput:SocketInventoryDistributionInput ",
+                            "required": false,
+                            "responseStr": "input:$socketInventoryDistributionInput ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "filter": {
+                                            "defaultValue": null,
+                                            "description": "Filters \u2014 same fields as socketInventory filter for full parity (D10)",
+                                            "id_str": "socketInventoryDistribution___input___filter",
+                                            "name": "filter",
+                                            "path": "socketInventoryDistribution.input.filter",
+                                            "requestStr": "$socketInventoryFilterInput:SocketInventoryFilterInput ",
+                                            "required": false,
+                                            "responseStr": "filter:$socketInventoryFilterInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "freeText": {
+                                                            "defaultValue": null,
+                                                            "description": "Will run contains operation for the provided text on the following fields serialNumber,socketMac,socketVersion,installedSite,\nshippingCompany,trackingNumber,deliverySiteName,description,hardwareVersion with OR between them",
+                                                            "id_str": "socketInventoryDistribution___input___filter___freeText",
+                                                            "name": "freeText",
+                                                            "path": "socketInventoryDistribution.input.filter.freeText",
+                                                            "requestStr": "$freeTextFilterInput:FreeTextFilterInput ",
+                                                            "required": false,
+                                                            "responseStr": "freeText:$freeTextFilterInput ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": null,
+                                                                    "fields": null,
+                                                                    "inputFields": {
+                                                                        "search": {
+                                                                            "defaultValue": null,
+                                                                            "description": null,
+                                                                            "id_str": "socketInventoryDistribution___input___filter___freeText___search",
+                                                                            "name": "search",
+                                                                            "path": "socketInventoryDistribution.input.filter.freeText.search",
+                                                                            "requestStr": "$search:String! ",
+                                                                            "required": true,
+                                                                            "responseStr": "search:$search ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "String",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "search"
+                                                                        }
+                                                                    },
+                                                                    "interfaces": null,
+                                                                    "kind": "INPUT_OBJECT",
+                                                                    "name": "FreeTextFilterInput",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "input_object",
+                                                                "kind": [
+                                                                    "INPUT_OBJECT"
+                                                                ],
+                                                                "name": "FreeTextFilterInput",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "freeTextFilterInput"
+                                                        },
+                                                        "hardwareVersion": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "socketInventoryDistribution___input___filter___hardwareVersion",
+                                                            "name": "hardwareVersion",
+                                                            "path": "socketInventoryDistribution.input.filter.hardwareVersion",
+                                                            "requestStr": "$hardwareVersion:[SocketHardwareVersion] ",
+                                                            "required": false,
+                                                            "responseStr": "hardwareVersion:$hardwareVersion ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": "Socket hardware version. Values sourced from Salesforce Hardware__c sync.\nIf a new hardware version appears in production, add it here and redeploy.",
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "X1500A"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "X1500B"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "X1500C"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "X1500"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "X1700A"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "X1700B"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "X1700C"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "X1700"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "X1600"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "X1600_LTE"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "X16005G"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "SocketHardwareVersion",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "LIST",
+                                                                    "NON_NULL",
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "SocketHardwareVersion",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "hardwareVersion"
+                                                        },
+                                                        "orderType": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "socketInventoryDistribution___input___filter___orderType",
+                                                            "name": "orderType",
+                                                            "path": "socketInventoryDistribution.input.filter.orderType",
+                                                            "requestStr": "$orderType:[SocketOrderType] ",
+                                                            "required": false,
+                                                            "responseStr": "orderType:$orderType ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": "Order type - PURCHASE for standard orders, REFRESH for socket refresh, REPLACEMENT for RMA replacements",
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "PURCHASE"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "REFRESH"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "REPLACEMENT"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "SocketOrderType",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "LIST",
+                                                                    "NON_NULL",
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "SocketOrderType",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "orderType"
+                                                        },
+                                                        "socketType": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "socketInventoryDistribution___input___filter___socketType",
+                                                            "name": "socketType",
+                                                            "path": "socketInventoryDistribution.input.filter.socketType",
+                                                            "requestStr": "$socketType:[SocketModelTypeConfigurationValue] ",
+                                                            "required": false,
+                                                            "responseStr": "socketType:$socketType ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "X1500"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "X1600"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "X1700"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "ESX"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "AWS"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "AZURE"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "GCP"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "X1600_LTE"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "SocketModelTypeConfigurationValue",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "LIST",
+                                                                    "NON_NULL",
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "SocketModelTypeConfigurationValue",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "socketType"
+                                                        },
+                                                        "status": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "socketInventoryDistribution___input___filter___status",
+                                                            "name": "status",
+                                                            "path": "socketInventoryDistribution.input.filter.status",
+                                                            "requestStr": "$status:[SocketInventoryItemStatus] ",
+                                                            "required": false,
+                                                            "responseStr": "status:$status ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "ORDERED"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "SHIPPED"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "DELIVERED"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "INSTALLED"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "CONNECTED"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "SocketInventoryItemStatus",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "LIST",
+                                                                    "NON_NULL",
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "SocketInventoryItemStatus",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "status"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "SocketInventoryFilterInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "SocketInventoryFilterInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "socketInventoryFilterInput"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "SocketInventoryDistributionInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "SocketInventoryDistributionInput",
+                                "non_null": false
+                            },
+                            "varName": "socketInventoryDistributionInput"
+                        }
+                    },
+                    "deprecationReason": null,
+                    "description": "Retrieve socket inventory distribution grouped by type and hardware version",
+                    "id_str": "socketInventoryDistribution",
+                    "isDeprecated": false,
+                    "name": "socketInventoryDistribution",
+                    "path": "socketInventoryDistribution",
+                    "requestStr": "$socketInventoryDistributionPayload:SocketInventoryDistributionPayload! ",
+                    "required": true,
+                    "responseStr": "socketInventoryDistribution:$socketInventoryDistributionPayload ",
+                    "type": {
+                        "definition": {
+                            "description": null,
+                            "enumValues": null,
+                            "fields": {
+                                "items": {
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": null,
+                                    "id_str": "socketInventoryDistribution___items",
+                                    "isDeprecated": false,
+                                    "name": "items",
+                                    "path": "socketInventoryDistribution.items",
+                                    "requestStr": "$socketInventoryDistributionItem:[SocketInventoryDistributionItem]! ",
+                                    "required": true,
+                                    "responseStr": "items:$socketInventoryDistributionItem ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "Socket inventory distribution grouped by physical socket model type and hardware version.",
+                                            "enumValues": null,
+                                            "fields": {
+                                                "count": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Number of sockets in this group",
+                                                    "id_str": "socketInventoryDistribution___items___count",
+                                                    "isDeprecated": false,
+                                                    "name": "count",
+                                                    "path": "socketInventoryDistribution.items.count",
+                                                    "requestStr": "$count:Int! ",
+                                                    "required": true,
+                                                    "responseStr": "count:$count ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Int",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "count"
+                                                },
+                                                "hardwareVersion": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Hardware revision",
+                                                    "id_str": "socketInventoryDistribution___items___hardwareVersion",
+                                                    "isDeprecated": false,
+                                                    "name": "hardwareVersion",
+                                                    "path": "socketInventoryDistribution.items.hardwareVersion",
+                                                    "requestStr": "$hardwareVersion:SocketHardwareVersion ",
+                                                    "required": false,
+                                                    "responseStr": "hardwareVersion:$hardwareVersion ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "Socket hardware version. Values sourced from Salesforce Hardware__c sync.\nIf a new hardware version appears in production, add it here and redeploy.",
+                                                            "enumValues": [
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "X1500A"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "X1500B"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "X1500C"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "X1500"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "X1700A"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "X1700B"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "X1700C"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "X1700"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "X1600"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "X1600_LTE"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "X16005G"
+                                                                }
+                                                            ],
+                                                            "fields": null,
+                                                            "inputFields": null,
+                                                            "interfaces": null,
+                                                            "kind": "ENUM",
+                                                            "name": "SocketHardwareVersion",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "enum",
+                                                        "kind": [
+                                                            "ENUM"
+                                                        ],
+                                                        "name": "SocketHardwareVersion",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "hardwareVersion"
+                                                },
+                                                "socketType": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Socket model type (X1500, X1600, X1700, etc.)",
+                                                    "id_str": "socketInventoryDistribution___items___socketType",
+                                                    "isDeprecated": false,
+                                                    "name": "socketType",
+                                                    "path": "socketInventoryDistribution.items.socketType",
+                                                    "requestStr": "$socketType:SocketModelTypeConfigurationValue ",
+                                                    "required": false,
+                                                    "responseStr": "socketType:$socketType ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": null,
+                                                            "enumValues": [
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "X1500"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "X1600"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "X1700"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "ESX"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "AWS"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "AZURE"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "GCP"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "X1600_LTE"
+                                                                }
+                                                            ],
+                                                            "fields": null,
+                                                            "inputFields": null,
+                                                            "interfaces": null,
+                                                            "kind": "ENUM",
+                                                            "name": "SocketModelTypeConfigurationValue",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "enum",
+                                                        "kind": [
+                                                            "ENUM"
+                                                        ],
+                                                        "name": "SocketModelTypeConfigurationValue",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "socketType"
+                                                }
+                                            },
+                                            "inputFields": null,
+                                            "interfaces": {},
+                                            "kind": "OBJECT",
+                                            "name": "SocketInventoryDistributionItem",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "object",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "LIST",
+                                            "NON_NULL",
+                                            "OBJECT"
+                                        ],
+                                        "name": "SocketInventoryDistributionItem",
+                                        "non_null": false
+                                    },
+                                    "varName": "socketInventoryDistributionItem"
+                                }
+                            },
+                            "inputFields": null,
+                            "interfaces": {},
+                            "kind": "OBJECT",
+                            "name": "SocketInventoryDistributionPayload",
+                            "possibleTypes": null
+                        },
+                        "indexType": "object",
+                        "kind": [
+                            "NON_NULL",
+                            "OBJECT"
+                        ],
+                        "name": "SocketInventoryDistributionPayload",
+                        "non_null": false
+                    },
+                    "varName": "socketInventoryDistributionPayload"
                 }
             },
             "inputFields": null,
@@ -3211,6 +4907,17 @@
         "non_null": false
     },
     "variablesPayload": {
+        "socketInventoryDistributionInput": {
+            "socketInventoryFilterInput": {
+                "freeText": {
+                    "search": "string"
+                },
+                "hardwareVersion": "X1500A",
+                "orderType": "PURCHASE",
+                "socketType": "X1500",
+                "status": "ORDERED"
+            }
+        },
         "socketInventoryInput": {
             "pagingInput": {
                 "from": 1,
@@ -3219,7 +4926,11 @@
             "socketInventoryFilterInput": {
                 "freeText": {
                     "search": "string"
-                }
+                },
+                "hardwareVersion": "X1500A",
+                "orderType": "PURCHASE",
+                "socketType": "X1500",
+                "status": "ORDERED"
             },
             "socketInventoryOrderInput": {
                 "accountName": {

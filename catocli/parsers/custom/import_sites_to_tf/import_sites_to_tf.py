@@ -448,8 +448,14 @@ def import_wan_interfaces(wan_interfaces, module_name, verbose=False,
 
         # In the module, cato_wan_interface.wan is now keyed by interface_index, which we
         # format from the JSON "index" field. Use interface_index as the key.
+        # LTE interfaces use a separate resource: cato_wan_interface.wan_lte
         wan_key = interface.get('interface_index', interface_id)  # Use formatted index, fallback to ID
-        resource_address = f'{module_name}.module.socket-site["{site_key}"].cato_wan_interface.wan["{wan_key}"]'
+
+        # Check if this is an LTE interface (index starts with "LTE")
+        if wan_key.startswith('LTE'):
+            resource_address = f'{module_name}.module.socket-site["{site_key}"].cato_wan_interface.wan_lte["{wan_key}"]'
+        else:
+            resource_address = f'{module_name}.module.socket-site["{site_key}"].cato_wan_interface.wan["{wan_key}"]'
         
         # WAN import id must be "site_id:interface_part"
         if ':' in interface_id:
@@ -560,10 +566,11 @@ def import_lan_interfaces(lan_interfaces, module_name, verbose=False,
         interface_index = interface['index']
         interface_name = interface['name']
         site_name = interface['site_name']
-        
-        # Check if interface_id is empty or blank
+
+        # Check if interface_id is empty or blank - interfaces without IDs cannot be imported
+        # (they're either default interfaces managed by socket_site, or virtual interfaces)
         if not interface_id or not str(interface_id).strip():
-            print(f"\n[{i+1}/{total_interfaces}] Skipping LAN interface '{interface_name}' on {site_name} - ID is empty or blank")
+            print(f"\n[{i+1}/{total_interfaces}] Skipping LAN interface '{interface_name}' on {site_name} - No interface ID (default or virtual interface)")
             continue
         
         # Add module. prefix if not present
@@ -620,19 +627,49 @@ def import_network_ranges(network_ranges, lan_interfaces, module_name, verbose=F
     successful_imports = 0
     failed_imports = 0
     total_ranges = len(network_ranges)
-    
+
+    # Build a lookup map for LAN interfaces by site_name and interface_index
+    # This map contains only interfaces that HAVE explicit IDs
+    # Interfaces without IDs are "default" interfaces managed by default_interface_ranges
+    lan_interface_map = {}
+    for lan in lan_interfaces:
+        # Only include interfaces with explicit IDs - these go through lan_interfaces module
+        if lan.get('id'):
+            key = f"{lan['site_name']}-{lan.get('index', '')}"
+            lan_interface_map[key] = lan
+
     # Pre-calculate indices for network ranges to match Terraform module logic
-    # The Terraform module generates keys like: "${interface_index}-${name}-${idx}"
-    # We need to group by interface and calculate the index within each interface
-    interface_range_indices = {}
-    
+    # For regular interfaces (with explicit IDs): index within the interface's network_ranges array
+    # For default interfaces (no ID): index within the site's default_interface_network_ranges array
+    interface_range_indices = {}  # For regular interfaces
+    default_interface_range_indices = {}  # For default interfaces (per-site global index)
+
     for network_range in network_ranges:
-        interface_key = f"{network_range['site_name']}-{network_range['interface_index']}"
-        if interface_key not in interface_range_indices:
-            interface_range_indices[interface_key] = 0
+        site_name = network_range['site_name']
+        interface_index = network_range['interface_index']
+        interface_key = f"{site_name}-{interface_index}"
+
+        # Check if this is a default interface range
+        # Default interfaces are those WITHOUT explicit IDs in the lan_interfaces list
+        # They're handled by Terraform's default_interface_network_ranges resource
+        matching_lan = lan_interface_map.get(interface_key)
+        is_default = matching_lan is None  # No matching LAN with ID = default interface
+        network_range['is_default_interface'] = is_default
+
+        if is_default:
+            # For default interfaces, use a site-level global index
+            if site_name not in default_interface_range_indices:
+                default_interface_range_indices[site_name] = 0
+            else:
+                default_interface_range_indices[site_name] += 1
+            network_range['calculated_index'] = default_interface_range_indices[site_name]
         else:
-            interface_range_indices[interface_key] += 1
-        network_range['calculated_index'] = interface_range_indices[interface_key]
+            # For regular interfaces, use per-interface index
+            if interface_key not in interface_range_indices:
+                interface_range_indices[interface_key] = 0
+            else:
+                interface_range_indices[interface_key] += 1
+            network_range['calculated_index'] = interface_range_indices[interface_key]
     
     for i, network_range in enumerate(network_ranges):
         network_range_id = network_range['network_range_id']
@@ -661,16 +698,10 @@ def import_network_ranges(network_ranges, lan_interfaces, module_name, verbose=F
             # If not a number or None, use as-is (fallback to interface_id if needed)
             formatted_index = interface_index if interface_index else network_range['interface_id']
         
-        # Determine if this is a default interface range (connected to native/default interface)
-        # Check if this network range has a corresponding LAN interface resource that was extracted
-        # If no LAN interface was created for this interface_index, it's a default interface range
-        matching_lan_interface = None
-        for lan in lan_interfaces:
-            if lan['site_name'] == site_name and lan['index'] == interface_index:
-                matching_lan_interface = lan
-                break
-
-        is_default_interface = matching_lan_interface is None
+        # Use the pre-calculated is_default_interface flag
+        # This was determined in the first pass based on whether the LAN interface has default_lan=True
+        # or if no matching LAN interface exists for this interface_index
+        is_default_interface = network_range.get('is_default_interface', False)
 
         # Generate the correct key format to match the Terraform module logic
         # The module uses "${network_range.name}_${idx}" as the key
@@ -680,10 +711,14 @@ def import_network_ranges(network_ranges, lan_interfaces, module_name, verbose=F
         # Determine if this network range has DHCP settings
         # Check if dhcp_settings object exists and has a dhcp_type field
         # The module creates with_dhcp[0] if dhcp_settings != null, no_dhcp[0] if dhcp_settings == null
+        # IMPORTANT: Routed/Direct ranges always use no_dhcp because Terraform module sets dhcp_settings=null for them
         dhcp_settings = network_range.get('dhcp_settings')
+        range_type = network_range.get('range_type', '')
+        is_routed_or_direct = range_type in ['Routed', 'Direct']
         has_dhcp = (
-            dhcp_settings is not None and 
-            isinstance(dhcp_settings, dict) and 
+            not is_routed_or_direct and
+            dhcp_settings is not None and
+            isinstance(dhcp_settings, dict) and
             dhcp_settings.get('dhcp_type') is not None
         )
         dhcp_resource = 'with_dhcp' if has_dhcp else 'no_dhcp'
@@ -1052,8 +1087,8 @@ def import_socket_sites_to_tf(args, configuration):
      
         # Import network ranges (if selected)
         if (ranges_only or (not sites_only and not wan_only and not lan_only)) and network_ranges:
-            successful, failed = import_network_ranges(network_ranges, lan_interfaces, module_name=args.module_name, 
-                                                      verbose=args.verbose, batch_size=args.batch_size, 
+            successful, failed = import_network_ranges(network_ranges, lan_interfaces, module_name=args.module_name,
+                                                      verbose=args.verbose, batch_size=args.batch_size,
                                                       delay_between_batches=args.delay,
                                                       auto_approve=getattr(args, 'auto_approve', False))
             total_successful += successful
@@ -1594,7 +1629,7 @@ def validate_json_file(json_file, verbose=False):
     print("=" * 80)
     
     if errors:
-        print(f"\n❌ VALIDATION FAILED: {len(errors)} error(s) found")
+        print(f"\n[X] VALIDATION FAILED: {len(errors)} error(s) found")
         for error in errors:
             print(f"  ERROR: {error}")
     else:
@@ -1623,12 +1658,12 @@ def load_csv_data(csv_file, sites_config_dir=None):
     """
     try:
         # Clean the main CSV file before loading
-        print(f"Cleaning CSV file: {csv_file}")
+        print(f"  Cleaning CSV file: {csv_file}")
         clean_csv_file(csv_file)
         
         # Clean all network ranges CSV files if directory provided
         if sites_config_dir and os.path.exists(sites_config_dir):
-            print(f"Cleaning network ranges CSV files in: {sites_config_dir}")
+            print(f"  Cleaning network ranges CSV files in: {sites_config_dir}")
             for csv_filename in os.listdir(sites_config_dir):
                 if csv_filename.endswith('.csv'):
                     csv_filepath = os.path.join(sites_config_dir, csv_filename)
@@ -1919,7 +1954,9 @@ def load_site_network_ranges_csv(site, ranges_csv_file):
                     current_interface_data['network_ranges'].append(network_range)
                     
                     # Check if this interface should be marked as default_lan
-                    # by checking if this is marked as a native range
+                    # In Terraform module: default_lan=true ONLY for interfaces WITHOUT explicit lan_interface_id
+                    # Interfaces WITH lan_interface_id are regular interfaces (default_lan=false)
+                    # The is_native_range flag indicates the native range row for socket_site config
                     is_native_range = row.get('is_native_range', '').upper() == 'TRUE'
                     if is_native_range:
                         native_range = site.get('native_range', {})
@@ -1928,10 +1965,11 @@ def load_site_network_ranges_csv(site, ranges_csv_file):
                             current_interface_data['name'] == native_range.get('interface_name')
                         )
                         if interface_matches_native:
-                            current_interface_data['default_lan'] = True
-                            # IMPORTANT: Do not add this network range to the interface's network_ranges
-                            # because it's the site's native range and will be handled separately
-                            # Remove it from the network_ranges list - it was just added above
+                            # Only mark as default_lan if the interface has NO explicit ID
+                            # Interfaces with IDs are regular LAN interfaces in Terraform
+                            if not current_interface_data.get('id'):
+                                current_interface_data['default_lan'] = True
+                            # Remove the native range from network_ranges - it's handled by socket_site
                             current_interface_data['network_ranges'].pop()
                             # Skip processing this network range further
                             continue
@@ -2142,13 +2180,13 @@ def import_socket_sites_from_csv(args, configuration):
      
         # Import network ranges (if selected)
         if (ranges_only or (not sites_only and not wan_only and not lan_only)) and network_ranges:
-            successful, failed = import_network_ranges(network_ranges, lan_interfaces, module_name=args.module_name, 
-                                                      verbose=args.verbose, batch_size=getattr(args, 'batch_size', 10), 
+            successful, failed = import_network_ranges(network_ranges, lan_interfaces, module_name=args.module_name,
+                                                      verbose=args.verbose, batch_size=getattr(args, 'batch_size', 10),
                                                       delay_between_batches=getattr(args, 'delay', 2),
                                                       auto_approve=getattr(args, 'auto_approve', False))
             total_successful += successful
             total_failed += failed
-        
+
         # Final summary
         print("\n" + "=" * 70)
         print(" FINAL IMPORT SUMMARY")

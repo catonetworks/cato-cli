@@ -11,7 +11,7 @@ catocli query socketPortMetrics <json>
 
 catocli query socketPortMetrics --json-file query.socketPortMetrics.json
 
-catocli query socketPortMetrics '{"from":1,"limit":1,"socketPortMetricsDimension":{"fieldName":"account_id"},"socketPortMetricsFilter":{"fieldName":"account_id","operator":"is","values":["string1","string2"]},"socketPortMetricsMeasure":{"aggType":"sum","fieldName":"account_id","trend":true},"socketPortMetricsPostAggFilter":{"aggType":"sum","socketPortMetricsFilter":{"fieldName":"account_id","operator":"is","values":["string1","string2"]}},"socketPortMetricsSort":{"fieldName":"account_id","order":"asc"},"timeFrame":"example_value"}'
+catocli query socketPortMetrics '{"from":1,"limit":1,"socketPortMetricsDimension":{"fieldName":"account_id"},"socketPortMetricsFilter":{"fieldName":"account_id","operator":"is","values":["string1","string2"]},"socketPortMetricsMeasure":{"aggType":"sum","alias":"string","fieldName":"account_id","trend":true},"socketPortMetricsPostAggFilter":{"aggType":"sum","socketPortMetricsFilter":{"fieldName":"account_id","operator":"is","values":["string1","string2"]}},"socketPortMetricsSort":{"alias":"string","fieldName":"account_id","order":"asc"},"timeFrame":"example_value"}'
 
 catocli query socketPortMetrics '{
     "from": 1,
@@ -29,6 +29,7 @@ catocli query socketPortMetrics '{
     },
     "socketPortMetricsMeasure": {
         "aggType": "sum",
+        "alias": "string",
         "fieldName": "account_id",
         "trend": true
     },
@@ -44,6 +45,7 @@ catocli query socketPortMetrics '{
         }
     },
     "socketPortMetricsSort": {
+        "alias": "string",
         "fieldName": "account_id",
         "order": "asc"
     },

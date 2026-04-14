@@ -2,7 +2,7 @@
     "args": {
         "accountIDs": {
             "defaultValue": null,
-            "description": "List of Unique Account Identifiers.",
+            "description": "List of unique account identifiers whose events should be returned.",
             "id_str": "accountIDs",
             "name": "accountIDs",
             "path": "accountIDs",
@@ -22,7 +22,7 @@
         },
         "filters": {
             "defaultValue": null,
-            "description": null,
+            "description": "Filters used to limit the returned events. Supported filter fields include event_type and event_sub_type. When filters are applied, the backend scans the event queue until matching events are found or a search limit is reached. The marker returned represents the queue position where the scan stopped.",
             "id_str": "filters",
             "name": "filters",
             "path": "filters",
@@ -31,13 +31,13 @@
             "responseStr": "filters:$eventFeedFieldFilterInput ",
             "type": {
                 "definition": {
-                    "description": null,
+                    "description": "Filter definition used by the eventsFeed query.",
                     "enumValues": null,
                     "fields": null,
                     "inputFields": {
                         "fieldName": {
                             "defaultValue": null,
-                            "description": null,
+                            "description": "Event field used for filtering. Supported values: event_type, event_sub_type.",
                             "id_str": "filters___fieldName",
                             "name": "fieldName",
                             "path": "filters.fieldName",
@@ -50,13 +50,13 @@
                                     "enumValues": [
                                         {
                                             "deprecationReason": null,
-                                            "description": "Sub-type for Routing, Security, Connectivity, System or Sockets Management event",
+                                            "description": "Specific subtype of the event. Supported values include: Dynamic Prevention, AI FireWall, Socket Password Reset, Data Security Alert, VPN Never-Off Bypass, XDR CDR, AI Firewall, External Access Request Update, XDR Endpoint, Recovery via Alt. WAN, SaaS Security API Anti Malware, BGP Events Discarded, ILMM Link Update, Alt. WAN Disconnected, AI User Interaction, New External Access Request Created, Alt. WAN Connected, MDR, Cloud Alert, Endpoint Protection, Remote Access, XDR Anomaly, Socket Bypass, Identity Alert, IP Conflict, Apps Security API Notification, XDR Threat, BFD Session, XDR Network, Registration Code, QUOTA LIMIT, WiFi API, LAN Monitoring, Link-Aggregation, MAC Address Authentication, Off-Cloud Recovery, User, HA Ready, HA Not Ready, LAN port connected, Socket WebUI Access, Misclassification, SDP Portal, SaaS Anomaly, DC Connectivity Failure, Socket Fail-Over, Endpoint Alert, Directory Services, LAN port disconnected, BGP Session, Socket Upgrade, Passive Connected, Passive Disconnected, User Risk Event, LDAP Provisioning, Changed Pop, BGP Routing, Sdp license, Cato Management Application, Last-Mile Quality, SCIM Provisioning, SaaS Security API Data Protection, SDP Activity, ApiKey, Multiple Users Detected, Off-Cloud Transport Disconnect, NG Anti Malware, Off-Cloud Transport Connect, Reconnected, DNS Protection, Always-On Bypass, Authenticated, Application Sign-in, LAN Firewall, Client Connectivity Policy, DHCP Lease, Apps Security API, Suspicious Activity, TLS, Anti Malware, IPS, Disconnected, Connected, Apps Security, RPF, WAN Firewall, Internet Firewall.",
                                             "isDeprecated": false,
                                             "name": "event_sub_type"
                                         },
                                         {
                                             "deprecationReason": null,
-                                            "description": "Routing, Security, Connectivity, System or Sockets Management event",
+                                            "description": "High-level category of the event. Supported values: Security, Connectivity, System, Routing, Sockets Management, Detection and Response, AI Security, Research, Posture.",
                                             "isDeprecated": false,
                                             "name": "event_type"
                                         }
@@ -80,7 +80,7 @@
                         },
                         "operator": {
                             "defaultValue": null,
-                            "description": "Use event_type and event_sub_type for events",
+                            "description": "Operator used for the filter comparison.",
                             "id_str": "filters___operator",
                             "name": "operator",
                             "path": "filters.operator",
@@ -89,29 +89,29 @@
                             "responseStr": "operator:$operator ",
                             "type": {
                                 "definition": {
-                                    "description": "Search operators on Event Feed",
+                                    "description": "Operators used when filtering events.",
                                     "enumValues": [
                                         {
                                             "deprecationReason": null,
-                                            "description": null,
+                                            "description": "Match a single value.",
                                             "isDeprecated": false,
                                             "name": "is"
                                         },
                                         {
                                             "deprecationReason": null,
-                                            "description": null,
+                                            "description": "Exclude a single value.",
                                             "isDeprecated": false,
                                             "name": "is_not"
                                         },
                                         {
                                             "deprecationReason": null,
-                                            "description": null,
+                                            "description": "Match any value in the provided list.",
                                             "isDeprecated": false,
                                             "name": "in"
                                         },
                                         {
                                             "deprecationReason": null,
-                                            "description": null,
+                                            "description": "Exclude all values in the provided list.",
                                             "isDeprecated": false,
                                             "name": "not_in"
                                         }
@@ -135,7 +135,7 @@
                         },
                         "values": {
                             "defaultValue": null,
-                            "description": null,
+                            "description": "Values used for the filter comparison. Values must match the exact strings used in the event feed.",
                             "id_str": "filters___values",
                             "name": "values",
                             "path": "filters.values",
@@ -172,7 +172,7 @@
         },
         "marker": {
             "defaultValue": null,
-            "description": "Marker to use to get results from",
+            "description": "Queue position marker. If omitted or empty, the API returns the current position in the event queue and may not return any event records.\n\nUse the marker returned in the previous response to fetch the next batch of events. Each response returns a new marker representing the next position in the queue.\n\nContinue using the returned marker in subsequent requests to read events sequentially. The queue retains events for approximately three days.\n\nAlways use the returned marker as-is and do not attempt to parse or modify it. When filters are used, the marker represents the position where the backend stopped scanning the queue and may not correspond to the last event returned in the response.",
             "id_str": "marker",
             "name": "marker",
             "path": "marker",
@@ -190,14 +190,14 @@
         }
     },
     "deprecationReason": null,
-    "description": "Event Feed for events paged by a topic partitions offsets marker",
+    "description": "Retrieve events from the account event queue. Use this query to fetch security, connectivity, system, routing, detection, and socket management events for one or more accounts. The API reads events sequentially from the queue and returns them in batches.\n\nTypical usage is to call eventsFeed without a marker. The API returns the current queue position in the marker field. This initial request may not return any event records.\n\nSubsequent requests should call eventsFeed using the marker returned in the previous response to retrieve events. Continue using the marker returned in each response to read events sequentially from the queue.",
     "fieldTypes": {},
     "isDeprecated": false,
     "name": "eventsFeed",
     "operationArgs": {
         "accountIDs": {
             "defaultValue": null,
-            "description": "List of Unique Account Identifiers.",
+            "description": "List of unique account identifiers whose events should be returned.",
             "id_str": "accountIDs",
             "name": "accountIDs",
             "path": "accountIDs",
@@ -217,7 +217,7 @@
         },
         "eventFeedFieldFilterInput": {
             "defaultValue": null,
-            "description": null,
+            "description": "Filters used to limit the returned events. Supported filter fields include event_type and event_sub_type. When filters are applied, the backend scans the event queue until matching events are found or a search limit is reached. The marker returned represents the queue position where the scan stopped.",
             "id_str": "filters",
             "name": "filters",
             "path": "filters",
@@ -226,13 +226,13 @@
             "responseStr": "filters:$eventFeedFieldFilterInput ",
             "type": {
                 "definition": {
-                    "description": null,
+                    "description": "Filter definition used by the eventsFeed query.",
                     "enumValues": null,
                     "fields": null,
                     "inputFields": {
                         "fieldName": {
                             "defaultValue": null,
-                            "description": null,
+                            "description": "Event field used for filtering. Supported values: event_type, event_sub_type.",
                             "id_str": "filters___fieldName",
                             "name": "fieldName",
                             "path": "filters.fieldName",
@@ -245,13 +245,13 @@
                                     "enumValues": [
                                         {
                                             "deprecationReason": null,
-                                            "description": "Sub-type for Routing, Security, Connectivity, System or Sockets Management event",
+                                            "description": "Specific subtype of the event. Supported values include: Dynamic Prevention, AI FireWall, Socket Password Reset, Data Security Alert, VPN Never-Off Bypass, XDR CDR, AI Firewall, External Access Request Update, XDR Endpoint, Recovery via Alt. WAN, SaaS Security API Anti Malware, BGP Events Discarded, ILMM Link Update, Alt. WAN Disconnected, AI User Interaction, New External Access Request Created, Alt. WAN Connected, MDR, Cloud Alert, Endpoint Protection, Remote Access, XDR Anomaly, Socket Bypass, Identity Alert, IP Conflict, Apps Security API Notification, XDR Threat, BFD Session, XDR Network, Registration Code, QUOTA LIMIT, WiFi API, LAN Monitoring, Link-Aggregation, MAC Address Authentication, Off-Cloud Recovery, User, HA Ready, HA Not Ready, LAN port connected, Socket WebUI Access, Misclassification, SDP Portal, SaaS Anomaly, DC Connectivity Failure, Socket Fail-Over, Endpoint Alert, Directory Services, LAN port disconnected, BGP Session, Socket Upgrade, Passive Connected, Passive Disconnected, User Risk Event, LDAP Provisioning, Changed Pop, BGP Routing, Sdp license, Cato Management Application, Last-Mile Quality, SCIM Provisioning, SaaS Security API Data Protection, SDP Activity, ApiKey, Multiple Users Detected, Off-Cloud Transport Disconnect, NG Anti Malware, Off-Cloud Transport Connect, Reconnected, DNS Protection, Always-On Bypass, Authenticated, Application Sign-in, LAN Firewall, Client Connectivity Policy, DHCP Lease, Apps Security API, Suspicious Activity, TLS, Anti Malware, IPS, Disconnected, Connected, Apps Security, RPF, WAN Firewall, Internet Firewall.",
                                             "isDeprecated": false,
                                             "name": "event_sub_type"
                                         },
                                         {
                                             "deprecationReason": null,
-                                            "description": "Routing, Security, Connectivity, System or Sockets Management event",
+                                            "description": "High-level category of the event. Supported values: Security, Connectivity, System, Routing, Sockets Management, Detection and Response, AI Security, Research, Posture.",
                                             "isDeprecated": false,
                                             "name": "event_type"
                                         }
@@ -275,7 +275,7 @@
                         },
                         "operator": {
                             "defaultValue": null,
-                            "description": "Use event_type and event_sub_type for events",
+                            "description": "Operator used for the filter comparison.",
                             "id_str": "filters___operator",
                             "name": "operator",
                             "path": "filters.operator",
@@ -284,29 +284,29 @@
                             "responseStr": "operator:$operator ",
                             "type": {
                                 "definition": {
-                                    "description": "Search operators on Event Feed",
+                                    "description": "Operators used when filtering events.",
                                     "enumValues": [
                                         {
                                             "deprecationReason": null,
-                                            "description": null,
+                                            "description": "Match a single value.",
                                             "isDeprecated": false,
                                             "name": "is"
                                         },
                                         {
                                             "deprecationReason": null,
-                                            "description": null,
+                                            "description": "Exclude a single value.",
                                             "isDeprecated": false,
                                             "name": "is_not"
                                         },
                                         {
                                             "deprecationReason": null,
-                                            "description": null,
+                                            "description": "Match any value in the provided list.",
                                             "isDeprecated": false,
                                             "name": "in"
                                         },
                                         {
                                             "deprecationReason": null,
-                                            "description": null,
+                                            "description": "Exclude all values in the provided list.",
                                             "isDeprecated": false,
                                             "name": "not_in"
                                         }
@@ -330,7 +330,7 @@
                         },
                         "values": {
                             "defaultValue": null,
-                            "description": null,
+                            "description": "Values used for the filter comparison. Values must match the exact strings used in the event feed.",
                             "id_str": "filters___values",
                             "name": "values",
                             "path": "filters.values",
@@ -367,7 +367,7 @@
         },
         "fieldNames": {
             "defaultValue": null,
-            "description": null,
+            "description": "Optional list of event fields to return for each event record. Limiting the returned fields can significantly reduce response size when exporting events to external systems. Example: [\"event_type\",\"event_sub_type\",\"src_ip\",\"dest_ip\",\"action\",\"time\"].",
             "id_str": "records___fieldNames",
             "name": "fieldNames",
             "path": "records.fieldNames",
@@ -2385,7 +2385,7 @@
         },
         "marker": {
             "defaultValue": null,
-            "description": "Marker to use to get results from",
+            "description": "Queue position marker. If omitted or empty, the API returns the current position in the event queue and may not return any event records.\n\nUse the marker returned in the previous response to fetch the next batch of events. Each response returns a new marker representing the next position in the queue.\n\nContinue using the returned marker in subsequent requests to read events sequentially. The queue retains events for approximately three days.\n\nAlways use the returned marker as-is and do not attempt to parse or modify it. When filters are used, the marker represents the position where the backend stopped scanning the queue and may not correspond to the last event returned in the response.",
             "id_str": "marker",
             "name": "marker",
             "path": "marker",
@@ -2405,13 +2405,13 @@
     "path": "query.eventsFeed",
     "type": {
         "definition": {
-            "description": null,
+            "description": "Paged response returned by eventsFeed.",
             "enumValues": null,
             "fields": {
                 "accounts": {
                     "args": {},
                     "deprecationReason": null,
-                    "description": null,
+                    "description": "Event results grouped by account.",
                     "id_str": "accounts",
                     "isDeprecated": false,
                     "name": "accounts",
@@ -2421,13 +2421,13 @@
                     "responseStr": "accounts:$eventsFeedAccountRecords ",
                     "type": {
                         "definition": {
-                            "description": null,
+                            "description": "Event feed results for a single account.",
                             "enumValues": null,
                             "fields": {
                                 "errorString": {
                                     "args": {},
                                     "deprecationReason": null,
-                                    "description": null,
+                                    "description": "Error message returned if the API cannot retrieve events for the account.",
                                     "id_str": "accounts___errorString",
                                     "isDeprecated": false,
                                     "name": "errorString",
@@ -2447,7 +2447,7 @@
                                 "id": {
                                     "args": {},
                                     "deprecationReason": null,
-                                    "description": null,
+                                    "description": "Account identifier.",
                                     "id_str": "accounts___id",
                                     "isDeprecated": false,
                                     "name": "id",
@@ -2468,7 +2468,7 @@
                                     "args": {
                                         "records___fieldNames": {
                                             "defaultValue": null,
-                                            "description": null,
+                                            "description": "Optional list of event fields to return for each event record. Limiting the returned fields can significantly reduce response size when exporting events to external systems. Example: [\"event_type\",\"event_sub_type\",\"src_ip\",\"dest_ip\",\"action\",\"time\"].",
                                             "id_str": "records___fieldNames",
                                             "name": "fieldNames",
                                             "path": "records.fieldNames",
@@ -4486,7 +4486,7 @@
                                         }
                                     },
                                     "deprecationReason": null,
-                                    "description": null,
+                                    "description": "Event records retrieved for the account. Use fieldNames to limit the event fields returned in each record.",
                                     "id_str": "accounts___records",
                                     "isDeprecated": false,
                                     "name": "records",
@@ -4496,13 +4496,13 @@
                                     "responseStr": "records:$eventRecord ",
                                     "type": {
                                         "definition": {
-                                            "description": null,
+                                            "description": "Single event record returned by eventsFeed.",
                                             "enumValues": null,
                                             "fields": {
                                                 "fieldsMap": {
                                                     "args": {},
                                                     "deprecationReason": null,
-                                                    "description": "fields in map format (see Map scalar)",
+                                                    "description": "Map of event field names to their values. Keys correspond to the values defined in the EventFieldName enum.",
                                                     "id_str": "accounts___records___fieldsMap",
                                                     "isDeprecated": false,
                                                     "name": "fieldsMap",
@@ -4522,7 +4522,7 @@
                                                 "flatFields": {
                                                     "args": {},
                                                     "deprecationReason": null,
-                                                    "description": "Simplified fields, as array of name value tuples, e.g: [ [ \"name\", \"val\" ], [ \"name2\", \"val2\" ] ... ]",
+                                                    "description": "Event fields represented as name-value tuples. Example: [[\"event_type\",\"Security\"],[\"event_sub_type\",\"Internet Firewall\"]].",
                                                     "id_str": "accounts___records___flatFields",
                                                     "isDeprecated": false,
                                                     "name": "flatFields",
@@ -4545,7 +4545,7 @@
                                                 "time": {
                                                     "args": {},
                                                     "deprecationReason": null,
-                                                    "description": null,
+                                                    "description": "Timestamp when the event occurred.",
                                                     "id_str": "accounts___records___time",
                                                     "isDeprecated": false,
                                                     "name": "time",
@@ -4600,7 +4600,7 @@
                 "fetchedCount": {
                     "args": {},
                     "deprecationReason": null,
-                    "description": null,
+                    "description": "Number of event records returned in this response.",
                     "id_str": "fetchedCount",
                     "isDeprecated": false,
                     "name": "fetchedCount",
@@ -4621,7 +4621,7 @@
                 "marker": {
                     "args": {},
                     "deprecationReason": null,
-                    "description": null,
+                    "description": "Marker representing the next position in the event queue. Use this value in the next request to continue reading events.",
                     "id_str": "marker",
                     "isDeprecated": false,
                     "name": "marker",

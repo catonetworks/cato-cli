@@ -205,3 +205,7 @@
 
 ## 3.0.65 (2026-04-03)
 - Addeded new operations, and added private settings for managing session
+
+## 3.0.66 (2026-04-13)
+- Updated export function to properly hydrate site configs for socket_site export using new networkRangeList() operation
+- Regenrated CLI from latest schema 

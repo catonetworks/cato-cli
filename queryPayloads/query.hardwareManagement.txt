@@ -1,4 +1,4 @@
-query hardwareManagement ( $accountId:ID! $socketInventoryInput:SocketInventoryInput) {
+query hardwareManagement ( $accountId:ID! $socketInventoryInput:SocketInventoryInput $socketInventoryDistributionInput:SocketInventoryDistributionInput) {
 	hardwareManagement ( accountId:$accountId ) {
 		socketInventory ( input:$socketInventoryInput  )  {
 			items {
@@ -17,6 +17,7 @@ query hardwareManagement ( $accountId:ID! $socketInventoryInput:SocketInventoryI
 				}
 				shippingDate
 				socketType
+				orderType
 				trackingUrl
 				trackingNumber
 				shippingCompany
@@ -31,6 +32,13 @@ query hardwareManagement ( $accountId:ID! $socketInventoryInput:SocketInventoryI
 			}
 			pageInfo {
 				total
+			}
+		}
+		socketInventoryDistribution ( input:$socketInventoryDistributionInput  )  {
+			items {
+				socketType
+				hardwareVersion
+				count
 			}
 		}
 	}	

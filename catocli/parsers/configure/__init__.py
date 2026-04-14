@@ -13,6 +13,7 @@ from .configure import (
     show_profile
 )
 from ...Utils.cliutils import load_private_settings
+from ...Utils.profile_manager import get_profile_manager
 
 
 def _show_configure_help(args, configuration=None):
@@ -52,10 +53,13 @@ def configure_parse(subparsers):
         help='Configure a profile with credentials',
         usage='catocli configure set [--profile PROFILE] [options]'
     )
+    # Get current active profile to use as default
+    pm = get_profile_manager()
+    current_profile = pm.get_current_profile()
     config_parser.add_argument(
-        '--profile', 
-        default='default',
-        help='Profile name to configure (default: default)'
+        '--profile',
+        default=current_profile,
+        help=f'Profile name to configure (default: {current_profile})'
     )
     config_parser.add_argument(
         '--endpoint',

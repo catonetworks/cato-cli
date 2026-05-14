@@ -1885,17 +1885,14 @@ def apply_template_variables(template, variables, private_config):
             arg_path = arg.get('path')
 
             if arg_name and arg_name in variables and arg_path:
-                try:
-                    # Convert array path to dot-notation string if needed
-                    # e.g., ["variables", "accountId"] -> "variables.accountId"
-                    if isinstance(arg_path, list):
-                        path_str = '.'.join(str(p) for p in arg_path)
-                    else:
-                        path_str = arg_path
-                    set_nested_value(result, path_str, variables[arg_name])
-                except Exception:
-                    # If path insertion fails, continue to template replacement
-                    pass
+                # Normalize to a list so both string and array paths are handled uniformly
+                paths = arg_path if isinstance(arg_path, list) else [arg_path]
+                for path_str in paths:
+                    try:
+                        set_nested_value(result, path_str, variables[arg_name])
+                    except Exception:
+                        # If path insertion fails, continue to template replacement
+                        pass
     
     # Second, handle traditional template variable replacement as fallback
     def traverse_and_replace(obj, path=""):

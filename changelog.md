@@ -210,5 +210,5 @@
 - Updated export function to properly hydrate site configs for socket_site export using new networkRangeList() operation
 - Regenrated CLI from latest schema 
 
-## 3.0.67 (2026-05-14)
+## 3.0.69 (2026-05-14)
 - Updated private parser to properly support accountId support as list

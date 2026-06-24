@@ -34,6 +34,22 @@ catocli query auditFeed '{
 }'
 ```
 
+### Continuous auditFeed streaming
+
+```bash
+# Continuous polling with persistent marker tracking
+catocli query auditFeed --run --print-events --marker-file=./audit-marker.txt
+
+# Stream audit records as newline-delimited JSON to a SIEM collector, such as Rapid7
+catocli query auditFeed --run -n rapid7-collector.local:10000 --append-new-line --marker-file=./audit-marker.txt
+
+# Filter audit records by audit field
+catocli query auditFeed --run --filter-field=change_type --filter-values="CREATED,MODIFIED,DELETED" --print-events
+
+# Return only selected audit fields
+catocli query auditFeed --run --field-names="admin,change_type,model_name,account_id" --print-events
+```
+
 
 #### TimeFrame Parameter Examples
 

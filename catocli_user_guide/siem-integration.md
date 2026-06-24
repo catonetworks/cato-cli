@@ -1,13 +1,13 @@
 # CatoCLI SIEM Integration Guide
 
-This guide demonstrates how to integrate CatoCLI's `eventsFeed` query with various SIEM (Security Information and Event Management) platforms for real-time security monitoring and analysis.
+This guide demonstrates how to integrate CatoCLI's `eventsFeed` and `auditFeed` queries with various SIEM (Security Information and Event Management) platforms for real-time security monitoring and analysis.
 
 ## Overview
 
-The CatoCLI `eventsFeed` query provides real-time streaming access to Cato Networks security and network events, making it ideal for SIEM integration. The eventsFeed supports:
+The CatoCLI `eventsFeed` query provides real-time streaming access to Cato Networks security and network events. The `auditFeed` query provides continual access to administrative and configuration audit records. Both feeds support SIEM-friendly collection patterns:
 
 - **Continuous polling** with persistent marker tracking
-- **Event filtering** by type and sub-type
+- **Feed filtering** by event type/sub-type for `eventsFeed` and audit field filters for `auditFeed`
 - **Multiple output formats** (JSON, network streaming, Azure Sentinel)
 - **Real-time streaming** to network endpoints
 - **Built-in Azure Sentinel integration**
@@ -44,6 +44,29 @@ catocli query eventsFeed --run --print-events --event-types="Security,Connectivi
 catocli query eventsFeed --run --print-events --event-sub-types="Internet Firewall,WAN Firewall"
 ```
 
+## Basic auditFeed Usage
+
+### Simple Audit Retrieval
+```bash
+# Fetch audit records once and display
+catocli query auditFeed '{"timeFrame":"last.P1D"}' --print-events --prettify
+
+# Fetch selected audit fields
+catocli query auditFeed '{"timeFrame":"last.P1D"}' --print-events --field-names="admin,change_type,model_name,account_id"
+```
+
+### Continuous Audit Streaming
+```bash
+# Continuous polling with marker persistence
+catocli query auditFeed --run --print-events --marker-file=./audit-marker.txt -v
+
+# Use an explicit time frame for the audit feed window
+catocli query auditFeed '{"timeFrame":"last.P14D"}' --run --print-events --marker-file=./audit-marker.txt
+
+# Filter audit records by audit field
+catocli query auditFeed --run --print-events --filter-field=change_type --filter-values="CREATED,MODIFIED,DELETED"
+```
+
 ## SIEM Platform Integrations
 
 ### 1. Microsoft Azure Sentinel
@@ -56,6 +79,9 @@ catocli query eventsFeed --run -z "workspace-id:shared-key"
 
 # With event filtering and local display
 catocli query eventsFeed --run --print-events --prettify -z "workspace-id:shared-key" --event-types="Security"
+
+# Stream audit records to Azure Sentinel
+catocli query auditFeed --run -z "workspace-id:shared-key" --marker-file=./audit-marker.txt
 ```
 
 **Setup Steps:**
@@ -64,12 +90,33 @@ catocli query eventsFeed --run --print-events --prettify -z "workspace-id:shared
 3. Run the command with your workspace credentials
 4. Events will automatically appear in Azure Sentinel under custom logs
 
-### 2. Splunk Integration
+### 2. Rapid7 InsightIDR / Collector Integration
+
+Rapid7-compatible ingestion can use CatoCLI's TCP streaming mode. Configure a Rapid7 collector, NXLog, syslog-ng, or another local forwarder to listen on a TCP port and forward newline-delimited JSON into InsightIDR.
+
+```bash
+# Stream security/network events as newline-delimited JSON
+catocli query eventsFeed --run -n rapid7-collector.local:10000 --append-new-line --marker-file=./events-marker.txt
+
+# Stream audit records as newline-delimited JSON
+catocli query auditFeed --run -n rapid7-collector.local:10000 --append-new-line --marker-file=./audit-marker.txt
+
+# Stream only selected audit changes
+catocli query auditFeed --run -n rapid7-collector.local:10000 --append-new-line \
+  --filter-field=change_type --filter-values="CREATED,MODIFIED,DELETED"
+```
+
+Use `--append-new-line` for Rapid7-style collectors that expect one JSON document per line. Persist separate marker files for `eventsFeed` and `auditFeed` so each feed resumes independently after restarts.
+
+### 3. Splunk Integration
 
 #### Method 1: TCP Network Streaming
 ```bash
 # Stream events to Splunk Universal Forwarder
 catocli query eventsFeed --run -n 192.168.1.100:8000 --append-new-line -v
+
+# Stream audit records to Splunk Universal Forwarder
+catocli query auditFeed --run -n 192.168.1.100:8000 --append-new-line --marker-file=./audit-marker.txt -v
 
 # With event filtering
 catocli query eventsFeed --run -n 192.168.1.100:8000 --append-new-line --event-types="Security,Connectivity"
@@ -88,6 +135,9 @@ index = security
 # Write events to file for Splunk monitoring
 catocli query eventsFeed --run --print-events > /var/log/cato/events.log &
 
+# Write audit records to file for Splunk monitoring
+catocli query auditFeed --run --print-events --marker-file=/var/lib/cato/audit-marker.txt > /var/log/cato/audit.log &
+
 # With log rotation
 catocli query eventsFeed --run --print-events --fetch-limit=1000 --runtime-limit=3600 >> /var/log/cato/events-$(date +%Y%m%d).log
 ```
@@ -97,9 +147,13 @@ catocli query eventsFeed --run --print-events --fetch-limit=1000 --runtime-limit
 [monitor:///var/log/cato/events*.log]
 sourcetype = cato_events
 index = security
+
+[monitor:///var/log/cato/audit*.log]
+sourcetype = cato_audit
+index = security
 ```
 
-### 3. Elasticsearch/ELK Stack
+### 4. Elasticsearch/ELK Stack
 
 #### Using Logstash TCP Input
 ```bash
@@ -158,7 +212,7 @@ output.elasticsearch:
   index: "cato-events-%{+yyyy.MM.dd}"
 ```
 
-### 4. QRadar Integration
+### 5. QRadar Integration
 
 #### Using Syslog Protocol
 ```bash
@@ -176,7 +230,7 @@ catocli query eventsFeed --run --print-events --event-types="Security" | \
 awk '{print strftime("%Y-%m-%d %H:%M:%S"), "CATO", $0}' >> /var/log/cato-qradar.log
 ```
 
-### 5. IBM Security QRadar LEEF Format
+### 6. IBM Security QRadar LEEF Format
 
 ```bash
 # Convert to LEEF format for QRadar
@@ -295,7 +349,7 @@ services:
     restart: unless-stopped
 ```
 
-## Event Schema and Fields
+## Event and Audit Schema Fields
 
 Common event fields in CatoCLI eventsFeed:
 
@@ -314,6 +368,21 @@ Common event fields in CatoCLI eventsFeed:
   "userName": "john.doe@company.com",
   "severity": "High",
   "threatName": "Malware.Generic"
+}
+```
+
+Common audit fields in CatoCLI auditFeed:
+
+```json
+{
+  "audit_timestamp": "2026-05-22T10:30:00Z",
+  "event_timestamp": "2026-05-22T10:30:00Z",
+  "admin": "admin@example.com",
+  "change_type": "MODIFIED",
+  "model_name": "My Site",
+  "model_type": "Site",
+  "module": "configuration",
+  "account_id": "12345"
 }
 ```
 
@@ -340,8 +409,14 @@ fi
 # Enable verbose debugging
 catocli query eventsFeed --run --print-events -vv --marker-file=./debug-marker.txt
 
+# Debug auditFeed continuous mode
+catocli query auditFeed --run --print-events -vv --marker-file=./debug-audit-marker.txt --runtime-limit=60
+
 # Test connectivity without continuous mode
 catocli query eventsFeed --print-events --fetch-limit=5
+
+# Test auditFeed without continuous mode
+catocli query auditFeed '{"timeFrame":"last.P1D"}' --print-events --fetch-limit=5
 ```
 
 ## Best Practices
@@ -361,4 +436,4 @@ catocli query eventsFeed --print-events --fetch-limit=5
 4. **Authentication Errors**: Verify CatoCLI profile configuration
 5. **Network Issues**: Test connectivity to SIEM endpoints
 
-This guide provides comprehensive integration patterns for connecting CatoCLI eventsFeed with major SIEM platforms. Adapt the examples to your specific environment and security requirements.
+This guide provides comprehensive integration patterns for connecting CatoCLI eventsFeed and auditFeed with major SIEM platforms. Adapt the examples to your specific environment and security requirements.

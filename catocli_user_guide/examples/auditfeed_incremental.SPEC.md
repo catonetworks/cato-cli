@@ -236,6 +236,7 @@ Required behavior:
 - After the response is processed and output succeeds, persist the response marker.
 - If stored `timeFrame` differs from requested `--time-frame`, reset `marker` to `""` and reset `seenHashes`.
 - Do not compute or mutate Cato markers locally.
+- If the response marker equals the marker that was just sent while `hasMore` is true, stop the current drain pass, because continuing would refetch the same records (all deduplicated to nothing) forever. See Termination Guarantees.
 
 ## Polling Sequence
 
@@ -251,9 +252,10 @@ For each outer poll cycle:
 8. Deduplicate records using persisted `seenHashes`.
 9. Emit only new records to stdout.
 10. Persist `accountID`, `timeFrame`, response `marker`, and updated `seenHashes`.
-11. If `hasMore` is true, repeat from step 4 using the persisted response marker.
-12. If `hasMore` is false and `--run-once` is set, exit.
-13. If `hasMore` is false and `--run-once` is not set, sleep `--poll-interval` seconds and begin a new outer poll cycle.
+11. If `hasMore` is true and the marker advanced, repeat from step 4 using the persisted response marker.
+12. If `hasMore` is true but the marker did not advance, end the current drain pass (no-progress guard) and treat it like a drained queue. See Termination Guarantees.
+13. If the drain pass ended and `--run-once` is set, exit.
+14. If the drain pass ended and `--run-once` is not set, sleep `--poll-interval` seconds and begin a new outer poll cycle.
 
 Important invariant:
 
@@ -323,16 +325,69 @@ Caveat:
 Required behavior:
 
 - Retry transient HTTP errors: `429`, `500`, `502`, `503`, and `504`.
-- Honor `Retry-After` when present.
+- Honor `Retry-After` when present (see Retry-After parsing below).
 - Otherwise use exponential backoff, capped at 30 seconds.
 - Retry transient network errors up to `--max-retries`.
 - On final failure, raise a clear error and do not update the state file.
 - If the GraphQL response contains `errors`, raise and do not update the state file.
+- Every retry path must increment the retry counter so the `--max-retries` bound is always reachable. A retry path that sleeps and continues without incrementing the counter is a defect, because the bound can never be reached and the script spins forever.
+
+### Retry-After parsing
+
+RFC 7231 defines two permitted forms for the `Retry-After` response header:
+
+- *delay-seconds* – a non-negative decimal integer, e.g. `"120"`. Converted directly to `float`.
+- *HTTP-date* – a full date-time string, e.g. `"Wed, 24 Jun 2026 11:30:00 GMT"`. Converted by computing `max(0, target_utc - now_utc)` in seconds.
+
+Rules:
+
+- Negative delay-seconds must be clamped to `0.0`.
+- HTTP-dates in the past must produce `0.0` (retry immediately without extra delay).
+- Naive datetimes in HTTP-date form must be treated as UTC.
+- If the header is absent, empty, or cannot be parsed as either form, return `None` so the caller falls back to exponential backoff.
+
+Canonical implementation:
+
+```python
+def parse_retry_after(retry_after: str | None) -> float | None:
+    if not retry_after:
+        return None
+    retry_after = retry_after.strip()
+    try:
+        return max(0.0, float(retry_after))
+    except ValueError:
+        pass
+    try:
+        parsed_date = email.utils.parsedate_to_datetime(retry_after)
+    except (TypeError, ValueError):
+        return None
+    if parsed_date is None:
+        return None
+    if parsed_date.tzinfo is None:
+        parsed_date = parsed_date.replace(tzinfo=timezone.utc)
+    return max(0.0, (parsed_date - datetime.now(timezone.utc)).total_seconds())
+```
 
 Security requirements:
 
 - Do not include API token values in raised errors or output.
 - Error output may include HTTP status and response body, but must avoid logging request headers.
+
+## Termination Guarantees
+
+The script must always make progress or stop. Every retry or pagination loop must have a bound that is guaranteed to be reached.
+
+Required behavior:
+
+- Every retry loop must increment its retry counter on every retry path (HTTP error status and network error) and must raise once `--max-retries` is exceeded.
+- The inner pagination loop must end the current drain pass when the response marker equals the marker just sent while `hasMore` is true (no-progress guard), so a stuck or misbehaving feed cannot loop forever.
+- The inner pagination loop must also end on `hasMore=false`.
+- The no-progress guard must behave like a drained queue: in `--run-once` mode the script exits, otherwise it sleeps `--poll-interval` and starts a new outer poll cycle.
+- The no-progress notice must be written to stderr, never to stdout, so it does not corrupt the newline-delimited JSON record stream.
+
+Rationale:
+
+- A retry path that does not increment the counter, or a pagination loop with no no-progress guard, can run forever and is treated as a defect.
 
 ## Acceptance Criteria
 
@@ -395,6 +450,42 @@ Security requirements:
 - And the next response contains only new records.
 - Then the dedup layer emits all returned records and does not change correct behavior.
 
+### No-progress pagination stop
+
+- Given a response with `hasMore: true` and a marker equal to the marker just sent.
+- Then the script ends the current drain pass instead of issuing another identical request.
+- And the no-progress notice is written to stderr, not stdout.
+- And in `--run-once` mode the script exits, otherwise it sleeps `--poll-interval` and re-polls.
+
+### Bounded retries
+
+- Given the API repeatedly returns a retryable failure.
+- Then each retry increments the retry counter.
+- And the script raises and stops once `--max-retries` is exceeded, rather than looping forever.
+
+### Retry-After delay-seconds form
+
+- Given the API returns `429` with `Retry-After: 10`.
+- Then `parse_retry_after("10")` returns `10.0`.
+- And the script sleeps `10.0` seconds before retrying.
+
+### Retry-After HTTP-date form
+
+- Given the API returns `429` with `Retry-After` set to an HTTP-date approximately 30 seconds in the future.
+- Then `parse_retry_after` parses the date, computes the remaining seconds, and returns approximately `30.0`.
+- And the script sleeps for that duration before retrying without raising.
+
+### Retry-After unparseable or absent
+
+- Given `Retry-After` is `None`, empty, or an unrecognised string (e.g. `"not-a-date"`).
+- Then `parse_retry_after` returns `None`.
+- And the retry falls back to exponential backoff `min(2 ** attempt, 30)`.
+
+### Retry-After past HTTP-date clamped to zero
+
+- Given `Retry-After` is an HTTP-date in the past.
+- Then `parse_retry_after` returns `0.0` (clamp, do not produce a negative delay).
+
 ## Implementation Checklist
 
 - [ ] Use parameterized GraphQL query and variables.
@@ -410,7 +501,9 @@ Security requirements:
 - [ ] Emit only new records to stdout.
 - [ ] Persist response marker and updated `seenHashes` after successful output.
 - [ ] Bound `seenHashes` to `MAX_SEEN_HASHES = 5000`.
-- [ ] Retry transient HTTP/network failures with `Retry-After` or exponential backoff.
+- [ ] Retry transient HTTP/network failures with `Retry-After` (parsed per RFC 7231 via `parse_retry_after`) or exponential backoff.
+- [ ] Increment the retry counter on every retry path so the `--max-retries` bound is always reachable.
+- [ ] End the drain pass when the marker does not advance while `hasMore` is true, writing the notice to stderr.
 - [ ] Do not update state on permanent API, GraphQL, or output failures.
-- [ ] Add tests or simulations for boundary duplicate, mixed duplicate/new page, time-frame reset, and restart persistence.
+- [ ] Add tests for: `parse_retry_after` (delay-seconds, HTTP-date future/past, missing/garbage), retry counter increment, boundary duplicate, mixed duplicate/new page, time-frame reset, restart persistence, and no-progress stop.
 

@@ -433,13 +433,12 @@ def send_record_to_sentinel(audit_record, customer_id, shared_key, args):
             'x-ms-date': rfc1123date
         }
 
-        no_verify = ssl._create_unverified_context()
         request = urllib.request.Request(
             url='https://' + customer_id + '.ods.opinsights.azure.com/api/logs?api-version=2016-04-01',
             data=json_data,
             headers=headers
         )
-        response = urllib.request.urlopen(request, context=no_verify, timeout=30)
+        response = urllib.request.urlopen(request, context=ssl.create_default_context(), timeout=30)
 
         if response.code < 200 or response.code >= 300:
             log(f"Sentinel API returned {response.code}", args)

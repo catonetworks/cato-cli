@@ -13,17 +13,21 @@ Key behavior:
 - the marker boundary is inclusive, so the last record(s) of a drained window are
   re-returned on the next poll; a persisted record-level seen-hash set drops these
   duplicates so each audit record is emitted exactly once
+- pagination stops if the marker does not advance while hasMore is true, to avoid
+  an infinite loop on a stuck or misbehaving feed
 """
 
 from __future__ import annotations
 
 import argparse
+import email.utils
 import hashlib
 import json
 import sys
 import time
 import urllib.error
 import urllib.request
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -143,6 +147,34 @@ def graphql_call(endpoint: str, token: str, query: str, variables: dict[str, Any
         return json.loads(response.read().decode("utf-8"))
 
 
+def parse_retry_after(retry_after: str | None) -> float | None:
+    """Parse a Retry-After header value into seconds.
+
+    RFC 7231 permits two forms: delay-seconds (e.g. "120") or an HTTP-date
+    (e.g. "Wed, 24 Jun 2026 11:30:00 GMT"). Returns None if the value is
+    missing or unparseable so the caller can fall back to its own backoff.
+    """
+    if not retry_after:
+        return None
+
+    retry_after = retry_after.strip()
+
+    try:
+        return max(0.0, float(retry_after))
+    except ValueError:
+        pass
+
+    try:
+        parsed_date = email.utils.parsedate_to_datetime(retry_after)
+    except (TypeError, ValueError):
+        return None
+    if parsed_date is None:
+        return None
+    if parsed_date.tzinfo is None:
+        parsed_date = parsed_date.replace(tzinfo=timezone.utc)
+    return max(0.0, (parsed_date - datetime.now(timezone.utc)).total_seconds())
+
+
 def graphql_call_with_retries(
     endpoint: str,
     token: str,
@@ -157,8 +189,8 @@ def graphql_call_with_retries(
         except urllib.error.HTTPError as exc:
             body = exc.read().decode("utf-8", errors="replace")
             if exc.code in {429, 500, 502, 503, 504} and attempt < max_retries:
-                retry_after = exc.headers.get("Retry-After")
-                delay = float(retry_after) if retry_after else min(2 ** attempt, 30)
+                retry_after = parse_retry_after(exc.headers.get("Retry-After"))
+                delay = retry_after if retry_after is not None else min(2 ** attempt, 30)
                 time.sleep(delay)
                 attempt += 1
                 continue
@@ -243,6 +275,7 @@ def main() -> int:
             records = extract_records(audit_feed)
             next_marker = audit_feed.get("marker", "") or ""
             has_more = bool(audit_feed.get("hasMore"))
+            marker_advanced = next_marker != marker
 
             # Record-level dedup: the auditFeed marker boundary is inclusive, so
             # the last record(s) of a drained window are re-returned on the next
@@ -279,6 +312,17 @@ def main() -> int:
 
             marker = next_marker
             if not has_more:
+                break
+
+            # No-progress guard: if the API still reports hasMore but the marker
+            # did not advance, paginating again would refetch the same records
+            # (all deduplicated to nothing) forever, so stop this drain pass.
+            if not marker_advanced:
+                print(
+                    f"Marker did not advance ({marker!r}) while hasMore is true, "
+                    "stopping to avoid an infinite loop",
+                    file=sys.stderr,
+                )
                 break
 
         if args.run_once:

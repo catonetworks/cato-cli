@@ -381,32 +381,37 @@ def setup_output_options(args):
 def send_audit_records_to_outputs(audit_records, network_config, sentinel_config, args):
     append_newline = getattr(args, 'append_new_line', False)
 
-    for audit_record in audit_records:
-        try:
-            audit_json = json.dumps(audit_record, ensure_ascii=False)
-            if append_newline:
-                audit_json += "\n"
+    if network_config and audit_records:
+        send_records_to_network(audit_records, network_config['host'], network_config['port'], append_newline, args)
 
-            if network_config:
-                send_record_to_network(audit_json, network_config['host'], network_config['port'], args)
-
-            if sentinel_config:
+    if sentinel_config:
+        for audit_record in audit_records:
+            try:
                 send_record_to_sentinel(audit_record, sentinel_config['customer_id'], sentinel_config['shared_key'], args)
-        except Exception as e:
-            log(f"Error processing audit record for output: {e}", args)
+            except Exception as e:
+                log(f"Error sending audit record to Sentinel: {e}", args)
 
 
-def send_record_to_network(record_json, host, port, args):
+def send_records_to_network(audit_records, host, port, append_newline, args):
+    """Send a batch of audit records over a single TCP connection.
+
+    One connection is opened per batch (not per record) to avoid connection
+    storms and ephemeral port exhaustion against SIEM collectors at high
+    throughput."""
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
             sock.settimeout(10)
             sock.connect((host, port))
-            sock.sendall(record_json.encode('utf-8'))
-        logd(f"Sent audit record to {host}:{port}", args)
+            for audit_record in audit_records:
+                record_json = json.dumps(audit_record, ensure_ascii=False)
+                if append_newline:
+                    record_json += "\n"
+                sock.sendall(record_json.encode('utf-8'))
+        logd(f"Sent {len(audit_records)} audit records to {host}:{port}", args)
     except socket.error as e:
         log(f"Network error sending to {host}:{port}: {e}", args)
     except Exception as e:
-        log(f"Error sending audit record to network: {e}", args)
+        log(f"Error sending audit records to network: {e}", args)
 
 
 def build_sentinel_signature(customer_id, shared_key, date, content_length):

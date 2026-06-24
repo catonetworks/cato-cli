@@ -249,14 +249,38 @@ def test_print_events_prettifies_audit_records(monkeypatch, capsys, tmp_path):
     assert '  "change_type": "CREATED"' in stdout
 
 
-def test_network_output_appends_newline(monkeypatch):
-    sent_payloads = []
+class FakeSocket:
+    """Minimal socket stub that records connect/sendall calls.
 
-    monkeypatch.setattr(
-        auditFeedEnhanced,
-        "send_record_to_network",
-        lambda payload, host, port, args: sent_payloads.append((payload, host, port)),
-    )
+    Shared across tests to assert one connection is opened per batch."""
+
+    instances = []
+
+    def __init__(self, *args, **kwargs):
+        self.connected_to = None
+        self.sent = []
+        self.timeout = None
+        FakeSocket.instances.append(self)
+
+    def settimeout(self, timeout):
+        self.timeout = timeout
+
+    def connect(self, address):
+        self.connected_to = address
+
+    def sendall(self, data):
+        self.sent.append(data)
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *exc):
+        return False
+
+
+def test_network_output_appends_newline(monkeypatch):
+    FakeSocket.instances = []
+    monkeypatch.setattr(auditFeedEnhanced.socket, "socket", FakeSocket)
 
     args = SimpleNamespace(append_new_line=True, v=False, very_verbose=False)
     auditFeedEnhanced.send_audit_records_to_outputs(
@@ -266,11 +290,55 @@ def test_network_output_appends_newline(monkeypatch):
         args,
     )
 
-    payload, host, port = sent_payloads[0]
+    assert len(FakeSocket.instances) == 1
+    sock = FakeSocket.instances[0]
+    assert sock.connected_to == ("rapid7-collector.local", 10000)
+    assert len(sock.sent) == 1
+    payload = sock.sent[0].decode("utf-8")
     assert payload.endswith("\n")
     assert json.loads(payload)["admin"] == "admin@example.com"
-    assert host == "rapid7-collector.local"
-    assert port == 10000
+
+
+def test_network_output_uses_single_connection_per_batch(monkeypatch):
+    FakeSocket.instances = []
+    monkeypatch.setattr(auditFeedEnhanced.socket, "socket", FakeSocket)
+
+    records = [
+        {"audit_timestamp": "2026-05-22T10:00:00Z", "admin": "a@example.com"},
+        {"audit_timestamp": "2026-05-22T10:00:01Z", "admin": "b@example.com"},
+        {"audit_timestamp": "2026-05-22T10:00:02Z", "admin": "c@example.com"},
+    ]
+    args = SimpleNamespace(append_new_line=True, v=False, very_verbose=False)
+    auditFeedEnhanced.send_audit_records_to_outputs(
+        records,
+        {"host": "collector.local", "port": 514},
+        None,
+        args,
+    )
+
+    # One connection opened for the whole batch, not one per record
+    assert len(FakeSocket.instances) == 1
+    sock = FakeSocket.instances[0]
+    assert sock.connected_to == ("collector.local", 514)
+    # Each record was sent over that single connection
+    assert len(sock.sent) == 3
+    admins = [json.loads(p.decode("utf-8"))["admin"] for p in sock.sent]
+    assert admins == ["a@example.com", "b@example.com", "c@example.com"]
+
+
+def test_network_output_no_connection_when_batch_empty(monkeypatch):
+    FakeSocket.instances = []
+    monkeypatch.setattr(auditFeedEnhanced.socket, "socket", FakeSocket)
+
+    args = SimpleNamespace(append_new_line=False, v=False, very_verbose=False)
+    auditFeedEnhanced.send_audit_records_to_outputs(
+        [],
+        {"host": "collector.local", "port": 514},
+        None,
+        args,
+    )
+
+    assert FakeSocket.instances == []
 
 
 def test_streaming_handler_does_not_print_records_to_stdout(monkeypatch, capsys, tmp_path):

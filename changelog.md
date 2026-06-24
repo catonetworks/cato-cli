@@ -212,3 +212,8 @@
 
 ## 3.0.69 (2026-05-14)
 - Updated private parser to properly support accountId support as list
+
+## 3.0.70 (2026-06-24)
+- Added continuous `auditFeed --run` mode with marker persistence, polling, audit field filtering, and SIEM streaming (TCP and Sentinel), mirroring `eventsFeed`
+- Hardened Sentinel output to enforce TLS certificate validation (`ssl.create_default_context()` instead of an unverified context) for auditFeed, eventsFeed, and the shared API client
+- Added incremental auditFeed example with record-level deduplication and RFC 7231-compliant `Retry-After` handling (delay-seconds and HTTP-date forms)

@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.8, 3.9, '3.10', '3.11', '3.12']
+        python-version: ['3.10', '3.11', '3.12', '3.13', '3.14']
     
     steps:
     - uses: actions/checkout@v3
@@ -27,7 +27,9 @@ jobs:
       env:
         CATO_ACCOUNT_ID: ${{ secrets.CATO_ACCOUNT_ID }}
         CATO_API_KEY: ${{ secrets.CATO_API_KEY }}
-        CATO_BASE_URL: ${{ secrets.CATO_BASE_URL }}
+        # sta-ie1-m1 environment exposes the newly regenerated Beta/EA APIs and
+        # shares the same account credentials/secrets as the previous endpoint.
+        CATO_BASE_URL: https://api.cc.sta-ie1-m1.catonet.works/api/v1/graphql2
         CATO_SCIM_URL: ${{ secrets.CATO_SCIM_URL }}
         CATO_SCIM_TOKEN: ${{ secrets.CATO_SCIM_TOKEN }}
       run: |

@@ -1,4 +1,4 @@
-query popLocations ( $accountId:ID! $popLocationFilterInput:PopLocationFilterInput $popLocationAllocatedIpInput:PopLocationAllocatedIpInput) {
+query popLocations ( $accountId:ID! $popLocationFilterInput:PopLocationFilterInput $popLocationAllocatedIpInput:PopLocationAllocatedIpInput $id:ID!) {
 	popLocations ( accountId:$accountId ) {
 		popLocationList ( input:$popLocationFilterInput  )  {
 			items {
@@ -35,6 +35,30 @@ query popLocations ( $accountId:ID! $popLocationFilterInput:PopLocationFilterInp
 			}
 			paging {
 				total
+			}
+		}
+		bgpProfile ( id:$id  )  {
+			id
+			name
+			description
+			communities {
+				from
+				to
+			}
+			createdAt
+			lastUpdatedAt
+		}
+		bgpProfileList {
+			items {
+				id
+				name
+				description
+				communities {
+					from
+					to
+				}
+				createdAt
+				lastUpdatedAt
 			}
 		}
 	}	

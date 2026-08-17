@@ -1,0 +1,940 @@
+{
+    "args": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        }
+    },
+    "childOperations": {
+        "updateStaticHostBulk": {
+            "args": {
+                "updateStaticHostBulk___input": {
+                    "defaultValue": null,
+                    "description": null,
+                    "id_str": "updateStaticHostBulk___input",
+                    "name": "input",
+                    "path": "updateStaticHostBulk.input",
+                    "requestStr": "$updateStaticHostBulkInput:UpdateStaticHostBulkInput! ",
+                    "required": true,
+                    "responseStr": "input:$updateStaticHostBulkInput ",
+                    "type": {
+                        "definition": {
+                            "description": "Wrapper input for `updateStaticHostBulk`. All items in `host` are applied to the single site identified by `site`; each item targets an existing static host by `hostId`.",
+                            "enumValues": null,
+                            "fields": null,
+                            "inputFields": {
+                                "host": {
+                                    "defaultValue": null,
+                                    "description": "Static hosts to update on the site. Each item targets an existing host by `hostId`; omitted fields are left unchanged.",
+                                    "id_str": "updateStaticHostBulk___input___host",
+                                    "name": "host",
+                                    "path": "updateStaticHostBulk.input.host",
+                                    "requestStr": "$siteUpdateStaticHostInput:[SiteUpdateStaticHostInput]! ",
+                                    "required": true,
+                                    "responseStr": "host:$siteUpdateStaticHostInput ",
+                                    "type": {
+                                        "definition": {
+                                            "description": null,
+                                            "enumValues": null,
+                                            "fields": null,
+                                            "inputFields": {
+                                                "hostId": {
+                                                    "defaultValue": null,
+                                                    "description": null,
+                                                    "id_str": "updateStaticHostBulk___input___host___hostId",
+                                                    "name": "hostId",
+                                                    "path": "updateStaticHostBulk.input.host.hostId",
+                                                    "requestStr": "$hostId:ID! ",
+                                                    "required": true,
+                                                    "responseStr": "hostId:$hostId ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "ID",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "hostId"
+                                                },
+                                                "ip": {
+                                                    "defaultValue": null,
+                                                    "description": null,
+                                                    "id_str": "updateStaticHostBulk___input___host___ip",
+                                                    "name": "ip",
+                                                    "path": "updateStaticHostBulk.input.host.ip",
+                                                    "requestStr": "$ip:IPAddress ",
+                                                    "required": false,
+                                                    "responseStr": "ip:$ip ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "IPAddress",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "ip"
+                                                },
+                                                "macAddress": {
+                                                    "defaultValue": null,
+                                                    "description": null,
+                                                    "id_str": "updateStaticHostBulk___input___host___macAddress",
+                                                    "name": "macAddress",
+                                                    "path": "updateStaticHostBulk.input.host.macAddress",
+                                                    "requestStr": "$macAddress:String ",
+                                                    "required": false,
+                                                    "responseStr": "macAddress:$macAddress ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "macAddress"
+                                                },
+                                                "name": {
+                                                    "defaultValue": null,
+                                                    "description": null,
+                                                    "id_str": "updateStaticHostBulk___input___host___name",
+                                                    "name": "name",
+                                                    "path": "updateStaticHostBulk.input.host.name",
+                                                    "requestStr": "$name:String ",
+                                                    "required": false,
+                                                    "responseStr": "name:$name ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "name"
+                                                }
+                                            },
+                                            "interfaces": null,
+                                            "kind": "INPUT_OBJECT",
+                                            "name": "SiteUpdateStaticHostInput",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "input_object",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "LIST",
+                                            "NON_NULL",
+                                            "INPUT_OBJECT"
+                                        ],
+                                        "name": "SiteUpdateStaticHostInput",
+                                        "non_null": false
+                                    },
+                                    "varName": "siteUpdateStaticHostInput"
+                                },
+                                "site": {
+                                    "defaultValue": null,
+                                    "description": "Site whose static hosts are being updated.",
+                                    "id_str": "updateStaticHostBulk___input___site",
+                                    "name": "site",
+                                    "path": "updateStaticHostBulk.input.site",
+                                    "requestStr": "$siteRefInput:SiteRefInput! ",
+                                    "required": true,
+                                    "responseStr": "site:$siteRefInput ",
+                                    "type": {
+                                        "definition": {
+                                            "description": null,
+                                            "enumValues": null,
+                                            "fields": null,
+                                            "inputFields": {
+                                                "by": {
+                                                    "defaultValue": "ID",
+                                                    "description": null,
+                                                    "id_str": "updateStaticHostBulk___input___site___by",
+                                                    "name": "by",
+                                                    "path": "updateStaticHostBulk.input.site.by",
+                                                    "requestStr": "$by:ObjectRefBy! ",
+                                                    "required": true,
+                                                    "responseStr": "by:$by ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": null,
+                                                            "enumValues": [
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "ID"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "NAME"
+                                                                }
+                                                            ],
+                                                            "fields": null,
+                                                            "inputFields": null,
+                                                            "interfaces": null,
+                                                            "kind": "ENUM",
+                                                            "name": "ObjectRefBy",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "enum",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "ENUM"
+                                                        ],
+                                                        "name": "ObjectRefBy",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "by"
+                                                },
+                                                "input": {
+                                                    "defaultValue": null,
+                                                    "description": null,
+                                                    "id_str": "updateStaticHostBulk___input___site___input",
+                                                    "name": "input",
+                                                    "path": "updateStaticHostBulk.input.site.input",
+                                                    "requestStr": "$input:String! ",
+                                                    "required": true,
+                                                    "responseStr": "input:$input ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "input"
+                                                }
+                                            },
+                                            "interfaces": null,
+                                            "kind": "INPUT_OBJECT",
+                                            "name": "SiteRefInput",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "input_object",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "INPUT_OBJECT"
+                                        ],
+                                        "name": "SiteRefInput",
+                                        "non_null": false
+                                    },
+                                    "varName": "siteRefInput"
+                                }
+                            },
+                            "interfaces": null,
+                            "kind": "INPUT_OBJECT",
+                            "name": "UpdateStaticHostBulkInput",
+                            "possibleTypes": null
+                        },
+                        "indexType": "input_object",
+                        "kind": [
+                            "NON_NULL",
+                            "INPUT_OBJECT"
+                        ],
+                        "name": "UpdateStaticHostBulkInput",
+                        "non_null": false
+                    },
+                    "varName": "updateStaticHostBulkInput"
+                }
+            },
+            "deprecationReason": null,
+            "description": "Updates one or more existing static hosts on a single site in place, in a single atomic batch.",
+            "isDeprecated": false,
+            "name": "updateStaticHostBulk",
+            "type": {
+                "kind": "OBJECT",
+                "name": "UpdateStaticHostBulkPayload",
+                "ofType": null
+            }
+        }
+    },
+    "deprecationReason": null,
+    "description": null,
+    "fieldTypes": {},
+    "isDeprecated": false,
+    "name": "site",
+    "operationArgs": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        },
+        "updateStaticHostBulkInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "updateStaticHostBulk___input",
+            "name": "input",
+            "path": "updateStaticHostBulk.input",
+            "requestStr": "$updateStaticHostBulkInput:UpdateStaticHostBulkInput! ",
+            "required": true,
+            "responseStr": "input:$updateStaticHostBulkInput ",
+            "type": {
+                "definition": {
+                    "description": "Wrapper input for `updateStaticHostBulk`. All items in `host` are applied to the single site identified by `site`; each item targets an existing static host by `hostId`.",
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "host": {
+                            "defaultValue": null,
+                            "description": "Static hosts to update on the site. Each item targets an existing host by `hostId`; omitted fields are left unchanged.",
+                            "id_str": "updateStaticHostBulk___input___host",
+                            "name": "host",
+                            "path": "updateStaticHostBulk.input.host",
+                            "requestStr": "$siteUpdateStaticHostInput:[SiteUpdateStaticHostInput]! ",
+                            "required": true,
+                            "responseStr": "host:$siteUpdateStaticHostInput ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "hostId": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "updateStaticHostBulk___input___host___hostId",
+                                            "name": "hostId",
+                                            "path": "updateStaticHostBulk.input.host.hostId",
+                                            "requestStr": "$hostId:ID! ",
+                                            "required": true,
+                                            "responseStr": "hostId:$hostId ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "ID",
+                                                "non_null": false
+                                            },
+                                            "varName": "hostId"
+                                        },
+                                        "ip": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "updateStaticHostBulk___input___host___ip",
+                                            "name": "ip",
+                                            "path": "updateStaticHostBulk.input.host.ip",
+                                            "requestStr": "$ip:IPAddress ",
+                                            "required": false,
+                                            "responseStr": "ip:$ip ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "IPAddress",
+                                                "non_null": false
+                                            },
+                                            "varName": "ip"
+                                        },
+                                        "macAddress": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "updateStaticHostBulk___input___host___macAddress",
+                                            "name": "macAddress",
+                                            "path": "updateStaticHostBulk.input.host.macAddress",
+                                            "requestStr": "$macAddress:String ",
+                                            "required": false,
+                                            "responseStr": "macAddress:$macAddress ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "String",
+                                                "non_null": false
+                                            },
+                                            "varName": "macAddress"
+                                        },
+                                        "name": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "updateStaticHostBulk___input___host___name",
+                                            "name": "name",
+                                            "path": "updateStaticHostBulk.input.host.name",
+                                            "requestStr": "$name:String ",
+                                            "required": false,
+                                            "responseStr": "name:$name ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "String",
+                                                "non_null": false
+                                            },
+                                            "varName": "name"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "SiteUpdateStaticHostInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "NON_NULL",
+                                    "LIST",
+                                    "NON_NULL",
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "SiteUpdateStaticHostInput",
+                                "non_null": false
+                            },
+                            "varName": "siteUpdateStaticHostInput"
+                        },
+                        "site": {
+                            "defaultValue": null,
+                            "description": "Site whose static hosts are being updated.",
+                            "id_str": "updateStaticHostBulk___input___site",
+                            "name": "site",
+                            "path": "updateStaticHostBulk.input.site",
+                            "requestStr": "$siteRefInput:SiteRefInput! ",
+                            "required": true,
+                            "responseStr": "site:$siteRefInput ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "by": {
+                                            "defaultValue": "ID",
+                                            "description": null,
+                                            "id_str": "updateStaticHostBulk___input___site___by",
+                                            "name": "by",
+                                            "path": "updateStaticHostBulk.input.site.by",
+                                            "requestStr": "$by:ObjectRefBy! ",
+                                            "required": true,
+                                            "responseStr": "by:$by ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "ID"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "NAME"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "ObjectRefBy",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "ENUM"
+                                                ],
+                                                "name": "ObjectRefBy",
+                                                "non_null": false
+                                            },
+                                            "varName": "by"
+                                        },
+                                        "input": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "updateStaticHostBulk___input___site___input",
+                                            "name": "input",
+                                            "path": "updateStaticHostBulk.input.site.input",
+                                            "requestStr": "$input:String! ",
+                                            "required": true,
+                                            "responseStr": "input:$input ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "String",
+                                                "non_null": false
+                                            },
+                                            "varName": "input"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "SiteRefInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "NON_NULL",
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "SiteRefInput",
+                                "non_null": false
+                            },
+                            "varName": "siteRefInput"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "UpdateStaticHostBulkInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "UpdateStaticHostBulkInput",
+                "non_null": false
+            },
+            "varName": "updateStaticHostBulkInput"
+        }
+    },
+    "path": "mutation.site.updateStaticHostBulk",
+    "type": {
+        "definition": {
+            "description": null,
+            "enumValues": null,
+            "fields": {
+                "updateStaticHostBulk": {
+                    "args": {
+                        "updateStaticHostBulk___input": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "updateStaticHostBulk___input",
+                            "name": "input",
+                            "path": "updateStaticHostBulk.input",
+                            "requestStr": "$updateStaticHostBulkInput:UpdateStaticHostBulkInput! ",
+                            "required": true,
+                            "responseStr": "input:$updateStaticHostBulkInput ",
+                            "type": {
+                                "definition": {
+                                    "description": "Wrapper input for `updateStaticHostBulk`. All items in `host` are applied to the single site identified by `site`; each item targets an existing static host by `hostId`.",
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "host": {
+                                            "defaultValue": null,
+                                            "description": "Static hosts to update on the site. Each item targets an existing host by `hostId`; omitted fields are left unchanged.",
+                                            "id_str": "updateStaticHostBulk___input___host",
+                                            "name": "host",
+                                            "path": "updateStaticHostBulk.input.host",
+                                            "requestStr": "$siteUpdateStaticHostInput:[SiteUpdateStaticHostInput]! ",
+                                            "required": true,
+                                            "responseStr": "host:$siteUpdateStaticHostInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "hostId": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "updateStaticHostBulk___input___host___hostId",
+                                                            "name": "hostId",
+                                                            "path": "updateStaticHostBulk.input.host.hostId",
+                                                            "requestStr": "$hostId:ID! ",
+                                                            "required": true,
+                                                            "responseStr": "hostId:$hostId ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "ID",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "hostId"
+                                                        },
+                                                        "ip": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "updateStaticHostBulk___input___host___ip",
+                                                            "name": "ip",
+                                                            "path": "updateStaticHostBulk.input.host.ip",
+                                                            "requestStr": "$ip:IPAddress ",
+                                                            "required": false,
+                                                            "responseStr": "ip:$ip ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "IPAddress",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "ip"
+                                                        },
+                                                        "macAddress": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "updateStaticHostBulk___input___host___macAddress",
+                                                            "name": "macAddress",
+                                                            "path": "updateStaticHostBulk.input.host.macAddress",
+                                                            "requestStr": "$macAddress:String ",
+                                                            "required": false,
+                                                            "responseStr": "macAddress:$macAddress ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "macAddress"
+                                                        },
+                                                        "name": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "updateStaticHostBulk___input___host___name",
+                                                            "name": "name",
+                                                            "path": "updateStaticHostBulk.input.host.name",
+                                                            "requestStr": "$name:String ",
+                                                            "required": false,
+                                                            "responseStr": "name:$name ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "name"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "SiteUpdateStaticHostInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "LIST",
+                                                    "NON_NULL",
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "SiteUpdateStaticHostInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "siteUpdateStaticHostInput"
+                                        },
+                                        "site": {
+                                            "defaultValue": null,
+                                            "description": "Site whose static hosts are being updated.",
+                                            "id_str": "updateStaticHostBulk___input___site",
+                                            "name": "site",
+                                            "path": "updateStaticHostBulk.input.site",
+                                            "requestStr": "$siteRefInput:SiteRefInput! ",
+                                            "required": true,
+                                            "responseStr": "site:$siteRefInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "by": {
+                                                            "defaultValue": "ID",
+                                                            "description": null,
+                                                            "id_str": "updateStaticHostBulk___input___site___by",
+                                                            "name": "by",
+                                                            "path": "updateStaticHostBulk.input.site.by",
+                                                            "requestStr": "$by:ObjectRefBy! ",
+                                                            "required": true,
+                                                            "responseStr": "by:$by ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "ID"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "NAME"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "ObjectRefBy",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "ObjectRefBy",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "by"
+                                                        },
+                                                        "input": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "updateStaticHostBulk___input___site___input",
+                                                            "name": "input",
+                                                            "path": "updateStaticHostBulk.input.site.input",
+                                                            "requestStr": "$input:String! ",
+                                                            "required": true,
+                                                            "responseStr": "input:$input ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "input"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "SiteRefInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "SiteRefInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "siteRefInput"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "UpdateStaticHostBulkInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "NON_NULL",
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "UpdateStaticHostBulkInput",
+                                "non_null": false
+                            },
+                            "varName": "updateStaticHostBulkInput"
+                        }
+                    },
+                    "deprecationReason": null,
+                    "description": "Updates one or more existing static hosts on a single site in place, in a single atomic batch.",
+                    "id_str": "updateStaticHostBulk",
+                    "isDeprecated": false,
+                    "name": "updateStaticHostBulk",
+                    "path": "updateStaticHostBulk",
+                    "requestStr": "$updateStaticHostBulkPayload:UpdateStaticHostBulkPayload ",
+                    "required": false,
+                    "responseStr": "updateStaticHostBulk:$updateStaticHostBulkPayload ",
+                    "type": {
+                        "definition": {
+                            "description": null,
+                            "enumValues": null,
+                            "fields": {
+                                "host": {
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": "The static hosts that were updated by this mutation.",
+                                    "id_str": "updateStaticHostBulk___host",
+                                    "isDeprecated": false,
+                                    "name": "host",
+                                    "path": "updateStaticHostBulk.host",
+                                    "requestStr": "$siteStaticHost:[SiteStaticHost]! ",
+                                    "required": true,
+                                    "responseStr": "host:$siteStaticHost ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "A static host configured on a site.",
+                                            "enumValues": null,
+                                            "fields": {
+                                                "hostId": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Unique identifier of the static host.",
+                                                    "id_str": "updateStaticHostBulk___host___hostId",
+                                                    "isDeprecated": false,
+                                                    "name": "hostId",
+                                                    "path": "updateStaticHostBulk.host.hostId",
+                                                    "requestStr": "$hostId:ID! ",
+                                                    "required": true,
+                                                    "responseStr": "hostId:$hostId ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "ID",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "hostId"
+                                                },
+                                                "ip": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "IP address assigned to the static host.",
+                                                    "id_str": "updateStaticHostBulk___host___ip",
+                                                    "isDeprecated": false,
+                                                    "name": "ip",
+                                                    "path": "updateStaticHostBulk.host.ip",
+                                                    "requestStr": "$ip:IPAddress! ",
+                                                    "required": true,
+                                                    "responseStr": "ip:$ip ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "IPAddress",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "ip"
+                                                },
+                                                "macAddress": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "MAC address of the static host.",
+                                                    "id_str": "updateStaticHostBulk___host___macAddress",
+                                                    "isDeprecated": false,
+                                                    "name": "macAddress",
+                                                    "path": "updateStaticHostBulk.host.macAddress",
+                                                    "requestStr": "$macAddress:String ",
+                                                    "required": false,
+                                                    "responseStr": "macAddress:$macAddress ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "macAddress"
+                                                },
+                                                "name": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Name of the static host.",
+                                                    "id_str": "updateStaticHostBulk___host___name",
+                                                    "isDeprecated": false,
+                                                    "name": "name",
+                                                    "path": "updateStaticHostBulk.host.name",
+                                                    "requestStr": "$name:String! ",
+                                                    "required": true,
+                                                    "responseStr": "name:$name ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "name"
+                                                }
+                                            },
+                                            "inputFields": null,
+                                            "interfaces": {},
+                                            "kind": "OBJECT",
+                                            "name": "SiteStaticHost",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "object",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "LIST",
+                                            "NON_NULL",
+                                            "OBJECT"
+                                        ],
+                                        "name": "SiteStaticHost",
+                                        "non_null": false
+                                    },
+                                    "varName": "siteStaticHost"
+                                }
+                            },
+                            "inputFields": null,
+                            "interfaces": {},
+                            "kind": "OBJECT",
+                            "name": "UpdateStaticHostBulkPayload",
+                            "possibleTypes": null
+                        },
+                        "indexType": "object",
+                        "kind": [
+                            "OBJECT"
+                        ],
+                        "name": "UpdateStaticHostBulkPayload",
+                        "non_null": false
+                    },
+                    "varName": "updateStaticHostBulkPayload"
+                }
+            },
+            "inputFields": null,
+            "interfaces": [],
+            "kind": "OBJECT",
+            "name": "SiteMutations",
+            "possibleTypes": null
+        },
+        "indexType": "object",
+        "kind": [
+            "NON_NULL",
+            "OBJECT"
+        ],
+        "name": "SiteMutations",
+        "non_null": false
+    },
+    "variablesPayload": {
+        "updateStaticHostBulkInput": {
+            "siteRefInput": {
+                "by": "ID",
+                "input": "string"
+            },
+            "siteUpdateStaticHostInput": {
+                "hostId": "id",
+                "ip": "example_value",
+                "macAddress": "string",
+                "name": "string"
+            }
+        }
+    }
+}

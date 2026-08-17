@@ -966,6 +966,66 @@ try:
             """Test that setup.py exists"""
             setup_file = PROJECT_ROOT / "setup.py"
             assert setup_file.exists(), "setup.py not found"
+    
+    
+    class TestRegeneratedApis:
+        """Regression tests for schema regeneration safeguards.
+
+        Guards behavior that a full `schema/importSchema.py` regeneration must
+        preserve: the custom auditFeed parser, correct Long scalar examples, and
+        the newly exposed networkRangeList / disableUser operations.
+        """
+
+        def _help(self, *cli_args):
+            return subprocess.run(
+                [PYTHON_CMD, "-m", "catocli", *cli_args, "-h"],
+                capture_output=True, text=True, cwd=str(PROJECT_ROOT), timeout=15
+            )
+
+        def test_network_range_list_command_available(self):
+            """query site networkRangeList must be generated and expose help."""
+            result = self._help("query", "site", "networkRangeList")
+            assert result.returncode == 0, f"networkRangeList help failed: {result.stderr}"
+            assert "networkRangeList" in result.stdout
+
+        def test_disable_user_command_available(self):
+            """mutation user disableUser must be generated and expose help."""
+            result = self._help("mutation", "user", "disableUser")
+            assert result.returncode == 0, f"disableUser help failed: {result.stderr}"
+            assert "disableUser" in result.stdout
+
+        def test_disable_user_long_example_is_numeric(self):
+            """The generated disableUser payload must render Long userId as ints, not strings."""
+            payload_file = QUERY_PAYLOADS_DIR / "mutation.user.disableUser.json"
+            if not payload_file.exists():
+                pytest.skip("disableUser payload not generated")
+            with open(payload_file, "r") as f:
+                payload = json.load(f)
+            user_id = payload.get("variables", {}).get("disableUserInput", {}).get("userId")
+            assert isinstance(user_id, list) and user_id, f"unexpected userId example: {user_id!r}"
+            assert all(isinstance(v, int) for v in user_id), (
+                f"Long list example must be integers, got {user_id!r}"
+            )
+
+        def test_new_operations_have_model_and_payload(self):
+            """New operations must have matching model + payload files."""
+            for op in ("mutation.user.disableUser", "query.site.networkRangeList"):
+                payload = QUERY_PAYLOADS_DIR / f"{op}.json"
+                model = MODELS_DIR / f"{op}.json"
+                if not payload.exists():
+                    pytest.skip(f"{op} payload not generated")
+                assert model.exists(), f"Missing model file for {op}"
+
+        def test_audit_feed_custom_parser_preserved(self):
+            """The custom auditFeed dispatcher and its enhanced flags must survive regeneration."""
+            parser_file = PROJECT_ROOT / "catocli" / "parsers" / "query_auditFeed" / "__init__.py"
+            assert parser_file.exists(), "query_auditFeed parser missing"
+            content = parser_file.read_text()
+            assert "auditFeed_dispatcher" in content, "custom auditFeed dispatcher was overwritten"
+            assert "enhanced_audit_feed_handler" in content, "enhanced auditFeed handler reference lost"
+            result = self._help("query", "auditFeed")
+            assert result.returncode == 0, f"auditFeed help failed: {result.stderr}"
+            assert "--run" in result.stdout, "auditFeed --run flag missing after regeneration"
 
 except ImportError:
     # pytest not available, validation tests will be skipped

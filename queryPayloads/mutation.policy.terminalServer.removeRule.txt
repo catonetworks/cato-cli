@@ -7,6 +7,13 @@ mutation policyTerminalServerRemoveRule ( $accountId:ID! $terminalServerPolicyMu
 						updatedTime
 						updatedBy
 					}
+					metadata {
+						lock {
+							lockingAdminEmail
+							lockingTime
+							lockingRevisionId
+						}
+					}
 					rule {
 						id
 						name
@@ -27,6 +34,14 @@ mutation policyTerminalServerRemoveRule ( $accountId:ID! $terminalServerPolicyMu
 						}
 					}
 					properties
+				}
+				revision {
+					id
+					name
+					description
+					changes
+					createdTime
+					updatedTime
 				}
 				status
 				errors {

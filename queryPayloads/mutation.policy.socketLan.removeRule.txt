@@ -7,6 +7,13 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 						updatedTime
 						updatedBy
 					}
+					metadata {
+						lock {
+							lockingAdminEmail
+							lockingTime
+							lockingRevisionId
+						}
+					}
 					rule {
 						id
 						name
@@ -21,6 +28,13 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 							audit {
 								updatedTime
 								updatedBy
+							}
+							metadata {
+								lock {
+									lockingAdminEmail
+									lockingTime
+									lockingRevisionId
+								}
 							}
 							rule {
 								id
@@ -179,6 +193,14 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 								}
 							}
 							properties
+							ruleType
+							subPolicy {
+								id
+								name
+							}
+							access {
+								action
+							}
 						}
 						site {
 							site {
@@ -285,6 +307,22 @@ mutation policySocketLanRemoveRule ( $accountId:ID! $socketLanPolicyMutationInpu
 						transport
 					}
 					properties
+					ruleType
+					subPolicy {
+						id
+						name
+					}
+					access {
+						action
+					}
+				}
+				revision {
+					id
+					name
+					description
+					changes
+					createdTime
+					updatedTime
 				}
 				status
 				errors {

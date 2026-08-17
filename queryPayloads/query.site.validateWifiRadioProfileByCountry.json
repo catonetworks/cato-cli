@@ -1,0 +1,25 @@
+{
+    "operationName": "siteValidateWifiRadioProfileByCountry",
+    "query": "query siteValidateWifiRadioProfileByCountry ( $accountId:ID! $validateWifiRadioProfileByCountryInput:ValidateWifiRadioProfileByCountryInput!) {\n\tsite ( accountId:$accountId ) {\n\t\tvalidateWifiRadioProfileByCountry ( input:$validateWifiRadioProfileByCountryInput  )  {\n\t\t\tresult {\n\t\t\t\tband24 {\n\t\t\t\t\tisValid\n\t\t\t\t\terrors\n\t\t\t\t}\n\t\t\t\tband5 {\n\t\t\t\t\tisValid\n\t\t\t\t\terrors\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "validateWifiRadioProfileByCountryInput": {
+            "countryCode": "string",
+            "wifiRadioProfileInput": {
+                "band24": {
+                    "band": "BAND_2P4G",
+                    "channel": 1,
+                    "channelWidth": "AUTO",
+                    "dfsEnabled": true,
+                    "standard": "AUTO"
+                },
+                "band5": {
+                    "band": "BAND_2P4G",
+                    "channel": 1,
+                    "channelWidth": "AUTO",
+                    "dfsEnabled": true,
+                    "standard": "AUTO"
+                }
+            }
+        }
+    }
+}

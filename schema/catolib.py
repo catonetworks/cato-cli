@@ -175,10 +175,15 @@ def cleanupBuildArtifacts():
                 os.remove(filepath)
         print(f"  - Cleaned {payloads_dir}")
     
-    # Delete all mutation_ and query_ parser directories
+    # Delete all mutation_ and query_ parser directories.
+    # Preserve parsers that carry hand-written customizations which the
+    # generator cannot reproduce (see writeOperationParsers skip list).
+    preserved_parsers = {"query_auditFeed"}
     parsers_dir = "../catocli/parsers"
     if os.path.exists(parsers_dir):
         for dirname in os.listdir(parsers_dir):
+            if dirname in preserved_parsers:
+                continue
             if dirname.startswith("mutation_") or dirname.startswith("query_"):
                 dirpath = os.path.join(parsers_dir, dirname)
                 if os.path.isdir(dirpath):
@@ -535,7 +540,7 @@ def renderInputFieldVal(arg):
             # Return array of realistic values based on scalar type
             if type_name == "String":
                 value = ["string1", "string2"]
-            elif type_name == "Int":
+            elif type_name in ("Int", "Long"):
                 value = [1, 2]
             elif type_name == "Float":
                 value = [1.5, 2.5]
@@ -549,7 +554,7 @@ def renderInputFieldVal(arg):
             # Return single realistic value based on scalar type
             if type_name == "String":
                 value = "string"
-            elif type_name == "Int":
+            elif type_name in ("Int", "Long"):
                 value = 1
             elif type_name == "Float":
                 value = 1.5
@@ -977,6 +982,12 @@ def query_siteLocation_parse(query_subparsers):
             # Skip eventsFeed - it's handled as a custom parser
             if operationName == "eventsFeed":
                 continue
+            # Skip auditFeed - the parser under catocli/parsers/query_auditFeed
+            # carries a custom dispatcher (enhanced continuous-feed mode) that the
+            # generator cannot reproduce. It is preserved in cleanupBuildArtifacts
+            # and still imported/instantiated via writeCliDriver.
+            if operationType == "query" and operationName == "auditFeed":
+                continue
             parserName = operationType+"_"+operationName
             parser = parserMapping[operationType][operationName]
             cliDriverStr = f"""
@@ -1128,6 +1139,10 @@ catocli raw --endpoint https://custom-api.example.com/graphql '<json>'
             # Skip eventsFeed - it's handled as a custom parser with custom documentation
             operation_parts = operationName.split(".")[1:]
             if len(operation_parts) > 0 and operation_parts[0] == "eventsFeed":
+                continue
+            # Skip auditFeed - its parser and README carry custom continuous-feed
+            # documentation that the generator cannot reproduce (see cleanupBuildArtifacts).
+            if operationType == "query" and len(operation_parts) > 0 and operation_parts[0] == "auditFeed":
                 continue
                 
             operation = catoApiSchema[operationType][operationName]
@@ -1620,7 +1635,7 @@ def renderInputFieldVal(arg):
             # Return array of realistic values based on scalar type
             if type_name == "String":
                 value = ["string1", "string2"]
-            elif type_name == "Int":
+            elif type_name in ("Int", "Long"):
                 value = [1, 2]
             elif type_name == "Float":
                 value = [1.5, 2.5]
@@ -1634,7 +1649,7 @@ def renderInputFieldVal(arg):
             # Return single realistic value based on scalar type
             if type_name == "String":
                 value = "string"
-            elif type_name == "Int":
+            elif type_name in ("Int", "Long"):
                 value = 1
             elif type_name == "Float":
                 value = 1.5

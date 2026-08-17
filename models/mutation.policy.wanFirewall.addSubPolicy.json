@@ -913,11 +913,11 @@
                                                                 },
                                                                 "domain": {
                                                                     "defaultValue": "[]",
-                                                                    "description": "A Second-Level Domain (SLD).\nIt matches all Top-Level Domains (TLD), and subdomains that include the Domain.\nExample: example.com.",
+                                                                    "description": "A domain name, public or internal.\nIt matches all Top-Level Domains (TLD), and subdomains that include the Domain.\nExample: example.com, corp.local, server01.",
                                                                     "id_str": "addSubPolicy___input___scope___application___domain",
                                                                     "name": "domain",
                                                                     "path": "addSubPolicy.input.scope.application.domain",
-                                                                    "requestStr": "$domain:[Domain]! ",
+                                                                    "requestStr": "$domain:[CustomDomain]! ",
                                                                     "required": true,
                                                                     "responseStr": "domain:$domain ",
                                                                     "type": {
@@ -927,7 +927,7 @@
                                                                             "NON_NULL",
                                                                             "SCALAR"
                                                                         ],
-                                                                        "name": "Domain",
+                                                                        "name": "CustomDomain",
                                                                         "non_null": false
                                                                     },
                                                                     "varName": "domain"
@@ -1271,55 +1271,6 @@
                                                         "non_null": false
                                                     },
                                                     "varName": "wanFirewallApplicationInput"
-                                                },
-                                                "connectionOrigin": {
-                                                    "defaultValue": "ANY",
-                                                    "description": "Connection origin of the traffic",
-                                                    "id_str": "addSubPolicy___input___scope___connectionOrigin",
-                                                    "name": "connectionOrigin",
-                                                    "path": "addSubPolicy.input.scope.connectionOrigin",
-                                                    "requestStr": "$connectionOrigin:ConnectionOriginEnum! ",
-                                                    "required": true,
-                                                    "responseStr": "connectionOrigin:$connectionOrigin ",
-                                                    "type": {
-                                                        "definition": {
-                                                            "description": null,
-                                                            "enumValues": [
-                                                                {
-                                                                    "deprecationReason": null,
-                                                                    "description": null,
-                                                                    "isDeprecated": false,
-                                                                    "name": "ANY"
-                                                                },
-                                                                {
-                                                                    "deprecationReason": null,
-                                                                    "description": null,
-                                                                    "isDeprecated": false,
-                                                                    "name": "REMOTE"
-                                                                },
-                                                                {
-                                                                    "deprecationReason": null,
-                                                                    "description": null,
-                                                                    "isDeprecated": false,
-                                                                    "name": "SITE"
-                                                                }
-                                                            ],
-                                                            "fields": null,
-                                                            "inputFields": null,
-                                                            "interfaces": null,
-                                                            "kind": "ENUM",
-                                                            "name": "ConnectionOriginEnum",
-                                                            "possibleTypes": null
-                                                        },
-                                                        "indexType": "enum",
-                                                        "kind": [
-                                                            "NON_NULL",
-                                                            "ENUM"
-                                                        ],
-                                                        "name": "ConnectionOriginEnum",
-                                                        "non_null": false
-                                                    },
-                                                    "varName": "connectionOrigin"
                                                 },
                                                 "country": {
                                                     "defaultValue": "[]",
@@ -2829,6 +2780,12 @@
                                                                     "description": null,
                                                                     "isDeprecated": false,
                                                                     "name": "EMBEDDED"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "CHROMEOS"
                                                                 }
                                                             ],
                                                             "fields": null,
@@ -3324,11 +3281,11 @@
                                                                                 },
                                                                                 "domain": {
                                                                                     "defaultValue": "[]",
-                                                                                    "description": "A Second-Level Domain (SLD).\nIt matches all Top-Level Domains (TLD), and subdomains that include the Domain.\nExample: example.com.",
+                                                                                    "description": "A domain name, public or internal.\nIt matches all Top-Level Domains (TLD), and subdomains that include the Domain.\nExample: example.com, corp.local, server01.",
                                                                                     "id_str": "addSubPolicy___input___scope___exceptions___application___domain",
                                                                                     "name": "domain",
                                                                                     "path": "addSubPolicy.input.scope.exceptions.application.domain",
-                                                                                    "requestStr": "$domain:[Domain]! ",
+                                                                                    "requestStr": "$domain:[CustomDomain]! ",
                                                                                     "required": true,
                                                                                     "responseStr": "domain:$domain ",
                                                                                     "type": {
@@ -3338,7 +3295,7 @@
                                                                                             "NON_NULL",
                                                                                             "SCALAR"
                                                                                         ],
-                                                                                        "name": "Domain",
+                                                                                        "name": "CustomDomain",
                                                                                         "non_null": false
                                                                                     },
                                                                                     "varName": "domain"
@@ -3682,55 +3639,6 @@
                                                                         "non_null": false
                                                                     },
                                                                     "varName": "wanFirewallApplicationInput"
-                                                                },
-                                                                "connectionOrigin": {
-                                                                    "defaultValue": "ANY",
-                                                                    "description": "Connection origin matching criteria for the exception.",
-                                                                    "id_str": "addSubPolicy___input___scope___exceptions___connectionOrigin",
-                                                                    "name": "connectionOrigin",
-                                                                    "path": "addSubPolicy.input.scope.exceptions.connectionOrigin",
-                                                                    "requestStr": "$connectionOrigin:ConnectionOriginEnum! ",
-                                                                    "required": true,
-                                                                    "responseStr": "connectionOrigin:$connectionOrigin ",
-                                                                    "type": {
-                                                                        "definition": {
-                                                                            "description": null,
-                                                                            "enumValues": [
-                                                                                {
-                                                                                    "deprecationReason": null,
-                                                                                    "description": null,
-                                                                                    "isDeprecated": false,
-                                                                                    "name": "ANY"
-                                                                                },
-                                                                                {
-                                                                                    "deprecationReason": null,
-                                                                                    "description": null,
-                                                                                    "isDeprecated": false,
-                                                                                    "name": "REMOTE"
-                                                                                },
-                                                                                {
-                                                                                    "deprecationReason": null,
-                                                                                    "description": null,
-                                                                                    "isDeprecated": false,
-                                                                                    "name": "SITE"
-                                                                                }
-                                                                            ],
-                                                                            "fields": null,
-                                                                            "inputFields": null,
-                                                                            "interfaces": null,
-                                                                            "kind": "ENUM",
-                                                                            "name": "ConnectionOriginEnum",
-                                                                            "possibleTypes": null
-                                                                        },
-                                                                        "indexType": "enum",
-                                                                        "kind": [
-                                                                            "NON_NULL",
-                                                                            "ENUM"
-                                                                        ],
-                                                                        "name": "ConnectionOriginEnum",
-                                                                        "non_null": false
-                                                                    },
-                                                                    "varName": "connectionOrigin"
                                                                 },
                                                                 "country": {
                                                                     "defaultValue": "[]",
@@ -5221,6 +5129,12 @@
                                                                                     "description": null,
                                                                                     "isDeprecated": false,
                                                                                     "name": "EMBEDDED"
+                                                                                },
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "CHROMEOS"
                                                                                 }
                                                                             ],
                                                                             "fields": null,
@@ -9967,11 +9881,11 @@
                                                         },
                                                         "domain": {
                                                             "defaultValue": "[]",
-                                                            "description": "A Second-Level Domain (SLD).\nIt matches all Top-Level Domains (TLD), and subdomains that include the Domain.\nExample: example.com.",
+                                                            "description": "A domain name, public or internal.\nIt matches all Top-Level Domains (TLD), and subdomains that include the Domain.\nExample: example.com, corp.local, server01.",
                                                             "id_str": "addSubPolicy___input___scope___application___domain",
                                                             "name": "domain",
                                                             "path": "addSubPolicy.input.scope.application.domain",
-                                                            "requestStr": "$domain:[Domain]! ",
+                                                            "requestStr": "$domain:[CustomDomain]! ",
                                                             "required": true,
                                                             "responseStr": "domain:$domain ",
                                                             "type": {
@@ -9981,7 +9895,7 @@
                                                                     "NON_NULL",
                                                                     "SCALAR"
                                                                 ],
-                                                                "name": "Domain",
+                                                                "name": "CustomDomain",
                                                                 "non_null": false
                                                             },
                                                             "varName": "domain"
@@ -10325,55 +10239,6 @@
                                                 "non_null": false
                                             },
                                             "varName": "wanFirewallApplicationInput"
-                                        },
-                                        "connectionOrigin": {
-                                            "defaultValue": "ANY",
-                                            "description": "Connection origin of the traffic",
-                                            "id_str": "addSubPolicy___input___scope___connectionOrigin",
-                                            "name": "connectionOrigin",
-                                            "path": "addSubPolicy.input.scope.connectionOrigin",
-                                            "requestStr": "$connectionOrigin:ConnectionOriginEnum! ",
-                                            "required": true,
-                                            "responseStr": "connectionOrigin:$connectionOrigin ",
-                                            "type": {
-                                                "definition": {
-                                                    "description": null,
-                                                    "enumValues": [
-                                                        {
-                                                            "deprecationReason": null,
-                                                            "description": null,
-                                                            "isDeprecated": false,
-                                                            "name": "ANY"
-                                                        },
-                                                        {
-                                                            "deprecationReason": null,
-                                                            "description": null,
-                                                            "isDeprecated": false,
-                                                            "name": "REMOTE"
-                                                        },
-                                                        {
-                                                            "deprecationReason": null,
-                                                            "description": null,
-                                                            "isDeprecated": false,
-                                                            "name": "SITE"
-                                                        }
-                                                    ],
-                                                    "fields": null,
-                                                    "inputFields": null,
-                                                    "interfaces": null,
-                                                    "kind": "ENUM",
-                                                    "name": "ConnectionOriginEnum",
-                                                    "possibleTypes": null
-                                                },
-                                                "indexType": "enum",
-                                                "kind": [
-                                                    "NON_NULL",
-                                                    "ENUM"
-                                                ],
-                                                "name": "ConnectionOriginEnum",
-                                                "non_null": false
-                                            },
-                                            "varName": "connectionOrigin"
                                         },
                                         "country": {
                                             "defaultValue": "[]",
@@ -11883,6 +11748,12 @@
                                                             "description": null,
                                                             "isDeprecated": false,
                                                             "name": "EMBEDDED"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "CHROMEOS"
                                                         }
                                                     ],
                                                     "fields": null,
@@ -12378,11 +12249,11 @@
                                                                         },
                                                                         "domain": {
                                                                             "defaultValue": "[]",
-                                                                            "description": "A Second-Level Domain (SLD).\nIt matches all Top-Level Domains (TLD), and subdomains that include the Domain.\nExample: example.com.",
+                                                                            "description": "A domain name, public or internal.\nIt matches all Top-Level Domains (TLD), and subdomains that include the Domain.\nExample: example.com, corp.local, server01.",
                                                                             "id_str": "addSubPolicy___input___scope___exceptions___application___domain",
                                                                             "name": "domain",
                                                                             "path": "addSubPolicy.input.scope.exceptions.application.domain",
-                                                                            "requestStr": "$domain:[Domain]! ",
+                                                                            "requestStr": "$domain:[CustomDomain]! ",
                                                                             "required": true,
                                                                             "responseStr": "domain:$domain ",
                                                                             "type": {
@@ -12392,7 +12263,7 @@
                                                                                     "NON_NULL",
                                                                                     "SCALAR"
                                                                                 ],
-                                                                                "name": "Domain",
+                                                                                "name": "CustomDomain",
                                                                                 "non_null": false
                                                                             },
                                                                             "varName": "domain"
@@ -12736,55 +12607,6 @@
                                                                 "non_null": false
                                                             },
                                                             "varName": "wanFirewallApplicationInput"
-                                                        },
-                                                        "connectionOrigin": {
-                                                            "defaultValue": "ANY",
-                                                            "description": "Connection origin matching criteria for the exception.",
-                                                            "id_str": "addSubPolicy___input___scope___exceptions___connectionOrigin",
-                                                            "name": "connectionOrigin",
-                                                            "path": "addSubPolicy.input.scope.exceptions.connectionOrigin",
-                                                            "requestStr": "$connectionOrigin:ConnectionOriginEnum! ",
-                                                            "required": true,
-                                                            "responseStr": "connectionOrigin:$connectionOrigin ",
-                                                            "type": {
-                                                                "definition": {
-                                                                    "description": null,
-                                                                    "enumValues": [
-                                                                        {
-                                                                            "deprecationReason": null,
-                                                                            "description": null,
-                                                                            "isDeprecated": false,
-                                                                            "name": "ANY"
-                                                                        },
-                                                                        {
-                                                                            "deprecationReason": null,
-                                                                            "description": null,
-                                                                            "isDeprecated": false,
-                                                                            "name": "REMOTE"
-                                                                        },
-                                                                        {
-                                                                            "deprecationReason": null,
-                                                                            "description": null,
-                                                                            "isDeprecated": false,
-                                                                            "name": "SITE"
-                                                                        }
-                                                                    ],
-                                                                    "fields": null,
-                                                                    "inputFields": null,
-                                                                    "interfaces": null,
-                                                                    "kind": "ENUM",
-                                                                    "name": "ConnectionOriginEnum",
-                                                                    "possibleTypes": null
-                                                                },
-                                                                "indexType": "enum",
-                                                                "kind": [
-                                                                    "NON_NULL",
-                                                                    "ENUM"
-                                                                ],
-                                                                "name": "ConnectionOriginEnum",
-                                                                "non_null": false
-                                                            },
-                                                            "varName": "connectionOrigin"
                                                         },
                                                         "country": {
                                                             "defaultValue": "[]",
@@ -14275,6 +14097,12 @@
                                                                             "description": null,
                                                                             "isDeprecated": false,
                                                                             "name": "EMBEDDED"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "CHROMEOS"
                                                                         }
                                                                     ],
                                                                     "fields": null,
@@ -19071,11 +18899,11 @@
                                                                                         },
                                                                                         "domain": {
                                                                                             "defaultValue": "[]",
-                                                                                            "description": "A Second-Level Domain (SLD).\nIt matches all Top-Level Domains (TLD), and subdomains that include the Domain.\nExample: example.com.",
+                                                                                            "description": "A domain name, public or internal.\nIt matches all Top-Level Domains (TLD), and subdomains that include the Domain.\nExample: example.com, corp.local, server01.",
                                                                                             "id_str": "addSubPolicy___input___scope___application___domain",
                                                                                             "name": "domain",
                                                                                             "path": "addSubPolicy.input.scope.application.domain",
-                                                                                            "requestStr": "$domain:[Domain]! ",
+                                                                                            "requestStr": "$domain:[CustomDomain]! ",
                                                                                             "required": true,
                                                                                             "responseStr": "domain:$domain ",
                                                                                             "type": {
@@ -19085,7 +18913,7 @@
                                                                                                     "NON_NULL",
                                                                                                     "SCALAR"
                                                                                                 ],
-                                                                                                "name": "Domain",
+                                                                                                "name": "CustomDomain",
                                                                                                 "non_null": false
                                                                                             },
                                                                                             "varName": "domain"
@@ -19429,55 +19257,6 @@
                                                                                 "non_null": false
                                                                             },
                                                                             "varName": "wanFirewallApplicationInput"
-                                                                        },
-                                                                        "connectionOrigin": {
-                                                                            "defaultValue": "ANY",
-                                                                            "description": "Connection origin of the traffic",
-                                                                            "id_str": "addSubPolicy___input___scope___connectionOrigin",
-                                                                            "name": "connectionOrigin",
-                                                                            "path": "addSubPolicy.input.scope.connectionOrigin",
-                                                                            "requestStr": "$connectionOrigin:ConnectionOriginEnum! ",
-                                                                            "required": true,
-                                                                            "responseStr": "connectionOrigin:$connectionOrigin ",
-                                                                            "type": {
-                                                                                "definition": {
-                                                                                    "description": null,
-                                                                                    "enumValues": [
-                                                                                        {
-                                                                                            "deprecationReason": null,
-                                                                                            "description": null,
-                                                                                            "isDeprecated": false,
-                                                                                            "name": "ANY"
-                                                                                        },
-                                                                                        {
-                                                                                            "deprecationReason": null,
-                                                                                            "description": null,
-                                                                                            "isDeprecated": false,
-                                                                                            "name": "REMOTE"
-                                                                                        },
-                                                                                        {
-                                                                                            "deprecationReason": null,
-                                                                                            "description": null,
-                                                                                            "isDeprecated": false,
-                                                                                            "name": "SITE"
-                                                                                        }
-                                                                                    ],
-                                                                                    "fields": null,
-                                                                                    "inputFields": null,
-                                                                                    "interfaces": null,
-                                                                                    "kind": "ENUM",
-                                                                                    "name": "ConnectionOriginEnum",
-                                                                                    "possibleTypes": null
-                                                                                },
-                                                                                "indexType": "enum",
-                                                                                "kind": [
-                                                                                    "NON_NULL",
-                                                                                    "ENUM"
-                                                                                ],
-                                                                                "name": "ConnectionOriginEnum",
-                                                                                "non_null": false
-                                                                            },
-                                                                            "varName": "connectionOrigin"
                                                                         },
                                                                         "country": {
                                                                             "defaultValue": "[]",
@@ -20987,6 +20766,12 @@
                                                                                             "description": null,
                                                                                             "isDeprecated": false,
                                                                                             "name": "EMBEDDED"
+                                                                                        },
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "CHROMEOS"
                                                                                         }
                                                                                     ],
                                                                                     "fields": null,
@@ -21482,11 +21267,11 @@
                                                                                                         },
                                                                                                         "domain": {
                                                                                                             "defaultValue": "[]",
-                                                                                                            "description": "A Second-Level Domain (SLD).\nIt matches all Top-Level Domains (TLD), and subdomains that include the Domain.\nExample: example.com.",
+                                                                                                            "description": "A domain name, public or internal.\nIt matches all Top-Level Domains (TLD), and subdomains that include the Domain.\nExample: example.com, corp.local, server01.",
                                                                                                             "id_str": "addSubPolicy___input___scope___exceptions___application___domain",
                                                                                                             "name": "domain",
                                                                                                             "path": "addSubPolicy.input.scope.exceptions.application.domain",
-                                                                                                            "requestStr": "$domain:[Domain]! ",
+                                                                                                            "requestStr": "$domain:[CustomDomain]! ",
                                                                                                             "required": true,
                                                                                                             "responseStr": "domain:$domain ",
                                                                                                             "type": {
@@ -21496,7 +21281,7 @@
                                                                                                                     "NON_NULL",
                                                                                                                     "SCALAR"
                                                                                                                 ],
-                                                                                                                "name": "Domain",
+                                                                                                                "name": "CustomDomain",
                                                                                                                 "non_null": false
                                                                                                             },
                                                                                                             "varName": "domain"
@@ -21840,55 +21625,6 @@
                                                                                                 "non_null": false
                                                                                             },
                                                                                             "varName": "wanFirewallApplicationInput"
-                                                                                        },
-                                                                                        "connectionOrigin": {
-                                                                                            "defaultValue": "ANY",
-                                                                                            "description": "Connection origin matching criteria for the exception.",
-                                                                                            "id_str": "addSubPolicy___input___scope___exceptions___connectionOrigin",
-                                                                                            "name": "connectionOrigin",
-                                                                                            "path": "addSubPolicy.input.scope.exceptions.connectionOrigin",
-                                                                                            "requestStr": "$connectionOrigin:ConnectionOriginEnum! ",
-                                                                                            "required": true,
-                                                                                            "responseStr": "connectionOrigin:$connectionOrigin ",
-                                                                                            "type": {
-                                                                                                "definition": {
-                                                                                                    "description": null,
-                                                                                                    "enumValues": [
-                                                                                                        {
-                                                                                                            "deprecationReason": null,
-                                                                                                            "description": null,
-                                                                                                            "isDeprecated": false,
-                                                                                                            "name": "ANY"
-                                                                                                        },
-                                                                                                        {
-                                                                                                            "deprecationReason": null,
-                                                                                                            "description": null,
-                                                                                                            "isDeprecated": false,
-                                                                                                            "name": "REMOTE"
-                                                                                                        },
-                                                                                                        {
-                                                                                                            "deprecationReason": null,
-                                                                                                            "description": null,
-                                                                                                            "isDeprecated": false,
-                                                                                                            "name": "SITE"
-                                                                                                        }
-                                                                                                    ],
-                                                                                                    "fields": null,
-                                                                                                    "inputFields": null,
-                                                                                                    "interfaces": null,
-                                                                                                    "kind": "ENUM",
-                                                                                                    "name": "ConnectionOriginEnum",
-                                                                                                    "possibleTypes": null
-                                                                                                },
-                                                                                                "indexType": "enum",
-                                                                                                "kind": [
-                                                                                                    "NON_NULL",
-                                                                                                    "ENUM"
-                                                                                                ],
-                                                                                                "name": "ConnectionOriginEnum",
-                                                                                                "non_null": false
-                                                                                            },
-                                                                                            "varName": "connectionOrigin"
                                                                                         },
                                                                                         "country": {
                                                                                             "defaultValue": "[]",
@@ -23379,6 +23115,12 @@
                                                                                                             "description": null,
                                                                                                             "isDeprecated": false,
                                                                                                             "name": "EMBEDDED"
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "deprecationReason": null,
+                                                                                                            "description": null,
+                                                                                                            "isDeprecated": false,
+                                                                                                            "name": "CHROMEOS"
                                                                                                         }
                                                                                                     ],
                                                                                                     "fields": null,
@@ -27491,7 +27233,7 @@
                                                                                 "createdTime": {
                                                                                     "args": {},
                                                                                     "deprecationReason": null,
-                                                                                    "description": null,
+                                                                                    "description": "Date and time when the revision was created.",
                                                                                     "id_str": "wanFirewall___addSubPolicy___policy___revision___createdTime",
                                                                                     "isDeprecated": false,
                                                                                     "name": "createdTime",
@@ -27575,7 +27317,7 @@
                                                                                 "updatedTime": {
                                                                                     "args": {},
                                                                                     "deprecationReason": null,
-                                                                                    "description": null,
+                                                                                    "description": "Date and time when the revision was last updated.",
                                                                                     "id_str": "wanFirewall___addSubPolicy___policy___revision___updatedTime",
                                                                                     "isDeprecated": false,
                                                                                     "name": "updatedTime",
@@ -27783,6 +27525,133 @@
                                                                                         "non_null": false
                                                                                     },
                                                                                     "varName": "policyElementAudit"
+                                                                                },
+                                                                                "metadata": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "id_str": "wanFirewall___addSubPolicy___policy___rules___metadata",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "metadata",
+                                                                                    "path": "wanFirewall.addSubPolicy.policy.rules.metadata",
+                                                                                    "requestStr": "$policyElementMetadata:PolicyElementMetadata ",
+                                                                                    "required": false,
+                                                                                    "responseStr": "metadata:$policyElementMetadata ",
+                                                                                    "type": {
+                                                                                        "definition": {
+                                                                                            "description": "Additional metadata attached to a rule or section",
+                                                                                            "enumValues": null,
+                                                                                            "fields": {
+                                                                                                "lock": {
+                                                                                                    "args": {},
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": "Lock information; non-null only when the item has the LOCKED property",
+                                                                                                    "id_str": "wanFirewall___addSubPolicy___policy___rules___metadata___lock",
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "lock",
+                                                                                                    "path": "wanFirewall.addSubPolicy.policy.rules.metadata.lock",
+                                                                                                    "requestStr": "$policyElementLock:PolicyElementLock ",
+                                                                                                    "required": false,
+                                                                                                    "responseStr": "lock:$policyElementLock ",
+                                                                                                    "type": {
+                                                                                                        "definition": {
+                                                                                                            "description": "Lock info for a rule or section held by another revision",
+                                                                                                            "enumValues": null,
+                                                                                                            "fields": {
+                                                                                                                "lockingAdminEmail": {
+                                                                                                                    "args": {},
+                                                                                                                    "deprecationReason": null,
+                                                                                                                    "description": "Email of the admin whose revision holds this item locked",
+                                                                                                                    "id_str": "wanFirewall___addSubPolicy___policy___rules___metadata___lock___lockingAdminEmail",
+                                                                                                                    "isDeprecated": false,
+                                                                                                                    "name": "lockingAdminEmail",
+                                                                                                                    "path": "wanFirewall.addSubPolicy.policy.rules.metadata.lock.lockingAdminEmail",
+                                                                                                                    "requestStr": "$lockingAdminEmail:String! ",
+                                                                                                                    "required": true,
+                                                                                                                    "responseStr": "lockingAdminEmail:$lockingAdminEmail ",
+                                                                                                                    "type": {
+                                                                                                                        "kind": [
+                                                                                                                            "NON_NULL",
+                                                                                                                            "SCALAR"
+                                                                                                                        ],
+                                                                                                                        "name": "String",
+                                                                                                                        "non_null": false
+                                                                                                                    },
+                                                                                                                    "varName": "lockingAdminEmail"
+                                                                                                                },
+                                                                                                                "lockingRevisionId": {
+                                                                                                                    "args": {},
+                                                                                                                    "deprecationReason": null,
+                                                                                                                    "description": "The ID of the revision that currently holds the lock",
+                                                                                                                    "id_str": "wanFirewall___addSubPolicy___policy___rules___metadata___lock___lockingRevisionId",
+                                                                                                                    "isDeprecated": false,
+                                                                                                                    "name": "lockingRevisionId",
+                                                                                                                    "path": "wanFirewall.addSubPolicy.policy.rules.metadata.lock.lockingRevisionId",
+                                                                                                                    "requestStr": "$lockingRevisionId:ID! ",
+                                                                                                                    "required": true,
+                                                                                                                    "responseStr": "lockingRevisionId:$lockingRevisionId ",
+                                                                                                                    "type": {
+                                                                                                                        "kind": [
+                                                                                                                            "NON_NULL",
+                                                                                                                            "SCALAR"
+                                                                                                                        ],
+                                                                                                                        "name": "ID",
+                                                                                                                        "non_null": false
+                                                                                                                    },
+                                                                                                                    "varName": "lockingRevisionId"
+                                                                                                                },
+                                                                                                                "lockingTime": {
+                                                                                                                    "args": {},
+                                                                                                                    "deprecationReason": null,
+                                                                                                                    "description": "Timestamp when this rule/section was locked",
+                                                                                                                    "id_str": "wanFirewall___addSubPolicy___policy___rules___metadata___lock___lockingTime",
+                                                                                                                    "isDeprecated": false,
+                                                                                                                    "name": "lockingTime",
+                                                                                                                    "path": "wanFirewall.addSubPolicy.policy.rules.metadata.lock.lockingTime",
+                                                                                                                    "requestStr": "$lockingTime:DateTime! ",
+                                                                                                                    "required": true,
+                                                                                                                    "responseStr": "lockingTime:$lockingTime ",
+                                                                                                                    "type": {
+                                                                                                                        "kind": [
+                                                                                                                            "NON_NULL",
+                                                                                                                            "SCALAR"
+                                                                                                                        ],
+                                                                                                                        "name": "DateTime",
+                                                                                                                        "non_null": false
+                                                                                                                    },
+                                                                                                                    "varName": "lockingTime"
+                                                                                                                }
+                                                                                                            },
+                                                                                                            "inputFields": null,
+                                                                                                            "interfaces": {},
+                                                                                                            "kind": "OBJECT",
+                                                                                                            "name": "PolicyElementLock",
+                                                                                                            "possibleTypes": null
+                                                                                                        },
+                                                                                                        "indexType": "object",
+                                                                                                        "kind": [
+                                                                                                            "OBJECT"
+                                                                                                        ],
+                                                                                                        "name": "PolicyElementLock",
+                                                                                                        "non_null": false
+                                                                                                    },
+                                                                                                    "varName": "policyElementLock"
+                                                                                                }
+                                                                                            },
+                                                                                            "inputFields": null,
+                                                                                            "interfaces": {},
+                                                                                            "kind": "OBJECT",
+                                                                                            "name": "PolicyElementMetadata",
+                                                                                            "possibleTypes": null
+                                                                                        },
+                                                                                        "indexType": "object",
+                                                                                        "kind": [
+                                                                                            "OBJECT"
+                                                                                        ],
+                                                                                        "name": "PolicyElementMetadata",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "policyElementMetadata"
                                                                                 },
                                                                                 "properties": {
                                                                                     "args": {},
@@ -28480,12 +28349,12 @@
                                                                                                                 "domain": {
                                                                                                                     "args": {},
                                                                                                                     "deprecationReason": null,
-                                                                                                                    "description": "A Second-Level Domain (SLD).\nIt matches all Top-Level Domains (TLD), and subdomains that include the Domain.\nExample: example.com.",
+                                                                                                                    "description": "A domain name, public or internal.\nIt matches all Top-Level Domains (TLD), and subdomains that include the Domain.\nExample: example.com, corp.local, server01.",
                                                                                                                     "id_str": "wanFirewall___addSubPolicy___policy___rules___rule___application___domain",
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "domain",
                                                                                                                     "path": "wanFirewall.addSubPolicy.policy.rules.rule.application.domain",
-                                                                                                                    "requestStr": "$domain:[Domain]! ",
+                                                                                                                    "requestStr": "$domain:[CustomDomain]! ",
                                                                                                                     "required": true,
                                                                                                                     "responseStr": "domain:$domain ",
                                                                                                                     "type": {
@@ -28495,7 +28364,7 @@
                                                                                                                             "NON_NULL",
                                                                                                                             "SCALAR"
                                                                                                                         ],
-                                                                                                                        "name": "Domain",
+                                                                                                                        "name": "CustomDomain",
                                                                                                                         "non_null": false
                                                                                                                     },
                                                                                                                     "varName": "domain"
@@ -28819,10 +28688,10 @@
                                                                                                 },
                                                                                                 "connectionOrigin": {
                                                                                                     "args": {},
-                                                                                                    "deprecationReason": null,
+                                                                                                    "deprecationReason": "use connectionsOriginList instead. Planned end-of-life (EoL) date: November 13, 2026.",
                                                                                                     "description": "Connection origin of the traffic",
                                                                                                     "id_str": "wanFirewall___addSubPolicy___policy___rules___rule___connectionOrigin",
-                                                                                                    "isDeprecated": false,
+                                                                                                    "isDeprecated": true,
                                                                                                     "name": "connectionOrigin",
                                                                                                     "path": "wanFirewall.addSubPolicy.policy.rules.rule.connectionOrigin",
                                                                                                     "requestStr": "$connectionOrigin:ConnectionOriginEnum! ",
@@ -30190,6 +30059,12 @@
                                                                                                                     "description": null,
                                                                                                                     "isDeprecated": false,
                                                                                                                     "name": "EMBEDDED"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "deprecationReason": null,
+                                                                                                                    "description": null,
+                                                                                                                    "isDeprecated": false,
+                                                                                                                    "name": "CHROMEOS"
                                                                                                                 }
                                                                                                             ],
                                                                                                             "fields": null,
@@ -30620,12 +30495,12 @@
                                                                                                                                 "domain": {
                                                                                                                                     "args": {},
                                                                                                                                     "deprecationReason": null,
-                                                                                                                                    "description": "A Second-Level Domain (SLD).\nIt matches all Top-Level Domains (TLD), and subdomains that include the Domain.\nExample: example.com.",
+                                                                                                                                    "description": "A domain name, public or internal.\nIt matches all Top-Level Domains (TLD), and subdomains that include the Domain.\nExample: example.com, corp.local, server01.",
                                                                                                                                     "id_str": "wanFirewall___addSubPolicy___policy___rules___rule___exceptions___application___domain",
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "domain",
                                                                                                                                     "path": "wanFirewall.addSubPolicy.policy.rules.rule.exceptions.application.domain",
-                                                                                                                                    "requestStr": "$domain:[Domain]! ",
+                                                                                                                                    "requestStr": "$domain:[CustomDomain]! ",
                                                                                                                                     "required": true,
                                                                                                                                     "responseStr": "domain:$domain ",
                                                                                                                                     "type": {
@@ -30635,7 +30510,7 @@
                                                                                                                                             "NON_NULL",
                                                                                                                                             "SCALAR"
                                                                                                                                         ],
-                                                                                                                                        "name": "Domain",
+                                                                                                                                        "name": "CustomDomain",
                                                                                                                                         "non_null": false
                                                                                                                                     },
                                                                                                                                     "varName": "domain"
@@ -30959,10 +30834,10 @@
                                                                                                                 },
                                                                                                                 "connectionOrigin": {
                                                                                                                     "args": {},
-                                                                                                                    "deprecationReason": null,
+                                                                                                                    "deprecationReason": "use connectionsOriginList instead. Planned end-of-life (EoL) date: November 13, 2026.",
                                                                                                                     "description": "Connection origin matching criteria for the exception.",
                                                                                                                     "id_str": "wanFirewall___addSubPolicy___policy___rules___rule___exceptions___connectionOrigin",
-                                                                                                                    "isDeprecated": false,
+                                                                                                                    "isDeprecated": true,
                                                                                                                     "name": "connectionOrigin",
                                                                                                                     "path": "wanFirewall.addSubPolicy.policy.rules.rule.exceptions.connectionOrigin",
                                                                                                                     "requestStr": "$connectionOrigin:ConnectionOriginEnum! ",
@@ -32309,6 +32184,12 @@
                                                                                                                                     "description": null,
                                                                                                                                     "isDeprecated": false,
                                                                                                                                     "name": "EMBEDDED"
+                                                                                                                                },
+                                                                                                                                {
+                                                                                                                                    "deprecationReason": null,
+                                                                                                                                    "description": null,
+                                                                                                                                    "isDeprecated": false,
+                                                                                                                                    "name": "CHROMEOS"
                                                                                                                                 }
                                                                                                                             ],
                                                                                                                             "fields": null,
@@ -35800,6 +35681,12 @@
                                                                                                     "description": "Indicate the rule is a scoping context for sub policy",
                                                                                                     "isDeprecated": false,
                                                                                                     "name": "SUB_POLICY_SCOPE"
+                                                                                                },
+                                                                                                {
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": "Indicate the rule is a nested rule under a parent rule (e.g. a firewall exception)",
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "SUB_RULE"
                                                                                                 }
                                                                                             ],
                                                                                             "fields": null,
@@ -36002,6 +35889,133 @@
                                                                                         "non_null": false
                                                                                     },
                                                                                     "varName": "policyElementAudit"
+                                                                                },
+                                                                                "metadata": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Additional metadata for the section, including lock state",
+                                                                                    "id_str": "wanFirewall___addSubPolicy___policy___sections___metadata",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "metadata",
+                                                                                    "path": "wanFirewall.addSubPolicy.policy.sections.metadata",
+                                                                                    "requestStr": "$policyElementMetadata:PolicyElementMetadata ",
+                                                                                    "required": false,
+                                                                                    "responseStr": "metadata:$policyElementMetadata ",
+                                                                                    "type": {
+                                                                                        "definition": {
+                                                                                            "description": "Additional metadata attached to a rule or section",
+                                                                                            "enumValues": null,
+                                                                                            "fields": {
+                                                                                                "lock": {
+                                                                                                    "args": {},
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": "Lock information; non-null only when the item has the LOCKED property",
+                                                                                                    "id_str": "wanFirewall___addSubPolicy___policy___sections___metadata___lock",
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "lock",
+                                                                                                    "path": "wanFirewall.addSubPolicy.policy.sections.metadata.lock",
+                                                                                                    "requestStr": "$policyElementLock:PolicyElementLock ",
+                                                                                                    "required": false,
+                                                                                                    "responseStr": "lock:$policyElementLock ",
+                                                                                                    "type": {
+                                                                                                        "definition": {
+                                                                                                            "description": "Lock info for a rule or section held by another revision",
+                                                                                                            "enumValues": null,
+                                                                                                            "fields": {
+                                                                                                                "lockingAdminEmail": {
+                                                                                                                    "args": {},
+                                                                                                                    "deprecationReason": null,
+                                                                                                                    "description": "Email of the admin whose revision holds this item locked",
+                                                                                                                    "id_str": "wanFirewall___addSubPolicy___policy___sections___metadata___lock___lockingAdminEmail",
+                                                                                                                    "isDeprecated": false,
+                                                                                                                    "name": "lockingAdminEmail",
+                                                                                                                    "path": "wanFirewall.addSubPolicy.policy.sections.metadata.lock.lockingAdminEmail",
+                                                                                                                    "requestStr": "$lockingAdminEmail:String! ",
+                                                                                                                    "required": true,
+                                                                                                                    "responseStr": "lockingAdminEmail:$lockingAdminEmail ",
+                                                                                                                    "type": {
+                                                                                                                        "kind": [
+                                                                                                                            "NON_NULL",
+                                                                                                                            "SCALAR"
+                                                                                                                        ],
+                                                                                                                        "name": "String",
+                                                                                                                        "non_null": false
+                                                                                                                    },
+                                                                                                                    "varName": "lockingAdminEmail"
+                                                                                                                },
+                                                                                                                "lockingRevisionId": {
+                                                                                                                    "args": {},
+                                                                                                                    "deprecationReason": null,
+                                                                                                                    "description": "The ID of the revision that currently holds the lock",
+                                                                                                                    "id_str": "wanFirewall___addSubPolicy___policy___sections___metadata___lock___lockingRevisionId",
+                                                                                                                    "isDeprecated": false,
+                                                                                                                    "name": "lockingRevisionId",
+                                                                                                                    "path": "wanFirewall.addSubPolicy.policy.sections.metadata.lock.lockingRevisionId",
+                                                                                                                    "requestStr": "$lockingRevisionId:ID! ",
+                                                                                                                    "required": true,
+                                                                                                                    "responseStr": "lockingRevisionId:$lockingRevisionId ",
+                                                                                                                    "type": {
+                                                                                                                        "kind": [
+                                                                                                                            "NON_NULL",
+                                                                                                                            "SCALAR"
+                                                                                                                        ],
+                                                                                                                        "name": "ID",
+                                                                                                                        "non_null": false
+                                                                                                                    },
+                                                                                                                    "varName": "lockingRevisionId"
+                                                                                                                },
+                                                                                                                "lockingTime": {
+                                                                                                                    "args": {},
+                                                                                                                    "deprecationReason": null,
+                                                                                                                    "description": "Timestamp when this rule/section was locked",
+                                                                                                                    "id_str": "wanFirewall___addSubPolicy___policy___sections___metadata___lock___lockingTime",
+                                                                                                                    "isDeprecated": false,
+                                                                                                                    "name": "lockingTime",
+                                                                                                                    "path": "wanFirewall.addSubPolicy.policy.sections.metadata.lock.lockingTime",
+                                                                                                                    "requestStr": "$lockingTime:DateTime! ",
+                                                                                                                    "required": true,
+                                                                                                                    "responseStr": "lockingTime:$lockingTime ",
+                                                                                                                    "type": {
+                                                                                                                        "kind": [
+                                                                                                                            "NON_NULL",
+                                                                                                                            "SCALAR"
+                                                                                                                        ],
+                                                                                                                        "name": "DateTime",
+                                                                                                                        "non_null": false
+                                                                                                                    },
+                                                                                                                    "varName": "lockingTime"
+                                                                                                                }
+                                                                                                            },
+                                                                                                            "inputFields": null,
+                                                                                                            "interfaces": {},
+                                                                                                            "kind": "OBJECT",
+                                                                                                            "name": "PolicyElementLock",
+                                                                                                            "possibleTypes": null
+                                                                                                        },
+                                                                                                        "indexType": "object",
+                                                                                                        "kind": [
+                                                                                                            "OBJECT"
+                                                                                                        ],
+                                                                                                        "name": "PolicyElementLock",
+                                                                                                        "non_null": false
+                                                                                                    },
+                                                                                                    "varName": "policyElementLock"
+                                                                                                }
+                                                                                            },
+                                                                                            "inputFields": null,
+                                                                                            "interfaces": {},
+                                                                                            "kind": "OBJECT",
+                                                                                            "name": "PolicyElementMetadata",
+                                                                                            "possibleTypes": null
+                                                                                        },
+                                                                                        "indexType": "object",
+                                                                                        "kind": [
+                                                                                            "OBJECT"
+                                                                                        ],
+                                                                                        "name": "PolicyElementMetadata",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "policyElementMetadata"
                                                                                 },
                                                                                 "properties": {
                                                                                     "args": {},
@@ -36745,7 +36759,6 @@
                         "example2"
                     ]
                 },
-                "connectionOrigin": "ANY",
                 "country": {
                     "by": "ID",
                     "input": "string"
@@ -36885,7 +36898,6 @@
                             "example2"
                         ]
                     },
-                    "connectionOrigin": "ANY",
                     "country": {
                         "by": "ID",
                         "input": "string"

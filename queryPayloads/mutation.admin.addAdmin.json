@@ -1,6 +1,6 @@
 {
     "operationName": "adminAddAdmin",
-    "query": "mutation adminAddAdmin ( $accountId:ID! $addAdminInput:AddAdminInput!) {\n\tadmin ( accountId:$accountId ) {\n\t\taddAdmin ( input:$addAdminInput  )  {\n\t\t\tadminID\n\t\t}\n\t}\t\n}",
+    "query": "mutation adminAddAdmin ( $accountId:ID! $addAdminInput:AddAdminInput!) {\n\tadmin ( accountId:$accountId ) {\n\t\taddAdmin ( input:$addAdminInput  )  {\n\t\t\tadminID\n\t\t\tpasswordSetupUrl\n\t\t}\n\t}\t\n}",
     "variables": {
         "addAdminInput": {
             "adminType": "LOGIN",
@@ -8,6 +8,7 @@
             "firstName": "string",
             "lastName": "string",
             "passwordNeverExpires": true,
+            "shouldSendInvitationEmail": true,
             "updateAdminRoleInput": {
                 "allowedAccounts": [
                     "id1",
@@ -16,7 +17,7 @@
                 "allowedEntities": {
                     "id": "id",
                     "name": "string",
-                    "type": "account"
+                    "type": "site"
                 },
                 "role": {
                     "id": "id",

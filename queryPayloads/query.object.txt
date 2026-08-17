@@ -1,0 +1,21 @@
+query object ( $accountId:ID! $globalIpRangeRefInput:GlobalIpRangeRefInput! $globalIpRangeListInput:GlobalIpRangeListInput) {
+	object ( accountId:$accountId ) {
+		globalIpRange ( input:$globalIpRangeRefInput  )  {
+			id
+			name
+			description
+			ipRange
+			subnet
+		}
+		globalIpRangeList ( input:$globalIpRangeListInput  )  {
+			items {
+				id
+				name
+				description
+				ipRange
+				subnet
+			}
+			total
+		}
+	}	
+}

@@ -1,0 +1,25 @@
+query siteKnownHostList ( $accountId:ID! $siteKnownHostListInput:SiteKnownHostListInput!) {
+	site ( accountId:$accountId ) {
+		knownHostList ( input:$siteKnownHostListInput  )  {
+			knownHost {
+				hostName
+				ip
+				macAddress
+				dhcpRange
+				networkRange {
+					name
+					subnet
+				}
+				ipAllocationType
+				lastActivitySeconds
+				leaseTimeSeconds
+				expiresInSeconds
+				identity
+				operatingSystem
+			}
+			pageInfo {
+				total
+			}
+		}
+	}	
+}

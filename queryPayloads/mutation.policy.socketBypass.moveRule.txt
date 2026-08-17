@@ -7,6 +7,13 @@ mutation policySocketBypassMoveRule ( $accountId:ID! $socketBypassPolicyMutation
 						updatedTime
 						updatedBy
 					}
+					metadata {
+						lock {
+							lockingAdminEmail
+							lockingTime
+							lockingRevisionId
+						}
+					}
 					rule {
 						id
 						name
@@ -184,6 +191,14 @@ mutation policySocketBypassMoveRule ( $accountId:ID! $socketBypassPolicyMutation
 						}
 					}
 					properties
+				}
+				revision {
+					id
+					name
+					description
+					changes
+					createdTime
+					updatedTime
 				}
 				status
 				errors {

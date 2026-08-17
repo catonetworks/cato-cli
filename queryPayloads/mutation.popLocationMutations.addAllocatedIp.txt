@@ -1,0 +1,22 @@
+mutation popLocationMutationsAddAllocatedIp ( $accountId:ID! $popLocationAddAllocatedIpInput:PopLocationAddAllocatedIpInput!) {
+	popLocationMutations ( accountId:$accountId ) {
+		addAllocatedIp ( input:$popLocationAddAllocatedIpInput  )  {
+			allocatedIp {
+				id
+				account {
+					id
+					name
+				}
+				ip
+				popLocation {
+					id
+					name
+				}
+				allocationType
+				description
+				subnet
+				state
+			}
+		}
+	}	
+}

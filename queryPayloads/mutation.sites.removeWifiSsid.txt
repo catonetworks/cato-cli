@@ -1,0 +1,34 @@
+mutation sitesRemoveWifiSsid ( $accountId:ID! $removeWifiSsidInput:RemoveWifiSsidInput!) {
+	sites ( accountId:$accountId ) {
+		removeWifiSsid ( input:$removeWifiSsidInput  )  {
+			wifiSsid {
+				id
+				networkInterfaceId
+				site {
+					id
+					name
+				}
+				name
+				enabled
+				category
+				visible
+				subnet
+				localIp
+				dhcp {
+					dhcpSubnet
+				}
+				vlanId
+				dhcpEnabled
+				microsegmentationEnabled
+				internetOnly
+				mdnsEnabled
+				security {
+					mode
+					authProtocol
+					trackAuthentication
+				}
+				band
+			}
+		}
+	}	
+}

@@ -1,0 +1,149 @@
+mutation policyPrivateAccessUpdatePolicy ( $accountId:ID! $privateAccessPolicyMutationInput:PrivateAccessPolicyMutationInput $privateAccessPolicyUpdateInput:PrivateAccessPolicyUpdateInput!) {
+	policy ( accountId:$accountId ) {
+		privateAccess ( input:$privateAccessPolicyMutationInput  )  {
+			updatePolicy ( input:$privateAccessPolicyUpdateInput   ) {
+				policy {
+					enabled
+					rules {
+						audit {
+							updatedTime
+							updatedBy
+						}
+						metadata {
+							lock {
+								lockingAdminEmail
+								lockingTime
+								lockingRevisionId
+							}
+						}
+						rule {
+							id
+							name
+							description
+							index
+							section {
+								id
+								name
+							}
+							enabled
+							source {
+								user {
+									id
+									name
+								}
+								usersGroup {
+									id
+									name
+								}
+								systemGroup {
+									id
+									name
+								}
+							}
+							platform
+							country {
+								id
+								name
+							}
+							applications {
+								application {
+									id
+									name
+								}
+							}
+							connectionOrigin
+							action {
+								action
+							}
+							tracking {
+								event {
+									enabled
+								}
+								alert {
+									enabled
+									frequency
+									subscriptionGroup {
+										id
+										name
+									}
+									webhook {
+										id
+										name
+									}
+									mailingList {
+										id
+										name
+									}
+								}
+							}
+							device {
+								id
+								name
+							}
+							userAttributes {
+								riskScore {
+									category
+									operator
+								}
+							}
+							schedule {
+								activeOn
+								customTimeframe {
+									from
+									to
+								}
+								customRecurring {
+									from
+									to
+									days
+								}
+							}
+							activePeriod {
+								useEffectiveFrom
+								effectiveFrom
+								useExpiresAt
+								expiresAt
+							}
+						}
+						properties
+					}
+					sections {
+						audit {
+							updatedTime
+							updatedBy
+						}
+						metadata {
+							lock {
+								lockingAdminEmail
+								lockingTime
+								lockingRevisionId
+							}
+						}
+						section {
+							id
+							name
+						}
+						properties
+					}
+					audit {
+						publishedTime
+						publishedBy
+					}
+					revision {
+						id
+						name
+						description
+						changes
+						createdTime
+						updatedTime
+					}
+				}
+				status
+				errors {
+					errorMessage
+					errorCode
+				}
+			}
+		}
+	}	
+}

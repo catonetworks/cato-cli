@@ -1,0 +1,50 @@
+mutation ztnaAppConnectorUnassignSocketFromZtnaAppConnector ( $accountId:ID! $unassignSocketFromZtnaAppConnectorInput:UnassignSocketFromZtnaAppConnectorInput!) {
+	ztnaAppConnector ( accountId:$accountId ) {
+		unassignSocketFromZtnaAppConnector ( input:$unassignSocketFromZtnaAppConnectorInput  )  {
+			ztnaAppConnector {
+				id
+				createdAt
+				name
+				description
+				serialNumber
+				socketId
+				type
+				socketModel
+				isRegistered
+				groupName
+				location {
+					address
+					cityName
+					countryCode
+					countryName
+					stateCode
+					timezone
+				}
+				preferredPopLocation {
+					preferredOnly
+					automatic
+					primary {
+						id
+						name
+					}
+					secondary {
+						id
+						name
+					}
+				}
+				privateAppCount
+				privateAppRef {
+					id
+					name
+				}
+				socketInfo {
+					version
+					rollbackTargetVersion
+					versionUpdateTime
+					rollbackEligibleUntil
+					upgradesPaused
+				}
+			}
+		}
+	}	
+}

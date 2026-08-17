@@ -2,11 +2,21 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 	policy ( accountId:$accountId ) {
 		socketLan {
 			policy ( input:$socketLanPolicyInput   ) {
+				id
+				name
+				description
 				enabled
 				rules {
 					audit {
 						updatedTime
 						updatedBy
+					}
+					metadata {
+						lock {
+							lockingAdminEmail
+							lockingTime
+							lockingRevisionId
+						}
 					}
 					rule {
 						id
@@ -22,6 +32,13 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 							audit {
 								updatedTime
 								updatedBy
+							}
+							metadata {
+								lock {
+									lockingAdminEmail
+									lockingTime
+									lockingRevisionId
+								}
 							}
 							rule {
 								id
@@ -180,6 +197,14 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 								}
 							}
 							properties
+							ruleType
+							subPolicy {
+								id
+								name
+							}
+							access {
+								action
+							}
 						}
 						site {
 							site {
@@ -286,11 +311,26 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 						transport
 					}
 					properties
+					ruleType
+					subPolicy {
+						id
+						name
+					}
+					access {
+						action
+					}
 				}
 				sections {
 					audit {
 						updatedTime
 						updatedBy
+					}
+					metadata {
+						lock {
+							lockingAdminEmail
+							lockingTime
+							lockingRevisionId
+						}
 					}
 					section {
 						id
@@ -309,6 +349,22 @@ query policySocketLanPolicy ( $accountId:ID! $socketLanPolicyInput:SocketLanPoli
 					changes
 					createdTime
 					updatedTime
+				}
+				subPolicies {
+					policy {
+						id
+						name
+						description
+						enabled
+						policyLevel
+						audit {
+							publishedTime
+							publishedBy
+						}
+					}
+				}
+				access {
+					action
 				}
 			}
 		}

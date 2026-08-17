@@ -1,0 +1,2488 @@
+{
+    "args": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        }
+    },
+    "childOperations": {
+        "createPrivateApplication": {
+            "args": {
+                "createPrivateApplication___input": {
+                    "defaultValue": null,
+                    "description": null,
+                    "id_str": "createPrivateApplication___input",
+                    "name": "input",
+                    "path": "createPrivateApplication.input",
+                    "requestStr": "$createPrivateApplicationInput:CreatePrivateApplicationInput! ",
+                    "required": true,
+                    "responseStr": "input:$createPrivateApplicationInput ",
+                    "type": {
+                        "definition": {
+                            "description": null,
+                            "enumValues": null,
+                            "fields": null,
+                            "inputFields": {
+                                "allowIcmpProtocol": {
+                                    "defaultValue": "true",
+                                    "description": "Allow ICMP (ping) traffic to the application (default: true)",
+                                    "id_str": "createPrivateApplication___input___allowIcmpProtocol",
+                                    "name": "allowIcmpProtocol",
+                                    "path": "createPrivateApplication.input.allowIcmpProtocol",
+                                    "requestStr": "$allowIcmpProtocol:Boolean! ",
+                                    "required": true,
+                                    "responseStr": "allowIcmpProtocol:$allowIcmpProtocol ",
+                                    "type": {
+                                        "kind": [
+                                            "NON_NULL",
+                                            "SCALAR"
+                                        ],
+                                        "name": "Boolean",
+                                        "non_null": false
+                                    },
+                                    "varName": "allowIcmpProtocol"
+                                },
+                                "description": {
+                                    "defaultValue": null,
+                                    "description": "Optional description of the application's purpose",
+                                    "id_str": "createPrivateApplication___input___description",
+                                    "name": "description",
+                                    "path": "createPrivateApplication.input.description",
+                                    "requestStr": "$description:String ",
+                                    "required": false,
+                                    "responseStr": "description:$description ",
+                                    "type": {
+                                        "kind": [
+                                            "SCALAR"
+                                        ],
+                                        "name": "String",
+                                        "non_null": false
+                                    },
+                                    "varName": "description"
+                                },
+                                "internalAppAddress": {
+                                    "defaultValue": null,
+                                    "description": "Internal IP address or FQDN at which the application is reachable.\nExample: '10.0.1.50' or 'hr.internal.corp'",
+                                    "id_str": "createPrivateApplication___input___internalAppAddress",
+                                    "name": "internalAppAddress",
+                                    "path": "createPrivateApplication.input.internalAppAddress",
+                                    "requestStr": "$internalAppAddress:IPAddressOrFqdn! ",
+                                    "required": true,
+                                    "responseStr": "internalAppAddress:$internalAppAddress ",
+                                    "type": {
+                                        "kind": [
+                                            "NON_NULL",
+                                            "SCALAR"
+                                        ],
+                                        "name": "IPAddressOrFqdn",
+                                        "non_null": false
+                                    },
+                                    "varName": "internalAppAddress"
+                                },
+                                "name": {
+                                    "defaultValue": null,
+                                    "description": "Human-readable name for the application. Example: 'Internal HR Portal'",
+                                    "id_str": "createPrivateApplication___input___name",
+                                    "name": "name",
+                                    "path": "createPrivateApplication.input.name",
+                                    "requestStr": "$name:String! ",
+                                    "required": true,
+                                    "responseStr": "name:$name ",
+                                    "type": {
+                                        "kind": [
+                                            "NON_NULL",
+                                            "SCALAR"
+                                        ],
+                                        "name": "String",
+                                        "non_null": false
+                                    },
+                                    "varName": "name"
+                                },
+                                "privateAppProbing": {
+                                    "defaultValue": null,
+                                    "description": "Health probing configuration for the application",
+                                    "id_str": "createPrivateApplication___input___privateAppProbing",
+                                    "name": "privateAppProbing",
+                                    "path": "createPrivateApplication.input.privateAppProbing",
+                                    "requestStr": "$privateAppProbingInput:PrivateAppProbingInput ",
+                                    "required": false,
+                                    "responseStr": "privateAppProbing:$privateAppProbingInput ",
+                                    "type": {
+                                        "definition": {
+                                            "description": null,
+                                            "enumValues": null,
+                                            "fields": null,
+                                            "inputFields": {
+                                                "faultThresholdDown": {
+                                                    "defaultValue": null,
+                                                    "description": "Number of consecutive failures before marking the app as down. Example: 3",
+                                                    "id_str": "createPrivateApplication___input___privateAppProbing___faultThresholdDown",
+                                                    "name": "faultThresholdDown",
+                                                    "path": "createPrivateApplication.input.privateAppProbing.faultThresholdDown",
+                                                    "requestStr": "$faultThresholdDown:Int ",
+                                                    "required": false,
+                                                    "responseStr": "faultThresholdDown:$faultThresholdDown ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Int",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "faultThresholdDown"
+                                                },
+                                                "id": {
+                                                    "defaultValue": null,
+                                                    "description": "ID of an existing probing config to update; omit when creating",
+                                                    "id_str": "createPrivateApplication___input___privateAppProbing___id",
+                                                    "name": "id",
+                                                    "path": "createPrivateApplication.input.privateAppProbing.id",
+                                                    "requestStr": "$id:ID ",
+                                                    "required": false,
+                                                    "responseStr": "id:$id ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "ID",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "id"
+                                                },
+                                                "interval": {
+                                                    "defaultValue": null,
+                                                    "description": "Probe interval in seconds. Example: 30",
+                                                    "id_str": "createPrivateApplication___input___privateAppProbing___interval",
+                                                    "name": "interval",
+                                                    "path": "createPrivateApplication.input.privateAppProbing.interval",
+                                                    "requestStr": "$interval:Int ",
+                                                    "required": false,
+                                                    "responseStr": "interval:$interval ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Int",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "interval"
+                                                },
+                                                "type": {
+                                                    "defaultValue": null,
+                                                    "description": "Probing type. Example: 'ICMP' or 'TCP'",
+                                                    "id_str": "createPrivateApplication___input___privateAppProbing___type",
+                                                    "name": "type",
+                                                    "path": "createPrivateApplication.input.privateAppProbing.type",
+                                                    "requestStr": "$type:String ",
+                                                    "required": false,
+                                                    "responseStr": "type:$type ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "type"
+                                                }
+                                            },
+                                            "interfaces": null,
+                                            "kind": "INPUT_OBJECT",
+                                            "name": "PrivateAppProbingInput",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "input_object",
+                                        "kind": [
+                                            "INPUT_OBJECT"
+                                        ],
+                                        "name": "PrivateAppProbingInput",
+                                        "non_null": false
+                                    },
+                                    "varName": "privateAppProbingInput"
+                                },
+                                "probingEnabled": {
+                                    "defaultValue": "true",
+                                    "description": "Enable health probing for this application (default: true)",
+                                    "id_str": "createPrivateApplication___input___probingEnabled",
+                                    "name": "probingEnabled",
+                                    "path": "createPrivateApplication.input.probingEnabled",
+                                    "requestStr": "$probingEnabled:Boolean! ",
+                                    "required": true,
+                                    "responseStr": "probingEnabled:$probingEnabled ",
+                                    "type": {
+                                        "kind": [
+                                            "NON_NULL",
+                                            "SCALAR"
+                                        ],
+                                        "name": "Boolean",
+                                        "non_null": false
+                                    },
+                                    "varName": "probingEnabled"
+                                },
+                                "protocolPorts": {
+                                    "defaultValue": null,
+                                    "description": "List of allowed protocol/port combinations.\nExample: [{ protocol: TCP, port: [443] }]",
+                                    "id_str": "createPrivateApplication___input___protocolPorts",
+                                    "name": "protocolPorts",
+                                    "path": "createPrivateApplication.input.protocolPorts",
+                                    "requestStr": "$customServiceInput:[CustomServiceInput] ",
+                                    "required": false,
+                                    "responseStr": "protocolPorts:$customServiceInput ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "Add a Custom Service defined by a combination of L4 ports and an IP Protocol",
+                                            "enumValues": null,
+                                            "fields": null,
+                                            "inputFields": {
+                                                "port": {
+                                                    "defaultValue": null,
+                                                    "description": null,
+                                                    "id_str": "createPrivateApplication___input___protocolPorts___port",
+                                                    "name": "port",
+                                                    "path": "createPrivateApplication.input.protocolPorts.port",
+                                                    "requestStr": "$port:[Port] ",
+                                                    "required": false,
+                                                    "responseStr": "port:$port ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "LIST",
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Port",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "port"
+                                                },
+                                                "portRange": {
+                                                    "defaultValue": null,
+                                                    "description": null,
+                                                    "id_str": "createPrivateApplication___input___protocolPorts___portRange",
+                                                    "name": "portRange",
+                                                    "path": "createPrivateApplication.input.protocolPorts.portRange",
+                                                    "requestStr": "$portRangeInput:PortRangeInput ",
+                                                    "required": false,
+                                                    "responseStr": "portRange:$portRangeInput ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "Inclusive network port range",
+                                                            "enumValues": null,
+                                                            "fields": null,
+                                                            "inputFields": {
+                                                                "from": {
+                                                                    "defaultValue": null,
+                                                                    "description": null,
+                                                                    "id_str": "createPrivateApplication___input___protocolPorts___portRange___from",
+                                                                    "name": "from",
+                                                                    "path": "createPrivateApplication.input.protocolPorts.portRange.from",
+                                                                    "requestStr": "$from:Port! ",
+                                                                    "required": true,
+                                                                    "responseStr": "from:$from ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "Port",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "from"
+                                                                },
+                                                                "to": {
+                                                                    "defaultValue": null,
+                                                                    "description": null,
+                                                                    "id_str": "createPrivateApplication___input___protocolPorts___portRange___to",
+                                                                    "name": "to",
+                                                                    "path": "createPrivateApplication.input.protocolPorts.portRange.to",
+                                                                    "requestStr": "$to:Port! ",
+                                                                    "required": true,
+                                                                    "responseStr": "to:$to ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "Port",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "to"
+                                                                }
+                                                            },
+                                                            "interfaces": null,
+                                                            "kind": "INPUT_OBJECT",
+                                                            "name": "PortRangeInput",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "input_object",
+                                                        "kind": [
+                                                            "INPUT_OBJECT"
+                                                        ],
+                                                        "name": "PortRangeInput",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "portRangeInput"
+                                                },
+                                                "protocol": {
+                                                    "defaultValue": null,
+                                                    "description": null,
+                                                    "id_str": "createPrivateApplication___input___protocolPorts___protocol",
+                                                    "name": "protocol",
+                                                    "path": "createPrivateApplication.input.protocolPorts.protocol",
+                                                    "requestStr": "$protocol:IpProtocol! ",
+                                                    "required": true,
+                                                    "responseStr": "protocol:$protocol ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": null,
+                                                            "enumValues": [
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "ANY"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "TCP"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "TCP or UDP",
+                                                                    "isDeprecated": false,
+                                                                    "name": "TCP_UDP"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "UDP"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "ICMP"
+                                                                }
+                                                            ],
+                                                            "fields": null,
+                                                            "inputFields": null,
+                                                            "interfaces": null,
+                                                            "kind": "ENUM",
+                                                            "name": "IpProtocol",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "enum",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "ENUM"
+                                                        ],
+                                                        "name": "IpProtocol",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "protocol"
+                                                }
+                                            },
+                                            "interfaces": null,
+                                            "kind": "INPUT_OBJECT",
+                                            "name": "CustomServiceInput",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "input_object",
+                                        "kind": [
+                                            "LIST",
+                                            "NON_NULL",
+                                            "INPUT_OBJECT"
+                                        ],
+                                        "name": "CustomServiceInput",
+                                        "non_null": false
+                                    },
+                                    "varName": "customServiceInput"
+                                },
+                                "published": {
+                                    "defaultValue": "false",
+                                    "description": "Whether the Private Application is published through the App Connector",
+                                    "id_str": "createPrivateApplication___input___published",
+                                    "name": "published",
+                                    "path": "createPrivateApplication.input.published",
+                                    "requestStr": "$published:Boolean! ",
+                                    "required": true,
+                                    "responseStr": "published:$published ",
+                                    "type": {
+                                        "kind": [
+                                            "NON_NULL",
+                                            "SCALAR"
+                                        ],
+                                        "name": "Boolean",
+                                        "non_null": false
+                                    },
+                                    "varName": "published"
+                                },
+                                "publishedAppDomain": {
+                                    "defaultValue": null,
+                                    "description": "Configuration for exposing the application via a Cato-managed domain",
+                                    "id_str": "createPrivateApplication___input___publishedAppDomain",
+                                    "name": "publishedAppDomain",
+                                    "path": "createPrivateApplication.input.publishedAppDomain",
+                                    "requestStr": "$publishedAppDomainInput:PublishedAppDomainInput ",
+                                    "required": false,
+                                    "responseStr": "publishedAppDomain:$publishedAppDomainInput ",
+                                    "type": {
+                                        "definition": {
+                                            "description": null,
+                                            "enumValues": null,
+                                            "fields": null,
+                                            "inputFields": {
+                                                "catoIp": {
+                                                    "defaultValue": null,
+                                                    "description": "Cato IP address to associate with the domain",
+                                                    "id_str": "createPrivateApplication___input___publishedAppDomain___catoIp",
+                                                    "name": "catoIp",
+                                                    "path": "createPrivateApplication.input.publishedAppDomain.catoIp",
+                                                    "requestStr": "$catoIp:IPAddress ",
+                                                    "required": false,
+                                                    "responseStr": "catoIp:$catoIp ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "IPAddress",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "catoIp"
+                                                },
+                                                "connectorGroupName": {
+                                                    "defaultValue": null,
+                                                    "description": "Name of the connector group to use for routing",
+                                                    "id_str": "createPrivateApplication___input___publishedAppDomain___connectorGroupName",
+                                                    "name": "connectorGroupName",
+                                                    "path": "createPrivateApplication.input.publishedAppDomain.connectorGroupName",
+                                                    "requestStr": "$connectorGroupName:String ",
+                                                    "required": false,
+                                                    "responseStr": "connectorGroupName:$connectorGroupName ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "connectorGroupName"
+                                                },
+                                                "creationTime": {
+                                                    "defaultValue": null,
+                                                    "description": "Timestamp of the domain record; managed by the server",
+                                                    "id_str": "createPrivateApplication___input___publishedAppDomain___creationTime",
+                                                    "name": "creationTime",
+                                                    "path": "createPrivateApplication.input.publishedAppDomain.creationTime",
+                                                    "requestStr": "$creationTime:DateTime ",
+                                                    "required": false,
+                                                    "responseStr": "creationTime:$creationTime ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "DateTime",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "creationTime"
+                                                },
+                                                "id": {
+                                                    "defaultValue": null,
+                                                    "description": "ID of an existing published domain record to update; omit when creating",
+                                                    "id_str": "createPrivateApplication___input___publishedAppDomain___id",
+                                                    "name": "id",
+                                                    "path": "createPrivateApplication.input.publishedAppDomain.id",
+                                                    "requestStr": "$id:ID ",
+                                                    "required": false,
+                                                    "responseStr": "id:$id ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "ID",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "id"
+                                                },
+                                                "publishedAppDomain": {
+                                                    "defaultValue": null,
+                                                    "description": "The Cato-managed domain name. Example: 'app.catocloud.com'",
+                                                    "id_str": "createPrivateApplication___input___publishedAppDomain___publishedAppDomain",
+                                                    "name": "publishedAppDomain",
+                                                    "path": "createPrivateApplication.input.publishedAppDomain.publishedAppDomain",
+                                                    "requestStr": "$publishedAppDomain:String ",
+                                                    "required": false,
+                                                    "responseStr": "publishedAppDomain:$publishedAppDomain ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "publishedAppDomain"
+                                                }
+                                            },
+                                            "interfaces": null,
+                                            "kind": "INPUT_OBJECT",
+                                            "name": "PublishedAppDomainInput",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "input_object",
+                                        "kind": [
+                                            "INPUT_OBJECT"
+                                        ],
+                                        "name": "PublishedAppDomainInput",
+                                        "non_null": false
+                                    },
+                                    "varName": "publishedAppDomainInput"
+                                }
+                            },
+                            "interfaces": null,
+                            "kind": "INPUT_OBJECT",
+                            "name": "CreatePrivateApplicationInput",
+                            "possibleTypes": null
+                        },
+                        "indexType": "input_object",
+                        "kind": [
+                            "NON_NULL",
+                            "INPUT_OBJECT"
+                        ],
+                        "name": "CreatePrivateApplicationInput",
+                        "non_null": false
+                    },
+                    "varName": "createPrivateApplicationInput"
+                }
+            },
+            "deprecationReason": null,
+            "description": "Create a new private application for Private Access",
+            "isDeprecated": false,
+            "name": "createPrivateApplication",
+            "type": {
+                "kind": "OBJECT",
+                "name": "CreatePrivateApplicationPayload",
+                "ofType": null
+            }
+        }
+    },
+    "deprecationReason": null,
+    "description": null,
+    "fieldTypes": {},
+    "isDeprecated": false,
+    "name": "privateApplication",
+    "operationArgs": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        },
+        "createPrivateApplicationInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "createPrivateApplication___input",
+            "name": "input",
+            "path": "createPrivateApplication.input",
+            "requestStr": "$createPrivateApplicationInput:CreatePrivateApplicationInput! ",
+            "required": true,
+            "responseStr": "input:$createPrivateApplicationInput ",
+            "type": {
+                "definition": {
+                    "description": null,
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "allowIcmpProtocol": {
+                            "defaultValue": "true",
+                            "description": "Allow ICMP (ping) traffic to the application (default: true)",
+                            "id_str": "createPrivateApplication___input___allowIcmpProtocol",
+                            "name": "allowIcmpProtocol",
+                            "path": "createPrivateApplication.input.allowIcmpProtocol",
+                            "requestStr": "$allowIcmpProtocol:Boolean! ",
+                            "required": true,
+                            "responseStr": "allowIcmpProtocol:$allowIcmpProtocol ",
+                            "type": {
+                                "kind": [
+                                    "NON_NULL",
+                                    "SCALAR"
+                                ],
+                                "name": "Boolean",
+                                "non_null": false
+                            },
+                            "varName": "allowIcmpProtocol"
+                        },
+                        "description": {
+                            "defaultValue": null,
+                            "description": "Optional description of the application's purpose",
+                            "id_str": "createPrivateApplication___input___description",
+                            "name": "description",
+                            "path": "createPrivateApplication.input.description",
+                            "requestStr": "$description:String ",
+                            "required": false,
+                            "responseStr": "description:$description ",
+                            "type": {
+                                "kind": [
+                                    "SCALAR"
+                                ],
+                                "name": "String",
+                                "non_null": false
+                            },
+                            "varName": "description"
+                        },
+                        "internalAppAddress": {
+                            "defaultValue": null,
+                            "description": "Internal IP address or FQDN at which the application is reachable.\nExample: '10.0.1.50' or 'hr.internal.corp'",
+                            "id_str": "createPrivateApplication___input___internalAppAddress",
+                            "name": "internalAppAddress",
+                            "path": "createPrivateApplication.input.internalAppAddress",
+                            "requestStr": "$internalAppAddress:IPAddressOrFqdn! ",
+                            "required": true,
+                            "responseStr": "internalAppAddress:$internalAppAddress ",
+                            "type": {
+                                "kind": [
+                                    "NON_NULL",
+                                    "SCALAR"
+                                ],
+                                "name": "IPAddressOrFqdn",
+                                "non_null": false
+                            },
+                            "varName": "internalAppAddress"
+                        },
+                        "name": {
+                            "defaultValue": null,
+                            "description": "Human-readable name for the application. Example: 'Internal HR Portal'",
+                            "id_str": "createPrivateApplication___input___name",
+                            "name": "name",
+                            "path": "createPrivateApplication.input.name",
+                            "requestStr": "$name:String! ",
+                            "required": true,
+                            "responseStr": "name:$name ",
+                            "type": {
+                                "kind": [
+                                    "NON_NULL",
+                                    "SCALAR"
+                                ],
+                                "name": "String",
+                                "non_null": false
+                            },
+                            "varName": "name"
+                        },
+                        "privateAppProbing": {
+                            "defaultValue": null,
+                            "description": "Health probing configuration for the application",
+                            "id_str": "createPrivateApplication___input___privateAppProbing",
+                            "name": "privateAppProbing",
+                            "path": "createPrivateApplication.input.privateAppProbing",
+                            "requestStr": "$privateAppProbingInput:PrivateAppProbingInput ",
+                            "required": false,
+                            "responseStr": "privateAppProbing:$privateAppProbingInput ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "faultThresholdDown": {
+                                            "defaultValue": null,
+                                            "description": "Number of consecutive failures before marking the app as down. Example: 3",
+                                            "id_str": "createPrivateApplication___input___privateAppProbing___faultThresholdDown",
+                                            "name": "faultThresholdDown",
+                                            "path": "createPrivateApplication.input.privateAppProbing.faultThresholdDown",
+                                            "requestStr": "$faultThresholdDown:Int ",
+                                            "required": false,
+                                            "responseStr": "faultThresholdDown:$faultThresholdDown ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "Int",
+                                                "non_null": false
+                                            },
+                                            "varName": "faultThresholdDown"
+                                        },
+                                        "id": {
+                                            "defaultValue": null,
+                                            "description": "ID of an existing probing config to update; omit when creating",
+                                            "id_str": "createPrivateApplication___input___privateAppProbing___id",
+                                            "name": "id",
+                                            "path": "createPrivateApplication.input.privateAppProbing.id",
+                                            "requestStr": "$id:ID ",
+                                            "required": false,
+                                            "responseStr": "id:$id ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "ID",
+                                                "non_null": false
+                                            },
+                                            "varName": "id"
+                                        },
+                                        "interval": {
+                                            "defaultValue": null,
+                                            "description": "Probe interval in seconds. Example: 30",
+                                            "id_str": "createPrivateApplication___input___privateAppProbing___interval",
+                                            "name": "interval",
+                                            "path": "createPrivateApplication.input.privateAppProbing.interval",
+                                            "requestStr": "$interval:Int ",
+                                            "required": false,
+                                            "responseStr": "interval:$interval ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "Int",
+                                                "non_null": false
+                                            },
+                                            "varName": "interval"
+                                        },
+                                        "type": {
+                                            "defaultValue": null,
+                                            "description": "Probing type. Example: 'ICMP' or 'TCP'",
+                                            "id_str": "createPrivateApplication___input___privateAppProbing___type",
+                                            "name": "type",
+                                            "path": "createPrivateApplication.input.privateAppProbing.type",
+                                            "requestStr": "$type:String ",
+                                            "required": false,
+                                            "responseStr": "type:$type ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "String",
+                                                "non_null": false
+                                            },
+                                            "varName": "type"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "PrivateAppProbingInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "PrivateAppProbingInput",
+                                "non_null": false
+                            },
+                            "varName": "privateAppProbingInput"
+                        },
+                        "probingEnabled": {
+                            "defaultValue": "true",
+                            "description": "Enable health probing for this application (default: true)",
+                            "id_str": "createPrivateApplication___input___probingEnabled",
+                            "name": "probingEnabled",
+                            "path": "createPrivateApplication.input.probingEnabled",
+                            "requestStr": "$probingEnabled:Boolean! ",
+                            "required": true,
+                            "responseStr": "probingEnabled:$probingEnabled ",
+                            "type": {
+                                "kind": [
+                                    "NON_NULL",
+                                    "SCALAR"
+                                ],
+                                "name": "Boolean",
+                                "non_null": false
+                            },
+                            "varName": "probingEnabled"
+                        },
+                        "protocolPorts": {
+                            "defaultValue": null,
+                            "description": "List of allowed protocol/port combinations.\nExample: [{ protocol: TCP, port: [443] }]",
+                            "id_str": "createPrivateApplication___input___protocolPorts",
+                            "name": "protocolPorts",
+                            "path": "createPrivateApplication.input.protocolPorts",
+                            "requestStr": "$customServiceInput:[CustomServiceInput] ",
+                            "required": false,
+                            "responseStr": "protocolPorts:$customServiceInput ",
+                            "type": {
+                                "definition": {
+                                    "description": "Add a Custom Service defined by a combination of L4 ports and an IP Protocol",
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "port": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "createPrivateApplication___input___protocolPorts___port",
+                                            "name": "port",
+                                            "path": "createPrivateApplication.input.protocolPorts.port",
+                                            "requestStr": "$port:[Port] ",
+                                            "required": false,
+                                            "responseStr": "port:$port ",
+                                            "type": {
+                                                "kind": [
+                                                    "LIST",
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "Port",
+                                                "non_null": false
+                                            },
+                                            "varName": "port"
+                                        },
+                                        "portRange": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "createPrivateApplication___input___protocolPorts___portRange",
+                                            "name": "portRange",
+                                            "path": "createPrivateApplication.input.protocolPorts.portRange",
+                                            "requestStr": "$portRangeInput:PortRangeInput ",
+                                            "required": false,
+                                            "responseStr": "portRange:$portRangeInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "Inclusive network port range",
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "from": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "createPrivateApplication___input___protocolPorts___portRange___from",
+                                                            "name": "from",
+                                                            "path": "createPrivateApplication.input.protocolPorts.portRange.from",
+                                                            "requestStr": "$from:Port! ",
+                                                            "required": true,
+                                                            "responseStr": "from:$from ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "Port",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "from"
+                                                        },
+                                                        "to": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "createPrivateApplication___input___protocolPorts___portRange___to",
+                                                            "name": "to",
+                                                            "path": "createPrivateApplication.input.protocolPorts.portRange.to",
+                                                            "requestStr": "$to:Port! ",
+                                                            "required": true,
+                                                            "responseStr": "to:$to ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "Port",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "to"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "PortRangeInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "PortRangeInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "portRangeInput"
+                                        },
+                                        "protocol": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "createPrivateApplication___input___protocolPorts___protocol",
+                                            "name": "protocol",
+                                            "path": "createPrivateApplication.input.protocolPorts.protocol",
+                                            "requestStr": "$protocol:IpProtocol! ",
+                                            "required": true,
+                                            "responseStr": "protocol:$protocol ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "ANY"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "TCP"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "TCP or UDP",
+                                                            "isDeprecated": false,
+                                                            "name": "TCP_UDP"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "UDP"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "ICMP"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "IpProtocol",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "ENUM"
+                                                ],
+                                                "name": "IpProtocol",
+                                                "non_null": false
+                                            },
+                                            "varName": "protocol"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "CustomServiceInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "LIST",
+                                    "NON_NULL",
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "CustomServiceInput",
+                                "non_null": false
+                            },
+                            "varName": "customServiceInput"
+                        },
+                        "published": {
+                            "defaultValue": "false",
+                            "description": "Whether the Private Application is published through the App Connector",
+                            "id_str": "createPrivateApplication___input___published",
+                            "name": "published",
+                            "path": "createPrivateApplication.input.published",
+                            "requestStr": "$published:Boolean! ",
+                            "required": true,
+                            "responseStr": "published:$published ",
+                            "type": {
+                                "kind": [
+                                    "NON_NULL",
+                                    "SCALAR"
+                                ],
+                                "name": "Boolean",
+                                "non_null": false
+                            },
+                            "varName": "published"
+                        },
+                        "publishedAppDomain": {
+                            "defaultValue": null,
+                            "description": "Configuration for exposing the application via a Cato-managed domain",
+                            "id_str": "createPrivateApplication___input___publishedAppDomain",
+                            "name": "publishedAppDomain",
+                            "path": "createPrivateApplication.input.publishedAppDomain",
+                            "requestStr": "$publishedAppDomainInput:PublishedAppDomainInput ",
+                            "required": false,
+                            "responseStr": "publishedAppDomain:$publishedAppDomainInput ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "catoIp": {
+                                            "defaultValue": null,
+                                            "description": "Cato IP address to associate with the domain",
+                                            "id_str": "createPrivateApplication___input___publishedAppDomain___catoIp",
+                                            "name": "catoIp",
+                                            "path": "createPrivateApplication.input.publishedAppDomain.catoIp",
+                                            "requestStr": "$catoIp:IPAddress ",
+                                            "required": false,
+                                            "responseStr": "catoIp:$catoIp ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "IPAddress",
+                                                "non_null": false
+                                            },
+                                            "varName": "catoIp"
+                                        },
+                                        "connectorGroupName": {
+                                            "defaultValue": null,
+                                            "description": "Name of the connector group to use for routing",
+                                            "id_str": "createPrivateApplication___input___publishedAppDomain___connectorGroupName",
+                                            "name": "connectorGroupName",
+                                            "path": "createPrivateApplication.input.publishedAppDomain.connectorGroupName",
+                                            "requestStr": "$connectorGroupName:String ",
+                                            "required": false,
+                                            "responseStr": "connectorGroupName:$connectorGroupName ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "String",
+                                                "non_null": false
+                                            },
+                                            "varName": "connectorGroupName"
+                                        },
+                                        "creationTime": {
+                                            "defaultValue": null,
+                                            "description": "Timestamp of the domain record; managed by the server",
+                                            "id_str": "createPrivateApplication___input___publishedAppDomain___creationTime",
+                                            "name": "creationTime",
+                                            "path": "createPrivateApplication.input.publishedAppDomain.creationTime",
+                                            "requestStr": "$creationTime:DateTime ",
+                                            "required": false,
+                                            "responseStr": "creationTime:$creationTime ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "DateTime",
+                                                "non_null": false
+                                            },
+                                            "varName": "creationTime"
+                                        },
+                                        "id": {
+                                            "defaultValue": null,
+                                            "description": "ID of an existing published domain record to update; omit when creating",
+                                            "id_str": "createPrivateApplication___input___publishedAppDomain___id",
+                                            "name": "id",
+                                            "path": "createPrivateApplication.input.publishedAppDomain.id",
+                                            "requestStr": "$id:ID ",
+                                            "required": false,
+                                            "responseStr": "id:$id ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "ID",
+                                                "non_null": false
+                                            },
+                                            "varName": "id"
+                                        },
+                                        "publishedAppDomain": {
+                                            "defaultValue": null,
+                                            "description": "The Cato-managed domain name. Example: 'app.catocloud.com'",
+                                            "id_str": "createPrivateApplication___input___publishedAppDomain___publishedAppDomain",
+                                            "name": "publishedAppDomain",
+                                            "path": "createPrivateApplication.input.publishedAppDomain.publishedAppDomain",
+                                            "requestStr": "$publishedAppDomain:String ",
+                                            "required": false,
+                                            "responseStr": "publishedAppDomain:$publishedAppDomain ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "String",
+                                                "non_null": false
+                                            },
+                                            "varName": "publishedAppDomain"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "PublishedAppDomainInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "PublishedAppDomainInput",
+                                "non_null": false
+                            },
+                            "varName": "publishedAppDomainInput"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "CreatePrivateApplicationInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "CreatePrivateApplicationInput",
+                "non_null": false
+            },
+            "varName": "createPrivateApplicationInput"
+        }
+    },
+    "path": "mutation.privateApplication.createPrivateApplication",
+    "type": {
+        "definition": {
+            "description": null,
+            "enumValues": null,
+            "fields": {
+                "createPrivateApplication": {
+                    "args": {
+                        "createPrivateApplication___input": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "createPrivateApplication___input",
+                            "name": "input",
+                            "path": "createPrivateApplication.input",
+                            "requestStr": "$createPrivateApplicationInput:CreatePrivateApplicationInput! ",
+                            "required": true,
+                            "responseStr": "input:$createPrivateApplicationInput ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "allowIcmpProtocol": {
+                                            "defaultValue": "true",
+                                            "description": "Allow ICMP (ping) traffic to the application (default: true)",
+                                            "id_str": "createPrivateApplication___input___allowIcmpProtocol",
+                                            "name": "allowIcmpProtocol",
+                                            "path": "createPrivateApplication.input.allowIcmpProtocol",
+                                            "requestStr": "$allowIcmpProtocol:Boolean! ",
+                                            "required": true,
+                                            "responseStr": "allowIcmpProtocol:$allowIcmpProtocol ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "Boolean",
+                                                "non_null": false
+                                            },
+                                            "varName": "allowIcmpProtocol"
+                                        },
+                                        "description": {
+                                            "defaultValue": null,
+                                            "description": "Optional description of the application's purpose",
+                                            "id_str": "createPrivateApplication___input___description",
+                                            "name": "description",
+                                            "path": "createPrivateApplication.input.description",
+                                            "requestStr": "$description:String ",
+                                            "required": false,
+                                            "responseStr": "description:$description ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "String",
+                                                "non_null": false
+                                            },
+                                            "varName": "description"
+                                        },
+                                        "internalAppAddress": {
+                                            "defaultValue": null,
+                                            "description": "Internal IP address or FQDN at which the application is reachable.\nExample: '10.0.1.50' or 'hr.internal.corp'",
+                                            "id_str": "createPrivateApplication___input___internalAppAddress",
+                                            "name": "internalAppAddress",
+                                            "path": "createPrivateApplication.input.internalAppAddress",
+                                            "requestStr": "$internalAppAddress:IPAddressOrFqdn! ",
+                                            "required": true,
+                                            "responseStr": "internalAppAddress:$internalAppAddress ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "IPAddressOrFqdn",
+                                                "non_null": false
+                                            },
+                                            "varName": "internalAppAddress"
+                                        },
+                                        "name": {
+                                            "defaultValue": null,
+                                            "description": "Human-readable name for the application. Example: 'Internal HR Portal'",
+                                            "id_str": "createPrivateApplication___input___name",
+                                            "name": "name",
+                                            "path": "createPrivateApplication.input.name",
+                                            "requestStr": "$name:String! ",
+                                            "required": true,
+                                            "responseStr": "name:$name ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "String",
+                                                "non_null": false
+                                            },
+                                            "varName": "name"
+                                        },
+                                        "privateAppProbing": {
+                                            "defaultValue": null,
+                                            "description": "Health probing configuration for the application",
+                                            "id_str": "createPrivateApplication___input___privateAppProbing",
+                                            "name": "privateAppProbing",
+                                            "path": "createPrivateApplication.input.privateAppProbing",
+                                            "requestStr": "$privateAppProbingInput:PrivateAppProbingInput ",
+                                            "required": false,
+                                            "responseStr": "privateAppProbing:$privateAppProbingInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "faultThresholdDown": {
+                                                            "defaultValue": null,
+                                                            "description": "Number of consecutive failures before marking the app as down. Example: 3",
+                                                            "id_str": "createPrivateApplication___input___privateAppProbing___faultThresholdDown",
+                                                            "name": "faultThresholdDown",
+                                                            "path": "createPrivateApplication.input.privateAppProbing.faultThresholdDown",
+                                                            "requestStr": "$faultThresholdDown:Int ",
+                                                            "required": false,
+                                                            "responseStr": "faultThresholdDown:$faultThresholdDown ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "Int",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "faultThresholdDown"
+                                                        },
+                                                        "id": {
+                                                            "defaultValue": null,
+                                                            "description": "ID of an existing probing config to update; omit when creating",
+                                                            "id_str": "createPrivateApplication___input___privateAppProbing___id",
+                                                            "name": "id",
+                                                            "path": "createPrivateApplication.input.privateAppProbing.id",
+                                                            "requestStr": "$id:ID ",
+                                                            "required": false,
+                                                            "responseStr": "id:$id ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "ID",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "id"
+                                                        },
+                                                        "interval": {
+                                                            "defaultValue": null,
+                                                            "description": "Probe interval in seconds. Example: 30",
+                                                            "id_str": "createPrivateApplication___input___privateAppProbing___interval",
+                                                            "name": "interval",
+                                                            "path": "createPrivateApplication.input.privateAppProbing.interval",
+                                                            "requestStr": "$interval:Int ",
+                                                            "required": false,
+                                                            "responseStr": "interval:$interval ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "Int",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "interval"
+                                                        },
+                                                        "type": {
+                                                            "defaultValue": null,
+                                                            "description": "Probing type. Example: 'ICMP' or 'TCP'",
+                                                            "id_str": "createPrivateApplication___input___privateAppProbing___type",
+                                                            "name": "type",
+                                                            "path": "createPrivateApplication.input.privateAppProbing.type",
+                                                            "requestStr": "$type:String ",
+                                                            "required": false,
+                                                            "responseStr": "type:$type ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "type"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "PrivateAppProbingInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "PrivateAppProbingInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "privateAppProbingInput"
+                                        },
+                                        "probingEnabled": {
+                                            "defaultValue": "true",
+                                            "description": "Enable health probing for this application (default: true)",
+                                            "id_str": "createPrivateApplication___input___probingEnabled",
+                                            "name": "probingEnabled",
+                                            "path": "createPrivateApplication.input.probingEnabled",
+                                            "requestStr": "$probingEnabled:Boolean! ",
+                                            "required": true,
+                                            "responseStr": "probingEnabled:$probingEnabled ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "Boolean",
+                                                "non_null": false
+                                            },
+                                            "varName": "probingEnabled"
+                                        },
+                                        "protocolPorts": {
+                                            "defaultValue": null,
+                                            "description": "List of allowed protocol/port combinations.\nExample: [{ protocol: TCP, port: [443] }]",
+                                            "id_str": "createPrivateApplication___input___protocolPorts",
+                                            "name": "protocolPorts",
+                                            "path": "createPrivateApplication.input.protocolPorts",
+                                            "requestStr": "$customServiceInput:[CustomServiceInput] ",
+                                            "required": false,
+                                            "responseStr": "protocolPorts:$customServiceInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "Add a Custom Service defined by a combination of L4 ports and an IP Protocol",
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "port": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "createPrivateApplication___input___protocolPorts___port",
+                                                            "name": "port",
+                                                            "path": "createPrivateApplication.input.protocolPorts.port",
+                                                            "requestStr": "$port:[Port] ",
+                                                            "required": false,
+                                                            "responseStr": "port:$port ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "LIST",
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "Port",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "port"
+                                                        },
+                                                        "portRange": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "createPrivateApplication___input___protocolPorts___portRange",
+                                                            "name": "portRange",
+                                                            "path": "createPrivateApplication.input.protocolPorts.portRange",
+                                                            "requestStr": "$portRangeInput:PortRangeInput ",
+                                                            "required": false,
+                                                            "responseStr": "portRange:$portRangeInput ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": "Inclusive network port range",
+                                                                    "enumValues": null,
+                                                                    "fields": null,
+                                                                    "inputFields": {
+                                                                        "from": {
+                                                                            "defaultValue": null,
+                                                                            "description": null,
+                                                                            "id_str": "createPrivateApplication___input___protocolPorts___portRange___from",
+                                                                            "name": "from",
+                                                                            "path": "createPrivateApplication.input.protocolPorts.portRange.from",
+                                                                            "requestStr": "$from:Port! ",
+                                                                            "required": true,
+                                                                            "responseStr": "from:$from ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "Port",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "from"
+                                                                        },
+                                                                        "to": {
+                                                                            "defaultValue": null,
+                                                                            "description": null,
+                                                                            "id_str": "createPrivateApplication___input___protocolPorts___portRange___to",
+                                                                            "name": "to",
+                                                                            "path": "createPrivateApplication.input.protocolPorts.portRange.to",
+                                                                            "requestStr": "$to:Port! ",
+                                                                            "required": true,
+                                                                            "responseStr": "to:$to ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "Port",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "to"
+                                                                        }
+                                                                    },
+                                                                    "interfaces": null,
+                                                                    "kind": "INPUT_OBJECT",
+                                                                    "name": "PortRangeInput",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "input_object",
+                                                                "kind": [
+                                                                    "INPUT_OBJECT"
+                                                                ],
+                                                                "name": "PortRangeInput",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "portRangeInput"
+                                                        },
+                                                        "protocol": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "createPrivateApplication___input___protocolPorts___protocol",
+                                                            "name": "protocol",
+                                                            "path": "createPrivateApplication.input.protocolPorts.protocol",
+                                                            "requestStr": "$protocol:IpProtocol! ",
+                                                            "required": true,
+                                                            "responseStr": "protocol:$protocol ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "ANY"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "TCP"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "TCP or UDP",
+                                                                            "isDeprecated": false,
+                                                                            "name": "TCP_UDP"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "UDP"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "ICMP"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "IpProtocol",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "IpProtocol",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "protocol"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "CustomServiceInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "LIST",
+                                                    "NON_NULL",
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "CustomServiceInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "customServiceInput"
+                                        },
+                                        "published": {
+                                            "defaultValue": "false",
+                                            "description": "Whether the Private Application is published through the App Connector",
+                                            "id_str": "createPrivateApplication___input___published",
+                                            "name": "published",
+                                            "path": "createPrivateApplication.input.published",
+                                            "requestStr": "$published:Boolean! ",
+                                            "required": true,
+                                            "responseStr": "published:$published ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "Boolean",
+                                                "non_null": false
+                                            },
+                                            "varName": "published"
+                                        },
+                                        "publishedAppDomain": {
+                                            "defaultValue": null,
+                                            "description": "Configuration for exposing the application via a Cato-managed domain",
+                                            "id_str": "createPrivateApplication___input___publishedAppDomain",
+                                            "name": "publishedAppDomain",
+                                            "path": "createPrivateApplication.input.publishedAppDomain",
+                                            "requestStr": "$publishedAppDomainInput:PublishedAppDomainInput ",
+                                            "required": false,
+                                            "responseStr": "publishedAppDomain:$publishedAppDomainInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "catoIp": {
+                                                            "defaultValue": null,
+                                                            "description": "Cato IP address to associate with the domain",
+                                                            "id_str": "createPrivateApplication___input___publishedAppDomain___catoIp",
+                                                            "name": "catoIp",
+                                                            "path": "createPrivateApplication.input.publishedAppDomain.catoIp",
+                                                            "requestStr": "$catoIp:IPAddress ",
+                                                            "required": false,
+                                                            "responseStr": "catoIp:$catoIp ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "IPAddress",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "catoIp"
+                                                        },
+                                                        "connectorGroupName": {
+                                                            "defaultValue": null,
+                                                            "description": "Name of the connector group to use for routing",
+                                                            "id_str": "createPrivateApplication___input___publishedAppDomain___connectorGroupName",
+                                                            "name": "connectorGroupName",
+                                                            "path": "createPrivateApplication.input.publishedAppDomain.connectorGroupName",
+                                                            "requestStr": "$connectorGroupName:String ",
+                                                            "required": false,
+                                                            "responseStr": "connectorGroupName:$connectorGroupName ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "connectorGroupName"
+                                                        },
+                                                        "creationTime": {
+                                                            "defaultValue": null,
+                                                            "description": "Timestamp of the domain record; managed by the server",
+                                                            "id_str": "createPrivateApplication___input___publishedAppDomain___creationTime",
+                                                            "name": "creationTime",
+                                                            "path": "createPrivateApplication.input.publishedAppDomain.creationTime",
+                                                            "requestStr": "$creationTime:DateTime ",
+                                                            "required": false,
+                                                            "responseStr": "creationTime:$creationTime ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "DateTime",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "creationTime"
+                                                        },
+                                                        "id": {
+                                                            "defaultValue": null,
+                                                            "description": "ID of an existing published domain record to update; omit when creating",
+                                                            "id_str": "createPrivateApplication___input___publishedAppDomain___id",
+                                                            "name": "id",
+                                                            "path": "createPrivateApplication.input.publishedAppDomain.id",
+                                                            "requestStr": "$id:ID ",
+                                                            "required": false,
+                                                            "responseStr": "id:$id ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "ID",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "id"
+                                                        },
+                                                        "publishedAppDomain": {
+                                                            "defaultValue": null,
+                                                            "description": "The Cato-managed domain name. Example: 'app.catocloud.com'",
+                                                            "id_str": "createPrivateApplication___input___publishedAppDomain___publishedAppDomain",
+                                                            "name": "publishedAppDomain",
+                                                            "path": "createPrivateApplication.input.publishedAppDomain.publishedAppDomain",
+                                                            "requestStr": "$publishedAppDomain:String ",
+                                                            "required": false,
+                                                            "responseStr": "publishedAppDomain:$publishedAppDomain ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "publishedAppDomain"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "PublishedAppDomainInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "PublishedAppDomainInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "publishedAppDomainInput"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "CreatePrivateApplicationInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "NON_NULL",
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "CreatePrivateApplicationInput",
+                                "non_null": false
+                            },
+                            "varName": "createPrivateApplicationInput"
+                        }
+                    },
+                    "deprecationReason": null,
+                    "description": "Create a new private application for Private Access",
+                    "id_str": "createPrivateApplication",
+                    "isDeprecated": false,
+                    "name": "createPrivateApplication",
+                    "path": "createPrivateApplication",
+                    "requestStr": "$createPrivateApplicationPayload:CreatePrivateApplicationPayload ",
+                    "required": false,
+                    "responseStr": "createPrivateApplication:$createPrivateApplicationPayload ",
+                    "type": {
+                        "definition": {
+                            "description": "Response payload returned after successfully creating a private application",
+                            "enumValues": null,
+                            "fields": {
+                                "application": {
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": null,
+                                    "id_str": "createPrivateApplication___application",
+                                    "isDeprecated": false,
+                                    "name": "application",
+                                    "path": "createPrivateApplication.application",
+                                    "requestStr": "$privateApplication:PrivateApplication! ",
+                                    "required": true,
+                                    "responseStr": "application:$privateApplication ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "Private Application represents an internal resource published via Cato Private Access.\nIt defines the internal address, access settings, and optional publishing configuration.",
+                                            "enumValues": null,
+                                            "fields": {
+                                                "allowIcmpProtocol": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Whether ICMP (ping) traffic is allowed to the application",
+                                                    "id_str": "createPrivateApplication___application___allowIcmpProtocol",
+                                                    "isDeprecated": false,
+                                                    "name": "allowIcmpProtocol",
+                                                    "path": "createPrivateApplication.application.allowIcmpProtocol",
+                                                    "requestStr": "$allowIcmpProtocol:Boolean! ",
+                                                    "required": true,
+                                                    "responseStr": "allowIcmpProtocol:$allowIcmpProtocol ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Boolean",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "allowIcmpProtocol"
+                                                },
+                                                "connectivityStatus": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Connectivity status of the application, as reported by the connectivity service",
+                                                    "id_str": "createPrivateApplication___application___connectivityStatus",
+                                                    "isDeprecated": false,
+                                                    "name": "connectivityStatus",
+                                                    "path": "createPrivateApplication.application.connectivityStatus",
+                                                    "requestStr": "$connectivityStatus:PrivateAppConnectivityStatus! ",
+                                                    "required": true,
+                                                    "responseStr": "connectivityStatus:$connectivityStatus ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "Connectivity status of a private application",
+                                                            "enumValues": [
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Application is reachable",
+                                                                    "isDeprecated": false,
+                                                                    "name": "CONNECTED"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Application is unreachable",
+                                                                    "isDeprecated": false,
+                                                                    "name": "DISCONNECTED"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "No connectivity data available (probing disabled or no updates received)",
+                                                                    "isDeprecated": false,
+                                                                    "name": "NOT_REPORTING"
+                                                                }
+                                                            ],
+                                                            "fields": null,
+                                                            "inputFields": null,
+                                                            "interfaces": null,
+                                                            "kind": "ENUM",
+                                                            "name": "PrivateAppConnectivityStatus",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "enum",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "ENUM"
+                                                        ],
+                                                        "name": "PrivateAppConnectivityStatus",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "connectivityStatus"
+                                                },
+                                                "creationTime": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Timestamp when the private application was created",
+                                                    "id_str": "createPrivateApplication___application___creationTime",
+                                                    "isDeprecated": false,
+                                                    "name": "creationTime",
+                                                    "path": "createPrivateApplication.application.creationTime",
+                                                    "requestStr": "$creationTime:DateTime! ",
+                                                    "required": true,
+                                                    "responseStr": "creationTime:$creationTime ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "DateTime",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "creationTime"
+                                                },
+                                                "description": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Optional free-text description of the application's purpose",
+                                                    "id_str": "createPrivateApplication___application___description",
+                                                    "isDeprecated": false,
+                                                    "name": "description",
+                                                    "path": "createPrivateApplication.application.description",
+                                                    "requestStr": "$description:String ",
+                                                    "required": false,
+                                                    "responseStr": "description:$description ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "description"
+                                                },
+                                                "id": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Unique identifier of the private application",
+                                                    "id_str": "createPrivateApplication___application___id",
+                                                    "isDeprecated": false,
+                                                    "name": "id",
+                                                    "path": "createPrivateApplication.application.id",
+                                                    "requestStr": "$id:ID! ",
+                                                    "required": true,
+                                                    "responseStr": "id:$id ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "ID",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "id"
+                                                },
+                                                "internalAppAddress": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Internal IP address or FQDN at which the application is reachable within the private network.\nExample: '10.0.1.50' or 'hr.internal.corp'",
+                                                    "id_str": "createPrivateApplication___application___internalAppAddress",
+                                                    "isDeprecated": false,
+                                                    "name": "internalAppAddress",
+                                                    "path": "createPrivateApplication.application.internalAppAddress",
+                                                    "requestStr": "$internalAppAddress:IPAddressOrFqdn! ",
+                                                    "required": true,
+                                                    "responseStr": "internalAppAddress:$internalAppAddress ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "IPAddressOrFqdn",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "internalAppAddress"
+                                                },
+                                                "name": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Human-readable name for the application. Example: 'Internal HR Portal'",
+                                                    "id_str": "createPrivateApplication___application___name",
+                                                    "isDeprecated": false,
+                                                    "name": "name",
+                                                    "path": "createPrivateApplication.application.name",
+                                                    "requestStr": "$name:String! ",
+                                                    "required": true,
+                                                    "responseStr": "name:$name ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "name"
+                                                },
+                                                "privateAppProbing": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Health probing configuration for the application",
+                                                    "id_str": "createPrivateApplication___application___privateAppProbing",
+                                                    "isDeprecated": false,
+                                                    "name": "privateAppProbing",
+                                                    "path": "createPrivateApplication.application.privateAppProbing",
+                                                    "requestStr": "$privateAppProbing:PrivateAppProbing ",
+                                                    "required": false,
+                                                    "responseStr": "privateAppProbing:$privateAppProbing ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "Health probing configuration used to determine the availability of a private application",
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "faultThresholdDown": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Number of consecutive probe failures before the application is considered Unavailable",
+                                                                    "id_str": "createPrivateApplication___application___privateAppProbing___faultThresholdDown",
+                                                                    "isDeprecated": false,
+                                                                    "name": "faultThresholdDown",
+                                                                    "path": "createPrivateApplication.application.privateAppProbing.faultThresholdDown",
+                                                                    "requestStr": "$faultThresholdDown:Int! ",
+                                                                    "required": true,
+                                                                    "responseStr": "faultThresholdDown:$faultThresholdDown ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "Int",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "faultThresholdDown"
+                                                                },
+                                                                "id": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Unique identifier for the probing configuration",
+                                                                    "id_str": "createPrivateApplication___application___privateAppProbing___id",
+                                                                    "isDeprecated": false,
+                                                                    "name": "id",
+                                                                    "path": "createPrivateApplication.application.privateAppProbing.id",
+                                                                    "requestStr": "$id:ID! ",
+                                                                    "required": true,
+                                                                    "responseStr": "id:$id ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "ID",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "id"
+                                                                },
+                                                                "interval": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Probe interval in seconds",
+                                                                    "id_str": "createPrivateApplication___application___privateAppProbing___interval",
+                                                                    "isDeprecated": false,
+                                                                    "name": "interval",
+                                                                    "path": "createPrivateApplication.application.privateAppProbing.interval",
+                                                                    "requestStr": "$interval:Int! ",
+                                                                    "required": true,
+                                                                    "responseStr": "interval:$interval ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "Int",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "interval"
+                                                                },
+                                                                "type": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Probing type. Example: 'ICMP' or 'TCP'",
+                                                                    "id_str": "createPrivateApplication___application___privateAppProbing___type",
+                                                                    "isDeprecated": false,
+                                                                    "name": "type",
+                                                                    "path": "createPrivateApplication.application.privateAppProbing.type",
+                                                                    "requestStr": "$type:String! ",
+                                                                    "required": true,
+                                                                    "responseStr": "type:$type ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "type"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "PrivateAppProbing",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "PrivateAppProbing",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "privateAppProbing"
+                                                },
+                                                "probingEnabled": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Whether health probing is enabled for this application",
+                                                    "id_str": "createPrivateApplication___application___probingEnabled",
+                                                    "isDeprecated": false,
+                                                    "name": "probingEnabled",
+                                                    "path": "createPrivateApplication.application.probingEnabled",
+                                                    "requestStr": "$probingEnabled:Boolean! ",
+                                                    "required": true,
+                                                    "responseStr": "probingEnabled:$probingEnabled ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Boolean",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "probingEnabled"
+                                                },
+                                                "protocolPorts": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "List of allowed protocol/port combinations for this application.\nExample: [{ protocol: TCP, port: [443] }]",
+                                                    "id_str": "createPrivateApplication___application___protocolPorts",
+                                                    "isDeprecated": false,
+                                                    "name": "protocolPorts",
+                                                    "path": "createPrivateApplication.application.protocolPorts",
+                                                    "requestStr": "$customService:[CustomService]! ",
+                                                    "required": true,
+                                                    "responseStr": "protocolPorts:$customService ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "Returns data for Custom Service defined by a combination of L4 ports and an IP Protocol",
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "port": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "id_str": "createPrivateApplication___application___protocolPorts___port",
+                                                                    "isDeprecated": false,
+                                                                    "name": "port",
+                                                                    "path": "createPrivateApplication.application.protocolPorts.port",
+                                                                    "requestStr": "$port:[Port] ",
+                                                                    "required": false,
+                                                                    "responseStr": "port:$port ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "LIST",
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "Port",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "port"
+                                                                },
+                                                                "portRange": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "id_str": "createPrivateApplication___application___protocolPorts___portRange",
+                                                                    "isDeprecated": false,
+                                                                    "name": "portRange",
+                                                                    "path": "createPrivateApplication.application.protocolPorts.portRange",
+                                                                    "requestStr": "$portRange:PortRange ",
+                                                                    "required": false,
+                                                                    "responseStr": "portRange:$portRange ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": "Inclusive network port range",
+                                                                            "enumValues": null,
+                                                                            "fields": {
+                                                                                "from": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "id_str": "createPrivateApplication___application___protocolPorts___portRange___from",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "from",
+                                                                                    "path": "createPrivateApplication.application.protocolPorts.portRange.from",
+                                                                                    "requestStr": "$from:Port! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "from:$from ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "Port",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "from"
+                                                                                },
+                                                                                "to": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "id_str": "createPrivateApplication___application___protocolPorts___portRange___to",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "to",
+                                                                                    "path": "createPrivateApplication.application.protocolPorts.portRange.to",
+                                                                                    "requestStr": "$to:Port! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "to:$to ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "Port",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "to"
+                                                                                }
+                                                                            },
+                                                                            "inputFields": null,
+                                                                            "interfaces": {},
+                                                                            "kind": "OBJECT",
+                                                                            "name": "PortRange",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "object",
+                                                                        "kind": [
+                                                                            "OBJECT"
+                                                                        ],
+                                                                        "name": "PortRange",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "portRange"
+                                                                },
+                                                                "protocol": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "id_str": "createPrivateApplication___application___protocolPorts___protocol",
+                                                                    "isDeprecated": false,
+                                                                    "name": "protocol",
+                                                                    "path": "createPrivateApplication.application.protocolPorts.protocol",
+                                                                    "requestStr": "$protocol:IpProtocol! ",
+                                                                    "required": true,
+                                                                    "responseStr": "protocol:$protocol ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": null,
+                                                                            "enumValues": [
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "ANY"
+                                                                                },
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "TCP"
+                                                                                },
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "TCP or UDP",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "TCP_UDP"
+                                                                                },
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "UDP"
+                                                                                },
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "ICMP"
+                                                                                }
+                                                                            ],
+                                                                            "fields": null,
+                                                                            "inputFields": null,
+                                                                            "interfaces": null,
+                                                                            "kind": "ENUM",
+                                                                            "name": "IpProtocol",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "enum",
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "ENUM"
+                                                                        ],
+                                                                        "name": "IpProtocol",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "protocol"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "CustomService",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "LIST",
+                                                            "NON_NULL",
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "CustomService",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "customService"
+                                                },
+                                                "published": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Whether the application is published and accessible to end users",
+                                                    "id_str": "createPrivateApplication___application___published",
+                                                    "isDeprecated": false,
+                                                    "name": "published",
+                                                    "path": "createPrivateApplication.application.published",
+                                                    "requestStr": "$published:Boolean! ",
+                                                    "required": true,
+                                                    "responseStr": "published:$published ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Boolean",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "published"
+                                                },
+                                                "publishedAppDomain": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Published application domain configuration, present when the app is exposed via a Cato-managed domain",
+                                                    "id_str": "createPrivateApplication___application___publishedAppDomain",
+                                                    "isDeprecated": false,
+                                                    "name": "publishedAppDomain",
+                                                    "path": "createPrivateApplication.application.publishedAppDomain",
+                                                    "requestStr": "$publishedAppDomain:PublishedAppDomain ",
+                                                    "required": false,
+                                                    "responseStr": "publishedAppDomain:$publishedAppDomain ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "The domain that users use to access the application",
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "catoIp": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Cato IP address associated with the published domain, if assigned",
+                                                                    "id_str": "createPrivateApplication___application___publishedAppDomain___catoIp",
+                                                                    "isDeprecated": false,
+                                                                    "name": "catoIp",
+                                                                    "path": "createPrivateApplication.application.publishedAppDomain.catoIp",
+                                                                    "requestStr": "$catoIp:IPAddress ",
+                                                                    "required": false,
+                                                                    "responseStr": "catoIp:$catoIp ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "IPAddress",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "catoIp"
+                                                                },
+                                                                "connectorGroupName": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Name of the connector group responsible for routing traffic to this application",
+                                                                    "id_str": "createPrivateApplication___application___publishedAppDomain___connectorGroupName",
+                                                                    "isDeprecated": false,
+                                                                    "name": "connectorGroupName",
+                                                                    "path": "createPrivateApplication.application.publishedAppDomain.connectorGroupName",
+                                                                    "requestStr": "$connectorGroupName:String ",
+                                                                    "required": false,
+                                                                    "responseStr": "connectorGroupName:$connectorGroupName ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "connectorGroupName"
+                                                                },
+                                                                "creationTime": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Timestamp when the published domain was created",
+                                                                    "id_str": "createPrivateApplication___application___publishedAppDomain___creationTime",
+                                                                    "isDeprecated": false,
+                                                                    "name": "creationTime",
+                                                                    "path": "createPrivateApplication.application.publishedAppDomain.creationTime",
+                                                                    "requestStr": "$creationTime:DateTime! ",
+                                                                    "required": true,
+                                                                    "responseStr": "creationTime:$creationTime ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "DateTime",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "creationTime"
+                                                                },
+                                                                "id": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Unique identifier for the published domain entry",
+                                                                    "id_str": "createPrivateApplication___application___publishedAppDomain___id",
+                                                                    "isDeprecated": false,
+                                                                    "name": "id",
+                                                                    "path": "createPrivateApplication.application.publishedAppDomain.id",
+                                                                    "requestStr": "$id:ID! ",
+                                                                    "required": true,
+                                                                    "responseStr": "id:$id ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "ID",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "id"
+                                                                },
+                                                                "publishedAppDomain": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "The Cato-managed domain name used to reach the application. Example: 'app.catocloud.com'",
+                                                                    "id_str": "createPrivateApplication___application___publishedAppDomain___publishedAppDomain",
+                                                                    "isDeprecated": false,
+                                                                    "name": "publishedAppDomain",
+                                                                    "path": "createPrivateApplication.application.publishedAppDomain.publishedAppDomain",
+                                                                    "requestStr": "$publishedAppDomain:String! ",
+                                                                    "required": true,
+                                                                    "responseStr": "publishedAppDomain:$publishedAppDomain ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "publishedAppDomain"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "PublishedAppDomain",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "PublishedAppDomain",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "publishedAppDomain"
+                                                }
+                                            },
+                                            "inputFields": null,
+                                            "interfaces": {},
+                                            "kind": "OBJECT",
+                                            "name": "PrivateApplication",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "object",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "OBJECT"
+                                        ],
+                                        "name": "PrivateApplication",
+                                        "non_null": false
+                                    },
+                                    "varName": "privateApplication"
+                                }
+                            },
+                            "inputFields": null,
+                            "interfaces": {},
+                            "kind": "OBJECT",
+                            "name": "CreatePrivateApplicationPayload",
+                            "possibleTypes": null
+                        },
+                        "indexType": "object",
+                        "kind": [
+                            "OBJECT"
+                        ],
+                        "name": "CreatePrivateApplicationPayload",
+                        "non_null": false
+                    },
+                    "varName": "createPrivateApplicationPayload"
+                }
+            },
+            "inputFields": null,
+            "interfaces": [],
+            "kind": "OBJECT",
+            "name": "AccessPrivateApplicationMutations",
+            "possibleTypes": null
+        },
+        "indexType": "object",
+        "kind": [
+            "OBJECT"
+        ],
+        "name": "AccessPrivateApplicationMutations",
+        "non_null": false
+    },
+    "variablesPayload": {
+        "createPrivateApplicationInput": {
+            "allowIcmpProtocol": true,
+            "customServiceInput": {
+                "port": [
+                    "example1",
+                    "example2"
+                ],
+                "portRange": {
+                    "from": "example_value",
+                    "to": "example_value"
+                },
+                "protocol": "ANY"
+            },
+            "description": "string",
+            "internalAppAddress": "example_value",
+            "name": "string",
+            "privateAppProbingInput": {
+                "faultThresholdDown": 1,
+                "id": "id",
+                "interval": 1,
+                "type": "string"
+            },
+            "probingEnabled": true,
+            "published": true,
+            "publishedAppDomainInput": {
+                "catoIp": "example_value",
+                "connectorGroupName": "string",
+                "creationTime": "example_value",
+                "id": "id",
+                "publishedAppDomain": "string"
+            }
+        }
+    }
+}

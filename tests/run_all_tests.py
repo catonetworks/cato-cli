@@ -59,6 +59,30 @@ def set_tests_directory(directory: Path):
     test_utils.TESTS_DIR = TESTS_DIR
 
 
+def get_custom_test_skip_reason(test_config: Dict) -> Optional[str]:
+    """Return why a custom test's runtime requirements are unavailable."""
+    requirements = test_config.get("requires", [])
+    if isinstance(requirements, str):
+        requirements = [requirements]
+
+    unsupported = set(requirements) - {"scim_credentials"}
+    if unsupported:
+        return f"unsupported requirement(s): {', '.join(sorted(unsupported))}"
+
+    if "scim_credentials" in requirements:
+        try:
+            from catocli.Utils.profile_manager import get_profile_manager
+
+            valid, message = get_profile_manager().validate_scim_credentials()
+        except Exception as exc:
+            return f"unable to validate SCIM credentials: {exc}"
+
+        if not valid:
+            return message
+
+    return None
+
+
 class AllTestsRunner:
     """Orchestrates running all test suites"""
     
@@ -239,10 +263,14 @@ class AllTestsRunner:
         suite_ignored = 0
         
         for test_key, test_config in filtered_custom.items():
-            # Check if test is marked as ignored
-            if test_config.get('ignored', False):
+            skip_reason = get_custom_test_skip_reason(test_config)
+            if test_config.get('ignored', False) or skip_reason:
                 suite_ignored += 1
-                print(f"{Colors.YELLOW}⊘ {test_config.get(DictKeys.NAME, test_key)} (ignored){Colors.NC}")
+                reason = skip_reason or "configured as ignored"
+                print(
+                    f"{Colors.YELLOW}⊘ {test_config.get(DictKeys.NAME, test_key)} "
+                    f"(ignored: {reason}){Colors.NC}"
+                )
                 continue
             
             result = run_test_from_config(test_key, test_config, self.verbose, "Custom Test", enable_trace_id)

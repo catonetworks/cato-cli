@@ -5,8 +5,6 @@ import re
 import json
 
 # python 2 and python 3 compatibility library
-import sys
-sys.path.insert(0, 'vendor')
 import six
 from graphql_client.api_client_types import ApiClient
 

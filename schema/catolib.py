@@ -604,7 +604,6 @@ from .profile_manager import get_profile_manager
 from .version_checker import check_for_updates, force_check_updates
 import traceback
 import sys
-sys.path.insert(0, 'vendor')
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 # Initialize profile manager

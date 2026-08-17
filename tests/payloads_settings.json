@@ -27,9 +27,7 @@
         "query.site.wifiRadioProfile": {},
         "query.site.wifiRadioProfileBySite": {},
         "query.site.validWifiRadioSettings": {},
-        "query.site.validWifiRadioSettingsByCountry": {},
         "query.site.validateWifiRadioProfile": {},
-        "query.site.validateWifiRadioProfileByCountry": {},
         // Needs a provisioned secondary GCP vSocket / SP+POP VLAN data not present on CI account
         "query.site.secondaryGcpVSocket": {},
         "query.site.retrieveUsedVlanIDs": {},
@@ -38,13 +36,8 @@
         // // The following queries need investigation
         "query.devices": {},
         "query.groups.groupList": {}, // generated query selects illegal 'members' field in list context
-        "query.policy.socketLan.policy": {},
-        "query.policy.terminalServer.policy": {},
-        "query.catalogs.catalogApplication": {},
-        "query.catalogs.catalogApplicationList": {},
-        // No custom / private applications provisioned on the CI account (op requires an existing ref)
-        "query.customAppData": {},
-        "query.privateApplication": {},
+        "query.policy.terminalServer.policy": {}, // Access denied: insufficient privileges for account
+        "query.catalogs.catalogApplicationList": {}, // Server cannot retrieve applications data
         // Requires live ZTNA connector snapshot data (multiple required snapshot inputs)
         "query.connectivitySnapshots": {},
         // Server-side bugs on the test environment (schema/data defects, not input related)
@@ -87,6 +80,42 @@
                 "catalogs.contentTypeGroupList.contentTypeGroup"
             ]
         },
+        "query.customAppData": {
+            "payload": {
+                "customApplicationRefInput": {
+                    "by": "ID",
+                    "input": "f31bf5a3-2cd3-4e25-9505-960fae41442a"
+                },
+                "customApplicationListInput": {
+                    "paging": {
+                        "from": 0,
+                        "limit": 10
+                    }
+                }
+            },
+            "assertions": [
+                "customAppData.customApplication.id",
+                "customAppData.customApplicationList.items"
+            ]
+        },
+        "query.privateApplication": {
+            "payload": {
+                "privateApplicationRefInput": {
+                    "by": "ID",
+                    "input": "15744"
+                },
+                "privateApplicationListInput": {
+                    "paging": {
+                        "from": 0,
+                        "limit": 10
+                    }
+                }
+            },
+            "assertions": [
+                "privateApplication.privateApplication.id",
+                "privateApplication.privateApplicationList.applications"
+            ]
+        },
         "query.container.fqdn.downloadFile": {
             "payload": {
                 "downloadFqdnContainerFileInput": {
@@ -125,7 +154,7 @@
             "payload": {
                 "testContainerFromUrlInput": {
                     "fileType": "CSV",
-                    "url": "https://raw.githubusercontent.com/aptnotes/data/master/APTnotes.csv"
+                    "url": "https://data.iana.org/TLD/tlds-alpha-by-domain.txt"
                 }
             },
             "assertions": [
@@ -374,6 +403,31 @@
             },
             "assertions": [
                 "site.availableVersionList"
+            ]
+        },
+        "query.site.validWifiRadioSettingsByCountry": {
+            "payload": {
+                "validWifiRadioSettingsByCountryInput": {
+                    "countryCode": "US"
+                }
+            },
+            "assertions": [
+                "site.validWifiRadioSettingsByCountry"
+            ]
+        },
+        "query.site.validateWifiRadioProfileByCountry": {
+            "payload": {
+                "validateWifiRadioProfileByCountryInput": {
+                    "countryCode": "US",
+                    "radioProfile": {
+                        "band24": {
+                            "band": "BAND_2P4G"
+                        }
+                    }
+                }
+            },
+            "assertions": [
+                "site.validateWifiRadioProfileByCountry.result.band24.isValid"
             ]
         },
         "query.site.networkRangeList": {

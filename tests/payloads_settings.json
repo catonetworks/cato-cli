@@ -12,16 +12,41 @@
         // The following require additional configuration
         "query.site.secondaryAwsVSocket": {},
         "query.site.secondaryAzureVSocket": {},
+        // No BGP configured on the CI account's sites (needs a BGP-enabled socket)
+        "query.site.bgpPeer": {},
+        "query.site.bgpPeerList": {},
+        "query.site.siteBgpStatus": {},
+        // No Cloud Interconnect site on the CI account (needs a provisioned interconnect)
+        "query.site.cloudInterconnectConnectionConnectivity": {},
+        "query.site.cloudInterconnectPhysicalConnection": {},
+        "query.site.cloudInterconnectPhysicalConnectionId": {},
+        // No Wi-Fi capable site / SSID configured on the CI account
+        "query.site.wifiSsidList": {},
+        "query.site.wifiSsid": {},
+        "query.site.wifiRadioProfileList": {},
+        "query.site.wifiRadioProfile": {},
+        "query.site.wifiRadioProfileBySite": {},
+        "query.site.validWifiRadioSettings": {},
+        "query.site.validWifiRadioSettingsByCountry": {},
+        "query.site.validateWifiRadioProfile": {},
+        "query.site.validateWifiRadioProfileByCountry": {},
+        // Needs a provisioned secondary GCP vSocket / SP+POP VLAN data not present on CI account
+        "query.site.secondaryGcpVSocket": {},
+        "query.site.retrieveUsedVlanIDs": {},
+        // knownHostList returns internal server error (downstream) on the test environment
+        "query.site.knownHostList": {},
         // // The following queries need investigation
         "query.devices": {},
-        "query.container.ipAddressRange.search": {},
-        "query.container.ipAddressRange.searchIpAddressRange": {},
-        "query.groups.groupList": {},
-        "query.groups.group.members": {},
+        "query.groups.groupList": {}, // generated query selects illegal 'members' field in list context
         "query.policy.socketLan.policy": {},
         "query.policy.terminalServer.policy": {},
         "query.catalogs.catalogApplication": {},
         "query.catalogs.catalogApplicationList": {},
+        // No custom / private applications provisioned on the CI account (op requires an existing ref)
+        "query.customAppData": {},
+        "query.privateApplication": {},
+        // Requires live ZTNA connector snapshot data (multiple required snapshot inputs)
+        "query.connectivitySnapshots": {},
         // Server-side bugs on the test environment (schema/data defects, not input related)
         "query.notification": {}, // Unknown type 'CustomHeadersAuth'; ActorRef non-null wrongly returned null
         "query.externalAccess": {}, // incoming/partnerAccessRequestList: "Something went wrong! Please try again later"
@@ -34,7 +59,7 @@
     },
     "defaultValues": {
         "timeFrame": "last.P1D",
-        "adminID": "76653",
+        "adminID": "43696",
         "platforms": [
             "OSX"
         ]
@@ -187,30 +212,18 @@
                 "groupRefInput": {
                     "by": "NAME",
                     "input": "Advanced Group"
+                },
+                "groupMembersListInput": {
+                    "paging": {
+                        "from": 1,
+                        "limit": 10
+                    }
                 }
             },
             "assertions": [
                 "groups.group.members.items"
             ]
         },
-        // "query.groups.groupList": {
-        //     "payload": {
-        //         "groupMembersListInput": {
-        //             "filter": [],
-        //             "paging": {
-        //                 "from": 0,
-        //                 "limit": 100
-        //             },
-        //             "sort": {
-        //                 "name": {
-        //                     "direction": "ASC",
-        //                     "priority": 1
-        //                 }
-        //             }
-        //         }
-        //     },
-        //     "assertions": []
-        // },
         "query.groups.whereUsed": {
             "payload": {
                 "groupRefInput": {
@@ -273,12 +286,82 @@
                 "sandbox.reports.report"
             ]
         },
-        "query.servicePrincipalAdmin": {
+        "query.policy.socketLan.policyList": {
             "payload": {
-                "adminID": "76653"
+                "socketLanPolicyListInput": {
+                    "paging": {
+                        "from": 1,
+                        "limit": 10
+                    }
+                }
             },
             "assertions": [
-                "data.servicePrincipalAdmin.id"
+                "policy.socketLan.policyList.items"
+            ]
+        },
+        "query.ztnaAppConnector.ztnaAppConnectorList": {
+            "payload": {
+                "ztnaAppConnectorListInput": {
+                    "paging": {
+                        "from": 1,
+                        "limit": 10
+                    }
+                }
+            },
+            "assertions": [
+                "ztnaAppConnector.ztnaAppConnectorList.ztnaAppConnector"
+            ]
+        },
+        "query.ztnaAppConnector.ztnaAppConnector": {
+            "payload": {
+                "ztnaAppConnectorRefInput": {
+                    "by": "ID",
+                    "input": "1500000004"
+                }
+            },
+            "assertions": [
+                "ztnaAppConnector.ztnaAppConnector.id"
+            ]
+        },
+        "query.servicePrincipalAdmin": {
+            "payload": {
+                "adminID": "43697"
+            },
+            "assertions": [
+                "servicePrincipalAdmin.id"
+            ]
+        },
+        "query.admin": {
+            "payload": {
+                "adminID": "43696"
+            },
+            "assertions": [
+                "admin.email"
+            ]
+        },
+        "query.user": {
+            "payload": {
+                "userListInput": {
+                    "paging": {
+                        "from": 1,
+                        "limit": 5
+                    }
+                }
+            },
+            "assertions": [
+                "user.userList.items"
+            ]
+        },
+        "query.object": {
+            "payload": {
+                "globalIpRangeListInput": {},
+                "globalIpRangeRefInput": {
+                    "by": "ID",
+                    "input": "1627682"
+                }
+            },
+            "assertions": [
+                "object.globalIpRange.id"
             ]
         },
         "query.site.availableVersionList": {
@@ -293,86 +376,83 @@
                 "site.availableVersionList"
             ]
         },
-        "query.site.bgpPeer": {
+        "query.site.networkRangeList": {
             "payload": {
-                "bgpPeerRefInput": {
+                "networkRangeListInput": {
+                    "site": {
+                        "by": "ID",
+                        "input": "511849"
+                    }
+                }
+            },
+            "assertions": [
+                "site.networkRangeList.items"
+            ]
+        },
+        "query.site.networkRange": {
+            "payload": {
+                "networkRangeId": "TjEzNTI0MDA="
+            },
+            "assertions": [
+                "site.networkRange.networkRangeId"
+            ]
+        },
+        "query.site.staticHostList": {
+            "payload": {
+                "siteRefInput": {
                     "by": "ID",
-                    "input": "21441"
+                    "input": "511849"
                 }
             },
             "assertions": [
-                "data.site.bgpPeer"
+                "site.staticHostList.items"
             ]
         },
-        "query.site.bgpPeerList": {
+        "query.site.staticHost": {
             "payload": {
-                "bgpPeerListInput": {
-                    "site": {
-                        "by": "NAME",
-                        "input": "PM demo branch"
-                    }
+                "hostId": "1410456",
+                "siteRefInput": {
+                    "by": "ID",
+                    "input": "511849"
                 }
             },
             "assertions": [
-                "data.site.bgpPeerList.bgpPeer"
-            ]
-        },
-        "query.site.cloudInterconnectConnectionConnectivity": {
-            "payload": {
-                "cloudInterconnectConnectionConnectivityInput": {
-                    "id": "MTYzMzg3LVBSSU1BUlk="
-                }
-            },
-            "assertions": [
-                "site.cloudInterconnectConnectionConnectivity"
-            ]
-        },
-        "query.site.cloudInterconnectPhysicalConnection": {
-            "payload": {
-                "cloudInterconnectPhysicalConnectionInput": {
-                    "id": "MTYzMzg3LVBSSU1BUlk="
-                }
-            },
-            "assertions": [
-                "site.cloudInterconnectPhysicalConnection"
-            ]
-        },
-        "query.site.cloudInterconnectPhysicalConnectionId": {
-            "payload": {
-                "cloudInterconnectPhysicalConnectionIdInput": {
-                    "haRole": "PRIMARY",
-                    "site": {
-                        "by": "NAME",
-                        "input": "Interconnect"
-                    }
-                }
-            },
-            "assertions": [
-                "site.cloudInterconnectPhysicalConnectionId"
-            ]
-        },
-        "query.site.siteBgpStatus": {
-            "payload": {
-                "siteBgpStatusInput": {
-                    "site": {
-                        "by": "NAME",
-                        "input": "PM demo branch"
-                    }
-                }
-            },
-            "assertions": [
-                "site.siteBgpStatus"
+                "site.staticHost.host.hostId"
             ]
         },
         "query.site.siteGeneralDetails": {
             "payload": {
                 "siteRefInput": {
                     "by": "NAME",
-                    "input": "Interconnect"
+                    "input": "mySite"
                 }
             },
             "assertions": [
                 "site.siteGeneralDetails"
+            ]
+        },
+        "query.site.siteBackhauling": {
+            "payload": {
+                "siteRefInput": {
+                    "by": "ID",
+                    "input": "511849"
+                }
+            },
+            "assertions": [
+                "site.siteBackhauling.site"
+            ]
+        },
+        "query.site.siteSocketConfiguration": {
+            "payload": {
+                "siteSocketConfigurationInput": {
+                    "site": {
+                        "by": "ID",
+                        "input": "511849"
+                    }
+                }
+            },
+            "assertions": [
+                "site.siteSocketConfiguration"
             ]
         },
         "query.xdr.stories": {

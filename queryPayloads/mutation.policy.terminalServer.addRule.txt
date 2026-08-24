@@ -7,6 +7,13 @@ mutation policyTerminalServerAddRule ( $accountId:ID! $terminalServerPolicyMutat
 						updatedTime
 						updatedBy
 					}
+					metadata {
+						lock {
+							lockingAdminEmail
+							lockingTime
+							lockingRevisionId
+						}
+					}
 					rule {
 						id
 						name
@@ -27,6 +34,14 @@ mutation policyTerminalServerAddRule ( $accountId:ID! $terminalServerPolicyMutat
 						}
 					}
 					properties
+				}
+				revision {
+					id
+					name
+					description
+					changes
+					createdTime
+					updatedTime
 				}
 				status
 				errors {

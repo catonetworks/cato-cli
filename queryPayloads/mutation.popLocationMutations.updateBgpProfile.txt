@@ -1,0 +1,17 @@
+mutation popLocationMutationsUpdateBgpProfile ( $accountId:ID! $popLocationUpdateBgpProfileInput:PopLocationUpdateBgpProfileInput!) {
+	popLocationMutations ( accountId:$accountId ) {
+		updateBgpProfile ( input:$popLocationUpdateBgpProfileInput  )  {
+			bgpProfile {
+				id
+				name
+				description
+				communities {
+					from
+					to
+				}
+				createdAt
+				lastUpdatedAt
+			}
+		}
+	}	
+}

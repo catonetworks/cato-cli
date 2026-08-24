@@ -1,0 +1,15 @@
+{
+    "operationName": "siteDeleteNetworkRangeBulk",
+    "query": "mutation siteDeleteNetworkRangeBulk ( $accountId:ID! $deleteNetworkRangeBulkInput:DeleteNetworkRangeBulkInput!) {\n\tsite ( accountId:$accountId ) {\n\t\tdeleteNetworkRangeBulk ( input:$deleteNetworkRangeBulkInput  )  {\n\t\t\tnetworkRange {\n\t\t\t\tnetworkRangeId\n\t\t\t\tname\n\t\t\t\trangeType\n\t\t\t\tsubnet\n\t\t\t\ttranslatedSubnet\n\t\t\t\tlocalIp\n\t\t\t\tgateway\n\t\t\t\tvlan\n\t\t\t\tazureFloatingIp\n\t\t\t\tgcpLoadBalancerIp\n\t\t\t\tprimaryManagementIp\n\t\t\t\tsecondaryManagementIp\n\t\t\t\tdhcpSettings {\n\t\t\t\t\tdhcpType\n\t\t\t\t\tipRange\n\t\t\t\t\trelayGroupId\n\t\t\t\t\tdhcpMicrosegmentation\n\t\t\t\t}\n\t\t\t\tmdnsReflector\n\t\t\t\tinternetOnly\n\t\t\t}\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "deleteNetworkRangeBulkInput": {
+            "networkRangeRefInput": {
+                "networkRangeId": "id"
+            },
+            "siteRefInput": {
+                "by": "ID",
+                "input": "string"
+            }
+        }
+    }
+}

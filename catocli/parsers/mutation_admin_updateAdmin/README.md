@@ -11,7 +11,7 @@ catocli mutation admin updateAdmin <json>
 
 catocli mutation admin updateAdmin --json-file mutation.admin.updateAdmin.json
 
-catocli mutation admin updateAdmin '{"adminID":"id","updateAdminInput":{"firstName":"string","lastName":"string","passwordNeverExpires":true,"updateAdminRoleInput":{"allowedAccounts":["id1","id2"],"allowedEntities":{"id":"id","name":"string","type":"account"},"role":{"id":"id","name":"string"}}}}'
+catocli mutation admin updateAdmin '{"adminID":"id","updateAdminInput":{"firstName":"string","lastName":"string","passwordNeverExpires":true,"updateAdminRoleInput":{"allowedAccounts":["id1","id2"],"allowedEntities":{"id":"id","name":"string","type":"site"},"role":{"id":"id","name":"string"}}}}'
 
 catocli mutation admin updateAdmin '{
     "adminID": "id",
@@ -27,7 +27,7 @@ catocli mutation admin updateAdmin '{
             "allowedEntities": {
                 "id": "id",
                 "name": "string",
-                "type": "account"
+                "type": "site"
             },
             "role": {
                 "id": "id",

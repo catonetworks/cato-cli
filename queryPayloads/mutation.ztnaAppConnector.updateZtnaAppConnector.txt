@@ -1,0 +1,50 @@
+mutation ztnaAppConnectorUpdateZtnaAppConnector ( $accountId:ID! $updateZtnaAppConnectorInput:UpdateZtnaAppConnectorInput!) {
+	ztnaAppConnector ( accountId:$accountId ) {
+		updateZtnaAppConnector ( input:$updateZtnaAppConnectorInput  )  {
+			ztnaAppConnector {
+				id
+				createdAt
+				name
+				description
+				serialNumber
+				socketId
+				type
+				socketModel
+				isRegistered
+				groupName
+				location {
+					address
+					cityName
+					countryCode
+					countryName
+					stateCode
+					timezone
+				}
+				preferredPopLocation {
+					preferredOnly
+					automatic
+					primary {
+						id
+						name
+					}
+					secondary {
+						id
+						name
+					}
+				}
+				privateAppCount
+				privateAppRef {
+					id
+					name
+				}
+				socketInfo {
+					version
+					rollbackTargetVersion
+					versionUpdateTime
+					rollbackEligibleUntil
+					upgradesPaused
+				}
+			}
+		}
+	}	
+}

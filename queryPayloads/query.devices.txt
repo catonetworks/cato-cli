@@ -1,4 +1,4 @@
-query devices ( $accountId:ID! $deviceV2Input:DeviceV2Input $sortOrderInput:SortOrderInput $deviceAttributeCatalogInput:DeviceAttributeCatalogInput $deviceComplianceCatalogInput:DeviceComplianceCatalogInput $deviceCsvExportInput:DeviceCsvExportInput $jobId:ID!) {
+query devices ( $accountId:ID! $deviceV2Input:DeviceV2Input $sortOrderInput:SortOrderInput $deviceAttributeCatalogInput:DeviceAttributeCatalogInput $deviceComplianceCatalogInput:DeviceComplianceCatalogInput $deviceRiskCatalogInput:DeviceRiskCatalogInput $deviceCsvExportInput:DeviceCsvExportInput $jobId:ID!) {
 	devices ( accountId:$accountId ) {
 		list ( input:$deviceV2Input  )  {
 			device {
@@ -155,6 +155,10 @@ query devices ( $accountId:ID! $deviceV2Input:DeviceV2Input $sortOrderInput:Sort
 					}
 					vendor
 				}
+				groups {
+					id
+					name
+				}
 			}
 			paging {
 				total
@@ -198,6 +202,22 @@ query devices ( $accountId:ID! $deviceV2Input:DeviceV2Input $sortOrderInput:Sort
 						name
 					}
 					state
+				}
+				pageInfo {
+					total
+				}
+			}
+			risk ( input:$deviceRiskCatalogInput   ) {
+				items {
+					applicationConnector {
+						id
+						name
+					}
+					level {
+						id
+						min
+						max
+					}
 				}
 				pageInfo {
 					total

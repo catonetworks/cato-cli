@@ -1,0 +1,921 @@
+{
+    "args": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        }
+    },
+    "deprecationReason": null,
+    "description": "Entry point for AI Security queries, scoped to a single account.",
+    "fieldTypes": {},
+    "isDeprecated": false,
+    "name": "aiSecurity",
+    "operationArgs": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        },
+        "aiSecurityAppsInvocationInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "invocation___input",
+            "name": "input",
+            "path": "invocation.input",
+            "requestStr": "$aiSecurityAppsInvocationInput:AiSecurityAppsInvocationInput! ",
+            "required": true,
+            "responseStr": "input:$aiSecurityAppsInvocationInput ",
+            "type": {
+                "definition": {
+                    "description": null,
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "id": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "invocation___input___id",
+                            "name": "id",
+                            "path": "invocation.input.id",
+                            "requestStr": "$id:ID! ",
+                            "required": true,
+                            "responseStr": "id:$id ",
+                            "type": {
+                                "kind": [
+                                    "NON_NULL",
+                                    "SCALAR"
+                                ],
+                                "name": "ID",
+                                "non_null": false
+                            },
+                            "varName": "id"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "AiSecurityAppsInvocationInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "AiSecurityAppsInvocationInput",
+                "non_null": false
+            },
+            "varName": "aiSecurityAppsInvocationInput"
+        },
+        "aiSecurityEndUsersSessionConversationInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "sessionConversation___input",
+            "name": "input",
+            "path": "sessionConversation.input",
+            "requestStr": "$aiSecurityEndUsersSessionConversationInput:AiSecurityEndUsersSessionConversationInput! ",
+            "required": true,
+            "responseStr": "input:$aiSecurityEndUsersSessionConversationInput ",
+            "type": {
+                "definition": {
+                    "description": "Input for fetching a single end-user conversation's PSI by message id.",
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "appId": {
+                            "defaultValue": null,
+                            "description": "Canonical id of the application the conversation belongs to.",
+                            "id_str": "sessionConversation___input___appId",
+                            "name": "appId",
+                            "path": "sessionConversation.input.appId",
+                            "requestStr": "$appId:ID! ",
+                            "required": true,
+                            "responseStr": "appId:$appId ",
+                            "type": {
+                                "kind": [
+                                    "NON_NULL",
+                                    "SCALAR"
+                                ],
+                                "name": "ID",
+                                "non_null": false
+                            },
+                            "varName": "appId"
+                        },
+                        "messageId": {
+                            "defaultValue": null,
+                            "description": "Identifier of the message (conversation) to fetch. Together with sessionId this identifies the conversation uniquely.",
+                            "id_str": "sessionConversation___input___messageId",
+                            "name": "messageId",
+                            "path": "sessionConversation.input.messageId",
+                            "requestStr": "$messageId:ID! ",
+                            "required": true,
+                            "responseStr": "messageId:$messageId ",
+                            "type": {
+                                "kind": [
+                                    "NON_NULL",
+                                    "SCALAR"
+                                ],
+                                "name": "ID",
+                                "non_null": false
+                            },
+                            "varName": "messageId"
+                        },
+                        "sessionId": {
+                            "defaultValue": null,
+                            "description": "Identifier of the chat session the conversation belongs to.",
+                            "id_str": "sessionConversation___input___sessionId",
+                            "name": "sessionId",
+                            "path": "sessionConversation.input.sessionId",
+                            "requestStr": "$sessionId:ID! ",
+                            "required": true,
+                            "responseStr": "sessionId:$sessionId ",
+                            "type": {
+                                "kind": [
+                                    "NON_NULL",
+                                    "SCALAR"
+                                ],
+                                "name": "ID",
+                                "non_null": false
+                            },
+                            "varName": "sessionId"
+                        },
+                        "userId": {
+                            "defaultValue": null,
+                            "description": "Optional end-user identifier. Used only to narrow the underlying lookup for performance; it does not scope the result per user \u2014 sessionId and messageId already identify the conversation uniquely, so omitting it never returns a different user's conversation.",
+                            "id_str": "sessionConversation___input___userId",
+                            "name": "userId",
+                            "path": "sessionConversation.input.userId",
+                            "requestStr": "$userId:ID ",
+                            "required": false,
+                            "responseStr": "userId:$userId ",
+                            "type": {
+                                "kind": [
+                                    "SCALAR"
+                                ],
+                                "name": "ID",
+                                "non_null": false
+                            },
+                            "varName": "userId"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "AiSecurityEndUsersSessionConversationInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "AiSecurityEndUsersSessionConversationInput",
+                "non_null": false
+            },
+            "varName": "aiSecurityEndUsersSessionConversationInput"
+        }
+    },
+    "path": "query.aiSecurity",
+    "type": {
+        "definition": {
+            "description": "Root of the AI Security query namespace for an account.",
+            "enumValues": null,
+            "fields": {
+                "apps": {
+                    "args": {},
+                    "deprecationReason": null,
+                    "description": "AI App Protection queries (invocations to and from LLMs in your AI applications).",
+                    "id_str": "apps",
+                    "isDeprecated": false,
+                    "name": "apps",
+                    "path": "apps",
+                    "requestStr": "$aiSecurityAppsQueries:AiSecurityAppsQueries ",
+                    "required": false,
+                    "responseStr": "apps:$aiSecurityAppsQueries ",
+                    "type": {
+                        "definition": {
+                            "description": "Root of the AI App Protection query namespace.",
+                            "enumValues": null,
+                            "fields": {
+                                "invocation": {
+                                    "args": {
+                                        "invocation___input": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "invocation___input",
+                                            "name": "input",
+                                            "path": "invocation.input",
+                                            "requestStr": "$aiSecurityAppsInvocationInput:AiSecurityAppsInvocationInput! ",
+                                            "required": true,
+                                            "responseStr": "input:$aiSecurityAppsInvocationInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "id": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "invocation___input___id",
+                                                            "name": "id",
+                                                            "path": "invocation.input.id",
+                                                            "requestStr": "$id:ID! ",
+                                                            "required": true,
+                                                            "responseStr": "id:$id ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "ID",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "id"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "AiSecurityAppsInvocationInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "AiSecurityAppsInvocationInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "aiSecurityAppsInvocationInput"
+                                        }
+                                    },
+                                    "deprecationReason": null,
+                                    "description": "Fetch a single invocation by its ID.",
+                                    "id_str": "apps___invocation",
+                                    "isDeprecated": false,
+                                    "name": "invocation",
+                                    "path": "apps.invocation",
+                                    "requestStr": "$aiSecurityAppsInvocation:AiSecurityAppsInvocation ",
+                                    "required": false,
+                                    "responseStr": "invocation:$aiSecurityAppsInvocation ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "A single invocation (any call to or response from an LLM) intercepted by the AI Security guard.",
+                                            "enumValues": null,
+                                            "fields": {
+                                                "action": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "The enforcement outcome applied to this invocation.",
+                                                    "id_str": "apps___invocation___action",
+                                                    "isDeprecated": false,
+                                                    "name": "action",
+                                                    "path": "apps.invocation.action",
+                                                    "requestStr": "$action:AiSecurityAppsInvocationAction! ",
+                                                    "required": true,
+                                                    "responseStr": "action:$action ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "The enforcement outcome applied to an invocation.",
+                                                            "enumValues": [
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "The request or response was blocked.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "BLOCK"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Sensitive content was masked before forwarding.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "ANONYMIZE"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "No action was taken \u2014 all matched rules are in monitor mode.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "MONITOR"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "No action was taken \u2014 no rules matched.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "NONE"
+                                                                }
+                                                            ],
+                                                            "fields": null,
+                                                            "inputFields": null,
+                                                            "interfaces": null,
+                                                            "kind": "ENUM",
+                                                            "name": "AiSecurityAppsInvocationAction",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "enum",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "ENUM"
+                                                        ],
+                                                        "name": "AiSecurityAppsInvocationAction",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "action"
+                                                },
+                                                "data": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Invocation messages (original, not anonymized). Caller must have AiSecurityForAppsGuardsSensitive RBAC permission.",
+                                                    "id_str": "apps___invocation___data",
+                                                    "isDeprecated": false,
+                                                    "name": "data",
+                                                    "path": "apps.invocation.data",
+                                                    "requestStr": "$aiSecurityAppsInvocationData:AiSecurityAppsInvocationData! ",
+                                                    "required": true,
+                                                    "responseStr": "data:$aiSecurityAppsInvocationData ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "The input data of an invocation.",
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "message": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "id_str": "apps___invocation___data___message",
+                                                                    "isDeprecated": false,
+                                                                    "name": "message",
+                                                                    "path": "apps.invocation.data.message",
+                                                                    "requestStr": "$aiSecurityAppsInvocationMessage:[AiSecurityAppsInvocationMessage]! ",
+                                                                    "required": true,
+                                                                    "responseStr": "message:$aiSecurityAppsInvocationMessage ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": "A single message within an invocation's chat.",
+                                                                            "enumValues": null,
+                                                                            "fields": {
+                                                                                "content": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "The content of the message.",
+                                                                                    "id_str": "apps___invocation___data___message___content",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "content",
+                                                                                    "path": "apps.invocation.data.message.content",
+                                                                                    "requestStr": "$aiSecurityAppsInvocationMessageContent:[AiSecurityAppsInvocationMessageContent]! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "content:$aiSecurityAppsInvocationMessageContent ",
+                                                                                    "type": {
+                                                                                        "definition": {
+                                                                                            "description": "A single content item within a message.",
+                                                                                            "enumValues": null,
+                                                                                            "fields": {
+                                                                                                "text": {
+                                                                                                    "args": {},
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": "The text of the message.",
+                                                                                                    "id_str": "apps___invocation___data___message___content___text",
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "text",
+                                                                                                    "path": "apps.invocation.data.message.content.text",
+                                                                                                    "requestStr": "$text:String ",
+                                                                                                    "required": false,
+                                                                                                    "responseStr": "text:$text ",
+                                                                                                    "type": {
+                                                                                                        "kind": [
+                                                                                                            "SCALAR"
+                                                                                                        ],
+                                                                                                        "name": "String",
+                                                                                                        "non_null": false
+                                                                                                    },
+                                                                                                    "varName": "text"
+                                                                                                }
+                                                                                            },
+                                                                                            "inputFields": null,
+                                                                                            "interfaces": {},
+                                                                                            "kind": "OBJECT",
+                                                                                            "name": "AiSecurityAppsInvocationMessageContent",
+                                                                                            "possibleTypes": null
+                                                                                        },
+                                                                                        "indexType": "object",
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "LIST",
+                                                                                            "NON_NULL",
+                                                                                            "OBJECT"
+                                                                                        ],
+                                                                                        "name": "AiSecurityAppsInvocationMessageContent",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "aiSecurityAppsInvocationMessageContent"
+                                                                                },
+                                                                                "role": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "The role of the message author (well-known values: USER, ASSISTANT, TOOL_CALL, TOOL_MESSAGE; custom roles are also possible).",
+                                                                                    "id_str": "apps___invocation___data___message___role",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "role",
+                                                                                    "path": "apps.invocation.data.message.role",
+                                                                                    "requestStr": "$role:String! ",
+                                                                                    "required": true,
+                                                                                    "responseStr": "role:$role ",
+                                                                                    "type": {
+                                                                                        "kind": [
+                                                                                            "NON_NULL",
+                                                                                            "SCALAR"
+                                                                                        ],
+                                                                                        "name": "String",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "role"
+                                                                                }
+                                                                            },
+                                                                            "inputFields": null,
+                                                                            "interfaces": {},
+                                                                            "kind": "OBJECT",
+                                                                            "name": "AiSecurityAppsInvocationMessage",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "object",
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "LIST",
+                                                                            "NON_NULL",
+                                                                            "OBJECT"
+                                                                        ],
+                                                                        "name": "AiSecurityAppsInvocationMessage",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "aiSecurityAppsInvocationMessage"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "AiSecurityAppsInvocationData",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "AiSecurityAppsInvocationData",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "aiSecurityAppsInvocationData"
+                                                },
+                                                "guard": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "The guard that received this invocation.",
+                                                    "id_str": "apps___invocation___guard",
+                                                    "isDeprecated": false,
+                                                    "name": "guard",
+                                                    "path": "apps.invocation.guard",
+                                                    "requestStr": "$aiSecurityAppsGuardRef:AiSecurityAppsGuardRef ",
+                                                    "required": false,
+                                                    "responseStr": "guard:$aiSecurityAppsGuardRef ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "Reference to an AI security guard.",
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "id": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "id_str": "apps___invocation___guard___id",
+                                                                    "isDeprecated": false,
+                                                                    "name": "id",
+                                                                    "path": "apps.invocation.guard.id",
+                                                                    "requestStr": "$id:ID! ",
+                                                                    "required": true,
+                                                                    "responseStr": "id:$id ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "ID",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "id"
+                                                                },
+                                                                "name": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "id_str": "apps___invocation___guard___name",
+                                                                    "isDeprecated": false,
+                                                                    "name": "name",
+                                                                    "path": "apps.invocation.guard.name",
+                                                                    "requestStr": "$name:String! ",
+                                                                    "required": true,
+                                                                    "responseStr": "name:$name ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "name"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "AiSecurityAppsGuardRef",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "AiSecurityAppsGuardRef",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "aiSecurityAppsGuardRef"
+                                                },
+                                                "id": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Globally unique identifier for this invocation.",
+                                                    "id_str": "apps___invocation___id",
+                                                    "isDeprecated": false,
+                                                    "name": "id",
+                                                    "path": "apps.invocation.id",
+                                                    "requestStr": "$id:ID! ",
+                                                    "required": true,
+                                                    "responseStr": "id:$id ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "ID",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "id"
+                                                },
+                                                "sessionId": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Identifier grouping invocations that belong to the same conversation session.",
+                                                    "id_str": "apps___invocation___sessionId",
+                                                    "isDeprecated": false,
+                                                    "name": "sessionId",
+                                                    "path": "apps.invocation.sessionId",
+                                                    "requestStr": "$sessionId:ID ",
+                                                    "required": false,
+                                                    "responseStr": "sessionId:$sessionId ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "ID",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "sessionId"
+                                                },
+                                                "timestamp": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "UTC timestamp of when the invocation was intercepted.",
+                                                    "id_str": "apps___invocation___timestamp",
+                                                    "isDeprecated": false,
+                                                    "name": "timestamp",
+                                                    "path": "apps.invocation.timestamp",
+                                                    "requestStr": "$timestamp:DateTime! ",
+                                                    "required": true,
+                                                    "responseStr": "timestamp:$timestamp ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "DateTime",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "timestamp"
+                                                },
+                                                "tokenCount": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Total number of tokens in the invocation (prompt + completion).",
+                                                    "id_str": "apps___invocation___tokenCount",
+                                                    "isDeprecated": false,
+                                                    "name": "tokenCount",
+                                                    "path": "apps.invocation.tokenCount",
+                                                    "requestStr": "$tokenCount:Int! ",
+                                                    "required": true,
+                                                    "responseStr": "tokenCount:$tokenCount ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Int",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "tokenCount"
+                                                }
+                                            },
+                                            "inputFields": null,
+                                            "interfaces": {},
+                                            "kind": "OBJECT",
+                                            "name": "AiSecurityAppsInvocation",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "object",
+                                        "kind": [
+                                            "OBJECT"
+                                        ],
+                                        "name": "AiSecurityAppsInvocation",
+                                        "non_null": false
+                                    },
+                                    "varName": "aiSecurityAppsInvocation"
+                                }
+                            },
+                            "inputFields": null,
+                            "interfaces": {},
+                            "kind": "OBJECT",
+                            "name": "AiSecurityAppsQueries",
+                            "possibleTypes": null
+                        },
+                        "indexType": "object",
+                        "kind": [
+                            "OBJECT"
+                        ],
+                        "name": "AiSecurityAppsQueries",
+                        "non_null": false
+                    },
+                    "varName": "aiSecurityAppsQueries"
+                },
+                "endUsers": {
+                    "args": {},
+                    "deprecationReason": null,
+                    "description": "User Protection queries (end-user interactions with public AI tools).",
+                    "id_str": "endUsers",
+                    "isDeprecated": false,
+                    "name": "endUsers",
+                    "path": "endUsers",
+                    "requestStr": "$aiSecurityEndUsersQueries:AiSecurityEndUsersQueries ",
+                    "required": false,
+                    "responseStr": "endUsers:$aiSecurityEndUsersQueries ",
+                    "type": {
+                        "definition": {
+                            "description": "Root of the User Protection query namespace.",
+                            "enumValues": null,
+                            "fields": {
+                                "sessionConversation": {
+                                    "args": {
+                                        "sessionConversation___input": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "sessionConversation___input",
+                                            "name": "input",
+                                            "path": "sessionConversation.input",
+                                            "requestStr": "$aiSecurityEndUsersSessionConversationInput:AiSecurityEndUsersSessionConversationInput! ",
+                                            "required": true,
+                                            "responseStr": "input:$aiSecurityEndUsersSessionConversationInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "Input for fetching a single end-user conversation's PSI by message id.",
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "appId": {
+                                                            "defaultValue": null,
+                                                            "description": "Canonical id of the application the conversation belongs to.",
+                                                            "id_str": "sessionConversation___input___appId",
+                                                            "name": "appId",
+                                                            "path": "sessionConversation.input.appId",
+                                                            "requestStr": "$appId:ID! ",
+                                                            "required": true,
+                                                            "responseStr": "appId:$appId ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "ID",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "appId"
+                                                        },
+                                                        "messageId": {
+                                                            "defaultValue": null,
+                                                            "description": "Identifier of the message (conversation) to fetch. Together with sessionId this identifies the conversation uniquely.",
+                                                            "id_str": "sessionConversation___input___messageId",
+                                                            "name": "messageId",
+                                                            "path": "sessionConversation.input.messageId",
+                                                            "requestStr": "$messageId:ID! ",
+                                                            "required": true,
+                                                            "responseStr": "messageId:$messageId ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "ID",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "messageId"
+                                                        },
+                                                        "sessionId": {
+                                                            "defaultValue": null,
+                                                            "description": "Identifier of the chat session the conversation belongs to.",
+                                                            "id_str": "sessionConversation___input___sessionId",
+                                                            "name": "sessionId",
+                                                            "path": "sessionConversation.input.sessionId",
+                                                            "requestStr": "$sessionId:ID! ",
+                                                            "required": true,
+                                                            "responseStr": "sessionId:$sessionId ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "ID",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "sessionId"
+                                                        },
+                                                        "userId": {
+                                                            "defaultValue": null,
+                                                            "description": "Optional end-user identifier. Used only to narrow the underlying lookup for performance; it does not scope the result per user \u2014 sessionId and messageId already identify the conversation uniquely, so omitting it never returns a different user's conversation.",
+                                                            "id_str": "sessionConversation___input___userId",
+                                                            "name": "userId",
+                                                            "path": "sessionConversation.input.userId",
+                                                            "requestStr": "$userId:ID ",
+                                                            "required": false,
+                                                            "responseStr": "userId:$userId ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "ID",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "userId"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "AiSecurityEndUsersSessionConversationInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "AiSecurityEndUsersSessionConversationInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "aiSecurityEndUsersSessionConversationInput"
+                                        }
+                                    },
+                                    "deprecationReason": null,
+                                    "description": "Fetch a single end-user conversation by its message id, together with its prompt sensitive information (PSI). Returns null when no matching conversation exists. Caller must have AiSecurityEndUsersPromptSensitive RBAC permission.",
+                                    "id_str": "endUsers___sessionConversation",
+                                    "isDeprecated": false,
+                                    "name": "sessionConversation",
+                                    "path": "endUsers.sessionConversation",
+                                    "requestStr": "$aiSecurityEndUsersConversation:AiSecurityEndUsersConversation ",
+                                    "required": false,
+                                    "responseStr": "sessionConversation:$aiSecurityEndUsersConversation ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "A single end-user conversation's prompt sensitive information (PSI).",
+                                            "enumValues": null,
+                                            "fields": {
+                                                "llmResponse": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "The LLM response, including any sensitive information it contains (not redacted). Null when the conversation has no response (e.g. the prompt was blocked before reaching the model).",
+                                                    "id_str": "endUsers___sessionConversation___llmResponse",
+                                                    "isDeprecated": false,
+                                                    "name": "llmResponse",
+                                                    "path": "endUsers.sessionConversation.llmResponse",
+                                                    "requestStr": "$llmResponse:String ",
+                                                    "required": false,
+                                                    "responseStr": "llmResponse:$llmResponse ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "llmResponse"
+                                                },
+                                                "userPrompt": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "The prompt as sent by the end user, including any sensitive information it contains (not redacted).",
+                                                    "id_str": "endUsers___sessionConversation___userPrompt",
+                                                    "isDeprecated": false,
+                                                    "name": "userPrompt",
+                                                    "path": "endUsers.sessionConversation.userPrompt",
+                                                    "requestStr": "$userPrompt:String! ",
+                                                    "required": true,
+                                                    "responseStr": "userPrompt:$userPrompt ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "userPrompt"
+                                                }
+                                            },
+                                            "inputFields": null,
+                                            "interfaces": {},
+                                            "kind": "OBJECT",
+                                            "name": "AiSecurityEndUsersConversation",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "object",
+                                        "kind": [
+                                            "OBJECT"
+                                        ],
+                                        "name": "AiSecurityEndUsersConversation",
+                                        "non_null": false
+                                    },
+                                    "varName": "aiSecurityEndUsersConversation"
+                                }
+                            },
+                            "inputFields": null,
+                            "interfaces": {},
+                            "kind": "OBJECT",
+                            "name": "AiSecurityEndUsersQueries",
+                            "possibleTypes": null
+                        },
+                        "indexType": "object",
+                        "kind": [
+                            "OBJECT"
+                        ],
+                        "name": "AiSecurityEndUsersQueries",
+                        "non_null": false
+                    },
+                    "varName": "aiSecurityEndUsersQueries"
+                }
+            },
+            "inputFields": null,
+            "interfaces": [],
+            "kind": "OBJECT",
+            "name": "AiSecurityQueries",
+            "possibleTypes": null
+        },
+        "indexType": "object",
+        "kind": [
+            "OBJECT"
+        ],
+        "name": "AiSecurityQueries",
+        "non_null": false
+    },
+    "variablesPayload": {
+        "aiSecurityAppsInvocationInput": {
+            "id": "id"
+        },
+        "aiSecurityEndUsersSessionConversationInput": {
+            "appId": "id",
+            "messageId": "id",
+            "sessionId": "id",
+            "userId": "id"
+        }
+    }
+}

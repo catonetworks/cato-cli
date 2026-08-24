@@ -1,0 +1,154 @@
+query networkConfig ( $accountId:ID! $networkConfigDhcpOptionRefInput:NetworkConfigDhcpOptionRefInput! $networkConfigDhcpOptionListInput:NetworkConfigDhcpOptionListInput! $networkConfigDhcpRelayGroupRefInput:NetworkConfigDhcpRelayGroupRefInput! $networkConfigDhcpRelayGroupListInput:NetworkConfigDhcpRelayGroupListInput! $siteRefInput:SiteRefInput! $networkConfigDnsForwardingRuleRefInput:NetworkConfigDnsForwardingRuleRefInput! $networkConfigDnsForwardingRuleListInput:NetworkConfigDnsForwardingRuleListInput! $networkConfigDnsServerSetRefInput:NetworkConfigDnsServerSetRefInput! $networkConfigDnsServerSetListInput:NetworkConfigDnsServerSetListInput! $networkConfigDnsSuffixSetRefInput:NetworkConfigDnsSuffixSetRefInput! $networkConfigDnsSuffixSetListInput:NetworkConfigDnsSuffixSetListInput!) {
+	networkConfig ( accountId:$accountId ) {
+		dhcp {
+			settings {
+				relay {
+					enabled
+					timeout
+					group {
+						id
+						name
+					}
+				}
+				leaseTime
+			}
+			option ( input:$networkConfigDhcpOptionRefInput   ) {
+				id
+				tag
+				value
+				description
+				type
+			}
+			optionList ( input:$networkConfigDhcpOptionListInput   ) {
+				items {
+					id
+					tag
+					value
+					description
+					type
+				}
+				paging {
+					total
+				}
+			}
+			relayGroup ( input:$networkConfigDhcpRelayGroupRefInput   ) {
+				id
+				name
+				server
+			}
+			relayGroupList ( input:$networkConfigDhcpRelayGroupListInput   ) {
+				items {
+					id
+					name
+					server
+				}
+				paging {
+					total
+				}
+			}
+		}
+		dns {
+			settings {
+				primaryServer
+				secondaryServer
+				suffix
+				acceptDnsRequestsOnLanInterfaceIp
+			}
+			siteSettings ( site:$siteRefInput   ) {
+				siteId
+				primaryServer
+				secondaryServer
+				suffix
+			}
+			forwardingRule ( input:$networkConfigDnsForwardingRuleRefInput   ) {
+				id
+				domain
+				server
+			}
+			forwardingRuleList ( input:$networkConfigDnsForwardingRuleListInput   ) {
+				items {
+					id
+					domain
+					server
+				}
+				paging {
+					total
+				}
+			}
+			serverSet ( input:$networkConfigDnsServerSetRefInput   ) {
+				id
+				name
+				server
+				audit {
+					updatedTime
+					updatedBy {
+						id
+						name
+					}
+				}
+			}
+			serverSetList ( input:$networkConfigDnsServerSetListInput   ) {
+				items {
+					id
+					name
+					server
+					audit {
+						updatedTime
+						updatedBy {
+							id
+							name
+							... on AdminRef {
+								id
+								name
+							}
+							... on ApiKeyRef {
+								id
+								name
+							}
+						}
+					}
+				}
+				paging {
+					total
+				}
+			}
+			suffixSet ( input:$networkConfigDnsSuffixSetRefInput   ) {
+				id
+				name
+				suffix
+				audit {
+					updatedTime
+					updatedBy {
+						id
+						name
+					}
+				}
+			}
+			suffixSetList ( input:$networkConfigDnsSuffixSetListInput   ) {
+				items {
+					id
+					name
+					suffix
+					audit {
+						updatedTime
+						updatedBy {
+							id
+							name
+							... on AdminRef {
+								id
+								name
+							}
+							... on ApiKeyRef {
+								id
+								name
+							}
+						}
+					}
+				}
+				paging {
+					total
+				}
+			}
+		}
+	}	
+}

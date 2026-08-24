@@ -11,7 +11,7 @@ catocli query entityLookup <json>
 
 catocli query entityLookup --json-file query.entityLookup.json
 
-catocli query entityLookup '{"entityIDs":["id1","id2"],"entityInput":{"id":"id","name":"string","type":"account"},"from":1,"helperFields":["string1","string2"],"limit":1,"lookupFilterInput":{"filter":"filterByConnectionTypeFamily","value":"string"},"search":"string","sortInput":{"field":"string","order":"asc"},"type":"account"}'
+catocli query entityLookup '{"entityIDs":["id1","id2"],"entityInput":{"id":"id","name":"string","type":"site"},"from":1,"helperFields":["string1","string2"],"limit":1,"lookupFilterInput":{"filter":"filterByConnectionTypeFamily","value":"string"},"search":"string","sortInput":{"field":"string","order":"asc"},"type":"site"}'
 
 catocli query entityLookup '{
     "entityIDs": [
@@ -21,7 +21,7 @@ catocli query entityLookup '{
     "entityInput": {
         "id": "id",
         "name": "string",
-        "type": "account"
+        "type": "site"
     },
     "from": 1,
     "helperFields": [
@@ -38,7 +38,7 @@ catocli query entityLookup '{
         "field": "string",
         "order": "asc"
     },
-    "type": "account"
+    "type": "site"
 }'
 ```
 
@@ -59,4 +59,4 @@ country lookup: "removeExcluded" to return only allowed countries
 countryState lookup: country code ("US", "CN", etc) to get country's states    
 `sortInput` [SortInput[]] - (required) Adds additional sort criteria(s) for the lookup.
 This option is not universally available, and may not be applicable specific Entity types.    
-`type` [EntityType] - (required) Type of entity to lookup for Default Value: ['account', 'site', 'vpnUser', 'country', 'countryState', 'timezone', 'host', 'any', 'networkInterface', 'location', 'admin', 'localRouting', 'lanFirewall', 'allocatedIP', 'siteRange', 'simpleService', 'availableSiteUsage', 'availablePooledUsage', 'dhcpRelayGroup', 'portProtocol', 'city', 'groupSubscription', 'mailingListSubscription', 'webhookSubscription']   
+`type` [EntityType] - (required) Type of entity to lookup for Default Value: ['site', 'account', 'vpnUser', 'country', 'countryState', 'timezone', 'host', 'any', 'networkInterface', 'location', 'admin', 'localRouting', 'lanFirewall', 'allocatedIP', 'siteRange', 'simpleService', 'availableSiteUsage', 'availablePooledUsage', 'dhcpRelayGroup', 'portProtocol', 'city', 'groupSubscription', 'mailingListSubscription', 'webhookSubscription']   

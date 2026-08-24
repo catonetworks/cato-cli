@@ -11,7 +11,7 @@ catocli query eventsTimeSeries <json>
 
 catocli query eventsTimeSeries --json-file query.eventsTimeSeries.json
 
-catocli query eventsTimeSeries '{"buckets":1,"eventsDimension":{"fieldName":"access_method"},"eventsFilter":{"fieldName":"access_method","operator":"is","values":["string1","string2"]},"eventsMeasure":{"aggType":"sum","alias":"string","fieldName":"access_method","trend":true},"perSecond":true,"timeFrame":"example_value","useDefaultSizeBucket":true,"withMissingData":true}'
+catocli query eventsTimeSeries '{"buckets":1,"eventsDimension":{"fieldName":"access_method"},"eventsFilter":{"fieldName":"access_method","operator":"is","values":["string1","string2"]},"eventsMeasure":{"aggType":"sum","alias":"string","fieldName":"access_method","trend":true},"includeEmptyDimension":true,"perSecond":true,"timeFrame":"example_value","useDefaultSizeBucket":true,"withMissingData":true}'
 
 catocli query eventsTimeSeries '{
     "buckets": 1,
@@ -32,6 +32,7 @@ catocli query eventsTimeSeries '{
         "fieldName": "access_method",
         "trend": true
     },
+    "includeEmptyDimension": true,
     "perSecond": true,
     "timeFrame": "example_value",
     "useDefaultSizeBucket": true,
@@ -327,6 +328,7 @@ Format: `"utc.YYYY-MM-{DD/HH:MM:SS--DD/HH:MM:SS}"`
 `eventsDimension` [EventsDimension[]] - (required) N/A    
 `eventsFilter` [EventsFilter[]] - (required) N/A    
 `eventsMeasure` [EventsMeasure[]] - (required) N/A    
+`includeEmptyDimension` [Boolean] - (required) When true, rows with empty/null values for a grouped dimension (e.g., country, device type) are returned as an empty group rather than excluded. This ensures consistent totals in API queries and surfaces previously hidden data in CMA dashboards and reports. Defaults to false.    
 `perSecond` [Boolean] - (required) whether to normalize the data into per second (i.e. divide by granularity)    
 `timeFrame` [TimeFrame] - (required) N/A    
 `useDefaultSizeBucket` [Boolean] - (required) In case we want to have the default size bucket (from properties)    

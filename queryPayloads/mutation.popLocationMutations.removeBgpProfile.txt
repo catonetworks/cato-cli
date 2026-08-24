@@ -1,0 +1,17 @@
+mutation popLocationMutationsRemoveBgpProfile ( $accountId:ID! $bgpProfileId:ID!) {
+	popLocationMutations ( accountId:$accountId ) {
+		removeBgpProfile ( bgpProfileId:$bgpProfileId  )  {
+			bgpProfile {
+				id
+				name
+				description
+				communities {
+					from
+					to
+				}
+				createdAt
+				lastUpdatedAt
+			}
+		}
+	}	
+}

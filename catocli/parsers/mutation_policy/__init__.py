@@ -11,7 +11,7 @@ def mutation_policy_parse(mutation_subparsers):
         """Show help when mutation_policy is called without subcommand"""
         print("\ncatocli mutation policy <subcommand> [options]")
         print("\nAvailable subcommands:")
-        print("  antiMalwareFileHash            antiMalwareFileHash operation\n  socketBypass                   socketBypass operation\n  socketLan                      socketLan operation\n  wanNetwork                     wanNetwork operation\n  internetFirewall               internetFirewall operation\n  remotePortFwd                  remotePortFwd operation\n  wanFirewall                    wanFirewall operation\n  appTenantRestriction           appTenantRestriction operation\n  applicationControl             applicationControl operation\n  tlsInspect                     tlsInspect operation\n  ... and 5 more")
+        print("  antiMalwareFileHash            antiMalwareFileHash operation\n  socketBypass                   socketBypass operation\n  socketLan                      socketLan operation\n  wanNetwork                     wanNetwork operation\n  internetFirewall               internetFirewall operation\n  remotePortFwd                  remotePortFwd operation\n  wanFirewall                    wanFirewall operation\n  appTenantRestriction           appTenantRestriction operation\n  applicationControl             applicationControl operation\n  tlsInspect                     tlsInspect operation\n  ... and 6 more")
         print("\nFor help on a specific subcommand:")
         print("  catocli mutation policy <subcommand> -h")
         return None
@@ -539,7 +539,7 @@ def mutation_policy_parse(mutation_subparsers):
         """Show help when mutation_policy_socketLan is called without subcommand"""
         print("\ncatocli mutation policy socketLan <subcommand> [options]")
         print("\nAvailable subcommands:")
-        print("  firewall                       firewall operation\n  addRule                        addRule operation\n  updateRule                     updateRule operation\n  removeRule                     removeRule operation\n  moveRule                       moveRule operation\n  addSection                     addSection operation\n  updateSection                  updateSection operation\n  removeSection                  removeSection operation\n  moveSection                    moveSection operation\n  createPolicyRevision           createPolicyRevision operation\n  ... and 3 more")
+        print("  firewall                       firewall operation\n  addRule                        addRule operation\n  updateRule                     updateRule operation\n  removeRule                     removeRule operation\n  moveRule                       moveRule operation\n  addSection                     addSection operation\n  updateSection                  updateSection operation\n  removeSection                  removeSection operation\n  moveSection                    moveSection operation\n  createPolicyRevision           createPolicyRevision operation\n  ... and 5 more")
         print("\nFor help on a specific subcommand:")
         print("  catocli mutation policy socketLan <subcommand> -h")
         return None
@@ -882,6 +882,46 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_socketLan_updatePolicy_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_socketLan_updatePolicy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_socketLan_updatePolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.socketLan.updatePolicy')
+
+    mutation_policy_socketLan_addSubPolicy_parser = mutation_policy_socketLan_subparsers.add_parser('addSubPolicy', 
+            help='addSubPolicy() socketLan operation', 
+            usage=get_help("mutation_policy_socketLan_addSubPolicy"))
+
+    mutation_policy_socketLan_addSubPolicy_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_socketLan_addSubPolicy_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_socketLan_addSubPolicy_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_socketLan_addSubPolicy_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_socketLan_addSubPolicy_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_socketLan_addSubPolicy_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_socketLan_addSubPolicy_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_socketLan_addSubPolicy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_socketLan_addSubPolicy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_socketLan_addSubPolicy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_socketLan_addSubPolicy_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_socketLan_addSubPolicy_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_socketLan_addSubPolicy_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_policy_socketLan_addSubPolicy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_socketLan_addSubPolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.socketLan.addSubPolicy')
+
+    mutation_policy_socketLan_removeSubPolicy_parser = mutation_policy_socketLan_subparsers.add_parser('removeSubPolicy', 
+            help='removeSubPolicy() socketLan operation', 
+            usage=get_help("mutation_policy_socketLan_removeSubPolicy"))
+
+    mutation_policy_socketLan_removeSubPolicy_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_socketLan_removeSubPolicy_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_socketLan_removeSubPolicy_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_socketLan_removeSubPolicy_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_socketLan_removeSubPolicy_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_socketLan_removeSubPolicy_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_socketLan_removeSubPolicy_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_socketLan_removeSubPolicy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_socketLan_removeSubPolicy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_socketLan_removeSubPolicy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_socketLan_removeSubPolicy_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_socketLan_removeSubPolicy_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_socketLan_removeSubPolicy_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_policy_socketLan_removeSubPolicy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_socketLan_removeSubPolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.socketLan.removeSubPolicy')
 
     mutation_policy_wanNetwork_parser = mutation_policy_subparsers.add_parser('wanNetwork', 
             help='wanNetwork() policy operation', 
@@ -3266,6 +3306,262 @@ def mutation_policy_parse(mutation_subparsers):
     mutation_policy_dynamicIpAllocation_updatePolicy_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_policy_dynamicIpAllocation_updatePolicy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_policy_dynamicIpAllocation_updatePolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.dynamicIpAllocation.updatePolicy')
+
+    mutation_policy_privateAccess_parser = mutation_policy_subparsers.add_parser('privateAccess', 
+            help='privateAccess() policy operation', 
+            usage=get_help("mutation_policy_privateAccess"))
+
+    def _show_mutation_policy_privateAccess_help(args, configuration=None):
+        """Show help when mutation_policy_privateAccess is called without subcommand"""
+        print("\ncatocli mutation policy privateAccess <subcommand> [options]")
+        print("\nAvailable subcommands:")
+        print("  addRule                        addRule operation\n  updateRule                     updateRule operation\n  removeRule                     removeRule operation\n  moveRule                       moveRule operation\n  addSection                     addSection operation\n  updateSection                  updateSection operation\n  removeSection                  removeSection operation\n  moveSection                    moveSection operation\n  createPolicyRevision           createPolicyRevision operation\n  publishPolicyRevision          publishPolicyRevision operation\n  ... and 2 more")
+        print("\nFor help on a specific subcommand:")
+        print("  catocli mutation policy privateAccess <subcommand> -h")
+        return None
+
+    mutation_policy_privateAccess_subparsers = mutation_policy_privateAccess_parser.add_subparsers()
+    mutation_policy_privateAccess_parser.set_defaults(func=_show_mutation_policy_privateAccess_help)
+
+    mutation_policy_privateAccess_addRule_parser = mutation_policy_privateAccess_subparsers.add_parser('addRule', 
+            help='addRule() privateAccess operation', 
+            usage=get_help("mutation_policy_privateAccess_addRule"))
+
+    mutation_policy_privateAccess_addRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_privateAccess_addRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_privateAccess_addRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_privateAccess_addRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_privateAccess_addRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_privateAccess_addRule_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_privateAccess_addRule_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_privateAccess_addRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_privateAccess_addRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_privateAccess_addRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_privateAccess_addRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_privateAccess_addRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_privateAccess_addRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_policy_privateAccess_addRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_privateAccess_addRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.privateAccess.addRule')
+
+    mutation_policy_privateAccess_updateRule_parser = mutation_policy_privateAccess_subparsers.add_parser('updateRule', 
+            help='updateRule() privateAccess operation', 
+            usage=get_help("mutation_policy_privateAccess_updateRule"))
+
+    mutation_policy_privateAccess_updateRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_privateAccess_updateRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_privateAccess_updateRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_privateAccess_updateRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_privateAccess_updateRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_privateAccess_updateRule_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_privateAccess_updateRule_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_privateAccess_updateRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_privateAccess_updateRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_privateAccess_updateRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_privateAccess_updateRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_privateAccess_updateRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_privateAccess_updateRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_policy_privateAccess_updateRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_privateAccess_updateRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.privateAccess.updateRule')
+
+    mutation_policy_privateAccess_removeRule_parser = mutation_policy_privateAccess_subparsers.add_parser('removeRule', 
+            help='removeRule() privateAccess operation', 
+            usage=get_help("mutation_policy_privateAccess_removeRule"))
+
+    mutation_policy_privateAccess_removeRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_privateAccess_removeRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_privateAccess_removeRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_privateAccess_removeRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_privateAccess_removeRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_privateAccess_removeRule_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_privateAccess_removeRule_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_privateAccess_removeRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_privateAccess_removeRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_privateAccess_removeRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_privateAccess_removeRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_privateAccess_removeRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_privateAccess_removeRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_policy_privateAccess_removeRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_privateAccess_removeRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.privateAccess.removeRule')
+
+    mutation_policy_privateAccess_moveRule_parser = mutation_policy_privateAccess_subparsers.add_parser('moveRule', 
+            help='moveRule() privateAccess operation', 
+            usage=get_help("mutation_policy_privateAccess_moveRule"))
+
+    mutation_policy_privateAccess_moveRule_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_privateAccess_moveRule_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_privateAccess_moveRule_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_privateAccess_moveRule_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_privateAccess_moveRule_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_privateAccess_moveRule_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_privateAccess_moveRule_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_privateAccess_moveRule_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_privateAccess_moveRule_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_privateAccess_moveRule_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_privateAccess_moveRule_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_privateAccess_moveRule_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_privateAccess_moveRule_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_policy_privateAccess_moveRule_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_privateAccess_moveRule_parser.set_defaults(func=createRequest,operation_name='mutation.policy.privateAccess.moveRule')
+
+    mutation_policy_privateAccess_addSection_parser = mutation_policy_privateAccess_subparsers.add_parser('addSection', 
+            help='addSection() privateAccess operation', 
+            usage=get_help("mutation_policy_privateAccess_addSection"))
+
+    mutation_policy_privateAccess_addSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_privateAccess_addSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_privateAccess_addSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_privateAccess_addSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_privateAccess_addSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_privateAccess_addSection_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_privateAccess_addSection_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_privateAccess_addSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_privateAccess_addSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_privateAccess_addSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_privateAccess_addSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_privateAccess_addSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_privateAccess_addSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_policy_privateAccess_addSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_privateAccess_addSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.privateAccess.addSection')
+
+    mutation_policy_privateAccess_updateSection_parser = mutation_policy_privateAccess_subparsers.add_parser('updateSection', 
+            help='updateSection() privateAccess operation', 
+            usage=get_help("mutation_policy_privateAccess_updateSection"))
+
+    mutation_policy_privateAccess_updateSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_privateAccess_updateSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_privateAccess_updateSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_privateAccess_updateSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_privateAccess_updateSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_privateAccess_updateSection_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_privateAccess_updateSection_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_privateAccess_updateSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_privateAccess_updateSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_privateAccess_updateSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_privateAccess_updateSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_privateAccess_updateSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_privateAccess_updateSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_policy_privateAccess_updateSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_privateAccess_updateSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.privateAccess.updateSection')
+
+    mutation_policy_privateAccess_removeSection_parser = mutation_policy_privateAccess_subparsers.add_parser('removeSection', 
+            help='removeSection() privateAccess operation', 
+            usage=get_help("mutation_policy_privateAccess_removeSection"))
+
+    mutation_policy_privateAccess_removeSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_privateAccess_removeSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_privateAccess_removeSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_privateAccess_removeSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_privateAccess_removeSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_privateAccess_removeSection_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_privateAccess_removeSection_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_privateAccess_removeSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_privateAccess_removeSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_privateAccess_removeSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_privateAccess_removeSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_privateAccess_removeSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_privateAccess_removeSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_policy_privateAccess_removeSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_privateAccess_removeSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.privateAccess.removeSection')
+
+    mutation_policy_privateAccess_moveSection_parser = mutation_policy_privateAccess_subparsers.add_parser('moveSection', 
+            help='moveSection() privateAccess operation', 
+            usage=get_help("mutation_policy_privateAccess_moveSection"))
+
+    mutation_policy_privateAccess_moveSection_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_privateAccess_moveSection_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_privateAccess_moveSection_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_privateAccess_moveSection_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_privateAccess_moveSection_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_privateAccess_moveSection_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_privateAccess_moveSection_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_privateAccess_moveSection_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_privateAccess_moveSection_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_privateAccess_moveSection_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_privateAccess_moveSection_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_privateAccess_moveSection_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_privateAccess_moveSection_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_policy_privateAccess_moveSection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_privateAccess_moveSection_parser.set_defaults(func=createRequest,operation_name='mutation.policy.privateAccess.moveSection')
+
+    mutation_policy_privateAccess_createPolicyRevision_parser = mutation_policy_privateAccess_subparsers.add_parser('createPolicyRevision', 
+            help='createPolicyRevision() privateAccess operation', 
+            usage=get_help("mutation_policy_privateAccess_createPolicyRevision"))
+
+    mutation_policy_privateAccess_createPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_privateAccess_createPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_privateAccess_createPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_privateAccess_createPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_privateAccess_createPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_privateAccess_createPolicyRevision_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_privateAccess_createPolicyRevision_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_privateAccess_createPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_privateAccess_createPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_privateAccess_createPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_privateAccess_createPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_privateAccess_createPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_privateAccess_createPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_policy_privateAccess_createPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_privateAccess_createPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.privateAccess.createPolicyRevision')
+
+    mutation_policy_privateAccess_publishPolicyRevision_parser = mutation_policy_privateAccess_subparsers.add_parser('publishPolicyRevision', 
+            help='publishPolicyRevision() privateAccess operation', 
+            usage=get_help("mutation_policy_privateAccess_publishPolicyRevision"))
+
+    mutation_policy_privateAccess_publishPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_privateAccess_publishPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_privateAccess_publishPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_privateAccess_publishPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_privateAccess_publishPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_privateAccess_publishPolicyRevision_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_privateAccess_publishPolicyRevision_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_privateAccess_publishPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_privateAccess_publishPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_privateAccess_publishPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_privateAccess_publishPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_privateAccess_publishPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_privateAccess_publishPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_policy_privateAccess_publishPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_privateAccess_publishPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.privateAccess.publishPolicyRevision')
+
+    mutation_policy_privateAccess_discardPolicyRevision_parser = mutation_policy_privateAccess_subparsers.add_parser('discardPolicyRevision', 
+            help='discardPolicyRevision() privateAccess operation', 
+            usage=get_help("mutation_policy_privateAccess_discardPolicyRevision"))
+
+    mutation_policy_privateAccess_discardPolicyRevision_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_privateAccess_discardPolicyRevision_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_privateAccess_discardPolicyRevision_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_privateAccess_discardPolicyRevision_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_privateAccess_discardPolicyRevision_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_privateAccess_discardPolicyRevision_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_privateAccess_discardPolicyRevision_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_privateAccess_discardPolicyRevision_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_privateAccess_discardPolicyRevision_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_privateAccess_discardPolicyRevision_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_privateAccess_discardPolicyRevision_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_privateAccess_discardPolicyRevision_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_privateAccess_discardPolicyRevision_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_policy_privateAccess_discardPolicyRevision_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_privateAccess_discardPolicyRevision_parser.set_defaults(func=createRequest,operation_name='mutation.policy.privateAccess.discardPolicyRevision')
+
+    mutation_policy_privateAccess_updatePolicy_parser = mutation_policy_privateAccess_subparsers.add_parser('updatePolicy', 
+            help='updatePolicy() privateAccess operation', 
+            usage=get_help("mutation_policy_privateAccess_updatePolicy"))
+
+    mutation_policy_privateAccess_updatePolicy_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_policy_privateAccess_updatePolicy_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_policy_privateAccess_updatePolicy_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_policy_privateAccess_updatePolicy_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_policy_privateAccess_updatePolicy_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_policy_privateAccess_updatePolicy_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_policy_privateAccess_updatePolicy_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_policy_privateAccess_updatePolicy_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_policy_privateAccess_updatePolicy_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_policy_privateAccess_updatePolicy_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_policy_privateAccess_updatePolicy_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_policy_privateAccess_updatePolicy_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_policy_privateAccess_updatePolicy_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_policy_privateAccess_updatePolicy_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_policy_privateAccess_updatePolicy_parser.set_defaults(func=createRequest,operation_name='mutation.policy.privateAccess.updatePolicy')
 
     mutation_policy_splitTunnel_parser = mutation_policy_subparsers.add_parser('splitTunnel', 
             help='splitTunnel() policy operation', 

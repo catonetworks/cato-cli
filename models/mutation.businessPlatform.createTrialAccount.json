@@ -1,0 +1,1713 @@
+{
+    "args": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        }
+    },
+    "childOperations": {
+        "createTrialAccount": {
+            "args": {
+                "createTrialAccount___input": {
+                    "defaultValue": null,
+                    "description": null,
+                    "id_str": "createTrialAccount___input",
+                    "name": "input",
+                    "path": "createTrialAccount.input",
+                    "requestStr": "$businessPlatformCreateTrialAccountInput:BusinessPlatformCreateTrialAccountInput! ",
+                    "required": true,
+                    "responseStr": "input:$businessPlatformCreateTrialAccountInput ",
+                    "type": {
+                        "definition": {
+                            "description": "Input for creating a trial account.",
+                            "enumValues": null,
+                            "fields": null,
+                            "inputFields": {
+                                "accountData": {
+                                    "defaultValue": null,
+                                    "description": "Account data for the new account.",
+                                    "id_str": "createTrialAccount___input___accountData",
+                                    "name": "accountData",
+                                    "path": "createTrialAccount.input.accountData",
+                                    "requestStr": "$addAccountInput:AddAccountInput! ",
+                                    "required": true,
+                                    "responseStr": "accountData:$addAccountInput ",
+                                    "type": {
+                                        "definition": {
+                                            "description": null,
+                                            "enumValues": null,
+                                            "fields": null,
+                                            "inputFields": {
+                                                "description": {
+                                                    "defaultValue": null,
+                                                    "description": "User-defined information as defined by an account admin",
+                                                    "id_str": "createTrialAccount___input___accountData___description",
+                                                    "name": "description",
+                                                    "path": "createTrialAccount.input.accountData.description",
+                                                    "requestStr": "$description:String ",
+                                                    "required": false,
+                                                    "responseStr": "description:$description ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "description"
+                                                },
+                                                "name": {
+                                                    "defaultValue": null,
+                                                    "description": "The name of the account",
+                                                    "id_str": "createTrialAccount___input___accountData___name",
+                                                    "name": "name",
+                                                    "path": "createTrialAccount.input.accountData.name",
+                                                    "requestStr": "$name:String! ",
+                                                    "required": true,
+                                                    "responseStr": "name:$name ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "name"
+                                                },
+                                                "tenancy": {
+                                                    "defaultValue": null,
+                                                    "description": "The account tenancy (single-tenant / multi-tenant)",
+                                                    "id_str": "createTrialAccount___input___accountData___tenancy",
+                                                    "name": "tenancy",
+                                                    "path": "createTrialAccount.input.accountData.tenancy",
+                                                    "requestStr": "$tenancy:AccountTenancy! ",
+                                                    "required": true,
+                                                    "responseStr": "tenancy:$tenancy ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "enum for account tenancy",
+                                                            "enumValues": [
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Single tenant account - default for customer accounts",
+                                                                    "isDeprecated": false,
+                                                                    "name": "SINGLE_TENANT"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Multi tenant account - default for partner accounts",
+                                                                    "isDeprecated": false,
+                                                                    "name": "MULTI_TENANT"
+                                                                }
+                                                            ],
+                                                            "fields": null,
+                                                            "inputFields": null,
+                                                            "interfaces": null,
+                                                            "kind": "ENUM",
+                                                            "name": "AccountTenancy",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "enum",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "ENUM"
+                                                        ],
+                                                        "name": "AccountTenancy",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "tenancy"
+                                                },
+                                                "timezone": {
+                                                    "defaultValue": null,
+                                                    "description": "The time zone of the account. Default: UTC (GMT + 0).",
+                                                    "id_str": "createTrialAccount___input___accountData___timezone",
+                                                    "name": "timezone",
+                                                    "path": "createTrialAccount.input.accountData.timezone",
+                                                    "requestStr": "$timezone:TimeZone! ",
+                                                    "required": true,
+                                                    "responseStr": "timezone:$timezone ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "TimeZone",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "timezone"
+                                                },
+                                                "type": {
+                                                    "defaultValue": null,
+                                                    "description": "The account type (Partner / customer)",
+                                                    "id_str": "createTrialAccount___input___accountData___type",
+                                                    "name": "type",
+                                                    "path": "createTrialAccount.input.accountData.type",
+                                                    "requestStr": "$type:AccountProfileType! ",
+                                                    "required": true,
+                                                    "responseStr": "type:$type ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "enum for account type",
+                                                            "enumValues": [
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "A customer account",
+                                                                    "isDeprecated": false,
+                                                                    "name": "CUSTOMER"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "A partner account",
+                                                                    "isDeprecated": false,
+                                                                    "name": "PARTNER"
+                                                                }
+                                                            ],
+                                                            "fields": null,
+                                                            "inputFields": null,
+                                                            "interfaces": null,
+                                                            "kind": "ENUM",
+                                                            "name": "AccountProfileType",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "enum",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "ENUM"
+                                                        ],
+                                                        "name": "AccountProfileType",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "type"
+                                                }
+                                            },
+                                            "interfaces": null,
+                                            "kind": "INPUT_OBJECT",
+                                            "name": "AddAccountInput",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "input_object",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "INPUT_OBJECT"
+                                        ],
+                                        "name": "AddAccountInput",
+                                        "non_null": false
+                                    },
+                                    "varName": "addAccountInput"
+                                },
+                                "adminData": {
+                                    "defaultValue": null,
+                                    "description": "Details of the initial admin user for the account.",
+                                    "id_str": "createTrialAccount___input___adminData",
+                                    "name": "adminData",
+                                    "path": "createTrialAccount.input.adminData",
+                                    "requestStr": "$businessPlatformAdminData:BusinessPlatformAdminData ",
+                                    "required": false,
+                                    "responseStr": "adminData:$businessPlatformAdminData ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "Details of the initial admin user for a new account.",
+                                            "enumValues": null,
+                                            "fields": null,
+                                            "inputFields": {
+                                                "email": {
+                                                    "defaultValue": null,
+                                                    "description": "Admin email address.",
+                                                    "id_str": "createTrialAccount___input___adminData___email",
+                                                    "name": "email",
+                                                    "path": "createTrialAccount.input.adminData.email",
+                                                    "requestStr": "$email:Email! ",
+                                                    "required": true,
+                                                    "responseStr": "email:$email ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Email",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "email"
+                                                },
+                                                "firstName": {
+                                                    "defaultValue": null,
+                                                    "description": "Admin first name.",
+                                                    "id_str": "createTrialAccount___input___adminData___firstName",
+                                                    "name": "firstName",
+                                                    "path": "createTrialAccount.input.adminData.firstName",
+                                                    "requestStr": "$firstName:String! ",
+                                                    "required": true,
+                                                    "responseStr": "firstName:$firstName ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "firstName"
+                                                },
+                                                "lastName": {
+                                                    "defaultValue": null,
+                                                    "description": "Admin last name.",
+                                                    "id_str": "createTrialAccount___input___adminData___lastName",
+                                                    "name": "lastName",
+                                                    "path": "createTrialAccount.input.adminData.lastName",
+                                                    "requestStr": "$lastName:String! ",
+                                                    "required": true,
+                                                    "responseStr": "lastName:$lastName ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "lastName"
+                                                }
+                                            },
+                                            "interfaces": null,
+                                            "kind": "INPUT_OBJECT",
+                                            "name": "BusinessPlatformAdminData",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "input_object",
+                                        "kind": [
+                                            "INPUT_OBJECT"
+                                        ],
+                                        "name": "BusinessPlatformAdminData",
+                                        "non_null": false
+                                    },
+                                    "varName": "businessPlatformAdminData"
+                                },
+                                "canManageSubAccounts": {
+                                    "defaultValue": "true",
+                                    "description": "Whether the created account can manage sub-accounts. Only relevant when creating a partner.",
+                                    "id_str": "createTrialAccount___input___canManageSubAccounts",
+                                    "name": "canManageSubAccounts",
+                                    "path": "createTrialAccount.input.canManageSubAccounts",
+                                    "requestStr": "$canManageSubAccounts:Boolean ",
+                                    "required": false,
+                                    "responseStr": "canManageSubAccounts:$canManageSubAccounts ",
+                                    "type": {
+                                        "kind": [
+                                            "SCALAR"
+                                        ],
+                                        "name": "Boolean",
+                                        "non_null": false
+                                    },
+                                    "varName": "canManageSubAccounts"
+                                },
+                                "id": {
+                                    "defaultValue": null,
+                                    "description": "Business Platform account ID the trial account is created for.",
+                                    "id_str": "createTrialAccount___input___id",
+                                    "name": "id",
+                                    "path": "createTrialAccount.input.id",
+                                    "requestStr": "$id:ID! ",
+                                    "required": true,
+                                    "responseStr": "id:$id ",
+                                    "type": {
+                                        "kind": [
+                                            "NON_NULL",
+                                            "SCALAR"
+                                        ],
+                                        "name": "ID",
+                                        "non_null": false
+                                    },
+                                    "varName": "id"
+                                }
+                            },
+                            "interfaces": null,
+                            "kind": "INPUT_OBJECT",
+                            "name": "BusinessPlatformCreateTrialAccountInput",
+                            "possibleTypes": null
+                        },
+                        "indexType": "input_object",
+                        "kind": [
+                            "NON_NULL",
+                            "INPUT_OBJECT"
+                        ],
+                        "name": "BusinessPlatformCreateTrialAccountInput",
+                        "non_null": false
+                    },
+                    "varName": "businessPlatformCreateTrialAccountInput"
+                }
+            },
+            "deprecationReason": null,
+            "description": "Creates a new trial account under the partner.",
+            "isDeprecated": false,
+            "name": "createTrialAccount",
+            "type": {
+                "kind": "OBJECT",
+                "name": "BusinessPlatformCreateTrialAccountPayload",
+                "ofType": null
+            }
+        }
+    },
+    "deprecationReason": null,
+    "description": "Business Platform Mutations",
+    "fieldTypes": {},
+    "isDeprecated": false,
+    "name": "businessPlatform",
+    "operationArgs": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        },
+        "businessPlatformCreateTrialAccountInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "createTrialAccount___input",
+            "name": "input",
+            "path": "createTrialAccount.input",
+            "requestStr": "$businessPlatformCreateTrialAccountInput:BusinessPlatformCreateTrialAccountInput! ",
+            "required": true,
+            "responseStr": "input:$businessPlatformCreateTrialAccountInput ",
+            "type": {
+                "definition": {
+                    "description": "Input for creating a trial account.",
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "accountData": {
+                            "defaultValue": null,
+                            "description": "Account data for the new account.",
+                            "id_str": "createTrialAccount___input___accountData",
+                            "name": "accountData",
+                            "path": "createTrialAccount.input.accountData",
+                            "requestStr": "$addAccountInput:AddAccountInput! ",
+                            "required": true,
+                            "responseStr": "accountData:$addAccountInput ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "description": {
+                                            "defaultValue": null,
+                                            "description": "User-defined information as defined by an account admin",
+                                            "id_str": "createTrialAccount___input___accountData___description",
+                                            "name": "description",
+                                            "path": "createTrialAccount.input.accountData.description",
+                                            "requestStr": "$description:String ",
+                                            "required": false,
+                                            "responseStr": "description:$description ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "String",
+                                                "non_null": false
+                                            },
+                                            "varName": "description"
+                                        },
+                                        "name": {
+                                            "defaultValue": null,
+                                            "description": "The name of the account",
+                                            "id_str": "createTrialAccount___input___accountData___name",
+                                            "name": "name",
+                                            "path": "createTrialAccount.input.accountData.name",
+                                            "requestStr": "$name:String! ",
+                                            "required": true,
+                                            "responseStr": "name:$name ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "String",
+                                                "non_null": false
+                                            },
+                                            "varName": "name"
+                                        },
+                                        "tenancy": {
+                                            "defaultValue": null,
+                                            "description": "The account tenancy (single-tenant / multi-tenant)",
+                                            "id_str": "createTrialAccount___input___accountData___tenancy",
+                                            "name": "tenancy",
+                                            "path": "createTrialAccount.input.accountData.tenancy",
+                                            "requestStr": "$tenancy:AccountTenancy! ",
+                                            "required": true,
+                                            "responseStr": "tenancy:$tenancy ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "enum for account tenancy",
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Single tenant account - default for customer accounts",
+                                                            "isDeprecated": false,
+                                                            "name": "SINGLE_TENANT"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Multi tenant account - default for partner accounts",
+                                                            "isDeprecated": false,
+                                                            "name": "MULTI_TENANT"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "AccountTenancy",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "ENUM"
+                                                ],
+                                                "name": "AccountTenancy",
+                                                "non_null": false
+                                            },
+                                            "varName": "tenancy"
+                                        },
+                                        "timezone": {
+                                            "defaultValue": null,
+                                            "description": "The time zone of the account. Default: UTC (GMT + 0).",
+                                            "id_str": "createTrialAccount___input___accountData___timezone",
+                                            "name": "timezone",
+                                            "path": "createTrialAccount.input.accountData.timezone",
+                                            "requestStr": "$timezone:TimeZone! ",
+                                            "required": true,
+                                            "responseStr": "timezone:$timezone ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "TimeZone",
+                                                "non_null": false
+                                            },
+                                            "varName": "timezone"
+                                        },
+                                        "type": {
+                                            "defaultValue": null,
+                                            "description": "The account type (Partner / customer)",
+                                            "id_str": "createTrialAccount___input___accountData___type",
+                                            "name": "type",
+                                            "path": "createTrialAccount.input.accountData.type",
+                                            "requestStr": "$type:AccountProfileType! ",
+                                            "required": true,
+                                            "responseStr": "type:$type ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "enum for account type",
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "A customer account",
+                                                            "isDeprecated": false,
+                                                            "name": "CUSTOMER"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "A partner account",
+                                                            "isDeprecated": false,
+                                                            "name": "PARTNER"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "AccountProfileType",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "ENUM"
+                                                ],
+                                                "name": "AccountProfileType",
+                                                "non_null": false
+                                            },
+                                            "varName": "type"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "AddAccountInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "NON_NULL",
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "AddAccountInput",
+                                "non_null": false
+                            },
+                            "varName": "addAccountInput"
+                        },
+                        "adminData": {
+                            "defaultValue": null,
+                            "description": "Details of the initial admin user for the account.",
+                            "id_str": "createTrialAccount___input___adminData",
+                            "name": "adminData",
+                            "path": "createTrialAccount.input.adminData",
+                            "requestStr": "$businessPlatformAdminData:BusinessPlatformAdminData ",
+                            "required": false,
+                            "responseStr": "adminData:$businessPlatformAdminData ",
+                            "type": {
+                                "definition": {
+                                    "description": "Details of the initial admin user for a new account.",
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "email": {
+                                            "defaultValue": null,
+                                            "description": "Admin email address.",
+                                            "id_str": "createTrialAccount___input___adminData___email",
+                                            "name": "email",
+                                            "path": "createTrialAccount.input.adminData.email",
+                                            "requestStr": "$email:Email! ",
+                                            "required": true,
+                                            "responseStr": "email:$email ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "Email",
+                                                "non_null": false
+                                            },
+                                            "varName": "email"
+                                        },
+                                        "firstName": {
+                                            "defaultValue": null,
+                                            "description": "Admin first name.",
+                                            "id_str": "createTrialAccount___input___adminData___firstName",
+                                            "name": "firstName",
+                                            "path": "createTrialAccount.input.adminData.firstName",
+                                            "requestStr": "$firstName:String! ",
+                                            "required": true,
+                                            "responseStr": "firstName:$firstName ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "String",
+                                                "non_null": false
+                                            },
+                                            "varName": "firstName"
+                                        },
+                                        "lastName": {
+                                            "defaultValue": null,
+                                            "description": "Admin last name.",
+                                            "id_str": "createTrialAccount___input___adminData___lastName",
+                                            "name": "lastName",
+                                            "path": "createTrialAccount.input.adminData.lastName",
+                                            "requestStr": "$lastName:String! ",
+                                            "required": true,
+                                            "responseStr": "lastName:$lastName ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "String",
+                                                "non_null": false
+                                            },
+                                            "varName": "lastName"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "BusinessPlatformAdminData",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "BusinessPlatformAdminData",
+                                "non_null": false
+                            },
+                            "varName": "businessPlatformAdminData"
+                        },
+                        "canManageSubAccounts": {
+                            "defaultValue": "true",
+                            "description": "Whether the created account can manage sub-accounts. Only relevant when creating a partner.",
+                            "id_str": "createTrialAccount___input___canManageSubAccounts",
+                            "name": "canManageSubAccounts",
+                            "path": "createTrialAccount.input.canManageSubAccounts",
+                            "requestStr": "$canManageSubAccounts:Boolean ",
+                            "required": false,
+                            "responseStr": "canManageSubAccounts:$canManageSubAccounts ",
+                            "type": {
+                                "kind": [
+                                    "SCALAR"
+                                ],
+                                "name": "Boolean",
+                                "non_null": false
+                            },
+                            "varName": "canManageSubAccounts"
+                        },
+                        "id": {
+                            "defaultValue": null,
+                            "description": "Business Platform account ID the trial account is created for.",
+                            "id_str": "createTrialAccount___input___id",
+                            "name": "id",
+                            "path": "createTrialAccount.input.id",
+                            "requestStr": "$id:ID! ",
+                            "required": true,
+                            "responseStr": "id:$id ",
+                            "type": {
+                                "kind": [
+                                    "NON_NULL",
+                                    "SCALAR"
+                                ],
+                                "name": "ID",
+                                "non_null": false
+                            },
+                            "varName": "id"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "BusinessPlatformCreateTrialAccountInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "BusinessPlatformCreateTrialAccountInput",
+                "non_null": false
+            },
+            "varName": "businessPlatformCreateTrialAccountInput"
+        }
+    },
+    "path": "mutation.businessPlatform.createTrialAccount",
+    "type": {
+        "definition": {
+            "description": "Business Platform Mutations",
+            "enumValues": null,
+            "fields": {
+                "createTrialAccount": {
+                    "args": {
+                        "createTrialAccount___input": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "createTrialAccount___input",
+                            "name": "input",
+                            "path": "createTrialAccount.input",
+                            "requestStr": "$businessPlatformCreateTrialAccountInput:BusinessPlatformCreateTrialAccountInput! ",
+                            "required": true,
+                            "responseStr": "input:$businessPlatformCreateTrialAccountInput ",
+                            "type": {
+                                "definition": {
+                                    "description": "Input for creating a trial account.",
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "accountData": {
+                                            "defaultValue": null,
+                                            "description": "Account data for the new account.",
+                                            "id_str": "createTrialAccount___input___accountData",
+                                            "name": "accountData",
+                                            "path": "createTrialAccount.input.accountData",
+                                            "requestStr": "$addAccountInput:AddAccountInput! ",
+                                            "required": true,
+                                            "responseStr": "accountData:$addAccountInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "description": {
+                                                            "defaultValue": null,
+                                                            "description": "User-defined information as defined by an account admin",
+                                                            "id_str": "createTrialAccount___input___accountData___description",
+                                                            "name": "description",
+                                                            "path": "createTrialAccount.input.accountData.description",
+                                                            "requestStr": "$description:String ",
+                                                            "required": false,
+                                                            "responseStr": "description:$description ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "description"
+                                                        },
+                                                        "name": {
+                                                            "defaultValue": null,
+                                                            "description": "The name of the account",
+                                                            "id_str": "createTrialAccount___input___accountData___name",
+                                                            "name": "name",
+                                                            "path": "createTrialAccount.input.accountData.name",
+                                                            "requestStr": "$name:String! ",
+                                                            "required": true,
+                                                            "responseStr": "name:$name ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "name"
+                                                        },
+                                                        "tenancy": {
+                                                            "defaultValue": null,
+                                                            "description": "The account tenancy (single-tenant / multi-tenant)",
+                                                            "id_str": "createTrialAccount___input___accountData___tenancy",
+                                                            "name": "tenancy",
+                                                            "path": "createTrialAccount.input.accountData.tenancy",
+                                                            "requestStr": "$tenancy:AccountTenancy! ",
+                                                            "required": true,
+                                                            "responseStr": "tenancy:$tenancy ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": "enum for account tenancy",
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "Single tenant account - default for customer accounts",
+                                                                            "isDeprecated": false,
+                                                                            "name": "SINGLE_TENANT"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "Multi tenant account - default for partner accounts",
+                                                                            "isDeprecated": false,
+                                                                            "name": "MULTI_TENANT"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "AccountTenancy",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "AccountTenancy",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "tenancy"
+                                                        },
+                                                        "timezone": {
+                                                            "defaultValue": null,
+                                                            "description": "The time zone of the account. Default: UTC (GMT + 0).",
+                                                            "id_str": "createTrialAccount___input___accountData___timezone",
+                                                            "name": "timezone",
+                                                            "path": "createTrialAccount.input.accountData.timezone",
+                                                            "requestStr": "$timezone:TimeZone! ",
+                                                            "required": true,
+                                                            "responseStr": "timezone:$timezone ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "TimeZone",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "timezone"
+                                                        },
+                                                        "type": {
+                                                            "defaultValue": null,
+                                                            "description": "The account type (Partner / customer)",
+                                                            "id_str": "createTrialAccount___input___accountData___type",
+                                                            "name": "type",
+                                                            "path": "createTrialAccount.input.accountData.type",
+                                                            "requestStr": "$type:AccountProfileType! ",
+                                                            "required": true,
+                                                            "responseStr": "type:$type ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": "enum for account type",
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "A customer account",
+                                                                            "isDeprecated": false,
+                                                                            "name": "CUSTOMER"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": "A partner account",
+                                                                            "isDeprecated": false,
+                                                                            "name": "PARTNER"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "AccountProfileType",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "AccountProfileType",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "type"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "AddAccountInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "AddAccountInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "addAccountInput"
+                                        },
+                                        "adminData": {
+                                            "defaultValue": null,
+                                            "description": "Details of the initial admin user for the account.",
+                                            "id_str": "createTrialAccount___input___adminData",
+                                            "name": "adminData",
+                                            "path": "createTrialAccount.input.adminData",
+                                            "requestStr": "$businessPlatformAdminData:BusinessPlatformAdminData ",
+                                            "required": false,
+                                            "responseStr": "adminData:$businessPlatformAdminData ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "Details of the initial admin user for a new account.",
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "email": {
+                                                            "defaultValue": null,
+                                                            "description": "Admin email address.",
+                                                            "id_str": "createTrialAccount___input___adminData___email",
+                                                            "name": "email",
+                                                            "path": "createTrialAccount.input.adminData.email",
+                                                            "requestStr": "$email:Email! ",
+                                                            "required": true,
+                                                            "responseStr": "email:$email ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "Email",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "email"
+                                                        },
+                                                        "firstName": {
+                                                            "defaultValue": null,
+                                                            "description": "Admin first name.",
+                                                            "id_str": "createTrialAccount___input___adminData___firstName",
+                                                            "name": "firstName",
+                                                            "path": "createTrialAccount.input.adminData.firstName",
+                                                            "requestStr": "$firstName:String! ",
+                                                            "required": true,
+                                                            "responseStr": "firstName:$firstName ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "firstName"
+                                                        },
+                                                        "lastName": {
+                                                            "defaultValue": null,
+                                                            "description": "Admin last name.",
+                                                            "id_str": "createTrialAccount___input___adminData___lastName",
+                                                            "name": "lastName",
+                                                            "path": "createTrialAccount.input.adminData.lastName",
+                                                            "requestStr": "$lastName:String! ",
+                                                            "required": true,
+                                                            "responseStr": "lastName:$lastName ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "lastName"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "BusinessPlatformAdminData",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "BusinessPlatformAdminData",
+                                                "non_null": false
+                                            },
+                                            "varName": "businessPlatformAdminData"
+                                        },
+                                        "canManageSubAccounts": {
+                                            "defaultValue": "true",
+                                            "description": "Whether the created account can manage sub-accounts. Only relevant when creating a partner.",
+                                            "id_str": "createTrialAccount___input___canManageSubAccounts",
+                                            "name": "canManageSubAccounts",
+                                            "path": "createTrialAccount.input.canManageSubAccounts",
+                                            "requestStr": "$canManageSubAccounts:Boolean ",
+                                            "required": false,
+                                            "responseStr": "canManageSubAccounts:$canManageSubAccounts ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "Boolean",
+                                                "non_null": false
+                                            },
+                                            "varName": "canManageSubAccounts"
+                                        },
+                                        "id": {
+                                            "defaultValue": null,
+                                            "description": "Business Platform account ID the trial account is created for.",
+                                            "id_str": "createTrialAccount___input___id",
+                                            "name": "id",
+                                            "path": "createTrialAccount.input.id",
+                                            "requestStr": "$id:ID! ",
+                                            "required": true,
+                                            "responseStr": "id:$id ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "ID",
+                                                "non_null": false
+                                            },
+                                            "varName": "id"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "BusinessPlatformCreateTrialAccountInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "NON_NULL",
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "BusinessPlatformCreateTrialAccountInput",
+                                "non_null": false
+                            },
+                            "varName": "businessPlatformCreateTrialAccountInput"
+                        }
+                    },
+                    "deprecationReason": null,
+                    "description": "Creates a new trial account under the partner.",
+                    "id_str": "createTrialAccount",
+                    "isDeprecated": false,
+                    "name": "createTrialAccount",
+                    "path": "createTrialAccount",
+                    "requestStr": "$businessPlatformCreateTrialAccountPayload:BusinessPlatformCreateTrialAccountPayload ",
+                    "required": false,
+                    "responseStr": "createTrialAccount:$businessPlatformCreateTrialAccountPayload ",
+                    "type": {
+                        "definition": {
+                            "description": "Response payload for creating a trial account.",
+                            "enumValues": null,
+                            "fields": {
+                                "account": {
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": "The created account.",
+                                    "id_str": "createTrialAccount___account",
+                                    "isDeprecated": false,
+                                    "name": "account",
+                                    "path": "createTrialAccount.account",
+                                    "requestStr": "$businessPlatformAccount:BusinessPlatformAccount! ",
+                                    "required": true,
+                                    "responseStr": "account:$businessPlatformAccount ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "A partner's Business Platform account.",
+                                            "enumValues": null,
+                                            "fields": {
+                                                "account": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "CMA account of the customer",
+                                                    "id_str": "createTrialAccount___account___account",
+                                                    "isDeprecated": false,
+                                                    "name": "account",
+                                                    "path": "createTrialAccount.account.account",
+                                                    "requestStr": "$accountRef:AccountRef ",
+                                                    "required": false,
+                                                    "responseStr": "account:$accountRef ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "A reference identifying the Account object. ID: Unique Account Identifier, Name: The Account Name",
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "id": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "id_str": "createTrialAccount___account___account___id",
+                                                                    "isDeprecated": false,
+                                                                    "name": "id",
+                                                                    "path": "createTrialAccount.account.account.id",
+                                                                    "requestStr": "$id:ID! ",
+                                                                    "required": true,
+                                                                    "responseStr": "id:$id ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "ID",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "id"
+                                                                },
+                                                                "name": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "id_str": "createTrialAccount___account___account___name",
+                                                                    "isDeprecated": false,
+                                                                    "name": "name",
+                                                                    "path": "createTrialAccount.account.account.name",
+                                                                    "requestStr": "$name:String! ",
+                                                                    "required": true,
+                                                                    "responseStr": "name:$name ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "name"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "AccountRef",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "AccountRef",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "accountRef"
+                                                },
+                                                "accountExternalName": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Name of the account on external systems, such as CRM.",
+                                                    "id_str": "createTrialAccount___account___accountExternalName",
+                                                    "isDeprecated": false,
+                                                    "name": "accountExternalName",
+                                                    "path": "createTrialAccount.account.accountExternalName",
+                                                    "requestStr": "$accountExternalName:String! ",
+                                                    "required": true,
+                                                    "responseStr": "accountExternalName:$accountExternalName ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "accountExternalName"
+                                                },
+                                                "city": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "City of the account address.",
+                                                    "id_str": "createTrialAccount___account___city",
+                                                    "isDeprecated": false,
+                                                    "name": "city",
+                                                    "path": "createTrialAccount.account.city",
+                                                    "requestStr": "$city:String ",
+                                                    "required": false,
+                                                    "responseStr": "city:$city ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "city"
+                                                },
+                                                "cmaCreatedAt": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Time at which the CMA account was created, if one was created.",
+                                                    "id_str": "createTrialAccount___account___cmaCreatedAt",
+                                                    "isDeprecated": false,
+                                                    "name": "cmaCreatedAt",
+                                                    "path": "createTrialAccount.account.cmaCreatedAt",
+                                                    "requestStr": "$cmaCreatedAt:Date ",
+                                                    "required": false,
+                                                    "responseStr": "cmaCreatedAt:$cmaCreatedAt ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Date",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "cmaCreatedAt"
+                                                },
+                                                "cmaCreatedBy": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Actor that created the CMA account, if one was created.",
+                                                    "id_str": "createTrialAccount___account___cmaCreatedBy",
+                                                    "isDeprecated": false,
+                                                    "name": "cmaCreatedBy",
+                                                    "path": "createTrialAccount.account.cmaCreatedBy",
+                                                    "requestStr": "$cmaCreatedBy:String ",
+                                                    "required": false,
+                                                    "responseStr": "cmaCreatedBy:$cmaCreatedBy ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "cmaCreatedBy"
+                                                },
+                                                "companyWebsite": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Company website of the account.",
+                                                    "id_str": "createTrialAccount___account___companyWebsite",
+                                                    "isDeprecated": false,
+                                                    "name": "companyWebsite",
+                                                    "path": "createTrialAccount.account.companyWebsite",
+                                                    "requestStr": "$companyWebsite:String ",
+                                                    "required": false,
+                                                    "responseStr": "companyWebsite:$companyWebsite ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "companyWebsite"
+                                                },
+                                                "contactEmail": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Email address of the primary contact.",
+                                                    "id_str": "createTrialAccount___account___contactEmail",
+                                                    "isDeprecated": false,
+                                                    "name": "contactEmail",
+                                                    "path": "createTrialAccount.account.contactEmail",
+                                                    "requestStr": "$contactEmail:Email ",
+                                                    "required": false,
+                                                    "responseStr": "contactEmail:$contactEmail ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Email",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "contactEmail"
+                                                },
+                                                "contactFirstName": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "First name of the primary contact.",
+                                                    "id_str": "createTrialAccount___account___contactFirstName",
+                                                    "isDeprecated": false,
+                                                    "name": "contactFirstName",
+                                                    "path": "createTrialAccount.account.contactFirstName",
+                                                    "requestStr": "$contactFirstName:String ",
+                                                    "required": false,
+                                                    "responseStr": "contactFirstName:$contactFirstName ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "contactFirstName"
+                                                },
+                                                "contactLastName": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Last name of the primary contact.",
+                                                    "id_str": "createTrialAccount___account___contactLastName",
+                                                    "isDeprecated": false,
+                                                    "name": "contactLastName",
+                                                    "path": "createTrialAccount.account.contactLastName",
+                                                    "requestStr": "$contactLastName:String ",
+                                                    "required": false,
+                                                    "responseStr": "contactLastName:$contactLastName ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "contactLastName"
+                                                },
+                                                "country": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Country of the account address.",
+                                                    "id_str": "createTrialAccount___account___country",
+                                                    "isDeprecated": false,
+                                                    "name": "country",
+                                                    "path": "createTrialAccount.account.country",
+                                                    "requestStr": "$country:String ",
+                                                    "required": false,
+                                                    "responseStr": "country:$country ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "country"
+                                                },
+                                                "description": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Free-text description of the account.",
+                                                    "id_str": "createTrialAccount___account___description",
+                                                    "isDeprecated": false,
+                                                    "name": "description",
+                                                    "path": "createTrialAccount.account.description",
+                                                    "requestStr": "$description:String ",
+                                                    "required": false,
+                                                    "responseStr": "description:$description ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "description"
+                                                },
+                                                "estimatedCloseDate": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Estimated date on which the deal is expected to close.",
+                                                    "id_str": "createTrialAccount___account___estimatedCloseDate",
+                                                    "isDeprecated": false,
+                                                    "name": "estimatedCloseDate",
+                                                    "path": "createTrialAccount.account.estimatedCloseDate",
+                                                    "requestStr": "$estimatedCloseDate:Date ",
+                                                    "required": false,
+                                                    "responseStr": "estimatedCloseDate:$estimatedCloseDate ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Date",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "estimatedCloseDate"
+                                                },
+                                                "expiresOn": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Date on which the account licenses expire (renewal date)",
+                                                    "id_str": "createTrialAccount___account___expiresOn",
+                                                    "isDeprecated": false,
+                                                    "name": "expiresOn",
+                                                    "path": "createTrialAccount.account.expiresOn",
+                                                    "requestStr": "$expiresOn:Date ",
+                                                    "required": false,
+                                                    "responseStr": "expiresOn:$expiresOn ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Date",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "expiresOn"
+                                                },
+                                                "externalName": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Externally facing name of the account.",
+                                                    "id_str": "createTrialAccount___account___externalName",
+                                                    "isDeprecated": false,
+                                                    "name": "externalName",
+                                                    "path": "createTrialAccount.account.externalName",
+                                                    "requestStr": "$externalName:String! ",
+                                                    "required": true,
+                                                    "responseStr": "externalName:$externalName ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "externalName"
+                                                },
+                                                "id": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Unique identifier for this account.",
+                                                    "id_str": "createTrialAccount___account___id",
+                                                    "isDeprecated": false,
+                                                    "name": "id",
+                                                    "path": "createTrialAccount.account.id",
+                                                    "requestStr": "$id:ID! ",
+                                                    "required": true,
+                                                    "responseStr": "id:$id ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "ID",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "id"
+                                                },
+                                                "partner": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "CMA account of the partner",
+                                                    "id_str": "createTrialAccount___account___partner",
+                                                    "isDeprecated": false,
+                                                    "name": "partner",
+                                                    "path": "createTrialAccount.account.partner",
+                                                    "requestStr": "$accountRef:AccountRef! ",
+                                                    "required": true,
+                                                    "responseStr": "partner:$accountRef ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "A reference identifying the Account object. ID: Unique Account Identifier, Name: The Account Name",
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "id": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "id_str": "createTrialAccount___account___partner___id",
+                                                                    "isDeprecated": false,
+                                                                    "name": "id",
+                                                                    "path": "createTrialAccount.account.partner.id",
+                                                                    "requestStr": "$id:ID! ",
+                                                                    "required": true,
+                                                                    "responseStr": "id:$id ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "ID",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "id"
+                                                                },
+                                                                "name": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "id_str": "createTrialAccount___account___partner___name",
+                                                                    "isDeprecated": false,
+                                                                    "name": "name",
+                                                                    "path": "createTrialAccount.account.partner.name",
+                                                                    "requestStr": "$name:String! ",
+                                                                    "required": true,
+                                                                    "responseStr": "name:$name ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "name"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "AccountRef",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "AccountRef",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "accountRef"
+                                                },
+                                                "plan": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Current plan of the account.",
+                                                    "id_str": "createTrialAccount___account___plan",
+                                                    "isDeprecated": false,
+                                                    "name": "plan",
+                                                    "path": "createTrialAccount.account.plan",
+                                                    "requestStr": "$plan:BusinessPlatformAccountPlan! ",
+                                                    "required": true,
+                                                    "responseStr": "plan:$plan ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "Plan of a Business Platform account.",
+                                                            "enumValues": [
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Account is awaiting approval before it can be provisioned.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "PENDING_APPROVAL"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Prospective account that has not started a trial yet.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "PROSPECT"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "CMA details of this trial account have not yet been synchronized\nwith the CRM. No order can be made for this account yet.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "CRM_SYNC_PENDING"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Account is on a trial plan.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "TRIAL"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Account is on a paid commercial plan.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "COMMERCIAL"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": "Deal was lost and the account is no longer active.",
+                                                                    "isDeprecated": false,
+                                                                    "name": "LOST"
+                                                                }
+                                                            ],
+                                                            "fields": null,
+                                                            "inputFields": null,
+                                                            "interfaces": null,
+                                                            "kind": "ENUM",
+                                                            "name": "BusinessPlatformAccountPlan",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "enum",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "ENUM"
+                                                        ],
+                                                        "name": "BusinessPlatformAccountPlan",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "plan"
+                                                },
+                                                "postalCode": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Postal code of the account address.",
+                                                    "id_str": "createTrialAccount___account___postalCode",
+                                                    "isDeprecated": false,
+                                                    "name": "postalCode",
+                                                    "path": "createTrialAccount.account.postalCode",
+                                                    "requestStr": "$postalCode:String ",
+                                                    "required": false,
+                                                    "responseStr": "postalCode:$postalCode ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "postalCode"
+                                                },
+                                                "state": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "State or region of the account address.",
+                                                    "id_str": "createTrialAccount___account___state",
+                                                    "isDeprecated": false,
+                                                    "name": "state",
+                                                    "path": "createTrialAccount.account.state",
+                                                    "requestStr": "$state:String ",
+                                                    "required": false,
+                                                    "responseStr": "state:$state ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "state"
+                                                },
+                                                "street": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Street of the account address.",
+                                                    "id_str": "createTrialAccount___account___street",
+                                                    "isDeprecated": false,
+                                                    "name": "street",
+                                                    "path": "createTrialAccount.account.street",
+                                                    "requestStr": "$street:String ",
+                                                    "required": false,
+                                                    "responseStr": "street:$street ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "street"
+                                                }
+                                            },
+                                            "inputFields": null,
+                                            "interfaces": {},
+                                            "kind": "OBJECT",
+                                            "name": "BusinessPlatformAccount",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "object",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "OBJECT"
+                                        ],
+                                        "name": "BusinessPlatformAccount",
+                                        "non_null": false
+                                    },
+                                    "varName": "businessPlatformAccount"
+                                }
+                            },
+                            "inputFields": null,
+                            "interfaces": {},
+                            "kind": "OBJECT",
+                            "name": "BusinessPlatformCreateTrialAccountPayload",
+                            "possibleTypes": null
+                        },
+                        "indexType": "object",
+                        "kind": [
+                            "OBJECT"
+                        ],
+                        "name": "BusinessPlatformCreateTrialAccountPayload",
+                        "non_null": false
+                    },
+                    "varName": "businessPlatformCreateTrialAccountPayload"
+                }
+            },
+            "inputFields": null,
+            "interfaces": [],
+            "kind": "OBJECT",
+            "name": "BusinessPlatformMutations",
+            "possibleTypes": null
+        },
+        "indexType": "object",
+        "kind": [
+            "OBJECT"
+        ],
+        "name": "BusinessPlatformMutations",
+        "non_null": false
+    },
+    "variablesPayload": {
+        "businessPlatformCreateTrialAccountInput": {
+            "addAccountInput": {
+                "description": "string",
+                "name": "string",
+                "tenancy": "SINGLE_TENANT",
+                "timezone": "example_value",
+                "type": "CUSTOMER"
+            },
+            "businessPlatformAdminData": {
+                "email": "example_value",
+                "firstName": "string",
+                "lastName": "string"
+            },
+            "canManageSubAccounts": true,
+            "id": "id"
+        }
+    }
+}

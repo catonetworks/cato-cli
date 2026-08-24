@@ -1,0 +1,38 @@
+{
+    "operationName": "privateApplicationCreatePrivateApplication",
+    "query": "mutation privateApplicationCreatePrivateApplication ( $accountId:ID! $createPrivateApplicationInput:CreatePrivateApplicationInput!) {\n\tprivateApplication ( accountId:$accountId ) {\n\t\tcreatePrivateApplication ( input:$createPrivateApplicationInput  )  {\n\t\t\tapplication {\n\t\t\t\tid\n\t\t\t\tcreationTime\n\t\t\t\tname\n\t\t\t\tdescription\n\t\t\t\tinternalAppAddress\n\t\t\t\tprobingEnabled\n\t\t\t\tpublished\n\t\t\t\tallowIcmpProtocol\n\t\t\t\tpublishedAppDomain {\n\t\t\t\t\tid\n\t\t\t\t\tcreationTime\n\t\t\t\t\tpublishedAppDomain\n\t\t\t\t\tcatoIp\n\t\t\t\t\tconnectorGroupName\n\t\t\t\t}\n\t\t\t\tprivateAppProbing {\n\t\t\t\t\tid\n\t\t\t\t\ttype\n\t\t\t\t\tinterval\n\t\t\t\t\tfaultThresholdDown\n\t\t\t\t}\n\t\t\t\tprotocolPorts {\n\t\t\t\t\tport\n\t\t\t\t\tportRange {\n\t\t\t\t\t\tfrom\n\t\t\t\t\t\tto\n\t\t\t\t\t}\n\t\t\t\t\tprotocol\n\t\t\t\t}\n\t\t\t\tconnectivityStatus\n\t\t\t}\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "createPrivateApplicationInput": {
+            "allowIcmpProtocol": true,
+            "customServiceInput": {
+                "port": [
+                    "example1",
+                    "example2"
+                ],
+                "portRange": {
+                    "from": "example_value",
+                    "to": "example_value"
+                },
+                "protocol": "ANY"
+            },
+            "description": "string",
+            "internalAppAddress": "example_value",
+            "name": "string",
+            "privateAppProbingInput": {
+                "faultThresholdDown": 1,
+                "id": "id",
+                "interval": 1,
+                "type": "string"
+            },
+            "probingEnabled": true,
+            "published": true,
+            "publishedAppDomainInput": {
+                "catoIp": "example_value",
+                "connectorGroupName": "string",
+                "creationTime": "example_value",
+                "id": "id",
+                "publishedAppDomain": "string"
+            }
+        }
+    }
+}

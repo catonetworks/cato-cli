@@ -7,6 +7,13 @@ mutation policyAppTenantRestrictionUpdateSection ( $accountId:ID! $appTenantRest
 						updatedTime
 						updatedBy
 					}
+					metadata {
+						lock {
+							lockingAdminEmail
+							lockingTime
+							lockingRevisionId
+						}
+					}
 					section {
 						id
 						name
@@ -17,6 +24,14 @@ mutation policyAppTenantRestrictionUpdateSection ( $accountId:ID! $appTenantRest
 				errors {
 					errorMessage
 					errorCode
+				}
+				revision {
+					id
+					name
+					description
+					changes
+					createdTime
+					updatedTime
 				}
 			}
 		}

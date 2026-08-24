@@ -11,7 +11,7 @@ def mutation_site_parse(mutation_subparsers):
         """Show help when mutation_site is called without subcommand"""
         print("\ncatocli mutation site <subcommand> [options]")
         print("\nAvailable subcommands:")
-        print("  addSecondaryAwsVSocket         addSecondaryAwsVSocket operation\n  addSecondaryAzureVSocket       addSecondaryAzureVSocket operation\n  removeSecondaryAzureVSocket    removeSecondaryAzureVSocket operation\n  removeSecondaryAwsVSocket      removeSecondaryAwsVSocket operation\n  updateSecondaryAzureVSocket    updateSecondaryAzureVSocket operation\n  updateSecondaryAwsVSocket      updateSecondaryAwsVSocket operation\n  exchangeSocketPorts            exchangeSocketPorts operation\n  addSocketSite                  addSocketSite operation\n  removeSite                     removeSite operation\n  updateSocketInterface          updateSocketInterface operation\n  ... and 32 more")
+        print("  addSecondaryAwsVSocket         addSecondaryAwsVSocket operation\n  addSecondaryAzureVSocket       addSecondaryAzureVSocket operation\n  removeSecondaryAzureVSocket    removeSecondaryAzureVSocket operation\n  removeSecondaryAwsVSocket      removeSecondaryAwsVSocket operation\n  updateSecondaryAzureVSocket    updateSecondaryAzureVSocket operation\n  updateSecondaryAwsVSocket      updateSecondaryAwsVSocket operation\n  exchangeSocketPorts            exchangeSocketPorts operation\n  updateSocketInterfaces         updateSocketInterfaces operation\n  addSocketSite                  addSocketSite operation\n  removeSite                     removeSite operation\n  ... and 52 more")
         print("\nFor help on a specific subcommand:")
         print("  catocli mutation site <subcommand> -h")
         return None
@@ -159,6 +159,26 @@ def mutation_site_parse(mutation_subparsers):
     mutation_site_exchangeSocketPorts_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_site_exchangeSocketPorts_parser.set_defaults(func=createRequest,operation_name='mutation.site.exchangeSocketPorts')
 
+    mutation_site_updateSocketInterfaces_parser = mutation_site_subparsers.add_parser('updateSocketInterfaces', 
+            help='updateSocketInterfaces() site operation', 
+            usage=get_help("mutation_site_updateSocketInterfaces"))
+
+    mutation_site_updateSocketInterfaces_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_site_updateSocketInterfaces_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_site_updateSocketInterfaces_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_site_updateSocketInterfaces_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_site_updateSocketInterfaces_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_site_updateSocketInterfaces_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_site_updateSocketInterfaces_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_site_updateSocketInterfaces_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_site_updateSocketInterfaces_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_site_updateSocketInterfaces_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_site_updateSocketInterfaces_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_site_updateSocketInterfaces_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_site_updateSocketInterfaces_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_site_updateSocketInterfaces_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_site_updateSocketInterfaces_parser.set_defaults(func=createRequest,operation_name='mutation.site.updateSocketInterfaces')
+
     mutation_site_addSocketSite_parser = mutation_site_subparsers.add_parser('addSocketSite', 
             help='addSocketSite() site operation', 
             usage=get_help("mutation_site_addSocketSite"))
@@ -279,6 +299,26 @@ def mutation_site_parse(mutation_subparsers):
     mutation_site_removeNetworkRange_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_site_removeNetworkRange_parser.set_defaults(func=createRequest,operation_name='mutation.site.removeNetworkRange')
 
+    mutation_site_updateSiteNetworkRanges_parser = mutation_site_subparsers.add_parser('updateSiteNetworkRanges', 
+            help='updateSiteNetworkRanges() site operation', 
+            usage=get_help("mutation_site_updateSiteNetworkRanges"))
+
+    mutation_site_updateSiteNetworkRanges_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_site_updateSiteNetworkRanges_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_site_updateSiteNetworkRanges_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_site_updateSiteNetworkRanges_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_site_updateSiteNetworkRanges_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_site_updateSiteNetworkRanges_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_site_updateSiteNetworkRanges_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_site_updateSiteNetworkRanges_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_site_updateSiteNetworkRanges_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_site_updateSiteNetworkRanges_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_site_updateSiteNetworkRanges_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_site_updateSiteNetworkRanges_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_site_updateSiteNetworkRanges_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_site_updateSiteNetworkRanges_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_site_updateSiteNetworkRanges_parser.set_defaults(func=createRequest,operation_name='mutation.site.updateSiteNetworkRanges')
+
     mutation_site_updateHa_parser = mutation_site_subparsers.add_parser('updateHa', 
             help='updateHa() site operation', 
             usage=get_help("mutation_site_updateHa"))
@@ -298,86 +338,6 @@ def mutation_site_parse(mutation_subparsers):
     mutation_site_updateHa_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_site_updateHa_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_site_updateHa_parser.set_defaults(func=createRequest,operation_name='mutation.site.updateHa')
-
-    mutation_site_addStaticHost_parser = mutation_site_subparsers.add_parser('addStaticHost', 
-            help='addStaticHost() site operation', 
-            usage=get_help("mutation_site_addStaticHost"))
-
-    mutation_site_addStaticHost_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
-    mutation_site_addStaticHost_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
-    mutation_site_addStaticHost_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
-    mutation_site_addStaticHost_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
-    mutation_site_addStaticHost_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
-    mutation_site_addStaticHost_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
-    mutation_site_addStaticHost_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
-    mutation_site_addStaticHost_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
-    mutation_site_addStaticHost_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
-    mutation_site_addStaticHost_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-    mutation_site_addStaticHost_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
-    mutation_site_addStaticHost_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
-    mutation_site_addStaticHost_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
-    mutation_site_addStaticHost_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
-    mutation_site_addStaticHost_parser.set_defaults(func=createRequest,operation_name='mutation.site.addStaticHost')
-
-    mutation_site_updateStaticHost_parser = mutation_site_subparsers.add_parser('updateStaticHost', 
-            help='updateStaticHost() site operation', 
-            usage=get_help("mutation_site_updateStaticHost"))
-
-    mutation_site_updateStaticHost_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
-    mutation_site_updateStaticHost_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
-    mutation_site_updateStaticHost_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
-    mutation_site_updateStaticHost_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
-    mutation_site_updateStaticHost_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
-    mutation_site_updateStaticHost_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
-    mutation_site_updateStaticHost_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
-    mutation_site_updateStaticHost_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
-    mutation_site_updateStaticHost_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
-    mutation_site_updateStaticHost_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-    mutation_site_updateStaticHost_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
-    mutation_site_updateStaticHost_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
-    mutation_site_updateStaticHost_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
-    mutation_site_updateStaticHost_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
-    mutation_site_updateStaticHost_parser.set_defaults(func=createRequest,operation_name='mutation.site.updateStaticHost')
-
-    mutation_site_removeStaticHost_parser = mutation_site_subparsers.add_parser('removeStaticHost', 
-            help='removeStaticHost() site operation', 
-            usage=get_help("mutation_site_removeStaticHost"))
-
-    mutation_site_removeStaticHost_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
-    mutation_site_removeStaticHost_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
-    mutation_site_removeStaticHost_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
-    mutation_site_removeStaticHost_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
-    mutation_site_removeStaticHost_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
-    mutation_site_removeStaticHost_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
-    mutation_site_removeStaticHost_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
-    mutation_site_removeStaticHost_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
-    mutation_site_removeStaticHost_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
-    mutation_site_removeStaticHost_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-    mutation_site_removeStaticHost_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
-    mutation_site_removeStaticHost_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
-    mutation_site_removeStaticHost_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
-    mutation_site_removeStaticHost_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
-    mutation_site_removeStaticHost_parser.set_defaults(func=createRequest,operation_name='mutation.site.removeStaticHost')
-
-    mutation_site_updateSiteSocketConfiguration_parser = mutation_site_subparsers.add_parser('updateSiteSocketConfiguration', 
-            help='updateSiteSocketConfiguration() site operation', 
-            usage=get_help("mutation_site_updateSiteSocketConfiguration"))
-
-    mutation_site_updateSiteSocketConfiguration_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
-    mutation_site_updateSiteSocketConfiguration_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
-    mutation_site_updateSiteSocketConfiguration_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
-    mutation_site_updateSiteSocketConfiguration_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
-    mutation_site_updateSiteSocketConfiguration_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
-    mutation_site_updateSiteSocketConfiguration_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
-    mutation_site_updateSiteSocketConfiguration_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
-    mutation_site_updateSiteSocketConfiguration_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
-    mutation_site_updateSiteSocketConfiguration_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
-    mutation_site_updateSiteSocketConfiguration_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-    mutation_site_updateSiteSocketConfiguration_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
-    mutation_site_updateSiteSocketConfiguration_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
-    mutation_site_updateSiteSocketConfiguration_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
-    mutation_site_updateSiteSocketConfiguration_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
-    mutation_site_updateSiteSocketConfiguration_parser.set_defaults(func=createRequest,operation_name='mutation.site.updateSiteSocketConfiguration')
 
     mutation_site_addIpsecIkeV2Site_parser = mutation_site_subparsers.add_parser('addIpsecIkeV2Site', 
             help='addIpsecIkeV2Site() site operation', 
@@ -559,66 +519,6 @@ def mutation_site_parse(mutation_subparsers):
     mutation_site_removeCloudInterconnectPhysicalConnection_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_site_removeCloudInterconnectPhysicalConnection_parser.set_defaults(func=createRequest,operation_name='mutation.site.removeCloudInterconnectPhysicalConnection')
 
-    mutation_site_addBgpPeer_parser = mutation_site_subparsers.add_parser('addBgpPeer', 
-            help='addBgpPeer() site operation', 
-            usage=get_help("mutation_site_addBgpPeer"))
-
-    mutation_site_addBgpPeer_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
-    mutation_site_addBgpPeer_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
-    mutation_site_addBgpPeer_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
-    mutation_site_addBgpPeer_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
-    mutation_site_addBgpPeer_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
-    mutation_site_addBgpPeer_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
-    mutation_site_addBgpPeer_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
-    mutation_site_addBgpPeer_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
-    mutation_site_addBgpPeer_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
-    mutation_site_addBgpPeer_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-    mutation_site_addBgpPeer_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
-    mutation_site_addBgpPeer_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
-    mutation_site_addBgpPeer_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
-    mutation_site_addBgpPeer_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
-    mutation_site_addBgpPeer_parser.set_defaults(func=createRequest,operation_name='mutation.site.addBgpPeer')
-
-    mutation_site_updateBgpPeer_parser = mutation_site_subparsers.add_parser('updateBgpPeer', 
-            help='updateBgpPeer() site operation', 
-            usage=get_help("mutation_site_updateBgpPeer"))
-
-    mutation_site_updateBgpPeer_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
-    mutation_site_updateBgpPeer_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
-    mutation_site_updateBgpPeer_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
-    mutation_site_updateBgpPeer_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
-    mutation_site_updateBgpPeer_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
-    mutation_site_updateBgpPeer_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
-    mutation_site_updateBgpPeer_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
-    mutation_site_updateBgpPeer_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
-    mutation_site_updateBgpPeer_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
-    mutation_site_updateBgpPeer_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-    mutation_site_updateBgpPeer_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
-    mutation_site_updateBgpPeer_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
-    mutation_site_updateBgpPeer_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
-    mutation_site_updateBgpPeer_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
-    mutation_site_updateBgpPeer_parser.set_defaults(func=createRequest,operation_name='mutation.site.updateBgpPeer')
-
-    mutation_site_removeBgpPeer_parser = mutation_site_subparsers.add_parser('removeBgpPeer', 
-            help='removeBgpPeer() site operation', 
-            usage=get_help("mutation_site_removeBgpPeer"))
-
-    mutation_site_removeBgpPeer_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
-    mutation_site_removeBgpPeer_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
-    mutation_site_removeBgpPeer_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
-    mutation_site_removeBgpPeer_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
-    mutation_site_removeBgpPeer_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
-    mutation_site_removeBgpPeer_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
-    mutation_site_removeBgpPeer_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
-    mutation_site_removeBgpPeer_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
-    mutation_site_removeBgpPeer_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
-    mutation_site_removeBgpPeer_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
-    mutation_site_removeBgpPeer_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
-    mutation_site_removeBgpPeer_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
-    mutation_site_removeBgpPeer_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
-    mutation_site_removeBgpPeer_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
-    mutation_site_removeBgpPeer_parser.set_defaults(func=createRequest,operation_name='mutation.site.removeBgpPeer')
-
     mutation_site_startSiteUpgrade_parser = mutation_site_subparsers.add_parser('startSiteUpgrade', 
             help='startSiteUpgrade() site operation', 
             usage=get_help("mutation_site_startSiteUpgrade"))
@@ -638,6 +538,86 @@ def mutation_site_parse(mutation_subparsers):
     mutation_site_startSiteUpgrade_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_site_startSiteUpgrade_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_site_startSiteUpgrade_parser.set_defaults(func=createRequest,operation_name='mutation.site.startSiteUpgrade')
+
+    mutation_site_createWifiSsid_parser = mutation_site_subparsers.add_parser('createWifiSsid', 
+            help='createWifiSsid() site operation', 
+            usage=get_help("mutation_site_createWifiSsid"))
+
+    mutation_site_createWifiSsid_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_site_createWifiSsid_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_site_createWifiSsid_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_site_createWifiSsid_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_site_createWifiSsid_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_site_createWifiSsid_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_site_createWifiSsid_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_site_createWifiSsid_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_site_createWifiSsid_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_site_createWifiSsid_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_site_createWifiSsid_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_site_createWifiSsid_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_site_createWifiSsid_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_site_createWifiSsid_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_site_createWifiSsid_parser.set_defaults(func=createRequest,operation_name='mutation.site.createWifiSsid')
+
+    mutation_site_updateWifiSsid_parser = mutation_site_subparsers.add_parser('updateWifiSsid', 
+            help='updateWifiSsid() site operation', 
+            usage=get_help("mutation_site_updateWifiSsid"))
+
+    mutation_site_updateWifiSsid_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_site_updateWifiSsid_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_site_updateWifiSsid_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_site_updateWifiSsid_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_site_updateWifiSsid_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_site_updateWifiSsid_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_site_updateWifiSsid_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_site_updateWifiSsid_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_site_updateWifiSsid_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_site_updateWifiSsid_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_site_updateWifiSsid_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_site_updateWifiSsid_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_site_updateWifiSsid_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_site_updateWifiSsid_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_site_updateWifiSsid_parser.set_defaults(func=createRequest,operation_name='mutation.site.updateWifiSsid')
+
+    mutation_site_removeWifiSsid_parser = mutation_site_subparsers.add_parser('removeWifiSsid', 
+            help='removeWifiSsid() site operation', 
+            usage=get_help("mutation_site_removeWifiSsid"))
+
+    mutation_site_removeWifiSsid_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_site_removeWifiSsid_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_site_removeWifiSsid_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_site_removeWifiSsid_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_site_removeWifiSsid_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_site_removeWifiSsid_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_site_removeWifiSsid_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_site_removeWifiSsid_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_site_removeWifiSsid_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_site_removeWifiSsid_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_site_removeWifiSsid_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_site_removeWifiSsid_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_site_removeWifiSsid_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_site_removeWifiSsid_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_site_removeWifiSsid_parser.set_defaults(func=createRequest,operation_name='mutation.site.removeWifiSsid')
+
+    mutation_site_updateSiteSocketConfiguration_parser = mutation_site_subparsers.add_parser('updateSiteSocketConfiguration', 
+            help='updateSiteSocketConfiguration() site operation', 
+            usage=get_help("mutation_site_updateSiteSocketConfiguration"))
+
+    mutation_site_updateSiteSocketConfiguration_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_site_updateSiteSocketConfiguration_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_site_updateSiteSocketConfiguration_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_site_updateSiteSocketConfiguration_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_site_updateSiteSocketConfiguration_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_site_updateSiteSocketConfiguration_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_site_updateSiteSocketConfiguration_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_site_updateSiteSocketConfiguration_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_site_updateSiteSocketConfiguration_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_site_updateSiteSocketConfiguration_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_site_updateSiteSocketConfiguration_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_site_updateSiteSocketConfiguration_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_site_updateSiteSocketConfiguration_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_site_updateSiteSocketConfiguration_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_site_updateSiteSocketConfiguration_parser.set_defaults(func=createRequest,operation_name='mutation.site.updateSiteSocketConfiguration')
 
     mutation_site_addSecondaryGcpVSocket_parser = mutation_site_subparsers.add_parser('addSecondaryGcpVSocket', 
             help='addSecondaryGcpVSocket() site operation', 
@@ -698,6 +678,46 @@ def mutation_site_parse(mutation_subparsers):
     mutation_site_removeSecondaryGcpVSocket_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_site_removeSecondaryGcpVSocket_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_site_removeSecondaryGcpVSocket_parser.set_defaults(func=createRequest,operation_name='mutation.site.removeSecondaryGcpVSocket')
+
+    mutation_site_createWifiRadioProfile_parser = mutation_site_subparsers.add_parser('createWifiRadioProfile', 
+            help='createWifiRadioProfile() site operation', 
+            usage=get_help("mutation_site_createWifiRadioProfile"))
+
+    mutation_site_createWifiRadioProfile_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_site_createWifiRadioProfile_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_site_createWifiRadioProfile_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_site_createWifiRadioProfile_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_site_createWifiRadioProfile_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_site_createWifiRadioProfile_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_site_createWifiRadioProfile_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_site_createWifiRadioProfile_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_site_createWifiRadioProfile_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_site_createWifiRadioProfile_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_site_createWifiRadioProfile_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_site_createWifiRadioProfile_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_site_createWifiRadioProfile_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_site_createWifiRadioProfile_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_site_createWifiRadioProfile_parser.set_defaults(func=createRequest,operation_name='mutation.site.createWifiRadioProfile')
+
+    mutation_site_updateWifiRadioProfile_parser = mutation_site_subparsers.add_parser('updateWifiRadioProfile', 
+            help='updateWifiRadioProfile() site operation', 
+            usage=get_help("mutation_site_updateWifiRadioProfile"))
+
+    mutation_site_updateWifiRadioProfile_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_site_updateWifiRadioProfile_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_site_updateWifiRadioProfile_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_site_updateWifiRadioProfile_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_site_updateWifiRadioProfile_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_site_updateWifiRadioProfile_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_site_updateWifiRadioProfile_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_site_updateWifiRadioProfile_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_site_updateWifiRadioProfile_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_site_updateWifiRadioProfile_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_site_updateWifiRadioProfile_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_site_updateWifiRadioProfile_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_site_updateWifiRadioProfile_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_site_updateWifiRadioProfile_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_site_updateWifiRadioProfile_parser.set_defaults(func=createRequest,operation_name='mutation.site.updateWifiRadioProfile')
 
     mutation_site_assignSiteBwLicense_parser = mutation_site_subparsers.add_parser('assignSiteBwLicense', 
             help='assignSiteBwLicense() site operation', 
@@ -779,6 +799,246 @@ def mutation_site_parse(mutation_subparsers):
     mutation_site_removeSiteBwLicense_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_site_removeSiteBwLicense_parser.set_defaults(func=createRequest,operation_name='mutation.site.removeSiteBwLicense')
 
+    mutation_site_addSecondaryKvmVSocket_parser = mutation_site_subparsers.add_parser('addSecondaryKvmVSocket', 
+            help='addSecondaryKvmVSocket() site operation', 
+            usage=get_help("mutation_site_addSecondaryKvmVSocket"))
+
+    mutation_site_addSecondaryKvmVSocket_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_site_addSecondaryKvmVSocket_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_site_addSecondaryKvmVSocket_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_site_addSecondaryKvmVSocket_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_site_addSecondaryKvmVSocket_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_site_addSecondaryKvmVSocket_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_site_addSecondaryKvmVSocket_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_site_addSecondaryKvmVSocket_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_site_addSecondaryKvmVSocket_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_site_addSecondaryKvmVSocket_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_site_addSecondaryKvmVSocket_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_site_addSecondaryKvmVSocket_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_site_addSecondaryKvmVSocket_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_site_addSecondaryKvmVSocket_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_site_addSecondaryKvmVSocket_parser.set_defaults(func=createRequest,operation_name='mutation.site.addSecondaryKvmVSocket')
+
+    mutation_site_removeSecondaryKvmVSocket_parser = mutation_site_subparsers.add_parser('removeSecondaryKvmVSocket', 
+            help='removeSecondaryKvmVSocket() site operation', 
+            usage=get_help("mutation_site_removeSecondaryKvmVSocket"))
+
+    mutation_site_removeSecondaryKvmVSocket_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_site_removeSecondaryKvmVSocket_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_site_removeSecondaryKvmVSocket_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_site_removeSecondaryKvmVSocket_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_site_removeSecondaryKvmVSocket_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_site_removeSecondaryKvmVSocket_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_site_removeSecondaryKvmVSocket_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_site_removeSecondaryKvmVSocket_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_site_removeSecondaryKvmVSocket_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_site_removeSecondaryKvmVSocket_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_site_removeSecondaryKvmVSocket_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_site_removeSecondaryKvmVSocket_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_site_removeSecondaryKvmVSocket_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_site_removeSecondaryKvmVSocket_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_site_removeSecondaryKvmVSocket_parser.set_defaults(func=createRequest,operation_name='mutation.site.removeSecondaryKvmVSocket')
+
+    mutation_site_createNetworkRangeBulk_parser = mutation_site_subparsers.add_parser('createNetworkRangeBulk', 
+            help='createNetworkRangeBulk() site operation', 
+            usage=get_help("mutation_site_createNetworkRangeBulk"))
+
+    mutation_site_createNetworkRangeBulk_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_site_createNetworkRangeBulk_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_site_createNetworkRangeBulk_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_site_createNetworkRangeBulk_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_site_createNetworkRangeBulk_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_site_createNetworkRangeBulk_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_site_createNetworkRangeBulk_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_site_createNetworkRangeBulk_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_site_createNetworkRangeBulk_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_site_createNetworkRangeBulk_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_site_createNetworkRangeBulk_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_site_createNetworkRangeBulk_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_site_createNetworkRangeBulk_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_site_createNetworkRangeBulk_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_site_createNetworkRangeBulk_parser.set_defaults(func=createRequest,operation_name='mutation.site.createNetworkRangeBulk')
+
+    mutation_site_updateNetworkRangeBulk_parser = mutation_site_subparsers.add_parser('updateNetworkRangeBulk', 
+            help='updateNetworkRangeBulk() site operation', 
+            usage=get_help("mutation_site_updateNetworkRangeBulk"))
+
+    mutation_site_updateNetworkRangeBulk_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_site_updateNetworkRangeBulk_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_site_updateNetworkRangeBulk_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_site_updateNetworkRangeBulk_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_site_updateNetworkRangeBulk_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_site_updateNetworkRangeBulk_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_site_updateNetworkRangeBulk_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_site_updateNetworkRangeBulk_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_site_updateNetworkRangeBulk_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_site_updateNetworkRangeBulk_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_site_updateNetworkRangeBulk_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_site_updateNetworkRangeBulk_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_site_updateNetworkRangeBulk_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_site_updateNetworkRangeBulk_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_site_updateNetworkRangeBulk_parser.set_defaults(func=createRequest,operation_name='mutation.site.updateNetworkRangeBulk')
+
+    mutation_site_deleteNetworkRangeBulk_parser = mutation_site_subparsers.add_parser('deleteNetworkRangeBulk', 
+            help='deleteNetworkRangeBulk() site operation', 
+            usage=get_help("mutation_site_deleteNetworkRangeBulk"))
+
+    mutation_site_deleteNetworkRangeBulk_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_site_deleteNetworkRangeBulk_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_site_deleteNetworkRangeBulk_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_site_deleteNetworkRangeBulk_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_site_deleteNetworkRangeBulk_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_site_deleteNetworkRangeBulk_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_site_deleteNetworkRangeBulk_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_site_deleteNetworkRangeBulk_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_site_deleteNetworkRangeBulk_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_site_deleteNetworkRangeBulk_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_site_deleteNetworkRangeBulk_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_site_deleteNetworkRangeBulk_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_site_deleteNetworkRangeBulk_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_site_deleteNetworkRangeBulk_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_site_deleteNetworkRangeBulk_parser.set_defaults(func=createRequest,operation_name='mutation.site.deleteNetworkRangeBulk')
+
+    mutation_site_updateSiteStaticHosts_parser = mutation_site_subparsers.add_parser('updateSiteStaticHosts', 
+            help='updateSiteStaticHosts() site operation', 
+            usage=get_help("mutation_site_updateSiteStaticHosts"))
+
+    mutation_site_updateSiteStaticHosts_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_site_updateSiteStaticHosts_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_site_updateSiteStaticHosts_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_site_updateSiteStaticHosts_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_site_updateSiteStaticHosts_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_site_updateSiteStaticHosts_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_site_updateSiteStaticHosts_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_site_updateSiteStaticHosts_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_site_updateSiteStaticHosts_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_site_updateSiteStaticHosts_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_site_updateSiteStaticHosts_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_site_updateSiteStaticHosts_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_site_updateSiteStaticHosts_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_site_updateSiteStaticHosts_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_site_updateSiteStaticHosts_parser.set_defaults(func=createRequest,operation_name='mutation.site.updateSiteStaticHosts')
+
+    mutation_site_createStaticHostBulk_parser = mutation_site_subparsers.add_parser('createStaticHostBulk', 
+            help='createStaticHostBulk() site operation', 
+            usage=get_help("mutation_site_createStaticHostBulk"))
+
+    mutation_site_createStaticHostBulk_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_site_createStaticHostBulk_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_site_createStaticHostBulk_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_site_createStaticHostBulk_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_site_createStaticHostBulk_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_site_createStaticHostBulk_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_site_createStaticHostBulk_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_site_createStaticHostBulk_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_site_createStaticHostBulk_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_site_createStaticHostBulk_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_site_createStaticHostBulk_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_site_createStaticHostBulk_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_site_createStaticHostBulk_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_site_createStaticHostBulk_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_site_createStaticHostBulk_parser.set_defaults(func=createRequest,operation_name='mutation.site.createStaticHostBulk')
+
+    mutation_site_updateStaticHostBulk_parser = mutation_site_subparsers.add_parser('updateStaticHostBulk', 
+            help='updateStaticHostBulk() site operation', 
+            usage=get_help("mutation_site_updateStaticHostBulk"))
+
+    mutation_site_updateStaticHostBulk_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_site_updateStaticHostBulk_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_site_updateStaticHostBulk_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_site_updateStaticHostBulk_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_site_updateStaticHostBulk_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_site_updateStaticHostBulk_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_site_updateStaticHostBulk_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_site_updateStaticHostBulk_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_site_updateStaticHostBulk_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_site_updateStaticHostBulk_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_site_updateStaticHostBulk_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_site_updateStaticHostBulk_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_site_updateStaticHostBulk_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_site_updateStaticHostBulk_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_site_updateStaticHostBulk_parser.set_defaults(func=createRequest,operation_name='mutation.site.updateStaticHostBulk')
+
+    mutation_site_deleteStaticHostBulk_parser = mutation_site_subparsers.add_parser('deleteStaticHostBulk', 
+            help='deleteStaticHostBulk() site operation', 
+            usage=get_help("mutation_site_deleteStaticHostBulk"))
+
+    mutation_site_deleteStaticHostBulk_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_site_deleteStaticHostBulk_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_site_deleteStaticHostBulk_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_site_deleteStaticHostBulk_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_site_deleteStaticHostBulk_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_site_deleteStaticHostBulk_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_site_deleteStaticHostBulk_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_site_deleteStaticHostBulk_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_site_deleteStaticHostBulk_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_site_deleteStaticHostBulk_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_site_deleteStaticHostBulk_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_site_deleteStaticHostBulk_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_site_deleteStaticHostBulk_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_site_deleteStaticHostBulk_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_site_deleteStaticHostBulk_parser.set_defaults(func=createRequest,operation_name='mutation.site.deleteStaticHostBulk')
+
+    mutation_site_addStaticHost_parser = mutation_site_subparsers.add_parser('addStaticHost', 
+            help='addStaticHost() site operation', 
+            usage=get_help("mutation_site_addStaticHost"))
+
+    mutation_site_addStaticHost_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_site_addStaticHost_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_site_addStaticHost_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_site_addStaticHost_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_site_addStaticHost_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_site_addStaticHost_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_site_addStaticHost_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_site_addStaticHost_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_site_addStaticHost_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_site_addStaticHost_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_site_addStaticHost_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_site_addStaticHost_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_site_addStaticHost_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_site_addStaticHost_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_site_addStaticHost_parser.set_defaults(func=createRequest,operation_name='mutation.site.addStaticHost')
+
+    mutation_site_updateStaticHost_parser = mutation_site_subparsers.add_parser('updateStaticHost', 
+            help='updateStaticHost() site operation', 
+            usage=get_help("mutation_site_updateStaticHost"))
+
+    mutation_site_updateStaticHost_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_site_updateStaticHost_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_site_updateStaticHost_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_site_updateStaticHost_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_site_updateStaticHost_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_site_updateStaticHost_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_site_updateStaticHost_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_site_updateStaticHost_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_site_updateStaticHost_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_site_updateStaticHost_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_site_updateStaticHost_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_site_updateStaticHost_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_site_updateStaticHost_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_site_updateStaticHost_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_site_updateStaticHost_parser.set_defaults(func=createRequest,operation_name='mutation.site.updateStaticHost')
+
+    mutation_site_removeStaticHost_parser = mutation_site_subparsers.add_parser('removeStaticHost', 
+            help='removeStaticHost() site operation', 
+            usage=get_help("mutation_site_removeStaticHost"))
+
+    mutation_site_removeStaticHost_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_site_removeStaticHost_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_site_removeStaticHost_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_site_removeStaticHost_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_site_removeStaticHost_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_site_removeStaticHost_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_site_removeStaticHost_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_site_removeStaticHost_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_site_removeStaticHost_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_site_removeStaticHost_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_site_removeStaticHost_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_site_removeStaticHost_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_site_removeStaticHost_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_site_removeStaticHost_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_site_removeStaticHost_parser.set_defaults(func=createRequest,operation_name='mutation.site.removeStaticHost')
+
     mutation_site_updateSiteGeneralDetails_parser = mutation_site_subparsers.add_parser('updateSiteGeneralDetails', 
             help='updateSiteGeneralDetails() site operation', 
             usage=get_help("mutation_site_updateSiteGeneralDetails"))
@@ -798,6 +1058,146 @@ def mutation_site_parse(mutation_subparsers):
     mutation_site_updateSiteGeneralDetails_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
     mutation_site_updateSiteGeneralDetails_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
     mutation_site_updateSiteGeneralDetails_parser.set_defaults(func=createRequest,operation_name='mutation.site.updateSiteGeneralDetails')
+
+    mutation_site_addBgpPeer_parser = mutation_site_subparsers.add_parser('addBgpPeer', 
+            help='addBgpPeer() site operation', 
+            usage=get_help("mutation_site_addBgpPeer"))
+
+    mutation_site_addBgpPeer_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_site_addBgpPeer_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_site_addBgpPeer_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_site_addBgpPeer_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_site_addBgpPeer_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_site_addBgpPeer_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_site_addBgpPeer_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_site_addBgpPeer_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_site_addBgpPeer_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_site_addBgpPeer_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_site_addBgpPeer_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_site_addBgpPeer_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_site_addBgpPeer_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_site_addBgpPeer_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_site_addBgpPeer_parser.set_defaults(func=createRequest,operation_name='mutation.site.addBgpPeer')
+
+    mutation_site_updateBgpPeer_parser = mutation_site_subparsers.add_parser('updateBgpPeer', 
+            help='updateBgpPeer() site operation', 
+            usage=get_help("mutation_site_updateBgpPeer"))
+
+    mutation_site_updateBgpPeer_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_site_updateBgpPeer_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_site_updateBgpPeer_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_site_updateBgpPeer_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_site_updateBgpPeer_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_site_updateBgpPeer_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_site_updateBgpPeer_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_site_updateBgpPeer_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_site_updateBgpPeer_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_site_updateBgpPeer_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_site_updateBgpPeer_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_site_updateBgpPeer_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_site_updateBgpPeer_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_site_updateBgpPeer_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_site_updateBgpPeer_parser.set_defaults(func=createRequest,operation_name='mutation.site.updateBgpPeer')
+
+    mutation_site_removeBgpPeer_parser = mutation_site_subparsers.add_parser('removeBgpPeer', 
+            help='removeBgpPeer() site operation', 
+            usage=get_help("mutation_site_removeBgpPeer"))
+
+    mutation_site_removeBgpPeer_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_site_removeBgpPeer_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_site_removeBgpPeer_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_site_removeBgpPeer_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_site_removeBgpPeer_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_site_removeBgpPeer_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_site_removeBgpPeer_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_site_removeBgpPeer_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_site_removeBgpPeer_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_site_removeBgpPeer_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_site_removeBgpPeer_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_site_removeBgpPeer_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_site_removeBgpPeer_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_site_removeBgpPeer_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_site_removeBgpPeer_parser.set_defaults(func=createRequest,operation_name='mutation.site.removeBgpPeer')
+
+    mutation_site_createBgpPeerBulk_parser = mutation_site_subparsers.add_parser('createBgpPeerBulk', 
+            help='createBgpPeerBulk() site operation', 
+            usage=get_help("mutation_site_createBgpPeerBulk"))
+
+    mutation_site_createBgpPeerBulk_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_site_createBgpPeerBulk_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_site_createBgpPeerBulk_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_site_createBgpPeerBulk_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_site_createBgpPeerBulk_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_site_createBgpPeerBulk_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_site_createBgpPeerBulk_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_site_createBgpPeerBulk_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_site_createBgpPeerBulk_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_site_createBgpPeerBulk_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_site_createBgpPeerBulk_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_site_createBgpPeerBulk_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_site_createBgpPeerBulk_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_site_createBgpPeerBulk_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_site_createBgpPeerBulk_parser.set_defaults(func=createRequest,operation_name='mutation.site.createBgpPeerBulk')
+
+    mutation_site_updateBgpPeerBulk_parser = mutation_site_subparsers.add_parser('updateBgpPeerBulk', 
+            help='updateBgpPeerBulk() site operation', 
+            usage=get_help("mutation_site_updateBgpPeerBulk"))
+
+    mutation_site_updateBgpPeerBulk_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_site_updateBgpPeerBulk_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_site_updateBgpPeerBulk_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_site_updateBgpPeerBulk_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_site_updateBgpPeerBulk_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_site_updateBgpPeerBulk_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_site_updateBgpPeerBulk_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_site_updateBgpPeerBulk_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_site_updateBgpPeerBulk_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_site_updateBgpPeerBulk_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_site_updateBgpPeerBulk_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_site_updateBgpPeerBulk_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_site_updateBgpPeerBulk_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_site_updateBgpPeerBulk_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_site_updateBgpPeerBulk_parser.set_defaults(func=createRequest,operation_name='mutation.site.updateBgpPeerBulk')
+
+    mutation_site_deleteBgpPeerBulk_parser = mutation_site_subparsers.add_parser('deleteBgpPeerBulk', 
+            help='deleteBgpPeerBulk() site operation', 
+            usage=get_help("mutation_site_deleteBgpPeerBulk"))
+
+    mutation_site_deleteBgpPeerBulk_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_site_deleteBgpPeerBulk_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_site_deleteBgpPeerBulk_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_site_deleteBgpPeerBulk_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_site_deleteBgpPeerBulk_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_site_deleteBgpPeerBulk_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_site_deleteBgpPeerBulk_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_site_deleteBgpPeerBulk_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_site_deleteBgpPeerBulk_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_site_deleteBgpPeerBulk_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_site_deleteBgpPeerBulk_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_site_deleteBgpPeerBulk_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_site_deleteBgpPeerBulk_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_site_deleteBgpPeerBulk_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_site_deleteBgpPeerBulk_parser.set_defaults(func=createRequest,operation_name='mutation.site.deleteBgpPeerBulk')
+
+    mutation_site_updateBgpPeers_parser = mutation_site_subparsers.add_parser('updateBgpPeers', 
+            help='updateBgpPeers() site operation', 
+            usage=get_help("mutation_site_updateBgpPeers"))
+
+    mutation_site_updateBgpPeers_parser.add_argument('json', nargs='?', default='{}', help='Variables in JSON format (defaults to empty object if not provided).')
+    mutation_site_updateBgpPeers_parser.add_argument('--json-file', help='Path to a file containing JSON input variables.')
+    mutation_site_updateBgpPeers_parser.add_argument('-accountID', help='The cato account ID to use for this operation. Overrides the account_id value in the profile setting.  This is use for reseller and MSP accounts to run queries against cato sub accounts from the parent account.')
+    mutation_site_updateBgpPeers_parser.add_argument('-t', const=True, default=False, nargs='?', help='Print GraphQL query without sending API call')
+    mutation_site_updateBgpPeers_parser.add_argument('-v', const=True, default=False, nargs='?', help='Verbose output')
+    mutation_site_updateBgpPeers_parser.add_argument('-p', const=True, default=False, nargs='?', help='Pretty print')
+    mutation_site_updateBgpPeers_parser.add_argument('-n', '--stream-events', dest='stream_events', help='Send events over network to host:port TCP')
+    mutation_site_updateBgpPeers_parser.add_argument('-z', '--sentinel', dest='sentinel', help='Send events to Sentinel customerid:sharedkey')
+    mutation_site_updateBgpPeers_parser.add_argument('-H', '--header', action='append', dest='headers', help='Add custom headers in "Key: Value" format. Can be used multiple times.')
+    mutation_site_updateBgpPeers_parser.add_argument('--headers-file', dest='headers_file', help='Load headers from a file. Each line should contain a header in "Key: Value" format.')
+    mutation_site_updateBgpPeers_parser.add_argument('--endpoint', dest='endpoint', help='Override the API endpoint from the profile. Requires --api-token and --accountID to be provided.')
+    mutation_site_updateBgpPeers_parser.add_argument('--api-token', dest='api_token', help='Override the API token from the profile. Requires --endpoint and --accountID to be provided.')
+    mutation_site_updateBgpPeers_parser.add_argument('--accountID', dest='accountID_override', help='Override the account ID from the profile. Can be used alone or with --endpoint and --api-token.')
+    mutation_site_updateBgpPeers_parser.add_argument('--trace-id', dest='trace_id', action='store_true', help='Enable tracing and print the trace ID from the response')
+    mutation_site_updateBgpPeers_parser.set_defaults(func=createRequest,operation_name='mutation.site.updateBgpPeers')
 
     mutation_site_updateSiteBackhauling_parser = mutation_site_subparsers.add_parser('updateSiteBackhauling', 
             help='updateSiteBackhauling() site operation', 

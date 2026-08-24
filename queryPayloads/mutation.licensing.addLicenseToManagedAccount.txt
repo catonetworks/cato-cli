@@ -1,0 +1,125 @@
+mutation licensingAddLicenseToManagedAccount ( $accountId:ID! $addLicenseToManagedAccountInput:AddLicenseToManagedAccountInput!) {
+	licensing ( accountId:$accountId ) {
+		addLicenseToManagedAccount ( input:$addLicenseToManagedAccountInput  )  {
+			license {
+				id
+				description
+				plan
+				sku
+				status
+				startDate
+				expirationDate
+				lastUpdated
+				... on DataLakeLicense {
+					dpaVersion
+					retentionPeriod
+					total
+				}
+				... on PublicIpsLicense {
+					total
+				}
+				... on SiteLicense {
+					siteLicenseGroup
+					regionality
+					siteLicenseType
+					total
+					site {
+						id
+						name
+					}
+				}
+				... on PooledBandwidthLicense {
+					siteLicenseGroup
+					siteLicenseType
+					total
+					allocatedBandwidth
+					sites {
+						sitePooledBandwidthLicenseSite: site {
+							id
+							name
+						}
+						allocatedBandwidth
+					}
+					accounts {
+						accountPartnerPooledBandwidthLicenseAccount: account {
+							id
+							name
+						}
+						allocatedBandwidth
+					}
+				}
+				... on ZtnaUsersLicense {
+					ztnaUsersLicenseGroup
+					accounts {
+						accountPartnerZtnaUsersLicenseAccount: account {
+							id
+							name
+						}
+						allocatedUsers
+					}
+					total
+				}
+				... on EndpointProtectionLicense {
+					total
+				}
+				... on IlmmLicense {
+					total
+				}
+				... on SaasSecurityApiLicense {
+					total
+				}
+				... on XdrProLicense {
+					total
+				}
+				... on DemLicense {
+					total
+				}
+				... on AssetsSecurityLicense {
+					total
+				}
+				... on AISecurityUsersLicense {
+					total
+				}
+				... on AISecurityApplicationsLicense {
+					total
+				}
+				... on MspCasbUsersLicense {
+					total
+				}
+				... on MspCasbBandwidthLicense {
+					total
+				}
+				... on MspDlpUsersLicense {
+					total
+				}
+				... on MspDlpBandwidthLicense {
+					total
+				}
+				... on MspTpUsersLicense {
+					total
+				}
+				... on MspTpBandwidthLicense {
+					total
+				}
+				... on MspAtpUsersLicense {
+					total
+				}
+				... on MspAtpBandwidthLicense {
+					total
+				}
+				... on MspXOpsUsersLicense {
+					total
+				}
+				... on MspXOpsBandwidthLicense {
+					total
+				}
+				... on MspMdrUsersLicense {
+					total
+				}
+				... on MspMdrBandwidthLicense {
+					total
+				}
+			}
+		}
+	}	
+}

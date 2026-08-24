@@ -1,0 +1,15 @@
+{
+    "operationName": "aiSecurity",
+    "query": "query aiSecurity ( $accountId:ID! $aiSecurityAppsInvocationInput:AiSecurityAppsInvocationInput! $aiSecurityEndUsersSessionConversationInput:AiSecurityEndUsersSessionConversationInput!) {\n\taiSecurity ( accountId:$accountId ) {\n\t\tapps {\n\t\t\tinvocation ( input:$aiSecurityAppsInvocationInput   ) {\n\t\t\t\tid\n\t\t\t\tsessionId\n\t\t\t\ttimestamp\n\t\t\t\ttokenCount\n\t\t\t\tguard {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t\taction\n\t\t\t\tdata {\n\t\t\t\t\tmessage {\n\t\t\t\t\t\trole\n\t\t\t\t\t\tcontent {\n\t\t\t\t\t\t\ttext\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\tendUsers {\n\t\t\tsessionConversation ( input:$aiSecurityEndUsersSessionConversationInput   ) {\n\t\t\t\tuserPrompt\n\t\t\t\tllmResponse\n\t\t\t}\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "aiSecurityAppsInvocationInput": {
+            "id": "id"
+        },
+        "aiSecurityEndUsersSessionConversationInput": {
+            "appId": "id",
+            "messageId": "id",
+            "sessionId": "id",
+            "userId": "id"
+        }
+    }
+}

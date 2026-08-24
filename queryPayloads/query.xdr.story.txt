@@ -229,6 +229,48 @@ query xdrStory ( $accountID:ID! $storyId:ID $producer:StoryProducerEnum $inciden
 						determinationMicrosoftDefenderEndpointAlert: determination
 						detectionSourceMicrosoftDefenderEndpointAlert: detectionSource
 						classificationMicrosoftDefenderEndpointAlert: classification
+						deviceMicrosoftDefenderEndpointAlert: device {
+							id
+							deviceName
+							osDetails {
+								osType
+								osBuild
+								osVersion
+							}
+							loggedOnUsers {
+								id
+								name
+								... on MicrosoftEndpointUser {
+									id
+									name
+									userSid
+									accountName
+									domainName
+									principalName
+								}
+								... on CatoEndpointUser {
+									id
+									name
+								}
+							}
+							externalIp
+							localIp
+							... on MicrosoftDeviceDetails {
+								firstSeenDateTime
+								avStatus
+								healthStatus
+								rbacGroup {
+									id
+									name
+								}
+								ipInterfaces
+								azureAdDeviceId
+								onboardingStatus
+							}
+							... on CatoEndpointDeviceDetails {
+								macAddress
+							}
+						}
 					}
 					url
 					vendorStatus
@@ -316,10 +358,13 @@ query xdrStory ( $accountID:ID! $storyId:ID $producer:StoryProducerEnum $inciden
 							severity
 							action
 							ruleId
+							ruleName
 							virusName
 							scanResult
 							appId
 							appName
+							appActivityType
+							fileName
 							dnsProtectionCategory
 						}
 					}
@@ -408,10 +453,13 @@ query xdrStory ( $accountID:ID! $storyId:ID $producer:StoryProducerEnum $inciden
 							severity
 							action
 							ruleId
+							ruleName
 							virusName
 							scanResult
 							appId
 							appName
+							appActivityType
+							fileName
 							dnsProtectionCategory
 						}
 					}
@@ -443,10 +491,13 @@ query xdrStory ( $accountID:ID! $storyId:ID $producer:StoryProducerEnum $inciden
 						severity
 						action
 						ruleId
+						ruleName
 						virusName
 						scanResultEvent: scanResult
 						appId
 						appName
+						appActivityType
+						fileName
 						dnsProtectionCategory
 					}
 					mitres {
@@ -489,10 +540,13 @@ query xdrStory ( $accountID:ID! $storyId:ID $producer:StoryProducerEnum $inciden
 							severity
 							action
 							ruleId
+							ruleName
 							virusName
 							scanResult
 							appId
 							appName
+							appActivityType
+							fileName
 							dnsProtectionCategory
 						}
 					}
@@ -549,10 +603,13 @@ query xdrStory ( $accountID:ID! $storyId:ID $producer:StoryProducerEnum $inciden
 						severity
 						action
 						ruleId
+						ruleName
 						virusName
 						scanResultEvent: scanResult
 						appId
 						appName
+						appActivityType
+						fileName
 						dnsProtectionCategory
 					}
 					mitres {
@@ -595,10 +652,13 @@ query xdrStory ( $accountID:ID! $storyId:ID $producer:StoryProducerEnum $inciden
 							severity
 							action
 							ruleId
+							ruleName
 							virusName
 							scanResult
 							appId
 							appName
+							appActivityType
+							fileName
 							dnsProtectionCategory
 						}
 					}
@@ -810,6 +870,7 @@ query xdrStory ( $accountID:ID! $storyId:ID $producer:StoryProducerEnum $inciden
 					evidences {
 						typeGenericIncidentEvidence: type
 						value
+						kind
 						dataGenericIncidentEvidence: data {
 							fieldName
 							values

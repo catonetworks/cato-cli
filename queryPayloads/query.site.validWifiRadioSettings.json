@@ -1,0 +1,17 @@
+{
+    "operationName": "siteValidWifiRadioSettings",
+    "query": "query siteValidWifiRadioSettings ( $accountId:ID! $validWifiRadioSettingsInput:ValidWifiRadioSettingsInput!) {\n\tsite ( accountId:$accountId ) {\n\t\tvalidWifiRadioSettings ( input:$validWifiRadioSettingsInput  )  {\n\t\t\tband24 {\n\t\t\t\tstandards\n\t\t\t\tchannelWidths\n\t\t\t\tchannels\n\t\t\t}\n\t\t\tband5 {\n\t\t\t\tstandards\n\t\t\t\tchannelWidths\n\t\t\t\tchannels\n\t\t\t}\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "validWifiRadioSettingsInput": {
+            "siteRefInput": {
+                "by": "ID",
+                "input": "string"
+            },
+            "wifiBandSettingsFilterInput": {
+                "channelWidth": "AUTO",
+                "dfsEnabled": true,
+                "standard": "AUTO"
+            }
+        }
+    }
+}

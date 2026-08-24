@@ -39,7 +39,6 @@ from ..parsers.mutation_externalAccess import mutation_externalAccess_parse
 from ..parsers.mutation_groups import mutation_groups_parse
 from ..parsers.mutation_hardware import mutation_hardware_parse
 from ..parsers.mutation_licensing import mutation_licensing_parse
-from ..parsers.mutation_networkConfig import mutation_networkConfig_parse
 from ..parsers.mutation_notification import mutation_notification_parse
 from ..parsers.mutation_object import mutation_object_parse
 from ..parsers.mutation_policy import mutation_policy_parse
@@ -77,7 +76,6 @@ from ..parsers.query_groups import query_groups_parse
 from ..parsers.query_hardware import query_hardware_parse
 from ..parsers.query_hardwareManagement import query_hardwareManagement_parse
 from ..parsers.query_licensing import query_licensing_parse
-from ..parsers.query_networkConfig import query_networkConfig_parse
 from ..parsers.query_notification import query_notification_parse
 from ..parsers.query_object import query_object_parse
 from ..parsers.query_policy import query_policy_parse
@@ -241,7 +239,6 @@ mutation_externalAccess_parser = mutation_externalAccess_parse(mutation_subparse
 mutation_groups_parser = mutation_groups_parse(mutation_subparsers)
 mutation_hardware_parser = mutation_hardware_parse(mutation_subparsers)
 mutation_licensing_parser = mutation_licensing_parse(mutation_subparsers)
-mutation_networkConfig_parser = mutation_networkConfig_parse(mutation_subparsers)
 mutation_notification_parser = mutation_notification_parse(mutation_subparsers)
 mutation_object_parser = mutation_object_parse(mutation_subparsers)
 mutation_policy_parser = mutation_policy_parse(mutation_subparsers)
@@ -279,7 +276,6 @@ query_groups_parser = query_groups_parse(query_subparsers)
 query_hardware_parser = query_hardware_parse(query_subparsers)
 query_hardwareManagement_parser = query_hardwareManagement_parse(query_subparsers)
 query_licensing_parser = query_licensing_parse(query_subparsers)
-query_networkConfig_parser = query_networkConfig_parse(query_subparsers)
 query_notification_parser = query_notification_parse(query_subparsers)
 query_object_parser = query_object_parse(query_subparsers)
 query_policy_parser = query_policy_parse(query_subparsers)

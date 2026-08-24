@@ -440,10 +440,6 @@
         "name": "SCIM Get Users",
         "description": "SCIM API get users test",
         "operation": "scim.get_users",
-        "ignored": true,
-        "requires": [
-            "scim_credentials"
-        ],
         "payload": {},
         "timeout": 30,
         "assertions": [
@@ -572,8 +568,8 @@
         },
         "timeout": 30,
         "assertions": [
-            "socketPortMetricsTimeSeries.id",
-            "socketPortMetricsTimeSeries.timeseries"
+            "socketPortMetricsTimeSeries.summary",
+            "socketPortMetricsTimeSeries.series"
         ]
     },
     "raw.auditFeed": {
@@ -584,7 +580,7 @@
             "query": "query auditFeed ( $accountIDs:[ID!] $timeFrame:TimeFrame! $auditFieldFilterInput:[AuditFieldFilterInput!] ) { auditFeed ( accountIDs:$accountIDs timeFrame:$timeFrame filters:$auditFieldFilterInput ) { accounts { id records{ fieldsMap } } } }",
             "variables": {
                 "accountIDs": [
-                    62920
+                    15412
                 ],
                 "auditFieldFilterInput": [],
                 "timeFrame": "last.P14D"
@@ -603,7 +599,7 @@
         "payload": {
             "query": "query accountSnapshot ( $accountID:ID ) { accountSnapshot ( accountID:$accountID ) { id timestamp } }",
             "variables": {
-                "accountID": "62920"
+                "accountID": "15412"
             },
             "operationName": "accountSnapshot"
         },

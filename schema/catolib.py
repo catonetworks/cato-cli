@@ -1973,6 +1973,27 @@ catocli {subOperationCmd} '{example_json_pretty}'
         if isinstance(subOperation, dict) and "path" not in subOperation:
             renderSubReadme(subOperation, operationType, subOperationPath)
 
+def generateRequiredInputValue(arg_data):
+    """Generate the smallest structurally valid value for a required argument."""
+    arg_type = arg_data.get("type", {})
+    kind = arg_type.get("kind", [])
+    kinds = kind if isinstance(kind, list) else [kind]
+
+    if "SCALAR" in kinds or "ENUM" in kinds:
+        return renderInputFieldVal(arg_data)
+
+    definition = arg_type.get("definition", {})
+    input_fields = definition.get("inputFields") or {}
+    value = {}
+    for input_field in input_fields.values():
+        if input_field.get("required", False):
+            field_name = input_field.get("name")
+            if field_name:
+                value[field_name] = generateRequiredInputValue(input_field)
+
+    return [value] if "LIST" in kinds else value
+
+
 def writePayloadsJson(schema):
     """Write payloads_generated.json with required arguments for each query operation"""
     import json
@@ -2028,10 +2049,8 @@ def writePayloadsJson(schema):
                         # Check if there's a configured default value in payloads_settings.json
                         if arg_real_name in default_values:
                             required_args[arg_name] = default_values[arg_real_name]
-                        elif "variablesPayload" in model_data and arg_name in model_data["variablesPayload"]:
-                            # Use value from variablesPayload if available
-                            required_args[arg_name] = model_data["variablesPayload"][arg_name]
-                        # If no default and not in variablesPayload, don't add it (will result in empty object {})
+                        else:
+                            required_args[arg_name] = generateRequiredInputValue(arg_data)
             
             payloads[operation_name] = required_args
             operation_count += 1

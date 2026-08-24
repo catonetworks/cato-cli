@@ -21,7 +21,43 @@
         "query.policy.socketLan.policy": {},
         "query.policy.terminalServer.policy": {},
         "query.catalogs.catalogApplication": {},
-        "query.catalogs.catalogApplicationList": {}
+        "query.catalogs.catalogApplicationList": {},
+        // These operations need account-specific resources that portable CI cannot assume
+        "query.aiSecurity": {},
+        "query.customAppData": {},
+        "query.groups.whereUsed": {},
+        "query.object": {},
+        "query.popLocations": {},
+        "query.privateApplication": {},
+        "query.site.bgpPeer": {},
+        "query.site.bgpPeerList": {},
+        "query.site.cloudInterconnectConnectionConnectivity": {},
+        "query.site.cloudInterconnectPhysicalConnection": {},
+        "query.site.cloudInterconnectPhysicalConnectionId": {},
+        "query.site.knownHostList": {},
+        "query.site.networkRange": {},
+        "query.site.networkRangeList": {},
+        "query.site.retrieveUsedVlanIDs": {},
+        "query.site.secondaryGcpVSocket": {},
+        "query.site.siteBackhauling": {},
+        "query.site.siteBgpStatus": {},
+        "query.site.siteGeneralDetails": {},
+        "query.site.siteSocketConfiguration": {},
+        "query.site.staticHost": {},
+        "query.site.staticHostList": {},
+        "query.site.validWifiRadioSettings": {},
+        "query.site.validateWifiRadioProfile": {},
+        "query.site.wifiRadioProfile": {},
+        "query.site.wifiRadioProfileBySite": {},
+        "query.site.wifiSsid": {},
+        "query.site.wifiSsidList": {},
+        "query.ztnaAppConnector.ztnaAppConnector": {},
+        // These APIs are entitlement-, rollout-, or server-schema-dependent
+        "query.businessPlatform": {},
+        "query.externalAccess": {},
+        "query.hardwareManagement": {},
+        "query.notification": {},
+        "query.user": {}
     },
     "defaultValues": {
         "timeFrame": "last.P1D",
@@ -31,6 +67,112 @@
         ]
     },
     "overrideOperationPayload": {
+        "query.connectivitySnapshots": {
+            "payload": {
+                "ztnaAppConnectorGroupSnapshotInput": {
+                    "paging": {
+                        "from": 0,
+                        "limit": 1
+                    }
+                },
+                "ztnaAppConnectorSnapshotInput": {
+                    "paging": {
+                        "from": 0,
+                        "limit": 1
+                    }
+                },
+                "ztnaAppConnectorSnapshotSummaryInput": {
+                    "filter": {}
+                }
+            },
+            "assertions": [
+                "connectivitySnapshots"
+            ]
+        },
+        "query.policy.socketLan.policyList": {
+            "payload": {
+                "socketLanPolicyListInput": {
+                    "paging": {
+                        "from": 0,
+                        "limit": 1
+                    },
+                    "sort": {
+                        "name": {
+                            "direction": "ASC",
+                            "priority": 1
+                        },
+                        "policyLevel": {
+                            "direction": "ASC",
+                            "priority": 2
+                        }
+                    }
+                }
+            },
+            "assertions": [
+                "policy.socketLan.policyList"
+            ]
+        },
+        "query.site.validWifiRadioSettingsByCountry": {
+            "payload": {
+                "validWifiRadioSettingsByCountryInput": {
+                    "countryCode": "US"
+                }
+            },
+            "assertions": [
+                "site.validWifiRadioSettingsByCountry"
+            ]
+        },
+        "query.site.validateWifiRadioProfileByCountry": {
+            "payload": {
+                "validateWifiRadioProfileByCountryInput": {
+                    "countryCode": "US",
+                    "radioProfile": {
+                        "band24": {
+                            "band": "BAND_2P4G",
+                            "standard": "AUTO",
+                            "channelWidth": "AUTO"
+                        },
+                        "band5": {
+                            "band": "BAND_5G",
+                            "standard": "AUTO",
+                            "channelWidth": "AUTO"
+                        }
+                    }
+                }
+            },
+            "assertions": [
+                "site.validateWifiRadioProfileByCountry"
+            ]
+        },
+        "query.site.wifiRadioProfileList": {
+            "payload": {
+                "wifiRadioProfileListInput": {
+                    "wifiRadioProfiles": []
+                }
+            },
+            "assertions": [
+                "site.wifiRadioProfileList"
+            ]
+        },
+        "query.ztnaAppConnector.ztnaAppConnectorList": {
+            "payload": {
+                "ztnaAppConnectorListInput": {
+                    "paging": {
+                        "from": 0,
+                        "limit": 1
+                    },
+                    "sort": {
+                        "createdAt": {
+                            "direction": "DESC",
+                            "priority": 1
+                        }
+                    }
+                }
+            },
+            "assertions": [
+                "ztnaAppConnector.ztnaAppConnectorList"
+            ]
+        },
         "query.accountBySubdomain": {
             "subdomains": [
                 "AnalystDemo"

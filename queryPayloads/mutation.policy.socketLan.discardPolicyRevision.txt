@@ -3,11 +3,21 @@ mutation policySocketLanDiscardPolicyRevision ( $accountId:ID! $socketLanPolicyM
 		socketLan ( input:$socketLanPolicyMutationInput  )  {
 			discardPolicyRevision ( input:$policyDiscardRevisionInput   ) {
 				policy {
+					id
+					name
+					description
 					enabled
 					rules {
 						audit {
 							updatedTime
 							updatedBy
+						}
+						metadata {
+							lock {
+								lockingAdminEmail
+								lockingTime
+								lockingRevisionId
+							}
 						}
 						rule {
 							id
@@ -23,6 +33,13 @@ mutation policySocketLanDiscardPolicyRevision ( $accountId:ID! $socketLanPolicyM
 								audit {
 									updatedTime
 									updatedBy
+								}
+								metadata {
+									lock {
+										lockingAdminEmail
+										lockingTime
+										lockingRevisionId
+									}
 								}
 								rule {
 									id
@@ -181,6 +198,14 @@ mutation policySocketLanDiscardPolicyRevision ( $accountId:ID! $socketLanPolicyM
 									}
 								}
 								properties
+								ruleType
+								subPolicy {
+									id
+									name
+								}
+								access {
+									action
+								}
 							}
 							site {
 								site {
@@ -287,11 +312,26 @@ mutation policySocketLanDiscardPolicyRevision ( $accountId:ID! $socketLanPolicyM
 							transport
 						}
 						properties
+						ruleType
+						subPolicy {
+							id
+							name
+						}
+						access {
+							action
+						}
 					}
 					sections {
 						audit {
 							updatedTime
 							updatedBy
+						}
+						metadata {
+							lock {
+								lockingAdminEmail
+								lockingTime
+								lockingRevisionId
+							}
 						}
 						section {
 							id
@@ -310,6 +350,26 @@ mutation policySocketLanDiscardPolicyRevision ( $accountId:ID! $socketLanPolicyM
 						changes
 						createdTime
 						updatedTime
+					}
+					subPolicies {
+						policy {
+							id
+							name
+							description
+							enabled
+							policyLevel
+							audit {
+								publishedTime
+								publishedBy
+							}
+						}
+						properties
+						access {
+							action
+						}
+					}
+					access {
+						action
 					}
 				}
 				status

@@ -11,7 +11,7 @@ catocli mutation site startSiteUpgrade <json>
 
 catocli mutation site startSiteUpgrade --json-file mutation.site.startSiteUpgrade.json
 
-catocli mutation site startSiteUpgrade '{"startSiteUpgradeInput":{"siteUpgradeRequest":{"site":{"by":"ID","input":"string"},"targetVersion":"string"}}}'
+catocli mutation site startSiteUpgrade '{"startSiteUpgradeInput":{"siteUpgradeRequest":{"site":{"by":"ID","input":"string"},"targetVersion":"string"},"siteUpgradeScheduleInput":{"time":"example_value"}}}'
 
 catocli mutation site startSiteUpgrade '{
     "startSiteUpgradeInput": {
@@ -21,6 +21,9 @@ catocli mutation site startSiteUpgrade '{
                 "input": "string"
             },
             "targetVersion": "string"
+        },
+        "siteUpgradeScheduleInput": {
+            "time": "example_value"
         }
     }
 }'

@@ -7,6 +7,13 @@ mutation policySocketLanMoveRule ( $accountId:ID! $socketLanPolicyMutationInput:
 						updatedTime
 						updatedBy
 					}
+					metadata {
+						lock {
+							lockingAdminEmail
+							lockingTime
+							lockingRevisionId
+						}
+					}
 					rule {
 						id
 						name
@@ -21,6 +28,13 @@ mutation policySocketLanMoveRule ( $accountId:ID! $socketLanPolicyMutationInput:
 							audit {
 								updatedTime
 								updatedBy
+							}
+							metadata {
+								lock {
+									lockingAdminEmail
+									lockingTime
+									lockingRevisionId
+								}
 							}
 							rule {
 								id
@@ -179,6 +193,14 @@ mutation policySocketLanMoveRule ( $accountId:ID! $socketLanPolicyMutationInput:
 								}
 							}
 							properties
+							ruleType
+							subPolicy {
+								id
+								name
+							}
+							access {
+								action
+							}
 						}
 						site {
 							site {
@@ -285,6 +307,22 @@ mutation policySocketLanMoveRule ( $accountId:ID! $socketLanPolicyMutationInput:
 						transport
 					}
 					properties
+					ruleType
+					subPolicy {
+						id
+						name
+					}
+					access {
+						action
+					}
+				}
+				revision {
+					id
+					name
+					description
+					changes
+					createdTime
+					updatedTime
 				}
 				status
 				errors {

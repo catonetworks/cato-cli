@@ -1,0 +1,46 @@
+query businessPlatform ( $accountId:ID! $businessPlatformAccountListInput:BusinessPlatformAccountListInput) {
+	businessPlatform ( accountId:$accountId ) {
+		accountList ( input:$businessPlatformAccountListInput  )  {
+			items {
+				id
+				externalName
+				account {
+					id
+					name
+				}
+				partner {
+					id
+					name
+				}
+				accountExternalName
+				description
+				plan
+				expiresOn
+				estimatedCloseDate
+				contactFirstName
+				contactLastName
+				contactEmail
+				companyWebsite
+				country
+				city
+				state
+				street
+				postalCode
+				cmaCreatedBy
+				cmaCreatedAt
+			}
+			paging {
+				total
+			}
+		}
+		countAccountByPlan {
+			items {
+				plan
+				count
+			}
+		}
+		settings {
+			approvalEnabled
+		}
+	}	
+}

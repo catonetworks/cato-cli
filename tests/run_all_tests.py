@@ -59,6 +59,30 @@ def set_tests_directory(directory: Path):
     test_utils.TESTS_DIR = TESTS_DIR
 
 
+def get_custom_test_skip_reason(test_config: Dict) -> Optional[str]:
+    """Return why a custom test's runtime requirements are unavailable."""
+    requirements = test_config.get("requires", [])
+    if isinstance(requirements, str):
+        requirements = [requirements]
+
+    unsupported = set(requirements) - {"scim_credentials"}
+    if unsupported:
+        return f"unsupported requirement(s): {', '.join(sorted(unsupported))}"
+
+    if "scim_credentials" in requirements:
+        try:
+            from catocli.Utils.profile_manager import get_profile_manager
+
+            valid, message = get_profile_manager().validate_scim_credentials()
+        except Exception as exc:
+            return f"unable to validate SCIM credentials: {exc}"
+
+        if not valid:
+            return message
+
+    return None
+
+
 class AllTestsRunner:
     """Orchestrates running all test suites"""
     
@@ -239,10 +263,14 @@ class AllTestsRunner:
         suite_ignored = 0
         
         for test_key, test_config in filtered_custom.items():
-            # Check if test is marked as ignored
-            if test_config.get('ignored', False):
+            skip_reason = get_custom_test_skip_reason(test_config)
+            if test_config.get('ignored', False) or skip_reason:
                 suite_ignored += 1
-                print(f"{Colors.YELLOW}⊘ {test_config.get(DictKeys.NAME, test_key)} (ignored){Colors.NC}")
+                reason = skip_reason or "configured as ignored"
+                print(
+                    f"{Colors.YELLOW}⊘ {test_config.get(DictKeys.NAME, test_key)} "
+                    f"(ignored: {reason}){Colors.NC}"
+                )
                 continue
             
             result = run_test_from_config(test_key, test_config, self.verbose, "Custom Test", enable_trace_id)
@@ -966,6 +994,66 @@ try:
             """Test that setup.py exists"""
             setup_file = PROJECT_ROOT / "setup.py"
             assert setup_file.exists(), "setup.py not found"
+    
+    
+    class TestRegeneratedApis:
+        """Regression tests for schema regeneration safeguards.
+
+        Guards behavior that a full `schema/importSchema.py` regeneration must
+        preserve: the custom auditFeed parser, correct Long scalar examples, and
+        the newly exposed networkRangeList / disableUser operations.
+        """
+
+        def _help(self, *cli_args):
+            return subprocess.run(
+                [PYTHON_CMD, "-m", "catocli", *cli_args, "-h"],
+                capture_output=True, text=True, cwd=str(PROJECT_ROOT), timeout=15
+            )
+
+        def test_network_range_list_command_available(self):
+            """query site networkRangeList must be generated and expose help."""
+            result = self._help("query", "site", "networkRangeList")
+            assert result.returncode == 0, f"networkRangeList help failed: {result.stderr}"
+            assert "networkRangeList" in result.stdout
+
+        def test_disable_user_command_available(self):
+            """mutation user disableUser must be generated and expose help."""
+            result = self._help("mutation", "user", "disableUser")
+            assert result.returncode == 0, f"disableUser help failed: {result.stderr}"
+            assert "disableUser" in result.stdout
+
+        def test_disable_user_long_example_is_numeric(self):
+            """The generated disableUser payload must render Long userId as ints, not strings."""
+            payload_file = QUERY_PAYLOADS_DIR / "mutation.user.disableUser.json"
+            if not payload_file.exists():
+                pytest.skip("disableUser payload not generated")
+            with open(payload_file, "r") as f:
+                payload = json.load(f)
+            user_id = payload.get("variables", {}).get("disableUserInput", {}).get("userId")
+            assert isinstance(user_id, list) and user_id, f"unexpected userId example: {user_id!r}"
+            assert all(isinstance(v, int) for v in user_id), (
+                f"Long list example must be integers, got {user_id!r}"
+            )
+
+        def test_new_operations_have_model_and_payload(self):
+            """New operations must have matching model + payload files."""
+            for op in ("mutation.user.disableUser", "query.site.networkRangeList"):
+                payload = QUERY_PAYLOADS_DIR / f"{op}.json"
+                model = MODELS_DIR / f"{op}.json"
+                if not payload.exists():
+                    pytest.skip(f"{op} payload not generated")
+                assert model.exists(), f"Missing model file for {op}"
+
+        def test_audit_feed_custom_parser_preserved(self):
+            """The custom auditFeed dispatcher and its enhanced flags must survive regeneration."""
+            parser_file = PROJECT_ROOT / "catocli" / "parsers" / "query_auditFeed" / "__init__.py"
+            assert parser_file.exists(), "query_auditFeed parser missing"
+            content = parser_file.read_text()
+            assert "auditFeed_dispatcher" in content, "custom auditFeed dispatcher was overwritten"
+            assert "enhanced_audit_feed_handler" in content, "enhanced auditFeed handler reference lost"
+            result = self._help("query", "auditFeed")
+            assert result.returncode == 0, f"auditFeed help failed: {result.stderr}"
+            assert "--run" in result.stdout, "auditFeed --run flag missing after regeneration"
 
 except ImportError:
     # pytest not available, validation tests will be skipped

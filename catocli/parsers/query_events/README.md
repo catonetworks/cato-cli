@@ -11,7 +11,7 @@ catocli query events <json>
 
 catocli query events --json-file query.events.json
 
-catocli query events '{"eventsDimension":{"fieldName":"access_method"},"eventsFilter":{"fieldName":"access_method","operator":"is","values":["string1","string2"]},"eventsMeasure":{"aggType":"sum","alias":"string","fieldName":"access_method","trend":true},"eventsPostAggFilter":{"aggType":"sum","eventsFilter":{"fieldName":"access_method","operator":"is","values":["string1","string2"]}},"eventsSort":{"alias":"string","fieldName":"access_method","order":"asc"},"from":1,"limit":1,"timeFrame":"example_value"}'
+catocli query events '{"eventsDimension":{"fieldName":"access_method"},"eventsFilter":{"fieldName":"access_method","operator":"is","values":["string1","string2"]},"eventsMeasure":{"aggType":"sum","alias":"string","fieldName":"access_method","trend":true},"eventsPostAggFilter":{"aggType":"sum","eventsFilter":{"fieldName":"access_method","operator":"is","values":["string1","string2"]}},"eventsSort":{"alias":"string","fieldName":"access_method","order":"asc"},"from":1,"includeEmptyDimension":true,"limit":1,"timeFrame":"example_value"}'
 
 catocli query events '{
     "eventsDimension": {
@@ -48,6 +48,7 @@ catocli query events '{
         "order": "asc"
     },
     "from": 1,
+    "includeEmptyDimension": true,
     "limit": 1,
     "timeFrame": "example_value"
 }'
@@ -83,5 +84,6 @@ Format: `"utc.YYYY-MM-{DD/HH:MM:SS--DD/HH:MM:SS}"`
 `eventsPostAggFilter` [EventsPostAggFilter[]] - (required) N/A    
 `eventsSort` [EventsSort[]] - (required) N/A    
 `from` [Int] - (required) N/A    
+`includeEmptyDimension` [Boolean] - (required) When true, rows with empty/null values for a grouped dimension (e.g., country, device type) are returned as an empty group rather than excluded. This ensures consistent totals in API queries and surfaces previously hidden data in CMA dashboards and reports. Defaults to false.    
 `limit` [Int] - (required) N/A    
 `timeFrame` [TimeFrame] - (required) N/A    

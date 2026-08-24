@@ -15,8 +15,6 @@ import graphql_client.models
 from graphql_client import api_client
 
 # python 2 and python 3 compatibility library
-import sys
-sys.path.insert(0, 'vendor')
 import six
 
 class ApiClient(object):

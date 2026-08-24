@@ -1,0 +1,37 @@
+query siteWifiSsidList ( $accountId:ID! $wifiSsidListInput:WifiSsidListInput!) {
+	site ( accountId:$accountId ) {
+		wifiSsidList ( input:$wifiSsidListInput  )  {
+			wifiSsid {
+				id
+				networkInterfaceId
+				site {
+					id
+					name
+				}
+				name
+				enabled
+				category
+				visible
+				subnet
+				localIp
+				dhcp {
+					dhcpSubnet
+				}
+				vlanId
+				dhcpEnabled
+				microsegmentationEnabled
+				internetOnly
+				mdnsEnabled
+				security {
+					mode
+					authProtocol
+					trackAuthentication
+				}
+				band
+			}
+			pageInfo {
+				total
+			}
+		}
+	}	
+}

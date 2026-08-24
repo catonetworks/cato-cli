@@ -7,6 +7,13 @@ mutation policyRemotePortFwdUpdateRule ( $accountId:ID! $remotePortFwdPolicyMuta
 						updatedTime
 						updatedBy
 					}
+					metadata {
+						lock {
+							lockingAdminEmail
+							lockingTime
+							lockingRevisionId
+						}
+					}
 					rule {
 						id
 						name
@@ -62,6 +69,14 @@ mutation policyRemotePortFwdUpdateRule ( $accountId:ID! $remotePortFwdPolicyMuta
 						}
 					}
 					properties
+				}
+				revision {
+					id
+					name
+					description
+					changes
+					createdTime
+					updatedTime
 				}
 				status
 				errors {

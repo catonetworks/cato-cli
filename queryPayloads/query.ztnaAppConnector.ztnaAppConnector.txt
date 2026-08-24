@@ -1,0 +1,48 @@
+query ztnaAppConnectorZtnaAppConnector ( $accountId:ID! $ztnaAppConnectorRefInput:ZtnaAppConnectorRefInput!) {
+	ztnaAppConnector ( accountId:$accountId ) {
+		ztnaAppConnector ( input:$ztnaAppConnectorRefInput  )  {
+			id
+			createdAt
+			name
+			description
+			serialNumber
+			socketId
+			type
+			socketModel
+			isRegistered
+			groupName
+			location {
+				address
+				cityName
+				countryCode
+				countryName
+				stateCode
+				timezone
+			}
+			preferredPopLocation {
+				preferredOnly
+				automatic
+				primary {
+					id
+					name
+				}
+				secondary {
+					id
+					name
+				}
+			}
+			privateAppCount
+			privateAppRef {
+				id
+				name
+			}
+			socketInfo {
+				version
+				rollbackTargetVersion
+				versionUpdateTime
+				rollbackEligibleUntil
+				upgradesPaused
+			}
+		}
+	}	
+}

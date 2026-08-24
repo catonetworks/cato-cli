@@ -1,0 +1,73 @@
+query privateApplication ( $accountId:ID! $privateApplicationRefInput:PrivateApplicationRefInput! $privateApplicationListInput:PrivateApplicationListInput) {
+	privateApplication ( accountId:$accountId ) {
+		privateApplication ( input:$privateApplicationRefInput  )  {
+			id
+			creationTime
+			name
+			description
+			internalAppAddress
+			probingEnabled
+			published
+			allowIcmpProtocol
+			publishedAppDomain {
+				id
+				creationTime
+				publishedAppDomain
+				catoIp
+				connectorGroupName
+			}
+			privateAppProbing {
+				id
+				type
+				interval
+				faultThresholdDown
+			}
+			protocolPorts {
+				port
+				portRange {
+					from
+					to
+				}
+				protocol
+			}
+			connectivityStatus
+		}
+		privateApplicationList ( input:$privateApplicationListInput  )  {
+			applications {
+				id
+				creationTime
+				name
+				description
+				internalAppAddress
+				probingEnabled
+				published
+				allowIcmpProtocol
+				publishedAppDomain {
+					id
+					creationTime
+					publishedAppDomain
+					catoIp
+					connectorGroupName
+				}
+				privateAppProbing {
+					id
+					type
+					interval
+					faultThresholdDown
+				}
+				protocolPorts {
+					port
+					portRange {
+						from
+						to
+					}
+					protocol
+				}
+				connectivityStatus
+			}
+			pageInfo {
+				total
+			}
+		}
+	}	
+}

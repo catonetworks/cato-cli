@@ -10,8 +10,6 @@ import pprint
 import re  # noqa: F401
 
 # python 2 and python 3 compatibility library
-import sys
-sys.path.insert(0, 'vendor')
 import six
 
 class NoSchema(object):

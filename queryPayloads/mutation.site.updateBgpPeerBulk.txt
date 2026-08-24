@@ -1,0 +1,84 @@
+mutation siteUpdateBgpPeerBulk ( $accountId:ID! $updateBgpPeerBulkInput:UpdateBgpPeerBulkInput!) {
+	site ( accountId:$accountId ) {
+		updateBgpPeerBulk ( input:$updateBgpPeerBulkInput  )  {
+			bgpPeer {
+				site {
+					id
+					name
+				}
+				id
+				name
+				peerAsn
+				catoAsn
+				peerIp
+				catoIp
+				advertiseDefaultRoute
+				defaultRouteCommunities {
+					from
+					to
+				}
+				advertiseAllRoutes
+				advertiseSummaryRoutes
+				summaryRoute {
+					id
+					route
+					community {
+						from
+						to
+					}
+				}
+				defaultAction
+				defaultActionExclusion {
+					bgpRouteExactFilterRule {
+						id
+						globalIpRange {
+							id
+							name
+						}
+						networkSubnet
+					}
+					bgpRouteExactAndInclusiveFilterRule {
+						id
+						globalIpRange {
+							id
+							name
+						}
+						globalIpRangeException {
+							id
+							name
+						}
+						networkSubnet
+						networkSubnetException
+						le
+						ge
+					}
+					communityFilterRule {
+						id
+						predicate
+						community {
+							from
+							to
+						}
+					}
+				}
+				performNat
+				md5AuthKey
+				metric
+				holdTime
+				keepaliveInterval
+				bfdEnabled
+				bfdSettings {
+					transmitInterval
+					receiveInterval
+					multiplier
+				}
+				tracking {
+					id
+					enabled
+					alertFrequency
+					subscriptionId
+				}
+			}
+		}
+	}	
+}

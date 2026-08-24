@@ -11,7 +11,7 @@ catocli query appStats <json>
 
 catocli query appStats --json-file query.appStats.json
 
-catocli query appStats '{"appStatsFilter":{"fieldName":"account_id","operator":"is","values":["string1","string2"]},"appStatsPostAggFilter":{"aggType":"sum","appStatsFilter":{"fieldName":"account_id","operator":"is","values":["string1","string2"]}},"appStatsSort":{"alias":"string","fieldName":"account_id","order":"asc"},"dimension":{"fieldName":"account_id"},"from":1,"limit":1,"measure":{"aggType":"sum","alias":"string","fieldName":"account_id","trend":true},"timeFrame":"example_value"}'
+catocli query appStats '{"appStatsFilter":{"fieldName":"account_id","operator":"is","values":["string1","string2"]},"appStatsPostAggFilter":{"aggType":"sum","appStatsFilter":{"fieldName":"account_id","operator":"is","values":["string1","string2"]}},"appStatsSort":{"alias":"string","fieldName":"account_id","order":"asc"},"dimension":{"fieldName":"account_id"},"from":1,"includeEmptyDimension":true,"limit":1,"measure":{"aggType":"sum","alias":"string","fieldName":"account_id","trend":true},"timeFrame":"example_value"}'
 
 catocli query appStats '{
     "appStatsFilter": {
@@ -42,6 +42,7 @@ catocli query appStats '{
         "fieldName": "account_id"
     },
     "from": 1,
+    "includeEmptyDimension": true,
     "limit": 1,
     "measure": {
         "aggType": "sum",
@@ -449,6 +450,7 @@ Format: `"utc.YYYY-MM-{DD/HH:MM:SS--DD/HH:MM:SS}"`
 `appStatsSort` [AppStatsSort[]] - (required) N/A    
 `dimension` [Dimension[]] - (required) N/A    
 `from` [Int] - (required) N/A    
+`includeEmptyDimension` [Boolean] - (required) When true, rows with empty/null values for a grouped dimension (e.g., country, device type) are returned as an empty group rather than excluded. This ensures consistent totals in API queries and surfaces previously hidden data in CMA dashboards and reports. Defaults to false.    
 `limit` [Int] - (required) N/A    
 `measure` [Measure[]] - (required) N/A    
 `timeFrame` [TimeFrame] - (required) N/A    

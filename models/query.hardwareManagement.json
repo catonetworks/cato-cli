@@ -394,6 +394,18 @@
                                                             "description": null,
                                                             "isDeprecated": false,
                                                             "name": "CONNECTED"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "PENDING_DECOMMISSION"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "DECOMMISSIONED"
                                                         }
                                                     ],
                                                     "fields": null,
@@ -428,6 +440,24 @@
                                 "non_null": false
                             },
                             "varName": "socketInventoryFilterInput"
+                        },
+                        "includeDecommissioned": {
+                            "defaultValue": "true",
+                            "description": "When false, the distribution excludes sockets with status DECOMMISSIONED\nfrom the counts.",
+                            "id_str": "socketInventoryDistribution___input___includeDecommissioned",
+                            "name": "includeDecommissioned",
+                            "path": "socketInventoryDistribution.input.includeDecommissioned",
+                            "requestStr": "$includeDecommissioned:Boolean ",
+                            "required": false,
+                            "responseStr": "includeDecommissioned:$includeDecommissioned ",
+                            "type": {
+                                "kind": [
+                                    "SCALAR"
+                                ],
+                                "name": "Boolean",
+                                "non_null": false
+                            },
+                            "varName": "includeDecommissioned"
                         }
                     },
                     "interfaces": null,
@@ -793,6 +823,18 @@
                                                             "description": null,
                                                             "isDeprecated": false,
                                                             "name": "CONNECTED"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "PENDING_DECOMMISSION"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "DECOMMISSIONED"
                                                         }
                                                     ],
                                                     "fields": null,
@@ -827,6 +869,24 @@
                                 "non_null": false
                             },
                             "varName": "socketInventoryFilterInput"
+                        },
+                        "includeDecommissioned": {
+                            "defaultValue": "true",
+                            "description": null,
+                            "id_str": "socketInventory___input___includeDecommissioned",
+                            "name": "includeDecommissioned",
+                            "path": "socketInventory.input.includeDecommissioned",
+                            "requestStr": "$includeDecommissioned:Boolean ",
+                            "required": false,
+                            "responseStr": "includeDecommissioned:$includeDecommissioned ",
+                            "type": {
+                                "kind": [
+                                    "SCALAR"
+                                ],
+                                "name": "Boolean",
+                                "non_null": false
+                            },
+                            "varName": "includeDecommissioned"
                         },
                         "paging": {
                             "defaultValue": null,
@@ -1343,6 +1403,98 @@
                                                             "id_str": "socketInventory___input___sort___installedSite___priority",
                                                             "name": "priority",
                                                             "path": "socketInventory.input.sort.installedSite.priority",
+                                                            "requestStr": "$priority:Int! ",
+                                                            "required": true,
+                                                            "responseStr": "priority:$priority ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "Int",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "priority"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "SortOrderInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "SortOrderInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "sortOrderInput"
+                                        },
+                                        "orderType": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "socketInventory___input___sort___orderType",
+                                            "name": "orderType",
+                                            "path": "socketInventory.input.sort.orderType",
+                                            "requestStr": "$sortOrderInput:SortOrderInput ",
+                                            "required": false,
+                                            "responseStr": "orderType:$sortOrderInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "direction": {
+                                                            "defaultValue": "ASC",
+                                                            "description": null,
+                                                            "id_str": "socketInventory___input___sort___orderType___direction",
+                                                            "name": "direction",
+                                                            "path": "socketInventory.input.sort.orderType.direction",
+                                                            "requestStr": "$direction:SortOrder! ",
+                                                            "required": true,
+                                                            "responseStr": "direction:$direction ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "ASC"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "DESC"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "SortOrder",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "SortOrder",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "direction"
+                                                        },
+                                                        "priority": {
+                                                            "defaultValue": "1",
+                                                            "description": null,
+                                                            "id_str": "socketInventory___input___sort___orderType___priority",
+                                                            "name": "priority",
+                                                            "path": "socketInventory.input.sort.orderType.priority",
                                                             "requestStr": "$priority:Int! ",
                                                             "required": true,
                                                             "responseStr": "priority:$priority ",
@@ -2219,6 +2371,18 @@
                                                                             "description": null,
                                                                             "isDeprecated": false,
                                                                             "name": "CONNECTED"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "PENDING_DECOMMISSION"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "DECOMMISSIONED"
                                                                         }
                                                                     ],
                                                                     "fields": null,
@@ -2253,6 +2417,24 @@
                                                 "non_null": false
                                             },
                                             "varName": "socketInventoryFilterInput"
+                                        },
+                                        "includeDecommissioned": {
+                                            "defaultValue": "true",
+                                            "description": null,
+                                            "id_str": "socketInventory___input___includeDecommissioned",
+                                            "name": "includeDecommissioned",
+                                            "path": "socketInventory.input.includeDecommissioned",
+                                            "requestStr": "$includeDecommissioned:Boolean ",
+                                            "required": false,
+                                            "responseStr": "includeDecommissioned:$includeDecommissioned ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "Boolean",
+                                                "non_null": false
+                                            },
+                                            "varName": "includeDecommissioned"
                                         },
                                         "paging": {
                                             "defaultValue": null,
@@ -2769,6 +2951,98 @@
                                                                             "id_str": "socketInventory___input___sort___installedSite___priority",
                                                                             "name": "priority",
                                                                             "path": "socketInventory.input.sort.installedSite.priority",
+                                                                            "requestStr": "$priority:Int! ",
+                                                                            "required": true,
+                                                                            "responseStr": "priority:$priority ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "Int",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "priority"
+                                                                        }
+                                                                    },
+                                                                    "interfaces": null,
+                                                                    "kind": "INPUT_OBJECT",
+                                                                    "name": "SortOrderInput",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "input_object",
+                                                                "kind": [
+                                                                    "INPUT_OBJECT"
+                                                                ],
+                                                                "name": "SortOrderInput",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "sortOrderInput"
+                                                        },
+                                                        "orderType": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "socketInventory___input___sort___orderType",
+                                                            "name": "orderType",
+                                                            "path": "socketInventory.input.sort.orderType",
+                                                            "requestStr": "$sortOrderInput:SortOrderInput ",
+                                                            "required": false,
+                                                            "responseStr": "orderType:$sortOrderInput ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": null,
+                                                                    "fields": null,
+                                                                    "inputFields": {
+                                                                        "direction": {
+                                                                            "defaultValue": "ASC",
+                                                                            "description": null,
+                                                                            "id_str": "socketInventory___input___sort___orderType___direction",
+                                                                            "name": "direction",
+                                                                            "path": "socketInventory.input.sort.orderType.direction",
+                                                                            "requestStr": "$direction:SortOrder! ",
+                                                                            "required": true,
+                                                                            "responseStr": "direction:$direction ",
+                                                                            "type": {
+                                                                                "definition": {
+                                                                                    "description": null,
+                                                                                    "enumValues": [
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "ASC"
+                                                                                        },
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "DESC"
+                                                                                        }
+                                                                                    ],
+                                                                                    "fields": null,
+                                                                                    "inputFields": null,
+                                                                                    "interfaces": null,
+                                                                                    "kind": "ENUM",
+                                                                                    "name": "SortOrder",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "indexType": "enum",
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "ENUM"
+                                                                                ],
+                                                                                "name": "SortOrder",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "direction"
+                                                                        },
+                                                                        "priority": {
+                                                                            "defaultValue": "1",
+                                                                            "description": null,
+                                                                            "id_str": "socketInventory___input___sort___orderType___priority",
+                                                                            "name": "priority",
+                                                                            "path": "socketInventory.input.sort.orderType.priority",
                                                                             "requestStr": "$priority:Int! ",
                                                                             "required": true,
                                                                             "responseStr": "priority:$priority ",
@@ -3621,7 +3895,7 @@
                                                                 },
                                                                 {
                                                                     "deprecationReason": null,
-                                                                    "description": null,
+                                                                    "description": "ASSIGNED_SITE_PENDING_REGISTER Meaning socket was assigned to site from UI.\nBut still waiting for next /register request from socket to finalize socket db state.",
                                                                     "isDeprecated": false,
                                                                     "name": "ASSIGNED_SITE_PENDING_REGISTER"
                                                                 }
@@ -3964,6 +4238,18 @@
                                                                     "description": null,
                                                                     "isDeprecated": false,
                                                                     "name": "CONNECTED"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "PENDING_DECOMMISSION"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "DECOMMISSIONED"
                                                                 }
                                                             ],
                                                             "fields": null,
@@ -4576,6 +4862,18 @@
                                                                             "description": null,
                                                                             "isDeprecated": false,
                                                                             "name": "CONNECTED"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "PENDING_DECOMMISSION"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "DECOMMISSIONED"
                                                                         }
                                                                     ],
                                                                     "fields": null,
@@ -4610,6 +4908,24 @@
                                                 "non_null": false
                                             },
                                             "varName": "socketInventoryFilterInput"
+                                        },
+                                        "includeDecommissioned": {
+                                            "defaultValue": "true",
+                                            "description": "When false, the distribution excludes sockets with status DECOMMISSIONED\nfrom the counts.",
+                                            "id_str": "socketInventoryDistribution___input___includeDecommissioned",
+                                            "name": "includeDecommissioned",
+                                            "path": "socketInventoryDistribution.input.includeDecommissioned",
+                                            "requestStr": "$includeDecommissioned:Boolean ",
+                                            "required": false,
+                                            "responseStr": "includeDecommissioned:$includeDecommissioned ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "Boolean",
+                                                "non_null": false
+                                            },
+                                            "varName": "includeDecommissioned"
                                         }
                                     },
                                     "interfaces": null,
@@ -4908,6 +5224,7 @@
     },
     "variablesPayload": {
         "socketInventoryDistributionInput": {
+            "includeDecommissioned": true,
             "socketInventoryFilterInput": {
                 "freeText": {
                     "search": "string"
@@ -4919,6 +5236,7 @@
             }
         },
         "socketInventoryInput": {
+            "includeDecommissioned": true,
             "pagingInput": {
                 "from": 1,
                 "limit": 1
@@ -4950,6 +5268,10 @@
                     "priority": 1
                 },
                 "installedSite": {
+                    "direction": "ASC",
+                    "priority": 1
+                },
+                "orderType": {
                     "direction": "ASC",
                     "priority": 1
                 },

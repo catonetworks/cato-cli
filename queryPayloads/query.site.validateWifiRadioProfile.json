@@ -1,0 +1,28 @@
+{
+    "operationName": "siteValidateWifiRadioProfile",
+    "query": "query siteValidateWifiRadioProfile ( $accountId:ID! $validateWifiRadioProfileInput:ValidateWifiRadioProfileInput!) {\n\tsite ( accountId:$accountId ) {\n\t\tvalidateWifiRadioProfile ( input:$validateWifiRadioProfileInput  )  {\n\t\t\tresult {\n\t\t\t\tband24 {\n\t\t\t\t\tisValid\n\t\t\t\t\terrors\n\t\t\t\t}\n\t\t\t\tband5 {\n\t\t\t\t\tisValid\n\t\t\t\t\terrors\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "validateWifiRadioProfileInput": {
+            "siteRefInput": {
+                "by": "ID",
+                "input": "string"
+            },
+            "wifiRadioProfileInput": {
+                "band24": {
+                    "band": "BAND_2P4G",
+                    "channel": 1,
+                    "channelWidth": "AUTO",
+                    "dfsEnabled": true,
+                    "standard": "AUTO"
+                },
+                "band5": {
+                    "band": "BAND_2P4G",
+                    "channel": 1,
+                    "channelWidth": "AUTO",
+                    "dfsEnabled": true,
+                    "standard": "AUTO"
+                }
+            }
+        }
+    }
+}

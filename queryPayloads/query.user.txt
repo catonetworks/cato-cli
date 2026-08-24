@@ -1,0 +1,34 @@
+query user ( $accountId:ID! $userListInput:UserListInput!) {
+	user ( accountId:$accountId ) {
+		userList ( input:$userListInput  )  {
+			items {
+				id
+				userId
+				objectId
+				onPremSid
+				firstName
+				lastName
+				userPrincipalName
+				displayName
+				phone
+				email
+				department
+				jobTitle
+				userStatus
+				creationDate
+				lastModified
+				importType
+				directoryId
+				hasRemoteAccessEligibility
+				authInfo {
+					authMethod
+					authStatus
+				}
+				riskScore
+			}
+			pageInfo {
+				total
+			}
+		}
+	}	
+}

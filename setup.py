@@ -1,8 +1,19 @@
 import setuptools
 from setuptools.command.install import install
-from catocli import __version__
+from pathlib import Path
+import re
 import subprocess
 import sys
+
+version_source = Path(__file__).parent / 'catocli' / '__init__.py'
+version_match = re.search(
+    r'^__version__\s*=\s*["\']([^"\']+)["\']',
+    version_source.read_text(encoding='utf-8'),
+    re.MULTILINE,
+)
+if version_match is None:
+    raise RuntimeError(f'Unable to find __version__ in {version_source}')
+__version__ = version_match.group(1)
 
 class PostInstallCommand(install):
     """Post-installation for installation mode."""
@@ -40,12 +51,17 @@ setuptools.setup(
     cmdclass={
         'install': PostInstallCommand,
     },
-    install_requires=['urllib3', 'certifi', 'six', 'argcomplete'],
+    install_requires=[
+        'argcomplete>=3.1,<4',
+        'certifi>=2024.8.30',
+        'python-dateutil>=2.9.0.post0,<3',
+        'six>=1.16,<2',
+        'urllib3>=2.7.0,<3',
+    ],
     package_data={
         'catocli': ['clisettings.json'],
-        '': ['vendor/*'],
     },
-    python_requires='>=3.6',
+    python_requires='>=3.10',
     url='https://github.com/Cato-Networks/cato-cli',
     author='Cato Networks',
     author_email='[email protected]',
@@ -56,12 +72,10 @@ setuptools.setup(
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: Apache Software License",
         "Operating System :: OS Independent",
-        "Programming Language :: Python :: 3.6",
-        "Programming Language :: Python :: 3.7",
-        "Programming Language :: Python :: 3.8",
-        "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
+        "Programming Language :: Python :: 3.13",
+        "Programming Language :: Python :: 3.14",
     ]
 )

@@ -6,7 +6,6 @@ import copy
 import logging
 import multiprocessing
 import sys
-sys.path.insert(0, 'vendor')
 import urllib3
 import six
 from six.moves import http_client as httplib

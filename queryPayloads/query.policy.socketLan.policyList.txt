@@ -1,0 +1,22 @@
+query policySocketLanPolicyList ( $accountId:ID! $socketLanPolicyListInput:SocketLanPolicyListInput!) {
+	policy ( accountId:$accountId ) {
+		socketLan {
+			policyList ( input:$socketLanPolicyListInput   ) {
+				items {
+					id
+					name
+					description
+					enabled
+					policyLevel
+					audit {
+						publishedTime
+						publishedBy
+					}
+				}
+				paging {
+					total
+				}
+			}
+		}
+	}	
+}

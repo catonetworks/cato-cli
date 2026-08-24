@@ -1,0 +1,16 @@
+query siteValidateWifiRadioProfileByCountry ( $accountId:ID! $validateWifiRadioProfileByCountryInput:ValidateWifiRadioProfileByCountryInput!) {
+	site ( accountId:$accountId ) {
+		validateWifiRadioProfileByCountry ( input:$validateWifiRadioProfileByCountryInput  )  {
+			result {
+				band24 {
+					isValid
+					errors
+				}
+				band5 {
+					isValid
+					errors
+				}
+			}
+		}
+	}	
+}

@@ -1,0 +1,340 @@
+{
+    "operationName": "connectivitySnapshots",
+    "query": "query connectivitySnapshots ( $accountId:ID! $ztnaAppConnectorSnapshotInput:ZtnaAppConnectorSnapshotInput! $ztnaAppConnectorSnapshotSummaryInput:ZtnaAppConnectorSnapshotSummaryInput! $ztnaAppConnectorGroupSnapshotInput:ZtnaAppConnectorGroupSnapshotInput!) {\n\tconnectivitySnapshots ( accountId:$accountId ) {\n\t\tztnaAppConnectorSnapshot ( input:$ztnaAppConnectorSnapshotInput  )  {\n\t\t\titems {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t\tinfo {\n\t\t\t\t\tcreatedAt\n\t\t\t\t\tgroupName\n\t\t\t\t\ttype\n\t\t\t\t\tlocation {\n\t\t\t\t\t\tcityName\n\t\t\t\t\t\tcountryCode\n\t\t\t\t\t\tcountryName\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tconnectivity {\n\t\t\t\t\tstatus\n\t\t\t\t\tfirstConnected\n\t\t\t\t\tlastConnected\n\t\t\t\t\tpopLocation {\n\t\t\t\t\t\tid\n\t\t\t\t\t\tname\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tdevice {\n\t\t\t\t\tid\n\t\t\t\t\tinfo {\n\t\t\t\t\t\tmodel\n\t\t\t\t\t\tserialNumber\n\t\t\t\t\t\tsocketId\n\t\t\t\t\t\tisRegistered\n\t\t\t\t\t\tversion\n\t\t\t\t\t}\n\t\t\t\t\tconnectivity {\n\t\t\t\t\t\tplatform\n\t\t\t\t\t\tserialNumber\n\t\t\t\t\t\tversion\n\t\t\t\t\t}\n\t\t\t\t\tinterface {\n\t\t\t\t\t\tid\n\t\t\t\t\t\tinterfaceType\n\t\t\t\t\t\tconnectivity {\n\t\t\t\t\t\t\tstatus\n\t\t\t\t\t\t\tlanIp\n\t\t\t\t\t\t\tdnsServer\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tprivateAppCount\n\t\t\t\tprivateApp {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t\tconnectivity {\n\t\t\t\t\t\tprobingStatus\n\t\t\t\t\t\troutingStatus\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t\tpageInfo {\n\t\t\t\ttotal\n\t\t\t}\n\t\t}\n\t\tztnaAppConnectorSnapshotSummary ( input:$ztnaAppConnectorSnapshotSummaryInput  )  {\n\t\t\tconnectivityStatus {\n\t\t\t\tconnectivityStatus\n\t\t\t\ttotal\n\t\t\t}\n\t\t\tsocketPlatform {\n\t\t\t\tplatform\n\t\t\t\ttotal\n\t\t\t}\n\t\t\tsocketModel {\n\t\t\t\tmodel\n\t\t\t\ttotal\n\t\t\t}\n\t\t\tversion {\n\t\t\t\tversion\n\t\t\t\ttotal\n\t\t\t}\n\t\t\tassignment {\n\t\t\t\tassigned\n\t\t\t\ttotal\n\t\t\t}\n\t\t\ttotal\n\t\t}\n\t\tztnaAppConnectorGroupSnapshot ( input:$ztnaAppConnectorGroupSnapshotInput  )  {\n\t\t\titems {\n\t\t\t\tgroupName\n\t\t\t\ttotalConnectors\n\t\t\t\tprivateAppCount\n\t\t\t\tconnectivityStatus {\n\t\t\t\t\tconnectivityStatus\n\t\t\t\t\ttotal\n\t\t\t\t}\n\t\t\t\tprivateApps {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t\tconnectors {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t\tinfo {\n\t\t\t\t\t\tcreatedAt\n\t\t\t\t\t\tgroupName\n\t\t\t\t\t\ttype\n\t\t\t\t\t\tlocation {\n\t\t\t\t\t\t\tcityName\n\t\t\t\t\t\t\tcountryCode\n\t\t\t\t\t\t\tcountryName\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\tconnectivity {\n\t\t\t\t\t\tstatus\n\t\t\t\t\t\tfirstConnected\n\t\t\t\t\t\tlastConnected\n\t\t\t\t\t\tpopLocation {\n\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\tname\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\tdevice {\n\t\t\t\t\t\tid\n\t\t\t\t\t\tinfo {\n\t\t\t\t\t\t\tmodel\n\t\t\t\t\t\t\tserialNumber\n\t\t\t\t\t\t\tsocketId\n\t\t\t\t\t\t\tisRegistered\n\t\t\t\t\t\t\tversion\n\t\t\t\t\t\t}\n\t\t\t\t\t\tconnectivity {\n\t\t\t\t\t\t\tplatform\n\t\t\t\t\t\t\tserialNumber\n\t\t\t\t\t\t\tversion\n\t\t\t\t\t\t}\n\t\t\t\t\t\tinterface {\n\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\tinterfaceType\n\t\t\t\t\t\t\tconnectivity {\n\t\t\t\t\t\t\t\tstatus\n\t\t\t\t\t\t\t\tlanIp\n\t\t\t\t\t\t\t\tdnsServer\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\tprivateAppCount\n\t\t\t\t\tprivateApp {\n\t\t\t\t\t\tid\n\t\t\t\t\t\tname\n\t\t\t\t\t\tconnectivity {\n\t\t\t\t\t\t\tprobingStatus\n\t\t\t\t\t\t\troutingStatus\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t\tpageInfo {\n\t\t\t\ttotal\n\t\t\t}\n\t\t}\n\t}\t\n}",
+    "variables": {
+        "ztnaAppConnectorGroupSnapshotInput": {
+            "pagingInput": {
+                "from": 1,
+                "limit": 1
+            },
+            "ztnaAppConnectorGroupSnapshotFilterInput": {
+                "connectedPop": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "connectivityStatus": {
+                    "eq": "CONNECTED",
+                    "in": "CONNECTED",
+                    "neq": "CONNECTED",
+                    "nin": "CONNECTED"
+                },
+                "connectorName": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "country": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "countryName": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "deviceVersion": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "dnsServer": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "freeText": {
+                    "search": "string"
+                },
+                "groupName": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "id": {
+                    "eq": "id",
+                    "in": [
+                        "id1",
+                        "id2"
+                    ],
+                    "neq": "id",
+                    "nin": [
+                        "id1",
+                        "id2"
+                    ]
+                },
+                "lanIp": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "model": {
+                    "eq": "X1500",
+                    "in": "X1500",
+                    "neq": "X1500",
+                    "nin": "X1500"
+                },
+                "privateApp": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "serialNumber": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                }
+            }
+        },
+        "ztnaAppConnectorSnapshotInput": {
+            "pagingInput": {
+                "from": 1,
+                "limit": 1
+            },
+            "ztnaAppConnectorSnapshotFilterInput": {
+                "connectedPop": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "connectivityStatus": {
+                    "eq": "CONNECTED",
+                    "in": "CONNECTED",
+                    "neq": "CONNECTED",
+                    "nin": "CONNECTED"
+                },
+                "connectorName": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "country": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "countryName": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "deviceVersion": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "dnsServer": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "freeText": {
+                    "search": "string"
+                },
+                "groupName": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "id": {
+                    "eq": "id",
+                    "in": [
+                        "id1",
+                        "id2"
+                    ],
+                    "neq": "id",
+                    "nin": [
+                        "id1",
+                        "id2"
+                    ]
+                },
+                "lanIp": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "model": {
+                    "eq": "X1500",
+                    "in": "X1500",
+                    "neq": "X1500",
+                    "nin": "X1500"
+                },
+                "privateApp": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "serialNumber": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                }
+            },
+            "ztnaAppConnectorSnapshotSortInput": {
+                "connectivity": {
+                    "direction": "ASC",
+                    "priority": 1
+                },
+                "createdAt": {
+                    "direction": "ASC",
+                    "priority": 1
+                },
+                "name": {
+                    "direction": "ASC",
+                    "priority": 1
+                }
+            }
+        },
+        "ztnaAppConnectorSnapshotSummaryInput": {
+            "ztnaAppConnectorSnapshotSummaryFilterInput": {
+                "connectivityStatus": {
+                    "eq": "CONNECTED",
+                    "in": "CONNECTED",
+                    "neq": "CONNECTED",
+                    "nin": "CONNECTED"
+                }
+            }
+        }
+    }
+}

@@ -64,6 +64,16 @@ python3 run_all_tests.py --verbose
 python3 run_all_tests.py --stop-on-fail
 ```
 
+### Run generated tests with an isolated local profile
+From the repository root:
+```bash
+python3 tests/run_generated_local.py --config ~/path/to/account.cfg --verbose
+```
+
+The config must define `CATO_ACCOUNT_ID`, `CATO_TOKEN`, and optionally
+`CATO_BASEURL` or `CATO_BASE_URL`. The file is parsed without execution, and
+credentials are written only to a temporary profile removed after the run.
+
 ### Filter tests
 ```bash
 # Run only generated tests matching operation name

@@ -1,0 +1,31 @@
+query aiSecurity ( $accountId:ID! $aiSecurityAppsInvocationInput:AiSecurityAppsInvocationInput! $aiSecurityEndUsersSessionConversationInput:AiSecurityEndUsersSessionConversationInput!) {
+	aiSecurity ( accountId:$accountId ) {
+		apps {
+			invocation ( input:$aiSecurityAppsInvocationInput   ) {
+				id
+				sessionId
+				timestamp
+				tokenCount
+				guard {
+					id
+					name
+				}
+				action
+				data {
+					message {
+						role
+						content {
+							text
+						}
+					}
+				}
+			}
+		}
+		endUsers {
+			sessionConversation ( input:$aiSecurityEndUsersSessionConversationInput   ) {
+				userPrompt
+				llmResponse
+			}
+		}
+	}	
+}

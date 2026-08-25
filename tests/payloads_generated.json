@@ -10,6 +10,16 @@
         "adminID": "76653"
     },
     "query.admins": {},
+    "query.aiSecurity": {
+        "aiSecurityAppsInvocationInput": {
+            "id": "id"
+        },
+        "aiSecurityEndUsersSessionConversationInput": {
+            "appId": "id",
+            "messageId": "id",
+            "sessionId": "id"
+        }
+    },
     "query.appStats": {
         "timeFrame": "last.P1D"
     },
@@ -20,135 +30,18 @@
     "query.auditFeed": {
         "timeFrame": "last.P1D"
     },
-    "query.catalogs.catalogApplication": {
+    "query.businessPlatform": {},
+    "query.catalogs.catalogApplication.fqdn": {
         "applicationRefInput": {
             "by": "ID",
             "input": "string"
         }
     },
     "query.catalogs.catalogApplicationList": {
-        "catalogApplicationListInput": {
-            "catalogApplicationFilterInput": {
-                "activity": {
-                    "hasAny": {
-                        "by": "ID",
-                        "input": "string"
-                    }
-                },
-                "capability": {
-                    "hasAny": "APP_CONTROL_INLINE"
-                },
-                "category": {
-                    "hasAny": {
-                        "by": "ID",
-                        "input": "string"
-                    }
-                },
-                "freeText": {
-                    "search": "string"
-                },
-                "id": {
-                    "eq": "id",
-                    "in": [
-                        "id1",
-                        "id2"
-                    ],
-                    "neq": "id",
-                    "nin": [
-                        "id1",
-                        "id2"
-                    ]
-                },
-                "name": {
-                    "eq": "string",
-                    "in": [
-                        "string1",
-                        "string2"
-                    ],
-                    "neq": "string",
-                    "nin": [
-                        "string1",
-                        "string2"
-                    ]
-                },
-                "originCountry": {
-                    "eq": "string",
-                    "in": [
-                        "string1",
-                        "string2"
-                    ],
-                    "neq": "string",
-                    "nin": [
-                        "string1",
-                        "string2"
-                    ]
-                },
-                "recentlyAdded": {
-                    "eq": true,
-                    "neq": true
-                },
-                "risk": {
-                    "between": [
-                        1,
-                        2
-                    ],
-                    "eq": 1,
-                    "gt": 1,
-                    "gte": 1,
-                    "in": [
-                        1,
-                        2
-                    ],
-                    "lt": 1,
-                    "lte": 1,
-                    "neq": 1,
-                    "nin": [
-                        1,
-                        2
-                    ]
-                },
-                "tenantActivity": {
-                    "eq": true,
-                    "neq": true
-                },
-                "type": {
-                    "eq": "APPLICATION",
-                    "in": "APPLICATION",
-                    "neq": "APPLICATION",
-                    "nin": "APPLICATION"
-                }
-            },
-            "catalogApplicationSortInput": {
-                "category": {
-                    "name": {
-                        "direction": "ASC",
-                        "priority": 1
-                    }
-                },
-                "description": {
-                    "direction": "ASC",
-                    "priority": 1
-                },
-                "name": {
-                    "direction": "ASC",
-                    "priority": 1
-                },
-                "risk": {
-                    "direction": "ASC",
-                    "priority": 1
-                },
-                "type": {
-                    "direction": "ASC",
-                    "priority": 1
-                }
-            },
-            "pagingInput": {
-                "from": 1,
-                "limit": 1
-            }
-        }
+        "catalogApplicationListInput": {}
     },
     "query.catalogs.contentTypeGroupList": {},
+    "query.connectivitySnapshots": {},
     "query.container.fqdn.downloadFile": {},
     "query.container.fqdn.search": {},
     "query.container.fqdn.searchFqdn": {},
@@ -159,63 +52,7 @@
     "query.container.ipAddressRange.testFromURL": {},
     "query.container.list": {},
     "query.customAppData": {
-        "customApplicationListInput": {
-            "customApplicationFilterInput": {
-                "category": {
-                    "hasAny": {
-                        "by": "ID",
-                        "input": "string"
-                    }
-                },
-                "freeText": {
-                    "search": "string"
-                },
-                "id": {
-                    "eq": "id",
-                    "in": [
-                        "id1",
-                        "id2"
-                    ],
-                    "neq": "id",
-                    "nin": [
-                        "id1",
-                        "id2"
-                    ]
-                },
-                "name": {
-                    "eq": "string",
-                    "in": [
-                        "string1",
-                        "string2"
-                    ],
-                    "neq": "string",
-                    "nin": [
-                        "string1",
-                        "string2"
-                    ]
-                }
-            },
-            "customApplicationSortInput": {
-                "category": {
-                    "name": {
-                        "direction": "ASC",
-                        "priority": 1
-                    }
-                },
-                "description": {
-                    "direction": "ASC",
-                    "priority": 1
-                },
-                "name": {
-                    "direction": "ASC",
-                    "priority": 1
-                }
-            },
-            "pagingInput": {
-                "from": 1,
-                "limit": 1
-            }
-        },
+        "customApplicationListInput": {},
         "customApplicationRefInput": {
             "by": "ID",
             "input": "string"
@@ -226,7 +63,7 @@
     },
     "query.enterpriseDirectory": {},
     "query.entityLookup": {
-        "type": "account"
+        "type": "site"
     },
     "query.events": {},
     "query.eventsFeed": {},
@@ -238,41 +75,11 @@
     "query.groups.group.members": {},
     "query.groups.groupList": {
         "groupMembersListInput": {
-            "groupMembersListFilterInput": {
-                "name": {
-                    "eq": "string",
-                    "in": [
-                        "string1",
-                        "string2"
-                    ],
-                    "neq": "string",
-                    "nin": [
-                        "string1",
-                        "string2"
-                    ],
-                    "regex": "string"
-                },
-                "type": {
-                    "eq": "SITE",
-                    "in": "SITE",
-                    "neq": "SITE",
-                    "nin": "SITE"
-                }
-            },
-            "groupMembersListSortInput": {
-                "name": {
-                    "direction": "ASC",
-                    "priority": 1
-                },
-                "type": {
-                    "direction": "ASC",
-                    "priority": 1
-                }
-            },
-            "pagingInput": {
+            "paging": {
                 "from": 1,
                 "limit": 1
-            }
+            },
+            "sort": {}
         }
     },
     "query.groups.whereUsed": {},
@@ -297,6 +104,12 @@
             "input": "string"
         }
     },
+    "query.object": {
+        "globalIpRangeRefInput": {
+            "by": "ID",
+            "input": "string"
+        }
+    },
     "query.policy.antiMalwareFileHash.policy": {},
     "query.policy.appTenantRestriction.policy": {},
     "query.policy.applicationControl.policy": {},
@@ -304,9 +117,11 @@
     "query.policy.dynamicIpAllocation.policy": {},
     "query.policy.internetFirewall.policy": {},
     "query.policy.internetFirewall.policyList": {},
+    "query.policy.privateAccess.policy": {},
     "query.policy.remotePortFwd.policy": {},
     "query.policy.socketBypass.policy": {},
     "query.policy.socketLan.policy": {},
+    "query.policy.socketLan.policyList": {},
     "query.policy.splitTunnel.policy": {},
     "query.policy.terminalServer.policy": {},
     "query.policy.tlsInspect.policy": {},
@@ -314,7 +129,15 @@
     "query.policy.wanFirewall.policyList": {},
     "query.policy.wanNetwork.policy": {},
     "query.policy.ztnaAlwaysOn.policy": {},
-    "query.popLocations": {},
+    "query.popLocations": {
+        "id": "id"
+    },
+    "query.privateApplication": {
+        "privateApplicationRefInput": {
+            "by": "ID",
+            "input": "string"
+        }
+    },
     "query.sandbox": {},
     "query.servicePrincipalAdmin": {},
     "query.site.availableVersionList": {},
@@ -323,10 +146,33 @@
     "query.site.cloudInterconnectConnectionConnectivity": {},
     "query.site.cloudInterconnectPhysicalConnection": {},
     "query.site.cloudInterconnectPhysicalConnectionId": {},
+    "query.site.knownHostList": {
+        "siteKnownHostListInput": {
+            "paging": {
+                "from": 1,
+                "limit": 1
+            },
+            "site": {
+                "by": "ID",
+                "input": "string"
+            }
+        }
+    },
+    "query.site.networkRange": {
+        "networkRangeId": "id"
+    },
+    "query.site.networkRangeList": {
+        "networkRangeListInput": {
+            "site": {
+                "by": "ID",
+                "input": "string"
+            }
+        }
+    },
     "query.site.retrieveUsedVlanIDs": {
         "retrieveUsedVlanIDsInput": {
             "encapsulationMethod": "DOT1Q",
-            "popLocationRefInput": {
+            "popLocation": {
                 "by": "ID",
                 "input": "string"
             },
@@ -354,7 +200,66 @@
     "query.site.siteGeneralDetails": {},
     "query.site.siteSocketConfiguration": {
         "siteSocketConfigurationInput": {
-            "siteRefInput": {
+            "site": {
+                "by": "ID",
+                "input": "string"
+            }
+        }
+    },
+    "query.site.staticHost": {
+        "hostId": "id",
+        "siteRefInput": {
+            "by": "ID",
+            "input": "string"
+        }
+    },
+    "query.site.staticHostList": {
+        "siteRefInput": {
+            "by": "ID",
+            "input": "string"
+        }
+    },
+    "query.site.validWifiRadioSettings": {
+        "validWifiRadioSettingsInput": {
+            "site": {
+                "by": "ID",
+                "input": "string"
+            }
+        }
+    },
+    "query.site.validWifiRadioSettingsByCountry": {},
+    "query.site.validateWifiRadioProfile": {
+        "validateWifiRadioProfileInput": {
+            "radioProfile": {},
+            "site": {
+                "by": "ID",
+                "input": "string"
+            }
+        }
+    },
+    "query.site.validateWifiRadioProfileByCountry": {},
+    "query.site.wifiRadioProfile": {
+        "wifiRadioProfileRefInput": {
+            "by": "ID",
+            "input": "string"
+        }
+    },
+    "query.site.wifiRadioProfileBySite": {
+        "siteRefInput": {
+            "by": "ID",
+            "input": "string"
+        }
+    },
+    "query.site.wifiRadioProfileList": {},
+    "query.site.wifiSsid": {
+        "wifiSsidRefInput": {
+            "by": "ID",
+            "input": "string"
+        }
+    },
+    "query.site.wifiSsidList": {
+        "wifiSsidListInput": {
+            "site": {
                 "by": "ID",
                 "input": "string"
             }
@@ -368,6 +273,15 @@
         "timeFrame": "last.P1D"
     },
     "query.subDomains": {},
+    "query.user": {},
     "query.xdr.stories": {},
-    "query.xdr.story": {}
+    "query.xdr.story": {},
+    "query.ztnaAppConnector.ztnaAppConnector": {
+        "ztnaAppConnectorRefInput": {
+            "by": "ID",
+            "input": "string"
+        }
+    },
+    "query.ztnaAppConnector.ztnaAppConnectorGroupList": {},
+    "query.ztnaAppConnector.ztnaAppConnectorList": {}
 }

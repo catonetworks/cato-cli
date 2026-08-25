@@ -440,10 +440,19 @@
         "name": "SCIM Get Users",
         "description": "SCIM API get users test",
         "operation": "scim.get_users",
-        "payload": {},
+        "ignored": true,
+        "payload": {
+            "count": 1,
+            "startIndex": 1
+        },
         "timeout": 30,
         "assertions": [
-            "total_users",
+            {
+                "path": "success",
+                "operator": "==",
+                "value": true
+            },
+            "total_results",
             "users"
         ]
     },

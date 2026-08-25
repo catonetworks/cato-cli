@@ -391,7 +391,7 @@
                                                     "varName": "description"
                                                 },
                                                 "destination": {
-                                                    "defaultValue": "{application: [], globalIpRange: []}",
+                                                    "defaultValue": "{application: [], globalIpRange: [], domain: [], fqdn: []}",
                                                     "description": "Destination traffic matching criteria.\nLogical \u2018OR\u2019 is applied within the criteria set.\nLogical \u2018AND\u2019 is applied between criteria sets.",
                                                     "id_str": "addRule___input___rule___destination",
                                                     "name": "destination",
@@ -499,6 +499,48 @@
                                                                         "non_null": false
                                                                     },
                                                                     "varName": "applicationRefInput"
+                                                                },
+                                                                "domain": {
+                                                                    "defaultValue": "[]",
+                                                                    "description": "A Second-Level Domain (SLD). It matches all Top-Level Domains (TLD), and subdomains that include the Domain. Example: example.com.",
+                                                                    "id_str": "addRule___input___rule___destination___domain",
+                                                                    "name": "domain",
+                                                                    "path": "addRule.input.rule.destination.domain",
+                                                                    "requestStr": "$domain:[Domain]! ",
+                                                                    "required": true,
+                                                                    "responseStr": "domain:$domain ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "LIST",
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "Domain",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "domain"
+                                                                },
+                                                                "fqdn": {
+                                                                    "defaultValue": "[]",
+                                                                    "description": "An exact match of the fully qualified domain (FQDN). Example: www.my.example.com.",
+                                                                    "id_str": "addRule___input___rule___destination___fqdn",
+                                                                    "name": "fqdn",
+                                                                    "path": "addRule.input.rule.destination.fqdn",
+                                                                    "requestStr": "$fqdn:[Fqdn]! ",
+                                                                    "required": true,
+                                                                    "responseStr": "fqdn:$fqdn ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "LIST",
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "Fqdn",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "fqdn"
                                                                 },
                                                                 "globalIpRange": {
                                                                     "defaultValue": "[]",
@@ -748,6 +790,12 @@
                                                                     "description": null,
                                                                     "isDeprecated": false,
                                                                     "name": "EMBEDDED"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "CHROMEOS"
                                                                 }
                                                             ],
                                                             "fields": null,
@@ -1645,7 +1693,7 @@
                                             "varName": "description"
                                         },
                                         "destination": {
-                                            "defaultValue": "{application: [], globalIpRange: []}",
+                                            "defaultValue": "{application: [], globalIpRange: [], domain: [], fqdn: []}",
                                             "description": "Destination traffic matching criteria.\nLogical \u2018OR\u2019 is applied within the criteria set.\nLogical \u2018AND\u2019 is applied between criteria sets.",
                                             "id_str": "addRule___input___rule___destination",
                                             "name": "destination",
@@ -1753,6 +1801,48 @@
                                                                 "non_null": false
                                                             },
                                                             "varName": "applicationRefInput"
+                                                        },
+                                                        "domain": {
+                                                            "defaultValue": "[]",
+                                                            "description": "A Second-Level Domain (SLD). It matches all Top-Level Domains (TLD), and subdomains that include the Domain. Example: example.com.",
+                                                            "id_str": "addRule___input___rule___destination___domain",
+                                                            "name": "domain",
+                                                            "path": "addRule.input.rule.destination.domain",
+                                                            "requestStr": "$domain:[Domain]! ",
+                                                            "required": true,
+                                                            "responseStr": "domain:$domain ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "LIST",
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "Domain",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "domain"
+                                                        },
+                                                        "fqdn": {
+                                                            "defaultValue": "[]",
+                                                            "description": "An exact match of the fully qualified domain (FQDN). Example: www.my.example.com.",
+                                                            "id_str": "addRule___input___rule___destination___fqdn",
+                                                            "name": "fqdn",
+                                                            "path": "addRule.input.rule.destination.fqdn",
+                                                            "requestStr": "$fqdn:[Fqdn]! ",
+                                                            "required": true,
+                                                            "responseStr": "fqdn:$fqdn ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "LIST",
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "Fqdn",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "fqdn"
                                                         },
                                                         "globalIpRange": {
                                                             "defaultValue": "[]",
@@ -2002,6 +2092,12 @@
                                                             "description": null,
                                                             "isDeprecated": false,
                                                             "name": "EMBEDDED"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "CHROMEOS"
                                                         }
                                                     ],
                                                     "fields": null,
@@ -2949,7 +3045,7 @@
                                                                             "varName": "description"
                                                                         },
                                                                         "destination": {
-                                                                            "defaultValue": "{application: [], globalIpRange: []}",
+                                                                            "defaultValue": "{application: [], globalIpRange: [], domain: [], fqdn: []}",
                                                                             "description": "Destination traffic matching criteria.\nLogical \u2018OR\u2019 is applied within the criteria set.\nLogical \u2018AND\u2019 is applied between criteria sets.",
                                                                             "id_str": "addRule___input___rule___destination",
                                                                             "name": "destination",
@@ -3057,6 +3153,48 @@
                                                                                                 "non_null": false
                                                                                             },
                                                                                             "varName": "applicationRefInput"
+                                                                                        },
+                                                                                        "domain": {
+                                                                                            "defaultValue": "[]",
+                                                                                            "description": "A Second-Level Domain (SLD). It matches all Top-Level Domains (TLD), and subdomains that include the Domain. Example: example.com.",
+                                                                                            "id_str": "addRule___input___rule___destination___domain",
+                                                                                            "name": "domain",
+                                                                                            "path": "addRule.input.rule.destination.domain",
+                                                                                            "requestStr": "$domain:[Domain]! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "domain:$domain ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "LIST",
+                                                                                                    "NON_NULL",
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "Domain",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "domain"
+                                                                                        },
+                                                                                        "fqdn": {
+                                                                                            "defaultValue": "[]",
+                                                                                            "description": "An exact match of the fully qualified domain (FQDN). Example: www.my.example.com.",
+                                                                                            "id_str": "addRule___input___rule___destination___fqdn",
+                                                                                            "name": "fqdn",
+                                                                                            "path": "addRule.input.rule.destination.fqdn",
+                                                                                            "requestStr": "$fqdn:[Fqdn]! ",
+                                                                                            "required": true,
+                                                                                            "responseStr": "fqdn:$fqdn ",
+                                                                                            "type": {
+                                                                                                "kind": [
+                                                                                                    "NON_NULL",
+                                                                                                    "LIST",
+                                                                                                    "NON_NULL",
+                                                                                                    "SCALAR"
+                                                                                                ],
+                                                                                                "name": "Fqdn",
+                                                                                                "non_null": false
+                                                                                            },
+                                                                                            "varName": "fqdn"
                                                                                         },
                                                                                         "globalIpRange": {
                                                                                             "defaultValue": "[]",
@@ -3306,6 +3444,12 @@
                                                                                             "description": null,
                                                                                             "isDeprecated": false,
                                                                                             "name": "EMBEDDED"
+                                                                                        },
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "CHROMEOS"
                                                                                         }
                                                                                     ],
                                                                                     "fields": null,
@@ -3793,6 +3937,164 @@
                                                     },
                                                     "varName": "policyMutationError"
                                                 },
+                                                "revision": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "id_str": "splitTunnel___addRule___revision",
+                                                    "isDeprecated": false,
+                                                    "name": "revision",
+                                                    "path": "splitTunnel.addRule.revision",
+                                                    "requestStr": "$policyRevision:PolicyRevision ",
+                                                    "required": false,
+                                                    "responseStr": "revision:$policyRevision ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": "Returns data about the policy revision, such as when the change was made, how many rules were changed, etc.",
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "changes": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "id_str": "splitTunnel___addRule___revision___changes",
+                                                                    "isDeprecated": false,
+                                                                    "name": "changes",
+                                                                    "path": "splitTunnel.addRule.revision.changes",
+                                                                    "requestStr": "$changes:Int! ",
+                                                                    "required": true,
+                                                                    "responseStr": "changes:$changes ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "Int",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "changes"
+                                                                },
+                                                                "createdTime": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Date and time when the revision was created.",
+                                                                    "id_str": "splitTunnel___addRule___revision___createdTime",
+                                                                    "isDeprecated": false,
+                                                                    "name": "createdTime",
+                                                                    "path": "splitTunnel.addRule.revision.createdTime",
+                                                                    "requestStr": "$createdTime:DateTime! ",
+                                                                    "required": true,
+                                                                    "responseStr": "createdTime:$createdTime ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "DateTime",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "createdTime"
+                                                                },
+                                                                "description": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "id_str": "splitTunnel___addRule___revision___description",
+                                                                    "isDeprecated": false,
+                                                                    "name": "description",
+                                                                    "path": "splitTunnel.addRule.revision.description",
+                                                                    "requestStr": "$description:String! ",
+                                                                    "required": true,
+                                                                    "responseStr": "description:$description ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "description"
+                                                                },
+                                                                "id": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "id_str": "splitTunnel___addRule___revision___id",
+                                                                    "isDeprecated": false,
+                                                                    "name": "id",
+                                                                    "path": "splitTunnel.addRule.revision.id",
+                                                                    "requestStr": "$id:ID! ",
+                                                                    "required": true,
+                                                                    "responseStr": "id:$id ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "ID",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "id"
+                                                                },
+                                                                "name": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "id_str": "splitTunnel___addRule___revision___name",
+                                                                    "isDeprecated": false,
+                                                                    "name": "name",
+                                                                    "path": "splitTunnel.addRule.revision.name",
+                                                                    "requestStr": "$name:String! ",
+                                                                    "required": true,
+                                                                    "responseStr": "name:$name ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "String",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "name"
+                                                                },
+                                                                "updatedTime": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": "Date and time when the revision was last updated.",
+                                                                    "id_str": "splitTunnel___addRule___revision___updatedTime",
+                                                                    "isDeprecated": false,
+                                                                    "name": "updatedTime",
+                                                                    "path": "splitTunnel.addRule.revision.updatedTime",
+                                                                    "requestStr": "$updatedTime:DateTime! ",
+                                                                    "required": true,
+                                                                    "responseStr": "updatedTime:$updatedTime ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "DateTime",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "updatedTime"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "PolicyRevision",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "PolicyRevision",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "policyRevision"
+                                                },
                                                 "rule": {
                                                     "args": {},
                                                     "deprecationReason": null,
@@ -3883,6 +4185,133 @@
                                                                         "non_null": false
                                                                     },
                                                                     "varName": "policyElementAudit"
+                                                                },
+                                                                "metadata": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "id_str": "splitTunnel___addRule___rule___metadata",
+                                                                    "isDeprecated": false,
+                                                                    "name": "metadata",
+                                                                    "path": "splitTunnel.addRule.rule.metadata",
+                                                                    "requestStr": "$policyElementMetadata:PolicyElementMetadata ",
+                                                                    "required": false,
+                                                                    "responseStr": "metadata:$policyElementMetadata ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": "Additional metadata attached to a rule or section",
+                                                                            "enumValues": null,
+                                                                            "fields": {
+                                                                                "lock": {
+                                                                                    "args": {},
+                                                                                    "deprecationReason": null,
+                                                                                    "description": "Lock information; non-null only when the item has the LOCKED property",
+                                                                                    "id_str": "splitTunnel___addRule___rule___metadata___lock",
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "lock",
+                                                                                    "path": "splitTunnel.addRule.rule.metadata.lock",
+                                                                                    "requestStr": "$policyElementLock:PolicyElementLock ",
+                                                                                    "required": false,
+                                                                                    "responseStr": "lock:$policyElementLock ",
+                                                                                    "type": {
+                                                                                        "definition": {
+                                                                                            "description": "Lock info for a rule or section held by another revision",
+                                                                                            "enumValues": null,
+                                                                                            "fields": {
+                                                                                                "lockingAdminEmail": {
+                                                                                                    "args": {},
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": "Email of the admin whose revision holds this item locked",
+                                                                                                    "id_str": "splitTunnel___addRule___rule___metadata___lock___lockingAdminEmail",
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "lockingAdminEmail",
+                                                                                                    "path": "splitTunnel.addRule.rule.metadata.lock.lockingAdminEmail",
+                                                                                                    "requestStr": "$lockingAdminEmail:String! ",
+                                                                                                    "required": true,
+                                                                                                    "responseStr": "lockingAdminEmail:$lockingAdminEmail ",
+                                                                                                    "type": {
+                                                                                                        "kind": [
+                                                                                                            "NON_NULL",
+                                                                                                            "SCALAR"
+                                                                                                        ],
+                                                                                                        "name": "String",
+                                                                                                        "non_null": false
+                                                                                                    },
+                                                                                                    "varName": "lockingAdminEmail"
+                                                                                                },
+                                                                                                "lockingRevisionId": {
+                                                                                                    "args": {},
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": "The ID of the revision that currently holds the lock",
+                                                                                                    "id_str": "splitTunnel___addRule___rule___metadata___lock___lockingRevisionId",
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "lockingRevisionId",
+                                                                                                    "path": "splitTunnel.addRule.rule.metadata.lock.lockingRevisionId",
+                                                                                                    "requestStr": "$lockingRevisionId:ID! ",
+                                                                                                    "required": true,
+                                                                                                    "responseStr": "lockingRevisionId:$lockingRevisionId ",
+                                                                                                    "type": {
+                                                                                                        "kind": [
+                                                                                                            "NON_NULL",
+                                                                                                            "SCALAR"
+                                                                                                        ],
+                                                                                                        "name": "ID",
+                                                                                                        "non_null": false
+                                                                                                    },
+                                                                                                    "varName": "lockingRevisionId"
+                                                                                                },
+                                                                                                "lockingTime": {
+                                                                                                    "args": {},
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": "Timestamp when this rule/section was locked",
+                                                                                                    "id_str": "splitTunnel___addRule___rule___metadata___lock___lockingTime",
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "lockingTime",
+                                                                                                    "path": "splitTunnel.addRule.rule.metadata.lock.lockingTime",
+                                                                                                    "requestStr": "$lockingTime:DateTime! ",
+                                                                                                    "required": true,
+                                                                                                    "responseStr": "lockingTime:$lockingTime ",
+                                                                                                    "type": {
+                                                                                                        "kind": [
+                                                                                                            "NON_NULL",
+                                                                                                            "SCALAR"
+                                                                                                        ],
+                                                                                                        "name": "DateTime",
+                                                                                                        "non_null": false
+                                                                                                    },
+                                                                                                    "varName": "lockingTime"
+                                                                                                }
+                                                                                            },
+                                                                                            "inputFields": null,
+                                                                                            "interfaces": {},
+                                                                                            "kind": "OBJECT",
+                                                                                            "name": "PolicyElementLock",
+                                                                                            "possibleTypes": null
+                                                                                        },
+                                                                                        "indexType": "object",
+                                                                                        "kind": [
+                                                                                            "OBJECT"
+                                                                                        ],
+                                                                                        "name": "PolicyElementLock",
+                                                                                        "non_null": false
+                                                                                    },
+                                                                                    "varName": "policyElementLock"
+                                                                                }
+                                                                            },
+                                                                            "inputFields": null,
+                                                                            "interfaces": {},
+                                                                            "kind": "OBJECT",
+                                                                            "name": "PolicyElementMetadata",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "object",
+                                                                        "kind": [
+                                                                            "OBJECT"
+                                                                        ],
+                                                                        "name": "PolicyElementMetadata",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "policyElementMetadata"
                                                                 },
                                                                 "properties": {
                                                                     "args": {},
@@ -4281,6 +4710,52 @@
                                                                                                     },
                                                                                                     "varName": "applicationRef"
                                                                                                 },
+                                                                                                "domain": {
+                                                                                                    "args": {},
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": "A Second-Level Domain (SLD). It matches all Top-Level Domains (TLD), and subdomains that include the Domain. Example: example.com.",
+                                                                                                    "id_str": "splitTunnel___addRule___rule___rule___destination___domain",
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "domain",
+                                                                                                    "path": "splitTunnel.addRule.rule.rule.destination.domain",
+                                                                                                    "requestStr": "$domain:[Domain]! ",
+                                                                                                    "required": true,
+                                                                                                    "responseStr": "domain:$domain ",
+                                                                                                    "type": {
+                                                                                                        "kind": [
+                                                                                                            "NON_NULL",
+                                                                                                            "LIST",
+                                                                                                            "NON_NULL",
+                                                                                                            "SCALAR"
+                                                                                                        ],
+                                                                                                        "name": "Domain",
+                                                                                                        "non_null": false
+                                                                                                    },
+                                                                                                    "varName": "domain"
+                                                                                                },
+                                                                                                "fqdn": {
+                                                                                                    "args": {},
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": "An exact match of the fully qualified domain (FQDN). Example: www.my.example.com.",
+                                                                                                    "id_str": "splitTunnel___addRule___rule___rule___destination___fqdn",
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "fqdn",
+                                                                                                    "path": "splitTunnel.addRule.rule.rule.destination.fqdn",
+                                                                                                    "requestStr": "$fqdn:[Fqdn]! ",
+                                                                                                    "required": true,
+                                                                                                    "responseStr": "fqdn:$fqdn ",
+                                                                                                    "type": {
+                                                                                                        "kind": [
+                                                                                                            "NON_NULL",
+                                                                                                            "LIST",
+                                                                                                            "NON_NULL",
+                                                                                                            "SCALAR"
+                                                                                                        ],
+                                                                                                        "name": "Fqdn",
+                                                                                                        "non_null": false
+                                                                                                    },
+                                                                                                    "varName": "fqdn"
+                                                                                                },
                                                                                                 "globalIpRange": {
                                                                                                     "args": {},
                                                                                                     "deprecationReason": null,
@@ -4564,6 +5039,12 @@
                                                                                                     "description": null,
                                                                                                     "isDeprecated": false,
                                                                                                     "name": "EMBEDDED"
+                                                                                                },
+                                                                                                {
+                                                                                                    "deprecationReason": null,
+                                                                                                    "description": null,
+                                                                                                    "isDeprecated": false,
+                                                                                                    "name": "CHROMEOS"
                                                                                                 }
                                                                                             ],
                                                                                             "fields": null,
@@ -5120,6 +5601,14 @@
                         "by": "ID",
                         "input": "string"
                     },
+                    "domain": [
+                        "example1",
+                        "example2"
+                    ],
+                    "fqdn": [
+                        "example1",
+                        "example2"
+                    ],
                     "globalIpRange": {
                         "by": "ID",
                         "input": "string"

@@ -31,6 +31,7 @@ from .help_formatter import CustomSubparserHelpFormatter
 from .cliutils import load_cli_settings
 from ..parsers.mutation_accountManagement import mutation_accountManagement_parse
 from ..parsers.mutation_admin import mutation_admin_parse
+from ..parsers.mutation_businessPlatform import mutation_businessPlatform_parse
 from ..parsers.mutation_container import mutation_container_parse
 from ..parsers.mutation_customAppData import mutation_customAppData_parse
 from ..parsers.mutation_enterpriseDirectory import mutation_enterpriseDirectory_parse
@@ -39,12 +40,16 @@ from ..parsers.mutation_groups import mutation_groups_parse
 from ..parsers.mutation_hardware import mutation_hardware_parse
 from ..parsers.mutation_licensing import mutation_licensing_parse
 from ..parsers.mutation_notification import mutation_notification_parse
+from ..parsers.mutation_object import mutation_object_parse
 from ..parsers.mutation_policy import mutation_policy_parse
 from ..parsers.mutation_popLocationMutations import mutation_popLocationMutations_parse
+from ..parsers.mutation_privateApplication import mutation_privateApplication_parse
 from ..parsers.mutation_sandbox import mutation_sandbox_parse
 from ..parsers.mutation_site import mutation_site_parse
 from ..parsers.mutation_sites import mutation_sites_parse
+from ..parsers.mutation_user import mutation_user_parse
 from ..parsers.mutation_xdr import mutation_xdr_parse
+from ..parsers.mutation_ztnaAppConnector import mutation_ztnaAppConnector_parse
 from ..parsers.query_accountBySubdomain import query_accountBySubdomain_parse
 from ..parsers.query_accountManagement import query_accountManagement_parse
 from ..parsers.query_accountMetrics import query_accountMetrics_parse
@@ -52,10 +57,13 @@ from ..parsers.query_accountRoles import query_accountRoles_parse
 from ..parsers.query_accountSnapshot import query_accountSnapshot_parse
 from ..parsers.query_admin import query_admin_parse
 from ..parsers.query_admins import query_admins_parse
+from ..parsers.query_aiSecurity import query_aiSecurity_parse
 from ..parsers.query_appStats import query_appStats_parse
 from ..parsers.query_appStatsTimeSeries import query_appStatsTimeSeries_parse
 from ..parsers.query_auditFeed import query_auditFeed_parse
+from ..parsers.query_businessPlatform import query_businessPlatform_parse
 from ..parsers.query_catalogs import query_catalogs_parse
+from ..parsers.query_connectivitySnapshots import query_connectivitySnapshots_parse
 from ..parsers.query_container import query_container_parse
 from ..parsers.query_customAppData import query_customAppData_parse
 from ..parsers.query_devices import query_devices_parse
@@ -69,15 +77,19 @@ from ..parsers.query_hardware import query_hardware_parse
 from ..parsers.query_hardwareManagement import query_hardwareManagement_parse
 from ..parsers.query_licensing import query_licensing_parse
 from ..parsers.query_notification import query_notification_parse
+from ..parsers.query_object import query_object_parse
 from ..parsers.query_policy import query_policy_parse
 from ..parsers.query_popLocations import query_popLocations_parse
+from ..parsers.query_privateApplication import query_privateApplication_parse
 from ..parsers.query_sandbox import query_sandbox_parse
 from ..parsers.query_servicePrincipalAdmin import query_servicePrincipalAdmin_parse
 from ..parsers.query_site import query_site_parse
 from ..parsers.query_socketPortMetrics import query_socketPortMetrics_parse
 from ..parsers.query_socketPortMetricsTimeSeries import query_socketPortMetricsTimeSeries_parse
 from ..parsers.query_subDomains import query_subDomains_parse
+from ..parsers.query_user import query_user_parse
 from ..parsers.query_xdr import query_xdr_parse
+from ..parsers.query_ztnaAppConnector import query_ztnaAppConnector_parse
 
 def show_version_info(args, configuration=None):
     print(f"catocli version {catocli.__version__}")
@@ -219,6 +231,7 @@ mutation_subparsers = mutation_parser.add_subparsers(description='Available muta
 
 mutation_accountManagement_parser = mutation_accountManagement_parse(mutation_subparsers)
 mutation_admin_parser = mutation_admin_parse(mutation_subparsers)
+mutation_businessPlatform_parser = mutation_businessPlatform_parse(mutation_subparsers)
 mutation_container_parser = mutation_container_parse(mutation_subparsers)
 mutation_customAppData_parser = mutation_customAppData_parse(mutation_subparsers)
 mutation_enterpriseDirectory_parser = mutation_enterpriseDirectory_parse(mutation_subparsers)
@@ -227,12 +240,16 @@ mutation_groups_parser = mutation_groups_parse(mutation_subparsers)
 mutation_hardware_parser = mutation_hardware_parse(mutation_subparsers)
 mutation_licensing_parser = mutation_licensing_parse(mutation_subparsers)
 mutation_notification_parser = mutation_notification_parse(mutation_subparsers)
+mutation_object_parser = mutation_object_parse(mutation_subparsers)
 mutation_policy_parser = mutation_policy_parse(mutation_subparsers)
 mutation_popLocationMutations_parser = mutation_popLocationMutations_parse(mutation_subparsers)
+mutation_privateApplication_parser = mutation_privateApplication_parse(mutation_subparsers)
 mutation_sandbox_parser = mutation_sandbox_parse(mutation_subparsers)
 mutation_site_parser = mutation_site_parse(mutation_subparsers)
 mutation_sites_parser = mutation_sites_parse(mutation_subparsers)
+mutation_user_parser = mutation_user_parse(mutation_subparsers)
 mutation_xdr_parser = mutation_xdr_parse(mutation_subparsers)
+mutation_ztnaAppConnector_parser = mutation_ztnaAppConnector_parse(mutation_subparsers)
 query_accountBySubdomain_parser = query_accountBySubdomain_parse(query_subparsers)
 query_accountManagement_parser = query_accountManagement_parse(query_subparsers)
 query_accountMetrics_parser = query_accountMetrics_parse(query_subparsers)
@@ -240,10 +257,13 @@ query_accountRoles_parser = query_accountRoles_parse(query_subparsers)
 query_accountSnapshot_parser = query_accountSnapshot_parse(query_subparsers)
 query_admin_parser = query_admin_parse(query_subparsers)
 query_admins_parser = query_admins_parse(query_subparsers)
+query_aiSecurity_parser = query_aiSecurity_parse(query_subparsers)
 query_appStats_parser = query_appStats_parse(query_subparsers)
 query_appStatsTimeSeries_parser = query_appStatsTimeSeries_parse(query_subparsers)
 query_auditFeed_parser = query_auditFeed_parse(query_subparsers)
+query_businessPlatform_parser = query_businessPlatform_parse(query_subparsers)
 query_catalogs_parser = query_catalogs_parse(query_subparsers)
+query_connectivitySnapshots_parser = query_connectivitySnapshots_parse(query_subparsers)
 query_container_parser = query_container_parse(query_subparsers)
 query_customAppData_parser = query_customAppData_parse(query_subparsers)
 query_devices_parser = query_devices_parse(query_subparsers)
@@ -257,15 +277,19 @@ query_hardware_parser = query_hardware_parse(query_subparsers)
 query_hardwareManagement_parser = query_hardwareManagement_parse(query_subparsers)
 query_licensing_parser = query_licensing_parse(query_subparsers)
 query_notification_parser = query_notification_parse(query_subparsers)
+query_object_parser = query_object_parse(query_subparsers)
 query_policy_parser = query_policy_parse(query_subparsers)
 query_popLocations_parser = query_popLocations_parse(query_subparsers)
+query_privateApplication_parser = query_privateApplication_parse(query_subparsers)
 query_sandbox_parser = query_sandbox_parse(query_subparsers)
 query_servicePrincipalAdmin_parser = query_servicePrincipalAdmin_parse(query_subparsers)
 query_site_parser = query_site_parse(query_subparsers)
 query_socketPortMetrics_parser = query_socketPortMetrics_parse(query_subparsers)
 query_socketPortMetricsTimeSeries_parser = query_socketPortMetricsTimeSeries_parse(query_subparsers)
 query_subDomains_parser = query_subDomains_parse(query_subparsers)
+query_user_parser = query_user_parse(query_subparsers)
 query_xdr_parser = query_xdr_parse(query_subparsers)
+query_ztnaAppConnector_parser = query_ztnaAppConnector_parse(query_subparsers)
 
 
 # Enable argcomplete for tab completion at module level

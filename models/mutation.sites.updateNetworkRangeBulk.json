@@ -1,0 +1,2434 @@
+{
+    "args": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        }
+    },
+    "childOperations": {
+        "updateNetworkRangeBulk": {
+            "args": {
+                "updateNetworkRangeBulk___input": {
+                    "defaultValue": null,
+                    "description": null,
+                    "id_str": "updateNetworkRangeBulk___input",
+                    "name": "input",
+                    "path": "updateNetworkRangeBulk.input",
+                    "requestStr": "$updateNetworkRangeBulkInput:UpdateNetworkRangeBulkInput! ",
+                    "required": true,
+                    "responseStr": "input:$updateNetworkRangeBulkInput ",
+                    "type": {
+                        "definition": {
+                            "description": "Wrapper input for `updateNetworkRangeBulk`. All items in `networkRange` are applied to the single site identified by `site`; each item must reference a network range that already belongs to that site.",
+                            "enumValues": null,
+                            "fields": null,
+                            "inputFields": {
+                                "networkRange": {
+                                    "defaultValue": null,
+                                    "description": "Network ranges to update on the site. Each item targets an existing range by `id`.",
+                                    "id_str": "updateNetworkRangeBulk___input___networkRange",
+                                    "name": "networkRange",
+                                    "path": "updateNetworkRangeBulk.input.networkRange",
+                                    "requestStr": "$updateSiteNetworkRangeV2Input:[UpdateSiteNetworkRangeV2Input]! ",
+                                    "required": true,
+                                    "responseStr": "networkRange:$updateSiteNetworkRangeV2Input ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "Per-item input for `updateNetworkRangeBulk`. Each item targets an existing\nnetwork range by `id`; all other fields are optional and follow\nomit-to-leave-unchanged semantics.",
+                                            "enumValues": null,
+                                            "fields": null,
+                                            "inputFields": {
+                                                "azureFloatingIp": {
+                                                    "defaultValue": null,
+                                                    "description": "Only relevant for AZURE HA sites",
+                                                    "id_str": "updateNetworkRangeBulk___input___networkRange___azureFloatingIp",
+                                                    "name": "azureFloatingIp",
+                                                    "path": "updateNetworkRangeBulk.input.networkRange.azureFloatingIp",
+                                                    "requestStr": "$azureFloatingIp:IPAddress ",
+                                                    "required": false,
+                                                    "responseStr": "azureFloatingIp:$azureFloatingIp ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "IPAddress",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "azureFloatingIp"
+                                                },
+                                                "dhcpSettings": {
+                                                    "defaultValue": null,
+                                                    "description": "Only relevant for VLAN rangeType",
+                                                    "id_str": "updateNetworkRangeBulk___input___networkRange___dhcpSettings",
+                                                    "name": "dhcpSettings",
+                                                    "path": "updateNetworkRangeBulk.input.networkRange.dhcpSettings",
+                                                    "requestStr": "$networkDhcpSettingsInput:NetworkDhcpSettingsInput ",
+                                                    "required": false,
+                                                    "responseStr": "dhcpSettings:$networkDhcpSettingsInput ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": null,
+                                                            "enumValues": null,
+                                                            "fields": null,
+                                                            "inputFields": {
+                                                                "dhcpMicrosegmentation": {
+                                                                    "defaultValue": null,
+                                                                    "description": "Only relevant for DHCP range",
+                                                                    "id_str": "updateNetworkRangeBulk___input___networkRange___dhcpSettings___dhcpMicrosegmentation",
+                                                                    "name": "dhcpMicrosegmentation",
+                                                                    "path": "updateNetworkRangeBulk.input.networkRange.dhcpSettings.dhcpMicrosegmentation",
+                                                                    "requestStr": "$dhcpMicrosegmentation:Boolean ",
+                                                                    "required": false,
+                                                                    "responseStr": "dhcpMicrosegmentation:$dhcpMicrosegmentation ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "Boolean",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "dhcpMicrosegmentation"
+                                                                },
+                                                                "dhcpType": {
+                                                                    "defaultValue": null,
+                                                                    "description": null,
+                                                                    "id_str": "updateNetworkRangeBulk___input___networkRange___dhcpSettings___dhcpType",
+                                                                    "name": "dhcpType",
+                                                                    "path": "updateNetworkRangeBulk.input.networkRange.dhcpSettings.dhcpType",
+                                                                    "requestStr": "$dhcpType:DhcpType! ",
+                                                                    "required": true,
+                                                                    "responseStr": "dhcpType:$dhcpType ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": null,
+                                                                            "enumValues": [
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "DHCP_RELAY"
+                                                                                },
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "DHCP_RANGE"
+                                                                                },
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "ACCOUNT_DEFAULT"
+                                                                                },
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "DHCP_DISABLED"
+                                                                                }
+                                                                            ],
+                                                                            "fields": null,
+                                                                            "inputFields": null,
+                                                                            "interfaces": null,
+                                                                            "kind": "ENUM",
+                                                                            "name": "DhcpType",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "enum",
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "ENUM"
+                                                                        ],
+                                                                        "name": "DhcpType",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "dhcpType"
+                                                                },
+                                                                "ipRange": {
+                                                                    "defaultValue": null,
+                                                                    "description": null,
+                                                                    "id_str": "updateNetworkRangeBulk___input___networkRange___dhcpSettings___ipRange",
+                                                                    "name": "ipRange",
+                                                                    "path": "updateNetworkRangeBulk.input.networkRange.dhcpSettings.ipRange",
+                                                                    "requestStr": "$ipRange:IPRange ",
+                                                                    "required": false,
+                                                                    "responseStr": "ipRange:$ipRange ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "IPRange",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "ipRange"
+                                                                },
+                                                                "relayGroupId": {
+                                                                    "defaultValue": null,
+                                                                    "description": null,
+                                                                    "id_str": "updateNetworkRangeBulk___input___networkRange___dhcpSettings___relayGroupId",
+                                                                    "name": "relayGroupId",
+                                                                    "path": "updateNetworkRangeBulk.input.networkRange.dhcpSettings.relayGroupId",
+                                                                    "requestStr": "$relayGroupId:ID ",
+                                                                    "required": false,
+                                                                    "responseStr": "relayGroupId:$relayGroupId ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "ID",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "relayGroupId"
+                                                                }
+                                                            },
+                                                            "interfaces": null,
+                                                            "kind": "INPUT_OBJECT",
+                                                            "name": "NetworkDhcpSettingsInput",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "input_object",
+                                                        "kind": [
+                                                            "INPUT_OBJECT"
+                                                        ],
+                                                        "name": "NetworkDhcpSettingsInput",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "networkDhcpSettingsInput"
+                                                },
+                                                "gateway": {
+                                                    "defaultValue": null,
+                                                    "description": "Only relevant for ROUTED_ROUTE rangeType",
+                                                    "id_str": "updateNetworkRangeBulk___input___networkRange___gateway",
+                                                    "name": "gateway",
+                                                    "path": "updateNetworkRangeBulk.input.networkRange.gateway",
+                                                    "requestStr": "$gateway:IPAddress ",
+                                                    "required": false,
+                                                    "responseStr": "gateway:$gateway ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "IPAddress",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "gateway"
+                                                },
+                                                "gcpLoadBalancerIp": {
+                                                    "defaultValue": null,
+                                                    "description": "Only relevant for the NATIVE range on GCP HA sites",
+                                                    "id_str": "updateNetworkRangeBulk___input___networkRange___gcpLoadBalancerIp",
+                                                    "name": "gcpLoadBalancerIp",
+                                                    "path": "updateNetworkRangeBulk.input.networkRange.gcpLoadBalancerIp",
+                                                    "requestStr": "$gcpLoadBalancerIp:IPAddress ",
+                                                    "required": false,
+                                                    "responseStr": "gcpLoadBalancerIp:$gcpLoadBalancerIp ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "IPAddress",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "gcpLoadBalancerIp"
+                                                },
+                                                "id": {
+                                                    "defaultValue": null,
+                                                    "description": "Unique identifier of the network range to update.",
+                                                    "id_str": "updateNetworkRangeBulk___input___networkRange___id",
+                                                    "name": "id",
+                                                    "path": "updateNetworkRangeBulk.input.networkRange.id",
+                                                    "requestStr": "$id:ID! ",
+                                                    "required": true,
+                                                    "responseStr": "id:$id ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "ID",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "id"
+                                                },
+                                                "internetOnly": {
+                                                    "defaultValue": null,
+                                                    "description": null,
+                                                    "id_str": "updateNetworkRangeBulk___input___networkRange___internetOnly",
+                                                    "name": "internetOnly",
+                                                    "path": "updateNetworkRangeBulk.input.networkRange.internetOnly",
+                                                    "requestStr": "$internetOnly:Boolean ",
+                                                    "required": false,
+                                                    "responseStr": "internetOnly:$internetOnly ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Boolean",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "internetOnly"
+                                                },
+                                                "localIp": {
+                                                    "defaultValue": null,
+                                                    "description": "Only relevant for DIRECT_ROUTE and VLAN rangeType",
+                                                    "id_str": "updateNetworkRangeBulk___input___networkRange___localIp",
+                                                    "name": "localIp",
+                                                    "path": "updateNetworkRangeBulk.input.networkRange.localIp",
+                                                    "requestStr": "$localIp:IPAddress ",
+                                                    "required": false,
+                                                    "responseStr": "localIp:$localIp ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "IPAddress",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "localIp"
+                                                },
+                                                "mdnsReflector": {
+                                                    "defaultValue": null,
+                                                    "description": "BETA - Only relevant for DIRECT_ROUTE and VLAN rangeType",
+                                                    "id_str": "updateNetworkRangeBulk___input___networkRange___mdnsReflector",
+                                                    "name": "mdnsReflector",
+                                                    "path": "updateNetworkRangeBulk.input.networkRange.mdnsReflector",
+                                                    "requestStr": "$mdnsReflector:Boolean ",
+                                                    "required": false,
+                                                    "responseStr": "mdnsReflector:$mdnsReflector ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Boolean",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "mdnsReflector"
+                                                },
+                                                "name": {
+                                                    "defaultValue": null,
+                                                    "description": "Display name of the network range.",
+                                                    "id_str": "updateNetworkRangeBulk___input___networkRange___name",
+                                                    "name": "name",
+                                                    "path": "updateNetworkRangeBulk.input.networkRange.name",
+                                                    "requestStr": "$name:String ",
+                                                    "required": false,
+                                                    "responseStr": "name:$name ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "name"
+                                                },
+                                                "primaryManagementIp": {
+                                                    "defaultValue": null,
+                                                    "description": "Only relevant for the NATIVE range on AWS HA sites",
+                                                    "id_str": "updateNetworkRangeBulk___input___networkRange___primaryManagementIp",
+                                                    "name": "primaryManagementIp",
+                                                    "path": "updateNetworkRangeBulk.input.networkRange.primaryManagementIp",
+                                                    "requestStr": "$primaryManagementIp:IPAddress ",
+                                                    "required": false,
+                                                    "responseStr": "primaryManagementIp:$primaryManagementIp ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "IPAddress",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "primaryManagementIp"
+                                                },
+                                                "rangeType": {
+                                                    "defaultValue": null,
+                                                    "description": "Subnet category.",
+                                                    "id_str": "updateNetworkRangeBulk___input___networkRange___rangeType",
+                                                    "name": "rangeType",
+                                                    "path": "updateNetworkRangeBulk.input.networkRange.rangeType",
+                                                    "requestStr": "$rangeType:SubnetType ",
+                                                    "required": false,
+                                                    "responseStr": "rangeType:$rangeType ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": null,
+                                                            "enumValues": [
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "Routed"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "Direct"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "VLAN"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "Native"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "SecondaryNative"
+                                                                }
+                                                            ],
+                                                            "fields": null,
+                                                            "inputFields": null,
+                                                            "interfaces": null,
+                                                            "kind": "ENUM",
+                                                            "name": "SubnetType",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "enum",
+                                                        "kind": [
+                                                            "ENUM"
+                                                        ],
+                                                        "name": "SubnetType",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "rangeType"
+                                                },
+                                                "secondaryManagementIp": {
+                                                    "defaultValue": null,
+                                                    "description": "Only relevant for the SECONDARY_NATIVE range on AWS HA sites",
+                                                    "id_str": "updateNetworkRangeBulk___input___networkRange___secondaryManagementIp",
+                                                    "name": "secondaryManagementIp",
+                                                    "path": "updateNetworkRangeBulk.input.networkRange.secondaryManagementIp",
+                                                    "requestStr": "$secondaryManagementIp:IPAddress ",
+                                                    "required": false,
+                                                    "responseStr": "secondaryManagementIp:$secondaryManagementIp ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "IPAddress",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "secondaryManagementIp"
+                                                },
+                                                "subnet": {
+                                                    "defaultValue": null,
+                                                    "description": "Subnet (CIDR).",
+                                                    "id_str": "updateNetworkRangeBulk___input___networkRange___subnet",
+                                                    "name": "subnet",
+                                                    "path": "updateNetworkRangeBulk.input.networkRange.subnet",
+                                                    "requestStr": "$subnet:IPSubnet ",
+                                                    "required": false,
+                                                    "responseStr": "subnet:$subnet ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "IPSubnet",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "subnet"
+                                                },
+                                                "translatedSubnet": {
+                                                    "defaultValue": null,
+                                                    "description": null,
+                                                    "id_str": "updateNetworkRangeBulk___input___networkRange___translatedSubnet",
+                                                    "name": "translatedSubnet",
+                                                    "path": "updateNetworkRangeBulk.input.networkRange.translatedSubnet",
+                                                    "requestStr": "$translatedSubnet:IPSubnet ",
+                                                    "required": false,
+                                                    "responseStr": "translatedSubnet:$translatedSubnet ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "IPSubnet",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "translatedSubnet"
+                                                },
+                                                "vlan": {
+                                                    "defaultValue": null,
+                                                    "description": "Only relevant for VLAN network rangeType",
+                                                    "id_str": "updateNetworkRangeBulk___input___networkRange___vlan",
+                                                    "name": "vlan",
+                                                    "path": "updateNetworkRangeBulk.input.networkRange.vlan",
+                                                    "requestStr": "$vlan:Int ",
+                                                    "required": false,
+                                                    "responseStr": "vlan:$vlan ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Int",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "vlan"
+                                                }
+                                            },
+                                            "interfaces": null,
+                                            "kind": "INPUT_OBJECT",
+                                            "name": "UpdateSiteNetworkRangeV2Input",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "input_object",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "LIST",
+                                            "NON_NULL",
+                                            "INPUT_OBJECT"
+                                        ],
+                                        "name": "UpdateSiteNetworkRangeV2Input",
+                                        "non_null": false
+                                    },
+                                    "varName": "updateSiteNetworkRangeV2Input"
+                                },
+                                "site": {
+                                    "defaultValue": null,
+                                    "description": "Site whose network ranges are being updated.",
+                                    "id_str": "updateNetworkRangeBulk___input___site",
+                                    "name": "site",
+                                    "path": "updateNetworkRangeBulk.input.site",
+                                    "requestStr": "$siteRefInput:SiteRefInput! ",
+                                    "required": true,
+                                    "responseStr": "site:$siteRefInput ",
+                                    "type": {
+                                        "definition": {
+                                            "description": null,
+                                            "enumValues": null,
+                                            "fields": null,
+                                            "inputFields": {
+                                                "by": {
+                                                    "defaultValue": "ID",
+                                                    "description": null,
+                                                    "id_str": "updateNetworkRangeBulk___input___site___by",
+                                                    "name": "by",
+                                                    "path": "updateNetworkRangeBulk.input.site.by",
+                                                    "requestStr": "$by:ObjectRefBy! ",
+                                                    "required": true,
+                                                    "responseStr": "by:$by ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": null,
+                                                            "enumValues": [
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "ID"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "NAME"
+                                                                }
+                                                            ],
+                                                            "fields": null,
+                                                            "inputFields": null,
+                                                            "interfaces": null,
+                                                            "kind": "ENUM",
+                                                            "name": "ObjectRefBy",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "enum",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "ENUM"
+                                                        ],
+                                                        "name": "ObjectRefBy",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "by"
+                                                },
+                                                "input": {
+                                                    "defaultValue": null,
+                                                    "description": null,
+                                                    "id_str": "updateNetworkRangeBulk___input___site___input",
+                                                    "name": "input",
+                                                    "path": "updateNetworkRangeBulk.input.site.input",
+                                                    "requestStr": "$input:String! ",
+                                                    "required": true,
+                                                    "responseStr": "input:$input ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "input"
+                                                }
+                                            },
+                                            "interfaces": null,
+                                            "kind": "INPUT_OBJECT",
+                                            "name": "SiteRefInput",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "input_object",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "INPUT_OBJECT"
+                                        ],
+                                        "name": "SiteRefInput",
+                                        "non_null": false
+                                    },
+                                    "varName": "siteRefInput"
+                                }
+                            },
+                            "interfaces": null,
+                            "kind": "INPUT_OBJECT",
+                            "name": "UpdateNetworkRangeBulkInput",
+                            "possibleTypes": null
+                        },
+                        "indexType": "input_object",
+                        "kind": [
+                            "NON_NULL",
+                            "INPUT_OBJECT"
+                        ],
+                        "name": "UpdateNetworkRangeBulkInput",
+                        "non_null": false
+                    },
+                    "varName": "updateNetworkRangeBulkInput"
+                }
+            },
+            "deprecationReason": null,
+            "description": "Updates one or more existing network ranges on a single site in place, in a single atomic batch.",
+            "isDeprecated": false,
+            "name": "updateNetworkRangeBulk",
+            "type": {
+                "kind": "OBJECT",
+                "name": "UpdateNetworkRangeBulkPayload",
+                "ofType": null
+            }
+        }
+    },
+    "deprecationReason": "in favor of site",
+    "description": null,
+    "fieldTypes": {},
+    "isDeprecated": true,
+    "name": "sites",
+    "operationArgs": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        },
+        "updateNetworkRangeBulkInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "updateNetworkRangeBulk___input",
+            "name": "input",
+            "path": "updateNetworkRangeBulk.input",
+            "requestStr": "$updateNetworkRangeBulkInput:UpdateNetworkRangeBulkInput! ",
+            "required": true,
+            "responseStr": "input:$updateNetworkRangeBulkInput ",
+            "type": {
+                "definition": {
+                    "description": "Wrapper input for `updateNetworkRangeBulk`. All items in `networkRange` are applied to the single site identified by `site`; each item must reference a network range that already belongs to that site.",
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "networkRange": {
+                            "defaultValue": null,
+                            "description": "Network ranges to update on the site. Each item targets an existing range by `id`.",
+                            "id_str": "updateNetworkRangeBulk___input___networkRange",
+                            "name": "networkRange",
+                            "path": "updateNetworkRangeBulk.input.networkRange",
+                            "requestStr": "$updateSiteNetworkRangeV2Input:[UpdateSiteNetworkRangeV2Input]! ",
+                            "required": true,
+                            "responseStr": "networkRange:$updateSiteNetworkRangeV2Input ",
+                            "type": {
+                                "definition": {
+                                    "description": "Per-item input for `updateNetworkRangeBulk`. Each item targets an existing\nnetwork range by `id`; all other fields are optional and follow\nomit-to-leave-unchanged semantics.",
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "azureFloatingIp": {
+                                            "defaultValue": null,
+                                            "description": "Only relevant for AZURE HA sites",
+                                            "id_str": "updateNetworkRangeBulk___input___networkRange___azureFloatingIp",
+                                            "name": "azureFloatingIp",
+                                            "path": "updateNetworkRangeBulk.input.networkRange.azureFloatingIp",
+                                            "requestStr": "$azureFloatingIp:IPAddress ",
+                                            "required": false,
+                                            "responseStr": "azureFloatingIp:$azureFloatingIp ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "IPAddress",
+                                                "non_null": false
+                                            },
+                                            "varName": "azureFloatingIp"
+                                        },
+                                        "dhcpSettings": {
+                                            "defaultValue": null,
+                                            "description": "Only relevant for VLAN rangeType",
+                                            "id_str": "updateNetworkRangeBulk___input___networkRange___dhcpSettings",
+                                            "name": "dhcpSettings",
+                                            "path": "updateNetworkRangeBulk.input.networkRange.dhcpSettings",
+                                            "requestStr": "$networkDhcpSettingsInput:NetworkDhcpSettingsInput ",
+                                            "required": false,
+                                            "responseStr": "dhcpSettings:$networkDhcpSettingsInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "dhcpMicrosegmentation": {
+                                                            "defaultValue": null,
+                                                            "description": "Only relevant for DHCP range",
+                                                            "id_str": "updateNetworkRangeBulk___input___networkRange___dhcpSettings___dhcpMicrosegmentation",
+                                                            "name": "dhcpMicrosegmentation",
+                                                            "path": "updateNetworkRangeBulk.input.networkRange.dhcpSettings.dhcpMicrosegmentation",
+                                                            "requestStr": "$dhcpMicrosegmentation:Boolean ",
+                                                            "required": false,
+                                                            "responseStr": "dhcpMicrosegmentation:$dhcpMicrosegmentation ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "Boolean",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "dhcpMicrosegmentation"
+                                                        },
+                                                        "dhcpType": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "updateNetworkRangeBulk___input___networkRange___dhcpSettings___dhcpType",
+                                                            "name": "dhcpType",
+                                                            "path": "updateNetworkRangeBulk.input.networkRange.dhcpSettings.dhcpType",
+                                                            "requestStr": "$dhcpType:DhcpType! ",
+                                                            "required": true,
+                                                            "responseStr": "dhcpType:$dhcpType ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "DHCP_RELAY"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "DHCP_RANGE"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "ACCOUNT_DEFAULT"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "DHCP_DISABLED"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "DhcpType",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "DhcpType",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "dhcpType"
+                                                        },
+                                                        "ipRange": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "updateNetworkRangeBulk___input___networkRange___dhcpSettings___ipRange",
+                                                            "name": "ipRange",
+                                                            "path": "updateNetworkRangeBulk.input.networkRange.dhcpSettings.ipRange",
+                                                            "requestStr": "$ipRange:IPRange ",
+                                                            "required": false,
+                                                            "responseStr": "ipRange:$ipRange ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "IPRange",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "ipRange"
+                                                        },
+                                                        "relayGroupId": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "updateNetworkRangeBulk___input___networkRange___dhcpSettings___relayGroupId",
+                                                            "name": "relayGroupId",
+                                                            "path": "updateNetworkRangeBulk.input.networkRange.dhcpSettings.relayGroupId",
+                                                            "requestStr": "$relayGroupId:ID ",
+                                                            "required": false,
+                                                            "responseStr": "relayGroupId:$relayGroupId ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "ID",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "relayGroupId"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "NetworkDhcpSettingsInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "NetworkDhcpSettingsInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "networkDhcpSettingsInput"
+                                        },
+                                        "gateway": {
+                                            "defaultValue": null,
+                                            "description": "Only relevant for ROUTED_ROUTE rangeType",
+                                            "id_str": "updateNetworkRangeBulk___input___networkRange___gateway",
+                                            "name": "gateway",
+                                            "path": "updateNetworkRangeBulk.input.networkRange.gateway",
+                                            "requestStr": "$gateway:IPAddress ",
+                                            "required": false,
+                                            "responseStr": "gateway:$gateway ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "IPAddress",
+                                                "non_null": false
+                                            },
+                                            "varName": "gateway"
+                                        },
+                                        "gcpLoadBalancerIp": {
+                                            "defaultValue": null,
+                                            "description": "Only relevant for the NATIVE range on GCP HA sites",
+                                            "id_str": "updateNetworkRangeBulk___input___networkRange___gcpLoadBalancerIp",
+                                            "name": "gcpLoadBalancerIp",
+                                            "path": "updateNetworkRangeBulk.input.networkRange.gcpLoadBalancerIp",
+                                            "requestStr": "$gcpLoadBalancerIp:IPAddress ",
+                                            "required": false,
+                                            "responseStr": "gcpLoadBalancerIp:$gcpLoadBalancerIp ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "IPAddress",
+                                                "non_null": false
+                                            },
+                                            "varName": "gcpLoadBalancerIp"
+                                        },
+                                        "id": {
+                                            "defaultValue": null,
+                                            "description": "Unique identifier of the network range to update.",
+                                            "id_str": "updateNetworkRangeBulk___input___networkRange___id",
+                                            "name": "id",
+                                            "path": "updateNetworkRangeBulk.input.networkRange.id",
+                                            "requestStr": "$id:ID! ",
+                                            "required": true,
+                                            "responseStr": "id:$id ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "ID",
+                                                "non_null": false
+                                            },
+                                            "varName": "id"
+                                        },
+                                        "internetOnly": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "updateNetworkRangeBulk___input___networkRange___internetOnly",
+                                            "name": "internetOnly",
+                                            "path": "updateNetworkRangeBulk.input.networkRange.internetOnly",
+                                            "requestStr": "$internetOnly:Boolean ",
+                                            "required": false,
+                                            "responseStr": "internetOnly:$internetOnly ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "Boolean",
+                                                "non_null": false
+                                            },
+                                            "varName": "internetOnly"
+                                        },
+                                        "localIp": {
+                                            "defaultValue": null,
+                                            "description": "Only relevant for DIRECT_ROUTE and VLAN rangeType",
+                                            "id_str": "updateNetworkRangeBulk___input___networkRange___localIp",
+                                            "name": "localIp",
+                                            "path": "updateNetworkRangeBulk.input.networkRange.localIp",
+                                            "requestStr": "$localIp:IPAddress ",
+                                            "required": false,
+                                            "responseStr": "localIp:$localIp ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "IPAddress",
+                                                "non_null": false
+                                            },
+                                            "varName": "localIp"
+                                        },
+                                        "mdnsReflector": {
+                                            "defaultValue": null,
+                                            "description": "BETA - Only relevant for DIRECT_ROUTE and VLAN rangeType",
+                                            "id_str": "updateNetworkRangeBulk___input___networkRange___mdnsReflector",
+                                            "name": "mdnsReflector",
+                                            "path": "updateNetworkRangeBulk.input.networkRange.mdnsReflector",
+                                            "requestStr": "$mdnsReflector:Boolean ",
+                                            "required": false,
+                                            "responseStr": "mdnsReflector:$mdnsReflector ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "Boolean",
+                                                "non_null": false
+                                            },
+                                            "varName": "mdnsReflector"
+                                        },
+                                        "name": {
+                                            "defaultValue": null,
+                                            "description": "Display name of the network range.",
+                                            "id_str": "updateNetworkRangeBulk___input___networkRange___name",
+                                            "name": "name",
+                                            "path": "updateNetworkRangeBulk.input.networkRange.name",
+                                            "requestStr": "$name:String ",
+                                            "required": false,
+                                            "responseStr": "name:$name ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "String",
+                                                "non_null": false
+                                            },
+                                            "varName": "name"
+                                        },
+                                        "primaryManagementIp": {
+                                            "defaultValue": null,
+                                            "description": "Only relevant for the NATIVE range on AWS HA sites",
+                                            "id_str": "updateNetworkRangeBulk___input___networkRange___primaryManagementIp",
+                                            "name": "primaryManagementIp",
+                                            "path": "updateNetworkRangeBulk.input.networkRange.primaryManagementIp",
+                                            "requestStr": "$primaryManagementIp:IPAddress ",
+                                            "required": false,
+                                            "responseStr": "primaryManagementIp:$primaryManagementIp ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "IPAddress",
+                                                "non_null": false
+                                            },
+                                            "varName": "primaryManagementIp"
+                                        },
+                                        "rangeType": {
+                                            "defaultValue": null,
+                                            "description": "Subnet category.",
+                                            "id_str": "updateNetworkRangeBulk___input___networkRange___rangeType",
+                                            "name": "rangeType",
+                                            "path": "updateNetworkRangeBulk.input.networkRange.rangeType",
+                                            "requestStr": "$rangeType:SubnetType ",
+                                            "required": false,
+                                            "responseStr": "rangeType:$rangeType ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "Routed"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "Direct"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "VLAN"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "Native"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "SecondaryNative"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "SubnetType",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "ENUM"
+                                                ],
+                                                "name": "SubnetType",
+                                                "non_null": false
+                                            },
+                                            "varName": "rangeType"
+                                        },
+                                        "secondaryManagementIp": {
+                                            "defaultValue": null,
+                                            "description": "Only relevant for the SECONDARY_NATIVE range on AWS HA sites",
+                                            "id_str": "updateNetworkRangeBulk___input___networkRange___secondaryManagementIp",
+                                            "name": "secondaryManagementIp",
+                                            "path": "updateNetworkRangeBulk.input.networkRange.secondaryManagementIp",
+                                            "requestStr": "$secondaryManagementIp:IPAddress ",
+                                            "required": false,
+                                            "responseStr": "secondaryManagementIp:$secondaryManagementIp ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "IPAddress",
+                                                "non_null": false
+                                            },
+                                            "varName": "secondaryManagementIp"
+                                        },
+                                        "subnet": {
+                                            "defaultValue": null,
+                                            "description": "Subnet (CIDR).",
+                                            "id_str": "updateNetworkRangeBulk___input___networkRange___subnet",
+                                            "name": "subnet",
+                                            "path": "updateNetworkRangeBulk.input.networkRange.subnet",
+                                            "requestStr": "$subnet:IPSubnet ",
+                                            "required": false,
+                                            "responseStr": "subnet:$subnet ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "IPSubnet",
+                                                "non_null": false
+                                            },
+                                            "varName": "subnet"
+                                        },
+                                        "translatedSubnet": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "updateNetworkRangeBulk___input___networkRange___translatedSubnet",
+                                            "name": "translatedSubnet",
+                                            "path": "updateNetworkRangeBulk.input.networkRange.translatedSubnet",
+                                            "requestStr": "$translatedSubnet:IPSubnet ",
+                                            "required": false,
+                                            "responseStr": "translatedSubnet:$translatedSubnet ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "IPSubnet",
+                                                "non_null": false
+                                            },
+                                            "varName": "translatedSubnet"
+                                        },
+                                        "vlan": {
+                                            "defaultValue": null,
+                                            "description": "Only relevant for VLAN network rangeType",
+                                            "id_str": "updateNetworkRangeBulk___input___networkRange___vlan",
+                                            "name": "vlan",
+                                            "path": "updateNetworkRangeBulk.input.networkRange.vlan",
+                                            "requestStr": "$vlan:Int ",
+                                            "required": false,
+                                            "responseStr": "vlan:$vlan ",
+                                            "type": {
+                                                "kind": [
+                                                    "SCALAR"
+                                                ],
+                                                "name": "Int",
+                                                "non_null": false
+                                            },
+                                            "varName": "vlan"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "UpdateSiteNetworkRangeV2Input",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "NON_NULL",
+                                    "LIST",
+                                    "NON_NULL",
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "UpdateSiteNetworkRangeV2Input",
+                                "non_null": false
+                            },
+                            "varName": "updateSiteNetworkRangeV2Input"
+                        },
+                        "site": {
+                            "defaultValue": null,
+                            "description": "Site whose network ranges are being updated.",
+                            "id_str": "updateNetworkRangeBulk___input___site",
+                            "name": "site",
+                            "path": "updateNetworkRangeBulk.input.site",
+                            "requestStr": "$siteRefInput:SiteRefInput! ",
+                            "required": true,
+                            "responseStr": "site:$siteRefInput ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "by": {
+                                            "defaultValue": "ID",
+                                            "description": null,
+                                            "id_str": "updateNetworkRangeBulk___input___site___by",
+                                            "name": "by",
+                                            "path": "updateNetworkRangeBulk.input.site.by",
+                                            "requestStr": "$by:ObjectRefBy! ",
+                                            "required": true,
+                                            "responseStr": "by:$by ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "ID"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "NAME"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "ObjectRefBy",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "ENUM"
+                                                ],
+                                                "name": "ObjectRefBy",
+                                                "non_null": false
+                                            },
+                                            "varName": "by"
+                                        },
+                                        "input": {
+                                            "defaultValue": null,
+                                            "description": null,
+                                            "id_str": "updateNetworkRangeBulk___input___site___input",
+                                            "name": "input",
+                                            "path": "updateNetworkRangeBulk.input.site.input",
+                                            "requestStr": "$input:String! ",
+                                            "required": true,
+                                            "responseStr": "input:$input ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "String",
+                                                "non_null": false
+                                            },
+                                            "varName": "input"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "SiteRefInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "NON_NULL",
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "SiteRefInput",
+                                "non_null": false
+                            },
+                            "varName": "siteRefInput"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "UpdateNetworkRangeBulkInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "UpdateNetworkRangeBulkInput",
+                "non_null": false
+            },
+            "varName": "updateNetworkRangeBulkInput"
+        }
+    },
+    "path": "mutation.sites.updateNetworkRangeBulk",
+    "type": {
+        "definition": {
+            "description": null,
+            "enumValues": null,
+            "fields": {
+                "updateNetworkRangeBulk": {
+                    "args": {
+                        "updateNetworkRangeBulk___input": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "updateNetworkRangeBulk___input",
+                            "name": "input",
+                            "path": "updateNetworkRangeBulk.input",
+                            "requestStr": "$updateNetworkRangeBulkInput:UpdateNetworkRangeBulkInput! ",
+                            "required": true,
+                            "responseStr": "input:$updateNetworkRangeBulkInput ",
+                            "type": {
+                                "definition": {
+                                    "description": "Wrapper input for `updateNetworkRangeBulk`. All items in `networkRange` are applied to the single site identified by `site`; each item must reference a network range that already belongs to that site.",
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "networkRange": {
+                                            "defaultValue": null,
+                                            "description": "Network ranges to update on the site. Each item targets an existing range by `id`.",
+                                            "id_str": "updateNetworkRangeBulk___input___networkRange",
+                                            "name": "networkRange",
+                                            "path": "updateNetworkRangeBulk.input.networkRange",
+                                            "requestStr": "$updateSiteNetworkRangeV2Input:[UpdateSiteNetworkRangeV2Input]! ",
+                                            "required": true,
+                                            "responseStr": "networkRange:$updateSiteNetworkRangeV2Input ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": "Per-item input for `updateNetworkRangeBulk`. Each item targets an existing\nnetwork range by `id`; all other fields are optional and follow\nomit-to-leave-unchanged semantics.",
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "azureFloatingIp": {
+                                                            "defaultValue": null,
+                                                            "description": "Only relevant for AZURE HA sites",
+                                                            "id_str": "updateNetworkRangeBulk___input___networkRange___azureFloatingIp",
+                                                            "name": "azureFloatingIp",
+                                                            "path": "updateNetworkRangeBulk.input.networkRange.azureFloatingIp",
+                                                            "requestStr": "$azureFloatingIp:IPAddress ",
+                                                            "required": false,
+                                                            "responseStr": "azureFloatingIp:$azureFloatingIp ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "IPAddress",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "azureFloatingIp"
+                                                        },
+                                                        "dhcpSettings": {
+                                                            "defaultValue": null,
+                                                            "description": "Only relevant for VLAN rangeType",
+                                                            "id_str": "updateNetworkRangeBulk___input___networkRange___dhcpSettings",
+                                                            "name": "dhcpSettings",
+                                                            "path": "updateNetworkRangeBulk.input.networkRange.dhcpSettings",
+                                                            "requestStr": "$networkDhcpSettingsInput:NetworkDhcpSettingsInput ",
+                                                            "required": false,
+                                                            "responseStr": "dhcpSettings:$networkDhcpSettingsInput ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": null,
+                                                                    "fields": null,
+                                                                    "inputFields": {
+                                                                        "dhcpMicrosegmentation": {
+                                                                            "defaultValue": null,
+                                                                            "description": "Only relevant for DHCP range",
+                                                                            "id_str": "updateNetworkRangeBulk___input___networkRange___dhcpSettings___dhcpMicrosegmentation",
+                                                                            "name": "dhcpMicrosegmentation",
+                                                                            "path": "updateNetworkRangeBulk.input.networkRange.dhcpSettings.dhcpMicrosegmentation",
+                                                                            "requestStr": "$dhcpMicrosegmentation:Boolean ",
+                                                                            "required": false,
+                                                                            "responseStr": "dhcpMicrosegmentation:$dhcpMicrosegmentation ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "Boolean",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "dhcpMicrosegmentation"
+                                                                        },
+                                                                        "dhcpType": {
+                                                                            "defaultValue": null,
+                                                                            "description": null,
+                                                                            "id_str": "updateNetworkRangeBulk___input___networkRange___dhcpSettings___dhcpType",
+                                                                            "name": "dhcpType",
+                                                                            "path": "updateNetworkRangeBulk.input.networkRange.dhcpSettings.dhcpType",
+                                                                            "requestStr": "$dhcpType:DhcpType! ",
+                                                                            "required": true,
+                                                                            "responseStr": "dhcpType:$dhcpType ",
+                                                                            "type": {
+                                                                                "definition": {
+                                                                                    "description": null,
+                                                                                    "enumValues": [
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "DHCP_RELAY"
+                                                                                        },
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "DHCP_RANGE"
+                                                                                        },
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "ACCOUNT_DEFAULT"
+                                                                                        },
+                                                                                        {
+                                                                                            "deprecationReason": null,
+                                                                                            "description": null,
+                                                                                            "isDeprecated": false,
+                                                                                            "name": "DHCP_DISABLED"
+                                                                                        }
+                                                                                    ],
+                                                                                    "fields": null,
+                                                                                    "inputFields": null,
+                                                                                    "interfaces": null,
+                                                                                    "kind": "ENUM",
+                                                                                    "name": "DhcpType",
+                                                                                    "possibleTypes": null
+                                                                                },
+                                                                                "indexType": "enum",
+                                                                                "kind": [
+                                                                                    "NON_NULL",
+                                                                                    "ENUM"
+                                                                                ],
+                                                                                "name": "DhcpType",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "dhcpType"
+                                                                        },
+                                                                        "ipRange": {
+                                                                            "defaultValue": null,
+                                                                            "description": null,
+                                                                            "id_str": "updateNetworkRangeBulk___input___networkRange___dhcpSettings___ipRange",
+                                                                            "name": "ipRange",
+                                                                            "path": "updateNetworkRangeBulk.input.networkRange.dhcpSettings.ipRange",
+                                                                            "requestStr": "$ipRange:IPRange ",
+                                                                            "required": false,
+                                                                            "responseStr": "ipRange:$ipRange ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "IPRange",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "ipRange"
+                                                                        },
+                                                                        "relayGroupId": {
+                                                                            "defaultValue": null,
+                                                                            "description": null,
+                                                                            "id_str": "updateNetworkRangeBulk___input___networkRange___dhcpSettings___relayGroupId",
+                                                                            "name": "relayGroupId",
+                                                                            "path": "updateNetworkRangeBulk.input.networkRange.dhcpSettings.relayGroupId",
+                                                                            "requestStr": "$relayGroupId:ID ",
+                                                                            "required": false,
+                                                                            "responseStr": "relayGroupId:$relayGroupId ",
+                                                                            "type": {
+                                                                                "kind": [
+                                                                                    "SCALAR"
+                                                                                ],
+                                                                                "name": "ID",
+                                                                                "non_null": false
+                                                                            },
+                                                                            "varName": "relayGroupId"
+                                                                        }
+                                                                    },
+                                                                    "interfaces": null,
+                                                                    "kind": "INPUT_OBJECT",
+                                                                    "name": "NetworkDhcpSettingsInput",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "input_object",
+                                                                "kind": [
+                                                                    "INPUT_OBJECT"
+                                                                ],
+                                                                "name": "NetworkDhcpSettingsInput",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "networkDhcpSettingsInput"
+                                                        },
+                                                        "gateway": {
+                                                            "defaultValue": null,
+                                                            "description": "Only relevant for ROUTED_ROUTE rangeType",
+                                                            "id_str": "updateNetworkRangeBulk___input___networkRange___gateway",
+                                                            "name": "gateway",
+                                                            "path": "updateNetworkRangeBulk.input.networkRange.gateway",
+                                                            "requestStr": "$gateway:IPAddress ",
+                                                            "required": false,
+                                                            "responseStr": "gateway:$gateway ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "IPAddress",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "gateway"
+                                                        },
+                                                        "gcpLoadBalancerIp": {
+                                                            "defaultValue": null,
+                                                            "description": "Only relevant for the NATIVE range on GCP HA sites",
+                                                            "id_str": "updateNetworkRangeBulk___input___networkRange___gcpLoadBalancerIp",
+                                                            "name": "gcpLoadBalancerIp",
+                                                            "path": "updateNetworkRangeBulk.input.networkRange.gcpLoadBalancerIp",
+                                                            "requestStr": "$gcpLoadBalancerIp:IPAddress ",
+                                                            "required": false,
+                                                            "responseStr": "gcpLoadBalancerIp:$gcpLoadBalancerIp ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "IPAddress",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "gcpLoadBalancerIp"
+                                                        },
+                                                        "id": {
+                                                            "defaultValue": null,
+                                                            "description": "Unique identifier of the network range to update.",
+                                                            "id_str": "updateNetworkRangeBulk___input___networkRange___id",
+                                                            "name": "id",
+                                                            "path": "updateNetworkRangeBulk.input.networkRange.id",
+                                                            "requestStr": "$id:ID! ",
+                                                            "required": true,
+                                                            "responseStr": "id:$id ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "ID",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "id"
+                                                        },
+                                                        "internetOnly": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "updateNetworkRangeBulk___input___networkRange___internetOnly",
+                                                            "name": "internetOnly",
+                                                            "path": "updateNetworkRangeBulk.input.networkRange.internetOnly",
+                                                            "requestStr": "$internetOnly:Boolean ",
+                                                            "required": false,
+                                                            "responseStr": "internetOnly:$internetOnly ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "Boolean",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "internetOnly"
+                                                        },
+                                                        "localIp": {
+                                                            "defaultValue": null,
+                                                            "description": "Only relevant for DIRECT_ROUTE and VLAN rangeType",
+                                                            "id_str": "updateNetworkRangeBulk___input___networkRange___localIp",
+                                                            "name": "localIp",
+                                                            "path": "updateNetworkRangeBulk.input.networkRange.localIp",
+                                                            "requestStr": "$localIp:IPAddress ",
+                                                            "required": false,
+                                                            "responseStr": "localIp:$localIp ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "IPAddress",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "localIp"
+                                                        },
+                                                        "mdnsReflector": {
+                                                            "defaultValue": null,
+                                                            "description": "BETA - Only relevant for DIRECT_ROUTE and VLAN rangeType",
+                                                            "id_str": "updateNetworkRangeBulk___input___networkRange___mdnsReflector",
+                                                            "name": "mdnsReflector",
+                                                            "path": "updateNetworkRangeBulk.input.networkRange.mdnsReflector",
+                                                            "requestStr": "$mdnsReflector:Boolean ",
+                                                            "required": false,
+                                                            "responseStr": "mdnsReflector:$mdnsReflector ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "Boolean",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "mdnsReflector"
+                                                        },
+                                                        "name": {
+                                                            "defaultValue": null,
+                                                            "description": "Display name of the network range.",
+                                                            "id_str": "updateNetworkRangeBulk___input___networkRange___name",
+                                                            "name": "name",
+                                                            "path": "updateNetworkRangeBulk.input.networkRange.name",
+                                                            "requestStr": "$name:String ",
+                                                            "required": false,
+                                                            "responseStr": "name:$name ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "name"
+                                                        },
+                                                        "primaryManagementIp": {
+                                                            "defaultValue": null,
+                                                            "description": "Only relevant for the NATIVE range on AWS HA sites",
+                                                            "id_str": "updateNetworkRangeBulk___input___networkRange___primaryManagementIp",
+                                                            "name": "primaryManagementIp",
+                                                            "path": "updateNetworkRangeBulk.input.networkRange.primaryManagementIp",
+                                                            "requestStr": "$primaryManagementIp:IPAddress ",
+                                                            "required": false,
+                                                            "responseStr": "primaryManagementIp:$primaryManagementIp ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "IPAddress",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "primaryManagementIp"
+                                                        },
+                                                        "rangeType": {
+                                                            "defaultValue": null,
+                                                            "description": "Subnet category.",
+                                                            "id_str": "updateNetworkRangeBulk___input___networkRange___rangeType",
+                                                            "name": "rangeType",
+                                                            "path": "updateNetworkRangeBulk.input.networkRange.rangeType",
+                                                            "requestStr": "$rangeType:SubnetType ",
+                                                            "required": false,
+                                                            "responseStr": "rangeType:$rangeType ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "Routed"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "Direct"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "VLAN"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "Native"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "SecondaryNative"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "SubnetType",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "SubnetType",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "rangeType"
+                                                        },
+                                                        "secondaryManagementIp": {
+                                                            "defaultValue": null,
+                                                            "description": "Only relevant for the SECONDARY_NATIVE range on AWS HA sites",
+                                                            "id_str": "updateNetworkRangeBulk___input___networkRange___secondaryManagementIp",
+                                                            "name": "secondaryManagementIp",
+                                                            "path": "updateNetworkRangeBulk.input.networkRange.secondaryManagementIp",
+                                                            "requestStr": "$secondaryManagementIp:IPAddress ",
+                                                            "required": false,
+                                                            "responseStr": "secondaryManagementIp:$secondaryManagementIp ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "IPAddress",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "secondaryManagementIp"
+                                                        },
+                                                        "subnet": {
+                                                            "defaultValue": null,
+                                                            "description": "Subnet (CIDR).",
+                                                            "id_str": "updateNetworkRangeBulk___input___networkRange___subnet",
+                                                            "name": "subnet",
+                                                            "path": "updateNetworkRangeBulk.input.networkRange.subnet",
+                                                            "requestStr": "$subnet:IPSubnet ",
+                                                            "required": false,
+                                                            "responseStr": "subnet:$subnet ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "IPSubnet",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "subnet"
+                                                        },
+                                                        "translatedSubnet": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "updateNetworkRangeBulk___input___networkRange___translatedSubnet",
+                                                            "name": "translatedSubnet",
+                                                            "path": "updateNetworkRangeBulk.input.networkRange.translatedSubnet",
+                                                            "requestStr": "$translatedSubnet:IPSubnet ",
+                                                            "required": false,
+                                                            "responseStr": "translatedSubnet:$translatedSubnet ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "IPSubnet",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "translatedSubnet"
+                                                        },
+                                                        "vlan": {
+                                                            "defaultValue": null,
+                                                            "description": "Only relevant for VLAN network rangeType",
+                                                            "id_str": "updateNetworkRangeBulk___input___networkRange___vlan",
+                                                            "name": "vlan",
+                                                            "path": "updateNetworkRangeBulk.input.networkRange.vlan",
+                                                            "requestStr": "$vlan:Int ",
+                                                            "required": false,
+                                                            "responseStr": "vlan:$vlan ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "Int",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "vlan"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "UpdateSiteNetworkRangeV2Input",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "LIST",
+                                                    "NON_NULL",
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "UpdateSiteNetworkRangeV2Input",
+                                                "non_null": false
+                                            },
+                                            "varName": "updateSiteNetworkRangeV2Input"
+                                        },
+                                        "site": {
+                                            "defaultValue": null,
+                                            "description": "Site whose network ranges are being updated.",
+                                            "id_str": "updateNetworkRangeBulk___input___site",
+                                            "name": "site",
+                                            "path": "updateNetworkRangeBulk.input.site",
+                                            "requestStr": "$siteRefInput:SiteRefInput! ",
+                                            "required": true,
+                                            "responseStr": "site:$siteRefInput ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": null,
+                                                    "fields": null,
+                                                    "inputFields": {
+                                                        "by": {
+                                                            "defaultValue": "ID",
+                                                            "description": null,
+                                                            "id_str": "updateNetworkRangeBulk___input___site___by",
+                                                            "name": "by",
+                                                            "path": "updateNetworkRangeBulk.input.site.by",
+                                                            "requestStr": "$by:ObjectRefBy! ",
+                                                            "required": true,
+                                                            "responseStr": "by:$by ",
+                                                            "type": {
+                                                                "definition": {
+                                                                    "description": null,
+                                                                    "enumValues": [
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "ID"
+                                                                        },
+                                                                        {
+                                                                            "deprecationReason": null,
+                                                                            "description": null,
+                                                                            "isDeprecated": false,
+                                                                            "name": "NAME"
+                                                                        }
+                                                                    ],
+                                                                    "fields": null,
+                                                                    "inputFields": null,
+                                                                    "interfaces": null,
+                                                                    "kind": "ENUM",
+                                                                    "name": "ObjectRefBy",
+                                                                    "possibleTypes": null
+                                                                },
+                                                                "indexType": "enum",
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "ENUM"
+                                                                ],
+                                                                "name": "ObjectRefBy",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "by"
+                                                        },
+                                                        "input": {
+                                                            "defaultValue": null,
+                                                            "description": null,
+                                                            "id_str": "updateNetworkRangeBulk___input___site___input",
+                                                            "name": "input",
+                                                            "path": "updateNetworkRangeBulk.input.site.input",
+                                                            "requestStr": "$input:String! ",
+                                                            "required": true,
+                                                            "responseStr": "input:$input ",
+                                                            "type": {
+                                                                "kind": [
+                                                                    "NON_NULL",
+                                                                    "SCALAR"
+                                                                ],
+                                                                "name": "String",
+                                                                "non_null": false
+                                                            },
+                                                            "varName": "input"
+                                                        }
+                                                    },
+                                                    "interfaces": null,
+                                                    "kind": "INPUT_OBJECT",
+                                                    "name": "SiteRefInput",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "input_object",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "INPUT_OBJECT"
+                                                ],
+                                                "name": "SiteRefInput",
+                                                "non_null": false
+                                            },
+                                            "varName": "siteRefInput"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "UpdateNetworkRangeBulkInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "NON_NULL",
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "UpdateNetworkRangeBulkInput",
+                                "non_null": false
+                            },
+                            "varName": "updateNetworkRangeBulkInput"
+                        }
+                    },
+                    "deprecationReason": null,
+                    "description": "Updates one or more existing network ranges on a single site in place, in a single atomic batch.",
+                    "id_str": "updateNetworkRangeBulk",
+                    "isDeprecated": false,
+                    "name": "updateNetworkRangeBulk",
+                    "path": "updateNetworkRangeBulk",
+                    "requestStr": "$updateNetworkRangeBulkPayload:UpdateNetworkRangeBulkPayload ",
+                    "required": false,
+                    "responseStr": "updateNetworkRangeBulk:$updateNetworkRangeBulkPayload ",
+                    "type": {
+                        "definition": {
+                            "description": null,
+                            "enumValues": null,
+                            "fields": {
+                                "networkRange": {
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": "The network ranges that were updated by this mutation.",
+                                    "id_str": "updateNetworkRangeBulk___networkRange",
+                                    "isDeprecated": false,
+                                    "name": "networkRange",
+                                    "path": "updateNetworkRangeBulk.networkRange",
+                                    "requestStr": "$networkRange:[NetworkRange]! ",
+                                    "required": true,
+                                    "responseStr": "networkRange:$networkRange ",
+                                    "type": {
+                                        "definition": {
+                                            "description": "A network range configured on a site.",
+                                            "enumValues": null,
+                                            "fields": {
+                                                "azureFloatingIp": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Only relevant for AZURE HA sites",
+                                                    "id_str": "updateNetworkRangeBulk___networkRange___azureFloatingIp",
+                                                    "isDeprecated": false,
+                                                    "name": "azureFloatingIp",
+                                                    "path": "updateNetworkRangeBulk.networkRange.azureFloatingIp",
+                                                    "requestStr": "$azureFloatingIp:IPAddress ",
+                                                    "required": false,
+                                                    "responseStr": "azureFloatingIp:$azureFloatingIp ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "IPAddress",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "azureFloatingIp"
+                                                },
+                                                "dhcpSettings": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Only relevant for NATIVE, VLAN rangeType",
+                                                    "id_str": "updateNetworkRangeBulk___networkRange___dhcpSettings",
+                                                    "isDeprecated": false,
+                                                    "name": "dhcpSettings",
+                                                    "path": "updateNetworkRangeBulk.networkRange.dhcpSettings",
+                                                    "requestStr": "$networkRangeDhcpSettings:NetworkRangeDhcpSettings ",
+                                                    "required": false,
+                                                    "responseStr": "dhcpSettings:$networkRangeDhcpSettings ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": null,
+                                                            "enumValues": null,
+                                                            "fields": {
+                                                                "dhcpMicrosegmentation": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "id_str": "updateNetworkRangeBulk___networkRange___dhcpSettings___dhcpMicrosegmentation",
+                                                                    "isDeprecated": false,
+                                                                    "name": "dhcpMicrosegmentation",
+                                                                    "path": "updateNetworkRangeBulk.networkRange.dhcpSettings.dhcpMicrosegmentation",
+                                                                    "requestStr": "$dhcpMicrosegmentation:Boolean! ",
+                                                                    "required": true,
+                                                                    "responseStr": "dhcpMicrosegmentation:$dhcpMicrosegmentation ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "Boolean",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "dhcpMicrosegmentation"
+                                                                },
+                                                                "dhcpType": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "id_str": "updateNetworkRangeBulk___networkRange___dhcpSettings___dhcpType",
+                                                                    "isDeprecated": false,
+                                                                    "name": "dhcpType",
+                                                                    "path": "updateNetworkRangeBulk.networkRange.dhcpSettings.dhcpType",
+                                                                    "requestStr": "$dhcpType:DhcpType! ",
+                                                                    "required": true,
+                                                                    "responseStr": "dhcpType:$dhcpType ",
+                                                                    "type": {
+                                                                        "definition": {
+                                                                            "description": null,
+                                                                            "enumValues": [
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "DHCP_RELAY"
+                                                                                },
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "DHCP_RANGE"
+                                                                                },
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "ACCOUNT_DEFAULT"
+                                                                                },
+                                                                                {
+                                                                                    "deprecationReason": null,
+                                                                                    "description": null,
+                                                                                    "isDeprecated": false,
+                                                                                    "name": "DHCP_DISABLED"
+                                                                                }
+                                                                            ],
+                                                                            "fields": null,
+                                                                            "inputFields": null,
+                                                                            "interfaces": null,
+                                                                            "kind": "ENUM",
+                                                                            "name": "DhcpType",
+                                                                            "possibleTypes": null
+                                                                        },
+                                                                        "indexType": "enum",
+                                                                        "kind": [
+                                                                            "NON_NULL",
+                                                                            "ENUM"
+                                                                        ],
+                                                                        "name": "DhcpType",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "dhcpType"
+                                                                },
+                                                                "ipRange": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "id_str": "updateNetworkRangeBulk___networkRange___dhcpSettings___ipRange",
+                                                                    "isDeprecated": false,
+                                                                    "name": "ipRange",
+                                                                    "path": "updateNetworkRangeBulk.networkRange.dhcpSettings.ipRange",
+                                                                    "requestStr": "$ipRange:IPRange ",
+                                                                    "required": false,
+                                                                    "responseStr": "ipRange:$ipRange ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "IPRange",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "ipRange"
+                                                                },
+                                                                "relayGroupId": {
+                                                                    "args": {},
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "id_str": "updateNetworkRangeBulk___networkRange___dhcpSettings___relayGroupId",
+                                                                    "isDeprecated": false,
+                                                                    "name": "relayGroupId",
+                                                                    "path": "updateNetworkRangeBulk.networkRange.dhcpSettings.relayGroupId",
+                                                                    "requestStr": "$relayGroupId:ID ",
+                                                                    "required": false,
+                                                                    "responseStr": "relayGroupId:$relayGroupId ",
+                                                                    "type": {
+                                                                        "kind": [
+                                                                            "SCALAR"
+                                                                        ],
+                                                                        "name": "ID",
+                                                                        "non_null": false
+                                                                    },
+                                                                    "varName": "relayGroupId"
+                                                                }
+                                                            },
+                                                            "inputFields": null,
+                                                            "interfaces": {},
+                                                            "kind": "OBJECT",
+                                                            "name": "NetworkRangeDhcpSettings",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "object",
+                                                        "kind": [
+                                                            "OBJECT"
+                                                        ],
+                                                        "name": "NetworkRangeDhcpSettings",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "networkRangeDhcpSettings"
+                                                },
+                                                "gateway": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Only relevant for ROUTED_ROUTE range type, and for NATIVE and SECONDARY_NATIVE range types on AWS HA sites.",
+                                                    "id_str": "updateNetworkRangeBulk___networkRange___gateway",
+                                                    "isDeprecated": false,
+                                                    "name": "gateway",
+                                                    "path": "updateNetworkRangeBulk.networkRange.gateway",
+                                                    "requestStr": "$gateway:IPAddress ",
+                                                    "required": false,
+                                                    "responseStr": "gateway:$gateway ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "IPAddress",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "gateway"
+                                                },
+                                                "gcpLoadBalancerIp": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Only relevant for GCP HA sites",
+                                                    "id_str": "updateNetworkRangeBulk___networkRange___gcpLoadBalancerIp",
+                                                    "isDeprecated": false,
+                                                    "name": "gcpLoadBalancerIp",
+                                                    "path": "updateNetworkRangeBulk.networkRange.gcpLoadBalancerIp",
+                                                    "requestStr": "$gcpLoadBalancerIp:IPAddress ",
+                                                    "required": false,
+                                                    "responseStr": "gcpLoadBalancerIp:$gcpLoadBalancerIp ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "IPAddress",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "gcpLoadBalancerIp"
+                                                },
+                                                "internetOnly": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "id_str": "updateNetworkRangeBulk___networkRange___internetOnly",
+                                                    "isDeprecated": false,
+                                                    "name": "internetOnly",
+                                                    "path": "updateNetworkRangeBulk.networkRange.internetOnly",
+                                                    "requestStr": "$internetOnly:Boolean! ",
+                                                    "required": true,
+                                                    "responseStr": "internetOnly:$internetOnly ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Boolean",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "internetOnly"
+                                                },
+                                                "localIp": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Only relevant for DIRECT_ROUTE and VLAN range types, and for NATIVE and SECONDARY_NATIVE range types on non-vSocket HA sites.",
+                                                    "id_str": "updateNetworkRangeBulk___networkRange___localIp",
+                                                    "isDeprecated": false,
+                                                    "name": "localIp",
+                                                    "path": "updateNetworkRangeBulk.networkRange.localIp",
+                                                    "requestStr": "$localIp:IPAddress ",
+                                                    "required": false,
+                                                    "responseStr": "localIp:$localIp ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "IPAddress",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "localIp"
+                                                },
+                                                "mdnsReflector": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "id_str": "updateNetworkRangeBulk___networkRange___mdnsReflector",
+                                                    "isDeprecated": false,
+                                                    "name": "mdnsReflector",
+                                                    "path": "updateNetworkRangeBulk.networkRange.mdnsReflector",
+                                                    "requestStr": "$mdnsReflector:Boolean! ",
+                                                    "required": true,
+                                                    "responseStr": "mdnsReflector:$mdnsReflector ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Boolean",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "mdnsReflector"
+                                                },
+                                                "name": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "id_str": "updateNetworkRangeBulk___networkRange___name",
+                                                    "isDeprecated": false,
+                                                    "name": "name",
+                                                    "path": "updateNetworkRangeBulk.networkRange.name",
+                                                    "requestStr": "$name:String! ",
+                                                    "required": true,
+                                                    "responseStr": "name:$name ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "String",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "name"
+                                                },
+                                                "networkRangeId": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "id_str": "updateNetworkRangeBulk___networkRange___networkRangeId",
+                                                    "isDeprecated": false,
+                                                    "name": "networkRangeId",
+                                                    "path": "updateNetworkRangeBulk.networkRange.networkRangeId",
+                                                    "requestStr": "$networkRangeId:ID! ",
+                                                    "required": true,
+                                                    "responseStr": "networkRangeId:$networkRangeId ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "ID",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "networkRangeId"
+                                                },
+                                                "primaryManagementIp": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Only relevant for NATIVE range type in AWS HA sites",
+                                                    "id_str": "updateNetworkRangeBulk___networkRange___primaryManagementIp",
+                                                    "isDeprecated": false,
+                                                    "name": "primaryManagementIp",
+                                                    "path": "updateNetworkRangeBulk.networkRange.primaryManagementIp",
+                                                    "requestStr": "$primaryManagementIp:IPAddress ",
+                                                    "required": false,
+                                                    "responseStr": "primaryManagementIp:$primaryManagementIp ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "IPAddress",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "primaryManagementIp"
+                                                },
+                                                "rangeType": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "id_str": "updateNetworkRangeBulk___networkRange___rangeType",
+                                                    "isDeprecated": false,
+                                                    "name": "rangeType",
+                                                    "path": "updateNetworkRangeBulk.networkRange.rangeType",
+                                                    "requestStr": "$rangeType:SubnetType! ",
+                                                    "required": true,
+                                                    "responseStr": "rangeType:$rangeType ",
+                                                    "type": {
+                                                        "definition": {
+                                                            "description": null,
+                                                            "enumValues": [
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "Routed"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "Direct"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "VLAN"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "Native"
+                                                                },
+                                                                {
+                                                                    "deprecationReason": null,
+                                                                    "description": null,
+                                                                    "isDeprecated": false,
+                                                                    "name": "SecondaryNative"
+                                                                }
+                                                            ],
+                                                            "fields": null,
+                                                            "inputFields": null,
+                                                            "interfaces": null,
+                                                            "kind": "ENUM",
+                                                            "name": "SubnetType",
+                                                            "possibleTypes": null
+                                                        },
+                                                        "indexType": "enum",
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "ENUM"
+                                                        ],
+                                                        "name": "SubnetType",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "rangeType"
+                                                },
+                                                "secondaryManagementIp": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Only relevant for SECONDARY_NATIVE range type in AWS HA sites",
+                                                    "id_str": "updateNetworkRangeBulk___networkRange___secondaryManagementIp",
+                                                    "isDeprecated": false,
+                                                    "name": "secondaryManagementIp",
+                                                    "path": "updateNetworkRangeBulk.networkRange.secondaryManagementIp",
+                                                    "requestStr": "$secondaryManagementIp:IPAddress ",
+                                                    "required": false,
+                                                    "responseStr": "secondaryManagementIp:$secondaryManagementIp ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "IPAddress",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "secondaryManagementIp"
+                                                },
+                                                "subnet": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "id_str": "updateNetworkRangeBulk___networkRange___subnet",
+                                                    "isDeprecated": false,
+                                                    "name": "subnet",
+                                                    "path": "updateNetworkRangeBulk.networkRange.subnet",
+                                                    "requestStr": "$subnet:IPSubnet! ",
+                                                    "required": true,
+                                                    "responseStr": "subnet:$subnet ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "NON_NULL",
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "IPSubnet",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "subnet"
+                                                },
+                                                "translatedSubnet": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "id_str": "updateNetworkRangeBulk___networkRange___translatedSubnet",
+                                                    "isDeprecated": false,
+                                                    "name": "translatedSubnet",
+                                                    "path": "updateNetworkRangeBulk.networkRange.translatedSubnet",
+                                                    "requestStr": "$translatedSubnet:IPSubnet ",
+                                                    "required": false,
+                                                    "responseStr": "translatedSubnet:$translatedSubnet ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "IPSubnet",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "translatedSubnet"
+                                                },
+                                                "vlan": {
+                                                    "args": {},
+                                                    "deprecationReason": null,
+                                                    "description": "Only relevant for VLAN network rangeType",
+                                                    "id_str": "updateNetworkRangeBulk___networkRange___vlan",
+                                                    "isDeprecated": false,
+                                                    "name": "vlan",
+                                                    "path": "updateNetworkRangeBulk.networkRange.vlan",
+                                                    "requestStr": "$vlan:Int ",
+                                                    "required": false,
+                                                    "responseStr": "vlan:$vlan ",
+                                                    "type": {
+                                                        "kind": [
+                                                            "SCALAR"
+                                                        ],
+                                                        "name": "Int",
+                                                        "non_null": false
+                                                    },
+                                                    "varName": "vlan"
+                                                }
+                                            },
+                                            "inputFields": null,
+                                            "interfaces": {},
+                                            "kind": "OBJECT",
+                                            "name": "NetworkRange",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "object",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "LIST",
+                                            "NON_NULL",
+                                            "OBJECT"
+                                        ],
+                                        "name": "NetworkRange",
+                                        "non_null": false
+                                    },
+                                    "varName": "networkRange"
+                                }
+                            },
+                            "inputFields": null,
+                            "interfaces": {},
+                            "kind": "OBJECT",
+                            "name": "UpdateNetworkRangeBulkPayload",
+                            "possibleTypes": null
+                        },
+                        "indexType": "object",
+                        "kind": [
+                            "OBJECT"
+                        ],
+                        "name": "UpdateNetworkRangeBulkPayload",
+                        "non_null": false
+                    },
+                    "varName": "updateNetworkRangeBulkPayload"
+                }
+            },
+            "inputFields": null,
+            "interfaces": [],
+            "kind": "OBJECT",
+            "name": "SiteMutations",
+            "possibleTypes": null
+        },
+        "indexType": "object",
+        "kind": [
+            "NON_NULL",
+            "OBJECT"
+        ],
+        "name": "SiteMutations",
+        "non_null": false
+    },
+    "variablesPayload": {
+        "updateNetworkRangeBulkInput": {
+            "siteRefInput": {
+                "by": "ID",
+                "input": "string"
+            },
+            "updateSiteNetworkRangeV2Input": {
+                "azureFloatingIp": "example_value",
+                "dhcpSettings": {
+                    "dhcpMicrosegmentation": true,
+                    "dhcpType": "DHCP_RELAY",
+                    "ipRange": "example_value",
+                    "relayGroupId": "id"
+                },
+                "gateway": "example_value",
+                "gcpLoadBalancerIp": "example_value",
+                "id": "id",
+                "internetOnly": true,
+                "localIp": "example_value",
+                "mdnsReflector": true,
+                "name": "string",
+                "primaryManagementIp": "example_value",
+                "rangeType": "Routed",
+                "secondaryManagementIp": "example_value",
+                "subnet": "example_value",
+                "translatedSubnet": "example_value",
+                "vlan": 1
+            }
+        }
+    }
+}

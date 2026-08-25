@@ -1,0 +1,29 @@
+query siteNetworkRangeList ( $accountId:ID! $networkRangeListInput:NetworkRangeListInput!) {
+	site ( accountId:$accountId ) {
+		networkRangeList ( input:$networkRangeListInput  )  {
+			items {
+				networkRangeId
+				name
+				rangeType
+				subnet
+				translatedSubnet
+				localIp
+				gateway
+				vlan
+				azureFloatingIp
+				gcpLoadBalancerIp
+				primaryManagementIp
+				secondaryManagementIp
+				dhcpSettings {
+					dhcpType
+					ipRange
+					relayGroupId
+					dhcpMicrosegmentation
+				}
+				mdnsReflector
+				internetOnly
+			}
+			total
+		}
+	}	
+}

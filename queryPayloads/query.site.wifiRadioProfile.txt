@@ -1,0 +1,25 @@
+query siteWifiRadioProfile ( $accountId:ID! $wifiRadioProfileRefInput:WifiRadioProfileRefInput!) {
+	site ( accountId:$accountId ) {
+		wifiRadioProfile ( input:$wifiRadioProfileRefInput  )  {
+			id
+			site {
+				id
+				name
+			}
+			band24 {
+				band
+				standard
+				channelWidth
+				dfsEnabled
+				channel
+			}
+			band5 {
+				band
+				standard
+				channelWidth
+				dfsEnabled
+				channel
+			}
+		}
+	}	
+}

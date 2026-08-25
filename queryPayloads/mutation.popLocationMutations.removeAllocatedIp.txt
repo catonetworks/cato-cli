@@ -1,0 +1,22 @@
+mutation popLocationMutationsRemoveAllocatedIp ( $accountId:ID! $popLocationRemoveAllocatedIpInput:PopLocationRemoveAllocatedIpInput!) {
+	popLocationMutations ( accountId:$accountId ) {
+		removeAllocatedIp ( input:$popLocationRemoveAllocatedIpInput  )  {
+			allocatedIp {
+				id
+				account {
+					id
+					name
+				}
+				ip
+				popLocation {
+					id
+					name
+				}
+				allocationType
+				description
+				subnet
+				state
+			}
+		}
+	}	
+}

@@ -7,6 +7,13 @@ mutation policyApplicationControlRemoveRule ( $accountId:ID! $applicationControl
 						updatedTime
 						updatedBy
 					}
+					metadata {
+						lock {
+							lockingAdminEmail
+							lockingTime
+							lockingRevisionId
+						}
+					}
 					rule {
 						id
 						name
@@ -385,6 +392,40 @@ mutation policyApplicationControlRemoveRule ( $accountId:ID! $applicationControl
 									name
 								}
 							}
+							applicationCriteriaSatisfy
+							applicationCriteria {
+								attributes {
+									complianceAttributes {
+										iso27001
+										sox
+										hippa
+										soc1
+										soc2
+										soc3
+										isae3402
+										pciDss
+									}
+									securityAttributes {
+										mfa
+										encryptionAtRest
+										auditTrail
+										rbac
+										rememberPassword
+										sso
+										trustedCertificate
+										tlsEnforcement
+										httpSecurityHeaders
+									}
+								}
+								originCountry {
+									id
+									name
+								}
+								risk {
+									risk
+									riskOperator
+								}
+							}
 							actionConfig {
 								userNotification {
 									id
@@ -415,6 +456,16 @@ mutation policyApplicationControlRemoveRule ( $accountId:ID! $applicationControl
 									name
 								}
 								applicationType
+							}
+							applicationContext {
+								applicationTenant {
+									operator
+									value
+									valueSet {
+										id
+										name
+									}
+								}
 							}
 							applicationActivitySatisfy
 							applicationActivity {
@@ -547,6 +598,40 @@ mutation policyApplicationControlRemoveRule ( $accountId:ID! $applicationControl
 									name
 								}
 							}
+							applicationCriteriaSatisfy
+							applicationCriteria {
+								attributes {
+									complianceAttributes {
+										iso27001
+										sox
+										hippa
+										soc1
+										soc2
+										soc3
+										isae3402
+										pciDss
+									}
+									securityAttributes {
+										mfa
+										encryptionAtRest
+										auditTrail
+										rbac
+										rememberPassword
+										sso
+										trustedCertificate
+										tlsEnforcement
+										httpSecurityHeaders
+									}
+								}
+								originCountry {
+									id
+									name
+								}
+								risk {
+									risk
+									riskOperator
+								}
+							}
 							actionConfig {
 								userNotification {
 									id
@@ -556,6 +641,14 @@ mutation policyApplicationControlRemoveRule ( $accountId:ID! $applicationControl
 						}
 					}
 					properties
+				}
+				revision {
+					id
+					name
+					description
+					changes
+					createdTime
+					updatedTime
 				}
 				status
 				errors {

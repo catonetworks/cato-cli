@@ -74,6 +74,9 @@ query licensing ( $accountId:ID!) {
 				... on DemLicense {
 					total
 				}
+				... on AssetsSecurityLicense {
+					total
+				}
 				... on AISecurityUsersLicense {
 					total
 				}
@@ -102,6 +105,18 @@ query licensing ( $accountId:ID!) {
 					total
 				}
 				... on MspAtpBandwidthLicense {
+					total
+				}
+				... on MspXOpsUsersLicense {
+					total
+				}
+				... on MspXOpsBandwidthLicense {
+					total
+				}
+				... on MspMdrUsersLicense {
+					total
+				}
+				... on MspMdrBandwidthLicense {
 					total
 				}
 			}
@@ -286,6 +301,16 @@ query licensing ( $accountId:ID!) {
 				expirationDate
 				lastUpdated
 			}
+			adsp {
+				id
+				description
+				plan
+				sku
+				status
+				startDate
+				expirationDate
+				lastUpdated
+			}
 			mdr {
 				id
 				description
@@ -358,6 +383,17 @@ query licensing ( $accountId:ID!) {
 				startDate
 				expirationDate
 				lastUpdated
+			}
+			assetsSecurity {
+				id
+				description
+				plan
+				sku
+				status
+				startDate
+				expirationDate
+				lastUpdated
+				total
 			}
 			atp {
 				id

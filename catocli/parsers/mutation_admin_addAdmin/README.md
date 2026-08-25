@@ -11,7 +11,7 @@ catocli mutation admin addAdmin <json>
 
 catocli mutation admin addAdmin --json-file mutation.admin.addAdmin.json
 
-catocli mutation admin addAdmin '{"addAdminInput":{"adminType":"LOGIN","email":"string","firstName":"string","lastName":"string","passwordNeverExpires":true,"updateAdminRoleInput":{"allowedAccounts":["id1","id2"],"allowedEntities":{"id":"id","name":"string","type":"account"},"role":{"id":"id","name":"string"}}}}'
+catocli mutation admin addAdmin '{"addAdminInput":{"adminType":"LOGIN","email":"string","firstName":"string","lastName":"string","passwordNeverExpires":true,"shouldSendInvitationEmail":true,"updateAdminRoleInput":{"allowedAccounts":["id1","id2"],"allowedEntities":{"id":"id","name":"string","type":"site"},"role":{"id":"id","name":"string"}}}}'
 
 catocli mutation admin addAdmin '{
     "addAdminInput": {
@@ -20,6 +20,7 @@ catocli mutation admin addAdmin '{
         "firstName": "string",
         "lastName": "string",
         "passwordNeverExpires": true,
+        "shouldSendInvitationEmail": true,
         "updateAdminRoleInput": {
             "allowedAccounts": [
                 "id1",
@@ -28,7 +29,7 @@ catocli mutation admin addAdmin '{
             "allowedEntities": {
                 "id": "id",
                 "name": "string",
-                "type": "account"
+                "type": "site"
             },
             "role": {
                 "id": "id",

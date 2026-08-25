@@ -1,0 +1,28 @@
+mutation sitesUpdateNetworkRangeBulk ( $accountId:ID! $updateNetworkRangeBulkInput:UpdateNetworkRangeBulkInput!) {
+	sites ( accountId:$accountId ) {
+		updateNetworkRangeBulk ( input:$updateNetworkRangeBulkInput  )  {
+			networkRange {
+				networkRangeId
+				name
+				rangeType
+				subnet
+				translatedSubnet
+				localIp
+				gateway
+				vlan
+				azureFloatingIp
+				gcpLoadBalancerIp
+				primaryManagementIp
+				secondaryManagementIp
+				dhcpSettings {
+					dhcpType
+					ipRange
+					relayGroupId
+					dhcpMicrosegmentation
+				}
+				mdnsReflector
+				internetOnly
+			}
+		}
+	}	
+}

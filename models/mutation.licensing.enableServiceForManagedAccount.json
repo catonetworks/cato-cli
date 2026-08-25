@@ -1,0 +1,2205 @@
+{
+    "args": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        }
+    },
+    "childOperations": {
+        "enableServiceForManagedAccount": {
+            "args": {
+                "enableServiceForManagedAccount___input": {
+                    "defaultValue": null,
+                    "description": null,
+                    "id_str": "enableServiceForManagedAccount___input",
+                    "name": "input",
+                    "path": "enableServiceForManagedAccount.input",
+                    "requestStr": "$enableServiceForManagedAccountInput:EnableServiceForManagedAccountInput! ",
+                    "required": true,
+                    "responseStr": "input:$enableServiceForManagedAccountInput ",
+                    "type": {
+                        "definition": {
+                            "description": null,
+                            "enumValues": null,
+                            "fields": null,
+                            "inputFields": {
+                                "managedAccountId": {
+                                    "defaultValue": null,
+                                    "description": "ID of the managed account on which the service will be enabled. Requires account-level edit authorization.",
+                                    "id_str": "enableServiceForManagedAccount___input___managedAccountId",
+                                    "name": "managedAccountId",
+                                    "path": "enableServiceForManagedAccount.input.managedAccountId",
+                                    "requestStr": "$managedAccountId:ID! ",
+                                    "required": true,
+                                    "responseStr": "managedAccountId:$managedAccountId ",
+                                    "type": {
+                                        "kind": [
+                                            "NON_NULL",
+                                            "SCALAR"
+                                        ],
+                                        "name": "ID",
+                                        "non_null": false
+                                    },
+                                    "varName": "managedAccountId"
+                                },
+                                "service": {
+                                    "defaultValue": null,
+                                    "description": "The license SKU to enable",
+                                    "id_str": "enableServiceForManagedAccount___input___service",
+                                    "name": "service",
+                                    "path": "enableServiceForManagedAccount.input.service",
+                                    "requestStr": "$service:LicenseSku! ",
+                                    "required": true,
+                                    "responseStr": "service:$service ",
+                                    "type": {
+                                        "definition": {
+                                            "description": null,
+                                            "enumValues": [
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Site bandwidth SASE SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_SITE"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Site bandwidth SSE SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_SSE_SITE"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Site pooled bandwidth SASE SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_PB"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Site pooled bandwidth SSE SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_PB_SSE"
+                                                },
+                                                {
+                                                    "deprecationReason": "replaced with CATO_ZTNA_USERS",
+                                                    "description": "ZTNA remote users SKU",
+                                                    "isDeprecated": true,
+                                                    "name": "MOBILE_USERS"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "ZTNA remote users SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_ZTNA_USERS"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato EPP service SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_EPP"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato IPS (legacy) service SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_IPS"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Anti Malware (legacy) service SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_ANTI_MALWARE"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Anti Malware Next Generation (legacy) service SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_ANTI_MALWARE_NG"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato CASB service SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_CASB"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato DLP service SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_DLP"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato ILMM service SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_ILMM"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato MDR service SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_MDR"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Managed XDR service SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_MANAGED_XDR"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato NOCaaS service SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_NOCAAS_HF"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Remote Browser Isolation (RBI) service SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_RBI"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato SAAS Group SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_SAAS"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato SAAS Security API with one application integration (legacy) service SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_SAAS_SECURITY_API_ONE_APP"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato SAAS Security API with two applications integration (legacy) service SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_SAAS_SECURITY_API_TWO_APPS"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato SAAS Security API with more than two Applications integration (legacy) service SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_SAAS_SECURITY_API_ALL_APPS"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": null,
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_SAAS_SECURITY_API"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato XDR service SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_XDR_PRO"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato DEM service SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_DEM"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato IoT/OT Security service SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_IOT_OT"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Threat Prevention (legacy) service SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_THREAT_PREVENTION"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Advanced Threat Prevention service SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_THREAT_PREVENTION_ADV"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato XOps service SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_XOPS"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Public IPs SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_IP_ADD"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato datalake Group SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_DATALAKE"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Data Lake Storage 2.5M/h, 3 Month Retention SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_DATALAKE_3M"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Data Lake Storage 2.5M/h, 6 Month Retention SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_DATALAKE_6M"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Data Lake Storage 2.5M/h, 12 Month Retention SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_DATALAKE_12M"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato AI Security Users SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_AI_SEC_U"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato AI Security Applications Group SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_AI_SEC_APP_GROUP"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato AI Security Applications SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_AI_SEC_APP"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato AI Security Applications SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_AI_SEC_APP_U"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato CASB for MSP bandwidth SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_CASB_PB_SA"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato CASB for MSP users SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_CASB_USER_SA"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato DLP for MSP bandwidth SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_DLP_PB_SA"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato DLP for MSP users SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_DLP_USER_SA"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato TP for MSP bandwidth SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_THREAT_PREVENTION_PB_SA"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato TP for MSP users SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_THREAT_PREVENTION_USER_SA"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato ATP for MSP bandwidth SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_THREAT_PREVENTION_ADV_PB_SA"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato ATP for MSP users SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_ATP_USER_SA"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato XOps for MSP bandwidth SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_XOPS_PB_SA"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato XOps for MSP users SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_XOPS_USER_SA"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato MDR for MSP bandwidth SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_MDR_PB_SA"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato MDR for MSP users SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_MDR_USER_SA"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato App & Data Security Package SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_ADSP"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato App & Data Security Package BW SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_ADSP_B"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato App & Data Security Package Users SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_ADSP_U"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato App Connector Bandwidth SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_APP_CON_B"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato App Connector User SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_APP_CON_U"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Assets Security Group SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_ASTS_SEC"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Assets Security 1.5K Devices SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_ASTS_SEC_1_5K"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Assets Security 2.5K - 10K Devices SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_ASTS_SEC_10K"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Assets Security 10K - 15K Devices SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_ASTS_SEC_15K"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Assets Security 1.5K - 2.5K Devices SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_ASTS_SEC_2_5K"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Assets Security 15K - 25K Devices SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_ASTS_SEC_25K"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Assets Security 25K - 50K Devices SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_ASTS_SEC_50K"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Assets Security Above 50K Devices SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_ASTS_SEC_ABV_50K"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Advanced Protection BW SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_ATP_B"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Advanced Protection Users SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_ATP_U"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Cloud Access Security Broker BW SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_CASB_B"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Cloud Access Security Broker Users SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_CASB_U"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Digital Experience Monitoring SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_DEM_U"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Data Loss Prevention BW SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_DLP_B"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Data Loss Prevention Users SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_DLP_U"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Endpoint Protection SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_EPP_U"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Hands Free Management SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_HFM_S"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Hands Free Management SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_HFM"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Intelligent Last Mile Management SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_ILMM_S"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Managed Detection and Response SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_MDR_U"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato NOCaaS SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_NOCAAS_HF_S"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Remote Browser Isolation BW SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_RBI_B"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Remote Browser Isolation Users SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_RBI_U"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Remote User SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_REMOTE_U"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Secured Internet Access Bandwidth SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_SIA_B"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Secured Internet Access User SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_SIA_U"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Sandbox BW SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_SNDBX_B"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Sandbox Users SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_SNDBX_U"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Socket X1500 SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_SOCKET_X1500_R"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Socket X1600 5G SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_SOCKET_X1600_5G_R"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Socket X1600 LTE SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_SOCKET_X1600_LTE_R"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Socket X1600 SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_SOCKET_X1600_R"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Socket X1600 Wifi + 5G SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_SOCKET_X1600_WIFI_5G_R"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Socket X1600 Wifi SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_SOCKET_X1600_WIFI_R"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Socket X1700 SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_SOCKET_X1700_R"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato WAN Bandwidth SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_WAN"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato WAN Threat Prevention BW SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_WAN_TP_B"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato XOPs SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_XOPS_U"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Advanced Security Package quantity-based SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_ADSP_Q"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Advanced Threat Prevention quantity-based SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_ATP_Q"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Cloud Access Security Broker quantity-based SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_CASB_Q"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Threat Prevention quantity-based SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_TP_Q"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Data Loss Prevention quantity-based SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_DLP_Q"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato Managed Detection and Response quantity-based SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_MDR_Q"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato XOps quantity-based SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_XOPS_Q"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato pooled bandwidth quantity-based SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_PB_Q"
+                                                },
+                                                {
+                                                    "deprecationReason": null,
+                                                    "description": "Cato ZTNA users quantity-based SKU",
+                                                    "isDeprecated": false,
+                                                    "name": "CATO_ZTNA_Q"
+                                                }
+                                            ],
+                                            "fields": null,
+                                            "inputFields": null,
+                                            "interfaces": null,
+                                            "kind": "ENUM",
+                                            "name": "LicenseSku",
+                                            "possibleTypes": null
+                                        },
+                                        "indexType": "enum",
+                                        "kind": [
+                                            "NON_NULL",
+                                            "ENUM"
+                                        ],
+                                        "name": "LicenseSku",
+                                        "non_null": false
+                                    },
+                                    "varName": "service"
+                                }
+                            },
+                            "interfaces": null,
+                            "kind": "INPUT_OBJECT",
+                            "name": "EnableServiceForManagedAccountInput",
+                            "possibleTypes": null
+                        },
+                        "indexType": "input_object",
+                        "kind": [
+                            "NON_NULL",
+                            "INPUT_OBJECT"
+                        ],
+                        "name": "EnableServiceForManagedAccountInput",
+                        "non_null": false
+                    },
+                    "varName": "enableServiceForManagedAccountInput"
+                }
+            },
+            "deprecationReason": null,
+            "description": "BETA",
+            "isDeprecated": false,
+            "name": "enableServiceForManagedAccount",
+            "type": {
+                "kind": "OBJECT",
+                "name": "EnableServiceForManagedAccountPayload",
+                "ofType": null
+            }
+        }
+    },
+    "deprecationReason": null,
+    "description": null,
+    "fieldTypes": {},
+    "isDeprecated": false,
+    "name": "licensing",
+    "operationArgs": {
+        "accountId": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "accountId",
+            "name": "accountId",
+            "path": "accountId",
+            "requestStr": "$accountId:ID! ",
+            "required": true,
+            "responseStr": "accountId:$accountId ",
+            "type": {
+                "kind": [
+                    "NON_NULL",
+                    "SCALAR"
+                ],
+                "name": "ID",
+                "non_null": false
+            },
+            "varName": "accountId"
+        },
+        "enableServiceForManagedAccountInput": {
+            "defaultValue": null,
+            "description": null,
+            "id_str": "enableServiceForManagedAccount___input",
+            "name": "input",
+            "path": "enableServiceForManagedAccount.input",
+            "requestStr": "$enableServiceForManagedAccountInput:EnableServiceForManagedAccountInput! ",
+            "required": true,
+            "responseStr": "input:$enableServiceForManagedAccountInput ",
+            "type": {
+                "definition": {
+                    "description": null,
+                    "enumValues": null,
+                    "fields": null,
+                    "inputFields": {
+                        "managedAccountId": {
+                            "defaultValue": null,
+                            "description": "ID of the managed account on which the service will be enabled. Requires account-level edit authorization.",
+                            "id_str": "enableServiceForManagedAccount___input___managedAccountId",
+                            "name": "managedAccountId",
+                            "path": "enableServiceForManagedAccount.input.managedAccountId",
+                            "requestStr": "$managedAccountId:ID! ",
+                            "required": true,
+                            "responseStr": "managedAccountId:$managedAccountId ",
+                            "type": {
+                                "kind": [
+                                    "NON_NULL",
+                                    "SCALAR"
+                                ],
+                                "name": "ID",
+                                "non_null": false
+                            },
+                            "varName": "managedAccountId"
+                        },
+                        "service": {
+                            "defaultValue": null,
+                            "description": "The license SKU to enable",
+                            "id_str": "enableServiceForManagedAccount___input___service",
+                            "name": "service",
+                            "path": "enableServiceForManagedAccount.input.service",
+                            "requestStr": "$service:LicenseSku! ",
+                            "required": true,
+                            "responseStr": "service:$service ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": [
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Site bandwidth SASE SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_SITE"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Site bandwidth SSE SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_SSE_SITE"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Site pooled bandwidth SASE SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_PB"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Site pooled bandwidth SSE SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_PB_SSE"
+                                        },
+                                        {
+                                            "deprecationReason": "replaced with CATO_ZTNA_USERS",
+                                            "description": "ZTNA remote users SKU",
+                                            "isDeprecated": true,
+                                            "name": "MOBILE_USERS"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "ZTNA remote users SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_ZTNA_USERS"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato EPP service SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_EPP"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato IPS (legacy) service SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_IPS"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Anti Malware (legacy) service SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_ANTI_MALWARE"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Anti Malware Next Generation (legacy) service SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_ANTI_MALWARE_NG"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato CASB service SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_CASB"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato DLP service SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_DLP"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato ILMM service SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_ILMM"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato MDR service SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_MDR"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Managed XDR service SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_MANAGED_XDR"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato NOCaaS service SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_NOCAAS_HF"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Remote Browser Isolation (RBI) service SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_RBI"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato SAAS Group SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_SAAS"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato SAAS Security API with one application integration (legacy) service SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_SAAS_SECURITY_API_ONE_APP"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato SAAS Security API with two applications integration (legacy) service SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_SAAS_SECURITY_API_TWO_APPS"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato SAAS Security API with more than two Applications integration (legacy) service SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_SAAS_SECURITY_API_ALL_APPS"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": null,
+                                            "isDeprecated": false,
+                                            "name": "CATO_SAAS_SECURITY_API"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato XDR service SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_XDR_PRO"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato DEM service SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_DEM"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato IoT/OT Security service SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_IOT_OT"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Threat Prevention (legacy) service SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_THREAT_PREVENTION"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Advanced Threat Prevention service SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_THREAT_PREVENTION_ADV"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato XOps service SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_XOPS"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Public IPs SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_IP_ADD"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato datalake Group SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_DATALAKE"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Data Lake Storage 2.5M/h, 3 Month Retention SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_DATALAKE_3M"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Data Lake Storage 2.5M/h, 6 Month Retention SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_DATALAKE_6M"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Data Lake Storage 2.5M/h, 12 Month Retention SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_DATALAKE_12M"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato AI Security Users SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_AI_SEC_U"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato AI Security Applications Group SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_AI_SEC_APP_GROUP"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato AI Security Applications SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_AI_SEC_APP"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato AI Security Applications SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_AI_SEC_APP_U"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato CASB for MSP bandwidth SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_CASB_PB_SA"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato CASB for MSP users SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_CASB_USER_SA"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato DLP for MSP bandwidth SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_DLP_PB_SA"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato DLP for MSP users SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_DLP_USER_SA"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato TP for MSP bandwidth SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_THREAT_PREVENTION_PB_SA"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato TP for MSP users SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_THREAT_PREVENTION_USER_SA"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato ATP for MSP bandwidth SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_THREAT_PREVENTION_ADV_PB_SA"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato ATP for MSP users SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_ATP_USER_SA"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato XOps for MSP bandwidth SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_XOPS_PB_SA"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato XOps for MSP users SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_XOPS_USER_SA"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato MDR for MSP bandwidth SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_MDR_PB_SA"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato MDR for MSP users SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_MDR_USER_SA"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato App & Data Security Package SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_ADSP"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato App & Data Security Package BW SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_ADSP_B"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato App & Data Security Package Users SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_ADSP_U"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato App Connector Bandwidth SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_APP_CON_B"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato App Connector User SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_APP_CON_U"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Assets Security Group SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_ASTS_SEC"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Assets Security 1.5K Devices SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_ASTS_SEC_1_5K"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Assets Security 2.5K - 10K Devices SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_ASTS_SEC_10K"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Assets Security 10K - 15K Devices SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_ASTS_SEC_15K"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Assets Security 1.5K - 2.5K Devices SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_ASTS_SEC_2_5K"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Assets Security 15K - 25K Devices SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_ASTS_SEC_25K"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Assets Security 25K - 50K Devices SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_ASTS_SEC_50K"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Assets Security Above 50K Devices SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_ASTS_SEC_ABV_50K"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Advanced Protection BW SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_ATP_B"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Advanced Protection Users SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_ATP_U"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Cloud Access Security Broker BW SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_CASB_B"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Cloud Access Security Broker Users SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_CASB_U"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Digital Experience Monitoring SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_DEM_U"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Data Loss Prevention BW SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_DLP_B"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Data Loss Prevention Users SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_DLP_U"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Endpoint Protection SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_EPP_U"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Hands Free Management SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_HFM_S"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Hands Free Management SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_HFM"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Intelligent Last Mile Management SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_ILMM_S"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Managed Detection and Response SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_MDR_U"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato NOCaaS SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_NOCAAS_HF_S"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Remote Browser Isolation BW SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_RBI_B"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Remote Browser Isolation Users SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_RBI_U"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Remote User SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_REMOTE_U"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Secured Internet Access Bandwidth SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_SIA_B"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Secured Internet Access User SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_SIA_U"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Sandbox BW SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_SNDBX_B"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Sandbox Users SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_SNDBX_U"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Socket X1500 SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_SOCKET_X1500_R"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Socket X1600 5G SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_SOCKET_X1600_5G_R"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Socket X1600 LTE SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_SOCKET_X1600_LTE_R"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Socket X1600 SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_SOCKET_X1600_R"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Socket X1600 Wifi + 5G SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_SOCKET_X1600_WIFI_5G_R"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Socket X1600 Wifi SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_SOCKET_X1600_WIFI_R"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Socket X1700 SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_SOCKET_X1700_R"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato WAN Bandwidth SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_WAN"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato WAN Threat Prevention BW SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_WAN_TP_B"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato XOPs SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_XOPS_U"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Advanced Security Package quantity-based SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_ADSP_Q"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Advanced Threat Prevention quantity-based SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_ATP_Q"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Cloud Access Security Broker quantity-based SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_CASB_Q"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Threat Prevention quantity-based SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_TP_Q"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Data Loss Prevention quantity-based SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_DLP_Q"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato Managed Detection and Response quantity-based SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_MDR_Q"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato XOps quantity-based SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_XOPS_Q"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato pooled bandwidth quantity-based SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_PB_Q"
+                                        },
+                                        {
+                                            "deprecationReason": null,
+                                            "description": "Cato ZTNA users quantity-based SKU",
+                                            "isDeprecated": false,
+                                            "name": "CATO_ZTNA_Q"
+                                        }
+                                    ],
+                                    "fields": null,
+                                    "inputFields": null,
+                                    "interfaces": null,
+                                    "kind": "ENUM",
+                                    "name": "LicenseSku",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "enum",
+                                "kind": [
+                                    "NON_NULL",
+                                    "ENUM"
+                                ],
+                                "name": "LicenseSku",
+                                "non_null": false
+                            },
+                            "varName": "service"
+                        }
+                    },
+                    "interfaces": null,
+                    "kind": "INPUT_OBJECT",
+                    "name": "EnableServiceForManagedAccountInput",
+                    "possibleTypes": null
+                },
+                "indexType": "input_object",
+                "kind": [
+                    "NON_NULL",
+                    "INPUT_OBJECT"
+                ],
+                "name": "EnableServiceForManagedAccountInput",
+                "non_null": false
+            },
+            "varName": "enableServiceForManagedAccountInput"
+        }
+    },
+    "path": "mutation.licensing.enableServiceForManagedAccount",
+    "type": {
+        "definition": {
+            "description": null,
+            "enumValues": null,
+            "fields": {
+                "enableServiceForManagedAccount": {
+                    "args": {
+                        "enableServiceForManagedAccount___input": {
+                            "defaultValue": null,
+                            "description": null,
+                            "id_str": "enableServiceForManagedAccount___input",
+                            "name": "input",
+                            "path": "enableServiceForManagedAccount.input",
+                            "requestStr": "$enableServiceForManagedAccountInput:EnableServiceForManagedAccountInput! ",
+                            "required": true,
+                            "responseStr": "input:$enableServiceForManagedAccountInput ",
+                            "type": {
+                                "definition": {
+                                    "description": null,
+                                    "enumValues": null,
+                                    "fields": null,
+                                    "inputFields": {
+                                        "managedAccountId": {
+                                            "defaultValue": null,
+                                            "description": "ID of the managed account on which the service will be enabled. Requires account-level edit authorization.",
+                                            "id_str": "enableServiceForManagedAccount___input___managedAccountId",
+                                            "name": "managedAccountId",
+                                            "path": "enableServiceForManagedAccount.input.managedAccountId",
+                                            "requestStr": "$managedAccountId:ID! ",
+                                            "required": true,
+                                            "responseStr": "managedAccountId:$managedAccountId ",
+                                            "type": {
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "SCALAR"
+                                                ],
+                                                "name": "ID",
+                                                "non_null": false
+                                            },
+                                            "varName": "managedAccountId"
+                                        },
+                                        "service": {
+                                            "defaultValue": null,
+                                            "description": "The license SKU to enable",
+                                            "id_str": "enableServiceForManagedAccount___input___service",
+                                            "name": "service",
+                                            "path": "enableServiceForManagedAccount.input.service",
+                                            "requestStr": "$service:LicenseSku! ",
+                                            "required": true,
+                                            "responseStr": "service:$service ",
+                                            "type": {
+                                                "definition": {
+                                                    "description": null,
+                                                    "enumValues": [
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Site bandwidth SASE SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_SITE"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Site bandwidth SSE SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_SSE_SITE"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Site pooled bandwidth SASE SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_PB"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Site pooled bandwidth SSE SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_PB_SSE"
+                                                        },
+                                                        {
+                                                            "deprecationReason": "replaced with CATO_ZTNA_USERS",
+                                                            "description": "ZTNA remote users SKU",
+                                                            "isDeprecated": true,
+                                                            "name": "MOBILE_USERS"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "ZTNA remote users SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_ZTNA_USERS"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato EPP service SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_EPP"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato IPS (legacy) service SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_IPS"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Anti Malware (legacy) service SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_ANTI_MALWARE"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Anti Malware Next Generation (legacy) service SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_ANTI_MALWARE_NG"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato CASB service SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_CASB"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato DLP service SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_DLP"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato ILMM service SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_ILMM"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato MDR service SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_MDR"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Managed XDR service SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_MANAGED_XDR"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato NOCaaS service SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_NOCAAS_HF"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Remote Browser Isolation (RBI) service SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_RBI"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato SAAS Group SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_SAAS"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato SAAS Security API with one application integration (legacy) service SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_SAAS_SECURITY_API_ONE_APP"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato SAAS Security API with two applications integration (legacy) service SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_SAAS_SECURITY_API_TWO_APPS"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato SAAS Security API with more than two Applications integration (legacy) service SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_SAAS_SECURITY_API_ALL_APPS"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": null,
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_SAAS_SECURITY_API"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato XDR service SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_XDR_PRO"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato DEM service SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_DEM"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato IoT/OT Security service SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_IOT_OT"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Threat Prevention (legacy) service SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_THREAT_PREVENTION"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Advanced Threat Prevention service SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_THREAT_PREVENTION_ADV"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato XOps service SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_XOPS"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Public IPs SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_IP_ADD"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato datalake Group SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_DATALAKE"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Data Lake Storage 2.5M/h, 3 Month Retention SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_DATALAKE_3M"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Data Lake Storage 2.5M/h, 6 Month Retention SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_DATALAKE_6M"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Data Lake Storage 2.5M/h, 12 Month Retention SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_DATALAKE_12M"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato AI Security Users SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_AI_SEC_U"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato AI Security Applications Group SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_AI_SEC_APP_GROUP"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato AI Security Applications SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_AI_SEC_APP"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato AI Security Applications SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_AI_SEC_APP_U"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato CASB for MSP bandwidth SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_CASB_PB_SA"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato CASB for MSP users SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_CASB_USER_SA"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato DLP for MSP bandwidth SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_DLP_PB_SA"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato DLP for MSP users SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_DLP_USER_SA"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato TP for MSP bandwidth SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_THREAT_PREVENTION_PB_SA"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato TP for MSP users SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_THREAT_PREVENTION_USER_SA"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato ATP for MSP bandwidth SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_THREAT_PREVENTION_ADV_PB_SA"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato ATP for MSP users SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_ATP_USER_SA"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato XOps for MSP bandwidth SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_XOPS_PB_SA"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato XOps for MSP users SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_XOPS_USER_SA"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato MDR for MSP bandwidth SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_MDR_PB_SA"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato MDR for MSP users SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_MDR_USER_SA"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato App & Data Security Package SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_ADSP"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato App & Data Security Package BW SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_ADSP_B"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato App & Data Security Package Users SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_ADSP_U"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato App Connector Bandwidth SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_APP_CON_B"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato App Connector User SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_APP_CON_U"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Assets Security Group SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_ASTS_SEC"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Assets Security 1.5K Devices SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_ASTS_SEC_1_5K"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Assets Security 2.5K - 10K Devices SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_ASTS_SEC_10K"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Assets Security 10K - 15K Devices SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_ASTS_SEC_15K"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Assets Security 1.5K - 2.5K Devices SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_ASTS_SEC_2_5K"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Assets Security 15K - 25K Devices SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_ASTS_SEC_25K"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Assets Security 25K - 50K Devices SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_ASTS_SEC_50K"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Assets Security Above 50K Devices SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_ASTS_SEC_ABV_50K"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Advanced Protection BW SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_ATP_B"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Advanced Protection Users SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_ATP_U"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Cloud Access Security Broker BW SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_CASB_B"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Cloud Access Security Broker Users SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_CASB_U"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Digital Experience Monitoring SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_DEM_U"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Data Loss Prevention BW SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_DLP_B"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Data Loss Prevention Users SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_DLP_U"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Endpoint Protection SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_EPP_U"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Hands Free Management SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_HFM_S"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Hands Free Management SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_HFM"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Intelligent Last Mile Management SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_ILMM_S"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Managed Detection and Response SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_MDR_U"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato NOCaaS SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_NOCAAS_HF_S"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Remote Browser Isolation BW SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_RBI_B"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Remote Browser Isolation Users SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_RBI_U"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Remote User SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_REMOTE_U"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Secured Internet Access Bandwidth SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_SIA_B"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Secured Internet Access User SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_SIA_U"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Sandbox BW SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_SNDBX_B"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Sandbox Users SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_SNDBX_U"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Socket X1500 SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_SOCKET_X1500_R"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Socket X1600 5G SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_SOCKET_X1600_5G_R"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Socket X1600 LTE SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_SOCKET_X1600_LTE_R"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Socket X1600 SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_SOCKET_X1600_R"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Socket X1600 Wifi + 5G SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_SOCKET_X1600_WIFI_5G_R"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Socket X1600 Wifi SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_SOCKET_X1600_WIFI_R"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Socket X1700 SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_SOCKET_X1700_R"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato WAN Bandwidth SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_WAN"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato WAN Threat Prevention BW SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_WAN_TP_B"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato XOPs SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_XOPS_U"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Advanced Security Package quantity-based SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_ADSP_Q"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Advanced Threat Prevention quantity-based SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_ATP_Q"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Cloud Access Security Broker quantity-based SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_CASB_Q"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Threat Prevention quantity-based SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_TP_Q"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Data Loss Prevention quantity-based SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_DLP_Q"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato Managed Detection and Response quantity-based SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_MDR_Q"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato XOps quantity-based SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_XOPS_Q"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato pooled bandwidth quantity-based SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_PB_Q"
+                                                        },
+                                                        {
+                                                            "deprecationReason": null,
+                                                            "description": "Cato ZTNA users quantity-based SKU",
+                                                            "isDeprecated": false,
+                                                            "name": "CATO_ZTNA_Q"
+                                                        }
+                                                    ],
+                                                    "fields": null,
+                                                    "inputFields": null,
+                                                    "interfaces": null,
+                                                    "kind": "ENUM",
+                                                    "name": "LicenseSku",
+                                                    "possibleTypes": null
+                                                },
+                                                "indexType": "enum",
+                                                "kind": [
+                                                    "NON_NULL",
+                                                    "ENUM"
+                                                ],
+                                                "name": "LicenseSku",
+                                                "non_null": false
+                                            },
+                                            "varName": "service"
+                                        }
+                                    },
+                                    "interfaces": null,
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "EnableServiceForManagedAccountInput",
+                                    "possibleTypes": null
+                                },
+                                "indexType": "input_object",
+                                "kind": [
+                                    "NON_NULL",
+                                    "INPUT_OBJECT"
+                                ],
+                                "name": "EnableServiceForManagedAccountInput",
+                                "non_null": false
+                            },
+                            "varName": "enableServiceForManagedAccountInput"
+                        }
+                    },
+                    "deprecationReason": null,
+                    "description": "BETA",
+                    "id_str": "enableServiceForManagedAccount",
+                    "isDeprecated": false,
+                    "name": "enableServiceForManagedAccount",
+                    "path": "enableServiceForManagedAccount",
+                    "requestStr": "$enableServiceForManagedAccountPayload:EnableServiceForManagedAccountPayload ",
+                    "required": false,
+                    "responseStr": "enableServiceForManagedAccount:$enableServiceForManagedAccountPayload ",
+                    "type": {
+                        "definition": {
+                            "description": null,
+                            "enumValues": null,
+                            "fields": {
+                                "isSuccess": {
+                                    "args": {},
+                                    "deprecationReason": null,
+                                    "description": null,
+                                    "id_str": "enableServiceForManagedAccount___isSuccess",
+                                    "isDeprecated": false,
+                                    "name": "isSuccess",
+                                    "path": "enableServiceForManagedAccount.isSuccess",
+                                    "requestStr": "$isSuccess:Boolean! ",
+                                    "required": true,
+                                    "responseStr": "isSuccess:$isSuccess ",
+                                    "type": {
+                                        "kind": [
+                                            "NON_NULL",
+                                            "SCALAR"
+                                        ],
+                                        "name": "Boolean",
+                                        "non_null": false
+                                    },
+                                    "varName": "isSuccess"
+                                }
+                            },
+                            "inputFields": null,
+                            "interfaces": {},
+                            "kind": "OBJECT",
+                            "name": "EnableServiceForManagedAccountPayload",
+                            "possibleTypes": null
+                        },
+                        "indexType": "object",
+                        "kind": [
+                            "OBJECT"
+                        ],
+                        "name": "EnableServiceForManagedAccountPayload",
+                        "non_null": false
+                    },
+                    "varName": "enableServiceForManagedAccountPayload"
+                }
+            },
+            "inputFields": null,
+            "interfaces": [],
+            "kind": "OBJECT",
+            "name": "LicensingMutations",
+            "possibleTypes": null
+        },
+        "indexType": "object",
+        "kind": [
+            "OBJECT"
+        ],
+        "name": "LicensingMutations",
+        "non_null": false
+    },
+    "variablesPayload": {
+        "enableServiceForManagedAccountInput": {
+            "managedAccountId": "id",
+            "service": "CATO_SITE"
+        }
+    }
+}

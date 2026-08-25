@@ -1,0 +1,16 @@
+query siteValidateWifiRadioProfile ( $accountId:ID! $validateWifiRadioProfileInput:ValidateWifiRadioProfileInput!) {
+	site ( accountId:$accountId ) {
+		validateWifiRadioProfile ( input:$validateWifiRadioProfileInput  )  {
+			result {
+				band24 {
+					isValid
+					errors
+				}
+				band5 {
+					isValid
+					errors
+				}
+			}
+		}
+	}	
+}

@@ -7,6 +7,13 @@ mutation policyDynamicIpAllocationAddRule ( $accountId:ID! $dynamicIpAllocationP
 						updatedTime
 						updatedBy
 					}
+					metadata {
+						lock {
+							lockingAdminEmail
+							lockingTime
+							lockingRevisionId
+						}
+					}
 					rule {
 						id
 						name
@@ -40,6 +47,14 @@ mutation policyDynamicIpAllocationAddRule ( $accountId:ID! $dynamicIpAllocationP
 						}
 					}
 					properties
+				}
+				revision {
+					id
+					name
+					description
+					changes
+					createdTime
+					updatedTime
 				}
 				status
 				errors {

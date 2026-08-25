@@ -63,6 +63,15 @@ query notification ( $accountId:ID! $mailingListRefInput:MailingListRefInput! $w
 						... on CustomHeaderAuth {
 							name
 						}
+						... on CustomHeadersAuth {
+							plainHeaders {
+								name
+								value
+							}
+							secretHeaders {
+								name
+							}
+						}
 					}
 					header {
 						name
@@ -98,6 +107,11 @@ query notification ( $accountId:ID! $mailingListRefInput:MailingListRefInput! $w
 						authType
 						name
 					}
+					... on CustomHeadersAuth {
+						authType
+						plainHeaders
+						secretHeaders
+					}
 					... on NoAuth {
 						authType
 					}
@@ -127,6 +141,15 @@ query notification ( $accountId:ID! $mailingListRefInput:MailingListRefInput! $w
 						}
 						... on CustomHeaderAuth {
 							name
+						}
+						... on CustomHeadersAuth {
+							plainHeaders {
+								name
+								value
+							}
+							secretHeaders {
+								name
+							}
 						}
 					}
 					header {
@@ -158,6 +181,11 @@ query notification ( $accountId:ID! $mailingListRefInput:MailingListRefInput! $w
 					... on CustomHeaderAuth {
 						authType
 						name
+					}
+					... on CustomHeadersAuth {
+						authType
+						plainHeaders
+						secretHeaders
 					}
 					... on NoAuth {
 						authType
@@ -228,6 +256,11 @@ query notification ( $accountId:ID! $mailingListRefInput:MailingListRefInput! $w
 								authType
 								name
 							}
+							... on CustomHeadersAuth {
+								authType
+								plainHeaders
+								secretHeaders
+							}
 							... on NoAuth {
 								authType
 							}
@@ -283,6 +316,15 @@ query notification ( $accountId:ID! $mailingListRefInput:MailingListRefInput! $w
 						}
 						... on CustomHeaderAuth {
 							name
+						}
+						... on CustomHeadersAuth {
+							plainHeaders {
+								name
+								value
+							}
+							secretHeaders {
+								name
+							}
 						}
 					}
 					header {

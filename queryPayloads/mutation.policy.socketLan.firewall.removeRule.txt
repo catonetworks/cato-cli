@@ -8,6 +8,13 @@ mutation policySocketLanFirewallRemoveRule ( $accountId:ID! $socketLanPolicyMuta
 							updatedTime
 							updatedBy
 						}
+						metadata {
+							lock {
+								lockingAdminEmail
+								lockingTime
+								lockingRevisionId
+							}
+						}
 						rule {
 							id
 							name
@@ -165,6 +172,22 @@ mutation policySocketLanFirewallRemoveRule ( $accountId:ID! $socketLanPolicyMuta
 							}
 						}
 						properties
+						ruleType
+						subPolicy {
+							id
+							name
+						}
+						access {
+							action
+						}
+					}
+					revision {
+						id
+						name
+						description
+						changes
+						createdTime
+						updatedTime
 					}
 					status
 					errors {

@@ -7,6 +7,13 @@ mutation policyWanNetworkMoveRule ( $accountId:ID! $wanNetworkPolicyMutationInpu
 						updatedTime
 						updatedBy
 					}
+					metadata {
+						lock {
+							lockingAdminEmail
+							lockingTime
+							lockingRevisionId
+						}
+					}
 					rule {
 						id
 						name
@@ -327,6 +334,14 @@ mutation policyWanNetworkMoveRule ( $accountId:ID! $wanNetworkPolicyMutationInpu
 						}
 					}
 					properties
+				}
+				revision {
+					id
+					name
+					description
+					changes
+					createdTime
+					updatedTime
 				}
 				status
 				errors {

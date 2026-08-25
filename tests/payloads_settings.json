@@ -17,11 +17,32 @@
         "query.container.ipAddressRange.search": {},
         "query.container.ipAddressRange.searchIpAddressRange": {},
         "query.groups.groupList": {},
-        "query.groups.group.members": {},
         "query.policy.socketLan.policy": {},
         "query.policy.terminalServer.policy": {},
         "query.catalogs.catalogApplication": {},
-        "query.catalogs.catalogApplicationList": {}
+        "query.catalogs.catalogApplicationList": {},
+        // Invocation IDs exist, but sessionConversation returns an internal server error
+        "query.aiSecurity": {},
+        // No BGP profiles exist; this combined query requires a valid profile ID
+        "query.popLocations": {},
+        // No Cloud Interconnect site or physical connection exists
+        "query.site.cloudInterconnectConnectionConnectivity": {},
+        "query.site.cloudInterconnectPhysicalConnection": {},
+        "query.site.cloudInterconnectPhysicalConnectionId": {},
+        // Real site references still return an internal server error
+        "query.site.knownHostList": {},
+        // No private PoP/Cloud Interconnect fixture exists
+        "query.site.retrieveUsedVlanIDs": {},
+        // No secondary GCP vSocket exists
+        "query.site.secondaryGcpVSocket": {},
+        // wifiRadioProfileList returns zero profiles; by-site lookup also violates its schema
+        "query.site.wifiRadioProfile": {},
+        "query.site.wifiRadioProfileBySite": {},
+        // These APIs are entitlement-, rollout-, or server-schema-dependent
+        "query.businessPlatform": {},
+        "query.externalAccess": {},
+        "query.notification": {},
+        "query.user": {}
     },
     "defaultValues": {
         "timeFrame": "last.P1D",
@@ -31,6 +52,141 @@
         ]
     },
     "overrideOperationPayload": {
+        "query.connectivitySnapshots": {
+            "payload": {
+                "ztnaAppConnectorGroupSnapshotInput": {
+                    "paging": {
+                        "from": 0,
+                        "limit": 1
+                    }
+                },
+                "ztnaAppConnectorSnapshotInput": {
+                    "paging": {
+                        "from": 0,
+                        "limit": 1
+                    }
+                },
+                "ztnaAppConnectorSnapshotSummaryInput": {
+                    "filter": {}
+                }
+            },
+            "assertions": [
+                "connectivitySnapshots"
+            ]
+        },
+        "query.customAppData": {
+            "payload": {
+                "customApplicationListInput": {
+                    "paging": {
+                        "from": 0,
+                        "limit": 1
+                    }
+                },
+                "customApplicationRefInput": {
+                    "by": "ID",
+                    "input": "CustomApp_15412_45274"
+                }
+            },
+            "assertions": [
+                "customAppData.customApplication",
+                "customAppData.customApplicationList"
+            ]
+        },
+        "query.policy.socketLan.policyList": {
+            "payload": {
+                "socketLanPolicyListInput": {
+                    "paging": {
+                        "from": 0,
+                        "limit": 1
+                    },
+                    "sort": {
+                        "name": {
+                            "direction": "ASC",
+                            "priority": 1
+                        },
+                        "policyLevel": {
+                            "direction": "ASC",
+                            "priority": 2
+                        }
+                    }
+                }
+            },
+            "assertions": [
+                "policy.socketLan.policyList"
+            ]
+        },
+        "query.site.validWifiRadioSettingsByCountry": {
+            "payload": {
+                "validWifiRadioSettingsByCountryInput": {
+                    "countryCode": "US"
+                }
+            },
+            "assertions": [
+                "site.validWifiRadioSettingsByCountry"
+            ]
+        },
+        "query.site.validateWifiRadioProfileByCountry": {
+            "payload": {
+                "validateWifiRadioProfileByCountryInput": {
+                    "countryCode": "US",
+                    "radioProfile": {
+                        "band24": {
+                            "band": "BAND_2P4G",
+                            "standard": "AUTO",
+                            "channelWidth": "AUTO"
+                        },
+                        "band5": {
+                            "band": "BAND_5G",
+                            "standard": "AUTO",
+                            "channelWidth": "AUTO"
+                        }
+                    }
+                }
+            },
+            "assertions": [
+                "site.validateWifiRadioProfileByCountry"
+            ]
+        },
+        "query.site.wifiRadioProfileList": {
+            "payload": {
+                "wifiRadioProfileListInput": {
+                    "wifiRadioProfiles": []
+                }
+            },
+            "assertions": [
+                "site.wifiRadioProfileList"
+            ]
+        },
+        "query.ztnaAppConnector.ztnaAppConnectorList": {
+            "payload": {
+                "ztnaAppConnectorListInput": {
+                    "paging": {
+                        "from": 0,
+                        "limit": 1
+                    },
+                    "sort": {
+                        "createdAt": {
+                            "direction": "DESC",
+                            "priority": 1
+                        }
+                    }
+                }
+            },
+            "assertions": [
+                "ztnaAppConnector.ztnaAppConnectorList"
+            ]
+        },
+        "query.ztnaAppConnector.ztnaAppConnector": {
+            "payload": {
+                "ztnaAppConnectorRefInput": {
+                    "by": "ID",
+                    "input": "1500000009"
+                }
+            },
+            "assertions": [
+                "ztnaAppConnector.ztnaAppConnector"
+            ]
+        },
         "query.accountBySubdomain": {
             "subdomains": [
                 "AnalystDemo"
@@ -175,9 +331,15 @@
         },
         "query.groups.group.members": {
             "payload": {
+                "groupMembersListInput": {
+                    "paging": {
+                        "from": 0,
+                        "limit": 1
+                    }
+                },
                 "groupRefInput": {
-                    "by": "NAME",
-                    "input": "Advanced Group"
+                    "by": "ID",
+                    "input": "d32bc227-0b2f-4e84-ac0f-81f15146ce7b"
                 }
             },
             "assertions": [
@@ -205,12 +367,36 @@
         "query.groups.whereUsed": {
             "payload": {
                 "groupRefInput": {
-                    "by": "NAME",
-                    "input": "Advanced Group"
+                    "by": "ID",
+                    "input": "d32bc227-0b2f-4e84-ac0f-81f15146ce7b"
                 }
             },
             "assertions": [
                 "groups.whereUsed"
+            ]
+        },
+        "query.object": {
+            "payload": {
+                "globalIpRangeRefInput": {
+                    "by": "ID",
+                    "input": "2999295"
+                }
+            },
+            "assertions": [
+                "object.globalIpRange",
+                "object.globalIpRangeList"
+            ]
+        },
+        "query.privateApplication": {
+            "payload": {
+                "privateApplicationRefInput": {
+                    "by": "ID",
+                    "input": "15"
+                }
+            },
+            "assertions": [
+                "privateApplication.privateApplication",
+                "privateApplication.privateApplicationList"
             ]
         },
         "query.policy.internetFirewall.policyList": {
@@ -288,7 +474,7 @@
             "payload": {
                 "bgpPeerRefInput": {
                     "by": "ID",
-                    "input": "21441"
+                    "input": "25211"
                 }
             },
             "assertions": [
@@ -299,8 +485,8 @@
             "payload": {
                 "bgpPeerListInput": {
                     "site": {
-                        "by": "NAME",
-                        "input": "PM demo branch"
+                        "by": "ID",
+                        "input": "191323"
                     }
                 }
             },
@@ -308,46 +494,12 @@
                 "data.site.bgpPeerList.bgpPeer"
             ]
         },
-        "query.site.cloudInterconnectConnectionConnectivity": {
-            "payload": {
-                "cloudInterconnectConnectionConnectivityInput": {
-                    "id": "MTYzMzg3LVBSSU1BUlk="
-                }
-            },
-            "assertions": [
-                "site.cloudInterconnectConnectionConnectivity"
-            ]
-        },
-        "query.site.cloudInterconnectPhysicalConnection": {
-            "payload": {
-                "cloudInterconnectPhysicalConnectionInput": {
-                    "id": "MTYzMzg3LVBSSU1BUlk="
-                }
-            },
-            "assertions": [
-                "site.cloudInterconnectPhysicalConnection"
-            ]
-        },
-        "query.site.cloudInterconnectPhysicalConnectionId": {
-            "payload": {
-                "cloudInterconnectPhysicalConnectionIdInput": {
-                    "haRole": "PRIMARY",
-                    "site": {
-                        "by": "NAME",
-                        "input": "Interconnect"
-                    }
-                }
-            },
-            "assertions": [
-                "site.cloudInterconnectPhysicalConnectionId"
-            ]
-        },
         "query.site.siteBgpStatus": {
             "payload": {
                 "siteBgpStatusInput": {
                     "site": {
-                        "by": "NAME",
-                        "input": "PM demo branch"
+                        "by": "ID",
+                        "input": "191323"
                     }
                 }
             },
@@ -358,12 +510,142 @@
         "query.site.siteGeneralDetails": {
             "payload": {
                 "siteRefInput": {
-                    "by": "NAME",
-                    "input": "Interconnect"
+                    "by": "ID",
+                    "input": "213005"
                 }
             },
             "assertions": [
                 "site.siteGeneralDetails"
+            ]
+        },
+        "query.site.networkRange": {
+            "payload": {
+                "networkRangeId": "TjMzNTM3Nzc="
+            },
+            "assertions": [
+                "site.networkRange"
+            ]
+        },
+        "query.site.networkRangeList": {
+            "payload": {
+                "networkRangeListInput": {
+                    "site": {
+                        "by": "ID",
+                        "input": "213005"
+                    }
+                }
+            },
+            "assertions": [
+                "site.networkRangeList.items"
+            ]
+        },
+        "query.site.siteBackhauling": {
+            "payload": {
+                "siteRefInput": {
+                    "by": "ID",
+                    "input": "213005"
+                }
+            },
+            "assertions": [
+                "site.siteBackhauling"
+            ]
+        },
+        "query.site.siteSocketConfiguration": {
+            "payload": {
+                "siteSocketConfigurationInput": {
+                    "site": {
+                        "by": "ID",
+                        "input": "204609"
+                    }
+                }
+            },
+            "assertions": [
+                "site.siteSocketConfiguration"
+            ]
+        },
+        "query.site.staticHost": {
+            "payload": {
+                "hostId": "3408994",
+                "siteRefInput": {
+                    "by": "ID",
+                    "input": "215688"
+                }
+            },
+            "assertions": [
+                "site.staticHost"
+            ]
+        },
+        "query.site.staticHostList": {
+            "payload": {
+                "siteRefInput": {
+                    "by": "ID",
+                    "input": "215688"
+                }
+            },
+            "assertions": [
+                "site.staticHostList.items"
+            ]
+        },
+        "query.site.validWifiRadioSettings": {
+            "payload": {
+                "validWifiRadioSettingsInput": {
+                    "site": {
+                        "by": "ID",
+                        "input": "204609"
+                    }
+                }
+            },
+            "assertions": [
+                "site.validWifiRadioSettings"
+            ]
+        },
+        "query.site.validateWifiRadioProfile": {
+            "payload": {
+                "validateWifiRadioProfileInput": {
+                    "site": {
+                        "by": "ID",
+                        "input": "204609"
+                    },
+                    "radioProfile": {
+                        "band24": {
+                            "band": "BAND_2P4G",
+                            "standard": "AUTO",
+                            "channelWidth": "AUTO"
+                        },
+                        "band5": {
+                            "band": "BAND_5G",
+                            "standard": "AUTO",
+                            "channelWidth": "AUTO"
+                        }
+                    }
+                }
+            },
+            "assertions": [
+                "site.validateWifiRadioProfile.result"
+            ]
+        },
+        "query.site.wifiSsid": {
+            "payload": {
+                "wifiSsidRefInput": {
+                    "by": "ID",
+                    "input": "99"
+                }
+            },
+            "assertions": [
+                "site.wifiSsid"
+            ]
+        },
+        "query.site.wifiSsidList": {
+            "payload": {
+                "wifiSsidListInput": {
+                    "site": {
+                        "by": "ID",
+                        "input": "204609"
+                    }
+                }
+            },
+            "assertions": [
+                "site.wifiSsidList.wifiSsid"
             ]
         },
         "query.xdr.stories": {

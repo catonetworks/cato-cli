@@ -11,7 +11,7 @@ catocli mutation admin updateServicePrincipalAdmin <json>
 
 catocli mutation admin updateServicePrincipalAdmin --json-file mutation.admin.updateServicePrincipalAdmin.json
 
-catocli mutation admin updateServicePrincipalAdmin '{"adminID":"id","updateServicePrincipalAdminInput":{"name":"string","updateAdminRoleInput":{"allowedAccounts":["id1","id2"],"allowedEntities":{"id":"id","name":"string","type":"account"},"role":{"id":"id","name":"string"}}}}'
+catocli mutation admin updateServicePrincipalAdmin '{"adminID":"id","updateServicePrincipalAdminInput":{"name":"string","updateAdminRoleInput":{"allowedAccounts":["id1","id2"],"allowedEntities":{"id":"id","name":"string","type":"site"},"role":{"id":"id","name":"string"}}}}'
 
 catocli mutation admin updateServicePrincipalAdmin '{
     "adminID": "id",
@@ -25,7 +25,7 @@ catocli mutation admin updateServicePrincipalAdmin '{
             "allowedEntities": {
                 "id": "id",
                 "name": "string",
-                "type": "account"
+                "type": "site"
             },
             "role": {
                 "id": "id",

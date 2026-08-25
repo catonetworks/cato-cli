@@ -7,6 +7,13 @@ mutation policyApplicationControlUpdateSection ( $accountId:ID! $applicationCont
 						updatedTime
 						updatedBy
 					}
+					metadata {
+						lock {
+							lockingAdminEmail
+							lockingTime
+							lockingRevisionId
+						}
+					}
 					section {
 						id
 						name
@@ -17,6 +24,14 @@ mutation policyApplicationControlUpdateSection ( $accountId:ID! $applicationCont
 				errors {
 					errorMessage
 					errorCode
+				}
+				revision {
+					id
+					name
+					description
+					changes
+					createdTime
+					updatedTime
 				}
 			}
 		}

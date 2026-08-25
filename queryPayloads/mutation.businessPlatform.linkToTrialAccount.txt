@@ -1,0 +1,34 @@
+mutation businessPlatformLinkToTrialAccount ( $accountId:ID! $businessPlatformLinkToTrialAccountInput:BusinessPlatformLinkToTrialAccountInput!) {
+	businessPlatform ( accountId:$accountId ) {
+		linkToTrialAccount ( input:$businessPlatformLinkToTrialAccountInput  )  {
+			account {
+				id
+				externalName
+				account {
+					id
+					name
+				}
+				partner {
+					id
+					name
+				}
+				accountExternalName
+				description
+				plan
+				expiresOn
+				estimatedCloseDate
+				contactFirstName
+				contactLastName
+				contactEmail
+				companyWebsite
+				country
+				city
+				state
+				street
+				postalCode
+				cmaCreatedBy
+				cmaCreatedAt
+			}
+		}
+	}	
+}

@@ -7,6 +7,13 @@ mutation policyInternetFirewallMoveRule ( $accountId:ID! $internetFirewallPolicy
 						updatedTime
 						updatedBy
 					}
+					metadata {
+						lock {
+							lockingAdminEmail
+							lockingTime
+							lockingRevisionId
+						}
+					}
 					rule {
 						id
 						name
@@ -338,6 +345,14 @@ mutation policyInternetFirewallMoveRule ( $accountId:ID! $internetFirewallPolicy
 					access {
 						action
 					}
+				}
+				revision {
+					id
+					name
+					description
+					changes
+					createdTime
+					updatedTime
 				}
 				status
 				errors {

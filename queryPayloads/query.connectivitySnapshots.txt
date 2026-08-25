@@ -1,0 +1,162 @@
+query connectivitySnapshots ( $accountId:ID! $ztnaAppConnectorSnapshotInput:ZtnaAppConnectorSnapshotInput! $ztnaAppConnectorSnapshotSummaryInput:ZtnaAppConnectorSnapshotSummaryInput! $ztnaAppConnectorGroupSnapshotInput:ZtnaAppConnectorGroupSnapshotInput!) {
+	connectivitySnapshots ( accountId:$accountId ) {
+		ztnaAppConnectorSnapshot ( input:$ztnaAppConnectorSnapshotInput  )  {
+			items {
+				id
+				name
+				info {
+					createdAt
+					groupName
+					type
+					location {
+						cityName
+						countryCode
+						countryName
+					}
+				}
+				connectivity {
+					status
+					firstConnected
+					lastConnected
+					popLocation {
+						id
+						name
+					}
+				}
+				device {
+					id
+					info {
+						model
+						serialNumber
+						socketId
+						isRegistered
+						version
+					}
+					connectivity {
+						platform
+						serialNumber
+						version
+					}
+					interface {
+						id
+						interfaceType
+						connectivity {
+							status
+							lanIp
+							dnsServer
+						}
+					}
+				}
+				privateAppCount
+				privateApp {
+					id
+					name
+					connectivity {
+						probingStatus
+						routingStatus
+					}
+				}
+			}
+			pageInfo {
+				total
+			}
+		}
+		ztnaAppConnectorSnapshotSummary ( input:$ztnaAppConnectorSnapshotSummaryInput  )  {
+			connectivityStatus {
+				connectivityStatus
+				total
+			}
+			socketPlatform {
+				platform
+				total
+			}
+			socketModel {
+				model
+				total
+			}
+			version {
+				version
+				total
+			}
+			assignment {
+				assigned
+				total
+			}
+			total
+		}
+		ztnaAppConnectorGroupSnapshot ( input:$ztnaAppConnectorGroupSnapshotInput  )  {
+			items {
+				groupName
+				totalConnectors
+				privateAppCount
+				connectivityStatus {
+					connectivityStatus
+					total
+				}
+				privateApps {
+					id
+					name
+				}
+				connectors {
+					id
+					name
+					info {
+						createdAt
+						groupName
+						type
+						location {
+							cityName
+							countryCode
+							countryName
+						}
+					}
+					connectivity {
+						status
+						firstConnected
+						lastConnected
+						popLocation {
+							id
+							name
+						}
+					}
+					device {
+						id
+						info {
+							model
+							serialNumber
+							socketId
+							isRegistered
+							version
+						}
+						connectivity {
+							platform
+							serialNumber
+							version
+						}
+						interface {
+							id
+							interfaceType
+							connectivity {
+								status
+								lanIp
+								dnsServer
+							}
+						}
+					}
+					privateAppCount
+					privateApp {
+						id
+						name
+						connectivity {
+							probingStatus
+							routingStatus
+						}
+					}
+				}
+			}
+			pageInfo {
+				total
+			}
+		}
+	}	
+}

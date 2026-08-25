@@ -8,6 +8,13 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 						updatedTime
 						updatedBy
 					}
+					metadata {
+						lock {
+							lockingAdminEmail
+							lockingTime
+							lockingRevisionId
+						}
+					}
 					rule {
 						id
 						name
@@ -386,6 +393,40 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 									name
 								}
 							}
+							applicationCriteriaSatisfy
+							applicationCriteria {
+								attributes {
+									complianceAttributes {
+										iso27001
+										sox
+										hippa
+										soc1
+										soc2
+										soc3
+										isae3402
+										pciDss
+									}
+									securityAttributes {
+										mfa
+										encryptionAtRest
+										auditTrail
+										rbac
+										rememberPassword
+										sso
+										trustedCertificate
+										tlsEnforcement
+										httpSecurityHeaders
+									}
+								}
+								originCountry {
+									id
+									name
+								}
+								risk {
+									risk
+									riskOperator
+								}
+							}
 							actionConfig {
 								userNotification {
 									id
@@ -416,6 +457,16 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 									name
 								}
 								applicationType
+							}
+							applicationContext {
+								applicationTenant {
+									operator
+									value
+									valueSet {
+										id
+										name
+									}
+								}
 							}
 							applicationActivitySatisfy
 							applicationActivity {
@@ -548,6 +599,40 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 									name
 								}
 							}
+							applicationCriteriaSatisfy
+							applicationCriteria {
+								attributes {
+									complianceAttributes {
+										iso27001
+										sox
+										hippa
+										soc1
+										soc2
+										soc3
+										isae3402
+										pciDss
+									}
+									securityAttributes {
+										mfa
+										encryptionAtRest
+										auditTrail
+										rbac
+										rememberPassword
+										sso
+										trustedCertificate
+										tlsEnforcement
+										httpSecurityHeaders
+									}
+								}
+								originCountry {
+									id
+									name
+								}
+								risk {
+									risk
+									riskOperator
+								}
+							}
 							actionConfig {
 								userNotification {
 									id
@@ -562,6 +647,13 @@ query policyApplicationControlPolicy ( $accountId:ID! $applicationControlPolicyI
 					audit {
 						updatedTime
 						updatedBy
+					}
+					metadata {
+						lock {
+							lockingAdminEmail
+							lockingTime
+							lockingRevisionId
+						}
 					}
 					section {
 						id

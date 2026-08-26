@@ -11,12 +11,11 @@ catocli query hardwareManagement <json>
 
 catocli query hardwareManagement --json-file query.hardwareManagement.json
 
-catocli query hardwareManagement '{"socketInventoryDistributionInput":{"includeDecommissioned":true,"socketInventoryFilterInput":{"freeText":{"search":"string"},"hardwareVersion":"X1500A","orderType":"PURCHASE","socketType":"X1500","status":"ORDERED"}},"socketInventoryInput":{"includeDecommissioned":true,"pagingInput":{"from":1,"limit":1},"socketInventoryFilterInput":{"freeText":{"search":"string"},"hardwareVersion":"X1500A","orderType":"PURCHASE","socketType":"X1500","status":"ORDERED"},"socketInventoryOrderInput":{"accountName":{"direction":"ASC","priority":1},"deliverySiteName":{"direction":"ASC","priority":1},"description":{"direction":"ASC","priority":1},"hardwareVersion":{"direction":"ASC","priority":1},"installedSite":{"direction":"ASC","priority":1},"orderType":{"direction":"ASC","priority":1},"serialNumber":{"direction":"ASC","priority":1},"shippingCompany":{"direction":"ASC","priority":1},"shippingDate":{"direction":"ASC","priority":1},"socketType":{"direction":"ASC","priority":1},"status":{"direction":"ASC","priority":1}}}}'
+catocli query hardwareManagement '{"socketInventoryDistributionInput":{"filter":{"freeText":{"search":"string"},"hardwareVersion":"X1500A","orderType":"PURCHASE","socketType":"X1500","status":"ORDERED"},"includeDecommissioned":true},"socketInventoryInput":{"filter":{"freeText":{"search":"string"},"hardwareVersion":"X1500A","orderType":"PURCHASE","socketType":"X1500","status":"ORDERED"},"includeDecommissioned":true,"paging":{"from":1,"limit":1},"sort":{"accountName":{"direction":"ASC","priority":1},"deliverySiteName":{"direction":"ASC","priority":1},"description":{"direction":"ASC","priority":1},"hardwareVersion":{"direction":"ASC","priority":1},"installedSite":{"direction":"ASC","priority":1},"orderType":{"direction":"ASC","priority":1},"serialNumber":{"direction":"ASC","priority":1},"shippingCompany":{"direction":"ASC","priority":1},"shippingDate":{"direction":"ASC","priority":1},"socketType":{"direction":"ASC","priority":1},"status":{"direction":"ASC","priority":1}}}}'
 
 catocli query hardwareManagement '{
     "socketInventoryDistributionInput": {
-        "includeDecommissioned": true,
-        "socketInventoryFilterInput": {
+        "filter": {
             "freeText": {
                 "search": "string"
             },
@@ -24,24 +23,25 @@ catocli query hardwareManagement '{
             "orderType": "PURCHASE",
             "socketType": "X1500",
             "status": "ORDERED"
-        }
+        },
+        "includeDecommissioned": true
     },
     "socketInventoryInput": {
+        "filter": {
+            "freeText": {
+                "search": "string"
+            },
+            "hardwareVersion": "X1500A",
+            "orderType": "PURCHASE",
+            "socketType": "X1500",
+            "status": "ORDERED"
+        },
         "includeDecommissioned": true,
-        "pagingInput": {
+        "paging": {
             "from": 1,
             "limit": 1
         },
-        "socketInventoryFilterInput": {
-            "freeText": {
-                "search": "string"
-            },
-            "hardwareVersion": "X1500A",
-            "orderType": "PURCHASE",
-            "socketType": "X1500",
-            "status": "ORDERED"
-        },
-        "socketInventoryOrderInput": {
+        "sort": {
             "accountName": {
                 "direction": "ASC",
                 "priority": 1

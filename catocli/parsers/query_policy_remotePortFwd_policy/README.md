@@ -11,11 +11,11 @@ catocli query policy remotePortFwd policy <json>
 
 catocli query policy remotePortFwd policy --json-file query.policy.remotePortFwd.policy.json
 
-catocli query policy remotePortFwd policy '{"remotePortFwdPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'
+catocli query policy remotePortFwd policy '{"remotePortFwdPolicyInput":{"revision":{"id":"id","type":"PRIVATE"}}}'
 
 catocli query policy remotePortFwd policy '{
     "remotePortFwdPolicyInput": {
-        "policyRevisionInput": {
+        "revision": {
             "id": "id",
             "type": "PRIVATE"
         }

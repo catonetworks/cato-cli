@@ -11,18 +11,18 @@ catocli mutation policy wanNetwork moveSection <json>
 
 catocli mutation policy wanNetwork moveSection --json-file mutation.policy.wanNetwork.moveSection.json
 
-catocli mutation policy wanNetwork moveSection '{"policyMoveSectionInput":{"id":"id","policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}},"wanNetworkPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
+catocli mutation policy wanNetwork moveSection '{"policyMoveSectionInput":{"id":"id","to":{"position":"AFTER_SECTION","ref":"id"}},"wanNetworkPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy wanNetwork moveSection '{
     "policyMoveSectionInput": {
         "id": "id",
-        "policySectionPositionInput": {
+        "to": {
             "position": "AFTER_SECTION",
             "ref": "id"
         }
     },
     "wanNetworkPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     }

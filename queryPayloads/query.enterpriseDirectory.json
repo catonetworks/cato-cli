@@ -3,7 +3,7 @@
     "query": "query enterpriseDirectory ( $accountId:ID! $enterpriseDirectoryLocationListInput:EnterpriseDirectoryLocationListInput) {\n\tenterpriseDirectory ( accountId:$accountId ) {\n\t\tlocationList ( input:$enterpriseDirectoryLocationListInput  )  {\n\t\t\titems {\n\t\t\t\tid\n\t\t\t\taccount {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t\ttype\n\t\t\t\tname\n\t\t\t\tbusinessUnit\n\t\t\t\tdescription\n\t\t\t\tdetails {\n\t\t\t\t\tcompanyName\n\t\t\t\t\tpostalAddress {\n\t\t\t\t\t\taddress1\n\t\t\t\t\t\taddress2\n\t\t\t\t\t\tcityName\n\t\t\t\t\t\tcountry {\n\t\t\t\t\t\t\tid\n\t\t\t\t\t\t\tname\n\t\t\t\t\t\t}\n\t\t\t\t\t\tstateName\n\t\t\t\t\t\tzipCode\n\t\t\t\t\t\taddressValidated\n\t\t\t\t\t}\n\t\t\t\t\tvatId\n\t\t\t\t\tcontact {\n\t\t\t\t\t\tname\n\t\t\t\t\t\tphone\n\t\t\t\t\t\temail\n\t\t\t\t\t}\n\t\t\t\t\tshippingLocation\n\t\t\t\t}\n\t\t\t\tarchived\n\t\t\t\taudit {\n\t\t\t\t\tupdatedTime\n\t\t\t\t\tupdatedBy {\n\t\t\t\t\t\tid\n\t\t\t\t\t\tname\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t\tpageInfo {\n\t\t\t\ttotal\n\t\t\t}\n\t\t}\n\t}\t\n}",
     "variables": {
         "enterpriseDirectoryLocationListInput": {
-            "locationFilterInput": {
+            "filter": {
                 "account": {
                     "accountInclusion": "ALL_ACCOUNTS",
                     "in": [
@@ -59,7 +59,11 @@
                     "nin": "BRANCH"
                 }
             },
-            "locationSortInput": {
+            "paging": {
+                "from": 1,
+                "limit": 1
+            },
+            "sort": {
                 "country": {
                     "direction": "ASC",
                     "priority": 1
@@ -72,10 +76,6 @@
                     "direction": "ASC",
                     "priority": 1
                 }
-            },
-            "pagingInput": {
-                "from": 1,
-                "limit": 1
             }
         }
     }

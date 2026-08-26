@@ -11,24 +11,24 @@ catocli mutation sites updateNetworkRange <json>
 
 catocli mutation sites updateNetworkRange --json-file mutation.sites.updateNetworkRange.json
 
-catocli mutation sites updateNetworkRange '{"networkRangeId":"id","updateNetworkRangeInput":{"azureFloatingIp":"example_value","gateway":"example_value","gcpLoadBalancerIp":"example_value","internetOnly":true,"localIp":"example_value","mdnsReflector":true,"name":"string","networkDhcpSettingsInput":{"dhcpMicrosegmentation":true,"dhcpType":"DHCP_RELAY","ipRange":"example_value","relayGroupId":"id"},"primaryManagementIp":"example_value","rangeType":"Routed","secondaryManagementIp":"example_value","subnet":"example_value","translatedSubnet":"example_value","vlan":1}}'
+catocli mutation sites updateNetworkRange '{"networkRangeId":"id","updateNetworkRangeInput":{"azureFloatingIp":"example_value","dhcpSettings":{"dhcpMicrosegmentation":true,"dhcpType":"DHCP_RELAY","ipRange":"example_value","relayGroupId":"id"},"gateway":"example_value","gcpLoadBalancerIp":"example_value","internetOnly":true,"localIp":"example_value","mdnsReflector":true,"name":"string","primaryManagementIp":"example_value","rangeType":"Routed","secondaryManagementIp":"example_value","subnet":"example_value","translatedSubnet":"example_value","vlan":1}}'
 
 catocli mutation sites updateNetworkRange '{
     "networkRangeId": "id",
     "updateNetworkRangeInput": {
         "azureFloatingIp": "example_value",
+        "dhcpSettings": {
+            "dhcpMicrosegmentation": true,
+            "dhcpType": "DHCP_RELAY",
+            "ipRange": "example_value",
+            "relayGroupId": "id"
+        },
         "gateway": "example_value",
         "gcpLoadBalancerIp": "example_value",
         "internetOnly": true,
         "localIp": "example_value",
         "mdnsReflector": true,
         "name": "string",
-        "networkDhcpSettingsInput": {
-            "dhcpMicrosegmentation": true,
-            "dhcpType": "DHCP_RELAY",
-            "ipRange": "example_value",
-            "relayGroupId": "id"
-        },
         "primaryManagementIp": "example_value",
         "rangeType": "Routed",
         "secondaryManagementIp": "example_value",

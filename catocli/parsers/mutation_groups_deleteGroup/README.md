@@ -11,11 +11,11 @@ catocli mutation groups deleteGroup <json>
 
 catocli mutation groups deleteGroup --json-file mutation.groups.deleteGroup.json
 
-catocli mutation groups deleteGroup '{"groupMembersListInput":{"groupMembersListFilterInput":{"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"],"regex":"string"},"type":{"eq":"SITE","in":"SITE","neq":"SITE","nin":"SITE"}},"groupMembersListSortInput":{"name":{"direction":"ASC","priority":1},"type":{"direction":"ASC","priority":1}},"pagingInput":{"from":1,"limit":1}},"groupRefInput":{"by":"ID","input":"string"}}'
+catocli mutation groups deleteGroup '{"groupMembersListInput":{"filter":{"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"],"regex":"string"},"type":{"eq":"SITE","in":"SITE","neq":"SITE","nin":"SITE"}},"paging":{"from":1,"limit":1},"sort":{"name":{"direction":"ASC","priority":1},"type":{"direction":"ASC","priority":1}}},"groupRefInput":{"by":"ID","input":"string"}}'
 
 catocli mutation groups deleteGroup '{
     "groupMembersListInput": {
-        "groupMembersListFilterInput": {
+        "filter": {
             "name": {
                 "eq": "string",
                 "in": [
@@ -36,7 +36,11 @@ catocli mutation groups deleteGroup '{
                 "nin": "SITE"
             }
         },
-        "groupMembersListSortInput": {
+        "paging": {
+            "from": 1,
+            "limit": 1
+        },
+        "sort": {
             "name": {
                 "direction": "ASC",
                 "priority": 1
@@ -45,10 +49,6 @@ catocli mutation groups deleteGroup '{
                 "direction": "ASC",
                 "priority": 1
             }
-        },
-        "pagingInput": {
-            "from": 1,
-            "limit": 1
         }
     },
     "groupRefInput": {

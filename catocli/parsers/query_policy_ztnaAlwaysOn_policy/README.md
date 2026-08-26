@@ -11,11 +11,11 @@ catocli query policy ztnaAlwaysOn policy <json>
 
 catocli query policy ztnaAlwaysOn policy --json-file query.policy.ztnaAlwaysOn.policy.json
 
-catocli query policy ztnaAlwaysOn policy '{"ztnaAlwaysOnPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'
+catocli query policy ztnaAlwaysOn policy '{"ztnaAlwaysOnPolicyInput":{"revision":{"id":"id","type":"PRIVATE"}}}'
 
 catocli query policy ztnaAlwaysOn policy '{
     "ztnaAlwaysOnPolicyInput": {
-        "policyRevisionInput": {
+        "revision": {
             "id": "id",
             "type": "PRIVATE"
         }

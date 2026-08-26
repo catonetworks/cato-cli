@@ -3,11 +3,7 @@
     "query": "query policyWanFirewallPolicyList ( $accountId:ID! $wanFirewallPolicyListInput:WanFirewallPolicyListInput!) {\n\tpolicy ( accountId:$accountId ) {\n\t\twanFirewall {\n\t\t\tpolicyList ( input:$wanFirewallPolicyListInput   ) {\n\t\t\t\titems {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t\tdescription\n\t\t\t\t\tenabled\n\t\t\t\t\tpolicyLevel\n\t\t\t\t\taudit {\n\t\t\t\t\t\tpublishedTime\n\t\t\t\t\t\tpublishedBy\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tpaging {\n\t\t\t\t\ttotal\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\t\n}",
     "variables": {
         "wanFirewallPolicyListInput": {
-            "pagingInput": {
-                "from": 1,
-                "limit": 1
-            },
-            "wanFirewallPolicyListFilterInput": {
+            "filter": {
                 "id": {
                     "eq": "id",
                     "in": [
@@ -39,7 +35,11 @@
                     "nin": "MAIN"
                 }
             },
-            "wanFirewallPolicyListSortInput": {
+            "paging": {
+                "from": 1,
+                "limit": 1
+            },
+            "sort": {
                 "name": {
                     "direction": "ASC",
                     "priority": 1

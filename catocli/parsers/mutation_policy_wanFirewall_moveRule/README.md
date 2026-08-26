@@ -11,18 +11,18 @@ catocli mutation policy wanFirewall moveRule <json>
 
 catocli mutation policy wanFirewall moveRule --json-file mutation.policy.wanFirewall.moveRule.json
 
-catocli mutation policy wanFirewall moveRule '{"policyMoveRuleInput":{"id":"id","policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"}},"wanFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
+catocli mutation policy wanFirewall moveRule '{"policyMoveRuleInput":{"id":"id","to":{"position":"AFTER_RULE","ref":"id"}},"wanFirewallPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy wanFirewall moveRule '{
     "policyMoveRuleInput": {
         "id": "id",
-        "policyRulePositionInput": {
+        "to": {
             "position": "AFTER_RULE",
             "ref": "id"
         }
     },
     "wanFirewallPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     }

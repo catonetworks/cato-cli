@@ -11,17 +11,17 @@ catocli mutation policy privateAccess updateSection <json>
 
 catocli mutation policy privateAccess updateSection --json-file mutation.policy.privateAccess.updateSection.json
 
-catocli mutation policy privateAccess updateSection '{"policyUpdateSectionInput":{"id":"id","policyUpdateSectionInfoInput":{"name":"string"}},"privateAccessPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
+catocli mutation policy privateAccess updateSection '{"policyUpdateSectionInput":{"id":"id","section":{"name":"string"}},"privateAccessPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy privateAccess updateSection '{
     "policyUpdateSectionInput": {
         "id": "id",
-        "policyUpdateSectionInfoInput": {
+        "section": {
             "name": "string"
         }
     },
     "privateAccessPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     }

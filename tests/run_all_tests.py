@@ -911,6 +911,62 @@ try:
             
             if errors:
                 pytest.fail(f"Data integrity issues:\n" + "\n".join(errors[:10]))
+
+        def test_example_input_object_keys_match_schema_fields(self):
+            """Test that generated examples use GraphQL field names, not type-derived variable names."""
+            if not MODELS_DIR.exists():
+                pytest.skip("Models directory not found")
+
+            errors = []
+
+            def validate_input(value, arg_data, path):
+                if isinstance(value, list):
+                    for index, item in enumerate(value):
+                        validate_input(item, arg_data, f"{path}[{index}]")
+                    return
+
+                input_fields = (
+                    arg_data.get("type", {})
+                    .get("definition", {})
+                    .get("inputFields")
+                )
+                if not isinstance(value, dict) or not input_fields:
+                    return
+
+                for field_name, field_value in value.items():
+                    if field_name not in input_fields:
+                        errors.append(f"{path}: Unknown input field '{field_name}'")
+                        continue
+                    validate_input(
+                        field_value,
+                        input_fields[field_name],
+                        f"{path}.{field_name}",
+                    )
+
+            for model_file in MODELS_DIR.glob("*.json"):
+                with open(model_file, "r", encoding="utf-8") as f:
+                    model_data = json.load(f)
+
+                operation_args = model_data.get("operationArgs", {})
+                for variable_name, value in model_data.get("variablesPayload", {}).items():
+                    arg_data = operation_args.get(variable_name)
+                    if arg_data is None:
+                        arg_data = next(
+                            (
+                                arg
+                                for arg in operation_args.values()
+                                if arg.get("name") == variable_name
+                            ),
+                            None,
+                        )
+                    if arg_data is not None:
+                        validate_input(value, arg_data, f"{model_file.stem}.{variable_name}")
+
+            if errors:
+                pytest.fail(
+                    "Generated example input fields do not match the schema:\n"
+                    + "\n".join(errors[:20])
+                )
     
     
     class TestErrorHandling:

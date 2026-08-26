@@ -11,15 +11,15 @@ catocli mutation policy ztnaAlwaysOn addRule <json>
 
 catocli mutation policy ztnaAlwaysOn addRule --json-file mutation.policy.ztnaAlwaysOn.addRule.json
 
-catocli mutation policy ztnaAlwaysOn addRule '{"ztnaAlwaysOnAddRuleInput":{"policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"},"ztnaAlwaysOnAddRuleDataInput":{"action":"ENFORCE","allowFailOpen":true,"allowUserBypass":true,"antiTamperMode":"OFF","bypassDuration":{"time":1,"unit":"MINUTES"},"description":"string","devicePostureProfile":{"by":"ID","input":"string"},"enabled":true,"name":"string","platform":"WINDOWS","source":{"user":{"by":"ID","input":"string"},"usersGroup":{"by":"ID","input":"string"}}}},"ztnaAlwaysOnPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
+catocli mutation policy ztnaAlwaysOn addRule '{"ztnaAlwaysOnAddRuleInput":{"at":{"position":"AFTER_RULE","ref":"id"},"rule":{"action":"ENFORCE","allowFailOpen":true,"allowUserBypass":true,"antiTamperMode":"OFF","bypassDuration":{"time":1,"unit":"MINUTES"},"description":"string","devicePostureProfile":{"by":"ID","input":"string"},"enabled":true,"name":"string","platform":"WINDOWS","source":{"user":{"by":"ID","input":"string"},"usersGroup":{"by":"ID","input":"string"}}}},"ztnaAlwaysOnPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy ztnaAlwaysOn addRule '{
     "ztnaAlwaysOnAddRuleInput": {
-        "policyRulePositionInput": {
+        "at": {
             "position": "AFTER_RULE",
             "ref": "id"
         },
-        "ztnaAlwaysOnAddRuleDataInput": {
+        "rule": {
             "action": "ENFORCE",
             "allowFailOpen": true,
             "allowUserBypass": true,
@@ -49,7 +49,7 @@ catocli mutation policy ztnaAlwaysOn addRule '{
         }
     },
     "ztnaAlwaysOnPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     }

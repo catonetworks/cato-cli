@@ -3,11 +3,7 @@
     "query": "query privateApplication ( $accountId:ID! $privateApplicationRefInput:PrivateApplicationRefInput! $privateApplicationListInput:PrivateApplicationListInput) {\n\tprivateApplication ( accountId:$accountId ) {\n\t\tprivateApplication ( input:$privateApplicationRefInput  )  {\n\t\t\tid\n\t\t\tcreationTime\n\t\t\tname\n\t\t\tdescription\n\t\t\tinternalAppAddress\n\t\t\tprobingEnabled\n\t\t\tpublished\n\t\t\tallowIcmpProtocol\n\t\t\tpublishedAppDomain {\n\t\t\t\tid\n\t\t\t\tcreationTime\n\t\t\t\tpublishedAppDomain\n\t\t\t\tcatoIp\n\t\t\t\tconnectorGroupName\n\t\t\t}\n\t\t\tprivateAppProbing {\n\t\t\t\tid\n\t\t\t\ttype\n\t\t\t\tinterval\n\t\t\t\tfaultThresholdDown\n\t\t\t}\n\t\t\tprotocolPorts {\n\t\t\t\tport\n\t\t\t\tportRange {\n\t\t\t\t\tfrom\n\t\t\t\t\tto\n\t\t\t\t}\n\t\t\t\tprotocol\n\t\t\t}\n\t\t\tconnectivityStatus\n\t\t}\n\t\tprivateApplicationList ( input:$privateApplicationListInput  )  {\n\t\t\tapplications {\n\t\t\t\tid\n\t\t\t\tcreationTime\n\t\t\t\tname\n\t\t\t\tdescription\n\t\t\t\tinternalAppAddress\n\t\t\t\tprobingEnabled\n\t\t\t\tpublished\n\t\t\t\tallowIcmpProtocol\n\t\t\t\tpublishedAppDomain {\n\t\t\t\t\tid\n\t\t\t\t\tcreationTime\n\t\t\t\t\tpublishedAppDomain\n\t\t\t\t\tcatoIp\n\t\t\t\t\tconnectorGroupName\n\t\t\t\t}\n\t\t\t\tprivateAppProbing {\n\t\t\t\t\tid\n\t\t\t\t\ttype\n\t\t\t\t\tinterval\n\t\t\t\t\tfaultThresholdDown\n\t\t\t\t}\n\t\t\t\tprotocolPorts {\n\t\t\t\t\tport\n\t\t\t\t\tportRange {\n\t\t\t\t\t\tfrom\n\t\t\t\t\t\tto\n\t\t\t\t\t}\n\t\t\t\t\tprotocol\n\t\t\t\t}\n\t\t\t\tconnectivityStatus\n\t\t\t}\n\t\t\tpageInfo {\n\t\t\t\ttotal\n\t\t\t}\n\t\t}\n\t}\t\n}",
     "variables": {
         "privateApplicationListInput": {
-            "pagingInput": {
-                "from": 1,
-                "limit": 1
-            },
-            "privateApplicationListFilterInput": {
+            "filter": {
                 "connectivityStatus": {
                     "eq": "string",
                     "in": [
@@ -58,7 +54,11 @@
                     "search": "string"
                 }
             },
-            "privateApplicationSortInput": {
+            "paging": {
+                "from": 1,
+                "limit": 1
+            },
+            "sort": {
                 "connectivityStatus": {
                     "direction": "ASC",
                     "priority": 1

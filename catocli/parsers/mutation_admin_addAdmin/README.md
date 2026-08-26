@@ -11,7 +11,7 @@ catocli mutation admin addAdmin <json>
 
 catocli mutation admin addAdmin --json-file mutation.admin.addAdmin.json
 
-catocli mutation admin addAdmin '{"addAdminInput":{"adminType":"LOGIN","email":"string","firstName":"string","lastName":"string","passwordNeverExpires":true,"shouldSendInvitationEmail":true,"updateAdminRoleInput":{"allowedAccounts":["id1","id2"],"allowedEntities":{"id":"id","name":"string","type":"site"},"role":{"id":"id","name":"string"}}}}'
+catocli mutation admin addAdmin '{"addAdminInput":{"adminType":"LOGIN","email":"string","firstName":"string","lastName":"string","managedRoles":{"allowedAccounts":["id1","id2"],"allowedEntities":{"id":"id","name":"string","type":"site"},"role":{"id":"id","name":"string"}},"passwordNeverExpires":true,"resellerRoles":{"allowedAccounts":["id1","id2"],"allowedEntities":{"id":"id","name":"string","type":"site"},"role":{"id":"id","name":"string"}},"shouldSendInvitationEmail":true}}'
 
 catocli mutation admin addAdmin '{
     "addAdminInput": {
@@ -19,9 +19,7 @@ catocli mutation admin addAdmin '{
         "email": "string",
         "firstName": "string",
         "lastName": "string",
-        "passwordNeverExpires": true,
-        "shouldSendInvitationEmail": true,
-        "updateAdminRoleInput": {
+        "managedRoles": {
             "allowedAccounts": [
                 "id1",
                 "id2"
@@ -35,7 +33,24 @@ catocli mutation admin addAdmin '{
                 "id": "id",
                 "name": "string"
             }
-        }
+        },
+        "passwordNeverExpires": true,
+        "resellerRoles": {
+            "allowedAccounts": [
+                "id1",
+                "id2"
+            ],
+            "allowedEntities": {
+                "id": "id",
+                "name": "string",
+                "type": "site"
+            },
+            "role": {
+                "id": "id",
+                "name": "string"
+            }
+        },
+        "shouldSendInvitationEmail": true
     }
 }'
 ```

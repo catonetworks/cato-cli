@@ -3,11 +3,7 @@
     "query": "query ztnaAppConnectorZtnaAppConnectorList ( $accountId:ID! $ztnaAppConnectorListInput:ZtnaAppConnectorListInput!) {\n\tztnaAppConnector ( accountId:$accountId ) {\n\t\tztnaAppConnectorList ( input:$ztnaAppConnectorListInput  )  {\n\t\t\tztnaAppConnector {\n\t\t\t\tid\n\t\t\t\tcreatedAt\n\t\t\t\tname\n\t\t\t\tdescription\n\t\t\t\tserialNumber\n\t\t\t\tsocketId\n\t\t\t\ttype\n\t\t\t\tsocketModel\n\t\t\t\tisRegistered\n\t\t\t\tgroupName\n\t\t\t\tlocation {\n\t\t\t\t\taddress\n\t\t\t\t\tcityName\n\t\t\t\t\tcountryCode\n\t\t\t\t\tcountryName\n\t\t\t\t\tstateCode\n\t\t\t\t\ttimezone\n\t\t\t\t}\n\t\t\t\tpreferredPopLocation {\n\t\t\t\t\tpreferredOnly\n\t\t\t\t\tautomatic\n\t\t\t\t\tprimary {\n\t\t\t\t\t\tid\n\t\t\t\t\t\tname\n\t\t\t\t\t}\n\t\t\t\t\tsecondary {\n\t\t\t\t\t\tid\n\t\t\t\t\t\tname\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tprivateAppCount\n\t\t\t\tprivateAppRef {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t\tsocketInfo {\n\t\t\t\t\tversion\n\t\t\t\t\trollbackTargetVersion\n\t\t\t\t\tversionUpdateTime\n\t\t\t\t\trollbackEligibleUntil\n\t\t\t\t\tupgradesPaused\n\t\t\t\t}\n\t\t\t}\n\t\t\tpageInfo {\n\t\t\t\ttotal\n\t\t\t}\n\t\t}\n\t}\t\n}",
     "variables": {
         "ztnaAppConnectorListInput": {
-            "pagingInput": {
-                "from": 1,
-                "limit": 1
-            },
-            "ztnaAppConnectorListFilterInput": {
+            "filter": {
                 "countryCode": {
                     "eq": "string",
                     "in": [
@@ -118,7 +114,11 @@
                     "nin": "VIRTUAL"
                 }
             },
-            "ztnaAppConnectorListSortInput": {
+            "paging": {
+                "from": 1,
+                "limit": 1
+            },
+            "sort": {
                 "createdAt": {
                     "direction": "ASC",
                     "priority": 1

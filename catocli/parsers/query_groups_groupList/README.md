@@ -11,11 +11,11 @@ catocli query groups groupList <json>
 
 catocli query groups groupList --json-file query.groups.groupList.json
 
-catocli query groups groupList '{"groupListInput":{"groupListFilterInput":{"audit":{"updatedBy":{"by":"ID","input":"string"},"updatedTime":{"between":["example1","example2"],"eq":"example_value","gt":"example_value","gte":"example_value","in":["example1","example2"],"lt":"example_value","lte":"example_value","neq":"example_value","nin":["example1","example2"]}},"freeText":{"search":"string"},"id":{"eq":"id","in":["id1","id2"],"neq":"id","nin":["id1","id2"]},"member":{"ref":{"by":"ID","input":"string","type":"SITE"}},"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"],"regex":"string"}},"groupListSortInput":{"audit":{"updatedBy":{"direction":"ASC","priority":1},"updatedTime":{"direction":"ASC","priority":1}},"name":{"direction":"ASC","priority":1}},"pagingInput":{"from":1,"limit":1}},"groupMembersListInput":{"groupMembersListFilterInput":{"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"],"regex":"string"},"type":{"eq":"SITE","in":"SITE","neq":"SITE","nin":"SITE"}},"groupMembersListSortInput":{"name":{"direction":"ASC","priority":1},"type":{"direction":"ASC","priority":1}},"pagingInput":{"from":1,"limit":1}}}'
+catocli query groups groupList '{"groupListInput":{"filter":{"audit":{"updatedBy":{"by":"ID","input":"string"},"updatedTime":{"between":["example1","example2"],"eq":"example_value","gt":"example_value","gte":"example_value","in":["example1","example2"],"lt":"example_value","lte":"example_value","neq":"example_value","nin":["example1","example2"]}},"freeText":{"search":"string"},"id":{"eq":"id","in":["id1","id2"],"neq":"id","nin":["id1","id2"]},"member":{"ref":{"by":"ID","input":"string","type":"SITE"}},"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"],"regex":"string"}},"paging":{"from":1,"limit":1},"sort":{"audit":{"updatedBy":{"direction":"ASC","priority":1},"updatedTime":{"direction":"ASC","priority":1}},"name":{"direction":"ASC","priority":1}}},"groupMembersListInput":{"filter":{"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"],"regex":"string"},"type":{"eq":"SITE","in":"SITE","neq":"SITE","nin":"SITE"}},"paging":{"from":1,"limit":1},"sort":{"name":{"direction":"ASC","priority":1},"type":{"direction":"ASC","priority":1}}}}'
 
 catocli query groups groupList '{
     "groupListInput": {
-        "groupListFilterInput": {
+        "filter": {
             "audit": {
                 "updatedBy": {
                     "by": "ID",
@@ -78,7 +78,11 @@ catocli query groups groupList '{
                 "regex": "string"
             }
         },
-        "groupListSortInput": {
+        "paging": {
+            "from": 1,
+            "limit": 1
+        },
+        "sort": {
             "audit": {
                 "updatedBy": {
                     "direction": "ASC",
@@ -93,14 +97,10 @@ catocli query groups groupList '{
                 "direction": "ASC",
                 "priority": 1
             }
-        },
-        "pagingInput": {
-            "from": 1,
-            "limit": 1
         }
     },
     "groupMembersListInput": {
-        "groupMembersListFilterInput": {
+        "filter": {
             "name": {
                 "eq": "string",
                 "in": [
@@ -121,7 +121,11 @@ catocli query groups groupList '{
                 "nin": "SITE"
             }
         },
-        "groupMembersListSortInput": {
+        "paging": {
+            "from": 1,
+            "limit": 1
+        },
+        "sort": {
             "name": {
                 "direction": "ASC",
                 "priority": 1
@@ -130,10 +134,6 @@ catocli query groups groupList '{
                 "direction": "ASC",
                 "priority": 1
             }
-        },
-        "pagingInput": {
-            "from": 1,
-            "limit": 1
         }
     }
 }'

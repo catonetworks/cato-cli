@@ -11,16 +11,21 @@ catocli query site validWifiRadioSettingsByCountry <json>
 
 catocli query site validWifiRadioSettingsByCountry --json-file query.site.validWifiRadioSettingsByCountry.json
 
-catocli query site validWifiRadioSettingsByCountry '{"validWifiRadioSettingsByCountryInput":{"countryCode":"string","wifiBandSettingsFilterInput":{"channelWidth":"AUTO","dfsEnabled":true,"standard":"AUTO"}}}'
+catocli query site validWifiRadioSettingsByCountry '{"validWifiRadioSettingsByCountryInput":{"band24":{"channelWidth":"AUTO","dfsEnabled":true,"standard":"AUTO"},"band5":{"channelWidth":"AUTO","dfsEnabled":true,"standard":"AUTO"},"countryCode":"string"}}'
 
 catocli query site validWifiRadioSettingsByCountry '{
     "validWifiRadioSettingsByCountryInput": {
-        "countryCode": "string",
-        "wifiBandSettingsFilterInput": {
+        "band24": {
             "channelWidth": "AUTO",
             "dfsEnabled": true,
             "standard": "AUTO"
-        }
+        },
+        "band5": {
+            "channelWidth": "AUTO",
+            "dfsEnabled": true,
+            "standard": "AUTO"
+        },
+        "countryCode": "string"
     }
 }'
 ```

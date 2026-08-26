@@ -11,15 +11,15 @@ catocli mutation container ipAddressRange addValues <json>
 
 catocli mutation container ipAddressRange addValues --json-file mutation.container.ipAddressRange.addValues.json
 
-catocli mutation container ipAddressRange addValues '{"ipAddressRangeContainerAddValuesInput":{"containerRefInput":{"by":"ID","input":"string"},"ipAddressRangeInput":{"from":"example_value","to":"example_value"}}}'
+catocli mutation container ipAddressRange addValues '{"ipAddressRangeContainerAddValuesInput":{"ref":{"by":"ID","input":"string"},"values":{"from":"example_value","to":"example_value"}}}'
 
 catocli mutation container ipAddressRange addValues '{
     "ipAddressRangeContainerAddValuesInput": {
-        "containerRefInput": {
+        "ref": {
             "by": "ID",
             "input": "string"
         },
-        "ipAddressRangeInput": {
+        "values": {
             "from": "example_value",
             "to": "example_value"
         }

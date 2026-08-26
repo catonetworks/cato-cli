@@ -11,11 +11,11 @@ catocli query policy wanFirewall policy <json>
 
 catocli query policy wanFirewall policy --json-file query.policy.wanFirewall.policy.json
 
-catocli query policy wanFirewall policy '{"wanFirewallPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'
+catocli query policy wanFirewall policy '{"wanFirewallPolicyInput":{"revision":{"id":"id","type":"PRIVATE"}}}'
 
 catocli query policy wanFirewall policy '{
     "wanFirewallPolicyInput": {
-        "policyRevisionInput": {
+        "revision": {
             "id": "id",
             "type": "PRIVATE"
         }

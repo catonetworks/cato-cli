@@ -11,15 +11,11 @@ catocli query site validateWifiRadioProfile <json>
 
 catocli query site validateWifiRadioProfile --json-file query.site.validateWifiRadioProfile.json
 
-catocli query site validateWifiRadioProfile '{"validateWifiRadioProfileInput":{"siteRefInput":{"by":"ID","input":"string"},"wifiRadioProfileInput":{"band24":{"band":"BAND_2P4G","channel":1,"channelWidth":"AUTO","dfsEnabled":true,"standard":"AUTO"},"band5":{"band":"BAND_2P4G","channel":1,"channelWidth":"AUTO","dfsEnabled":true,"standard":"AUTO"}}}}'
+catocli query site validateWifiRadioProfile '{"validateWifiRadioProfileInput":{"radioProfile":{"band24":{"band":"BAND_2P4G","channel":1,"channelWidth":"AUTO","dfsEnabled":true,"standard":"AUTO"},"band5":{"band":"BAND_2P4G","channel":1,"channelWidth":"AUTO","dfsEnabled":true,"standard":"AUTO"}},"site":{"by":"ID","input":"string"}}}'
 
 catocli query site validateWifiRadioProfile '{
     "validateWifiRadioProfileInput": {
-        "siteRefInput": {
-            "by": "ID",
-            "input": "string"
-        },
-        "wifiRadioProfileInput": {
+        "radioProfile": {
             "band24": {
                 "band": "BAND_2P4G",
                 "channel": 1,
@@ -34,6 +30,10 @@ catocli query site validateWifiRadioProfile '{
                 "dfsEnabled": true,
                 "standard": "AUTO"
             }
+        },
+        "site": {
+            "by": "ID",
+            "input": "string"
         }
     }
 }'

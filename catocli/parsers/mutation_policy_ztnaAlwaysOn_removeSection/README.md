@@ -11,14 +11,14 @@ catocli mutation policy ztnaAlwaysOn removeSection <json>
 
 catocli mutation policy ztnaAlwaysOn removeSection --json-file mutation.policy.ztnaAlwaysOn.removeSection.json
 
-catocli mutation policy ztnaAlwaysOn removeSection '{"policyRemoveSectionInput":{"id":"id"},"ztnaAlwaysOnPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
+catocli mutation policy ztnaAlwaysOn removeSection '{"policyRemoveSectionInput":{"id":"id"},"ztnaAlwaysOnPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy ztnaAlwaysOn removeSection '{
     "policyRemoveSectionInput": {
         "id": "id"
     },
     "ztnaAlwaysOnPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     }

@@ -11,11 +11,11 @@ catocli mutation container fqdn removeValues <json>
 
 catocli mutation container fqdn removeValues --json-file mutation.container.fqdn.removeValues.json
 
-catocli mutation container fqdn removeValues '{"fqdnContainerRemoveValuesInput":{"containerRefInput":{"by":"ID","input":"string"},"values":["example1","example2"]}}'
+catocli mutation container fqdn removeValues '{"fqdnContainerRemoveValuesInput":{"ref":{"by":"ID","input":"string"},"values":["example1","example2"]}}'
 
 catocli mutation container fqdn removeValues '{
     "fqdnContainerRemoveValuesInput": {
-        "containerRefInput": {
+        "ref": {
             "by": "ID",
             "input": "string"
         },

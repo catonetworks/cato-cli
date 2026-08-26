@@ -3,12 +3,17 @@
     "query": "query siteValidWifiRadioSettingsByCountry ( $accountId:ID! $validWifiRadioSettingsByCountryInput:ValidWifiRadioSettingsByCountryInput!) {\n\tsite ( accountId:$accountId ) {\n\t\tvalidWifiRadioSettingsByCountry ( input:$validWifiRadioSettingsByCountryInput  )  {\n\t\t\tband24 {\n\t\t\t\tstandards\n\t\t\t\tchannelWidths\n\t\t\t\tchannels\n\t\t\t}\n\t\t\tband5 {\n\t\t\t\tstandards\n\t\t\t\tchannelWidths\n\t\t\t\tchannels\n\t\t\t}\n\t\t}\n\t}\t\n}",
     "variables": {
         "validWifiRadioSettingsByCountryInput": {
-            "countryCode": "string",
-            "wifiBandSettingsFilterInput": {
+            "band24": {
                 "channelWidth": "AUTO",
                 "dfsEnabled": true,
                 "standard": "AUTO"
-            }
+            },
+            "band5": {
+                "channelWidth": "AUTO",
+                "dfsEnabled": true,
+                "standard": "AUTO"
+            },
+            "countryCode": "string"
         }
     }
 }

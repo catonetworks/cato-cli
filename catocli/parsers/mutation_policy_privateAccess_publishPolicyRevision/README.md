@@ -11,7 +11,7 @@ catocli mutation policy privateAccess publishPolicyRevision <json>
 
 catocli mutation policy privateAccess publishPolicyRevision --json-file mutation.policy.privateAccess.publishPolicyRevision.json
 
-catocli mutation policy privateAccess publishPolicyRevision '{"policyPublishRevisionInput":{"description":"string","name":"string"},"privateAccessPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
+catocli mutation policy privateAccess publishPolicyRevision '{"policyPublishRevisionInput":{"description":"string","name":"string"},"privateAccessPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy privateAccess publishPolicyRevision '{
     "policyPublishRevisionInput": {
@@ -19,7 +19,7 @@ catocli mutation policy privateAccess publishPolicyRevision '{
         "name": "string"
     },
     "privateAccessPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     }

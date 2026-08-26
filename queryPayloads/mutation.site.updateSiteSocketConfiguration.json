@@ -3,12 +3,15 @@
     "query": "mutation siteUpdateSiteSocketConfiguration ( $accountId:ID! $updateSiteSocketConfigurationInput:UpdateSiteSocketConfigurationInput!) {\n\tsite ( accountId:$accountId ) {\n\t\tupdateSiteSocketConfiguration ( input:$updateSiteSocketConfigurationInput  )  {\n\t\t\tsiteSocketConfiguration {\n\t\t\t\tprimarySocketConfiguration {\n\t\t\t\t\tdescription\n\t\t\t\t\tserial\n\t\t\t\t\tmanagementIp\n\t\t\t\t\tsocketInfo {\n\t\t\t\t\t\tmodel\n\t\t\t\t\t\tplatform\n\t\t\t\t\t\tversion\n\t\t\t\t\t\tregistrationStatus\n\t\t\t\t\t\twifiSupported\n\t\t\t\t\t\tisPrimary\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tsecondarySocketConfiguration {\n\t\t\t\t\tdescription\n\t\t\t\t\tserial\n\t\t\t\t\tmanagementIp\n\t\t\t\t\tsocketInfo {\n\t\t\t\t\t\tmodel\n\t\t\t\t\t\tplatform\n\t\t\t\t\t\tversion\n\t\t\t\t\t\tregistrationStatus\n\t\t\t\t\t\twifiSupported\n\t\t\t\t\t\tisPrimary\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\t\n}",
     "variables": {
         "updateSiteSocketConfigurationInput": {
-            "siteRefInput": {
+            "primarySocketConfiguration": {
+                "description": "string"
+            },
+            "secondarySocketConfiguration": {
+                "description": "string"
+            },
+            "site": {
                 "by": "ID",
                 "input": "string"
-            },
-            "socketConfigurationInput": {
-                "description": "string"
             }
         }
     }

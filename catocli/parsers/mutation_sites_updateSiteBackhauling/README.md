@@ -11,14 +11,14 @@ catocli mutation sites updateSiteBackhauling <json>
 
 catocli mutation sites updateSiteBackhauling --json-file mutation.sites.updateSiteBackhauling.json
 
-catocli mutation sites updateSiteBackhauling '{"updateSiteBackhaulingInput":{"destination":"LOCAL_GATEWAY_IP","nextHopIP":"example_value","preferredSocketPort":"string","siteRefInput":{"by":"ID","input":"string"},"useAsBackhaulingGW":true}}'
+catocli mutation sites updateSiteBackhauling '{"updateSiteBackhaulingInput":{"destination":"LOCAL_GATEWAY_IP","nextHopIP":"example_value","preferredSocketPort":"string","site":{"by":"ID","input":"string"},"useAsBackhaulingGW":true}}'
 
 catocli mutation sites updateSiteBackhauling '{
     "updateSiteBackhaulingInput": {
         "destination": "LOCAL_GATEWAY_IP",
         "nextHopIP": "example_value",
         "preferredSocketPort": "string",
-        "siteRefInput": {
+        "site": {
             "by": "ID",
             "input": "string"
         },

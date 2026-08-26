@@ -11,14 +11,14 @@ catocli mutation policy tlsInspect discardPolicyRevision <json>
 
 catocli mutation policy tlsInspect discardPolicyRevision --json-file mutation.policy.tlsInspect.discardPolicyRevision.json
 
-catocli mutation policy tlsInspect discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
+catocli mutation policy tlsInspect discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"tlsInspectPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy tlsInspect discardPolicyRevision '{
     "policyDiscardRevisionInput": {
         "id": "id"
     },
     "tlsInspectPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     }

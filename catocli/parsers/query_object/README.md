@@ -11,11 +11,11 @@ catocli query object <json>
 
 catocli query object --json-file query.object.json
 
-catocli query object '{"globalIpRangeListInput":{"globalIpRangeListFilterInput":{"description":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"ipRange":{"containedIn":"example_value"},"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}}},"globalIpRangeRefInput":{"by":"ID","input":"string"}}'
+catocli query object '{"globalIpRangeListInput":{"filter":{"description":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"ipRange":{"containedIn":"example_value"},"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}}},"globalIpRangeRefInput":{"by":"ID","input":"string"}}'
 
 catocli query object '{
     "globalIpRangeListInput": {
-        "globalIpRangeListFilterInput": {
+        "filter": {
             "description": {
                 "eq": "string",
                 "in": [

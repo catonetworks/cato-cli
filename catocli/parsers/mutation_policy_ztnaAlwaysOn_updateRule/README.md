@@ -11,17 +11,17 @@ catocli mutation policy ztnaAlwaysOn updateRule <json>
 
 catocli mutation policy ztnaAlwaysOn updateRule --json-file mutation.policy.ztnaAlwaysOn.updateRule.json
 
-catocli mutation policy ztnaAlwaysOn updateRule '{"ztnaAlwaysOnPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"ztnaAlwaysOnUpdateRuleInput":{"id":"id","ztnaAlwaysOnUpdateRuleDataInput":{"action":"ENFORCE","allowFailOpen":true,"allowUserBypass":true,"antiTamperMode":"OFF","bypassDuration":{"time":1,"unit":"MINUTES"},"description":"string","devicePostureProfile":{"by":"ID","input":"string"},"enabled":true,"name":"string","platform":"WINDOWS","source":{"user":{"by":"ID","input":"string"},"usersGroup":{"by":"ID","input":"string"}}}}}'
+catocli mutation policy ztnaAlwaysOn updateRule '{"ztnaAlwaysOnPolicyMutationInput":{"revision":{"id":"id"}},"ztnaAlwaysOnUpdateRuleInput":{"id":"id","rule":{"action":"ENFORCE","allowFailOpen":true,"allowUserBypass":true,"antiTamperMode":"OFF","bypassDuration":{"time":1,"unit":"MINUTES"},"description":"string","devicePostureProfile":{"by":"ID","input":"string"},"enabled":true,"name":"string","platform":"WINDOWS","source":{"user":{"by":"ID","input":"string"},"usersGroup":{"by":"ID","input":"string"}}}}}'
 
 catocli mutation policy ztnaAlwaysOn updateRule '{
     "ztnaAlwaysOnPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     },
     "ztnaAlwaysOnUpdateRuleInput": {
         "id": "id",
-        "ztnaAlwaysOnUpdateRuleDataInput": {
+        "rule": {
             "action": "ENFORCE",
             "allowFailOpen": true,
             "allowUserBypass": true,

@@ -11,15 +11,13 @@ catocli mutation site updateSocketInterface <json>
 
 catocli mutation site updateSocketInterface --json-file mutation.site.updateSocketInterface.json
 
-catocli mutation site updateSocketInterface '{"siteId":"id","socketInterfaceId":"LAN1","updateSocketInterfaceInput":{"destType":"CATO","name":"string","socketInterfaceAltWanInput":{"privateGatewayIp":"example_value","privateInterfaceIp":"example_value","privateNetwork":"example_value","privateVlanTag":1,"publicGatewayIp":"example_value","publicInterfaceIp":"example_value","publicNetwork":"example_value","publicVlanTag":1},"socketInterfaceBandwidthInput":{"downstreamBandwidth":1,"downstreamBandwidthMbpsPrecision":1.5,"upstreamBandwidth":1,"upstreamBandwidthMbpsPrecision":1.5},"socketInterfaceLagInput":{"minLinks":1},"socketInterfaceLanInput":{"localIp":"example_value","subnet":"example_value","translatedSubnet":"example_value"},"socketInterfaceOffCloudInput":{"enabled":true,"publicIp":"example_value","publicStaticPort":1},"socketInterfaceVrrpInput":{"vrrpType":"VIA_SWITCH"},"socketInterfaceWanInput":{"precedence":"ACTIVE","role":"wan_1"}}}'
+catocli mutation site updateSocketInterface '{"siteId":"id","socketInterfaceId":"LAN1","updateSocketInterfaceInput":{"altWan":{"privateGatewayIp":"example_value","privateInterfaceIp":"example_value","privateNetwork":"example_value","privateVlanTag":1,"publicGatewayIp":"example_value","publicInterfaceIp":"example_value","publicNetwork":"example_value","publicVlanTag":1},"bandwidth":{"downstreamBandwidth":1,"downstreamBandwidthMbpsPrecision":1.5,"upstreamBandwidth":1,"upstreamBandwidthMbpsPrecision":1.5},"destType":"CATO","lag":{"minLinks":1},"lan":{"localIp":"example_value","subnet":"example_value","translatedSubnet":"example_value"},"name":"string","offCloud":{"enabled":true,"publicIp":"example_value","publicStaticPort":1},"vrrp":{"vrrpType":"VIA_SWITCH"},"wan":{"precedence":"ACTIVE","role":"wan_1"}}}'
 
 catocli mutation site updateSocketInterface '{
     "siteId": "id",
     "socketInterfaceId": "LAN1",
     "updateSocketInterfaceInput": {
-        "destType": "CATO",
-        "name": "string",
-        "socketInterfaceAltWanInput": {
+        "altWan": {
             "privateGatewayIp": "example_value",
             "privateInterfaceIp": "example_value",
             "privateNetwork": "example_value",
@@ -29,29 +27,31 @@ catocli mutation site updateSocketInterface '{
             "publicNetwork": "example_value",
             "publicVlanTag": 1
         },
-        "socketInterfaceBandwidthInput": {
+        "bandwidth": {
             "downstreamBandwidth": 1,
             "downstreamBandwidthMbpsPrecision": 1.5,
             "upstreamBandwidth": 1,
             "upstreamBandwidthMbpsPrecision": 1.5
         },
-        "socketInterfaceLagInput": {
+        "destType": "CATO",
+        "lag": {
             "minLinks": 1
         },
-        "socketInterfaceLanInput": {
+        "lan": {
             "localIp": "example_value",
             "subnet": "example_value",
             "translatedSubnet": "example_value"
         },
-        "socketInterfaceOffCloudInput": {
+        "name": "string",
+        "offCloud": {
             "enabled": true,
             "publicIp": "example_value",
             "publicStaticPort": 1
         },
-        "socketInterfaceVrrpInput": {
+        "vrrp": {
             "vrrpType": "VIA_SWITCH"
         },
-        "socketInterfaceWanInput": {
+        "wan": {
             "precedence": "ACTIVE",
             "role": "wan_1"
         }

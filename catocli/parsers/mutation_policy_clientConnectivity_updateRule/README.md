@@ -11,16 +11,17 @@ catocli mutation policy clientConnectivity updateRule <json>
 
 catocli mutation policy clientConnectivity updateRule --json-file mutation.policy.clientConnectivity.updateRule.json
 
-catocli mutation policy clientConnectivity updateRule '{"clientConnectivityPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"clientConnectivityUpdateRuleInput":{"clientConnectivityUpdateRuleDataInput":{"action":"ALLOW","confidenceLevel":"HIGH","connectionOrigin":"ANY","country":{"by":"ID","input":"string"},"description":"string","device":{"by":"ID","input":"string"},"enabled":true,"name":"string","platform":"WINDOWS","source":{"user":{"by":"ID","input":"string"},"usersGroup":{"by":"ID","input":"string"}},"sourceRange":{"globalIpRange":{"by":"ID","input":"string"}}},"id":"id"}}'
+catocli mutation policy clientConnectivity updateRule '{"clientConnectivityPolicyMutationInput":{"revision":{"id":"id"}},"clientConnectivityUpdateRuleInput":{"id":"id","rule":{"action":"ALLOW","confidenceLevel":"HIGH","connectionOrigin":"ANY","country":{"by":"ID","input":"string"},"description":"string","device":{"by":"ID","input":"string"},"enabled":true,"name":"string","platform":"WINDOWS","source":{"user":{"by":"ID","input":"string"},"usersGroup":{"by":"ID","input":"string"}},"sourceRange":{"globalIpRange":{"by":"ID","input":"string"}}}}}'
 
 catocli mutation policy clientConnectivity updateRule '{
     "clientConnectivityPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     },
     "clientConnectivityUpdateRuleInput": {
-        "clientConnectivityUpdateRuleDataInput": {
+        "id": "id",
+        "rule": {
             "action": "ALLOW",
             "confidenceLevel": "HIGH",
             "connectionOrigin": "ANY",
@@ -52,8 +53,7 @@ catocli mutation policy clientConnectivity updateRule '{
                     "input": "string"
                 }
             }
-        },
-        "id": "id"
+        }
     }
 }'
 ```

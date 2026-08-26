@@ -11,11 +11,11 @@ catocli query site wifiRadioProfileList <json>
 
 catocli query site wifiRadioProfileList --json-file query.site.wifiRadioProfileList.json
 
-catocli query site wifiRadioProfileList '{"wifiRadioProfileListInput":{"wifiRadioProfileRefInput":{"by":"ID","input":"string"}}}'
+catocli query site wifiRadioProfileList '{"wifiRadioProfileListInput":{"wifiRadioProfiles":{"by":"ID","input":"string"}}}'
 
 catocli query site wifiRadioProfileList '{
     "wifiRadioProfileListInput": {
-        "wifiRadioProfileRefInput": {
+        "wifiRadioProfiles": {
             "by": "ID",
             "input": "string"
         }

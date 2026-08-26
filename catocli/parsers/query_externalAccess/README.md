@@ -11,33 +11,11 @@ catocli query externalAccess <json>
 
 catocli query externalAccess --json-file query.externalAccess.json
 
-catocli query externalAccess '{"incomingAccessRequestListInput":{"accessRequestSortInput":{"activeDate":{"direction":"ASC","priority":1},"expirationDate":{"direction":"ASC","priority":1},"id":{"direction":"ASC","priority":1},"requestedDate":{"direction":"ASC","priority":1},"status":{"direction":"ASC","priority":1}},"incomingAccessRequestFilterInput":{"expirationDate":{"between":["example1","example2"],"eq":"example_value","gt":"example_value","gte":"example_value","in":["example1","example2"],"lt":"example_value","lte":"example_value","neq":"example_value","nin":["example1","example2"]},"requestedDate":{"between":["example1","example2"],"eq":"example_value","gt":"example_value","gte":"example_value","in":["example1","example2"],"lt":"example_value","lte":"example_value","neq":"example_value","nin":["example1","example2"]},"search":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"status":{"eq":"PENDING","in":"PENDING","neq":"PENDING","nin":"PENDING"}},"pagingInput":{"from":1,"limit":1}},"partnerAccessRequestListInput":{"pagingInput":{"from":1,"limit":1},"partnerAccessRequestFilterInput":{"expirationDate":{"between":["example1","example2"],"eq":"example_value","gt":"example_value","gte":"example_value","in":["example1","example2"],"lt":"example_value","lte":"example_value","neq":"example_value","nin":["example1","example2"]},"requestedDate":{"between":["example1","example2"],"eq":"example_value","gt":"example_value","gte":"example_value","in":["example1","example2"],"lt":"example_value","lte":"example_value","neq":"example_value","nin":["example1","example2"]},"search":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"status":{"eq":"PENDING","in":"PENDING","neq":"PENDING","nin":"PENDING"},"type":{"eq":"STANDARD","in":"STANDARD","neq":"STANDARD","nin":"STANDARD"}},"partnerAccessRequestSortInput":{"accountName":{"direction":"ASC","priority":1},"activeDate":{"direction":"ASC","priority":1},"expirationDate":{"direction":"ASC","priority":1},"id":{"direction":"ASC","priority":1},"requestedDate":{"direction":"ASC","priority":1},"status":{"direction":"ASC","priority":1},"type":{"direction":"ASC","priority":1}}}}'
+catocli query externalAccess '{"incomingAccessRequestListInput":{"filter":{"expirationDate":{"between":["example1","example2"],"eq":"example_value","gt":"example_value","gte":"example_value","in":["example1","example2"],"lt":"example_value","lte":"example_value","neq":"example_value","nin":["example1","example2"]},"requestedDate":{"between":["example1","example2"],"eq":"example_value","gt":"example_value","gte":"example_value","in":["example1","example2"],"lt":"example_value","lte":"example_value","neq":"example_value","nin":["example1","example2"]},"search":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"status":{"eq":"PENDING","in":"PENDING","neq":"PENDING","nin":"PENDING"}},"paging":{"from":1,"limit":1},"sort":{"activeDate":{"direction":"ASC","priority":1},"expirationDate":{"direction":"ASC","priority":1},"id":{"direction":"ASC","priority":1},"requestedDate":{"direction":"ASC","priority":1},"status":{"direction":"ASC","priority":1}}},"partnerAccessRequestListInput":{"filter":{"expirationDate":{"between":["example1","example2"],"eq":"example_value","gt":"example_value","gte":"example_value","in":["example1","example2"],"lt":"example_value","lte":"example_value","neq":"example_value","nin":["example1","example2"]},"requestedDate":{"between":["example1","example2"],"eq":"example_value","gt":"example_value","gte":"example_value","in":["example1","example2"],"lt":"example_value","lte":"example_value","neq":"example_value","nin":["example1","example2"]},"search":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"status":{"eq":"PENDING","in":"PENDING","neq":"PENDING","nin":"PENDING"},"type":{"eq":"STANDARD","in":"STANDARD","neq":"STANDARD","nin":"STANDARD"}},"paging":{"from":1,"limit":1},"sort":{"accountName":{"direction":"ASC","priority":1},"activeDate":{"direction":"ASC","priority":1},"expirationDate":{"direction":"ASC","priority":1},"id":{"direction":"ASC","priority":1},"requestedDate":{"direction":"ASC","priority":1},"status":{"direction":"ASC","priority":1},"type":{"direction":"ASC","priority":1}}}}'
 
 catocli query externalAccess '{
     "incomingAccessRequestListInput": {
-        "accessRequestSortInput": {
-            "activeDate": {
-                "direction": "ASC",
-                "priority": 1
-            },
-            "expirationDate": {
-                "direction": "ASC",
-                "priority": 1
-            },
-            "id": {
-                "direction": "ASC",
-                "priority": 1
-            },
-            "requestedDate": {
-                "direction": "ASC",
-                "priority": 1
-            },
-            "status": {
-                "direction": "ASC",
-                "priority": 1
-            }
-        },
-        "incomingAccessRequestFilterInput": {
+        "filter": {
             "expirationDate": {
                 "between": [
                     "example1",
@@ -97,17 +75,35 @@ catocli query externalAccess '{
                 "nin": "PENDING"
             }
         },
-        "pagingInput": {
-            "from": 1,
-            "limit": 1
-        }
-    },
-    "partnerAccessRequestListInput": {
-        "pagingInput": {
+        "paging": {
             "from": 1,
             "limit": 1
         },
-        "partnerAccessRequestFilterInput": {
+        "sort": {
+            "activeDate": {
+                "direction": "ASC",
+                "priority": 1
+            },
+            "expirationDate": {
+                "direction": "ASC",
+                "priority": 1
+            },
+            "id": {
+                "direction": "ASC",
+                "priority": 1
+            },
+            "requestedDate": {
+                "direction": "ASC",
+                "priority": 1
+            },
+            "status": {
+                "direction": "ASC",
+                "priority": 1
+            }
+        }
+    },
+    "partnerAccessRequestListInput": {
+        "filter": {
             "expirationDate": {
                 "between": [
                     "example1",
@@ -173,7 +169,11 @@ catocli query externalAccess '{
                 "nin": "STANDARD"
             }
         },
-        "partnerAccessRequestSortInput": {
+        "paging": {
+            "from": 1,
+            "limit": 1
+        },
+        "sort": {
             "accountName": {
                 "direction": "ASC",
                 "priority": 1

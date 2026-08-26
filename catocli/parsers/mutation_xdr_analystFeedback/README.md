@@ -11,7 +11,7 @@ catocli mutation xdr analystFeedback <json>
 
 catocli mutation xdr analystFeedback --json-file mutation.xdr.analystFeedback.json
 
-catocli mutation xdr analystFeedback '{"analystFeedbackInput":{"additionalInfo":"string","severity":"High","status":"Open","storyId":"id","storyThreatType":{"details":"string","name":"string","recommendedAction":"string"},"threatClassification":"string","verdict":"Suspicious"}}'
+catocli mutation xdr analystFeedback '{"analystFeedbackInput":{"additionalInfo":"string","severity":"High","status":"Open","storyId":"id","threatClassification":"string","threatType":{"details":"string","name":"string","recommendedAction":"string"},"verdict":"Suspicious"}}'
 
 catocli mutation xdr analystFeedback '{
     "analystFeedbackInput": {
@@ -19,12 +19,12 @@ catocli mutation xdr analystFeedback '{
         "severity": "High",
         "status": "Open",
         "storyId": "id",
-        "storyThreatType": {
+        "threatClassification": "string",
+        "threatType": {
             "details": "string",
             "name": "string",
             "recommendedAction": "string"
         },
-        "threatClassification": "string",
         "verdict": "Suspicious"
     }
 }'

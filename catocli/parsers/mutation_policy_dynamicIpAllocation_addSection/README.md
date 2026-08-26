@@ -11,21 +11,21 @@ catocli mutation policy dynamicIpAllocation addSection <json>
 
 catocli mutation policy dynamicIpAllocation addSection --json-file mutation.policy.dynamicIpAllocation.addSection.json
 
-catocli mutation policy dynamicIpAllocation addSection '{"dynamicIpAllocationPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyAddSectionInput":{"policyAddSectionInfoInput":{"name":"string"},"policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}}}'
+catocli mutation policy dynamicIpAllocation addSection '{"dynamicIpAllocationPolicyMutationInput":{"revision":{"id":"id"}},"policyAddSectionInput":{"at":{"position":"AFTER_SECTION","ref":"id"},"section":{"name":"string"}}}'
 
 catocli mutation policy dynamicIpAllocation addSection '{
     "dynamicIpAllocationPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     },
     "policyAddSectionInput": {
-        "policyAddSectionInfoInput": {
-            "name": "string"
-        },
-        "policySectionPositionInput": {
+        "at": {
             "position": "AFTER_SECTION",
             "ref": "id"
+        },
+        "section": {
+            "name": "string"
         }
     }
 }'

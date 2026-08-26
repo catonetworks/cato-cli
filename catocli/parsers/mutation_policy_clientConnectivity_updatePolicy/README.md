@@ -11,11 +11,11 @@ catocli mutation policy clientConnectivity updatePolicy <json>
 
 catocli mutation policy clientConnectivity updatePolicy --json-file mutation.policy.clientConnectivity.updatePolicy.json
 
-catocli mutation policy clientConnectivity updatePolicy '{"clientConnectivityPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"clientConnectivityPolicyUpdateInput":{"state":"ENABLED"}}'
+catocli mutation policy clientConnectivity updatePolicy '{"clientConnectivityPolicyMutationInput":{"revision":{"id":"id"}},"clientConnectivityPolicyUpdateInput":{"state":"ENABLED"}}'
 
 catocli mutation policy clientConnectivity updatePolicy '{
     "clientConnectivityPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     },

@@ -3,17 +3,17 @@
     "query": "mutation policyApplicationControlAddSection ( $accountId:ID! $applicationControlPolicyMutationInput:ApplicationControlPolicyMutationInput $policyAddSectionInput:PolicyAddSectionInput!) {\n\tpolicy ( accountId:$accountId ) {\n\t\tapplicationControl ( input:$applicationControlPolicyMutationInput  )  {\n\t\t\taddSection ( input:$policyAddSectionInput   ) {\n\t\t\t\tsection {\n\t\t\t\t\taudit {\n\t\t\t\t\t\tupdatedTime\n\t\t\t\t\t\tupdatedBy\n\t\t\t\t\t}\n\t\t\t\t\tmetadata {\n\t\t\t\t\t\tlock {\n\t\t\t\t\t\t\tlockingAdminEmail\n\t\t\t\t\t\t\tlockingTime\n\t\t\t\t\t\t\tlockingRevisionId\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\tsection {\n\t\t\t\t\t\tid\n\t\t\t\t\t\tname\n\t\t\t\t\t}\n\t\t\t\t\tproperties\n\t\t\t\t}\n\t\t\t\tstatus\n\t\t\t\terrors {\n\t\t\t\t\terrorMessage\n\t\t\t\t\terrorCode\n\t\t\t\t}\n\t\t\t\trevision {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t\tdescription\n\t\t\t\t\tchanges\n\t\t\t\t\tcreatedTime\n\t\t\t\t\tupdatedTime\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\t\n}",
     "variables": {
         "applicationControlPolicyMutationInput": {
-            "policyMutationRevisionInput": {
+            "revision": {
                 "id": "id"
             }
         },
         "policyAddSectionInput": {
-            "policyAddSectionInfoInput": {
-                "name": "string"
-            },
-            "policySectionPositionInput": {
+            "at": {
                 "position": "AFTER_SECTION",
                 "ref": "id"
+            },
+            "section": {
+                "name": "string"
             }
         }
     }

@@ -11,16 +11,16 @@ catocli mutation container ipAddressRange createFromList <json>
 
 catocli mutation container ipAddressRange createFromList --json-file mutation.container.ipAddressRange.createFromList.json
 
-catocli mutation container ipAddressRange createFromList '{"createIpAddressRangeContainerFromListInput":{"description":"string","ipAddressRangeInput":{"from":"example_value","to":"example_value"},"name":"string"}}'
+catocli mutation container ipAddressRange createFromList '{"createIpAddressRangeContainerFromListInput":{"description":"string","name":"string","values":{"from":"example_value","to":"example_value"}}}'
 
 catocli mutation container ipAddressRange createFromList '{
     "createIpAddressRangeContainerFromListInput": {
         "description": "string",
-        "ipAddressRangeInput": {
+        "name": "string",
+        "values": {
             "from": "example_value",
             "to": "example_value"
-        },
-        "name": "string"
+        }
     }
 }'
 ```

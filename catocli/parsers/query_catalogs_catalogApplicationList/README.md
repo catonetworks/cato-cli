@@ -11,11 +11,11 @@ catocli query catalogs catalogApplicationList <json>
 
 catocli query catalogs catalogApplicationList --json-file query.catalogs.catalogApplicationList.json
 
-catocli query catalogs catalogApplicationList '{"catalogApplicationListInput":{"catalogApplicationFilterInput":{"activity":{"hasAny":{"by":"ID","input":"string"}},"aiRisk":{"eq":"LOW","in":"LOW","neq":"LOW","nin":"LOW"},"capability":{"hasAny":"APP_CONTROL_INLINE"},"category":{"hasAny":{"by":"ID","input":"string"}},"freeText":{"search":"string"},"id":{"eq":"id","in":["id1","id2"],"neq":"id","nin":["id1","id2"]},"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"originCountry":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"recentlyAdded":{"eq":true,"neq":true},"risk":{"between":[1,2],"eq":1,"gt":1,"gte":1,"in":[1,2],"lt":1,"lte":1,"neq":1,"nin":[1,2]},"tenantActivity":{"eq":true,"neq":true},"type":{"eq":"APPLICATION","in":"APPLICATION","neq":"APPLICATION","nin":"APPLICATION"}},"catalogApplicationSortInput":{"category":{"name":{"direction":"ASC","priority":1}},"description":{"direction":"ASC","priority":1},"name":{"direction":"ASC","priority":1},"risk":{"direction":"ASC","priority":1},"type":{"direction":"ASC","priority":1}},"pagingInput":{"from":1,"limit":1}}}'
+catocli query catalogs catalogApplicationList '{"catalogApplicationListInput":{"filter":{"activity":{"hasAny":{"by":"ID","input":"string"}},"aiRisk":{"eq":"LOW","in":"LOW","neq":"LOW","nin":"LOW"},"capability":{"hasAny":"APP_CONTROL_INLINE"},"category":{"hasAny":{"by":"ID","input":"string"}},"freeText":{"search":"string"},"id":{"eq":"id","in":["id1","id2"],"neq":"id","nin":["id1","id2"]},"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"originCountry":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"recentlyAdded":{"eq":true,"neq":true},"risk":{"between":[1,2],"eq":1,"gt":1,"gte":1,"in":[1,2],"lt":1,"lte":1,"neq":1,"nin":[1,2]},"tenantActivity":{"eq":true,"neq":true},"type":{"eq":"APPLICATION","in":"APPLICATION","neq":"APPLICATION","nin":"APPLICATION"}},"paging":{"from":1,"limit":1},"sort":{"category":{"name":{"direction":"ASC","priority":1}},"description":{"direction":"ASC","priority":1},"name":{"direction":"ASC","priority":1},"risk":{"direction":"ASC","priority":1},"type":{"direction":"ASC","priority":1}}}}'
 
 catocli query catalogs catalogApplicationList '{
     "catalogApplicationListInput": {
-        "catalogApplicationFilterInput": {
+        "filter": {
             "activity": {
                 "hasAny": {
                     "by": "ID",
@@ -111,7 +111,11 @@ catocli query catalogs catalogApplicationList '{
                 "nin": "APPLICATION"
             }
         },
-        "catalogApplicationSortInput": {
+        "paging": {
+            "from": 1,
+            "limit": 1
+        },
+        "sort": {
             "category": {
                 "name": {
                     "direction": "ASC",
@@ -134,10 +138,6 @@ catocli query catalogs catalogApplicationList '{
                 "direction": "ASC",
                 "priority": 1
             }
-        },
-        "pagingInput": {
-            "from": 1,
-            "limit": 1
         }
     }
 }'

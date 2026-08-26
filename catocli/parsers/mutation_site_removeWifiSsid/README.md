@@ -11,11 +11,11 @@ catocli mutation site removeWifiSsid <json>
 
 catocli mutation site removeWifiSsid --json-file mutation.site.removeWifiSsid.json
 
-catocli mutation site removeWifiSsid '{"removeWifiSsidInput":{"wifiSsidRefInput":{"by":"ID","input":"string"}}}'
+catocli mutation site removeWifiSsid '{"removeWifiSsidInput":{"wifiSsid":{"by":"ID","input":"string"}}}'
 
 catocli mutation site removeWifiSsid '{
     "removeWifiSsidInput": {
-        "wifiSsidRefInput": {
+        "wifiSsid": {
             "by": "ID",
             "input": "string"
         }

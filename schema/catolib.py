@@ -1571,27 +1571,6 @@ def getOperationArgs(curType, curOperation):
     finally:
         thread_local.depth -= 1
 
-def generateExampleVariables(operation):
-    """Generate example variables for operation"""
-    variablesObj = {}
-    for argName in operation["operationArgs"]:
-        arg = operation["operationArgs"][argName]
-        if "SCALAR" in arg["type"]["kind"] or "ENUM" in arg["type"]["kind"]:
-            variablesObj[arg["name"]] = renderInputFieldVal(arg)
-        else:
-            argTD = arg["type"]["definition"]
-            variablesObj[arg["varName"]] = {}
-            if "inputFields" in argTD and argTD["inputFields"] != None:
-                for inputFieldName in argTD["inputFields"]:
-                    inputField = argTD["inputFields"][inputFieldName]
-                    variablesObj[arg["varName"]][inputField["varName"]] = parseNestedArgFields(inputField)
-    
-    if "accountID" in variablesObj:
-        del variablesObj["accountID"]
-    if "accountId" in variablesObj:
-        del variablesObj["accountId"]
-    return variablesObj
-
 # Local renderArgsAndFields wrapper removed - now using shared function directly
 
 

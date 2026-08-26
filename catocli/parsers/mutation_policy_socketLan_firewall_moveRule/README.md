@@ -11,18 +11,18 @@ catocli mutation policy socketLan firewall moveRule <json>
 
 catocli mutation policy socketLan firewall moveRule --json-file mutation.policy.socketLan.firewall.moveRule.json
 
-catocli mutation policy socketLan firewall moveRule '{"policyMoveSubRuleInput":{"id":"id","policySubRulePositionInput":{"position":"AFTER_SUB_RULE","ref":"id"}},"socketLanPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
+catocli mutation policy socketLan firewall moveRule '{"policyMoveSubRuleInput":{"id":"id","to":{"position":"AFTER_SUB_RULE","ref":"id"}},"socketLanPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy socketLan firewall moveRule '{
     "policyMoveSubRuleInput": {
         "id": "id",
-        "policySubRulePositionInput": {
+        "to": {
             "position": "AFTER_SUB_RULE",
             "ref": "id"
         }
     },
     "socketLanPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     }

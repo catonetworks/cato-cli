@@ -11,14 +11,20 @@ catocli mutation sites updateIpsecIkeV2SiteGeneralDetails <json>
 
 catocli mutation sites updateIpsecIkeV2SiteGeneralDetails --json-file mutation.sites.updateIpsecIkeV2SiteGeneralDetails.json
 
-catocli mutation sites updateIpsecIkeV2SiteGeneralDetails '{"siteId":"id","updateIpsecIkeV2SiteGeneralDetailsInput":{"connectionMode":"RESPONDER_ONLY","identificationType":"IPV4","ipsecIkeV2MessageInput":{"cipher":"NONE","dhGroup":"NONE","integrity":"NONE","prf":"NONE"},"networkRanges":["example1","example2"]}}'
+catocli mutation sites updateIpsecIkeV2SiteGeneralDetails '{"siteId":"id","updateIpsecIkeV2SiteGeneralDetailsInput":{"authMessage":{"cipher":"NONE","dhGroup":"NONE","integrity":"NONE","prf":"NONE"},"connectionMode":"RESPONDER_ONLY","identificationType":"IPV4","initMessage":{"cipher":"NONE","dhGroup":"NONE","integrity":"NONE","prf":"NONE"},"networkRanges":["example1","example2"]}}'
 
 catocli mutation sites updateIpsecIkeV2SiteGeneralDetails '{
     "siteId": "id",
     "updateIpsecIkeV2SiteGeneralDetailsInput": {
+        "authMessage": {
+            "cipher": "NONE",
+            "dhGroup": "NONE",
+            "integrity": "NONE",
+            "prf": "NONE"
+        },
         "connectionMode": "RESPONDER_ONLY",
         "identificationType": "IPV4",
-        "ipsecIkeV2MessageInput": {
+        "initMessage": {
             "cipher": "NONE",
             "dhGroup": "NONE",
             "integrity": "NONE",

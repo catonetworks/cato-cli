@@ -11,14 +11,14 @@ catocli mutation sites replaceSiteBwLicense <json>
 
 catocli mutation sites replaceSiteBwLicense --json-file mutation.sites.replaceSiteBwLicense.json
 
-catocli mutation sites replaceSiteBwLicense '{"replaceSiteBwLicenseInput":{"bw":1,"licenseIdToAdd":"id","licenseIdToRemove":"id","siteRefInput":{"by":"ID","input":"string"}}}'
+catocli mutation sites replaceSiteBwLicense '{"replaceSiteBwLicenseInput":{"bw":1,"licenseIdToAdd":"id","licenseIdToRemove":"id","site":{"by":"ID","input":"string"}}}'
 
 catocli mutation sites replaceSiteBwLicense '{
     "replaceSiteBwLicenseInput": {
         "bw": 1,
         "licenseIdToAdd": "id",
         "licenseIdToRemove": "id",
-        "siteRefInput": {
+        "site": {
             "by": "ID",
             "input": "string"
         }

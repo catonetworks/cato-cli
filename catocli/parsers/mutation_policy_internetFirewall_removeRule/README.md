@@ -11,11 +11,11 @@ catocli mutation policy internetFirewall removeRule <json>
 
 catocli mutation policy internetFirewall removeRule --json-file mutation.policy.internetFirewall.removeRule.json
 
-catocli mutation policy internetFirewall removeRule '{"internetFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"internetFirewallRemoveRuleInput":{"id":"id"}}'
+catocli mutation policy internetFirewall removeRule '{"internetFirewallPolicyMutationInput":{"revision":{"id":"id"}},"internetFirewallRemoveRuleInput":{"id":"id"}}'
 
 catocli mutation policy internetFirewall removeRule '{
     "internetFirewallPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     },

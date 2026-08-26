@@ -11,11 +11,11 @@ catocli mutation policy remotePortFwd removeRule <json>
 
 catocli mutation policy remotePortFwd removeRule --json-file mutation.policy.remotePortFwd.removeRule.json
 
-catocli mutation policy remotePortFwd removeRule '{"remotePortFwdPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"remotePortFwdRemoveRuleInput":{"id":"id"}}'
+catocli mutation policy remotePortFwd removeRule '{"remotePortFwdPolicyMutationInput":{"revision":{"id":"id"}},"remotePortFwdRemoveRuleInput":{"id":"id"}}'
 
 catocli mutation policy remotePortFwd removeRule '{
     "remotePortFwdPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     },

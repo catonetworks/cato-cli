@@ -11,18 +11,11 @@ catocli mutation sites updateSiteNetworkRanges <json>
 
 catocli mutation sites updateSiteNetworkRanges --json-file mutation.sites.updateSiteNetworkRanges.json
 
-catocli mutation sites updateSiteNetworkRanges '{"updateSiteNetworkRangesInput":{"networkRangeRefInput":{"networkRangeId":"id"},"siteRefInput":{"by":"ID","input":"string"},"updateSiteNetworkRangeInput":{"azureFloatingIp":"example_value","dhcpSettings":{"dhcpMicrosegmentation":true,"dhcpType":"DHCP_RELAY","ipRange":"example_value","relayGroupId":"id"},"gateway":"example_value","internetOnly":true,"lanSocketInterfaceId":"id","localIp":"example_value","mdnsReflector":true,"name":"string","rangeType":"Routed","subnet":"example_value","translatedSubnet":"example_value","vlan":1}}}'
+catocli mutation sites updateSiteNetworkRanges '{"updateSiteNetworkRangesInput":{"networkRange":{"azureFloatingIp":"example_value","dhcpSettings":{"dhcpMicrosegmentation":true,"dhcpType":"DHCP_RELAY","ipRange":"example_value","relayGroupId":"id"},"gateway":"example_value","internetOnly":true,"lanSocketInterfaceId":"id","localIp":"example_value","mdnsReflector":true,"name":"string","rangeType":"Routed","subnet":"example_value","translatedSubnet":"example_value","vlan":1},"networkRangeToAdd":{"azureFloatingIp":"example_value","dhcpSettings":{"dhcpMicrosegmentation":true,"dhcpType":"DHCP_RELAY","ipRange":"example_value","relayGroupId":"id"},"gateway":"example_value","internetOnly":true,"lanSocketInterfaceId":"id","localIp":"example_value","mdnsReflector":true,"name":"string","rangeType":"Routed","subnet":"example_value","translatedSubnet":"example_value","vlan":1},"networkRangeToRemove":{"networkRangeId":"id"},"site":{"by":"ID","input":"string"}}}'
 
 catocli mutation sites updateSiteNetworkRanges '{
     "updateSiteNetworkRangesInput": {
-        "networkRangeRefInput": {
-            "networkRangeId": "id"
-        },
-        "siteRefInput": {
-            "by": "ID",
-            "input": "string"
-        },
-        "updateSiteNetworkRangeInput": {
+        "networkRange": {
             "azureFloatingIp": "example_value",
             "dhcpSettings": {
                 "dhcpMicrosegmentation": true,
@@ -40,6 +33,32 @@ catocli mutation sites updateSiteNetworkRanges '{
             "subnet": "example_value",
             "translatedSubnet": "example_value",
             "vlan": 1
+        },
+        "networkRangeToAdd": {
+            "azureFloatingIp": "example_value",
+            "dhcpSettings": {
+                "dhcpMicrosegmentation": true,
+                "dhcpType": "DHCP_RELAY",
+                "ipRange": "example_value",
+                "relayGroupId": "id"
+            },
+            "gateway": "example_value",
+            "internetOnly": true,
+            "lanSocketInterfaceId": "id",
+            "localIp": "example_value",
+            "mdnsReflector": true,
+            "name": "string",
+            "rangeType": "Routed",
+            "subnet": "example_value",
+            "translatedSubnet": "example_value",
+            "vlan": 1
+        },
+        "networkRangeToRemove": {
+            "networkRangeId": "id"
+        },
+        "site": {
+            "by": "ID",
+            "input": "string"
         }
     }
 }'

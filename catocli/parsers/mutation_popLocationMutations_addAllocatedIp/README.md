@@ -11,12 +11,12 @@ catocli mutation popLocationMutations addAllocatedIp <json>
 
 catocli mutation popLocationMutations addAllocatedIp --json-file mutation.popLocationMutations.addAllocatedIp.json
 
-catocli mutation popLocationMutations addAllocatedIp '{"popLocationAddAllocatedIpInput":{"description":"string","popLocationRefInput":{"by":"ID","input":"string"},"type":"SYSTEM"}}'
+catocli mutation popLocationMutations addAllocatedIp '{"popLocationAddAllocatedIpInput":{"description":"string","popLocation":{"by":"ID","input":"string"},"type":"SYSTEM"}}'
 
 catocli mutation popLocationMutations addAllocatedIp '{
     "popLocationAddAllocatedIpInput": {
         "description": "string",
-        "popLocationRefInput": {
+        "popLocation": {
             "by": "ID",
             "input": "string"
         },

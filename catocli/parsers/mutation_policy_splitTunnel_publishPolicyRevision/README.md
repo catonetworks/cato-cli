@@ -11,7 +11,7 @@ catocli mutation policy splitTunnel publishPolicyRevision <json>
 
 catocli mutation policy splitTunnel publishPolicyRevision --json-file mutation.policy.splitTunnel.publishPolicyRevision.json
 
-catocli mutation policy splitTunnel publishPolicyRevision '{"policyPublishRevisionInput":{"description":"string","name":"string"},"splitTunnelPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
+catocli mutation policy splitTunnel publishPolicyRevision '{"policyPublishRevisionInput":{"description":"string","name":"string"},"splitTunnelPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy splitTunnel publishPolicyRevision '{
     "policyPublishRevisionInput": {
@@ -19,7 +19,7 @@ catocli mutation policy splitTunnel publishPolicyRevision '{
         "name": "string"
     },
     "splitTunnelPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     }

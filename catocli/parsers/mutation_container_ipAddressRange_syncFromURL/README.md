@@ -11,11 +11,11 @@ catocli mutation container ipAddressRange syncFromURL <json>
 
 catocli mutation container ipAddressRange syncFromURL --json-file mutation.container.ipAddressRange.syncFromURL.json
 
-catocli mutation container ipAddressRange syncFromURL '{"syncIpAddressRangeContainerFromUrlInput":{"containerRefInput":{"by":"ID","input":"string"}}}'
+catocli mutation container ipAddressRange syncFromURL '{"syncIpAddressRangeContainerFromUrlInput":{"ref":{"by":"ID","input":"string"}}}'
 
 catocli mutation container ipAddressRange syncFromURL '{
     "syncIpAddressRangeContainerFromUrlInput": {
-        "containerRefInput": {
+        "ref": {
             "by": "ID",
             "input": "string"
         }

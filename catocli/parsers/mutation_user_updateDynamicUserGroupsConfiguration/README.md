@@ -11,11 +11,11 @@ catocli mutation user updateDynamicUserGroupsConfiguration <json>
 
 catocli mutation user updateDynamicUserGroupsConfiguration --json-file mutation.user.updateDynamicUserGroupsConfiguration.json
 
-catocli mutation user updateDynamicUserGroupsConfiguration '{"updateDynamicUserGroupsConfigurationInput":{"dynamicUserGroupAttributeSettingsInput":{"enabled":true}}}'
+catocli mutation user updateDynamicUserGroupsConfiguration '{"updateDynamicUserGroupsConfigurationInput":{"department":{"enabled":true}}}'
 
 catocli mutation user updateDynamicUserGroupsConfiguration '{
     "updateDynamicUserGroupsConfigurationInput": {
-        "dynamicUserGroupAttributeSettingsInput": {
+        "department": {
             "enabled": true
         }
     }

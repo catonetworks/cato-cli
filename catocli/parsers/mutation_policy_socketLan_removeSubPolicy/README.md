@@ -11,16 +11,16 @@ catocli mutation policy socketLan removeSubPolicy <json>
 
 catocli mutation policy socketLan removeSubPolicy --json-file mutation.policy.socketLan.removeSubPolicy.json
 
-catocli mutation policy socketLan removeSubPolicy '{"socketLanPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"socketLanRemoveSubPolicyInput":{"socketLanPolicyRefInput":{"by":"ID","input":"string"}}}'
+catocli mutation policy socketLan removeSubPolicy '{"socketLanPolicyMutationInput":{"revision":{"id":"id"}},"socketLanRemoveSubPolicyInput":{"ref":{"by":"ID","input":"string"}}}'
 
 catocli mutation policy socketLan removeSubPolicy '{
     "socketLanPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     },
     "socketLanRemoveSubPolicyInput": {
-        "socketLanPolicyRefInput": {
+        "ref": {
             "by": "ID",
             "input": "string"
         }

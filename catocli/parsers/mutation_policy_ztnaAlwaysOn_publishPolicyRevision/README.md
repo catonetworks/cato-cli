@@ -11,7 +11,7 @@ catocli mutation policy ztnaAlwaysOn publishPolicyRevision <json>
 
 catocli mutation policy ztnaAlwaysOn publishPolicyRevision --json-file mutation.policy.ztnaAlwaysOn.publishPolicyRevision.json
 
-catocli mutation policy ztnaAlwaysOn publishPolicyRevision '{"policyPublishRevisionInput":{"description":"string","name":"string"},"ztnaAlwaysOnPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
+catocli mutation policy ztnaAlwaysOn publishPolicyRevision '{"policyPublishRevisionInput":{"description":"string","name":"string"},"ztnaAlwaysOnPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy ztnaAlwaysOn publishPolicyRevision '{
     "policyPublishRevisionInput": {
@@ -19,7 +19,7 @@ catocli mutation policy ztnaAlwaysOn publishPolicyRevision '{
         "name": "string"
     },
     "ztnaAlwaysOnPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     }

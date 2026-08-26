@@ -3,7 +3,7 @@
     "query": "query groupsGroupList ( $accountId:ID! $groupListInput:GroupListInput $groupMembersListInput:GroupMembersListInput!) {\n\tgroups ( accountId:$accountId ) {\n\t\tgroupList ( input:$groupListInput  )  {\n\t\t\titems {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t\tdescription\n\t\t\t\taudit {\n\t\t\t\t\tupdatedTime\n\t\t\t\t\tupdatedBy {\n\t\t\t\t\t\tid\n\t\t\t\t\t\tname\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tmembers ( input:$groupMembersListInput  )  {\n\t\t\t\t\titems {\n\t\t\t\t\t\tid\n\t\t\t\t\t\tname\n\t\t\t\t\t\ttype\n\t\t\t\t\t}\n\t\t\t\t\tpaging {\n\t\t\t\t\t\ttotal\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tmembersCount\n\t\t\t\tmembersCountPerType {\n\t\t\t\t\ttype\n\t\t\t\t\tmembersCount\n\t\t\t\t}\n\t\t\t}\n\t\t\tpaging {\n\t\t\t\ttotal\n\t\t\t}\n\t\t}\n\t}\t\n}",
     "variables": {
         "groupListInput": {
-            "groupListFilterInput": {
+            "filter": {
                 "audit": {
                     "updatedBy": {
                         "by": "ID",
@@ -66,7 +66,11 @@
                     "regex": "string"
                 }
             },
-            "groupListSortInput": {
+            "paging": {
+                "from": 1,
+                "limit": 1
+            },
+            "sort": {
                 "audit": {
                     "updatedBy": {
                         "direction": "ASC",
@@ -81,14 +85,10 @@
                     "direction": "ASC",
                     "priority": 1
                 }
-            },
-            "pagingInput": {
-                "from": 1,
-                "limit": 1
             }
         },
         "groupMembersListInput": {
-            "groupMembersListFilterInput": {
+            "filter": {
                 "name": {
                     "eq": "string",
                     "in": [
@@ -109,7 +109,11 @@
                     "nin": "SITE"
                 }
             },
-            "groupMembersListSortInput": {
+            "paging": {
+                "from": 1,
+                "limit": 1
+            },
+            "sort": {
                 "name": {
                     "direction": "ASC",
                     "priority": 1
@@ -118,10 +122,6 @@
                     "direction": "ASC",
                     "priority": 1
                 }
-            },
-            "pagingInput": {
-                "from": 1,
-                "limit": 1
             }
         }
     }

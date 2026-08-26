@@ -11,11 +11,11 @@ catocli mutation policy wanFirewall updatePolicy <json>
 
 catocli mutation policy wanFirewall updatePolicy --json-file mutation.policy.wanFirewall.updatePolicy.json
 
-catocli mutation policy wanFirewall updatePolicy '{"wanFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"wanFirewallPolicyUpdateInput":{"state":"ENABLED"}}'
+catocli mutation policy wanFirewall updatePolicy '{"wanFirewallPolicyMutationInput":{"revision":{"id":"id"}},"wanFirewallPolicyUpdateInput":{"state":"ENABLED"}}'
 
 catocli mutation policy wanFirewall updatePolicy '{
     "wanFirewallPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     },

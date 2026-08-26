@@ -11,22 +11,22 @@ catocli mutation ztnaAppConnector updateZtnaAppConnector <json>
 
 catocli mutation ztnaAppConnector updateZtnaAppConnector --json-file mutation.ztnaAppConnector.updateZtnaAppConnector.json
 
-catocli mutation ztnaAppConnector updateZtnaAppConnector '{"updateZtnaAppConnectorInput":{"description":"string","groupName":"string","id":"id","name":"string","ztnaAppConnectorLocationInput":{"address":"string","city":"string","countryCode":"string","stateCode":"string","timezone":"example_value"},"ztnaAppConnectorPreferredPopLocationInput":{"automatic":true,"preferredOnly":true,"primary":{"by":"ID","input":"string"},"secondary":{"by":"ID","input":"string"}}}}'
+catocli mutation ztnaAppConnector updateZtnaAppConnector '{"updateZtnaAppConnectorInput":{"description":"string","groupName":"string","id":"id","location":{"address":"string","city":"string","countryCode":"string","stateCode":"string","timezone":"example_value"},"name":"string","preferredPopLocation":{"automatic":true,"preferredOnly":true,"primary":{"by":"ID","input":"string"},"secondary":{"by":"ID","input":"string"}}}}'
 
 catocli mutation ztnaAppConnector updateZtnaAppConnector '{
     "updateZtnaAppConnectorInput": {
         "description": "string",
         "groupName": "string",
         "id": "id",
-        "name": "string",
-        "ztnaAppConnectorLocationInput": {
+        "location": {
             "address": "string",
             "city": "string",
             "countryCode": "string",
             "stateCode": "string",
             "timezone": "example_value"
         },
-        "ztnaAppConnectorPreferredPopLocationInput": {
+        "name": "string",
+        "preferredPopLocation": {
             "automatic": true,
             "preferredOnly": true,
             "primary": {

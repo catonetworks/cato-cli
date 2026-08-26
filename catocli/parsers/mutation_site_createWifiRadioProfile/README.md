@@ -11,20 +11,27 @@ catocli mutation site createWifiRadioProfile <json>
 
 catocli mutation site createWifiRadioProfile --json-file mutation.site.createWifiRadioProfile.json
 
-catocli mutation site createWifiRadioProfile '{"createWifiRadioProfileInput":{"siteRefInput":{"by":"ID","input":"string"},"wifiBandProfileInput":{"band":"BAND_2P4G","channel":1,"channelWidth":"AUTO","dfsEnabled":true,"standard":"AUTO"}}}'
+catocli mutation site createWifiRadioProfile '{"createWifiRadioProfileInput":{"band24":{"band":"BAND_2P4G","channel":1,"channelWidth":"AUTO","dfsEnabled":true,"standard":"AUTO"},"band5":{"band":"BAND_2P4G","channel":1,"channelWidth":"AUTO","dfsEnabled":true,"standard":"AUTO"},"site":{"by":"ID","input":"string"}}}'
 
 catocli mutation site createWifiRadioProfile '{
     "createWifiRadioProfileInput": {
-        "siteRefInput": {
-            "by": "ID",
-            "input": "string"
-        },
-        "wifiBandProfileInput": {
+        "band24": {
             "band": "BAND_2P4G",
             "channel": 1,
             "channelWidth": "AUTO",
             "dfsEnabled": true,
             "standard": "AUTO"
+        },
+        "band5": {
+            "band": "BAND_2P4G",
+            "channel": 1,
+            "channelWidth": "AUTO",
+            "dfsEnabled": true,
+            "standard": "AUTO"
+        },
+        "site": {
+            "by": "ID",
+            "input": "string"
         }
     }
 }'

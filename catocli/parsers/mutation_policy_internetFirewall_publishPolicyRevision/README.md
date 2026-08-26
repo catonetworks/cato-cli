@@ -11,11 +11,11 @@ catocli mutation policy internetFirewall publishPolicyRevision <json>
 
 catocli mutation policy internetFirewall publishPolicyRevision --json-file mutation.policy.internetFirewall.publishPolicyRevision.json
 
-catocli mutation policy internetFirewall publishPolicyRevision '{"internetFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyPublishRevisionInput":{"description":"string","name":"string"}}'
+catocli mutation policy internetFirewall publishPolicyRevision '{"internetFirewallPolicyMutationInput":{"revision":{"id":"id"}},"policyPublishRevisionInput":{"description":"string","name":"string"}}'
 
 catocli mutation policy internetFirewall publishPolicyRevision '{
     "internetFirewallPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     },

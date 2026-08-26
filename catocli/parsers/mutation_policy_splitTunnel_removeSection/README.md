@@ -11,14 +11,14 @@ catocli mutation policy splitTunnel removeSection <json>
 
 catocli mutation policy splitTunnel removeSection --json-file mutation.policy.splitTunnel.removeSection.json
 
-catocli mutation policy splitTunnel removeSection '{"policyRemoveSectionInput":{"id":"id"},"splitTunnelPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
+catocli mutation policy splitTunnel removeSection '{"policyRemoveSectionInput":{"id":"id"},"splitTunnelPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy splitTunnel removeSection '{
     "policyRemoveSectionInput": {
         "id": "id"
     },
     "splitTunnelPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     }

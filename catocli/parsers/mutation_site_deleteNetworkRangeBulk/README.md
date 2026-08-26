@@ -11,14 +11,14 @@ catocli mutation site deleteNetworkRangeBulk <json>
 
 catocli mutation site deleteNetworkRangeBulk --json-file mutation.site.deleteNetworkRangeBulk.json
 
-catocli mutation site deleteNetworkRangeBulk '{"deleteNetworkRangeBulkInput":{"networkRangeRefInput":{"networkRangeId":"id"},"siteRefInput":{"by":"ID","input":"string"}}}'
+catocli mutation site deleteNetworkRangeBulk '{"deleteNetworkRangeBulkInput":{"networkRange":{"networkRangeId":"id"},"site":{"by":"ID","input":"string"}}}'
 
 catocli mutation site deleteNetworkRangeBulk '{
     "deleteNetworkRangeBulkInput": {
-        "networkRangeRefInput": {
+        "networkRange": {
             "networkRangeId": "id"
         },
-        "siteRefInput": {
+        "site": {
             "by": "ID",
             "input": "string"
         }

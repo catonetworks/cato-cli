@@ -11,15 +11,11 @@ catocli query policy socketLan policyList <json>
 
 catocli query policy socketLan policyList --json-file query.policy.socketLan.policyList.json
 
-catocli query policy socketLan policyList '{"socketLanPolicyListInput":{"pagingInput":{"from":1,"limit":1},"socketLanPolicyListFilterInput":{"id":{"eq":"id","in":["id1","id2"],"neq":"id","nin":["id1","id2"]},"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"policyLevel":{"eq":"MAIN","in":"MAIN","neq":"MAIN","nin":"MAIN"}},"socketLanPolicyListSortInput":{"name":{"direction":"ASC","priority":1},"policyLevel":{"direction":"ASC","priority":1}}}}'
+catocli query policy socketLan policyList '{"socketLanPolicyListInput":{"filter":{"id":{"eq":"id","in":["id1","id2"],"neq":"id","nin":["id1","id2"]},"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"policyLevel":{"eq":"MAIN","in":"MAIN","neq":"MAIN","nin":"MAIN"}},"paging":{"from":1,"limit":1},"sort":{"name":{"direction":"ASC","priority":1},"policyLevel":{"direction":"ASC","priority":1}}}}'
 
 catocli query policy socketLan policyList '{
     "socketLanPolicyListInput": {
-        "pagingInput": {
-            "from": 1,
-            "limit": 1
-        },
-        "socketLanPolicyListFilterInput": {
+        "filter": {
             "id": {
                 "eq": "id",
                 "in": [
@@ -51,7 +47,11 @@ catocli query policy socketLan policyList '{
                 "nin": "MAIN"
             }
         },
-        "socketLanPolicyListSortInput": {
+        "paging": {
+            "from": 1,
+            "limit": 1
+        },
+        "sort": {
             "name": {
                 "direction": "ASC",
                 "priority": 1

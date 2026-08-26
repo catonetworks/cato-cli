@@ -11,20 +11,20 @@ catocli mutation sites addIpsecIkeV2Site <json>
 
 catocli mutation sites addIpsecIkeV2Site --json-file mutation.sites.addIpsecIkeV2Site.json
 
-catocli mutation sites addIpsecIkeV2Site '{"addIpsecIkeV2SiteInput":{"addSiteLocationInput":{"address":"string","city":"string","countryCode":"string","stateCode":"string","timezone":"string"},"description":"string","name":"string","nativeNetworkRange":"example_value","siteType":"BRANCH","vlan":"example_value"}}'
+catocli mutation sites addIpsecIkeV2Site '{"addIpsecIkeV2SiteInput":{"description":"string","name":"string","nativeNetworkRange":"example_value","siteLocation":{"address":"string","city":"string","countryCode":"string","stateCode":"string","timezone":"string"},"siteType":"BRANCH","vlan":"example_value"}}'
 
 catocli mutation sites addIpsecIkeV2Site '{
     "addIpsecIkeV2SiteInput": {
-        "addSiteLocationInput": {
+        "description": "string",
+        "name": "string",
+        "nativeNetworkRange": "example_value",
+        "siteLocation": {
             "address": "string",
             "city": "string",
             "countryCode": "string",
             "stateCode": "string",
             "timezone": "string"
         },
-        "description": "string",
-        "name": "string",
-        "nativeNetworkRange": "example_value",
         "siteType": "BRANCH",
         "vlan": "example_value"
     }

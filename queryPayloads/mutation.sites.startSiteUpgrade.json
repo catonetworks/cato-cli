@@ -3,15 +3,15 @@
     "query": "mutation sitesStartSiteUpgrade ( $accountId:ID! $startSiteUpgradeInput:StartSiteUpgradeInput!) {\n\tsites ( accountId:$accountId ) {\n\t\tstartSiteUpgrade ( input:$startSiteUpgradeInput  )  {\n\t\t\tresults {\n\t\t\t\tsite {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t\ttargetVersion\n\t\t\t\tscheduledAt\n\t\t\t}\n\t\t}\n\t}\t\n}",
     "variables": {
         "startSiteUpgradeInput": {
-            "siteUpgradeRequest": {
+            "scheduleAt": {
+                "time": "example_value"
+            },
+            "upgrades": {
                 "site": {
                     "by": "ID",
                     "input": "string"
                 },
                 "targetVersion": "string"
-            },
-            "siteUpgradeScheduleInput": {
-                "time": "example_value"
             }
         }
     }

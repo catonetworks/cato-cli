@@ -11,11 +11,11 @@ catocli mutation policy splitTunnel removeRule <json>
 
 catocli mutation policy splitTunnel removeRule --json-file mutation.policy.splitTunnel.removeRule.json
 
-catocli mutation policy splitTunnel removeRule '{"splitTunnelPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"splitTunnelRemoveRuleInput":{"id":"id"}}'
+catocli mutation policy splitTunnel removeRule '{"splitTunnelPolicyMutationInput":{"revision":{"id":"id"}},"splitTunnelRemoveRuleInput":{"id":"id"}}'
 
 catocli mutation policy splitTunnel removeRule '{
     "splitTunnelPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     },

@@ -11,20 +11,36 @@ catocli mutation notification updateSubscriptionGroup <json>
 
 catocli mutation notification updateSubscriptionGroup --json-file mutation.notification.updateSubscriptionGroup.json
 
-catocli mutation notification updateSubscriptionGroup '{"updateSubscriptionGroupInput":{"integrationRefInput":{"by":"ID","input":"string"},"mailingListRefInput":{"by":"ID","input":"string"},"name":"string","subscriptionGroupRefInput":{"by":"ID","input":"string"}}}'
+catocli mutation notification updateSubscriptionGroup '{"updateSubscriptionGroupInput":{"integration":{"by":"ID","input":"string"},"integrationToAdd":{"by":"ID","input":"string"},"integrationToRemove":{"by":"ID","input":"string"},"mailingList":{"by":"ID","input":"string"},"mailingListToAdd":{"by":"ID","input":"string"},"mailingListToRemove":{"by":"ID","input":"string"},"name":"string","subscriptionGroup":{"by":"ID","input":"string"}}}'
 
 catocli mutation notification updateSubscriptionGroup '{
     "updateSubscriptionGroupInput": {
-        "integrationRefInput": {
+        "integration": {
             "by": "ID",
             "input": "string"
         },
-        "mailingListRefInput": {
+        "integrationToAdd": {
+            "by": "ID",
+            "input": "string"
+        },
+        "integrationToRemove": {
+            "by": "ID",
+            "input": "string"
+        },
+        "mailingList": {
+            "by": "ID",
+            "input": "string"
+        },
+        "mailingListToAdd": {
+            "by": "ID",
+            "input": "string"
+        },
+        "mailingListToRemove": {
             "by": "ID",
             "input": "string"
         },
         "name": "string",
-        "subscriptionGroupRefInput": {
+        "subscriptionGroup": {
             "by": "ID",
             "input": "string"
         }

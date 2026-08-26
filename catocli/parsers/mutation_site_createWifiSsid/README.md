@@ -11,12 +11,15 @@ catocli mutation site createWifiSsid <json>
 
 catocli mutation site createWifiSsid --json-file mutation.site.createWifiSsid.json
 
-catocli mutation site createWifiSsid '{"createWifiSsidInput":{"band":"BAND_2P4G","category":"GUEST","enabled":true,"internetOnly":true,"localIp":"example_value","mdnsEnabled":true,"microsegmentationEnabled":true,"name":"string","networkInterfaceId":"id","securityConfigInput":{"authProtocol":"WPA2","mode":"OPEN","psk":{"passkey":"example_value"},"trackAuthentication":true},"siteRefInput":{"by":"ID","input":"string"},"subnet":"example_value","visible":true,"wifiSsidDhcpSettingsInput":{"dhcpSubnet":"example_value"}}}'
+catocli mutation site createWifiSsid '{"createWifiSsidInput":{"band":"BAND_2P4G","category":"GUEST","dhcp":{"dhcpSubnet":"example_value"},"enabled":true,"internetOnly":true,"localIp":"example_value","mdnsEnabled":true,"microsegmentationEnabled":true,"name":"string","networkInterfaceId":"id","security":{"authProtocol":"WPA2","mode":"OPEN","psk":{"passkey":"example_value"},"trackAuthentication":true},"site":{"by":"ID","input":"string"},"subnet":"example_value","visible":true}}'
 
 catocli mutation site createWifiSsid '{
     "createWifiSsidInput": {
         "band": "BAND_2P4G",
         "category": "GUEST",
+        "dhcp": {
+            "dhcpSubnet": "example_value"
+        },
         "enabled": true,
         "internetOnly": true,
         "localIp": "example_value",
@@ -24,7 +27,7 @@ catocli mutation site createWifiSsid '{
         "microsegmentationEnabled": true,
         "name": "string",
         "networkInterfaceId": "id",
-        "securityConfigInput": {
+        "security": {
             "authProtocol": "WPA2",
             "mode": "OPEN",
             "psk": {
@@ -32,15 +35,12 @@ catocli mutation site createWifiSsid '{
             },
             "trackAuthentication": true
         },
-        "siteRefInput": {
+        "site": {
             "by": "ID",
             "input": "string"
         },
         "subnet": "example_value",
-        "visible": true,
-        "wifiSsidDhcpSettingsInput": {
-            "dhcpSubnet": "example_value"
-        }
+        "visible": true
     }
 }'
 ```

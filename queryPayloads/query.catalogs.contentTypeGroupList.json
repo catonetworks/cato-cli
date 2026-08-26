@@ -3,7 +3,7 @@
     "query": "query catalogsContentTypeGroupList ( $accountId:ID! $catalogApplicationContentTypeGroupListInput:CatalogApplicationContentTypeGroupListInput!) {\n\tcatalogs ( accountId:$accountId ) {\n\t\tcontentTypeGroupList ( input:$catalogApplicationContentTypeGroupListInput  )  {\n\t\t\tcontentTypeGroup {\n\t\t\t\tid\n\t\t\t\tname\n\t\t\t\tcontentType {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t}\n\t\t\tpageInfo {\n\t\t\t\ttotal\n\t\t\t}\n\t\t}\n\t}\t\n}",
     "variables": {
         "catalogApplicationContentTypeGroupListInput": {
-            "catalogApplicationContentTypeGroupFilterInput": {
+            "filter": {
                 "contentType": {
                     "id": {
                         "eq": "id",
@@ -55,15 +55,15 @@
                     ]
                 }
             },
-            "catalogApplicationContentTypeGroupSortInput": {
+            "paging": {
+                "from": 1,
+                "limit": 1
+            },
+            "sort": {
                 "name": {
                     "direction": "ASC",
                     "priority": 1
                 }
-            },
-            "pagingInput": {
-                "from": 1,
-                "limit": 1
             }
         }
     }

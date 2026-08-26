@@ -11,15 +11,15 @@ catocli mutation policy terminalServer addRule <json>
 
 catocli mutation policy terminalServer addRule --json-file mutation.policy.terminalServer.addRule.json
 
-catocli mutation policy terminalServer addRule '{"terminalServerAddRuleInput":{"policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"},"terminalServerAddRuleDataInput":{"allowedHostIP":{"by":"ID","input":"string"},"description":"string","enabled":true,"excludeTraffic":{"by":"ID","input":"string"},"name":"string"}},"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
+catocli mutation policy terminalServer addRule '{"terminalServerAddRuleInput":{"at":{"position":"AFTER_RULE","ref":"id"},"rule":{"allowedHostIP":{"by":"ID","input":"string"},"description":"string","enabled":true,"excludeTraffic":{"by":"ID","input":"string"},"name":"string"}},"terminalServerPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy terminalServer addRule '{
     "terminalServerAddRuleInput": {
-        "policyRulePositionInput": {
+        "at": {
             "position": "AFTER_RULE",
             "ref": "id"
         },
-        "terminalServerAddRuleDataInput": {
+        "rule": {
             "allowedHostIP": {
                 "by": "ID",
                 "input": "string"
@@ -34,7 +34,7 @@ catocli mutation policy terminalServer addRule '{
         }
     },
     "terminalServerPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     }

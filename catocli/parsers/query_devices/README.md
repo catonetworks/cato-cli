@@ -11,19 +11,11 @@ catocli query devices <json>
 
 catocli query devices --json-file query.devices.json
 
-catocli query devices '{"deviceAttributeCatalogInput":{"pagingInput":{"from":1,"limit":1},"sortOrderInput":{"direction":"ASC","priority":1},"stringFilterInput":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}},"deviceComplianceCatalogInput":{"deviceComplianceFilterInput":{"applicationConnector":{"id":{"eq":"id","in":["id1","id2"],"neq":"id","nin":["id1","id2"]},"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}},"state":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}},"deviceComplianceSortInput":{"applicationConnector":{"id":{"direction":"ASC","priority":1},"name":{"direction":"ASC","priority":1}},"state":{"direction":"ASC","priority":1}},"pagingInput":{"from":1,"limit":1}},"deviceCsvExportInput":{"deviceTimeFrameInput":{"from":"example_value","to":"example_value"},"deviceV2FilterInput":{"category":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"complianceState":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"confidence":{"eq":"LOW","in":"LOW","neq":"LOW","nin":"LOW"},"firstSeen":{"between":["example1","example2"],"eq":"example_value","gt":"example_value","gte":"example_value","in":["example1","example2"],"lt":"example_value","lte":"example_value","neq":"example_value","nin":["example1","example2"]},"freeText":{"search":"string"},"hw":{"manufacturer":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"model":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"type":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}},"id":{"eq":"id","in":["id1","id2"],"neq":"id","nin":["id1","id2"]},"ipAddress":{"between":["example1","example2"],"eq":"example_value","in":["example1","example2"],"neq":"example_value","nin":["example1","example2"],"nwithin":"example_value","within":"example_value"},"isManaged":{"eq":true,"neq":true},"lastSeen":{"between":["example1","example2"],"eq":"example_value","gt":"example_value","gte":"example_value","in":["example1","example2"],"lt":"example_value","lte":"example_value","neq":"example_value","nin":["example1","example2"]},"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"network":{"networkName":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"subnet":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}},"nic":{"macAddress":{"eq":"example_value","in":["example1","example2"],"neq":"example_value","nin":["example1","example2"]},"vendor":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}},"originTypes":{"hasAll":"Unknown","in":"Unknown","nin":"Unknown"},"os":{"product":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"vendor":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"version":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}},"riskScore":{"between":[1,2],"eq":1,"gt":1,"gte":1,"in":[1,2],"lt":1,"lte":1,"neq":1,"nin":[1,2]},"site":{"eq":{"by":"ID","input":"string"},"in":{"by":"ID","input":"string"},"neq":{"by":"ID","input":"string"},"nin":{"by":"ID","input":"string"}},"user":{"eq":{"by":"ID","input":"string"},"in":{"by":"ID","input":"string"},"neq":{"by":"ID","input":"string"},"nin":{"by":"ID","input":"string"}}}},"deviceRiskCatalogInput":{"deviceRiskFilterInput":{"applicationConnector":{"id":{"eq":"id","in":["id1","id2"],"neq":"id","nin":["id1","id2"]},"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}}},"deviceRiskSortInput":{"applicationConnector":{"id":{"direction":"ASC","priority":1},"name":{"direction":"ASC","priority":1}}},"pagingInput":{"from":1,"limit":1}},"deviceV2Input":{"deviceSortInput":{"category":{"direction":"ASC","priority":1},"confidence":{"direction":"ASC","priority":1},"firstSeen":{"direction":"ASC","priority":1},"hw":{"manufacturer":{"direction":"ASC","priority":1},"model":{"direction":"ASC","priority":1},"type":{"direction":"ASC","priority":1}},"id":{"direction":"ASC","priority":1},"ip":{"direction":"ASC","priority":1},"lastSeen":{"direction":"ASC","priority":1},"name":{"direction":"ASC","priority":1},"network":{"networkName":{"direction":"ASC","priority":1},"subnet":{"direction":"ASC","priority":1}},"nic":{"macAddress":{"direction":"ASC","priority":1},"vendor":{"direction":"ASC","priority":1}},"os":{"product":{"direction":"ASC","priority":1},"vendor":{"direction":"ASC","priority":1},"version":{"direction":"ASC","priority":1}},"riskScore":{"direction":"ASC","priority":1},"site":{"id":{"direction":"ASC","priority":1},"name":{"direction":"ASC","priority":1}},"user":{"id":{"direction":"ASC","priority":1},"name":{"direction":"ASC","priority":1}}},"deviceV2FilterInput":{"category":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"complianceState":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"confidence":{"eq":"LOW","in":"LOW","neq":"LOW","nin":"LOW"},"firstSeen":{"between":["example1","example2"],"eq":"example_value","gt":"example_value","gte":"example_value","in":["example1","example2"],"lt":"example_value","lte":"example_value","neq":"example_value","nin":["example1","example2"]},"freeText":{"search":"string"},"hw":{"manufacturer":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"model":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"type":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}},"id":{"eq":"id","in":["id1","id2"],"neq":"id","nin":["id1","id2"]},"ipAddress":{"between":["example1","example2"],"eq":"example_value","in":["example1","example2"],"neq":"example_value","nin":["example1","example2"],"nwithin":"example_value","within":"example_value"},"isManaged":{"eq":true,"neq":true},"lastSeen":{"between":["example1","example2"],"eq":"example_value","gt":"example_value","gte":"example_value","in":["example1","example2"],"lt":"example_value","lte":"example_value","neq":"example_value","nin":["example1","example2"]},"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"network":{"networkName":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"subnet":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}},"nic":{"macAddress":{"eq":"example_value","in":["example1","example2"],"neq":"example_value","nin":["example1","example2"]},"vendor":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}},"originTypes":{"hasAll":"Unknown","in":"Unknown","nin":"Unknown"},"os":{"product":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"vendor":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"version":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}},"riskScore":{"between":[1,2],"eq":1,"gt":1,"gte":1,"in":[1,2],"lt":1,"lte":1,"neq":1,"nin":[1,2]},"site":{"eq":{"by":"ID","input":"string"},"in":{"by":"ID","input":"string"},"neq":{"by":"ID","input":"string"},"nin":{"by":"ID","input":"string"}},"user":{"eq":{"by":"ID","input":"string"},"in":{"by":"ID","input":"string"},"neq":{"by":"ID","input":"string"},"nin":{"by":"ID","input":"string"}}},"pagingInput":{"from":1,"limit":1}},"jobId":"id","sortOrderInput":{"direction":"ASC","priority":1}}'
+catocli query devices '{"deviceAttributeCatalogInput":{"filter":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"paging":{"from":1,"limit":1},"sort":{"direction":"ASC","priority":1}},"deviceComplianceCatalogInput":{"filter":{"applicationConnector":{"id":{"eq":"id","in":["id1","id2"],"neq":"id","nin":["id1","id2"]},"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}},"state":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}},"paging":{"from":1,"limit":1},"sort":{"applicationConnector":{"id":{"direction":"ASC","priority":1},"name":{"direction":"ASC","priority":1}},"state":{"direction":"ASC","priority":1}}},"deviceCsvExportInput":{"filter":{"category":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"complianceState":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"confidence":{"eq":"LOW","in":"LOW","neq":"LOW","nin":"LOW"},"firstSeen":{"between":["example1","example2"],"eq":"example_value","gt":"example_value","gte":"example_value","in":["example1","example2"],"lt":"example_value","lte":"example_value","neq":"example_value","nin":["example1","example2"]},"freeText":{"search":"string"},"hw":{"manufacturer":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"model":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"type":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}},"id":{"eq":"id","in":["id1","id2"],"neq":"id","nin":["id1","id2"]},"ipAddress":{"between":["example1","example2"],"eq":"example_value","in":["example1","example2"],"neq":"example_value","nin":["example1","example2"],"nwithin":"example_value","within":"example_value"},"isManaged":{"eq":true,"neq":true},"lastSeen":{"between":["example1","example2"],"eq":"example_value","gt":"example_value","gte":"example_value","in":["example1","example2"],"lt":"example_value","lte":"example_value","neq":"example_value","nin":["example1","example2"]},"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"network":{"networkName":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"subnet":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}},"nic":{"macAddress":{"eq":"example_value","in":["example1","example2"],"neq":"example_value","nin":["example1","example2"]},"vendor":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}},"originTypes":{"hasAll":"Unknown","in":"Unknown","nin":"Unknown"},"os":{"product":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"vendor":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"version":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}},"riskScore":{"between":[1,2],"eq":1,"gt":1,"gte":1,"in":[1,2],"lt":1,"lte":1,"neq":1,"nin":[1,2]},"site":{"eq":{"by":"ID","input":"string"},"in":{"by":"ID","input":"string"},"neq":{"by":"ID","input":"string"},"nin":{"by":"ID","input":"string"}},"user":{"eq":{"by":"ID","input":"string"},"in":{"by":"ID","input":"string"},"neq":{"by":"ID","input":"string"},"nin":{"by":"ID","input":"string"}}},"timeFrame":{"from":"example_value","to":"example_value"}},"deviceRiskCatalogInput":{"filter":{"applicationConnector":{"id":{"eq":"id","in":["id1","id2"],"neq":"id","nin":["id1","id2"]},"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}}},"paging":{"from":1,"limit":1},"sort":{"applicationConnector":{"id":{"direction":"ASC","priority":1},"name":{"direction":"ASC","priority":1}}}},"deviceV2Input":{"filter":{"category":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"complianceState":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"confidence":{"eq":"LOW","in":"LOW","neq":"LOW","nin":"LOW"},"firstSeen":{"between":["example1","example2"],"eq":"example_value","gt":"example_value","gte":"example_value","in":["example1","example2"],"lt":"example_value","lte":"example_value","neq":"example_value","nin":["example1","example2"]},"freeText":{"search":"string"},"hw":{"manufacturer":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"model":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"type":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}},"id":{"eq":"id","in":["id1","id2"],"neq":"id","nin":["id1","id2"]},"ipAddress":{"between":["example1","example2"],"eq":"example_value","in":["example1","example2"],"neq":"example_value","nin":["example1","example2"],"nwithin":"example_value","within":"example_value"},"isManaged":{"eq":true,"neq":true},"lastSeen":{"between":["example1","example2"],"eq":"example_value","gt":"example_value","gte":"example_value","in":["example1","example2"],"lt":"example_value","lte":"example_value","neq":"example_value","nin":["example1","example2"]},"name":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"network":{"networkName":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"subnet":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}},"nic":{"macAddress":{"eq":"example_value","in":["example1","example2"],"neq":"example_value","nin":["example1","example2"]},"vendor":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}},"originTypes":{"hasAll":"Unknown","in":"Unknown","nin":"Unknown"},"os":{"product":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"vendor":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"version":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]}},"riskScore":{"between":[1,2],"eq":1,"gt":1,"gte":1,"in":[1,2],"lt":1,"lte":1,"neq":1,"nin":[1,2]},"site":{"eq":{"by":"ID","input":"string"},"in":{"by":"ID","input":"string"},"neq":{"by":"ID","input":"string"},"nin":{"by":"ID","input":"string"}},"user":{"eq":{"by":"ID","input":"string"},"in":{"by":"ID","input":"string"},"neq":{"by":"ID","input":"string"},"nin":{"by":"ID","input":"string"}}},"paging":{"from":1,"limit":1},"sort":{"category":{"direction":"ASC","priority":1},"confidence":{"direction":"ASC","priority":1},"firstSeen":{"direction":"ASC","priority":1},"hw":{"manufacturer":{"direction":"ASC","priority":1},"model":{"direction":"ASC","priority":1},"type":{"direction":"ASC","priority":1}},"id":{"direction":"ASC","priority":1},"ip":{"direction":"ASC","priority":1},"lastSeen":{"direction":"ASC","priority":1},"name":{"direction":"ASC","priority":1},"network":{"networkName":{"direction":"ASC","priority":1},"subnet":{"direction":"ASC","priority":1}},"nic":{"macAddress":{"direction":"ASC","priority":1},"vendor":{"direction":"ASC","priority":1}},"os":{"product":{"direction":"ASC","priority":1},"vendor":{"direction":"ASC","priority":1},"version":{"direction":"ASC","priority":1}},"riskScore":{"direction":"ASC","priority":1},"site":{"id":{"direction":"ASC","priority":1},"name":{"direction":"ASC","priority":1}},"user":{"id":{"direction":"ASC","priority":1},"name":{"direction":"ASC","priority":1}}}},"jobId":"id","sortOrderInput":{"direction":"ASC","priority":1}}'
 
 catocli query devices '{
     "deviceAttributeCatalogInput": {
-        "pagingInput": {
-            "from": 1,
-            "limit": 1
-        },
-        "sortOrderInput": {
-            "direction": "ASC",
-            "priority": 1
-        },
-        "stringFilterInput": {
+        "filter": {
             "eq": "string",
             "in": [
                 "string1",
@@ -34,10 +26,18 @@ catocli query devices '{
                 "string1",
                 "string2"
             ]
+        },
+        "paging": {
+            "from": 1,
+            "limit": 1
+        },
+        "sort": {
+            "direction": "ASC",
+            "priority": 1
         }
     },
     "deviceComplianceCatalogInput": {
-        "deviceComplianceFilterInput": {
+        "filter": {
             "applicationConnector": {
                 "id": {
                     "eq": "id",
@@ -77,7 +77,11 @@ catocli query devices '{
                 ]
             }
         },
-        "deviceComplianceSortInput": {
+        "paging": {
+            "from": 1,
+            "limit": 1
+        },
+        "sort": {
             "applicationConnector": {
                 "id": {
                     "direction": "ASC",
@@ -92,18 +96,10 @@ catocli query devices '{
                 "direction": "ASC",
                 "priority": 1
             }
-        },
-        "pagingInput": {
-            "from": 1,
-            "limit": 1
         }
     },
     "deviceCsvExportInput": {
-        "deviceTimeFrameInput": {
-            "from": "example_value",
-            "to": "example_value"
-        },
-        "deviceV2FilterInput": {
+        "filter": {
             "category": {
                 "eq": "string",
                 "in": [
@@ -412,10 +408,14 @@ catocli query devices '{
                     "input": "string"
                 }
             }
+        },
+        "timeFrame": {
+            "from": "example_value",
+            "to": "example_value"
         }
     },
     "deviceRiskCatalogInput": {
-        "deviceRiskFilterInput": {
+        "filter": {
             "applicationConnector": {
                 "id": {
                     "eq": "id",
@@ -443,7 +443,11 @@ catocli query devices '{
                 }
             }
         },
-        "deviceRiskSortInput": {
+        "paging": {
+            "from": 1,
+            "limit": 1
+        },
+        "sort": {
             "applicationConnector": {
                 "id": {
                     "direction": "ASC",
@@ -454,14 +458,324 @@ catocli query devices '{
                     "priority": 1
                 }
             }
-        },
-        "pagingInput": {
-            "from": 1,
-            "limit": 1
         }
     },
     "deviceV2Input": {
-        "deviceSortInput": {
+        "filter": {
+            "category": {
+                "eq": "string",
+                "in": [
+                    "string1",
+                    "string2"
+                ],
+                "neq": "string",
+                "nin": [
+                    "string1",
+                    "string2"
+                ]
+            },
+            "complianceState": {
+                "eq": "string",
+                "in": [
+                    "string1",
+                    "string2"
+                ],
+                "neq": "string",
+                "nin": [
+                    "string1",
+                    "string2"
+                ]
+            },
+            "confidence": {
+                "eq": "LOW",
+                "in": "LOW",
+                "neq": "LOW",
+                "nin": "LOW"
+            },
+            "firstSeen": {
+                "between": [
+                    "example1",
+                    "example2"
+                ],
+                "eq": "example_value",
+                "gt": "example_value",
+                "gte": "example_value",
+                "in": [
+                    "example1",
+                    "example2"
+                ],
+                "lt": "example_value",
+                "lte": "example_value",
+                "neq": "example_value",
+                "nin": [
+                    "example1",
+                    "example2"
+                ]
+            },
+            "freeText": {
+                "search": "string"
+            },
+            "hw": {
+                "manufacturer": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "model": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "type": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                }
+            },
+            "id": {
+                "eq": "id",
+                "in": [
+                    "id1",
+                    "id2"
+                ],
+                "neq": "id",
+                "nin": [
+                    "id1",
+                    "id2"
+                ]
+            },
+            "ipAddress": {
+                "between": [
+                    "example1",
+                    "example2"
+                ],
+                "eq": "example_value",
+                "in": [
+                    "example1",
+                    "example2"
+                ],
+                "neq": "example_value",
+                "nin": [
+                    "example1",
+                    "example2"
+                ],
+                "nwithin": "example_value",
+                "within": "example_value"
+            },
+            "isManaged": {
+                "eq": true,
+                "neq": true
+            },
+            "lastSeen": {
+                "between": [
+                    "example1",
+                    "example2"
+                ],
+                "eq": "example_value",
+                "gt": "example_value",
+                "gte": "example_value",
+                "in": [
+                    "example1",
+                    "example2"
+                ],
+                "lt": "example_value",
+                "lte": "example_value",
+                "neq": "example_value",
+                "nin": [
+                    "example1",
+                    "example2"
+                ]
+            },
+            "name": {
+                "eq": "string",
+                "in": [
+                    "string1",
+                    "string2"
+                ],
+                "neq": "string",
+                "nin": [
+                    "string1",
+                    "string2"
+                ]
+            },
+            "network": {
+                "networkName": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "subnet": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                }
+            },
+            "nic": {
+                "macAddress": {
+                    "eq": "example_value",
+                    "in": [
+                        "example1",
+                        "example2"
+                    ],
+                    "neq": "example_value",
+                    "nin": [
+                        "example1",
+                        "example2"
+                    ]
+                },
+                "vendor": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                }
+            },
+            "originTypes": {
+                "hasAll": "Unknown",
+                "in": "Unknown",
+                "nin": "Unknown"
+            },
+            "os": {
+                "product": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "vendor": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                },
+                "version": {
+                    "eq": "string",
+                    "in": [
+                        "string1",
+                        "string2"
+                    ],
+                    "neq": "string",
+                    "nin": [
+                        "string1",
+                        "string2"
+                    ]
+                }
+            },
+            "riskScore": {
+                "between": [
+                    1,
+                    2
+                ],
+                "eq": 1,
+                "gt": 1,
+                "gte": 1,
+                "in": [
+                    1,
+                    2
+                ],
+                "lt": 1,
+                "lte": 1,
+                "neq": 1,
+                "nin": [
+                    1,
+                    2
+                ]
+            },
+            "site": {
+                "eq": {
+                    "by": "ID",
+                    "input": "string"
+                },
+                "in": {
+                    "by": "ID",
+                    "input": "string"
+                },
+                "neq": {
+                    "by": "ID",
+                    "input": "string"
+                },
+                "nin": {
+                    "by": "ID",
+                    "input": "string"
+                }
+            },
+            "user": {
+                "eq": {
+                    "by": "ID",
+                    "input": "string"
+                },
+                "in": {
+                    "by": "ID",
+                    "input": "string"
+                },
+                "neq": {
+                    "by": "ID",
+                    "input": "string"
+                },
+                "nin": {
+                    "by": "ID",
+                    "input": "string"
+                }
+            }
+        },
+        "paging": {
+            "from": 1,
+            "limit": 1
+        },
+        "sort": {
             "category": {
                 "direction": "ASC",
                 "priority": 1
@@ -562,320 +876,6 @@ catocli query devices '{
                     "priority": 1
                 }
             }
-        },
-        "deviceV2FilterInput": {
-            "category": {
-                "eq": "string",
-                "in": [
-                    "string1",
-                    "string2"
-                ],
-                "neq": "string",
-                "nin": [
-                    "string1",
-                    "string2"
-                ]
-            },
-            "complianceState": {
-                "eq": "string",
-                "in": [
-                    "string1",
-                    "string2"
-                ],
-                "neq": "string",
-                "nin": [
-                    "string1",
-                    "string2"
-                ]
-            },
-            "confidence": {
-                "eq": "LOW",
-                "in": "LOW",
-                "neq": "LOW",
-                "nin": "LOW"
-            },
-            "firstSeen": {
-                "between": [
-                    "example1",
-                    "example2"
-                ],
-                "eq": "example_value",
-                "gt": "example_value",
-                "gte": "example_value",
-                "in": [
-                    "example1",
-                    "example2"
-                ],
-                "lt": "example_value",
-                "lte": "example_value",
-                "neq": "example_value",
-                "nin": [
-                    "example1",
-                    "example2"
-                ]
-            },
-            "freeText": {
-                "search": "string"
-            },
-            "hw": {
-                "manufacturer": {
-                    "eq": "string",
-                    "in": [
-                        "string1",
-                        "string2"
-                    ],
-                    "neq": "string",
-                    "nin": [
-                        "string1",
-                        "string2"
-                    ]
-                },
-                "model": {
-                    "eq": "string",
-                    "in": [
-                        "string1",
-                        "string2"
-                    ],
-                    "neq": "string",
-                    "nin": [
-                        "string1",
-                        "string2"
-                    ]
-                },
-                "type": {
-                    "eq": "string",
-                    "in": [
-                        "string1",
-                        "string2"
-                    ],
-                    "neq": "string",
-                    "nin": [
-                        "string1",
-                        "string2"
-                    ]
-                }
-            },
-            "id": {
-                "eq": "id",
-                "in": [
-                    "id1",
-                    "id2"
-                ],
-                "neq": "id",
-                "nin": [
-                    "id1",
-                    "id2"
-                ]
-            },
-            "ipAddress": {
-                "between": [
-                    "example1",
-                    "example2"
-                ],
-                "eq": "example_value",
-                "in": [
-                    "example1",
-                    "example2"
-                ],
-                "neq": "example_value",
-                "nin": [
-                    "example1",
-                    "example2"
-                ],
-                "nwithin": "example_value",
-                "within": "example_value"
-            },
-            "isManaged": {
-                "eq": true,
-                "neq": true
-            },
-            "lastSeen": {
-                "between": [
-                    "example1",
-                    "example2"
-                ],
-                "eq": "example_value",
-                "gt": "example_value",
-                "gte": "example_value",
-                "in": [
-                    "example1",
-                    "example2"
-                ],
-                "lt": "example_value",
-                "lte": "example_value",
-                "neq": "example_value",
-                "nin": [
-                    "example1",
-                    "example2"
-                ]
-            },
-            "name": {
-                "eq": "string",
-                "in": [
-                    "string1",
-                    "string2"
-                ],
-                "neq": "string",
-                "nin": [
-                    "string1",
-                    "string2"
-                ]
-            },
-            "network": {
-                "networkName": {
-                    "eq": "string",
-                    "in": [
-                        "string1",
-                        "string2"
-                    ],
-                    "neq": "string",
-                    "nin": [
-                        "string1",
-                        "string2"
-                    ]
-                },
-                "subnet": {
-                    "eq": "string",
-                    "in": [
-                        "string1",
-                        "string2"
-                    ],
-                    "neq": "string",
-                    "nin": [
-                        "string1",
-                        "string2"
-                    ]
-                }
-            },
-            "nic": {
-                "macAddress": {
-                    "eq": "example_value",
-                    "in": [
-                        "example1",
-                        "example2"
-                    ],
-                    "neq": "example_value",
-                    "nin": [
-                        "example1",
-                        "example2"
-                    ]
-                },
-                "vendor": {
-                    "eq": "string",
-                    "in": [
-                        "string1",
-                        "string2"
-                    ],
-                    "neq": "string",
-                    "nin": [
-                        "string1",
-                        "string2"
-                    ]
-                }
-            },
-            "originTypes": {
-                "hasAll": "Unknown",
-                "in": "Unknown",
-                "nin": "Unknown"
-            },
-            "os": {
-                "product": {
-                    "eq": "string",
-                    "in": [
-                        "string1",
-                        "string2"
-                    ],
-                    "neq": "string",
-                    "nin": [
-                        "string1",
-                        "string2"
-                    ]
-                },
-                "vendor": {
-                    "eq": "string",
-                    "in": [
-                        "string1",
-                        "string2"
-                    ],
-                    "neq": "string",
-                    "nin": [
-                        "string1",
-                        "string2"
-                    ]
-                },
-                "version": {
-                    "eq": "string",
-                    "in": [
-                        "string1",
-                        "string2"
-                    ],
-                    "neq": "string",
-                    "nin": [
-                        "string1",
-                        "string2"
-                    ]
-                }
-            },
-            "riskScore": {
-                "between": [
-                    1,
-                    2
-                ],
-                "eq": 1,
-                "gt": 1,
-                "gte": 1,
-                "in": [
-                    1,
-                    2
-                ],
-                "lt": 1,
-                "lte": 1,
-                "neq": 1,
-                "nin": [
-                    1,
-                    2
-                ]
-            },
-            "site": {
-                "eq": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "in": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "neq": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "nin": {
-                    "by": "ID",
-                    "input": "string"
-                }
-            },
-            "user": {
-                "eq": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "in": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "neq": {
-                    "by": "ID",
-                    "input": "string"
-                },
-                "nin": {
-                    "by": "ID",
-                    "input": "string"
-                }
-            }
-        },
-        "pagingInput": {
-            "from": 1,
-            "limit": 1
         }
     },
     "jobId": "id",

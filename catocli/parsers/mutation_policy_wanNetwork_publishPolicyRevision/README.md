@@ -11,7 +11,7 @@ catocli mutation policy wanNetwork publishPolicyRevision <json>
 
 catocli mutation policy wanNetwork publishPolicyRevision --json-file mutation.policy.wanNetwork.publishPolicyRevision.json
 
-catocli mutation policy wanNetwork publishPolicyRevision '{"policyPublishRevisionInput":{"description":"string","name":"string"},"wanNetworkPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
+catocli mutation policy wanNetwork publishPolicyRevision '{"policyPublishRevisionInput":{"description":"string","name":"string"},"wanNetworkPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy wanNetwork publishPolicyRevision '{
     "policyPublishRevisionInput": {
@@ -19,7 +19,7 @@ catocli mutation policy wanNetwork publishPolicyRevision '{
         "name": "string"
     },
     "wanNetworkPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     }

@@ -11,11 +11,11 @@ catocli mutation site createNetworkRangeBulk <json>
 
 catocli mutation site createNetworkRangeBulk --json-file mutation.site.createNetworkRangeBulk.json
 
-catocli mutation site createNetworkRangeBulk '{"createNetworkRangeBulkInput":{"createNetworkRangeInput":{"azureFloatingIp":"example_value","dhcpSettings":{"dhcpMicrosegmentation":true,"dhcpType":"DHCP_RELAY","ipRange":"example_value","relayGroupId":"id"},"gateway":"example_value","internetOnly":true,"lanSocketInterfaceId":"id","localIp":"example_value","mdnsReflector":true,"name":"string","rangeType":"Routed","subnet":"example_value","translatedSubnet":"example_value","vlan":1},"siteRefInput":{"by":"ID","input":"string"}}}'
+catocli mutation site createNetworkRangeBulk '{"createNetworkRangeBulkInput":{"networkRange":{"azureFloatingIp":"example_value","dhcpSettings":{"dhcpMicrosegmentation":true,"dhcpType":"DHCP_RELAY","ipRange":"example_value","relayGroupId":"id"},"gateway":"example_value","internetOnly":true,"lanSocketInterfaceId":"id","localIp":"example_value","mdnsReflector":true,"name":"string","rangeType":"Routed","subnet":"example_value","translatedSubnet":"example_value","vlan":1},"site":{"by":"ID","input":"string"}}}'
 
 catocli mutation site createNetworkRangeBulk '{
     "createNetworkRangeBulkInput": {
-        "createNetworkRangeInput": {
+        "networkRange": {
             "azureFloatingIp": "example_value",
             "dhcpSettings": {
                 "dhcpMicrosegmentation": true,
@@ -34,7 +34,7 @@ catocli mutation site createNetworkRangeBulk '{
             "translatedSubnet": "example_value",
             "vlan": 1
         },
-        "siteRefInput": {
+        "site": {
             "by": "ID",
             "input": "string"
         }

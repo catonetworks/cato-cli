@@ -11,15 +11,15 @@ catocli mutation notification createSubscriptionGroup <json>
 
 catocli mutation notification createSubscriptionGroup --json-file mutation.notification.createSubscriptionGroup.json
 
-catocli mutation notification createSubscriptionGroup '{"createSubscriptionGroupInput":{"integrationRefInput":{"by":"ID","input":"string"},"mailingListRefInput":{"by":"ID","input":"string"},"name":"string"}}'
+catocli mutation notification createSubscriptionGroup '{"createSubscriptionGroupInput":{"integration":{"by":"ID","input":"string"},"mailingList":{"by":"ID","input":"string"},"name":"string"}}'
 
 catocli mutation notification createSubscriptionGroup '{
     "createSubscriptionGroupInput": {
-        "integrationRefInput": {
+        "integration": {
             "by": "ID",
             "input": "string"
         },
-        "mailingListRefInput": {
+        "mailingList": {
             "by": "ID",
             "input": "string"
         },

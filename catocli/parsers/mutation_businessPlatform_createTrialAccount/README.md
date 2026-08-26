@@ -11,18 +11,18 @@ catocli mutation businessPlatform createTrialAccount <json>
 
 catocli mutation businessPlatform createTrialAccount --json-file mutation.businessPlatform.createTrialAccount.json
 
-catocli mutation businessPlatform createTrialAccount '{"businessPlatformCreateTrialAccountInput":{"addAccountInput":{"description":"string","name":"string","tenancy":"SINGLE_TENANT","timezone":"example_value","type":"CUSTOMER"},"businessPlatformAdminData":{"email":"example_value","firstName":"string","lastName":"string"},"canManageSubAccounts":true,"id":"id"}}'
+catocli mutation businessPlatform createTrialAccount '{"businessPlatformCreateTrialAccountInput":{"accountData":{"description":"string","name":"string","tenancy":"SINGLE_TENANT","timezone":"example_value","type":"CUSTOMER"},"adminData":{"email":"example_value","firstName":"string","lastName":"string"},"canManageSubAccounts":true,"id":"id"}}'
 
 catocli mutation businessPlatform createTrialAccount '{
     "businessPlatformCreateTrialAccountInput": {
-        "addAccountInput": {
+        "accountData": {
             "description": "string",
             "name": "string",
             "tenancy": "SINGLE_TENANT",
             "timezone": "example_value",
             "type": "CUSTOMER"
         },
-        "businessPlatformAdminData": {
+        "adminData": {
             "email": "example_value",
             "firstName": "string",
             "lastName": "string"

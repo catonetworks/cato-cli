@@ -11,15 +11,11 @@ catocli mutation sites updateNetworkRangeBulk <json>
 
 catocli mutation sites updateNetworkRangeBulk --json-file mutation.sites.updateNetworkRangeBulk.json
 
-catocli mutation sites updateNetworkRangeBulk '{"updateNetworkRangeBulkInput":{"siteRefInput":{"by":"ID","input":"string"},"updateSiteNetworkRangeV2Input":{"azureFloatingIp":"example_value","dhcpSettings":{"dhcpMicrosegmentation":true,"dhcpType":"DHCP_RELAY","ipRange":"example_value","relayGroupId":"id"},"gateway":"example_value","gcpLoadBalancerIp":"example_value","id":"id","internetOnly":true,"localIp":"example_value","mdnsReflector":true,"name":"string","primaryManagementIp":"example_value","rangeType":"Routed","secondaryManagementIp":"example_value","subnet":"example_value","translatedSubnet":"example_value","vlan":1}}}'
+catocli mutation sites updateNetworkRangeBulk '{"updateNetworkRangeBulkInput":{"networkRange":{"azureFloatingIp":"example_value","dhcpSettings":{"dhcpMicrosegmentation":true,"dhcpType":"DHCP_RELAY","ipRange":"example_value","relayGroupId":"id"},"gateway":"example_value","gcpLoadBalancerIp":"example_value","id":"id","internetOnly":true,"localIp":"example_value","mdnsReflector":true,"name":"string","primaryManagementIp":"example_value","rangeType":"Routed","secondaryManagementIp":"example_value","subnet":"example_value","translatedSubnet":"example_value","vlan":1},"site":{"by":"ID","input":"string"}}}'
 
 catocli mutation sites updateNetworkRangeBulk '{
     "updateNetworkRangeBulkInput": {
-        "siteRefInput": {
-            "by": "ID",
-            "input": "string"
-        },
-        "updateSiteNetworkRangeV2Input": {
+        "networkRange": {
             "azureFloatingIp": "example_value",
             "dhcpSettings": {
                 "dhcpMicrosegmentation": true,
@@ -40,6 +36,10 @@ catocli mutation sites updateNetworkRangeBulk '{
             "subnet": "example_value",
             "translatedSubnet": "example_value",
             "vlan": 1
+        },
+        "site": {
+            "by": "ID",
+            "input": "string"
         }
     }
 }'

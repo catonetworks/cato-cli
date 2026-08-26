@@ -3,7 +3,7 @@
     "query": "query policyInternetFirewallPolicyList ( $accountId:ID! $internetFirewallPolicyListInput:InternetFirewallPolicyListInput!) {\n\tpolicy ( accountId:$accountId ) {\n\t\tinternetFirewall {\n\t\t\tpolicyList ( input:$internetFirewallPolicyListInput   ) {\n\t\t\t\titems {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t\tdescription\n\t\t\t\t\tenabled\n\t\t\t\t\tpolicyLevel\n\t\t\t\t\taudit {\n\t\t\t\t\t\tpublishedTime\n\t\t\t\t\t\tpublishedBy\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\tpaging {\n\t\t\t\t\ttotal\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\t\n}",
     "variables": {
         "internetFirewallPolicyListInput": {
-            "internetFirewallPolicyListFilterInput": {
+            "filter": {
                 "id": {
                     "eq": "id",
                     "in": [
@@ -35,7 +35,11 @@
                     "nin": "MAIN"
                 }
             },
-            "internetFirewallPolicyListSortInput": {
+            "paging": {
+                "from": 1,
+                "limit": 1
+            },
+            "sort": {
                 "name": {
                     "direction": "ASC",
                     "priority": 1
@@ -44,10 +48,6 @@
                     "direction": "ASC",
                     "priority": 1
                 }
-            },
-            "pagingInput": {
-                "from": 1,
-                "limit": 1
             }
         }
     }

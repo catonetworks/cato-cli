@@ -11,11 +11,11 @@ catocli mutation policy ztnaAlwaysOn updatePolicy <json>
 
 catocli mutation policy ztnaAlwaysOn updatePolicy --json-file mutation.policy.ztnaAlwaysOn.updatePolicy.json
 
-catocli mutation policy ztnaAlwaysOn updatePolicy '{"ztnaAlwaysOnPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"ztnaAlwaysOnPolicyUpdateInput":{"state":"ENABLED"}}'
+catocli mutation policy ztnaAlwaysOn updatePolicy '{"ztnaAlwaysOnPolicyMutationInput":{"revision":{"id":"id"}},"ztnaAlwaysOnPolicyUpdateInput":{"state":"ENABLED"}}'
 
 catocli mutation policy ztnaAlwaysOn updatePolicy '{
     "ztnaAlwaysOnPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     },

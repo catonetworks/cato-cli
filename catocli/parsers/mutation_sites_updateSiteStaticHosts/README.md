@@ -11,26 +11,26 @@ catocli mutation sites updateSiteStaticHosts <json>
 
 catocli mutation sites updateSiteStaticHosts --json-file mutation.sites.updateSiteStaticHosts.json
 
-catocli mutation sites updateSiteStaticHosts '{"updateSiteStaticHostsInput":{"siteAddStaticHostInput":{"ip":"example_value","macAddress":"example_value","name":"string"},"siteRefInput":{"by":"ID","input":"string"},"siteStaticHostConfigurationInput":{"ip":"example_value","macAddress":"example_value","name":"string"},"siteStaticHostRefInput":{"hostId":"id"}}}'
+catocli mutation sites updateSiteStaticHosts '{"updateSiteStaticHostsInput":{"host":{"ip":"example_value","macAddress":"example_value","name":"string"},"hostToAdd":{"ip":"example_value","macAddress":"example_value","name":"string"},"hostToRemove":{"hostId":"id"},"site":{"by":"ID","input":"string"}}}'
 
 catocli mutation sites updateSiteStaticHosts '{
     "updateSiteStaticHostsInput": {
-        "siteAddStaticHostInput": {
+        "host": {
             "ip": "example_value",
             "macAddress": "example_value",
             "name": "string"
         },
-        "siteRefInput": {
+        "hostToAdd": {
+            "ip": "example_value",
+            "macAddress": "example_value",
+            "name": "string"
+        },
+        "hostToRemove": {
+            "hostId": "id"
+        },
+        "site": {
             "by": "ID",
             "input": "string"
-        },
-        "siteStaticHostConfigurationInput": {
-            "ip": "example_value",
-            "macAddress": "example_value",
-            "name": "string"
-        },
-        "siteStaticHostRefInput": {
-            "hostId": "id"
         }
     }
 }'

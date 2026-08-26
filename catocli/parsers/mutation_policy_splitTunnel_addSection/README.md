@@ -11,20 +11,20 @@ catocli mutation policy splitTunnel addSection <json>
 
 catocli mutation policy splitTunnel addSection --json-file mutation.policy.splitTunnel.addSection.json
 
-catocli mutation policy splitTunnel addSection '{"policyAddSectionInput":{"policyAddSectionInfoInput":{"name":"string"},"policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}},"splitTunnelPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
+catocli mutation policy splitTunnel addSection '{"policyAddSectionInput":{"at":{"position":"AFTER_SECTION","ref":"id"},"section":{"name":"string"}},"splitTunnelPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy splitTunnel addSection '{
     "policyAddSectionInput": {
-        "policyAddSectionInfoInput": {
-            "name": "string"
-        },
-        "policySectionPositionInput": {
+        "at": {
             "position": "AFTER_SECTION",
             "ref": "id"
+        },
+        "section": {
+            "name": "string"
         }
     },
     "splitTunnelPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     }

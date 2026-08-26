@@ -3,27 +3,31 @@
     "query": "mutation externalAccessAddPartnerAccessRequest ( $accountId:ID! $addPartnerAccessRequestInput:AddPartnerAccessRequestInput!) {\n\texternalAccess ( accountId:$accountId ) {\n\t\taddPartnerAccessRequest ( input:$addPartnerAccessRequestInput  )  {\n\t\t\tinvitation {\n\t\t\t\tid\n\t\t\t\tpartner {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t\trequestedDate\n\t\t\t\texpirationDate\n\t\t\t\tactiveDate\n\t\t\t\tstatus\n\t\t\t\treason\n\t\t\t\tpartnerNote\n\t\t\t\taccount {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t\tadmins {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t\troles {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t\tdescription\n\t\t\t\t\tisPredefined\n\t\t\t\t}\n\t\t\t\tgroups {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t\tisAppliedOnAllFullyManagedAccounts\n\t\t\t}\n\t\t}\n\t}\t\n}",
     "variables": {
         "addPartnerAccessRequestInput": {
-            "accountRefInput": {
+            "accounts": {
                 "by": "ID",
                 "input": "string"
             },
-            "adminRefInput": {
+            "admins": {
                 "by": "ID",
                 "input": "string"
             },
             "expirationDate": "example_value",
-            "isAppliedOnAllFullyManagedAccounts": true,
-            "partnerNote": "string",
-            "rBACRoleRefInput": {
+            "groups": {
                 "by": "ID",
                 "input": "string"
             },
-            "reason": "string",
-            "supportLink": "string",
-            "usersGroupRefInput": {
+            "isAppliedOnAllFullyManagedAccounts": true,
+            "partner": {
                 "by": "ID",
                 "input": "string"
-            }
+            },
+            "partnerNote": "string",
+            "reason": "string",
+            "roles": {
+                "by": "ID",
+                "input": "string"
+            },
+            "supportLink": "string"
         }
     }
 }

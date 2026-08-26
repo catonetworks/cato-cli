@@ -4450,7 +4450,7 @@
     },
     "variablesPayload": {
         "groupMembersListInput": {
-            "groupMembersListFilterInput": {
+            "filter": {
                 "name": {
                     "eq": "string",
                     "in": [
@@ -4471,7 +4471,11 @@
                     "nin": "SITE"
                 }
             },
-            "groupMembersListSortInput": {
+            "paging": {
+                "from": 1,
+                "limit": 1
+            },
+            "sort": {
                 "name": {
                     "direction": "ASC",
                     "priority": 1
@@ -4480,22 +4484,28 @@
                     "direction": "ASC",
                     "priority": 1
                 }
-            },
-            "pagingInput": {
-                "from": 1,
-                "limit": 1
             }
         },
         "updateGroupInput": {
             "description": "string",
-            "groupMemberRefTypedInput": {
+            "group": {
+                "by": "ID",
+                "input": "string"
+            },
+            "members": {
                 "by": "ID",
                 "input": "string",
                 "type": "SITE"
             },
-            "groupRefInput": {
+            "membersToAdd": {
                 "by": "ID",
-                "input": "string"
+                "input": "string",
+                "type": "SITE"
+            },
+            "membersToRemove": {
+                "by": "ID",
+                "input": "string",
+                "type": "SITE"
             },
             "name": "string"
         }

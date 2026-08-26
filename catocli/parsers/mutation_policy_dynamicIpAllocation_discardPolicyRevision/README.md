@@ -11,11 +11,11 @@ catocli mutation policy dynamicIpAllocation discardPolicyRevision <json>
 
 catocli mutation policy dynamicIpAllocation discardPolicyRevision --json-file mutation.policy.dynamicIpAllocation.discardPolicyRevision.json
 
-catocli mutation policy dynamicIpAllocation discardPolicyRevision '{"dynamicIpAllocationPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyDiscardRevisionInput":{"id":"id"}}'
+catocli mutation policy dynamicIpAllocation discardPolicyRevision '{"dynamicIpAllocationPolicyMutationInput":{"revision":{"id":"id"}},"policyDiscardRevisionInput":{"id":"id"}}'
 
 catocli mutation policy dynamicIpAllocation discardPolicyRevision '{
     "dynamicIpAllocationPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     },

@@ -11,14 +11,14 @@ catocli mutation policy privateAccess removeSection <json>
 
 catocli mutation policy privateAccess removeSection --json-file mutation.policy.privateAccess.removeSection.json
 
-catocli mutation policy privateAccess removeSection '{"policyRemoveSectionInput":{"id":"id"},"privateAccessPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
+catocli mutation policy privateAccess removeSection '{"policyRemoveSectionInput":{"id":"id"},"privateAccessPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy privateAccess removeSection '{
     "policyRemoveSectionInput": {
         "id": "id"
     },
     "privateAccessPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     }

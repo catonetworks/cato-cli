@@ -11,11 +11,11 @@ catocli mutation policy socketBypass reorderPolicy <json>
 
 catocli mutation policy socketBypass reorderPolicy --json-file mutation.policy.socketBypass.reorderPolicy.json
 
-catocli mutation policy socketBypass reorderPolicy '{"policyReorderInput":{"policyReorderSectionInput":{"ref":{"by":"ID","input":"string"},"rules":{"ref":{"by":"ID","input":"string"},"subRules":{"ref":{"by":"ID","input":"string"}}}},"subPolicyId":"id"},"socketBypassPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
+catocli mutation policy socketBypass reorderPolicy '{"policyReorderInput":{"sections":{"ref":{"by":"ID","input":"string"},"rules":{"ref":{"by":"ID","input":"string"},"subRules":{"ref":{"by":"ID","input":"string"}}}},"subPolicyId":"id"},"socketBypassPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy socketBypass reorderPolicy '{
     "policyReorderInput": {
-        "policyReorderSectionInput": {
+        "sections": {
             "ref": {
                 "by": "ID",
                 "input": "string"
@@ -36,7 +36,7 @@ catocli mutation policy socketBypass reorderPolicy '{
         "subPolicyId": "id"
     },
     "socketBypassPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     }

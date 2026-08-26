@@ -11,18 +11,18 @@ catocli mutation policy privateAccess moveSection <json>
 
 catocli mutation policy privateAccess moveSection --json-file mutation.policy.privateAccess.moveSection.json
 
-catocli mutation policy privateAccess moveSection '{"policyMoveSectionInput":{"id":"id","policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}},"privateAccessPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
+catocli mutation policy privateAccess moveSection '{"policyMoveSectionInput":{"id":"id","to":{"position":"AFTER_SECTION","ref":"id"}},"privateAccessPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy privateAccess moveSection '{
     "policyMoveSectionInput": {
         "id": "id",
-        "policySectionPositionInput": {
+        "to": {
             "position": "AFTER_SECTION",
             "ref": "id"
         }
     },
     "privateAccessPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     }

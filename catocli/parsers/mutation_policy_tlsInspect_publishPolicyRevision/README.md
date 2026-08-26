@@ -11,7 +11,7 @@ catocli mutation policy tlsInspect publishPolicyRevision <json>
 
 catocli mutation policy tlsInspect publishPolicyRevision --json-file mutation.policy.tlsInspect.publishPolicyRevision.json
 
-catocli mutation policy tlsInspect publishPolicyRevision '{"policyPublishRevisionInput":{"description":"string","name":"string"},"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
+catocli mutation policy tlsInspect publishPolicyRevision '{"policyPublishRevisionInput":{"description":"string","name":"string"},"tlsInspectPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy tlsInspect publishPolicyRevision '{
     "policyPublishRevisionInput": {
@@ -19,7 +19,7 @@ catocli mutation policy tlsInspect publishPolicyRevision '{
         "name": "string"
     },
     "tlsInspectPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     }

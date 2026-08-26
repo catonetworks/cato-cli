@@ -11,11 +11,11 @@ catocli mutation policy applicationControl discardPolicyRevision <json>
 
 catocli mutation policy applicationControl discardPolicyRevision --json-file mutation.policy.applicationControl.discardPolicyRevision.json
 
-catocli mutation policy applicationControl discardPolicyRevision '{"applicationControlPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyDiscardRevisionInput":{"id":"id"}}'
+catocli mutation policy applicationControl discardPolicyRevision '{"applicationControlPolicyMutationInput":{"revision":{"id":"id"}},"policyDiscardRevisionInput":{"id":"id"}}'
 
 catocli mutation policy applicationControl discardPolicyRevision '{
     "applicationControlPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     },

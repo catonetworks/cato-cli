@@ -11,18 +11,25 @@ catocli mutation site updateWifiRadioProfile <json>
 
 catocli mutation site updateWifiRadioProfile --json-file mutation.site.updateWifiRadioProfile.json
 
-catocli mutation site updateWifiRadioProfile '{"updateWifiRadioProfileInput":{"id":"id","wifiBandProfileInput":{"band":"BAND_2P4G","channel":1,"channelWidth":"AUTO","dfsEnabled":true,"standard":"AUTO"}}}'
+catocli mutation site updateWifiRadioProfile '{"updateWifiRadioProfileInput":{"band24":{"band":"BAND_2P4G","channel":1,"channelWidth":"AUTO","dfsEnabled":true,"standard":"AUTO"},"band5":{"band":"BAND_2P4G","channel":1,"channelWidth":"AUTO","dfsEnabled":true,"standard":"AUTO"},"id":"id"}}'
 
 catocli mutation site updateWifiRadioProfile '{
     "updateWifiRadioProfileInput": {
-        "id": "id",
-        "wifiBandProfileInput": {
+        "band24": {
             "band": "BAND_2P4G",
             "channel": 1,
             "channelWidth": "AUTO",
             "dfsEnabled": true,
             "standard": "AUTO"
-        }
+        },
+        "band5": {
+            "band": "BAND_2P4G",
+            "channel": 1,
+            "channelWidth": "AUTO",
+            "dfsEnabled": true,
+            "standard": "AUTO"
+        },
+        "id": "id"
     }
 }'
 ```

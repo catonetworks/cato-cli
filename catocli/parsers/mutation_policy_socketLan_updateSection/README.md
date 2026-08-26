@@ -11,17 +11,17 @@ catocli mutation policy socketLan updateSection <json>
 
 catocli mutation policy socketLan updateSection --json-file mutation.policy.socketLan.updateSection.json
 
-catocli mutation policy socketLan updateSection '{"policyUpdateSectionInput":{"id":"id","policyUpdateSectionInfoInput":{"name":"string"}},"socketLanPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
+catocli mutation policy socketLan updateSection '{"policyUpdateSectionInput":{"id":"id","section":{"name":"string"}},"socketLanPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy socketLan updateSection '{
     "policyUpdateSectionInput": {
         "id": "id",
-        "policyUpdateSectionInfoInput": {
+        "section": {
             "name": "string"
         }
     },
     "socketLanPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     }

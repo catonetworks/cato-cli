@@ -11,16 +11,16 @@ catocli mutation container ipAddressRange updateFromFile <json>
 
 catocli mutation container ipAddressRange updateFromFile --json-file mutation.container.ipAddressRange.updateFromFile.json
 
-catocli mutation container ipAddressRange updateFromFile '{"updateIpAddressRangeContainerFromFileInput":{"containerRefInput":{"by":"ID","input":"string"},"description":"string","fileType":"STIX","uploadFile":"example_value"}}'
+catocli mutation container ipAddressRange updateFromFile '{"updateIpAddressRangeContainerFromFileInput":{"description":"string","fileType":"STIX","ref":{"by":"ID","input":"string"},"uploadFile":"example_value"}}'
 
 catocli mutation container ipAddressRange updateFromFile '{
     "updateIpAddressRangeContainerFromFileInput": {
-        "containerRefInput": {
+        "description": "string",
+        "fileType": "STIX",
+        "ref": {
             "by": "ID",
             "input": "string"
         },
-        "description": "string",
-        "fileType": "STIX",
         "uploadFile": "example_value"
     }
 }'

@@ -11,15 +11,15 @@ catocli query site knownHostList <json>
 
 catocli query site knownHostList --json-file query.site.knownHostList.json
 
-catocli query site knownHostList '{"siteKnownHostListInput":{"pagingInput":{"from":1,"limit":1},"siteRefInput":{"by":"ID","input":"string"}}}'
+catocli query site knownHostList '{"siteKnownHostListInput":{"paging":{"from":1,"limit":1},"site":{"by":"ID","input":"string"}}}'
 
 catocli query site knownHostList '{
     "siteKnownHostListInput": {
-        "pagingInput": {
+        "paging": {
             "from": 1,
             "limit": 1
         },
-        "siteRefInput": {
+        "site": {
             "by": "ID",
             "input": "string"
         }

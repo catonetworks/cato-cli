@@ -3,11 +3,7 @@
     "query": "query sandbox ( $accountId:ID! $sandboxReportsInput:SandboxReportsInput!) {\n\tsandbox ( accountId:$accountId ) {\n\t\treports ( input:$sandboxReportsInput  )  {\n\t\t\treport {\n\t\t\t\tfileName\n\t\t\t\tfileHash\n\t\t\t\tcreationDate\n\t\t\t\texpirationDate\n\t\t\t\tverdict\n\t\t\t\tstatus\n\t\t\t\tdownloadUrl\n\t\t\t\tfailureReason\n\t\t\t}\n\t\t\tpageInfo {\n\t\t\t\ttotal\n\t\t\t}\n\t\t}\n\t}\t\n}",
     "variables": {
         "sandboxReportsInput": {
-            "pagingInput": {
-                "from": 1,
-                "limit": 1
-            },
-            "sandboxReportsFilterInput": {
+            "filter": {
                 "fileHash": {
                     "eq": "string",
                     "in": [
@@ -53,7 +49,11 @@
                     ]
                 }
             },
-            "sandboxReportsSortInput": {
+            "paging": {
+                "from": 1,
+                "limit": 1
+            },
+            "sort": {
                 "fileName": {
                     "direction": "ASC",
                     "priority": 1

@@ -11,11 +11,11 @@ catocli mutation ztnaAppConnector upgradeZtnaAppConnector <json>
 
 catocli mutation ztnaAppConnector upgradeZtnaAppConnector --json-file mutation.ztnaAppConnector.upgradeZtnaAppConnector.json
 
-catocli mutation ztnaAppConnector upgradeZtnaAppConnector '{"upgradeZtnaAppConnectorInput":{"ztnaAppConnectorUpgradeRequest":{"targetVersion":"string","ztnaAppConnector":{"by":"ID","input":"string"}}}}'
+catocli mutation ztnaAppConnector upgradeZtnaAppConnector '{"upgradeZtnaAppConnectorInput":{"upgrades":{"targetVersion":"string","ztnaAppConnector":{"by":"ID","input":"string"}}}}'
 
 catocli mutation ztnaAppConnector upgradeZtnaAppConnector '{
     "upgradeZtnaAppConnectorInput": {
-        "ztnaAppConnectorUpgradeRequest": {
+        "upgrades": {
             "targetVersion": "string",
             "ztnaAppConnector": {
                 "by": "ID",

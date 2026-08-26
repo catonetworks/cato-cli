@@ -11,12 +11,23 @@ catocli mutation privateApplication updatePrivateApplication <json>
 
 catocli mutation privateApplication updatePrivateApplication --json-file mutation.privateApplication.updatePrivateApplication.json
 
-catocli mutation privateApplication updatePrivateApplication '{"updatePrivateApplicationInput":{"allowIcmpProtocol":true,"customServiceInput":{"port":["example1","example2"],"portRange":{"from":"example_value","to":"example_value"},"protocol":"ANY"},"description":"string","id":"id","internalAppAddress":"example_value","name":"string","privateAppProbingInput":{"faultThresholdDown":1,"id":"id","interval":1,"type":"string"},"probingEnabled":true,"published":true,"publishedAppDomainInput":{"catoIp":"example_value","connectorGroupName":"string","creationTime":"example_value","id":"id","publishedAppDomain":"string"}}}'
+catocli mutation privateApplication updatePrivateApplication '{"updatePrivateApplicationInput":{"allowIcmpProtocol":true,"description":"string","id":"id","internalAppAddress":"example_value","name":"string","privateAppProbing":{"faultThresholdDown":1,"id":"id","interval":1,"type":"string"},"probingEnabled":true,"protocolPorts":{"port":["example1","example2"],"portRange":{"from":"example_value","to":"example_value"},"protocol":"ANY"},"published":true,"publishedAppDomain":{"catoIp":"example_value","connectorGroupName":"string","creationTime":"example_value","id":"id","publishedAppDomain":"string"}}}'
 
 catocli mutation privateApplication updatePrivateApplication '{
     "updatePrivateApplicationInput": {
         "allowIcmpProtocol": true,
-        "customServiceInput": {
+        "description": "string",
+        "id": "id",
+        "internalAppAddress": "example_value",
+        "name": "string",
+        "privateAppProbing": {
+            "faultThresholdDown": 1,
+            "id": "id",
+            "interval": 1,
+            "type": "string"
+        },
+        "probingEnabled": true,
+        "protocolPorts": {
             "port": [
                 "example1",
                 "example2"
@@ -27,19 +38,8 @@ catocli mutation privateApplication updatePrivateApplication '{
             },
             "protocol": "ANY"
         },
-        "description": "string",
-        "id": "id",
-        "internalAppAddress": "example_value",
-        "name": "string",
-        "privateAppProbingInput": {
-            "faultThresholdDown": 1,
-            "id": "id",
-            "interval": 1,
-            "type": "string"
-        },
-        "probingEnabled": true,
         "published": true,
-        "publishedAppDomainInput": {
+        "publishedAppDomain": {
             "catoIp": "example_value",
             "connectorGroupName": "string",
             "creationTime": "example_value",

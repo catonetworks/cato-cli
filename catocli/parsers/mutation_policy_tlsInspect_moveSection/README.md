@@ -11,18 +11,18 @@ catocli mutation policy tlsInspect moveSection <json>
 
 catocli mutation policy tlsInspect moveSection --json-file mutation.policy.tlsInspect.moveSection.json
 
-catocli mutation policy tlsInspect moveSection '{"policyMoveSectionInput":{"id":"id","policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}},"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
+catocli mutation policy tlsInspect moveSection '{"policyMoveSectionInput":{"id":"id","to":{"position":"AFTER_SECTION","ref":"id"}},"tlsInspectPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy tlsInspect moveSection '{
     "policyMoveSectionInput": {
         "id": "id",
-        "policySectionPositionInput": {
+        "to": {
             "position": "AFTER_SECTION",
             "ref": "id"
         }
     },
     "tlsInspectPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     }

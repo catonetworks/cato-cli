@@ -11,11 +11,11 @@ catocli query policy applicationControl policy <json>
 
 catocli query policy applicationControl policy --json-file query.policy.applicationControl.policy.json
 
-catocli query policy applicationControl policy '{"applicationControlPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'
+catocli query policy applicationControl policy '{"applicationControlPolicyInput":{"revision":{"id":"id","type":"PRIVATE"}}}'
 
 catocli query policy applicationControl policy '{
     "applicationControlPolicyInput": {
-        "policyRevisionInput": {
+        "revision": {
             "id": "id",
             "type": "PRIVATE"
         }

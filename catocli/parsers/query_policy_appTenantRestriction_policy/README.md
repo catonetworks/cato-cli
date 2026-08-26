@@ -11,11 +11,11 @@ catocli query policy appTenantRestriction policy <json>
 
 catocli query policy appTenantRestriction policy --json-file query.policy.appTenantRestriction.policy.json
 
-catocli query policy appTenantRestriction policy '{"appTenantRestrictionPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'
+catocli query policy appTenantRestriction policy '{"appTenantRestrictionPolicyInput":{"revision":{"id":"id","type":"PRIVATE"}}}'
 
 catocli query policy appTenantRestriction policy '{
     "appTenantRestrictionPolicyInput": {
-        "policyRevisionInput": {
+        "revision": {
             "id": "id",
             "type": "PRIVATE"
         }

@@ -11,11 +11,11 @@ catocli mutation policy wanNetwork reorderPolicy <json>
 
 catocli mutation policy wanNetwork reorderPolicy --json-file mutation.policy.wanNetwork.reorderPolicy.json
 
-catocli mutation policy wanNetwork reorderPolicy '{"policyReorderInput":{"policyReorderSectionInput":{"ref":{"by":"ID","input":"string"},"rules":{"ref":{"by":"ID","input":"string"},"subRules":{"ref":{"by":"ID","input":"string"}}}},"subPolicyId":"id"},"wanNetworkPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
+catocli mutation policy wanNetwork reorderPolicy '{"policyReorderInput":{"sections":{"ref":{"by":"ID","input":"string"},"rules":{"ref":{"by":"ID","input":"string"},"subRules":{"ref":{"by":"ID","input":"string"}}}},"subPolicyId":"id"},"wanNetworkPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy wanNetwork reorderPolicy '{
     "policyReorderInput": {
-        "policyReorderSectionInput": {
+        "sections": {
             "ref": {
                 "by": "ID",
                 "input": "string"
@@ -36,7 +36,7 @@ catocli mutation policy wanNetwork reorderPolicy '{
         "subPolicyId": "id"
     },
     "wanNetworkPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     }

@@ -11,11 +11,11 @@ catocli query policy splitTunnel policy <json>
 
 catocli query policy splitTunnel policy --json-file query.policy.splitTunnel.policy.json
 
-catocli query policy splitTunnel policy '{"splitTunnelPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'
+catocli query policy splitTunnel policy '{"splitTunnelPolicyInput":{"revision":{"id":"id","type":"PRIVATE"}}}'
 
 catocli query policy splitTunnel policy '{
     "splitTunnelPolicyInput": {
-        "policyRevisionInput": {
+        "revision": {
             "id": "id",
             "type": "PRIVATE"
         }

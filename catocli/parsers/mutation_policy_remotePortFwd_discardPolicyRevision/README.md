@@ -11,14 +11,14 @@ catocli mutation policy remotePortFwd discardPolicyRevision <json>
 
 catocli mutation policy remotePortFwd discardPolicyRevision --json-file mutation.policy.remotePortFwd.discardPolicyRevision.json
 
-catocli mutation policy remotePortFwd discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"remotePortFwdPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
+catocli mutation policy remotePortFwd discardPolicyRevision '{"policyDiscardRevisionInput":{"id":"id"},"remotePortFwdPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy remotePortFwd discardPolicyRevision '{
     "policyDiscardRevisionInput": {
         "id": "id"
     },
     "remotePortFwdPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     }

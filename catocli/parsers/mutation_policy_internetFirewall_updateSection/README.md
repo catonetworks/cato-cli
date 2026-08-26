@@ -11,17 +11,17 @@ catocli mutation policy internetFirewall updateSection <json>
 
 catocli mutation policy internetFirewall updateSection --json-file mutation.policy.internetFirewall.updateSection.json
 
-catocli mutation policy internetFirewall updateSection '{"internetFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyUpdateSectionInput":{"id":"id","policyUpdateSectionInfoInput":{"name":"string"}}}'
+catocli mutation policy internetFirewall updateSection '{"internetFirewallPolicyMutationInput":{"revision":{"id":"id"}},"policyUpdateSectionInput":{"id":"id","section":{"name":"string"}}}'
 
 catocli mutation policy internetFirewall updateSection '{
     "internetFirewallPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     },
     "policyUpdateSectionInput": {
         "id": "id",
-        "policyUpdateSectionInfoInput": {
+        "section": {
             "name": "string"
         }
     }

@@ -11,7 +11,7 @@ catocli query events <json>
 
 catocli query events --json-file query.events.json
 
-catocli query events '{"eventsDimension":{"fieldName":"access_method"},"eventsFilter":{"fieldName":"access_method","operator":"is","values":["string1","string2"]},"eventsMeasure":{"aggType":"sum","alias":"string","fieldName":"access_method","trend":true},"eventsPostAggFilter":{"aggType":"sum","eventsFilter":{"fieldName":"access_method","operator":"is","values":["string1","string2"]}},"eventsSort":{"alias":"string","fieldName":"access_method","order":"asc"},"from":1,"includeEmptyDimension":true,"limit":1,"timeFrame":"example_value"}'
+catocli query events '{"eventsDimension":{"fieldName":"access_method"},"eventsFilter":{"fieldName":"access_method","operator":"is","values":["string1","string2"]},"eventsMeasure":{"aggType":"sum","alias":"string","fieldName":"access_method","trend":true},"eventsPostAggFilter":{"aggType":"sum","filter":{"fieldName":"access_method","operator":"is","values":["string1","string2"]}},"eventsSort":{"alias":"string","fieldName":"access_method","order":"asc"},"from":1,"includeEmptyDimension":true,"limit":1,"timeFrame":"example_value"}'
 
 catocli query events '{
     "eventsDimension": {
@@ -33,7 +33,7 @@ catocli query events '{
     },
     "eventsPostAggFilter": {
         "aggType": "sum",
-        "eventsFilter": {
+        "filter": {
             "fieldName": "access_method",
             "operator": "is",
             "values": [

@@ -11,7 +11,7 @@ catocli mutation site addBgpPeer <json>
 
 catocli mutation site addBgpPeer --json-file mutation.site.addBgpPeer.json
 
-catocli mutation site addBgpPeer '{"addBgpPeerInput":{"advertiseAllRoutes":true,"advertiseDefaultRoute":true,"advertiseSummaryRoutes":true,"bfdEnabled":true,"bfdSettingsInput":{"multiplier":1,"receiveInterval":1,"transmitInterval":1},"bgpCommunityInput":{"from":"example_value","to":"example_value"},"bgpFilterRuleInput":{"bgpRouteExactAndInclusiveFilterRule":{"ge":1,"globalIpRange":{"by":"ID","input":"string"},"globalIpRangeException":{"by":"ID","input":"string"},"le":1,"networkSubnet":["example1","example2"],"networkSubnetException":["example1","example2"]},"bgpRouteExactFilterRule":{"globalIpRange":{"by":"ID","input":"string"},"networkSubnet":["example1","example2"]},"communityFilterRule":{"community":{"from":"example_value","to":"example_value"},"predicate":"EQUAL"}},"bgpSummaryRouteInput":{"community":{"from":"example_value","to":"example_value"},"route":"example_value"},"bgpTrackingInput":{"alertFrequency":"HOURLY","enabled":true,"subscriptionId":"id"},"catoAsn":"example_value","defaultAction":"DROP","holdTime":1,"keepaliveInterval":1,"md5AuthKey":"string","metric":1,"name":"string","peerAsn":"example_value","peerIp":"example_value","performNat":true,"siteRefInput":{"by":"ID","input":"string"}}}'
+catocli mutation site addBgpPeer '{"addBgpPeerInput":{"advertiseAllRoutes":true,"advertiseDefaultRoute":true,"advertiseSummaryRoutes":true,"bfdEnabled":true,"bfdSettings":{"multiplier":1,"receiveInterval":1,"transmitInterval":1},"catoAsn":"example_value","defaultAction":"DROP","defaultActionExclusion":{"bgpRouteExactAndInclusiveFilterRule":{"ge":1,"globalIpRange":{"by":"ID","input":"string"},"globalIpRangeException":{"by":"ID","input":"string"},"le":1,"networkSubnet":["example1","example2"],"networkSubnetException":["example1","example2"]},"bgpRouteExactFilterRule":{"globalIpRange":{"by":"ID","input":"string"},"networkSubnet":["example1","example2"]},"communityFilterRule":{"community":{"from":"example_value","to":"example_value"},"predicate":"EQUAL"}},"defaultRouteCommunities":{"from":"example_value","to":"example_value"},"holdTime":1,"keepaliveInterval":1,"md5AuthKey":"string","metric":1,"name":"string","peerAsn":"example_value","peerIp":"example_value","performNat":true,"site":{"by":"ID","input":"string"},"summaryRoute":{"community":{"from":"example_value","to":"example_value"},"route":"example_value"},"tracking":{"alertFrequency":"HOURLY","enabled":true,"subscriptionId":"id"}}}'
 
 catocli mutation site addBgpPeer '{
     "addBgpPeerInput": {
@@ -19,16 +19,14 @@ catocli mutation site addBgpPeer '{
         "advertiseDefaultRoute": true,
         "advertiseSummaryRoutes": true,
         "bfdEnabled": true,
-        "bfdSettingsInput": {
+        "bfdSettings": {
             "multiplier": 1,
             "receiveInterval": 1,
             "transmitInterval": 1
         },
-        "bgpCommunityInput": {
-            "from": "example_value",
-            "to": "example_value"
-        },
-        "bgpFilterRuleInput": {
+        "catoAsn": "example_value",
+        "defaultAction": "DROP",
+        "defaultActionExclusion": {
             "bgpRouteExactAndInclusiveFilterRule": {
                 "ge": 1,
                 "globalIpRange": {
@@ -67,20 +65,10 @@ catocli mutation site addBgpPeer '{
                 "predicate": "EQUAL"
             }
         },
-        "bgpSummaryRouteInput": {
-            "community": {
-                "from": "example_value",
-                "to": "example_value"
-            },
-            "route": "example_value"
+        "defaultRouteCommunities": {
+            "from": "example_value",
+            "to": "example_value"
         },
-        "bgpTrackingInput": {
-            "alertFrequency": "HOURLY",
-            "enabled": true,
-            "subscriptionId": "id"
-        },
-        "catoAsn": "example_value",
-        "defaultAction": "DROP",
         "holdTime": 1,
         "keepaliveInterval": 1,
         "md5AuthKey": "string",
@@ -89,9 +77,21 @@ catocli mutation site addBgpPeer '{
         "peerAsn": "example_value",
         "peerIp": "example_value",
         "performNat": true,
-        "siteRefInput": {
+        "site": {
             "by": "ID",
             "input": "string"
+        },
+        "summaryRoute": {
+            "community": {
+                "from": "example_value",
+                "to": "example_value"
+            },
+            "route": "example_value"
+        },
+        "tracking": {
+            "alertFrequency": "HOURLY",
+            "enabled": true,
+            "subscriptionId": "id"
         }
     }
 }'

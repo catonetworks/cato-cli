@@ -11,11 +11,11 @@ catocli mutation policy clientConnectivity removeRule <json>
 
 catocli mutation policy clientConnectivity removeRule --json-file mutation.policy.clientConnectivity.removeRule.json
 
-catocli mutation policy clientConnectivity removeRule '{"clientConnectivityPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"clientConnectivityRemoveRuleInput":{"id":"id"}}'
+catocli mutation policy clientConnectivity removeRule '{"clientConnectivityPolicyMutationInput":{"revision":{"id":"id"}},"clientConnectivityRemoveRuleInput":{"id":"id"}}'
 
 catocli mutation policy clientConnectivity removeRule '{
     "clientConnectivityPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     },

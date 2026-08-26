@@ -3,11 +3,11 @@
     "query": "query siteKnownHostList ( $accountId:ID! $siteKnownHostListInput:SiteKnownHostListInput!) {\n\tsite ( accountId:$accountId ) {\n\t\tknownHostList ( input:$siteKnownHostListInput  )  {\n\t\t\tknownHost {\n\t\t\t\thostName\n\t\t\t\tip\n\t\t\t\tmacAddress\n\t\t\t\tdhcpRange\n\t\t\t\tnetworkRange {\n\t\t\t\t\tname\n\t\t\t\t\tsubnet\n\t\t\t\t}\n\t\t\t\tipAllocationType\n\t\t\t\tlastActivitySeconds\n\t\t\t\tleaseTimeSeconds\n\t\t\t\texpiresInSeconds\n\t\t\t\tidentity\n\t\t\t\toperatingSystem\n\t\t\t}\n\t\t\tpageInfo {\n\t\t\t\ttotal\n\t\t\t}\n\t\t}\n\t}\t\n}",
     "variables": {
         "siteKnownHostListInput": {
-            "pagingInput": {
+            "paging": {
                 "from": 1,
                 "limit": 1
             },
-            "siteRefInput": {
+            "site": {
                 "by": "ID",
                 "input": "string"
             }

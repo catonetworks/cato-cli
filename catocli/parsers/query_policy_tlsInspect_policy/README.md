@@ -11,11 +11,11 @@ catocli query policy tlsInspect policy <json>
 
 catocli query policy tlsInspect policy --json-file query.policy.tlsInspect.policy.json
 
-catocli query policy tlsInspect policy '{"tlsInspectPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'
+catocli query policy tlsInspect policy '{"tlsInspectPolicyInput":{"revision":{"id":"id","type":"PRIVATE"}}}'
 
 catocli query policy tlsInspect policy '{
     "tlsInspectPolicyInput": {
-        "policyRevisionInput": {
+        "revision": {
             "id": "id",
             "type": "PRIVATE"
         }

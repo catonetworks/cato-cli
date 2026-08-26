@@ -11,11 +11,11 @@ catocli query site siteSocketConfiguration <json>
 
 catocli query site siteSocketConfiguration --json-file query.site.siteSocketConfiguration.json
 
-catocli query site siteSocketConfiguration '{"siteSocketConfigurationInput":{"siteRefInput":{"by":"ID","input":"string"}}}'
+catocli query site siteSocketConfiguration '{"siteSocketConfigurationInput":{"site":{"by":"ID","input":"string"}}}'
 
 catocli query site siteSocketConfiguration '{
     "siteSocketConfigurationInput": {
-        "siteRefInput": {
+        "site": {
             "by": "ID",
             "input": "string"
         }

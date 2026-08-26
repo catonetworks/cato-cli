@@ -11,11 +11,11 @@ catocli mutation popLocationMutations addBgpProfile <json>
 
 catocli mutation popLocationMutations addBgpProfile --json-file mutation.popLocationMutations.addBgpProfile.json
 
-catocli mutation popLocationMutations addBgpProfile '{"popLocationAddBgpProfileInput":{"bgpCommunityInput":{"from":"example_value","to":"example_value"},"description":"string","name":"string"}}'
+catocli mutation popLocationMutations addBgpProfile '{"popLocationAddBgpProfileInput":{"communities":{"from":"example_value","to":"example_value"},"description":"string","name":"string"}}'
 
 catocli mutation popLocationMutations addBgpProfile '{
     "popLocationAddBgpProfileInput": {
-        "bgpCommunityInput": {
+        "communities": {
             "from": "example_value",
             "to": "example_value"
         },

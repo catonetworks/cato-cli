@@ -11,7 +11,7 @@ catocli mutation policy terminalServer publishPolicyRevision <json>
 
 catocli mutation policy terminalServer publishPolicyRevision --json-file mutation.policy.terminalServer.publishPolicyRevision.json
 
-catocli mutation policy terminalServer publishPolicyRevision '{"policyPublishRevisionInput":{"description":"string","name":"string"},"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
+catocli mutation policy terminalServer publishPolicyRevision '{"policyPublishRevisionInput":{"description":"string","name":"string"},"terminalServerPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy terminalServer publishPolicyRevision '{
     "policyPublishRevisionInput": {
@@ -19,7 +19,7 @@ catocli mutation policy terminalServer publishPolicyRevision '{
         "name": "string"
     },
     "terminalServerPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     }

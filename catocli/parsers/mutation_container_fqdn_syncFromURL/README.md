@@ -11,11 +11,11 @@ catocli mutation container fqdn syncFromURL <json>
 
 catocli mutation container fqdn syncFromURL --json-file mutation.container.fqdn.syncFromURL.json
 
-catocli mutation container fqdn syncFromURL '{"syncFqdnContainerFromUrlInput":{"containerRefInput":{"by":"ID","input":"string"}}}'
+catocli mutation container fqdn syncFromURL '{"syncFqdnContainerFromUrlInput":{"ref":{"by":"ID","input":"string"}}}'
 
 catocli mutation container fqdn syncFromURL '{
     "syncFqdnContainerFromUrlInput": {
-        "containerRefInput": {
+        "ref": {
             "by": "ID",
             "input": "string"
         }

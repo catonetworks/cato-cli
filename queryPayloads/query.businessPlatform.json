@@ -3,7 +3,7 @@
     "query": "query businessPlatform ( $accountId:ID! $businessPlatformAccountListInput:BusinessPlatformAccountListInput) {\n\tbusinessPlatform ( accountId:$accountId ) {\n\t\taccountList ( input:$businessPlatformAccountListInput  )  {\n\t\t\titems {\n\t\t\t\tid\n\t\t\t\texternalName\n\t\t\t\taccount {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t\tpartner {\n\t\t\t\t\tid\n\t\t\t\t\tname\n\t\t\t\t}\n\t\t\t\taccountExternalName\n\t\t\t\tdescription\n\t\t\t\tplan\n\t\t\t\texpiresOn\n\t\t\t\testimatedCloseDate\n\t\t\t\tcontactFirstName\n\t\t\t\tcontactLastName\n\t\t\t\tcontactEmail\n\t\t\t\tcompanyWebsite\n\t\t\t\tcountry\n\t\t\t\tcity\n\t\t\t\tstate\n\t\t\t\tstreet\n\t\t\t\tpostalCode\n\t\t\t\tcmaCreatedBy\n\t\t\t\tcmaCreatedAt\n\t\t\t}\n\t\t\tpaging {\n\t\t\t\ttotal\n\t\t\t}\n\t\t}\n\t\tcountAccountByPlan {\n\t\t\titems {\n\t\t\t\tplan\n\t\t\t\tcount\n\t\t\t}\n\t\t}\n\t\tsettings {\n\t\t\tapprovalEnabled\n\t\t}\n\t}\t\n}",
     "variables": {
         "businessPlatformAccountListInput": {
-            "businessPlatformFilterInput": {
+            "filter": {
                 "account": {
                     "accountInclusion": "ALL_ACCOUNTS",
                     "in": [
@@ -39,7 +39,11 @@
                     "in": "PENDING_APPROVAL"
                 }
             },
-            "businessPlatformSortInput": {
+            "paging": {
+                "from": 1,
+                "limit": 1
+            },
+            "sort": {
                 "account": {
                     "direction": "ASC",
                     "priority": 1
@@ -60,10 +64,6 @@
                     "direction": "ASC",
                     "priority": 1
                 }
-            },
-            "pagingInput": {
-                "from": 1,
-                "limit": 1
             }
         }
     }

@@ -11,11 +11,11 @@ catocli mutation policy ztnaAlwaysOn removeRule <json>
 
 catocli mutation policy ztnaAlwaysOn removeRule --json-file mutation.policy.ztnaAlwaysOn.removeRule.json
 
-catocli mutation policy ztnaAlwaysOn removeRule '{"ztnaAlwaysOnPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"ztnaAlwaysOnRemoveRuleInput":{"id":"id"}}'
+catocli mutation policy ztnaAlwaysOn removeRule '{"ztnaAlwaysOnPolicyMutationInput":{"revision":{"id":"id"}},"ztnaAlwaysOnRemoveRuleInput":{"id":"id"}}'
 
 catocli mutation policy ztnaAlwaysOn removeRule '{
     "ztnaAlwaysOnPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     },

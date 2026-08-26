@@ -11,16 +11,16 @@ catocli mutation policy internetFirewall removeSubPolicy <json>
 
 catocli mutation policy internetFirewall removeSubPolicy --json-file mutation.policy.internetFirewall.removeSubPolicy.json
 
-catocli mutation policy internetFirewall removeSubPolicy '{"internetFirewallPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"internetFirewallRemoveSubPolicyInput":{"internetFirewallPolicyRefInput":{"by":"ID","input":"string"}}}'
+catocli mutation policy internetFirewall removeSubPolicy '{"internetFirewallPolicyMutationInput":{"revision":{"id":"id"}},"internetFirewallRemoveSubPolicyInput":{"ref":{"by":"ID","input":"string"}}}'
 
 catocli mutation policy internetFirewall removeSubPolicy '{
     "internetFirewallPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     },
     "internetFirewallRemoveSubPolicyInput": {
-        "internetFirewallPolicyRefInput": {
+        "ref": {
             "by": "ID",
             "input": "string"
         }

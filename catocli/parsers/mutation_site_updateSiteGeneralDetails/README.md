@@ -11,7 +11,7 @@ catocli mutation site updateSiteGeneralDetails <json>
 
 catocli mutation site updateSiteGeneralDetails --json-file mutation.site.updateSiteGeneralDetails.json
 
-catocli mutation site updateSiteGeneralDetails '{"siteId":"id","updateSiteGeneralDetailsInput":{"description":"string","disableAclForSip":true,"name":"string","siteType":"BRANCH","siteWorkingHoursInput":{"fromTimeMinuteOffset":1,"override":true,"toTimeMinuteOffset":1,"workingDays":"SUNDAY"},"updateSiteLocationInput":{"address":"string","cityName":"string","countryCode":"string","stateCode":"string","timezone":"string"},"updateSitePreferredPopLocationInput":{"preferredOnly":true,"primary":{"by":"ID","input":"string"},"secondary":{"by":"ID","input":"string"}}}}'
+catocli mutation site updateSiteGeneralDetails '{"siteId":"id","updateSiteGeneralDetailsInput":{"description":"string","disableAclForSip":true,"name":"string","preferredPopLocation":{"preferredOnly":true,"primary":{"by":"ID","input":"string"},"secondary":{"by":"ID","input":"string"}},"siteLocation":{"address":"string","cityName":"string","countryCode":"string","stateCode":"string","timezone":"string"},"siteType":"BRANCH","workingHours":{"fromTimeMinuteOffset":1,"override":true,"toTimeMinuteOffset":1,"workingDays":"SUNDAY"}}}'
 
 catocli mutation site updateSiteGeneralDetails '{
     "siteId": "id",
@@ -19,21 +19,7 @@ catocli mutation site updateSiteGeneralDetails '{
         "description": "string",
         "disableAclForSip": true,
         "name": "string",
-        "siteType": "BRANCH",
-        "siteWorkingHoursInput": {
-            "fromTimeMinuteOffset": 1,
-            "override": true,
-            "toTimeMinuteOffset": 1,
-            "workingDays": "SUNDAY"
-        },
-        "updateSiteLocationInput": {
-            "address": "string",
-            "cityName": "string",
-            "countryCode": "string",
-            "stateCode": "string",
-            "timezone": "string"
-        },
-        "updateSitePreferredPopLocationInput": {
+        "preferredPopLocation": {
             "preferredOnly": true,
             "primary": {
                 "by": "ID",
@@ -43,6 +29,20 @@ catocli mutation site updateSiteGeneralDetails '{
                 "by": "ID",
                 "input": "string"
             }
+        },
+        "siteLocation": {
+            "address": "string",
+            "cityName": "string",
+            "countryCode": "string",
+            "stateCode": "string",
+            "timezone": "string"
+        },
+        "siteType": "BRANCH",
+        "workingHours": {
+            "fromTimeMinuteOffset": 1,
+            "override": true,
+            "toTimeMinuteOffset": 1,
+            "workingDays": "SUNDAY"
         }
     }
 }'

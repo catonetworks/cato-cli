@@ -11,18 +11,18 @@ catocli mutation policy remotePortFwd moveRule <json>
 
 catocli mutation policy remotePortFwd moveRule --json-file mutation.policy.remotePortFwd.moveRule.json
 
-catocli mutation policy remotePortFwd moveRule '{"policyMoveRuleInput":{"id":"id","policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"}},"remotePortFwdPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
+catocli mutation policy remotePortFwd moveRule '{"policyMoveRuleInput":{"id":"id","to":{"position":"AFTER_RULE","ref":"id"}},"remotePortFwdPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy remotePortFwd moveRule '{
     "policyMoveRuleInput": {
         "id": "id",
-        "policyRulePositionInput": {
+        "to": {
             "position": "AFTER_RULE",
             "ref": "id"
         }
     },
     "remotePortFwdPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     }

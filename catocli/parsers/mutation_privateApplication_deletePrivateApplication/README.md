@@ -11,11 +11,11 @@ catocli mutation privateApplication deletePrivateApplication <json>
 
 catocli mutation privateApplication deletePrivateApplication --json-file mutation.privateApplication.deletePrivateApplication.json
 
-catocli mutation privateApplication deletePrivateApplication '{"deletePrivateApplicationInput":{"privateApplicationRefInput":{"by":"ID","input":"string"}}}'
+catocli mutation privateApplication deletePrivateApplication '{"deletePrivateApplicationInput":{"privateApplication":{"by":"ID","input":"string"}}}'
 
 catocli mutation privateApplication deletePrivateApplication '{
     "deletePrivateApplicationInput": {
-        "privateApplicationRefInput": {
+        "privateApplication": {
             "by": "ID",
             "input": "string"
         }

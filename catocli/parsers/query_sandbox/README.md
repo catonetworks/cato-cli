@@ -11,15 +11,11 @@ catocli query sandbox <json>
 
 catocli query sandbox --json-file query.sandbox.json
 
-catocli query sandbox '{"sandboxReportsInput":{"pagingInput":{"from":1,"limit":1},"sandboxReportsFilterInput":{"fileHash":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"fileName":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"reportCreateDate":{"between":["example1","example2"],"eq":"example_value","gt":"example_value","gte":"example_value","in":["example1","example2"],"lt":"example_value","lte":"example_value","neq":"example_value","nin":["example1","example2"]}},"sandboxReportsSortInput":{"fileName":{"direction":"ASC","priority":1},"reportCreateDate":{"direction":"ASC","priority":1}}}}'
+catocli query sandbox '{"sandboxReportsInput":{"filter":{"fileHash":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"fileName":{"eq":"string","in":["string1","string2"],"neq":"string","nin":["string1","string2"]},"reportCreateDate":{"between":["example1","example2"],"eq":"example_value","gt":"example_value","gte":"example_value","in":["example1","example2"],"lt":"example_value","lte":"example_value","neq":"example_value","nin":["example1","example2"]}},"paging":{"from":1,"limit":1},"sort":{"fileName":{"direction":"ASC","priority":1},"reportCreateDate":{"direction":"ASC","priority":1}}}}'
 
 catocli query sandbox '{
     "sandboxReportsInput": {
-        "pagingInput": {
-            "from": 1,
-            "limit": 1
-        },
-        "sandboxReportsFilterInput": {
+        "filter": {
             "fileHash": {
                 "eq": "string",
                 "in": [
@@ -65,7 +61,11 @@ catocli query sandbox '{
                 ]
             }
         },
-        "sandboxReportsSortInput": {
+        "paging": {
+            "from": 1,
+            "limit": 1
+        },
+        "sort": {
             "fileName": {
                 "direction": "ASC",
                 "priority": 1

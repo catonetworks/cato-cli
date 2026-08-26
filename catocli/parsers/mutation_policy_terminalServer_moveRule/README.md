@@ -11,18 +11,18 @@ catocli mutation policy terminalServer moveRule <json>
 
 catocli mutation policy terminalServer moveRule --json-file mutation.policy.terminalServer.moveRule.json
 
-catocli mutation policy terminalServer moveRule '{"policyMoveRuleInput":{"id":"id","policyRulePositionInput":{"position":"AFTER_RULE","ref":"id"}},"terminalServerPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
+catocli mutation policy terminalServer moveRule '{"policyMoveRuleInput":{"id":"id","to":{"position":"AFTER_RULE","ref":"id"}},"terminalServerPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy terminalServer moveRule '{
     "policyMoveRuleInput": {
         "id": "id",
-        "policyRulePositionInput": {
+        "to": {
             "position": "AFTER_RULE",
             "ref": "id"
         }
     },
     "terminalServerPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     }

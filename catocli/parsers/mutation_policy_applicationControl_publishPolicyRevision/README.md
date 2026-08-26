@@ -11,11 +11,11 @@ catocli mutation policy applicationControl publishPolicyRevision <json>
 
 catocli mutation policy applicationControl publishPolicyRevision --json-file mutation.policy.applicationControl.publishPolicyRevision.json
 
-catocli mutation policy applicationControl publishPolicyRevision '{"applicationControlPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyPublishRevisionInput":{"description":"string","name":"string"}}'
+catocli mutation policy applicationControl publishPolicyRevision '{"applicationControlPolicyMutationInput":{"revision":{"id":"id"}},"policyPublishRevisionInput":{"description":"string","name":"string"}}'
 
 catocli mutation policy applicationControl publishPolicyRevision '{
     "applicationControlPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     },

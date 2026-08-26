@@ -11,11 +11,11 @@ catocli query policy wanNetwork policy <json>
 
 catocli query policy wanNetwork policy --json-file query.policy.wanNetwork.policy.json
 
-catocli query policy wanNetwork policy '{"wanNetworkPolicyInput":{"policyRevisionInput":{"id":"id","type":"PRIVATE"}}}'
+catocli query policy wanNetwork policy '{"wanNetworkPolicyInput":{"revision":{"id":"id","type":"PRIVATE"}}}'
 
 catocli query policy wanNetwork policy '{
     "wanNetworkPolicyInput": {
-        "policyRevisionInput": {
+        "revision": {
             "id": "id",
             "type": "PRIVATE"
         }

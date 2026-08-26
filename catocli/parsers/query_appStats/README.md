@@ -11,7 +11,7 @@ catocli query appStats <json>
 
 catocli query appStats --json-file query.appStats.json
 
-catocli query appStats '{"appStatsFilter":{"fieldName":"account_id","operator":"is","values":["string1","string2"]},"appStatsPostAggFilter":{"aggType":"sum","appStatsFilter":{"fieldName":"account_id","operator":"is","values":["string1","string2"]}},"appStatsSort":{"alias":"string","fieldName":"account_id","order":"asc"},"dimension":{"fieldName":"account_id"},"from":1,"includeEmptyDimension":true,"limit":1,"measure":{"aggType":"sum","alias":"string","fieldName":"account_id","trend":true},"timeFrame":"example_value"}'
+catocli query appStats '{"appStatsFilter":{"fieldName":"account_id","operator":"is","values":["string1","string2"]},"appStatsPostAggFilter":{"aggType":"sum","filter":{"fieldName":"account_id","operator":"is","values":["string1","string2"]}},"appStatsSort":{"alias":"string","fieldName":"account_id","order":"asc"},"dimension":{"fieldName":"account_id"},"from":1,"includeEmptyDimension":true,"limit":1,"measure":{"aggType":"sum","alias":"string","fieldName":"account_id","trend":true},"timeFrame":"example_value"}'
 
 catocli query appStats '{
     "appStatsFilter": {
@@ -24,7 +24,7 @@ catocli query appStats '{
     },
     "appStatsPostAggFilter": {
         "aggType": "sum",
-        "appStatsFilter": {
+        "filter": {
             "fieldName": "account_id",
             "operator": "is",
             "values": [

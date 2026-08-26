@@ -11,11 +11,11 @@ catocli mutation policy appTenantRestriction removeRule <json>
 
 catocli mutation policy appTenantRestriction removeRule --json-file mutation.policy.appTenantRestriction.removeRule.json
 
-catocli mutation policy appTenantRestriction removeRule '{"appTenantRestrictionPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"appTenantRestrictionRemoveRuleInput":{"id":"id"}}'
+catocli mutation policy appTenantRestriction removeRule '{"appTenantRestrictionPolicyMutationInput":{"revision":{"id":"id"}},"appTenantRestrictionRemoveRuleInput":{"id":"id"}}'
 
 catocli mutation policy appTenantRestriction removeRule '{
     "appTenantRestrictionPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     },

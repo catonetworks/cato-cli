@@ -11,17 +11,17 @@ catocli mutation container ipAddressRange updateFromURL <json>
 
 catocli mutation container ipAddressRange updateFromURL --json-file mutation.container.ipAddressRange.updateFromURL.json
 
-catocli mutation container ipAddressRange updateFromURL '{"updateIpAddressRangeContainerFromUrlInput":{"containerRefInput":{"by":"ID","input":"string"},"description":"string","fileType":"STIX","updateContainerSyncDataInput":{"notifications":{"mailingList":{"by":"ID","input":"string"},"subscriptionGroup":{"by":"ID","input":"string"},"webhook":{"by":"ID","input":"string"}},"timeInterval":1,"timeUnit":"HOUR","url":"example_value"}}}'
+catocli mutation container ipAddressRange updateFromURL '{"updateIpAddressRangeContainerFromUrlInput":{"description":"string","fileType":"STIX","ref":{"by":"ID","input":"string"},"syncData":{"notifications":{"mailingList":{"by":"ID","input":"string"},"subscriptionGroup":{"by":"ID","input":"string"},"webhook":{"by":"ID","input":"string"}},"timeInterval":1,"timeUnit":"HOUR","url":"example_value"}}}'
 
 catocli mutation container ipAddressRange updateFromURL '{
     "updateIpAddressRangeContainerFromUrlInput": {
-        "containerRefInput": {
+        "description": "string",
+        "fileType": "STIX",
+        "ref": {
             "by": "ID",
             "input": "string"
         },
-        "description": "string",
-        "fileType": "STIX",
-        "updateContainerSyncDataInput": {
+        "syncData": {
             "notifications": {
                 "mailingList": {
                     "by": "ID",

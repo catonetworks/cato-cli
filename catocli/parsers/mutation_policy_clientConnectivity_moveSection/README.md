@@ -11,17 +11,17 @@ catocli mutation policy clientConnectivity moveSection <json>
 
 catocli mutation policy clientConnectivity moveSection --json-file mutation.policy.clientConnectivity.moveSection.json
 
-catocli mutation policy clientConnectivity moveSection '{"clientConnectivityPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"policyMoveSectionInput":{"id":"id","policySectionPositionInput":{"position":"AFTER_SECTION","ref":"id"}}}'
+catocli mutation policy clientConnectivity moveSection '{"clientConnectivityPolicyMutationInput":{"revision":{"id":"id"}},"policyMoveSectionInput":{"id":"id","to":{"position":"AFTER_SECTION","ref":"id"}}}'
 
 catocli mutation policy clientConnectivity moveSection '{
     "clientConnectivityPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     },
     "policyMoveSectionInput": {
         "id": "id",
-        "policySectionPositionInput": {
+        "to": {
             "position": "AFTER_SECTION",
             "ref": "id"
         }

@@ -11,11 +11,14 @@ catocli mutation container ipAddressRange createFromURL <json>
 
 catocli mutation container ipAddressRange createFromURL --json-file mutation.container.ipAddressRange.createFromURL.json
 
-catocli mutation container ipAddressRange createFromURL '{"createIpAddressRangeContainerFromUrlInput":{"createContainerSyncDataInput":{"notifications":{"mailingList":{"by":"ID","input":"string"},"subscriptionGroup":{"by":"ID","input":"string"},"webhook":{"by":"ID","input":"string"}},"timeInterval":1,"timeUnit":"HOUR","url":"example_value"},"description":"string","fileType":"STIX","name":"string"}}'
+catocli mutation container ipAddressRange createFromURL '{"createIpAddressRangeContainerFromUrlInput":{"description":"string","fileType":"STIX","name":"string","syncData":{"notifications":{"mailingList":{"by":"ID","input":"string"},"subscriptionGroup":{"by":"ID","input":"string"},"webhook":{"by":"ID","input":"string"}},"timeInterval":1,"timeUnit":"HOUR","url":"example_value"}}}'
 
 catocli mutation container ipAddressRange createFromURL '{
     "createIpAddressRangeContainerFromUrlInput": {
-        "createContainerSyncDataInput": {
+        "description": "string",
+        "fileType": "STIX",
+        "name": "string",
+        "syncData": {
             "notifications": {
                 "mailingList": {
                     "by": "ID",
@@ -33,10 +36,7 @@ catocli mutation container ipAddressRange createFromURL '{
             "timeInterval": 1,
             "timeUnit": "HOUR",
             "url": "example_value"
-        },
-        "description": "string",
-        "fileType": "STIX",
-        "name": "string"
+        }
     }
 }'
 ```

@@ -11,11 +11,11 @@ catocli mutation policy privateAccess removeRule <json>
 
 catocli mutation policy privateAccess removeRule --json-file mutation.policy.privateAccess.removeRule.json
 
-catocli mutation policy privateAccess removeRule '{"privateAccessPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}},"privateAccessRemoveRuleInput":{"id":"id"}}'
+catocli mutation policy privateAccess removeRule '{"privateAccessPolicyMutationInput":{"revision":{"id":"id"}},"privateAccessRemoveRuleInput":{"id":"id"}}'
 
 catocli mutation policy privateAccess removeRule '{
     "privateAccessPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     },

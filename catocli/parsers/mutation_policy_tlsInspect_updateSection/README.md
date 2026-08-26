@@ -11,17 +11,17 @@ catocli mutation policy tlsInspect updateSection <json>
 
 catocli mutation policy tlsInspect updateSection --json-file mutation.policy.tlsInspect.updateSection.json
 
-catocli mutation policy tlsInspect updateSection '{"policyUpdateSectionInput":{"id":"id","policyUpdateSectionInfoInput":{"name":"string"}},"tlsInspectPolicyMutationInput":{"policyMutationRevisionInput":{"id":"id"}}}'
+catocli mutation policy tlsInspect updateSection '{"policyUpdateSectionInput":{"id":"id","section":{"name":"string"}},"tlsInspectPolicyMutationInput":{"revision":{"id":"id"}}}'
 
 catocli mutation policy tlsInspect updateSection '{
     "policyUpdateSectionInput": {
         "id": "id",
-        "policyUpdateSectionInfoInput": {
+        "section": {
             "name": "string"
         }
     },
     "tlsInspectPolicyMutationInput": {
-        "policyMutationRevisionInput": {
+        "revision": {
             "id": "id"
         }
     }

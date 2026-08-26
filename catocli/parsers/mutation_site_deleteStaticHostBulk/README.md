@@ -11,16 +11,16 @@ catocli mutation site deleteStaticHostBulk <json>
 
 catocli mutation site deleteStaticHostBulk --json-file mutation.site.deleteStaticHostBulk.json
 
-catocli mutation site deleteStaticHostBulk '{"deleteStaticHostBulkInput":{"siteRefInput":{"by":"ID","input":"string"},"siteStaticHostRefInput":{"hostId":"id"}}}'
+catocli mutation site deleteStaticHostBulk '{"deleteStaticHostBulkInput":{"host":{"hostId":"id"},"site":{"by":"ID","input":"string"}}}'
 
 catocli mutation site deleteStaticHostBulk '{
     "deleteStaticHostBulkInput": {
-        "siteRefInput": {
+        "host": {
+            "hostId": "id"
+        },
+        "site": {
             "by": "ID",
             "input": "string"
-        },
-        "siteStaticHostRefInput": {
-            "hostId": "id"
         }
     }
 }'

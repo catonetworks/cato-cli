@@ -11,19 +11,8 @@ import groovy.json.JsonOutput
 //                                      in catonetworks/cato-cli
 //   cato-acc-slack-token             -> Jenkins Bot token for PR notifications
 
-def podYaml = k8sPodConfigGenerator(
-    overrides: [
-        JNLP_IMAGE: 'catonet/jenkins-slave-python3:3107.v665000b_51092-15-jdk17'
-    ]
-)
-
 pipeline {
-    agent {
-        kubernetes {
-            yaml podYaml
-            defaultContainer 'jnlp'
-        }
-    }
+    agent { label 'jenkins-slaves' }
 
     triggers {
         cron('H H * * 1')

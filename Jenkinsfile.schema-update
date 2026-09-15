@@ -1,0 +1,255 @@
+import groovy.json.JsonOutput
+
+// Scheduled cato-cli schema refresh job.
+//
+// Required Jenkins credentials:
+//   automation-github-user          -> GitHub checkout credentials
+//   cato-cli-schema-api-token       -> Cato API token for schema introspection
+//   cato-cli-schema-account-id      -> Cato account ID for schema introspection
+//   cato-cli-schema-update-gh-token -> GitHub token with least-privilege access
+//                                      to push branches and create pull requests
+//                                      in catonetworks/cato-cli
+//   cato-acc-slack-token             -> Jenkins Bot token for PR notifications
+
+pipeline {
+    agent {
+        docker {
+            image 'python:3.13'
+        }
+    }
+
+    triggers {
+        cron('H H * * 1')
+    }
+
+    parameters {
+        string(
+            name: 'BASE_BRANCH',
+            defaultValue: 'main',
+            description: 'Branch to update from and target for the generated pull request.'
+        )
+        string(
+            name: 'PR_SLACK_CHANNEL',
+            defaultValue: '#cli-prs',
+            description: 'Slack channel for schema update pull request notifications.'
+        )
+    }
+
+    options {
+        disableConcurrentBuilds()
+        buildDiscarder(logRotator(numToKeepStr: '20'))
+        timeout(time: 2, unit: 'HOURS')
+        timestamps()
+        skipDefaultCheckout(true)
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git(
+                    credentialsId: 'automation-github-user',
+                    url: 'https://github.com/catonetworks/cato-cli.git',
+                    branch: params.BASE_BRANCH
+                )
+            }
+        }
+
+        stage('Install dependencies') {
+            steps {
+                sh '''
+                    python3 -m pip install --disable-pip-version-check \
+                        -r requirements.txt \
+                        -r tests/requirements.txt
+                    python3 -m pip install --disable-pip-version-check -e .
+                '''
+            }
+        }
+
+        stage('Refresh schema') {
+            steps {
+                withCredentials([
+                    string(credentialsId: 'cato-cli-schema-api-token', variable: 'CATO_TOKEN'),
+                    string(credentialsId: 'cato-cli-schema-account-id', variable: 'CATO_ACCOUNT_ID')
+                ]) {
+                    sh '''
+                        set -eu
+
+                        # Force this run to use only the injected credentials.
+                        rm -f schema/introspection.json
+                        ci_home="$(mktemp -d)"
+                        trap 'rm -rf "$ci_home"' EXIT
+
+                        cd schema
+                        HOME="$ci_home" python3 importSchema.py
+                        test -s introspection.json
+                    '''
+                }
+            }
+        }
+
+        stage('Validate generated files') {
+            steps {
+                sh 'python3 tests/run_all_tests.py --skip-generated --skip-custom --verbose'
+            }
+        }
+
+        stage('Prepare branch') {
+            steps {
+                script {
+                    env.CHANGES_DETECTED = sh(
+                        script: 'if [ -n "$(git status --porcelain)" ]; then echo true; else echo false; fi',
+                        returnStdout: true
+                    ).trim()
+
+                    if (env.CHANGES_DETECTED != 'true') {
+                        currentBuild.description = 'No schema changes'
+                        echo 'No schema changes detected; skipping branch and PR creation.'
+                        return
+                    }
+
+                    def stamp = sh(script: 'date -u +%Y%m%d-%H%M%S', returnStdout: true).trim()
+                    env.SCHEMA_UPDATE_BRANCH = "automation/schema-update-${stamp}"
+                    sh '''
+                        git checkout -B "$SCHEMA_UPDATE_BRANCH"
+                        git add -A -- \
+                          catocli \
+                          models \
+                          queryPayloads \
+                          schema/introspection.json \
+                          tests/payloads_generated.json
+
+                        git -c user.name='cato-cli-automation' \
+                            -c user.email='cato-cli-automation@users.noreply.github.com' \
+                            commit -m 'Update generated CLI schema' \
+                                   -m 'Refresh the Cato GraphQL introspection schema and regenerate CLI models, payloads, parsers, and documentation.'
+                    '''
+                    currentBuild.description = "Prepared ${env.SCHEMA_UPDATE_BRANCH}"
+                }
+            }
+        }
+
+        stage('Push branch') {
+            when {
+                expression { env.CHANGES_DETECTED == 'true' }
+            }
+            steps {
+                withCredentials([string(credentialsId: 'cato-cli-schema-update-gh-token', variable: 'GH_TOKEN')]) {
+                    sh '''
+                        askpass="$(mktemp)"
+                        trap 'rm -f "$askpass"' EXIT
+                        cat > "$askpass" <<'EOF'
+#!/bin/sh
+case "$1" in
+  *Username*) printf '%s\n' 'x-access-token' ;;
+  *Password*) printf '%s\n' "$GH_TOKEN" ;;
+  *) printf '\n' ;;
+esac
+EOF
+                        chmod 700 "$askpass"
+
+                        GIT_ASKPASS="$askpass" \
+                        GIT_TERMINAL_PROMPT=0 \
+                        git push https://github.com/catonetworks/cato-cli.git "HEAD:${SCHEMA_UPDATE_BRANCH}"
+                    '''
+                }
+            }
+        }
+
+        stage('Create pull request') {
+            when {
+                expression { env.CHANGES_DETECTED == 'true' }
+            }
+            steps {
+                script {
+                    def prTitle = 'Update generated CLI schema'
+                    def prBody = '''## Summary
+- Refreshes the tracked GraphQL introspection schema from the Cato API.
+- Regenerates CLI models, payloads, parsers, READMEs, and generated test payloads.
+- Runs the structural validation test suite.
+
+## Test plan
+- `python3 tests/run_all_tests.py --skip-generated --skip-custom --verbose`
+'''
+                    writeFile(
+                        file: 'pr_payload.json',
+                        text: JsonOutput.toJson([
+                            title: prTitle,
+                            head: env.SCHEMA_UPDATE_BRANCH,
+                            base: params.BASE_BRANCH,
+                            body: prBody,
+                            maintainer_can_modify: true
+                        ])
+                    )
+                }
+
+                withCredentials([string(credentialsId: 'cato-cli-schema-update-gh-token', variable: 'GH_TOKEN')]) {
+                    sh '''
+                        curl_config="$(mktemp)"
+                        trap 'rm -f "$curl_config"' EXIT
+                        cat > "$curl_config" <<EOF
+header = "Authorization: Bearer ${GH_TOKEN}"
+header = "Accept: application/vnd.github+json"
+header = "X-GitHub-Api-Version: 2022-11-28"
+EOF
+
+                        set +x
+                        http_code="$(curl -sS -w '%{http_code}' -o pr_response.json \
+                          -X POST \
+                          --config "$curl_config" \
+                          --data @pr_payload.json \
+                          https://api.github.com/repos/catonetworks/cato-cli/pulls)"
+                        set -x
+
+                        echo "GitHub pull request API response: HTTP ${http_code}"
+                        cat pr_response.json
+
+                        if [ "${http_code}" != "201" ]; then
+                            exit 1
+                        fi
+                    '''
+                }
+
+                script {
+                    def response = readJSON(file: 'pr_response.json', returnPojo: true)
+                    env.SCHEMA_UPDATE_PR_URL = response.html_url as String
+                    if (!env.SCHEMA_UPDATE_PR_URL) {
+                        error('GitHub pull request response did not include html_url.')
+                    }
+
+                    def schemaUpdateDate = sh(script: 'date -u +%F', returnStdout: true).trim()
+                    slackSend(
+                        channel: params.PR_SLACK_CHANNEL,
+                        botUser: true,
+                        tokenCredentialId: 'cato-acc-slack-token',
+                        message: "CLI Schema Update ${schemaUpdateDate} <${env.SCHEMA_UPDATE_PR_URL}>"
+                    )
+                }
+            }
+        }
+    }
+
+    post {
+        failure {
+            script {
+                if (!env.SCHEMA_UPDATE_PR_URL) {
+                    try {
+                        slackSend(
+                            channel: params.PR_SLACK_CHANNEL,
+                            color: 'danger',
+                            botUser: true,
+                            tokenCredentialId: 'cato-acc-slack-token',
+                            message: "CLI schema update failed before pull request creation | <${env.BUILD_URL}|Build #${env.BUILD_NUMBER}>"
+                        )
+                    } catch (notificationError) {
+                        echo "Failed to send pre-PR failure notification: ${notificationError.message}"
+                    }
+                }
+            }
+        }
+        cleanup {
+            script {
+                try { cleanWs() } catch (ignore) {}
+            }
+        }
+    }
+}

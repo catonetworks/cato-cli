@@ -12,11 +12,7 @@ import groovy.json.JsonOutput
 //   cato-acc-slack-token             -> Jenkins Bot token for PR notifications
 
 pipeline {
-    agent {
-        docker {
-            image 'python:3.13'
-        }
-    }
+    agent any
 
     triggers {
         cron('H H * * 1')

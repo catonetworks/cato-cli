@@ -3,8 +3,8 @@ import groovy.json.JsonOutput
 // Scheduled cato-cli schema refresh job.
 //
 // Required Jenkins credentials:
-//   cato-cli-schema-api-token       -> Cato API token for schema introspection
-//   cato-cli-schema-account-id      -> Cato account ID for schema introspection
+//   cato-acctest-token              -> Shared Cato API token
+//   cato-acctest-account-id         -> Shared Cato account ID
 //   cato-cli-schema-update-gh-token -> GitHub token with least-privilege access
 //                                      to push branches and create pull requests
 //                                      in catonetworks/cato-cli
@@ -64,8 +64,8 @@ pipeline {
         stage('Refresh schema') {
             steps {
                 withCredentials([
-                    string(credentialsId: 'cato-cli-schema-api-token', variable: 'CATO_TOKEN'),
-                    string(credentialsId: 'cato-cli-schema-account-id', variable: 'CATO_ACCOUNT_ID')
+                    string(credentialsId: 'cato-acctest-token', variable: 'CATO_TOKEN'),
+                    string(credentialsId: 'cato-acctest-account-id', variable: 'CATO_ACCOUNT_ID')
                 ]) {
                     sh '''
                         set -eu

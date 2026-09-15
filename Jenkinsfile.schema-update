@@ -3,7 +3,6 @@ import groovy.json.JsonOutput
 // Scheduled cato-cli schema refresh job.
 //
 // Required Jenkins credentials:
-//   automation-github-user          -> GitHub checkout credentials
 //   cato-cli-schema-api-token       -> Cato API token for schema introspection
 //   cato-cli-schema-account-id      -> Cato account ID for schema introspection
 //   cato-cli-schema-update-gh-token -> GitHub token with least-privilege access
@@ -43,7 +42,6 @@ pipeline {
         stage('Checkout') {
             steps {
                 git(
-                    credentialsId: 'automation-github-user',
                     url: 'https://github.com/catonetworks/cato-cli.git',
                     branch: params.BASE_BRANCH
                 )
@@ -53,10 +51,11 @@ pipeline {
         stage('Install dependencies') {
             steps {
                 sh '''
-                    python3 -m pip install --disable-pip-version-check \
+                    python3 -m venv .venv
+                    .venv/bin/python -m pip install --disable-pip-version-check \
                         -r requirements.txt \
                         -r tests/requirements.txt
-                    python3 -m pip install --disable-pip-version-check -e .
+                    .venv/bin/python -m pip install --disable-pip-version-check -e .
                 '''
             }
         }
@@ -76,7 +75,7 @@ pipeline {
                         trap 'rm -rf "$ci_home"' EXIT
 
                         cd schema
-                        HOME="$ci_home" python3 importSchema.py
+                        HOME="$ci_home" ../.venv/bin/python importSchema.py
                         test -s introspection.json
                     '''
                 }
@@ -85,7 +84,7 @@ pipeline {
 
         stage('Validate generated files') {
             steps {
-                sh 'python3 tests/run_all_tests.py --skip-generated --skip-custom --verbose'
+                sh '.venv/bin/python tests/run_all_tests.py --skip-generated --skip-custom --verbose'
             }
         }
 
@@ -164,7 +163,7 @@ EOF
 - Runs the structural validation test suite.
 
 ## Test plan
-- `python3 tests/run_all_tests.py --skip-generated --skip-custom --verbose`
+- `.venv/bin/python tests/run_all_tests.py --skip-generated --skip-custom --verbose`
 '''
                     writeFile(
                         file: 'pr_payload.json',

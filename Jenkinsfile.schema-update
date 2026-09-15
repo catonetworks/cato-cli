@@ -5,9 +5,8 @@ import groovy.json.JsonOutput
 // Required Jenkins credentials:
 //   cato-acctest-token              -> Shared Cato API token
 //   cato-acctest-account-id         -> Shared Cato account ID
-//   cato-cli-schema-update-gh-token -> GitHub token with least-privilege access
-//                                      to push branches and create pull requests
-//                                      in catonetworks/cato-cli
+//   cato-schema-update-gh-token      -> Shared GitHub token with least-privilege
+//                                      access to push branches and create pull requests
 //   cato-acc-slack-token             -> Jenkins Bot token for PR notifications
 
 pipeline {
@@ -124,7 +123,7 @@ pipeline {
                 expression { env.CHANGES_DETECTED == 'true' }
             }
             steps {
-                withCredentials([string(credentialsId: 'cato-cli-schema-update-gh-token', variable: 'GH_TOKEN')]) {
+                withCredentials([string(credentialsId: 'cato-schema-update-gh-token', variable: 'GH_TOKEN')]) {
                     sh '''
                         askpass="$(mktemp)"
                         trap 'rm -f "$askpass"' EXIT
@@ -172,7 +171,7 @@ EOF
                     )
                 }
 
-                withCredentials([string(credentialsId: 'cato-cli-schema-update-gh-token', variable: 'GH_TOKEN')]) {
+                withCredentials([string(credentialsId: 'cato-schema-update-gh-token', variable: 'GH_TOKEN')]) {
                     sh '''
                         curl_config="$(mktemp)"
                         trap 'rm -f "$curl_config"' EXIT

@@ -86,7 +86,19 @@ pipeline {
 
         stage('Validate generated files') {
             steps {
-                sh 'PYTHONPATH="$WORKSPACE/.ci-python:$WORKSPACE${PYTHONPATH:+:$PYTHONPATH}" python3 tests/run_all_tests.py --skip-generated --skip-custom --verbose'
+                withCredentials([
+                    string(credentialsId: 'cato-acctest-token', variable: 'CATO_TOKEN'),
+                    string(credentialsId: 'cato-acctest-account-id', variable: 'CATO_ACCOUNT_ID')
+                ]) {
+                    sh '''
+                        set -eu
+                        ci_home="$(mktemp -d)"
+                        trap 'rm -rf "$ci_home"' EXIT
+
+                        export PYTHONPATH="$WORKSPACE/.ci-python:$WORKSPACE${PYTHONPATH:+:$PYTHONPATH}"
+                        HOME="$ci_home" python3 tests/run_all_tests.py --skip-generated --skip-custom --verbose
+                    '''
+                }
             }
         }
 

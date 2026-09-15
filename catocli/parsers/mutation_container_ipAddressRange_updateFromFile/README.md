@@ -28,5 +28,3 @@ catocli mutation container ipAddressRange updateFromFile '{
 
 #### Operation Arguments for mutation.container.ipAddressRange.updateFromFile ####
 
-`accountId` [ID] - (required) N/A    
-`updateIpAddressRangeContainerFromFileInput` [UpdateIpAddressRangeContainerFromFileInput] - (required) N/A    

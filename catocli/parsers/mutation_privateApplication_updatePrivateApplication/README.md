@@ -52,5 +52,3 @@ catocli mutation privateApplication updatePrivateApplication '{
 
 #### Operation Arguments for mutation.privateApplication.updatePrivateApplication ####
 
-`accountId` [ID] - (required) N/A    
-`updatePrivateApplicationInput` [UpdatePrivateApplicationInput] - (required) N/A    

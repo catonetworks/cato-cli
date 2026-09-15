@@ -27,5 +27,3 @@ catocli query site retrieveUsedVlanIDs '{
 
 #### Operation Arguments for query.site.retrieveUsedVlanIDs ####
 
-`accountId` [ID] - (required) N/A    
-`retrieveUsedVlanIDsInput` [RetrieveUsedVlanIDsInput] - (required) N/A    

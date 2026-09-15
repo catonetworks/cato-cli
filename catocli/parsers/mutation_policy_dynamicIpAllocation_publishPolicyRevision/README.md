@@ -28,6 +28,3 @@ catocli mutation policy dynamicIpAllocation publishPolicyRevision '{
 
 #### Operation Arguments for mutation.policy.dynamicIpAllocation.publishPolicyRevision ####
 
-`accountId` [ID] - (required) N/A    
-`dynamicIpAllocationPolicyMutationInput` [DynamicIpAllocationPolicyMutationInput] - (required) N/A    
-`policyPublishRevisionInput` [PolicyPublishRevisionInput] - (required) N/A    

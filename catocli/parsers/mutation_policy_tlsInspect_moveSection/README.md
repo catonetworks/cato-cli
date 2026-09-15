@@ -31,6 +31,3 @@ catocli mutation policy tlsInspect moveSection '{
 
 #### Operation Arguments for mutation.policy.tlsInspect.moveSection ####
 
-`accountId` [ID] - (required) N/A    
-`policyMoveSectionInput` [PolicyMoveSectionInput] - (required) N/A    
-`tlsInspectPolicyMutationInput` [TlsInspectPolicyMutationInput] - (required) N/A    

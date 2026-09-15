@@ -28,6 +28,3 @@ catocli mutation policy clientConnectivity createPolicyRevision '{
 
 #### Operation Arguments for mutation.policy.clientConnectivity.createPolicyRevision ####
 
-`accountId` [ID] - (required) N/A    
-`clientConnectivityPolicyMutationInput` [ClientConnectivityPolicyMutationInput] - (required) N/A    
-`policyCreateRevisionInput` [PolicyCreateRevisionInput] - (required) N/A    

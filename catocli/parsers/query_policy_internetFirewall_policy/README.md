@@ -45,5 +45,3 @@ catocli query policy internetFirewall policy | jq -r '.data.policy.internetFirew
 
 #### Operation Arguments for query.policy.internetFirewall.policy ####
 
-`accountId` [ID] - (required) N/A    
-`internetFirewallPolicyInput` [InternetFirewallPolicyInput] - (required) N/A    

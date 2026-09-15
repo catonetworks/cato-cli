@@ -28,6 +28,3 @@ catocli mutation policy socketBypass publishPolicyRevision '{
 
 #### Operation Arguments for mutation.policy.socketBypass.publishPolicyRevision ####
 
-`accountId` [ID] - (required) N/A    
-`policyPublishRevisionInput` [PolicyPublishRevisionInput] - (required) N/A    
-`socketBypassPolicyMutationInput` [SocketBypassPolicyMutationInput] - (required) N/A    

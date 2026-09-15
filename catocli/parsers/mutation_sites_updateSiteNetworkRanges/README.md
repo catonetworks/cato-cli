@@ -66,5 +66,3 @@ catocli mutation sites updateSiteNetworkRanges '{
 
 #### Operation Arguments for mutation.sites.updateSiteNetworkRanges ####
 
-`accountId` [ID] - (required) N/A    
-`updateSiteNetworkRangesInput` [UpdateSiteNetworkRangesInput] - (required) N/A    

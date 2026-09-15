@@ -31,6 +31,3 @@ catocli mutation policy socketBypass moveRule '{
 
 #### Operation Arguments for mutation.policy.socketBypass.moveRule ####
 
-`accountId` [ID] - (required) N/A    
-`policyMoveRuleInput` [PolicyMoveRuleInput] - (required) N/A    
-`socketBypassPolicyMutationInput` [SocketBypassPolicyMutationInput] - (required) N/A    

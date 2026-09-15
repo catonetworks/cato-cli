@@ -31,6 +31,3 @@ catocli mutation policy ztnaAlwaysOn moveSection '{
 
 #### Operation Arguments for mutation.policy.ztnaAlwaysOn.moveSection ####
 
-`accountId` [ID] - (required) N/A    
-`policyMoveSectionInput` [PolicyMoveSectionInput] - (required) N/A    
-`ztnaAlwaysOnPolicyMutationInput` [ZtnaAlwaysOnPolicyMutationInput] - (required) N/A    

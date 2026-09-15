@@ -23,5 +23,3 @@ catocli mutation notification deleteSubscriptionGroup '{
 
 #### Operation Arguments for mutation.notification.deleteSubscriptionGroup ####
 
-`accountId` [ID] - (required) N/A    
-`subscriptionGroupRefInput` [SubscriptionGroupRefInput] - (required) N/A    

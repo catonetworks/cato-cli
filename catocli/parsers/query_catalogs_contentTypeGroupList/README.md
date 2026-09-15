@@ -83,5 +83,3 @@ catocli query catalogs contentTypeGroupList '{
 
 #### Operation Arguments for query.catalogs.contentTypeGroupList ####
 
-`accountId` [ID] - (required) N/A    
-`catalogApplicationContentTypeGroupListInput` [CatalogApplicationContentTypeGroupListInput] - (required) N/A    

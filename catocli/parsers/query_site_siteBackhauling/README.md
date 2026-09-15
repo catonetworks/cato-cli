@@ -23,5 +23,3 @@ catocli query site siteBackhauling '{
 
 #### Operation Arguments for query.site.siteBackhauling ####
 
-`accountId` [ID] - (required) N/A    
-`siteRefInput` [SiteRefInput] - (required) N/A    

@@ -25,5 +25,3 @@ catocli query site siteSocketConfiguration '{
 
 #### Operation Arguments for query.site.siteSocketConfiguration ####
 
-`accountId` [ID] - (required) N/A    
-`siteSocketConfigurationInput` [SiteSocketConfigurationInput] - (required) N/A    

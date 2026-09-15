@@ -23,5 +23,3 @@ catocli mutation licensing updateCommercialLicense '{
 
 #### Operation Arguments for mutation.licensing.updateCommercialLicense ####
 
-`accountId` [ID] - (required) N/A    
-`updateCommercialLicenseInput` [UpdateCommercialLicenseInput] - (required) N/A    

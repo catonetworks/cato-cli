@@ -31,6 +31,3 @@ catocli mutation policy applicationControl moveSection '{
 
 #### Operation Arguments for mutation.policy.applicationControl.moveSection ####
 
-`accountId` [ID] - (required) N/A    
-`applicationControlPolicyMutationInput` [ApplicationControlPolicyMutationInput] - (required) N/A    
-`policyMoveSectionInput` [PolicyMoveSectionInput] - (required) N/A    

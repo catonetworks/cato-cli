@@ -28,6 +28,3 @@ catocli mutation policy remotePortFwd publishPolicyRevision '{
 
 #### Operation Arguments for mutation.policy.remotePortFwd.publishPolicyRevision ####
 
-`accountId` [ID] - (required) N/A    
-`policyPublishRevisionInput` [PolicyPublishRevisionInput] - (required) N/A    
-`remotePortFwdPolicyMutationInput` [RemotePortFwdPolicyMutationInput] - (required) N/A    

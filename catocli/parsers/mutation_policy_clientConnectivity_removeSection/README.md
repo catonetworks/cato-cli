@@ -27,6 +27,3 @@ catocli mutation policy clientConnectivity removeSection '{
 
 #### Operation Arguments for mutation.policy.clientConnectivity.removeSection ####
 
-`accountId` [ID] - (required) N/A    
-`clientConnectivityPolicyMutationInput` [ClientConnectivityPolicyMutationInput] - (required) N/A    
-`policyRemoveSectionInput` [PolicyRemoveSectionInput] - (required) N/A    

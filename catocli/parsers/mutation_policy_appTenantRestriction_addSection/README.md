@@ -33,6 +33,3 @@ catocli mutation policy appTenantRestriction addSection '{
 
 #### Operation Arguments for mutation.policy.appTenantRestriction.addSection ####
 
-`accountId` [ID] - (required) N/A    
-`appTenantRestrictionPolicyMutationInput` [AppTenantRestrictionPolicyMutationInput] - (required) N/A    
-`policyAddSectionInput` [PolicyAddSectionInput] - (required) N/A    

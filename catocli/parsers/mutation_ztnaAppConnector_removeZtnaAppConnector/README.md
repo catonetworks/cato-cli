@@ -25,5 +25,3 @@ catocli mutation ztnaAppConnector removeZtnaAppConnector '{
 
 #### Operation Arguments for mutation.ztnaAppConnector.removeZtnaAppConnector ####
 
-`accountId` [ID] - (required) N/A    
-`removeZtnaAppConnectorInput` [RemoveZtnaAppConnectorInput] - (required) N/A    

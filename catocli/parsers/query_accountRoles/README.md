@@ -20,5 +20,3 @@ catocli query accountRoles '{
 
 #### Operation Arguments for query.accountRoles ####
 
-`accountID` [ID] - (required) N/A    
-`accountType` [AccountType] - (required) N/A Default Value: ['SYSTEM', 'REGULAR', 'RESELLER', 'ALL']   

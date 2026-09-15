@@ -27,6 +27,3 @@ catocli mutation policy socketBypass discardPolicyRevision '{
 
 #### Operation Arguments for mutation.policy.socketBypass.discardPolicyRevision ####
 
-`accountId` [ID] - (required) N/A    
-`policyDiscardRevisionInput` [PolicyDiscardRevisionInput] - (required) N/A    
-`socketBypassPolicyMutationInput` [SocketBypassPolicyMutationInput] - (required) N/A    

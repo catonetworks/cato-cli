@@ -43,5 +43,3 @@ catocli mutation sites updateWifiSsid '{
 
 #### Operation Arguments for mutation.sites.updateWifiSsid ####
 
-`accountId` [ID] - (required) N/A    
-`updateWifiSsidInput` [UpdateWifiSsidInput] - (required) N/A    

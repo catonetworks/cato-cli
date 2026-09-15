@@ -31,6 +31,3 @@ catocli mutation policy wanNetwork moveSection '{
 
 #### Operation Arguments for mutation.policy.wanNetwork.moveSection ####
 
-`accountId` [ID] - (required) N/A    
-`policyMoveSectionInput` [PolicyMoveSectionInput] - (required) N/A    
-`wanNetworkPolicyMutationInput` [WanNetworkPolicyMutationInput] - (required) N/A    

@@ -26,5 +26,3 @@ catocli query container list '{
 
 #### Operation Arguments for query.container.list ####
 
-`accountId` [ID] - (required) N/A    
-`containerSearchInput` [ContainerSearchInput] - (required) N/A    

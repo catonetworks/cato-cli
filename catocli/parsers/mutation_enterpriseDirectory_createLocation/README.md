@@ -45,5 +45,3 @@ catocli mutation enterpriseDirectory createLocation '{
 
 #### Operation Arguments for mutation.enterpriseDirectory.createLocation ####
 
-`accountId` [ID] - (required) N/A    
-`enterpriseDirectoryCreateLocationInput` [EnterpriseDirectoryCreateLocationInput] - (required) N/A    

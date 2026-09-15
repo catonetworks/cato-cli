@@ -30,6 +30,3 @@ catocli mutation policy wanFirewall updateSection '{
 
 #### Operation Arguments for mutation.policy.wanFirewall.updateSection ####
 
-`accountId` [ID] - (required) N/A    
-`policyUpdateSectionInput` [PolicyUpdateSectionInput] - (required) N/A    
-`wanFirewallPolicyMutationInput` [WanFirewallPolicyMutationInput] - (required) N/A    

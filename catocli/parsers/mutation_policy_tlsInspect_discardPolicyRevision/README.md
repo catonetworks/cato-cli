@@ -27,6 +27,3 @@ catocli mutation policy tlsInspect discardPolicyRevision '{
 
 #### Operation Arguments for mutation.policy.tlsInspect.discardPolicyRevision ####
 
-`accountId` [ID] - (required) N/A    
-`policyDiscardRevisionInput` [PolicyDiscardRevisionInput] - (required) N/A    
-`tlsInspectPolicyMutationInput` [TlsInspectPolicyMutationInput] - (required) N/A    

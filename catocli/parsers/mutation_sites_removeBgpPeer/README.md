@@ -22,5 +22,3 @@ catocli mutation sites removeBgpPeer '{
 
 #### Operation Arguments for mutation.sites.removeBgpPeer ####
 
-`accountId` [ID] - (required) N/A    
-`removeBgpPeerInput` [RemoveBgpPeerInput] - (required) N/A    

@@ -44,5 +44,3 @@ catocli mutation site createNetworkRangeBulk '{
 
 #### Operation Arguments for mutation.site.createNetworkRangeBulk ####
 
-`accountId` [ID] - (required) N/A    
-`createNetworkRangeBulkInput` [CreateNetworkRangeBulkInput] - (required) N/A    

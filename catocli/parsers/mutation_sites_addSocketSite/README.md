@@ -11,7 +11,7 @@ catocli mutation sites addSocketSite <json>
 
 catocli mutation sites addSocketSite --json-file mutation.sites.addSocketSite.json
 
-catocli mutation sites addSocketSite '{"addSocketSiteInput":{"connectionType":"SOCKET_X1500","description":"string","name":"string","nativeNetworkRange":"example_value","siteLocation":{"address":"string","city":"string","countryCode":"string","stateCode":"string","timezone":"string"},"siteType":"BRANCH","translatedSubnet":"example_value","vlan":"example_value"}}'
+catocli mutation sites addSocketSite '{"addSocketSiteInput":{"connectionType":"SOCKET_X1500","description":"string","name":"string","nativeNetworkRange":"example_value","secondaryVSocket":{"aws":{"eniIpAddress":"example_value","eniIpSubnet":"example_value","routeTableId":"string"},"azure":{"floatingIp":"example_value","interfaceIp":"example_value"},"gcp":{"interfaceIp":"example_value","loadBalancerIp":"example_value"}},"siteLocation":{"address":"string","city":"string","countryCode":"string","stateCode":"string","timezone":"string"},"siteType":"BRANCH","translatedSubnet":"example_value","vlan":"example_value"}}'
 
 catocli mutation sites addSocketSite '{
     "addSocketSiteInput": {
@@ -19,6 +19,21 @@ catocli mutation sites addSocketSite '{
         "description": "string",
         "name": "string",
         "nativeNetworkRange": "example_value",
+        "secondaryVSocket": {
+            "aws": {
+                "eniIpAddress": "example_value",
+                "eniIpSubnet": "example_value",
+                "routeTableId": "string"
+            },
+            "azure": {
+                "floatingIp": "example_value",
+                "interfaceIp": "example_value"
+            },
+            "gcp": {
+                "interfaceIp": "example_value",
+                "loadBalancerIp": "example_value"
+            }
+        },
         "siteLocation": {
             "address": "string",
             "city": "string",
@@ -35,5 +50,3 @@ catocli mutation sites addSocketSite '{
 
 #### Operation Arguments for mutation.sites.addSocketSite ####
 
-`accountId` [ID] - (required) N/A    
-`addSocketSiteInput` [AddSocketSiteInput] - (required) N/A    

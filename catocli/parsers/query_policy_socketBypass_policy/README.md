@@ -25,5 +25,3 @@ catocli query policy socketBypass policy '{
 
 #### Operation Arguments for query.policy.socketBypass.policy ####
 
-`accountId` [ID] - (required) N/A    
-`socketBypassPolicyInput` [SocketBypassPolicyInput] - (required) N/A    

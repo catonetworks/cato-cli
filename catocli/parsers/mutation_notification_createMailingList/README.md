@@ -30,5 +30,3 @@ catocli mutation notification createMailingList '{
 
 #### Operation Arguments for mutation.notification.createMailingList ####
 
-`accountId` [ID] - (required) N/A    
-`createMailingListInput` [CreateMailingListInput] - (required) N/A    

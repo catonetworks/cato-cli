@@ -27,6 +27,3 @@ catocli mutation policy tlsInspect removeRule '{
 
 #### Operation Arguments for mutation.policy.tlsInspect.removeRule ####
 
-`accountId` [ID] - (required) N/A    
-`tlsInspectPolicyMutationInput` [TlsInspectPolicyMutationInput] - (required) N/A    
-`tlsInspectRemoveRuleInput` [TlsInspectRemoveRuleInput] - (required) N/A    

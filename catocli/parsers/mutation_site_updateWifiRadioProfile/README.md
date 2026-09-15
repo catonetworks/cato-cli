@@ -36,5 +36,3 @@ catocli mutation site updateWifiRadioProfile '{
 
 #### Operation Arguments for mutation.site.updateWifiRadioProfile ####
 
-`accountId` [ID] - (required) N/A    
-`updateWifiRadioProfileInput` [UpdateWifiRadioProfileInput] - (required) N/A    

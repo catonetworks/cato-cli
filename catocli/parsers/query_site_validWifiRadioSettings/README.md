@@ -35,5 +35,3 @@ catocli query site validWifiRadioSettings '{
 
 #### Operation Arguments for query.site.validWifiRadioSettings ####
 
-`accountId` [ID] - (required) N/A    
-`validWifiRadioSettingsInput` [ValidWifiRadioSettingsInput] - (required) N/A    

@@ -1,0 +1,39 @@
+mutation policySiteWebProxyRemoveSection ( $accountId:ID! $siteWebProxyPolicyMutationInput:SiteWebProxyPolicyMutationInput $policyRemoveSectionInput:PolicyRemoveSectionInput!) {
+	policy ( accountId:$accountId ) {
+		siteWebProxy ( input:$siteWebProxyPolicyMutationInput  )  {
+			removeSection ( input:$policyRemoveSectionInput   ) {
+				section {
+					audit {
+						updatedTime
+						updatedBy
+					}
+					metadata {
+						lock {
+							lockingAdminEmail
+							lockingTime
+							lockingRevisionId
+						}
+					}
+					section {
+						id
+						name
+					}
+					properties
+				}
+				status
+				errors {
+					errorMessage
+					errorCode
+				}
+				revision {
+					id
+					name
+					description
+					changes
+					createdTime
+					updatedTime
+				}
+			}
+		}
+	}	
+}

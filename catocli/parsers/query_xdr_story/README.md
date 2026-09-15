@@ -22,7 +22,3 @@ catocli query xdr story '{
 
 #### Operation Arguments for query.xdr.story ####
 
-`accountID` [ID] - (required) N/A    
-`incidentId` [ID] - (required) N/A    
-`producer` [StoryProducerEnum] - (required) N/A Default Value: ['AnomalyStats', 'AnomalyEvents', 'AnomalyExperience', 'ThreatHunt', 'ThreatPrevention', 'NetworkMonitor', 'NetworkXDR', 'MicrosoftEndpointDefender', 'CatoEndpointAlert', 'EntraIdAlert']   
-`storyId` [ID] - (required) N/A    

@@ -27,6 +27,3 @@ catocli mutation policy wanFirewall removeRule '{
 
 #### Operation Arguments for mutation.policy.wanFirewall.removeRule ####
 
-`accountId` [ID] - (required) N/A    
-`wanFirewallPolicyMutationInput` [WanFirewallPolicyMutationInput] - (required) N/A    
-`wanFirewallRemoveRuleInput` [WanFirewallRemoveRuleInput] - (required) N/A    

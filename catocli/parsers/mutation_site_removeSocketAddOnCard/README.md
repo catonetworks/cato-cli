@@ -26,5 +26,3 @@ catocli mutation site removeSocketAddOnCard '{
 
 #### Operation Arguments for mutation.site.removeSocketAddOnCard ####
 
-`accountId` [ID] - (required) N/A    
-`removeSocketAddOnCardInput` [RemoveSocketAddOnCardInput] - (required) N/A    

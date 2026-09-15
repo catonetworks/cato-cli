@@ -45,5 +45,3 @@ catocli query policy wanNetwork policy | jq -r '.data.policy.wanNetwork.policy.r
 
 #### Operation Arguments for query.policy.wanNetwork.policy ####
 
-`accountId` [ID] - (required) N/A    
-`wanNetworkPolicyInput` [WanNetworkPolicyInput] - (required) N/A    

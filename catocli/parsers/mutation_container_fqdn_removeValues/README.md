@@ -29,5 +29,3 @@ catocli mutation container fqdn removeValues '{
 
 #### Operation Arguments for mutation.container.fqdn.removeValues ####
 
-`accountId` [ID] - (required) N/A    
-`fqdnContainerRemoveValuesInput` [FqdnContainerRemoveValuesInput] - (required) N/A    

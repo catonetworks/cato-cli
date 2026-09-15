@@ -27,6 +27,3 @@ catocli mutation policy internetFirewall discardPolicyRevision '{
 
 #### Operation Arguments for mutation.policy.internetFirewall.discardPolicyRevision ####
 
-`accountId` [ID] - (required) N/A    
-`internetFirewallPolicyMutationInput` [InternetFirewallPolicyMutationInput] - (required) N/A    
-`policyDiscardRevisionInput` [PolicyDiscardRevisionInput] - (required) N/A    

@@ -33,6 +33,3 @@ catocli mutation policy splitTunnel addSection '{
 
 #### Operation Arguments for mutation.policy.splitTunnel.addSection ####
 
-`accountId` [ID] - (required) N/A    
-`policyAddSectionInput` [PolicyAddSectionInput] - (required) N/A    
-`splitTunnelPolicyMutationInput` [SplitTunnelPolicyMutationInput] - (required) N/A    

@@ -213,6 +213,3 @@ catocli mutation policy socketLan firewall updateRule '{
 
 #### Operation Arguments for mutation.policy.socketLan.firewall.updateRule ####
 
-`accountId` [ID] - (required) N/A    
-`socketLanFirewallUpdateRuleInput` [SocketLanFirewallUpdateRuleInput] - (required) N/A    
-`socketLanPolicyMutationInput` [SocketLanPolicyMutationInput] - (required) N/A    

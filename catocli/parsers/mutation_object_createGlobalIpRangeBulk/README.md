@@ -24,5 +24,3 @@ catocli mutation object createGlobalIpRangeBulk '{
 
 #### Operation Arguments for mutation.object.createGlobalIpRangeBulk ####
 
-`accountId` [ID] - (required) N/A    
-`createGlobalIpRangeInput` [CreateGlobalIpRangeInput[]] - (required) N/A    

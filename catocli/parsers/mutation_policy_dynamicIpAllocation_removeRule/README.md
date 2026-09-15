@@ -27,6 +27,3 @@ catocli mutation policy dynamicIpAllocation removeRule '{
 
 #### Operation Arguments for mutation.policy.dynamicIpAllocation.removeRule ####
 
-`accountId` [ID] - (required) N/A    
-`dynamicIpAllocationPolicyMutationInput` [DynamicIpAllocationPolicyMutationInput] - (required) N/A    
-`dynamicIpAllocationRemoveRuleInput` [DynamicIpAllocationRemoveRuleInput] - (required) N/A    

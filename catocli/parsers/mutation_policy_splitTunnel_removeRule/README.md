@@ -27,6 +27,3 @@ catocli mutation policy splitTunnel removeRule '{
 
 #### Operation Arguments for mutation.policy.splitTunnel.removeRule ####
 
-`accountId` [ID] - (required) N/A    
-`splitTunnelPolicyMutationInput` [SplitTunnelPolicyMutationInput] - (required) N/A    
-`splitTunnelRemoveRuleInput` [SplitTunnelRemoveRuleInput] - (required) N/A    

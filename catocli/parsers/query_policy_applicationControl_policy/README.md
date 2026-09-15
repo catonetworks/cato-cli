@@ -45,5 +45,3 @@ catocli query policy applicationControl policy | jq -r '.data.policy.application
 
 #### Operation Arguments for query.policy.applicationControl.policy ####
 
-`accountId` [ID] - (required) N/A    
-`applicationControlPolicyInput` [ApplicationControlPolicyInput] - (required) N/A    

@@ -60,6 +60,3 @@ catocli mutation policy clientConnectivity updateRule '{
 
 #### Operation Arguments for mutation.policy.clientConnectivity.updateRule ####
 
-`accountId` [ID] - (required) N/A    
-`clientConnectivityPolicyMutationInput` [ClientConnectivityPolicyMutationInput] - (required) N/A    
-`clientConnectivityUpdateRuleInput` [ClientConnectivityUpdateRuleInput] - (required) N/A    

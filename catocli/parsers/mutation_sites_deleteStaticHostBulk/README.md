@@ -28,5 +28,3 @@ catocli mutation sites deleteStaticHostBulk '{
 
 #### Operation Arguments for mutation.sites.deleteStaticHostBulk ####
 
-`accountId` [ID] - (required) N/A    
-`deleteStaticHostBulkInput` [DeleteStaticHostBulkInput] - (required) N/A    

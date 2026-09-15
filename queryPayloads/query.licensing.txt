@@ -405,6 +405,16 @@ query licensing ( $accountId:ID!) {
 				expirationDate
 				lastUpdated
 			}
+			agenticThreatPrevention {
+				id
+				description
+				plan
+				sku
+				status
+				startDate
+				expirationDate
+				lastUpdated
+			}
 			xOps {
 				id
 				description
@@ -447,6 +457,42 @@ query licensing ( $accountId:ID!) {
 					total
 					allocated
 					available
+				}
+				mspDem {
+					sku
+					total
+					allocatedQuantity
+					accounts {
+						account {
+							id
+							name
+						}
+						allocatedQuantity
+					}
+				}
+				mspAiSecurityUsers {
+					sku
+					total
+					allocatedQuantity
+					accounts {
+						account {
+							id
+							name
+						}
+						allocatedQuantity
+					}
+				}
+				mspAiSecurityApplications {
+					sku
+					total
+					allocatedQuantity
+					accounts {
+						account {
+							id
+							name
+						}
+						allocatedQuantity
+					}
 				}
 			}
 		}

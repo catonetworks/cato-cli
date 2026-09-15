@@ -31,5 +31,3 @@ catocli mutation site exchangeSocketPorts '{
 
 #### Operation Arguments for mutation.site.exchangeSocketPorts ####
 
-`accountId` [ID] - (required) N/A    
-`exchangeSocketPortsInput` [ExchangeSocketPortsInput] - (required) N/A    

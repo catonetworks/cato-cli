@@ -22,5 +22,3 @@ catocli mutation businessPlatform updateSettings '{
 
 #### Operation Arguments for mutation.businessPlatform.updateSettings ####
 
-`accountId` [ID] - (required) N/A    
-`businessPlatformUpdateSettingsInput` [BusinessPlatformUpdateSettingsInput] - (required) N/A    

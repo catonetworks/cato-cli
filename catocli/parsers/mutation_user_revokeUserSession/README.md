@@ -25,5 +25,3 @@ catocli mutation user revokeUserSession '{
 
 #### Operation Arguments for mutation.user.revokeUserSession ####
 
-`accountId` [ID] - (required) Unique identifier of the Cato account.    
-`revokeUserSessionInput` [RevokeUserSessionInput] - (required) N/A    

@@ -25,6 +25,3 @@ catocli mutation sites updateHa '{
 
 #### Operation Arguments for mutation.sites.updateHa ####
 
-`accountId` [ID] - (required) N/A    
-`siteId` [ID] - (required) N/A    
-`updateHaInput` [UpdateHaInput] - (required) N/A    

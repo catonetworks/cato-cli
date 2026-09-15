@@ -23,5 +23,3 @@ catocli query container ipAddressRange testFromURL '{
 
 #### Operation Arguments for query.container.ipAddressRange.testFromURL ####
 
-`accountId` [ID] - (required) N/A    
-`testContainerFromUrlInput` [TestContainerFromUrlInput] - (required) N/A    

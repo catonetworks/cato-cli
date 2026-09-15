@@ -25,5 +25,3 @@ catocli query site networkRangeList '{
 
 #### Operation Arguments for query.site.networkRangeList ####
 
-`accountId` [ID] - (required) N/A    
-`networkRangeListInput` [NetworkRangeListInput] - (required) N/A    

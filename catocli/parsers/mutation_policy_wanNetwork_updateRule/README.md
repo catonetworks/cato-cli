@@ -382,6 +382,3 @@ catocli mutation policy wanNetwork updateRule '{
 
 #### Operation Arguments for mutation.policy.wanNetwork.updateRule ####
 
-`accountId` [ID] - (required) N/A    
-`wanNetworkPolicyMutationInput` [WanNetworkPolicyMutationInput] - (required) N/A    
-`wanNetworkUpdateRuleInput` [WanNetworkUpdateRuleInput] - (required) N/A    

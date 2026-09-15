@@ -425,6 +425,3 @@ catocli mutation policy internetFirewall updateRule '{
 
 #### Operation Arguments for mutation.policy.internetFirewall.updateRule ####
 
-`accountId` [ID] - (required) N/A    
-`internetFirewallPolicyMutationInput` [InternetFirewallPolicyMutationInput] - (required) N/A    
-`internetFirewallUpdateRuleInput` [InternetFirewallUpdateRuleInput] - (required) N/A    

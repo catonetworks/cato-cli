@@ -35,5 +35,3 @@ catocli mutation businessPlatform createTrialAccount '{
 
 #### Operation Arguments for mutation.businessPlatform.createTrialAccount ####
 
-`accountId` [ID] - (required) N/A    
-`businessPlatformCreateTrialAccountInput` [BusinessPlatformCreateTrialAccountInput] - (required) N/A    

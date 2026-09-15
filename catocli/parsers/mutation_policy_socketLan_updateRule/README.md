@@ -156,6 +156,3 @@ catocli mutation policy socketLan updateRule '{
 
 #### Operation Arguments for mutation.policy.socketLan.updateRule ####
 
-`accountId` [ID] - (required) N/A    
-`socketLanPolicyMutationInput` [SocketLanPolicyMutationInput] - (required) N/A    
-`socketLanUpdateRuleInput` [SocketLanUpdateRuleInput] - (required) N/A    

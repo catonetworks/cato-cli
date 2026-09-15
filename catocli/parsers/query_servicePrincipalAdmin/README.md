@@ -20,5 +20,3 @@ catocli query servicePrincipalAdmin '{
 
 #### Operation Arguments for query.servicePrincipalAdmin ####
 
-`accountId` [ID] - (required) N/A    
-`adminID` [ID] - (required) N/A    

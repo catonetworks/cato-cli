@@ -46,5 +46,3 @@ catocli mutation externalAccess addPartnerAccessRequest '{
 
 #### Operation Arguments for mutation.externalAccess.addPartnerAccessRequest ####
 
-`accountId` [ID] - (required) N/A    
-`addPartnerAccessRequestInput` [AddPartnerAccessRequestInput] - (required) N/A    

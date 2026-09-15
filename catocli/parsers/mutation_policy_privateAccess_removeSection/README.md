@@ -27,6 +27,3 @@ catocli mutation policy privateAccess removeSection '{
 
 #### Operation Arguments for mutation.policy.privateAccess.removeSection ####
 
-`accountId` [ID] - (required) N/A    
-`policyRemoveSectionInput` [PolicyRemoveSectionInput] - (required) N/A    
-`privateAccessPolicyMutationInput` [PrivateAccessPolicyMutationInput] - (required) N/A    

@@ -75,7 +75,7 @@ pipeline {
                         ci_home="$(mktemp -d)"
                         trap 'rm -rf "$ci_home"' EXIT
 
-                        export PYTHONPATH="$WORKSPACE/.ci-python${PYTHONPATH:+:$PYTHONPATH}"
+                        export PYTHONPATH="$WORKSPACE/.ci-python:$WORKSPACE${PYTHONPATH:+:$PYTHONPATH}"
                         cd schema
                         HOME="$ci_home" python3 importSchema.py
                         test -s introspection.json
@@ -86,7 +86,7 @@ pipeline {
 
         stage('Validate generated files') {
             steps {
-                sh 'PYTHONPATH="$WORKSPACE/.ci-python${PYTHONPATH:+:$PYTHONPATH}" python3 tests/run_all_tests.py --skip-generated --skip-custom --verbose'
+                sh 'PYTHONPATH="$WORKSPACE/.ci-python:$WORKSPACE${PYTHONPATH:+:$PYTHONPATH}" python3 tests/run_all_tests.py --skip-generated --skip-custom --verbose'
             }
         }
 

@@ -51,11 +51,12 @@ pipeline {
         stage('Install dependencies') {
             steps {
                 sh '''
-                    python3 -m venv .venv
-                    .venv/bin/python -m pip install --disable-pip-version-check \
+                    rm -rf .ci-python
+                    python3 -m pip install --disable-pip-version-check \
+                        --break-system-packages \
+                        --target "$PWD/.ci-python" \
                         -r requirements.txt \
                         -r tests/requirements.txt
-                    .venv/bin/python -m pip install --disable-pip-version-check -e .
                 '''
             }
         }
@@ -74,8 +75,9 @@ pipeline {
                         ci_home="$(mktemp -d)"
                         trap 'rm -rf "$ci_home"' EXIT
 
+                        export PYTHONPATH="$WORKSPACE/.ci-python${PYTHONPATH:+:$PYTHONPATH}"
                         cd schema
-                        HOME="$ci_home" ../.venv/bin/python importSchema.py
+                        HOME="$ci_home" python3 importSchema.py
                         test -s introspection.json
                     '''
                 }
@@ -84,13 +86,14 @@ pipeline {
 
         stage('Validate generated files') {
             steps {
-                sh '.venv/bin/python tests/run_all_tests.py --skip-generated --skip-custom --verbose'
+                sh 'PYTHONPATH="$WORKSPACE/.ci-python${PYTHONPATH:+:$PYTHONPATH}" python3 tests/run_all_tests.py --skip-generated --skip-custom --verbose'
             }
         }
 
         stage('Prepare branch') {
             steps {
                 script {
+                    sh 'rm -rf .ci-python'
                     env.CHANGES_DETECTED = sh(
                         script: 'if [ -n "$(git status --porcelain)" ]; then echo true; else echo false; fi',
                         returnStdout: true
@@ -163,7 +166,7 @@ EOF
 - Runs the structural validation test suite.
 
 ## Test plan
-- `.venv/bin/python tests/run_all_tests.py --skip-generated --skip-custom --verbose`
+- `PYTHONPATH=.ci-python python3 tests/run_all_tests.py --skip-generated --skip-custom --verbose`
 '''
                     writeFile(
                         file: 'pr_payload.json',
